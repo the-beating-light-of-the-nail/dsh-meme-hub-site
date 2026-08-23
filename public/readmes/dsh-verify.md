@@ -1,5 +1,7 @@
 # dsh-verify
 
+[中文](README.zh.md) | English
+
 > **Witness** — The browser is the judge.
 > The quality gate for agent-built web apps. Agents say done; the browser proves it.
 > *(Witness is the product name; `dsh-verify` is the package name — same thing.)*
@@ -9,6 +11,7 @@
 [![MCP server](https://glama.ai/mcp/servers/263311487-ux/dsh-verify/badges/score.svg)](https://glama.ai/mcp/servers/263311487-ux/dsh-verify)
 [![awesome-dsh-plugin](https://img.shields.io/badge/awesome--dsh--plugin-listed-brightgreen)](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
 [![GitHub stars](https://img.shields.io/github/stars/263311487-ux/dsh-verify?style=social)](https://github.com/263311487-ux/dsh-verify/stargazers)
+[![self-acceptance](https://github.com/263311487-ux/dsh-verify/actions/workflows/self-acceptance.yml/badge.svg)](https://github.com/263311487-ux/dsh-verify/actions/workflows/self-acceptance.yml)
 
 *If Witness catches something for you, ⭐ [star the repo](https://github.com/263311487-ux/dsh-verify) — it's how this project stays alive.*
 
@@ -16,13 +19,15 @@
 
 `dsh-verify` opens a real browser and checks — so you never have to take the agent's word for it.
 
-![dsh-verify in action](https://raw.githubusercontent.com/263311487-ux/dsh-verify/25712f5e94cc8299ad8f210564047e8b70362325/assets/hero.gif)
+![dsh-verify — Agents say done. The browser proves it.](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/social-card.png)
+
+![dsh-verify in action](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/hero.gif)
 
 The quality gate for **agent-built web apps**. Works with any agent — DeepSeek Harness (dsh), Claude Code, Cursor, Copilot, Codex — and with any CI. You write what a human would check in a browser; a real browser executes it and returns a `PASS`/`FAIL` verdict with receipts (screenshots + diff images).
 
 No LLM judges the outcome. **The browser is the judge.**
 
-![Same task, same AI, two builds — only a real browser tells the difference](https://raw.githubusercontent.com/263311487-ux/dsh-verify/25712f5e94cc8299ad8f210564047e8b70362325/assets/wow-compare.png)
+![Same task, same AI, two builds — only a real browser tells the difference](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/wow-compare.png)
 
 Same task. Same AI. Two builds. One missing CSS rule — the agent's self-review passed, a real browser caught it.
 
@@ -134,7 +139,7 @@ Top-level fields: `title`, `serve` (static dir) or `base` (target URL), `browser
 
 A self-contained HTML report — every step with a pass/fail badge, selector, and detail, plus screenshots:
 
-![dsh-verify report](https://raw.githubusercontent.com/263311487-ux/dsh-verify/25712f5e94cc8299ad8f210564047e8b70362325/assets/report-screenshot.png)
+![dsh-verify report](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/report-screenshot.png)
 
 ## Agent Arena — bring your agent
 

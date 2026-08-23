@@ -22,11 +22,11 @@
 
 让 `dsh` agent 总结一段技术架构并写入 Notion：
 
-![dsh 里请求写入 Notion](https://raw.githubusercontent.com/mingzeng21/dsh-notion/02558aaa0629d48aed9018a5daa04f837df6bd71/docs/screenshots/dsh-notion-sc1.png)
+![dsh 里请求写入 Notion](https://raw.githubusercontent.com/mingzeng21/dsh-notion/950ec507a8b2ae421eda09f6aaa7fefccd1c3b30/docs/screenshots/dsh-notion-sc1.png)
 
 写好的 Notion 页面：
 
-![写入后的 Notion 页面](https://raw.githubusercontent.com/mingzeng21/dsh-notion/02558aaa0629d48aed9018a5daa04f837df6bd71/docs/screenshots/dsh-notion-sc2.png)
+![写入后的 Notion 页面](https://raw.githubusercontent.com/mingzeng21/dsh-notion/950ec507a8b2ae421eda09f6aaa7fefccd1c3b30/docs/screenshots/dsh-notion-sc2.png)
 
 ## 工作原理
 
@@ -86,7 +86,7 @@ dsh plugin --profile web remove dsh-notion-mcp
 
 ## 环境要求
 
-- [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（`dsh`）
+- [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（`dsh`）—— 已验证兼容 `v0.1.0-rc.8`、`v0.1.1-rc.1`、`v0.1.1-rc.2`
 - Node.js ≥ 22.12.0
 
 ## 开发

@@ -11,7 +11,7 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 发布安装包内置固定版本的官方 `@deepseek-ai/dsh` 运行时；普通用户无需另外安装 Node.js、pnpm 或 `dsh` CLI。桌面外壳、安装包、连接增强与发布签名均由本项目独立负责，不属于官方运行时的一部分。桌面客户端与官方 `dsh` 使用各自独立的版本号；应用的连接设置页会同时显示两个版本号，便于排查兼容问题。
 
-![DSH Desktop 首页：窗口里就是官方 Web UI 本体](https://raw.githubusercontent.com/bruc3van/dsh-desktop/95b39d2eefa565a1e7ccf98190a54cb28225c877/docs/images/dsh-desktop-home.png)
+![DSH Desktop 首页：窗口里就是官方 Web UI 本体](https://raw.githubusercontent.com/bruc3van/dsh-desktop/30e1019fe82a13d238bbeb98191eae04180faaaf/docs/images/dsh-desktop-home.png)
 
 ## 为什么值得使用
 
@@ -91,7 +91,7 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 连接设置把「智能」和「自定义」分成两种方式：智能模式下只显示四个来源，点选立即生效；选「自定义」后才会出现地址栏，右侧是「保存并连接」。点「智能」会立即切回，已填地址会保留。
 
-![官方设置弹窗里的「桌面设置」：当前连接与四个来源开关、安全市场开关，以及客户端和内置 dsh 的版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/95b39d2eefa565a1e7ccf98190a54cb28225c877/docs/images/dsh-desktop-setting.png)
+![官方设置弹窗里的「桌面设置」：当前连接与四个来源开关、安全市场开关，以及客户端和内置 dsh 的版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/30e1019fe82a13d238bbeb98191eae04180faaaf/docs/images/dsh-desktop-setting.png)
 
 连接状态按**谁启动了这个运行时**来描述，避免「本地」和「内置」混用：
 
@@ -160,7 +160,7 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 **不想要它**：连接设置里有「安全市场」开关，关掉就会立即移除市场插件，之后启动也不会再装回。就算客户端已经卸载了，市场自己的「已安装」面板也能把它卸载掉——官方 `dsh plugin` 命令不管这份插件，所以面板是最后的入口。
 
-![设置里的「安全市场」：按分类均衡发牌的精选目录，右上角显示市场自身版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/95b39d2eefa565a1e7ccf98190a54cb28225c877/docs/images/marketplace.png)
+![设置里的「安全市场」：按分类均衡发牌的精选目录，右上角显示市场自身版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/30e1019fe82a13d238bbeb98191eae04180faaaf/docs/images/marketplace.png)
 
 市场有三个刻意的设计：
 
@@ -168,11 +168,11 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 - **默认关闭，开启才联网。** 市场关闭时不发起任何网络请求；开启后读取一次目录快照并持久化（`$DSH_HOME/storages/safe_market.json`），之后走 ETag 条件请求，连不上 GitHub 时继续用上次的目录。一个装上就开始联网的插件等于替你做了决定，这个开关把决定还给你。
 - **先审查、再安装。** 「安全安装」不替你执行任何安装命令：它打开一个新会话、把一段安全审查提示词**填入输入框（不发送）**，由你按回车让 Agent 实际读仓库代码——重点检查凭据/token 访问、向第三方外传数据、远程代码执行、`postinstall` 等安装脚本、无对应源码的混淆文件，以及权限是否远超其声称的功能；发现可疑处必须停下来说清原因并询问你。确认干净后，Agent 才会用官方命令 `dsh plugin --profile web add` 安装。审查与安装因此绑在一起、绕不过去；发不发送由你决定，**收录不代表安全背书**——请自己看过再决定。
 
-![点「安全安装」后：审查提示词被填进新会话的输入框，停在这里等你按回车](https://raw.githubusercontent.com/bruc3van/dsh-desktop/95b39d2eefa565a1e7ccf98190a54cb28225c877/docs/images/marketplace-sec-install.png)
+![点「安全安装」后：审查提示词被填进新会话的输入框，停在这里等你按回车](https://raw.githubusercontent.com/bruc3van/dsh-desktop/30e1019fe82a13d238bbeb98191eae04180faaaf/docs/images/marketplace-sec-install.png)
 
 目录里已经装过的插件会标出「已安装 vX.Y.Z」，按钮也随之变成「安全升级」——走的是同一套「先审查、再动手」的流程，只是提示词第一步先让 Agent 确认上游到底有没有新版本，没有就原样不动。已装插件的日常管理则在同一页顶部的已安装面板：
 
-![已安装面板：版本、启用状态，以及停用/启用与卸载](https://raw.githubusercontent.com/bruc3van/dsh-desktop/95b39d2eefa565a1e7ccf98190a54cb28225c877/docs/images/marketplace-installed.png)
+![已安装面板：版本、启用状态，以及停用/启用与卸载](https://raw.githubusercontent.com/bruc3van/dsh-desktop/30e1019fe82a13d238bbeb98191eae04180faaaf/docs/images/marketplace-installed.png)
 
 卸载不是从列表里划掉：它先停用插件，再在这个 profile 里执行与官方 `dsh plugin remove` 相同的移除，锁文件和 node_modules 一并清掉。装成了依赖、却没写进 `bundles` 因而当前不会加载的插件，面板也会单独列出并标明——你机器上装过什么，这里就看得见什么，也能就地卸掉。
 

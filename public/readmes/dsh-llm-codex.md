@@ -11,7 +11,7 @@ The package root exposes the Cordis plugin contract. The same artifact exports `
 DeepSeek Harness 0.1.0-rc.6 or later is required. Install directly from GitHub:
 
 ~~~sh
-dsh plugin --profile web add github:NOirBRight/dsh-llm-codex#v0.2.6
+dsh plugin --profile web add github:NOirBRight/dsh-llm-codex#v0.2.8
 dsh web
 ~~~
 
@@ -21,7 +21,7 @@ The repository tracks release-ready lib artifacts, so GitHub installation needs 
 
 Open Settings → LLM Providers → Codex. **Sign in with ChatGPT** starts the official ChatGPT OAuth flow, opens the system browser, and stores the session only on the Host at `$DSH_HOME/codex-oauth.json` (mode `0600`). The card then shows usage limits. Sign out deletes that file. The browser never receives tokens.
 
-![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/5d6fbfa95d53441994091b716a57c1ddab3631e0/docs/images/plugin-card-catalog.png)
+![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/bfc494e84b35770e39bdb0e8e6a89a02b50a680a/docs/images/plugin-card-catalog.png)
 
 ### Model catalog
 
@@ -49,9 +49,9 @@ Search, `view_image`, and `codex_generate_image` are implemented but default off
 
 `codex_generate_image` is a separate model-invoked tool. Any conversation model can call it; it uses this plugin's ChatGPT login and Codex usage (typically 3–5× a text turn) and draws with backend `gpt-image-2`. The routing-model dropdown lists official vision models and defaults to `gpt-5.6-luna`. The name is intentionally not `generate_image`, so it does not collide with other provider plugins. Generated files land under `generated-images/` unless `path` is set.
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/5d6fbfa95d53441994091b716a57c1ddab3631e0/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/bfc494e84b35770e39bdb0e8e6a89a02b50a680a/docs/images/plugin-card-capabilities.png)
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/5d6fbfa95d53441994091b716a57c1ddab3631e0/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/bfc494e84b35770e39bdb0e8e6a89a02b50a680a/docs/images/plugin-card-capabilities.png)
 
 ## Config
 

@@ -10,7 +10,7 @@
 
 ## 效果预览
 
-![折叠效果](https://raw.githubusercontent.com/a179-sanae/dsh-auto-collapse/a31033c246283fa4cd78d81251a96a340f7a935f/assets/screenshot.png)
+![折叠效果](https://raw.githubusercontent.com/a179-sanae/dsh-auto-collapse/1c39946e530d5a9f07a3941285c0c690f5cdf9f0/assets/screenshot.png)
 
 ## 特性
 

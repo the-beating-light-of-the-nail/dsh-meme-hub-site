@@ -1,6 +1,6 @@
 # 📖 DeepRead — Evidence-first reading for AI agents
 
-English | [中文](README.zh.md)
+[中文官网](https://xiehuan123.github.io/dsh-deepread/) | English | [中文](README.zh.md)
 
 > Turn long articles, books, PDFs, and document sets into traceable claims, evidence, confidence levels, knowledge maps, and review questions.
 
@@ -10,7 +10,7 @@ English | [中文](README.zh.md)
 [![Awesome DSH Plugin](https://beancookie.github.io/awesome-dsh-plugin/badge.svg)](https://beancookie.github.io/awesome-dsh-plugin)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-![DeepRead evidence-first reading workflow](https://raw.githubusercontent.com/xiehuan123/dsh-deepread/70222c0ffcb79e6e231609bc89ad589505c136ef/assets/deepread-demo.svg)
+![DeepRead evidence-first reading workflow](https://raw.githubusercontent.com/xiehuan123/dsh-deepread/9ae3fc13e7ef3eec4f657b206f8b2a9673a04139/assets/deepread-demo.svg)
 
 DeepRead is available in two compatible forms:
 

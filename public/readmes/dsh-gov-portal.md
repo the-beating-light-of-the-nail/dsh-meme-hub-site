@@ -1,4 +1,3 @@
-<!-- repo: ExElectron/dsh-gov-portal sha: 978ca7e41c5cae1ec1599d81aed687ce7488d5ad fetched: manual 2026-08-22 -->
 # dsh-gov-portal · Deepseek Harness 综合智能办事平台
 
 一个以**中国地方政务网站视觉规范**为设计基准的独立 WebUI 插件：在独立端口（默认 **3081**）提供政务风办事大厅界面，通过宿主进程内的 **apiProxy 网关** 1:1 对接 DeepSeek Harness 的会话、模型、模式、权限、统计等**全部真实 Agent 能力**（零业务硬编码）。

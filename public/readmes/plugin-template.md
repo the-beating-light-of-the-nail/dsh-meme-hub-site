@@ -10,6 +10,7 @@ Normal npm dependencies are resolved from the package registry. A DSH host is a 
 
 ```text
 .
+├── .oxlintrc.json                 # Type-aware Oxlint configuration
 ├── .agents/skills/               # Repository-local plugin development workflow
 │   ├── dsh-plugin-development/   # End-to-end coordinator
 │   └── dsh-plugin-*/             # Plan, scaffold, implement, compose, test, release
@@ -19,8 +20,7 @@ Normal npm dependencies are resolved from the package registry. A DSH host is a 
 │   └── README.md                 # Dependency and DSH-host patch contract
 ├── scripts/
 │   ├── extract-patch.mjs         # Config-driven host patch regeneration (see patches/README.md)
-│   ├── patch.sh                  # Idempotent host patch application
-│   └── verify-self-contained.mjs # Repository-boundary and skill metadata check
+│   └── patch.sh                  # Idempotent host patch application
 ├── src/
 │   ├── README.md                 # Growth rules for services and feature modules
 │   ├── config.ts                 # Serializable schema and resolved defaults
@@ -41,8 +41,7 @@ Normal npm dependencies are resolved from the package registry. A DSH host is a 
 ├── package.json                  # Exports, peers, dsh.bundle.patch
 ├── pnpm-lock.yaml                # Reproducible registry dependency graph
 ├── pnpm-workspace.yaml           # Package-manager and optional patch policy
-├── tsconfig.json                 # Strict no-emit typecheck project
-├── tsconfig.vitest.json          # Source-plane test typecheck project
+├── tsconfig.json                 # Compiler and type-aware lint project
 ├── tsdown.config.ts              # Direct source-to-runtime/declaration build
 └── vitest.config.ts              # Test runner configuration
 ```
@@ -55,7 +54,7 @@ The template's sample skeleton still uses `src/index.ts`, `src/config.ts`, `src/
 
 ## Create your plugin
 
-1. Replace package identity in `package.json`, the Loader owner, configuration/runtime/invariant owners, focused test owners, bundle metadata, TypeScript metadata, `README.md`, and `AGENTS.md` as applicable. The sample skeleton names these owners explicitly; a deliberate replacement must update the package's boundary verifier and local documentation too.
+1. Replace package identity in `package.json`, the Loader owner, configuration/runtime/invariant owners, focused test owners, bundle metadata, TypeScript metadata, `README.md`, and `AGENTS.md` as applicable. The sample skeleton names these owners explicitly; a deliberate replacement must update the package's local documentation and static-analysis configuration too.
 2. Replace the template package name `@your-scope/dsh-plugin-template` and plugin ids only in those identity owners. Do not perform a global replacement inside `.agents/skills/`; its generic examples and marker checks must remain reusable.
 3. Update `description`, `LICENSE`, and `cordis.patch.yml`.
 4. Add only the DSH host services used by the implementation to the package contract and composition patch. Keep source and build dependencies resolvable from this repository's `node_modules`; host-provided runtime APIs remain consumer-supplied peers.
@@ -74,6 +73,7 @@ DSH discovers the repository-local workflow under `.agents/skills/`. Start with 
 |---|---|
 | [`dsh-plugin-plan`](.agents/skills/dsh-plugin-plan/SKILL.md) | Decide plugin form, dependencies, configuration, invariant, composition, and evidence. |
 | [`dsh-plugin-scaffold`](.agents/skills/dsh-plugin-scaffold/SKILL.md) | Instantiate and baseline-verify a new repository from this template. |
+| [`dsh-plugin-align`](.agents/skills/dsh-plugin-align/SKILL.md) | Migrate an existing non-template repository to this toolchain without replacing product behavior. |
 | [`dsh-plugin-implement`](.agents/skills/dsh-plugin-implement/SKILL.md) | Implement lifecycle-safe Cordis behavior, metadata, docs, and invariants. |
 | [`dsh-plugin-compose`](.agents/skills/dsh-plugin-compose/SKILL.md) | Install the bundle into an isolated profile and prove effective activation. |
 | [`dsh-plugin-test`](.agents/skills/dsh-plugin-test/SKILL.md) | Verify Loader exports, behavior, disposal, composition, snapshots, and artifacts. |
@@ -87,13 +87,12 @@ Run every command from this directory:
 
 ```sh
 pnpm install
-pnpm run verify:self-contained
-pnpm run typecheck
+pnpm run lint
 pnpm test
 pnpm run build
 ```
 
-`verify:self-contained` rejects filesystem dependency specs, compiler paths that leave the repository, external or broken Markdown links, absolute workstation paths, and malformed bundled skill metadata. `typecheck` checks the configured source and test projects against the local strict compiler baseline. `build` runs the configured source-to-artifact pipeline, including any declaration assembly or final artifact verifier owned by the package, and emits ready-to-pack output; it does not run an install-time lifecycle build.
+`lint` runs Oxlint with type-aware analysis and denies warnings for the configured source and test projects. `build` runs the configured source-to-artifact pipeline, including any declaration assembly or final artifact verifier owned by the package, and emits ready-to-pack output; it does not run an install-time lifecycle build.
 
 The release artifact is built from the configured source owners before packing. Profile or consumer installation uses the ready-made `lib/` output and does not run `prepare`; `pnpm pack --dry-run --json` verifies the final archive contents.
 
@@ -101,8 +100,8 @@ The release artifact is built from the configured source owners before packing. 
 
 Two GitHub Actions workflows ship with the template:
 
-- `.github/workflows/ci.yml` — every push to `main` and every pull request: install with the frozen lockfile, `verify:self-contained`, typecheck, tests, and build.
-- `.github/workflows/release.yml` — every push to `main`: verifies, typechecks, tests, builds, packs the ready-made tarball (`pnpm pack`), and follows the repository's configured GitHub Release policy.
+- `.github/workflows/ci.yml` — every push to `main` and every pull request: install with the frozen lockfile, Oxlint static analysis, tests, and build.
+- `.github/workflows/release.yml` — every push to `main`: runs Oxlint, tests, builds, packs the ready-made tarball (`pnpm pack`), and follows the repository's configured GitHub Release policy.
 
 ## Profile activation
 
@@ -148,8 +147,7 @@ A service provider instead normally default-exports its `Service` subclass. Do n
 Before considering packed or GitHub Release distribution, build and inspect the final archive:
 
 ```sh
-pnpm run verify:self-contained
-pnpm run typecheck
+pnpm run lint
 pnpm test
 pnpm run build
 pnpm pack --dry-run --json

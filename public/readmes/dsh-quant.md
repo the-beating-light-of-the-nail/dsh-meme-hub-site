@@ -10,7 +10,7 @@
 [![ci](https://github.com/pengpengyi92/dsh-quant/actions/workflows/ci.yml/badge.svg)](https://github.com/pengpengyi92/dsh-quant/actions)
 [![dsh-plugin](https://img.shields.io/badge/dsh-plugin-blue)](https://github.com/topics/dsh-plugin)
 
-> **AI-native & DSH-native quant toolkit for every quant aspect** — 46 tools · 6 domains
+> **AI-native & DSH-native quant toolkit for every quant aspect** — 59 tools · 6 domains
 > (data / alpha / ML / risk / execution / ecosystem) · one end-to-end PDAT→PET
 > research pipeline. **Methods open, secrets internal.**
 
@@ -49,7 +49,7 @@ deliberate choice from day one:
   positions are `null`, so the model aligns by index and never pads
 - **Canonical JSON + render separation** — machines read structure, humans read prose
 - **All isConcurrencySafe** — pure functions, no shared state; agents can call all
-  46 tools in parallel without interference
+  59 tools in parallel without interference
 - **Skill layer** — `skill/quant-research` lets the model load the workflow itself
 
 Full statement: [Issue #14](https://github.com/pengpengyi92/dsh-quant/issues/14) "AI-native is deliberate".
@@ -71,7 +71,7 @@ A common question: a quant project without `.py` files? **Answer: 0 Python files
 
 One goal: **build the most usable AI-native quant repo** 🐋
 
-**46 `quant_*` tools · 6 domains · 174 unit tests · zero runtime deps**. Full positioning: pinned [Issue #9](https://github.com/pengpengyi92/dsh-quant/issues/9).
+**59 `quant_*` tools · 6 domains · 215 unit tests · zero runtime deps**. Full positioning: pinned [Issue #9](https://github.com/pengpengyi92/dsh-quant/issues/9).
 
 ## 🤖 For visiting agents
 
@@ -92,7 +92,7 @@ Add one line to your cordis.yml:
 - name: 'dsh-quant'
 ```
 
-46 tools auto-register — indicators / backtests / factors / risk / fund simulation /
+59 tools auto-register — indicators / backtests / factors / risk / fund simulation /
 ecosystem metrics out of the box. One `quant_research_pipeline` runs the whole
 PDAT→PET chain. ML/DL knowledge: [docs/ML_GUIDE.md](docs/ML_GUIDE.md);
 executable demo: `npx tsx demos/ml-workflow.ts`.
@@ -120,7 +120,7 @@ Agent one-glance guide: [mcp/AGENT_GUIDE.md](mcp/AGENT_GUIDE.md)
 
 ## 🖥️ UI Workbench (dsh-quant-ui)
 
-![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/9aee6b45e7de75ab3091331cdb016e3d37765c54/demos/ui-demo-preview.png)
+![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/031d764f60f8253f4646eb0fc7f30fcfdabc62fc/demos/ui-demo-preview.png)
 
 [dsh-quant-ui](https://github.com/pengpengyi92/dsh-quant-ui): candlesticks + MA
 overlays + trade markers, equity curves, fund NAV / management-fee / performance-fee
@@ -135,7 +135,7 @@ P-Research CLI). Browse the research columns and live market data without a
 browser:
 
 ```bash
-node cli/main.mjs repo                      # 46 tools · 6 domains
+node cli/main.mjs repo                      # 59 tools · 6 domains
 node cli/main.mjs history                   # 53 firm archives index
 node cli/main.mjs history citadel           # one firm's archive (rendered)
 node cli/main.mjs history --reports         # ANALYSIS / TIMELINE / LINEAGE / BANK_LINEAGE
@@ -164,20 +164,31 @@ After `npm install -g .`, the commands shorten to `dsh-quant repo`,
 | `quant_repo_stats` | `owner` + `repo` | `{ stars, forks, watchers, openIssues, openPullRequests, topics, latestRelease, … }` (public GitHub API, no credentials) | — (ecosystem data) |
 | `quant_npm_stats` | `pkg` | `{ latest, weeklyDownloads, monthlyDownloads, description, … }` (npm registry + downloads API) | — (ecosystem data) |
 | `quant_oss_pulse` | `stars` + `downloadsWeekly?` + `starsPrevious?` + `openIssues?` + `openPullRequests?` + `daysSinceRelease?` | `{ score(0-100), grade(A-D), components, suggestions, summary }` | — (open-source influence score; missing inputs score neutral 50) |
+| `quant_stress_test` | `weights` + `betas` + `assetVolsPct` + `correlation=0.6` | `{ weights, scenarioLossesPct, worstScenario, maxLossPct, portfolioVolPct, notes }` | — (portfolio loss under crash/liquidity/vol scenarios) |
 | `quant_risk` | `returns` (decimal series) + `benchmarkReturns?` + `confidence=0.95` | `{ var95, cvar95, downsideDeviation, maxDrawdownPct, beta, alpha, informationRatio, trackingError, periods }` | — (core risk module) |
 | `quant_fund` | `equityCurve` + `initialCapital=1e8` + `managementFeeRate=0.02` + `performanceFeeRate=0.2` | `{ initialCapital, finalNavNet, finalAum, peakNav, peakAum, gross/netReturnPct, fees, navNet }` | — (quant hedge-fund sim: NAV 1.00 start, daily mgmt fee, 20% high-water-mark performance fee) |
 | `quant_metrics` | `equityCurve` + `trades?` | `{ totalReturnPct, maxDrawdownPct, sharpe, annualizedVol, calmar, sortino, winRate, profitFactor, avgPeriodReturnPct, tradeMetrics }` (required trio: return/drawdown/sharpe) | — (METRIC_CATALOG for UI pickers) |
 | `quant_chart` | `kind` (candles/series/annotations) + matching data | structured chart data (dsh-chart protocol: candles+overlays+markers / multi-series / annotation views) | — (UI-route data plane) |
 | `quant_execute_sim` | `close` + `orders[{index, side, quantity?/valueFraction?}]` + `initialCash?` + `feeRate?` + `slippageBps?` + `latencyBars?` | `{ fills, equityCurve, finalEquity, totalReturnPct, totalFee, totalSlippageCost, tradeCount, unfilledCount, cash, position }` | — (execution framework, no live trading) |
+| `quant_trading_cost` | `quantity` + `price` + `commissionRate=0.001` + `spreadBps=5` + `annualVolPct=30` + `dailyAdv?` + `participationRate=0.01` | `{ totalCostBps, commissionBps, slippageBps, impactBps, notional, notes }` | — (commission + slippage + market impact) |
+| `quant_trade_quality` | `fills` (from quant_execute_sim) + `unfilledOrders?` + `holdingPeriodBars?` | `{ orders, fills, fillRate, totalSlippageCost, avgSlippageBps, avgHoldingBars, buys, sells, avgFillValue, notes }` | — (execution quality: sim → live expectations) |
 | `quant_research_pipeline` | `symbol?` + `interval?` + `limit?` + `provider?` + `candles?` + strategy/fund params | `{ candles, quality, stats, metrics, risk, drawdown, fund, factor, report, charts }` | — (one-call PDAT→PET research) |
 | `quant_factor_evaluate` | `factorValues` + `forwardReturns` (factor[i] predicts ret[i+1]) + `quantiles=5` + `window=20` + `decayHorizons=5` | `{ ic, rankIc, icDecay, icir, icSeries, quantileReturns, longShort, turnover, autocorr1, n }` (alphalens set + RankIC/IC decay) | — |
 | `quant_factor_neutralize` | `factorValues` + `groups?` + `styleFactors?` + `method?` | `{ values(standardized), method, groupCount, styleCount, rSquared }` | — (group z-score / OLS residual neutralization) |
 | `quant_walk_forward` | `returns` + `features[][]` + `trainWindow` + `testWindow` + `step?` | `{ predictions(null-aligned), oosIc, oosRankIc, oosCount, windows, trainR2Mean }` | — (rolling train / out-of-sample, no look-ahead) |
+| `quant_rebalance_schedule` | `driftPerPeriod` + `costPerRebalance` + `maxFrequency=60` | `{ frequencies, totalCosts, bestFrequency, bestCost, costBreakdown, notes }` | — (drift vs cost: optimal rebalance frequency) |
+| `quant_parameter_sensitivity` | `baseValue` + `range=0.2` + `steps=9` + `metricValues?` | `{ paramName, values, metricValues, baseValue, robustness, bestValue, bestMetric, worstMetric, notes }` | — (grid robustness: plateau vs needle-sharp) |
 | `quant_linear_model` | `X(samples×features)` + `y` + `lambda?` + `predictX?` + `yTest?` | `{ intercept, weights, lambda, trainR2, n, predictions?, testR2?, testIc? }` | — (standalone OLS/Ridge fit & predict) |
+| `quant_factor_correlation` | `factors` (equal length) + `factorNames?` + `threshold=0.7` | `{ factorNames, correlationMatrix, highCorrelationPairs, meanAbsCorrelation, effectiveFactorCount, notes }` | — (factor redundancy: dedupe before combine) |
 | `quant_factor_combine` | `factors: number[][]` (equal length) + `weights?` | `{ signal(rank 0..1), effectiveWeights, factorCount }` | — (z-score weighting + cross-sectional ranking) |
+| `quant_ic_decay` | `factor` + `returns` (same length) + `maxHorizon=10` | `{ horizons, icByHorizon, halfLife, bestHorizon, peakIc, peakHorizon, signalType, notes }` | — (IC decay: signal shelf-life → rebalance frequency) |
+| `quant_layered_backtest` | `factor` + `returns` (time×asset matrices) + `layers=5` + `horizon=5` + `feeRate=0.001` | `{ layers, topEquity, bottomEquity, longShortEquity, topReturnPct, bottomReturnPct, longShortReturnPct, rebalances, layerMeanReturnPct, notes }` | — (quantile-layer backtest: factor → strategy sketch) |
 | `quant_series_quality` | `values: number[]`, `jumpThreshold=0.2` | `{ count, missingCount, zOutliers, jumps, longestConstantRun, healthy }` | — (series-level quality) |
 | `quant_data_annotate` | `values: number[]`, `jumpThreshold=0.2` | `{ count, annotations: [{index, label, severity, detail}], summary }` | — (point-level labeling, a tribute to Scale AI) |
 | `quant_data_quality` | `candles` (quant_market_fetch output) | `{ count, highBelowLow, nonPositive, timeNotIncreasing, timeGaps, extremeMoves, healthy }` | — (pre-analysis health check) |
+| `quant_deflated_sharpe` | `observedSharpe` + `numPeriods` + `numTrials=1` + `skewness?` + `kurtosis?` | `{ observedSharpe, minSignificantSharpe, deflatedSharpe, significant, pValue, notes }` | — (Bailey & López de Prado overfitting-adjusted Sharpe) |
+| `quant_data_pit` | `values: (number\|null)[]` + `channels?` | `{ healthScore, pit{pass, lookAheadIndices, notes}, survivorship{continuous, gaps, tailTruncated}, channels[] }` | — (AI-infra quality: point-in-time / survivorship / channel reliability) |
+| `quant_channel_guide` | `channel` (e.g. "akshare") + `check?` + `hasCredentials?` | `{ channel, displayName, steps[], prerequisites[], example, fallback, readiness? }` | — (agent-ready channel access guide + readiness check) |
 | `quant_data_guide` | `query` (channel name/data type, e.g. "tushare"/"financials") or `channel` (exact name) | `{ query, results: [{ name, url, cost, dataTypes, setup, tutorialUrls, bestFor, … }] }` | — (built-in 15-channel data knowledge base: A-shares/US/bonds + dsh ecosystem data plugins) |
 | `quant_market_fetch` | `symbol: string` (e.g. BTCUSDT / sh600000 / AAPL), `interval: 1m…1M`, `limit: 1-1000`, `provider: binance/okx/bybit/sina/tencent/yahoo` | `{ symbol, interval, provider, candles: [{openTime, open, high, low, close, volume}] }` | — |
 | `quant_sma` | `values: number[]`, `window: integer` | `{ values: (number\|null)[], window }` | index `window-1` |
@@ -196,6 +207,8 @@ After `npm install -g .`, the commands shorten to `dsh-quant repo`,
 | `quant_backtest_bollinger` | `close: number[]`, `window=20`, `multiplier=2`, `feeRate=0.001`, `stopLoss?`, `takeProfit?` | same (buy on upper-band breakout, sell on mid-band cross-down) | one bar after first confirmed breakout |
 | `quant_backtest_rsi` | `close: number[]`, `rsiWindow=14`, `buyBelow=30`, `sellAbove=70`, `feeRate=0.001`, `stopLoss?`, `takeProfit?` | same (buy on RSI cross-up through buyBelow, sell on cross-down through sellAbove) | one bar after first confirmed signal |
 | `quant_backtest_portfolio` | `assets: [{name, close}]`, `weights?`, `rebalanceEvery?`, `feeRate=0.001` | `{ totalReturnPct, maxDrawdownPct, sharpe, equityCurve, assetNames, finalWeights, rebalances }` | — (multi-asset portfolio) |
+| `quant_portfolio_optimize` | `returns` (time×asset matrix) + `method=maxSharpe\|minVar\|riskParity` + `iterations?` | `{ method, weights, annualReturnPct, annualVolPct, sharpe, assetSharpe, concentration }` | — (weight optimizer; feed result to quant_backtest_portfolio) |
+| `quant_attribution` | `returns` (time×asset) + `weights` (sum 1) + `factorExposures?` [time][asset][factor] | `{ totalReturnPct, assetContributionsPct, assetContribShares, factorContributionsPct, residualPct, factorR2, notes }` | — (portfolio attribution: where did the return come from) |
 | `quant_backtest_grid` | `close: number[]`, `fastMin=3`, `fastMax=10`, `slowMin=10`, `slowMax=30`, `feeRate=0.001` | `{ results(sorted by return desc), best, fastRange, slowRange, feeRate }` | — (grid search; skips fast >= slow) |
 
 ### Typical chain (model's view)
@@ -383,7 +396,7 @@ frameworks, indicators, factor evaluation, UI and demos. See pinned [Issue #9](h
 ## Quick start (after fork/pull)
 
 ```sh
-npm ci && npm run build && npm test    # offline full tests (174 unit + 4 Loader)
+npm ci && npm run build && npm test    # offline full tests (215 unit + 4 Loader)
 npm run test:verify                    # live market integration (needs network)
 npm run gen:tools                      # regenerate mcp/tools.json
 ```
@@ -402,7 +415,7 @@ cd quant-indicators && tsc -p tsconfig.json
 ## Verification
 
 ```sh
-# pure-function numeric correctness + market parsing + backtests (174 cases, node:test, zero deps)
+# pure-function numeric correctness + market parsing + backtests (215 cases, node:test, zero deps)
 cd deepseek-harness && pnpm exec tsx --test ../quant-indicators/tests/*.spec.ts
 
 # REAL-composition: cordis.yml booted through the real Loader (registration visible / pipeline / isError / HMR-safety)
@@ -419,7 +432,7 @@ cd deepseek-harness && pnpm exec tsx ../quant-indicators/consumer-test/boot.ts
 
 If dsh-quant helps your research, a ⭐ makes the project visible to more dsh users.
 
-<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/9aee6b45e7de75ab3091331cdb016e3d37765c54/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/031d764f60f8253f4646eb0fc7f30fcfdabc62fc/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
 
 This whale stands for DeepSeek Harness (dsh) — trading on its holographic screen 🐋
 

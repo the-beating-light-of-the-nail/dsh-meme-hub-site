@@ -51,11 +51,11 @@ The web admin console (`admin.enabled: true`, loopback only, mobile-friendly sin
 | **Sessions** | per-session outbound resolution with override editing |
 | **Channels** | credential forms for every channel (masked `***`), test send, QR scan |
 
-![Dashboard](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/cc4781e9939210b2d91b63f5448ccef40708a7c2/docs/screenshots/admin-dashboard.png)
-![Notify](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/cc4781e9939210b2d91b63f5448ccef40708a7c2/docs/screenshots/admin-notify.png)
-![Bindings](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/cc4781e9939210b2d91b63f5448ccef40708a7c2/docs/screenshots/admin-bindings.png)
-![Sessions](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/cc4781e9939210b2d91b63f5448ccef40708a7c2/docs/screenshots/admin-sessions.png)
-![Channels](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/cc4781e9939210b2d91b63f5448ccef40708a7c2/docs/screenshots/admin-channels.png)
+![Dashboard](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/20bfff9f153cfe56179aa79fcf7651aeeda60c42/docs/screenshots/admin-dashboard.png)
+![Notify](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/20bfff9f153cfe56179aa79fcf7651aeeda60c42/docs/screenshots/admin-notify.png)
+![Bindings](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/20bfff9f153cfe56179aa79fcf7651aeeda60c42/docs/screenshots/admin-bindings.png)
+![Sessions](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/20bfff9f153cfe56179aa79fcf7651aeeda60c42/docs/screenshots/admin-sessions.png)
+![Channels](https://raw.githubusercontent.com/THEWOLFWALKER/dsh-notifier/20bfff9f153cfe56179aa79fcf7651aeeda60c42/docs/screenshots/admin-channels.png)
 
 ## Quick start
 

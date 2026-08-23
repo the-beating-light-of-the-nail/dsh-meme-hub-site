@@ -3,7 +3,7 @@
 **中文** | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/7caa266c1036d7e3b42d4bc710350c1406b56957/assets/dsh-data-agent-banner.webp" alt="dsh-data-agent HERO图" width="100%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/dsh-data-agent-banner.webp" alt="dsh-data-agent HERO图" width="100%">
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/v/release/omdsh-dev/dsh-data-agent?style=flat-square" alt="Version">
@@ -26,7 +26,7 @@
 
 <p align="center">
 
-[项目简介](#项目简介) · [生态规范状态](#生态规范状态) · [主要功能](#主要功能) · [快速安装](#快速安装) · [Web UI](#在web-ui中使用) · [dsh-tui](#在dsh-tui中使用) · [安全说明](#安全说明)
+[项目简介](#项目简介) · [主要功能](#主要功能) · [快速安装](#快速安装) · [Web UI](#在web-ui中使用) · [dsh-tui](#在dsh-tui中使用) · [安全说明](#安全说明) · [本地开发](#本地开发) · [生态规范状态](#生态规范状态)
 
 </p>
 
@@ -34,47 +34,39 @@
 
 dsh-data-agent是DeepSeek Harness（DSH）的数据分析插件。连接数据库后，直接提出业务问题，DSH会自动查看库表、编写并执行SQL、根据真实结果继续分析，最终给出清晰的数据结论和商业洞察。插件同时支持Web UI与dsh-tui，无需修改DSH源码。
 
-![数据分析图表](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/7caa266c1036d7e3b42d4bc710350c1406b56957/assets/charts.webp)
-
-## 生态规范状态
-
-本包附带一层实验性的 [DSH Ecosystem Specification](https://github.com/T-Auto/dsh-ecosystem-spec) Community v0.15 声明。它不会替代或重复注册现有 Cordis 功能；原生 bundle、preset、命令、工具、路由、Web UI、TUI 表单和连接存储仍是唯一功能实现。
-
-| 项目 | 当前状态 |
-| --- | --- |
-| 规范与阶段 | Community v0.15，Draft / Experimental |
-| 固定基线 | `dsh-ecosystem-spec@ec80a4be5d92bbb971655afd0f097bb5586a1a28`；`dsh-std@614dfa1ac168db79fcf4577cf0ebb34e2e3b944b` |
-| Manifest | `dsh-plugin.json`，`manifestVersion: 0.15`，包身份 `@yejiming/dsh-data-agent@0.0.13` |
-| 准入结果 | 仓库内 eligible fixture 为 `compatible`；这不是实际 dsh-TUI Host 的准入结论 |
-| 证据等级 | `Parsed`；fixture negotiation 只记录为 `fixture-only`，不提升为 `Negotiated` |
-| 已执行环境 | 离线 parser/projector/definition 校验；`@dsh-std/adapter-dsh@0.1.0-rc3` 一次性本地 fixture 挂载/卸载 |
-| Artifact | 发布物身份为包名和版本；tarball SHA-256 只在真实 `npm pack` 后写入工作树外 sidecar，不嵌入 source manifest |
-| 未验证 | 真实 Host Descriptor、真实 Web/Desktop/dsh-tui、真实 TTY、数据库、remote、attach/detach、多 Presentation、`Observed`、`Attested` |
-
-主要限制包括：`UserInteraction` 因固定 Community manifest 无法携带 dsh-std definition 所需 requirement spec 而暂不声明；模型工具、agent preset、Cordis service、HTTP routes、Web slots、持久化域和本地 TTY 仍由原生 DSH 路径拥有。安装 `@dsh-std/adapter-dsh` 进行发现时，生态 facet 只发布降级快照，不发布第二个 Command、Tool 或 UI handler。
-
-该插件仍是 **trusted in-process**、非沙箱代码。Manifest permission 是 Host 的准入契约，不提供 OS、进程或 realm 隔离。上述结果不代表 DSH 官方认证、安全批准、无漏洞保证或对所有 Host 的普遍兼容承诺。
+![数据分析图表](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/charts.webp)
 
 ## 主要功能
 
+![DSH Data Agent主要功能：对话、SQL、数据治理、商业洞察、分析报告与只读保护](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/dsh-data-agent-features.webp)
+
 - **通过对话完成数据分析**：直接用自然语言描述目标，DSH会理解问题、拆解分析步骤、查询真实数据并整理结论。你可以继续追问，分析会沿着当前上下文逐步深入。
 - **自动寻找商业洞察**：不仅返回查询结果，还能帮助比较趋势、定位异常、识别高价值客户或商品，并把数据转化为便于业务决策的说明。
+- **AI驱动的数据治理**：使用当前DSH会话配置的AI模型扫描数据库，根据库表、字段、注释和关系，为每张表及每个字段生成业务含义候选。所有AI候选都需要人工确认，用户也可以人工补充业务术语和指标定义。后续查询分析时，数据Agent会通过内置的`catalog-search`、`catalog-get`和`metric-get`工具自动读取相关业务定义，让SQL和分析结论基于经过治理的业务口径。
 - **跨界面HTML分析报告（render-analysis）**：Agent可在普通工具调用里自主生成单图或Dashboard式综合分析报告（metric/line/bar/pie/scatter/table视图）。每次成功调用都会在当前工作目录的`analysis-reports/`中保存一份离线可打开的HTML；Web同时提供内联预览与“查看分析”Modal，dsh-tui直接返回文件路径。是否画图由Agent按问题判断，schema探查、单标量等查询不会被强制生成图表。
 - **共享Web UI与dsh-tui核心路径**：喜欢可视化操作时，可以在Web界面连接数据库、浏览库表和查看结果，推荐使用[zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui)；习惯键盘工作流时，可以在终端中使用同一“数据模式”，通过`/database`完成连接，然后直接开始对话分析，推荐使用[ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI)。两种界面共享数据Agent的数据库服务和工具协议；具体版本与部署仍应分别验证。
 - **连接常见业务数据库**：支持MySQL、PostgreSQL、SQLite、Oracle、Hive、Impala、ClickHouse、Apache Doris和SQL Server，可用于业务系统、分析库、本地数据文件及数仓场景。
 - **DSH自动完成分析闭环**：DSH会根据当前问题查看表结构、编写SQL、执行查询，并结合报错或返回结果继续调整，而不是只生成一段未经验证的SQL。
-- **专注数据任务的数据模式**：会话使用DSH原生`str_replace_editor`处理文件，并保留`sql-query`、`sql-write`、`sql-cmd`与`render-analysis`；Web、Desktop、dsh-tui和headless profile使用同一工具协议。`describe_image`、`ssh_*`等宿主或社区插件工具不会进入数据模式。
+- **专注数据任务的数据模式**：会话使用DSH原生`str_replace_editor`处理文件，并保留`sql-query`、`sql-write`、`sql-cmd`、`render-analysis`、`catalog-search`、`catalog-get`与`metric-get`；Web、Desktop、dsh-tui和headless profile使用同一套八工具协议。`describe_image`、`ssh_*`等宿主或社区插件工具不会进入数据模式。
 - **安全地使用真实数据**：支持只读模式和数据库只读账号；TUI密码会被隐藏，且不会作为表单草稿恢复。是否允许修改数据由你决定。
 
-Web UI还提供按需数据库工作台：点击输入框右上角的数据库按钮，即可在同一个Modal中配置连接、浏览库表、查看字段结构或临时运行SQL。MySQL库表浏览会用当前账号逐库验证访问权限，只隐藏明确返回无权访问的库；有权限的系统库与业务库都会正常显示。开始对话前后都不占用输入框上方或左侧的对话空间。
+### 数据库工作台
 
-SQL命令页会把读查询结果显示为带固定表头的结构化表格，并按100行分页，宽表可在结果区内横向滚动。当前结果可导出为Excel（`.xlsx`）、UTF-8 CSV或复制到剪贴板；三种导出都包含已加载的完整结果，单次最多50,000行。写入/管理命令及错误仍显示为文本消息，不会被误解析成表格。
+Web UI还提供按需数据库工作台：点击输入框右上角的数据库按钮，即可在同一个Modal的“连接配置、库表、数据治理、SQL”四个页签中配置连接、浏览结构、治理口径或临时运行SQL。
 
-![数据库工作台](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/7caa266c1036d7e3b42d4bc710350c1406b56957/assets/tables.webp)
+![数据库工作台](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/tables.webp)
+
+### 通过对话完成数据分析
 
 创建会话时选择“数据模式”，DSH就会以数据分析工作流处理后续问题。
 
-![数据模式预设](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/7caa266c1036d7e3b42d4bc710350c1406b56957/assets/settings.webp)
+![数据模式预设](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/settings.webp)
+
+### 数据治理
+
+在Web数据库工作台打开“数据治理”页，选择数据源和扫描范围（全库、Schema或单表），点击“扫描”；全库扫描需再次确认。完成后可搜索表、字段、术语或指标，查看版本变化，并逐项确认或删除AI生成的表/字段业务含义，也可人工新增业务术语和指标定义。后续分析会自动参考已保存的口径。
+
+![数据治理：AI生成表和字段业务含义，并由用户审核](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/data-governance.png)
 
 ## 快速安装
 
@@ -92,7 +84,7 @@ dsh plugin --profile web add @yejiming/dsh-data-agent
 dsh plugin --profile web add github:omdsh-dev/dsh-data-agent
 ```
 
-插件会自动安装“数据模式”预设，并在profile启动时预加载该预设的数据库工具与命令；选择预设时不再动态导入插件子路径，无需本地构建。
+插件会自动安装“数据模式”预设，并在profile启动时为所有界面预加载该预设的数据库工具；`/database`与`/catalog`仅由当前组合中实际加载的`@deepseek-harness-tui/dsh-tui`运行时启用，与Profile名称无关。选择预设时不再动态导入插件子路径，无需本地构建。
 
 ## 在Web UI中使用
 
@@ -109,6 +101,8 @@ dsh --profile web
 3. 连接成功后，直接在对话框中提出分析问题。
 4. 根据第一轮结果继续追问，让DSH缩小范围、比较维度或总结结论。
 
+未加载`@deepseek-harness-tui/dsh-tui`的Web命令目录不会展示`/database`或`/catalog`；连接、扫描、取消和目录审核均从数据库工作台完成。
+
 例如，输入“分析最近30天订单变化，找出销售额下降最明显的地区和商品，并解释主要原因”，DSH会自行查看相关表、生成并执行查询，再根据真实结果完成分析。
 
 ### 分析报告与HTML文件
@@ -124,7 +118,7 @@ dsh --profile web
 
 ## 在dsh-tui中使用
 
-把Data Agent安装到dsh-tui profile即可；`render-analysis`不要求特定dsh-TUI版本或scene能力：
+把Data Agent安装到dsh-tui profile即可；`render-analysis`不要求特定dsh-TUI版本或scene能力。Catalog持续状态和全屏结果浏览会在dsh-tui提供公开`status`/`scene`扩展服务时自动启用：
 
 ```sh
 dsh plugin --profile dsh-tui add @yejiming/dsh-data-agent
@@ -151,7 +145,13 @@ dsh --profile dsh-tui
 /database status       查看当前连接
 /database test         测试当前连接
 /database disconnect   断开当前连接
+/catalog scan           交互选择并启动Catalog扫描
+/catalog status [--run <run-id>]  查看最近结果或指定run
+/catalog diff           比较最近两个成功snapshot
+/catalog view           打开按表组织的只读Catalog结果
 ```
+
+扫描开始后无需反复执行`/catalog status`：输入框上方会持续显示技术采集和AI业务含义进度，并保留最终成功/失败状态。完成后执行`/catalog view`，使用↑↓或`j/k`选择表、Tab或←→切换左右区域、`/`搜索、`a`切换业务Schema/全部Schema、`r`刷新、Esc返回。TUI只提供读取；AI候选的确认与删除仍在Web“数据治理”页逐项完成。
 
 Agent生成分析报告后，工具卡会显示数据集、视图、空数据摘要与HTML绝对路径。TUI不会输出字符Dashboard，也没有`/analysis`命令；直接在本机浏览器中打开该HTML即可查看六类视图和原始数据。文件来自本次工具调用，`/resume`不会重新查询数据库。
 
@@ -223,6 +223,7 @@ Windows路径可以写成`C:\Program Files\MySQL\MySQL Server 9.0\bin`。插件�
 - Web UI和dsh-tui中的临时密码只用于当前连接；TUI只显示`*`，重新打开表单时不会恢复密码。
 - 需要跨进程恢复认证时，可以在TUI表单填写DSH credential reference，或通过`--password-ref`传入；表单会恢复引用名，但不会读取、显示或持久化解析后的密码。
 - MySQL/Doris和SQL Server密码分别只传入`MYSQL_PWD`和`SQLCMDPASSWORD`；ClickHouse密码只进入官方HTTP客户端的认证字段，不进入URL、argv或持久化配置。
+- Catalog仅持久化脱敏source摘要、系统元数据、版本与人工口径；不保存密码、credential解析值、客户端stdout/stderr、业务查询结果或样例行。
 - 未开启只读模式时，数据Agent可以按你的要求执行更新或管理语句。连接生产数据库前，请先确认账号权限和数据备份策略。
 - 不同会话的数据库连接相互隔离，便于分别处理不同项目、客户或分析环境。
 - 插件及其生态适配器都运行在DSH进程内，不是OS、进程或realm沙箱；生态permission只能用于准入协商，不能替代数据库账号权限、网络隔离或运行环境安全策略。
@@ -256,9 +257,24 @@ pnpm conformance
 
 升级规范基线必须显式更新`conformance/dsh-ecosystem/baseline.json`中的两个revision和固定digest，使用对应的本地checkout离线运行conformance，复核inventory/restriction漂移，并重新执行完整构建与测试。发布证据应运行`pnpm conformance:artifact --output-dir <工作树外目录>`，从真实`npm pack` tarball生成外部sidecar；文档和claim不得超过其中最弱的已验证证据等级。
 
-## 许可
+## 生态规范状态
 
-MIT
+本包附带一层实验性的 [DSH Ecosystem Specification](https://github.com/T-Auto/dsh-ecosystem-spec) Community v0.15 声明。它不会替代或重复注册现有 Cordis 功能；原生 bundle、preset、命令、工具、路由、Web UI、TUI 表单和连接存储仍是唯一功能实现。
+
+| 项目 | 当前状态 |
+| --- | --- |
+| 规范与阶段 | Community v0.15，Draft / Experimental |
+| 固定基线 | `dsh-ecosystem-spec@ec80a4be5d92bbb971655afd0f097bb5586a1a28`；`dsh-std@614dfa1ac168db79fcf4577cf0ebb34e2e3b944b` |
+| Manifest | `dsh-plugin.json`，`manifestVersion: 0.15`，包身份 `@yejiming/dsh-data-agent@0.1.1` |
+| 准入结果 | 仓库内 eligible fixture 为 `compatible`；这不是实际 dsh-TUI Host 的准入结论 |
+| 证据等级 | `Parsed`；fixture negotiation 只记录为 `fixture-only`，不提升为 `Negotiated` |
+| 已执行环境 | 离线 parser/projector/definition 校验；`@dsh-std/adapter-dsh@0.1.0-rc3` 一次性本地 fixture 挂载/卸载 |
+| Artifact | 发布物身份为包名和版本；tarball SHA-256 只在真实 `npm pack` 后写入工作树外 sidecar，不嵌入 source manifest |
+| 未验证 | 真实 Host Descriptor、真实 Web/Desktop/dsh-tui、真实 TTY、数据库、remote、attach/detach、多 Presentation、`Observed`、`Attested` |
+
+主要限制包括：`UserInteraction` 因固定 Community manifest 无法携带 dsh-std definition 所需 requirement spec 而暂不声明；模型工具、agent preset、Cordis service、HTTP routes、Web slots、持久化域和本地 TTY 仍由原生 DSH 路径拥有。安装 `@dsh-std/adapter-dsh` 进行发现时，生态 facet 只发布降级快照，不发布第二个 Command、Tool 或 UI handler。
+
+该插件仍是 **trusted in-process**、非沙箱代码。Manifest permission 是 Host 的准入契约，不提供 OS、进程或 realm 隔离。上述结果不代表 DSH 官方认证、安全批准、无漏洞保证或对所有 Host 的普遍兼容承诺。
 
 ## 友情链接
 
@@ -266,3 +282,7 @@ MIT
 - [dsh-web-ui](https://github.com/dsh-external/dsh-web-ui)：DeepSeek Harness的可扩展Web UI，支持浏览器端交互以及插件与主题扩展
 - [dsh-cc-tui](https://github.com/dsh-external/dsh-cc-tui)：面向DeepSeek Harness的键盘优先全屏终端界面，适用于高效的对话式开发工作流
 - [platonai/Browser4](https://github.com/platonai/Browser4)：面向自主智能体、智能信息抽取与大规模Web自动化的AI原生浏览器引擎
+
+## 许可
+
+MIT

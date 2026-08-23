@@ -40,13 +40,28 @@ dsh plugin --profile web add dsh-pet
 
 ## ⚙️ 配置
 
-| 配置项 | 说明 |
-|---|---|
-| 设置页「桌宠配置」 | DSH 设置 → 桌宠配置：图形化编辑**大小 / 位置 / 边距**，支持**多开**（添加/删除宠物，每只独立配置）；保存**即时生效**，恢复默认回落 config.jsonc |
-| `pets`（config.jsonc） | 默认宠物列表：`[{ "id", "size", "position": { "corner", "marginX", "marginY" } }]`；多只即多开，首只为「添加宠物」的默认模板 |
-| `fullRoot` | 原始 2160×1215 母版资源目录 | 默认 `$DSH_HOME/pet-assets`，需手动下载母版后生效 |
+| 配置项                 | 说明                                                                                                                                            |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 设置页「桌宠配置」     | DSH 设置 → 桌宠配置：图形化编辑**大小 / 位置 / 边距**，支持**多开**（添加/删除宠物，每只独立配置）；保存**即时生效**，恢复默认回落 config.jsonc |
+| `pets`（config.jsonc） | 默认宠物列表：`[{ "id", "size", "position": { "corner", "marginX", "marginY" } }]`；多只即多开，首只为「添加宠物」的默认模板                    |
 
-> 说明：插件安装即用，配置均为可选；设置页保存的用户覆盖写入 `$DSH_HOME/pet-config.json`（用户层，优先于包内默认）。
+> 说明：插件安装即用，配置均为可选；设置页保存的用户覆盖写入 `$DSH_HOME/dsh-pet/main-config.json`（用户层，优先于包内默认）。
+
+### 📄 高级自定义（直接编辑配置文件）
+
+用户数据统一收敛在 `$DSH_HOME/dsh-pet/`：
+
+| 层               | 路径                                 | 作用                                                                                |
+| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------- |
+| 默认配置（只读） | 包内 `assets/config.jsonc`           | 完整结构参考：宠物列表 / 动画池（idle/turn/drag/clicks/moves/categories）/ 播放权重 |
+| 用户配置         | `$DSH_HOME/dsh-pet/main-config.json` | 覆盖片段：可整体覆盖 `pets` / `animations` / `animationWeights`，缺省字段回落默认   |
+| 用户动画（可选） | `$DSH_HOME/dsh-pet/main-animation/`  | 放入 `.webm` 即可作为动画播放，**优先于包内素材**                                   |
+
+- 设置页底部会显示这些路径
+- 自定义动画：把 `xxx.webm` 放进 `main-animation/`，在动画池/分类里写 `"xxx"`，**刷新页面**即可（无需重启 DSH）
+- 格式：仅 `.webm`；**透明动画需 VP9 Alpha 编码**（与包内素材同规范，普通 webm 会有黑底）
+- 修改用户配置后同样**刷新页面**生效
+- 动画名请对照默认配置填写，避免引用不存在的动画
 
 ## 🗑️ 卸载
 
@@ -59,8 +74,8 @@ dsh plugin --profile web remove dsh-pet
 宠物实际运行在 DSH Web 界面中的样子：
 
 <p>
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/assets/screenshots/dsh-pet-running-1.png" width="380" alt="dsh-pet running in DSH Web UI 1" title="dsh-pet running in DSH Web UI 1">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/assets/screenshots/dsh-pet-running-2.png" width="380" alt="dsh-pet running in DSH Web UI 2" title="dsh-pet running in DSH Web UI 2">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/assets/screenshots/dsh-pet-running-1.png" width="380" alt="dsh-pet running in DSH Web UI 1" title="dsh-pet running in DSH Web UI 1">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/assets/screenshots/dsh-pet-running-2.png" width="380" alt="dsh-pet running in DSH Web UI 2" title="dsh-pet running in DSH Web UI 2">
 </p>
 
 ## 🎬 效果预览
@@ -68,12 +83,12 @@ dsh plugin --profile web remove dsh-pet
 > 动画为透明背景；GIF 预览中透明部分显示为页面底色，实际播放为透明。
 
 <p>
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="160" alt="待机呼吸休闲" title="待机呼吸休闲">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dongzhangxiwang.gif" width="160" alt="东张西望" title="东张西望">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-piaofu-tabu.gif" width="160" alt="原地漂浮踏步" title="原地漂浮踏步">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-xiaoqi-chenmian.gif" width="160" alt="原地小憩沉眠" title="原地小憩沉眠">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dianji-huiying-kaixin-yuedong.gif" width="160" alt="点击回应 - 开心跃动" title="点击回应 - 开心跃动">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/52b313c03c57e774eb25473c095df1fc945c6f9e/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/beishubiao-tuozhuai-xuankong-fankui.gif" width="160" alt="被鼠标拖拽悬空反馈" title="被鼠标拖拽悬空反馈">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="160" alt="待机呼吸休闲" title="待机呼吸休闲">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dongzhangxiwang.gif" width="160" alt="东张西望" title="东张西望">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-piaofu-tabu.gif" width="160" alt="原地漂浮踏步" title="原地漂浮踏步">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-xiaoqi-chenmian.gif" width="160" alt="原地小憩沉眠" title="原地小憩沉眠">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dianji-huiying-kaixin-yuedong.gif" width="160" alt="点击回应 - 开心跃动" title="点击回应 - 开心跃动">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/82ba588c7f849a62f1af5df81250e2ca8154c3a3/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/beishubiao-tuozhuai-xuankong-fankui.gif" width="160" alt="被鼠标拖拽悬空反馈" title="被鼠标拖拽悬空反馈">
 </p>
 
 全部动画见仓库：`dsh-pet/assets/thumb/`。
@@ -98,4 +113,4 @@ AI 生成动画的配方     源视频 → 透明动画的管线    运行在 DS
 ## 📄 许可
 
 - 代码：MIT
-- 素材（动画/提示词/源视频）：MIT，可自由使用（含商用、修改、再分发）
+- 素材（动画/提示词/源视频）：允许开源使用，**禁止商用**

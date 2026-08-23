@@ -15,12 +15,17 @@ Have a repeatable workflow that is missing? [Request a Skill](https://github.com
 
 **88 installable Agent Skills** for research, social intelligence, marketing, and business workflows. Install into any compatible agent (DeepSeek Harness, Claude Code, Codex, Cursor, Gemini CLI) and start working immediately. The flagship research Skill works with host-provided search tools; connect SandBase when you want broader provider coverage.
 
+SandBase also exposes [2,000+ models and APIs](https://www.sandbase.ai/docs/store/),
+including a unified surface for [LLM, image, and video generation](https://blog.sandbase.ai/unified-ai-api-llm-image-video-2026/).
+Skills define the workflow; the SandBase API or MCP bridge supplies optional model,
+media, search, social, and data capabilities when a workflow needs them.
+
 Start with `multi-source-search`: it runs with your agent's existing search tools,
 ships a worked evidence-ledger example, and includes an offline validator. If it
 improves a real workflow, [star the repository](https://github.com/sandbaseai/sandbase-skills)
 so other builders can discover it.
 
-![Multi-source search workflow: search capabilities, source-origin tracing, evidence ledger, and offline validation](https://raw.githubusercontent.com/sandbaseai/sandbase-skills/5452b45117ec75afb1338131e46109474defb89b/assets/multi-source-search-workflow.svg)
+![Multi-source search workflow: search capabilities, source-origin tracing, evidence ledger, and offline validation](https://raw.githubusercontent.com/sandbaseai/sandbase-skills/9d7e56e02c86756d1765714eb533c8998bb93a1c/assets/multi-source-search-workflow.svg)
 
 ## What are Skills?
 

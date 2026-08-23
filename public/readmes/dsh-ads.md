@@ -1,6 +1,6 @@
 # dsh-ads
 
-![dsh-ads](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/social-preview.jpg)
+![dsh-ads](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/social-preview.jpg)
 
 <p align="center">
   <strong>简体中文</strong> | <a href="README.en.md">English</a>
@@ -15,7 +15,7 @@
   广告是假的，插件是真的，抽到 V4 Pro 的希望也是真的渺茫。
 </p>
 
-![中文模式实机：两侧广告栏、对话内插件推荐、贪玩蓝鲸和 DSH 消息中心](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/screenshot.webp)
+![中文模式实机：两侧广告栏、对话内插件推荐、贪玩蓝鲸和 DSH 消息中心](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/screenshot.webp)
 
 `dsh-ads` 会在侧栏、对话、推理中途和右下角塞入一整套虚构广告。它看起来会暂停 inference，实际上模型一直在后台工作，只是后续回答和工具调用要等广告结束才显示。
 
@@ -25,9 +25,9 @@
 
 切换 DSH 的「设置 → 语言」，当前页面会立即更换整套素材、文案和交互，不用刷新。中文模式主打页游、财神和「这次一定」，两张贪玩蓝鲸海报每 20 秒自动切换；English mode 则是 fake antivirus、weird tricks 和 actual gameplay*。
 
-![流式回答中插入的 V4 Pro 正式版抽奖广告：财神鲸、每轮一抽的转盘与四道解锁进度条](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/reward-gate.png)
+![流式回答中插入的 V4 Pro 正式版抽奖广告：财神鲸、每轮一抽的转盘与四道解锁进度条](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/reward-gate.png)
 
-![English 模式实机：Imagegen 虎鲸插件广告、假杀毒广告、假游戏和消息中心](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/english-mode.png)
+![English 模式实机：Imagegen 虎鲸插件广告、假杀毒广告、假游戏和消息中心](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/english-mode.png)
 
 <table>
   <tr>
@@ -35,13 +35,13 @@
     <th>English: actual gameplay*</th>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/poster-blue-whale-small.gif" alt="贪玩蓝鲸假游戏动画"></td>
-    <td><img src="https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/en/posters/poster-fail-game.webp" alt="English mode fake gameplay ad"></td>
+    <td><img src="https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/poster-blue-whale-small.gif" alt="贪玩蓝鲸假游戏动画"></td>
+    <td><img src="https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/en/posters/poster-fail-game.webp" alt="English mode fake gameplay ad"></td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/startup-score.png" width="346" alt="DSH 跑分中心显示 0.29 秒启动耗时和全国排名"><br>
+  <img src="https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/startup-score.png" width="346" alt="DSH 跑分中心显示 0.29 秒启动耗时和全国排名"><br>
   <sub>启动耗时是真测的，全国排名是编的。</sub>
 </p>
 
@@ -58,7 +58,7 @@ dsh plugin --profile web add github:Nagi-ovo/dsh-ads
 
 每个广告位都能在「设置 → 广告（非官方）」里单独关闭，选择会保留到下次启动。
 
-![DSH 设置面板里的广告开关](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/settings.webp)
+![DSH 设置面板里的广告开关](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/settings.webp)
 
 ## 免费广告位
 
@@ -68,7 +68,7 @@ dsh plugin --profile web add github:Nagi-ovo/dsh-ads
 
 <div align="center">
 
-[![dsh-visualize 对话内生成交互式可视化演示](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/3a2ba704bc383099c686d3288ff6e0d61fc391e5/assets/visualize-demo.webp)](assets/visualize-demo.mp4)
+[![dsh-visualize 对话内生成交互式可视化演示](https://raw.githubusercontent.com/Nagi-ovo/dsh-ads/aa752ed8d24d0a4b5ce1fde4b99b0d9d7f5a1e22/assets/visualize-demo.webp)](assets/visualize-demo.mp4)
 
 </div>
 

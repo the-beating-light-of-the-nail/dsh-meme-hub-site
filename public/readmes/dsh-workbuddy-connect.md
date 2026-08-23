@@ -12,24 +12,29 @@
 - **开箱即用**：安装和启用插件后，在 DSH 中直接使用，无需额外配置。
 
 
-![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/8021e8f6aee6a8b011cac413b7bd59ddcc64bb88/assets/1.png)
+![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/9d31c559740e4644cd4e97f169dca473a77f3891/assets/1.png)
 
 
 - **信息查看**：设置 → 插件 → DSH WorkBuddy Connect 卡片
 
 
-![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/8021e8f6aee6a8b011cac413b7bd59ddcc64bb88/assets/2.png)
+![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/9d31c559740e4644cd4e97f169dca473a77f3891/assets/2.png)
 
 卡片展开后，可查看账号信息、令牌有效期与剩余积分。
 
-![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/8021e8f6aee6a8b011cac413b7bd59ddcc64bb88/assets/3.png)
+![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/9d31c559740e4644cd4e97f169dca473a77f3891/assets/3.png)
 
 ## 安装
 
 前置：已安装并登录 WorkBuddy 桌面 App（插件复用 App 的登录状态，账号切换自动跟随）。
 
 ```sh
+# npm（推荐，自带预构建产物）
+dsh plugin --profile web add dsh-workbuddy-connect
+
+# 或从 GitHub 源码安装
 dsh plugin --profile web add github:corrinehu/dsh-workbuddy-connect
+
 dsh web
 ```
 
@@ -39,7 +44,7 @@ dsh web
 
 ## 已知限制
 
-- 在 macOS 与 DSH Web profile（`0.1.0-rc.7`+、Node 22+）下验证通过；Windows / Linux 的凭据默认路径未经验证，必要时可通过环境变量 `WORKBUDDY_AUTH_FILE` 指定实际位置。
+- 在 macOS 与 DSH Web profile（`0.1.1-rc.2`+、Node 22+）下验证通过；Windows / Linux 的凭据默认路径未经验证，必要时可通过环境变量 `WORKBUDDY_AUTH_FILE` 指定实际位置。
 - 依赖 WorkBuddy 客户端接口（非官方开放 API），WorkBuddy 更新后插件可能需要随之调整。
 
 ## 免责声明

@@ -10,7 +10,7 @@ A plugin for the dsh web GUI that adds a **focus chat** tab — a condensed, Cla
 
 | Off — the normal chat view | On — the focus chat view |
 | --- | --- |
-| ![Off: the normal chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/63c7db1c6f2b3680c1883e8734db7085ce19b9f9/screenshots/before.png) | ![On: the focus chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/63c7db1c6f2b3680c1883e8734db7085ce19b9f9/screenshots/after.png) |
+| ![Off: the normal chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/8127d69c2b657dc4fd20f4628b8775d8933d633e/screenshots/before.png) | ![On: the focus chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/8127d69c2b657dc4fd20f4628b8775d8933d633e/screenshots/after.png) |
 
 Instead of watching every step live, one assistant turn collapses into a single summary line:
 

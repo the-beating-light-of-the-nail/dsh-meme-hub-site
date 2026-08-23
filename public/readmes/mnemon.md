@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3fbb6852c78516e270083860fb06cf05c6c29d4d/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3d788947f3d9f3b6823d40bee35b3c64b3f035ef/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
 </p>
 
 # Mnemon
@@ -40,7 +40,7 @@ Most memory tools embed their own LLM inside the pipeline. Mnemon takes a differ
 Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs discover and invoke tools. ODBC/JDBC standardizes how applications access databases. But how LLMs interact with databases using memory semantics — this layer has no protocol. Mnemon's three primitives — `remember`, `link`, `recall` — form an intent-native protocol: command names map to the LLM's cognitive vocabulary (`remember` not INSERT, `recall` not SELECT), and output is structured JSON with signal transparency rather than raw database rows.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3fbb6852c78516e270083860fb06cf05c6c29d4d/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3d788947f3d9f3b6823d40bee35b3c64b3f035ef/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
   <br />
   <sub>The LLM-Supervised pattern: hooks drive the lifecycle, the host LLM makes judgment calls, the binary handles deterministic computation.</sub>
 </p>
@@ -48,7 +48,7 @@ Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs dis
 Memory has a **compound interest effect** — the longer it accumulates, the greater its value. LLM engines iterate constantly, skill files cost nearly nothing to write, but memory is a private asset that grows with the user. It is the only component in the agent ecosystem worth deep investment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3fbb6852c78516e270083860fb06cf05c6c29d4d/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3d788947f3d9f3b6823d40bee35b3c64b3f035ef/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
   <br />
   <sub>A real knowledge graph built by Mnemon — 87 insights, 2150 edges across four graph types.</sub>
 </p>
@@ -126,6 +126,31 @@ mnemon setup --target cursor --yes
 One command deploys the mnemon skill, prompt files, and Cursor lifecycle hooks
 to `.cursor/`. The integration primes new agent sessions with Mnemon guidance
 and memory status, then nudges for durable-memory writeback after responses.
+
+### [ZCode](https://zcode.z.ai/)
+
+```bash
+mnemon setup --target zcode --global --yes
+```
+
+ZCode installs the Mnemon skill under `~/.zcode/skills/` and registers
+user-level lifecycle hooks in `~/.zcode/cli/config.json`. The hooks prime new
+sessions, add recall guidance before model calls, and prompt for durable-memory
+writeback at stop. Without `--global`, setup installs only the project skill;
+ZCode currently ignores project-level hook configuration.
+
+### [MiniMax Code](https://github.com/MiniMax-AI/minimax-code)
+
+```bash
+mnemon setup --target minimax-code --yes
+```
+
+One command deploys the Mnemon skill to
+`.minimax/skills/mnemon/SKILL.md`. Add `--global` to use
+`~/.minimax/skills/mnemon/SKILL.md` across projects. Current MiniMax Code
+releases discover both roots natively. The integration is intentionally
+skill-only: in MiniMax Code 3.0.65, the local Agent V2 path does not dispatch
+the user-prompt lifecycle hook required for dependable automatic recall.
 
 ### [TRAE](https://www.trae.ai/) (TRAE Work)
 
@@ -319,7 +344,7 @@ memory is useful.
 
 - **Zero user-side operation** — install once; supported runtimes can use hooks, minimal runtimes can use persistent rules
 - **LLM-supervised** — the host LLM decides what to remember, update, and forget; no embedded LLM, no API keys
-- **Multi-framework support** — Claude Code, Codex, Cursor, TRAE/TRAE Work, Qoder/QoderWork, CodeBuddy, WorkBuddy, Kimi Code, OpenCode, and Hermes Agent (hooks/plugins), OpenClaw (plugins), Pi (extensions), Nanobot (skills), DeepSeek Harness (via the dsh-mnemon plugin), and more
+- **Multi-framework support** — Claude Code, Codex, Cursor, ZCode, TRAE/TRAE Work, Qoder/QoderWork, CodeBuddy, WorkBuddy, Kimi Code, OpenCode, and Hermes Agent (hooks/plugins), OpenClaw (plugins), Pi (extensions), MiniMax Code and Nanobot (skills), DeepSeek Harness (via the dsh-mnemon plugin), and more
 - **Runtime-native integration** — runtime-specific `SKILL.md`, shared `guide.md`, and supported hooks or extensions
 - **Four-graph architecture** — temporal, entity, causal, and semantic edges, not just vector similarity
 - **Intent-native protocol** — three primitives (`remember`, `link`, `recall`) map to the LLM's cognitive vocabulary, not database syntax; structured JSON output with signal transparency
@@ -334,46 +359,52 @@ memory is useful.
 All your local agentic AIs — across sessions and frameworks — sharing one pool of live memory.
 
 ```
-  Claude Code ──┐
-                │
-  Codex ────────┤
-                │
-  Cursor ───────┤
-                │
-  TRAE ─────────┤
-                │
-  TRAE Work ────┤
-                │
-  Qoder ────────┤
-                │
-  QoderWork ────┤
-                │
-  CodeBuddy ────┤
-                │
-  WorkBuddy ────┤
-                │
-  Kimi Code ────┤
-                │
-  Hermes Agent ─┤
-                │
-  OpenClaw ─────┤
-                │
-  Pi ───────────┤
-                │
-  Nanobot ──────┤
-                │
-  NanoClaw ─────┤
-                ├──▶  ~/.mnemon  ◀── shared memory
-  OpenCode ─────┤
-                │
-  Gemini CLI ───┘
+  Claude Code ───────┐
+                     │
+  Codex ─────────────┤
+                     │
+  Cursor ────────────┤
+                     │
+  ZCode ─────────────┤
+                     │
+  MiniMax Code ──────┤
+                     │
+  TRAE ──────────────┤
+                     │
+  TRAE Work ─────────┤
+                     │
+  Qoder ─────────────┤
+                     │
+  QoderWork ─────────┤
+                     │
+  CodeBuddy ─────────┤
+                     │
+  WorkBuddy ─────────┤
+                     │
+  Kimi Code ─────────┤
+                     │
+  Hermes Agent ──────┤
+                     │
+  DeepSeek Harness ──┤
+                     │
+  OpenClaw ──────────┤
+                     │
+  Pi ────────────────┤
+                     │
+  Nanobot ───────────┤
+                     │
+  NanoClaw ──────────┤
+                     ├──▶  ~/.mnemon  ◀── shared memory
+  OpenCode ──────────┤
+                     │
+  Gemini CLI ────────┘
 ```
 
 The foundation is in place: a single `~/.mnemon` database that any agent can
-read and write. Claude Code, Codex, Cursor, TRAE/TRAE Work, Qoder/QoderWork,
+read and write. Claude Code, Codex, Cursor, ZCode, TRAE/TRAE Work, Qoder/QoderWork,
 CodeBuddy, WorkBuddy, Kimi Code, OpenCode, and Hermes Agent setup automate hook/plugin installation;
 OpenClaw can use plugin hooks; Pi integrates via native skills and TypeScript
-lifecycle extensions; Nanobot integrates via skill files; NanoClaw integrates
+lifecycle extensions; MiniMax Code and Nanobot integrate via skill files; NanoClaw integrates
 via container skills and volume mounts. The same integration bundle can be installed in any
 LLM CLI that supports skills, rules, system prompts, or event hooks.
 

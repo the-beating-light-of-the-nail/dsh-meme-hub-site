@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/paean-ai/deeptide/4604b1757131acb5f90244cb6227baded51a43ae/assets/logo.svg" alt="DeepTide logo" width="200">
+  <img src="https://raw.githubusercontent.com/paean-ai/deeptide/b48688d56c3eb61d0c028de2fa73dd674be2f3e8/assets/logo.svg" alt="DeepTide logo" width="200">
 </p>
 
 <h1 align="center">DeepTide</h1>

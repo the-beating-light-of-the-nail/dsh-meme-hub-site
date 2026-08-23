@@ -26,11 +26,11 @@
 | 配置 | schemastery 持久化 + 设置页卡片 |
 | 多 Session 优先级 | 未读完成提醒 > 等待/错误 > 当前会话 > 状态优先级 > 更新时间 |
 | 实时推送 | SSE 流（断线自动重连 + 轮询兜底） |
-| 状态气泡 | 页面内模式使用自适应两层牌叠：顶层状态卡 + 带 `+N` 的汇总背板；message + detail（项目 · 已完成 x/y · 阶段） |
-| 会话操作 | `✓` 允许一次；`?` / `!` 打开对应会话；完成提醒显示左侧绿点 |
-| 完成提醒 | 后台会话完成后保留至打开该会话；当前已打开会话不显示未读绿点（仅当前 Host 生命周期） |
+| 状态气泡 | 页面内与桌面悬浮均使用自适应两层牌叠：顶层状态卡 + 带 `+N` 的汇总背板；message + detail（项目 · 已完成 x/y · 阶段） |
+| 会话操作 | 网页：点卡片 / `?` / `!` 打开对应会话，`✓` 允许一次；桌面：不跳转，仅 `✓` 允许一次 |
+| 完成提醒 | 后台完成后保留绿点直至处理：网页点开该会话后才回待机；桌面点完成卡只消绿点并立刻待机。当前已打开会话不显示未读绿点（仅当前 Host 生命周期） |
 | 余额 | 单击宠物显示 DeepSeek 余额 + 时段（60s 自动刷新、数字滚动动画、网络抖动沿用最近余额），5 秒后自动回到状态气泡 |
-| 今日已用 | 双模式任选：小鲸鱼记账（免令牌，余额差值累计）/ 实时·令牌（平台用量接口 + 峰谷定价，精确） |
+| 今日已用 | 双模式任选：小鲸鱼记账（免令牌，余额差值累计）/ 实时·令牌（平台费用接口直接返回真实金额，精确） |
 | 桌面悬浮 | 随包 Electron 透明置顶窗口（可选，默认关） |
 | 多宠物 | 设置 → 宠物管理（注册表 + 切换当前宠物） |
 | 版本更新 | 内置检查 + 一键增量更新 |
@@ -41,12 +41,12 @@
 
 | 贴纸 | 展示 | 触发场景 |
 |---|---|---|
-| 01 绘制中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/f7177cba77bcefcbc758e1f81b55f295a7b22786/assets/pets/remielle/01.gif" width="56" alt="01 绘制中"/> | THINKING + streaming：流式输出（正在写回复）、双击画画 |
-| 02 摸鱼中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/f7177cba77bcefcbc758e1f81b55f295a7b22786/assets/pets/remielle/02.gif" width="56" alt="02 摸鱼中"/> | WORKING / ERROR：调用工具（查找/编辑/测试/命令） |
-| 03 得意中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/f7177cba77bcefcbc758e1f81b55f295a7b22786/assets/pets/remielle/03.gif" width="56" alt="03 得意中"/> | PULSE SUCCESS：回合完成、绘制完成、点击互动 |
-| 04 思考中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/f7177cba77bcefcbc758e1f81b55f295a7b22786/assets/pets/remielle/04.gif" width="56" alt="04 思考中"/> | THINKING：回合/步骤开始、推理、结果整理 |
-| 05 等待中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/f7177cba77bcefcbc758e1f81b55f295a7b22786/assets/pets/remielle/05.gif" width="56" alt="05 等待中"/> | WAITING：提问回答、审批等待、回合挂起（blocked） |
-| 06 待机中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/f7177cba77bcefcbc758e1f81b55f295a7b22786/assets/pets/remielle/06.gif" width="56" alt="06 待机中"/> | IDLE / DISCONNECTED：空闲、回合结束之后 |
+| 01 绘制中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/358b4c5902cf8fe8f2903d04d8cab1f9837edfb0/assets/pets/remielle/01.gif" width="56" alt="01 绘制中"/> | THINKING + streaming：流式输出（正在写回复）、双击画画 |
+| 02 摸鱼中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/358b4c5902cf8fe8f2903d04d8cab1f9837edfb0/assets/pets/remielle/02.gif" width="56" alt="02 摸鱼中"/> | WORKING / ERROR：调用工具（查找/编辑/测试/命令） |
+| 03 得意中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/358b4c5902cf8fe8f2903d04d8cab1f9837edfb0/assets/pets/remielle/03.gif" width="56" alt="03 得意中"/> | PULSE SUCCESS：回合完成、绘制完成、点击互动 |
+| 04 思考中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/358b4c5902cf8fe8f2903d04d8cab1f9837edfb0/assets/pets/remielle/04.gif" width="56" alt="04 思考中"/> | THINKING：回合/步骤开始、推理、结果整理 |
+| 05 等待中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/358b4c5902cf8fe8f2903d04d8cab1f9837edfb0/assets/pets/remielle/05.gif" width="56" alt="05 等待中"/> | WAITING：提问回答、审批等待、回合挂起（blocked） |
+| 06 待机中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/358b4c5902cf8fe8f2903d04d8cab1f9837edfb0/assets/pets/remielle/06.gif" width="56" alt="06 待机中"/> | IDLE / DISCONNECTED：空闲、回合结束之后 |
 
 多 Session 同时运行时按 `未读完成提醒 > 等待/错误 > 当前会话 > 状态优先级 > 更新时间` 选择顶层任务；其余会话由可点击的 `+N` 汇总背板表示。子 Agent 默认忽略（可在设置开启）。
 
@@ -125,6 +125,7 @@ dsh plugin --profile web add dsh-pet-remielle
 `desktopMode` 默认关闭。开启后使用 Electron 运行时拉起**透明、置顶、无边框**的独立窗口显示宠物。
 
 - 窗口支持拖动（位置自动记忆）、滚轮缩放、双击画画、右键菜单。
+- 状态/余额气泡与网页一致：堆叠会话卡、单圆点切换；桌面点卡片不跳转，点完成卡只消绿点并立刻待机，`✓` 仍执行「允许一次」。
 - 双击画画：作品显示在**桌面右上角**的独立小窗，粗笔刷沿对角来回揭示，完成后「得意中→淡出」。
 - 右键菜单：切换网页模式、锁定、气泡开关、角色大小、画画等。
 - 关闭/切换后自动回到页面内；随 DSH host 退出自动关闭。
@@ -159,10 +160,8 @@ dsh plugin --profile web add dsh-pet-remielle
 
 - **余额**：来自官方接口 `api.deepseek.com/user/balance`（凭据 `DEEPSEEK_API_KEY`）。60 秒自动刷新；单击宠物手动刷新；余额变化时有数字滚动动画；网络瞬时抖动自动沿用最近余额不报错。
 - **今日已用 · 小鲸鱼记账（默认，免令牌）**：每次观测余额后用余额差值自动累计，持久化到 `$DSH_HOME/.dshp-usage.json`，跨天自动归零归档。无需额外令牌，但属于估算——DSH 关闭期间的消耗会漏记。
-- **今日已用 · 实时·令牌（精确）**：配置平台会话令牌 `DEEPSEEK_PLATFORM_TOKEN` 后，直连平台用量接口（`platform.deepseek.com/api/v0/usage/by_api_key/amount`），按**峰谷定价**换算：
-  - 高峰时段：每日 9:00–12:00 与 14:00–18:00（北京时间）
-  - 单价（空闲/高峰，每百万 token）：缓存命中 0.05/0.10 元；缓存未命中 1.5/3.0 元；输出 4.5/9.0 元
-  - 定价表位于 `src/balance.js` 顶部 `PRICING`，DeepSeek 调价时修改这里
+- **今日已用 · 实时·令牌（精确）**：配置平台会话令牌 `DEEPSEEK_PLATFORM_TOKEN` 后，直连平台费用接口（`platform.deepseek.com/api/v0/usage/by_api_key/cost`），直接取平台按小时统计的**真实金额**——无需本地定价表，DeepSeek 调价自动跟随：
+  - 气泡里同时显示当前所处时段（空闲 / 高峰，高峰：每日 9:00–12:00 与 14:00–18:00 北京时间）
   - 令牌缺失或失效时自动回落记账模式
 
 **切换用量模式**：设置 → 宠物管理 → 行为 →「用量模式」（小鲸鱼记账 / 实时·令牌），或右键桌宠菜单里的「用量模式」。
@@ -204,7 +203,7 @@ npm run check                     # 语法检查
 ```
 src/
 ├── index.js          # 宿主：配置、事件接线、config/state/balance/pets/assets/desktop 端点、自更新路由
-├── balance.js        # 余额服务：余额拉取（重试/缓存/抖动容错）、今日已用双模式（记账/令牌）、峰谷定价
+├── balance.js        # 余额服务：余额拉取（重试/缓存/抖动容错）、今日已用双模式（记账/平台费用接口）
 ├── self-update.js    # 版本检查 + 一键更新（GitHub 直连 + HTTP 代理回退；git pull / pnpm update）
 ├── pet-reducer.js    # 纯状态机：会话事件 → state/pulse/task（可单测）
 ├── protocol.js       # 类型化协议：PetState / PetMood / PetMessageKind

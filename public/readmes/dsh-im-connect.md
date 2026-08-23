@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
 </p>
 
 <div align="center">
@@ -12,6 +12,7 @@
 
   [![许可证：Apache-2.0](https://img.shields.io/badge/许可证-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-im-connect.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-im-connect)
+  [![npm 下载量](https://img.shields.io/npm/dt/%40michengai%2Fdsh-im-connect.svg?label=npm%20%E4%B8%8B%E8%BD%BD%E9%87%8F)](https://www.npmjs.com/package/@michengai/dsh-im-connect)
   [![DSH Web Plugin](https://img.shields.io/badge/DSH%20Web-Plugin-0f766e.svg)](https://github.com/MichengAI/dsh-im-connect)
   [![Node.js 22 or later](https://img.shields.io/badge/Node.js-22%20or%20later-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
   [![Channels](https://img.shields.io/badge/channels-7-238636.svg)](#-支持的渠道)
@@ -73,27 +74,27 @@
 
 在「设置 → IM助理」连接渠道。未连接显示「配置」，已连接显示开关和状态：
 
-![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/settings-channels.png)
+![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/settings-channels.png)
 
 工作区左侧「任务 / 频道」分列。IM 会话只出现在「频道」：
 
-![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/workspace-channels.png)
+![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/workspace-channels.png)
 
 企业微信等渠道支持扫码快捷绑定：
 
-![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/wecom-qr.png)
+![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/wecom-qr.png)
 
 连上后，可在各 IM 里直接驱动本机助手：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/3aab0bc3630c4f2b8e2be7851fded931129cf6a4/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
 </p>
 
 ## DSH 产品生态

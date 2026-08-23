@@ -13,7 +13,7 @@
 
 | 登录门禁（未登录访问任何路径） | 设置 → 登录与账号 |
 |:---:|:---:|
-| ![登录页](https://raw.githubusercontent.com/xgone/dsh-remote/1f04ba93a37731cd23e75cb38bcd1c99e710e51f/docs/login-zh.png) | ![账号管理设置页](https://raw.githubusercontent.com/xgone/dsh-remote/1f04ba93a37731cd23e75cb38bcd1c99e710e51f/docs/settings-zh.png) |
+| ![登录页](https://raw.githubusercontent.com/xgone/dsh-remote/e75d604ef04f67e79ec1634956acd3b3263b1eec/docs/login-zh.png) | ![账号管理设置页](https://raw.githubusercontent.com/xgone/dsh-remote/e75d604ef04f67e79ec1634956acd3b3263b1eec/docs/settings-zh.png) |
 
 ---
 
@@ -177,6 +177,7 @@ dsh plugin --profile web remove @xgone/dsh-remote
 | 忘记 MFA / 丢手机 | 管理员登录后在 设置 → 登录与账号 → 该账号行 → 禁用 MFA（需管理员密码） |
 | 远程访问时「设置 → 插件」配置页空白 | v0.1.5+ 已内置修复：DSH 对远程浏览器把所有设置 scope 切成 memory 模式（读写在客户端被丢弃），插件启动时自动解除该限制并触发一次全量刷新，配置卡片远程可读可写；原始 settings.yaml 文档编辑器仍保持仅限本机（设计如此） |
 | 远程刷新后反复弹出「内测声明」 | v0.1.6+ 已内置修复（已确认用户）：DSH 的欢迎弹窗确认态 `WelcomeNoticeStore` 对远程走 memory 模式，不读已持久化的确认；插件用官方 `settings.describe` RPC 读 `ui-onboarding.welcomeNoticeVersion`，有值时经官方 `store.update` 置 `acknowledged=true`，`WelcomeNotice` 即自动收场不再弹。全程只用官方 slots/store/RPC，不重写 DSH 内部方法、不改 persistence。纯远程首次用户（从无确认）维持原行为 |
+| 远程打开「设置 → 模型」提示"加载提供方目录失败: settings are unavailable in this browser" | v0.2.6+ 已内置修复：DSH 升级后所有设置读取改经共享的 `SettingsDescribeMirror`（远程构造为 memory 模式，`view` 恒为 undefined），Models 页因此抛错；插件用官方 `settings.describe` RPC 读取设置文档，经官方 `ctx.settingsScope.describe()` 拿到 mirror，再用官方 `store.set` 注入 `view`，Models 目录远程正常加载。全程只用官方 RPC/服务/store API，不重写 DSH 方法、不改 persistence |
 
 ### 9. 无浏览器服务器（headless / Linux）安装
 
@@ -243,6 +244,12 @@ dsh plugin --profile web add @xgone/dsh-remote
       roots: []              # 额外允许读取的根目录（绝对路径）
       maxListing: 500        # 目录索引每页最多渲染的条目数
 ```
+
+> **角色门禁只作用于 client-request**：`/api/respond`（浏览器应答宿主的 server-request：审批、提问、
+> 工具结果等）的封包没有 `method` 字段，早期实现会把它们误判为未知方法而拒绝，导致宿主挂起的流式
+> 请求失败、WebSocket 重连、工作区/会话基线被重置。现在仅对 `type: "client-request"` 封包按方法做
+> 角色判定，其余 wire 协议消息一律放行。被拒绝的 client-request 返回符合 RPC 契约的
+> `server-response` 错误封包（回显 rpcId），浏览器按业务错误处理而不是传输故障。
 
 > **Windows 提示**：默认根目录是 DSH 主目录与 dsh 进程工作目录（通常是 profile 目录），工作区文件常在
 > 其他盘符路径下。被拒绝时面板会直接显示当前允许的根目录列表；把工作区所在目录加入 `files.roots`

@@ -1,6 +1,7 @@
 <div align="center">
 
 # dsh-mcp-panel
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-mcp-panel)
 
 **The MCP management console for the official DeepSeek Harness MCP client — add, edit, remove, and trial-call MCP servers from a settings page, with honest status, health diagnostics, and safe, reversible profile writes.**
 
@@ -24,7 +25,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8`–`0.2.0` |
+| Harness | DeepSeek Harness `0.1.1-rc.2`–`0.2.0` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | Web GUI (dual-face: host + browser) |
 | Model | Any (the panel is read-only; only `/mcp` output is model-readable) |

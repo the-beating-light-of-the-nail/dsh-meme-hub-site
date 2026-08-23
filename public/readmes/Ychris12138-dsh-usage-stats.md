@@ -8,7 +8,7 @@
 
 Provider balances, subscription quotas, and token-usage analytics for the DeepSeek Harness Web GUI (`dsh web`).
 
-![dsh-usage-stats v0.2.0 interface preview](https://raw.githubusercontent.com/Ychris12138/dsh-usage-stats/1623c3998f75c53e2125559f712124779ce5cb5d/docs/images/usage-panel.svg)
+![dsh-usage-stats v0.2.0 interface preview](https://raw.githubusercontent.com/Ychris12138/dsh-usage-stats/7c88a445b73f78af7df6082fd671d22a293acb6d/docs/images/usage-panel.svg)
 
 > 展示图使用脱敏演示数据；插件不会把 API Key、Cookie、管理 PAT 或上游原始响应发送到浏览器。
 
@@ -98,6 +98,7 @@ npx --yes github:Ychris12138/dsh-usage-stats --no-enable
 | Z.ai / 智谱 | 订阅 | `ZAI_API_KEY` | Coding Plan quota/subscription |
 | Kimi For Coding | 订阅 | `KIMI_API_KEY` | `/coding/v1/usages` |
 | MiniMax Coding Plan | 订阅 | `MINIMAX_API_KEY` | `/v1/token_plan/remains` |
+| Ollama 云 | 订阅 | `OLLAMA_API_KEY` | `/api/usage`（5小时 + 周窗口） |
 | New API | 余额 | provider 推理 Token | `/api/usage/token/` |
 | Sub2API / Passion | 自动判别 | provider `apiKeyEnv` | `/v1/usage` |
 | Sub2API 面板（真实） | 余额 | provider 推理 Token | `/user/balance`（复用 apiKey） |
@@ -139,9 +140,27 @@ KIMI_API_KEY: your-kimi-key
 MINIMAX_API_KEY: your-minimax-key
 # 中国区 MiniMax 用户可选；默认 global
 MINIMAX_API_REGION: cn
+OLLAMA_API_KEY: sk-ollama-your-key
 ```
 
 OpenCode Go 依次尝试 Harness credential、`~/.local/share/opencode/auth.json`，最后才使用显式 `OPENCODE_GO_AUTH_COOKIE + OPENCODE_GO_WORKSPACE_ID` 兼容回退。Bearer usage endpoint 目前不是公开 API，可能随上游变化；Cookie 等同登录凭据，不应进入日志或 issue。
+
+Ollama 云读取 `OLLAMA_API_KEY`，调用 `/api/usage` 展示两个订阅窗口（5 小时会话 + 每周），无余额；`usage` 按 0..1 比例换算为进度条。
+
+Ollama 适配器只对**已配置的 provider** 生效，不会自动添加账户：当 provider 的 id 为 `ollama`，或其 baseURL 主机为 `ollama.com`（含子域）时自动选用；本地 Ollama（`localhost:11434`）不会被当作云配额账户。特殊代理/自定义端点可用显式 monitor 绑定：
+
+```yaml
+# ~/.dsh/profiles/web/cordis.patch.yml
+- insert:
+    - id: usage-stats
+      name: dsh-usage-stats
+      config:
+        monitors:
+          relay-ollama:            # 你配置的 provider id
+            adapter: ollama
+            usageBaseURL: https://ollama.example.com
+            credentialRef: OLLAMA_API_KEY   # 非已配置 provider 时必填
+```
 
 Z.ai 全球区使用 `api.z.ai`，中国区使用 `open.bigmodel.cn`。MiniMax 优先使用官方 `www.minimax.io` / `www.minimaxi.com` Token Plan 地址，并解析 5 小时与周窗口的剩余比例和重置时间。
 

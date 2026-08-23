@@ -1,6 +1,7 @@
 <div align="center">
 
 # 📌 dsh-session-pin
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-session-pin)
 
 **Pin sessions and workspaces to the top of the DeepSeek Harness sidebar with per-pin row colors.**
 
@@ -24,7 +25,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` (client packages `0.1.0-rc.8`) |
+| Harness | DeepSeek Harness `0.1.1-rc.2` (client packages `0.1.1-rc.2`) |
 | Node | `>= 22` (development floor) |
 | Platforms | Web GUI (dual-face: host + browser) |
 | Model | Any (UI-only — no model traffic, no session events) |

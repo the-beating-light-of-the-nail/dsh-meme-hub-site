@@ -11,7 +11,7 @@ The package root exposes the Cordis plugin contract and OllamaAdapter. The same 
 DeepSeek Harness 0.1.0-rc.6 or later is required. Install directly from GitHub:
 
 ~~~sh
-dsh plugin --profile web add github:NOirBRight/dsh-llm-ollama#v0.6.4
+dsh plugin --profile web add github:NOirBRight/dsh-llm-ollama#v0.6.6
 dsh web
 ~~~
 
@@ -31,11 +31,11 @@ The model catalog starts collapsed and lists one row per model: a drag handle re
 
 Cloud usage and the complete weekly model activity list:
 
-![Ollama Cloud connection and usage](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/aa01d082318c31318b364450d664f81b07017162/docs/images/ollama-cloud-usage.png)
+![Ollama Cloud connection and usage](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/57a710cd44897bf0e71a38d30d1ac45cad56b639/docs/images/ollama-cloud-usage.png)
 
 Sortable model catalog:
 
-![Ollama Cloud sortable model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/aa01d082318c31318b364450d664f81b07017162/docs/images/ollama-model-catalog.png)
+![Ollama Cloud sortable model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/57a710cd44897bf0e71a38d30d1ac45cad56b639/docs/images/ollama-model-catalog.png)
 
 The Models page lists saved ollama-cloud models and can select them. Current Harness releases do not expose a third-party editor slot inside that page, so this package owns its editor under Plugin configuration.
 

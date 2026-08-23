@@ -71,7 +71,11 @@ Open **Settings → Cursor subagent**.
 - You can pick the child model (effort, Fast, model), then click **Apply**. That only affects `cursor_agent`, not the model of the current chat. The choice is stored by this plugin, so it works on stock DeepSeek Harness too — it does not need the Host settings allowlist. If an official settings row for this plugin is grey, ignore it and use **Settings → Cursor subagent**.
 - **Test** sends one official read-only `agent --print --mode ask` job (reply `pong`). It uses a little Cursor quota. It does not start a full ACP session.
 
-![Settings → Cursor subagent](https://raw.githubusercontent.com/loeanxi/dsh-cursor-acp/c3ee311b7be9bdea85e8bf079619122a371286f6/assets/settings.png)
+![Settings → Plugins](https://raw.githubusercontent.com/loeanxi/dsh-cursor-acp/5170de77ffadeb170e3a460e558e7d35830fc585/assets/cursor-settings-overview.png)
+
+![Cursor subagent status](https://raw.githubusercontent.com/loeanxi/dsh-cursor-acp/5170de77ffadeb170e3a460e558e7d35830fc585/assets/cursor-settings-status.png)
+
+![Cursor subagent model settings](https://raw.githubusercontent.com/loeanxi/dsh-cursor-acp/5170de77ffadeb170e3a460e558e7d35830fc585/assets/cursor-settings-model.png)
 
 ## How to use it
 
@@ -79,7 +83,7 @@ Ask in chat, for example: “Have Cursor implement this feature” or “Have Cu
 
 The job runs in the current workspace folder and uses your Cursor subscription. The parent chat only sees the final result.
 
-![A chat where cursor_agent finishes a small job](https://raw.githubusercontent.com/loeanxi/dsh-cursor-acp/c3ee311b7be9bdea85e8bf079619122a371286f6/assets/job.png)
+![A chat where cursor_agent finishes a small job](https://raw.githubusercontent.com/loeanxi/dsh-cursor-acp/5170de77ffadeb170e3a460e558e7d35830fc585/assets/job.png)
 
 ## If it cannot find the CLI
 

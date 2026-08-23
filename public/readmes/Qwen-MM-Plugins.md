@@ -1,106 +1,101 @@
-# `@deepseek-ai/dsh-qwen-mm`
+# Qwen-MM-Plugins
 
-English | [中文](README.zh.md)
+**English** · [中文](README.zh.md)
 
-Qwen-MM capabilities as an explicit DSH profile bundle. The package fetches selected Agent Skills at an exact upstream ref, starts each MCP server through the current DSH client, waits for initial tool discovery, and mounts the skill only after its tools are ready.
+Native multimodal plugins for Qwen models. Make any agent harness multimodal-native.
 
-## Repository shape
+## Architecture
 
-```text
-package.json              # runtime package, dsh bundle, and browser metadata
-cordis.patch.yml          # disabled opt-in row plus Stent patch stub
-src/                      # host plugin, browser Stent client, and invariant
-lib/                      # generated installation artifacts
-legacy/                   # obsolete host patch kept only for migration history
-tests/                    # unit, browser Stent, and Loader composition tests
+![Qwen-MM-Plugins architecture](https://raw.githubusercontent.com/omdsh-dev/Qwen-MM-Plugins/12e0346bbe2fa3a8634ed56ab188101fa8226587/docs/assets/architecture.svg)
+
+## Install
+
+The guided installer supports Claude Code, CodeBuddy, Codex, Qoder, OpenClaw, Qwen Code, and Gemini
+CLI. Shared configuration lives in `~/.qwen-mm-plugins/config`.
+
+In-app setup for WorkBuddy, QoderWork, and QwenWork, plus manual setup for DeepSeek Harness, Hermes
+Agent, opencode, pi, and QwenPaw, is documented in the
+[other harness guide](docs/en/manual_harnesses.md).
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/QwenLM/Qwen-MM-Plugins/main/install.sh | bash
 ```
 
-The package is intentionally private and can be installed from a Git checkout or linked into a profile. It does not vendor the Qwen-MM Python implementation.
+Update the capabilities already installed in one harness:
 
-## Bundle behavior
-
-Installing the bundle adds a disabled `qwen-mm` row. Enabling it is an explicit deployment decision because it performs Git fetches and starts external MCP processes.
-
-```yaml
-- id: qwen-mm
-  disabled: false
-  config:
-    source: https://github.com/QwenLM/Qwen-MM-Plugins.git
-    ref: <exact commit or tag>
-    capabilities:
-      - id: core
-      - id: video-memory
+```bash
+curl -fsSL https://raw.githubusercontent.com/QwenLM/Qwen-MM-Plugins/main/install.sh | bash -s -- update
 ```
 
-The runtime owns the capability registry, exact source/ref, sparse-checkout cache, MCP-before-skill ordering, per-capability cleanup, and strict/best-effort failure policy. The current `@deepseek-ai/dsh-mcp-client` contract is used (`failOnStartupError: true`); the obsolete `requireInitialDiscovery` option is not used. `toolCallTimeoutMs` defaults to 60,000 ms and can be configured per bundle instance.
+Released capabilities use independent, immutable tags. For local checkout installs, rollback,
+manual skill + MCP setup, dependencies, and Windows/WSL2, see the
+[installation guide](docs/en/installation.md).
 
-## New Stent integration
+## DeepSeek Harness (DSH)
 
-This package is a dual-face Stent consumer, not a replacement for DSH image infrastructure.
+The source repository includes a DSH carrier at [`packages/dsh`](packages/dsh). It mounts selected
+Qwen capabilities through the official `@deepseek-ai/dsh-mcp-client`; the Python MCP servers still
+come from this repository's `uvx` package source. Install the carrier in the target profile:
 
-- `cordis.patch.yml` places the static `qwen-mm/result-text` descriptor under the row's `config.stent.patches`. The row remains disabled in ordinary profiles.
-- The host half mounts `StentCompatService` from `@oh-my-dsh/stent-api` and serves the UI-tool bundle through `serveBundle(..., fallback: 'raw')` when a Web server exists.
-- The browser half registers the trusted handler through `ctx.stent.register` and renders durable image references as bounded `[image: WIDTHxHEIGHT MIME]` text. Non-image blocks delegate to the original renderer.
-- The browser artifact is a closure-factory `./client` export and declares `@oh-my-dsh/stent` in `dsh.client.inject`; it does not bundle a second Stent runtime or the target UI-tool package.
-
-Use the Stent carrier and launcher for a Stent profile. The profile supplies the bootstrap and the browser `stent` row:
-
-```sh
-dsh plugin --profile web add @oh-my-dsh/stent-pack
-stent-dsh --profile web --port 8000
+```bash
+dsh plugin --profile web add @omdsh-dev/qwen-mm-plugins-dsh
 ```
 
-A plain `dsh` launch leaves Stent-required Qwen rows disabled. Do not enable the Qwen row on a plain host that does not provide the scoped Stent peers and bootstrap.
-
-The DSH host remains authoritative for `ImageBlock`, attachment persistence, MCP image validation and projection, model-route `inputModalities` admission, token accounting, compaction/replay, provider mapping, and ordinary Web rendering. Qwen-MM does not copy the obsolete base64 image, LLM, MCP, or compaction changes from `legacy/qwen-mm-host-integration.patch`.
+The carrier requires the native-media DSH client line and relies on its built-in attachment admission
+and `finalizeContent` support; it does not carry a compatibility layer for older MCP clients. See
+[the DSH setup guide](docs/en/manual_harnesses.md#deepseek-harness-dsh) for profile configuration and
+source-checkout mode.
 
 ## Capabilities
 
-The plugin recognizes:
+Each capability is installed independently as a **Skill** plus an optional **MCP server**. Its
+install name is `qwen-mm-plugins-<capability>`.
+
+| Capability | Use case | Main requirements | Cookbook |
+|---|---|---|---|
+| `core` | Read images and video; visualize documents, code, data, 3D files, and more | No API key; ffmpeg for audio/video; format-specific apps as needed | [Cookbook](cookbooks/core/usage.md) |
+| `api` | Qwen VL/Omni vision, OCR, grounding, ASR, segmentation, and audio-video understanding | DashScope; ffmpeg for local audio/video | [Cookbook](cookbooks/api/usage.md) |
+| `search` | Web search, page extraction, and reverse-image search | Serper, Exa, or Tavily key; image search requires Serper | [Cookbook](cookbooks/search/usage.md) |
+| `video-memory` | Build hierarchical memory for long-video QA | DashScope; ffmpeg/ffprobe for builds | [Cookbook](cookbooks/video-memory/usage.md) |
+| `video-edit` | Image, video, and audio generation with editing workflows | DashScope; ffmpeg + Node/Chromium for full edits | [Cookbook](cookbooks/video-edit/usage.md) |
+| `blender` | Model, texture, light, and render in Blender | Blender; Xvfb on headless Linux | [Cookbook](cookbooks/blender/usage.md) |
+| `freecad` | Parametric CAD, STEP/STL, and FEM workflows | FreeCAD; CalculiX for FEM; Xvfb on headless Linux | [Cookbook](cookbooks/freecad/usage.md) |
+| `edu-agent` | Create Chinese math/science explainer videos and interactive pages | Skill-only; Node/Chromium + ffmpeg; DashScope for narrated video | [Cookbook](cookbooks/edu-agent/usage.md) |
+
+## Try it
+
+After installing a capability, reference a file and ask naturally; the Skill selects the relevant
+MCP tool.
 
 ```text
-core
-video-memory
-video-edit
-blender
-freecad
-edu-agent
+@report.pdf          Summarize page 3 and extract its table.
+@meeting.mp4         Transcribe this with speaker labels and timestamps.
+@place.jpg           Identify where this photo was taken and verify it on the web.
+@lecture-2h.mp4      List the main points with timestamps.
 ```
 
-Each capability can override its command, arguments, environment, and working directory. `strict: true` turns a per-capability warning into a load failure; the default skips only the failed capability after cleaning up any partial stage.
+`core` reads media at dynamic resolution, so manual resizing is normally unnecessary.
 
-## Development
+## Requirements and configuration
 
-The package resolves all host APIs from registry packages; it has no sibling-checkout TypeScript references.
+- [`uv`](https://docs.astral.sh/uv/) provides `uvx`, which installs Python dependencies on demand.
+- Local `core` tools need no API key in the default native-image mode. Text-only caption fallback,
+  cloud, and search capabilities need their provider credentials.
+- Video, document, browser, Blender, and FreeCAD workflows may need system applications.
 
-```sh
-pnpm install
-pnpm run typecheck
-pnpm test
-pnpm run build
-pnpm pack --dry-run --json
-```
+Run the installer's **Configure** and **Verify** actions to set credentials and check dependencies.
+See [Installation](docs/en/installation.md#dependencies) for prerequisites and the
+[configuration reference](docs/en/configuration.md) for every setting.
 
-The `prepare` script uses the source-only host and browser builds for a Git install. It requires a pinned, trusted checkout and a profile that permits the package's build script.
+## Documentation
 
-## Model Experience
+- [Installation](docs/en/installation.md)
+- [Configuration](docs/en/configuration.md)
+- [Contributing](CONTRIBUTING.md) · [Local development](docs/en/local_development.md)
+- [Add a capability](docs/en/how_to_add_new_capability.md) · [Testing](docs/en/testing.md)
 
-### Capability tools and skills
+## License
 
-The selected Agent Skills and MCP tools become model-visible through DSH's authoritative skill and tool registries. Tool discovery completes before the paired skill is registered, so a failed server cannot expose a tool-less skill. The package adds no fixed prompt text.
-
-### Image content
-
-Image-producing Qwen capabilities use the DSH image vocabulary and durable attachment references. The native host validates MIME, bytes, dimensions, and model-route modality support; Qwen-MM only supplies the capability and the browser's bounded display fallback.
-
-### Token and KV-cache effects
-
-Attachment references keep image bytes out of ordinary model-visible text and replay payloads. Native DSH compaction projects image references to bounded text markers before summarization. The Qwen browser patch does not change provider requests or token accounting.
-
-## Known Limitations and Deferred Work
-
-- External capability fetches require `git`; default MCP launches require `uvx` and the capability's Python environment.
-- The Stent browser summary requires a current `@deepseek-ai/dsh-client-ui-tool` bundle whose `lib/client.js` still contains `resultText`; `fallback: 'raw'` keeps the Web app usable when the transform cannot match.
-- The profile must install the Stent carrier separately and must use the Stent bootstrap when enabling this Stent-required row.
-- Capabilities that produce images still require a resolved model route that declares image-input support.
-- `legacy/qwen-mm-host-integration.patch` is not a supported installation path and is not applied by the bundle.
+Apache-2.0 — see [LICENSE](LICENSE). Third-party attribution for the Blender and FreeCAD integrations
+is recorded in their respective [Blender](src/capabilities/blender/NOTICE.md) and
+[FreeCAD](src/capabilities/freecad/NOTICE.md) notices.

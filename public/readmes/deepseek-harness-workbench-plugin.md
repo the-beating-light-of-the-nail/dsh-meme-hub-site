@@ -1,5 +1,5 @@
 
-![preview](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/social-preview.jpg)
+![preview](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/social-preview.jpg)
 
 A workbench plugin for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI. After Workbench is opened in Conversation, chat stays on the left. Two columns appear on the right: the editor (syntax highlighting and **smart terminal**) and the side dock for files, Git, the **Usage** panel, and the **Ultra Slash** panel.
 
@@ -33,13 +33,13 @@ Look for these first:
 
 The workbench uses a three-column layout. Conversation stays on the left. The two columns on the right are the capability area: editor and smart terminal in the center; file tree, Git, Usage, and Ultra Slash on the far right. The right dock tabs are **Files**, **Source Control**, **Usage**, and **Ultra Slash**.
 
-![screen_1](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_1.png)
-![screen_2](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_2.png)
-![screen_3](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_3.png)
-![screen_4](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_4.png)
-![screen_5](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_5.png)
-![screen_6](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_6.png)
-![screen_7](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/2398bd158a78b6ffbdbd1ca55ce2a74acda2b78a/docs/img/screen_shot_7.png)
+![screen_1](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_1.png)
+![screen_2](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_2.png)
+![screen_3](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_3.png)
+![screen_4](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_4.png)
+![screen_5](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_5.png)
+![screen_6](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_6.png)
+![screen_7](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/a0b88c3cd38ea4aeb5e50c61a700e9e0907f79e7/docs/img/screen_shot_7.png)
 
 
 ## Core capabilities

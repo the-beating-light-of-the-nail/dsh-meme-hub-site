@@ -9,23 +9,23 @@
 
 ### 动态 / 静态壁纸
 
-![壁纸](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/0b80edeb88a9aab056de42aace617a40e8f52927/docs/screenshots/01-wallpaper.jpg)
+![壁纸](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/17afc8e649ac0a44c097d530d315524fb7f1d705/docs/screenshots/01-wallpaper.jpg)
 
 ### 开屏变身动画
 
-![开屏动画](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/0b80edeb88a9aab056de42aace617a40e8f52927/docs/screenshots/02-boot.jpg)
+![开屏动画](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/17afc8e649ac0a44c097d530d315524fb7f1d705/docs/screenshots/02-boot.jpg)
 
 ### 萤火氛围粒子
 
-![萤火粒子](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/0b80edeb88a9aab056de42aace617a40e8f52927/docs/screenshots/03-firefly.jpg)
+![萤火粒子](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/17afc8e649ac0a44c097d530d315524fb7f1d705/docs/screenshots/03-firefly.jpg)
 
 ### 背景音乐播放器
 
-![背景音乐](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/0b80edeb88a9aab056de42aace617a40e8f52927/docs/screenshots/04-music.jpg)
+![背景音乐](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/17afc8e649ac0a44c097d530d315524fb7f1d705/docs/screenshots/04-music.jpg)
 
 ### 表情包彩蛋
 
-![表情包](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/0b80edeb88a9aab056de42aace617a40e8f52927/docs/screenshots/05-emote.jpg)
+![表情包](https://raw.githubusercontent.com/Liu-ZA-81/dsh-theme-firefly/17afc8e649ac0a44c097d530d315524fb7f1d705/docs/screenshots/05-emote.jpg)
 
 > 🎬 演示视频（B 站）：
 https://www.bilibili.com/video/BV1nF8B6QEEj/?spm_id_from=333.1387.homepage.video_card.click&vd_source=573abae8b62b8edf27edc7cb8933e1b6
@@ -37,12 +37,15 @@ https://www.bilibili.com/video/BV1nF8B6QEEj/?spm_id_from=333.1387.homepage.video
 ### 壁纸系统（图片 / 动态视频）
 
 - 全屏 `cover` 铺底，界面容器半透明让壁纸透出；左暗右亮渐变遮罩保证聊天区可读
-- 右下角「**景**」按钮弹出常驻面板：
+- 「**景**」按钮弹出常驻面板：
   - **类型**：动态（mp4）/ 静态（图片），各自独立记忆当前壁纸
-  - **选择**：弹出缩略图网格，点选具体壁纸；**随机**：自动随机轮换
+  - **选择**：弹出缩略图网格（正方形预览、固定三行、可滚动），点卡片直接应用该壁纸
+  - **移除**：在网格中勾选一张/多张后点「移除」——内置壁纸记为隐藏、运行时导入的壁纸从 IndexedDB 删除
+  - **随机**：勾选若干张后点「随机」——把它们设为随机轮换池并立即进入随机模式（不勾选则等于全部）
   - **随机间隔**：自定义分钟数（默认 5 分钟）
-  - **＋ 添加壁纸**：从本机导入图片/视频，自动归入对应类型并立即生效（IndexedDB 持久化）
-  - 点「**确定**」收起面板，所有设置实时生效并持久化
+  - **＋ 添加壁纸**：从本机一次多选导入图片/视频（Ctrl/框选），同名同大小自动去重，立即生效（IndexedDB 持久化）
+  - **默认壁纸**：首次安装（无历史记录）时优先展示 `assets/Default_wallpaper.png`
+  - 选择面板点右上角「**—**」或再点「选择」收起；点「**确定**」收起设置面板，所有设置实时生效并持久化
 
 ### 流萤配色
 
@@ -57,13 +60,13 @@ https://www.bilibili.com/video/BV1nF8B6QEEj/?spm_id_from=333.1387.homepage.video
 
 ### 萤火氛围粒子
 
-- 右下角「**萤**」按钮分档：关 / 星点（12）/ 曳光（28）/ 流萤（80）
+- 「**萤**」按钮分档：关 / 星点（12）/ 曳光（28）/ 流萤（80）
 - 数量切换带 0.9s 淡入淡出过渡，不陡然变化、不刷新页面
 - 每只萤火虫有独立尺寸、亮度、漂浮轨迹与呼吸式闪烁
 
 ### 背景音乐
 
-- 右下角「**乐**」按钮点击开/关，弹出迷你播放卡片
+- 「**乐**」按钮点击开/关，弹出迷你播放卡片
 - 支持 上一首 / 播放暂停 / 下一首 / 循环模式（单曲循环 → 列表循环 → 随机播放）
 - 当前曲目与循环模式持久化
 
@@ -86,7 +89,7 @@ https://www.bilibili.com/video/BV1nF8B6QEEj/?spm_id_from=333.1387.homepage.video
 
 ## 🎛️ 界面操作
 
-右下角四个按钮（自右向左）：
+四个按钮（自右向左）收在一个**可拖动的毛玻璃长条面板**里：
 
 | 按钮 | 功能 |
 |---|---|
@@ -95,7 +98,11 @@ https://www.bilibili.com/video/BV1nF8B6QEEj/?spm_id_from=333.1387.homepage.video
 | **景** | 壁纸设置（类型 + 选择/随机 + 随机间隔 + 添加壁纸 + 确定） |
 | **乐** | 背景音乐 开/关 + 播放卡片 |
 
-> 按 **ESC** 可一键关闭所有右下角浮层。
+> 🖱️ 按住面板任意位置拖动即可移动，位置自动记忆（重启 `dsh web` 后仍生效）。
+> 音乐卡片、壁纸设置、壁纸选择器三个弹层会相对该面板**水平居中对齐**，
+> 并自动保持在屏幕内。
+
+> 按 **ESC** 可一键关闭所有浮层。
 
 ---
 
@@ -176,7 +183,7 @@ dsh plugin --profile web remove dsh-theme-firefly
 
 **壁纸**有两种添加方式：
 
-1. **运行时添加（推荐）**：点「景」→「＋ 添加壁纸」，从本机选图片/视频，立即生效并持久化
+1. **运行时添加（推荐）**：点「景」→「＋ 添加壁纸」，从本机一次多选图片/视频（Ctrl/框选），立即生效并持久化
 2. **打包内嵌**：把文件放入 `assets/` 后运行 `node build.cjs`（适合预置默认壁纸）
 
 其余素材（开屏动图、音乐）需通过 `build.cjs` 内嵌进 `lib/client.js`：
@@ -187,6 +194,7 @@ node build.cjs --clean  # 干净构建：只打包 build.include.txt 清单里�
 ```
 
 - **壁纸**：`assets/` 支持 `.jpg/.jpeg/.png/.webp`（静态）与 `.mp4`（动态）
+- **默认壁纸**：`assets/` 里文件名含 `Default` 的图片会在首次安装（无保存记录）时作为初始壁纸；仓库默认随带 `Default_wallpaper.png`，替换后重新 `node build.cjs --clean` 即可
 - **开屏动图**：`GIF/` 目录取第一个 `.gif`
 - **音乐**：`music/` 支持 `.mp3/.ogg/.m4a/.wav`，默认第一首为「使一颗心免于哀伤」
 

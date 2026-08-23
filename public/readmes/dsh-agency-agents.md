@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/d419213ebdce301c39ce170752d26078b075c7ca/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
 </div>
 
 <div align="center">
@@ -13,6 +13,7 @@
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![Bundled agents](https://img.shields.io/badge/Bundled%20agents-271-0f766e.svg)](#features)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-agency-agents.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-agency-agents)
+  [![npm downloads](https://img.shields.io/npm/dt/%40michengai%2Fdsh-agency-agents.svg?label=npm%20downloads)](https://www.npmjs.com/package/@michengai/dsh-agency-agents)
   [![DSH Web Plugin](https://img.shields.io/badge/DSH%20Web-Plugin-0f766e.svg)](https://github.com/MichengAI/dsh-agency-agents)
   [![Node.js 22 or later](https://img.shields.io/badge/Node.js-22%20or%20later-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 </div>
@@ -33,15 +34,15 @@ The parent session keeps task context, judgment, and the final answer. Expert ch
 
 Filter by category or search in **Settings → Experts**, then enable the experts you need:
 
-![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/d419213ebdce301c39ce170752d26078b075c7ca/assets/screenshots/agent-roster-en.png)
+![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/screenshots/agent-roster-en.png)
 
 Use `@` or the composer's **Experts** picker to choose an enabled expert:
 
-![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/d419213ebdce301c39ce170752d26078b075c7ca/assets/screenshots/expert-picker.png)
+![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/screenshots/expert-picker.png)
 
 The name and slug are filled in; write the complete task next:
 
-![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/d419213ebdce301c39ce170752d26078b075c7ca/assets/screenshots/summon-prompt.png)
+![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/screenshots/summon-prompt.png)
 
 ## DSH product ecosystem
 

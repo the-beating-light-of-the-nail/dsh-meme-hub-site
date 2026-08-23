@@ -2,7 +2,7 @@
 
 # DSH 大肥鱼 🐋
 
-**住在 Windows 桌面上、由 DeepSeek Harness 真实工作状态驱动的 Agent 伴侣。**
+**住在桌面上、由 DeepSeek Harness 真实工作状态驱动的 Agent 伴侣。**
 
 入口属于 DSH，生命周期属于 DSH，显示层属于桌面。
 
@@ -12,13 +12,13 @@
 
 </div>
 
-![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/dsh-bigfish-running.png)
+![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/dsh-bigfish-running.png)
 
 DSH 大肥鱼不是一个需要单独启动的桌宠应用。它由 DSH 插件启用，跟随 DSH
 一起启动和退出，并以透明、无边框、始终置顶的原生窗口显示在桌面上。即使切换到
 VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修改、测试、等待还是已经完成。
 
-> 当前版本：`0.1.2` · Windows / WSL2 Alpha
+> 当前版本：`0.1.5` · Windows / WSL2 / Linux x64 · macOS 实验性支持
 
 ## 关注最新进展
 
@@ -34,7 +34,7 @@ VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修�
 
 ## 它有什么用？
 
-- **离开 DSH 页面也能看到状态**：大肥鱼始终显示在 Windows 桌面最上层。
+- **离开 DSH 页面也能看到状态**：大肥鱼始终显示在桌面最上层。
 - **反馈来自真实 Agent 事件**：不会读取屏幕，也不会把你在其他软件里的操作误判为 DSH 工作。
 - **展示足够但不过量的信息**：项目名、当前阶段、正在进行的步骤和真实待办进度会显示在状态卡上。
 - **有生命力但不打扰**：思考、查找、修改、执行、验证、等待、完成和错误都有对应动作与自然文案。
@@ -47,15 +47,15 @@ VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修�
 
 | 思考 | 工作 |
 | --- | --- |
-| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/status-working.png) |
+| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/status-working.png) |
 
 | 等待确认 | 完成 |
 | --- | --- |
-| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/status-success.png) |
+| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/status-success.png) |
 
 | 遇到问题 |
 | --- |
-| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/status-error.png) |
+| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/status-error.png) |
 
 状态大致按照下面的流程变化：
 
@@ -85,12 +85,14 @@ stateDiagram-v2
 ## 系统要求
 
 - Windows 10/11 x64，或 WSL2（通过 Windows interop 运行桌面 Helper）
+- Linux x64 桌面环境（原生 X11，或通过 XWayland 运行）
+- macOS 12.0+（Apple Silicon 或 Intel，实验性支持）
 - 已安装并能正常运行的 DeepSeek Harness WebUI
 - DSH CLI 中可以使用 `plugin --profile web` 命令
 - npm 上的稳定版 `dsh-dafeiyu`（或抢先测试的 `dsh-dafeiyu@alpha`），或 GitHub Release 中的 `.tgz` 安装包
 
-普通用户**不需要**安装 Python、PySide6 或单独运行
-`dsh-dafeiyu-helper.exe`。Windows Helper 已经包含在发布包里。
+普通用户**不需要**安装 Python、PySide6 或单独运行 Helper。Windows、Linux
+x64 和 macOS 的 Helper 都已经包含在发布包里。
 
 当前 Alpha 版的设置与桌面状态文案使用简体中文。
 
@@ -124,8 +126,48 @@ dsh plugin --profile web add dsh-dafeiyu
 
 如果 DSH 运行在 WSL2，请在 WSL 终端执行同一条安装命令。插件会自动通过
 `cmd.exe` 启动包内的 Windows Helper，不需要手动 `chmod`，也不需要在 WSL
-安装 Python 或 PySide6。当前支持范围是 Windows x64 上的 WSL2；普通 Linux、
-远程 Linux 和容器不是本版本的桌面显示目标。
+安装 Python 或 PySide6。当前支持范围是 Windows x64 上的 WSL2。
+
+普通 Linux x64 桌面用户也执行同一条安装命令。`0.1.4` 已内置 Linux Helper，
+无需系统 Python；需要可用的图形桌面会话，原生支持 X11，并可通过 XWayland
+运行。远程无桌面 Linux 和容器不是本版本的显示目标。
+
+### macOS 用户（Apple Silicon / Intel，macOS 12.0+）
+
+> `0.1.4` 首次提供实验性的原生 macOS Helper。CI 已验证 Universal 架构、
+> AppKit 渲染和进程生命周期；Apple Silicon 实机体验将继续通过用户反馈验证。
+> 当前应用只有 ad-hoc 签名，尚未 Developer ID 签名或公证，浏览器下载的包可能
+> 被 Gatekeeper 拦截。
+
+macOS 的安装方式与 Windows 相同，只是换成「终端」和 macOS 路径。发布包
+内置原生 Helper，**不需要安装 Python、PySide6 或 Xcode**。
+
+在「终端」中进入你的 DSH 安装目录（例如 `~/deepseek-harness`）：
+
+```bash
+cd ~/deepseek-harness
+```
+
+然后从 npm 安装稳定版：
+
+```bash
+pnpm exec dsh plugin --profile web add dsh-dafeiyu
+```
+
+如果系统已经能直接使用全局 `dsh` 命令：
+
+```bash
+dsh plugin --profile web add dsh-dafeiyu
+```
+
+也可以从 [GitHub Releases](https://github.com/QCYTSN/dsh-dafeiyu/releases)
+下载 `dsh-dafeiyu-<version>.tgz`（不要解压），然后安装：
+
+```bash
+pnpm exec dsh plugin --profile web add ~/Downloads/dsh-dafeiyu-<version>.tgz
+```
+
+装完照常启动 DSH WebUI，大肥鱼会由 DSH 自动拉起；不要手动打开 Helper。
 
 ### 3. GitHub Release 备用安装方式
 
@@ -155,7 +197,7 @@ pnpm exec dsh plugin --profile web add "C:\Users\you\Downloads\dsh-dafeiyu-<vers
 设置 → 插件 → 插件配置 → 大肥鱼桌面伴侣
 ```
 
-![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/fba5fd256509485dfb5807ca9dda69e205d8d89a/docs/images/dsh-bigfish-settings.png)
+![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/dd612c74c6002cb4b501a078f56072230853d1a6/docs/images/dsh-bigfish-settings.png)
 
 ## 怎么使用？
 
@@ -183,11 +225,12 @@ pnpm exec dsh plugin --profile web add "C:\Users\you\Downloads\dsh-dafeiyu-<vers
 | 设置 | 作用 |
 | --- | --- |
 | 启用大肥鱼 | 立即显示或关闭桌面伴侣 |
-| 角色大小 | 在 70%～140% 之间调整 |
+| 角色大小 | 在 55%～140% 之间调整；右键菜单提供 60% 迷你档 |
 | 气泡大小 | 在 80%～120% 之间调整状态气泡，兼顾信息可读性 |
 | 气泡显示 | 常驻显示、完全隐藏，或自定义哪些状态显示气泡 |
 | 活跃程度 | 控制空闲时眨眼、观察等微动作频率 |
 | 减少动态效果 | 减少走动、循环帧和程序化晃动 |
+| 提示音 | 控制任务完成或出错时的大肥鱼提示音 |
 | 响应子 Agent | 允许子 Agent 状态参与优先级选择；默认关闭 |
 
 设置由 DSH 保存，更新插件后通常不需要重新配置。
@@ -292,6 +335,39 @@ DSH 后会恢复。若想永久关闭，请在 DSH 设置中取消“启用大�
 - 不监听键盘输入或其他应用行为
 - 不新开网络端口；设置卡复用 DSH 的本地 Web 服务
 - 默认只跟随最近活跃的顶层 DSH Session
+
+## macOS 原生适配（AI 辅助生成）
+
+> **说明**：本仓库的 macOS 原生 Helper（`runtime/bin/darwin/dsh-dafeiyu-helper.app`）
+> 及 `native/macos/` 下的 Swift 源码由 **AI 辅助生成**，经人工 review 与调试后合入，
+> 用于替代原 Qt/PySide6 与 PyObjC 原型在 macOS 上不稳定、易崩溃的问题。
+
+### 重做了哪些地方
+
+- **运行时重写**：Qt/PySide6 桌面窗口（`runtime/helper.py` 的可视路径）与
+  PyObjC 原生窗口原型，重写为 **Swift + 纯 AppKit** 原生实现，不再依赖
+  Python、PySide6、PyObjC 或 anaconda 环境。
+- **动画内核移植**：`runtime/animation_model.py` 的纯逻辑（clips、pulse、
+  overlay、idle 微动作、crossfade、程序化 motion）逐行移植为 Swift，行为与
+  Windows/Qt 版一致。
+- **全屏置顶**：使用 Apple 官方窗口能力（`canJoinAllSpaces` +
+  `fullScreenAuxiliary` + `.floating` 层级），每 2 秒重新断言层级，全屏 App
+  下依然保持在前端。
+- **权限处理**：通知走 `UNUserNotificationCenter`（SUCCESS/ERROR 提示，
+  被拒时回退 beep + 抖动）；辅助功能走 `AXIsProcessTrustedWithOptions`，
+  右键菜单可直达系统设置。
+- **稳定性修复**：helper 的 stdin/stdout/stderr 增加 EPIPE 兜底，helper
+  崩溃只重启自身，不再拖垮 dsh 服务器。
+- **渲染与交互修复**：修复 flipped 视图下图片倒置；拖拽改为绝对坐标 1:1
+  跟手；拖拽时人物与气泡位置同步。
+- **布局迁移**：首次启动自动把旧 Qt 版 top-left 坐标迁移到 AppKit
+  bottom-left 坐标，继续读写同一个 `layout.json`。
+
+### 兼容性
+
+- **架构**：Universal binary（Apple Silicon arm64 + Intel x86_64）
+- **系统**：macOS 12.0+
+- 构建与安装说明见 [native/macos/README.md](native/macos/README.md)
 
 ## 开发与测试
 

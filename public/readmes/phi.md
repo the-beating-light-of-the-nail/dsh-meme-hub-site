@@ -17,9 +17,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
   <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
 </p>
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/f18c66719b5a094c30adbaebe90e5c62ba81bf53/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/af4fe108bf0dd2d3895e153c113dd3f2e0d5d98e/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/f18c66719b5a094c30adbaebe90e5c62ba81bf53/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/af4fe108bf0dd2d3895e153c113dd3f2e0d5d98e/assets/image.png)
 
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
@@ -108,7 +108,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/f18c66719b5a094c30adbaebe90e5c62ba81bf53/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/af4fe108bf0dd2d3895e153c113dd3f2e0d5d98e/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml

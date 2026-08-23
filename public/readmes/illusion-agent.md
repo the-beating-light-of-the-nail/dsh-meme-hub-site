@@ -47,14 +47,14 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
 <div align="center">
   <p>Welcome screen & rich text rendering</p>
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/343249f350941b849fb514eda5c41cf8a3e87ec4/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/343249f350941b849fb514eda5c41cf8a3e87ec4/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/d6ed079e7fcd1e68f4c36f2d302062e1622e8b11/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/d6ed079e7fcd1e68f4c36f2d302062e1622e8b11/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
 </div>
 
 <div align="center">
   <p>Demo video</p>
   <a href="https://www.youtube.com/watch?v=ExrzKVjWPls">
-    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/343249f350941b849fb514eda5c41cf8a3e87ec4/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
+    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/d6ed079e7fcd1e68f4c36f2d302062e1622e8b11/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
   </a>
   <p><a href="https://www.youtube.com/watch?v=ExrzKVjWPls">📺 Watch demo on YouTube</a></p>
 </div>
@@ -158,6 +158,7 @@ The terminal (`illusion`) and Web UI (`illusion web`) are two independent, first
 | Project Files & Memory | [docs/en/project-files.md](docs/en/project-files.md) | [docs/zh-CN/project-files.md](docs/zh-CN/project-files.md) |
 | Extensions (MCP, Plugins, Skills, Hooks) | [docs/en/extensions.md](docs/en/extensions.md) | [docs/zh-CN/extensions.md](docs/zh-CN/extensions.md) |
 | Architecture | [docs/en/architecture.md](docs/en/architecture.md) | [docs/zh-CN/architecture.md](docs/zh-CN/architecture.md) |
+| Web UI Security | [docs/en/security.md](docs/en/security.md) | [docs/zh-CN/security.md](docs/zh-CN/security.md) |
 | Token Metering & Compaction | [docs/en/token-metering.md](docs/en/token-metering.md) | [docs/zh-CN/token-metering.md](docs/zh-CN/token-metering.md) |
 | Messaging Channels | [docs/en/channels.md](docs/en/channels.md) | [docs/zh-CN/channels.md](docs/zh-CN/channels.md) |
 | Desktop Edition | [docs/en/desktop.md](docs/en/desktop.md) | [docs/zh-CN/desktop.md](docs/zh-CN/desktop.md) |

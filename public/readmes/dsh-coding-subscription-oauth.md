@@ -4,7 +4,7 @@
 
 # 🔐 dsh-coding-subscription-oauth
 
-**v0.5.8** · formerly `dsh-grok-build`
+**v0.6.1** · formerly `dsh-grok-build`
 
 **Coding-subscription OAuth for [DeepSeek Harness](https://github.com/deepseek-ai/dsh).** Use SuperGrok / X Premium (Grok Build), ChatGPT Plus/Pro (Codex), Kimi Code, Claude Pro/Max and Google Antigravity inside DSH — without a second API-key bill and **without pasting any token into chat.**
 
@@ -17,13 +17,17 @@
 
 ---
 
+> **Upgrade / 升级：** Follow the versioned steps in [`INSTALL.md`](INSTALL.md). `0.6.1` fixes a `0.6.0` startup failure on strict Cordis injection guards; keep profile/config/credential files and restart one existing DSH Web process only after Subscription `0.6.1` and Hub `1.9.1` are both updated. `dsh-coding-oauth-core@0.1.0` remains their shared npm dependency, not a separate DSH plugin.
+
+---
+
 ## Name change
 
 Published first as **`dsh-grok-build`** when it only covered Grok Build. The current name matches the full coding-subscription OAuth surface.
 
 | | Use this | Still works |
 |---|---|---|
-| npm (recommended) | Current release is `0.5.8`: `dsh plugin --profile web add dsh-coding-subscription-oauth@0.5.8` | No legacy npm package was published |
+| npm (recommended) | Current release is `0.6.1`: `dsh plugin --profile web add dsh-coding-subscription-oauth@0.6.1` | No legacy npm package was published |
 | GitHub / development | [`dsh-coding-subscription-oauth`](https://github.com/lninghaha/dsh-coding-subscription-oauth) | Previous GitHub repo `dsh-grok-build` was removed |
 | CLI | `dsh-coding-oauth` | `dsh-grok-build` |
 | Cordis plugin id | `llm-grok-build-oauth` | unchanged |
@@ -77,13 +81,13 @@ Grok Build device login, live `/v1/models-v2` and Responses streaming are verifi
 
 ```bash
 # 1. install the current npm release into the web profile
-dsh plugin --profile web add dsh-coding-subscription-oauth@0.5.8
+dsh plugin --profile web add dsh-coding-subscription-oauth@0.6.1
 
 # 2. optional — Google Antigravity (pinned, reviewed version)
 dsh plugin --profile web add dsh-agy@0.1.2
 
-# 3. restart the resident dsh web service
-systemctl --user restart dsh-web.service
+# 3. restart the existing DSH Web process with its configured process manager
+# `dsh web` is the official CLI alias for the web profile, not a service-unit name.
 ```
 
 Then open **Settings → Coding OAuth** and sign in to any provider. Done — pick your authenticated model from the selector.
@@ -118,7 +122,7 @@ Requires DeepSeek Harness `0.1.0-rc.6+` and Node.js 22.19+. Full details in the 
 
 ```bash
 # current npm release
-dsh plugin --profile web add dsh-coding-subscription-oauth@0.5.8
+dsh plugin --profile web add dsh-coding-subscription-oauth@0.6.1
 
 # development / alternative: from GitHub
 dsh plugin --profile web add github:lninghaha/dsh-coding-subscription-oauth
@@ -127,7 +131,7 @@ dsh plugin --profile web add github:lninghaha/dsh-coding-subscription-oauth
 # dsh plugin --profile web add ./dsh-coding-subscription-oauth
 ```
 
-Restart `dsh web` after installing. Maintainers can verify a live deployment from a source checkout (npm installs do not include these scripts):
+Restart the existing DSH Web process after installing. Maintainers can verify a live deployment from a source checkout (npm installs do not include these scripts):
 
 ```bash
 pnpm run verify:deployed            # checks real /api/llm.models + OAuth state
@@ -145,18 +149,20 @@ pnpm run smoke:deployed             # real Codex/Kimi tool-calls + second-turn r
 
 Open **Settings → Coding OAuth**. The page uses segmented tabs — **Accounts**, **Gateway**, **Capabilities**, and **About** — with live status hints, semantic badges, and skeleton loading states. On a remote (non-loopback) host, Accounts prefers device-code sign-in and collapses noisy CLI-missing hints into one tip. Signed-in provider cards collapse to a compact summary; expand one for model search/filter, quota progress bars, or CLI Pull controls. Gateway adds quick-setup snippets (cURL / Python / IDE), and Capabilities uses toggle switches with dependency-aware disabled states plus Imagine status.
 
+DSH Web remains loopback-only. Remote Settings must travel through an SSH tunnel or an owner-authenticated HTTPS reverse proxy. The plugin prefers a DSH-native `ownerRequestPolicy`; its fallback requires the real trusted TCP peer, exact HTTPS Origin/Host, same-origin Fetch Metadata, a proxy-injected owner proof, and an independent mutation CSRF proof. Forwarded headers never grant access, and incomplete policy fails closed. See [INSTALL.md](INSTALL.md#安全访问远程-settings).
+
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <a href="media/settings_accounts.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/df2590a7d3b74e0e17e9dc6a4e78333d8f204f94/media/settings_accounts.png" alt="Coding OAuth Accounts tab" width="280" /></a><br />
+      <a href="media/en/settings_accounts.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/f611d6df543ae1908c8e1ed396c00e748e379d43/media/en/settings_accounts.png" alt="Coding OAuth Accounts tab" width="280" /></a><br />
       <sub>Accounts</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <a href="media/settings_gateway.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/df2590a7d3b74e0e17e9dc6a4e78333d8f204f94/media/settings_gateway.png" alt="Coding OAuth Gateway tab" width="280" /></a><br />
+      <a href="media/en/settings_gateway.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/f611d6df543ae1908c8e1ed396c00e748e379d43/media/en/settings_gateway.png" alt="Coding OAuth Gateway tab" width="280" /></a><br />
       <sub>Gateway</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <a href="media/settings_capabilities.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/df2590a7d3b74e0e17e9dc6a4e78333d8f204f94/media/settings_capabilities.png" alt="Coding OAuth Capabilities tab" width="280" /></a><br />
+      <a href="media/en/settings_capabilities.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/f611d6df543ae1908c8e1ed396c00e748e379d43/media/en/settings_capabilities.png" alt="Coding OAuth Capabilities tab" width="280" /></a><br />
       <sub>Capabilities</sub>
     </td>
   </tr>

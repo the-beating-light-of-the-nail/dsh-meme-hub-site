@@ -1,6 +1,6 @@
 <p align="right"><b>English</b> · <a href="README.zh-CN.md">简体中文</a></p>
 
-<h1 align="center">Harness Widgets</h1>
+<h1 align="center">DeepSeek-Harness Widgets</h1>
 
 <p align="center">
   <strong>A beautiful, extensible right-side widget system for DeepSeek Harness.</strong><br>
@@ -8,18 +8,18 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/harness-widgets?style=flat&label=latest%20release&color=4D6BFE" alt="Latest release">
-  <img src="https://img.shields.io/npm/dt/harness-widgets?style=flat&label=total%20downloads&color=4D6BFE" alt="Total downloads">
-  <a href="https://github.com/Physicolor/harness-widgets/stargazers"><img src="https://img.shields.io/github/stars/Physicolor/harness-widgets?style=flat&label=%E2%98%85&color=08C" alt="GitHub stars"></a>
+  <img src="https://img.shields.io/npm/v/dsh-widgets?style=flat&label=latest%20release&color=4D6BFE" alt="Latest release">
+  <img src="https://img.shields.io/npm/dt/dsh-widgets?style=flat&label=total%20downloads&color=4D6BFE" alt="Total downloads">
+  <a href="https://github.com/Physicolor/dsh-widgets/stargazers"><img src="https://img.shields.io/github/stars/Physicolor/dsh-widgets?style=flat&label=%E2%98%85&color=08C" alt="GitHub stars"></a>
   <img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat" alt="MIT License">
   <img src="https://img.shields.io/badge/DSH%200.1.x-4493F8?style=flat-square" alt="Supported: DeepSeek Harness 0.1.x">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/ae5daefc5970c2d05f2aae4692e8cc3f2f4b501b/docs/screenshots/cover.jpeg" alt="Harness Widgets preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/159ca38467ed5a25ead4d3e48f0284683f2f7836/docs/screenshots/cover.jpeg" alt="DeepSeek-Harness Widgets preview" width="100%">
 </p>
 
-Harness Widgets is a **persistent DSH bundle plugin** built on the Cordis composition model. It provides a customizable multi-column widget rail on the right side of the conversation page — real-time session insights, usage monitoring, and quick actions — with an extensible declarative registry.
+DeepSeek-Harness Widgets is a **persistent DSH bundle plugin** built on the Cordis composition model. It provides a customizable multi-column widget rail on the right side of the conversation page — real-time session insights, usage monitoring, and quick actions — with an extensible declarative registry.
 
 ---
 
@@ -76,7 +76,7 @@ Rolling / weekly / monthly usage windows + percentage + reset time. The host hal
 
 - **Widget registry**: `WIDGETS` declarative descriptors (id / name / size / group / render); the rail and the settings page share one registry — adding a widget is just one descriptor;
 - **Data collector**: mounted on the `conversation.composer.dock` slot, which renders only when an active session exists — a natural "session alive" signal;
-- **Host half**: `webServer` + `credentials` services; registers the `/api/opencode-usage` same-origin proxy route;
+- **Host half**: `webServer` + `credentials` services; registers the `/api/opencode-usage` same-origin proxy route and the `/api/widgets-state` store (widget-rail configuration persisted to `profiles/web/dsh-widgets-state.json` — the authoritative copy that survives browser origin switches, private mode and site-data clearing);
 - **Reversible cleanup**: all registrations are managed by the fiber-effect lifecycle; uninstalling restores everything;
 - **Slot integration**: `shell.overlay` (panel), `conversation.session.header.utilities` (capsule toggle), `settings.section` (settings page).
 
@@ -84,7 +84,7 @@ Rolling / weekly / monthly usage windows + percentage + reset time. The host hal
 
 ```sh
 # via npm (plugin market)
-dsh plugin --profile web add harness-widgets
+dsh plugin --profile web add dsh-widgets
 
 # local development (link)
 dsh plugin --profile web add link:D:/dsh-home/plugins/harness-widgets
@@ -110,6 +110,61 @@ pnpm run check      # typecheck + tests + build
 - Coordinates explicitly with `dsh-better-sidebar`'s right rail (shares `--dsh-sidebar-width`); no residue after uninstall.
 
 ## Changelog
+
+### v1.2.0
+**Fixed**
+- 🗓️ Heatmap no longer over-credits today with a previous session's whole history. The fallback anchor now tracks the per-step-credited cumulative, and the fallback only diffs growth when the active session actually has a step that began today. Reopening yesterday's session (or the projection lag right after a new-session switch) used to diff the entire prior total — e.g. 106M — into today's cell.
+- 🌐 Heatmap day attribution now honors a configurable timezone (**记账时区** in the heatmap card config), defaulting to Beijing UTC+8 (the day rolls at 08:00 UTC). Options: 北京 (UTC+8) / 跟随系统 / UTC. Previously attribution followed the browser clock, so the day boundary shifted whenever the system timezone was not UTC+8.
+- 🧹 One-shot cleanup drops an already-polluted today value so the live collector rebuilds it cleanly.
+- 📊 Token-usage bar chart now normalizes bar heights to the **max within the shown 7-day window** (rolling and weekly) instead of the whole history: the tallest bar of the week always reaches full height and the rest scale proportionally, so the chart stays full even when an older day (e.g. the 1.2G outlier) would otherwise flatten the window.
+
+### v1.1.6
+**Fixed — card-anchored magnification, wave-following add button, smooth enter/exit:**
+
+- **Card-anchored trigger (all modes).** The wave engages only when the pointer actually hits a card; crossing the gaps keeps it engaged AND the peak keeps gliding with the pointer (discrete mode: snapped to the quantized grid, so it still moves while you cross a gap; realtime: follows the pointer every frame). Only leaving the rail disarms it.
+- **Add button rides the wave, position included.** Its placement is recomputed from the focused (scaled) rows, so when the cards above grow taller the button moves down with the magnified deck bottom / last-row gap, and its size follows the same bell curve at that position (previously only its size scaled, pinned to the resting grid).
+- **Right edge stays aligned; gaps stay exact.** Overlay card positions (`top`/`right`) are INSTANT and, in the realtime FOLLOW phase, the size transition is disabled entirely — every frame lands directly on the steady-state right-anchored geometry, so fast pointer movement never lingers in a non-steady intermediate pose (the historic cause of a drifting right edge AND uneven inter-card gaps). The enter/exit phases (and the discrete style's grid gliding, which changes targets at grid frequency) keep a 0.15 s width/height tween for smooth grow/shrink.
+- **Smooth enter/exit.** The overlay is always mounted (hidden by opacity), so entering/leaving magnifies via the CSS size tween instead of popping in at the target size — no flicker; exiting shrinks back to the resting size the same way.
+- 🧪 Headless-verified (playwright, both modes): visibility flips only on card hit / gap-cross / rail-leave as specified; overlay rightmost == static rightmost (diff 0); gap movement keeps the wave changing; the add button sits below the resting position (702 → 753 px) and grows to 166 px under the wave; control console clean.
+- 🧰 **Market/config rework — add-only, no install/uninstall zone.** Every widget ships bundled, so the market no longer has "download/uninstall": opening a group lets you pick the concrete widget, choose its size with left/right arrows (no dropdown — e.g. the Coding-Plan heatmap/bars flip 2×2 ↔ 2×4 that way), and hit **添加** to append `widget@size` straight into the rail (already-added instances show a disabled 已添加). The config tab lost the "已卸载（点击恢复）" zone: removing a row deletes the instance entirely (installed + order + its config). Market groups are **系统** (all built-ins), **OpenCode Go** (rolling/weekly/monthly quota), **Coding Plan 用量** (heatmap + bars) and **其它** (quote of the day, to be re-classified later).
+- 🧩 **Market cards** show the group name (bold) + widget count (capsule badge) on one line, a single description line, then actions — no id line.
+- 🧮 **Every size is its own market instance.** Multi-size widgets (heatmap 2×2 / 2×4, context-waterline 2×2 / 2×4, …) appear as independent selectable entries — first the 2×2, then the 2×4 — instead of a size switcher; the count badge counts instances, not widgets.
+- 🎨 **Preview now matches the real render.** The preview stats build the heatmap through the same `buildRollingGrid` path the live collector uses (7 week-rows × 13 day-columns — the old preview built it transposed, swapping width and height), so the 2×2 preview is a square card again, and the quote preview shows sample content (never persisted) so it isn't blank. All previews are fed concrete values (never blank).
+- 📐 **2×4 previews scale to fit.** Wide cards preview at `scale(0.85)` centred in a fixed-width stage, so the right-edge buttons stay visible and the prev/next arrows never shift.
+- 🗂️ **Config preview uses free space.** The selected widget's preview fills the remaining panel height below a top-LEFT title (extra room becomes vertical padding), and the preview size control is a dropdown beside the title — same `dsx-select` format as the 窗口对齐方式 field.
+- 🙈 **Stats-line switch hides text only.** Enabling it keeps the official bar's space and layout untouched and makes just its labels transparent — matching manual "hide the text" setups; off shows the bar normally.
+- 📊 **Usage bars align per week.** The 用量柱状图 window option is now 滚动(最近7天) / **每周对齐** (Sunday-aligned current week), instead of the misplaced quarter mode.
+- ✅ **Tasks never vanish.** Without a todos projection the task card shows **暂无任务 · 0 进行中 · 0 待办** instead of disappearing.
+- ✂️ Removed the divider line above the 自定义 (per-card schema) block in the config preview.
+- 🔧 **Capsule button styling restored.** The CSS file carried a UTF-8 BOM that leaked into the first rule's selector at build time (a junk prefix before `.dsx-stats-capsule{…}`), silently killing the 组件 capsule's base style (border-radius, padding, background, height). Rewrote the file as BOM-free UTF-8; verified the capsule computes `border-radius:14px / height:28px / background / padding / 1px border` again.
+- 📐 **4-column add button no longer overlaps cards.** Row-band packing leaves the last row's gap at the LEFT edge (right-anchored), but the add button was anchored off the LAST item — on a left-packed 4-column row that dropped the button into the row's own cards. Placement now anchors the row's LEFTMOST card and falls back below the deck when the leftover gap is narrower than the button. The fit decision uses the STATIC widths, so hovering (which widens that row's cards) never flips the button to the deck bottom-right — it stays in its gap slot, gliding with the row.
+- 🏠 **Fresh installs pre-load only the stats-line family** (turns · LLM/tool time · TTFT · rate · cache · tokens — mirroring the official composer stats bar); everything else is a market add. Existing users' arrangements are untouched by design.
+- 🙈 **New personal-preference switch** in 组件设置: "隐藏输入框下方文字条" hides the official composer stats bar under the input box (the rail shows the same data). Default OFF so other users keep their bar.
+- 💬 **Quote card renders nothing without a custom text** (no default filler that used to rotate on every render), and it lives in its own 其它 group for now.
+- ⚠️ The "已达上限" warning is now a floating centered pill that never consumes layout height.
+- 🧪 Upgrade-fidelity regression (`docs/state-fidelity.cjs`): a hand-arranged legacy config (custom installed/order/cardSide/quote text, no new fields) loads with everything preserved — nothing reset, nothing re-added, `hideStatsLine` defaulted off; quote with no text renders zero cards. Tests snapshot the real host state and restore it, so they never touch a user's saved arrangement.
+
+### v1.1.5
+**Fixed — widget state now survives restarts (root cause: browser `localStorage` only):**
+
+- Widget configuration (`installed` / `order` / per-card configs / sizes / panel and magnification settings) was kept **only** in each browser's `localStorage` — a per-origin, per-browser cache. It silently reset to defaults whenever the browser origin changed (`localhost:3080` vs `127.0.0.1:3080` are different localStorage realms), on private-mode or cleared-site-data sessions, or after a write silently failed (the old `saveState` swallowed errors) — and it **never followed to another device**, where the state is simply absent.
+- ⚙️ The host half now registers `/api/widgets-state`: the rail state is persisted **atomically** (tmp + rename) to `profiles/web/dsh-widgets-state.json` under the profile data dir — one authoritative copy per DSH service, shared by every browser/address that reaches it.
+- 🔄 On boot the client syncs with the host store: whichever side (localStorage vs host file) holds the newer `savedAt` wins, so any origin/browser converges to the last saved configuration instead of resetting; every change is written to both channels (localStorage immediately, host via a 400 ms debounced PUT).
+- 🖥️ Cross-tab + visibility re-sync: a `storage` event re-reads the configuration in sibling tabs of the same origin, and switching back to a tab re-pulls the host store — multi-window/multi-origin sessions converge live, not only on the next boot.
+- 💾 Existing `harness-widgets.*` localStorage keys are untouched; the token-usage heatmap ledger stays per-browser (it is high-frequency bookkeeping), while the UI configuration is now device-stable. Devices stay independent by design: each machine running its own DSH service keeps its own state file (no cloud sync).
+- 🧪 No host dependency on bygone contract details — route/body handling matches the verified pattern already used for the OpenCode proxy.
+
+### v1.1.4
+**Meta — renamed package to `dsh-widgets`:**
+- 📦 npm package renamed `harness-widgets` → `dsh-widgets` (dsh- prefix matches the ecosystem norm and npm search; `dsh-ui-enhancer`-style queries now hit this package). Old package is deprecated and redirects here.
+- 🔀 GitHub repo renamed `Physicolor/harness-widgets` → `Physicolor/dsh-widgets` (old URL auto-redirects; stars/forks/issues preserved).
+- ♻️ Install command is now `dsh plugin --profile web add dsh-widgets`.
+- 💾 No data impact: localStorage keys (`harness-widgets.*`) stay unchanged, so heatmap and widget state are carried over.
+
+### v1.1.3
+**Meta:**
+- 🏷️ Added npm `keywords` (deepseek-harness / dsh / cordis / plugin / web-ui / widgets / dashboard / heatmap) so the package shows up in npm search; no code change.
+- 🪧 GitHub repo topics expanded (deepseek-harness, cordis, cordis-plugin, browser-extension, web-ui, widgets, dashboard, heatmap).
 
 ### v1.1.2
 **Fixed**
@@ -188,7 +243,8 @@ The widget registry (`WIDGETS` descriptors) already lays the foundation for more
 - **Multi-platform usage widgets**: Z.ai, DeepSeek balance, etc., reusing the host same-origin proxy + credentials pattern;
 - **Utility widgets**: one-click compact (needs DSH official compaction) and more;
 - **External integrations**: Feishu / WeChat push & interaction, keys strictly via DSH credentials;
-- **Widget marketplace**: open a third-party widget registration mechanism so community widgets can join like plugins.
+- **Widget marketplace**: open a third-party widget registration mechanism so community widgets can join like plugins;
+- **Cross-device sync** (optional): today each DSH service keeps its own `dsh-widgets-state.json` — a cloud/account sync layer could share one configuration across machines, but local-first independence is the deliberate default.
 
 ## License
 

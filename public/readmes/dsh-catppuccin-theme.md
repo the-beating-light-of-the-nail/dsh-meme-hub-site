@@ -26,9 +26,9 @@
 - [💝 致谢](#致谢)
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/combined.png" width="100%" alt="Catppuccin 四主题下的 DeepSeek Harness"/>
+	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/combined.png" width="100%" alt="Catppuccin 四主题下的 DeepSeek Harness"/>
 	<br/><br/>
-	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/glass-combined.png" width="100%" alt="玻璃质感 · Latte & Mocha"/>
+	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/glass-combined.png" width="100%" alt="玻璃质感 · Latte & Mocha"/>
 </p>
 
 ## 简介
@@ -69,19 +69,19 @@ Catppuccin 主题。
 
 <details>
 <summary>🌻 Latte（浅色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/latte.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/latte.png"/>
 </details>
 <details>
 <summary>🪴 Frappé（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/frappe.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/frappe.png"/>
 </details>
 <details>
 <summary>🌺 Macchiato（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/macchiato.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/macchiato.png"/>
 </details>
 <details>
 <summary>🌿 Mocha（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/mocha.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/mocha.png"/>
 </details>
 
 ### 玻璃质感（Mica 云母模式）
@@ -95,11 +95,11 @@ Catppuccin 主题。
 
 <details>
 <summary>🌻 Latte（浅色玻璃）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/glass-latte.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/glass-latte.png"/>
 </details>
 <details>
 <summary>🌿 Mocha（深色玻璃）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/61ad83c1542b562b12131dc8d8cde55e71e7b38a/assets/previews/glass-mocha.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/glass-mocha.png"/>
 </details>
 
 ## 安装

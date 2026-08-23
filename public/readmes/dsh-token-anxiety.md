@@ -10,6 +10,11 @@ pricing status (peak/valley), per-task token usage and cost, and a one-click
 analysis of where tokens were spent. It is installed as a bundle with no
 additional dependencies.
 
+**Compatibility:** this release (`0.1.1`) targets **DeepSeek Harness ≥ 0.1.1-rc.2**.
+The session projection is registered with the modern API (`stateSchema` +
+`wire`); on older harness builds (≤ 0.1.0-rc.7) the widget mounts but renders
+without data, because those builds still expect the pre-`wire` register shape.
+
 **Install** (from any directory; the path is absolute):
 
 ```sh
@@ -22,7 +27,7 @@ dsh plugin --profile web add /path/to/dsh-token-anxiety
 
 Then restart `dsh web` and refresh the page — done.
 
-![Tasks tab](https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/Tasksdark.png)
+![Tasks tab](https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/Tasksdark.png)
 
 - **Live pricing status** — peak/valley windows for your timezone, plus local time
 - **Cost overview** — current cost and the projected post-hike figure in red
@@ -50,8 +55,8 @@ your profile, so it survives restarts).
 
   <table>
     <tr>
-      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/chatAreaWidgetDark.png" alt="Widget in the chat area (dark)" width="340"></td>
-      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/chatAreaWidgetLight.png" alt="Widget in the chat area (light)" width="340"></td>
+      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/chatAreaWidgetDark.png" alt="Widget in the chat area (dark)" width="340"></td>
+      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/chatAreaWidgetLight.png" alt="Widget in the chat area (light)" width="340"></td>
     </tr>
   </table>
 
@@ -63,8 +68,8 @@ your profile, so it survives restarts).
 
   <table>
     <tr>
-      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/overviewdark.png" alt="Overview tab (dark)" width="340"></td>
-      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/chatoverviewlight.png" alt="Overview tab (light)" width="340"></td>
+      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/overviewdark.png" alt="Overview tab (dark)" width="340"></td>
+      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/chatoverviewlight.png" alt="Overview tab (light)" width="340"></td>
     </tr>
   </table>
 
@@ -73,7 +78,7 @@ your profile, so it survives restarts).
   **peak/valley split** on two rows. Hover a row for a details tooltip; click a
   bar to select the task and run **Explain**.
 
-  <img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/chatTasksLight.png" alt="Tasks tab (light)" width="340">
+  <img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/chatTasksLight.png" alt="Tasks tab (light)" width="340">
 
 - **Currency** — pick any enabled currency (defaults COP / USD / CNY); open the
   chooser to see FX rates, add more (flags + search), or remove them.
@@ -85,8 +90,8 @@ your profile, so it survives restarts).
 
   <table>
     <tr>
-      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/AnalisisDark.png" alt="Explain analysis (dark)" width="340"></td>
-      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/ed3286a342a4d476b46496dea0a5977576c397c3/shots/chattasksexplainlight.png" alt="Explain analysis (light)" width="340"></td>
+      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/AnalisisDark.png" alt="Explain analysis (dark)" width="340"></td>
+      <td><img src="https://raw.githubusercontent.com/mov-eax-eax/dsh-token-anxiety/78c60a47a26476bb3558fe65e9495fc003e80b60/shots/chattasksexplainlight.png" alt="Explain analysis (light)" width="340"></td>
     </tr>
   </table>
 

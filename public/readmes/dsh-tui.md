@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
 </p>
 <p align="center">
   <strong>简体中文</strong> | <a href="README_EN.md">English</a>
@@ -36,7 +36,7 @@
 本插件被 **DeepSeek Harness 官方公众号** 推文收录，作为"内测用户精选插件"展示：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="560">
 </p>
 
 同时也被 [dshfind](https://dshfind.com/zh/plugins/ccch1mneyyy/dsh-TUI) 插件目录收录：
@@ -61,9 +61,9 @@
 
 ## 界面预览
 
-![首屏：像素鲸鱼顶栏](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/screenshots/splash.png)
+![首屏：像素鲸鱼顶栏](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/splash.png)
 
-![工作状态行 + 上下文进度条](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/screenshots/working-line.png)
+![工作状态行 + 上下文进度条](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/working-line.png)
 
 ## 快速开始
 
@@ -101,13 +101,18 @@ Herdr 的 `agent start --kind dsh-tui`、session 身份与服务重启后自动�
 已上架 VS Code Marketplace**）见
 [在 VS Code 中运行 dsh-TUI](docs/vscode.md)。
 
-TUI 启动后会在后台检查 npm 是否有新版本；发现更新时可输入 `/update`。
-`/update` 更新当前 `dsh-tui` profile 中的 runtime 并重启会话，它不会静默修改
-npm/pnpm 的全局安装。若通过全局 `dsh-tui` 命令启动且 Launcher 版本落后，
-0.8.3 起会给出精确的全局对齐命令，例如：
+TUI 启动后会在后台检查当前 registry 是否有新版本；发现更新时直接输入 `/update`
+即可一键升级。`/update` 会更新当前 `dsh-tui` profile 中实际运行的 runtime、校验
+安装结果，然后自动重启并恢复当前会话。
+
+通过全局 `dsh-tui` 命令启动时，新版会自动将全局入口迁移/对齐为 delegating
+launcher（委托式启动器）：全局命令只负责转交给 profile 内副本，后续启动逻辑始终
+跟随 profile 版本。
+
+正常情况下不再需要额外执行：
 
 ```sh
-npm install -g @deepseek-harness-tui/dsh-tui@<profile-version>
+npm install -g @deepseek-harness-tui/dsh-tui
 ```
 
 旧版 `dsh-cc-tui` / `cc-tui` profile 的迁移命令与兼容数据说明见
@@ -320,7 +325,7 @@ registry 包：`dsh plugin --profile dsh-tui add @deepseek-harness-tui/dsh-tui`�
 
 | 微信群 | QQ 群（群号 572549239） | 微信三群 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
+| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
 
 > 微信群二维码约 7 天过期一次，如遇失效请走 QQ 群（572549239），或开个 issue 提醒我们更新。
 
@@ -340,7 +345,7 @@ Windows 当前没有对应的沙箱后端，组合会退回到 `danger-full-acce
 ## 趋势
 
 <!-- star-history:start -->
-[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/52ae21c4b27dcdea1db5f3f6a655bea77891fe99/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
+[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
 <!-- star-history:end -->
 
 

@@ -43,6 +43,22 @@ npm 预构建安装会跳过 `allowBuilds` 步骤。 / Prebuilt npm installs ski
 - 加载不打断正常聊天（翻页与实时追加互不冲突）； / Loading never interrupts an active conversation;
 - 全程无 UI 痕迹（隐形挂载在会话底部官方槽位）。 / Fully invisible — mounted in an additive session slot.
 
+### 可选设置 / Optional settings（localStorage）
+
+| 键 Key | 值 Value | 效果 Effect |
+| --- | --- | --- |
+| `dsh-autoload-history.disabled` | `'1'` | 整体停用自动加载（逃生开关）/ disable the plugin without uninstalling |
+| `dsh-autoload-history.maxPages` | 正整数 | 单次打开会话最多自动翻的页数；缺省/`'0'` = 不限 / cap pages per session open; default unlimited |
+
+```js
+// 在 DSH Web 控制台执行 / run in the browser console
+localStorage.setItem('dsh-autoload-history.disabled', '1')      // 停用
+localStorage.removeItem('dsh-autoload-history.disabled')        // 恢复
+localStorage.setItem('dsh-autoload-history.maxPages', '20')     // 只翻 20 页(约 1000 条)
+```
+
+非法值一律回落默认（启用、不限页）。 / Invalid values always fall back to enabled + unlimited.
+
 ## 工作原理 / How it works
 
 - 挂载到官方会话级槽位 `conversation.composer.dock`（列表槽、零侵入，渲染 `null`）； / Mounts in the official session-scoped `conversation.composer.dock` list slot (additive, renders nothing);
@@ -64,6 +80,7 @@ npm 预构建安装会跳过 `allowBuilds` 步骤。 / Prebuilt npm installs ski
 ```sh
 npm ci
 npm run build   # 产出 lib/index.mjs（Node half）+ lib/client.js（浏览器 bundle）
+npm test        # node --test:纯决策核心(翻页判定/守卫/设置解析)
 ```
 
 ## 许可证 / License

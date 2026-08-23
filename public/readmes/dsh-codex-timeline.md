@@ -3,7 +3,7 @@
 [English](README.en.md) | 中文
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/86c6847aa36feb07f164463e86fe4e754fc76ae5/docs/images/cover.png" width="960" alt="DSH Codex Timeline 封面：对话左侧的轮次轨道、预览和搜索" />
+  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/375615bb72e35174e428c8855af6d1a9d54ef529/docs/images/cover.png" width="960" alt="DSH Codex Timeline 封面：对话左侧的轮次轨道、预览和搜索" />
 </p>
 
 [![CI](https://github.com/Wine-Red/dsh-codex-timeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Wine-Red/dsh-codex-timeline/actions/workflows/ci.yml)
@@ -17,7 +17,7 @@
 轨道默认保持安静：每个已加载的用户 Turn 对应一条短横，只有当前阅读位置高亮。鼠标移入后，附近标记以阶梯状展开，便于准确选择；移出后立即恢复紧凑状态。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/86c6847aa36feb07f164463e86fe4e754fc76ae5/docs/images/feature-preview.zh.svg" width="960" alt="使用测试文案展示轮次预览和本地搜索" />
+  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/375615bb72e35174e428c8855af6d1a9d54ef529/docs/images/feature-preview.zh.svg" width="960" alt="使用测试文案展示轮次预览和本地搜索" />
 </p>
 
 > 功能示意图与下方 DSH 实机截图中的提问、回答、指标和搜索结果均为专用测试文案，不包含真实会话内容。
@@ -30,8 +30,8 @@
     <th>悬停展开</th>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/86c6847aa36feb07f164463e86fe4e754fc76ae5/docs/images/timeline-default-dsh.png" width="460" alt="DSH 实机中的默认短横轮次轨道" /></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/86c6847aa36feb07f164463e86fe4e754fc76ae5/docs/images/timeline-hover-dsh.png" width="460" alt="DSH 实机中悬停展开并显示测试预览的轮次轨道" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/375615bb72e35174e428c8855af6d1a9d54ef529/docs/images/timeline-default-dsh.png" width="460" alt="DSH 实机中的默认短横轮次轨道" /></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/375615bb72e35174e428c8855af6d1a9d54ef529/docs/images/timeline-hover-dsh.png" width="460" alt="DSH 实机中悬停展开并显示测试预览的轮次轨道" /></td>
   </tr>
   <tr>
     <td>低对比度，不占用正文宽度</td>

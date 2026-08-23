@@ -1,6 +1,7 @@
 <div align="center">
 
 # dsh-doublecheck
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-doublecheck)
 
 **The delivery quality gate for DeepSeek Harness: grill the requirements, test the implementation, prove the delivery — then gate the handoff with a deliverable/rework decision.**
 
@@ -24,7 +25,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` |
+| Harness | DeepSeek Harness `0.1.1-rc.2` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | All (pure host; no native code, no direct network requests of its own) |
 | Model | Any (the guard itself never calls a model; the critic and reviewer phases run as harness subagents) |
@@ -205,7 +206,7 @@ Red lights are failed checks (a missing spec, a failing latest run, coverage bel
 
 ## Known limitations
 
-- **Durable writes.** `/doublecheck on\|off` → `doublecheck/state` and `/gate run` → `doublecheck/gate` ride the host's `ignorable` append surface (post-rc.6), which every supported host (≥ `0.1.0-rc.8`) provides.
+- **Durable writes.** `/doublecheck on\|off` → `doublecheck/state` and `/gate run` → `doublecheck/gate` ride the host's `ignorable` append surface (post-rc.6), which every supported host (≥ `0.1.1-rc.2`) provides.
 - **Optional seams.** The `doublecheck.gate` settings namespace registers only when the settings service is mounted; the `/gate status` plan-mode line reads the optional `ctx.planMode` (shows `unknown` without it); the adversary review needs `ctx.subagents`; verification needs `workflowEngine`.
 - **Local degrade.** `gate.review.engine: auto` degrades to the local reviewer when dsh-auto-review is absent or has no verdict records this session — the report names the reason instead of inventing a verdict.
 

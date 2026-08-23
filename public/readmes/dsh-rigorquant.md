@@ -3,7 +3,7 @@
 **English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/ca70cecc682957f5563297afe3d56e98eabc2e39/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/b8fdf6d4c4cd826c64b2b1a7108b0c0b7cbdb0ac/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
 </p>
 <p align="center"><sub>
   <a href="docs/figs/edgesworth-box.png">Edgeworth box</a> — hand-drawn in

@@ -2,9 +2,9 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-Connect multiple Overleaf projects to [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness) through [OverleafMCP](https://github.com/mjyoo2/overleafmcp).
+Connect multiple Overleaf projects to [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness) through [@fly233338/overleaf-mcp](https://github.com/fly233338/overleaf-mcp).
 
-`dsh-overleaf` installs OverleafMCP as an npm dependency, starts it through MCP stdio, and exposes its tools to DSH. The OverleafMCP source is not copied into this project.
+`dsh-overleaf` installs [@fly233338/overleaf-mcp](https://www.npmjs.com/package/@fly233338/overleaf-mcp) as an npm dependency, starts it through MCP stdio, and exposes its tools to DSH. The OverleafMCP source is not copied into this project.
 
 ## Features
 
@@ -39,7 +39,7 @@ The npm installation command becomes available after this package is published.
 
 ## Configure
 
-The plugin uses `dsh-overleaf.config.json` next to its `index.js`. If the file is missing, the plugin creates it on startup with this content. Fill in one shared token and one project ID per line:
+The plugin stores `dsh-overleaf.config.json` under `$DSH_HOME/dsh-overleaf/`. If `DSH_HOME` is not set, it uses `~/.dsh/dsh-overleaf/`. The directory and file are created on startup when missing. Fill in one shared token and one project ID per line:
 
 ```json
 {
@@ -53,7 +53,7 @@ The plugin uses `dsh-overleaf.config.json` next to its `index.js`. If the file i
 
 Get project IDs from the `<id>` in the Overleaf project URL. Create the Git token under [Overleaf Account Settings → Git Integration](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git/git-integration-authentication-tokens).
 
-Restart DSH after editing the file. The plugin reads it once at startup and generates the internal OverleafMCP project configuration. Do not edit the generated `.dsh-overleaf.projects.json` file.
+Restart DSH after editing the file. The plugin reads it once at startup and generates the internal `.dsh-overleaf.projects.json` OverleafMCP project configuration in the same directory. Do not edit the generated file.
 
 The plugin does not read `.env` and does not require Overleaf environment variables.
 
@@ -76,7 +76,7 @@ The current version supports multiple Overleaf projects through one MCP tool gro
 ## Links
 
 - [Project repository](https://github.com/fly233338/dsh-overleaf)
-- [OverleafMCP](https://github.com/mjyoo2/overleafmcp)
+- [@fly233338/overleaf-mcp](https://github.com/fly233338/overleaf-mcp) ([npm](https://www.npmjs.com/package/@fly233338/overleaf-mcp))
 - [DSH plugin guide](https://deepseek-harness.github.io/deepseek-harness/develop/basic/publish)
 - insert:
     - id: dsh-overleaf

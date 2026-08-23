@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a56be292043aff8e0a95c78ed498e956a05f3266/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/5edde8f2c701ce1df13c9ac5215aecaf31b53c44/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
 </p>
 
 <div align="center">
@@ -12,6 +12,7 @@
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-codex-ui.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-codex-ui)
+  [![npm downloads](https://img.shields.io/npm/dt/%40michengai%2Fdsh-codex-ui.svg?label=npm%20downloads&v=2)](https://www.npmjs.com/package/@michengai/dsh-codex-ui)
   [![DSH Web Plugin](https://img.shields.io/badge/DSH%20Web-Plugin-0f766e.svg)](https://github.com/MichengAI/dsh-codex-ui)
   [![Node.js 22 or later](https://img.shields.io/badge/Node.js-22%20or%20later-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 
@@ -32,19 +33,19 @@
 
 Light theme: Codex-style sidebar, workspace tree, and conversation column.
 
-![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a56be292043aff8e0a95c78ed498e956a05f3266/assets/screenshots/conversation-light.png)
+![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/5edde8f2c701ce1df13c9ac5215aecaf31b53c44/assets/screenshots/conversation-light.png)
 
 Dark theme: the same layout with Codex dark tokens.
 
-![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a56be292043aff8e0a95c78ed498e956a05f3266/assets/screenshots/conversation.png)
+![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/5edde8f2c701ce1df13c9ac5215aecaf31b53c44/assets/screenshots/conversation.png)
 
 Conversation menu: rename, pin, unread, archive, fork, copy, and delete.
 
-![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a56be292043aff8e0a95c78ed498e956a05f3266/assets/screenshots/session-menu.png)
+![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/5edde8f2c701ce1df13c9ac5215aecaf31b53c44/assets/screenshots/session-menu.png)
 
 **Settings → About** lists the companion plugins and their install state.
 
-![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a56be292043aff8e0a95c78ed498e956a05f3266/assets/screenshots/settings-about.png)
+![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/5edde8f2c701ce1df13c9ac5215aecaf31b53c44/assets/screenshots/settings-about.png)
 
 ## Prerequisites
 

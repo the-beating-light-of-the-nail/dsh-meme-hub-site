@@ -1,6 +1,7 @@
 <div align="center">
 
 # 📚 dsh-library
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-library)
 
 **Local document knowledge base for DeepSeek Harness.**
 
@@ -24,7 +25,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` (compat declared for `0.1.0-rc.8`) |
+| Harness | DeepSeek Harness `0.1.1-rc.2` (compat declared for `0.1.1-rc.2`) |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Storage | Any storage-domain backend (JSON or SQLite); the index lives in the host's storage domain |
 | Models | None required — the built-in embedder is deterministic hashing (zero downloads) |
@@ -137,7 +138,7 @@ All tunables are Schemastery `Config` fields (changeable from cordis.yml). An id
 ```sh
 pnpm install        # node ^22.19 || >=24
 pnpm run typecheck  # tsc: src + tests against the local harness checkout
-pnpm run typecheck:ci  # tsc against the published 0.1.0-rc.8 types (no paths)
+pnpm run typecheck:ci  # tsc against the published 0.1.1-rc.2 types (no paths)
 pnpm test           # vitest: quality ports, core vocabulary, real-stack assembly
 pnpm run build      # tsdown bundle + tsc declarations (lib/)
 pnpm run verify:self-contained  # dependency specs resolve from the registry

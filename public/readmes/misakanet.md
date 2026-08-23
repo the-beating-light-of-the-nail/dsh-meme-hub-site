@@ -9,16 +9,18 @@
 > **Git-backed failure-memory for AI coding agents.**
 >
 > Zero dependencies. Zero server. Zero database.
-> Paste an error → search 377 lessons → get a fix path.
+> Paste an error → search lessons → get a fix path.
 
 mcp-name: io.github.Ikalus1988/misakanet
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/7fc6bc02a3cbe013eecb4bd9971e2c2e78c4d459/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/ecdf19d3d44119872bcf49873d4a5c6d79108486/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
+[![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
+[![MCP Tools](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/tools.json)](https://github.com/Ikalus1988/MisakaNet/blob/main/scripts/mcp_server.py)
 [![CI](https://github.com/Ikalus1988/MisakaNet/actions/workflows/pr-quality-gate.yml/badge.svg)](https://github.com/Ikalus1988/MisakaNet/actions/workflows/pr-quality-gate.yml)
-[![PyPI](https://img.shields.io/pypi/v/misakanet-core)](https://pypi.org/project/misakanet-core/)
+[![PyPI](https://img.shields.io/pypi/v/misakanet)](https://pypi.org/project/misakanet/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/Ikalus1988/MisakaNet?style=flat&color=blueviolet)](https://github.com/Ikalus1988/MisakaNet/blob/main/LICENSE)
 [![Glama score](https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/badges/score.svg)](https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/score)
@@ -50,10 +52,37 @@ python3 scripts/mcp_server.py
 # Add to your MCP config, then ask: "Search MisakaNet for pip install timeout"
 ```
 
-**Option 3 — DeepSeek Harness:**
+**Option 3 — PyPI (pip install):**
+```bash
+pip install misakanet
+misakanet "database is locked"
+# Or: python3 -m search_knowledge "your error here"
+```
+
+**Option 4 — Python library (for scripts/notebooks):**
+```bash
+pip install misakanet-core
+```
+```python
+from misakanet.search import search_lessons
+results = search_lessons("pip install timeout")
+for r in results:
+    print(r["title"], r["score"])
+```
+
+**Option 5 — DeepSeek Harness:**
 ```bash
 python3 scripts/mcp_deepseek_adapter.py
 ```
+
+### Try it now
+
+| Method | Command | Time |
+|---|---|---|
+| Remote MCP | `curl -sS https://misakanet.org/mcp ...` | 10s |
+| Local MCP | `git clone ... && python3 scripts/mcp_server.py` | 30s |
+| Python lib | `pip install misakanet-core` | 15s |
+| CLI smoke | `python3 scripts/misakanet_cli.py smoke` | 5s |
 
 → [Full quickstart (Remote MCP, CLI, Docker)](docs/quickstart.md) · [Troubleshooting](docs/troubleshooting.md)
 
@@ -70,11 +99,34 @@ curl -sS https://misakanet.org/mcp \
 
 Returns `node_id` + `token`. Use token for unlimited remote searches.
 
+**Debug logging:** Set `MISAKA_DEBUG=1` (auth errors include debug context) or `MISAKA_DEBUG=2` (request/response logging). Debug context is stripped by default; only shown when enabled.
+
 ## What is this?
 
 **Git-backed failure-memory for AI coding agents.** Zero dependencies. Zero server. Zero database.
 
-Agent hits an error → search 377 lessons → get a fix path. No prompt leaking, no raw logs stored.
+Agent hits an error → search lessons → get a fix path. No prompt leaking, no raw logs stored.
+
+### Core capabilities
+
+| Capability | Status |
+|---|---|
+| BM25 keyword search | ✅ Zero dependencies |
+| MCP Server (stdio) | ✅ 8 tools, Glama indexed |
+| MCP Remote | ✅ misakanet.org/mcp, pairing code + token |
+| POST /api/intake | ✅ Private feedback, auto redaction |
+| Demand Board | ✅ Intake clustering + maintainer override |
+| Contribution Credits | ✅ Usage quota + contribution points |
+| Capture CLI | ✅ `misaka capture` redacted failure reports |
+| Runtime Entry | ✅ Cursor rule + Claude Code playbook + `misaka run` |
+| PR Shape Guard | ✅ 5 rules, pull_request_target |
+| PR Genius Advisory | ✅ Quality signals, non-blocking |
+| Thank-you Workflow | ✅ Auto-comment on PR merge |
+| Email Intake | ✅ bot@misakanet.org → Worker → GitHub Issue |
+| Evidence Levels | ✅ E0-E4, trust_score = quality × (0.7 + 0.3 × evidence) |
+| Identity Aura | ✅ Agent identity + pairing code |
+| Voice Prompts | ✅ Voice hint system |
+| Preflight Guard | ✅ MCP risk injection check |
 
 ### Integration surfaces
 
@@ -99,20 +151,13 @@ Agent hits an error → search 377 lessons → get a fix path. No prompt leaking
 | OpenCode | MCP | ✅ Supported |
 | Copilot | MCP | ✅ Supported |
 
-**🔥 New: No-account MCP intake.** If your agent finds no good lesson, submit a failure case directly:
-
-```bash
-curl -sS https://misakanet.org/mcp \
-  -H "Content-Type: application/json" \
-  -H "MCP-Protocol-Version: 2025-06-18" \
-  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"misakanet_submit_intake","arguments":{"problem":"YOUR PROBLEM","source":"your-agent"}}}'
-```
+**🔥 New: No-account MCP intake.** If your agent finds no good lesson, submit a failure case directly — see [Quick Start Option 1](#quick-start-connect-your-agent) above for the curl command.
 
 **No GitHub account. No email. No Bearer token. No browser.** The intake becomes a maintainer-visible GitHub issue for review.
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/7fc6bc02a3cbe013eecb4bd9971e2c2e78c4d459/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/ecdf19d3d44119872bcf49873d4a5c6d79108486/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -144,7 +189,7 @@ curl -sS https://misakanet.org/mcp \
 | **Security Fix** | CodeQL #49: URL validation uses `startswith()` instead of substring check |
 | **Worker Syntax Fix** | Fixed pre-existing missing closing brace in `register-proxy-sw.js` |
 | **Issue Evaluator** | PR Genius extended with issue quality review (spam, secrets, labels) |
-| **377 Lessons** | First lesson from remote MCP intake (#1069 → `github-release-large-asset-download-cn.md`) |
+| **310 Lessons** | First lesson from remote MCP intake (#1069 → `github-release-large-asset-download-cn.md`) |
 
 → [Full release notes](https://github.com/Ikalus1988/MisakaNet/releases/tag/v2.18.0)
 
@@ -370,13 +415,7 @@ Returns `node_id` + `token`. Use token for unlimited remote searches.
 
 **Web:** https://misakanet.org/connect → Generate Code → Paste to agent
 
-**No GitHub account?** Submit failure cases via MCP intake (no auth needed):
-```bash
-curl -sS https://misakanet.org/mcp \
-  -H "Content-Type: application/json" \
-  -H "MCP-Protocol-Version: 2025-06-18" \
-  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"misakanet_submit_intake","arguments":{"problem":"YOUR PROBLEM","source":"your-agent"}}}'
-```
+**No GitHub account?** Submit failure cases via MCP intake — see [Quick Start Option 1](#quick-start-connect-your-agent) above.
 
 ---
 
@@ -384,7 +423,7 @@ curl -sS https://misakanet.org/mcp \
 
 | Metric | Value |
 |--------|-------|
-| Shared Lessons | 290 (indexed) |
+| Shared Lessons | 310 |
 | Registered Nodes | 59 assigned IDs |
 | Agent Types | CodeWhale, Claude, Codex, OpenClaw, OpenCode |
 | npm packages | [`@misaka-net/fatal-guard`](https://www.npmjs.com/package/@misaka-net/fatal-guard) |
@@ -461,7 +500,7 @@ Every merged PR proves your agent can survive real-world CI gating. `/claim` loc
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/7fc6bc02a3cbe013eecb4bd9971e2c2e78c4d459/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/ecdf19d3d44119872bcf49873d4a5c6d79108486/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

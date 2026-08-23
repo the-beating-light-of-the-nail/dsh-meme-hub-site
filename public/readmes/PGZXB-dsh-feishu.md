@@ -99,18 +99,18 @@ session goes like this:
    default policy; a group with just you and the bot also answers plain
    messages, and the policy is configurable).
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/1_chat.png" width="640" alt="Chat with the bot"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/1_chat.png" width="640" alt="Chat with the bot"></p>
 
 2. **Open the control panel.** Send `/panel` to pop up the panel card.
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/2_panel.png" width="640" alt="Control panel"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/2_panel.png" width="640" alt="Control panel"></p>
 
 3. **Pick a working directory.** The bot refuses work until the chat has
    one: tap **📚 Pick project** to choose from a list (the `/repo`
    equivalent), or **📁 Change dir** to type a path (the `/cd <path>`
    equivalent).
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/3_repo.png" width="640" alt="Project picker"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/3_repo.png" width="640" alt="Project picker"></p>
 
 4. **Ask.** Send a message — the agent runs and its output streams into a
    live card (tool calls, reasoning, markdown, tables). The card ends green
@@ -119,7 +119,7 @@ session goes like this:
 
    | Mid-stream | Finalized |
    |---|---|
-   | ![Card mid-stream](https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/4.1_streaming-mid.png) | ![Card finalized](https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/4.2_streaming-done.png) |
+   | ![Card mid-stream](https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/4.1_streaming-mid.png) | ![Card finalized](https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/4.2_streaming-done.png) |
 
 5. **Approve or answer when asked.** A permission escalation posts an
    approval card — tap **Allow once** (or **Reject**). A question posts a
@@ -127,14 +127,14 @@ session goes like this:
 
    | Approval | Question |
    |---|---|
-   | ![Approval card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/5.1_approval.png) | ![Question card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/5.2_question.png) |
+   | ![Approval card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/5.1_approval.png) | ![Question card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/5.2_question.png) |
 
 6. **Manage sessions.** Tap **🗂️ Sessions** to list saved sessions and
    resume any of them from the card (the `/sessions` equivalent; `/resume
    <id>` moves one into this chat), and tap **➕ New chat** (the `/clear`
    equivalent) to start fresh without deleting the old one.
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/10b34ff5fd503666ac577a863352ac7b09f6bf7e/docs/assets/snapshots/6_sessions.png" width="640" alt="Sessions picker"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/e1256af0e443d7e01b29f7c714aafce0007db7ab/docs/assets/snapshots/6_sessions.png" width="640" alt="Sessions picker"></p>
 
 Every button on the panel card maps to a slash command — pick whichever
 feels faster; `/help` lists them all.

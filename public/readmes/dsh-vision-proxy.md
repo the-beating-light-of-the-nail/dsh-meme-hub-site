@@ -14,7 +14,7 @@
   <a href="https://github.com/Flyvhidbwo/dsh-vision-proxy"><img src="https://img.shields.io/github/stars/Flyvhidbwo/dsh-vision-proxy?style=flat-square" alt="GitHub stars" /></a>
 </p>
 
-> ⚠️ **兼容性与定位（2026-08）**：本插件已适配 dsh 0.1.1-rc.2（adapter prepareCall 接口）。dsh 0.1.1 起原生支持多模态（DeepSeek-V4-Flash-Vision-Exp 等官方视觉模型）——**如果你用官方视觉模型，直接发图即可，不需要本插件**。本插件适用于：非多模态模型的转译桥接、本地 Ollama（图片不出本机、免费）、或自定义 OpenAI 兼容 VLM 场景。
+> ⚠️ **兼容性与定位（2026-08）**：本插件已适配 dsh 0.1.1-rc.2（adapter prepareCall 接口）。dsh 0.1.1 起原生支持多模态（DeepSeek-V4-Flash-Vision-Exp 等官方视觉模型）——**如果你用官方视觉模型，直接发图即可，不需要本插件**。**DeepSeek-V4-Pro / 普通 Flash 仍是纯文本模型，识图靠本插件转译桥接**（官方仅 Flash-Vision-Exp 原生多模态）。插件适用于：Pro/文本模型识图、本地 Ollama（图片不出本机、免费）、自定义 OpenAI 兼容 VLM 场景。
 
 ## 为什么需要它
 
@@ -62,9 +62,12 @@ DeepSeek Harness 原生按模型声明的 `inputModalities` 决定是否放行�
 |---|---|---|---|
 | qwen3-vl-flash | ¥0.15/百万 token | ¥1.5/百万 token | ≈ ¥0.0005（约 0.05 分钱） |
 | qwen3.7-flash | ¥0.2/百万 token | ¥0.8/百万 token | ≈ ¥0.001（约 0.1 分钱） |
+| **deepseek-v4-flash-vision-exp**（官方，默认） | ¥3/百万（高峰）· ¥1.5（空闲） | ¥9/百万（高峰）· ¥4.5（空闲） | ≈ ¥0.01（高峰）/ ¥0.005（空闲） |
 | 本地 Ollama | 免费 | 免费 | ¥0（图片不出本机） |
 
-> 图片按 token 折算（百炼把图片按分辨率折算成 token，一张 1080p 截图 ≈ 2000 token）。按上面价格，**一张图不到 1 厘钱**；即使重度使用（每天 100 张）每月也就几块钱，基本可以忽略。本地 Ollama 完全免费。以百炼控制台实时标价为准。
+> 温馨提示：**识图默认走官方 deepseek-v4-flash-vision-exp**（高峰 9:00-12:00 / 14:00-18:00 为全价，其余时间半价；图片按尺寸折算 token，不按张计费）。与 V4-Pro 同档价约 1/3。
+
+> 图片按 token 折算（各平台把图片按分辨率折算成 token，一张 1080p 截图 ≈ 2000 token）。按上面价格，**一张图不到 1 厘钱**；即使重度使用（每天 100 张）每月也就几块钱，基本可以忽略。本地 Ollama 完全免费。以百炼控制台实时标价为准。
 
 **key 读取顺序**：配置 `apiKey` → `$VISION_API_KEY` → `$DASHSCOPE_API_KEY`。匿名端点（`anonymous: true`）和本地主机无需 key；无 key 的非匿名条目自动跳过。
 
@@ -96,8 +99,8 @@ dsh plugin --profile web add dsh-vision-proxy   # 批准后重跑
 一段 `deepseek-vision` 路由上的真实对话（DeepSeek-V4-Flash 作为大脑）：用户粘贴了一张表情包并问 **"你看到了什么"**，图片被 VLM 自动转译，DeepSeek 基于文字完整作答——单步，约 7.6 秒。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/d246d8511822b2441eb4841ec854981dc3e055e4/assets/demo-selector.png" width="49%" alt="模型选择器：DeepSeek + 自动识图 路由已选中" />
-  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/d246d8511822b2441eb4841ec854981dc3e055e4/assets/demo-reply.png" width="49%" alt="DeepSeek 基于转译内容的完整回答" />
+  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/68d3b59148b0d6c80fc919c231512642302d9418/assets/demo-selector.png" width="49%" alt="模型选择器：DeepSeek + 自动识图 路由已选中" />
+  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/68d3b59148b0d6c80fc919c231512642302d9418/assets/demo-reply.png" width="49%" alt="DeepSeek 基于转译内容的完整回答" />
 </p>
 
 *左图：模型选择器显示 `deepseek-vision` 路由（**DeepSeek + 自动识图**）已选中——这正是图片附件得以放行的原因。右图：DeepSeek 基于转译文字给出的完整回答。*

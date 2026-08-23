@@ -28,7 +28,7 @@ Three steps, fully automatic:
 2. **Distill** — raw conversations are distilled into tagged memories (facts, preferences, project states, decisions...), with automatic dedup, merge, and contradiction detection
 3. **Inject** — at the start of each conversation, your AI automatically receives the memories relevant to the current scenario — not the whole store. Casual chat brings identity and recent status; coding brings project-related memories (tech stack, pitfalls, dev habits). Only what the scenario needs.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/system-architecture.png" alt="SGME System Architecture" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/system-architecture.png" alt="SGME System Architecture" width="800"/>
 
 ## Highlights
 
@@ -36,31 +36,31 @@ Three steps, fully automatic:
 
 Everything your AI says is backed by evidence: trace any persona statement all the way back to the original conversation. Memory is not a black box — "why does it know this" and "when did it learn this" are one click away.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-01-trace.png" alt="Traceable memory" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-01-trace.png" alt="Traceable memory" width="800"/>
 
 ### Shared memory across agents — one brain, many bodies
 
 Hermes, DSH... all your AIs share the same memory brain. What you discuss in one place is automatically known in another; AIs on your desktop, laptop, and NAS share the same memory. No more siloed conversations.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-02-shared-memory.png" alt="Shared memory across agents" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-02-shared-memory.png" alt="Shared memory across agents" width="800"/>
 
 ### Proactive care — it doesn't just remember you, it reaches out
 
 SGME doesn't just wait for you to ask. Your memory updates, mood shifts, upcoming todos, late nights... it emits signals that prompt your AI to check in on you — not cold notifications, but the kind of "I remembered you had something today" attention. Signal consumption = proactive care: who consumes, who marks (atomic claim + receipt), so you're never double-pestered and never missed.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-10-care.png" alt="Proactive care" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-10-care.png" alt="Proactive care" width="800"/>
 
 ### Unified search — one query, all memories
 
 A single search endpoint recalls from the memory pool and the knowledge base at once: keyword + semantic + label triple fusion, every result traceable to its source. SGME memories, scenes, and knowledge base in one stop; agent-owned memory files are on the roadmap.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-03-unified-search.png" alt="Unified search" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-03-unified-search.png" alt="Unified search" width="800"/>
 
 ### Skill hub — your skills, managed in one place
 
 All your self-built skills (prompts, workflows, templates) live in one place: direct read/write locally, auto-sync to NAS. Switch devices without losing your skills.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-05-skillhub.png" alt="Skill hub" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-05-skillhub.png" alt="Skill hub" width="800"/>
 
 ### Shared knowledge — a wiki your AIs write together
 
@@ -70,25 +70,25 @@ A shared knowledge base lives next to your memories. Drop in files, URLs, or pas
 
 Retrieval is tuned for Chinese text — better distillation and recall for Chinese conversations. There are plenty of English memory engines; very few understand Chinese.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-06-chinese.png" alt="Chinese-first" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-06-chinese.png" alt="Chinese-first" width="800"/>
 
 ### Scenario-based injection — inject what the scenario needs
 
 Memory is not loaded wholesale. SGME picks relevant memories per scenario: casual chat gets identity and recent status, coding gets project-related memories (tech stack, pitfalls, dev habits), work mode gets plans and progress. Irrelevant memories stay out of the way, and stale memories automatically drop out — no three-year-old intel misleading your AI, no dumping the whole store into one prompt.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-07-scenario-inject.png" alt="Scenario-based injection" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-07-scenario-inject.png" alt="Scenario-based injection" width="800"/>
 
 ### Zero-LLM injection — costs nothing
 
 Persona injection is a pure structured SQL query — no LLM call, zero token cost per conversation. Competitors bill per call; SGME is free.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-08-zero-llm.png" alt="Zero-LLM injection" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-08-zero-llm.png" alt="Zero-LLM injection" width="800"/>
 
 ### Self-hosted & lightweight — your data stays yours
 
 Runs on a single machine with Python + SQLite. No GPU, no external database services. Memory data lives on your own machine, privacy under your control.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/2c42676407a2fa05cd38119df74ec96670442d23/assets/selling-point-09-selfhosted.png" alt="Self-hosted" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6e89abc9b5c15323cd804075e2d518ade7efae8b/assets/selling-point-09-selfhosted.png" alt="Self-hosted" width="800"/>
 
 ## More capabilities
 
@@ -119,11 +119,12 @@ python -m sgme
 # Without them, built-in default keys are used (first-run local experience only,
 # startup warns; once config/.env is set, default keys return 403)
 #   SGME_BEARER_TOKEN optional: transport-layer token, off by default (localhost bypass)
-# Model keys (optional, free tier supported): refinement uses zhipu GLM-4.7-Flash (free) as primary
-#   and deepseek as backup; vector search uses siliconflow BAAI/bge-m3 (free). When a key is missing,
+# Model keys (optional, free tier supported): refinement uses agnes-2.5-flash (free) as primary,
+#   siliconflow DeepSeek-V4-Flash (free) as second, zhipu GLM-4.7-Flash (free) as last fallback;
+#   vector search uses siliconflow BAAI/bge-m3 (free). When a key is missing,
 #   /v1/health returns model_config.missing_keys — apply free keys per
-#   docs/guide/免费模型Key申请指南.md (智谱 GLM-4.7-Flash 永久免费 / 硅基流动 bge-m3 零费用).
-#   ZHIPU_API_KEY=<zhipu>   SILICONFLOW_API_KEY=<siliconflow>
+#   docs/guide/免费模型Key申请指南.md (Agnes agnes-2.5-flash 免费 / 硅基流动 bge-m3 零费用 / 智谱 GLM-4.7-Flash 永久免费).
+#   AGNESAI_API_KEY=<agnes>   SILICONFLOW_API_KEY=<siliconflow>   ZHIPU_API_KEY=<zhipu>
 
 # 4. Run tests
 pytest tests/ -q

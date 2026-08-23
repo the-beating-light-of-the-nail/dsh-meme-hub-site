@@ -8,7 +8,7 @@
 
 **为 DeepSeek Harness 换上一张克制、清透、有质感的「脸」。**
 
-原生换肤 · 背景壁纸 · 主题包分享 —— 一条 `--dsw-*` token 生态内的优雅实现。装一次，用很久。
+原生换肤 · 背景壁纸 · 强调色 · 主题包 —— 一条 `--dsw-*` token 生态内的优雅实现。装一次，用很久。
 
 > **写代码的地方，可以很安静。**
 
@@ -17,20 +17,90 @@
 
 > 1 行安装 · 纯原生（无注入/不改安装包）· 不因 DSH 更新失效
 
-✨ **Design Philosophy — [一份关于「什么算高级」的设计声明](./docs/design-philosophy.md)** · 以 iOS / Linear 的审美为基准，把「高级感」建立在材质的准确与配色的克制上。
-
-[English](./docs/i18n/README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [设计哲学](./docs/design-philosophy.md) · [发布指引](./docs/publishing-to-npm.md)
-
-![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
-![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
-[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
-![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
-![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
-![plugin type](https://img.shields.io/badge/plugin-dual--face%20(dsh.bundle%2Bdsh.client)-4f83f2)
-![ci](https://img.shields.io/github/actions/workflow/status/RevolutionLA/dsh-dream-skin/ci.yml?branch=main&label=CI&color=34d399)
-![code size](https://img.shields.io/github/languages/code-size/RevolutionLA/dsh-dream-skin?color=orange)
-
 </div>
+
+---
+
+## 🎮 两种玩法，一条插件都给你
+
+<table>
+  <tr>
+    <td align="center" width="50%"><h3>🪄 玩法一：开箱即用的优雅</h3></td>
+    <td align="center" width="50%"><h3>🧱 玩法二：随你掌控的 DIY</h3></td>
+  </tr>
+  <tr>
+    <td>内置 <b>8 套设计师调校的预设皮肤</b>（Mirage 幻梦系列），浅色 / 深色兼顾，每套自带专属弥散光背景。<br/><b>戴上即高级，不用任何调参。</b></td>
+    <td>在预设之上，你还能 <b>换壁纸（本地图 / URL / 渐变）</b>、<b>叠加强调色 Accent</b>、<b>拖入或分享一个主题包</b>，内部每个 token 都能摸到。<br/><b>想要的样子，自己捏。</b></td>
+  </tr>
+</table>
+
+两种玩法分层独立、互不干扰：预设皮肤决定「材质与底色」，DIY 一层是纯叠加（`overrideTokens`），随开随关、一键还原。
+
+---
+
+## 📸 实机截图
+
+> 真机效果，非概念图。左：应用皮肤后的 DSH 界面；右：设置里的「外观 / Theme」分节。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/screenshots/preview.png" alt="DSH 皮肤实机预览" width="46%"/>
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/screenshots/settings.png" alt="设置中的外观分节" width="46%"/>
+</p>
+
+---
+
+## 🎨 预览 — Mirage 幻梦系列
+
+> **玩法一 · 开箱即用的优雅。** 8 套皮肤，由各皮肤的**真实 token + 专属弥散光背景**生成——所见即所得。点开可放大查看精致材质。
+
+<table>
+  <tr>
+    <td align="center"><a href="docs/previews/abyss.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/abyss.png" width="230" alt="abyss"/></a><br/><b>abyss</b> · 沉静蓝</td>
+    <td align="center"><a href="docs/previews/aurora.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/aurora.png" width="230" alt="aurora"/></a><br/><b>aurora</b> · 极光青</td>
+    <td align="center"><a href="docs/previews/nebula.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/nebula.png" width="230" alt="nebula"/></a><br/><b>nebula</b> · 星云紫</td>
+    <td align="center"><a href="docs/previews/ember.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/ember.png" width="230" alt="ember"/></a><br/><b>ember</b> · 余烬橙</td>
+  </tr>
+  <tr>
+    <td align="center"><a href="docs/previews/midnight.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/midnight.png" width="230" alt="midnight"/></a><br/><b>midnight</b> · 午夜黑</td>
+    <td align="center"><a href="docs/previews/ivory.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/ivory.png" width="230" alt="ivory"/></a><br/><b>ivory</b> · iOS 扁平</td>
+    <td align="center"><a href="docs/previews/mist.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/mist.png" width="230" alt="mist"/></a><br/><b>mist</b> · 液态玻璃</td>
+    <td align="center"><a href="docs/previews/rose.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/eacb2a5e885dd2c75940cbb27df1a3bf661fe441/docs/previews/rose.png" width="230" alt="rose"/></a><br/><b>rose</b> · 蔷薇粉</td>
+  </tr>
+</table>
+
+### 📋 预设一览
+
+| id | 风格 | 特质 |
+|------|-------|------|
+| `abyss` | 🕶️ 沉静蓝 | 冷静深沉的靛蓝，克制不喧哗 |
+| `aurora` | 🌌 极光青 | 清冽通透的冷青，自然冷调 |
+| `nebula` | 🪐 星云紫 | 深邃漫射的紫青，朦胧神秘 |
+| `ember` | 🔥 余烬橙 | 温暖克制的琥珀橙 |
+| `midnight` | 🌚 午夜黑 | 极简纯黑，OLED 沉浸 |
+| `ivory` | 📐 iOS 扁平 | 极简平白，iOS 系统灰 + 克制的蓝 |
+| `mist` | 🧊 液态玻璃 | 清透毛玻璃，半透明 + 模糊 |
+| `rose` | 🌸 Material 粉 | 明快彩粉，谷歌 Material 扁平彩色 |
+
+---
+
+## 🧱 强大 DIY 空间（玩法二）
+
+> 预设皮肤之外，dsh-dream-skin 还给你一套完整的自定义体系——想捏出独一无二的工作区，从这里开始。
+
+| 能力 | 玩法二 · 你能做什么 |
+|------|------|
+| 🖼️ **自定义壁纸 2.0** | 本地图 / **图片 URL** / **渐变预设**；附带**透明度 / 模糊**，每套皮肤还**自动建议**一张渐变，可**自动弱化**（聚焦任务时降低干扰） |
+| 🌈 **每用户强调色 Accent** | 为当前皮肤叠加自定义品牌强调色（`overrideTokens` 层，不动皮肤本身），**12 个典型色块一键选色** + 选色盘 + 随机 + 恢复主题色 |
+| 📦 **主题包导入 / 导出 / 分享** | 一个 `*.dsh-theme.json` = manifest + 全套 tokens，可**导入文件**、**一键应用**、**复制分享链接**（编码进 URL hash） |
+| 🪟 **弹窗不透明度** | 滑块控制下拉菜单 / 浮层 / 弹窗的底填充透明度，跟随持久化保存 |
+| 🧩 **本地主题包库** | 导入的主题包集中展示，**应用 / 收藏 / 移除** 一键完成 |
+| 🎲 **换一个试试（surprise me）** | 随机换一个和你当前不同的主题；**收藏**喜欢的皮肤快速切换 |
+| ✅ **校验 + 回滚** | 导入时校验格式 / 必填 token / 颜色合法性；失败或移除时安全回退，不做破坏性更改 |
+
+> 一切都叠加在预设之上，**随开随关、一键还原**到 DSH 内置外观——大胆去试，不会弄坏什么。
+
+---
 
 ## ⚡ 一句话安装
 
@@ -54,18 +124,6 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 
 ---
 
-## 📸 实机截图
-
-> 真机效果，非概念图。左：应用某套皮肤后的 DSH 界面；右：设置里的「外观 / Theme」分节。
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/screenshots/preview.png" alt="DSH 皮肤实机预览" width="46%"/>
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/screenshots/settings.png" alt="设置中的外观分节" width="46%"/>
-</p>
-
----
-
 ## 🏆 为什么值得用（vs 同类）
 
 > 换个赛道看：全家桶把换肤做成一堆二次元题材的「贴图墙」；我们把换肤做成**材质与配色的精细化工艺**——
@@ -84,6 +142,8 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 | 校验 + 回滚 | ✅ | 部分 | ✅ |
 | **浏览器 Web GUI，天然跨平台** | ✅ | ✅ | ❌ (需桌面 App) |
 
+---
+
 ## ✨ 功能一览
 
 | 能力 | 说明 |
@@ -94,21 +154,7 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 | ↩️ **默认还原** | 一键回到 DSH 内置外观（跟随系统） |
 | 💾 **本地持久化** | 皮肤与壁纸存 `localStorage`，刷新 / 重开浏览器不丢 |
 
-## 🚀 进阶能力（P0）
-
-吸取了同类先行项目之短，融入 Codex 换肤的 UX，做了一套差异化能力：
-
-| 能力 | 说明 |
-|------|------|
-| 📦 **主题包格式 + 导入/导出** | 一个 `*.dsh-theme.json` 主题包 = 格式标记 + 版本 + manifest（id/name/作者/色系/accent/tokens）。可**导入文件**、**一键应用**、**复制分享链接**（编码进 URL hash） |
-| 🌈 **每用户强调色 Accent** | 为当前皮肤叠加一个自定义品牌强调色（`overrideTokens` 层，不动皮肤本身），**12 个典型色块一键选色** + 选色盘 + 随机 + 恢复主题色 |
-| 🖼️ **壁纸 2.0** | 本地图 / **图片 URL** / **渐变预设**，每套皮肤**自动建议**一张渐变，可**自动弱化**（聚焦任务时降低干扰）；**最近使用**（最多 5 张）一键换回 |
-| 🪟 **弹窗不透明度** | 设置 → 外观 →「弹窗不透明度」滑块（0–100%），控制下拉菜单 / 浮层 / 弹窗的底填充透明度——调高文字更清晰，调低可透出背后内容，跟随持久化保存 |
-| 🧩 **本地主题包库** | 你导入的自定义主题包集中展示，**应用 / 收藏 / 移除** 一键完成（内置 8 套皮肤在「皮肤」行选择） |
-| ✅ **清晰选中反馈** | 切换皮肤时选中态（✓ + 边框）**即时跟随**，不再残留模糊的白色高亮框 |
-| 🎲 **换一个试试（surprise me）** | 随机挑一个和你当前不同的主题 |
-| ⭐ **收藏** | 收藏喜欢的皮肤，快速切换 |
-| ✅ **校验 + 回滚** | 导入时会校验格式/必填 token/颜色合法性；失败或移除时安全回退，不做破坏性更改 |
+---
 
 ## 🧩 它是什么形式的插件
 
@@ -131,37 +177,7 @@ DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、
 
 也就是说：**你装的不是一个旁门左道的脚本，而是 DSH 官方插件体系里的标准皮肤插件。**
 
-## 🖼️ 预览 — Mirage 幻梦系列
-
-> 以下色卡由各皮肤的**真实 token** 生成，所见即所得。点开可放大。
-
-<table>
-  <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 沉静蓝</td>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 极光青</td>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星云紫</td>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 余烬橙</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 午夜黑</td>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS 扁平</td>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 液态玻璃</td>
-    <td align="center"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/96fe8c5494d626dc322e97475591fdc73fc72771/docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material 粉</td>
-  </tr>
-</table>
-
-### 预设一览
-
-| id | 风格 | 特质 |
-|------|-------|------|
-| `abyss` | 🕶️ 沉静蓝 | 冷静深沉的靛蓝，克制不喧哗 |
-| `aurora` | 🌌 极光青 | 清冽通透的冷青，自然冷调 |
-| `nebula` | 🪐 星云紫 | 深邃漫射的紫青，朦胧神秘 |
-| `ember` | 🔥 余烬橙 | 温暖克制的琥珀橙 |
-| `midnight` | 🌚 午夜黑 | 极简纯黑，OLED 沉浸 |
-| `ivory` | 📐 iOS 扁平 | 极简平白，iOS 系统灰 + 克制的蓝 |
-| `mist` | 🧊 液态玻璃 | 清透毛玻璃，半透明 + 模糊 |
-| `rose` | 🌸 Material 粉 | 明快彩粉，谷歌 Material 扁平彩色 |
+---
 
 ## ⚡ 快速开始（3 步）
 
@@ -218,7 +234,7 @@ dsh web
 dsh --profile web --dump-config | grep -A2 dream-skin   # 应出现 dream-skin loader 条目
 ```
 
-打开 **设置 → 外观（Theme）**，即可看到「皮肤」「强调色」「背景图片 / 高级壁纸」与「主题包」等行。
+打开 **设置 → 外观（Theme）**，即可看到「皮肤」「强调色」「壁纸 / 高级壁纸」与「主题包」等行。
 
 > `-w` 标志在裸 `add` 时必需：每个 profile 自带 `pnpm-workspace.yaml`，pnpm 会把它当作 workspace 根，裸加报错
 > `ERR_PNPM_ADDING_TO_ROOT`。若已加过 `-w`，后续用现有 workspace 即无需重复。
@@ -242,6 +258,8 @@ dsh plugin --profile web remove dsh-dream-skin
 dsh web   # 重启后恢复官方外观
 ```
 
+---
+
 ## 🧩 兼容性
 
 | 项 | 值 |
@@ -251,6 +269,8 @@ dsh web   # 重启后恢复官方外观
 | 浏览器 | 现代 Chromium / WebKit（依赖原生 CSS 变量与 `matchMedia`） |
 
 > 升级 DSH 到新版本时，请同步更新 `package.json` 里的 peerDependencies。
+
+---
 
 ## ⚙️ 工作原理
 
@@ -294,6 +314,8 @@ DSH 的主题系统是 token 化的：web 外壳内置 `--dsw-*` 设计令牌，
   （`dsh-host-apiproxy` 的 `WEB_SETTINGS_NAMESPACES`），第三方命名空间会返回 `settings-not-exposed`；
   产品本身也把远程浏览器偏好进程化。`localStorage` 恰好匹配这一边界，且跨刷新存活。
 
+---
+
 ## 🛠️ 开发 / 扩展主题
 
 客户端 bundle 直接以 `__ModuleLoader__` 格式编写（即 tsdown 为官方 `ui-*` 包输出的形态），**免构建**。
@@ -306,6 +328,8 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
   一个 `*.dsh-theme.json` 即可在设置里导入或通过分享链接分发给别人，无需改代码。
 - **放你自己的壁纸**：把图片丢进 [`wallpapers/`](./wallpapers/)（注意只在你有权限的前提下分发），再在
   DSH 的「背景图片」里导入即可。
+- **更新预览图**：预览由 `scripts/generate-skin-mockups.cjs`（真实 token + 弥散光）生成 HTML mockup，
+  用无头 Chrome 截图即得 `docs/previews/*.png`，改皮肤 token 后重跑即可保持预览与真实 skin 同步。
 - **跑校验**：`npm test`（VM 冒烟测试，覆盖 factory 求值、`apply` 挂载、主题包导入/持久化）。
 - **换配色**：参考 `--dsw-alias-*` 令牌（完整契约见 [`docs/themes-spec.md`](./docs/themes-spec.md)）。
 
@@ -320,6 +344,8 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
 - [ ] 在线色板 / 主题预览 Studio（纯前端，浏览器内校验 + 对比度检查）
 - [ ] 社区主题库（把主题包投稿到仓库 / 在线 Gallery）
 - [ ] 首帧无闪烁（FOUC）改进
+
+---
 
 ## 🤝 贡献
 

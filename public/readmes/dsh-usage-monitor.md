@@ -4,7 +4,7 @@ English | [中文](README.zh.md)
 
 Usage dashboard for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). It folds provider-reported token usage out of session logs and charts it in Settings.
 
-![Settings → Usage: tiles, stacked chart, and provider table](https://raw.githubusercontent.com/NOirBRight/dsh-usage-monitor/74ed24a2840449fb5be54d844d7f0bf081c824b4/docs/screenshots/settings-usage.png)
+![Settings → Usage: tiles, stacked chart, and provider table](https://raw.githubusercontent.com/NOirBRight/dsh-usage-monitor/48c3f5d9c274cf313af058a396207a60120b960e/docs/screenshots/settings-usage.png)
 
 ## What it shows
 
@@ -20,7 +20,7 @@ Subscription quotas are not fetched.
 DeepSeek Harness 0.1.0-rc.6 or later is required. Install directly from GitHub:
 
 ```sh
-dsh plugin --profile web add github:NOirBRight/dsh-usage-monitor#v0.1.1
+dsh plugin --profile web add github:NOirBRight/dsh-usage-monitor#v0.2.2
 dsh web
 ```
 

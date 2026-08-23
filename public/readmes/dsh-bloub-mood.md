@@ -8,19 +8,19 @@
 
 **设置页**：表情（16 种）/ 形状（8 种）/ 颜色（12 种）/ 文字（4 处）四层自定义，顶部实时大预览与 iOS 风格启停开关，中英双语跟随界面语言：
 
-![设置页 · 表情与形状颜色](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/51cd388950582dea45c424ca8a85ac039a27f7b1/docs/settings-expressions.png)
+![设置页 · 表情与形状颜色](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/c626528b3d6c32669c265d7144e85f60f48570d2/docs/settings-expressions.png)
 
 **桌面启动**（设置页底部）：一行开关 + 三个 bloub 形象图标点选，所见即桌面所得：
 
-![设置页 · 桌面启动](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/51cd388950582dea45c424ca8a85ac039a27f7b1/docs/settings-desktop-launch.png)
+![设置页 · 桌面启动](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/c626528b3d6c32669c265d7144e85f60f48570d2/docs/settings-desktop-launch.png)
 
 **Dock 里的独立 App** —— 不是浏览器窗口，是真正属于自己的图标、名字与进程：
 
-![Dock · DSH Desktop](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/51cd388950582dea45c424ca8a85ac039a27f7b1/docs/dock-icon.png)
+![Dock · DSH Desktop](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/c626528b3d6c32669c265d7144e85f60f48570d2/docs/dock-icon.png)
 
 **DSH Desktop 主界面** —— 系统原生窗口，无浏览器地址栏，共用当前 `dsh web` 后端（会话、插件、工作区全部同步）：
 
-![DSH Desktop 主界面](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/51cd388950582dea45c424ca8a85ac039a27f7b1/docs/desktop-app.png)
+![DSH Desktop 主界面](https://raw.githubusercontent.com/Yuuhann1999/dsh-bloub-mood/c626528b3d6c32669c265d7144e85f60f48570d2/docs/desktop-app.png)
 
 ## 桌面启动 / Desktop Launch（v2.4.0）
 

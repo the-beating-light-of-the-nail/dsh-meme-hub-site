@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🐳 dsh-plugin-guide
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-guide)
 
 **Everything you need to build [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugins.**
 
@@ -24,7 +25,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` |
+| Harness | DeepSeek Harness `0.1.1-rc.2` |
 | Node | `^22.19.0 || >=24.0.0` (DeepSeek Harness runtime) |
 | Platforms | All (plain ESM bundle; no native code, no network) |
 | Model | Any (no model interaction) |

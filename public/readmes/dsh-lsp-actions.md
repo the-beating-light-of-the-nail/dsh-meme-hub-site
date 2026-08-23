@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🛰️ dsh-lsp-actions
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-lsp-actions)
 
 **The LSP action surface for DeepSeek Harness — real language servers, real feedback, and the IDE integration backend for editors.**
 
@@ -24,7 +25,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` (compat declared for `>=0.1.0-rc.8 <0.2.0`) |
+| Harness | DeepSeek Harness `0.1.1-rc.2` (compat declared for `>=0.1.0-rc.8 <0.2.0`) |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | All (pure host; subprocess + filesystem, no network) |
 | Model | Any (tools are model-agnostic; the plugin never calls a model) |
@@ -135,7 +136,7 @@ Every failure carries a stable `code`; models and callers route on the code, nev
 
 [`examples/vscode/`](examples/vscode/) ships a **UI-only** extension (sidebar with the DSH sessions, the diagnostics list, one-click quickfix apply, open-at-range, and format) plus the headless backend composition (`backend/cordis.yml`) it connects to over ACP-style JSON-RPC. The extension implements zero LSP logic — every capability and every byte written belongs to the plugin. Install steps, settings, and the demo-gif recording script are in [`examples/vscode/README.md`](examples/vscode/README.md).
 
-![Editor demo](https://raw.githubusercontent.com/PerryLink/dsh-lsp-actions/be2a29cf826830e77934fea61ec929c10224f601/docs/editor-demo.gif)
+![Editor demo](https://raw.githubusercontent.com/PerryLink/dsh-lsp-actions/206fc8ce47bb53f001b0049dfa406969bb5fa11e/docs/editor-demo.gif)
 
 ## Permissions & data
 

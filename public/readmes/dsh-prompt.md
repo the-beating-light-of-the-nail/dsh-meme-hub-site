@@ -9,30 +9,30 @@
 [![dsh-plugin](https://img.shields.io/badge/dsh-plugin-orange.svg)](https://github.com/FeatherHunter/dsh-prompt)
 [![platform](https://img.shields.io/badge/platform-DeepSeek%20Harness-1f6feb.svg)](https://github.com/deepseek-ai/DeepSeek-Harness)
 
-![hero](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/hero-zh.svg)
+![hero](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/hero-zh.svg)
 
 ## 快速导航
 
-[![一条命令安装](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-install.svg)](#一条命令安装)
+[![一条命令安装](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-install.svg)](#一条命令安装)
 
-[![三种方式叫出模板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-ways.svg)](#三种方式叫出模板)
+[![三种方式叫出模板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-ways.svg)](#三种方式叫出模板)
 
-[![24 条深度模板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-templates.svg)](#模板长这样)
+[![24 条深度模板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-templates.svg)](#模板长这样)
 
-[![自定义与管理](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-settings.svg)](#自定义与管理)
+[![自定义与管理](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-settings.svg)](#自定义与管理)
 
-[![常见问题](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-faq.svg)](#常见问题)
+[![常见问题](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-faq.svg)](#常见问题)
 
-[![npm 发布](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-npm.svg)](https://www.npmjs.com/package/dsh-prompt)
+[![npm 发布](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-npm.svg)](https://www.npmjs.com/package/dsh-prompt)
 
-[![反馈故障](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-issues.svg)](https://github.com/FeatherHunter/dsh-prompt/issues/new)
+[![反馈故障](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-issues.svg)](https://github.com/FeatherHunter/dsh-prompt/issues/new)
 
-[![更新日志](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/nav-releases.svg)](https://github.com/FeatherHunter/dsh-prompt/releases)
+[![更新日志](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/nav-releases.svg)](https://github.com/FeatherHunter/dsh-prompt/releases)
 
 
 ## 这是给你的吗
 
-![这是给你的吗](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/who-zh.svg)
+![这是给你的吗](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/who-zh.svg)
 
 ## 一条命令安装
 
@@ -42,10 +42,19 @@
 npm install -g @deepseek-ai/dsh
 ```
 
-安装进你的 profile：
+安装进你的 profile（`0.1.6` 为当前最新，已发布至 [npm](https://www.npmjs.com/package/dsh-prompt) 与 [GitHub Release](https://github.com/FeatherHunter/dsh-prompt/releases/tag/v0.1.6)）：
 
 ```bash
 dsh plugin --profile web add dsh-prompt
+# 或锁定版本
+dsh plugin --profile web add dsh-prompt@0.1.6
+```
+
+查看最新版本：
+
+```bash
+npm view dsh-prompt version --registry=https://registry.npmjs.org --prefer-online
+# → 0.1.6
 ```
 
 **零配置**：DSH 官方 bundle 机制，包内自带 `cordis.patch.yml`，`dsh plugin add` 自动加入 `dsh.profile.bundles` 装配层；`dsh plugin remove` 干净卸载。重启 DSH（或刷新页面）即生效。
@@ -56,31 +65,31 @@ dsh plugin --profile web add dsh-prompt
 
 ### 1 · ⚡Prompt 按钮
 
-![方式一 · Prompt 按钮面板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/panel-zh.svg)
+![方式一 · Prompt 按钮面板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/panel-zh.svg)
 
 ### 2 · /prompt 触发源
 
-![方式二 · /prompt 触发源](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/prompt-trigger-zh.svg)
+![方式二 · /prompt 触发源](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/prompt-trigger-zh.svg)
 
 ### 3 · 智能悬浮卡
 
-![方式三 · 智能悬浮卡](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/smart-card-zh.svg)
+![方式三 · 智能悬浮卡](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/smart-card-zh.svg)
 
 ## 模板长这样
 
-![真实模板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/templates-zh.svg)
+![真实模板](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/templates-zh.svg)
 
 ## 自定义与管理
 
-![自定义与管理](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/custom-zh.svg)
+![自定义与管理](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/custom-zh.svg)
 
 ## 隐私
 
-![隐私](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/privacy-zh.svg)
+![隐私](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/privacy-zh.svg)
 
 ## 常见问题
 
-![常见问题](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/faq-zh.svg)
+![常见问题](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/faq-zh.svg)
 
 ## 开发
 
@@ -93,15 +102,21 @@ npm run build          # 完整构建
 
 ## 同作者
 
-还写了两款 DSH 插件：
+还写了多款 DSH 插件与工具，欢迎关注：
 
 - [**dsh-opencode-palette**](https://github.com/FeatherHunter/dsh-opencode-palette) —— 34 款 opencode 官方主题，DSH 界面一键换肤。
+- [**dsh-plugin-ui-debug**](https://github.com/FeatherHunter/dsh-plugin-ui-debug) —— 用真实 Chrome 无头浏览器对 DSH 插件 UI 做闭环调试的利器。
 - [**dsh-mattpocock-skills-deck**](https://github.com/FeatherHunter/dsh-mattpocock-skills-deck) —— 25 个工程技能包，粘贴一段安装 Prompt 即用。
+- [**dsh-chinese-skill-patch**](https://github.com/FeatherHunter/dsh-chinese-skill-patch) —— 让 DSH 正确识别中文 `SKILL.md` 的补丁，中文社区必备。
 
 ## 作者的话
 
-![作者的话](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/author-zh.svg)
+![作者的话](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/author-zh.svg)
+
+![作者联系方式](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/author-contact.png)
+
+> 欢迎大家提交 ISSUE，一起把 prompt 工具箱做得更好！[提交 ISSUE](https://github.com/FeatherHunter/dsh-prompt/issues/new)
 
 ## 许可
 
-![许可](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/6803c80e8d5d37e15aadbc80a4fa4613ac2f1fd4/assets/license-zh.svg)
+![许可](https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/8ae48ccfbce925b3da323bab1796b3493a06ac3f/assets/license-zh.svg)

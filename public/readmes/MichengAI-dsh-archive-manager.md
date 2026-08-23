@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/028d2a98803d4cd8262fb7b56968f46445d21fe0/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/9aebc82a747112be28f712e5d5cc7dfd84b30aed/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -12,6 +12,7 @@
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-archive-manager.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-archive-manager)
+  [![npm downloads](https://img.shields.io/npm/dt/%40michengai%2Fdsh-archive-manager.svg?label=npm%20downloads)](https://www.npmjs.com/package/@michengai/dsh-archive-manager)
   [![DSH Web Plugin](https://img.shields.io/badge/DSH%20Web-Plugin-0f766e.svg)](https://github.com/MichengAI/dsh-archive-manager)
   [![Node.js 22 or later](https://img.shields.io/badge/Node.js-22%20or%20later-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 </div>
@@ -32,11 +33,11 @@
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/028d2a98803d4cd8262fb7b56968f46445d21fe0/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/9aebc82a747112be28f712e5d5cc7dfd84b30aed/assets/screenshots/archive-session-menu.png)
 
 Search, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/028d2a98803d4cd8262fb7b56968f46445d21fe0/assets/screenshots/archived-sessions.png)
+![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/9aebc82a747112be28f712e5d5cc7dfd84b30aed/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 

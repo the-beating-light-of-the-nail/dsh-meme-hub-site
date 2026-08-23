@@ -50,7 +50,7 @@ observe exact bundle id + pid
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-computer-use/76bfe8607f61945c1cbb84e73976e601100c13a2/assets/computer-use-fixture.png" width="760" alt="The never-active deterministic native fixture before target-process pointer input, showing the dedicated pointer probe and ready status." />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-computer-use/387eae931b1852e3c3433e0e004fa460d3da2883/assets/computer-use-fixture.png" width="760" alt="The never-active deterministic native fixture before target-process pointer input, showing the dedicated pointer probe and ready status." />
 </p>
 
 The fixture records every `applicationDidBecomeActive` callback. An independent native monitor also samples the system cursor and frontmost pid every millisecond throughout click, scroll, and drag. The default release path must not increase `activationCount`; it also requires unchanged cursor coordinates, an unchanged frontmost pid, exact click/scroll counts, and one complete down/up drag gesture.
@@ -77,6 +77,11 @@ See [Foreground-safe input policy](docs/interaction-policy.md) for the requireme
 - Node.js `^22.19.0` or `>=24.0.0` when building this repository.
 
 Install the Web and Headless bundles directly from npm:
+
+> [!IMPORTANT]
+> The published package name is `@anionex/dsh-computer-use`. The former
+> `@dsh-external/dsh-computer-use` name was never published to npm and is not
+> installable; update any old profile or manifest references before installing.
 
 ```sh
 dsh plugin --profile web add @anionex/dsh-computer-use
@@ -241,6 +246,7 @@ Settings updates replace the active provider generation only after validation an
 
 - Status: early `0.1.0`; model-facing and provider behavior may change before a stable release.
 - The current provider is macOS-only. Windows UI Automation and Linux providers are not implemented.
+- On non-macOS hosts the plugin degrades gracefully: the DSH profile starts normally, Computer Use Tools and the Skill are not registered, and Web Settings reports `COMPUTER_UNSUPPORTED_PLATFORM` instead of failing startup.
 - Target-process pointer delivery uses dynamically resolved SkyLight SPI. If it is unavailable, pointer fallback fails closed rather than switching to global input.
 - The clicked point must fall inside an on-screen window of the selected app; the helper resolves the topmost matching window so ambiguous frame/title matches no longer block coordinate actions. Minimized, hidden, or windowless targets fail closed.
 - Custom canvases, games, hardened input surfaces, and future macOS releases may reject target-process pointer or keyboard events. Prefer semantic Accessibility whenever possible.

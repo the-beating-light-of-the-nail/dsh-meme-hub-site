@@ -1,6 +1,6 @@
 # dsh-visualize
 
-![dsh-visualize](https://raw.githubusercontent.com/Nagi-ovo/dsh-visualize/e86f68fe66b980a0ebeed8ef7409522b0b720bed/assets/social-preview.jpg)
+![dsh-visualize](https://raw.githubusercontent.com/Nagi-ovo/dsh-visualize/b0bed38f40ffbb0d72bb88393d865307944c1bce/assets/social-preview.jpg)
 
 <p align="center">
   <strong>简体中文</strong> | <a href="README.en.md">English</a>
@@ -14,7 +14,7 @@
 
 <div align="center">
 
-[![DSH 对话内生成交互式可视化演示](https://raw.githubusercontent.com/Nagi-ovo/dsh-visualize/e86f68fe66b980a0ebeed8ef7409522b0b720bed/assets/demo.webp)](assets/demo.mp4)
+[![DSH 对话内生成交互式可视化演示](https://raw.githubusercontent.com/Nagi-ovo/dsh-visualize/b0bed38f40ffbb0d72bb88393d865307944c1bce/assets/demo.webp)](assets/demo.mp4)
 
 </div>
 

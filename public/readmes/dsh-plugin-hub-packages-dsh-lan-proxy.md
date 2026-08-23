@@ -112,8 +112,8 @@ GUI 设置入口：设置 → 插件 → 「局域网访问」卡片（保存即
 ## HTTPS 支持
 
 - **证书来源（两级）**：① 配置 `tlsCertFile`/`tlsKeyFile`（正式证书或 mkcert
-  本地 CA，浏览器零警告）；② 自动生成自签名证书（系统 `openssl` 生成并缓存到
-  `<DSH_HOME>/lan-proxy/`，私钥权限 0600）
+  本地 CA，浏览器零警告）；② 自动生成自签名证书（内置 selfsigned 库生成并缓存到
+  `<DSH_HOME>/lan-proxy/`，私钥权限 0600，无需宿主机 openssl）
 - 自签名证书首次访问需手动"继续访问"；内网设备零警告推荐 mkcert
 
 ## 安全模型
@@ -130,7 +130,9 @@ GUI 设置入口：设置 → 插件 → 「局域网访问」卡片（保存即
 - **HTTP 响应压缩**：压缩在转发层完成，只作用于「本插件与局域网客户端之间」
   的链路，不触碰 dsh web 的响应生成；不新增可达数据面，仅增加少量 CPU 开销
   （可经 `httpCompressEnabled: false` 关闭）。health/标记路由的 loopback 围栏
-  对**直连回环 web** 的请求生效；经本插件转发的请求按设计视为受信（见凭据面）
+  对**直连回环 web** 的请求生效；经本插件转发的请求按设计视为受信（见凭据面）。
+  注意：health 响应携带的诊断元数据——`configDir` 绝对路径与压缩协商计数——
+  会随转发原样到达局域网设备，对其可见
 
 ## 验证
 
@@ -147,7 +149,7 @@ curl http://<本机局域网IP>:3081/api/dsh-lan-proxy/health
 
 ## 已知限制
 
-- HTTPS 需要系统 `openssl`（不可用且未配置证书文件时，HTTPS 通道自动降级关闭）
+- HTTPS 自签名证书由内置库生成，无外部命令依赖（未配置证书文件且生成失败时，HTTPS 通道自动降级关闭）
 - 换网段导致 IP 变化时，自签名证书需重新生成或更新 config.json
 - 命中 `wsCompressPaths` 的 WebSocket 走「终结 + 压缩桥接」（多一跳、额外压缩 CPU），
   仅建议对 events 这类大流量路径开启；其余 WebSocket 保持透传

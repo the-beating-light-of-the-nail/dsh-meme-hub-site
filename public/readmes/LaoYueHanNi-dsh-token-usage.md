@@ -2,7 +2,7 @@
 
 [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-![Token Usage stats page](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/7e460955f16a266540063fd2de793870fafedd8d/token-usage.png)
+![Token Usage stats page](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/84b900da09f52c2250e48fc73b58c57ca3ca4b10/token-usage.png)
 
 [简体中文](./README.zh.md) | English
 
@@ -21,7 +21,7 @@ Repo: <https://github.com/LaoYueHanNi/dsh-token-usage>
 
 ## Model pricing
 
-![Model pricing dialog](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/7e460955f16a266540063fd2de793870fafedd8d/model-price.png)
+![Model pricing dialog](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/84b900da09f52c2250e48fc73b58c57ca3ca4b10/model-price.png)
 
 **Every record is priced individually**: each one resolves through the analyzer's rule chain at its own timestamp — the covering time rule first (its context tiers, its peak slots), else the model root's tiers → peak slots → base rates. Tier matching approximates the context size by the request's input-side tokens (input + cacheRead + cacheWrite). A price update re-prices the whole history instantly, with no data rebuild. Rates come from two files merged on read — `pricing.json` entries always win (a manual entry replaces that model's cloud rules wholesale):
 

@@ -37,12 +37,12 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 ## 🖼️ Demo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/05f02dec4fe8c7bb3da938d2b8e075c04482ab8e/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/ca244948efe38b9382e548493cde939d4e24e318/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
   <em>Select the "Expert Mode" preset in DSH workspace to use</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/05f02dec4fe8c7bb3da938d2b8e075c04482ab8e/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/ca244948efe38b9382e548493cde939d4e24e318/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
   <em>5 expert subagents working in parallel, with real-time token usage and timing</em>
 </p>
 
@@ -101,12 +101,60 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 
 ## 📦 Installation
 
+### Option A: `dsh plugin add` (won't crash, but ❌ does NOT activate expert mode)
+
 ```bash
 # In DSH workspace
-dsh plugin add @deepseek-ai/dsh-expert-mode
+dsh plugin add github:Asher-2000/dsh-expert-mode
 ```
 
+> ⚠️ **Important**: this is an **agent-preset plugin**, not a Cordis service plugin. `dsh plugin add` only guarantees the bundle loads without crashing — it does **not** mount expert mode into your sessions. The preset only works via Option B (`~/.dsh/.agent-presets/`). Use Option B. This entry is a compatibility placeholder only.
+
+### Option B: Manual install from GitHub (current)
+
+Clone the repository, then copy the preset into DSH's agent-presets directory:
+
+```bash
+# 1. Clone anywhere
+git clone https://github.com/Asher-2000/dsh-expert-mode.git
+cd dsh-expert-mode
+
+# 2. Copy the preset into DSH's agent-presets directory
+mkdir -p ~/.dsh/.agent-presets/expert-mode
+cp -r agent.cordis.yml preset.yml cordis.patch.yml ~/.dsh/.agent-presets/expert-mode/
+# If you want the full methodology docs (methods/, experts/, comm/ bus), copy the whole tree:
+# cp -r .expert-mode ~/.dsh/.agent-presets/expert-mode/
+
+# 3. Restart DSH web, then select "专家模式" in the workspace preset selector
+dsh web
+```
+
+> **Note**: `~/.dsh/.agent-presets/` is DSH's preset discovery directory. Each subdirectory = one preset. The preset name comes from `preset.yml`'s `name` field.
+
 Then select **"专家模式"** in the workspace preset selector.
+
+### Optional: Cross-session memory (recommended)
+
+The expert-mode preset itself does **not** register the cross-session memory service — it is a HOST-PLANE plugin, and registering it inside a preset conflicts with the host composition (causing preset mount failure). To enable cross-session memory, install [dsh-memory-connect](https://github.com/Asher-2000/dsh-memory-connect) separately into the **host composition**:
+
+```bash
+# 1. Clone the memory plugin
+git clone https://github.com/Asher-2000/dsh-memory-connect.git
+cd dsh-memory-connect
+npm install github:Asher-2000/dsh-memory-connect#v0.4.0  # or place it into the dsh dependency tree manually
+
+# 2. Register it in the host composition (e.g. append to ~/.dsh/profiles/web/cordis.patch.yml):
+# - id: cross-session-memory
+#   name: '@deepseek-ai/dsh-memory-connect'
+#   config:
+#     path: ~/.dsh/memory.db
+#     openAt: startup
+
+# 3. Restart DSH web
+dsh web
+```
+
+> ⚠️ **Important**: **Do NOT** add `@deepseek-ai/dsh-memory-connect` into this preset's `agent.cordis.yml`. It is a HOST-PLANE plugin (injects `sessions` + `systemPrompt`); registering it inside the preset throws `service has been registered at <cross-session-memory>`, which makes the expert-mode preset fail to mount and the UI fall back to the default preset. This preset ships with an explanatory comment about it.
 
 ---
 

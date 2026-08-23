@@ -8,7 +8,7 @@
 
 ## 效果展示
 
-![插件市场效果](https://raw.githubusercontent.com/Sanqi-normal/dsh-webui-market-plugin/44cd1ababaeeda11519042ab876c598f5961774d/img/51766e7935d9e67d7087510e4d6b0cb8.png)
+![插件市场效果](https://raw.githubusercontent.com/Sanqi-normal/dsh-webui-market-plugin/f0cfc501a9e66b3c77da37e346d311d092cb1e41/img/51766e7935d9e67d7087510e4d6b0cb8.png)
 
 ## 安装
 

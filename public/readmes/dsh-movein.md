@@ -1,62 +1,21 @@
-# claude-to-opencode
+# dsh-movein
 
 [中文](./README.zh.md)
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/claude-to-opencode"><img alt="npm" src="https://img.shields.io/npm/v/claude-to-opencode?style=flat-square&color=4b6fff"></a>
-  <a href="https://github.com/sjh9714/claude-to-opencode/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjh9714/claude-to-opencode/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://www.npmjs.com/package/dsh-movein"><img alt="npm" src="https://img.shields.io/npm/v/dsh-movein?style=flat-square&color=4b6fff"></a>
+  <a href="https://github.com/sjh9714/dsh-movein/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjh9714/dsh-movein/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square"></a>
-  <a href="https://www.npmjs.com/package/claude-to-opencode"><img alt="downloads" src="https://img.shields.io/npm/dm/claude-to-opencode?style=flat-square&color=8250df"></a>
+  <a href="https://www.npmjs.com/package/dsh-movein"><img alt="downloads" src="https://img.shields.io/npm/dm/dsh-movein?style=flat-square&color=8250df"></a>
 </p>
 
-Switch to OpenCode without losing Claude Code memory or command guardrails.
+Move your Claude Code, Codex, or OpenCode setup into [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness).
 
-One command previews and moves auto memory, instructions, unconditional rules, commands, agents, MCP servers, and command hooks into OpenCode. The same CLI can move Claude Code, Codex, or OpenCode assets into [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness).
+One command finds the parts DSH can use, shows a dry run, and moves them without overwriting existing destinations.
 
-![Claude Code setup moving safely into OpenCode](https://raw.githubusercontent.com/sjh9714/claude-to-opencode/main/docs/demo.gif)
+![A dsh-movein dry run showing Claude Code assets moving into DSH](https://raw.githubusercontent.com/sjh9714/dsh-movein/a3193381deb9d4751922cb0af716931c4fcad4f2/docs/report.png)
 
-The animation recreates the real CLI flow. The generated files were also loaded with OpenCode `1.18.21` through `debug config`, `debug skill`, and `debug agent`.
-
-## Claude Code to OpenCode
-
-```sh
-npx claude-to-opencode
-npx claude-to-opencode --apply
-```
-
-The full multi-origin CLI runs the same route.
-
-```sh
-npx dsh-movein --from claude --to opencode
-npx dsh-movein --from claude --to opencode --apply
-```
-
-The first command is only a preview.
-
-Already have OpenCode configured and only need your Claude guardrails?
-
-```sh
-npx claude-to-opencode --hooks-only
-npx claude-to-opencode --hooks-only --apply
-```
-
-This installs only the command-hook bridge. Existing `Bash` blockers, secret checks, and edit-time linters keep running from the original Claude settings. OpenCode tool names such as `bash` are mapped to Claude matcher names such as `Bash`.
-
-- Global and project `CLAUDE.md` files link to the matching OpenCode `AGENTS.md` when the destination is free
-- The current project's Claude auto memory stays in place and is referenced from the project OpenCode config, so later memory updates remain visible
-- Unconditional `.claude/rules` files are referenced from OpenCode config. Path-scoped rules stay manual instead of being applied everywhere
-- Claude skills stay where they are because OpenCode reads `.claude/skills` directly
-- Commands copy into OpenCode command directories without changing `$ARGUMENTS`
-- Claude subagents become OpenCode subagents without guessing tool permissions
-- User and project MCP servers merge into the matching OpenCode JSON or JSONC config
-- Claude `PreToolUse` and `PostToolUse` command hooks run through a generated OpenCode plugin that reads the original settings at runtime
-- Hook matchers, exit code 2 blocking, structured deny results, `updatedInput`, and post-tool feedback are preserved
-- `${VAR}` becomes `{env:VAR}` and the current environment value is never read
-- Existing destinations and MCP names are skipped
-- A secret-looking plaintext MCP value is reported and not copied
-- An invalid target config blocks every write
-
-## Move into DSH
+## Pick your origin
 
 ```sh
 # Claude Code
@@ -89,16 +48,15 @@ Both tools are dry run by default and accept `apply=true` when you are ready.
 
 ## Compatibility
 
-| Route | What moves |
+| Origin | What moves |
 | --- | --- |
-| Claude Code to OpenCode | Auto memory, instructions, unconditional rules, commands, subagents, local or remote MCP servers, and `PreToolUse` or `PostToolUse` command hooks. Skills remain native and are not duplicated |
-| Claude Code to DSH | Global and project instructions, skills, slash commands, MCP servers, supported hooks, subagents, and mapped permission rules |
-| Codex to DSH | Global `AGENTS.md`, custom prompts, and stdio MCP servers from `config.toml` |
-| OpenCode to DSH | Instructions, skills, commands, agents, and local or remote MCP servers from V1 or V2 JSON and JSONC config |
+| Claude Code | Global and project instructions, skills, slash commands, MCP servers, supported hooks, subagents, and mapped permission rules |
+| Codex | Global `AGENTS.md`, custom prompts, and stdio MCP servers from `config.toml` |
+| OpenCode | Instructions, skills, commands, agents, and local or remote MCP servers from V1 or V2 JSON and JSONC config |
 
 The [full compatibility matrix](docs/compat.md) names the source path, destination, preserved behavior, and unsupported parts for each origin.
 
-## OpenCode support
+## OpenCode as an origin
 
 `--from opencode` follows OpenCode configuration precedence across the global config, `OPENCODE_CONFIG`, project configs, `.opencode` directories, and `OPENCODE_CONFIG_DIR`. Direct project configs load from the Git root toward the current directory, then `.opencode` configs load in the same order.
 
@@ -124,11 +82,6 @@ If any JSONC file cannot be parsed, `--apply` is blocked before the first write.
 
 - Dry run is the default
 - Existing destinations are skipped
-- OpenCode JSONC comments and unrelated settings are preserved
-- Auto memory is referenced from its existing local file and is not copied
-- Hook commands stay in the original Claude settings and are read when OpenCode runs
-- OpenCode config files are backed up beside the original before a merge
-- `~/.config/opencode/dsh-movein-manifest.json` records OpenCode moves
 - On Windows, a permission-denied symlink falls back to a copy and is named in the report
 - `cordis.patch.yml` is backed up before each write
 - `npx dsh-movein restore` restores the newest patch backup
@@ -164,11 +117,20 @@ npx dsh-movein --reverse --apply
 
 Reverse moving currently targets Claude Code only.
 
+## Claude Code to OpenCode
+
+The compatibility command remains available for users who need the full Claude Code to OpenCode migration route.
+
+```sh
+npx claude-to-opencode
+npx claude-to-opencode --apply
+```
+
+If you only need Claude Code command hooks in OpenCode, use the focused [opencode-claude-code-hooks](https://github.com/sjh9714/opencode-claude-code-hooks) plugin instead.
+
 ## Not moved
 
 - Sessions
-- Claude hook events other than `PreToolUse` and `PostToolUse`
-- Claude prompt, agent, HTTP, async, and conditional `if` hooks
 - OpenCode permissions and plugins
 - Codex approval and sandbox policy
 - Instruction globs, remote instruction URLs, or multiple instruction files
@@ -178,13 +140,13 @@ Conversation history belongs in [dsh-chat-import](https://github.com/Nwflower/ds
 
 ## Project status
 
-Tested end to end against OpenCode `1.18.21` and DSH `0.1.0-rc.6` and `0.1.0-rc.7`. CI runs the same tests with `npm ci` on Linux, macOS, and Windows.
+Tested end to end against DSH `0.1.0-rc.6` and `0.1.0-rc.7`. CI runs the same tests with `npm ci` on Linux, macOS, and Windows.
 
 Listed in [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) and [awesome-deepseek-harness](https://github.com/0xsline/awesome-deepseek-harness). The measured migration notes also appear in [dsh-handbook](https://github.com/Electricitysheep/dsh-handbook).
 
 ## Star history
 
-[![Star History Chart](https://api.star-history.com/svg?repos=sjh9714/claude-to-opencode&type=Date)](https://star-history.com/#sjh9714/claude-to-opencode&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=sjh9714/dsh-movein&type=Date)](https://star-history.com/#sjh9714/dsh-movein&Date)
 
 ## License
 

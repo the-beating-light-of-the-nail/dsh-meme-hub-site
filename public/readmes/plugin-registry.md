@@ -43,7 +43,7 @@ Plugin forms and install paths: [plugin type comparison](docs/plugin-types.md); 
 
 ## Thin console
 
-![Plugin management panel](https://raw.githubusercontent.com/vlln/plugin-registry/b0ae1ea03a6c04c548dd10bf58f0fe7a70a92b29/screenshots/console-panel.png)
+![Plugin management panel](https://raw.githubusercontent.com/vlln/plugin-registry/1af2066f2c410e40ae3f7e4a024de6e066c0dc7a/screenshots/console-panel.png)
 
 The settings page's "Plugin Management" panel manages a profile's plugin install state: **install area** (single entry — npm package name or GitHub project (`https://github.com/o/r` / `github.com/o/r` / `github:o/r`, URL auto-normalized) — automatic pnpm add; bundles enter the layer stack, non-bundles get insert rows) + **loaded area** (version check/update, `disabled` toggle, bundle uninstall).
 
@@ -52,10 +52,15 @@ The settings page's "Plugin Management" panel manages a profile's plugin install
 **Option 1: git source, direct install (recommended, one line)**
 
 ```sh
-dsh plugin --profile web add "github:vlln/plugin-registry#main&path:/packages/plugin/console"
+dsh plugin --profile web add "github:vlln/plugin-registry#path:/packages/plugin/console"
 ```
 
 Build artifacts are committed (git source skips the build); one command installs directly (~15 s).
+
+> **Windows note**: this uses the `#path:` form (no `&`) on purpose — on win32 `dsh plugin` forwards
+> args through cmd.exe, where `&` is a command separator, so `#main&path:...` gets split and fails
+> with `ERR_PNPM_INVALID_DEPENDENCY_NAME`. `#path:` resolves the default branch (main) HEAD; the
+> branch-pinned `#main&path:...` only works on POSIX shells.
 
 **Option 2: npm source**
 

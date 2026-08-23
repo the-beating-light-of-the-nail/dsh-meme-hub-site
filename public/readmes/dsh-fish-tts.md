@@ -3,13 +3,13 @@
 **中文 | [English](./README.en.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/d5b1da8660136117f4a421a5e4362c12ff4cf771/assets/readme/hero.svg" width="100%" alt="dsh-fish-tts — DeepSeek Harness 语音合成插件（仅支持 Fish Audio API）" />
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/hero.svg" width="100%" alt="dsh-fish-tts — DeepSeek Harness 语音合成插件（仅支持 Fish Audio API）" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/MaRi23333/dsh-fish-tts/ci.yml?style=flat-square&label=CI" alt="CI" />
   <img src="https://img.shields.io/github/license/MaRi23333/dsh-fish-tts?style=flat-square" alt="License: MIT" />
-  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.0--rc.6-4d6bfe?style=flat-square" alt="DeepSeek Harness 0.1.0-rc.6" />
+  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.1--rc.1-4d6bfe?style=flat-square" alt="DeepSeek Harness 0.1.1-rc.1" />
 </p>
 
 > **English:** dsh-fish-tts is a third-party **TTS plugin** for the
@@ -34,30 +34,30 @@
 
 ## 功能
 
-- **朗读按钮**：每条定稿的助手消息操作条里有一个「朗读 / Read aloud」按钮（图标与原生操作条图标同风格），点击合成并播放该条回复。markdown 会被清洗：路径 / URL / 长编号 / 代码块不会读出来。
+- **朗读按钮**：每条定稿的助手消息操作条里有一个「朗读 / Read aloud」按钮（图标与原生操作条图标同风格），点击合成并播放该条回复；**播放中再次点击该消息的按钮即中断停止**（不会从头重播），点击其他消息的按钮则直接切换播放，合成等待中再点一次可取消。markdown 会被清洗：路径 / URL / 长编号 / 代码块不会读出来。
 - **自动朗读**：输入框工具行的小喇叭开关（与设置页同步），开启后自动朗读页面加载后产生的新回复。
 - **设置页**（Settings → 语音朗读 / Voice (Fish TTS)）：
   - TTS 模型（下拉建议 + 手动输入，支持 s2.1-pro-free / s2.1-pro / s2-pro 等，保存后立即生效；默认 s2.1-pro-free）
   - 音色 `reference_id`（**必填**：音色是个人数据，插件不提供默认音色；未填写时合成会被拒绝并提示）
   - API Key（**AES-256-GCM 加密存储**在本机 `$DSH_HOME/fish-tts/settings.json`，密钥文件 `key.bin` 自动生成并在 Windows 上收紧 ACL；Key 不会出现在任何 GET 响应、日志或仓库中）
   - HTTP 代理（例如 `http://127.0.0.1:7890`，直连不通时可填）
-  - 试听按钮、自动朗读开关、音量滑条（默认 60%）
+  - 试听按钮、自动朗读开关、音量滑条（默认 60%）、倍速滑条（0.5–2.0×，不变调；浏览器不支持时固定 1×）
 - **双语界面**（中文 / English，跟随 DSH 语言设置；en 词条与 zh 完全对齐）。
 
 ## 界面截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/d5b1da8660136117f4a421a5e4362c12ff4cf771/assets/readme/screenshot-read-aloud.png" width="75%" alt="消息操作条上的朗读按钮" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/screenshot-read-aloud.png" width="75%" alt="消息操作条上的朗读按钮" /><br>
   <em>消息操作条上的「朗读」按钮</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/d5b1da8660136117f4a421a5e4362c12ff4cf771/assets/readme/screenshot-auto-read.png" width="75%" alt="输入栏的自动朗读开关" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/screenshot-auto-read.png" width="75%" alt="输入栏的自动朗读开关" /><br>
   <em>输入栏的自动朗读开关</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/d5b1da8660136117f4a421a5e4362c12ff4cf771/assets/readme/screenshot-settings.png" width="75%" alt="语音合成设置页（模型 / 音色 / API Key / 代理）" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/screenshot-settings.png" width="75%" alt="语音合成设置页（模型 / 音色 / API Key / 代理）" /><br>
   <em>设置页：模型 / 音色 / API Key / 代理 / 试听</em>
 </p>
 
@@ -149,7 +149,7 @@ pnpm run check:pack # npm pack 内容白名单校验
 
 - host 侧在 `src/index.ts`（Node，注册 `/fish-tts/*` 路由与设置存储）
 - client 侧在 `src/client/`（React，注册 `conversation.chat.assistant-actions`、`conversation.input.left`、`settings.section` 三个 slot）
-- 依赖 DSH `0.1.0-rc.6` 的运行时 API；其他版本如接口漂移请对照 [deepseek-harness 仓库](https://github.com/deepseek-ai/deepseek-harness) 相应 tag 调整。
+- 运行时 API 构建基线为 DSH `0.1.0-rc.6`，已在 `0.1.1-rc.1` 实测正常（无接口漂移）；其他版本如接口漂移请对照 [deepseek-harness 仓库](https://github.com/deepseek-ai/deepseek-harness) 相应 tag 调整。
 
 ## License
 

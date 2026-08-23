@@ -21,7 +21,7 @@
 dsh-zotero 是面向 Agent 研究工作流的 [Zotero](https://www.zotero.org) 插件。Agent 可以直接从你的文献库中搜索文献、查看元数据和笔记、提取与问题相关的证据段落、打开原文 PDF，并生成引用和参考文献表。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Vncntvx/dsh-zotero/996b9dbf6d994996d42650a296e8e772981ff67d/docs/images/header-collage.png" width="70%" alt="dsh-zotero 界面：来源面板、证据提取、导出视图">
+  <img src="https://raw.githubusercontent.com/Vncntvx/dsh-zotero/3ea506ddaaf349dce362851bac52bcf273758bae/docs/images/header-collage.png" width="70%" alt="dsh-zotero 界面：来源面板、证据提取、导出视图">
 </p>
 
 ## 工具
@@ -119,7 +119,7 @@ Agent → zotero_export(refs: [1,2,3], format: "bibtex")
 | [快速上手](docs/getting-started.md) | 安装、前置条件、首次验证            |
 | [功能概览](docs/features.md)        | 来源面板、对话集成、证据提取、导出  |
 | [工具参考](docs/tools.md)           | 全部 8 个工具的参数、返回值、错误码 |
-| [配置](docs/configuration.md)       | 20 个配置字段、默认值、热更新       |
+| [配置](docs/configuration.md)       | 21 个配置字段、默认值、热更新       |
 | [架构](docs/architecture.md)        | 数据流、各层职责、设计边界          |
 | [开发指南](docs/development.md)     | 构建、测试、本地开发                |
 | [问题排查](docs/troubleshooting.md) | 11 个常见问题的症状和处理           |

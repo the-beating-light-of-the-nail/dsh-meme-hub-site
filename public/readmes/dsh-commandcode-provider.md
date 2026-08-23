@@ -18,6 +18,7 @@ Unofficial [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harnes
 
 - **Plugin bundle** — install into any dsh profile with `dsh plugin add`; registers a `commandcode` provider route with a live model catalog.
 - **Dedicated settings page** — API key, connection options, a live account-usage card, and a "Hide out-of-plan models" toggle.
+- **In-browser sign-in for keys** — start the official authorization flow (the same one `cmd login` runs) from the settings page; the approved key lands in the local credential service automatically. Manual paste remains the fallback.
 - **Multi-account rotation** — when one account hits its usage limit, requests switch to the next account automatically. See [Account rotation](#account-rotation).
 - **Flexible API key setup** — via the settings page, an environment variable, or the official CLI login file.
 - **Model-picker annotations** — minimum plan, active deal or `FREE` badge, peak/off-peak state, image support, and context window; free models listed first.
@@ -36,7 +37,7 @@ dsh plugin --profile web add @mars-sea/dsh-commandcode-provider@latest
 ## Updating
 
 ```sh
-dsh plugin --profile web add @mars-sea/dsh-commandcode-provider@latest
+dsh plugin --profile web update @mars-sea/dsh-commandcode-provider@latest
 ```
 
 Then restart the web app.
@@ -50,7 +51,9 @@ npm i -g command-code@latest
 cmd login        # macOS/Linux; native Windows: cmdc login
 ```
 
-Alternatively, create a key on the [Keys settings page](https://commandcode.ai/mars-sea/settings/keys) and paste it into **Settings → Command Code**, or `export COMMANDCODE_API_KEY="user_..."`.
+Or skip the CLI: click **Sign in to Command Code** under **Settings → Command Code** — your browser opens the commandcode.ai authorization page (the same flow `cmd login` uses) and the key is stored in the local credential service when you approve. You can still create a key on the [Keys settings page](https://commandcode.ai/mars-sea/settings/keys) and paste it into **Settings → Command Code**, or `export COMMANDCODE_API_KEY="user_..."`.
+
+> The sign-in flow needs the Host and your browser on the same machine (loopback callback). With a remote Host, paste the key manually; a literal composition-level `apiKey`, if set, still takes precedence over a signed-in credential.
 
 ## Verify it works
 
@@ -155,12 +158,12 @@ MIT — see [LICENSE](./LICENSE). Portions ported from [pi-commandcode-provider]
 
 **Model picker** — plan tier, deal/FREE, peak/off-peak, Image and context annotations:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/fd11174e74938884b3b1545bef47ec63086c0ae3/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/7eac763be33ddb5266b0966975916a11ae471664/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
 
 **Usage dashboard** — `/commandcode` per-account report:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/fd11174e74938884b3b1545bef47ec63086c0ae3/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/7eac763be33ddb5266b0966975916a11ae471664/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
 
 **Settings page** — API key, connection knobs, account rotation and the live account-usage card:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/fd11174e74938884b3b1545bef47ec63086c0ae3/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/7eac763be33ddb5266b0966975916a11ae471664/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">

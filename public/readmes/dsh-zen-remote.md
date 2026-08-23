@@ -3,17 +3,17 @@
 
 <p align="center">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0B7285?style=flat-square" alt="MIT"></a>
-<img src="https://img.shields.io/badge/release-v1.1.2-5B4CF0?style=flat-square" alt="v1.1.2">
+<img src="https://img.shields.io/badge/release-v1.1.4-5B4CF0?style=flat-square" alt="v1.1.4">
 <img src="https://img.shields.io/badge/DSH-Web%20Profile-5B4CF0?style=flat-square" alt="DSH Web Profile">
 </p>
 
 | 会话列表主屏 | 会话页 | 会话信息卡 |
 | --- | --- | --- |
-| ![会话列表主屏](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d5b44a70035479ed4cf1972e70bbda6b4ae47d86/assets/home.png) | ![会话页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d5b44a70035479ed4cf1972e70bbda6b4ae47d86/assets/session.png) | ![会话信息卡](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d5b44a70035479ed4cf1972e70bbda6b4ae47d86/assets/info.png) |
+| ![会话列表主屏](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d447df71d33ae41919072fade7a3617f52ac3f32/assets/home.png) | ![会话页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d447df71d33ae41919072fade7a3617f52ac3f32/assets/session.png) | ![会话信息卡](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d447df71d33ae41919072fade7a3617f52ac3f32/assets/info.png) |
 
 | composer 权限 sheet | 公网设备看到的配对页 |
 | --- | --- |
-| ![composer 权限 sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d5b44a70035479ed4cf1972e70bbda6b4ae47d86/assets/sheet.png) | ![配对页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d5b44a70035479ed4cf1972e70bbda6b4ae47d86/assets/pairing.png) |
+| ![composer 权限 sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d447df71d33ae41919072fade7a3617f52ac3f32/assets/sheet.png) | ![配对页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/d447df71d33ae41919072fade7a3617f52ac3f32/assets/pairing.png) |
 
 > 截图为 390×844 手机视口、浅色主题；深浅主题均适配。配对页是网关自绘页面，固定深色设计。
 
@@ -27,7 +27,7 @@ dsh plugin add dsh-zen-remote
 
 装完重启 `dsh web`，手机界面与网关一起生效，不需要再手写任何配置行。
 
-> 兼容性：在 DSH `0.1.0-rc.7`（web profile）上开发并实测，最后验证 2026-08-20。
+> 兼容性：在 DSH `0.1.1-rc.2`（web profile）上开发并实测，最后验证 2026-08-22。
 
 卸载：`dsh plugin remove dsh-zen-remote`（或从 profile 的 `dependencies` 与 `bundles` 里删掉那两行），重启 `dsh web` 即恢复原状；要清掉配对数据再删 `~/.dsh/lan-gate-state.json` 与 `~/.dsh/lan-gate.config.json`。
 
@@ -39,7 +39,7 @@ dsh plugin add dsh-zen-remote
 ```jsonc
 {
   "dependencies": {
-    "dsh-zen-remote": "^1.1.2"        // 本地开发换成 "link:/path/to/dsh-zen-remote"
+    "dsh-zen-remote": "^1.1.4"        // 本地开发换成 "link:/path/to/dsh-zen-remote"
   },
   "dsh": { "profile": { "bundles": [
     "@deepseek-ai/dsh-base",
@@ -201,6 +201,23 @@ open http://127.0.0.1:3088/lan-gate/admin
 
 改完重启 `dsh web`。不改服务端配置的话，单个浏览器也可以访问一次 `?mobile-nav-turn-fold=1` 自己开启（`=0` 关闭，按浏览器记忆）。
 
+**软键盘抬升的三个校准值**。少数手机上，键盘弹出时系统压根不告诉浏览器键盘有多高（实测过：某些第三方输入法 + Chrome；小米浏览器装的 PWA 壳）。这时插件没有任何可测的信号，只能按估算把输入框抬起来。估算值是照一台报告过的机器定的，别的机器可能偏高或偏低，所以三个数都能在插件行里改：
+
+| 配置项 | 默认 | 含义 | 允许范围 |
+| --- | --- | --- | --- |
+| `keyboardLiftRatio` | `0.42` | 抬升高度按屏幕高度的这个比例估算 | 0 ~ 1 |
+| `keyboardLiftMaxPx` | `400` | 估算值的上限（像素），防止在长屏手机上把输入框顶到屏幕中间 | 0 ~ 2000 |
+| `keyboardSafetyPadPx` | `15` | 键盘顶部再留出的一点余量，**仅安卓**。第三方输入法常常少报自己的高度（把键盘上方那条工具栏漏掉），这一点余量就是补它的 | 0 ~ 200 |
+
+```yaml
+- id: dsh-zen-remote
+  config:
+    keyboardLiftRatio: 0.45
+    keyboardSafetyPadPx: 30
+```
+
+怎么调：输入框抬得**不够**（还被键盘挡住一截）就调大 `keyboardLiftRatio`，一次加 0.03 试；抬得**过头**（输入框和键盘之间空出一条）就调小。只差一点点（几十像素以内、且是安卓）优先加 `keyboardSafetyPadPx`。三个值一个都不写就是现在的行为，不受影响；写超出范围的值会被自动收进上表的区间，不会把输入框顶出屏幕。正常手机走的是实测路径，这几个值对它们完全没有影响。
+
 ---
 
 ## 通知什么时候会响
@@ -266,11 +283,12 @@ open http://127.0.0.1:3088/lan-gate/admin
 
 | 插件 | 移动端适配内容 | 实测版本 |
 | --- | --- | --- |
-| [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 会话页头部提供工作台入口按钮；面板变手机全宽抽屉并避让刘海安全区；底部居中的关闭按钮 | 0.14.0 |
-| [@nanmicoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | AgentTeams 活动浮层挪到会话头部下方（原位置压住头部按钮）、会话列表页自动隐藏；子代理会话头部保留可点的父会话标题，一键切回主会话 | 0.1.7 |
-| [dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats) | 用量与余额入口收进主屏 chips 行 | 0.2.5 |
-| [@opendsh/dsh-plugin-scheduled-tasks](https://github.com/Ceelog/dsh-plugins) | 定时任务入口收进主屏 chips 行 | 0.2.2 |
-| dsh-at-file | @文件引用，配合附件上传的 `@` 路径引用使用 | 0.6.5 |
+| [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 会话页头部提供工作台入口按钮；面板变手机全宽抽屉并避让刘海安全区；底部居中的关闭按钮 | 0.15.0 |
+| [@nanmicoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | AgentTeams 活动浮层挪到会话头部下方（原位置压住头部按钮）、会话列表页自动隐藏；子代理会话头部保留可点的父会话标题，一键切回主会话 | 0.1.9 |
+| [@ychris12138/dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats) | 用量与余额入口收进主屏 chips 行 | 0.2.9 |
+| [@opendsh/dsh-plugin-scheduled-tasks](https://github.com/Ceelog/dsh-plugins) | 定时任务入口收进主屏 chips 行 | 0.2.3 |
+| dsh-at-file | @文件引用，配合附件上传的 `@` 路径引用使用；它和本插件的附件 chip 读同一份草稿 token，手机端隐藏它 `.dsh-uploads/` 下那几行以免同一个文件被画两遍（缩略图 + 文件名），其余 `@` 引用不动 | 0.6.7 |
+| [@ace-zone/dsh-market](https://www.npmjs.com/package/@ace-zone/dsh-market) | 插件市场弹窗顶栏在手机上放不下，关闭的 × 被挤出面板外（触屏没有 Esc，等于关不掉）；隐藏标语 / 版本号 / 官网链接三个装饰位，标题改成省略号收缩，语言切换和 × 保留并加大点按面积 | 0.1.66 |
 | [dsh-vision-toolkit](https://www.npmjs.com/package/@anionex/dsh-vision-toolkit) | 图像 Q&A/OCR，配合手机端附件上传使用 | — |
 | [dsh-web-ui 全家桶](https://www.npmjs.com/package/@linxin666/dsh-web-ui-all) | 沿用上游 dsh-web-mobile 的兼容规则（文件树 / 预览浮层限宽居中等） | — |
 
@@ -282,7 +300,7 @@ open http://127.0.0.1:3088/lan-gate/admin
 
 **iOS 26.x 独立 PWA 视口缩水**：加到主屏后视口底部会少掉一条状态栏高度，普通 Safari 标签页正常。这是 iOS 系统缺陷，缺掉的区域在文档之外，CSS 够不着；本插件做了三层缓解（浅色 manifest 背景 + 安全区补偿 + 强制重排），能减轻但不保证复原。彻底恢复只能整个 App 退出重开。
 
-**个别环境软键盘对浏览器完全不可见，输入框抬升靠估算兜底**：部分组合（实测过：某些第三方输入法 + Chrome；小米浏览器安装的 PWA 壳）里，键盘弹出/收起时系统不把键盘高度告知页面——视口不变、无任何事件（visualViewport、VirtualKeyboard API 一并失效，均已实测排除）。插件的兜底是：聚焦后探测约 1.2 秒，判定「键盘不可见」就按估计高度抬升输入框（判定按浏览器记忆，之后聚焦即时抬升）。代价有两条：抬升高度是估算的，可能与实际键盘有几十像素出入；键盘收起同样无信号，输入框要等你点击或滑动输入框以外的区域才回落。正常环境完全不走这条路径，不受影响。
+**个别环境软键盘对浏览器完全不可见，输入框抬升靠估算兜底**：部分组合（实测过：某些第三方输入法 + Chrome；小米浏览器安装的 PWA 壳）里，键盘弹出/收起时系统不把键盘高度告知页面——视口不变、无任何事件（visualViewport、VirtualKeyboard API 一并失效，均已实测排除）。插件的兜底是：聚焦后探测约 1.2 秒，判定「键盘不可见」就按估计高度抬升输入框（判定按浏览器记忆，之后聚焦即时抬升）。代价有两条：抬升高度是估算的，可能与实际键盘有几十像素出入；键盘收起同样无信号，输入框要等你点击或滑动输入框以外的区域才回落。正常环境完全不走这条路径，不受影响。抬升高度差得明显的话不用改代码，插件行的 `keyboardLiftRatio` / `keyboardLiftMaxPx` / `keyboardSafetyPadPx` 三个值可以照着自己的机器调，见上面「配置」一节。
 
 **经反代访问时设置页打不开（插件配置列表空白、模型卡片报「settings are unavailable in this browser」）**：直连 `127.0.0.1:3080/3088` 正常。
 

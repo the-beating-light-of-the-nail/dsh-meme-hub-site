@@ -31,25 +31,25 @@
 
 - **会话权限选择器**：在输入框下方的权限选择器中选择「自定义审查」，即由权限网关按分类逐项审查工具调用。
 
-  ![会话权限选择器](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/d45d62c16e4c2426ead08e3f828626e7c74ab404/assets/permission-picker.jpg)
+  ![会话权限选择器](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/96ffc65230c8a3a6b9a0d1a3dd58120c730bf213/assets/permission-picker.jpg)
 
 - **新会话默认权限设置**：在设置里把「自定义审查」设为新对话的默认权限，之后每次新建对话自动启用，不用手动重复选择。
 
-  ![默认权限设置](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/d45d62c16e4c2426ead08e3f828626e7c74ab404/assets/default-permission.jpg)
+  ![默认权限设置](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/96ffc65230c8a3a6b9a0d1a3dd58120c730bf213/assets/default-permission.jpg)
 
 - **审批弹窗**：编辑/写入类审批可以看到 diff 详情，快速判断改动是否合理；命令类审批展示命令与参数——命中例外直接放行、未命中则询问，并给出可一键添加的规则候选（如 `git status *`），常放行的命令顺手就加进例外。
 
-  ![审批弹窗](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/d45d62c16e4c2426ead08e3f828626e7c74ab404/assets/approval-modal.png)
+  ![审批弹窗](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/96ffc65230c8a3a6b9a0d1a3dd58120c730bf213/assets/approval-modal.png)
 
-  ![命令执行审批（Pwsh）](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/d45d62c16e4c2426ead08e3f828626e7c74ab404/assets/pwsh-approval.png)
+  ![命令执行审批（Pwsh）](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/96ffc65230c8a3a6b9a0d1a3dd58120c730bf213/assets/pwsh-approval.png)
 
 - **自定义拒绝意见**：拒绝时填写意见，AI 会收到「为什么不行、应该怎么做」的明确理由，立即调整方案。
 
-  ![拒绝意见](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/d45d62c16e4c2426ead08e3f828626e7c74ab404/assets/reject-reason.png)
+  ![拒绝意见](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/96ffc65230c8a3a6b9a0d1a3dd58120c730bf213/assets/reject-reason.png)
 
 - **设置 → 权限网关**：一站式管理所有权限——每个分类的默认行为、白/黑名单、快捷工具、自定义规则、底层沙箱，全局与项目分开配置，还能查看最近决策记录。无需再手动编辑配置文件，通过设置界面即可快速调整。
 
-  ![权限网关设置页](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/d45d62c16e4c2426ead08e3f828626e7c74ab404/assets/settings-page.jpg)
+  ![权限网关设置页](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/96ffc65230c8a3a6b9a0d1a3dd58120c730bf213/assets/settings-page.jpg)
 
 ## 安装
 

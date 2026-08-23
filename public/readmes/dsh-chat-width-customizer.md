@@ -20,6 +20,8 @@
 - **一键加宽**：点击标题栏按钮循环切换宽度档位（748 → 1600 px），无需进设置页
 - **整列联动**：对话消息区、底部输入框（Composer）、用户气泡同步加宽，观感统一
 - **全局共享**：宽度是全局状态 —— 在 A 会话调到 1600，切到 B 会话依然 1600，按钮显示一致
+- **跨标签页同步**：另一个 DSH 标签页里改宽度，本页通过 `storage` 事件实时跟随
+- **窄窗不溢出**：实际应用的宽度按视口自动钳制（视口 −24px、下限 320px），窗口缩放时实时重算；按钮仍显示所选档位
 - **持久记忆**：选择写入 `localStorage`，刷新页面 / 重开浏览器后自动恢复，不丢失
 - **零配置**：纯浏览器端插件，无 Host 逻辑、无外部依赖、无网络请求，所有数据只存本机
 - **主题友好**：按钮样式完全使用 DSH 主题 CSS 变量，浅色 / 深色模式自动适配
@@ -116,6 +118,8 @@ dsh-chat-width-customizer/
 ├── lib/
 │   ├── index.js     Host 入口（空实现，仅占位 —— 纯前端插件）
 │   └── client.js    浏览器端 bundle（__ModuleLoader__ 格式）
+├── test/
+│   └── wc.test.mjs   纯逻辑单元测试（加载真实 bundle 的 _internals）
 ├── cordis.patch.yml profile 组合层插入条目
 ├── package.json     包清单（dsh.bundle / dsh.client 声明）
 ├── README.md
@@ -125,6 +129,7 @@ dsh-chat-width-customizer/
 **本地迭代**：
 
 ```sh
+npm test          # node --test:档位循环 / 视口钳制 / 存储读取 / CSS 生成
 # 改完 lib/client.js 后，重启 dsh web + 浏览器强制刷新即可验证
 git add -A && git commit -m "your change" && git push   # 同步到 GitHub
 ```

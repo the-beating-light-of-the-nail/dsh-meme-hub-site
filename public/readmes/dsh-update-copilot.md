@@ -8,7 +8,7 @@
 **An update copilot for [DeepSeek Harness](https://www.npmjs.com/package/@deepseek-ai/dsh): tracks the dsh core, shipped bundles, and every installed plugin — merged package-centric across all profiles, with one-click updates. The update command is identical for every profile, so the radar never makes you pick one.**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hezhongtang/dsh-update-copilot/5a468f6d693f78de58aeb0887f9b8febe536e789/assets/popup.png" width="480" alt="The Update Copilot popup: core packages, per-plugin rows behind-first, up-to-date rows folded away." />
+  <img src="https://raw.githubusercontent.com/hezhongtang/dsh-update-copilot/eb91221073e416eaf212bb9d92a929b08e19fd15/assets/popup.png" width="480" alt="The Update Copilot popup: core packages, per-plugin rows behind-first, up-to-date rows folded away." />
 </p>
 
 English | [中文](README.zh.md)

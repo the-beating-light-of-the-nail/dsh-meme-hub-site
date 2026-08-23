@@ -6,7 +6,7 @@
 
 **English**: [README.en.md](README.en.md) · **版本记录**: [CHANGELOG.md](CHANGELOG.md) · **安全**: [SECURITY.md](SECURITY.md)
 
-![whale](https://raw.githubusercontent.com/miku00039-01/dsh-whale-pet/8268907a9fc1448ae7e8d6b5969f29112a1d560d/assets/whale.png)
+![whale](https://raw.githubusercontent.com/miku00039-01/dsh-whale-pet/2dd133d7315ad6ba6b97afc7e6a797ed47d70944/assets/whale.png)
 
 ## ✨ 功能
 

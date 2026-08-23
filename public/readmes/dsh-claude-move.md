@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🚚 dsh-claude-move
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-claude-move)
 
 **Migrate Claude Code, Codex, OpenCode and Hermes into DeepSeek Harness — copy sessions, memories, skills, instructions and slash commands as resumable DSH sessions, copy-only and approval-gated.**
 
@@ -22,7 +23,7 @@
 
 ## Compatibility
 
-- Targets `dsh 0.1.0-rc.8` (web profile); peer dependencies require `>=0.1.0-rc.8`. Node `^22.19 || >=24`.
+- Targets `dsh 0.1.1-rc.2` (web profile); peer dependencies require `>=0.1.0-rc.8 <0.2.0`. Node `^22.19 || >=24`.
 - Last verified against a fresh tarball install: real scan, real batch import (idempotent re-import), workspace attach and persistence artifacts confirmed; macOS/Linux covered by the CI matrix.
 
 ### Compatibility matrix (public seams only)

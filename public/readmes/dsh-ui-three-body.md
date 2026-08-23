@@ -5,13 +5,13 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-three-body/c495a64c77597b3cdeb3a4d286fa1127dd79ab45/assets/screen/sophon-demo.gif" width="640" alt="智子演示：悬浮大眼睛 + 动态皮肤 + 菜单" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-three-body/6094c3c6d928a0f367b655d6596b670ff3414c9e/assets/screen/sophon-demo.gif" width="640" alt="智子演示：悬浮大眼睛 + 动态皮肤 + 菜单" />
   <br/>
   <em>智子悬浮演示：原色人眼 / 写轮眼 / 万花筒 / 轮回眼 / 三体智子等 11 款皮肤，瞳孔旋转 + 幽灵闪现</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-three-body/c495a64c77597b3cdeb3a4d286fa1127dd79ab45/assets/screen/sophon-preview.png" width="640" alt="智子菜单与皮肤切换" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-three-body/6094c3c6d928a0f367b655d6596b670ff3414c9e/assets/screen/sophon-preview.png" width="640" alt="智子菜单与皮肤切换" />
   <br/>
   <em>智子菜单：驯兽四式 / 需求剖析 / 皮肤循环切换 / 休眠</em>
 </p>
@@ -37,14 +37,16 @@
 
 ```bash
 # 已发布后（npm）
-npx @deepseek-ai/dsh plugin --profile web add dsh-ui-three-body
+dsh plugin --profile web add dsh-ui-three-body
 
 # 从 GitHub
-npx @deepseek-ai/dsh plugin --profile web add github:EternalNight996/dsh-ui-three-body
+dsh plugin --profile web add github:EternalNight996/dsh-ui-three-body
 
 # 本地联调（link 本地目录，改代码即时生效）
-npx @deepseek-ai/dsh plugin --profile web add F:/MyApp/eternal/dsh-ui-three-body
+dsh plugin --profile web add F:/MyApp/eternal/dsh-ui-three-body
 ```
+
+> 💡 推荐搭配 [**dsh-desktop**](https://github.com/EternalNight996/dsh-desktop)（DeepSeek Harness 桌面壳）使用，桌面版上智子视觉与性能体验最佳。
 
 装完**重启 dsh web**：悬浮智子出现在屏幕右侧（右留 96px），点击弹菜单、长按拖拽。
 

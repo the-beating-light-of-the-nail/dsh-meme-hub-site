@@ -4,9 +4,9 @@
 
 **DeepSeek Harness 会话费用统计插件(界面中英双语)**
 
-本会话费用 · 当日费用 · OpenCode Go 订阅额度显示 · 预算与已用百分比 · 官方账户余额 · 自定义 Provider 余额查询(可配任意 HTTP 端点) · 余额三段进度条 · 历史记录 · 峰谷计价时段显示(UTC 01:00–04:00、06:00–10:00 为峰时段) · 峰/谷切换前弹窗与系统通知提醒(位置/提前量/提醒类型可配) · 官方价格一键同步 · 类 Codex Token 用量热图 · 多厂商多模型价格计费(内置 90+ 模型价格目录与自动匹配) · 主流 Coding Plan 额度查询与显示(Anthropic / Z.ai / MiniMax / Kimi / OpenRouter / SiliconFlow / CommandCode / SCNet 八家) · 输入框上方额度横条(预算/Go/Coding Plan 用量一条横排显示,可开关)
+本会话费用 · 当日费用 · OpenCode Go 订阅额度显示 · 预算与已用百分比 · 官方账户余额 · 自定义 Provider 余额查询(可配任意 HTTP 端点) · 余额三段进度条 · 历史记录 · 峰谷计价时段显示(UTC 01:00–04:00、06:00–10:00 为峰时段;2026-08-23 起周末全天按谷价,显示「周末时段——全谷价」) · 峰/谷切换前弹窗与系统通知提醒(位置/提前量/提醒类型可配) · 官方价格一键同步 · 类 Codex Token 用量热图 · 多厂商多模型价格计费(内置 90+ 模型价格目录与自动匹配) · 主流 Coding Plan 额度查询与显示(Anthropic / Z.ai / MiniMax / Kimi / OpenRouter / SiliconFlow / CommandCode / SCNet 八家) · 输入框上方额度横条(预算/Go/Coding Plan 用量一条横排显示,可开关)
 
-[![version](https://img.shields.io/badge/version-1.5.36-4176E6)](https://github.com/Han-1413141/dsh-cost-meter)
+[![version](https://img.shields.io/badge/version-1.5.40-4176E6)](https://github.com/Han-1413141/dsh-cost-meter)
 [![npm](https://img.shields.io/npm/v/dsh-cost-meter?label=npm)](https://www.npmjs.com/package/dsh-cost-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
@@ -19,7 +19,7 @@
 
 ---
 
-![宣传图](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/promo.png)
+![宣传图](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/promo.png)
 
 ## 功能总览
 
@@ -42,10 +42,11 @@
 | 导入安装前历史 | 首次启动自动 | 安装/升级后首次启动自动回放宿主全部会话日志,把未装插件时期的对话导入账本(缺失日期整日重建,已有日期只补未知会话,幂等不与实时计费重复;金额按事件时刻历史价回推);设置页保留手动重跑入口 |
 | 预算设置 | 设置页顶部 | 额度、周期(今日/本月/累计/自定义日期区间)、已用% |
 | 价格表 | 设置页 | 每模型 谷时/峰时 两档价格(支持 input/output 简写,缓存价自动补齐),增删改自由 |
-| 峰谷计价时段显示 | 设置页 / 预算 / 今日费用 | 显示 UTC 峰时段 01:00–04:00、06:00–10:00 与当前档位;展开态显示峰时/平价时段条(当前时段 + 倒计时),收起(rail)态显示竖向峰谷进度条,可单独开关 |
+| 峰谷计价时段显示 | 设置页 / 预算 / 今日费用 | 显示 UTC 峰时段 01:00–04:00、06:00–10:00 与当前档位;2026-08-23 起周末(周六及周日,北京时间)全天按谷价计费并显示「周末时段——全谷价」;展开态显示峰时/平价时段条(当前时段 + 倒计时),收起(rail)态显示竖向峰谷进度条,可单独开关 |
 | 峰/谷切换弹窗提醒 | 全局浮层 | 距进入峰/谷时段不足设定提前量(默认 2 分钟,1-30 可配)时全屏色条徽标弹窗(提醒色区分进入峰/谷);弹窗位置可选**右下角 / 屏幕中心**,提醒类型可选(进入峰 / 进入谷 / 峰和谷),同一切换点只提醒一次;可选**同步发送浏览器(系统)通知**(页面最小化也能收到,需授权通知权限);设置页峰谷计价面板内配置,并可**一键预览弹窗效果**(真实组件渲染,文案/位置/通知与实际触发完全一致) |
-| 官方价格同步 | 设置页 | 抓取解析官方定价页,一键应用 |
+| 官方价格同步 | 设置页 | 抓取解析官方定价页,一键应用;可选**官方价格币种**(美元·英文官方页 / 人民币·中文官方页),人民币价按展示汇率折算入账、展示人民币时与官方账单一致 |
 | 界面语言 | 设置页 → 显示设置 | 简体中文 / English / 跟随浏览器(自动);切换即时生效并自动保存 |
+| 隐藏官方余额 / 隐藏今日消耗 | 设置页 → 显示设置 | 两个独立开关:开启后对应 UI 区块(侧边栏余额行与面板 / 今日费用行、预算明细、概览今日卡片等)**整体不再渲染**,token 与调用次数统计不受影响,共享屏幕/截图防泄露 |
 | AI 价格同步 | [提示词](docs/AI-PRICE-SYNC-PROMPT.md) | DeepSeek 官方同步;其他 provider 使用已核对的官方价格目录与手动配置 |
 | 模型与 Plan 适配说明 | [适配文档](docs/model-and-plan-adaptation.md) | 各厂商模型计费与 8 家 Coding Plan 的适配矩阵、自动匹配机制与价格来源([English](docs/model-and-plan-adaptation.en.md)) |
 | 峰/谷切换提醒图解 | [提醒文档](docs/peak-alert.md) | 峰谷切换前弹窗与系统通知的完整图解:效果截图(中/英)、设置项说明与使用建议([English](docs/peak-alert.en.md)) |
@@ -102,7 +103,7 @@
 
 **侧边栏底部**(自上而下:官方余额 → 额度 / 预算图框 → 设置按钮):
 
-![侧边栏底部](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-sidebar-footer.png)
+![侧边栏底部](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-sidebar-footer.png)
 
 - 余额行显示官方开放平台总余额,悬停可见赠送/充值拆分;开启「余额进度条」后以三段图框展示(蓝=余额,橙=当日,灰=已用);
 - 自定义 Provider 余额(如 LiteLLM)可配置 HTTP 查询,侧边栏与设置页同图框样式;
@@ -112,7 +113,7 @@
 
 | 侧边栏进度条 + 显示设置 | 自定义 Provider 余额面板 |
 |---|---|
-| ![余额进度条](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-balance-progress-bar-zh.png) | ![自定义 Provider 配置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-custom-balance-settings-zh.png) |
+| ![余额进度条](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-balance-progress-bar-zh.png) | ![自定义 Provider 配置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-custom-balance-settings-zh.png) |
 
 - 显示设置 →「余额进度条」全局开关;可选「额度上限」覆盖 API 的 `max_budget`;
 - 设置 → 费用 →「自定义 Provider 余额」:展开后编辑 URL / Headers(JSON) / extract(JSON)、中/英名称与币种。
@@ -121,7 +122,7 @@
 
 | 仅 OpenCode Go 额度 | 仅预算 | 两者合并 |
 |---|---|---|
-| ![仅 Go 额度](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-go-box.png) | ![仅预算](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-budget-box.png) | ![合并卡片](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-sidebar-footer-v2.png) |
+| ![仅 Go 额度](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-go-box.png) | ![仅预算](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-budget-box.png) | ![合并卡片](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-sidebar-footer-v2.png) |
 
 - 预算图框显示「预算 · 已用% · 进度条 · 今日费用与占预算% · 已用/额度」,≥80% 预警、≥100% 超支;窄栏(rail)模式收窄为百分比方块;
 - 峰谷计价时段显示 UTC 峰时段 01:00–04:00、06:00–10:00 与当前档位;预算框与今日费用区域显示单行紧凑时段条——细轨道左橙右蓝、标记线指向当前时段,右侧文字为当前时段与距下次切换的倒计时(30 秒刷新),不显示价格;可在设置中单独关闭,并在「峰谷时段条样式」中切换简洁/经典两种样式;rail 窄栏显示同构的竖向时段条,下方横排短词「峰时 / 平价」,倒计时与完整文案悬停可见;
@@ -130,7 +131,7 @@
 
 | 设置页峰谷面板(提示开关/样式切换/预览) | 设置页右下角(dock)显示与图框详细信息 |
 |---|---|
-| ![峰谷计价与提示面板](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/peak-panel-settings-zh.png) | ![右下角与图框详细设置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/dock-display-settings-zh.png) |
+| ![峰谷计价与提示面板](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/peak-panel-settings-zh.png) | ![右下角与图框详细设置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/dock-display-settings-zh.png) |
 
 时段条与收起态竖向条真实 DSH 侧边栏实拍(现行样式),按 UI 类型分组(图示为峰时):
 
@@ -138,7 +139,7 @@
 
 | 简洁 | 经典 |
 |---|---|
-| ![展开态·简洁](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/peak-strip-expanded-compact-zh.png) | ![展开态·经典](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/peak-strip-expanded-classic-zh.png) |
+| ![展开态·简洁](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/peak-strip-expanded-compact-zh.png) | ![展开态·经典](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/peak-strip-expanded-classic-zh.png) |
 
 - 简洁:细轨道左橙右蓝、标记线指向当前时段,右侧短文案「峰时 · N小时后进入平价」;
 - 经典:同款轨道与标记线,右侧完整文案「峰时 · 距平价 HH:MM:SS」倒计时(30 秒刷新),不显示价格。
@@ -147,7 +148,7 @@
 
 | 简洁 | 经典 |
 |---|---|
-| ![收起态·简洁](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/peak-strip-rail-compact-zh.png) | ![收起态·经典](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/peak-strip-rail-classic-zh.png) |
+| ![收起态·简洁](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/peak-strip-rail-compact-zh.png) | ![收起态·经典](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/peak-strip-rail-classic-zh.png) |
 
 - 简洁:竖向条下方仅横排短词「峰时 / 平价」;
 - 经典:竖向条下方竖排完整文案,含距下次切换的倒计时;两种样式下完整文案均悬停可见。
@@ -158,65 +159,65 @@
 
 - Go 图框按主档位(默认滚动 5 小时,可在显示设置切换周/月)显示已用% 与进度条,下方一行展示其余两档与重置时间:
 
-![窄栏 rail](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-sidebar-rail-v2.png)
+![窄栏 rail](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-sidebar-rail-v2.png)
 
 **右下角(dock)额度 / 预算 chips**(显示设置中开启,四项独立开关:5h / 周 / 月额度 + 预算已用%):
 
 | 右下角实际显示 | 显示设置(开关位置) |
 |---|---|
-| ![右下角 chips](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-display-corner-v2.png) | ![右下角显示设置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/dock-display-settings-zh.png) |
+| ![右下角 chips](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-display-corner-v2.png) | ![右下角显示设置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/dock-display-settings-zh.png) |
 
 **本会话费用**(两个位置,可在设置中切换):
 
 | 输入区下方 | 会话标题栏 |
 |---|---|
-| ![会话 dock](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-session-dock.png) | ![会话标题栏](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-session-header.png) |
+| ![会话 dock](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-session-dock.png) | ![会话标题栏](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-session-header.png) |
 
 > 上图:本会话 ¥5.5939 · 输入 321K · 缓存 119M · 输出 235K;右图:标题栏徽章「费用 ¥6.1606」(真实会话截图)
 
-![会话页](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-session.png)
+![会话页](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-session.png)
 
 ### 设置 → 费用
 
 **概览**(OpenCode Go 额度 → 预算 → 余额 → 汇总卡片 → 今日会话 → 历史记录 → 显示设置 → 价格表 → 数据与同步):
 
-![设置页](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-settings.png)
+![设置页](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-settings.png)
 
 **OpenCode Go 额度面板**(设置页最顶部:三档进度条,主档位高亮,手动刷新;未订阅时为中性提示,可一键关闭):
 
-![Go 额度面板](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-settings-top-v2.png)
+![Go 额度面板](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-settings-top-v2.png)
 
 **预算面板**(含自定义日期区间):
 
-![预算](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-budget-panel.png)
+![预算](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-budget-panel.png)
 
 **余额面板**(总余额/赠送/充值 + 手动刷新):
 
-![余额](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-balance-panel.png)
+![余额](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-balance-panel.png)
 
 **显示设置**(Go 主档位与 Key、右下角 chips、图框详细信息等):
 
-![显示设置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-display-settings-v2.png)
+![显示设置](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-display-settings-v2.png)
 
 **汇总卡片**:
 
-![卡片](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-cards.png)
+![卡片](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-cards.png)
 
 **Token 用量统计**(历史累计总量 + 类 Codex 的 26 周方格热图,横向铺满设置页宽度;无用量日为半透明玻璃格):
 
-![Token 用量统计](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-usage-grid.png)
+![Token 用量统计](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-usage-grid.png)
 
 **今日会话 / 历史记录**(输入、缓存、输出 token 分列):
 
-![今日会话](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-table-1.png) ![历史记录](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-table-2.png)
+![今日会话](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-table-1.png) ![历史记录](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-table-2.png)
 
 **价格表**(谷时/峰时两档,支持 input/output 简写,美元 / 1M tokens):
 
-![价格表](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-price-card.png)
+![价格表](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-price-card.png)
 
 **数据与同步**(配置即时自动保存 + 官方价格同步 + 清除历史):
 
-![同步](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/screenshot-sync.png)
+![同步](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/screenshot-sync.png)
 
 ## 安装
 
@@ -230,22 +231,22 @@
 dsh plugin --profile web add dsh-cost-meter
 ```
 
-**PowerShell 一键脚本**(复制整行粘贴回车;自动补齐 pnpm、自动探测 git,无需克隆仓库;安装链**固定到发布 tag `v1.5.36`**,建议先下载审阅再运行):
+**PowerShell 一键脚本**(复制整行粘贴回车;自动补齐 pnpm、自动探测 git,无需克隆仓库;安装链**固定到发布 tag `v1.5.40`**,建议先下载审阅再运行):
 
 ```powershell
-irm https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/v1.5.36/install.ps1 | iex
+irm https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/v1.5.40/install.ps1 | iex
 ```
 
 **或直接命令行**(机器上需已有 pnpm 与 git;同样固定到 tag):
 
 ```sh
-dsh plugin --profile web add github:Han-1413141/dsh-cost-meter#v1.5.36
+dsh plugin --profile web add github:Han-1413141/dsh-cost-meter#v1.5.40
 ```
 
 没有 git 时可用 GitHub tag 打包直链:
 
 ```sh
-dsh plugin --profile web add https://github.com/Han-1413141/dsh-cost-meter/archive/refs/tags/v1.5.36.tar.gz
+dsh plugin --profile web add https://github.com/Han-1413141/dsh-cost-meter/archive/refs/tags/v1.5.40.tar.gz
 ```
 
 安装后**重启** `dsh web`(插件行、Typert 清单与客户端 bundle 均在启动时扫描):
@@ -271,11 +272,12 @@ dsh plugin --profile web add link:./dsh-cost-meter  # 符号链接,改 lib/clien
 
 ## 计费规则
 
-![计费规则与峰谷计价](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/diagram-pricing.zh.svg)
+![计费规则与峰谷计价](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/diagram-pricing.zh.svg)
 
 - 价格单位与官方文档一致:**美元 / 1M tokens**;
 - 成本 = 未命中输入 × cache-miss + 输出 × output + (缓存读 + 缓存写) × cache-hit(缓存写沿用官方历史规则按命中价计费);
 - **纯峰谷两档计价**(2026-08 起官方方案):峰时段(01:00–04:00、06:00–10:00 UTC)按峰时价,其余按谷时价(谷时价 = 峰时价的一半);基础档与谷时档同价,未启用峰谷时按谷时价计;设置页实时显示当前档位(峰时段/谷时段);预算与今日费用区域显示峰时/平价时段条(当前/下一时段与倒计时),收起态显示竖向峰谷进度条;
+- **周末全谷价新规**(官方通知,2026-08-23 00:00 北京时间起):周末(周六及周日,按北京日历)全天不再区分峰谷,统一按谷价计费;时段条显示「周末时段——全谷价」并倒计时至下周一首个峰时段;该时刻之前的费用仍按原峰谷规则结算(首个受覆盖的周末仅周日全天);
 - **历史计费正确性**:2026-08-16 16:00 UTC(峰谷时代分界)之前的调用按当时的基础价计费,之后的调用按峰谷两档;
 - 账本金额恒以**美元**存储,币种/汇率仅影响显示(默认 1 USD = 7.2 CNY,可改);
 - 会话徽章与当日/月度/累计、预算一样,按每次调用的**实际时刻精确计费**(宿主导出的逐次成本);
@@ -290,7 +292,7 @@ dsh plugin --profile web add link:./dsh-cost-meter  # 符号链接,改 lib/clien
 
 ## 架构
 
-![架构与数据流](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/5924abd2e48d887bcb6573794904a5b7af83a941/docs/diagram-architecture.zh.svg)
+![架构与数据流](https://raw.githubusercontent.com/Han-1413141/dsh-cost-meter/a6ab9d61936e89521e800d16ce9b4dc6723972f9/docs/diagram-architecture.zh.svg)
 
 ```
 dsh-cost-meter
@@ -319,7 +321,7 @@ dsh-cost-meter
 
 ## 官方价格同步原理
 
-`fetchPrices` 抓取官方定价页(Docusaurus 服务端预渲染),解析:
+`fetchPrices` 抓取官方定价页(Docusaurus 服务端预渲染;英文页为美元价、中文页为人民币价,由「官方价格币种」设置决定,币种按页面金额符号自动检测,高峰时段中文页按北京时间 −8h 折算为 UTC),解析:
 
 1. 基础价格表(转置布局:首行 MODEL + 模型 id,价格行标签后紧跟价格);
 2. 峰谷价格表(每模型两行:OFF-PEAK / PEAK);

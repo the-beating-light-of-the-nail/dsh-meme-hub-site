@@ -6,7 +6,7 @@
 
 **Stop rebuilding what already exists.** While you plan and implement, the agent proactively checks the curated AIGC Radar library for mature, battle-tested projects that already solve your problem — before you write a line of code. Results render as **native search cards** in the dsh Web UI — not raw markdown — and survive session replay.
 
-![search_ai_projects rendering as a native search card in the dsh Web UI](https://raw.githubusercontent.com/Kaixxrua/dsh-aigc-radar/571741c1c4794e64c75b9f8ffb2efcd1388d747d/docs/search-card.png)
+![search_ai_projects rendering as a native search card in the dsh Web UI](https://raw.githubusercontent.com/Kaixxrua/dsh-aigc-radar/1f65307e2efaffedf77d6591a816e594724762de/docs/search-card.png)
 
 ## What you get
 
@@ -98,7 +98,7 @@ dsh plugin --profile web add dsh-aigc-radar@<version>
 
 Git/Git SHA or branch, file/link, workspace, tarball, and local-path installs stay manual and are never changed by these commands. Startup-time automatic update checks are not yet available in released dsh builds; until then, the commands above are the update path.
 
-**Recommended: register on the origin site and grab a free token.** The plugin works anonymously out of the box, but anonymous calls share a 100-calls/day per-IP bucket. A free account at [aigcnews.cn](https://aigcnews.cn) gets you a per-account monthly quota instead — create an MCP token on the [/mcp page](https://aigcnews.cn/mcp) (no special scopes needed for search) and paste it as `mcpToken` in the config below. See [Quotas and the MCP token](#quotas-and-the-mcp-token).
+**Recommended: register on the origin site and grab a free token.** The plugin works anonymously out of the box, but anonymous calls share a 30-calls/day per-IP bucket. A free account at [aigcnews.cn](https://aigcnews.cn) gets you 60 calls/day plus a shared 1,200-call rolling-30-day quota; a member account gets 400/day plus 8,000 per rolling 30 days. Create an MCP token on the [/mcp page](https://aigcnews.cn/mcp) (no special scopes needed for search) and paste it as `mcpToken` in the config below. See [Quotas and the MCP token](#quotas-and-the-mcp-token).
 
 ## Configure
 
@@ -122,11 +122,11 @@ Every call lands in the MCP endpoint's quota domain — anonymous callers are bu
 
 | Caller | Quota | Window |
 |---|---|---|
-| Anonymous (no `mcpToken`) | 100 tool calls | per day, per IP |
-| Free account token | 2,000 tool calls | rolling 30 days |
-| Member token | 20,000 tool calls | rolling 30 days |
+| Anonymous (no `mcpToken`) | 30 tool calls | per day, per IP |
+| Free account token | 60/day + 1,200 tool calls | daily pacing + rolling 30 days |
+| Member token | 400/day + 8,000 tool calls | daily pacing + rolling 30 days |
 
-To move out of the anonymous bucket, create a token at [aigcnews.cn/mcp](https://aigcnews.cn/mcp) (no special scopes needed for search) and set it as `mcpToken`. The token lives in your dsh profile config in plaintext, same as your LLM keys. When a quota is exhausted the tool returns an actionable error — which bucket, the limit, and how long to wait or where to upgrade — so the agent can relay it instead of failing silently.
+To move out of the anonymous bucket, create a token at [aigcnews.cn/mcp](https://aigcnews.cn/mcp) (no special scopes needed for search) and set it as `mcpToken`. The token lives in your dsh profile config in plaintext, same as your LLM keys. Daily pacing is checked before the rolling monthly bucket, so hitting the daily limit does not consume monthly quota. When a quota is exhausted the tool returns an actionable error — which bucket, the limit, and how long to wait or where to upgrade — so the agent can relay it instead of failing silently.
 
 ## Develop from a source checkout
 

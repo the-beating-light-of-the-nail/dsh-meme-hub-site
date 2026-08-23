@@ -22,11 +22,11 @@ DeepSeek Harness 本地音乐/小说播放插件。
 
 ## 截图
 
-![播放条](https://raw.githubusercontent.com/kendu76/dsh-music-player/98f4f5968afb90aef8d7f10cff3252fb27e92b2d/assets/screenshot-bar.png)
+![播放条](https://raw.githubusercontent.com/kendu76/dsh-music-player/584d2262bc53c56ae73cc7c59c8613c90047bec1/assets/screenshot-bar.png)
 
-![实时频谱](https://raw.githubusercontent.com/kendu76/dsh-music-player/98f4f5968afb90aef8d7f10cff3252fb27e92b2d/assets/screenshot-spectrum.png)
+![实时频谱](https://raw.githubusercontent.com/kendu76/dsh-music-player/584d2262bc53c56ae73cc7c59c8613c90047bec1/assets/screenshot-spectrum.png)
 
-![播放面板](https://raw.githubusercontent.com/kendu76/dsh-music-player/98f4f5968afb90aef8d7f10cff3252fb27e92b2d/assets/screenshot-panel.png)
+![播放面板](https://raw.githubusercontent.com/kendu76/dsh-music-player/584d2262bc53c56ae73cc7c59c8613c90047bec1/assets/screenshot-panel.png)
 
 ## 安装
 

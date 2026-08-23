@@ -81,11 +81,11 @@ node "<DSH_HOME>\AppData\Local\dsh-prompt-enhancer\executor\0.1.11\lib\updater-h
 
 **语音识别**（输入框 🎤 录音按钮，说完自动停）：
 
-![语音识别](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/08e386facbb9d8854bcf6a2552908fa5b1d3818b/docs/screenshots/voice-main.png)
+![语音识别](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/fcbdd78748ad4cc218c577f93f7acdcf0c6c3846/docs/screenshots/voice-main.png)
 
 **语音识别设置**（引擎切换 / 快捷键唤醒 / 模型下载 / 文本规整）：
 
-![语音识别设置](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/08e386facbb9d8854bcf6a2552908fa5b1d3818b/docs/screenshots/voice-settings.png)
+![语音识别设置](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/fcbdd78748ad4cc218c577f93f7acdcf0c6c3846/docs/screenshots/voice-settings.png)
 
 ## ⚙️ 配置
 

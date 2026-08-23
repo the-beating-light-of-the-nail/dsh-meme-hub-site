@@ -63,10 +63,20 @@ dsh plugin --profile web add dsh-usage-meter
 - 每会话存 watermark（已折最后 seq），重复回放不重复计数；会话日志变短（最后 seq < watermark）则清空该会话重折
 - 变更 debounce 2s 后经 `ctx.fs.writeText` 原子写 `usage-meter.json`
 
+## cc-switch 用量同步
+
+插件同时把每个带 usage 的事件写入 [cc-switch](https://github.com/farion1231/cc-switch) 的用量数据库（`~/.cc-switch/cc-switch.db`），使其「用量统计」的「全部」视图可以和其他 CLI 一起看到 DSH 的 token 用量：
+
+- 行标识：`app_type='dsh'`、`data_source='dsh_session'`、`request_id='dsh:<会话ID>:<seq>'`；`input_token_semantics=2`（input 不含 cacheRead）；费用一律写 0，只搬 token
+- 幂等：判重只查 `session_usage_dedup`（该表永不清理；cc-switch 归档会删 `proxy_request_logs` 旧明细，不能拿明细表判重）；日志行与 dedup 行同事务写入，短事务 + `busy_timeout=5000` + BUSY 退避重试
+- 同步时机：复用 debounce 落盘路径（回放回填与活会话增量同一条幂等路径）；一次性历史回填可用 `node scripts/backfill-ccswitch.mjs`（`--dry-run` 只读对账；首次写真库前自动把库备份到仓库 `backups/`）
+- `created_at` 为秒级 epoch（与库内既有行一致），来自事件 `time`（毫秒）取整
+- 开关：环境变量 `DSH_CC_SWITCH_SYNC=0` 关闭（默认开）；`DSH_CC_SWITCH_DB` 可覆盖目标库路径（测试用）
+
 ## 开发
 
 ```bash
-node test/verify.mjs   # 自包含合成测试：口径 / 幂等 / 日志变短 / summary 自洽
+node test/verify.mjs   # 自包含合成测试：口径 / 幂等 / 日志变短 / summary 自洽 / cc-switch 同步
 ```
 
 ## License
