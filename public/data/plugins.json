@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-08-23",
- "count": 1864,
+ "updatedAt": "2026-08-24T00:09:23Z",
+ "count": 1865,
  "plugins": [
   {
    "slug": "dsh-web-ui",
@@ -77919,6 +77919,67 @@
      "h": null
     }
    ]
+  },
+  {
+   "slug": "dsh-client-ui-custom",
+   "name": "dsh-client-ui-custom",
+   "repo": "yoli-mi/dsh-client-ui-custom",
+   "url": "https://github.com/yoli-mi/dsh-client-ui-custom",
+   "description_zh": "纯前端客制化插件，七个模块可单独安装：外观主题（壁纸+毛玻璃+强调色自动取色，六套预设）、自定义快捷键、应用用量统计、浮动历史记录条、用户消息 Markdown 渲染、插件市场、对话入场动效（三套一键预设）。所有功能默认关闭，不配置时与原生界面一致，全程零 shell 改动。",
+   "description_en": "Pure front-end customization suite with seven independently installable modules: appearance theming (wallpaper, frosted glass, auto-derived accent colors, six presets), custom keyboard shortcuts, app usage statistics, floating history strip, user-message Markdown rendering, a plugin marketplace, and entrance motion presets. All features off by default, zero shell edits.",
+   "description_zh_TW": "純前端客製化外掛，七個模組可單獨安裝：外觀主題（桌布+毛玻璃+強調色自動取色，六套預設）、自訂快捷鍵、應用用量統計、浮動歷史記錄條、使用者訊息 Markdown 渲染、外掛市場、對話入場動效（三套一鍵預設）。所有功能預設關閉，不設定時與原生介面一致，全程零 shell 改動。",
+   "stars": 11,
+   "forks": 0,
+   "category_zh": "UI 增强",
+   "category_en": "UI Enhancements",
+   "category_zh_TW": "UI 增強",
+   "is_meme": false,
+   "image": "/images/dsh-client-ui-custom.webp",
+   "image_w": 992,
+   "image_h": 865,
+   "install_cmd": "dsh plugin --profile web add @ha-na-bi/dsh-client-ui-custom",
+   "pushed_at": "2026-08-23",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "deepseek",
+    "dsh",
+    "dsh-plugin",
+    "open-source",
+    "plugin",
+    "terminal-ai",
+    "theming"
+   ],
+   "video_url": "https://www.bilibili.com/video/BV1B48t6WEdE",
+   "screenshots": [
+    {
+     "url": "https://raw.githubusercontent.com/yoli-mi/dsh-client-ui-custom/61e2aed78b2880d3a8640808b83f3f42082067df/assets/preview-mini.png",
+     "w": 992,
+     "h": 865
+    },
+    {
+     "url": "https://raw.githubusercontent.com/yoli-mi/dsh-client-ui-custom/61e2aed78b2880d3a8640808b83f3f42082067df/assets/preview-fullscreen.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/yoli-mi/dsh-client-ui-custom/61e2aed78b2880d3a8640808b83f3f42082067df/assets/general-settings.png",
+     "w": 1001,
+     "h": 865
+    },
+    {
+     "url": "https://raw.githubusercontent.com/yoli-mi/dsh-client-ui-custom/61e2aed78b2880d3a8640808b83f3f42082067df/assets/shortcuts.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/yoli-mi/dsh-client-ui-custom/61e2aed78b2880d3a8640808b83f3f42082067df/assets/marketplace.png",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": true
   }
  ]
 }
