@@ -7,7 +7,7 @@ Orbis is a remote control client for Deepseek Harness (DSH).
 The Orbis plugin provides device pairing, end-to-end encrypted transport, and real-time
 updates across multiple devices.
 
-![Screenshots](https://raw.githubusercontent.com/icodesign/orbis/b94ce291d533b1da70159c15feae6f1c3a86f101/assets/orbis-screenshots.webp)
+![Screenshots](https://raw.githubusercontent.com/icodesign/orbis/dd2ad82679ec64aeeda7944e550b4234219baab9/assets/orbis-screenshots.webp)
 
 ## Getting Started
 

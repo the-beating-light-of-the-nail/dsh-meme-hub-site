@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/52b5c949d5b861229920e6f22e102e117f2f0354/docs/banner.jpg" alt="DSH Pocket" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/472524a45ef7b1ff6fbd9c3bf50787680a5497c3/docs/banner.jpg" alt="DSH Pocket" width="100%">
 </p>
 
 <h1 align="center">DSH Pocket</h1>
@@ -34,7 +34,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 实际效果——手机上的界面就是电脑上的界面，实时同步：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/52b5c949d5b861229920e6f22e102e117f2f0354/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/472524a45ef7b1ff6fbd9c3bf50787680a5497c3/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
 </p>
 
 ## ✨ 特性
@@ -48,6 +48,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 | 🧘 会话保持 | 手机输一次密码后**长期免输**（登录状态绑定电脑上的 dsh web 进程：只要它不重启，手机不用再输；**dsh web 重启/更新后需重新输入一次**） |
 | ⚡ 实时同步 | 流式输出走 WebSocket 全透传——**电脑上在输出，手机上同步在滚**，可双向操作；内置心跳保活（防路由器 NAT/省电机制静默断链，断线自动重连） |
 | 📱 移动端适配 | 窄屏自动变抽屉布局（移植 dsh-web-mobile，MIT）：侧栏抽屉、会话全宽、状态栏安全区、触控优化 |
+| 📁 文件浏览 | 移动端「文件浏览」入口需要宿主提供 explorer 面板（dsh-web-ui 组件）；官方 DSH 未内置时入口自动隐藏，不会出现"点了没反应" |
 | 🗜️ 传输压缩 | 大 JSON 响应自动 gzip/brotli（长会话 17MB → ~1MB，brotli 质量 6：快且省流量），手机加载更快、更省流量 |
 | 🔁 隧道自动恢复 | DSH 重启后自动重新拉起之前开着的公网隧道，无需手动重开 |
 | 🧩 零依赖安装 | 一个 npm 包、一个设置页，没有核心/适配器要分开装；无需账号、无需服务器 |
@@ -57,7 +58,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 **入口在哪**：安装完成并重启 `dsh web` 后，打开 **设置**，左侧边栏就能看到 **「手机访问」** 入口（和「通用设置」「模型」同级）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/52b5c949d5b861229920e6f22e102e117f2f0354/docs/entry.jpg" alt="手机访问入口" width="70%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/472524a45ef7b1ff6fbd9c3bf50787680a5497c3/docs/entry.jpg" alt="手机访问入口" width="70%">
 </p>
 
 **前提**：电脑上已装好 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。如果终端提示 `dsh: command not found`（找不到 dsh 命令），先安装：
@@ -82,6 +83,8 @@ npx @deepseek-ai/dsh web
 > 局域网密码**默认开启**（安全优先）。如果只有自己用、嫌每次输密码麻烦，可在设置页局域网区块把「局域网访问密码」切到**关**——之后局域网扫码直连、无需密码（仅同一局域网设备可访问；**公网始终要密码**，不受影响）。
 >
 > 手机登录一次后**长期免输**：只要电脑上的 dsh web 不重启，再次打开手机不用再输入（**dsh web 重启/更新后需重新输入一次**）。
+>
+> 高级选项：自动识别在 Tailscale/VPN 等场景下可能选不到可达地址。可在「局域网地址」下拉框手动选择已检测到的 IP；一般不需要修改。
 
 ### 公网（人在外面）
 

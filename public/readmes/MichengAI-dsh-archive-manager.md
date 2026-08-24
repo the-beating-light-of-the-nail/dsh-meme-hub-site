@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/9aebc82a747112be28f712e5d5cc7dfd84b30aed/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/88d7ec22907e6871d366f71ab83686424fade993/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -8,7 +8,7 @@
 
   **Safely manage archived sessions in DeepSeek Harness**
 
-  [简体中文](README.zh-CN.md) · [Apache-2.0](LICENSE)
+  [简体中文](README.zh-CN.md) · [Changelog](CHANGELOG.md) · [Apache-2.0](LICENSE)
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-archive-manager.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-archive-manager)
@@ -22,8 +22,10 @@
 ## Features
 
 - Archive a session from the sidebar session menu.
-- Search archived chats and filter them by workspace in **Settings → Archived**.
+- Search archived chats, sort them by update time, creation time, or title, and filter them by workspace in **Settings → Archived**.
 - Restore a session to its original workspace with **Unarchive**.
+- Restore or permanently delete every archived chat in a project group.
+- Restore all archived chats from the page header.
 - Permanently delete a confirmed session, its workspace association, archive marker, and projection cache.
 - Delete all archived chats after confirmation, including child agents.
 - Remove unloaded deleted sessions from connected sidebars immediately.
@@ -33,11 +35,11 @@
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/9aebc82a747112be28f712e5d5cc7dfd84b30aed/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/88d7ec22907e6871d366f71ab83686424fade993/assets/screenshots/archive-session-menu.png)
 
-Search, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
+Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/9aebc82a747112be28f712e5d5cc7dfd84b30aed/assets/screenshots/archived-sessions.png)
+![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/88d7ec22907e6871d366f71ab83686424fade993/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 
@@ -129,9 +131,10 @@ Restart DSH Web and hard-refresh the browser. `dsh plugin ... add .` reads the p
 
 1. Open the sidebar session menu and choose **Archive session**.
 2. Open **Settings → Archived** to inspect sessions by workspace.
-3. Use the search box or project filter to narrow the list.
-4. Select **Unarchive** to restore a session, or use the delete icon to remove it permanently.
-5. Confirm deletion. **It cannot be undone.**
+3. Search by title, sort by update time, creation time, or title, or filter the list by project.
+4. Select **Unarchive** to restore one session, or select **Restore all** in the page header.
+5. Open a project heading's action menu to restore or delete all of that project's archived chats.
+6. Use the delete icon to remove one session permanently, then confirm the deletion. **It cannot be undone.**
 
 If the entry is missing after installation or upgrade, restart DSH Web and hard-refresh the browser. It is located directly after **Connectors** in Settings.
 
@@ -180,3 +183,7 @@ pnpm pack:check
 ## License
 
 Licensed under [Apache License 2.0](LICENSE).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for retained release notes.

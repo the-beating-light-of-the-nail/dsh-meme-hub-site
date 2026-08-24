@@ -40,10 +40,8 @@
 > 文本按词切分 → 每词打分（`score = keep概率 × (0.5 + 0.5 × span分数)`，模拟模型的
 > token 分类头 + span CNN 双头）→ `score > 0.5` 保留（或 `targetRatio` 取 top-k）→
 > 数字 / hex / 全大写标识符 / 路径 / 扩展名 / CLI flag / CamelCase 等**语义脆弱词强制保留**
-> → 保留词重组。默认评分器是确定性纯 JS 启发式；如需接入真实
-> Kompress-v2-base 模型，可**库级注入**自定义 scorer
-> （`compressKompressText(text, { scorer })` / `createKompressCompressor({ scorer })`），
-> 管线完全一致（插件配置暂不暴露 `scorer` 项）。
+> → 保留词重组。默认评分器是确定性纯 JS 启发式；也可启用**真实 Kompress-v2-base
+> ONNX 模型**打分（`kompress.scorer: 'onnx'`，见下文「真实模型压缩」）。
 
 - **可逆压缩（CCR）**：所有有损压缩都保存原文，`headroom_retrieve` 按 id 精确取回；
   `headroom_stats` 查看节省量；`headroom_compress` 压缩任意文本。
@@ -106,9 +104,40 @@ flowchart LR
 > Kompress 样本：关键事实（`HTTP`/`500`/hex/路径/`IndexError`）全部保留，
 > 重复的 `boilerplatephrase` 被删除且可从 CCR 恢复。
 
+### 真实模型压缩（Kompress-v2-base · ONNX）
+
+v0.3.0 起可选用真实模型替代启发式评分器：
+
+```jsonc
+{
+  "kompress": {
+    "scorer": "onnx",
+    "onnx": {
+      "modelDir": "~/.dsh/storages/dsh-headroom-model/kompress-v2-base",
+      "hfLocalDir": "~/.dsh/storages/dsh-headroom-model/hf"
+    }
+  }
+}
+```
+
+- **下载模型**（huggingface.co 不可达时可用 hf-mirror.com）：
+  `onnx/kompress-int8-wo.onnx`（261MB，推荐）、`tokenizer.json`(3.4MB)、
+  `config.json`、`tokenizer_config.json`、`special_tokens_map.json`
+  来自 [chopratejas/kompress-v2-base](https://huggingface.co/chopratejas/kompress-v2-base)；
+  后四个文件同时复制一份到 `hfLocalDir/kompress-v2-base/` 供分词器加载。
+- **依赖**：`pnpm add -D onnxruntime-node @huggingface/transformers`（可选依赖，
+  未安装或模型缺失时自动回退启发式并告警）。
+- **自动校准**：导出模型的融合分数普遍偏高（≈0.7–0.99），阈值 0.5 几乎全保留；
+  插件在 onnx 模式且用户未显式配置 `targetRatio`/`scoreThreshold` 时自动改用
+  top-k `targetRatio=0.55`。
+- **实测**（`node scripts/kompress-onnx-eval.mjs`，int8 CPU）：压缩率全面高于启发式
+  且事实保留 100%（英文长文 28.4% vs 19.1%、中英混排 8.6% vs 0%、QA 文档 32.5% vs
+  17.1%）；吞吐约 100–400 词/秒（启发式 ≈40 万词/秒），适合只压大输出；重复压缩
+  有界收敛、marker 防重入生效。
+
 ### 默认配置
 
-默认配置更保守（`minChars=600, maxRows=80, maxCellChars=200, maxTextChars=2400`）：
+默认配置更保守（`minChars=4000, maxRows=80, maxCellChars=200, maxTextChars=2400`）：
 
 | 样本 | 类型 | 节省 |
 |------|------|-----:|
@@ -341,7 +370,7 @@ node scripts/verify-apply.mjs
 | 集成方式 | proxy / wrap / MCP / SDK | dsh 原生插件，直接挂 `tools/post-execute` |
 | JSON | SmartCrusher（Rust core） | JS 透视压缩（`_keys`/`_rows`/`_common`） |
 | 代码 | AST CodeCompressor | 默认跳过（保证可补丁字节安全） |
-| 文本 | Kompress-v2-base ML 模型（ONNX/PyTorch） | **同款 Kompress 管线**（词级评分 + must-keep + 阈值/top-k）；默认纯 JS 启发式 scorer，可通过 `createKompressCompressor({ scorer })` 库级注入真实模型后端（插件配置暂不暴露） |
+| 文本 | Kompress-v2-base ML 模型（ONNX/PyTorch） | **同款 Kompress 管线**；默认纯 JS 启发式 scorer，v0.3.0 起支持 `kompress.scorer: 'onnx'` 直连真实模型（见「真实模型压缩」） |
 | 可逆性 | CCR | 本地 CCR store + `headroom_retrieve` |
 | 原生依赖 | 部分 extra 需要（onnxruntime/torch） | 无（默认启发式）；接入真实模型时才需要外部依赖 |
 

@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/17fa3a5b87d9adabeb2ae476a245decf2b6e01c8/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/cea163af7d3acfd4da02631caa7394ba8a3079c2/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -27,7 +27,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/17fa3a5b87d9adabeb2ae476a245decf2b6e01c8/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/17fa3a5b87d9adabeb2ae476a245decf2b6e01c8/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/17fa3a5b87d9adabeb2ae476a245decf2b6e01c8/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/cea163af7d3acfd4da02631caa7394ba8a3079c2/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/cea163af7d3acfd4da02631caa7394ba8a3079c2/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/cea163af7d3acfd4da02631caa7394ba8a3079c2/assets/settings.png) |
 
 ## 安装
 
@@ -47,14 +47,28 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 
 ## 更新内容
 
-### Unreleased
+### v2.1.1
 
-- 优化插件 dsh-meme 移动端的表现
+**修复**
+
+- 设置「模型分组」区在手机上卡片宽窄不一、首尾卡超出屏幕右缘
+- 后台任务触发器存在时，正在运行的子代理计数不准确
+- 移动端会话头部标题栏布局异常，隐藏多余的路径分隔符
+- 手机上打开插件市场后设置导航被隐藏、无路可退（dshmarket ≥1.20 反制）
+- 市场 Tasks 弹卡贴边不居中；出现待更新按钮时标题行被压成逐词竖排
+- 输入区发送、加号、上下文按钮窄屏下被挤压漂移，现固定尺寸钉位
+- viewport meta 改写保留宿主 maximum-scale，页面缩放行为与官方一致
+
+**优化**
+
+- 插件 dsh-meme 移动端表现
 - Agent preset 模式选择菜单改为底部弹层，不再撑满竖屏
-- 修复后台任务触发器存在时，正在运行的子代理计数不准确的问题
 - 适配最新 dshmarket 移动端 UI（卡片画廊、已安装列表、标签头部）
+
+**重构**
+
 - 完成 phase 2-4 代码重组，优化 !important 使用
-- 修复移动端会话头部标题栏的布局异常，隐藏多余的路径分隔符
+- 哈希类选择器全量改为子串匹配并补 `:not` 守卫，救活一批静默失效的规则（PR #27/#28 系列）
 
 ### v2.0.0
 
@@ -85,10 +99,10 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 
 ## 兼容插件
 
-- [dsh-web-ui](https://www.npmjs.com/package/@linxin666/dsh-web-ui-all)——**0.1.14**
-- [dshmarket](https://www.npmjs.com/package/dshmarket)——**v1.17.1**
-- [dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats)——**0.1.2**
-- [dsh-genui](https://github.com/omdsh-dev/dsh-genui)——**0.8.3**
+- [dsh-web-ui](https://www.npmjs.com/package/@linxin666/dsh-web-ui-all)——**0.1.20**
+- [dshmarket](https://www.npmjs.com/package/dshmarket)——**v1.20.2**
+- [dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats)——**0.2.10**
+- [dsh-genui](https://github.com/omdsh-dev/dsh-genui)——**0.9.1**
 - [dsh-meme](https://github.com/mexiaosqwq/dsh-meme)——**v0.1.39**
 
 ## 构建

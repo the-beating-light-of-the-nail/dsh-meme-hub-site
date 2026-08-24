@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
 </p>
 
 <div align="center">
@@ -27,7 +27,7 @@
 - 手机里直接下任务、看回复、批准工具；模型和权限跟随本机 DSH。
 - 支持扫码绑定或手动填凭据；敏感字段写入 DSH `ctx.credentials`，不会进 `channels.json`。
 - 可把一句话复制到 DSH、Codex 或 WorkBuddy，让对方代装到本机 DSH。
-- 群聊不用绑定，@ 即可对话；私聊只有扫码用户自动放行，其他人要在设置页批准。
+- 群聊不用绑定，@ 即可对话；私聊中，平台能返回身份的扫码用户自动放行，其他人要在设置页批准。
 - 扫码成功后配置弹窗自动关闭，设置页保持打开。
 
 ## 谁可以驱动助手
@@ -36,11 +36,12 @@
 
 | 场景 | 行为 |
 |---|---|
-| 群聊未 @ | 忽略，不回复、不进待批准 |
-| 群聊已 @ | 不用绑定，任何人都可以下任务 |
-| 私聊 · 扫码用户 | 微信 / 飞书 / Lark 扫码者自动进白名单，可直接对话 |
+| 群聊未 @ 当前机器人 | 忽略，不回复、不进待批准；只 @ 其他成员也不触发 |
+| 群聊已准确 @ 当前机器人 | 不用绑定，任何人都可以下任务 |
+| 私聊 · 扫码用户 | 微信 / 飞书 / Lark / QQ 扫码者自动进白名单，可直接对话 |
 | 私聊 · 其他人 | 进入设置页待批准；不批准就不能驱动助手 |
-| 私聊 · 无扫码用户的渠道 | Telegram、以及只填凭据的钉钉 / 企微 / QQ，所有私聊都要先批准 |
+| 私聊 · 扫码不返回身份 | 钉钉 / 企微的快捷绑定只返回机器人凭据，扫码者仍需在设置页批准 |
+| 私聊 · 手动凭据 | Telegram，以及手动填写凭据的钉钉 / 企微 / QQ，所有私聊都要先批准 |
 | 私聊缺少 userId | 拒绝 |
 | 工具审批 | 仅白名单用户在私聊回复「批准 / 拒绝」有效；群聊里回不算 |
 
@@ -74,27 +75,27 @@
 
 在「设置 → IM助理」连接渠道。未连接显示「配置」，已连接显示开关和状态：
 
-![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/settings-channels.png)
+![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/settings-channels.png)
 
 工作区左侧「任务 / 频道」分列。IM 会话只出现在「频道」：
 
-![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/workspace-channels.png)
+![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/workspace-channels.png)
 
 企业微信等渠道支持扫码快捷绑定：
 
-![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/wecom-qr.png)
+![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/wecom-qr.png)
 
 连上后，可在各 IM 里直接驱动本机助手：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8a7868154de1baf4c8f886ff7956f995653ba84c/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/08dbf0c7228a593c91283e12cfae4ee3b46584c6/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
 </p>
 
 ## DSH 产品生态
@@ -192,7 +193,7 @@ dsh --profile web --dump-config
 | --- | --- | --- |
 | 连接渠道 | 未连接卡片点「配置」，扫码或填写凭据 | 飞书 / Lark / 微信仅扫码；Telegram 仅填 Bot Token；成功后配置弹窗自动关闭 |
 | 暂停接收 | 关闭已连接卡片上的开关 | 凭据保留，只是暂时不收消息 |
-| 在 IM 里下任务 | 扫码用户私聊直接发文字；其他人需先在设置页批准。群聊只需 @ | 每个聊天对应一条独立频道会话 |
+| 在 IM 里下任务 | 微信 / 飞书 / Lark / QQ 扫码用户可直接私聊；钉钉 / 企微扫码者和其他用户需先批准。群聊只需 @ | 每个聊天对应一条独立频道会话 |
 | 分段输入 | 结尾加 `..` 表示还有后续，`!!` 表示立即提交 | 默认约 5 秒合并窗口 |
 | 新开会话 | 发送 `/new` 或 `/clear` | 只影响当前 IM 聊天，不影响网页任务 |
 | 查看状态 / 帮助 | 发送 `/status` 或 `/help` | 只作用于当前频道会话 |
@@ -206,15 +207,15 @@ dsh --profile web --dump-config
 
 | 项 | 当前行为 |
 | --- | --- |
-| 用户准入 | 群聊不用绑定，只需 @。私聊默认拒绝：扫码用户自动放行，其他私聊用户需在设置页批准 |
-| 管理接口 | 仅本机回环（`localhost` / `127.0.0.1` / `[::1]`） |
-| 敏感字段 | 优先写入 DSH `ctx.credentials`；没有该服务时落到 `%DSH_HOME%\dsh-im-connect\secrets.json` |
+| 用户准入 | 群聊不用绑定，只需 @。私聊默认拒绝：微信 / 飞书 / Lark / QQ 扫码者自动放行；钉钉 / 企微扫码不返回用户身份，仍需设置页批准 |
+| 管理接口 | 强制校验本机回环来源及 Host（`localhost` / `127.0.0.1` / `[::1]`）；写接口要求 JSON 和插件客户端请求头 |
+| 敏感字段 | 包括微信 token 在内均优先写入 DSH `ctx.credentials`；没有该服务时落到 `%DSH_HOME%\dsh-im-connect\secrets.json`（明文，仅限当前用户，禁止同步或分享） |
 | 渠道状态 | `channels.json` 只保存启用状态和凭据引用，不保存明文 Secret |
-| 浏览器回包 | 不返回 token、secret、App Secret 或原始用户标识 |
+| 浏览器回包 | 不返回 token、secret、App Secret 或内部异常详情 |
 | 微信协议 | 只走腾讯官方 iLink，不使用逆向个人微信协议 |
 | 工具批准 | 仅私聊且发送者已在白名单时生效，不能跨会话、也不能在群里批准 |
 
-不要把 DSH Web 暴露到非本机地址。权限预设依赖 Host 的 sandbox-policy；`full-access` 不套沙箱。
+不要把 DSH Web 暴露到非本机地址。权限预设与 Chat 使用相同的 Host sandbox-policy；`danger-full-access` 不套沙箱。
 
 ## 二次开发
 
@@ -253,3 +254,7 @@ npm test
 项目状态、使用边界、技术架构和迭代记录从[文档交接入口](docs/00-交接入口/00-阅读导航.md)开始。详细操作说明见 [使用说明](docs/02-产品与业务/04-使用说明.md)。默认安全姿态见 [SECURITY.md](SECURITY.md)。
 
 本项目采用 [Apache License 2.0](LICENSE)。
+
+## 更新日志
+
+最近五个发布版本见 [CHANGELOG.zh-CN.md](CHANGELOG.zh-CN.md)。

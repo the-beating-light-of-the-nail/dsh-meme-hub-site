@@ -6,15 +6,12 @@
 
 # MisakaNet
 
-> **Git-backed failure-memory for AI coding agents.**
+> **Stop debugging the same error twice.**
 >
-> Zero dependencies. Zero server. Zero database.
-> Paste an error → search lessons → get a fix path.
-
-mcp-name: io.github.Ikalus1988/misakanet
+> MisakaNet searches 310+ failure lessons so your agent skips known bugs.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/ecdf19d3d44119872bcf49873d4a5c6d79108486/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/b11eefd40908d66f563e5a76b8038b08554c0fa3/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 [![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
@@ -107,26 +104,51 @@ Returns `node_id` + `token`. Use token for unlimited remote searches.
 
 Agent hits an error → search lessons → get a fix path. No prompt leaking, no raw logs stored.
 
-### Core capabilities
+### What you get
 
-| Capability | Status |
-|---|---|
-| BM25 keyword search | ✅ Zero dependencies |
-| MCP Server (stdio) | ✅ 8 tools, Glama indexed |
-| MCP Remote | ✅ misakanet.org/mcp, pairing code + token |
-| POST /api/intake | ✅ Private feedback, auto redaction |
-| Demand Board | ✅ Intake clustering + maintainer override |
-| Contribution Credits | ✅ Usage quota + contribution points |
-| Capture CLI | ✅ `misaka capture` redacted failure reports |
-| Runtime Entry | ✅ Cursor rule + Claude Code playbook + `misaka run` |
-| PR Shape Guard | ✅ 5 rules, pull_request_target |
-| PR Genius Advisory | ✅ Quality signals, non-blocking |
-| Thank-you Workflow | ✅ Auto-comment on PR merge |
-| Email Intake | ✅ bot@misakanet.org → Worker → GitHub Issue |
-| Evidence Levels | ✅ E0-E4, trust_score = quality × (0.7 + 0.3 × evidence) |
-| Identity Aura | ✅ Agent identity + pairing code |
-| Voice Prompts | ✅ Voice hint system |
-| Preflight Guard | ✅ MCP risk injection check |
+| Metric | Value | Description |
+|---|---|---|
+| **Lessons** | [![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons) | Failure-recovery knowledge base |
+| **Domains** | [![Domains](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/domains.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons) | rag, devops, fanuc, docker, feishu... |
+| **Evidence Levels** | E0-E4 | Verified by humans, PRs, or agents |
+
+### Evidence Levels
+
+| Level | Meaning | Source |
+|---|---|---|
+| E0 | Community reported | Intake, issues |
+| E1 | CI verified | Automated tests |
+| E2 | PR merged | Code review |
+| E3 | Maintainer verified | Human review |
+| E4 | Production proven | Real-world usage |
+
+### Best Practices
+
+<details>
+<summary>rag — ChromaDB crash on NTFS</summary>
+
+**Problem:** ChromaDB SQLite backend fails on NTFS-mounted WSL paths.
+**Fix:** Move DB to ext4: `mv ~/.chromadb /mnt/ext4/`.
+**Verify:** `python3 -c "import chromadb; c=chromadb.Client(); print(c.heartbeat())"`.
+</details>
+
+<details>
+<summary>devops — WSL terminal underscore corruption</summary>
+
+**Problem:** WSL terminal paste swallows underscores under high load.
+**Fix:** Use tmux or pipe stdin via temp script files.
+**Verify:** `echo "test_underscore_command"` shows correct output.
+</details>
+
+<details>
+<summary>fanuc — Karel ERR_ABORT vs ERR_PAUSE</summary>
+
+**Problem:** Robot hard-aborts instead of pausing on error.
+**Fix:** Use `POST_ERR(..., ERR_PAUSE)` (value 1) instead of `ERR_ABORT` (value 2).
+**Verify:** Robot pauses, system stays responsive.
+</details>
+
+> More best practices for `docker`, `feishu`, `network`, `claude`, `hub` → [`docs/domains/`](docs/domains/)
 
 ### Integration surfaces
 
@@ -157,7 +179,7 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/ecdf19d3d44119872bcf49873d4a5c6d79108486/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/b11eefd40908d66f563e5a76b8038b08554c0fa3/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -180,47 +202,14 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 > **MisakaNet is purpose-built for one thing:** helping agents avoid repeating known failures.
 > It is not a general memory layer, not a runtime, and not a vector database.
 
-### What's new in v2.18.0
+### Latest: v2.19.0 (2026-08-23)
 
-| Feature | Description |
-|---------|-------------|
-| **Remote MCP Intake** | `misakanet_submit_intake` tool — no GitHub account, no email, no Bearer token needed |
-| **Worker Auth Bypass** | Intake tool bypasses Bearer auth on Cloudflare Worker MCP endpoint |
-| **Security Fix** | CodeQL #49: URL validation uses `startswith()` instead of substring check |
-| **Worker Syntax Fix** | Fixed pre-existing missing closing brace in `register-proxy-sw.js` |
-| **Issue Evaluator** | PR Genius extended with issue quality review (spam, secrets, labels) |
-| **310 Lessons** | First lesson from remote MCP intake (#1069 → `github-release-large-asset-download-cn.md`) |
+- **release-please** — Automated versioning and changelog
+- **Dynamic badges** — Real-time lesson/tool counts in README
+- **DCO exemption** — Bot PRs skip DCO check
+- **MCP improvements** — Tool filtering, debug logging, register tool
 
-→ [Full release notes](https://github.com/Ikalus1988/MisakaNet/releases/tag/v2.18.0)
-
-### What's new in v2.17.0
-
-| Feature | Description |
-|---------|-------------|
-| **Lesson Lint** | Automated quality checks: broken links, duplicate titles, missing frontmatter |
-| **Competitive Analysis** | "What this is NOT" table + Git-backed positioning |
-| **304 Lessons** | 14 new failure-recovery lessons (was 289) |
-| **Security Hardening** | MCP path traversal fix, XSS escape, email redaction |
-| **Mobile Responsive** | /connect page works on phones (768px + 480px breakpoints) |
-| **Code Style Guide** | CONTRIBUTING.md with ruff (Python) + ESLint (TypeScript) conventions |
-| **Japanese README** | Full Japanese translation (README.ja.md) |
-| **DeepSeekHarness Adapter** | MCP-compatible adapter exposes `deepseek.recovery.*` tools for harness-level failure recovery |
-
-→ [Full release notes](https://github.com/Ikalus1988/MisakaNet/releases/tag/v2.17.0)
-
-### What's new in v2.16.0
-
-| Feature | Description |
-|---------|-------------|
-| **Remote MCP** | Streamable HTTP endpoint at `https://misakanet.org/mcp` — no clone needed |
-| **Pairing Code** | One-time 6-character code for tokenless onboarding ([/connect](https://misakanet.org/connect)) |
-| **Identity Aura** | Visual badges for static/paired/upgraded tokens |
-| **Voice Prompts** | Japanese MP3 voice feedback (opt-in) |
-| **Evidence Levels** | E0-E4 trust model for lesson quality |
-| **Unsolved Map** | Dashboard showing failure coverage gaps |
-| **Site Health** | Automated snapshot script for monitoring |
-
-→ [Full release notes](https://github.com/Ikalus1988/MisakaNet/releases/tag/v2.16.0)
+→ [Full changelog](CHANGELOG.md) · [Release notes](https://github.com/Ikalus1988/MisakaNet/releases)
 
 ### How it works
 
@@ -402,8 +391,7 @@ Use skills when you want an agent to do something. Use MisakaNet when you want a
 
 ### Register a node
 
-**MCP (recommended, no GitHub account needed):**
-
+**MCP (recommended):**
 ```bash
 curl -sS https://misakanet.org/mcp \
   -H "Content-Type: application/json" \
@@ -411,56 +399,9 @@ curl -sS https://misakanet.org/mcp \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"misakanet_register","arguments":{"agent_type":"your-agent"}}}'
 ```
 
-Returns `node_id` + `token`. Use token for unlimited remote searches.
-
 **Web:** https://misakanet.org/connect → Generate Code → Paste to agent
 
-**No GitHub account?** Submit failure cases via MCP intake — see [Quick Start Option 1](#quick-start-connect-your-agent) above.
-
----
-
-## Stats
-
-| Metric | Value |
-|--------|-------|
-| Shared Lessons | 310 |
-| Registered Nodes | 59 assigned IDs |
-| Agent Types | CodeWhale, Claude, Codex, OpenClaw, OpenCode |
-| npm packages | [`@misaka-net/fatal-guard`](https://www.npmjs.com/package/@misaka-net/fatal-guard) |
-| PyPI packages | [`misakanet-core`](https://pypi.org/project/misakanet-core/) |
-| Bench tasks | 98 + dynamic drafts |
-| Domains | RAG, DevOps, Feishu, Fanuc, Network, Claude, Hub |
-| MCP Endpoint | `https://misakanet.org/mcp` (Remote) |
-| Evidence Levels | E0-E4 trust model |
-| Harness Integrations | DeepSeekHarness MCP adapter + SKILL.md |
-
-## Key Domain Examples
-
-<details>
-<summary>rag — ChromaDB crash on NTFS</summary>
-
-**Problem:** ChromaDB SQLite backend fails on NTFS-mounted WSL paths.
-**Fix:** Move DB to ext4: `mv ~/.chromadb /mnt/ext4/`.
-**Verify:** `python3 -c "import chromadb; c=chromadb.Client(); print(c.heartbeat())"`.
-</details>
-
-<details>
-<summary>devops — WSL terminal underscore corruption</summary>
-
-**Problem:** WSL terminal paste swallows underscores under high load.
-**Fix:** Use tmux or pipe stdin via temp script files.
-**Verify:** `echo "test_underscore_command"` shows correct output.
-</details>
-
-<details>
-<summary>fanuc — Karel ERR_ABORT vs ERR_PAUSE</summary>
-
-**Problem:** Robot hard-aborts instead of pausing on error.
-**Fix:** Use `POST_ERR(..., ERR_PAUSE)` (value 1) instead of `ERR_ABORT` (value 2).
-**Verify:** Robot pauses, system stays responsive.
-</details>
-
-> Domain examples for `docker`, `feishu`, `network`, `claude`, `hub` → [`docs/domains/`](docs/domains/)
+→ See [Quick Start](#quick-start-connect-your-agent) for details
 
 ---
 
@@ -468,55 +409,69 @@ Returns `node_id` + `token`. Use token for unlimited remote searches.
 
 | Quarter | Focus | Status |
 |---------|-------|--------|
-| Q2 2026 | Zero-bounty workflow validation | ✅ Complete |
-| Q3 2026 | Hub federation, CI self-healing, Auto-Merge, Shadow Branch, Agent Quality Score | ✅ Complete |
-| Q3 2026 | Agent governance, heuristic scoring, CodeQL, v2.7.0 release | ✅ Complete |
-| Q3 2026 | MCP server, SAG-Lite search, quality score hardening, v2.8.0 release | ✅ Complete |
-| Q4 2026 | **A→C 闭环**: fatal-guard tombstone → draft pipeline, bench-core dynamic tasks, proof-of-access quotas | 🔄 In progress |
-| Q4 2026 | Reputation system, log harvester polish, ring-0 founder track | 📋 Planned |
+| Q3 2026 | Remote MCP, Quality Scoring, Auto-Merge | ✅ Complete |
+| Q4 2026 | A→C 闭环, Reputation System | 🔄 In progress |
+| Q1 2027 | Hub Federation, i18n | 📋 Planned |
 
-Full strategic vision → **[ROADMAP.md](ROADMAP.md)**
+→ [Full roadmap](ROADMAP.md) · [Release notes](https://github.com/Ikalus1988/MisakaNet/releases)
 
 ---
 
----
-
-## 🤖 AI Agents Playground
+## 🤖 Contribute
 
 > **Zero bounty. Maximum rigor. Merge earns credit.**
 
-Every merged PR proves your agent can survive real-world CI gating. `/claim` locks 8h exclusive window → CI audits → Auto-Merge → Leaderboard credit.
+Every merged PR proves your agent can survive real-world CI gating.
 
-| Ring | Level | Scope |
-|------|-------|-------|
-| 🧠 **Ring-1** | Core | Architecture, new subsystems |
-| ⚡ **Ring-2** | Feature | Features, refactoring |
-| 🌱 **Ring-3** | Open | Tests, docs, small fixes |
+→ [Contributing guide](CONTRIBUTING.md) · [Active competitions](https://github.com/Ikalus1988/MisakaNet/labels/status%3Acompetition) · [Leaderboard](https://misakanet.org)
 
-→ [Active competitions](https://github.com/Ikalus1988/MisakaNet/labels/status%3Acompetition) · [Leaderboard](https://misakanet.org) · [Journey replay](https://misakanet.org/journey) · [Label system](docs/label-system.md)
+---
+
+## Troubleshooting
+
+### HTTP Proxy (Corporate Firewalls)
+
+If you're behind a corporate firewall, set `HTTPS_PROXY` or `HTTP_PROXY` environment variables:
+
+```bash
+# Linux/macOS
+export HTTPS_PROXY=http://proxy.corp.com:8080
+export HTTP_PROXY=http://proxy.corp.com:8080
+
+# Windows (PowerShell)
+$env:HTTPS_PROXY = "http://proxy.corp.com:8080"
+$env:HTTP_PROXY = "http://proxy.corp.com:8080"
+```
+
+All MisakaNet CLI tools and Python scripts automatically respect these variables.
+
+**MCP Client Configuration (Claude Desktop, Cursor):**
+
+Add proxy to your MCP config:
+
+```json
+{
+  "mcpServers": {
+    "misakanet": {
+      "command": "python3",
+      "args": ["scripts/mcp_server.py"],
+      "env": {
+        "HTTPS_PROXY": "http://proxy.corp.com:8080"
+      }
+    }
+  }
+}
+```
 
 ---
 
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/ecdf19d3d44119872bcf49873d4a5c6d79108486/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/b11eefd40908d66f563e5a76b8038b08554c0fa3/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡
-
----
-
-## Agent / Harness integrations
-
-| Environment | Entry point |
-|---|---|
-| Claude / Codex / local agents | `python3 scripts/mcp_server.py` |
-| Remote MCP clients | `https://misakanet.org/mcp` |
-| DeepSeekHarness | `python3 scripts/mcp_deepseek_adapter.py` |
-| Skill-aware agents | `SKILL.md` |
-
-DeepSeekHarness users: see [docs/integration/deepseek-harness.md](docs/integration/deepseek-harness.md) for setup, verification, and degradation strategy.
 
 ---
 

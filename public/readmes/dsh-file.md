@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/3ff26d055ad3453bbe04c779b2d9b21ae785ca0a/docs/logo-transparent.svg" alt="dsh-file logo" width="120" />
+  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/1a94663da7eb81e31701b342a1e51f58616bd04d/docs/logo-transparent.svg" alt="dsh-file logo" width="120" />
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/chengzhi43/dsh-file/releases"><img alt="version" src="https://img.shields.io/badge/version-0.1.1-0969da?style=flat" /></a>
+  <a href="https://github.com/chengzhi43/dsh-file/releases"><img alt="version" src="https://img.shields.io/badge/version-0.1.3-0969da?style=flat" /></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" /></a>
   <img alt="DeepSeek Harness" src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-4dabf7?style=flat" />
   <a href="https://github.com/chengzhi43/dsh-file"><img alt="stars" src="https://img.shields.io/github/stars/chengzhi43/dsh-file?style=flat&label=stars" /></a>
@@ -33,7 +33,7 @@
 ## 截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/3ff26d055ad3453bbe04c779b2d9b21ae785ca0a/docs/screenshot.jpg" alt="dsh-file 使用界面：左侧文件树，中间 Monaco 编辑器" width="100%" />
+  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/1a94663da7eb81e31701b342a1e51f58616bd04d/docs/screenshot.jpg" alt="dsh-file 使用界面：左侧文件树，中间 Monaco 编辑器" width="100%" />
 </p>
 
 侧边栏文件树浏览工作区，点击文件后在中间列「文件」视图中编辑（Monaco 编辑器，语法高亮）。
@@ -65,13 +65,13 @@ dsh plugin --profile desktop add .
 ### 从 npm 安装
 
 ```sh
-dsh plugin --profile web add dsh-file
+dsh plugin --profile web add @rose43/dsh-file
 ```
 
 或从 [Releases](https://github.com/chengzhi43/dsh-file/releases) 页面下载 tarball 后本地安装（桌面端把 `--profile web` 换成 `--profile desktop`）：
 
 ```sh
-dsh plugin --profile web add ./dsh-file-0.1.1.tgz
+dsh plugin --profile web add ./rose43-dsh-file-0.1.2.tgz
 ```
 
 ### 配置
@@ -80,8 +80,8 @@ dsh plugin --profile web add ./dsh-file-0.1.1.tgz
 
 ```yaml
 - insert:
-    - id: dsh-file
-      name: 'dsh-file'
+    - id: '@rose43/dsh-file'
+      name: '@rose43/dsh-file'
       config:
         root: !!js process.cwd()   # 仅作为打开文件管理器前的兜底根目录
 ```
@@ -141,7 +141,7 @@ dsh plugin --profile web add ./dsh-file-0.1.1.tgz
 
 ## 架构
 
-插件由两半组成，共用包名 `dsh-file`：
+插件由两半组成，共用包名 `@rose43/dsh-file`（GitHub 仓库仍为 `chengzhi43/dsh-file`）：
 
 |        | Host 半（Node 进程）                                                      | Client 半（浏览器 React）                           |
 | ------ | -------------------------------------------------------------------- | --------------------------------------------- |

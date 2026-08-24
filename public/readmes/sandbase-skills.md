@@ -1,6 +1,7 @@
 # SandBase Skills
 
 [![GitHub stars](https://img.shields.io/github/stars/sandbaseai/sandbase-skills?style=social)](https://github.com/sandbaseai/sandbase-skills/stargazers)
+[![Validate Skills](https://github.com/sandbaseai/sandbase-skills/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/sandbaseai/sandbase-skills/actions/workflows/validate.yml)
 [![skills.sh installs](https://skills.sh/b/sandbaseai/sandbase-skills)](https://skills.sh/sandbaseai/sandbase-skills)
 [![AgentSkill.sh directory](https://img.shields.io/badge/AgentSkill.sh-security--scanned_directory-0f766e)](https://agentskill.sh/@sandbaseai)
 [![Release](https://img.shields.io/github/v/release/sandbaseai/sandbase-skills)](https://github.com/sandbaseai/sandbase-skills/releases/latest)
@@ -25,7 +26,7 @@ ships a worked evidence-ledger example, and includes an offline validator. If it
 improves a real workflow, [star the repository](https://github.com/sandbaseai/sandbase-skills)
 so other builders can discover it.
 
-![Multi-source search workflow: search capabilities, source-origin tracing, evidence ledger, and offline validation](https://raw.githubusercontent.com/sandbaseai/sandbase-skills/9d7e56e02c86756d1765714eb533c8998bb93a1c/assets/multi-source-search-workflow.svg)
+![Multi-source search workflow: search capabilities, source-origin tracing, evidence ledger, and offline validation](https://raw.githubusercontent.com/sandbaseai/sandbase-skills/e8a0c66c560d9fefc0b03f0310486105aa993a24/assets/multi-source-search-workflow.svg)
 
 ## What are Skills?
 

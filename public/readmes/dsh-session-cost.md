@@ -10,7 +10,7 @@ DSH（DeepSeek Harness）Web 插件：把**本次会话的 Token 费用估算**�
 
 费用/余额段**追加到自带统计行同一行**，与轮次/时长/token 统计并列（会话尚无统计内容时暂不显示）。DSH rc.7 起自带统计行有 748px 宽度上限 + 省略号截断，会把追加的费用/余额段裁掉；本插件会**自动把统计行放宽到容器全宽并取消裁剪**（效果同 zh_pro「统计全显示」，但不依赖它），因此无需安装 zh_pro 也能完整显示：
 
-![并入统计栏](https://raw.githubusercontent.com/KIDLi1412/dsh-session-cost/146e5d12e7c480b24aef12b54f38bdf0b6cbf505/docs/%E5%B9%B6%E5%85%A5%E7%BB%9F%E8%AE%A1%E6%A0%8F.jpg)
+![并入统计栏](https://raw.githubusercontent.com/KIDLi1412/dsh-session-cost/f59b720f1ddb1f433ba0279c0af931025029ce67/docs/%E5%B9%B6%E5%85%A5%E7%BB%9F%E8%AE%A1%E6%A0%8F.jpg)
 
 设置项（**设置 → 插件 → 插件配置 → 会话费用显示**，经 `session-cost` settings namespace 持久化到 `~/.dsh/settings.yaml`，即时生效；0.1.1 及更早版本的 localStorage 配置会在首次加载时自动迁移）：
 
@@ -71,11 +71,12 @@ dsh plugin --profile web remove @kidli1412/dsh-session-cost
 
 ## 定价表（默认，CNY / 百万 tokens）
 
-取自官方定价页（[模型 & 价格](https://api-docs.deepseek.com/quick_start/pricing/) 中文版，2026-08-17 起生效）。V4 模型实行**峰谷定价**：**高峰时段为北京时间 9:00–12:00、14:00–18:00**，高峰价格 = 空闲价格的 2 倍；其余时间为空闲时段。插件按每条 usage 样本的事件时间归属时段分别计价；2026-08-17 0 时之前的样本按旧的平峰价（`LEGACY_PRICING`）计价。
+取自官方定价页（[模型 & 价格](https://api-docs.deepseek.com/quick_start/pricing/) 中文版，2026-08-17 起生效）。V4 模型实行**峰谷定价**：**高峰时段为北京时间工作日 9:00–12:00、14:00–18:00**，高峰价格 = 空闲价格的 2 倍；其余时间为空闲时段。**2026-08-23 0 时起，周末（周六、周日）全天不再区分峰谷，统一按空闲价计费**。插件按每条 usage 样本的事件时间归属时段分别计价；2026-08-17 0 时之前的样本按旧的平峰价（`LEGACY_PRICING`）计价。
 
 | 模型 | 输入（缓存未命中）空闲 / 高峰 | 输入（缓存命中）空闲 / 高峰 | 输出 空闲 / 高峰 |
 | --- | --- | --- | --- |
 | deepseek-v4-flash | ¥1.5 / ¥3.0 | ¥0.05 / ¥0.10 | ¥4.5 / ¥9.0 |
+| deepseek-v4-flash-vision-exp | ¥1.5 / ¥3.0 | ¥0.05 / ¥0.10 | ¥4.5 / ¥9.0 |
 | deepseek-v4-pro | ¥4.5 / ¥9.0 | ¥0.15 / ¥0.30 | ¥13.5 / ¥27.0 |
 | deepseek-chat（V3 遗留，默认） | ¥2（平峰） | ¥0.5 | ¥3 |
 | deepseek-reasoner（V3 遗留，默认） | ¥4（平峰） | ¥1 | ¥16 |

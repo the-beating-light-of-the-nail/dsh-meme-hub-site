@@ -7,18 +7,40 @@
 ## 安装
 
 ```bash
-dsh plugin --profile web add dsh-web-search-pro   # 自动装 dsh-browser（dependency）+ 自动挂载 browser 行（本 patch）
+dsh plugin --profile web add @anweat/dsh-browser@^0.1.8 dsh-web-search-pro@^0.1.8
 # 或本地目录 / tarball：
-dsh plugin --profile web add ./dsh-web-search-pro
+dsh plugin --profile web add ../dsh-browser ./dsh-web-search-pro
 # 重启（web profile 关闭了 HMR）：
 dsh --profile web
 ```
 
-> npm 安装会解析 `@anweat/dsh-browser`；本地联调可用 `dsh plugin --profile web add ../dsh-browser ../dsh-web-search-pro` 一条命令显式列两个。
+> 两个插件都必须是 profile 的直接依赖：DSH 只激活直接依赖的 bundle layer，且标准 profile 可能设置 `autoInstallPeers: false`。不要只安装 Web Search Pro 后依赖 peer 自动补齐。
 > 依赖 `@deepseek-ai/*` 已发布到 npm（`^0.1.0-rc.6`，与社区 dsh-cc-tui 一致）。
 > 若你的 harness 是本地源码 checkout（如 `0.1.0-rc.5`），版本号可能有出入——用
 > `dsh plugin --profile web add ./<path>` 并在 profile 的 `pnpm-workspace.yaml`
 > 里对齐版本后重装即可。
+
+## 从旧版本升级
+
+升级 Web Search Pro 时应同时升级浏览器插件。`dsh-web-search-pro >= 0.1.8` 要求 `@anweat/dsh-browser >= 0.1.8`；旧版 browser 不包含 `web_snapshot screenshot=false`、Web Search Pro 写操作的四级审批策略等本版契约。
+
+```bash
+# npm 安装：显式升级两个包，避免 profile 锁文件继续保留旧版 browser
+dsh plugin --profile web add @anweat/dsh-browser@^0.1.8 dsh-web-search-pro@^0.1.8
+
+# 本地 checkout 联调：两个目录一起重新挂载
+dsh plugin --profile web add ../dsh-browser ../dsh-web-search-pro
+```
+
+升级完成后需要**完整停止并重新启动 Web profile**；仅刷新网页不会重新扫描插件的 `client.js`。随后依次检查：
+
+1. `browser_status`：确认 OpenCLI、`playwright | patchright` 运行时、`automationMode` 与 `usagePolicy` 符合预期。
+2. `web_backend_status`：确认搜索、CLI、Agent Reach 与浏览器后端是否 ready。
+3. 打开 `设置 → 插件 → 插件配置`：确认“Web Search Pro”和“浏览器自动化”两张卡片都已加载；后者负责自由度、运行时、OpenCLI 与调用缓冲。
+
+> `automationMode` 和防止过度调用的 `usagePolicy` 都属于 dsh-browser，升级不会自动改写现有配置。生产 profile 建议保留 `standard`；`unrestricted` 只用于隔离的自动化测试 profile，并且仍受并发、突发、页数/深度和 429/503 退避保护。
+
+若 Clash/TUN 使用 fake-IP DNS，原生 HTTP 后端可能看到 `198.18.0.0/15` 或 `fdfe:dcba:9876::/96`。可在可视化面板的高级设置中启用 `allowProxyFakeIp`；默认关闭。该开关只信任这两个代理网段的 **DNS 解析结果**，字面 fake-IP URL、localhost 和其他私网地址仍会被 SSRF 防护拒绝。
 
 ## 快速使用与适用情形
 
@@ -39,7 +61,8 @@ dsh --profile web
 | 页面改版、懒加载 | `platformRules` 或 RulePack | 优先改选择器；需要等待/点击/滚动时再使用有界 RulePack |
 | 模型生成多步页面操作 | `browser_recipe_run` | 只读步骤直接运行；页面交互按 dsh-browser 的 `automationMode` 决定拒绝/审批/直通 |
 | 外部模型生成油猴脚本 | `browser_script_validate` → `browser_userscript_run` | 强制 `@match`、`@grant none`、禁用 `@require`；仅 `unrestricted` 跳过审批 |
-| OpenCLI 站点适配器或浏览器桥 | `browser_opencli_status` / `browser_opencli_run` | 明确使用 Chrome；仅 `unrestricted` 跳过通用 argv 审批 |
+| 有限泛爬取 | `browser_crawl` | 匿名、默认同源；调用参数不能突破浏览器插件的页数/深度预算 |
+| OpenCLI 站点适配器或浏览器桥 | `browser_opencli_status` → `browser_opencli_catalog` → `browser_opencli_run` | 先发现精确 adapter；仅 `unrestricted` 跳过通用 argv 审批 |
 
 先运行 `web_backend_status` 判断后端是否 ready。指定单一引擎时失败会原样返回；不指定时才会按 `engines` 顺序自动回退。
 
@@ -51,23 +74,23 @@ dsh --profile web
 | `web_exa_contents` | 原生 Exa `/contents` 批量正文抓取（1-100 URL） |
 | `web_fetch_pro` | 可读化抓取（Jina → HTTP+规则抽取 → Playwright 兜底）+ 快照缓存 |
 | `web_platform_search` | 20 平台：GitHub/B站/YouTube/V2EX/小红书/Twitter/Reddit/IG/FB/RSS + 知乎/微博/豆瓣/贴吧/抖音/快手（Playwright 登录态） |
-| `web_snapshot` | Playwright 全页截图 + HTML + 文本落盘 |
+| `web_snapshot` | Playwright HTML + 文本落盘；`screenshot=false` 时不生成 PNG |
 | `web_history` / `web_cache_clear` / `web_search_stats` | 持久历史 / 清缓存 / 存储统计 |
 | `web_rule` | 持久化按站提取规则（脚本猫式，list/upsert/remove） |
 | `web_backend_status` | 无副作用后端探测、失败/冷却诊断与 CLI 状态 |
-| `web_deps` | 检测/安装搜索后端的外部依赖（gh/bili/yt-dlp/agent-reach/mcporter）；浏览器依赖由 dsh-browser 管理 |
+| `web_deps` | 检测/安装搜索后端的外部依赖（bili/yt-dlp/agent-reach/mcporter）；浏览器依赖由 dsh-browser 管理 |
 
 ## 浏览器脚本与自动化分层
 
-`dsh-browser >= 0.1.7` 提供三类脚本入口：
+`dsh-browser >= 0.1.8` 提供三类脚本入口：
 
 1. **内置只读脚本**：`article-clean`、`links`、`jsonld`、`forms`，适合稳定抽取；先用 `browser_script_catalog` 查看。
 2. **Recipe**：最多 25 步的结构化 Playwright 操作，支持 wait/click/fill/type/press/select/check/hover/scroll/extract/assert/screenshot；交互步骤由自动化模式决定审批。
 3. **外部 UserScript**：适合外部模型生成站点专项逻辑。先 `browser_script_validate` 查看 SHA-256、域名范围与能力提示，再 `browser_userscript_run`；它在页面主世界运行，并非安全沙箱。
 
-工具自由度由 dsh-browser 的 `automationMode` 控制：`read-only` 仅暴露 10 个读取/校验工具；`standard`（默认）对交互、写 Recipe、外部脚本、OpenCLI 和安装操作审批；`autonomous` 直通页面交互和写 Recipe；`unrestricted` 为隔离测试 profile 提供完全无审批运行，但仍保留域名、参数、大小和步骤上限校验。
+工具自由度由 dsh-browser 的 `automationMode` 控制：`read-only` 隐藏或拒绝页面及 Web Search Pro 写操作；`standard`（默认）对交互、写 Recipe、外部脚本、OpenCLI、缓存/规则变更和安装操作审批；`autonomous` 直通页面交互、写 Recipe 以及本地缓存/规则变更，但安装、外部脚本和通用 OpenCLI 仍审批；`unrestricted` 为隔离测试 profile 提供无审批运行。所有模式仍保留域名、参数、大小和步骤上限校验，并始终应用 dsh-browser 的调用缓冲、退避与爬取预算。
 
-OpenCLI 用于已有站点 adapter 或复用 Chrome 登录会话。推荐顺序是 **站点 adapter → network/extract → DOM 操作**；先运行 `browser_opencli_status`。`browser_opencli_run` 接受 argv 数组而非 shell 字符串，可覆盖 adapter、显式 session 的 `browser state/find/get/click/fill/type/select/keys/wait/extract/network` 等命令；仅 `unrestricted` 跳过审批。
+OpenCLI 用于已有站点 adapter 或复用 Chrome 登录会话。推荐顺序是 **`browser_opencli_catalog` 查精确 adapter → network/extract → DOM 操作**；先运行 `browser_opencli_status`。`browser_opencli_run` 接受 argv 数组而非 shell 字符串，可覆盖 adapter、显式 session 的 `browser state/find/get/click/fill/type/select/keys/wait/extract/network` 等命令；仅 `unrestricted` 跳过审批。
 
 更完整的 AuthProfile、脚本元数据与 OpenCLI 示例见 [LOGIN.md](./LOGIN.md)。
 
@@ -75,7 +98,15 @@ OpenCLI 用于已有站点 adapter 或复用 Chrome 登录会话。推荐顺序�
 
 三层，越靠前越日常：
 
-1. **`$DSH_HOME/settings.yaml` → `web-search-pro:` 段**（热重载，改完即生效）：
+1. **DSH 可视化面板**：打开 `设置 → 插件 → 插件配置 → Web Search Pro`。面板按搜索策略、服务凭据、运行时后端和高级规则分组；修改先保留为本地草稿，点击“保存”后写入 `settings.yaml` 并热更新，支持放弃修改和逐字段恢复部署值。
+
+   - Exa、Jina、GitHub 密钥通过 DSH Credentials 写入，面板只显示“已配置/未配置”，不会把明文密钥读回浏览器。
+   - `platformRules`、`customPlatforms`、`browserBindings` 与 Playwright 设置使用 JSON 对象编辑器；格式或数值范围无效时会阻止保存。
+   - 浏览器工具的审批自由度由 `dsh-browser.automationMode` 管辖，调用缓冲由 `dsh-browser.usagePolicy` 管辖；用 `browser_status` 查看当前状态。Web Search Pro 面板只管理搜索插件自己的后端开关，不会绕过浏览器插件的审批或资源策略。
+   - `allowProxyFakeIp` 仅用于明确采用 Clash/TUN fake-IP DNS 的环境；普通网络保持关闭。
+   - 更新带客户端面板的插件版本后需要重启 Web profile，让 DSH 客户端模块扫描器重新装载 `client.js`。
+
+2. **`$DSH_HOME/settings.yaml` → `web-search-pro:` 段**（热重载，改完即生效）：
 
    ```yaml
    web-search-pro:
@@ -91,8 +122,8 @@ OpenCLI 用于已有站点 adapter 或复用 Chrome 登录会话。推荐顺序�
          rulePack: zhihu-enhanced
    ```
 
-2. **cordis.yml `config:`**（部署级默认值，见 `cordis.patch.yml`）。
-3. **环境变量 / 凭据**：`$EXA_API_KEY`、`$JINA_API_KEY`（`exaApiKeyEnv`/`jinaApiKeyEnv` 引用）。
+3. **cordis.yml `config:`**（部署级默认值，见 `cordis.patch.yml`）。
+4. **环境变量 / 凭据**：`$EXA_API_KEY`、`$JINA_API_KEY`（`exaApiKeyEnv`/`jinaApiKeyEnv` 引用）。
 
 ## 外部依赖（按需）
 
@@ -105,7 +136,7 @@ OpenCLI 用于已有站点 adapter 或复用 Chrome 登录会话。推荐顺序�
 | opencli | 小红书/Twitter/Reddit/IG/FB | 由 dsh-browser 内置；扩展未连接时用 `opencli doctor` 诊断 |
 | agent-reach | agent-reach 后端 | `uv tool install agent-reach` / `pip install agent-reach` |
 | mcporter | 无裸 API Key 时的 Exa MCP 回退 | `npm i -g mcporter` |
-| playwright | 渲染/截图后端 | 由 dsh-browser 内置；缺 Chromium 时调用 `browser_install` |
+| playwright / patchright | 渲染/截图后端 | 由 dsh-browser 内置；默认 Playwright，兼容场景可显式切 Patchright；缺 Chromium 时调用 `browser_install` |
 
 ## 平台与引擎
 
@@ -142,8 +173,7 @@ zhihu / weibo / douban / tieba / douyin / kuaishou 的免登录公开接口都�
 
 ## 历史管理
 
-web_history 支持：kind/query/engine/platform 过滤、replay（用 queryId 回放已存结果）、
-export（把过滤后的历史+结果写成 JSON 文件）。
+web_history 支持：kind/query/engine/platform 过滤、replay 和 JSON export。search/platform 回放保存的来源；fetch/snapshot 回放当次持久化的正文、HTML/截图路径。旧数据库会自动迁移 pages 表；历史上无法关联 queryId 的旧页面按 URL 做兼容回放。
 
 ## 自定义平台
 

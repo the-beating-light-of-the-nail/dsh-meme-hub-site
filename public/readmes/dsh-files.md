@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/a5d8d3452b6b9f00396ba976ca416d6f07acf78c/assets/readme/hero.svg" width="100%" alt="dsh-files：一个包。Web UI 回形针上传，模型读文档。">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/b17e36fa3018b0cf24d20a7f60a26a8a826d2a2d/assets/readme/hero.svg" width="100%" alt="dsh-files：一个包。Web UI 回形针上传，模型读文档。">
 </p>
 
 # dsh-files
@@ -7,7 +7,7 @@
 一个包，一行 cordis 配置。Web UI 多一个回形针，模型多一个读文档的工具。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/a5d8d3452b6b9f00396ba976ca416d6f07acf78c/assets/composer.png" alt="DeepSeek Harness 输入框里的回形针上传按钮与彩色文件卡片" width="900">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/b17e36fa3018b0cf24d20a7f60a26a8a826d2a2d/assets/composer.png" alt="DeepSeek Harness 输入框里的回形针上传按钮与彩色文件卡片" width="900">
 </p>
 
 DeepSeek Harness 双面插件（dual-face plugin）。两项能力：
@@ -23,7 +23,7 @@ DeepSeek Harness 双面插件（dual-face plugin）。两项能力：
 - 三种入口：输入框工具栏回形针按钮选择文件（多选），或旁边的文件夹按钮选择整个目录（浏览器递归展平、按子目录层级保留相对路径），或直接把文件/文件夹拖到页面任意位置（拖拽悬停有遮罩提示）；批量上传有界并发（4），逐文件失败不阻塞其余文件
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/a5d8d3452b6b9f00396ba976ca416d6f07acf78c/assets/upload-entry.png" alt="DeepSeek Harness composer: paperclip for files, folder button for an entire directory, drag-and-drop anywhere" width="900">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/b17e36fa3018b0cf24d20a7f60a26a8a826d2a2d/assets/upload-entry.png" alt="DeepSeek Harness composer: paperclip for files, folder button for an entire directory, drag-and-drop anywhere" width="900">
 </p>
 
 - `@` 文件候选：在输入框输入 `@` 立即列出本会话已上传的文件，选中即把路径引用插入消息，模型据此调 `read_document`

@@ -49,10 +49,10 @@
 **基础能力**：
 
 - 私聊、群聊、话题（thread）里指挥本机 dsh coding agent，图片 / 文本文件直接发给 bot 即可；
-- 流式过程卡以飞书原生折叠面板实时展示阶段、耗时以及工具名称与状态，完成后最终回答单独发送，支持交互按钮（停止 / 计划门禁 / 审批 / 问答卡）；原始推理、工具输入输出与底层错误不会进入卡片；卡片更新失败会有限重试并降级为普通提示，Agent 与最终回答继续，不会拖垮 bridge 进程；
+- 流式过程卡以飞书原生折叠面板实时展示阶段、耗时以及工具名称与状态；完成但存在失败工具时汇总为“已完成（含警告）/Completed with warnings”，不把“任务轮次结束”冒充为“所有工具成功”。完成后最终回答单独发送，支持交互按钮（停止 / 计划门禁 / 审批 / 问答卡）；原始推理、工具输入输出与底层错误不会进入卡片；卡片更新失败会有限重试并降级为普通提示，Agent 与最终回答继续，不会拖垮 bridge 进程；
 - Git 仓库内为每个会话自动创建隔离 worktree 项目工作区，多项目互不干扰。
 
-**十一项全网独有组合**：
+**十二项全网独有组合**：
 
 - 🆘 **Guardian 安全网守护——“永远叫得应”**：DSH 崩溃后飞书仍会回复你，`/safemode` 进入仅核心安全模式直接重启。
 - 👥 **多角色 Agent——“一个机器人，一整个团队”**：`/role` 切换或指派 PM / 开发 / 文档等角色，每个角色独立人设、模型偏好与规则。
@@ -64,6 +64,7 @@
 - ⚙️ **dsh Web 可视化设置——“不用背环境变量”**：在官方 Settings → Plugins 页面点选应用、工作目录、模型、并行数与提醒，并可直达诊断。
 - 🔑 **对话内管理模型和密钥——“不用离开飞书”**：`/providers` `/provider` `/key` 直接查看、切换供应商、热更新密钥。
 - 🎚️ **快速 / 平衡 / 深度模式——“任务强度一键选”**：`/mode` 按 scope 持久选择，下一轮生效且不打断当前任务。
+- 🔄 **飞书内自更新——“离开命令行也能升级”**：管理员发送 `/upgrade` 检查 npm 官方包并通过确认卡交给 Guardian 后台更新、验证和重载；`/new` 发现新版本时只发一条简短提醒。
 - 🧭 **关键任务先拍板——“计划看清再动手”**：完整计划先单独发出，再用卡片批准执行或附意见继续规划，原任务自动续跑。
 
 ## 30 秒上手
@@ -117,6 +118,8 @@ Markdown、toast 与旧客户端降级路径同时显示中英文。agent 最终
 | `/ws use <name>` | 切换到命名工作空间|
 | `/ws remove <name>` | 删除命名工作空间|
 | `/status` | 查看可刷新状态卡（工作区 / 模型 / session / run / context / token / pending / 任务账本）|
+| `/version` | 查看当前版本与 npm 最新版本 |
+| `/upgrade` | 检查更新并通过确认卡让 Guardian 后台更新、验证和重载（管理员） |
 | `/doctor` | 生成脱敏诊断包并作为文件发送（管理员；可下载转发）|
 | `/jobs [list\|show <消息ID>\|retry <消息ID>]` | 对账排队/运行/完成/失败/中断任务；确认后显式重试 |
 | `/resume` | 查看当前会话最近上下文|
@@ -141,14 +144,30 @@ Markdown、toast 与旧客户端降级路径同时显示中英文。agent 最终
 | `/model`、`/providers`、`/provider`、`/key` | 打开交互式管理卡片（模型直接点选/恢复默认；管理写操作走多轮向导）|
 | `/model use <provider/model>` | 热切换当前会话模型（也兼容唯一模型 ID；下一轮生效，无需重启）|
 | `/model default <id>` | 写入 dsh 默认模型 `agent-default-model`（管理员）|
-| `/model add\|remove <provider> <modelId>` | 添加 / 删除 provider 的模型（管理员）|
+| `/model add\|remove <provider> <modelId> [--input-modalities text,image]` | 添加 / 删除 provider 的模型，可声明视觉输入能力（管理员）|
 | `/provider add\|update\|remove <id>` | 管理 provider（管理员；deepseek-official 与自定义 pi-ai）|
-| `/key set\|remove\|list <引用名>` | 管理 dsh 凭据（set / remove 需管理员）|
+| `/key set <引用名>`、`/key remove\|list <引用名>` | 通过仅请求者可提交的安全表单设置 dsh 凭据；remove 需管理员 |
+| `/secret status\|set\|remove <dsh-credential\|app-secret> <引用>` | 查询状态或安全采集/删除受支持密钥（写操作需管理员；值不进入 Agent） |
+| `/language show\|set plain\|agent …\|reset …` | 管理普通文本与 Agent 回答语言策略（写操作需管理员） |
 | `/ask <问题>` | 发送问答卡，回答写入会话上下文|
 | `/invite user\|admin\|group <id>`、`/invite list`、`/invite remove user\|group <id>` | 管理访问白名单（写操作需管理员）|
 | `/help` | 查看帮助|
 
-飞书消息中的图片会下载到本地 media 目录并传给 dsh；文本类文件会读取内容并注入任务上下文。
+每轮 SDK / ACP / Web 请求都会注入结构化、无密钥的频道上下文，并注册官方 runtime Skill
+`dsh-lark-bot`。上下文明确区分 bridge 预处理的用户斜杠命令与 Agent 可调用工具；后者的列表不代表
+前者不存在，Skill 暂时不可加载时仍以 `/help` 为当前版本权威命令入口。API Key、token 与 App Secret 必须经 `/key set <引用名>`、`/secret set …` 或 Agent
+工具 `lark_request_secret` 打开的密码表单提交；普通聊天、旧 `/key set <引用名> <值>` 与
+`--api-key` 不再消费值。表单只允许发起者提交，值直接写入本机受支持目标，不进入 prompt、session、
+任务账本、归档、日志、诊断包或回复。Guardian 安全模式是降级恢复面，不提供该完整配置与密钥工具。
+
+飞书消息中的图片会按文件内容识别 PNG/JPEG/WebP/GIF 并补全安全扩展名；默认 SDK 会经 dsh
+附件存储校验后发送原生 image block，而不是把路径当作图片。无法读取或模型不支持视觉时会明确
+失败，agent 被要求不得用工作区内其他图片替代。文本类文件会读取内容并注入任务上下文。
+`/model` 卡片会把 dsh 默认模型并入可切换目录（即使 provider 的显式列表尚未包含它），
+并用去除公共前缀后的短标签、每行最多两个按钮适配移动端。provider 名称、模型、输入模态和
+推理档位从 models.dev 运行时目录发现（15 分钟内存缓存）；网络失败时只使用 dsh settings 中的
+显式配置与默认选择，不回退到代码内置名单。通过命令或向导新增视觉模型时可声明 `text,image`，
+能力字段会原样写入 settings。目录地址可用 `DSH_LARK_MODEL_CATALOG_URL` 替换。
 
 **DSH session 消息级同步（`web` adapter）**：发送 `/session` 只会列出当前 canonical workspace
 的非 subagent session 元数据，不显示正文；选择后确认卡会列明标题、ID、workspace、更新时间、
@@ -229,18 +248,26 @@ guardian 仍只救援其配置的主实例。
 
 **结果文件直接回传**：SDK / ACP / Web agent 可调用 `lark_send_file`，把当前会话 workspace、实际执行 worktree、当前 scope 归档或实例日志中的文件直接上传到原飞书聊天 / 话题；普通 `/archive [note]` 会在落盘后立即发送 Markdown + JSONL，失败时保留路径并可用 `/archive send <id> [scope|chatId]` 重试或由管理员转发到指定会话。上传只接受普通文件，默认单文件不超过 20 MiB；真实路径必须位于 bridge 计算的会话目录内，runtime 自报 cwd 不能扩大边界。
 
-**逐操作审批与 scope 权限策略**：默认 SDK 与 Web 宿主在 `tools/pre-execute` 强制拦截高风险调用，并接入 dsh rc.8 官方 `approval/request` seam；ACP 走原生 `session/request_permission`。默认 `ask` 会弹出“允许执行一次 / 拒绝”卡。管理员可用 `/permission allow` 对当前隔离 scope 自动放行逐工具审批，或用 `/permission deny` 直接拒绝并向聊天给出明确反馈；`/permission ask` 恢复逐次询问。member 隔离下可从目标 `/status` 复制 scope，执行 `/permission <策略> <scope>`；只允许修改当前聊天内 scope。策略成功落盘后才确认，持久化到 profile 的 `permission-policies.json`（0600），重启不丢，且显示在 `/status`。该策略不绕过较大/高风险任务的计划门禁；legacy `headless` 不具备工具回调能力。
+**逐操作审批与 scope 权限策略**：SDK / ACP / Web runtime 在任何本地快速通道和计划门裁决前，先通过鉴权回环同步读取当前 immutable scope 的 `ask|allow|deny`；该 policy-only 查询不创建卡片或进入人类等待传输。`deny` 对低风险与高风险工具都先行拒绝并返回 `permission-policy` 来源；`ask` 对保守只读自省静默放行、对高风险调用弹“允许执行一次 / 拒绝”卡；`allow` 自动放行逐工具审批，但仍不替代高风险任务的计划确认或 Harness 文件沙箱。管理员可用 `/permission allow|deny|ask [scope]` 修改当前聊天内 scope；策略成功落盘后才确认，持久化到 profile 的 `permission-policies.json`（0600），重启不丢并显示在 `/status`。legacy `headless` 不具备工具回调能力。
 
 **关键任务计划门禁**：SDK / ACP / Web agent 在修改文件、运行脚本等较大或高风险动作前使用
 `lark_request_plan_approval`；同一 turn 未获批准时，runtime pre-execute 策略会拒绝写入、删除、
 移动、非只读 shell 命令与 `run_code`。一次计划批准只放行随后一次高风险调用，计划外的后续调用必须
-重新确认。`date`、`pwd`、`ls`、`find`、`rg`、`git status/log/diff` 等单条
-只读检查直接放行；包含串联、重定向、命令替换或未知程序的 shell 调用仍保守地走计划门禁。
+重新确认。快速通道只保留无路径的 `date`、`id`、`pwd`、`uname`、`whoami` 与受限的
+`git status/log/diff` 等仓库内检查；`cat`、`grep`、`find`、`head`、`tail`、`rg`、`ls` 等可读取文件或枚举路径的命令不在快速通道，避免借工作区外路径读取环境或凭据。SDK `bash` 自动附带的 `description`、`workdir` 与
+`run_in_background:false` 经无副作用校验后不会改变只读判定。包含未知参数、串联、重定向、
+命令替换或未知程序的 shell 调用仍保守地走计划门禁。
 bridge 先把完整 Markdown 计划作为普通消息发出，再弹出“批准，开始执行 /
 继续规划”决策卡；卡内可填写修改意见。工具在等待期间阻塞且暂停空闲超时，批准后原任务自动继续；
 继续规划时 agent 会收到意见、修订计划并再次请求确认。门禁无固定十分钟截止，跟随所属 run 的取消
 信号；停止任务会精确取消该 session 的 pending 卡并撤回。可信部署可设置
 `DSH_LARK_PLAN_GATE=off` 关闭这层独立门禁（逐工具审批仍按原策略执行）；legacy headless adapter 不具备工具回调能力。
+
+插件可控的拒绝统一为 `[policy-denial layer=<plan-gate|permission-policy|tool-approval>]`，随后给出
+`reason` 与 `to change`；Harness 自己的 `[sandbox: ...]` 明确归类为 `file-sandbox`。高风险分类器、
+persona 中的只读说明和拒绝文本由 `src/policy/tool-policy.ts` 同一来源生成，因此策略调整不会只改
+提示词或只改执行钩子。persona 同时要求任一层拒绝后停止，不得换用等价命令、工具或路径绕行。
+计划门与逐工具审批仍保留不同语义，`/permission allow` 不扩大文件沙箱，也不替代计划确认。
 
 **任务中向你提问（问答卡）**：agent 需要你拍板、确认或补充信息时，通过 `lark_ask_user` 工具弹**问答卡**（单选 / 多选 / 自由文本）。可提交卡片，也可直接回复该卡片输入任意文字；单选/多选没有合适项时，回复文字就是补充答案。系统按被回复的 card messageId 精确匹配 pending 问题，回答后任务自动继续，等待期间运行超时看门狗暂停。（与 `/ask` 的“你主动提问”方向相反。）
 
@@ -292,7 +319,7 @@ profile 的前台进程会拒绝并提示先停止，生命周期锁阻止并发
   （需 `--api` / `--base-url` / 至少一个 `--model`，与官方 schema 一致）或 `deepseek-official`。
 - `/key set|remove|list`：读写 `~/.dsh/.credentials.yaml`（0600）；settings 只存 `apiKeyEnv` 引用，
   字面密钥不进 settings / 聊天记录。
-- **凭据引用必须关联**：`/key set <引用名> <值>` 只写入凭据文件；provider 要生效还须在其
+- **凭据引用必须关联**：`/key set <引用名>` 通过安全表单写入凭据文件；provider 要生效还须在其
   `apiKeyEnv` 字段引用同一名字（`/provider add|update ... --api-key-env <引用名>`，或向导中填写）。
   引用名与 provider ID 相同且 provider 未设 `apiKeyEnv` 时，`/key set` 会自动补关联；
   已存在的老配置在下次运行时也会自动补齐。
@@ -301,11 +328,13 @@ profile 的前台进程会拒绝并提示先停止，生命周期锁阻止并发
   `https://www.kingapi.xyz`）会自动补全为 `/v1`。dsh runtime 启动后需几百毫秒才注册
   pi-ai 路由，桥接会重试握手直到注册完成（避免 “no adapter registered for provider”）。
 
-安全提醒：在飞书会话输入密钥会对可见成员暴露，建议私聊使用或 `--api-key-env` 引用环境变量；bot 不在任何回复中回显密钥值。
+安全提醒：不要在普通飞书消息中输入密钥；使用安全表单或 `--api-key-env` 引用环境变量。bot 不读取旧式带值命令，也不在回复中回显密钥值。
 
 ## 升级、禁用与卸载
 
 ### 升级
+
+**完全不接触命令行：** profile 管理员在飞书发送 `/upgrade`。有新版本时 bot 弹出只允许发起人操作的确认卡；点击“确认更新”后，Guardian 通过独立 worker 安装卡片中确认的精确 npm 版本，复用完整升级、runtime profile 修复、guardian/profile 重启和 doctor 验证链，并在重载后回到原会话报告结果。worker 使用 owner-only 中立工作目录与每次请求隔离的 npm cache，不依赖 bridge 启动目录或用户全局 npm cache；失败时只回传脱敏的可行动类别，不发送原始命令输出。点击“取消”不会产生任何变更。更新会重启机器人，正在执行的任务可能被中断；配置、会话、归档和凭据保持不变。每次 `/new` / `/reset` 都会 best-effort 查询一次 npm；仅在有新版本时额外发送一条简短普通消息。
 
 **推荐：一行命令彻底升级（v0.12.0+ 新增，issue #10）**
 
@@ -324,7 +353,10 @@ npx dsh-lark-bot@latest upgrade --profile dsh-lark --yes
 - `--force`：无法访问 npm（离线）时按当前运行版本重装；
 - `--no-guardian`：跳过守护升级；
 - **runtime profile 一致性修复**：升级后自动把 `dsh-lark-sdk` / `dsh-lark-acp` 的
-  own-package 链接重指到新版本，并当场幂等重装版本陈旧的 SDK server / ACP 依赖。
+  own-package 链接重指到新版本，并当场强制刷新 runtime profile 及被链接主插件中版本陈旧或物理
+  内容损坏的 SDK server / ACP 依赖；
+- **受管服务安全重载**：更新 worker 的临时 callback URL/token 与 npx cache PATH 不会写入持久
+  service env；只有飞书通道、callback server 和 Guardian 心跳均已就绪后才确认更新成功。
 
 无需交互确认时加 `--yes`（非交互环境不带 `--yes` 会安全中止）。其余方式：
 
@@ -379,7 +411,7 @@ dsh plugin --profile dsh-lark remove dsh-lark-bot
 
 **Q: dsh-lark-bot 和其他 DeepSeek Harness 飞书插件（如 harness-lark）有什么区别？**
 
-**A:** 功能组合最全：安全网守护、多角色 Agent、多机器人可信交接、并行多任务、持久任务对账、会话归档、跨会话主动通知、dsh Web 可视化设置、对话内模型 / 密钥管理、执行模式与关键任务计划门禁十一项合一；标准 dsh profile bundle，`setup` 是唯一安装路径；可选 `service install` 只负责把同一 profile 交给 OS 常驻，不是第二套运行时。
+**A:** 功能组合最全：安全网守护、多角色 Agent、多机器人可信交接、并行多任务、持久任务对账、会话归档、跨会话主动通知、dsh Web 可视化设置、对话内模型 / 密钥管理、执行模式、关键任务计划门禁与飞书内自更新十二项合一；标准 dsh profile bundle，`setup` 是唯一安装路径；可选 `service install` 只负责把同一 profile 交给 OS 常驻，不是第二套运行时。
 
 **Q: 项目从哪下载？会不会有假冒版本？**
 
@@ -401,8 +433,8 @@ dsh plugin --profile dsh-lark remove dsh-lark-bot
   自动/人工验证边界见 [`docs/DSH_RC8_AUDIT.md`](docs/DSH_RC8_AUDIT.md)。
 - **运行时**：Node.js ≥ 22.19（见 `package.json` engines）。
 - **平台**：Linux / macOS / Windows（飞书 WebSocket 出站长连接，免公网服务器 / 域名 / 内网穿透）。
-- 默认 adapter 为官方 **`@deepseek-ai/dsh-sdk-client`**（SDK JSON-RPC runtime，原生 session 续跑 +
-  token 级流式事件）；`DSH_LARK_ADAPTER=acp` 切到官方 **ACP server**（审批卡）；`headless` 保留旧版
+- 默认 adapter 为官方 **`@deepseek-ai/dsh-sdk-client`**（SDK JSON-RPC runtime，原生 session 续跑、
+  token 级流式事件与 dsh attachment store 原生图片块）；`DSH_LARK_ADAPTER=acp` 切到官方 **ACP server**（审批卡）；`headless` 保留旧版
   子进程 fallback；`DSH_LARK_ADAPTER=web` 驱动**本地 dsh web agent**（`session.prompt` +
   `/api/events.mux`，网页端成为唯一写者，从根上消除多写者会话损坏）。首次启动自动在
   `~/.dsh/profiles/dsh-lark-sdk`（或 `dsh-lark-acp`）创建 runtime profile。
@@ -458,8 +490,9 @@ SDK 模式下 dsh 原生 session 续跑，headless 模式则把历史注入下�
 | `DSH_LARK_DSH_COMMAND` | `自动发现` | dsh 启动命令；通常无需设置|
 | `DSH_LARK_DSH_ARGS` | `自动发现` | dsh 启动参数，逗号分隔；通常无需设置|
 | `DSH_LARK_ADAPTER` | `sdk` | `sdk`（默认，approval answerer）/ `acp`（协议原生审批）/ `headless`（legacy）/ `web`（本地 dsh web agent，单写者）|
-| `DSH_LARK_PROVIDER` | `deepseek-official` | 模型 provider|
-| `DSH_LARK_MODEL` | `deepseek-v4-flash` | 默认模型|
+| `DSH_LARK_PROVIDER` | 未设置 | 模型 provider；可由对象形式的 dsh 默认模型提供|
+| `DSH_LARK_MODEL` | 未设置 | 默认模型；可由 dsh `agent-default-model` 提供|
+| `DSH_LARK_MODEL_CATALOG_URL` | `https://models.dev/api.json` | provider / 模型能力实时目录或兼容镜像|
 | `DSH_LARK_MAX_TOKENS` | 未设置 | SDK agent 每请求输出 token 上限|
 | `DSH_LARK_WEB_URL` | `http://127.0.0.1:3080` | `web` 适配器：本地 dsh web agent 的 base URL|
 | `DSH_LARK_SESSION_PROJECTION` | `true` | `web` 适配器：启用用户显式绑定后的历史/实时消息投影；绝不自动切换（`0` 关闭）|
@@ -490,10 +523,17 @@ SDK 模式下 dsh 原生 session 续跑，headless 模式则把历史注入下�
 | `DSH_LARK_GUARDIAN_SAFE_TIMEOUT_MS` | `600000` | 安全模式单任务空闲超时（持续无活动事件才停止并出超时卡）|
 | `DSH_LARK_GUARDIAN_CARD_DENSITY` | `detailed` | 安全模式任务卡片密度（compact / standard / detailed）|
 | `DSH_LARK_UPGRADE_REGISTRY` | `https://registry.npmjs.org` | `upgrade` 探测最新版本的 npm registry（可指向镜像）|
-| `DSH_LARK_UPGRADE_CHECK` | `1` | `doctor` / `/version` 是否探测 npm 最新版本（`0` 关闭，best-effort）|
+| `DSH_LARK_UPGRADE_CHECK` | `1` | `doctor` / `/version` / `/upgrade` / `/new` 是否探测 npm 最新版本（`0` 关闭，best-effort）|
 | `DSH_LARK_UPGRADE_CHECK_INTERVAL_MS` | `21600000` | 桥接引擎检查新版本的间隔（`0` 关闭，默认 6h）|
 | `DSH_LARK_UPGRADE_NOTIFY` | `false` | `true` 时发现新版本向指定 chat 推送飞书通知（默认仅日志）|
 | `DSH_LARK_UPGRADE_NOTIFY_CHAT` | — | 接收更新通知的 chat id（配合 `DSH_LARK_UPGRADE_NOTIFY=true`）|
+
+SDK / ACP 启动会先解析完整 provider/model route：显式双字段优先；缺失时读取 dsh 对象形式
+`agent-default-model: { provider, model }`；仍无法得到完整 route 时在 bridge/doctor 入口给出本项目的
+明确配置错误，不把空 provider 传给上游 runtime。受管 service 的 install/start/restart 会把旧 env
+文件中的受管键与当前 shell 合并（当前 shell 显式值优先），避免从另一个终端重启时静默丢失已有 route。
+模型目录在进程冷启动时暂时不可达，也会保留该对象形式默认 route 作为最小离线条目；这不会放行
+settings 中没有明确配置的未知模型。
 
 启动时会自动查找本机常见的 `@deepseek-ai/dsh` 安装位置。只有自动发现失败或需要指定特殊 profile 时，才需要设置这两个变量。
 
@@ -587,9 +627,17 @@ pnpm check:publish-bundle   # 校验 dist 与全部 exports/bin 入口一致（�
 pnpm ci:local
 pnpm release:check   # ci:local + 上游一致性检查
 pnpm compat:probe    # 临时安装锁定版 dsh，验证 SDK/ACP 握手及 SDK 工具/续接
-pnpm dsh:upstream    # 对比 npm 上游 stable 与锁定矩阵
+pnpm upstream:report # 只读检查 dsh + dsh-TUI 的 GitHub Release/npm 双源发布
+pnpm dsh:upstream    # upstream:report 的兼容别名
 pnpm security:monitor # 假冒仓库与仿冒包监控（建议每周）
 ```
+
+仓库的 `upstream-release-watch` GitHub Actions 每天运行，也可手动触发。它以
+`scripts/upstream-release-config.mjs` 中经人工确认的 `trackFrom` 为首次基线，合并全部非 draft
+GitHub Releases 与 npm 全版本/发布时间/dist-tags；每个新“上游 + 版本”创建一个带
+`upstream-update` label 的跟踪 Issue。同一版本的 npm-only Issue 会在 GitHub Release 后续补发时
+原地补充，closed Issue 也参与隐藏标记去重。该自动化只搬运并安全截断外部发布信息，不分析兼容性、
+不修改依赖或代码，也不自动创建适配 PR。
 
 开发规范见 [`AGENTS.md`](AGENTS.md)，模块契约见 [`docs/API.md`](docs/API.md)，架构见 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)。
 兼容矩阵的升级政策与自动化见 [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md)。
@@ -679,6 +727,8 @@ pnpm publish:dual
 默认安装的「安全网守护」（`src/guardian/`）独立于 dsh 进程常驻：dsh 在线时静默，下线时接管飞书
 通道接收 `/safemode` 控制信号，以仅核心 profile（`dsh-base` + `dsh-headless`）拉起受限对话
 用于自愈，`/safemode exit` 重启完整 profile 并交还通道。
+`dsh-lark-bot guardian status` 只报告精确 `guardian run` 进程身份唯一且存活的常驻 PID，并在
+系统服务 PID 可用时交叉验证；身份不确定时显示“未发现”，不会把查询命令自身 PID 当成守护进程。
 
 ## 目录结构
 
@@ -744,7 +794,7 @@ pnpm publish:dual
 - omdsh-dev/community 收录：[Discussion #11](https://github.com/orgs/omdsh-dev/discussions/11) — ✅ 通过，讨论活跃（最新更新说明 v0.10.2）；v0.15.1 更新说明 — 📨 已备妥，待人工粘贴
 - 平台数据刷新（v0.14.0 → v0.15.1）— ✅ 已恢复提交（2026-08-17）：awesome-dsh-plugins [PR #230](https://github.com/AdamPlatin123/awesome-dsh-plugins/pull/230) · dshfind [#6 跟进](https://github.com/hikariming/dshfind/issues/6#issuecomment-5317081509) · omdsh 说明备妥
 
-**历史亮点跟进**（当时六项独家能力与 issue #6 设计实现；当前能力见上方十一项清单）：
+**历史亮点跟进**（当时六项独家能力与 issue #6 设计实现；当前能力见上方十二项清单）：
 
 - awesome-dsh-plugins 榜单行同步（仓库描述 → 最新）与 agent-test 报告名称异常：[#139](https://github.com/AdamPlatin123/awesome-dsh-plugins/issues/139) — 📨 已提交（维护方已确认，等待渲染周期同步）
 - dshfind 详情页补「对话内管理模型和密钥」亮点：[#2 跟进评论](https://github.com/hikariming/dshfind/issues/2#issuecomment-5301019067) — 📨 已提交

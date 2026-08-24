@@ -55,25 +55,25 @@
 
 **嵌入式主面板**：停靠在输入框上方，指数卡 + 自选股行情 + 四个功能页签：
 
-![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/panel.png)
+![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/panel.png)
 
 **个股详情**：16 项行情数据 + K线蜡烛图（成交量柱 / MA5-10-20 均线 / 十字光标）+ 财务指标 + 热议用户：
 
-![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/detail.png)
+![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/detail.png)
 
 **迷你行情区域**：四大指数 + 自选 12 只两列平铺，⤡ 手柄调宽度，点击开合面板，可拖动：
 
-![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/badge.png)
+![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/badge.png)
 
 **Agent 工具调用卡片**（对话内直接问行情，结果渲染为专属卡片而非 JSON）：
 
 | `xueqiu_quote` 行情表 | `xueqiu_kline` 蜡烛图 |
 | --- | --- |
-| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/toolcards/kline.png) |
+| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/kline.png) |
 
 | `xueqiu_hot` 热榜 | `xueqiu_news` 快讯时间线 |
 | --- | --- |
-| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/c75a0e9ac542be08a8de054a417a438e47171e9a/assets/toolcards/news.png) |
+| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/news.png) |
 
 ## 📦 安装
 
@@ -190,6 +190,12 @@ dsh-xueqiu/
 
 ## 📋 更新日志
 
+- **1.21.6**（2025-08-24）
+  - 修复：**徽章越屏钳制是死代码**。挂载后的实测钳制 `useEffect` 依赖为 `[]`，只在首帧跑一次——而 hydrate 异步恢复 badgePos 发生在其后，钳制永远空跑；DockGate 恢复时的估算宽度（badgeW 空时按 320）又偏小，实测 346px。后果：恢复越屏坐标后徽章右/下缘出屏，真实鼠标点击落空，面板打不开（热榜/快讯/搜索随之全空）。修复：effect 依赖加 badgePos（hydrate 后按实测尺寸再钳一次）+ ResizeObserver 监听徽章自身长高长宽再钳。浏览器回归连跑 3 轮 18 项全绿。
+  - 测试：浏览器回归脚本修两处不稳定——① `agent-browser dblclick` 的两次点击间隔超出系统双击判定阈值（页面 dblclick 监听计数为 0），改派发 dblclick 事件；② 交互步骤前 rpc 固定徽章到视口中部再刷新，消除"上一轮遗留位置导致真实鼠标命中失败"的漂移。
+- **1.21.5**（2025-08-24）
+  - 测试：**写失败契约 + cache stampede 冒烟**（`qa/contract.mjs` 新增 C3：add 无效代码被拒或静默忽略且列表不变、cancel 不存在代码幂等零副作用、坏 Cookie 写被 400016 拒绝零副作用；`qa/unit.mjs` 新增 5 URL × 3 并发回源恰 5 次的 stampede 冒烟）。实测发现：上游对无效代码 add 返回 `{data:true}` 但列表不变（静默忽略）。
+  - 修复：**登录文件错位排障盲区**。登录文件位置由运行时 workspaceRoot 决定（随会话变化），此前 `login.status` 不暴露路径，排障只能猜（曾误查 `~/.` 而插件实际写入会话工作区）。现在 `login.status` 返回真实 `path` 与 `savedAt`；契约测试多候选探测（env → `~/.` → cwd → 父目录）并打印命中的文件路径；Cookie 过期（400016）时哨兵直接提示"重新登录更新 XQ_COOKIE"而非误报接口变更。另：实测登录 Cookie 约 3 天过期，过期后需重跑插件登录并更新 secret。
 - **1.21.0**（2025-08-21）
   - 新增：**Windows 支持**。DSH 在 Windows 上的 shell 层是 PowerShell（`pwsh -Command`），单引号字面量语义与 POSIX 一致——原先"cmd 引号不兼容"的障碍实际不存在。三处适配：① 显式调用 `curl.exe`（绕开 PS 5.1 中 `curl` = `Invoke-WebRequest` 别名，Win10+ 自带 curl.exe）；② Cookie 播种的 `-o /dev/null` 在 Windows 换成 `NUL`；③ Cookie 请求头剥离引号字符防注入。测试桩 `realShell` 平台对齐（win32 走 pwsh，同 DSH win32 层）。CI 新增 `windows-latest` 任务：单测 + cookie 测试 + live.mjs 真连雪球（51 断言，含匿名播种链路）全绿。README 平台要求同步更正为 macOS / Linux / Windows。
 - **1.20.6**（2025-08-21）

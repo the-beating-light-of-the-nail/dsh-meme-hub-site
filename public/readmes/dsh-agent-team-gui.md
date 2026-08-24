@@ -12,7 +12,7 @@ Give each member its own model, role, fallback route, token limit, and tool poli
 team beside the normal composer; the lead model plans the work, runs a bounded dependency graph,
 and synthesizes the result.
 
-![Manage a persistent multi-model team in DeepSeek Harness Settings](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/3b56aa4dbe20cc128d710928d20c80404ec7fff6/assets/v0.5-teams-settings.png)
+![Manage a persistent multi-model team in DeepSeek Harness Settings](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/e3997ce798e495ad8051b95c4e96920780c96aed/assets/v0.5-teams-settings.png)
 
 ## Why this plugin
 
@@ -35,7 +35,7 @@ Requirements: DeepSeek Harness `>=0.1.0-rc.5 <0.2.0`, the **Web** profile, Node.
 provider/model route.
 
 ```sh
-dsh plugin --profile web add -w github:toolclub/dsh-agent-team-gui#v1.0.0
+dsh plugin --profile web add -w github:toolclub/dsh-agent-team-gui#v1.0.1
 dsh --profile web
 ```
 
@@ -81,7 +81,7 @@ Expected output contains both the `dsh-agent-team-gui` bundle layer and the `age
 5. Send the task normally. Open **Team runs** to inspect the plan, stages, members, review/repair
    rounds, outputs, errors, timings, retries, and official Token coverage.
 
-![Choose Team, Solo, or Inherited beside the normal composer](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/3b56aa4dbe20cc128d710928d20c80404ec7fff6/assets/v0.5-composer-mode.png)
+![Choose Team, Solo, or Inherited beside the normal composer](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/e3997ce798e495ad8051b95c4e96920780c96aed/assets/v0.5-composer-mode.png)
 
 ## How orchestration works
 
@@ -145,11 +145,21 @@ or temporarily unavailable catalog never silently deletes a saved selection.
 
 ## Run Center and Token usage
 
-![Inspect the DAG, member state, review rounds, and Token buckets](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/3b56aa4dbe20cc128d710928d20c80404ec7fff6/assets/v0.5-run-center.png)
+![Inspect the DAG, member state, review rounds, and Token buckets](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/e3997ce798e495ad8051b95c4e96920780c96aed/assets/v0.5-run-center.png)
 
 Every execution is written before planning starts. The Run Center exposes foreground/background
 state, live phase, elapsed time, child IDs, complete outputs, bounded handoffs, stop, linked whole
 or member retry, export, filters, and retention-safe clear.
+
+If a DSH child settles with `stopReason: "error"` after delivering non-empty plain text, the member
+counts as **Completed** instead of losing a valid long-form deliverable. The stop reason remains
+recorded and Run Center shows a protocol-delivery warning. Empty output, rejected runs, cleanup
+failures, timeouts, and other non-completed reasons such as `max-tokens` remain failures.
+
+Each member handoff summary keeps up to 16,000 characters by default. A team may set
+`handoffSummaryMaxChars` from 1,000 to 32,000. Complete raw output remains durable in Run Center;
+dependency and lead prompts retain separate aggregate bounds so one long artifact cannot make model
+context unbounded.
 
 The plugin reuses DSH's official `tokenUsage` projection and keeps four buckets:
 
@@ -163,7 +173,7 @@ Planner, member, review, and repair usage remain separately attributable. Covera
 sample, the UI says **Metering…** instead of showing a false zero. Tokens are not money; the plugin
 does not guess prices that Harness providers do not publish through a stable pricing contract.
 
-![Compare durable usage and completion insights without fabricated prices](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/3b56aa4dbe20cc128d710928d20c80404ec7fff6/assets/v0.5-insights.png)
+![Compare durable usage and completion insights without fabricated prices](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/e3997ce798e495ad8051b95c4e96920780c96aed/assets/v0.5-insights.png)
 
 ## Quality gate and background runs
 
@@ -179,7 +189,7 @@ unfinished durable state as **Interrupted** rather than pretending it completed.
 
 ## Versions, recipes, and definition backup
 
-![Preview a recipe, conflicts, affected teams, and primary/fallback route remapping](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/3b56aa4dbe20cc128d710928d20c80404ec7fff6/assets/v0.5-recipes.png)
+![Preview a recipe, conflicts, affected teams, and primary/fallback route remapping](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/e3997ce798e495ad8051b95c4e96920780c96aed/assets/v0.5-recipes.png)
 
 - Each saved team version includes immutable snapshots of all referenced member definitions.
 - Restore is preview-first and warns when a shared member would change another team.
@@ -223,9 +233,10 @@ include the user task and member outputs. Review those files before sharing them
 | Planner | Current/recent/full context and a bounded planner Token ceiling |
 | Resilience | Continue, stop, or retry-once; member timeout and fallback route |
 | Limits | Maximum concurrency and a soft provider-reported team Token budget |
+| Handoff summary | Per-member summary ceiling in characters; blank uses 16,000, configurable from 1,000–32,000 |
 | Quality | Named reviewer, repair owner, criteria, and at most two repair rounds |
 
-![The primary path remains usable on a narrow viewport](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/3b56aa4dbe20cc128d710928d20c80404ec7fff6/assets/v0.5-narrow.png)
+![The primary path remains usable on a narrow viewport](https://raw.githubusercontent.com/toolclub/dsh-agent-team-gui/e3997ce798e495ad8051b95c4e96920780c96aed/assets/v0.5-narrow.png)
 
 ## Host configuration
 
@@ -289,7 +300,7 @@ output directory; audits the tarball and secrets; and boots an isolated temporar
 ```sh
 mkdir -p dist
 pnpm pack --pack-destination dist
-dsh plugin --profile web add -w ./dist/dsh-agent-team-gui-0.5.0.tgz
+dsh plugin --profile web add -w ./dist/dsh-agent-team-gui-1.0.1.tgz
 ```
 
 The package audit verifies runtime/declaration closure, examples, governance files, screenshots,
@@ -301,7 +312,7 @@ credential patterns.
 You can send this single instruction inside DeepSeek Harness:
 
 > Follow the installation and security notes in
-> https://github.com/toolclub/dsh-agent-team-gui. Install the reviewed v1.0.0 tag into the Web
+> https://github.com/toolclub/dsh-agent-team-gui. Install the reviewed v1.0.1 tag into the Web
 > profile, authorize only `dsh-agent-team-gui` if pnpm asks for `allowBuilds`, restart Web, verify the
 > composed configuration, and report the exact installed revision.
 

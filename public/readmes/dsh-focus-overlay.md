@@ -8,7 +8,8 @@
 </p>
 
 <p align="center">
-  <img src="https://badgen.net/npm/v/dsh-focus-overlay" alt="npm version">
+  <img src="https://img.shields.io/npm/v/dsh-focus-overlay" alt="npm version">
+  <img src="https://img.shields.io/npm/dm/dsh-focus-overlay" alt="npm downloads (monthly)">
   <img src="https://badgen.net/badge/license/MIT/green" alt="license">
   <img src="https://badgen.net/badge/dsh/%3E%3D0.1.0-rc.5/blue" alt="dsh version">
 </p>
@@ -28,11 +29,11 @@
 
 **关闭 —— 普通聊天视图**
 
-![关闭：普通聊天视图](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/50cd4f8cb7db337b5aec9041174972ece9a682d8/screenshots/before.png)
+![关闭：普通聊天视图](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/82d479c1e53190a8121c125a64492cb94cf4efee/screenshots/before.png)
 
 **开启 —— 专注模式**
 
-![开启：专注模式](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/50cd4f8cb7db337b5aec9041174972ece9a682d8/screenshots/after.png)
+![开启：专注模式](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/82d479c1e53190a8121c125a64492cb94cf4efee/screenshots/after.png)
 
 <!-- 截图请放到 screenshots/ 目录：
      - before.png —— 普通聊天视图（含标题区/输入区/工具卡）

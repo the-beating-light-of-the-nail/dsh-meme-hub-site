@@ -1,7 +1,7 @@
 # dsh-visual-plugin
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/87aafef73b0cc5b591d0628bb5ae1049dcf16639/assets/deepseek_neon_pixel_whale_transparent.svg" width="240" alt="DeepSeek neon pixel whale">
+  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/a4ffdbd4e3f83f741f29cb48f0c8d0d2813842e1/assets/deepseek_neon_pixel_whale_transparent.svg" width="240" alt="DeepSeek neon pixel whale">
 </p>
 
 <p align="center">
@@ -39,7 +39,7 @@ A plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/87aafef73b0cc5b591d0628bb5ae1049dcf16639/assets/vision-bridge-flow.svg" width="720" alt="Animated demo of the vision bridge in dsh web: the user sends an image, the vision bridge auto-describes it, and the main model answers from the description">
+  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/a4ffdbd4e3f83f741f29cb48f0c8d0d2813842e1/assets/vision-bridge-flow.svg" width="720" alt="Animated demo of the vision bridge in dsh web: the user sends an image, the vision bridge auto-describes it, and the main model answers from the description">
 </p>
 
 ```
@@ -86,7 +86,7 @@ Restart `dsh web`, then:
 
 1. Open **Settings → Plugins → Plugin configuration** and expand the **Vision Bridge** card:
 
-   <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/87aafef73b0cc5b591d0628bb5ae1049dcf16639/assets/vision-bridge-config.png" width="560" alt="Vision Bridge configuration card in the settings plugin configuration tab">
+   <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/a4ffdbd4e3f83f741f29cb48f0c8d0d2813842e1/assets/vision-bridge-config.png" width="560" alt="Vision Bridge configuration card in the settings plugin configuration tab">
 
 2. Fill in the endpoint URL, the vision model name, and the API key. The **侧边栏 / Sidebar** toggle shows or hides the image-history panel; the history limit defaults to 20, and leaving it empty means unlimited. Click **保存 / Save**, then **测试连接 / Test connection**.
 3. In the model picker, select provider **DeepSeek (Vision)** — the plugin's wrapper adapter declares image input so the gateway admits uploads.

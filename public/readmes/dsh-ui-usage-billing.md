@@ -24,38 +24,39 @@
 
 ### 演示动图
 
-![演示](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a123c8042c6053787afbf7427906cd8e75f2cfd1/screenshots/demo.gif)
+![演示](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/f6fd99818f7ae0b18c462d1da85f1945a1dbfb44/screenshots/demo.gif)
 
 ## 特性
 
 - **侧边栏入口**：设置按钮上方的仪表盘式触发卡——本月费用主数字（等宽字体）+ 近 7 天 sparkline 迷你趋势，副行「今日 / 本周」；折叠栏自动切为图标钮；悬停浮现速览卡。
 - **计费仪表盘（分区 Tab）**：概览 / 趋势 / 明细 / 统计 / 费率 / 设置 六区——Hero 大数字 + 本年/今日环比 + 本月预计 + KPI×4 + 热力图；趋势图 7/30 天；厂商计费与订阅；导出 / 费用构成 / 工作区 / 会话明细；模型单价表；预算与峰谷提醒。克制冷调、`--dsw-*` 令牌、深浅主题自适应。
 
-  ![概览：本月费用 Hero、预算进度、KPI 与用量热力图](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a123c8042c6053787afbf7427906cd8e75f2cfd1/screenshots/1.png)
+  ![概览：本月费用 Hero、预算进度、KPI 与用量热力图](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/f6fd99818f7ae0b18c462d1da85f1945a1dbfb44/screenshots/1.png)
 - **即时代费用条**：输入框下方常驻「本轮 ¥x · 会话 ¥y」+ 峰谷档位与切换倒计时 + 订阅额度预警 chips（≤20% 浮现、≤10% 红）。
 - **峰/谷切换提醒**：切档前弹窗 + 可选系统通知（提前量 / 位置 / 模式 / 预览可配），区分「即将进峰时 ×2 可稍等」/「即将进平价 价格减半」。
 - **实时定价费率表**：models.dev 抓价 + 探活模型对标——系统实际配置模型全纳入；峰谷分时（工作日 9-12 / 14-18 高峰 ×2，周末全天低谷）+ 实时汇率（USD→CNY），每 6 小时刷新。
 
-  ![费率：模型单价表（峰谷分时与实时汇率）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a123c8042c6053787afbf7427906cd8e75f2cfd1/screenshots/5.png)
+  ![费率：模型单价表（峰谷分时与实时汇率）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/f6fd99818f7ae0b18c462d1da85f1945a1dbfb44/screenshots/5.png)
 - **官方 vs 三方分桶**：明细费用列按官方 DeepSeek 直连 / 第三方中转分解（混合时「官 x / 三 y」），统计 Tab 有「官方/三方」汇总卡。
+- **中转站归组与额度**：按 provider 的 `baseURL` 归一化 origin 归组——同一中转站的多把 key 合并成一行，站名即域名；明细 Tab 新增「中转站分布」卡（中转站 / 直连 / 未知路由三态，未知路由 = 配置里已删 / 改名的路由，诚实标注「读不到」而非误归直连）。对配了 `baseURL` 的路由自动识别 New API 系（`/api/status`）与 Sub2API（`/v1/usage`）的**余额与滚动额度窗口**，读不出标「未读出额度」，剩余 <20% 标红；中转站识别结果有 5 分钟指纹缓存（同站多把 key 独立熔断），`relay-quotas` 端点附 `diagnostics` 供「我的中转站为什么不显示」自查。智谱 GLM / Z.ai 国内域钱包余额已接入（与订阅套餐双读）。项目归属优先用工作区标题命名。**未计价的模型**（目录外/无价）费用按 0 计，Hero 下会提示「N 个模型未收录计价」。
 - **月度预算 + 分档提醒**：预算条（开关 / 金额 / 进度，≥80% 琥珀、超支红脉）；跨 50 / 80 / 100% 各提醒一次；余额折算 CNY 低于阈值每天提醒一次。
-- **订阅套餐额度**：识别 `llm-pi-ai` 里的订阅类 provider（Kimi / Z.ai / OpenCode Go / MiniMax / OpenRouter / 小米 / 火山…），有额度 API 的实时显示剩余%与重置时间、用尽标红，无 API 标「未接入」；订阅通道模型费用记 0。档位月费与周期额度口径由内置知识库自动识别（如 OpenCode Go $10/月 + 周 $30 额度），有档位知识的标「自动识别」。
+- **订阅套餐额度**：识别 `llm-pi-ai` 里的订阅类 provider（Kimi / Z.ai / OpenCode Go / MiniMax / OpenRouter / 小米 / 火山…），有额度 API 的实时显示剩余%与重置时间、用尽标红，无 API 标「未接入」；订阅通道模型费用记 0。档位月费与周期额度口径由内置知识库自动识别（如 OpenCode Go $10/月 + 周 $30 额度），有档位知识的标「自动识别」。**MiniMax 用户注意**：在国内开发者环境请使用 `minimax-token-plan-cn` provider id，自动对接 `https://api.minimaxi.com`；国际保留 `minimax` / `minimax-token-plan`，默认 `https://www.minimaxi.com`。需要自配中转或 staging 时可在该 provider 设置里覆盖 `baseUrl`。
 
-  ![明细：厂商计费与订阅（余额、套餐额度、模型用量）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a123c8042c6053787afbf7427906cd8e75f2cfd1/screenshots/3.png)
+  ![明细：厂商计费与订阅（余额、套餐额度、模型用量）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/f6fd99818f7ae0b18c462d1da85f1945a1dbfb44/screenshots/3.png)
 - **自定义 Provider 余额**：配置任意 HTTP 端点查余额（`extract` 支持常量 / 点路径 / add-subtract / divide，请求头 `{{ENV}}` 经凭据 seam）；DeepSeek / Kimi / 阶跃星辰 / 硅基流动内置官方余额，余额列按近 7 天日均折算「约可撑 N 天」。
-- **真实用量聚合**：服务端从会话日志实时聚合（增量缓存只重算写过的会话），单会话损坏容错、快照落盘回退；`usage_stats` 工具让模型自查今天 / 本月花费。
+- **真实用量聚合**：服务端从会话日志实时聚合（增量缓存只重算写过的会话），单会话损坏容错、快照落盘回退；`usage_stats` 工具让模型自查今天 / 本月 / 当前会话 / 累计费用，还可查 `bySite`（按站点归组）与 `relay`（只看中转站）的汇总。
 - **多语种 + 双币种**：¥ / $ 切换随币种双语（USD→英文、CNY→中文，仅本插件生效）；费率表按所选币种换算。
 - **模型健康 + 未收录标注**：厂商接入状态圆点（绿 / 红 / 灰）；模型 id 不在目录时标「未收录」按兜底价估算、厂商自动推断（如 `mi-mimo-2.5` → 小米）；估算价模型标注「估算价」。
 - **会话明细 + 成本突增 + 热力图**：按会话费用倒序（标题 / 项目 / 调用 / 费用 / 最后活跃）；每轮费用柱状图（最近 40 轮、金额贴柱顶、峰谷背景分带、超 2 倍红标归因）；月 / 年日历热力图（5 档色阶、悬停明细；年视图近 52 周、GitHub 风格），头部显示活跃天数 / 连续使用天数。
 - **性能指标**：每个模型首字延时（TTFT）均值 / P50 / P90、生成速度（tokens/s）、总延迟均值，另按北京时间小时聚合 TTFT 与速度曲线；请求从头到首个内容 chunk 测 TTFT，工具续写步骤无独立请求头时以 step/start 估算并标 estimated。统计 Tab 渲染为按模型性能表 + 按小时 TTFT/速度双折线。
-- **Token 统计洞察**：独立「Token」分区——每日 token 堆叠（未命中输入 / 缓存命中 / 输出，含 reasoning 思考），模型 token 总量与占比，结构 KPI（缓存命中率 / 思考占比 / 输入输出比 / 峰值日）；按日 token CSV 与 JSON 导出。
+- **Token 统计洞察**：独立「Token」分区——每日 token 堆叠按「输入（缓存未命中）/ 输入（缓存命中）/ 输出」三桶分色（含 reasoning 思考），模型 token 总量与占比，结构 KPI（缓存命中率 / 思考占比 / 输入输出比 / 峰值日）；按日 token CSV 与 JSON 导出。
 
-  ![趋势：每日费用趋势、每轮费用与峰谷时段占比](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a123c8042c6053787afbf7427906cd8e75f2cfd1/screenshots/2.png)
+  ![趋势：每日费用趋势、每轮费用与峰谷时段占比](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/f6fd99818f7ae0b18c462d1da85f1945a1dbfb44/screenshots/2.png)
 
-- **数据导出 + 离线自包含**：统计 Tab 导出按日 / 按会话 CSV 与全量 JSON；无图表库、无外部 CDN、纯设计令牌。
+- **数据导出 + 离线自包含**：统计 Tab 导出按日 / 按会话 / 按站点 CSV 与全量 JSON；费用构成 / 工作区 / 会话明细分区可下钻（点项目行展开该项目的会话）；无图表库、无外部 CDN、纯设计令牌。
 - **插件信息卡**：设置 Tab 常驻「关于」卡——插件名、描述、作者（可跳 GitHub）、源码仓库、npm、许可证 MIT、版本号（服务端读自包 `package.json`，单一来源，发布自动正确）。
 
-  ![统计：导出、费用构成、工作区与会话明细](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a123c8042c6053787afbf7427906cd8e75f2cfd1/screenshots/4.png)
+  ![统计：导出、费用构成、工作区与会话明细](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/f6fd99818f7ae0b18c462d1da85f1945a1dbfb44/screenshots/4.png)
 
 ## 快速开始
 
@@ -92,7 +93,7 @@ npm install @kenz1117/dsh-ui-usage-billing
   └─ 渲染仪表盘
 ```
 
-- **服务端**（`src/index.ts`）：注入 `webServer`、`sessionPersistence` 与 `credentials`，注册 `GET /api/billing/usage-stats`、`/api/billing/pricing`、`/api/billing/balance`。聚合器按会话缓存折叠结果：一次 LLM 调用归属到其前置 `request/header` 记录的模型，token 拆分到缓存命中 / 未命中桶，日期按本机时区归天；日志文件 mtime+size 不变则直接复用缓存，只有写过的会话重新折叠，整份文档另有 5 秒 TTL 合并密集轮询。聚合逻辑见 `src/aggregate.ts`。
+- **服务端**（`src/index.ts`）：注入 `webServer`、`sessionPersistence` 与 `credentials`，注册 `GET /api/billing/usage-stats`、`/api/billing/pricing`、`/api/billing/balance`、`/api/billing/subscriptions`、`/api/billing/relay-quotas`。聚合器按会话缓存折叠结果：一次 LLM 调用归属到其前置 `request/header` 记录的模型，token 拆分到缓存命中 / 未命中桶，日期按本机时区归天；日志文件 mtime+size 不变则直接复用缓存，只有写过的会话重新折叠，整份文档另有 5 秒 TTL 合并密集轮询。聚合逻辑见 `src/aggregate.ts`。
 - **浏览器端**（`src/client/`）：请求上述接口渲染仪表盘，通过 `llm.models` 探测各厂商连接状态。真实数据到达前显示全零空快照，不展示伪造样本。
 
 ## 主题协作
@@ -140,7 +141,7 @@ cost（CNY）= (missInput × p_input + cacheHit × p_cacheHit + output × p_outp
 
 ## HTTP API
 
-对外 HTTP 接口与字段定义详见源码：`GET /api/billing/pricing`、`/api/billing/balance`、`/api/billing/usage-stats`（见 `src/index.ts`、`src/aggregate.ts`）。
+对外 HTTP 接口与字段定义详见源码：`GET /api/billing/pricing`、`/api/billing/balance`、`/api/billing/usage-stats`、`/api/billing/subscriptions`、`/api/billing/relay-quotas`（见 `src/index.ts`、`src/aggregate.ts`、`src/relay.ts`）。其中 `usage-stats` 返回的 `bySite` 字段为按中转站归组后的用量分布（`site:<origin>` / `direct:<provider>` / `unknown`），`unpricedModels` 为未计价模型的 id 列表；`relay-quotas` 返回 `quotas`（各中转站额度）与 `diagnostics`（每条路由的 origin / kind 归类，供「为什么不显示」自查）。全部端点仅接受回环请求（peer socket 地址 + Host 头校验）。
 
 ## 配置
 
@@ -179,11 +180,16 @@ npm publish --access public
 
 ## Known Limitations and Deferred Work
 
-- **余额查询已接入 DeepSeek / 月之暗面（Kimi）/ 阶跃星辰（StepFun）**：这三家用标准 Bearer API key 即可查询。其余厂商因无公开余额接口或需非 Bearer 鉴权（小米 MiMo 走控制台 Cookie、商汤走 AccessKey 签名、MiniMax/字节豆包走额度制或 AK/SK），暂显示「未配置」；扩展点在 `src/balance.ts`（按厂商余额 API 增加查询器）。
+- **余额查询已接入 DeepSeek / 月之暗面（Kimi）/ 阶跃星辰（StepFun）/ 硅基流动 / xAI / 智谱 GLM（Z.ai 国内域）**：这些用标准 Bearer API key 即可查询。其余厂商因无公开余额接口或需非 Bearer 鉴权（小米 MiMo 走控制台 Cookie、商汤走 AccessKey 签名、MiniMax/字节豆包走额度制或 AK/SK），暂显示「未配置」；扩展点在 `src/balance.ts`（按厂商余额 API 增加查询器）。
+- **中转站额度依赖上游私有 schema**：New API / Sub2API 的接口字段未公开，读不出时标「未读出额度」而非臆造金额；若某中转站响应字段不同，需按 `src/relay.ts` 的解析器扩展。未知路由表示该路由在当前 provider 配置里已不存在（改过名 / 删除过），历史调用数据未丢，重新配置同名路由即可自动归位。
 - **超支通知依赖浏览器 Notification**：权限被拒绝或平台不支持时只有界面红色脉冲兜底，没有宿主级通知通道；通知上限为每天一次。
 - **会话明细不可跳转**：点击会话行不会打开对应会话（跨插件导航需要宿主会话选择通道）；会话数封顶 100 行、面板只显示前 20 行。
 - **费用为目录价估算**：讯飞 / 商汤 / 小米等未公布按量单价的模型使用估算价（特性表脚注 ¹），正式定价以厂商账单为准。
 - **30 天趋势受日志保留范围约束**：超出持久化日志保留期的日期在窗口内补零显示，不回溯历史。
+
+## Contributors
+
+- [@ciphoo](https://github.com/ciphoo) — MiniMax 国内域 Token Plan 订阅额度支持（PR #5）
 
 ## 许可证
 

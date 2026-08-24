@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/72eb50833dfc7a1e79d50d0d25fd6d1ccaf2d46d/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池设置面板" width="720">
+  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/4b0bc86569196567152f005313c7dca5b97ac798/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池设置面板" width="720">
 </p>
 
 ---
@@ -96,9 +96,9 @@ DSH 默认通道 `deepseek-official` **不是专用搜索 API**：每次 `web_se
 ## 🎛️ 设置面板实机预览
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/72eb50833dfc7a1e79d50d0d25fd6d1ccaf2d46d/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池控制台" width="48%">
+  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/4b0bc86569196567152f005313c7dca5b97ac798/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池控制台" width="48%">
   &nbsp;
-  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/72eb50833dfc7a1e79d50d0d25fd6d1ccaf2d46d/docs/screenshots/settings-panel-scrolled.png" alt="DSH 搜索池引擎卡片列表" width="48%">
+  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/4b0bc86569196567152f005313c7dca5b97ac798/docs/screenshots/settings-panel-scrolled.png" alt="DSH 搜索池引擎卡片列表" width="48%">
 </div>
 
 - **实时密钥填写**：随时填写或更新各引擎 API Key（支持多行多 Key），点击保存立即热生效。行内「↗」直达各引擎申请页。

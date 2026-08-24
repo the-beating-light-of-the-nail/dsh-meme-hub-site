@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4f6b4997a277b519363f3a66f6e565b690b7ec67/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
@@ -31,19 +31,19 @@
 
 Filter by category or search in **Settings → Skills**. DSH-local skills can be enabled, disabled, or deleted; shared Agent skills stay read-only:
 
-![Skills Manager settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4f6b4997a277b519363f3a66f6e565b690b7ec67/assets/screenshots/skills-manager-en.png)
+![Skills Manager settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/skills-manager-en.png)
 
 Shared Agent skills stay visible when the DSH-local group is empty:
 
-![Shared Agent skills remain visible](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4f6b4997a277b519363f3a66f6e565b690b7ec67/assets/screenshots/skills-public.png)
+![Shared Agent skills remain visible](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/skills-public.png)
 
 The compact upload dialog accepts a plugin `SKILL.md`, a plugin directory, or drag-and-drop:
 
-![Upload plugin dialog](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4f6b4997a277b519363f3a66f6e565b690b7ec67/assets/screenshots/upload-plugin.png)
+![Upload plugin dialog](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/upload-plugin.png)
 
 Enabling a DSH-local skill restores its `/` command in the chat composer:
 
-![Chat slash command after enabling a local skill](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4f6b4997a277b519363f3a66f6e565b690b7ec67/assets/screenshots/slash-command.png)
+![Chat slash command after enabling a local skill](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/slash-command.png)
 
 ## DSH product ecosystem
 
@@ -145,7 +145,7 @@ Open **Settings → Skills**, then use the panel as follows:
 | Replace or delete | Confirm a name collision, or select **Delete** for an unneeded local skill. | DSH-local skills only |
 | Inspect shared skills | Review shared Agent skills without changing their metadata. | Read-only |
 
-![Delete plugin confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4f6b4997a277b519363f3a66f6e565b690b7ec67/assets/screenshots/delete-plugin.png)
+![Delete plugin confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/delete-plugin.png)
 
 > Deleting a DSH-local skill requires confirmation and cannot be undone.
 
@@ -201,3 +201,7 @@ npm run pack:check
 Project status, usage boundaries, architecture, and iteration records begin at the [documentation entry point](docs/00-交接入口/00-阅读导航.md). The detailed operational guide is `docs\02-产品与业务\01-使用说明.md`.
 
 Licensed under [Apache License 2.0](LICENSE).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the five most recent releases.

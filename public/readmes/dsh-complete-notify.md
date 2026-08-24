@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/c65b37cbbb37878499f3e2abb8886394a91ba0f4/assets/cover.png" alt="dsh-complete-notify cover" width="720">
+  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/da84f4284dd06bcf2fe7800169d3a89063db462e/assets/cover.png" alt="dsh-complete-notify cover" width="720">
 </p>
 
 DeepSeek Harness（DSH）任务完成通知插件：任务完成时播放**提示音**并弹出**小通知**。
@@ -63,9 +63,9 @@ dsh plugin --profile web add link:/path/to/dsh-complete-notify
 ### 弹窗效果预览
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/c65b37cbbb37878499f3e2abb8886394a91ba0f4/assets/screenshot-toast-completed.png" alt="任务完成（绿）" width="270">
-  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/c65b37cbbb37878499f3e2abb8886394a91ba0f4/assets/screenshot-toast-blocked.png" alt="等待你的反馈（黄）" width="270">
-  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/c65b37cbbb37878499f3e2abb8886394a91ba0f4/assets/screenshot-toast-aborted.png" alt="任务已中断（红）" width="270">
+  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/da84f4284dd06bcf2fe7800169d3a89063db462e/assets/screenshot-toast-completed.png" alt="任务完成（绿）" width="270">
+  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/da84f4284dd06bcf2fe7800169d3a89063db462e/assets/screenshot-toast-blocked.png" alt="等待你的反馈（黄）" width="270">
+  <img src="https://raw.githubusercontent.com/kaixinbaba/dsh-complete-notify/da84f4284dd06bcf2fe7800169d3a89063db462e/assets/screenshot-toast-aborted.png" alt="任务已中断（红）" width="270">
 </p>
 
 > **关于小结（recap）**：弹窗先立即显示降级小结（最终回答前 50 字的清洗版），随后由 Host 端异步调用 LLM 生成真正的一句话小结（≤50 字）并自动升级替换。每次运行结束调用一次 LLM（输入为最终回答，输出约 50 字，成本极小）。小结覆盖**整轮运行**（多轮 goal 任务取最终回答），与运行统计的「最后一轮」口径不同。

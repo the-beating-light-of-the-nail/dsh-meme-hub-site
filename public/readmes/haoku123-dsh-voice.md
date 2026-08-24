@@ -24,14 +24,21 @@ While a hold is open the overlay shows a **live caption** — the interim
 transcript of what has been said so far — and keeps a spinner up after
 release until the authoritative transcript lands.
 
-Known limitation: barge-in detection is triggered by the mic's leading
-speech edge, which relies on browser-level echo cancellation
-(`getUserMedia({ echoCancellation: true })`). Loud TTS playback may leak
-into the mic on some platforms; there is no JS-level AEC.
+Barge-in detection is triggered by the mic's leading speech edge. The ASR
+engine runs an **NLMS acoustic echo canceller** (see `src/aec.ts`) using the
+page's own TTS playback as the echo reference, so loud assistant audio is
+subtracted from the mic before the VAD — the browser-level
+`echoCancellation` constraint is kept only as a fallback when no echo
+reference is available.
+
+Live caption interims are **incremental**: each pass sends only the audio
+recorded since the last pass (correlated by session header), and the host
+decodes a bounded sliding window per session instead of re-decoding the
+whole hold. Preview cost therefore stops growing with hold length.
 
 ## Demo
 
-![dsh-voice demo](https://raw.githubusercontent.com/haoku123/dsh-voice/edccb0133766c3cde26ef5ee9b91c2388e8507e8/docs/demo.gif)
+![dsh-voice demo](https://raw.githubusercontent.com/haoku123/dsh-voice/e1ed20add8dfe4c272c42571d5ba5e4b5e393920/docs/demo.gif)
 
 The loop: hold the composer's send key (its arrow is covered by a mic glyph),
 watch the live caption fill in while you speak, release into a spinner until

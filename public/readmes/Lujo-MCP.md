@@ -21,7 +21,7 @@
 
 > Lujo-MCP 是 AI coding assistant 的「眼睛」与 Debug Context Infrastructure —— **不是另一个 Agent**，不替代 LLM 推理，而是把真实运行现场喂给宿主 AI。
 
-![Lujo-MCP Runtime Context Architecture](https://raw.githubusercontent.com/lujoai/Lujo-MCP/0c2a6e8886c971da2b98cbece909f5159b5aeee5/docs/public/images/lujo-runtime-context-architecture.svg)
+![Lujo-MCP Runtime Context Architecture](https://raw.githubusercontent.com/lujoai/Lujo-MCP/9031f74530527c6e8931f95d3fca7963c953f4d6/docs/public/images/lujo-runtime-context-architecture.svg)
 
 > Lujo-MCP = **Context Provider**，不是 Agent：为 AI coding agent 提供 Runtime Debug Context，推理与修复决策由宿主 AI（Claude / Cursor / Trae 等）完成。
 
@@ -71,9 +71,9 @@ npm install -g @lujoai/lujo-mcp
 
 ## 当前状态（Current Status）
 
-**Lujo-MCP v0.6.0**（npm `@lujoai/lujo-mcp@0.6.0`，开箱即用）
+**Lujo-MCP v0.6.1**（npm `@lujoai/lujo-mcp@0.6.1`，开箱即用）
 
-> 版本统一：app / npm / README / CHANGELOG / MCP serverInfo / git tag 均为 `0.6.0`。
+> 版本统一：app / npm / README / CHANGELOG / MCP serverInfo / git tag 均为 `0.6.1`。
 > v0.6.0 为架构重构与生产就绪里程碑：god object 拆分、Prometheus 细粒度业务指标、生产部署套件。
 > 架构冻结（Architecture Frozen）：允许 Agent → RAG；禁止 Runtime → RAG/Agent/LLM/MCP、RAG → Agent/Runtime/LLM/MCP。
 
@@ -286,7 +286,7 @@ LLM_PROVIDER=zhipu           # openai | zhipu | deepseek | custom（智谱免 VP
 
 ```bash
 curl http://localhost:8000/
-# → {"status":"ok","service":"Lujo-MCP","version":"0.6.0"}
+# → {"status":"ok","service":"Lujo-MCP","version":"0.6.1"}
 ```
 
 ## MCP Client 接入（MCP Client Setup）

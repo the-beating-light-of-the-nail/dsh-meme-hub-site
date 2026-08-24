@@ -7,6 +7,7 @@ Backup, restore, export, import, migrate and sync your complete DeepSeek Harness
 - 🔄 **Backup & Restore** DeepSeek Harness configuration
 - 📦 **Export / Import** complete DSH configuration
 - 🚚 **Migrate** DSH to another machine
+- ⏰ **Scheduled full backups** — automatic, on your own cadence (6h / 12h / 24h / 7d), secrets never included
 - 🔌 Backup installed **plugins** and plugin configuration
 - 🧩 Backup **MCP servers** and **Skills**
 - 🔐 Encrypted backups with optional credentials
@@ -53,6 +54,10 @@ Move your complete DeepSeek Harness setup without manually reinstalling plugins,
 
 Keep portable configuration synchronized between machines through a private Git repository or WebDAV — secrets never sync.
 
+### Schedule automatic full backups
+
+Turn on scheduled backups (6h / 12h / 24h / 7d) and DSH quietly keeps a fresh full backup of your configuration in the background — secrets are never included, so it stays safe on disk without a password.
+
 ### Discover & install configurations from the marketplace
 
 Browse the built-in official market for ready-made configurations (model providers, plugins, MCP servers, skills, agent presets…), preview what would be imported (dry-run), and install with one click — supply-chain warnings are always shown and every section must be explicitly approved before anything is written.
@@ -72,9 +77,11 @@ Browse the built-in official market for ready-made configurations (model provide
 | ↩️ | **Automatic rollback** | Failed import restores everything automatically |
 | 📸 | **Snapshot restore** | Undo an import: whole-file restore + uninstall added plugins (CLI & GUI) |
 | 🔄 | **Remote Sync** | Push/pull portable config via **Git private repo or WebDAV** (secrets never sync) |
+| ⏰ | **Scheduled backups** | Full backup on a fixed cadence (6h / 12h / 24h / 7d) — set-and-forget, secrets never included |
 | 🛒 | **Config Marketplace** | Browse & one-click install community configs — supply-chain warnings + per-section approval |
 | 🗂️ | **Profiles** | Save multiple setups (Work / Personal) and switch anytime |
 | 🌐 | **Bilingual UI** | Interface, reports and error details follow the DSH app language (中文 / English) |
+| 🤖 | **Agent tools** | Backup / snapshot / restore / sync right from an agent session |
 
 ---
 
@@ -82,15 +89,15 @@ Browse the built-in official market for ready-made configurations (model provide
 
 | Export | Import Preview |
 |:---:|:---:|
-| ![One-click Export](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/cbac337c64e269edb3ac9a828016338af29fa663/assets/screenshot-export.png) | ![Import Preview](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/cbac337c64e269edb3ac9a828016338af29fa663/assets/screenshot-import-preview.png) |
+| ![One-click Export](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/6b1591353e40f21ebbc8d7ab6491fe32d4e9b891/assets/screenshot-export.png) | ![Import Preview](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/6b1591353e40f21ebbc8d7ab6491fe32d4e9b891/assets/screenshot-import-preview.png) |
 
 | Snapshot Restore | Remote Sync |
 |:---:|:---:|
-| ![Snapshot Restore](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/cbac337c64e269edb3ac9a828016338af29fa663/assets/screenshot-snapshots.png) | ![Remote Sync](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/cbac337c64e269edb3ac9a828016338af29fa663/assets/screenshot-sync.png) |
+| ![Snapshot Restore](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/6b1591353e40f21ebbc8d7ab6491fe32d4e9b891/assets/screenshot-snapshots.png) | ![Remote Sync](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/6b1591353e40f21ebbc8d7ab6491fe32d4e9b891/assets/screenshot-sync.png) |
 
 | Configuration Market |
 |:---:|
-| ![Configuration Market](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/cbac337c64e269edb3ac9a828016338af29fa663/assets/screenshot-market.png) |
+| ![Configuration Market](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/6b1591353e40f21ebbc8d7ab6491fe32d4e9b891/assets/screenshot-market.png) |
 
 ---
 
@@ -319,6 +326,20 @@ dsh-config-manager restore --id <snapshot-id>                 # execute (current
 Every overwrite/delete is first copied to `<snapshotDir>/pre-restore/` so you can manually change your mind. Exit code is `1` if any action failed; the report honestly lists restored / removedPlugins / manualHints / failed / skipped.
 
 **A typical rescue flow** when DSH won't start: ① `dsh-config-manager reinstall` to bring the launcher back (plus any clean-up), ② `dsh web` to start DSH again, ③ re-add the plugin from the registry, and ④ pull a snapshot from the remote repo (or run `dsh-config-manager restore`) to bring your config back. The CLI works at every step regardless of DSH's health.
+
+### 🤖 Agent tools (for AI assistants)
+
+The plugin also registers **5 model tools** that an AI agent (a DSH assistant session) can call directly — the same backup / snapshot / sync engines, no GUI needed:
+
+| Tool | What it does |
+|---|---|
+| `config_backup` | Full backup of DSH config to the local `exports` dir — **no secrets by default**; pass `password` for an encrypted backup. Returns ZIP name / size / included sections / encryption state |
+| `config_list_snapshots` | List local rollback snapshots (id / created / source / status / entry count) for use with `config_restore` |
+| `config_restore` | Restore to a snapshot. **Default is a zero-write plan preview**; pass `confirm: true` to actually execute (overwrites / deletes `$DSH_HOME` files and uninstalls plugins added during import — destructive, always preview first) |
+| `config_sync_push` | Push config sync to the remote (Git / WebDAV) using the persisted channel config. Writing the remote is an explicit action; encryption / credentials require `password` and the engine forces `encrypt` |
+| `config_sync_pull` | Pull a remote diff **preview** (zero-write: download + analyze only). Landing the diff requires the separate confirm-import pipeline |
+
+Once the plugin is installed the tools appear automatically in every agent session (hosts without an agent `tools` service silently skip registration). The agent calls them when the task matches — e.g. "back up my config", "what snapshots do I have", "restore to that snapshot", "sync to my repo" or "show me the remote diff". Safety invariants are built in: `config_restore` is dry-run by default, `config_sync_pull` never writes, `config_sync_push` is an explicit remote write, and secret values never enter tool inputs / outputs / logs.
 
 ---
 

@@ -1,131 +1,99 @@
-# Upstream Radar
+<h1 align="center">Upstream Radar</h1>
 
-[![CI](https://github.com/MicroMilo/upstream-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/MicroMilo/upstream-radar/actions)
-[![npm](https://img.shields.io/npm/v/upstream-radar)](https://www.npmjs.com/package/upstream-radar)
-[![GitHub stars](https://img.shields.io/github/stars/MicroMilo/upstream-radar)](https://github.com/MicroMilo/upstream-radar/stargazers)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+<p align="center"><strong>Know which DeepSeek Harness plugins break after every release—before users do.</strong></p>
 
-**Compatibility evidence for the [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness) plugin ecosystem.**
+<p align="center">
+  English · <a href="README.zh-CN.md">简体中文</a>
+</p>
 
-A plugin repository can look healthy while its published artifact cannot install
-on the current DSH runtime. Upstream Radar binds the exact plugin artifact, DSH
-release, Node runtime, dependency graph, and install policy into one reviewable
-compatibility record—then identifies which plugins and authors are affected when
-that evidence changes.
+<p align="center">
+  <a href="https://github.com/MicroMilo/upstream-radar/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/MicroMilo/upstream-radar/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://www.npmjs.com/package/upstream-radar"><img alt="npm" src="https://img.shields.io/npm/v/upstream-radar"></a>
+  <a href="https://github.com/MicroMilo/upstream-radar/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/MicroMilo/upstream-radar"></a>
+  <a href="LICENSE"><img alt="Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg"></a>
+</p>
 
-The core object is an exact environment, not a package name or a diff:
+Upstream Radar continuously retests a maintained fleet of exact published
+plugins against changing
+[DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness)
+releases in disposable runners. When a pair breaks, it produces a reproducible
+issue; when the author ships a fix, it retests and closes the loop.
 
-```text
-plugin tarball SHA-256 × DSH version × Node/pnpm baseline × approved dependency builds
-```
+**100 maintained install/load targets · 100 catalog entries across all 21 categories · 4 upstream reports closed**
 
-## How the system fits together
+[Latest Agent-driven headless run](https://github.com/MicroMilo/upstream-radar/actions/runs/32684879130):
+**96 executable catalog cells observed · 74 compatible · 22 need review · 0 reproduced incompatibilities · 4 source-only**.
+Review signals are never advertised as plugin failures.
+
+The first live loop started with 29 review cells. The Agent selected nine
+bounded retries; seven became compatible, while two stopped at an explicit Web
+client dependency boundary instead of being mislabeled as broken.
+
+## Why it exists
+
+A healthy repository does not prove that its published plugin still works.
+The artifact users install must resolve against a specific DSH host, Node
+runtime, profile, and dependency set—and any of them can change overnight.
+
+Upstream Radar checks the relationship, not just the two repositories. A local
+pre-publish check asks, “does this plugin pass today?” Radar asks, “which
+maintained plugins stopped passing after the ecosystem changed?”
+
+## The loop
 
 ```mermaid
 flowchart TB
-  Input["DSH releases · plugin source/npm · advisory feeds"] --> IR["Exact-coordinate compatibility IR"]
-  IR --> Static["Static lane<br/>identity · graph · vulnerabilities"]
-  IR --> Runtime["Isolated lane on a fresh VM<br/>install → register → load"]
-  Static --> Evidence["Versioned exact-pair evidence"]
-  Runtime --> Evidence
-  Evidence --> Action["Verdict · reverse impact · author fix · optional Agent"]
+  Change["Schedule / DSH or plugin change"] --> Agent["Agent plans a bounded headless retry"]
+  Agent --> Runtime["Disposable VM: install → register → load"]
+  Runtime -->|"next observed gate"| Agent
+  Runtime -->|"compatible / outside headless"| Evidence["Publish exact evidence"]
+  Runtime -->|"reproduced failure"| Issue["Open one fixable issue"]
+  Issue -->|"author ships a fix"| Change
 ```
 
-Radar establishes deterministic facts; the Agent interprets project impact. A
-model never decides whether versions match, invents a dependency path, or turns
-missing evidence into a green result.
+The Agent interprets repository instructions and the latest runtime evidence,
+then chooses whether and how headless should retry. The disposable runner—not
+the model—establishes the result. A model cannot invent a build package, execute
+inside the target VM, or turn missing evidence into a pass.
 
-## What it answers
+## What you get
 
-| Question | Evidence returned |
-| --- | --- |
-| Does this exact plugin work with this DSH release? | Tarball identity, Node contract, install, registration, and load result. |
-| Why did it fail? | The failed stage, bounded command evidence, required build approval, or incompatible runtime range. |
-| What enters the DSH profile? | Exact npm/pnpm nodes, duplicate versions, root-to-dependency paths, and unresolved edges. |
-| Which plugins are exposed to an upstream change? | A reverse index with every known downstream path and its coverage status. |
-| What can the author repair? | The concrete package, version, lockfile, DSH declaration, or installation contract involved. |
+- An exact result for `plugin version × DSH version × Node/profile`, not a
+  timeless “compatible” badge.
+- Agent-planned follow-ups joined with real install/register/load evidence from
+  the published artifact.
+- A maintained result that is retested when DSH or the plugin changes.
+- One managed issue that is updated on repeat failures, reopened on regression,
+  and closed after a clean retest.
 
-## Proven on real DSH plugins
+## Upstream reports now closed
 
-- Imported a commit-pinned cohort of **8 repositories** from
-  [`awesome-dsh-plugin`](examples/dsh/awesome-observer/README.md); 6 independently
-  matched npm artifacts enter the isolated matrix and 2 remain correctly
-  GitHub-only.
-- Tested **9 exact artifacts** against DSH `0.1.1-rc.1` in separate disposable
-  VMs. Eight installed, registered, and loaded under their recorded contracts.
-- Stopped `@zseven-w/dsh-openpencil@0.1.0-rc.1` before plugin execution because
-  its artifact requires Node `>=24.11.0` while the runner provides Node `22.23.2`.
-- Proved `dsh-better-sidebar@0.14.0` succeeds only after the documented
-  `node-pty` build is explicitly approved and the native toolchain is present.
-- Built a reverse index from **37 real plugin graphs and 1,025 dependency
-  coordinates**, while preserving 13 missing-graph targets as evidence gaps.
+We opened the following reports; their upstream maintainers have now closed
+them:
 
-Read the [live isolated matrix and negative controls](examples/dsh/install-observer/reports/2026-08-21-dsh-0.1.1-rc.1.md)
-or inspect the [first 50-plugin corpus](examples/dsh/first-batch/README.md).
+- [Sanqi-normal/dsh-webui-market-plugin#5](https://github.com/Sanqi-normal/dsh-webui-market-plugin/issues/5)
+- [1na-ko/dsh-hdc-bridge#3](https://github.com/1na-ko/dsh-hdc-bridge/issues/3)
+- [6Mikao9/dsh-wsl-workspace#6](https://github.com/6Mikao9/dsh-wsl-workspace/issues/6)
+- [3274375092/dsh-voice#2](https://github.com/3274375092/dsh-voice/issues/2)
 
-## Try it in 60 seconds
+## Run one check
 
 ```bash
-# Network-free product walkthrough
-npx --yes upstream-radar@0.40.0 demo
-
-# Static review of a public DSH plugin; no install or plugin execution
-npx --yes upstream-radar@0.40.0 scan \
-  https://github.com/PlutoKeating/dsh-lark-bot \
-  --fail-on never
-
-# Exact artifact review plus a DSH load matrix
-npx --yes upstream-radar@0.40.0 review dsh-plugin \
-  dsh-cloudflare-browser-run@0.1.3 \
-  --dsh-version 0.1.0-rc.8,0.1.1-rc.1
+npx --yes upstream-radar@0.43.0 review dsh-plugin \
+  <package>@<version> \
+  --dsh-version <dsh-version>
 ```
 
-The code-executing path is deliberately separate. Run **Actions → Observe one
-DSH plugin install** to give one exact pair its own secret-free GitHub-hosted VM
-and restricted container.
+For code-executing checks, use the maintained
+[isolated observer workflow](.github/workflows/observe-dsh-plugin-install.yml):
+each pair receives a fresh, secret-free GitHub-hosted VM and restricted
+container.
 
-## Always-on today
+Inspect the [live compatibility matrix](examples/dsh/install-observer/README.md),
+the [directory-consumable evidence feed](feeds/dsh-plugin-compatibility.md),
+the [first 50-plugin corpus](examples/dsh/first-batch/README.md), or the
+[architecture notes](docs/architecture.md).
 
-The scheduled observer watches 13 DSH/core/plugin targets and stores the last
-trusted source, npm, lockfile, and alignment observations. A new exact DSH
-publication selects the maintained plugin matrix; a mapped plugin publication
-selects that plugin. Only affected pairs enter the isolated runtime lane.
-
-When nothing changed, Radar stays quiet: the verified steady-state run produced
-no Agent call, no install job, and no timestamp-only state commit.
-
-**Current boundary:** unchanged plugin/DSH pairs retain their previous evidence;
-the current scheduler does not yet periodically re-run every existing pair.
-
-## Safety boundary
-
-| Radar does | Radar does not claim |
-| --- | --- |
-| Static graph and artifact checks without importing plugin code | An empty finding list proves safety |
-| Dynamic checks in a fresh VM and restricted, secret-free container | A shared-kernel container proves hostile code is harmless |
-| Exact-version advisory matching and dependency paths | Every matched plugin is exploitable |
-| Exact-pair compatibility results with explicit coverage | One successful load covers every plugin business action |
-
-## Use it in DSH or CI
-
-```bash
-# Generate a reviewable DSH inventory and wiring
-npx --yes upstream-radar@0.40.0 setup
-```
-
-The repository also ships a [reusable GitHub Action](action.yml), maintained
-[observer workflow](.github/workflows/upstream-observer.yml), and machine-readable
-[schemas](schemas/). See the [Chinese guide](docs/README.zh-CN.md) for complete
-configuration and [architecture notes](docs/architecture.md) for evidence and
-trust boundaries.
-
-## Development
-
-```bash
-pnpm install
-pnpm test
-pnpm run release:check
-```
-
-Apache-2.0 licensed. Contributions backed by a reproducible DSH plugin case are
-especially welcome.
+<p align="center">
+  <strong>If Upstream Radar helps the DSH ecosystem stay compatible, <a href="https://github.com/MicroMilo/upstream-radar">please give it a Star</a> ⭐</strong>
+</p>

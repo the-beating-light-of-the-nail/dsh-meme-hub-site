@@ -10,11 +10,11 @@
 
 在设置中整理、搜索和备份提示词：
 
-![提示词库](https://raw.githubusercontent.com/SaiSenBox/dsh-prompt-manager/ae09e7bd1a4cd7c8ff896c86d51fc49f3a858be8/assets/prompt-library.png)
+![提示词库](https://raw.githubusercontent.com/SaiSenBox/dsh-prompt-manager/76059cb4950b60b189aea118adee15690bad16e9/assets/prompt-library.png)
 
 在聊天输入框里快速搜索并选择当前会话要使用的提示词：
 
-![聊天输入框提示词选择器](https://raw.githubusercontent.com/SaiSenBox/dsh-prompt-manager/ae09e7bd1a4cd7c8ff896c86d51fc49f3a858be8/assets/composer-picker.png)
+![聊天输入框提示词选择器](https://raw.githubusercontent.com/SaiSenBox/dsh-prompt-manager/76059cb4950b60b189aea118adee15690bad16e9/assets/composer-picker.png)
 
 ## 能做什么
 
@@ -25,7 +25,7 @@
 - 启用后按钮会直接显示提示词名称；从当前会话新建的分支会继承提示词，并显示相同状态。
 - 把提示词库导出为 JSON 备份，也可以用“合并”或“替换”方式导入。
 - 跟随 DSH 的语言设置切换中文或英文。
-- 数据只保存在当前浏览器，不会由插件上传到网络。
+- 数据只保存在本机（浏览器与本地镜像文件），不会由插件上传到网络。
 
 首次使用会放入 4 条示例提示词，随时可以改掉或删除。
 
@@ -59,14 +59,21 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 ## 备份与隐私
 
-提示词默认保存在浏览器 `localStorage` 的 `dsh-prompt-manager.prompts` 键中；每个会话当前启用的提示词集合保存在 `dsh-prompt-manager.session-injections` 中。因此：
+提示词默认保存在浏览器 `localStorage` 的 `dsh-prompt-manager.prompts` 键中，并镜像到本机
+`$DSH_HOME/dsh-prompt-manager/prompts.json`（可用环境变量 `DSH_PROMPT_MANAGER_DATA_DIR` 更改目录）；
+每个会话当前启用的提示词集合保存在 `dsh-prompt-manager.session-injections` 中。因此：
 
 - 同一浏览器的多个标签页会同步；
-- 换浏览器、清理站点数据或更换访问地址前，建议先点“导出”；
+- DSH 桌面应用每次启动可能使用新端口（浏览器 `localStorage` 按端口隔离），此时提示词库会从本机镜像文件自动恢复，不再因重启而丢失；
+- 换浏览器或清理站点数据前，建议先点“导出”；
 - 导入“合并”会保留现有条目，同 ID 的备份条目会覆盖旧条目；
 - 导入“替换”会用备份完整替换当前提示词库。
 
-系统提示词本身只在当前 DSH 进程内生效；如果 DSH 重启，Web 客户端会从浏览器本地记录为仍存在的会话恢复注入。会话分支继承最近祖先会话的提示词集合，也可以在分支内单独新增或移除其中一条。插件默认只允许本机页面修改注入状态。
+浏览器与本机镜像通过版本号顺序同步；快速连续编辑不会让旧请求覆盖新内容。如果多个页面同时修改，插件会合并两边的条目并在界面中提示检查。空提示词库也是有效状态，不会在重启后重新生成示例。
+
+持久文件使用同目录临时文件原子替换，并尽可能限制为当前用户可读写。如果文件损坏，插件不会静默覆盖；下一次由用户主动编辑或导入有效内容时，原文件会先保留为 `prompts.json.corrupt-*`。读取或同步失败会直接显示在提示词库页面。
+
+系统提示词本身只在当前 DSH 进程内生效；如果 DSH 重启，Web 客户端会从浏览器本地记录为仍存在的会话恢复注入。会话分支继承最近祖先会话的提示词集合，也可以在分支内单独新增或移除其中一条。插件默认只允许本机页面读取或修改提示词及注入状态；需要远程管理时必须显式设置 `DSH_PROMPT_MANAGER_ALLOW_REMOTE=1`。
 
 插件会校验导入和本地数据。遇到损坏数据或浏览器拒绝写入时，界面会明确提示，不再静默假装保存成功。
 

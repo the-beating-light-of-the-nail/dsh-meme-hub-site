@@ -1,7 +1,7 @@
 # dsh-web-remote
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/godchen520/dsh-web-remote/ccf54ded5d5cd52af863a66f817de6cf532623c1/docs/banner.svg" alt="dsh-web-remote" width="100%">
+  <img src="https://raw.githubusercontent.com/godchen520/dsh-web-remote/49f6ef1db1d70e086455c7e055242549a0911787/docs/banner.svg" alt="dsh-web-remote" width="100%">
 </p>
 
 [![npm version](https://img.shields.io/badge/npm-dsh--web--remote-blue)](https://github.com/godchen520/dsh-web-remote)
@@ -27,7 +27,8 @@
 | 🔗 **自定义公网链接** | 支持填写自定义公网 URL（如 ngrok），面板编辑/清除，重启后生效 |
 | 🔌 **自定义端口** | 局域网模式下可修改 HTTPS 端口号，带端口占用检测 |
 | 🤖 **微信机器人** | iLink 协议直连微信，支持 AI 对话、会话控制、模型切换 |
-| 👁️ **会话监听** | `/监听` 命令，Agent 思考完毕自动微信通知 |
+| 💬 **飞书机器人** | WebSocket 长连接，支持命令控制、会话监听通知 |
+| 👁️ **会话监听** | `/监听` 命令，Agent 思考完毕自动微信/飞书通知 |
 
 ## ⚡ 一句话安装
 
@@ -45,11 +46,11 @@ dsh plugin --profile web add github:godchen520/dsh-web-remote && dsh web
 
 **快捷按钮**（页面左下角）：
 
-![快捷按钮](https://raw.githubusercontent.com/godchen520/dsh-web-remote/ccf54ded5d5cd52af863a66f817de6cf532623c1/docs/quick-button.png)
+![快捷按钮](https://raw.githubusercontent.com/godchen520/dsh-web-remote/49f6ef1db1d70e086455c7e055242549a0911787/docs/quick-button.png)
 
 **远程面板**（公网 / 局域网切换、一键复制链接、二维码、启动 / 停止）：
 
-![远程面板](https://raw.githubusercontent.com/godchen520/dsh-web-remote/ccf54ded5d5cd52af863a66f817de6cf532623c1/docs/remote-screenshot.png)
+![远程面板](https://raw.githubusercontent.com/godchen520/dsh-web-remote/49f6ef1db1d70e086455c7e055242549a0911787/docs/remote-screenshot.png)
 
 ## 📋 安装方式
 
@@ -129,6 +130,19 @@ pnpm add github:godchen520/dsh-web-remote
 **对话：**
 - 直接发送内容 → 自动发到选中的会话并回传结果
 - 未选择会话时提示先选择
+
+## 💬 飞书机器人
+
+通过飞书直接控制 DSH，支持：
+
+**远程控制命令：**
+- `/链接` — 获取公网链接
+- `/停止远程` — 关闭远程服务
+- `/监听` — 开启/关闭会话监听模式
+- `/帮助` — 显示命令列表
+
+**绑定方式：**
+在 DSH Web 面板 → 机器人标签页 → 飞书，填写 App ID 和 App Secret，点击绑定。
 
 ## ❓ 常见问题
 

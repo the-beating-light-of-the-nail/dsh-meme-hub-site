@@ -120,7 +120,7 @@ Agent one-glance guide: [mcp/AGENT_GUIDE.md](mcp/AGENT_GUIDE.md)
 
 ## 🖥️ UI Workbench (dsh-quant-ui)
 
-![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/031d764f60f8253f4646eb0fc7f30fcfdabc62fc/demos/ui-demo-preview.png)
+![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/ee301d7ac5e0f32557f645ba73c497f42a1e6665/demos/ui-demo-preview.png)
 
 [dsh-quant-ui](https://github.com/pengpengyi92/dsh-quant-ui): candlesticks + MA
 overlays + trade markers, equity curves, fund NAV / management-fee / performance-fee
@@ -275,6 +275,14 @@ results append after the reusable prefix.
 
 | Version | Date | Notes |
 |---|---|---|
+| 0.90.0 | 2026-08-23 | HIGHFLYER_SPECIAL — dual-engine king (quant funds AGI, DeepSeek $45B, Wenfeng world AI-richest), 50 reports total |
+| 0.89.0 | 2026-08-23 | UBIQUANT_SPECIAL — China AI-transform deep-dive (WorldQuant lineage, IQuest-Coder 40B open source, capsizing paradigm), 49 reports total |
+| 0.88.0 | 2026-08-22 | quant_trading_cost + quant_rebalance_schedule — cost gate + drift/cost optimizer (59 tools, 215 unit) |
+| 0.87.0 | 2026-08-22 | Validation tools ×4 — factor_correlation / deflated_sharpe / stress_test / parameter_sensitivity (57 tools, 210 unit) |
+| 0.86.0 | 2026-08-22 | Bridges ×3 — quant_layered_backtest / quant_trade_quality / quant_attribution (53 tools, 200 unit) |
+| 0.85.0 | 2026-08-22 | quant_ic_decay + quant_portfolio_optimize (50 tools, 193 unit) |
+| 0.84.0 | 2026-08-22 | AI-infra data modules ×4 — quant_data_pit / quant_channel_guide / CLI quality / chain-loop (48 tools, 186 unit) |
+| 0.83.0 | 2026-08-22 | quant_factor_neutralize repaired + 5 baselines (46 tools, 179 unit) |
 | 0.82.0 | 2026-08-22 | TYO_QUANT — Tokyo yen-rates-center census (~9 firms, $30M talent war, Capula stronghold), 48 reports total |
 | 0.81.0 | 2026-08-20 | CHI_QUANT — Chicago market-making city census (~14 firms, exchange-gene, UChicago pipeline, Citadel exit), 47 reports total |
 | 0.80.0 | 2026-08-20 | QUANT_PEOPLE_CN + QUANT_PEOPLE_GLOBAL — 101st-release quant headcount estimates (CN ~30-50k, 4-city ~25-38k, global ~80-120k), 46 reports total |
@@ -432,7 +440,7 @@ cd deepseek-harness && pnpm exec tsx ../quant-indicators/consumer-test/boot.ts
 
 If dsh-quant helps your research, a ⭐ makes the project visible to more dsh users.
 
-<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/031d764f60f8253f4646eb0fc7f30fcfdabc62fc/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/ee301d7ac5e0f32557f645ba73c497f42a1e6665/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
 
 This whale stands for DeepSeek Harness (dsh) — trading on its holographic screen 🐋
 
@@ -445,3 +453,18 @@ Ecosystem infrastructure: [quant ecosystem directory](docs/QUANT_ECOSYSTEM.md) �
 Research columns: [quant-history (firm archives)](quant-history/) · [quant-repo (open-source special)](quant-repo/)
 
 Plugin library (five slots × external repos & MCPs): [plugin/](plugin/)
+
+---
+
+## 👤 About the author
+
+**Pengyi Peng** — AI-native builder with a mathematics & quant-research
+background, building this project as an open research sandbox.
+
+- **WorldQuant MAPC 2024 · Global 11 / 850 · UK 1** — [official Credly badge](https://www.credly.com/badges/058c73fd-7e31-4eb8-9246-5f068d39ec41)
+- **WorldQuant IQC 2024 · Global 232 / 34,142 · UK 5** (finalist)
+- dsh-quant: 59 tools · 6 domains · 215 unit tests · 110+ automated releases
+- Quant-industry research: 94 firm archives + 50 research reports (in `quant-history/`)
+- [GitHub](https://github.com/pengpengyi92) · [LinkedIn](https://www.linkedin.com/in/pengyi-peng-625511253/)
+
+*Methods open, secrets internal — the author's research is public, the strategies are not.* 🐳

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/60f58ead184830949599e0290a232060241986a6/docs/social-preview.png" alt="dsh-media-skills — free image reading & generation for DeepSeek Harness" width="100%">
+<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/d8516c99639e95c31368885b781d899a37c2b3be/docs/social-preview.png" alt="dsh-media-skills — free image reading & generation for DeepSeek Harness" width="100%">
 
 <br>
 
@@ -88,11 +88,11 @@ Full walkthrough and troubleshooting: [docs/SETUP_VISION_EN.md](docs/SETUP_VISIO
 
 *Paste an image in a text-only session → the free vision model describes it → your model answers. The same bundle also generates new images on demand.*
 
-<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/60f58ead184830949599e0290a232060241986a6/docs/screenshots/demo-paste.png" alt="Demo: paste an image into a text-only DeepSeek Harness session, the vision model reads it, and the model answers; the same bundle can also generate images" width="100%">
+<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/d8516c99639e95c31368885b781d899a37c2b3be/docs/screenshots/demo-paste.png" alt="Demo: paste an image into a text-only DeepSeek Harness session, the vision model reads it, and the model answers; the same bundle can also generate images" width="100%">
 
 *How it works in one picture:*
 
-<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/60f58ead184830949599e0290a232060241986a6/docs/screenshots/how-it-works.png" alt="How paste-image reading works: paste → vision model describes → text description arrives at the current model" width="100%">
+<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/d8516c99639e95c31368885b781d899a37c2b3be/docs/screenshots/how-it-works.png" alt="How paste-image reading works: paste → vision model describes → text description arrives at the current model" width="100%">
 
 
 ## 🚀 Usage
@@ -144,7 +144,7 @@ Yes — SiliconFlow Kolors is free and watermark-free. If a model is temporarily
 
 Sample material to try instantly — 6 AI-generated images with their prompts, plus a purpose-built vision test card (title, buttons, bar-chart values) for checking reading accuracy:
 
-<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/60f58ead184830949599e0290a232060241986a6/examples/generated/fox-forest.jpg" width="30%"> <img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/60f58ead184830949599e0290a232060241986a6/examples/generated/cat-astronaut.jpg" width="30%"> <img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/60f58ead184830949599e0290a232060241986a6/examples/vision-test-card.png" width="30%">
+<img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/d8516c99639e95c31368885b781d899a37c2b3be/examples/generated/fox-forest.jpg" width="30%"> <img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/d8516c99639e95c31368885b781d899a37c2b3be/examples/generated/cat-astronaut.jpg" width="30%"> <img src="https://raw.githubusercontent.com/MJorgin/dsh-media-skills/d8516c99639e95c31368885b781d899a37c2b3be/examples/vision-test-card.png" width="30%">
 
 → [examples/README.md](examples/README.md)
 

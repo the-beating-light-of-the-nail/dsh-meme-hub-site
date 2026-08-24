@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/1df30a3d97eaa8255b805f3be6fed24c6bb707cc/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
 </div>
 
 <div align="center">
@@ -34,15 +34,15 @@ The parent session keeps task context, judgment, and the final answer. Expert ch
 
 Filter by category or search in **Settings → Experts**, then enable the experts you need:
 
-![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/screenshots/agent-roster-en.png)
+![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/1df30a3d97eaa8255b805f3be6fed24c6bb707cc/assets/screenshots/agent-roster-en.png)
 
 Use `@` or the composer's **Experts** picker to choose an enabled expert:
 
-![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/screenshots/expert-picker.png)
+![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/1df30a3d97eaa8255b805f3be6fed24c6bb707cc/assets/screenshots/expert-picker.png)
 
 The name and slug are filled in; write the complete task next:
 
-![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/e94b516c0f8488b6dfdd09768ba1261649c92a4d/assets/screenshots/summon-prompt.png)
+![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/1df30a3d97eaa8255b805f3be6fed24c6bb707cc/assets/screenshots/summon-prompt.png)
 
 ## DSH product ecosystem
 
@@ -191,3 +191,6 @@ pnpm verify
 
 This project’s TypeScript source, build scripts, and documentation use [Apache License 2.0](LICENSE). Bundled personas originate from [The Agency](https://github.com/msitarzewski/agency-agents) and remain MIT-licensed; see [assets\agency-agents\LICENSE](assets/agency-agents/LICENSE).
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the five most recent releases.

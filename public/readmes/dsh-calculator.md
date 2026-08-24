@@ -105,7 +105,9 @@ panel keeps working.
 
 Rates are the official DeepSeek prices (CNY per 1M tokens). Since 2026-08-17
 the peak/off-peak schedule applies (peak 09:00–12:00 & 14:00–18:00 Beijing;
-off-peak = half the peak price):
+off-peak = half the peak price). Since 2026-08-23 00:00 Beijing time the peak
+window applies **Monday–Friday only**; Saturday and Sunday are off-peak (half
+price) all day:
 
 | 模型 | 缓存命中输入（高峰/半价） | 缓存未命中输入（高峰/半价） | 输出（高峰/半价） |
 |---|---|---|---|
@@ -114,6 +116,8 @@ off-peak = half the peak price):
 
 - 2026-08-17 之前的会话事件按当时费率计费（flash ¥0.02 / ¥1.0 / ¥2.0，pro
   ¥0.025 / ¥3.0 / ¥6.0）
+- **2026-08-23 00:00 起，周六、周日全天按半价（低谷价）计费**；周末高峰
+  时段不再区分，2026-08-23 之前的周末仍按当时的高峰/空闲时段计费
 - 输出 token 包含推理 token，与普通输出同价
 - 费用为估算值，与官方账单可能存在差异（缓存命中 token 量大时尤其明显）
 

@@ -4,7 +4,7 @@
 
 DeepSeek Harness 本地音乐/小说播放插件。
 
-写代码写累了、想摸鱼又不想切窗口？这个插件就是你的**摸鱼神器**——直接在 DeepSeek Harness 的网页里塞进一个本地音乐播放器：扫一下你电脑上的音乐目录（默认 `~/Music`）就能在浏览器里听歌，带播放条和可拖拽的播放面板，还能自己建歌单。
+写代码写累了、想摸鱼又不想切窗口？这个插件就是你的**摸鱼神器**——直接在 DeepSeek Harness 的网页里塞进一个 **DSH音乐播放器**：扫一下你电脑上的音乐目录（默认 `~/Music`）就能在浏览器里听歌，带播放条和可拖拽的播放面板，还能自己建歌单。
 
 光听歌还不够，它还能**听书**：把本地 `.txt` 小说丢给 AI 朗读，想听哪章点哪章、声音随便挑。最绝的是它还注册了 `music_play` 模型工具——你连鼠标都不用动，在对话框里跟 agent 说句「播放周杰伦的歌」，音乐分分钟响起来，摸鱼摸出新境界。
 
@@ -19,14 +19,17 @@ DeepSeek Harness 本地音乐/小说播放插件。
 - `music_play` 模型工具：agent 可按关键词播放本地音乐，也可按小说名启动 AI 讲书
 - 支持的格式：`mp3 / m4a / m4b / aac / flac / wav / ogg / opus / webm / aiff`（自动递归扫描子目录，上限 500 首）
 - **自建歌单**：可新建多个歌单，从本地文件（支持多选、可跨目录）添加歌曲；播放条爱心按钮一键收藏到默认歌单「我最喜欢」；歌单作为播放来源时，顺序/乱序循环只在该歌单内进行
+- **在线 QQ 音乐**：面板内置「QQ音乐」页签——微信/QQ 扫码登录（解锁 VIP/高音质）、我的歌单/推荐歌单/分类歌单/排行榜/新歌/搜索浏览、卡片式歌单展示、一键收藏到「我喜欢」
 
 ## 截图
 
-![播放条](https://raw.githubusercontent.com/kendu76/dsh-music-player/584d2262bc53c56ae73cc7c59c8613c90047bec1/assets/screenshot-bar.png)
+![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/fa09fa8af6023c14df25c372c6a8367e4e8c6e76/assets/screenshot-bar.png)
 
-![实时频谱](https://raw.githubusercontent.com/kendu76/dsh-music-player/584d2262bc53c56ae73cc7c59c8613c90047bec1/assets/screenshot-spectrum.png)
+![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/fa09fa8af6023c14df25c372c6a8367e4e8c6e76/assets/screenshot-qq.png)
 
-![播放面板](https://raw.githubusercontent.com/kendu76/dsh-music-player/584d2262bc53c56ae73cc7c59c8613c90047bec1/assets/screenshot-panel.png)
+![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/fa09fa8af6023c14df25c372c6a8367e4e8c6e76/assets/screenshot-spectrum.png)
+
+![播放面板](https://raw.githubusercontent.com/kendu76/dsh-music-player/fa09fa8af6023c14df25c372c6a8367e4e8c6e76/assets/screenshot-panel.png)
 
 ## 安装
 
@@ -49,7 +52,7 @@ dsh plugin --profile <profile> add github:kendu76/dsh-music-player
 > 项目是手写的纯 JS（`lib/` 直接是发布产物），**没有**需要从源码构建的步骤，因此从 GitHub/npm 直装即可使用，无需像 TypeScript 包那样为构建脚本授权。
 
 安装后重启 DSH，打开 Web GUI：
-- 聊天输入区上方会出现「本地音乐播放器」播放条
+- 聊天输入区上方会出现「DSH音乐播放器」播放条
 - 点击右侧「列表」按钮打开播放面板
 - 在面板顶部点击「选择音乐目录」并选定音乐目录（默认 `~/Music`），自动递归扫描
 - 之后可直接在对话框里让 agent 播放，例如「播放周杰伦的歌」
@@ -84,7 +87,7 @@ dsh plugin --profile <profile> add ./dsh-music-player-0.1.0.tgz
 
 ## 自建歌单（收藏）
 
-播放面板「音乐」页内新增子标签：**曲库 / ♥ 我最喜欢 / ＋**，支持自建歌单并把歌单作为播放来源——此时顺序/乱序循环只在该歌单内进行。
+播放面板「本地音乐」页内新增子标签：**曲库 / ♥ 我最喜欢 / ＋**，支持自建歌单并把歌单作为播放来源——此时顺序/乱序循环只在该歌单内进行。
 
 - **新建歌单**：点「＋」输入名称即建（可建多个）。
 - **曲库加入**：在「曲库」列表每首歌行尾有「＋」按钮，点击可把该曲加入任一已有歌单，或直接新建歌单加入。
@@ -95,13 +98,38 @@ dsh plugin --profile <profile> add ./dsh-music-player-0.1.0.tgz
 - **命令**：`music_play` 工具新增 `playlist` 参数，可让 agent 直接播放某个歌单（如「播放歌单 我最喜欢」）。
 - 歌单数据保存在 `~/.dsh/music-player-playlists.json`，刷新/重启不丢；歌单可包含曲库目录之外的本地音频文件。
 
+## 在线 QQ 音乐
+
+播放面板顶部切到「QQ音乐」页签即可在线听歌。**需先扫码登录**（QQ 登录或微信登录），登录后可浏览/搜索/播放并访问「我的歌单」，VIP 曲目可播高音质。
+
+> **使用声明（重要）**：在线 QQ 音乐功能通过**非官方接口**访问 QQ 音乐资源，所播放/收藏的内容版权归
+> 版权方及 QQ 音乐平台所有。本功能**仅供个人学习、技术研究、日常试听使用**，
+> **严禁用于任何商业用途、公开传播、二次分发或盈利行为**。使用本功能即表示您已知悉并同意：
+> 1. 您应对自己的使用行为及其后果负责；
+> 2. 因使用非官方接口登录/播放导致的账号风控、封禁、限流，以及可能引发的法律、版权纠纷，均由使用者自行承担；
+> 3. 本项目作者不承担任何因此产生的直接或间接责任。
+> 如您不同意以上条款，请勿使用本功能。
+
+- **登录**：两种扫码方式——**QQ 登录**或**微信登录**（推荐）。登录态保存在 Host 端（`~/.dsh/music-player-qq-cookie.json`），刷新/重启不丢；面板右上角可退出登录。
+- **浏览**：6 个子页签——**我的歌单 / 推荐歌单 / 分类歌单 / 排行榜 / 新歌 / 搜索**。
+  - 我的歌单：登录后展示当前账号的歌单（卡片式），本人创建的歌单卡片右上角可一键删除（二次确认；「我喜欢」不可删除）。
+  - 推荐歌单：热门推荐 12 条，底部「加载更多」可续载。
+  - 分类歌单：60+ 分类（默认折叠显示 8 个，可展开），每个分类的歌单支持「加载更多」。
+  - 排行榜：巅峰榜/地区榜/特色榜等分组，点榜单看歌曲（带榜单封面卡片），榜单详情底部「加载更多」可分页续载全部歌曲。
+  - 新歌：新歌速递（最新/内地/港台/欧美/韩国等）。
+  - 搜索：搜歌曲与歌单，带搜索历史（localStorage，最近 10 条）。
+- **播放**：点击任意歌曲即可播放（同一播放条 + 频谱）；VIP 标识显示在歌名后，行尾显示歌手名。进入歌单/播放列表时自动定位到正在播放的那一首，且正在播放的条目以高亮选中态显示。
+- **收藏**：播放条爱心按钮把当前在线曲目收藏到 QQ 音乐「我喜欢」，已收藏歌曲爱心实时点亮。
+- **续播**：在线播放进度（当前曲目 + 队列）刷新后自动恢复，点 ▶ 续播。
+- 在线曲目不占本地曲库的 500 首上限，与本地/讲书完全隔离。
+
 ## AI 讲书
 
-把本地 `.txt` 小说交给 AI 朗读（复用 DSH 已配置的 xiaomi/MiMo TTS）。**AI 语音目前仅支持 xiaomi 提供方（限时免费），请在设置中配置好再使用此功能。**
+把本地 `.txt` 小说交给 AI 朗读。**AI 语音目前仅支持xiaomi提供方（限时免费），请在设置中配置好再使用此功能。**
 
 ### 前置
 
-在 DSH 的模型设置里配置一个 xiaomi/MiMo TTS provider（含 api key）。未配置时，小说列表会提示"未配置 xiaomi/MiMo TTS 模型"。
+在 DSH 的模型设置里配置一个xiaomi提供方（含 api key）。未配置时，小说列表会提示"未配置xiaomi提供方"。
 
 ### 使用
 
@@ -121,7 +149,7 @@ dsh plugin --profile <profile> add ./dsh-music-player-0.1.0.tgz
 
 ```sh
 npm install
-npm test        # 跑 vitest 测试套件（Host 单测 + Web 渲染冒烟，共 50+ 用例）
+npm test        # 跑 vitest 测试套件（Host 单测 + Web 渲染冒烟，共 120+ 用例）
 ```
 
 修改 `lib/` 后，在本机 profile 里用 link 方式本地调试并验证：

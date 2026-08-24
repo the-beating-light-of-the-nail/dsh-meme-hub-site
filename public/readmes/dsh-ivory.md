@@ -21,7 +21,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/main/assets/hero-dark.png">
-  <img alt="Ivory for DSH home screen" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/ac0c8d8f2b9734670ffe7acd891a4cb8f5325741/assets/hero-light.png" width="1440">
+  <img alt="Ivory for DSH home screen" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/88e3cdca0b9eb0f328974dd55359aa63e064948d/assets/hero-light.png" width="1440">
 </picture>
 
 Ivory gives the DSH web interface a quieter reading rhythm without changing how
@@ -73,8 +73,8 @@ dsh plugin --profile web remove dsh-ivory
 
 <table>
   <tr>
-    <td width="72%"><img alt="Ivory conversation view on desktop" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/ac0c8d8f2b9734670ffe7acd891a4cb8f5325741/assets/conversation-light.png"></td>
-    <td width="28%"><img alt="Ivory conversation view on mobile" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/ac0c8d8f2b9734670ffe7acd891a4cb8f5325741/assets/mobile-light.png"></td>
+    <td width="72%"><img alt="Ivory conversation view on desktop" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/88e3cdca0b9eb0f328974dd55359aa63e064948d/assets/conversation-light.png"></td>
+    <td width="28%"><img alt="Ivory conversation view on mobile" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/88e3cdca0b9eb0f328974dd55359aa63e064948d/assets/mobile-light.png"></td>
   </tr>
   <tr>
     <td align="center"><sub>Focused desktop conversation</sub></td>
@@ -103,8 +103,8 @@ and [third-party notices](https://github.com/ZJUZhiyuCai/dsh-ivory/blob/main/THI
 
 > [!NOTE]
 > DeepSeek Harness is in developer preview and may make breaking UI changes.
-> Ivory 0.2.x is verified against DSH 0.1.0-rc.7 with the current 0.1.0-rc.8
-> web client modules. When Ivory cannot prove the current structural contract,
+> Ivory 0.2.x is verified against DSH 0.1.1-rc.2 and its current web client
+> modules. When Ivory cannot prove the current structural contract,
 > it keeps token-level theming and releases the host layout back to DSH.
 
 <details>
@@ -112,10 +112,10 @@ and [third-party notices](https://github.com/ZJUZhiyuCai/dsh-ivory/blob/main/THI
 
 ```sh
 npm ci
-npm test          # renderer unit tests, then 14 static, build, publint, and package checks
+npm test          # renderer unit tests, then 15 static, build, publint, and package checks
 npm run qa:r2     # 73 browser regressions; DSH must run at 127.0.0.1:3080
 npm run qa:adversarial  # 29 stress checks: reconciliation safety, toggle/resize storms, degraded mode
-npm run qa:activity     # 16 checks for thinking/tool-call rows, icons, and terminal polish
+npm run qa:activity     # 24 checks for thinking/tool-call rows, icons, and terminal polish
 npm run qa:micro        # 28 Vision Toolkit/Ivory micro-component checks; set DVT_CLIENT_JS if the toolkit is not installed in the DSH web profile
 ```
 

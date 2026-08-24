@@ -4,7 +4,7 @@
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/49a1bd0aa4f98487d8120de590864414b9cbdee1/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
   <h1>Oh-DSH</h1>
   <p><strong>一套 DSH runtime，Desktop、Web 与 TUI 三种开发体验。</strong></p>
   <p>把 AI Agent、Workspace、本地工具与插件生态带到你习惯的界面。</p>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/49a1bd0aa4f98487d8120de590864414b9cbdee1/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
 </p>
 
 Oh-DSH 将 DeepSeek Harness、Node.js、本地开发工具和内置插件打包为可安装的
@@ -149,6 +149,24 @@ ohdsh web
 ohdsh tui
 ```
 
+本地开发时，也可以用仓库根目录的 Makefile 快速启动指定交互端：
+
+```sh
+make build
+make tui ARGS="--lang zh"       # 只暂存并启动 TUI
+make web ARGS="--port 3080"     # 只暂存并启动 Web
+make desktop                     # 只暂存并启动 Desktop
+```
+
+`make tui` 默认使用 inline 模式，从当前终端光标位置继续渲染；需要
+alternate screen 时传入 `ARGS="--fullscreen"`。每个 Make 目标只会暂存
+对应交互端的 Oh-DSH package，不会把其它交互端一起带入开发 runtime。Make
+默认使用 `~/.ohdsh`，也可以覆盖：`OH_DSH_HOME=/tmp/ohdsh make tui`。
+
+Desktop、Web 和 TUI 共享同一组 Agent preset；其中 `liangshen`（梁神模式）会在
+首轮保持 Minimal 双工具，首次工具调用后开放完整工具目录，压缩后重新锚定。
+Web/Desktop 可在设置页的 Agent preset 中选择，TUI 可输入 `/preset liangshen`。
+
 打包完整版使用对应平台的 `dist:mac`、`dist:linux` 或 `dist:win`；只打包
 Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
@@ -159,11 +177,11 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ### 插件市场
 
-![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/49a1bd0aa4f98487d8120de590864414b9cbdee1/assets/oh-dsh-plugin-marketplace.png)
+![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/oh-dsh-plugin-marketplace.png)
 
 ### Oh-DSH 皮肤
 
-![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/49a1bd0aa4f98487d8120de590864414b9cbdee1/assets/oh-dsh-desktop-skins.png)
+![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/oh-dsh-desktop-skins.png)
 
 </details>
 

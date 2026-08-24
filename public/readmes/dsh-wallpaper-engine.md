@@ -6,6 +6,12 @@
 
 一个 DSH bundle，把你电脑上的 **Wallpaper Engine** 壁纸变成 **DSH 网页界面（`dsh web`）的背景**。
 
+> ✅ **已修复：沉浸式全屏窗口偶尔全屏闪白**（v0.6.2）
+> 早期版本在**桌面快捷方式打开的沉浸式全屏窗口**（独立应用 / kiosk 窗口）里，点击对话或输入文字时**可能整屏闪白一下**——这是该更新新增的浮动仓库面板/拉绳等合成层，在 kiosk/全屏窗口 + 硬件加速下让 Chromium 偶发把背景画白。
+> **v0.6.2 已修复**：插件现在会在**仓库面板关闭时不挂载其内容（懒加载）**，大幅减少不必要的合成层；普通浏览器标签页不受影响，保持原有毛玻璃效果。
+> 若在极少数环境下仍遇到闪白，可在**该窗口的浏览器配置**里关闭「使用硬件加速(可用时)」并重启作为兜底（沉浸式窗口即使关硬件加速也很顺滑；普通标签页请保持开启以免变卡）。
+> 插件更新后会弹一次提示，告知此修复（每个新版本仅出现一次）。
+
 它会自动发现你本机的 Wallpaper Engine 安装，列出你的壁纸，并把*可移植*的类型渲染到 DSH 对话界面的后方，配以 **iOS 风格液态玻璃**效果：Video（`.mp4`）动态播放、Web/HTML 以 iframe 加载，**Scene（场景）提取主纹理作为静态帧**。v0.2 起还支持：
 
 - **壁纸选择弹窗**：缩略图网格收纳进独立弹窗，设置页不再被长列表占满；
@@ -23,7 +29,7 @@
 - **遮挡暂停（省电三档）**：类似 Wallpaper Engine 的「被遮挡时暂停」——最小化 / 切页、窗口失焦、使用电池供电时自动暂停视频壁纸，**解码引擎直接归零**；回到界面 / 接通电源自动继续（网页壁纸仅随页面隐藏被浏览器节流）。三档开关均持久保存。
 - **解码帧率上限（抽帧转码）**：高帧率源（如 4K120 H.264）的硬解是 GPU 占用大头（4060 实测 1.0x 达 ~60% Video Decode）。「壁纸效果」区设置 **帧率上限**（无限制 / 60 / 48 / 30 / 24 fps），宿主端用 ffmpeg 一次性重编码为上限帧率（时间线保持 1.0x **正常速度**、与倍速完全解耦），输出 **4K 保留 + AV1**，带**下载 / 转码实时进度条**；实测 4K120→24fps 后占用从 ~60% 降至 **~15%**。ffmpeg 三档供给：显式指定 → **自动下载**（npmmirror + GitHub 双源竞速，跨平台资产表已验证）→ 系统 PATH。
 
-![基础效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/showcase.png)
+![基础效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/showcase.png)
 
 > 壁纸 + 磨砂遮罩 + iOS 液态玻璃，渲染在 DSH 界面后方。
 
@@ -157,11 +163,11 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 4. 用 **暂停/播放** 暂停视频壁纸，用 **关闭** 清除壁纸。
    选择会保存在浏览器的 `localStorage`（键 `dsh-wallpaper-engine:selection`）中。
 
-![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/features.png)
+![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/features.png)
 
 > 设置界面：液态玻璃卡片（「外观」配色/透明度）、当前壁纸卡片、「自定义壁纸」「轮播列表」「壁纸效果」分区。
 
-![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/wallpaper-library.png)
+![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/wallpaper-library.png)
 
 > 选择弹窗：浏览全部壁纸缩略图，支持批量隐藏与已隐藏恢复。
 
@@ -185,11 +191,11 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 - **紧凑布局**：设置页顶部有一个**滑动开关**。开启后为 **CD 架效果** —— 卡片像 CD 盒一样纵向层叠（下排上沿盖住上排下沿、左右不遮挡），鼠标悬停放大置顶；网格更紧凑（每行约 7 个）且**一页到底不翻页**。关闭则为常规网格（固定高度防重叠 + 分页，默认）。选择保存在浏览器 `localStorage`。
 - **黑胶唱片**：选择壁纸界面旁边有一个**旋转的黑胶唱片**，把当前选中壁纸的封面当作唱片标签展示 —— 播放时旋转、暂停即停（系统开启「减少动态效果」时停用动画）。弹窗头部也保留小号黑胶。该效果在**经典与新版两种卡片样式下都显示**。
 
-![紧凑布局壁纸仓库（CD 架效果）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/compact-wallpaper-library.png)
+![紧凑布局壁纸仓库（CD 架效果）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/compact-wallpaper-library.png)
 
 > 紧凑布局：CD 架式层叠网格，悬停放大置顶，一页到底不翻页。
 
-![旋转的黑胶唱片（黑胶 CD 壁纸展示）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/vinyl-record.gif)
+![旋转的黑胶唱片（黑胶 CD 壁纸展示）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/vinyl-record.gif)
 
 > 黑胶唱片：当前选中壁纸的封面作为唱片标签，播放时旋转、暂停即停。
 
@@ -257,7 +263,7 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 > 开启「设置窗口液态玻璃」后，**General、模型、插件等所有原生分区**和左侧导航都会变成同一套液态玻璃 + 配色（通过覆盖设置对话框作用域内的 shell token 实现，不侵入其他界面）。设置窗口的玻璃模糊与**对话栏使用同一套调节参数**：「玻璃」滑动条（0–60 px）同时控制设置窗口与输入栏/气泡的模糊半径，饱和度/亮度/对比度配方完全一致；**玻璃颜色**决定玻璃底色本身的色调（默认浅色白/深色深夜蓝，选定后两种主题统一使用该色），**玻璃透明度**决定浓淡，越高越"透"（壁纸颜色更清晰地透过面板），越低越接近实色。不支持 `backdrop-filter` 的浏览器自动回退到高不透明实色，保证文字可读。所有控件即时生效并保存在浏览器 `localStorage`，刷新不丢。
 
-![液态玻璃全新设置窗口](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/liquid-glass-window.png)
+![液态玻璃全新设置窗口](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/liquid-glass-window.png)
 
 > 液态玻璃：整个设置窗口统一玻璃质感，跟随「配色」「玻璃颜色」与「玻璃透明度」。
 
@@ -290,7 +296,7 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 本插件的液态玻璃效果对 dsh-better-sidebar 的侧边栏面板做了专门适配（毛玻璃、高光与层级统一），让侧边栏与对话区共享同一套「壁纸 + 遮罩」背景，三列视觉一致、不再割裂。
 
-![dsh-better-sidebar 兼容适配](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/e85d4463e98f1a247c89d1aa97981fd7e033a52d/docs/images/better-sidebar.png)
+![dsh-better-sidebar 兼容适配](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/2f0043f1aff87d3fabfcd8371f03fb2599c56014/docs/images/better-sidebar.png)
 
 ## 已知限制
 

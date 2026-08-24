@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/Hero.png" width="100%"
+<img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/Hero.png" width="100%"
      alt="DeepSeek Harness hero 横幅：对话自动分层蒸馏成记忆，模型每步前自动召回注入——右侧对话气泡逐层溶解为三层渐亮光带，流入带发光圆球与渐变轨道的玻璃胶囊（下有 日常·工作·智能·关闭 四档刻度），光丝回流示意召回注入">
 
 # dsh-layered-memory
@@ -20,7 +20,7 @@
 需要 Node ≥ 22.16。两种调用方式任选（`npx` 前缀可替换下面任何 `dsh` 命令）：
 
 ```bash
-# 方式一：npx 直接跑官方 CLI（无需预装 dsh；可 pin 版本，如 dsh-layered-memory@0.8.2）
+# 方式一：npx 直接跑官方 CLI（无需预装 dsh；可 pin 版本，如 dsh-layered-memory@0.8.4）
 npx -y @deepseek-ai/dsh plugin --profile web add dsh-layered-memory
 
 # 方式二：已装 dsh CLI（dsh 是 pnpm 转发器，未装 pnpm 时先 npm i -g pnpm）
@@ -70,7 +70,7 @@ npx tsc src/smoke.ts --outDir dist-smoke --module nodenext --moduleResolution no
 ## 运行时数据流
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/readme/flow.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/readme/flow.svg" width="100%"
        alt="dsh-layered-memory 运行时数据流：左侧 User 与 Assistant 的会话事件流入插件（L0 捕获、L1–L3 蒸馏、检索召回、记忆工具），插件经 agent/pre-step 把相关记忆注入右侧 DSH 核心；蒸馏复用核心的 ctx.llm，数据双写 ~/.dsh/memory/">
 </p>
 
@@ -84,63 +84,72 @@ npx tsc src/smoke.ts --outDir dist-smoke --module nodenext --moduleResolution no
 真机实录：召回注入与工具调用在对话里的样子——"上下文注入 · memory"行先带出相关记忆，模型再按需调 `memory_read_scene` 读取场景块，凭记忆直接作答：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/MemoryTools.png" width="60%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/MemoryTools.png" width="60%"
        alt="对话界面实录（浅色主题）：用户消息"我们最近要干什么？"上方可见"上下文注入 · memory"行；助手回答前列出 4 次 memory_read_scene 工具调用（参数为 scenes 场景块的 .md 文件名），随后凭记忆梳理近期目标与推进路线">
 </p>
 
 在只开放代码执行入口的受限会话中，模型经由 `run_code` 间接调用记忆工具（轨迹视图中的 SUBTOOL 嵌套）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/ToolTrajectory.png" width="80%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/ToolTrajectory.png" width="80%"
        alt="工具调用轨迹视图：顶部彩色时间线与左侧步骤列表（SYSTEM/CONTEXT/USER/ASSISTANT/TOOL/SUBTOOL 彩色标签），run_code 工具步骤内嵌套 5 次 memory_read_scene 子工具调用（SUBTOOL 标记），右侧为所选步骤的详情面板">
 </p>
 
 ## 分层记忆（L0–L3）
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/Layers.png" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/Layers.png" width="100%"
        alt="分层记忆四层（自左上向右下逐层精炼）：L0 原始对话（对话气泡）→ L1 原子记忆（发光事实粒子）→ L2 场景块（玻璃文档板）→ L3 核心画像（发光晶核）；层间由 LLM 提取/整合/蒸馏光束相连，宽度递减表示数据逐层精炼">
 </p>
 
 ## 会话级记忆档位
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/Modes.png" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/Modes.png" width="100%"
        alt="会话级记忆档位：一条玻璃胶囊滑轨四个停点（日常·工作·智能·关闭），发光圆球停在智能（默认）档；各档上方微场景——日常为个人聊天气泡、工作为代码文档窗格、智能为双流合流最亮、关闭为暗淡虚线幽灵泡">
 </p>
 
 - **控件**：输入栏内、模式选择器右侧的 pill（`记忆·自动`），点击在上方浮出档位滑块深浅主题自适应；
+- 悬浮板下半部是**会话信息区**：召回命中（命中/检索轮次与累计条数）、攒批进度
+  （本会话切片 x/生效阈值；关闭档显示挂起切片数）、本会话产出记忆条数、会话消息数，
+  外加异常状态行（存储降级 / 向量检索不可用）与全局摘要（待蒸馏条数、上次蒸馏时间）；
+  数据走 `dsh-memory/session-stats` 端点（纯内存注册表 + 索引 COUNT，零文件 I/O），
+  打开期间自适应轮询（忙 2s / 静 5s），关闭即停；
 - 每会话的选择按 sessionId 持久化到 `session-modes.json`，重启/恢复会话不丢；
   与全局开关叠加（全局是总闸）；L2/L3 完全分类，分类内容不渗透。
 
 ## 界面预览
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/ui-dark.jpg" width="49.5%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/ui-dark.jpg" width="49.5%"
        alt="深色主题下的设置页记忆浏览器概览：状态卡（插件版本、捕获/蒸馏/召回开关状态、FTS 与向量能力、L1 记忆计数、蒸馏模型）与统计瓦片，玻璃质感控件与冷蓝强调色">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/ui-light.jpg" width="49.5%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/ui-light.jpg" width="49.5%"
        alt="浅色主题下的同一设置页记忆浏览器概览：同款布局与信息，浅色卡片底与同套强调色，主题切换无需重载">
 </p>
 
 ## 实测对比（DSH-MemBench：自动化基准）
 
-图文回答"长什么样"，这一节用**自动化基准**的实测数字回答"**开了到底有什么用**"（[`bench/`](./bench/)，一条命令可复现）。方法：同场景库、逐字相同输入，**A 组（记忆开）跑 3 次取合并值，B 组（记忆关）跑 1 次**（无记忆的长任务每场景要吞数倍 token，成本护栏）；对话赛道只跑 A 组（B 组会话独立无记忆必然失败，对照无信息量，已下线）。工作流赛道环境：DeepSeek 官方 `deepseek-v4-flash`（思考档 high）、判卷 `glm-5.3`、插件 0.8.3、Windows；题型设计借鉴 [LongMemEval](https://github.com/xiaowu0162/longmemeval) / [LoCoMo](https://snap-research.github.io/locomo/) / [AMB](https://github.com/vectorize-io/agent-memory-benchmark)。
+图文回答"长什么样"，这一节用**自动化基准**的实测数字回答"**开了到底有什么用**"（[`bench/`](./bench/)，一条命令可复现）。方法：同场景库、逐字相同输入，**A 组（记忆开）跑 3 次取合并值，B 组（记忆关）跑 1 次**（无记忆的长任务每场景要吞数倍 token，成本护栏）；对话赛道只跑 A 组（B 组会话独立无记忆必然失败，对照无信息量，已下线）。对话赛道环境：DeepSeek 官方 `deepseek-v4-flash`、插件 0.8.5（判卷与被测同源，答案原文全部留痕可人工复核）、Windows；题型设计借鉴 [LongMemEval](https://github.com/xiaowu0162/longmemeval) / [LoCoMo](https://snap-research.github.io/locomo/) / [AMB](https://github.com/vectorize-io/agent-memory-benchmark)，扩展题型与生命周期赛道参照 [MemoryAgentBench](https://arxiv.org/abs/2507.05257) / [GoodAI LTM](https://github.com/GoodAI/goodai-ltm-benchmark) / BEAM。
 
-### 对话赛道（15 场景 × 6 题型 × 3 次 = 270 题）：答得准吗
+> 对话赛道为 **0.8.5 新基线**（修复版插件 + 修正后的判卷口径）；工作流赛道数字仍为 0.8.3 存档（0.8.5 起场景库扩至 8 个，新增前瞻记忆场景，重跑待做）。
 
-> 0.8.0 留档基线（A 组数据；此后对话赛道 B 组下线，只跑 A 组）。
+### 对话赛道（20 场景 × 10 题型 × 3 次 = 420 题）：答得准吗
+
+> 0.8.5 基线（A 组数据；对话赛道 B 组已下线，只跑 A 组）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/readme/bench-dialog.svg" width="100%"
-       alt="DSH-MemBench 对话赛道准确率图（A 组·记忆开）：总准确率 92.6%（250/270）；分题型各 45 题——抽取 45/45、多跳 45/45、时序 43/45、知识更新 31/45、场景回忆 41/45、拒答 45/45 且 0 编造；对话赛道 B 组已下线（会话独立无记忆必然失败）">
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/readme/bench-dialog.svg" width="100%"
+       alt="DSH-MemBench 对话赛道准确率图（A 组·记忆开）：总准确率 95.2%（400/420）；核心六题型各 60 题——抽取 58/60、多跳 60/60、时序 56/60、更新 55/60、场景回忆 52/60、拒答 60/60 且 0 编造；扩展四题型各 15 题——增量积累 15/15、连锁更新 15/15、事件排序 14/15、同义改写 15/15">
 </p>
 
-**召回双通道**（A 组）：被动注入召回率 **75.1%**（该题要点出现在召回注入中，169/225），其余多数由模型**主动调用记忆工具**查回——84 题主动查询、**60 题靠工具兜底答对**；端到端 92.6% 是两通道 + 模型利用的合成结果。记忆库跨场景全程累积下，探针召回注入混入其他场景记忆 144 次（已如实计数），总准确率仍稳在 92.6%——抗干扰能力经受住了膨胀记忆库的考验。
+**召回双通道**（A 组）：被动注入召回率 **78.1%**（该题要点出现在召回注入中，281/360），其余多数由模型**主动调用记忆工具**查回——106 题主动查询、**75 题靠工具兜底答对**；端到端 95.2% 是两通道 + 模型利用的合成结果。记忆库跨场景全程累积下，探针召回注入混入其他场景记忆 295 次（已如实计数），总准确率反而前段 92.8% → 后段 97.7%——抗干扰能力经受住了膨胀记忆库的考验（离线灌水再灌 600 条合成噪声，检索层 recall@5 也只降 2.8pp）。
 
-### 工作流赛道（7 场景 · A 组 3 次 / B 组 1 次，真实工具沙箱）：做得对、做得省吗
+**分层看短板**：检索层离线指标（recall@5 受控复现）总 73.3%，其中事件排序 0%、场景回忆 50%——端到端仍 93%+ 靠的是注入邻近记忆后模型的鲁棒性；**效率三角**（记忆的开销）：注入非但不加延迟（注入轮响应比无注入轮平均快 210ms）、注入占每轮输入约 10.3%，蒸馏全链路摊到每条捕获消息 ≈2727 输入 / 240 输出 token（1172 次调用 0 失败）。
+
+### 工作流赛道（0.8.3 存档 · 7 场景版 · A 组 3 次 / B 组 1 次，真实工具沙箱）：做得对、做得省吗
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/readme/bench-workflow.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/readme/bench-workflow.svg" width="100%"
        alt="DSH-MemBench 工作流赛道 A/B 对照图：探针段完成度 A 组 59/69（85.5%）对 B 组 10/23（43.5%）；成本对比（B 组为满格基准，每场景均值）——步骤 24.3 对 41.4（B +70%）、工具调用 37.7 对 62.1（B +65%）、输入 token 266k 对 1.81M（B 6.8 倍）；风格规范场景探针 A 12/12 对 B 0/4；长任务每场景输入 token A 266k 对 B 1.81M">
 </p>
 
@@ -153,21 +162,24 @@ npx tsc src/smoke.ts --outDir dist-smoke --module nodenext --moduleResolution no
 ```bash
 node bench/harness/run.mjs --arm A --repeats 3 --provider deepseek-official --model deepseek-v4-flash   # 对话赛道（只跑 A 组）
 node bench/harness/run.mjs --track workflow --arm AB --repeats 3 ...                                  # 工作流赛道（A/B 双组并行）
+node bench/harness/run.mjs --track lifecycle --arm A ...                                              # 生命周期赛道（门控/off/rebuild/遗忘）
 node bench/harness/report.mjs --latest [dialog|workflow]                                               # 汇总报告
+node bench/harness/retrieval-metrics.mjs <runDir> --flood 200,600                                     # 检索层指标 + 灌水曲线
 ```
 
-- 判分：`contains-all` 程序判 + 判卷模型按要点判（答案原文与判分理由全部留痕 `result.json` 可人工复核）；工作流完成度为产物文件 + 关键内容程序化校验（四型判据：正检查/禁词/产物缺席/存在性）；
+- 判分：`contains-all` 程序判 + 判卷模型按要点判（答案原文与判分理由全部留痕 `result.json` 可人工复核）；带 stale 的题（更新/连锁/遗忘）"旧值当作现状陈述"才判负、拒答题允许引用真实背景解释"不知道被问点"；工作流完成度为产物文件 + 关键内容程序化校验（四型判据：正检查/禁词/产物缺席/存在性）；
+- 指标面：准确率总表（6 核心 + 4 扩展题型）之外，自动产出**检索层离线指标**（recall@5 / 注入精度 / 作废泄漏）、**效率三角**（注入开销差分 / 注入占比 / 蒸馏记账摊到每消息）、**规模位置分析**（库容膨胀下的准确率/污染）与生命周期赛道专属节（分族门控矩阵 / off 双断言 / rebuild 保真 / 遗忘）；
 - 实时进度：跑基准时自动拉起本地进度面板并打开浏览器（`--no-panel` 关闭）——A/B 双臂场景/阶段/消息粒度进度、心跳与活动新鲜度（直判"卡住 vs 进程挂了"）、累计成本随跑随涨；
-- 指标全部来自供应商上报 usage（输入含缓存命中拆分）与会话事件折叠；稳态缓存率剔除每会话首请求（0.8.0 留档基线：A 88.7% vs B 85.4%——记忆注入不伤缓存）；
-- 回归用途：改插件前后各跑一遍，`compare.mjs` 出对比表（环境头校验含 gitSha + B 组对照组漂移告警）；
-- 局限（诚实声明）：单机；A 组 ×3 合并、B 组 ×1（成本护栏，噪声更大）；判卷与被测模型：对话留档基线同源、工作流新跑为异构（glm-5.3 判 v4-flash）；作者自建场景库（倾向记忆优势场景，欢迎自行复现）；沙箱文件的可供性会部分泄露流程（B 组可读脚本逆向，判别力受限处已如实标注）；工具审计双档（严格违规判负/宽松提示），实测双方 0 违规。
+- 指标全部来自供应商上报 usage（输入含缓存命中拆分）与会话事件折叠；稳态缓存率剔除每会话首请求（0.8.5 基线：89.1%——记忆注入不伤缓存）；
+- 回归用途：改插件前后各跑一遍，`compare.mjs` 出对比表（环境头校验含 gitSha + B 组对照组漂移告警 + 检索层指标对比）；
+- 局限（诚实声明）：单机；A 组 ×3 合并、B 组 ×1（成本护栏，噪声更大）；判卷与被测模型：对话 0.8.5 基线同源、工作流存档跑为异构（glm-5.3 判 v4-flash）；作者自建场景库（倾向记忆优势场景，欢迎自行复现）；沙箱文件的可供性会部分泄露流程（B 组可读脚本逆向，判别力受限处已如实标注）；工具审计双档（严格违规判负/宽松提示），实测双方 0 违规。
 
 完整报告与逐题数据：[`bench/baseline/`](./bench/baseline/)。
 
 ## 存储布局
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/readme/storage.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/readme/storage.svg" width="100%"
        alt="存储布局：双写架构（JSONL 事实源只增不改 + memory.db 主检索库）；文件形态含 conversations/records/scenes/persona/state/pending/session-modes/embedding-source/模型目录/推理运行时/日志与重建归档；检索三策略 keyword/embedding/hybrid（RRF k=60）；降级链保证永不阻塞宿主">
 </p>
 
@@ -179,7 +191,7 @@ node bench/harness/report.mjs --latest [dialog|workflow]                        
 设置页（记忆 → 概览 → 语义检索）选择嵌入源，即时生效、无需改配置重启：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/11e371fe1a4998131c5c854da820e3486cc47866/assets/img/EmbeddingSource.png" width="70%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/fd1bd7fc322b3c9414aa15092cb8d5a92fa24aef/assets/img/EmbeddingSource.png" width="70%"
        alt="设置页语义检索（嵌入源）面板（浅色主题）：三态选择器（关闭/本地/远程，本地选中）显示当前嵌入源与首次启用自动安装运行时提示；下方本地模型目录列出 BGE small 中文（使用中/已就绪）、EmbeddingGemma 300M（下载 316MB）、BGE-M3（下载 560MB）三款模型的维度/上下文/体积/特点与下载入口">
 </p>
 
@@ -261,6 +273,7 @@ ONNX 量化 **CPU 推理**——无需 API Key，数据不出本机）。本地�
 | `llm.maxInputChars` | `700000` | 单次蒸馏输入字符预算（超限的 L1 输入自动分块抽取）；运行时可在设置页 → 蒸馏参数 → 输入预算调整（留空/0 = 跟随本值） |
 | `llm.timeoutMs` | `120000` | 单次蒸馏调用超时（ms） |
 | `tools` | `true` | 是否注册模型可调用的记忆工具 |
+| `benchControl` | `false` | 注册 bench 控制服务（进程内 rebuild 触发/会话档位设置/蒸馏用量快照，供基准 lifecycle 赛道）。默认关——生产部署零表面积，勿随意开启 |
 
 ## 日志与故障排查
 

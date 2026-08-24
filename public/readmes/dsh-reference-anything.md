@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/logo.png" alt="dsh-reference-anything logo" width="180" />
+<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/logo.png" alt="dsh-reference-anything logo" width="180" />
 
 <h1>dsh-reference-anything</h1>
 
@@ -27,7 +27,7 @@ One `@` for them all.
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/demo.gif" alt="dsh-reference-anything demo" width="800" />
+<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/demo.gif" alt="dsh-reference-anything demo" width="800" />
 
 </div>
 
@@ -57,8 +57,8 @@ Beyond extending what `@` can reference, Reference Anything also enhances the `@
     <th width="50%">Reference Anything icon enhancements</th>
   </tr>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-files-native-comparison.png" alt="Native DSH file list" width="100%" /></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-files-enhanced-comparison.png" alt="Reference Anything file-type icon enhancements" width="100%" /></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-files-native-comparison.png" alt="Native DSH file list" width="100%" /></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-files-enhanced-comparison.png" alt="Reference Anything file-type icon enhancements" width="100%" /></td>
   </tr>
 </table>
 
@@ -151,19 +151,19 @@ The `@` menu contains seven groups: `Commands`, `Skills`, `Files and folders`, `
 
 To browse commands, use `@commands`; selecting one hands `/command` back to DSH's native slash pipeline.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-commands.png" alt="Browse DSH commands from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-commands.png" alt="Browse DSH commands from the @ menu" width="800" /></p>
 
 #### 🛠️ @Skills — DSH skill library
 
 To browse skills, use `@skills:`; selecting one inserts `/skill` for DSH's native skill handling.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-skills.png" alt="Browse DSH skills from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-skills.png" alt="Browse DSH skills from the @ menu" width="800" /></p>
 
 #### 📁 @Files and folders — workspace files and directories
 
 Type `@files:` in the input box to browse files and folders through DSH's official file-reference Remote.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-files.png" alt="Browse workspace files and folders from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-files.png" alt="Browse workspace files and folders from the @ menu" width="800" /></p>
 
 **Features:**
 - Uses the official `@path` / `@"path with spaces"` grammar and canonical file candidate service
@@ -174,7 +174,7 @@ Type `@files:` in the input box to browse files and folders through DSH's offici
 
 Type `@sessions:` to browse DSH sessions through the official session-reference Remote.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-sessions.png" alt="Browse DSH sessions from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-sessions.png" alt="Browse DSH sessions from the @ menu" width="800" /></p>
 
 Selected sessions use DSH's canonical `dsh-session:` mention and native session appearance. Snapshot preparation and resolution remain owned by DSH rather than this plugin.
 
@@ -184,7 +184,7 @@ Type `@agents:` to browse the sessions other agent CLIs have already written int
 
 In `Settings → Reference Anything`, the fourteen local Agent cards sit alongside the ChatGPT, Gemini, and other conversation-provider cards. Each Agent can be enabled or disabled independently; disabling one removes its sessions from new `@agents:` searches without invalidating references that are already in a draft or an existing conversation. Selected local-Agent references use a small robot icon in the composer, while browser conversation references keep their Provider logos.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-local-agents.png" alt="Browse other local agents' transcripts from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-local-agents.png" alt="Browse other local agents' transcripts from the @ menu" width="800" /></p>
 
 This group is **reference-only**. Nothing is copied into DSH's session store and no transcript is converted or rewritten: candidates carry a pointer, and the file on disk is streamed only when the model calls `reference_read`. Its serialized form matches the other reference groups:
 
@@ -232,7 +232,7 @@ An agent whose directory does not exist is treated as not installed rather than 
 
 Supports historical conversations from ChatGPT, Claude, Gemini, DeepSeek, Grok, and Kimi.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/25ecf1ca85febedbfb965304f09ad7ce38fa850a/images/at-external-conversations.png" alt="Browse external conversations from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/8f6c4d47e99a5afe552b714bdcefb1f52323501e/images/at-external-conversations.png" alt="Browse external conversations from the @ menu" width="800" /></p>
 
 **Platform filtering:**
 - Use `@chatgpt:cache` or `@claude:refactor` to filter a specific platform
@@ -252,9 +252,9 @@ Supports historical conversations from ChatGPT, Claude, Gemini, DeepSeek, Grok, 
 
 Opening the source URL happens only in the UI; the URL is never injected into model context. The initial reference contains only a safe pointer; if the model needs the body, it calls `reference_read` on demand.
 
-#### ☁️ @Cloud drive files — text files through OpenList
+#### ☁️ @Cloud drive files — OpenList text and document references
 
-Type `@drive:`, `@cloud:`, `@netdisk:`, or `@网盘` to search text files mounted in OpenList and reference one without first downloading it into the workspace. A new reference has an OpenList-backed opaque id:
+Type `@drive:`, `@cloud:`, `@netdisk:`, or `@网盘` to search supported files mounted in OpenList and reference one without first downloading it into the workspace. A new reference has an OpenList-backed opaque id:
 
 ```text
 @[OpenList·quarterly-notes.md](dsh-ref:<opaque-base64url>)
@@ -272,7 +272,7 @@ Type `@drive:`, `@cloud:`, `@netdisk:`, or `@网盘` to search text files mounte
 
 If an external instance has no usable search index, Reference Anything falls back to a bounded directory traversal. Those candidates are visibly marked **Results may be incomplete**; the traversal never changes the file path or reference id.
 
-**Read-only reference scope.** The integration lists and reads only the mounted text files you select. It never changes remote files, and the model can read a file only after you name that reference in the current task. Signed download URLs and credentials remain host-local.
+**Read-only reference scope.** The integration lists and reads only supported mounted files you select. It never changes remote files, and the model can read a file only after you name that reference in the current task. Signed download URLs and credentials remain host-local.
 
 **Migration.** Old `baidu:` and `pds:` reference IDs are deliberately disabled. Re-select the file through OpenList to create a new reference; old per-provider credential files and direct provider configuration are no longer read.
 
@@ -282,7 +282,9 @@ If an external instance has no usable search index, Reference Anything falls bac
 
 At 4000 characters a block, 64 KiB is at most seventeen blocks, which fits inside one `reference_read` page — so an ordinary text file comes back whole, from its beginning. Raising `maxReadBytes` buys reach at the cost of a first page that lands at the *end* of the file and pages backwards: the right shape for a conversation, an awkward one for a document.
 
-**Text only.** A drive holds plenty the model cannot use. Files whose extension is not on the `extensions` allowlist are kept out of the menu entirely, and a read whose bytes turn out to be binary anyway is refused with a clear error instead of emitting mojibake. Directories are dropped by the same rule: neither a folder nor a `.zip` has text to read, so offering one would only produce a reference that fails.
+**Text and on-demand document files.** Files on the configurable `extensions` allowlist are decoded as text; a read whose bytes turn out to be binary is refused instead of emitting mojibake. Common documents, spreadsheets, presentations, PDFs, and images use an explicit `file` attachment handle and are downloaded only through `reference_attachment_read`. Other extensions and directories stay out of the reference results.
+
+**Download directory.** Under **Settings → Cloud drives**, choose a host directory for those on-demand document downloads, or leave it blank to use the system temporary directory. An absolute host path can always be entered manually if the native folder picker is unavailable. Each file is materialized inside a new random `dsh-reference-drive-*` child directory; the plugin cleans up only that child, never the selected base directory or its other contents. Successful downloads expire after one hour, while failed downloads and plugin disposal clean up immediately. This setting applies only to cloud-drive attachments—Web-conversation attachments continue to use the system temporary directory.
 
 **Authorization.** These are your personal remote files, so this group uses the same per-task gate as the external conversations: the model may read a drive file only after you named it in the current task. A signed download URL never leaves the host — it appears in no candidate, no reference summary, and no error text.
 
@@ -343,7 +345,8 @@ A reference produces an untrusted-data envelope alongside the current user reque
 - `before` is kept only as a deprecated compatibility parameter and cannot be combined with `cursor`.
 - A mention or `reference_list` grants the current task permission to read that URI; unauthorized URIs are rejected.
 - Each conversation keeps only the latest revision. Cursors for older revisions expire after content changes.
-- `reference_attachment_read` validates conversation authorization separately and caps attachments at 25 MiB.
+- `reference_attachment_read` validates the task grant and, for Web conversations, verifies that the active provider account still matches the account scope captured by sync. A mismatch is rejected with guidance to sync that provider and reselect the conversation.
+- Attachments are capped at 25 MiB while streaming. PNG, JPEG, WebP, and GIF may render inline; every other format, including SVG, is returned as an ordinary temporary file. Successful files expire after one hour, and failures or plugin disposal remove them immediately.
 - Sync stores attachment metadata and same-origin locators, not temporary signed URLs. Attachments are classified as `image` or `file`; empty URLs and site-root paths are not marked as available.
 - Unreadable attachments add a model-facing notice such as `[User attached 1 image; image contents were not included]` without altering the original conversation text.
 

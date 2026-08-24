@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/f5db33ec-7471-4d4a-a85b-79c9962ab4ef
 </div>
 
 <p align="center">
-  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/1ca5da4eb9394972cce2c1ccacfedc22eec3166b/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
+  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
   <br><em>Click the preview to download the original MP4 if the GitHub player is unavailable.</em>
 </p>
 
@@ -49,21 +49,21 @@ The walkthrough moves from an answer-embedded panel through forms, plotting, Mer
 #### 1. A monitoring panel is an answer, not a separate dashboard
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/1ca5da4eb9394972cce2c1ccacfedc22eec3166b/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
   <br><em>Real output: refresh/reset controls, time-range selection, statistics, charts, and a service table live inside the assistant reply.</em>
 </p>
 
 #### 2. A function plot redraws locally as its parameters change
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/1ca5da4eb9394972cce2c1ccacfedc22eec3166b/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
   <br><em>Real output: `plot` renders curves while sliders, reset, and animation controls update the graph locally.</em>
 </p>
 
 #### 3. Layout primitives compose into structured work surfaces
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/1ca5da4eb9394972cce2c1ccacfedc22eec3166b/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
   <br><em>Real output: typography, grid, card, and row/column primitives combine into a hierarchy the model can describe declaratively.</em>
 </p>
 
@@ -99,7 +99,9 @@ Prerequisites — all required:
 Install (one command, all dependencies included):
 
 ```sh
-# Public GitHub install (works without an npm account)
+# Public npm package (works without an npm account)
+dsh plugin --profile web add @changfenhuang/dsh-genui
+# Or install directly from the public GitHub source
 dsh plugin --profile web add git+https://github.com/omdsh-dev/dsh-genui.git
 ```
 
@@ -205,8 +207,8 @@ The core render package stays light (≈110 KB min / 28 KB gzip); the mermaid, t
 - **Rendering as a code block?** First check the browser console for `[genui] client active; fence-channel=registry|dom`. If absent, the client bundle was not activated even if its URL returns 200 — align the profile dependency, `package.json.name`, `cordis.patch.yml`, ModuleLoader id, and configured bundle name. If present, inspect the fence label/body; registry-less hosts automatically use the DOM channel.
 - **Chat UI goes blank when rendering a dsh-ui fence?** Your dsh is too old — update dsh first, then reinstall the plugin.
 - **`dsh: pnpm not found on PATH`?** Install pnpm, then **open a new terminal** and retry (`corepack enable` or `npm i -g pnpm`).
-- **Stuck on git credentials / 404 during install?** The repo is public (`omdsh-dev/dsh-genui`) — the git URL above needs no login; a 404 for `@omdsh-dev/dsh-genui` means the npm package has not been published yet.
-- **Installed but scene3d/mermaid/echarts don't render?** The engines (mermaid / three / echarts) are no longer inlined in client.js — they load on demand the first time they're used (`/plugins/@omdsh-dev/dsh-genui/assets/*.js`, hosted by the plugin's own HTTP routes). First restart dsh web + hard refresh (Cmd+Shift+R); still broken, remove and reinstall (`dsh plugin --profile web remove @omdsh-dev/dsh-genui`, then add again). Hosts without the asset routes degrade to source/load-error hints — update dsh.
+- **Stuck on git credentials / 404 during install?** The repo is public (`omdsh-dev/dsh-genui`) — the git URL above needs no login; a 404 for `@changfenhuang/dsh-genui` means the npm package has not been published yet.
+- **Installed but scene3d/mermaid/echarts don't render?** The engines (mermaid / three / echarts) are no longer inlined in client.js — they load on demand the first time they're used (`/plugins/@changfenhuang/dsh-genui/assets/*.js`, hosted by the plugin's own HTTP routes). First restart dsh web + hard refresh (Cmd+Shift+R); still broken, remove and reinstall (`dsh plugin --profile web remove @changfenhuang/dsh-genui`, then add again). Hosts without the asset routes degrade to source/load-error hints — update dsh.
 - **Model not outputting fences?** New sessions pick it up after a restart; or just say "output it with dsh-ui".
 - **No lib/ after cloning?** Build it yourself: `pnpm install && pnpm run check`.
 

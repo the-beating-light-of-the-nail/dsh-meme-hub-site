@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/GanyuanRan/Aegis/fea84dd545385ebdbe1c7ceab0d2afb8fe9d4600/assets/aegis-hero.png" alt="Aegis architecture-driven AI coding agent hero banner" />
+    <img src="https://raw.githubusercontent.com/GanyuanRan/Aegis/1dc0faa633039983e58b82893e3268fced6ac4d3/assets/aegis-hero.png" alt="Aegis architecture-driven AI coding agent hero banner" />
 </p>
 
 # Aegis
@@ -68,7 +68,7 @@ prompts, projects, tool policy, and requested the same `gpt-5.6-sol` / `xhigh` s
 in both arms; only the Aegis projection differed. Across 120 valid runs on 20 cases,
 contract pass rate was **61.67% → 93.33% (+31.67 pp)** and unsafe outcomes were **13.33% → 0%**. The 95% case-cluster interval was **+15.00 pp to +50.00 pp**. This is bounded advisory evidence; review was arm-hidden technical review, not independent human review, and host events did not return the observed model identity.
 
-![Aegis agentic benchmark: with and without Aegis](https://raw.githubusercontent.com/GanyuanRan/Aegis/fea84dd545385ebdbe1c7ceab0d2afb8fe9d4600/benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.svg)
+![Aegis agentic benchmark: with and without Aegis](https://raw.githubusercontent.com/GanyuanRan/Aegis/1dc0faa633039983e58b82893e3268fced6ac4d3/benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.svg)
 
 [Sanitized JSON](benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.json) · [English table](benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.en.md) · [中文表格](benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.zh-CN.md) · [Methodology](docs/current/AEGIS_AGENTIC_BENCHMARK_BASELINE.md)
 
@@ -80,7 +80,7 @@ install-and-verify flow is below.
 Give this prompt to your AI coding agent:
 
 ```text
-Read https://github.com/GanyuanRan/Aegis, identify my current AI coding host, and install Aegis globally using the correct host guide. If the host is the official DeepSeek Harness (`dsh`), treat global/minimal installation as native profile-plugin installation with `dsh plugin --profile <profile> add github:GanyuanRan/Aegis`; do not silently substitute the direct-child compatibility path unless the plugin manager is unavailable and I explicitly approve compatibility mode. Restart or reload the host if needed, then run complete-install verification from the installed Aegis method-pack root. Do not run the doctor command from the target project directory. First locate `<aegis-method-pack-root>`, then run `cd <aegis-method-pack-root> && python scripts/aegis-doctor.py --write-config --json`. Treat the install as complete only if the JSON includes `"ok": true`, `"workspaceSupport": "available"`, and `"configStatus": "configured"`; if the host uses a separate skill discovery directory, also verify it with `--discovery-root <path>`; if the host guide declares a skill directory name prefix, also pass `--discovery-name-prefix <prefix>`. Also complete the selected host guide's native activation and automatic-entry checks; file discovery or a generic doctor result alone is not sufficient when the host provides a plugin, hook, or session-start bootstrap contract.
+Read https://github.com/GanyuanRan/Aegis, identify my current AI coding host, and install Aegis globally using the correct host guide. If the host is the official DeepSeek Harness (`dsh`), treat global/minimal installation as native profile-plugin installation with `dsh plugin --profile <profile> add "git+https://github.com/GanyuanRan/Aegis.git"`; do not silently substitute the direct-child compatibility path unless the plugin manager is unavailable and I explicitly approve compatibility mode. Restart or reload the host if needed, then run complete-install verification from the installed Aegis method-pack root. Do not run the doctor command from the target project directory. First locate `<aegis-method-pack-root>`, then run `cd <aegis-method-pack-root> && python scripts/aegis-doctor.py --write-config --json`. Treat the install as complete only if the JSON includes `"ok": true`, `"workspaceSupport": "available"`, and `"configStatus": "configured"`; if the host uses a separate skill discovery directory, also verify it with `--discovery-root <path>`; if the host guide declares a skill directory name prefix, also pass `--discovery-name-prefix <prefix>`. Also complete the selected host guide's native activation and automatic-entry checks; file discovery or a generic doctor result alone is not sufficient when the host provides a plugin, hook, or session-start bootstrap contract.
 ```
 
 ## Updating Aegis

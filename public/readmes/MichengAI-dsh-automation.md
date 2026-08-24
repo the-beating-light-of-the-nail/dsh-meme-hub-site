@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
 </p>
 
 <div align="center">
@@ -25,7 +25,7 @@
 - Create, pause, resume, run now, and delete rules from the Web UI or Agent tools.
 - Start each occurrence in a fresh root Agent and Session. Source-chat history is not inherited.
 - Support once, interval, hourly, daily, weekly, monthly, and custom-every-N-days schedules.
-- Pick workspace, model, skills, and `read-only` / `workspace-write` in the create dialog.
+- Pick workspace, model, skills, and any permission preset exposed by the Host.
 - Create from chat: describe the schedule in any conversation, then confirm with the official approval card.
 - Keep durable run history: `queued`, `running`, `succeeded`, `failed`, `skipped`, `cancelled`.
 - Add a sidebar **Scheduled** tab. Folders are task names and child sessions are run times. On stock DSH it wraps the official workspace tree and does not depend on `dsh-codex-ui`.
@@ -34,25 +34,25 @@
 
 Scheduled tasks live in the workspace **Scheduled** tab, next to **Tasks** and **Channels**:
 
-![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/screenshots/workspace-scheduled.png)
+![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/workspace-scheduled.png)
 
 Open **Settings → Scheduled Tasks** to search, create, pause, and inspect rules:
 
-![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/screenshots/settings-tasks.png)
+![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/settings-tasks.png)
 
 Describe the job in chat. The agent calls `automation_create` and asks through the official approval card:
 
-![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/screenshots/chat-create.png)
+![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/chat-create.png)
 
-![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/screenshots/chat-approval.png)
+![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/chat-approval.png)
 
 After approval, the rule is saved and summarized in the conversation:
 
-![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/screenshots/chat-created.png)
+![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/chat-created.png)
 
 Run history stays in Settings and can be filtered by day, week, month, task, or status:
 
-![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/d9fb03f1762a6601f812e4c4506a276395144543/assets/screenshots/settings-runs.png)
+![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/settings-runs.png)
 
 ## DSH product ecosystem
 
@@ -124,8 +124,8 @@ Each dispatched run uses the saved prompt, workspace, model, and permission boun
 
 | Item | Behavior |
 | --- | --- |
-| Permission | Default is `read-only`. File writes require an explicit `workspace-write` choice. |
-| Full access | Unattended `danger-full-access` is not offered. |
+| Permission | Options and the default come directly from the Host `permissionPresets` service, including custom presets. |
+| Full access | The official `danger-full-access` option uses the same risk confirmation and orange warning as Chat. |
 | Approval | Chat create follows the session policy. Full access (`never`) proceeds; Workspace Write / Read Only (`ask`) shows the official card. Unattended runs stay fail-closed `never`. |
 | Retry | No automatic retry after a started run. |
 | Host restart | Leftover `queued` / `running` records become `failed(host_interrupted)`. |
@@ -169,3 +169,7 @@ pnpm build
 Start from the [documentation entry](docs/00-交接入口/00-阅读导航.md) for project status, architecture, and the current iteration. Product notes live in NOTICE.
 
 This project uses [Apache License 2.0](LICENSE).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the five most recent releases.

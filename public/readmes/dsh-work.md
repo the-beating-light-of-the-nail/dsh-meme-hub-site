@@ -1,129 +1,239 @@
-# DeepSeek Harness Desktop App
+<h1 align="center">DSH Desktop</h1>
 
-中文 | [English](README.en.md)
+<p align="center">
+  <strong>以官方 DSH Web 为核心的插件化桌面工作台。</strong><br>
+  精选社区 Bundle、离线 Profile、Git Worktree、文件附件与受控原生能力，组合在一个 Electron 应用中。
+</p>
 
-> [查看二次元版 README：二次元主题与看板娘](README.anime.md)
+<p align="center"><sub>独立的社区开源项目，与深度求索不存在隶属、合作、授权或背书关系。<br>中文 · <a href="README.en.md">English</a> · <a href="README.anime.md">二次元版 README</a></sub></p>
 
-DeepSeek Harness Desktop App 是建立在 DeepSeek Harness（DSH）之上的本地 AI 工作桌面。它把 DSH 的 Session、Agent、Tool、Skill、MCP 和 Profile Bundle 与项目、文件、网页、Git Worktree、Canvas、Site 和 Office 产物组织在同一个桌面应用中。
+<p align="center">
+  <a href="https://github.com/vibeinging/dsh-desktop"><img src="https://img.shields.io/github/stars/vibeinging/dsh-desktop?style=flat&amp;label=stars&amp;color=2563EB" alt="GitHub stars"></a>
+  <a href="https://github.com/vibeinging/dsh-desktop/releases/latest"><img src="https://img.shields.io/github/v/release/vibeinging/dsh-desktop?display_name=tag&amp;style=flat&amp;color=2563EB" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/runtime-Electron-47848F?style=flat" alt="Electron runtime">
+  <img src="https://img.shields.io/badge/interface-official%20DSH%20Web-2563EB?style=flat" alt="Official DSH Web">
+  <img src="https://img.shields.io/badge/plugins-Profile%20Bundles-7C3AED?style=flat" alt="Profile Bundles">
+</p>
 
-| 专业蓝亮色 | 专业蓝暗色 |
-| --- | --- |
-| ![DeepSeek Harness Desktop App 专业蓝亮色首页](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-home-professional-light.png) | ![DeepSeek Harness Desktop App 专业蓝暗色首页](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-home-professional-dark.png) |
+<p align="center">
+  <img src="https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-community-task-board.png" alt="DSH Desktop 中通过官方 Profile 加载的社区任务看板" width="100%">
+</p>
 
-## 快速开始
+DSH Desktop 是社区维护的 Electron 发行版。它固定并运行官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) npm 运行时，把 `dsh-web-app`、Session、Agent、Tool、Skill、MCP 与 Profile Bundle 组成可直接运行的本地桌面环境。项目不修改 DSH 源码，不另存一套插件状态，也不用私有 Chat 替换官方 Web。
 
-本地开发要求 Node.js 24 或更高版本。当前项目使用 DSH `0.1.0-rc.6`。
+这个仓库做的是“桌面发行层”：从社区中选择值得默认安装的 Bundle，固定它们的来源、版本、依赖、权限和许可，然后在真实 Profile 与 Electron 中验证安装、停用、卸载、重启和恢复。用户得到的不是一堆手工配置，而是一个可组合、可移除、可复现的 DSH 工作台。
 
-```bash
-npm install
-npm run doctor
-npm run dev
+## 我们坚持的桌面路线
+
+| 原则 | 产品承诺 | 直接收益 |
+| --- | --- | --- |
+| 官方 Web 是唯一主界面 | 主窗口直接加载官方 Client 图，桌面能力也以 `dshClient` Bundle 加入 | 跟随 DSH 会话、设置与 Slot 演进，不等第二套界面重写 |
+| Profile 是插件状态的唯一权威 | 市场、设置和 CLI 读写同一个 Profile；更新不补回用户已卸载的 Bundle | 不会出现“页面说已安装，DSH 实际没加载”的双状态 |
+| 社区实现优先 | 任务看板、插件市场和附件输入直接采用独立社区 Bundle | 社区插件可同时服务官方 Web 与桌面发行版，不被锁在本项目里 |
+| 默认组合可复现 | 新 Profile 从固定 tarball、SHA-256 和随包 pnpm 离线原子初始化 | 无需临时从 npm 拼装默认环境，安装失败不会留下半个 Profile |
+| 原生能力按最小权限开放 | 窗口、文件、Browser Workspace 和更新只通过 Session 绑定的方法白名单暴露 | 第三方 Client 不能直接获取 Electron、Node 或通用 IPC |
+| 失败必须可诊断、可恢复 | Profile 或 Client 启动失败时进入本地恢复页，保留原 Profile | 不用白屏、无限重启或静默改配置掩盖问题 |
+
+这套路线适合想使用官方 DSH Web，同时需要社区插件、桌面原生能力、可控默认组合和清晰权限边界的用户与插件作者。
+
+## 主要能力
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>官方 DSH Web 桌面化</h3>
+      <p>Electron 启动本地 DSH Web Profile，并管理窗口、服务启动、退出和恢复。主窗口直接加载官方 Client 图，不使用旧 Renderer 或产品 preload。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>默认插件市场</h3>
+      <p><code>dshmarket@1.17.1</code> 挂在官方设置 Slot 内，提供发现、兼容性诊断、安装、更新和卸载。市场、设置页和命令行读写同一个 Profile。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>任务、附件与社区能力</h3>
+      <p>社区 task-board 提供五列任务看板，附件 Bundle 在官方输入 Slot 中增加文件和文件夹选择，dshmarket 负责发现更多标准 Bundle。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>工作区与产出工具</h3>
+      <p>Git Worktree、Project、Conversation、Canvas/Site、Structured UI、Office 和模型继承分属独立 Bundle。用户可按需移除，插件作者也可复用其中的 portable 能力。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>窄原生 Host</h3>
+      <p>窗口、文件授权、Browser Workspace 和更新能力只通过方法白名单与 Session 绑定开放。第三方 Client 不能取得 Electron、Node 或通用 IPC。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>离线初始化与失败恢复</h3>
+      <p>新 Profile 使用固定产物和随包 pnpm 原子初始化；已有 Profile 在更新时不被重写。启动失败进入恢复页，而不是显示白屏或静默补回用户已卸载的插件。</p>
+    </td>
+  </tr>
+</table>
+
+## 运行方式
+
+```mermaid
+flowchart LR
+  A[Electron 桌面壳] --> B[官方 DSH 运行时]
+  B --> C[web Profile]
+  C --> D[官方 dsh-web-app]
+  C --> E[社区与 portable Bundles]
+  C --> F[desktop-adapter Bundles]
+  F --> G[窄 Native Host]
+  G --> H[macOS / Windows]
 ```
 
-切换 Node.js 大版本、CPU 架构或操作系统后，运行 `npm run setup` 重新准备依赖。
+官方 DSH 运行时负责 Agent、Session、Tool、Skill、MCP、Profile 和 Web UI。社区与 portable Bundle 只使用公开 DSH 服务，因此可安装到兼容的官方 Web Profile。`desktop-adapter` Bundle 才能调用桌面 Host，而且只能使用已声明、按 Session 绑定的有限方法。
 
-## 主要功能
+这个分层使“在官方 Web 中可用”和“在 DSH Desktop 中可用”不再是两套插件体系：普通 UI、Tool 和工作流优先保持 portable，只有文件对话框、窗口或内置浏览器等操作系统能力需要桌面适配。
 
-| 功能 | 用户可以做什么 |
-|---|---|
-| DSH 对话 | 流式回答、思考过程、工具调用、停止、继续、重试、消息分支和重启恢复 |
-| 模型与权限 | 选择 Provider、模型和推理强度，管理凭据引用、Session 权限、工具审批和模型提问 |
-| Tool、Skill、MCP 与多 Agent | 使用当前 Profile 中的工具、技能、MCP、Hook、子 Agent 和 Workflow |
-| 项目与对话 | 创建项目、全局或临时对话，置顶、排序、重命名、归档、恢复和删除 |
-| 桌面外壳与设置 | 使用三列工作台、左右栏折叠、全局搜索、缩放快捷键和更新检查，调整语言、网络、通知、终端与隐私选项 |
-| 项目上下文与记忆 | 设置应用指令、项目指令、授权源码目录、写入目标以及全局或项目记忆 |
-| 输入与引用 | 使用 `@` 引用文件、使用 `#` 引用对话，粘贴图片和大段文本附件 |
-| 编码工作区 | 查看 Diff、逐行评论和编辑、在外部编辑器打开、发起 AI Review，并安全撤销模型产生的文件修改 |
-| Git Worktree | 创建、启用、停用和删除隔离工作目录，让新对话在指定 Worktree 中运行 |
-| 文件与搜索 | 浏览项目文件、任务和产物，预览文本、代码、图片和 Office 内容，按文件名或正文搜索 |
-| Browser Workspace | 多标签浏览、历史、页内查找、缩放、下载、打印、开发者工具、站点权限、网页快照和“使用此页” |
-| 结果与证据 | 直接查看当前 DSH Session 的完整轨迹、工具输入输出、耗时、Token 和最终回答 |
-| Canvas 与本地 Site | 创建和编辑 Canvas、处理行内建议与版本冲突，生成并响应式预览单文件 Site |
-| Office 产物 | 创建、查看和定点编辑 Markdown、DOCX、XLSX、PPTX 和 PDF，并保留版本 |
-| 主题与外观 | 切换 Profile 主题，新建、导入、预览、编辑、导出和删除本地主题，调整明暗模式、背景和透明度 |
-| 插件中心 | 检查兼容性，把 DSH Profile Bundle 安装到当前 Web Profile，并查看来源、版本和加载顺序 |
+## 当前界面
 
-## DSH 轨迹就是结果与证据
+### 官方会话、问题与审批
 
-右侧“结果与证据”直接读取当前绑定 DSH Session 的 `session.history`。用户消息、请求上下文、模型输出、工具调用、工具结果、权限变化和最终回答都在同一条可回放轨迹中，不维护第二套运行中心。
+![官方 DSH Web 会话](https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-official-web-session-loopback.png)
 
-![DSH 轨迹演示](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-trajectory.gif)
+会话、问题卡片、工具审批、消息排队和历史回放都留在官方 Session 中。截图使用真实 DeepSeek-V4-Flash 对话；密钥只注入当次临时进程，不写入 Profile 或截图。
 
-## 对话和工作台
+### 官方设置中的插件市场
 
-一个项目对话对应一个 DSH Session。右侧工作台可以添加结果与证据、浏览器、文件、产物和 Site 标签；项目文件树、Agent 工作目录、当前 Diff 和行编辑都跟随当前项目权限与活动 Worktree。
+![官方 Web 设置中的默认插件市场](https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-plugin-market.png)
 
-![DeepSeek Harness Desktop App 项目会话](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-project-session.png)
+在“设置 → 插件市场”中可以搜索、查看兼容性与权限，并对当前 Profile 执行安装、更新和卸载。市场是普通 Client Bundle，不替换官方设置容器。
 
-![DeepSeek Harness Desktop App 文件面板](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-files.png)
+### 官方 Workspace 中的 Git Worktree
 
-Canvas 保存不可变版本，支持正文编辑、版本比较、精确行内建议和冲突处理。Site 使用同一套版本能力，并在隔离沙箱中提供桌面、平板和手机预览。
+![官方 Web 中的 Git Worktree Bundle](https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-worktree-official-web.png)
 
-![DeepSeek Harness Desktop App Canvas 版本与冲突处理](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-canvas.png)
+Git Worktree Bundle 从当前 Session 的 `cwd` 识别主检出，在侧边栏和工作区中管理隔离 worktree，并为新工作区创建官方 Session。它只使用 DSH Workspace 与 Slot，可作为独立 portable Bundle 安装或移除。
 
-![DeepSeek Harness Desktop App 本地 Site 响应式预览](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-site.png)
+## 开始使用
 
-## Git Worktree 隔离开发
+从 [GitHub Releases](https://github.com/vibeinging/dsh-desktop/releases/latest) 下载 macOS Apple Silicon 安装包。该版本使用 Developer ID 签名并完成 Apple 公证，已经包含官方 DSH npm 运行时和默认 Bundle，不需要另外安装或修改 DSH 源码。Windows x64 安装包仍在完成真实打包验收，本次版本暂不提供。
 
-项目设置提供完整的 Worktree 工作流：
+### 下载桌面版
 
-1. 为项目创建一个或多个独立分支和工作目录，同一时间启用一个。
-2. 启用后，新建对话的 Agent、DSH Session、Diff 和行编辑使用该 Worktree，主检出保持不变。
-3. 切换工作目录不会迁移已有对话；应先启用目标 Worktree，再新建对话。
-4. 删除前必须切回主检出。删除工作目录后保留 Git 分支，避免误删提交。
-5. 非 Git 目录、重复分支、越界路径和异常符号链接会被拒绝；磁盘上丢失的 Worktree 会标记为不可用。
+- macOS Apple Silicon：下载 `.dmg`，打开后将 `DSH Desktop` 拖入“应用程序”；
+- Windows x64、macOS Intel 和其他平台：当前没有正式安装包，可以从源码运行。
 
-![DeepSeek Harness Desktop App Git Worktree 完整流程](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-worktree.gif)
+### 从源码运行
 
-## 主题与外观
+需要 Node.js 24 或更高版本：
 
-`@deepseek-ai/dsh-theme-pack` Profile Bundle 提供默认的 `professional-blue` 和可选的 `anime-blue`。正式产品也支持本地自定义主题的新建、导入、预览、编辑、导出和删除。
+```bash
+git clone https://github.com/vibeinging/dsh-desktop.git
+cd dsh-desktop
+npm install
+npm run doctor
+npm run dev:electron
+```
 
-本地主题只能使用安全的颜色与外观设置，不能注入原始 CSS、远程图片或修改应用名称。个人背景、明暗模式和透明度可以独立调整。
+### 构建 macOS Apple Silicon App
 
-![主题库与本地自定义主题入口](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-work-themes.png)
+```bash
+npm run package:mac:dir
+open "release/mac-arm64/DSH Desktop.app"
+```
 
-## 插件中心
+该命令生成本地未签名 App，只用于开发。面向用户的安装包以 GitHub Release 页面为准。
 
-普通用户从左侧“插件”页面安装 DSH Profile Bundle：
+## 插件生态
 
-1. 输入带精确版本的 npm 包，或带完整 commit 的 `dsh-external` 仓库地址。
-2. 先运行兼容性检查；只有结果为“可以安装”时才能写入当前 Profile。
-3. 安装后查看 Bundle 的来源、版本、加载顺序和能力，用户安装的 Bundle 可以卸载。
+DSH Profile 是插件状态的唯一权威。新 Profile 通过官方 `dsh plugin --profile web` 原子安装默认 Bundle；已有 Profile 在应用更新时保持只读，不会补回、删除或重写用户选择。用户停用或卸载的 Bundle 在重启和升级后仍保持停用或卸载。
 
-Tool、Skill、MCP、Hook 等 Host Bundle 可以进入 DSH 运行时。包含第三方 Client UI 的 Bundle 目前不会进入拥有 Electron 权限的主窗口；随应用提供并经过审核的 Client Bundle 不受此限制。
+普通用户可以直接打开“设置 → 插件市场”。命令行使用同一套 Profile：
 
-![DSH Web Profile Bundle 列表](https://raw.githubusercontent.com/vibeinging/dsh-work/a7cfa02b2937730fd3e3d75b97524550afa957f7/docs/images/readme/dsh-profile-bundles.png)
+```bash
+dsh plugin --profile web add -w <package>@<exact-version> --save-exact --ignore-scripts
+dsh plugin --profile web remove <package>
+```
 
-## 与 DSH 官方 Web 的关系
+新 Profile 默认安装固定的 `dshmarket@1.17.1`。发行包携带经过审查的固定 tarball、完整运行依赖闭包和 SHA-256；默认初始化不需要 npm 网络，也不执行上游生命周期脚本。浏览市场会访问社区目录，安装与更新可能访问 npm 或 GitHub；WebDAV 和 Gist 只有用户主动配置后才会使用。市场内展示的插件并不等于已经内置或通过发行审查。
 
-DeepSeek Harness Desktop App 不是 DSH Web 的 iframe，也没有复制一套 Agent 运行时。Electron 启动 DSH Web Profile，并继续使用同一套 Session、Agent、Tool、Skill、MCP、Settings、Profile Bundle 和 Client Loader。DeepSeek Harness Desktop App 在同一运行链上提供自己的桌面外壳，并增加项目管理、文件授权、Browser Workspace、Git Worktree、Canvas、Site 和 Office 产物。
+新 Profile 也默认安装 `dsh-multimedia-webui-input@0.1.0`。它通过官方 `conversation.input.left`、`conversation.input.dock`、`conversation.input.overlay` 和 `settings.section` Slot 增加文件/文件夹选择按钮；文件只在发送时复制到当前 Session 工作区。官方 DSH 继续负责图片粘贴和拖拽，内置版去掉上游通用拖拽监听，防止图片被两条通道重复接收。它不修改官方 Chat，也不取得 Electron 或通用 IPC。与其他附件输入插件同时启用可能出现重复按钮或重复上传，默认 Profile 只保留这一套附件入口。
 
-需要模型使用的产品能力通过绑定 Session 和 DSH Tool 接入；项目数据、文件权限、网页、Worktree 和产物版本仍由 DeepSeek Harness Desktop App 管理。
+桌面侧的 `@vibeinging/dsh-desktop-profile-host` 只提供 `desktopProfiles` 和 `desktopPnpm` 两个公开结构服务。市场把用户确认的操作交给随包 pnpm 和官方 DSH CLI；它不能自行取得 Electron 权限或重启应用。
 
-## 当前边界
+### 插件信任级别
 
-- 当前没有五列任务看板、独立定时任务页面、Git 图谱、stage/unstage 面板或独立终端页。
-- 本地 Site 只提供预览和单文件导出，没有部署服务；公开分享目前只有只读查看。
-- 当前没有移动端远程控制、二维码配对、公网隧道、SSH、SFTP 或端口转发。
-- 子 Agent 可以执行并出现在对话与轨迹中，但还没有完整的独立管理页。
+| 级别 | 用户体验 | 发行版责任 |
+| --- | --- | --- |
+| 市场可发现 | 用户在市场中查看并主动安装 | 市场展示不等于本发行版审查、内置或背书 |
+| 已记录候选 | 目录会显示兼容性、权限、冲突和已知阻塞 | 固定上游来源和审查结论，但不进入默认 Profile |
+| 随包但可选 | 无网络也能从本地固定产物安装 | 保留许可证、哈希、依赖和安装/卸载证据 |
+| 随包且默认 | 新 Profile 原子安装，用户仍可停用或卸载 | 在当前 DSH、源码 Profile、打包 Electron、断网启动和卸载恢复中逐项验证 |
+
+这个分级把“社区里存在”、“可以自行安装”和“适合作为发行默认值”分开。新增默认 Bundle 不会被应用更新静默补到旧 Profile，已有用户始终保留自己的组合。
+
+<details>
+<summary>查看新 Profile 默认安装的 13 个 Bundle</summary>
+
+<!-- featured-plugins:start -->
+| 默认 Bundle | 类型 | 声明权限 | 官方管理方式 | 来源 |
+|---|---|---|---|---|
+| `@vibeinging/dsh-work-product-host-ipc` | desktop-adapter | dsh-work-parent-ipc、browser-workspace-host、file-dialog-host、window-host | 桌面基础服务，不提供卸载 | [本地包](packages/dsh-work-product-host-ipc) |
+| `@vibeinging/dsh-desktop-profile-host` | desktop-adapter | dsh-profile-filesystem、controlled-pnpm-runtime、dsh-cli-runtime | 桌面基础服务，不提供卸载 | [本地包](packages/dsh-desktop-profile-host) |
+| `@vibeinging/dsh-desktop-chrome` | desktop-adapter | 无 Host 权限 | `dsh plugin --profile web remove @vibeinging/dsh-desktop-chrome` | [本地包](packages/dsh-desktop-chrome) |
+| `@vibeinging/dsh-project-tools` | desktop-adapter | product-host | `dsh plugin --profile web remove @vibeinging/dsh-project-tools` | [本地包](packages/dsh-project-tools) |
+| `@vibeinging/dsh-canvas-tools` | desktop-adapter | product-host | `dsh plugin --profile web remove @vibeinging/dsh-canvas-tools` | [本地包](packages/dsh-canvas-tools) |
+| `@vibeinging/dsh-structured-ui-tools` | desktop-adapter | product-host | `dsh plugin --profile web remove @vibeinging/dsh-structured-ui-tools` | [本地包](packages/dsh-structured-ui-tools) |
+| `@vibeinging/dsh-model-inheritance` | portable | 无 Host 权限 | `dsh plugin --profile web remove @vibeinging/dsh-model-inheritance` | [本地包](packages/dsh-model-inheritance) |
+| `@vibeinging/dsh-product-bridge` | desktop-adapter | product-host | `dsh plugin --profile web remove @vibeinging/dsh-product-bridge` | [本地包](packages/dsh-product-bridge) |
+| `@vibeinging/dsh-office-tools` | desktop-adapter | office-artifact-host | `dsh plugin --profile web remove @vibeinging/dsh-office-tools` | [本地包](packages/dsh-office-tools) |
+| `@vibeinging/dsh-client-ui-worktree` | portable | 无 Host 权限 | `dsh plugin --profile web remove @vibeinging/dsh-client-ui-worktree` | [本地包](packages/dsh-worktree) |
+| `@linxin666/dsh-client-ui-task-board` | portable | 读取当前 DSH Session、Workspace 与完成历史、在 DSH_HOME 写入任务账本和执行记录、按用户操作或 Host cron 启动 DSH Session 任务、可选启动固定的跨平台防休眠 helper | `dsh plugin --profile web remove @linxin666/dsh-client-ui-task-board` | [上游仓库](https://github.com/zhu1090093659/dsh-web-ui) |
+| `dsh-multimedia-webui-input` | portable | 读取用户主动选择的文件和文件夹、向当前 Session 工作区的 .dsh/tmp/attachments 写入附件、按用户二次确认清理带插件所有权标记的附件目录 | `dsh plugin --profile web remove dsh-multimedia-webui-input` | [上游仓库](https://github.com/LCYLYM/dsh-attachments) |
+| `dshmarket` | portable | 读取和修改当前 DSH Profile 的依赖、Bundle 顺序和启停状态、通过受控 pnpm 安装、更新和卸载用户确认的插件、访问插件目录、npm、GitHub 以及用户配置的 WebDAV 或 Gist、导出或导入包含 Profile 配置的备份 | `dsh plugin --profile web remove dshmarket` | [上游仓库](https://github.com/dsh-market/dsh-market) |
+<!-- featured-plugins:end -->
+
+</details>
+
+## 插件兼容性
+
+DSH Desktop 按能力边界识别两类 Bundle：
+
+- `portable` Bundle 只使用官方 DSH 服务，可以安装到兼容的官方 Web Profile；
+- `desktop-adapter` Bundle 使用 DSH Desktop 提供的窄 Host 合同，离开桌面宿主时应直接报告缺少能力。
+
+与当前官方 DSH Web 兼容的标准 Bundle 可通过市场或官方 CLI 安装，不需要为 DSH Desktop 重写。需要窗口、文件对话框或 Browser Workspace 的插件，则显式声明对桌面 Host 的依赖；能力缺失时直接报告，不伪装成可用。
+
+插件作者可从 [`packages/`](packages/) 中的独立 Bundle 参考官方 Slot、Host 合同和打包方式。插件市场接入、权限和离线边界见[插件市场选择与桌面接入](docs/research/2026-08-22_dsh-plugin-market-selection.md)。
 
 ## 数据与安全
 
-Profile、Session、项目、运行记录和产物数据默认保存在本机 `~/.dsh`。项目源码目录默认只读，Agent 写入需要用户明确授权。
+- Profile、Session 和本地运行数据默认保存在 `~/.dsh`；打开历史不会自动上传这些内容；
+- 官方 Web `webContents` 没有产品 preload、Node 或通用 IPC；
+- Profile 或 Client 启动失败时进入本地恢复页，不会白屏或静默修改原 Profile；
+- 恢复页可以重试、启动只含官方 `base` 与 `web-app` 的安全 Profile、打开目录、确认后移除指定插件并导出过滤后的诊断；
+- 项目代码、第三方 Bundle 和视觉资产分别遵守自己的许可证与再分发条件。
 
-完整规则见 [PRIVACY.md](PRIVACY.md)、[SECURITY.md](SECURITY.md) 和 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+详见[隐私说明](PRIVACY.md)、[安全说明](SECURITY.md)和[第三方说明](THIRD_PARTY_NOTICES.md)。
 
-## 平台状态
+## 与其他社区桌面发行版
 
-| 平台 | 当前状态 |
-|---|---|
-| macOS Apple Silicon | 开发与目录包已验证 |
-| macOS Intel | Rosetta 检查通过，仍需 Intel 实机验收 |
-| Windows x64 | 已接入构建流程，仍需安装包实机验收 |
-| Windows arm64 | 暂不支持 |
-| Linux | 暂无桌面打包配置 |
+[anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) 和本项目都是独立社区发行版，但选择了不同的桌面路线。anywhere-labs 将桌面 Shell、托盘、终端、更新和跨平台安装器组成完整客户端；本项目固定官方 npm 运行时，以官方 Web 为唯一主界面，并把独立社区 Bundle、离线 Profile 产物和窄 Native Host 作为核心。
+
+两者都不是 DeepSeek Harness 官方桌面端。这里不做“更官方”的暗示，只明确本项目的不变边界：官方 Web 单一界面、Profile 单一权威、社区插件优先、默认组合可复现、原生能力最小授权。源码级差异见 [两套社区桌面发行版对比](docs/research/2026-08-22_dsh-desktop-distribution-differences.md)。
+
+## 相关项目
+
+| 项目 | 关系 |
+| --- | --- |
+| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | 提供核心 Agent、Session、Tool、Skill、MCP、Profile 与官方 Web |
+| [Cordis](https://github.com/cordiverse/cordis) | 提供插件化基础 |
+| [dsh-market](https://github.com/dsh-market/dsh-market) | 当前默认内置的可视化插件市场 |
+| [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | 当前 task-board 的上游社区仓库 |
+| [DSH Desktop by anywhere-labs](https://github.com/anywhere-labs/deepseek-harness-desktop) | 以完整桌面 Shell 和跨平台安装器为重心的独立社区发行版 |
+| [dshfind](https://www.dshfind.com/zh) | DSH 学习、分享与插件发现社区 |
+
+## 与 DeepSeek Harness 的关系
+
+DSH Desktop 是基于 DeepSeek Harness 与 Cordis 插件思想构建的独立社区项目。上游提供核心运行时、插件系统和 Web UI；本项目负责 Electron 封装、新 Profile 的离线初始化、精选社区 Bundle、窄原生 Host、恢复页和桌面发行验证。
+
+本项目与深度求索不存在隶属、合作、授权或背书关系。“DeepSeek Harness”仅用于真实、准确地说明兼容性和技术来源。
 
 ## 许可证
 
-项目代码使用 [MIT License](LICENSE)。第三方依赖与二进制文件的来源、许可证和分发限制见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+项目代码使用 [MIT License](LICENSE)。第三方组件、固定 tarball、原生二进制和视觉资产的来源与分发条件见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

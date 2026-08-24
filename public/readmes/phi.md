@@ -1,6 +1,8 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
-# phi
+<p align="center">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+</p>
 
 A minimal terminal coding agent harness in Go — a sibling to Pi.
 
@@ -17,9 +19,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
   <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
 </p>
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/af4fe108bf0dd2d3895e153c113dd3f2e0d5d98e/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/af4fe108bf0dd2d3895e153c113dd3f2e0d5d98e/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/image.png)
 
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
@@ -108,7 +110,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/af4fe108bf0dd2d3895e153c113dd3f2e0d5d98e/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -136,6 +138,30 @@ permissions:
       - "go test ./..."
     deny:
       - "rm -rf *"
+```
+
+### Recommended model: DeepSeek Flash
+
+phi + DeepSeek Flash — the best pairing: grounded, low hallucination, cache hit rates near 100%.
+
+Measured data:
+
+39 LLM rounds, same session — prompt **16k→40k**, hit rate **95–100%** (avg **98.7%**).
+
+| Round | Prompt tokens | Cached tokens | Cache hit |
+| ---: | ---: | ---: | ---: |
+| 1 | 16,176 | 15,872 | **98.1%** |
+| 10 | 20,163 | 20,096 | **99.7%** |
+| 20 | 27,604 | 26,624 | **96.4%** |
+| 30 | 35,245 | 35,072 | **99.5%** |
+| 39 | 39,794 | 39,552 | **99.4%** |
+
+```mermaid
+xychart-beta
+    title "Cache hit % (39 rounds)"
+    x-axis [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+    y-axis "Hit %" 95 --> 100
+    line [98.1, 98.8, 97.5, 98.1, 98.1, 98.8, 99.1, 99.9, 98.7, 99.7, 99.5, 99.5, 96.3, 99.4, 97.0, 99.7, 99.9, 99.3, 98.3, 96.4, 98.9, 98.7, 97.2, 99.8, 95.0, 99.7, 99.2, 98.9, 99.3, 99.5, 99.5, 99.4, 99.2, 98.6, 99.4, 99.6, 100.0, 97.8, 99.4]
 ```
 
 Environment overrides:
@@ -240,6 +266,7 @@ Flags:
 | -------------------- | ---------------------------------------------- |
 | `-p, --prompt STRING`| Prompt to run (required)                       |
 | `--jsonl`            | Emit JSONL events to stdout                    |
+| `--yolo`             | Skip all permission checks for this run (benchmarks / CI only) |
 | `--max-rounds N`     | Cap tool rounds (default 64)                   |
 | `--timeout DURATION` | Limit the agent run wall-clock time (e.g. `10m`; disabled by default) |
 | `--session ID`       | Resume a persisted session by id or unique prefix |
@@ -253,7 +280,9 @@ In the interactive TUI, exhausting the tool-round budget prompts Continue /
 Stop. Headless `phi run` has no confirmation UI, so it exits with code 2.
 
 In headless mode, permission `ask` decisions are denied (there is no approval
-UI), so `readonly`-style safety applies without extra flags.
+UI), so `readonly`-style safety applies without extra flags. For benchmarks
+that need arbitrary shell (`pytest`, `npm test`, …), pass `--yolo` to skip the
+permission gate for that run only.
 
 ## Skills
 

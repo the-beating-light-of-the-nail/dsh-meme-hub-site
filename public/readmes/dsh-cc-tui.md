@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
 </p>
 <p align="center">
   <strong>简体中文</strong> | <a href="README_EN.md">English</a>
@@ -36,7 +36,7 @@
 本插件被 **DeepSeek Harness 官方公众号** 推文收录，作为"内测用户精选插件"展示：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="560">
 </p>
 
 同时也被 [dshfind](https://dshfind.com/zh/plugins/ccch1mneyyy/dsh-TUI) 插件目录收录：
@@ -50,6 +50,10 @@
   - **终端原生交互**：流式 Markdown、结构化工具卡、命令与文件补全、`@` 文件引用
     （消息任意位置补全，文本附加内容，PNG/JPEG/WebP/GIF 作为持久图片块发送）、历史搜索、消息选择、
     inline/alternate-screen 两种渲染模式，以及 `/lang` 中英界面语言切换。
+  - **时间线导航**：Grok 式轮次 rail 覆盖**全部轮次（含折叠轮）**——折叠窗口只露
+    最近几轮时 rail 仍全景可达，点击刻度揭示对应轮并滚动到位；未钉底时
+    `Enter`/`End` 一键回底（远距一步到位不闪空白），新消息 pill 常驻可点击；
+    右侧 gutter 支持 timeline / scrollbar / hidden 三态设置。
   - **可观察的 Agent 状态**：实时工作状态、上下文分段进度、TPS、缓存命中率、
     推理等级、输入/输出 token 与 Git/会话信息。
   - **完整会话工作流**：`/resume`、`/new`、`/compact`、`/export`、`/btw` 侧问、
@@ -57,13 +61,16 @@
   - **DSH 官方能力接入**：Agent preset、Skills、MCP、Goals、Todos、子代理、
     `ask_user_question` 问卷都通过现有服务或注册表连接。
   - **为长会话设计**：事件驱动投影、差分终端输出、消息虚拟化、回放合并与有界缓存，
-    避免渲染成本和内存随会话无限增长。
+    避免渲染成本和内存随会话无限增长；热路径**指纹缓存做到每帧零分配**
+    （3200 行会话每 16ms tick 省下 ~200KB GC 压力），wrapText 与 markdown
+    token 走全局 LRU 跨挂载复用，主屏打开分帧补画、渲染折叠窗口 300→120 行，
+    长会话恢复直达内容（跳过开场动画、落点锚定最新消息末行）。
 
 ## 界面预览
 
-![首屏：像素鲸鱼顶栏](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/splash.png)
+![首屏：像素鲸鱼顶栏](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/screenshots/splash.png)
 
-![工作状态行 + 上下文进度条](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/working-line.png)
+![工作状态行 + 上下文进度条](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/screenshots/working-line.png)
 
 ## 快速开始
 
@@ -152,13 +159,14 @@ npm install -g @deepseek-harness-tui/dsh-tui
 `⌘` 需终端支持扩展键盘协议（iTerm2 / kitty / WezTerm / ghostty / tmux）；
 macOS 自带 Terminal.app 会自行消费 `⌘` 快捷键，请继续使用 `Ctrl`。
 
-**鼠标（`fullscreen: true` 全屏模式；默认关，profile 补丁层覆盖开启）**
+**鼠标（全屏模式默认开启；`fullscreen: false` 可退回 inline 主屏模式）**
 
 | 操作 | 功能 |
 |---|---|
 | 拖拽选择 | 应用内文本选区，**松开即复制**（OSC 52 + `wl-copy`/`xclip`/`xsel` 原生兜底；tmux 内走 `load-buffer -w`），复制后自动取消选区并弹出「已复制 N 个字符」提示 |
 | 双击 / 三击 | 选词 / 选行，同样即选即复制 |
-| 滚轮 | 仅在 fullscreen 且鼠标跟踪启用时：Help 打开时滚动帮助，否则滚动消息列表（±3 行/格）；默认 inline 模式不会把滚轮事件交给 TUI |
+| 滚轮 | 仅在 fullscreen 且鼠标跟踪启用时：Help 打开时滚动帮助，否则滚动消息列表（±3 行/格）；inline 模式不会把滚轮事件交给 TUI |
+| 单击时间线 rail 刻度 | 跳到对应轮次——rail 覆盖全部轮次（含折叠轮），点折叠刻度会先揭示该轮再滚动到位 |
 | `Esc` | 拖拽进行中取消选区（不复制） |
 | 单击消息行 | 展开/收起该行 |
 | 单击「加载更早消息」/「ctrl+e 显示前 N 条」 | 加载更早消息 / 展开全部 |
@@ -264,6 +272,12 @@ compaction 和持久化继续由 DSH 服务拥有。更详细的模块边界与�
 - **事件驱动渲染**：`session/event` 事件流 → 增量差分渲染，滚动状态独立维护。
 - **布局级虚拟化**：长会话的每帧成本从 O(全会话) 降到 O(可视窗口)——屏幕外的
   消息行渲染为"量高占位符"，其子树完全不参与布局。
+- **零分配热路径**：visibleRows 管线（切片/过滤/边距）按 rows 身份、长度与
+  Uint8Array 流位指纹缓存——滚动 tick 上零数组/Map 分配，turn 落定的原地
+  写入也即时触发重建（空行过滤不滞后）；wrapText 与 markdown token 走全局
+  LRU，跨挂载复用测量结果。
+- **分帧补画与落点锚定**：主屏打开先挂尾部窗口再分帧补画历史；`/resume` 后
+  以最新消息末行可见且可达为终态断言，长会话恢复跳过开场动画直达内容。
 - **上下文进度条**：参考 pi-nano-context 算法（最大余数法分段着色 + 多级缩略读数）。
 - **TPS 仪表**：参考 pi-tps-meter——流式 1/8 格 gauge、历史 min-max sparkline、
   速度语义色（≥50 绿 / ≥20 黄 / <20 红）。
@@ -325,7 +339,7 @@ registry 包：`dsh plugin --profile dsh-tui add @deepseek-harness-tui/dsh-tui`�
 
 | 微信群 | QQ 群（群号 572549239） | 微信三群 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
+| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
 
 > 微信群二维码约 7 天过期一次，如遇失效请走 QQ 群（572549239），或开个 issue 提醒我们更新。
 
@@ -345,7 +359,7 @@ Windows 当前没有对应的沙箱后端，组合会退回到 `danger-full-acce
 ## 趋势
 
 <!-- star-history:start -->
-[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/277cabf90e74400a6dadbbd118084dad7da2c8ab/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
+[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/738361246ac9925e37062f695448358bc14ffec9/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
 <!-- star-history:end -->
 
 

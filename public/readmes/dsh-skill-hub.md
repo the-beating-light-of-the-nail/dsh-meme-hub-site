@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e3543b95138b9bdf5e24df1ef99e7195f86b2356/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
+  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e235fe6d1593737af9b7900e6c527a9381b3869d/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
 </p>
 
 **In-GUI skill hub for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh).**
@@ -188,13 +188,13 @@ Open **Settings → 技能** (Skill Hub) in the dsh web GUI. Three tabs:
   tags, assign members, and flip a whole scene on/off with one switch.
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e3543b95138b9bdf5e24df1ef99e7195f86b2356/promo/real-skill-hub-scenes.png" alt="场景 tab" width="560">
+    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e235fe6d1593737af9b7900e6c527a9381b3869d/promo/real-skill-hub-scenes.png" alt="场景 tab" width="560">
   </p>
 - **市场 (Market)** — one unified list: built-in curated repos (Add button until added) and your
   custom sources; scan to install, check for updates, update all in one pass.
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e3543b95138b9bdf5e24df1ef99e7195f86b2356/promo/real-skill-hub-catalog.png" alt="市场 tab" width="560">
+    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e235fe6d1593737af9b7900e6c527a9381b3869d/promo/real-skill-hub-catalog.png" alt="市场 tab" width="560">
   </p>
 
 Everywhere: **work space field** in the header (enter a project path to see its read-only project

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/b336c6e62ffcf540df9f12572b6b863bc898e2e0/assets/logo.svg" alt="Morning Star Harness" width="96">
+<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/447900c32ff73891d40f5a90240608376521fcef/assets/logo.svg" alt="Morning Star Harness" width="96">
 
 # [Morning Star](https://github.com/btspoony/mstar-harness)
 
@@ -15,7 +15,6 @@ English / [中文](README_CN.md)
 [![Version](https://img.shields.io/github/v/release/btspoony/mstar-harness?include_prereleases&sort=semver&label=version&style=flat-square&labelColor=black&color=c4f042)](https://github.com/btspoony/mstar-harness/releases)
 [![Last commit](https://img.shields.io/github/last-commit/btspoony/mstar-harness?color=c4f042&labelColor=black&style=flat-square)](https://github.com/btspoony/mstar-harness/commits/main)
 [![dshfind](https://dshfind.com/api/badge/btspoony/mstar-harness?lang=en)](https://dshfind.com/zh/plugins/btspoony/mstar-harness?ref=badge)
-[![featured on dsh-suite](https://img.shields.io/badge/featured%20on-dsh--suite-4d6bfe)](https://whyihaveyou.github.io/dsh-suite/)
 [![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
 
 </div>
@@ -74,7 +73,7 @@ Manual install / path layout: [`INSTALL.md`](INSTALL.md). CLI flags: [`docs/cli.
 
 ## Use
 
-Three entry shapes: **without iteration** (single plan / hotfix), **with iteration** (multi-plan Phase 1–5), or **codebase audit** (discover what to do).
+Three entry shapes: **without iteration** (single plan / hotfix), **with iteration** (multi-plan Phase 1–5), or **audit & review** (read-only: discover what to do, or decide whether a change ships).
 
 ### General (without iteration)
 
@@ -98,26 +97,14 @@ Enter PM, then run the per-plan cycle: `Prepare → Execute → QC → QA gate �
 | `/iteration-drive` | Resume Phase 2→5 on an already-locked iteration. |
 | `/iteration-loop [direction] [scale]` | Full Phase 1→5 autonomous (no grill-me).<br>`direction` — optional free text.<br>`scale` — `S` / `M` / `L` / `XL` (default `M`). |
 
-### Codebase audit
+### Audit & review
+
+Two read-only, advisory commands under one roof — they never edit source; findings can become plans for Prepare → Execute. SSOT → `mstar-audit` (variants: `codebase-audit`, `pr`).
 
 | Command | When |
 |---------|------|
-| `/codebase-audit [keywords]` | Read-only survey → prioritized, self-contained plans in `{PLAN_DIR}/audit-<date>/`.<br>Never edits source. Output feeds `/iteration-start` Research or normal Prepare → Execute.<br>Effort: `quick` / `deep` (default `standard`).<br>Scope: category focus (`security`, `perf`, `tests`, …); `branch` (current-branch changes only); `next` / `roadmap` (direction candidates only); `simplify` (DEBT-focused deep pass).<br>SSOT → `mstar-audit`. |
-
-### Command loading
-
-| Host | How commands load |
-|------|-------------------|
-| dsh (DeepSeek Harness) | `/iteration-start` · `/iteration-drive` · `/iteration-loop` · `/codebase-audit` (bundled `harness-commands/` via `ctx.commands`) |
-| omp | `/iteration-start` · `/iteration-drive` · `/iteration-loop` · `/codebase-audit` (filename commands from plugin `commands/`) |
-| OpenCode / Cursor | Bundled from `commands/` (OpenCode: plugin `harness-commands/`) |
-| Kimi / ZCode | `/morning-star-harness:iteration-start` · `:codebase-audit` (etc.) via plugin manifest |
-| Codex project | `.agents/skills/<name>/SKILL.md` (CLI symlinks from `commands/`) |
-| Codex global | Project-scoped commands **not** installed — use `--scope project` |
-
-Phase 2 defaults: per-plan worktree + lease, `Findings cleanup: zero-residual`. Override only with explicit `Worktree mode: waived` / `Findings cleanup: allow-residual`. SSOT → `mstar-iteration`, `mstar-branch-worktree`, `mstar-plan-artifacts`.
-
-Project knowledge bootstrap: `mstar-compound-refresh` → `references/project-knowledge-bootstrap.md`.
+| `/codebase-audit [keywords]` | Read-only survey → prioritized, self-contained plans in `{PLAN_DIR}/audit-<date>/`.<br>Never edits source. Output feeds `/iteration-start` Research or normal Prepare → Execute.<br>Effort: `quick` / `deep` (default `standard`).<br>Scope: category focus (`security`, `perf`, `tests`, …); `branch` (current-branch changes only); `next` / `roadmap` (direction candidates only); `simplify` (DEBT-focused deep pass). |
+| `/pr-deep-review [pr\|branch\|scope] [full]` | Deep, evidence-first review of a pull request / branch / diff before merge → one verdict (`ship it` / `needs review` / `blocked`).<br>Worktree-isolated, read-only; findings can turn into plans for Prepare → Execute.<br>`full` — surface all findings instead of top 1–3. |
 
 ## Harness Workflow
 
@@ -188,8 +175,8 @@ Load **`mstar-harness-core` first**, then topic skills on demand (`mstar-roles`)
 | `mstar-dispatch-gates` | Dispatch, Delegation, anti-recursion |
 | `mstar-sdd` | Subagent-driven development |
 | `mstar-branch-worktree` | Branches, worktrees, QC/QA checkout |
-| `mstar-plan-conventions` | `{HARNESS_DIR}` discovery / init |
-| `mstar-plan-artifacts` | Plans, `status.json`, residuals, Findings cleanup |
+| `mstar-conventions` | `{HARNESS_DIR}` discovery / init |
+| `mstar-artifacts` | Plans, `status.json`, residuals, Findings cleanup |
 | `mstar-project-governance` | Roadmap authoring + residual register lifecycle, `_default` fallback |
 | `mstar-design-md` | DESIGN.md gate for UI plans |
 | `mstar-review-qc` | PM QC tri orchestration |
@@ -202,7 +189,7 @@ Load **`mstar-harness-core` first**, then topic skills on demand (`mstar-roles`)
 | `mstar-host` | Host adapters (dsh / omp / OpenCode / Cursor / Kimi / ZCode / Codex) |
 | `pm` | `/pm` / `/skill:pm` / host PM entry |
 
-Consumer plans default to **`.mstar/`**. Process artifacts (`plans/`, `iterations/`, `status.json`, `workflows/`, `projects/`, `sdd/`, …) are gitignored; tracked results: `{HARNESS_DIR}/AGENTS.md`, `knowledge/`, `specs/`. Specs resolve `.mstar/specs/` → `docs/specs/` → repo-root `specs/`. Repos with a non-default layout can declare every harness directory symbol in a gitignored **`.mstarc`** (`[config]` keys `harness_dir` / `plan_dir` / `sdd_dir` / `iteration_dir` / `knowledge_dir` / `specs_dir` / `workflow_dir` / `project_dir` — honored above probing). Details → `mstar-plan-conventions`.
+Consumer plans default to **`.mstar/`**. Process artifacts (`plans/`, `iterations/`, `status.json`, `workflows/`, `projects/`, `sdd/`, …) are gitignored; tracked results: `{HARNESS_DIR}/AGENTS.md`, `knowledge/`, `specs/`. Specs resolve `.mstar/specs/` → `docs/specs/` → repo-root `specs/`. Repos with a non-default layout can declare every harness directory symbol in a gitignored **`.mstarc`** (`[config]` keys `harness_dir` / `plan_dir` / `sdd_dir` / `iteration_dir` / `knowledge_dir` / `specs_dir` / `workflow_dir` / `project_dir` — honored above probing). Details → `mstar-conventions`.
 
 Maintainers: [`AGENTS.md`](AGENTS.md).
 

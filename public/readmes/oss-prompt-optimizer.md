@@ -12,7 +12,7 @@
 - **工具 `prompt_optimize`**：agent 可调用，传入 `instruction`，返回优化后的纯文本提示词；也可传 `lastOptimized` + `iterateInstruction` 对已优化结果迭代改写。
 - **服务 `ctx.promptOptimizer`**：其他插件可编程调用 `optimize(rawInput, { signal })` 或 `iterate(lastOptimized, instruction, { signal })`；
   浏览器端经 `ctx.remote.promptOptimizer.optimize(sessionId, text)` 可调用。
-- **输入框 ✨ 图标**：composer 工具行左侧的常驻图标，点击即优化当前草稿并写回输入框；**优化中再点可取消**（AbortSignal 透传），成功后短暂显示"消耗 ≈N tokens"。
+- **输入框 ✨ 图标**：composer 工具行左侧的常驻图标，点击即优化当前草稿并写回输入框；**优化中再点可取消**（UI 状态管理），成功后短暂显示"消耗 ≈N tokens"。
 - **角色文档语言自动切换**：角色文档（元提示词）语言默认按输入内容自动检测——中文指令用
   中文角色文档，英文指令用英文角色文档（见下文）。
 - **自动优化钩子**（可选，默认关闭）：以触发前缀开头的用户消息会在进入模型前被自动优化（见下文）。
@@ -41,9 +41,9 @@
   提高命中率；仍失败则返回原文/上次结果 + 错误说明，并附稳定机器可读错误码
   （`OptimizeResult.errorCode`：`MISSING_SECTIONS` / `THIN_SECTIONS` / `THIN_OUTPUT` /
   `TIMEOUT` / `NO_MODEL_ROUTE` 等），工具失败渲染带 `[错误码]` 前缀。
-- 输出恒为完整可执行的提示词（四段或 plain 正文）；空输入报错；超长输入截断护栏；取消信号透传。
-![项目截图](https://raw.githubusercontent.com/seven282/oss-prompt-optimizer/243479e762cf8d3a7acc78bc4db71a78c6d6d206/1.png)
-![项目截图](https://raw.githubusercontent.com/seven282/oss-prompt-optimizer/243479e762cf8d3a7acc78bc4db71a78c6d6d206/2.png)
+- 输出恒为完整可执行的提示词（四段或 plain 正文）；空输入报错；超长输入截断护栏；UI 层取消。
+![项目截图](https://raw.githubusercontent.com/seven282/oss-prompt-optimizer/bb8351fa4bdf65e9bb04670f777b49b59c30d140/1.png)
+![项目截图](https://raw.githubusercontent.com/seven282/oss-prompt-optimizer/bb8351fa4bdf65e9bb04670f777b49b59c30d140/2.png)
 
 ## 输入框 ✨ 图标
 
@@ -71,9 +71,9 @@
 
 运行时可通过输入框直接输入命令固定或恢复自动（会话级覆盖，重启回落到配置值）：
 
-- `/optimizer-language auto` —— 恢复自动检测（默认）
-- `/optimizer-language 中文` / `/optimizer-language 英文` —— 固定语言
-- `/optimizer-language status` —— 查询当前模式
+- `/optimize --language auto` —— 恢复自动检测（默认）
+- `/optimize --language 中文` / `/optimize --language 英文` —— 固定语言
+- `/optimize --language status` —— 查询当前模式
 
 配置 `metaPromptLanguage: 'auto' | '中文' | '英文'`（默认 `'auto'`）决定重启后的初始模式；
 显式值（`'中文'`/`'英文'`）固定语言，`'auto'` 跟随输入。
@@ -81,17 +81,10 @@
 ## 自动优化开关（命令方式）
 
 运行时「发送前自动优化」开关可通过输入框直接输入命令控制：
-- `/auto-optimize on` / `/auto-optimize off` / `/auto-optimize toggle` / `/auto-optimize status`
+- `/optimize --auto on` / `/optimize --auto off` / `/optimize --auto toggle` / `/optimize --auto status`
 
 开启后 host 进入「发送前自动优化」模式，`agent/pre-step` 钩子会对**每条**用户
 文本消息做优化（等同于配置 `autoOptimizeAll: true` 的运行时版本）。
-
-## 造梦模式（/dream）
-
-`/dream <指令>` = 标准优化 + **需求感应**：结果在提示词后追加明确标注的
-`--- 延伸洞察（AI 推断，供你选用，非事实）---` 附录（深层目标 / 隐含约束 /
-质量标准 / 可能的后续），推断内容不混入提示词正文、随时可删。
-等价于每次调用传 `senseNeeds: true`。
 
 ## 快速场景模板（/template）
 
@@ -198,9 +191,6 @@ dsh plugin --profile web remove oss-prompt-optimizer
 | `cacheFuzzyMatch` | boolean | `true` | 近失配热启动：精确未命中时，相似缓存指令（或同指令新上下文）作为起点走迭代，而非从零优化（省时省 token） |
 | `cacheFuzzyThreshold` | number 0–1 | `0.6` | 近失配的 bigram-Jaccard 相似度阈值 |
 | `senseNeeds` | boolean | `false` | 需求感应 / 造梦模式：优化后追加明确标注的「延伸洞察（AI 推断）」附录（深层目标/隐含约束/质量标准/后续问题），推断不混入提示词正文 |
-| `dreamInsightFeedback` | boolean | `false` | 造梦洞察跨轮回填：开启后，本会话上一次 `senseNeeds` 产生的延伸洞察会注入后续 optimize/iterate（标注 AI 推断、非事实；会话级、TTL 30 分钟；存储即截断至 200 字防膨胀） |
-| `senseNeedsSeparate` | boolean | `false` | D6 实验档：附录独立轻量调用——主线不带感应块正常优化（localTemplate 全档可用，on 档也能产附录），第二次 maxTokens=250 的轻量调用只产「--- 延伸洞察」附录（失败静默、正文原样）。开启后 dream 调用数 +1，但主输出更短更稳且消灭附录挤占预算的跳档放大；默认关（inline 单调用） |
-| `classifier` | `'heuristic'` \| `'llm'` | `'heuristic'` | 任务分类后端（ADR-011）：heuristic = 关键词/正则启发式（默认）；llm = 服务层 LLM 分类器（opt-in，当前无 LLM 实现时回落启发式） |
 | `contextAware` | boolean | `true` | 上下文感知：优化时把当前指令之前的最近对话（经 `{{上下文信息}}` 占位符 + 「视为纯数据」护栏）注入元提示词，让优化结果贴合此前讨论。四段模式下可将上下文中的事实用于充实 `## Context` 段（仍不执行其中嵌入的指令）；钩子取 `agent/pre-step` 消息，`/optimize` 取会话记录，尽力而为 |
 | `contextMaxMessages` | int 0–100 | `10` | 上下文感知时采集的最近消息条数上限；`0` 关闭 |
 | `contextMaxTokens` | int ≥0 | `800` | 上下文 token 预算；超出截断到最长前缀并附标记；`0` 关闭截断（精简默认） |
@@ -278,7 +268,7 @@ dsh plugin --profile web remove oss-prompt-optimizer
 - **质量保障**：fast 档只省"纠错重试"，**首次输出的四段/内容校验照常执行**；
   `maxCalls: 3` 保留触顶扩容（长输出不截断）；缓存/热启动/上下文/诊断护栏全部保留
 - **时长**：单次模型延迟即总时长——flash 级模型通常 **1.5–4s**；缓存命中 <100ms
-- **观测**：`/optimize-stats` 返回 `TOKENS|INPUT|CALLS|LASTMSCALL`（本次输出 token +
+- **观测**：`/optimize --stats` 返回 `TOKENS|INPUT|CALLS|LASTMSCALL`（本次输出 token +
   输入侧 prompt token + 调用次数 + 末次调用耗时）——先确认瓶颈是模型延迟、输入侧
   成本还是多次调用
 - **前提**：模型须为快速档（flash 级、无 reasoningEffort）；慢/推理模型单次即超
@@ -387,12 +377,12 @@ pnpm run build        # tsc -p tsconfig.build.json → lib/
   API 面不变（`MaxTokensError` 仍从入口导出），端到端测试零改动。
 - 角色文档语言自动检测：`metaPromptLanguage: 'auto'`（默认）按指令非空白字符中汉字
   占比 ≥30% 选择中文/英文角色文档（纯函数 `detectLanguage`，含假名的日文等语言归
-  英文文档）；`'中文'`/`'英文'` 固定语言，`/optimizer-language` 可运行时固定或恢复
+  英文文档）；`'中文'`/`'英文'` 固定语言，`/optimize --language` 可运行时固定或恢复
   自动。检测结果在单次调用内传递（`optimize`/`iterate` 按各自输入检测，`selfRefine`
   沿用本轮语言，重试诊断文案同语言），与 `outputLanguage` 独立。
 - 所有注册（工具、systemPrompt 段落、自动优化钩子、命令）均为 effect 作用域，
   插件卸载自动清理。
-- 命令命名：本插件注册 `/optimize` 与 `/auto-optimize`（短命令，遵循生态惯例）。
+- 命令命名：本插件注册 `/optimize`（短命令，遵循生态惯例）。
   若未来与其他插件冲突，改名需同步 `client.js` 调用、README 与钩子前缀默认值
   （`/optimize `），建议一次性原子变更。
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/c238f8c5d4afe153ede8559e5f7e3d1a652b6327/assets/logo.svg" alt="dsh-milestone" width="112">
+<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/7568fc271aa2ac54f541d725989de2720ffe3a5b/assets/logo.svg" alt="dsh-milestone" width="112">
 
 # dsh-milestone
 
@@ -17,51 +17,17 @@
 
 </div>
 
+> **English:** A Git-style milestone timeline for the DeepSeek Harness web UI — one dot per user message, hover for content and metadata (time, turn, duration, TTFT, tokens), click to jump anywhere. Full-session list, in-session & cross-session search, `#msg=` deep-link bookmarks, keyboard navigation. Install: `dsh plugin --profile demo add dsh-milestone`.
+
 ---
 
 ## 为什么需要它？
 
-和 AI 聊了上百轮之后，想找回**第 17 轮那个提问**？你只能不停滚轮往上翻，眼睛在一堆代码块、工具调用和思考过程里大海捞针。
+- 上百轮对话之后，想找回「第 17 轮那个提问」？只能不停往上翻，在代码块和思考过程里大海捞针。
+- 右侧挂一条**圆点时间线**：一个提问一个圆点，悬停看内容，点击瞬间跳转——长对话的「导航地图」。
+- 官方 slot 机制挂载，不修改 harness 源码，装完即用。
 
-**dsh-milestone** 在会话右侧挂一条**圆点时间线**——每一条提问对应一个圆点，鼠标悬停看内容，点击瞬间跳转。长对话的"导航地图"。
-
-<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/c238f8c5d4afe153ede8559e5f7e3d1a652b6327/assets/demo.svg" alt="dsh-milestone 效果示意图" width="100%">
-
-## 好用在哪？
-
-- **一键定位** —— 点击任意圆点，平滑滚动到那条消息，不用再手动翻几百行。
-- **站内搜索** —— 搜索框过滤圆点，匹配的是**完整消息内容**（不是 80 字摘要），实时显示命中数 N/M，回车跳到下一个匹配，Esc 一键清空。
-- **当前位置高亮** —— 滚动会话时，离你视口最近的那条提问会亮起白环，永远知道「读到哪了」。
-- **加载更早** —— 历史没加载完时，顶部出现「···」按钮，点一下继续加载，并提示当前已显示多少条。
-- **收藏书签** —— 悬停任意圆点可点星收藏，刷新后仍保留；顶部「★」一键只看收藏，把一次性跳转变反复回访。
-- **键盘导航** —— 里程碑条是一个焦点组件：↑↓ 移动、回车跳转、Home/End 首尾，全程不用鼠标。
-- **状态徽章** —— 圆点自动标出轮次健康状态：出错红环、达到上限黄环、重试橙环、运行中/等待输入蓝/黄脉冲。
-- **固定间距** —— 圆点**等距排列**，不随对话长度挤压变形，永远点得准。
-- **蓝色渐变** —— 最新最深、最早最浅，一眼看清提问的先后顺序，像 Git 提交图。
-- **滚轮滑动** —— 长会话圆点超出可视区时，鼠标在里程碑条上滚轮即可滑动选点。
-- **丰富悬停** —— 悬停展示消息预览、相对时间、第 N 轮、用时、结束原因、首字延迟(TTFT)、tokens/秒。
-- **模型与用量** —— 悬停直接看这一轮用的哪个模型、输入/输出 token 数，调试成本一目了然。
-- **turn 分组折叠** —— 圆点按轮次分组，一眼看清对话章节；长轮次可折叠成一条，减少干扰。
-- **复制与 fork** —— 悬停一键复制该条提问全文，或「从此处 fork」开一个分支会话。
-- **中英双语** —— 跟随 harness 界面语言自动切换中英文。
-- **聚焦模式** —— 一键淡化 AI 的思考(thinking)区块，对话正文更清爽；悬停或展开时自动恢复。
-- **全部提问列表** —— 顶部展开面板，一次看全所有提问（序号 + 轮次 + 预览），点击即跳，长对话不再靠圆点一个个数。
-- **深链接** —— 跳转时 URL 带上 `#msg=` 锚点，刷新或分享链接后直接回到同一条消息。
-- **跨会话搜索** —— 一键搜索**所有会话**的消息内容（harness 原生索引），点击结果直接打开对应会话。
-- **零侵入** —— 官方 slot 机制挂载，不修改 harness 源码，装完即用。
-
-## 悬停能看到什么
-
-```
-┌─────────────────────────────────────────┐
-│ 第 3 / 5 条 · 第 2 轮          ☆ 复制 ✂   │  ← 序号 + 轮次 + 收藏/复制/fork 动作
-│ 帮我优化这段代码的性能                    │  ← 消息预览（前 80 字）
-│ 5 分钟前 · 用时 1m30s · 首字 1.2s · 12.4 tok/s │  ← 时间 · 耗时 · TTFT · 吞吐
-│ v4 · continue · 1280 / 2560 tok          │  ← 模型 · 用途 · token 用量
-└─────────────────────────────────────────┘
-```
-
-元信息全部来自 harness 原生的 session 快照（`turnTimings` / `timeline.turns` / `turn-tail`），无额外依赖。
+<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/7568fc271aa2ac54f541d725989de2720ffe3a5b/assets/demo.svg" alt="dsh-milestone 效果示意图" width="100%">
 
 ## 快速开始
 
@@ -80,9 +46,53 @@ npx @deepseek-ai/dsh web    # → http://127.0.0.1:3080
 
 > 要求 Node.js `>= 24`（harness 官方要求）。
 
-## 它是什么做的？
+## 功能详解
 
-双半边浏览器插件（空 node half + `shell.overlay` slot 挂载的 client half）：
+### 圆点时间线
+
+每个提问一个圆点，点击平滑跳转；悬停即看内容与元信息。圆点等距排列、不随对话长度变形，颜色由浅入深标出先后，同 Git 提交图。滚轮可在里程碑条上直接滑动选点，视口内最近的提问亮起白环。
+
+### 全部提问列表
+
+一键打开面板，序号 + 轮次 + 预览一次看全，点击任意一条直接跳转。打开时会**自动加载整个会话**的历史，不用手动翻页——对藏在最早期的消息来说，比在小圆点上逐个找快得多。
+
+### 站内搜索
+
+搜索框过滤圆点，匹配的是**完整消息内容**（不是 80 字摘要），实时显示命中数 N/M。`Enter` 跳到下一个匹配，`Esc` 一键清空。
+
+### 跨会话搜索
+
+一键搜索**所有会话**的消息内容（harness 原生索引），点击命中结果直接打开对应会话。
+
+### 收藏书签与深链接
+
+悬停圆点点星收藏，刷新后仍在（按会话持久化），顶部「★」一键只看收藏。跳转时 URL 自动带上 `#msg=` 锚点，刷新或分享后仍回到同一条消息。
+
+### 悬停元信息
+
+时间 · 轮次 · 用时 · 结束原因 · TTFT · tok/s · 模型 · 用途 · token 用量，一张卡片看全。数据全部来自 harness 原生会话快照，零额外依赖：
+
+```
+┌──────────────────────────────────────────┐
+│ 第 3 / 5 条 · 第 2 轮         ☆ 复制 ✂    │  ← 序号 + 轮次 + 收藏/复制/fork
+│ 帮我优化这段代码的性能                     │  ← 消息预览（前 80 字）
+│ 5 分钟前 · 用时 1m30s · 首字 1.2s · 12.4 tok/s │  ← 时间 · 耗时 · TTFT · 吞吐
+│ v4 · continue · 1280 / 2560 tok           │  ← 模型 · 用途 · token 用量
+└──────────────────────────────────────────┘
+```
+
+### 更多效率功能
+
+- **键盘导航**：`↑↓` 移动 · `Enter` 跳转 · `Home/End` 首尾，全程不用鼠标。
+- **turn 分组折叠**：长轮次折成一条，汇总圆点带可见 ×N 徽标，一眼知道藏着几条。
+- **复制与 fork**：一键复制提问全文 / 从此处分支。
+- **聚焦模式**：淡化 / 折叠思考与工具调用，强度可调、自由搭配。
+- **折叠工具栏**：功能键默认收起，常用键可钉到折叠外；搜索 / 列表等浮层点击外部自动关闭。
+- **个性化**：强调色 / 圆点大小 / 距侧边距离 / 左右位置即调即存；中文 / English 一键切换。
+
+## 工作原理
+
+双半边浏览器插件（空 node half + `shell.overlay` slot 挂载的 client half），零侵入：
 
 ```
 shell.overlay (root scope)
@@ -90,24 +100,61 @@ shell.overlay (root scope)
        └─ useSession 读取会话快照 → 圆点列表 + 悬停 + 跳转
 ```
 
-- **注入点**：`shell.overlay` —— 全框架浮动层，附加式、点击穿透，不影响任何现有 UI。
-- **数据源**：`chat.order` + `chat.nodes`（user 消息 + `turn-error`/`turn-max-tokens`/`model-retry` 节点）+ `chat.timeline`（turn 元数据）+ `hasMore`/`loadingOlder`（分页）+ `running`/`pending`（徽章）+ `loadOlder`（inject face）。
-- **书签持久化**：harness `store.persist`（每会话 localStorage，key `dsh-milestone.bookmarks.<sessionId>`），经 `defineStore` 引擎读写。
-- **跳转**：DOM 锚点 `data-chat-anchor-key`，`scrollIntoView` 平滑定位。
-- **纯函数**：搜索过滤 / 位置计算 / 圆点状态都在 `rail-logic.ts` 纯函数里，单测覆盖。
+- **注入点**：`shell.overlay` 全框架浮动层，附加式、点击穿透，不碰现有 UI。
+- **数据源**：harness 原生会话快照（消息列表、turn 元数据、分页与运行状态），无自建抓取。
+- **跳转**：以消息锚点做 DOM 定位，`scrollIntoView` 平滑滚动。
+- **分页**：顶部「···」按需加载更早历史；全部提问列表打开时自动加载整个会话。
+- **持久化**：书签与工具栏偏好经 `store.persist` 按会话写入 localStorage。
+- **纯函数分层**：过滤、位置计算、圆点状态集中在 `rail-logic.ts` 纯函数层，单测覆盖。
+
+## 版本与兼容
+
+- 当前官方支持线：**`0.1.1-rc.2`**（peer/dev 依赖 `^0.1.1-rc.2`，与 `@deepseek-ai/dsh` 最新 `latest` 标签一致）。
+- 官方客户端包（`dsh-client-runtime` 等）在 npm 上走 `next` 标签发布（`latest` 标签仍是远古版本）；升级 harness 后若发现插件不匹配，请确认安装的依赖解析到了 `0.1.1-rc.2` 线。
+- harness 当前版本在浏览器端没有可信来源（`host.describe().version` 是占位值），因此不做精确探测，以插件声明的支持线为准。
 
 ## 已知限制
 
-- 搜索范围 = 当前已加载的消息窗口（初始 50 条；点顶部「···」加载更早，更早的历史需先加载进来才能被搜到）。
-- TTFT / tokens/秒 依赖 turn 位置数据，窗口外或未完成的 turn 不显示（自动隐藏）。
-- 徽章的瞬态状态（运行中/等待输入）只点亮**最新一条可见提问**——若运行中/等待输入的轮次其提问在窗口外，则无脉冲。
-- 书签按**会话**隔离（不跨会话共享）。
-- 模型 / token 用量依赖该轮 assistant 节点的元数据，部分场景下缺失则自动隐藏该行。
+> ⚠️ **最需要注意**：站内搜索只覆盖**当前已加载**的消息窗口（初始 50 条），更早的历史需先点顶部「···」加载进来才能被搜到。「全部提问」列表不受此限：打开时会自动加载整个会话，始终一次看全。
+
+<details>
+<summary>查看更多已知限制（点击展开）</summary>
+
+- TTFT / tok/s 依赖 turn 位置数据，窗口外或未完成的 turn 不显示（自动隐藏）。
+- 徽章的瞬态状态（运行中 / 等待输入）只点亮最新一条可见提问；该提问在窗口外时无脉冲。
+- 书签按会话隔离，不跨会话共享。
 - fork 从选中消息所在轮次开始分支，不会自动打开子会话（需在会话列表手动打开）。
-- 深链接的目标消息若早于已加载窗口，会先自动加载更早历史再定位（受加载上限约束，极端深的历史可能定位失败）。
-- 跨会话搜索依赖 harness 的消息内容索引（`session.search`），仅返回片段（≤240 字符）、最多 20 条结果；命中过多时请细化关键词。
-- 聚焦模式作用于当前会话视图的思考区块，不会影响其他插件或工具的展示。
-- 尚无全局快捷键聚焦里程碑条（需 Tab 键切换到）。
+- 深链接目标若早于已加载窗口，会先自动加载更早历史再定位；受加载上限约束，极端深的历史可能定位失败。
+- 跨会话搜索仅返回片段（≤240 字符）、最多 20 条结果，命中过多时请细化关键词。
+
+</details>
+
+## 更新日志
+
+<details>
+<summary>v0.6.6 / v0.6.5 / v0.6.4（点击展开）</summary>
+
+**v0.6.6** · 全部提问列表自动加载整个会话 · 折叠圆点 ×N 徽标 · 轮次连续显示 · 397 项测试
+
+- **全部提问列表一次看全**：打开时自动加载整个会话的历史，不再受初始加载窗口限制，点击任意一条直达。
+- **折叠轮次不藏消息**：汇总圆点带可见 ×N 计数徽标，悬停气泡显示覆盖的条数区间（第 a–b / m 条）。
+- **轮次编号连续化**：显示轮号按圆点顺序重编号（1、2、3…），不再跳空或重复；分组与折叠逻辑不变。
+- **列表点击外部自动关闭**：与搜索、跨会话搜索浮层同一套外部点击关闭契约。
+- README 重写为产品宣传结构：演示图第一屏，功能介绍分组清晰。
+
+> [GitHub Release v0.6.6](https://github.com/SnowCrescenter-tech/dsh-milestone/releases/tag/v0.6.6)
+
+**v0.6.5** · 新手教程改为锚定真实组件的教练气泡引导，设置模态对比度修复 · 近 400 项测试
+
+> [GitHub Release v0.6.5](https://github.com/SnowCrescenter-tech/dsh-milestone/releases/tag/v0.6.5)
+
+**v0.6.4** · 首次使用引导：4 步双语教学 + 内置演示，印象即写、关页不重弹
+
+> [GitHub Release v0.6.4](https://github.com/SnowCrescenter-tech/dsh-milestone/releases/tag/v0.6.4)
+
+更早版本见 [GitHub Releases](https://github.com/SnowCrescenter-tech/dsh-milestone/releases)。
+
+</details>
 
 ## License
 
@@ -116,5 +163,5 @@ shell.overlay (root scope)
 ---
 
 <p align="center">
-  觉得好用？给个 star 支持一下，或把它推荐给正在 DeepSeek Harness 里挣扎的开发者吧。
+  如果它帮你省下了一次翻找，欢迎给个 Star，或推荐给同样在 DeepSeek Harness 里长聊的开发者。
 </p>

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3d788947f3d9f3b6823d40bee35b3c64b3f035ef/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/2ccd7b41c5562a194c666173db598509a528f033/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
 </p>
 
 # Mnemon
@@ -40,7 +40,7 @@ Most memory tools embed their own LLM inside the pipeline. Mnemon takes a differ
 Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs discover and invoke tools. ODBC/JDBC standardizes how applications access databases. But how LLMs interact with databases using memory semantics — this layer has no protocol. Mnemon's three primitives — `remember`, `link`, `recall` — form an intent-native protocol: command names map to the LLM's cognitive vocabulary (`remember` not INSERT, `recall` not SELECT), and output is structured JSON with signal transparency rather than raw database rows.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3d788947f3d9f3b6823d40bee35b3c64b3f035ef/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/2ccd7b41c5562a194c666173db598509a528f033/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
   <br />
   <sub>The LLM-Supervised pattern: hooks drive the lifecycle, the host LLM makes judgment calls, the binary handles deterministic computation.</sub>
 </p>
@@ -48,7 +48,7 @@ Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs dis
 Memory has a **compound interest effect** — the longer it accumulates, the greater its value. LLM engines iterate constantly, skill files cost nearly nothing to write, but memory is a private asset that grows with the user. It is the only component in the agent ecosystem worth deep investment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/3d788947f3d9f3b6823d40bee35b3c64b3f035ef/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/2ccd7b41c5562a194c666173db598509a528f033/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
   <br />
   <sub>A real knowledge graph built by Mnemon — 87 insights, 2150 edges across four graph types.</sub>
 </p>
@@ -352,7 +352,7 @@ memory is useful.
 - **Built-in deduplication** — `remember` auto-detects duplicates and conflicts; skips or auto-replaces
 - **Retention lifecycle** — importance decay, access-count boosting, and garbage collection
 - **Privacy-safe receipts** — export hashed operation receipts for memory-boundary audits without raw memory contents or queries
-- **Optional embeddings** — works fully without Ollama; add local [Ollama](https://ollama.ai) for enhanced vector+keyword hybrid search
+- **Optional embeddings** — works fully without an embedding provider; add local [Ollama](https://ollama.ai) or an OpenAI-compatible server for enhanced vector+keyword hybrid search
 
 ## Vision
 
@@ -446,12 +446,27 @@ Mnemon architecture.
 | `MNEMON_DATA_DIR` | `~/.mnemon` | Base data directory |
 | `MNEMON_STORE` | *(active file or `default`)* | Named memory store for data isolation |
 
-**Ollama-specific** (only relevant if using embeddings):
+**Embedding** (only relevant if using embeddings):
 
 | Environment Variable | Default | Description |
 |---|---|---|
-| `MNEMON_EMBED_ENDPOINT` | `http://localhost:11434` | Ollama API endpoint |
+| `MNEMON_EMBED_ENDPOINT` | `http://localhost:11434` | Embedding API endpoint |
 | `MNEMON_EMBED_MODEL` | `nomic-embed-text` | Embedding model name |
+| `MNEMON_EMBED_PROTOCOL` | *(auto-detect)* | `ollama` or `openai`; auto-detected from an endpoint ending in `/v1` |
+| `MNEMON_EMBED_API_KEY` | *(none)* | Bearer token for OpenAI-compatible servers (oMLX, vLLM, etc.) |
+| `MNEMON_EMBED_DIMENSIONS` | *(native)* | Optional Matryoshka dimension truncation |
+
+The embedding client speaks the Ollama API by default and the
+OpenAI-compatible embeddings API when the endpoint ends in `/v1` (or when
+`MNEMON_EMBED_PROTOCOL=openai` is set). For example, a local server such as
+[oMLX](https://omlx.dev) can be configured with:
+
+```bash
+export MNEMON_EMBED_ENDPOINT=http://127.0.0.1:18000/v1
+export MNEMON_EMBED_MODEL=bge-m3-mlx-8bit
+export MNEMON_EMBED_API_KEY=sk-... # omit for keyless local servers
+mnemon embed --status
+```
 
 ## Development
 

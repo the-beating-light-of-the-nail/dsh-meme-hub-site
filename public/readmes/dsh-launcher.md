@@ -14,7 +14,7 @@
 
 | 浅色模式 | 深色模式 |
 |---|---|
-| ![浅色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/957b0ddbe9cc5967fd95dd198f5fa14c4d07dff1/assets/screenshot-light.png) | ![深色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/957b0ddbe9cc5967fd95dd198f5fa14c4d07dff1/assets/screenshot-dark.png) |
+| ![浅色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/80cae83638dd5b088beb1b4c7205fd9663bf4edc/assets/screenshot-light.png) | ![深色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/80cae83638dd5b088beb1b4c7205fd9663bf4edc/assets/screenshot-dark.png) |
 
 ## 这是什么
 
@@ -57,6 +57,8 @@ dsh plugin --profile web add dsh-launcher-lifetime
 ## 更多
 
 技术实现 / 安全 / 构建：[docs/DETAILS.md](docs/DETAILS.md) · 更新日志：[CHANGELOG.md](CHANGELOG.md)
+
+**面向开发者 / AI Agent（必读）**：修改代码前，请先阅读架构与工程维护铁律（Hard Constraints）→ [docs/00-ARCHITECTURE-GUARDRAILS-MANDATORY.md](docs/00-ARCHITECTURE-GUARDRAILS-MANDATORY.md)，并遵守 [AGENTS.md](AGENTS.md) 中的合规清单。违反铁律的提交会被 Code Review 驳回或 CI 拦截。
 
 ## 免责声明
 

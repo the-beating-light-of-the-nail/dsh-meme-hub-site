@@ -1,12 +1,12 @@
-[![dshfind](https://dshfind.com/api/badge/huanlinoto/dsh-plugin-auto-blame?lang=zh)](https://dshfind.com/zh/plugins/huanlinoto/dsh-plugin-auto-blame?ref=badge)
-
-> 📌 本插件已收录于 [dshfind](https://dshfind.com/zh) 插件超市，点击上方徽章直达主页。
+<p align="center">
+  <a href="https://dshfind.com/zh/plugins/huanlinoto/dsh-plugin-auto-blame"><img src="https://dshfind.com/api/card/huanlinoto/dsh-plugin-auto-blame?lang=zh" alt="dsh-plugin-auto-blame card"></a>
+</p>
 
 # dsh-auto-blame
 
 [![npm version](https://img.shields.io/npm/v/@huanlin/dsh-plugin-auto-blame)](https://www.npmjs.com/package/@huanlin/dsh-plugin-auto-blame)
 
-![preview](https://raw.githubusercontent.com/HuanLinOTO/dsh-plugin-auto-blame/d8ce7d58715c0eb4678cc261e4b5bd84ee28b8da/docs/preview.webp)
+![preview](https://raw.githubusercontent.com/HuanLinOTO/dsh-plugin-auto-blame/7a51349548da0c1fffee5b893ec45f4f9fa9a54b/docs/preview.webp)
 
 当模型完成当前轮次对话后，将最后 3 条消息发送给 LLM，生成 3 条批判性跟进请求，显示在输入框上方作为可选项，点击直接发送。生成期间"领导视野"标签带 DeepSeek 蓝色流光扫过（同 Deep diving... 特效），建议到达后气泡依次淡入。
 

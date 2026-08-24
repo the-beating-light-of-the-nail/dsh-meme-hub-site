@@ -2,11 +2,11 @@
 
 一个嵌入 DSH 设置页的皮肤市场，可以浏览、安装、使用、停用、更新和卸载社区皮肤。
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/75273cd8203fa480d4f6d63c6721dee74ac135ce/docs/assets/skin-market-liang.png" alt="DSH 设置中的皮肤市场发现页" width="70%">
+  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/d2d6433fb173892931d20726c4fa5eb0838f6f99/docs/assets/skin-market-liang.png" alt="DSH 设置中的皮肤市场发现页" width="70%">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/75273cd8203fa480d4f6d63c6721dee74ac135ce/docs/assets/skin-market-deep-whale.png" alt="DSH 皮肤市场中的 Deep Whale 皮肤详情弹窗" width="70%">
+  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/d2d6433fb173892931d20726c4fa5eb0838f6f99/docs/assets/skin-market-deep-whale.png" alt="DSH 皮肤市场中的 Deep Whale 皮肤详情弹窗" width="70%">
 </p>
 
 ### 在线预览
@@ -60,6 +60,12 @@ dsh plugin --profile web add "dsh-skin-market@latest"
 ### 安装失败时，可以让 DSH 自己排查
 
 > 皮肤市场的安装、更新和卸载会调用 DSH 的 profile 插件管理器；当前 DSH 使用 `pnpm` 管理 profile 依赖。如果出现 `pnpm is not recognized`、`package manifest missing` 或 `allowBuilds` 相关报错，不必手动猜测 profile 状态。
+>
+> 含子目录路径的 GitHub 目标（`github:…#commit&path:/…`）请优先用市场页一键安装。Windows 上不要把这段 spec 交给 `dsh plugin add`：cmd.exe 会在 `&` 处截断。需要手动安装时用：
+>
+> ```powershell
+> pnpm add "github:owner/repo#<commit>&path:/subdir" --dir $env:USERPROFILE\.dsh\profiles\web
+> ```
 
 <details>
 <summary><strong>点击展开排查提示词</strong></summary>

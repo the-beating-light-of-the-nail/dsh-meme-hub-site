@@ -15,7 +15,7 @@ DeepSeek Harness 外观自定义插件 —— 自由调色的主题色板、壁�
 
 | 设置面板 | 壁纸 + 毛玻璃效果 |
 |---|---|
-| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/bde396182cc53bb4f88c0fb69ac2b4daead43072/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/bde396182cc53bb4f88c0fb69ac2b4daead43072/docs/screenshot-wallpaper.png) |
+| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c947e0f24a36802d660f9979d1b0e506590d4216/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c947e0f24a36802d660f9979d1b0e506590d4216/docs/screenshot-wallpaper.png) |
 
 > 效果图中的壁纸素材 © MadYY([原图](docs/wallpaper-madYY.png)),仅作演示;用户上传自己的图片即可。
 

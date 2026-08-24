@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: zsxh1990/pr-genius/.github/actions/pr-genius-check@main
+      - uses: zsxh1990/pr-genius/.github/actions/pr-genius-check@v1
         id: pr-genius
         with:
           title: ${{ github.event.pull_request.title }}
@@ -127,6 +127,63 @@ jobs:
               issue_number: context.issue.number,
               body: `## ${emoji} PR Genius: ${tier}`
             });
+```
+
+### Version Auto-Update
+
+- **`@v1`** — Always points to the latest `v1.x.x` release (recommended)
+- **`@v1.7.1`** — Pinned to specific version (for reproducibility)
+- **`@main`** — Latest development version (not recommended for production)
+
+The `v1` tag is automatically updated when a new version is published to PyPI.
+
+### Docker Image (Alternative)
+
+Use PR Genius as a Docker container via GitHub Container Registry:
+
+```yaml
+# .github/workflows/pr-genius-docker.yml
+name: PR Genius Check (Docker)
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pr-genius:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run PR Genius
+        uses: docker://ghcr.io/zsxh1990/pr-genius:latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: coach "${{ github.event.pull_request.title }}" --repo ${{ github.repository }} --format json
+```
+
+**Docker Image Tags:**
+- `ghcr.io/zsxh1990/pr-genius:latest` — Latest release
+- `ghcr.io/zsxh1990/pr-genius:1.7.2` — Specific version
+- `ghcr.io/zsxh1990/pr-genius:1.7` — Minor version
+- `ghcr.io/zsxh1990/pr-genius:1` — Major version (auto-updated)
+
+**Auto-update with Dependabot:**
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
 ```
 
 ## 🤖 MCP Configuration

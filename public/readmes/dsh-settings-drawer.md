@@ -8,13 +8,15 @@ Unchecking an item hides it from the sidebar immediately. Core pages (General, M
 
 ## Preview
 
-![Settings Drawer](https://raw.githubusercontent.com/zizhongfeiyang/dsh-settings-drawer/21da6dd266a14cd99a9dbbd211219c93eb85fe2b/docs/screenshots/settings-drawer.png)
+![Settings Drawer](https://raw.githubusercontent.com/zizhongfeiyang/dsh-settings-drawer/9482b9f53679ba50e1f94f07c2380b8345ad739a/docs/screenshots/settings-drawer.png)
 
 ## Features
 
 - Hide or show any settings section from the left navigation.
 - Changes apply immediately and persist in your browser.
 - Automatically discovers newly installed plugins that register a settings section.
+- Removed plugins no longer linger: the list only shows currently registered sections.
+- Manual refresh button (`⟳`) re-syncs the list and prunes stale local config.
 - Core settings pages stay protected by default.
 - Pure client-side UI plugin — no extra services, no network calls.
 
@@ -35,7 +37,7 @@ dsh plugin --profile web-desktop add github:zizhongfeiyang/dsh-settings-drawer
 From the packed tarball (attached to each [release](https://github.com/zizhongfeiyang/dsh-settings-drawer/releases)):
 
 ```sh
-dsh plugin --profile web add ./dsh-settings-drawer-1.1.1.tgz
+dsh plugin --profile web add ./dsh-settings-drawer-1.2.0.tgz
 ```
 
 After installing, restart the web service or refresh the page.

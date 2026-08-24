@@ -1,109 +1,154 @@
-# DeepSeek Harness Remote
+<p align="center">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+</p>
 
-English | [中文](README.zh.md)
+<p align="center">
+  <strong>English</strong>
+  &nbsp;·&nbsp;
+  <a href="README.zh.md">中文</a>
+  &nbsp;·&nbsp;
+  <a href="docs/README.md">Documentation</a>
+  &nbsp;·&nbsp;
+  <strong>Download:</strong>
+  <a href="https://github.com/liguobao/dsh-desktop/releases/latest">Windows</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/liguobao/dsh-desktop/releases/latest">macOS</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/liguobao/dsh-desktop/releases/latest">Linux</a>
+  &nbsp;·&nbsp;
+  <a href="https://dsh.r2049.cn/app">Web</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/liguobao/deepseek-harness-remote/releases/latest">Android</a>
+</p>
 
 ## Connect once. Ready whenever you are.
 
-Continue a DeepSeek Harness session from your phone, tablet, or any browser.
+Continue using your DeepSeek Harness instance from a phone, computer, or browser.
 
 Return to the same Harness session from whichever device is with you. Harness keeps running on your work computer, with the same workspaces, tools, and project setup. Remote is simply another window into that environment.
 
-> **Developer preview** — pin an explicit version when installing.
+## Features
 
-## What you can do
+- Continue active sessions and review their latest progress from another device
+- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2`
+- Answer questions and permission requests from clients with live conversation controls
+- Open workspaces from another authorized computer on the same account
+- Reuse the native Harness interface instead of maintaining a separate desktop conversation UI
+- Preview remote files between two Harness installations with the optional `dsh-file-viewer` plugin
+- The Harness Host does not need a public listening port. Connect securely from anywhere with internet access over a bidirectional end-to-end encrypted channel
 
-- Follow an active session and review its latest progress
-- Send new instructions, including images on Harness `dsh-v0.1.1-rc.2`, or change direction
-- Answer questions and respond to permission requests
-- Open workspaces from any connected computer
-- Preview files from a remote workspace with the optional `dsh-file-viewer` plugin
-- Move between devices without moving your work
+## Install
 
-Remote is available in a browser and through the **Remote** workspace entry in Harness on another computer.
+### Path A: DSH Desktop
 
-A developer-preview VS Code client also lives in [`apps/vscode`](apps/vscode). It can sign in,
-pin and connect to an authorized Host, browse Host workspaces/sessions, and open conversations beside the Activity Bar.
-Build it with `pnpm --filter deepseek-harness-remote-vscode build`; see its [README](apps/vscode/README.md).
+Install [DSH Desktop](https://github.com/liguobao/dsh-desktop) on Windows, macOS, or
+Linux. Remote is included and enabled by default, so no separate plugin installation is required.
 
-## Install the Host plugin
+### Path B: Existing DSH installation
 
-Install the plugin on the computer where Harness and your projects run.
-
-In DSH Desktop, open **Extensions → Manage plugins…** and install:
-
-```text
-ds-harness-remote
-```
-
-Or install it for the `web` profile:
+Install the exact npm version for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote
+dsh plugin --profile web add ds-harness-remote@0.3.29
 ```
 
 Package: [npm](https://www.npmjs.com/package/ds-harness-remote) · [GitHub](https://github.com/liguobao/deepseek-harness-remote)
 
-To pin a GitHub release instead, install `github:liguobao/deepseek-harness-remote#v0.3.29`.
-
 Restart Harness after installation.
 
-The `0.3.29` Client remains compatible with `0.3.15` Hosts for Remote
-workspaces and sessions. Features introduced later, such as the remote command
-catalog, file viewing, and chunked image transport, are enabled only when the
-selected Host supports them.
-
-The Android APK is attached to each [GitHub Release](https://github.com/liguobao/deepseek-harness-remote/releases/latest).
-Its interface supports English and Simplified Chinese, can follow the Android system language, and
-lets you override that choice in Settings. The More screen can check for and install APK updates,
-and an interrupted conversation can reconnect and resume from the current history in place.
-
-## Sign in and connect
+## Quick start
 
 1. Open **Remote** from the Harness sidebar.
-2. Sign in by scanning a GitHub or Zhihu QR code, or use your account and password. New password accounts can register with invitation code [NRAE-NUUM-C9UY](https://dsh.r2049.cn/app/register?invite_code=NRAE-NUUM-C9UY).
-3. Enable remote control for the current computer to make it available from your other devices, or select another online computer to control it directly.
-4. Choose an existing workspace or browse remote directories to open one.
+2. Sign in with a GitHub or Zhihu QR code, or use your account and password. New password accounts can register through [Remote Web](https://dsh.r2049.cn/app/register); the site shows the current invitation requirements.
+3. Enable remote control for the current computer.
+4. On another device, open DSH Desktop, Remote Web, or the Android client and sign in to the same account.
+5. Select the online Host, then choose an existing workspace or browse remote directories to open one.
 
-> **Note:** A self-hosted relay node option will be provided later.
+The public service currently uses the hosted Remote relay. A supported self-hosted relay
+option is not available yet.
 
-### A quick tour
+## Screenshots
 
-Enable **Allow control of this device** in Remote settings to make the current computer available as a Host.
+### Desktop
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/404d113f7de1c3ea02d223ed668937d11c636779/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
-</p>
-
-Open **Remote** on another computer, select an online Host, then choose or browse for a workspace.
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/404d113f7de1c3ea02d223ed668937d11c636779/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
-</p>
-
-The workspace opens in the native Harness interface, with the active Host and encrypted connection status shown in the header.
+Enable **Allow control of this device** in Remote settings to make the current computer
+available as a Host.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/404d113f7de1c3ea02d223ed668937d11c636779/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
 </p>
 
-On Android, select an available computer, open a workspace, and send text or image prompts from the same conversation.
+On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/404d113f7de1c3ea02d223ed668937d11c636779/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/404d113f7de1c3ea02d223ed668937d11c636779/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/404d113f7de1c3ea02d223ed668937d11c636779/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
-## Secure by design
+The workspace opens in the native Harness interface, with the active Host and encrypted
+connection status shown in the header.
 
-- The Host makes outbound connections only. No public port is opened.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+</p>
+
+### Android
+
+Download the latest Android APK from [GitHub Releases](https://github.com/liguobao/deepseek-harness-remote/releases/latest).
+
+Sign in to the Android client with your existing account, select an available computer,
+open a workspace, and continue the conversation with text or image prompts.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+</p>
+
+## How it works
+
+```text
+DSH Desktop / Remote Web / Android
+  ↔ authenticated, end-to-end encrypted channel
+Remote Plugin on the Host
+  ↔ allowlisted native Harness API
+Harness sessions, tools, and workspaces
+```
+
+The Harness Host does not need a public listening port. You can connect from
+anywhere with internet access, and Remote communicates over a bidirectional end-to-end encrypted channel.
+It switches the client to the selected Host's native Harness API, so the original workspace,
+model configuration, tools, and permission flow remain on that computer.
+
+## Security
+
 - Session traffic is end-to-end encrypted. The service relays ciphertext without storing session plaintext or device private keys.
-- Remote exposes only the Harness capabilities required by the interface. It does not provide a shell or remote desktop.
-- The workspace picker lists folders only. When `dsh-file-viewer` is installed on both devices, its existing read-only viewer can additionally preview files through bounded, encrypted range reads.
-- Remote file preview cannot write, delete, upload, execute, or open a path in an external application. File Viewer providers continue to enforce their own allowed roots and locator authorization.
-- Removing a device immediately revokes its Remote access.
+- Server membership and the Host's locally pinned peer identity must both authorize a connection.
+- Remote does not expose a direct shell, PTY, general tool RPC, or remote desktop. Harness tools may still modify files or run commands on the Host under Harness's normal permission controls.
+- The workspace picker lists folders only and returns bounded, read-only directory metadata.
+- Optional File Viewer access is limited to authenticated, encrypted range reads and continues to enforce provider root and locator authorization.
+- Remote file preview cannot write, delete, upload, execute, or open a path in an external application.
+- Removing a device revokes its credentials, membership, and active Remote connections.
 
-For implementation details, see the [Plugin guide](packages/plugin/README.md), [documentation index](docs/README.md), and [Remote Protocol](docs/protocol.md).
+## Compatibility
+
+Compatible with DeepSeek Harness `dsh-v0.1.1-rc.2`.
+
+## Documentation
+
+- [Plugin guide](packages/plugin/README.md)
+- [Documentation index](docs/README.md)
+- [Remote Protocol](docs/protocol.md)
+- [Development status and roadmap](TODO.md)
+
+## Links
+
+- Community acknowledgement: this project recognizes and supports the [LINUX DO](https://linux.do/) community.
+- Related project by the author: [Cyber Liu Kanshan](https://kanshan.r2049.cn/)
+
+## Project status and trademarks
+
+This is an independent community project and is not an official DeepSeek product.
+DeepSeek and related names and marks belong to their respective owners.
 
 ## License
 

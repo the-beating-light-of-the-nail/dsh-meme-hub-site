@@ -2,10 +2,10 @@
 
 English | [中文](README.zh.md)
 
-**Fill short waits for model responses, tool execution, and background tasks with four lightweight games. Open one instantly, close it to return to work, and keep the Agent running without adding anything to the conversation.**
+**Fill short waits for model responses, tool execution, and background tasks with five lightweight games. Open one instantly, close it to return to work, and keep the Agent running without adding anything to the conversation.**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/16bd3b05869d5c609724df29c345a117e91776a0/assets/whale-arcade-banner.png" alt="Whale Arcade ocean banner" width="100%">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/whale-arcade-banner.png" alt="Whale Arcade ocean banner" width="100%">
 </p>
 
 `dsh-whale-arcade` is a browser-game plugin mounted in DeepSeek Harness's global `shell.overlay`. The small whale in the bottom-right corner is its persistent launcher. The panel occupies only one corner of the workspace; closing it pauses and preserves the current round without interrupting the Agent.
@@ -18,23 +18,28 @@ English | [中文](README.zh.md)
 | Blue Whale Treasure | Move horizontally to collect starfish, fish, crabs, and rare pearl shells while avoiding jellyfish and urchins; creatures have different scores and speeds | Left, Right, A, D, holdable touch controls |
 | Whale Coast Run | Clear conches, urchins, coral towers, and wreckage with staged unlocks, low-obstacle pairs, and randomized short, medium, and long gaps | Click, touch, Space, Up, W |
 | Ocean Gomoku | Play freestyle Gomoku with blue-whale stones against a local beluga rival on a 15×15 tide board; the player moves first, an unbroken horizontal, vertical, or diagonal line of at least five wins, and there are no forbidden-move rules; includes Easy, Normal, and Challenge difficulty | Click or touch to place; arrow keys move focus |
+| Tidebound Ruins | Cross the Sunken Reef Forecourt, Ghostlight Wreck Gallery, and Whale-Bell Sanctum in one run; use a three-hit Tidefang combo, precision dashes, and whale song against humanoid ocean foes, chapter commanders, and the two-phase Whale-Bell Warden; includes Tidewright checkpoints, pearl medicine shells, six run-only upgrades, and three difficulty modes | A/D or ←/→ to move, Space to jump, J to combo, K to dash, E for whale song, plus touch controls |
 
-All four games support start, pause, resume, and restart after a round. The three score games expose Top 10 tables stored for the current browser origin; ties are ordered by active play time and achievement time. Gomoku does not write a leaderboard. Its board and selected difficulty exist only while that game remains mounted: closing the panel pauses and preserves them, while returning to the catalog or reloading resets them. Manual pauses, closing the panel, and hiding the browser tab do not count toward play time.
+All five games support start, pause, resume, and restart after a round. The three score games expose Top 10 tables stored for the current browser origin; ties are ordered by active play time and achievement time. Gomoku and Tidebound Ruins do not write a leaderboard. Their board, stages, run-only upgrades, and selected difficulty exist only while that game remains mounted: closing the panel pauses and preserves them, while returning to the catalog or reloading resets them. Manual pauses, closing the panel, and hiding the browser tab do not count toward play time.
 
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/16bd3b05869d5c609724df29c345a117e91776a0/assets/screenshots/01-catalog.png" alt="Whale Arcade catalog and local leaderboard" width="760">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/screenshots/01-game-catalog.png" alt="Whale Arcade catalog and local leaderboard" width="760">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/16bd3b05869d5c609724df29c345a117e91776a0/assets/screenshots/02-whale-jump.png" alt="Whale Wave gameplay" width="49%">
-  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/16bd3b05869d5c609724df29c345a117e91776a0/assets/screenshots/03-blue-whale-treasure.png" alt="Blue Whale Treasure gameplay" width="49%">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/screenshots/02-whale-jump.png" alt="Whale Wave gameplay" width="49%">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/screenshots/03-blue-whale-treasure.png" alt="Blue Whale Treasure gameplay" width="49%">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/16bd3b05869d5c609724df29c345a117e91776a0/assets/screenshots/04-coast-runner.png" alt="Whale Coast Run gameplay" width="49%">
-  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/16bd3b05869d5c609724df29c345a117e91776a0/assets/screenshots/05-ocean-gomoku.png" alt="Ocean Gomoku gameplay" width="49%">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/screenshots/04-coast-runner.png" alt="Whale Coast Run gameplay" width="49%">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/screenshots/05-ocean-gomoku.png" alt="Ocean Gomoku gameplay" width="49%">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jitengfei/dsh-whale-arcade/45318471464e403805328fbacc797fee6d9e87af/assets/screenshots/06-tidebound-ruins.png" alt="Tidebound Ruins gameplay" width="760">
 </p>
 
 ## Install

@@ -10,11 +10,11 @@ DeepSeek Harness Web UI 的鲸鱼女仆主题插件：亮暗双主题、海洋�
 
 | 亮色模式 | 暗色模式 |
 |---|---|
-| [![亮色模式](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/4b46791a2eb868b8e081aab896d34dab124d4b62/maid-whale-webui/preview/light.webp)](preview/light.webp) | [![暗色模式](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/4b46791a2eb868b8e081aab896d34dab124d4b62/maid-whale-webui/preview/dark.webp)](preview/dark.webp) |
+| [![亮色模式](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/fabd96163a86c403820ab594ec0bdd1e8fab1fd7/maid-whale-webui/preview/light.webp)](preview/light.webp) | [![暗色模式](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/fabd96163a86c403820ab594ec0bdd1e8fab1fd7/maid-whale-webui/preview/dark.webp)](preview/dark.webp) |
 
 ### 鲸鱼桌宠
 
-[<img src="https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/4b46791a2eb868b8e081aab896d34dab124d4b62/maid-whale-webui/preview/pet-working.png" alt="鲸鱼桌宠工作中状态" width="360">](preview/pet-working.png)
+[<img src="https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/fabd96163a86c403820ab594ec0bdd1e8fab1fd7/maid-whale-webui/preview/pet-working.png" alt="鲸鱼桌宠工作中状态" width="360">](preview/pet-working.png)
 
 ## 安装
 
@@ -80,7 +80,7 @@ pnpm build:helper:windows                           # 重建桌宠 exe（代码�
 
 ```powershell
 python -m venv .build/python-env
-.build/python-env/Scripts/pip install PySide6 pyinstaller
+.build/python-env/Scripts/pip install -r requirements.txt pyinstaller
 ```
 
 插件只使用官方 DSH 客户端插件机制，不修改 DeepSeek Harness 源码，也不影响模型请求。

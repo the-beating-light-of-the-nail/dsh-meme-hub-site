@@ -2,7 +2,7 @@
 
 > The native DeepSeek Harness bottom status bar packs everything into one long line — so much that parts of it get **truncated** on narrow windows. dsh-status-bar brings a **near-native status-bar experience**: a fully configurable 17-segment bar showing exactly the content you want — status, model, context pressure, token burn, **real-time generation speed**, cost estimates, jobs and queue — toggled and reordered in two clicks, with useful options like multi-line wrapping and per-model cost estimation. It replaces the built-in stats line and removes itself cleanly when unloaded.
 
-[![DSH](https://img.shields.io/badge/DSH-0.1.0--rc.7-blue)](https://github.com/deepseek-ai/deepseek-harness) [![version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FStarlight-bananice%2Fdsh-status-bar%2Ftags&query=%24%5B0%5D.name&label=version&color=green)](https://github.com/Starlight-bananice/dsh-status-bar/releases) [![npm](https://img.shields.io/npm/v/@bananiceee/dsh-status-bar)](https://www.npmjs.com/package/@bananiceee/dsh-status-bar) [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![topic](https://img.shields.io/badge/topic-dsh--plugin-orange)](https://github.com/topics/dsh-plugin) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+[![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-blue)](https://github.com/deepseek-ai/deepseek-harness) [![version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FStarlight-bananice%2Fdsh-status-bar%2Ftags&query=%24%5B0%5D.name&label=version&color=green)](https://github.com/Starlight-bananice/dsh-status-bar/releases) [![npm](https://img.shields.io/npm/v/@bananiceee/dsh-status-bar)](https://www.npmjs.com/package/@bananiceee/dsh-status-bar) [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![topic](https://img.shields.io/badge/topic-dsh--plugin-orange)](https://github.com/topics/dsh-plugin) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
 [English](README.md) · [中文](README.zh.md)
 
@@ -28,22 +28,22 @@
 
 The status bar replaces the built-in stats line with near-native live session telemetry (status · model · turns · context · cache · TPS · session time · jobs · queue · errors), managed from a dedicated settings page — including a per-model price book with peak/off-peak pricing:
 
-![Status bar live view](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/e6788bbc9d2242de6ab01e7c456ccf5e5ccb0919/assets/screenshot-status-bar-en.png)
+![Status bar live view](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/128a7f3d1256a003989d5bafc8422829424be662/assets/screenshot-status-bar-en.png)
 
-![Settings & model price book](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/e6788bbc9d2242de6ab01e7c456ccf5e5ccb0919/assets/screenshot-settings-page-en.png)
+![Settings & model price book](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/128a7f3d1256a003989d5bafc8422829424be662/assets/screenshot-settings-page-en.png)
 
 | Toggle & reorder on the go (segment list) | Usage & cost dialog (trend chart · stat cards · history) |
 |---|---|
-| ![Segment list](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/e6788bbc9d2242de6ab01e7c456ccf5e5ccb0919/assets/screenshot-settings-segments-en.png) | ![Usage & cost dialog](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/e6788bbc9d2242de6ab01e7c456ccf5e5ccb0919/assets/screenshot-usage-cost-dialog-en.png) |
+| ![Segment list](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/128a7f3d1256a003989d5bafc8422829424be662/assets/screenshot-settings-segments-en.png) | ![Usage & cost dialog](https://raw.githubusercontent.com/Starlight-bananice/dsh-status-bar/128a7f3d1256a003989d5bafc8422829424be662/assets/screenshot-usage-cost-dialog-en.png) |
 
 ## Compatibility
 
 | Item | Value |
 |---|---|
-| DSH versions | `0.1.0-rc.7` (mainline `master`) — earlier RCs may work but are not verified |
+| DSH versions | `0.1.1-rc.2` (mainline `master`) — earlier RCs may work but are not verified |
 | Last verified | 2026-08-19 |
 | Runtime | Node ≥ 22 (host) + modern browser (client); no external services |
-| Peer relation | Coexists with `@linxin666/dsh-live-stats` — both serve the `liveTokenUsage` key; the session-projection registry keeps the first registrant (one unit, no duplicate rows). The `stateVersion` must match the peer (both 4 today); on mismatch this plugin skips its own registration and shares the peer's unit instead of failing to load |
+| Peer relation | Fully independent of `@linxin666/dsh-live-stats` (dsh-web-ui family): this plugin serves its own plugin-private `statusBarLiveTokenUsage` projection key, while live-stats serves the separate `liveTokenUsage` key. Distinct keys — the projection registry keeps both units regardless of registration order or `stateVersion`, so enabling both plugins never displaces the bar's live TPS |
 
 ## Install / Uninstall
 
@@ -54,7 +54,7 @@ The status bar replaces the built-in stats line with near-native live session te
 dsh plugin --profile web add @bananiceee/dsh-status-bar
 
 # Or pin an exact npm version
-dsh plugin --profile web add @bananiceee/dsh-status-bar@0.1.8
+dsh plugin --profile web add @bananiceee/dsh-status-bar@0.1.9
 
 # From a local checkout (profile assembly; `web` is a hardcoded alias for `--profile web`)
 dsh plugin --profile web add ../dsh-status-bar
@@ -64,7 +64,7 @@ dsh plugin --profile web add github:Starlight-bananice/dsh-status-bar
 
 # Or a pinned release tarball — immutable and versioned (attached to every
 # GitHub release; handy when git access to the repo is awkward)
-dsh plugin --profile web add https://github.com/Starlight-bananice/dsh-status-bar/releases/download/v0.1.8/bananiceee-dsh-status-bar-0.1.8.tgz
+dsh plugin --profile web add https://github.com/Starlight-bananice/dsh-status-bar/releases/download/v0.1.9/bananiceee-dsh-status-bar-0.1.9.tgz
 ```
 > **Note:** pnpm 11 enforces a 24h `minimumReleaseAge` for freshly published packages — if a same-day release is rejected, append `--config.minimumReleaseAge=0` to the `dsh plugin add` command.
 
@@ -86,13 +86,13 @@ Then start/restart DSH Web. No configuration is required — the bar appears wit
 dsh plugin --profile web update @bananiceee/dsh-status-bar
 
 # or re-add a pinned version
-dsh plugin --profile web add @bananiceee/dsh-status-bar@0.1.8
+dsh plugin --profile web add @bananiceee/dsh-status-bar@0.1.9
 
 # github: installs — pnpm pins a ref-less `github:` dependency to the commit
 # resolved at install time, so `dsh plugin update github:...` reports
 # "Already up to date" and keeps the old build. Upgrade with a re-add:
 dsh plugin --profile web remove @bananiceee/dsh-status-bar
-dsh plugin --profile web add github:Starlight-bananice/dsh-status-bar#v0.1.8
+dsh plugin --profile web add github:Starlight-bananice/dsh-status-bar#v0.1.9
 ```
 
 ### Disable
@@ -156,7 +156,7 @@ All configuration is client-side, stored in browser `localStorage` under **`dsh.
 | Cache hit | prompt cache-hit share (2 decimals, capped at 99.99%) | `tokenUsage` |
 | Tokens | billed input/output totals | `tokenUsage` |
 | Context | context-window occupancy % | `contextPressure` |
-| Throughput TPS | live generation rate (default on) | `liveTokenUsage` projection — folded from `assistant/chunk` in real time; block-aware estimation (~4 chars/token + block/role framing, re-priced at `block-end`, EWMA against burst flushes), exact once the provider reports usage; 0 while the session is not generating |
+| Throughput TPS | live generation rate (default on) | `statusBarLiveTokenUsage` projection (plugin-private key) — folded from `assistant/chunk` in real time; block-aware estimation (~4 chars/token + block/role framing, re-priced at `block-end`, EWMA against burst flushes), exact once the provider reports usage; 0 while the session is not generating |
 | Session time | wall clock, ticks while running | `turnTimings` |
 | Cost estimate | ≈¥0.0123 (off by default) | `sessionUsage` projection — each model's usage × its own effective price (flat or peak/off-peak at `now`), summed across models |
 | Jobs | running background jobs | `jobsBySession` |
@@ -178,7 +178,7 @@ All configuration is client-side, stored in browser `localStorage` under **`dsh.
 |---|---|
 | Bar does not appear | Master switch off → enable it in Settings → Plugins → Status Bar, or via the gear menu. `localStorage` cleared? Config resets to defaults. |
 | TPS segment is 0 / blank | No stream has started yet, or the stream is between retries. The measurement window restarts on each `llm/retry`; the carried rate never goes blank after the first stream. |
-| TPS conflicts with another plugin | If `@linxin666/dsh-live-stats` is loaded, the registry keeps whichever registered first for the shared `liveTokenUsage` key — one unit, no duplicate rows. If the peer's `stateVersion` differs from ours (e.g. theirs is already 4), the registry refuses to share the key; this plugin catches that error, skips its own registration (the peer's unit keeps serving TPS), and only logs a warning. |
+| TPS conflicts with another plugin | None by design — this plugin serves its own `statusBarLiveTokenUsage` key; `@linxin666/dsh-live-stats` (if loaded) serves the separate `liveTokenUsage` key for its own UI. Distinct keys mean the registry keeps both units, so enabling both plugins never stops the bar's live speed. |
 | Cost estimate missing | None of the session's models is in the price book (or they are all zero-priced) → add them in Settings → Plugins → Status Bar → Model price book. Costs are estimated at the book's rates (per model, flat or peak/off-peak), not provider billing. |
 | Usage chart is empty | No assistant messages with provider-reported usage in the period yet, or `DSH_HOME` points elsewhere than expected (check `usage.jsonl` location above). |
 | UI looks broken after an upgrade | Hard-refresh the browser (stale client bundle) and verify the plugin version in Settings. |

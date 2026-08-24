@@ -26,9 +26,9 @@
 - [💝 致谢](#致谢)
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/combined.png" width="100%" alt="Catppuccin 四主题下的 DeepSeek Harness"/>
+	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/combined.png" width="100%" alt="Catppuccin 四主题下的 DeepSeek Harness"/>
 	<br/><br/>
-	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/glass-combined.png" width="100%" alt="玻璃质感 · Latte & Mocha"/>
+	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/glass-combined.png" width="100%" alt="玻璃质感 · Latte & Mocha"/>
 </p>
 
 ## 简介
@@ -69,19 +69,19 @@ Catppuccin 主题。
 
 <details>
 <summary>🌻 Latte（浅色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/latte.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/latte.png"/>
 </details>
 <details>
 <summary>🪴 Frappé（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/frappe.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/frappe.png"/>
 </details>
 <details>
 <summary>🌺 Macchiato（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/macchiato.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/macchiato.png"/>
 </details>
 <details>
 <summary>🌿 Mocha（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/mocha.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/mocha.png"/>
 </details>
 
 ### 玻璃质感（Mica 云母模式）
@@ -95,11 +95,11 @@ Catppuccin 主题。
 
 <details>
 <summary>🌻 Latte（浅色玻璃）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/glass-latte.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/glass-latte.png"/>
 </details>
 <details>
 <summary>🌿 Mocha（深色玻璃）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/fc84074e810e4777468c2a95f4665e5b82420c3b/assets/previews/glass-mocha.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c2b1448a9869a7deaf6687027244f8258431bc7/assets/previews/glass-mocha.png"/>
 </details>
 
 ## 安装
@@ -152,7 +152,8 @@ pnpm --dir C:\Users\LeGo\.dsh\profiles\web add link:D:\Vibe-Coding\dsh-catppucci
 2. 进入 **设置 → 常规**。
 3. 在 **外观** 区域下方找到 **Catppuccin** 行，选择主题：
    **Latte**（浅色）、**Frappé**、**Macchiato** 或 **Mocha**（深色）。
-4. 选择 **跟随系统** 则回退到官方主题。
+4. 选择 **跟随系统** 则回退到官方主题——会还原你启用 Catppuccin 之前
+   的官方偏好（浅色 / 深色 / 跟随系统），而不是强制重置。
 
 ### 玻璃质感
 
@@ -162,6 +163,8 @@ pnpm --dir C:\Users\LeGo\.dsh\profiles\web add link:D:\Vibe-Coding\dsh-catppucci
   关闭即完全还原原生界面（无需刷新）。
 - **模式**：**云母效果**把界面改成悬浮磨砂卡片；**兼容模式**保持原版排版，
   只把材质换成玻璃。
+- **预设**：**清透 / 标准 / 磨砂** 三档一键套用；想微调再用下面的滑条
+  （当前旋钮值与某档一致时该档高亮）。
 - **玻璃模糊度**（0–40 px）、**磨砂度**（0–100%）：控制玻璃的模糊半径与
   不透明度。
 - **背景亮度**：深色模式 0–50 压暗、浅色模式 50–100 提亮（50 为原样），
@@ -179,7 +182,8 @@ localStorage 只作为即时缓存与多标签页同步——**DSH Desktop** 每
 在 **设置 → 常规** 的 **玻璃质感** 正下方找到 **检查 Catppuccin 插件更新** 行：
 
 - 点击 **检查更新**，插件宿主会查询 npm registry 上本插件（`dsh-catppuccin`）
-  的最新版本，并与当前安装版本比较（含预发布版本的语义化版本比较）。
+  的最新版本，并与当前安装版本比较（含预发布版本的语义化版本比较）；
+  宿主侧对检查结果缓存 5 分钟，短时间内反复点击不会重复请求 registry。
 - 已是最新 → 显示当前版本号；发现新版 → 显示新版本号，并给出可复制的
   升级命令。命令中的 profile 名由宿主**自动探测**：优先取当前进程的
   `--profile` 参数，否则扫描 `~/.dsh/profiles/*` 找到实际安装了本插件的

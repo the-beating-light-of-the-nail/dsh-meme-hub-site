@@ -17,7 +17,7 @@ No OpenAI API key or Codex CLI. Models, search, quota, and image generation stay
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/50be32b5dbcc7a1e6610714a1928b4f3a8ee828c/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
 </p>
 
 ## Three-step start
@@ -37,7 +37,7 @@ With an existing `dsh` command, install with:
 dsh plugin --profile web add dsh-codex-subscription
 ```
 
-From a DSH-Portable product folder, run `./dsh plugin ...` (`.\dsh.exe plugin ...` in Windows PowerShell). See below for the complete official npm, Agent, update, and uninstall routes.
+DSH-Portable exposes the same standard plugin command, so the command above also applies there. See below for the complete official npm, Agent, update, and uninstall routes.
 
 ## Why this plugin
 
@@ -47,9 +47,9 @@ From a DSH-Portable product folder, run `./dsh plugin ...` (`.\dsh.exe plugin ..
 | **Recoverable and diagnosable** | Sign-in state reconciles automatically; Settings can create a support report without credentials or account identifiers |
 | **Visible quota** | Keep backend-provided standard Codex, Spark, and other limits separate |
 | **Composer quota** | Choose a compact percentage, progress bar, or no inline quota display |
-| **Safe quota reset** | Use a reset only for an exhausted Codex quota, with a cooldown, checkbox, and typed confirmation |
+| **Safe quota reset** | See the next expiry and deliberately try a reset with a cooldown and acknowledgement |
 | **Subscription search** | Explicitly choose DSH default search or Codex subscription search |
-| **Codex image generation** | Describe an image in a DSH conversation and view the generated result in that session |
+| **Codex image generation** | Preview or download the original, then describe refinements in the same conversation |
 | **Fast mode (Beta)** | Switch between Standard and Fast directly in the composer |
 
 These capabilities reuse the same local ChatGPT sign-in. Subscription routing failures stay visible and never silently switch to another paid route.
@@ -57,13 +57,13 @@ These capabilities reuse the same local ChatGPT sign-in. Subscription routing fa
 ## Product screen
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/50be32b5dbcc7a1e6610714a1928b4f3a8ee828c/docs/assets/settings-focus-en.png" width="820" alt="Codex subscription settings in DeepSeek Harness">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/settings-focus-en.png" width="820" alt="Codex subscription settings in DeepSeek Harness">
 </p>
 
 <details>
 <summary>View the complete settings screen</summary>
 
-![Complete Codex subscription settings in DeepSeek Harness](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/50be32b5dbcc7a1e6610714a1928b4f3a8ee828c/docs/assets/settings-en.png)
+![Complete Codex subscription settings in DeepSeek Harness](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/settings-en.png)
 
 </details>
 
@@ -117,7 +117,7 @@ npx -y @deepseek-ai/dsh@0.1.1-rc.2 --profile web --dump-config
 </details>
 
 <details>
-<summary>An existing <code>dsh</code> command or a DSH-Portable folder</summary>
+<summary>An existing <code>dsh</code> command</summary>
 
 ```sh
 dsh plugin --profile web add dsh-codex-subscription
@@ -125,8 +125,7 @@ dsh plugin --profile web list dsh-codex-subscription --depth 0
 dsh --profile web --dump-config
 ```
 
-For DSH-Portable, replace `dsh` with `./dsh` (`.\dsh.exe` in PowerShell). The plugin list should contain
-one `dsh-codex-subscription`, and the config should contain one `codex-subscription` entry.
+The plugin list should contain one `dsh-codex-subscription`, and the config should contain one `codex-subscription` entry.
 
 </details>
 
@@ -144,16 +143,16 @@ Restart DSH manually after installation, then:
 - A clear choice between DSH default search and Codex subscription search;
 - Actual backend-provided quota, reset time, and freshness;
 - Separate standard Codex, Codex-Spark, Credits, and other independent limits;
-- Deliberate quota-reset redemption for exhausted Codex limits, with layered confirmation and no automatic retry;
+- Visible quota-reset count and earliest expiry, with deliberate early redemption, layered confirmation, and no automatic retry;
 - Optional percentage or progress bar for the selected Codex model (off by default);
 - Standard or Fast mode for supported Codex models directly in the composer (Beta);
-- A copyable support report in Settings that excludes OAuth credentials, account identifiers, and authorization timestamps;
+- A copyable support report and direct feedback link in Settings; the report excludes OAuth credentials, account identifiers, and authorization timestamps;
 - Visible errors when subscription routing is unavailable, with no silent paid fallback.
 
 ### Composer quota
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/50be32b5dbcc7a1e6610714a1928b4f3a8ee828c/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
 </p>
 
 Choose Off, Percent, or Progress bar in Settings. The compact display appears only for a selected Codex model.
@@ -162,10 +161,14 @@ Standard Codex uses the lowest remaining window returned by the service; Spark u
 
 ### Safe quota reset
 
-If ChatGPT reports an available quota reset, Settings shows it in a compact row. Redemption stays disabled
-until a Codex model quota is exhausted. Using one requires a five-second cooldown, an acknowledgement checkbox,
-and the exact confirmation phrase. Cancel never consumes a reset, rapid repeated clicks are single-flight, and an
-uncertain network result is never retried automatically.
+If ChatGPT reports an available quota reset, Settings shows its count and earliest disclosed expiry in a compact row.
+You may deliberately try it before a quota reaches 100%, which is useful for a reset nearing expiry. ChatGPT still
+decides whether a window needs resetting and may return **nothing to reset** without spending the reset. The final
+action requires an acknowledgement checkbox and five-second cooldown. Cancel never consumes a reset, rapid repeated
+clicks are single-flight, and an uncertain network result is never retried automatically.
+
+Generated images open in a plugin-owned preview with **Download original**. To refine one, continue describing the
+change in the same conversation; the durable conversation image remains available to the next model turn.
 
 ### Composer speed (Beta)
 
@@ -198,14 +201,10 @@ dsh plugin --profile web remove dsh-codex-subscription
 
 </details>
 
-From a DSH-Portable folder, replace `dsh` above with `.\dsh.exe`.
-
 ## Troubleshooting
 
 - **`dsh` is not recognized:** the official npm route does not create a global `dsh` command; use the complete `npx -y @deepseek-ai/dsh@0.1.1-rc.2 ...` command above;
-- **`dsh.exe` is not recognized:** that file is not in the current folder; enter the DSH-Portable folder first or use the one-line Windows setup;
-- **DSH-Portable is not found:** enter its folder and rerun setup, or run `.\dsh.exe plugin --profile web add dsh-codex-subscription` directly;
-- **More than one DSH exists:** the one-line setup combines running copies with Portable folders detected in common locations; enter its number. For an Agent, use the intended folder or pass `-DshPath` explicitly;
+- **More than one DSH exists:** run the standard command from the intended DSH environment. For an Agent, specify the target or pass `-DshPath` explicitly;
 - **Setup still fails:** send the Agent guide above to an Agent. Do not delete the profile or change the system PATH to force an install.
 - **Need to report a problem:** generate a **Support diagnostics** report at the bottom of Settings, then open the [bug report form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml). The form collects exact DSH/plugin versions and reproduction steps. The generated report excludes credentials and account identifiers; still do not attach sign-in URLs, authorization codes, or browser callback addresses.
 

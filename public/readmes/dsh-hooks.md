@@ -240,7 +240,7 @@ Both options write the same files:
 
 Restart `dsh web` afterwards — you will get cards when turns finish, approvals are asked, or the agent errors.
 
-![Feishu card example](https://raw.githubusercontent.com/PeterBon/dsh-hooks/c2734002bbf0f9f2291d51d4204e27dfe7fd87e1/assets/screenshot-1.jpg)
+![Feishu card example](https://raw.githubusercontent.com/PeterBon/dsh-hooks/cf67f0386839a6039377ee9744033c11f9941391/assets/screenshot-1.jpg)
 
 ### Option 3: manual configuration
 

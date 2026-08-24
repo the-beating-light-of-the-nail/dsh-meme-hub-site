@@ -123,7 +123,7 @@ Bloom 原是一套 Typora 主题，核心不在「换个颜色」，而在一整
 v0.4 起可选开启**氛围层**——壁纸与磨砂玻璃随变体联动（默认关闭，克制审美不妥协）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/37a75f64ef17a33f1b05eb58fb5fd4e08dfc0968/assets/showcase/ambience-variants.gif" alt="氛围层：四变体壁纸联动" width="760" />
+  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/4b7a305bdc612bcf06cccd8109d9b68f75904eab/assets/showcase/ambience-variants.gif" alt="氛围层：四变体壁纸联动" width="760" />
 </p>
 
 ## 快速安装
@@ -229,7 +229,7 @@ Bloom 不读取环境变量，也不把偏好发到服务端；所有设置都�
 Bloom 的默认审美是克制的——氛围层因此**默认关闭**，在顶栏下拉的「氛围」区一键开启：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/37a75f64ef17a33f1b05eb58fb5fd4e08dfc0968/assets/showcase/ambience-on-off.png" alt="氛围层开/关对比" width="860" />
+  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/4b7a305bdc612bcf06cccd8109d9b68f75904eab/assets/showcase/ambience-on-off.png" alt="氛围层开/关对比" width="860" />
 </p>
 
 - **配套壁纸**：4 套与变体同色系的莫兰迪壁纸（mist 雾蓝 / cinnabar 陶土 / petal 藕粉 / ripple 雾青），
@@ -243,13 +243,13 @@ Bloom 的默认审美是克制的——氛围层因此**默认关闭**，在顶�
 四变体 × 明暗在氛围层下的一致表现：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/37a75f64ef17a33f1b05eb58fb5fd4e08dfc0968/assets/showcase/ambience-grid.png" alt="四变体氛围层 2x2" width="860" />
+  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/4b7a305bdc612bcf06cccd8109d9b68f75904eab/assets/showcase/ambience-grid.png" alt="四变体氛围层 2x2" width="860" />
 </p>
 
 设置面板就挂在顶栏下拉的下半部，开关、滑杆、主题包导入导出都在这一处：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/37a75f64ef17a33f1b05eb58fb5fd4e08dfc0968/assets/showcase/switcher-panel.png" alt="氛围设置面板" width="860" />
+  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/4b7a305bdc612bcf06cccd8109d9b68f75904eab/assets/showcase/switcher-panel.png" alt="氛围设置面板" width="860" />
 </p>
 
 关闭总开关后，壁纸层 DOM 不渲染、玻璃规则不命中——**回到 v0.3 的纯 Bloom，零残留**。

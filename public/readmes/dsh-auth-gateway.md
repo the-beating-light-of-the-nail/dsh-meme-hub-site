@@ -1,7 +1,7 @@
 # dsh-auth-gateway
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/architecture.png" alt="dsh-auth-gateway 架构图" width="720">
+  <img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/architecture.png" alt="dsh-auth-gateway 架构图" width="720">
 </p>
 
 <p align="center">
@@ -63,16 +63,16 @@ dsh plugin --profile web remove dsh-auth-gateway
 
 <table>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/onboarding.png" width="480" alt="引导页（设置个人密码）"><br/>引导页（初始密码登录后）</td>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/login.png" width="480" alt="登录（含 2FA 验证码）"><br/>登录（含 2FA 验证码）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/onboarding.png" width="480" alt="引导页（设置个人密码）"><br/>引导页（初始密码登录后）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/login.png" width="480" alt="登录（含 2FA 验证码）"><br/>登录（含 2FA 验证码）</td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/login-success.png" width="480" alt="2FA 登录成功"><br/>2FA 登录成功</td>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/otp-setup.png" width="480" alt="OTP 设置（QR 码）"><br/>OTP 设置（QR 码）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/login-success.png" width="480" alt="2FA 登录成功"><br/>2FA 登录成功</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/otp-setup.png" width="480" alt="OTP 设置（QR 码）"><br/>OTP 设置（QR 码）</td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/settings-menu.png" width="480" alt="设置菜单（含认证设置入口）"><br/>设置菜单（含"认证设置"入口）</td>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/6f160f9f6415fd0677950d0e17da4db3b3536d5d/docs/assets/settings-auth.png" width="480" alt="认证设置面板"><br/>认证设置面板</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/settings-menu.png" width="480" alt="设置菜单（含认证设置入口）"><br/>设置菜单（含"认证设置"入口）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/47cce69f64c760c4ee7e5a392003e5eeeab4a0dc/docs/assets/settings-auth.png" width="480" alt="认证设置面板"><br/>认证设置面板</td>
 </tr>
 </table>
 
@@ -115,6 +115,7 @@ dsh plugin --profile web remove dsh-auth-gateway
 | [docs/zh/NGINX-DEPLOYMENT.md](docs/zh/NGINX-DEPLOYMENT.md)（[English](docs/en/NGINX-DEPLOYMENT.md)） | 配合 nginx 部署：裸金属直连 / 子域名 / 子路径 / Docker nginx 容器四种拓扑与配置示例 |
 | [docs/zh/SECURITY.md](docs/zh/SECURITY.md)（[English](docs/en/SECURITY.md)） | 威胁模型、OTP 安全设计、已知限制与恢复路径 |
 | [docs/zh/DEPLOYMENT.md](docs/zh/DEPLOYMENT.md)（[English](docs/en/DEPLOYMENT.md)） | 端口与监听、LAN 部署、HTTPS 建议、nginx 反向代理、故障排查 |
+| [docs/zh/TROUBLESHOOTING.md](docs/zh/TROUBLESHOOTING.md)（[English](docs/en/TROUBLESHOOTING.md)） | 实机故障案例：dsh 版本线与凭据格式、原生依赖构建被拦、bundle 加载失败、跨境超时优化 |
 | [docs/zh/TESTING.md](docs/zh/TESTING.md)（[English](docs/en/TESTING.md)） | 单元测试、端到端（Playwright）、API/WebSocket 门禁验证 |
 | [docs/DEVELOPMENT.md](docs/zh/DEVELOPMENT.md)（[English](docs/en/DEVELOPMENT.md)） | 架构说明、构建、开发统计 |
 

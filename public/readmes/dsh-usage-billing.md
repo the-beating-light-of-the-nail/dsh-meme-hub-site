@@ -6,13 +6,13 @@
 
 针对 DeepSeek Harness 的**免构建**双面插件：自动统计本机所有会话的 DeepSeek 模型调用，按官方定价分段计费，并在主界面与设置页提供图表化的用量面板。
 
-> 计费口径：2026-08-17 00:00（北京时间）前旧价；之后峰谷定价（高峰 9:00–12:00、14:00–18:00，其余空闲时段）。价格表见文末。
+> 计费口径：2026-08-17 00:00（北京时间）前旧价；之后峰谷定价（高峰为**工作日** 9:00–12:00、14:00–18:00，其余时段及周末为空闲，空闲价为高峰价的一半）。价格表见文末。
 
 ## 功能
 
 - **全自动统计**：监听 `llm/stream`，所有会话的每次模型调用都会被记录（输入/输出/缓存命中/未命中 tokens）
 - **历史回填**：首次启动自动扫描本机会话日志，重建历史用量与消费，并附会话标题
-- **分段计费**：按北京时间自动归入「调价前旧价 / 调价后高峰 / 调价后空闲」三段
+- **分段计费**：按北京时间自动归入「调价前旧价 / 调价后高峰 / 调价后空闲」三段（高峰仅限工作日，周末全天空闲）
 - **预算告警通知**：跨 80%/100% 阈值时桌面 toast 主动提醒（每日每档一次），进度条临近变橙、超支变红
 - **定价可配置**：价格表、高峰时段、调价边界日期、美元汇率均可编辑（改动只对后续调用生效），一键恢复默认
 - **数据导出**：一键导出 CSV（按日 / 按会话，文件名含日期范围）或 JSON，便于对账
@@ -33,19 +33,19 @@
 
 **统计弹窗 · 总览**（主界面侧边栏卡片点开）
 
-![统计弹窗总览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/5c6ef5b0d3d10653429bbba67dcf98877125bb92/assets/screenshots/02-stats-dialog-overview.png)
+![统计弹窗总览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/109c36dabb272bf770d84d0efbe87fbf364b18b7/assets/screenshots/02-stats-dialog-overview.png)
 
 **统计弹窗 · 图表区**（分段占比 + 用量热力图，支持 ¥/USD 切换）
 
-![统计弹窗图表](https://raw.githubusercontent.com/940842546/dsh-usage-billing/5c6ef5b0d3d10653429bbba67dcf98877125bb92/assets/screenshots/03-stats-dialog-charts.png)
+![统计弹窗图表](https://raw.githubusercontent.com/940842546/dsh-usage-billing/109c36dabb272bf770d84d0efbe87fbf364b18b7/assets/screenshots/03-stats-dialog-charts.png)
 
 **美元模式**（弹窗右上角一键切换，汇率换算）
 
-![美元模式](https://raw.githubusercontent.com/940842546/dsh-usage-billing/5c6ef5b0d3d10653429bbba67dcf98877125bb92/assets/screenshots/07-stats-dialog-usd.png)
+![美元模式](https://raw.githubusercontent.com/940842546/dsh-usage-billing/109c36dabb272bf770d84d0efbe87fbf364b18b7/assets/screenshots/07-stats-dialog-usd.png)
 
 **设置页 · 用量统计**
 
-![设置页概览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/5c6ef5b0d3d10653429bbba67dcf98877125bb92/assets/screenshots/04-settings-usage-overview.png)
+![设置页概览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/109c36dabb272bf770d84d0efbe87fbf364b18b7/assets/screenshots/04-settings-usage-overview.png)
 
 ## 安装
 
