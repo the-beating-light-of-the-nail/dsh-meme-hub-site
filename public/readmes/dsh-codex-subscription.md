@@ -8,7 +8,7 @@ No OpenAI API key or Codex CLI. Models, search, quota, and image generation stay
 
 [![CI](https://github.com/WSL043/dsh-codex-subscription/actions/workflows/ci.yml/badge.svg)](https://github.com/WSL043/dsh-codex-subscription/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/dsh-codex-subscription?logo=npm&label=npm)](https://www.npmjs.com/package/dsh-codex-subscription)
-[![npm downloads](https://img.shields.io/npm/dt/dsh-codex-subscription?logo=npm&label=downloads)](https://www.npmjs.com/package/dsh-codex-subscription)
+[![total npm downloads](https://img.shields.io/npm/dt/dsh-codex-subscription?logo=npm&label=total%20downloads)](https://www.npmjs.com/package/dsh-codex-subscription)
 [![MIT](https://img.shields.io/badge/license-MIT-111111.svg)](LICENSE)
 [![Star](https://img.shields.io/github/stars/WSL043/dsh-codex-subscription?style=flat&logo=github&label=Star)](https://github.com/WSL043/dsh-codex-subscription/stargazers)
 
@@ -17,7 +17,7 @@ No OpenAI API key or Codex CLI. Models, search, quota, and image generation stay
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
 </p>
 
 ## Three-step start
@@ -49,21 +49,21 @@ DSH-Portable exposes the same standard plugin command, so the command above also
 | **Composer quota** | Choose a compact percentage, progress bar, or no inline quota display |
 | **Safe quota reset** | See the next expiry and deliberately try a reset with a cooldown and acknowledgement |
 | **Subscription search** | Explicitly choose DSH default search or Codex subscription search |
-| **Codex image generation** | Preview or download the original, then describe refinements in the same conversation |
-| **Fast mode (Beta)** | Switch between Standard and Fast directly in the composer |
+| **Codex image generation and editing (Beta)** | Generate without references, or explicitly edit one selected image; preview, zoom, annotate regions, download the original, and continue in the same composer |
+| **Fast mode** | Switch between Standard and Fast directly in the composer |
 
 These capabilities reuse the same local ChatGPT sign-in. Subscription routing failures stay visible and never silently switch to another paid route.
 
 ## Product screen
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/settings-focus-en.png" width="820" alt="Codex subscription settings in DeepSeek Harness">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/settings-focus-en.png" width="820" alt="Codex subscription settings in DeepSeek Harness">
 </p>
 
 <details>
 <summary>View the complete settings screen</summary>
 
-![Complete Codex subscription settings in DeepSeek Harness](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/settings-en.png)
+![Complete Codex subscription settings in DeepSeek Harness](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/settings-en.png)
 
 </details>
 
@@ -96,12 +96,13 @@ Open PowerShell and paste this one line:
 irm 'https://github.com/WSL043/dsh-codex-subscription/releases/latest/download/dsh-codex-setup.ps1' | iex
 ```
 
-The lightweight setup checks the current folder, the system command, common locations, and any running official DSH or
-[DSH-Portable](https://github.com/WSL043/DSH-Portable), then invokes the official `plugin add`
-operation once. It does not recursively scan disks, install pnpm, create a resident command, snapshot a
-profile, or download the plugin twice. It needs no administrator access and never restarts DSH. Only
-when no existing DSH is found does it use the official npm route pinned to `0.1.1-rc.2`; the setup warns
-that first-time dependency resolution can take a while.
+The lightweight setup checks the current folder, the system command, common locations, and running official DSH or
+[DSH-Portable](https://github.com/WSL043/DSH-Portable). It asks before choosing when more than one target is available.
+Portable keeps using its public launcher. For official DSH, setup uses the selected profile home and a checksum-verified
+pnpm helper pinned to the accepted DSH release; the helper is cached under the current Windows user when no working pnpm
+command is available. It does not recursively scan disks, create a resident command, snapshot a profile, require
+administrator access, or restart DSH. A recognized release-age rejection may retry the same pinned add once for that
+command only.
 
 <details>
 <summary>Official npm route (Node.js installed)</summary>
@@ -139,20 +140,20 @@ Restart DSH manually after installation, then:
 ## Features
 
 - ChatGPT OAuth sign-in with credentials kept on the host;
-- Codex models and image generation directly inside DSH conversations;
+- Codex models and Beta image generation/editing directly inside DSH conversations;
 - A clear choice between DSH default search and Codex subscription search;
 - Actual backend-provided quota, reset time, and freshness;
 - Separate standard Codex, Codex-Spark, Credits, and other independent limits;
 - Visible quota-reset count and earliest expiry, with deliberate early redemption, layered confirmation, and no automatic retry;
 - Optional percentage or progress bar for the selected Codex model (off by default);
-- Standard or Fast mode for supported Codex models directly in the composer (Beta);
+- Standard or Fast mode for supported Codex models directly in the composer;
 - A copyable support report and direct feedback link in Settings; the report excludes OAuth credentials, account identifiers, and authorization timestamps;
 - Visible errors when subscription routing is unavailable, with no silent paid fallback.
 
 ### Composer quota
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/3f57a5b9ab8e9b49537dff59da372bf697d8b573/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
 </p>
 
 Choose Off, Percent, or Progress bar in Settings. The compact display appears only for a selected Codex model.
@@ -167,10 +168,18 @@ decides whether a window needs resetting and may return **nothing to reset** wit
 action requires an acknowledgement checkbox and five-second cooldown. Cancel never consumes a reset, rapid repeated
 clicks are single-flight, and an uncertain network result is never retried automatically.
 
-Generated images open in a plugin-owned preview with **Download original**. To refine one, continue describing the
-change in the same conversation; the durable conversation image remains available to the next model turn.
+### Image generation and editing (Beta)
 
-### Composer speed (Beta)
+Generated images open in a DSH-native preview with zoom, fit, dimensions, **Download original**, and numbered region notes.
+**Continue editing in composer** attaches exactly the image you opened and writes the region notes into the draft without
+sending it. A new image request does not silently include earlier images. GPT Image 2 can take longer than a normal text
+turn, and detailed text, exact composition, or repeated-character consistency may still need another pass.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/image-preview-annotations-en.png" width="900" alt="DSH-native generated-image preview with zoom, original download, and numbered region annotations">
+</p>
+
+### Composer speed
 
 With a supported Codex model selected, open the composer's model menu to choose Standard or Fast.
 Standard adds no icon; only Fast shows a lightning icon before the model name. Spark does not show the speed entry. Fast mode increases speed and uses more Credits;
@@ -206,7 +215,7 @@ dsh plugin --profile web remove dsh-codex-subscription
 - **`dsh` is not recognized:** the official npm route does not create a global `dsh` command; use the complete `npx -y @deepseek-ai/dsh@0.1.1-rc.2 ...` command above;
 - **More than one DSH exists:** run the standard command from the intended DSH environment. For an Agent, specify the target or pass `-DshPath` explicitly;
 - **Setup still fails:** send the Agent guide above to an Agent. Do not delete the profile or change the system PATH to force an install.
-- **Need to report a problem:** generate a **Support diagnostics** report at the bottom of Settings, then open the [bug report form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml). The form collects exact DSH/plugin versions and reproduction steps. The generated report excludes credentials and account identifiers; still do not attach sign-in URLs, authorization codes, or browser callback addresses.
+- **Need to report a problem:** generate a **Support diagnostics** report at the bottom of Settings, then open the [bug report form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml). The report includes the OS/runtime and a bounded sign-in phase, but excludes credentials, account identifiers, raw errors, and full logs. Paste it into the required diagnostics field; never attach sign-in URLs, authorization codes, or browser callback addresses.
 
 The ChatGPT Codex backend and DSH can change independently. This community project is not affiliated with or endorsed by DeepSeek or OpenAI.
 

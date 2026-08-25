@@ -16,9 +16,9 @@ DeepSeek Harness 的**任务看板插件**：人建卡、agent 认领执行、�
 
 ## 界面
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/e336ab2abdaf96aa59b0f6cdc6f7baa092194ba6/img/board.png" alt="任务看板" width="880"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/2eb7f185ecb67fd971da09dbe9a88d17496d3dd0/img/board.png" alt="任务看板" width="880"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/e336ab2abdaf96aa59b0f6cdc6f7baa092194ba6/img/modal.png" alt="新建任务" width="440"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/2eb7f185ecb67fd971da09dbe9a88d17496d3dd0/img/modal.png" alt="新建任务" width="440"></p>
 
 ## 目录
 
@@ -213,6 +213,21 @@ node scripts/screenshot.mjs     # 重新生成 img/ 截图（需本机 Edge）
 ```
 
 ## 升级日志
+
+### 0.5.1
+
+这一版主要来自一次全面的代码体检：看板更防手滑、更稳，行为上有几处小变化。
+
+- **详情页不再「串卡」**：以前在任务 A 点开「确认清除」后再点开任务 B，B 会直接停在待确认状态，手快就误删了。现在每次打开详情页都是干净状态
+- **按钮防连点**：「创建任务」「立即执行」「复制」这些按钮在提交过程中会变灰。以前手快双击会建出两张一样的卡，甚至同时启动两个执行会话白烧 token
+- **DSH 重启后马上能正常查板**：以前刚重启的几秒里 AI 查到的是一块空板，可能照流程重复建卡；现在不会了
+- **归档的任务真正封存**：以前归档后还能从部分入口继续编辑、评论；现在彻底只读
+- **新建任务只能落在 待规划 / 待办**：想开工请正常认领，不会再出现一张没有归属人的「进行中」
+- **取消已结束的任务会给明确提示**：以前对已经跑完的任务点「停止」显示取消成功，其实什么都没发生；现在会如实告诉你没取消成
+- **执行报告可以补交**：会话结束了才发现忘交报告？现在还能补上（限自己名下最近一次成功执行的任务）
+- **复制长标题任务不再报错**：标题太长会自动截断再加（副本）后缀
+- **编辑任务不再被偷偷改设置**：以前打开编辑器再保存，会把「跟随部署默认预设」悄悄固化成具体值；现在保持原样
+- 内部质量：定时调度出错只记日志不再惊动整个进程、一批测试与构建卫生改进
 
 ### 0.5.0
 

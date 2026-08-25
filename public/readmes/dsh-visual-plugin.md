@@ -1,7 +1,7 @@
 # dsh-visual-plugin
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/a4ffdbd4e3f83f741f29cb48f0c8d0d2813842e1/assets/deepseek_neon_pixel_whale_transparent.svg" width="240" alt="DeepSeek neon pixel whale">
+  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/5b7940e28461790ad786c22407df45b881623c6a/assets/deepseek_neon_pixel_whale_transparent.svg" width="240" alt="DeepSeek neon pixel whale">
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  Give your text-only model eyes: analyze user images and videos and inspect
+  Analyze images and videos with DSH's native vision models and inspect
   the results in a Web UI right panel.
 </p>
 
@@ -27,28 +27,28 @@ A plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 
 ## Features
 
-- **Automatic description** — the wrapper adapter recursively describes uploaded images and image-bearing tool results in a model-bound copy while the visible chat keeps the originals.
-- **In-conversation lifecycle cards** — automatic analysis appears immediately below its source image and settles in place as success or failure; one logical analysis produces one card.
-- **Intent-aware prompts** — send an image *with a question* and the description is generated from your own words.
-- **`vision_describe` tool** — the model can answer a later follow-up question when the automatic description lacks the requested detail.
+- **Native image understanding** — uploaded images stay on DSH's native attachment and model path; the plugin does not configure or call a separate vision model.
+- **Copyable image history** — the right panel records the current DSH model's final answer beside each image thumbnail, with expandable history and one-click copy.
 - **Plugin-owned video upload** — accepts MP4, M4V, MOV, AVI, MPG/MPEG, MKV, and WebM only when extension, signature, and FFprobe agree.
-- **Scene-aware video analysis** — normalizes to H.264/yuv420p MP4, extracts keyframes with PySceneDetect, asks the vision model for timestamped evidence, and lets the current DSH text model answer.
-- **Right-side panel** — switch between image/video cards, play normalized videos directly, stage a selected video in the chat draft, and inspect dependency health.
-- **Secrets stay secret** — the API key lives in the harness credentials seam (write-only, never echoed).
+- **Scene-aware video analysis** — normalizes to H.264/yuv420p MP4, extracts keyframes with PySceneDetect, and sends ordered timestamped images to the current DSH vision model.
+- **Right-side panel** — switch between image/video views, play normalized videos directly, and stage a selected video in the chat draft.
+- **Advanced video settings** — tune upload size, storage quota, duration, output size, FPS, CRF, and keyframe count from the plugin settings card.
 
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/a4ffdbd4e3f83f741f29cb48f0c8d0d2813842e1/assets/vision-bridge-flow.svg" width="720" alt="Animated demo of the vision bridge in dsh web: the user sends an image, the vision bridge auto-describes it, and the main model answers from the description">
+  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/5b7940e28461790ad786c22407df45b881623c6a/assets/vision-bridge-flow.svg" width="720" alt="Image and video analysis in the dsh web right panel">
 </p>
 
 ```
-image in composer or tool result → wrapper finds it at any content depth → visible message keeps the image
-  → adapter stream → readImage → vision API → "[视觉描述] …" in the private model request only
-  → text-only model answers → /vision-bridge/recent → panel thumbnail + description (2s poll)
+image → DSH native attachment → current image-capable model → final answer
+  → /vision-bridge/recent → panel thumbnail + copyable description
+
+video → container validation → H.264/yuv420p normalization → PySceneDetect
+  → timestamped keyframes → DSH native image attachments → current model answers
 ```
 
-Unconfigured or failed calls degrade to a `[视觉描述失败] <reason>` placeholder, so the conversation never breaks.
+The plugin never rewrites model messages or calls a private vision endpoint. Select an image-capable model in DSH before sending images or asking about a video.
 
 ## Quick start
 
@@ -84,23 +84,17 @@ HARNESS=/absolute/path/to/deepseek-harness npm run bootstrap
 
 Restart `dsh web`, then:
 
-1. Open **Settings → Plugins → Plugin configuration** and expand the **Vision Bridge** card:
+1. Open **Settings → Plugins → Plugin configuration** and expand the **Visual Media** card. Use **Sidebar** to show or hide the right panel, and adjust the advanced video settings when needed.
 
-   <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/a4ffdbd4e3f83f741f29cb48f0c8d0d2813842e1/assets/vision-bridge-config.png" width="560" alt="Vision Bridge configuration card in the settings plugin configuration tab">
+   <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/5b7940e28461790ad786c22407df45b881623c6a/assets/vision-bridge-config.png" width="560" alt="Visual Media settings card with video dependencies and advanced processing controls">
 
-2. Fill in the endpoint URL, the vision model name, and the API key. The **侧边栏 / Sidebar** toggle shows or hides the image-history panel; the history limit defaults to 20, and leaving it empty means unlimited. Click **保存 / Save**, then **测试连接 / Test connection**.
-3. In the model picker, select provider **DeepSeek (Vision)** — the plugin's wrapper adapter declares image input so the gateway admits uploads.
-4. Send an image (optionally with a question). The model answers from the generated description, and the image-history panel shows the thumbnail + description within ~2s.
-5. Upload video from the video button beside the composer. Once processing finishes, select **Videos** in the right panel to play it; **Ask in chat** stages a draft and never submits automatically.
+2. Select an image-capable model in DSH; there is no separate vision-model configuration in this plugin.
+3. Send an image. The current model answers natively, and the image panel records the thumbnail and final answer for copying.
+4. Upload a video from **Upload video** beside the composer. Once processing finishes, select **Videos** in the right panel to play it; **Ask in chat** stages a draft and never submits automatically.
 
-### Reference local model
+### Vision model
 
-This project is developed and tested with a locally deployed
-[Empero AI Qwythos-9B](https://huggingface.co/empero-ai/Qwythos-9B-Claude-Mythos-5-1M)
-as the vision backend. Its SGLang deployment can expose an OpenAI-compatible
-`/v1` endpoint; enter the endpoint URL and the server's registered model name
-(for example, `Qwythos`) in the Vision Bridge panel. The plugin is not tied to
-Qwythos-9B and can use any compatible vision model.
+Image and keyframe understanding use the image-capable model currently selected in DSH. Model providers, endpoints, and credentials are managed by DSH rather than this plugin.
 
 ## Uninstall
 
@@ -114,14 +108,10 @@ Restart `dsh web`. The command forwards to `pnpm remove` inside the profile, and
 
 ```
 src/
-  index.ts      host plugin: vision orchestration + vision_describe + HTTP routes
-  vision.ts     OpenAI-compatible vision calls (describe / test / balance)
-  model-messages.ts  model-bound image rewrite + per-attachment cache
-  description-policy.ts  intent-first prompt + low-information retry
-  config.ts     settings namespace `vision-bridge` + schema
-  adapter.ts    deepseek-vision wrapper adapter (admission + private rewrite boundary)
-  video/        upload, container probing, transcoding, scene detection, frame interpretation, HTTP Range playback
-  client/       browser half: panel / sidebar toggle / automatic + tool cards / locales / css
+  index.ts      native image history, video_describe tool, settings, and HTTP routes
+  config.ts     advanced video-processing settings and runtime policy
+  video/        upload, container probing, transcoding, scene detection, keyframes, and HTTP Range playback
+  client/       image/video panel, upload controls, advanced settings, locales, and CSS
 cordis.patch.yml  bundle patch layer
 ```
 
@@ -140,8 +130,12 @@ Prebuilt `lib/` is committed, so consumers never build.
 ## Resources
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — the plugin host this project extends.
-- [Qwythos-9B on Hugging Face](https://huggingface.co/empero-ai/Qwythos-9B-Claude-Mythos-5-1M) — the local vision model used for development and testing.
+- [PySceneDetect](https://www.scenedetect.com/) — scene detection used to select video keyframes.
 - [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) — the curated DSH plugin list where this plugin is registered.
+
+## Friendly Links
+
+- [LINUX DO](https://linux.do)
 
 ## Thanks
 

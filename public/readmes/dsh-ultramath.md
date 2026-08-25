@@ -114,7 +114,7 @@ dsh-ultramath/
 ## 工作原理
 
 - node 半侧在主机启动时把 `presets/` 下 5 个预设幂等同步到 `~/.dsh/.agent-presets/`（字节相同跳过，校验 `agent.cordis.yml` 结构：缺 name / name 前缀非法 / 重复 id 视为失败）。
-- 把根 `SKILL.md` + `skills/模型库/` + `templates/` 幂等同步到 `~/.dsh/skills/ultramath/`，并校验 SKILL.md 的 frontmatter 与必要章节。
+- 把根 `SKILL.md` + `skills/模型库/` + `templates/` + `scripts/`（审稿脚本）幂等同步到 `~/.dsh/skills/ultramath/`，并校验 SKILL.md 的 frontmatter 与必要章节。
 - 通过 `systemPrompt` 区块向模型公告插件存在性与边界。
 
 ## 自定义与开发
@@ -129,7 +129,7 @@ dsh-ultramath/
 - **编译报错缺字体？** 随包 `format.cls` 已带字体降级链（SimSun/SimKai → Noto CJK → Fandol），缺字体不报错；Windows 自带中文字体，Linux 建议装 `fonts-noto-cjk`。
 - **如何更新到新版本？** `dsh plugin --profile web add github:Andiii208/dsh-ultramath` 重装，然后重启 DSH。
 - **和 Claude Code 版的关系？** 本插件是同一套方法论的 DSH 原生封装；领域资产内部维护在作者私密工作区，插件包本身完全自包含，不依赖任何外部仓库。
-- **审稿脚本在哪？** 随包在 `scripts/`（check_consistency / check_figures / check_ai_taste / review_loop），审稿人 persona 已接线为默认 evidence_command。
+- **审稿脚本在哪？** 随包在 `scripts/`（check_figures / check_ai_taste + review_loop 内核），插件启动时同步到 `~/.dsh/skills/ultramath/scripts/`，审稿人 persona 已接线为默认 evidence_command。
 
 ## 开发与验证
 

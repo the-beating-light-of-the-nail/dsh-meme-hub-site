@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/f5db33ec-7471-4d4a-a85b-79c9962ab4ef
 </div>
 
 <p align="center">
-  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
+  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
   <br><em>Click the preview to download the original MP4 if the GitHub player is unavailable.</em>
 </p>
 
@@ -49,21 +49,21 @@ The walkthrough moves from an answer-embedded panel through forms, plotting, Mer
 #### 1. A monitoring panel is an answer, not a separate dashboard
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
   <br><em>Real output: refresh/reset controls, time-range selection, statistics, charts, and a service table live inside the assistant reply.</em>
 </p>
 
 #### 2. A function plot redraws locally as its parameters change
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
   <br><em>Real output: `plot` renders curves while sliders, reset, and animation controls update the graph locally.</em>
 </p>
 
 #### 3. Layout primitives compose into structured work surfaces
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/38851ba570355919512067c7d771c0bbd97d015b/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
   <br><em>Real output: typography, grid, card, and row/column primitives combine into a hierarchy the model can describe declaratively.</em>
 </p>
 
@@ -96,7 +96,7 @@ Prerequisites — all required:
 1. **dsh installed** (any open-source build works — the plugin picks its rendering channel at startup, see "dual-channel rendering" above)
 2. **`pnpm` on your PATH**: the `dsh plugin` command depends on it. If missing: `corepack enable` (or `npm i -g pnpm`), then **open a new terminal** and confirm `pnpm -v` prints a version
 
-Install (one command, all dependencies included):
+Install and activate in DSH (one command, all dependencies included):
 
 ```sh
 # Public npm package (works without an npm account)
@@ -105,7 +105,26 @@ dsh plugin --profile web add @changfenhuang/dsh-genui
 dsh plugin --profile web add git+https://github.com/omdsh-dev/dsh-genui.git
 ```
 
+To add it only as a Node dependency in an existing project:
+
+```sh
+npm install @changfenhuang/dsh-genui
+```
+
+> `npm install` only adds the dependency; it does not register the plugin with DSH. Use `dsh plugin add` above when installing it into DSH.
+
 > ⚠️ **Don't use `link:` on a freshly cloned directory** — `link:` does not install the plugin's dependencies (mermaid / three / react), so the renderer will break. Use the git URL form above; reserve `link:` for local development iteration (see below).
+
+### Migrating from the old `@omdsh-dev` package name
+
+If you installed the plugin before v0.9.2, remove the old dependency before installing the renamed package:
+
+```sh
+dsh plugin --profile web remove @omdsh-dev/dsh-genui
+dsh plugin --profile web add @changfenhuang/dsh-genui
+```
+
+If `dsh web` still fails and mentions `@omdsh-dev/dsh-genui`, remove only the stale `genui` entry that uses that old name from `~/.dsh/profiles/web/cordis.patch.yml`. The plugin now supplies the `@changfenhuang/dsh-genui` entry itself.
 
 ### Verify the install in 60 seconds
 
@@ -207,7 +226,7 @@ The core render package stays light (≈110 KB min / 28 KB gzip); the mermaid, t
 - **Rendering as a code block?** First check the browser console for `[genui] client active; fence-channel=registry|dom`. If absent, the client bundle was not activated even if its URL returns 200 — align the profile dependency, `package.json.name`, `cordis.patch.yml`, ModuleLoader id, and configured bundle name. If present, inspect the fence label/body; registry-less hosts automatically use the DOM channel.
 - **Chat UI goes blank when rendering a dsh-ui fence?** Your dsh is too old — update dsh first, then reinstall the plugin.
 - **`dsh: pnpm not found on PATH`?** Install pnpm, then **open a new terminal** and retry (`corepack enable` or `npm i -g pnpm`).
-- **Stuck on git credentials / 404 during install?** The repo is public (`omdsh-dev/dsh-genui`) — the git URL above needs no login; a 404 for `@changfenhuang/dsh-genui` means the npm package has not been published yet.
+- **Stuck on git credentials / 404 during install?** The repository and npm package are public and require no login. Run `npm view @changfenhuang/dsh-genui version` to verify the package name and public registry; if a newly published version still returns 404, retry shortly or use the GitHub install command above in the meantime.
 - **Installed but scene3d/mermaid/echarts don't render?** The engines (mermaid / three / echarts) are no longer inlined in client.js — they load on demand the first time they're used (`/plugins/@changfenhuang/dsh-genui/assets/*.js`, hosted by the plugin's own HTTP routes). First restart dsh web + hard refresh (Cmd+Shift+R); still broken, remove and reinstall (`dsh plugin --profile web remove @changfenhuang/dsh-genui`, then add again). Hosts without the asset routes degrade to source/load-error hints — update dsh.
 - **Model not outputting fences?** New sessions pick it up after a restart; or just say "output it with dsh-ui".
 - **No lib/ after cloning?** Build it yourself: `pnpm install && pnpm run check`.

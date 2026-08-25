@@ -3,7 +3,7 @@
 **中文** | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/dsh-data-agent-banner.webp" alt="dsh-data-agent HERO图" width="100%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/dsh-data-agent-banner.webp" alt="dsh-data-agent HERO图" width="100%">
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/v/release/omdsh-dev/dsh-data-agent?style=flat-square" alt="Version">
@@ -34,11 +34,11 @@
 
 dsh-data-agent是DeepSeek Harness（DSH）的数据分析插件。连接数据库后，直接提出业务问题，DSH会自动查看库表、编写并执行SQL、根据真实结果继续分析，最终给出清晰的数据结论和商业洞察。插件同时支持Web UI与dsh-tui，无需修改DSH源码。
 
-![数据分析图表](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/charts.webp)
+![数据分析图表](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/charts.webp)
 
 ## 主要功能
 
-![DSH Data Agent主要功能：对话、SQL、数据治理、商业洞察、分析报告与只读保护](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/dsh-data-agent-features.webp)
+![DSH Data Agent主要功能：对话、SQL、数据治理、商业洞察、分析报告与只读保护](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/dsh-data-agent-features.webp)
 
 - **通过对话完成数据分析**：直接用自然语言描述目标，DSH会理解问题、拆解分析步骤、查询真实数据并整理结论。你可以继续追问，分析会沿着当前上下文逐步深入。
 - **自动寻找商业洞察**：不仅返回查询结果，还能帮助比较趋势、定位异常、识别高价值客户或商品，并把数据转化为便于业务决策的说明。
@@ -54,19 +54,19 @@ dsh-data-agent是DeepSeek Harness（DSH）的数据分析插件。连接数据�
 
 Web UI还提供按需数据库工作台：点击输入框右上角的数据库按钮，即可在同一个Modal的“连接配置、库表、数据治理、SQL”四个页签中配置连接、浏览结构、治理口径或临时运行SQL。
 
-![数据库工作台](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/tables.webp)
+![数据库工作台](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/tables.webp)
 
 ### 通过对话完成数据分析
 
 创建会话时选择“数据模式”，DSH就会以数据分析工作流处理后续问题。
 
-![数据模式预设](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/settings.webp)
+![数据模式预设](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/settings.webp)
 
 ### 数据治理
 
 在Web数据库工作台打开“数据治理”页，选择数据源和扫描范围（全库、Schema或单表），点击“扫描”；全库扫描需再次确认。完成后可搜索表、字段、术语或指标，查看版本变化，并逐项确认或删除AI生成的表/字段业务含义，也可人工新增业务术语和指标定义。后续分析会自动参考已保存的口径。
 
-![数据治理：AI生成表和字段业务含义，并由用户审核](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/b34f01f6ccaa1d3b8eb7aab403a833a45065ddb4/assets/data-governance.png)
+![数据治理：AI生成表和字段业务含义，并由用户审核](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/data-governance.png)
 
 ## 快速安装
 
@@ -189,6 +189,8 @@ DSH运行查询时需要本机能够访问目标数据库，并安装相应的�
 
 插件调用MySQL或Doris客户端时会内置`--default-character-set=utf8mb4`，确保Windows代码页不会使库名、表名、字段名或查询结果中的中文在进入DSH前乱码，无需在profile中重复配置该参数。
 
+库表元数据浏览支持由Unicode字母、组合标记、数字以及`_`、`$`组成的schema和表名，数据库返回的字段名会原样展示。例如SQLite中的`中文表名`及其`姓名`字段可以直接在工作台中浏览。为保持元数据SQL边界明确，schema和表名中的空白、控制字符、引号、反引号、反斜杠、分号、点号、连字符及其他标点仍会在启动数据库客户端前被拒绝。
+
 SQL Server查询使用T-SQL `TOP`或已有的`OFFSET ... FETCH`限行，绝不会追加`LIMIT`。为避免`sqlcmd`自身脚本能力绕过SQL边界，输入中的`GO`、`!!`、冒号命令和`$(...)`变量替换会在启动客户端前被拒绝。插件不会默认添加`-C`或其他“信任服务器证书”选项。
 
 如果客户端安装在公司工具链或其他自定义目录，可在当前profile的`data-agent`配置中补充搜索目录；需要锁定具体版本时则直接填写绝对命令路径，也可通过`args`添加其他CLI参数。当前profile的PATH始终优先，`searchPaths`在系统常见目录之前：
@@ -265,7 +267,7 @@ pnpm conformance
 | --- | --- |
 | 规范与阶段 | Community v0.15，Draft / Experimental |
 | 固定基线 | `dsh-ecosystem-spec@ec80a4be5d92bbb971655afd0f097bb5586a1a28`；`dsh-std@614dfa1ac168db79fcf4577cf0ebb34e2e3b944b` |
-| Manifest | `dsh-plugin.json`，`manifestVersion: 0.15`，包身份 `@yejiming/dsh-data-agent@0.1.1` |
+| Manifest | `dsh-plugin.json`，`manifestVersion: 0.15`，包身份 `@yejiming/dsh-data-agent@0.1.2` |
 | 准入结果 | 仓库内 eligible fixture 为 `compatible`；这不是实际 dsh-TUI Host 的准入结论 |
 | 证据等级 | `Parsed`；fixture negotiation 只记录为 `fixture-only`，不提升为 `Negotiated` |
 | 已执行环境 | 离线 parser/projector/definition 校验；`@dsh-std/adapter-dsh@0.1.0-rc3` 一次性本地 fixture 挂载/卸载 |

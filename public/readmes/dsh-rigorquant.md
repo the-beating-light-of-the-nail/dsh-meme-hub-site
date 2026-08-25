@@ -3,7 +3,8 @@
 **English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/839ca3e1bbdb9c1eaea1e2c23391403409c47a2e/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+
 </p>
 <p align="center"><sub>
   <a href="docs/figs/edgesworth-box.png">Edgeworth box</a> — hand-drawn in
@@ -48,6 +49,66 @@ Full design record: [docs/architecture.md](docs/architecture.md).
 **"Unattended", precisely:** the framework runs unattended within one live
 session. Crossing a session boundary disarms the goal; one human turn
 ("continue") re-arms it. It does not continue autonomously across restarts.
+
+## The research team — and how it works
+
+Six roles, each a separate tool with its own powers and limits. The separation is
+enforced by the composition, so **the producer never checks its own work** — an idea
+dies only on a concrete counterexample, never on style or vibes.
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
+
+**Orchestrator** · `root persona` — fans out the work, synthesizes, and writes the state. Bound by four rules: producer ≠ checker, counterexample-only elimination, seeds always recorded, no handwaved load-bearing claims.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
+
+**Explorer** · `subagent` — blank-context and divergent. Proposes lemmas, equations, constructions, and candidate methods with exact statements. Status reports are rejected.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-oracle.png" align="left" width="200" alt="Oracle">
+
+**Oracle** · `subagent_ground_truth` — blind (no web, no skills, no delegation, no drafts). Re-derives the load-bearing claims from first principles, twice by different means.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
+
+**Adversary** · `subagent_adversary` — runs the check group and hunts counterexamples. Ends in a verdict: `PASS` or `NEEDS-EDITS`.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
+
+**Literature** · `subagent_lit_line` · `_adversary` — a walled citation-graph sweep, then an independent adversary re-retrieves each claim and certifies it's real **and** current.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
+
+**Validator** · `rq_check.py` + schemas — refuses a `PASS` with missing evidence. Reads the audit record, never the study's own claims — a study cannot vouch for itself.
+
+<br clear="left">
+
+
+**The loop, in five moves.** Each round is fan-out → ground truth → adversary → synthesize.
+
+1. **Promise** — record the original question verbatim, split it into sub-problems with crisp criteria, pick hand-checkable simplified cases, and pin seeds, tolerances and the schema/validator digests.
+2. **Fan out** — blank-context explorers and literature lines run in parallel; most are never told the favored approach.
+3. **Ground-truth it** — blind oracles re-derive the load-bearing claims without seeing anyone's draft; two independent derivations for anything the study rests on.
+4. **Attack it** — the adversary runs the four-gate battery, then hunts counterexamples; divergent tracks are lined up as an adjudication docket.
+5. **Certify & ship** — the validator checks nothing is missing; the paper and slides are assembled from validated records, never written fresh.
+
+**The check battery**, run before any numerical implementation: **A** closed-form equality · **B** exact invariants · **C** analytic bounds · **D** statistical hardening (fixed seed + LLN shrinking ≈ C/√N).
+
+**With receipts:** in one hard run, 21 errors were caught by a specific mechanism and none by luck (11 of them the orchestrator's own); only 35% of 81 literature claims survived independent verification; and the honesty gate is itself tested — a forged study *must* fail.
 
 ## Install
 

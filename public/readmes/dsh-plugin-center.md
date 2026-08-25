@@ -1,5 +1,9 @@
 # dsh-plugin-center
 
+This plugin belongs to the **`@max-null/*` family** — a set of plugins that together form the **[SSID (思灵 · Seek Soul in Darkness)](https://github.com/Max-Null/seek-soul-in-darkness)** desktop experience. SSID is the box that bundles them all: `dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`.
+
+本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`。
+
 Plugin center for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`) — browse, install, and update community plugins from inside the Web UI.
 
 插件管理中心：在 DSH Web 界面里管理已安装插件、浏览社区市场、一键安装与更新。
@@ -15,15 +19,11 @@ Plugin center for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-har
 
 ## Part of the SSID family / SSID 系列成员
 
-This plugin belongs to the **`@max-null/*` family** — a set of plugins that together form the **[SSID (思灵 · Seek Soul in Darkness)](https://github.com/Max-Null/seek-soul-in-darkness)** desktop experience. SSID is the box that bundles them all: `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`.
-
-本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`。
-
 ## Screenshots / 截图
 
 | Installed / 已安装 | Market / 市场 | Updates / 更新 |
 | :---: | :---: | :---: |
-| ![已安装插件](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/11b0ec752853dc04fee2f19942a7e211a587bd99/assets/screenshot-installed.png) | ![社区市场](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/11b0ec752853dc04fee2f19942a7e211a587bd99/assets/screenshot-market.png) | ![更新检测](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/11b0ec752853dc04fee2f19942a7e211a587bd99/assets/screenshot-updates.png) |
+| ![已安装插件](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/a159c4c9cd3080ffb7fce94d00500c000600eaca/assets/screenshot-installed.png) | ![社区市场](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/a159c4c9cd3080ffb7fce94d00500c000600eaca/assets/screenshot-market.png) | ![更新检测](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/a159c4c9cd3080ffb7fce94d00500c000600eaca/assets/screenshot-updates.png) |
 
 ## Install / 安装
 

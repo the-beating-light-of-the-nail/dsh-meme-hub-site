@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
- <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/21b6a1a05e047cc325883cd73f8bb303e509d7e7/assets/banner.jpg" alt="Awesome DeepSeek Harness">
+ <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/3c8f9234c4be6d65b78c9925b06e8c616b9019b3/assets/banner.jpg" alt="Awesome DeepSeek Harness">
 </div>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -148,6 +148,8 @@ Management panel: Settings → Plugins.
 
 ## Memory & Knowledge
 
+- [zilliztech/memsearch](https://github.com/zilliztech/memsearch/tree/main/plugins/dsh) - Shared Markdown memory for DSH and other coding agents, with automatic capture, pre-step context injection, searchable recall, and a review panel.
+
 - [dsh-simple-memory](https://github.com/a903067276-rgb/dsh-simple-memory) - Sidecar markdown memory for DSH: per-session index injection, one-click memory-flow button, enforced 分类-主题.md format, cross-project search.
 - [dsh-hme](https://github.com/weopenfire-git/hme-plugin) - Cross-session long-term memory: bounded core (USER.md global + MEMORY.md per-workspace, φ Fibonacci caps) + a tag-indexed, self-consolidating archive (archive/recall/move tools).
 - [dsh-memory-vault](https://github.com/flymysql/dsh-memory) - Cross-session memory vault: memory_remember / memory_recall / memory_forget tools, latest entries injected into system-prompt assembly, Settings page (记忆库 / Memory).
@@ -183,6 +185,8 @@ Management panel: Settings → Plugins.
 ## Input & Editing
 
 - [dsh-global-rules](https://github.com/Semidia/dsh-global-rules) - Edit your `~/.dsh/AGENTS.md` global rules from the Settings page: a text editor with save button, no command line needed.
+- [dsh-keyboard-history](https://github.com/NormanFxxkingRockwell/dsh-keyboard-history) - Minimal ↑/↓ input history for the DSH web composer: press ↑/↓ to walk back through sent messages. Nothing else.
+- [liustack/modlens](https://github.com/liustack/modlens) - Vision plugin for text-only LLMs: paste images for recognition, multi-image Q&A, screenshot capture, and visual task completion with one-line install.
 - [Zhangbo-cn/dsh-voice-input-plugin](https://github.com/Zhangbo-cn/dsh-voice-input-plugin) - Composer mic for the Web UI: tap-to-monitor live transcription and hold-to-talk, with host Edge TTS reply reading that streams while the model generates, echo-pause during reading, and tap-to-stop.
 
 - [dsh-better-sidebar-plugin-office](https://github.com/dsh-external/dsh-better-sidebar-plugin-office) - Office integration for DSH-better-sidebar.
@@ -289,6 +293,7 @@ Management panel: Settings → Plugins.
 - [dsh-session-tree](https://github.com/ZhengQingJing/dsh-session-tree) - Read-only session lineage tab for DSH Web: browse the current root, fork, and subagent family as a bounded tree and click any node to navigate.
 - [chouyong/dsh-branch-review](https://github.com/chouyong/dsh-branch-review) - Track human decisions for related DSH session branches: keep, discard, or follow up with reasons, labels, and external links.
 - [dsh-fork-diff](https://github.com/chouyong/dsh-fork-diff) - Read-only parent and sibling branch comparison in DSH Web: message and tool diffs, usage and latency summaries, filters, and open-session navigation.
+- [dsh-usage](https://github.com/Huasecc/dsh-usage) - DeepSeek account-wide usage & balance panel from the official platform API (api/v0/usage/by_api_key): cache hit/miss & output tokens, cost, 24h–90d ranges, persistent platform token, and a model-visible `deepseek_usage_query` tool.
 - [dsh-usage-panel](https://github.com/AlfredChaos/dsh-usage-panel) - Token usage statistics as a Settings page: cumulative KPIs, a six-month activity heatmap, stacked per-model daily bars and a model donut, rescanned read-only from session logs.
 - [fancr-code/dsh-plugin-usage-meter](https://github.com/fancr-code/dsh-plugin-usage-meter) - Usage/cost/balance meter in the composer dock: button-style chip with live peak/off-peak pricing tags, today/last-7-days per-model stacked bar charts, budget alerts, and a persistent cross-session ledger.
 - [dsh-what-changed](https://github.com/sjh9714/dsh-what-changed) - Session-wide file change review in the session header. Lists every file the agent wrote this session with its hunks, counts refused writes separately from changes, and folds from a session projection rather than the on-disk log.
@@ -640,7 +645,7 @@ Management panel: Settings → Plugins.
 - [dsh-plugin-radar](https://github.com/dsh-external/dsh-plugin-radar) - Daily DSH plugin compatibility radar, renamed from dsh-external-research.
 - [dsh-scout](https://github.com/dsh-external/dsh-scout) - Scout plugin (cordis).
 - [dsh-share](https://github.com/dsh-external/dsh-share) - Share DSH conversations.
-- [dsh-sonar](https://github.com/dsh-external/dsh-sonar) - Sonar plugin (cordis).
+- [maxmilian/dsh-sonarqube](https://github.com/maxmilian/dsh-sonarqube) - Read-only SonarQube Community Build integration for Quality Gates, issues, Security Hotspots, coverage, and project measures, with source file and line locations.
 - [plugin-registry](https://github.com/dsh-external/plugin-registry) - Plugin console + make-dsh-plugin skill + dev guide.
 - [dsh-plugin-manager-registry](https://github.com/Jesse-njx/dsh-plugin-manager-registry) - Offline-tolerant registry that discovers and deduplicates DSH plugins from awesome lists, GitHub topics, and npm.
 - [marisa](https://github.com/dsh-external/marisa) - External plugin manager (parasitic install/CLI/settings panel).
@@ -714,6 +719,7 @@ Management panel: Settings → Plugins.
 - [gongyijie85/mattpocock-skills-dsh](https://github.com/gongyijie85/mattpocock-skills-dsh) - Matt Pocock's full promoted skill set (25 SKILL.md: grilling, writing-for-agents, wait-what, TDD, code review, wayfinder, ask-matt router) ported to DSH.
 - [gongyijie85/mattpocock-skills-dsh-zh](https://github.com/gongyijie85/mattpocock-skills-dsh-zh) - Matt Pocock's 25 skills fully translated to Chinese (technical terms kept in English with glosses).
 - [gongyijie85/dsh-ponytail](https://github.com/gongyijie85/dsh-ponytail) - Ponytail, lazy senior dev mode: 6 skills (ponytail, ponytail-audit, ponytail-debt, ponytail-gain, ponytail-help, ponytail-review) adapted from DietrichGebert/ponytail.
+- [oneinitAI/dsh-buddy](https://github.com/oneinitAI/dsh-buddy) - Portrait-adaptive communication skill: builds a live user portrait (proficiency, per-domain gaps, current state) from the conversation and calibrates every answer's depth, jargon density and step granularity to it; behavior-over-claims dumb-play detection; transparent profile snapshot export. MIT.
 - [gongyijie85/dsh-ecc](https://github.com/gongyijie85/dsh-ecc) - 273 ECC skills (95.8% of the 227k-star operator system) ported to DSH in four batches.
 - [dsh-learn-everything](https://github.com/cendaifeng/dsh-learn-everything) - Feynman learning-mode plugin: teach → teach-back → judge → re-explain loop rendered as rich HTML lesson cards (mermaid diagrams + shiki code highlighting).
 - [zotero-harvest](https://github.com/dsh-external/zotero-harvest) - Zotero library integration.
@@ -743,6 +749,8 @@ Management panel: Settings → Plugins.
 - [dsh-industry-research](https://github.com/PerryLink/dsh-industry-research) - Industry and company research domain pack: industry_map chain maps, public-source policy/news tracking over ctx.web (industry_track), company_scan cards from user data files, and industry_report with an optional ctx.researchReport sealing bridge and a builtin-fallback renderer, plus two methodology skills.
 - [dsh-data-quality](https://github.com/PerryLink/dsh-data-quality) - Deterministic data profiling, cleaning, and verification: data_profile / data_clean / data_verify tools plus a frozen cross-plugin verifyCitations citation-checking contract, with durable reports in a storage domain.
 ## Tools & Utilities
+
+- [zilliztech/dsh-milvus](https://github.com/zilliztech/dsh-milvus) - Read-only DSH Web plugin for inspecting and searching Milvus or Zilliz Cloud collections from chat, including scalar, BM25, dense, and hybrid queries.
 
 - [zoahdev/dsh-discussions-radar](https://github.com/zoahdev/dsh-discussions-radar) - Official GitHub Discussions radar: list/filter/search the official boards (Ideas/Q&A/Show Your Plugins!/General/Announcements) (CLI + `discussions_radar` tool).
 - [dsh-case](https://github.com/ZhijiangTang/dsh-case) - Name-case conversion across 8 styles: camel, snake, kebab, Pascal, and more.

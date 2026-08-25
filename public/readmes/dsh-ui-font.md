@@ -8,11 +8,11 @@
 
 |            安装前            |           安装后            |
 | :--------------------------: | :-------------------------: |
-| ![安装前](https://raw.githubusercontent.com/warmwine/dsh-ui-font/f8b2f998d8a6bcb5eb65d38318cd8944db83d4bb/images/before.png) | ![安装后](https://raw.githubusercontent.com/warmwine/dsh-ui-font/f8b2f998d8a6bcb5eb65d38318cd8944db83d4bb/images/after.png) |
+| ![安装前](https://raw.githubusercontent.com/warmwine/dsh-ui-font/b5db5718c8718f0d926090c18e33ac04e2b27744/images/before.png) | ![安装后](https://raw.githubusercontent.com/warmwine/dsh-ui-font/b5db5718c8718f0d926090c18e33ac04e2b27744/images/after.png) |
 
 设置界面（侧边栏 → 设置 → 字体）：
 
-![设置界面](https://raw.githubusercontent.com/warmwine/dsh-ui-font/f8b2f998d8a6bcb5eb65d38318cd8944db83d4bb/images/setting.png)
+![设置界面](https://raw.githubusercontent.com/warmwine/dsh-ui-font/b5db5718c8718f0d926090c18e33ac04e2b27744/images/setting.png)
 
 ## 它能干什么
 
@@ -111,6 +111,37 @@ dsh plugin --profile web remove dsh-ui-font
 插件不捆绑字体文件；所选字体缺失时自动回退系统默认字体栈。
 
 版本历史见 [CHANGELOG.md](CHANGELOG.md)。
+
+## 设置存到哪儿了
+
+字体、字号、准星选取里加的每一处微调、三个快捷键槽位——全部写进 DSH 的服务端 `settings.yaml`，跟 DSH 其他用户设置走同一份文件：
+
+```
+$DSH_HOME/profiles/<profile>/settings.yaml
+```
+
+具体落到这个键：
+
+```yaml
+ui-font:
+  uiFont: "LXGW WenKai"
+  codeFont: "LXGW WenKai Mono"
+  delta: 3
+  perPlugin: {}
+  perRule: {}
+  perToken: {}
+  hotkey: "Ctrl+Shift+F"
+  hotkeyUp: "Ctrl+="
+  hotkeyDown: "Ctrl+-"
+```
+
+- 跨设备、跨浏览器都能继承
+- 跟 DSH 整体一起走 Git 备份/同步
+- 卸载插件后这条 key 留在 settings.yaml 里，对其他设置无害（手动删即可）
+
+**老版本升级**：早期版本（< 0.9.3）把设置存在浏览器 `localStorage`，键名 `dsh.uiFont.v1`。升级后首次打开 Web GUI，插件会自动把 localStorage 里的值推到服务端，然后清掉 localStorage 这条记录。如果服务端不可达（比如没有 settings provider 的 profile），插件仍按 localStorage 里的值运行，不会丢。
+
+**离线/服务降级**：插件每次写设置都同时落到 `settings.yaml` 和 `localStorage`，断网时改动不会丢；服务恢复后下次加载会再次以服务端为准。
 
 ## 已知边界
 

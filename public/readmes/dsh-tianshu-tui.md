@@ -8,7 +8,7 @@
 
 中文 | [English](README.en.md)
 
-![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/2adee4387850e23099a617cddf8f85300c404988/docs/promo.png)
+![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/7a2cac0d520620ebeac100c4ce7ace6bb7f6100e/docs/promo.png)
 
 **dsh-tianshu-tui**（`@huiliyi37/dsh-tianshu-tui`）是官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 上的交互式终端 UI 插件。渲染核心为自研的 ANSI 极简引擎（由作者自己的开源项目 [天枢 Tianshu-Tui](https://github.com/huiliyi37/Tianshu-Tui) 演进而来，Apache-2.0；逐文件来源见 [SOURCE-MAP.md](SOURCE-MAP.md)），渲染轻量不打断，使用体验流畅。UI 是纯展示层：所有 agent 状态都来自会话事件流。在此之上做了 harness 工程层的个性化改造，如图像与视觉桥接、代码智能检索、记忆与跨会话召回等。
 
@@ -33,42 +33,42 @@
 
 ## 安装
 
-本包不是独立程序。须先有官方 CLI [`@deepseek-ai/dsh`](https://www.npmjs.com/package/@deepseek-ai/dsh)（`0.1.0-rc.8`）。只 `npm i` 本包跑不起来。
+本包不是独立程序。须先有官方 CLI [`@deepseek-ai/dsh`](https://www.npmjs.com/package/@deepseek-ai/dsh)（npm `latest`，当前 `0.1.1-rc.2`；需 ≥ `0.1.0-rc.8`，peer 依赖对齐）。只 `npm i` 本包跑不起来。
 
 ### 1. 准备环境
 
 - [Node.js](https://nodejs.org/) `^22.19 || >=24`
 - PATH 上有 [`pnpm`](https://pnpm.io/installation)（`dsh plugin` 会转发给它）
 
-**不要直接敲 `dsh`。** 若 PATH 上已有旧的 `dsh`（例如 `~/.local/bin/dsh`，`dsh --version` 不是 `0.1.0-rc.8`），会走到本地 staging，出现 `ERR_FS_EISDIR` / `Path is a directory .../@deepseek-ai/dsh`。请始终用下面的 `npx` 命令。
+**不要直接敲 `dsh`。** 若 PATH 上已有旧的 `dsh`（例如 `~/.local/bin/dsh`，`dsh --version` 低于 `0.1.0-rc.8`），会走到本地 staging，出现 `ERR_FS_EISDIR` / `Path is a directory .../@deepseek-ai/dsh`。请始终用下面的 `npx` 命令。
 
 ### 2. 把本插件装进 tui profile
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.0-rc.8 plugin --profile tui add @huiliyi37/dsh-tianshu-tui
+npx -y @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
 ```
 
 pnpm 可能提示 peer missing，可忽略：peer 由官方 `dsh` 宿主提供，不必另装。
 
 从 npm 安装后，每次启动会对照 npm `latest`：有新版本就写入 profile，提示重启后生效。不想联网检查时设 `DSH_TUI_SKIP_UPDATE=1`。`github:` / `link:` 安装不会改写成 npm 包。
 
-也可以从 Git 装：`npx -y @deepseek-ai/dsh@0.1.0-rc.8 plugin --profile tui add github:huiliyi37/dsh-tianshu-tui`（仓库已包含 `lib/index.js`，不必再打包）。
+也可以从 Git 装：`npx -y @deepseek-ai/dsh plugin --profile tui add github:huiliyi37/dsh-tianshu-tui`（仓库已包含 `lib/index.js`，不必再打包）。
 
 ### 3. 启动
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.0-rc.8 --profile tui
+npx -y @deepseek-ai/dsh --profile tui
 ```
 
 看到欢迎页品牌 **dsh-tianshu-tui** 即成功。`Ctrl+Q` 或 `/exit` 退出。
 
-已全局安装官方 CLI 且 `dsh --version` 为 `0.1.0-rc.8` 时，把上面的 `npx -y @deepseek-ai/dsh` 换成 `dsh` 即可。
+已全局安装官方 CLI 且 `dsh --version` 不低于 `0.1.0-rc.8` 时，把上面的 `npx -y @deepseek-ai/dsh` 换成 `dsh` 即可。
 
 若 `npx` 仍报 `ERR_FS_EISDIR`，是 `~/.dsh/profiles/node_modules` 里旧的安装 fallback 与官方 CLI 冲突。换干净目录再启动：
 
 ```sh
-DSH_HOME=/tmp/dsh-tianshu npx -y @deepseek-ai/dsh@0.1.0-rc.8 plugin --profile tui add @huiliyi37/dsh-tianshu-tui
-DSH_HOME=/tmp/dsh-tianshu npx -y @deepseek-ai/dsh@0.1.0-rc.8 --profile tui
+DSH_HOME=/tmp/dsh-tianshu npx -y @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
+DSH_HOME=/tmp/dsh-tianshu npx -y @deepseek-ai/dsh --profile tui
 ```
 
 不要在 DeepSeek Harness 工作区根目录对本包跑 tsdown：会把未发布的 `@deepseek-ai/dsh-root` 写进 bundle，加载必失败。
@@ -93,11 +93,30 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 > `@huiliyi37/oh-my-tianshu`（命令 `oh-my-tianshu`），与仓库名一致；旧包已
 > deprecate，请迁移安装。
 
-需要图片再询问能力时，再装配同仓伴生包 `vision-ask/`；需要 LSP 模型工具面（模型可调 `lsp_goto_definition` / `lsp_find_references` / `lsp_diagnostics`）时装配社区插件 [`omdsh-dev/dsh-lsp`](https://github.com/omdsh-dev/dsh-lsp)（`npx -y @deepseek-ai/dsh@0.1.0-rc.8 plugin --profile tui add github:omdsh-dev/dsh-lsp`）——装配后 TUI 展示桥自动消费其 `lsp` 服务（与模型工具面共享同一 LSP server 集，不双份 spawn）。TUI 桥的诊断源探测顺序：社区插件服务（getDiagnostics 形状）→ 官方 `ctx.lsp` seam（deepseek-harness 的 dsh-lsp，经 query(getDiagnostics) 适配）→ 内置桥降级。
+需要图片再询问能力时，再装配同仓伴生包 `vision-ask/`；需要 LSP 模型工具面（模型可调 `lsp_goto_definition` / `lsp_find_references` / `lsp_diagnostics`）时装配社区插件 [`omdsh-dev/dsh-lsp`](https://github.com/omdsh-dev/dsh-lsp)（`npx -y @deepseek-ai/dsh plugin --profile tui add github:omdsh-dev/dsh-lsp`）——装配后 TUI 展示桥自动消费其 `lsp` 服务（与模型工具面共享同一 LSP server 集，不双份 spawn）。TUI 桥的诊断源探测顺序：社区插件服务（getDiagnostics 形状）→ 官方 `ctx.lsp` seam（deepseek-harness 的 dsh-lsp，经 query(getDiagnostics) 适配）→ 内置桥降级。
 
 ## 更新说明
 
-当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.13`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.13)）。
+当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.15`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.15)）。
+
+### 0.1.2-rc.15（2026-08-25）
+
+手动更新 + 启动会话复用版本。
+
+- **`/update` 手动更新检查** — 对照 npm `latest` 只查不装：发现新版本回显版本对与手动更新命令（`npx -y @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui@latest`，或重启走启动自更新）；已最新回显当前版本；网络失败回显原因不抛。绕过 `DSH_TUI_SKIP_UPDATE`（显式要求检查时不尊重"不想联网"开关），复用启动自更新的 1h 缓存管线
+- **启动复用空会话 id（社区 PR #45）** — 插件启动且 live store 为空时复用最近一个无内容会话的 id（不再每次铸造新 id），header.cwd 重绑启动目录；跨/同目录先清旧 artifact 再重建（规避后端 adopt 前缀校验拒绝）
+- **`/session` 选择器摘要（社区 PR #45）** — 无参选择器展示会话摘要行（#短id · 标题 · 相对年龄；标题 = title 事件 fold → 首条真人消息 → 「新对话」），`/session list` 保持旧版直接打印
+- **真机 e2e 资产（社区 PR #45）** — `scripts/e2e-tui.{sh,exp}` + `npm run e2e:tui`：expect 驱动 pty 里的官方 dsh CLI（独立 DSH_HOME），覆盖启动复用（含 adopt 错误回归）与 /session 两种形态
+- **README 安装段修复** — 安装命令不再固定宿主 CLI `@0.1.0-rc.8`（npm latest 已到 `0.1.1-rc.2`），统一无版本（peer 依赖 `^0.1.0-rc.8` 兼容）
+
+### 0.1.2-rc.14（2026-08-25）
+
+tianshu-public 交互面回流版本：/key 模型供应商密钥配置 + 图片发送预览 + 交互面增量（三波全量落地）。
+
+- **`/key` `/login` 配置模型供应商 API 密钥** — 选择供应商（默认置首、已配置 ✓）→ 掩码输入（≤8 全显 •，>8 露末 4 位）→ 联网验证三分类（ok 直接落盘 / invalid 拒存回输入 / unknown 可强存）→ 落盘即生效（无需重启，欢迎行与 footer API ✓ 实时翻转）；`llm-deepseek` 段走官方端点探测，pi-ai 路由保存后自动补写 profile 让路由即刻注册；进程环境遮蔽（writable=false）与凭据存储缺席都有对应说明态；首启缺 key 时 TTY 自动弹一次（Esc 可跳过）
+- **图片发送预览（半块字符缩略图）** — 附件挂上后输入轨显示最后一张图的降采样真彩预览（游程合并，毫秒级异步解码）；无图形协议终端发送图片后 scrollback 以半块字符回退渲染（每行都是真实滚动行，无残影）；sharp 懒加载、解码失败静默降级纯文本
+- **交互面增量** — 统一活动带（`format/activity-band`：subagent/workflow/后台任务三来源折叠、分组计数头、⎿ 子行、封顶折叠）与消息面底色垫宽（`format/bg-block`）纯函数层入库，供后续接线
+- **上游回流基准** — 相对 8-22 截止点后 22 个新提交经侦察判定无可回流 tui 内容（intent-bridge 出厂关闭=本仓现状）；宿主 seam（llm 目录/discoverModels/credentials.set/settings.mutate）四件套实测对齐
 
 ### 0.1.2-rc.13（2026-08-22）
 
@@ -128,7 +147,7 @@ tianshu-public 修复回流版本：上游 8 月中旬以来 10 项 fix(tui) 全
 
 生态对齐 rc.8 + 个性化持久化 + Windows 修复大版本。
 
-- **官方生态对齐 `^0.1.0-rc.8`** — 逐项核验 rc.6→rc.8 消费面：事件全为加法（`assistant/message` 新增 `interrupted`、新增 `team/*` 事件）；图片单图本地预算 10MB→3.5MB 对齐宿主新准入默认（避免原样放行的图被附件存储拒绝）；rc.8 官方 bash 提速（宿主侧工具调用 ~7s→0.3s）自动受益。安装需宿主 `0.1.0-rc.8`（`npx -y @deepseek-ai/dsh@0.1.0-rc.8`）
+- **官方生态对齐 `^0.1.0-rc.8`** — 逐项核验 rc.6→rc.8 消费面：事件全为加法（`assistant/message` 新增 `interrupted`、新增 `team/*` 事件）；图片单图本地预算 10MB→3.5MB 对齐宿主新准入默认（避免原样放行的图被附件存储拒绝）；rc.8 官方 bash 提速（宿主侧工具调用 ~7s→0.3s）自动受益。安装需宿主 `0.1.0-rc.8`（`npx -y @deepseek-ai/dsh`）
 - **本地偏好持久化（`~/.dsh-tui/prefs.json`）** — `/theme`、`/density`、`/subagents` `/workflow` 面板显隐、`/glance` metrics 段开关全部重启保留；`/theme auto` 可回退自动档；`/theme export [name]` 当前主题一键导出为自定义模板；主题选择器列出 `custom:` 主题
 - **输入历史持久化** — `~/.dsh-tui/input-history.json` 上限 1000 条，Ctrl+P/N 跨重启可用（内容为输入原文，删文件即清空）
 - **输入框多行导航修复** — 含 emoji/组合字符的长文本 ↑↓ 跨行不再拆簇错位（grapheme 列保持）
@@ -213,8 +232,8 @@ tianshu-public 修复回流版本：上游 8 月中旬以来 10 项 fix(tui) 全
 **从 `0.1.0-rc.8` 升级：** 那一版还没有自更新，需要手动加一次才会带上新逻辑：
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.0-rc.8 plugin --profile tui add @huiliyi37/dsh-tianshu-tui
-npx -y @deepseek-ai/dsh@0.1.0-rc.8 --profile tui
+npx -y @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
+npx -y @deepseek-ai/dsh --profile tui
 ```
 
 之后再发新版本，启动时会自动写入 profile。看到「插件已更新到 …，请重启 dsh 后生效」后重启即可。不想联网检查时设 `DSH_TUI_SKIP_UPDATE=1`。`github:` / `link:` 安装不会改写成 npm 包。

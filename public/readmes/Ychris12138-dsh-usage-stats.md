@@ -8,7 +8,7 @@
 
 Provider balances, subscription quotas, and token-usage analytics for the DeepSeek Harness Web GUI (`dsh web`).
 
-![dsh-usage-stats v0.2.0 interface preview](https://raw.githubusercontent.com/Ychris12138/dsh-usage-stats/f513669e4a33404738ce30f6a99531933dd5d73a/docs/images/usage-panel.svg)
+![dsh-usage-stats v0.2.0 interface preview](https://raw.githubusercontent.com/Ychris12138/dsh-usage-stats/612d7a80581e4bbef09d97708a653b4f7cef1838/docs/images/usage-panel.svg)
 
 > 展示图使用脱敏演示数据；插件不会把 API Key、Cookie、管理 PAT 或上游原始响应发送到浏览器。
 

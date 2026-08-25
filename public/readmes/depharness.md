@@ -2,7 +2,7 @@
 
 > 把 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 变成**真正的 Windows 桌面应用**:一条命令安装,双击桌面图标,原生应用窗口打开你的 AI 工作台——不是浏览器套壳。
 
-![logo](https://raw.githubusercontent.com/NANTI34/DEEPHARNESS/1b596d97a230014ae5ea7b6d608356600796bb57/tools/logo.png)
+![logo](https://raw.githubusercontent.com/NANTI34/DEEPHARNESS/53e31c8ef3d92cfd74a67273c3e31faf70a5e359/tools/logo.png)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg) ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6.svg) ![Node](https://img.shields.io/badge/node-%3E%3D20-339933.svg) ![Version](https://img.shields.io/badge/version-alpha1.7.1-4D6BFE.svg)
 
@@ -10,7 +10,7 @@
 
 ## 📸 截图预览
 
-![DEEPHARNESS 界面预览](https://raw.githubusercontent.com/NANTI34/DEEPHARNESS/1b596d97a230014ae5ea7b6d608356600796bb57/assets/screenshots/screenshot-overview.png)
+![DEEPHARNESS 界面预览](https://raw.githubusercontent.com/NANTI34/DEEPHARNESS/53e31c8ef3d92cfd74a67273c3e31faf70a5e359/assets/screenshots/screenshot-overview.png)
 
 ---
 
@@ -39,6 +39,7 @@
 - 🌐 **内置轻量浏览器(常驻)** — 会话视图栏「浏览器」标签:搜索(百度/必应/Google)、打开网址、**调试本地纯前端应用**——输入本地 `index.html` 路径(或直接把文件拖进地址栏),经同源路由托管,ES module / fetch / Worker 均可运行;桌面端为独立 Chromium 内嵌窗口,**F12 打开独立开发者工具**,站点弹窗(target=_blank,如 B站视频卡片)自动就地打开,视频支持全屏
 - 🐟 **大肥鱼桌面伴侣** — DSH 状态驱动的桌面宠物(`plugins/dsh-dafeiyu`):实时显示思考/干活/等待/成功/出错状态卡,右键可调整大小/减少动态/隐藏/关闭;**点击状态卡右上角 ⋯ 打开聊天对话框**与鱼对话
 - 🎨 **品牌外观(常驻)** — 设置 →「界面外观」独立区块:品牌深蓝顶栏/侧栏色(可自定义主色)、界面字体切换(可导入字体)、渐变/图片背景预设、**金边装饰开关**(全界面金色描边光晕)、**一键换肤(5 款自研预设 + 10 款社区开源皮肤:QQ2008 怀旧/蓝色幻想/鲸吟/方块世界/深海女仆工坊(非商用)/XP/同花顺/交易终端/初音未来/龙裔,互斥切换可恢复默认)**、**侧边卡片开关**(会话视图栏标签逐项显示/隐藏),选择保存在浏览器本地,重启后自动恢复
+- ⬆️ **应用更新检查(常驻)** — 设置 →「界面外观」→「应用更新」:默认开启自动检查,启动时联网对比 GitHub main 分支版本(jsdelivr → raw → releases 多源探测,30 分钟缓存),发现新版本时右上角显示 **↑ 徽标**,点击弹出更新内容(当前/最新版本、最近提交、复制升级命令、打开发布页、忽略此版本);仅提醒不自动安装,网络不可达时静默
 - 🛠️ **DEEPHARNESS 工具(常驻)** — 设置 →「DEEPHARNESS 工具」独立区块:
   - **一键夺舍** — 选择 Codex / Claude Code 目录一键迁移:自动注册为工作区、新建会话并发送迁移指令,AI 把技能(skills)、MCP 服务器、长期记忆(CLAUDE.md / AGENTS.md)全部搬进 DSH(也可仅复制指令)
   - **自定义提示词(soul.md)** — markdown 人设卡注入系统提示词,保存后约 300ms 热重载,无需重启

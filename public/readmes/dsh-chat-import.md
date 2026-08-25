@@ -25,7 +25,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/a6c5410e45beb055e232edcf25db29f2721035c6/assets/qoder.png" alt="Qoder CLI" width="600" />
+<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/57f476b574b3b847f96eb56b99e4c59e439a802d/assets/qoder.png" alt="Qoder CLI" width="600" />
 
 **Changelog:** [CHANGELOG.md](CHANGELOG.md) · **Roadmap:** [ROADMAP.md](ROADMAP.md) · **Interchange protocol:** [docs/INTERCHANGE.md](docs/INTERCHANGE.md)
 

@@ -19,17 +19,17 @@
 
 - 撤回按钮位置
 
-![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/c76ad3988b8df3f8da6905b930405aa6e20e77c7/docs/screenshots/recall-button.png)
+![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/5a9ba3db1b072e16598d1cce37c84b2c114b56e2/docs/screenshots/recall-button.png)
 
 ---
 | 确认面板 · 变更文件清单| 确认面板 · 变更文件清单|
 | --- | --- |
-| ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/c76ad3988b8df3f8da6905b930405aa6e20e77c7/docs/screenshots/confirm-panel-1.png) | ![确认面板](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/c76ad3988b8df3f8da6905b930405aa6e20e77c7/docs/screenshots/confirm-panel-2.png) |
+| ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/5a9ba3db1b072e16598d1cce37c84b2c114b56e2/docs/screenshots/confirm-panel-1.png) | ![确认面板](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/5a9ba3db1b072e16598d1cce37c84b2c114b56e2/docs/screenshots/confirm-panel-2.png) |
 
 - 撤回后自动把消息文本回填到输入框，方便修改后重发（可在设置卡片关闭）
 - 设置页 · 插件配置卡片（阈值 / 排除表 / 快照管理，保存即热生效）
 
- ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/c76ad3988b8df3f8da6905b930405aa6e20e77c7/docs/screenshots/settings-exclude-2.png) 
+ ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/5a9ba3db1b072e16598d1cce37c84b2c114b56e2/docs/screenshots/settings-exclude-2.png) 
 
 
 ## 功能亮点

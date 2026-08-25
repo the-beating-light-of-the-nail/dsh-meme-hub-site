@@ -12,7 +12,7 @@ Per-edit approval for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek
 | Feature | Description |
 | --- | --- |
 | Pre-write approval | Intercepts `write` / `edit` / `str_replace_editor` on the `tools/pre-execute` seam and asks before any file is modified |
-| Red/green line diff | Line-level diff (added / removed / context) computed per tool semantics; rendered per-line in the approval panel, with unchanged runs collapsed to `…` |
+| Red/green line diff | Line-level diff (added / removed / context) computed per tool semantics; the approval panel shows only the changed lines — a right-aligned line-number gutter with `|` (`   15| +XI-EDITED`) — and a `…` ellipsis marks skipped context runs and hunk gaps |
 | Panel collapse | Long diffs can be collapsed via the button at the strip's right end to reveal the agent's output; CSS-only hide/show, expanding restores the exact view |
 | Approve once / reject | Two actions, mirroring the Claude Code edit-approval flow; rejection reports back to the model |
 | Master switch | Settings → General "Edit approval" row, backed by the `/approval-edit on\|off\|status` host command (same source) |
@@ -23,11 +23,11 @@ Per-edit approval for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/c509fe3c5dc8029457f5217d30d46b7d365d6b6b/assets/screenshots/settings-switch.png" width="440" alt="Master switch in Settings → General"><br><sub>Master switch in Settings → General</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/c509fe3c5dc8029457f5217d30d46b7d365d6b6b/assets/screenshots/status-command.png" width="440" alt="The /approval-edit command and its arguments"><br><sub>The /approval-edit command and its arguments</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/815d915f92a0353e1e6279a9756d4f07503ffc8f/assets/screenshots/settings-switch.png" width="440" alt="Master switch in Settings → General"><br><sub>Master switch in Settings → General</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/815d915f92a0353e1e6279a9756d4f07503ffc8f/assets/screenshots/status-command.png" width="440" alt="The /approval-edit command and its arguments"><br><sub>The /approval-edit command and its arguments</sub></td>
   </tr>
   <tr>
-    <td align="center" colspan="2"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/c509fe3c5dc8029457f5217d30d46b7d365d6b6b/assets/screenshots/approval-panel.png" width="760" alt="Approval panel with the red/green line diff"><br><sub>Approval panel — red/green line diff</sub></td>
+    <td align="center" colspan="2"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/815d915f92a0353e1e6279a9756d4f07503ffc8f/assets/screenshots/approval-panel.png" width="760" alt="Approval panel with the red/green line diff"><br><sub>Approval panel — red/green line diff</sub></td>
   </tr>
 </table>
 
@@ -54,20 +54,26 @@ runs before a tool executes) and matches a whitelist of registered tool names:
    - `write` — full text; `edit` — single unique replace (or `replace_all`);
    - `str_replace_editor` — `str_replace` unique replace, `insert` line
      insertion, `create` uses `file_text`.
-3. **Computes a line-level LCS diff** between current and proposed content.
-   Equal head/tail runs are trimmed first so a one-line edit in a large file
-   stays a one-line diff; pathological files fall back to a coarse whole-file
-   diff.
+3. **Computes a line-level diff** between current and proposed content with
+   jsdiff's `structuredPatch` (Myers), the same reference implementation and
+   the same 3-line context window the harness's write/edit result cards use —
+   so the approval preview and the post-approval result card derive from the
+   same algorithm, and a one-line edit in a large file stays a one-line diff.
 4. **Returns `{ kind: 'ask', reason }`** with a header line (`tool · file
-   (op): N insertions, M deletions`) plus the diff text. The harness's own
-   `serviceAsk` routes that through `ctx.approval` into the web approval panel
-   — the host needs **zero UI changes**. `allowed-once` proceeds, `rejected`
-   denies the call; every other case delegates via `next()`.
+   (op): N insertions, M deletions`) plus the diff text — change rows with
+   a right-aligned line-number gutter and `|` (`   15| -xi` /
+   `   15| +XI-EDITED`), plus context rows and `⋯` hunk gaps carried on the
+   same structuredPatch source as the harness result cards. The harness's
+   own `serviceAsk` routes that through `ctx.approval` into the web approval
+   panel — the host needs **zero UI changes**. `allowed-once` proceeds,
+   `rejected` denies the call; every other case delegates via `next()`.
 
 The browser half (`dsh.client`) rebuilds the panel's plain-text headline into
-red/green per-line blocks, adds a `white-space: pre-wrap` compensation for the
-headline's CSS, installs the collapse button on multi-line diffs, and registers
-the Settings → General master-switch row. All side effects live in a single
+only the changed rows — removals red, additions green, with the right-aligned
+`NN|` gutter — and a `…` ellipsis marks skipped context runs and hunk gaps;
+it adds a `white-space: pre-wrap` compensation for the headline's CSS,
+installs the collapse button on multi-line diffs, and registers the
+Settings → General master-switch row. All side effects live in a single
 `ctx.effect` (torn down on plugin unload / HMR), and a per-animation-frame
 `MutationObserver` enhances approval panels as they appear.
 
@@ -177,7 +183,7 @@ is skipped.
 
 ```
 src/index.ts            host plugin: tools/pre-execute interception + /approval-edit command + settings
-src/diff.ts             line-level diff (pure functions: LCS, head/tail trim, render, counts)
+src/diff.ts             line-level diff (pure functions: jsdiff structuredPatch mapping, render, counts)
 src/guard.ts            decision logic (pure functions: tool matching, thresholds, create/delete, ask/pass)
 src/client/index.ts     client plugin: red/green diff rendering + master switch + lifecycle
 src/client/settings-row.tsx   Settings → General toggle row

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/01266f5dec1b67a282c31123b791b3c1693b12f8/assets/logo.svg" width="96" alt="dsh-market logo">
+  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/53cb827b12fad5021d9ccdecd1a2797f537e712d/assets/logo.svg" width="96" alt="dsh-market logo">
 </p>
 
 # dsh-market
@@ -9,11 +9,9 @@ English | [中文](README.zh.md)
 [![npm](https://img.shields.io/npm/v/dshmarket)](https://www.npmjs.com/package/dshmarket)
 [![stars](https://img.shields.io/github/stars/dsh-market/dsh-market?style=flat)](https://github.com/dsh-market/dsh-market)
 
-> `dsh-market` is independent of any particular client — it works in any host that speaks the standard DeepSeek Harness protocol. We're currently in discussions with `anywhere-labs/deepseek-harness-desktop` about future cooperation, and we'll share updates here as they happen. Use [dsh-desktop](https://github.com/dataelement/dsh-desktop) or [deepseek-harness-desktop](https://github.com/hairyf/deepseek-harness-desktop) — both ship with this plugin market built in — or another excellent third-party client.
-
 The plugin market inside DeepSeek Harness. Open Settings → **Plugin Market** → browse, search, one-click install.
 
-![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/01266f5dec1b67a282c31123b791b3c1693b12f8/assets/demo-en.png)
+![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/53cb827b12fad5021d9ccdecd1a2797f537e712d/assets/demo-en.png)
 
 One-click themes: install, switch live, no restart.
 
@@ -48,11 +46,11 @@ its own dsh: it may be older than the one `npm` would give you (#139).
 - **Diagnostics** — the plugin load order and conflict surface, one page: bundle stack with official/community badges, duplicate loader entries, dependency version mismatches, multi-version core packages, overrides and invalid config entries. Plain-language terms, problem blocks highlighted, everything collapsible
 
 - **Load order** — drag community bundles into the order you want, or take the suggested one derived from the plugins' own before/after rules. Nothing is written until a trial composition passes, and the panel tells you what the new order would change (overrides, invalid or duplicate entries) before you apply it
-- **AI fix** — one click copies a diagnostics-driven fix prompt (errors/warnings/order conflicts + conservative scope instructions) to the clipboard; you paste it into a new conversation and decide whether to send
+- **AI fix** — one click copies a diagnostics-driven fix prompt (errors/warnings/order conflicts + conservative scope instructions) to the clipboard; you paste it into a new conversation and decide whether to send. The prompt first asks the agent to detect whether it is itself the harness running this profile — if so it hard-forbids mutating the live composition, upgrading/restarting the harness or core packages, or reinstalling deps, and instead has it write an idempotent `apply` script plus a `rollback` script, have you run them in an external terminal, and paste the output back
 
 ## Speed
 
-Installs prefer npm tarballs over full-repo GitHub downloads whenever a plugin publishes to npm (registry-verified against the repo to prevent name squatting). Registry installs are typically seconds; GitHub-only plugins depend on your connection to GitHub.
+Installs prefer repo-verified npm packages, then author-supplied prebuilt GitHub Release tarballs, before falling back to full-repo GitHub source downloads. Prebuilt installs are typically seconds and do not need local build scripts; source-only plugins depend on your connection to GitHub.
 
 ## Security
 
@@ -106,6 +104,10 @@ DSHM_REGISTRY_URL=https://your-mirror.example/plugins.json dsh web
 ### DeepSeek Harness Desktop (hairyf)
 
 [deepseek-harness-desktop](https://github.com/hairyf/deepseek-harness-desktop) — a native desktop app for DeepSeek Harness built with **Tauri** (Rust + Web): one-click local install and launch with no Node.js setup required. On first run it offers to install this plugin market as a recommended preset.
+
+### DeepSeek Harness Desktop (anywhere-labs)
+
+[deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) — an Electron desktop app for DeepSeek Harness built around the idea that everything is a plugin, including the desktop itself: profile switching, a bundled Node and pnpm, and a recoverable install path that snapshots the profile before a change. [dshdesktop.cn](https://dshdesktop.cn)
 
 ### DSH Get
 

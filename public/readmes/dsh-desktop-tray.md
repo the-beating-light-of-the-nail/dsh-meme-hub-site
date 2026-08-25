@@ -32,6 +32,9 @@ System tray support for DSH Desktop: a tray icon plus settings to hide the main 
 - **立即隐藏到托盘 / Hide to tray now** — 一键隐藏主窗口。
 - 托盘图标左键单击/双击 → 显示主窗口；右键菜单 → 显示主窗口 / 退出。
 - 设置界面：**设置 → 系统托盘**（Settings → System tray），中英文双语。
+- **代码注入管理 / Code injection panel**（`0.2.0` 起）— 同一设置页内可直接查看
+  **代码注入情况**、**开始注入**、**取消注入**、**确认编译效果**（用应用自带的 Node 对两个
+  入口文件做 `node --check` 语法检查 + 检查每段注入代码只出现一次），无需手动改文件。
 
 ## 安装 / Install
 

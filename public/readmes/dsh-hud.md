@@ -12,9 +12,9 @@ A **HUD status panel** plugin for [DeepSeek Harness](https://github.com/deepseek
 
 ## Screenshot
 
-![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/2370b0f7609a44431c53baa9fbda47453d0dff63/assets/hud-button.png)
+![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/af2622afbbc512139851d5a2b8cbe6cf19b4c653/assets/hud-button.png)
 
-![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/2370b0f7609a44431c53baa9fbda47453d0dff63/assets/hud-panel.png)
+![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/af2622afbbc512139851d5a2b8cbe6cf19b4c653/assets/hud-panel.png)
 
 The gauge button in the input toolbar opens the floating panel showing git status, commit history, MCP servers, skills and official usage info (tokens, cache hit rate, turns/steps, LLM & tool time, context usage).
 
@@ -75,7 +75,7 @@ the panel is closed, only the lightweight git badge keeps polling).
 
 | Your DSH version | Install this | Note |
 |---|---|---|
-| 0.1.1-rc.1 and newer | `main` (v1.2.14+) | Full features |
+| 0.1.1-rc.1 and newer | `main` (v1.2.15+) | Full features |
 | 0.1.0-rc.7 – 0.1.0-rc.8 | `v1.2.11` — `dsh plugin add github:a903067276-rgb/dsh-hud#v1.2.11` | Last release with the pre-0.1.1 projection contract |
 | 0.1.0-rc.6 and older | `rc6-compat` — `dsh plugin add github:a903067276-rgb/dsh-hud#rc6-compat` | Frozen, no maintenance — upgrade recommended |
 
@@ -108,6 +108,11 @@ step, sharing state between the button and the panel through a module-level stor
 - All data is gathered locally from the running `dsh` instance; the only outbound call is
   the official balance API using the `DEEPSEEK_API_KEY` credential (the key never leaves
   the host).
+- **`DSH_HUD_NO_WATCH=1` disables file watching entirely** — the HUD then refreshes purely
+  via its 30s polling + manual/focus refresh. Useful on machines with enormous directory
+  trees (e.g. a parent folder containing dozens of repos) where macOS file watchers are
+  unreliable; the watcher is also capped at 128 by default (deeper changes surface via
+  polling within ~30s).
 
 ## Development
 

@@ -8,21 +8,23 @@ Along the right edge of the conversation, above the composer, it draws a **low-c
 
 > **Desktop & Web both supported.** The DeepSeek Harness **desktop** app is an Electron shell that embeds the same browser client served over a localhost web server, so a "web" plugin renders identically on both. This package targets the browser-side conversation slot and works wherever that client runs — Desktop **and** Web. Only headless / TUI profiles have no composer slot and render nothing.
 
-![Timeline Rail Screenshot](https://raw.githubusercontent.com/lcthe/dsh-timeline-rail/b9a12585e186252c6ba20010c093cecadcbfc0f8/assets/images1.png)
+![Timeline Rail Screenshot](https://raw.githubusercontent.com/lcthe/dsh-timeline-rail/ec92316f751f5d4b71cd0754b03affc3a7f5b7e0/assets/images1.png)
 
 ## Features
 
-- **Evenly spaced ticks** — one short horizontal line per user message along a 1px track, so a conversation reads as a clean time axis instead of a clamped map.
+- **Evenly spaced ticks** — one short horizontal line per user message along a 1px track, with a fixed 12px gap; long histories scroll inside the rail instead of compressing the marks.
+- **Centered marks** — each horizontal tick is centered on the vertical rail, keeping the timeline axis visually balanced.
+- **Complete-history loading** — after the session opens, the rail automatically loads earlier history pages in series until no pages remain, and adds ticks as each page arrives.
 - **Click to jump** — aligns the selected user message to the top of the visible message area.
-- **Hover to preview** — a compact wide card shows which message it is (`用户 · 第 N 条`) plus the first lines of its text; image/attachment-only messages get a labelled placeholder.
+- **Hover to preview** — a compact wide card shows the user message (`#N`) in bold, clamped to 2 lines, followed by the assistant reply clamped to 3 lines; image/attachment-only messages get a labelled placeholder.
 - **Theme aware** — colors come from `--dsw-*` tokens, so it follows the light/dark theme with no extra config.
 - **Slim and out of the way** — pointer-events are none except on the ticks themselves; the rail never blocks clicks on the messages.
 
 ## How it works
 
-DSH's web GUI is a Cordis composition. This package is a **client plugin** that registers a single entry into the `conversation.input.dock` slot (the additive band above the composer card). It reads the live `ConversationSnapshot` through the slot's `useSession` hook, maps each durable `kind: 'user'` node to a tick, and measures the scrollport (`[data-conversation-scroll]`, `[data-composer-seat]`) to lay the rail out on the right edge. It defines no service and no host-side behavior.
+DSH's web GUI is a Cordis composition. This package is a **client plugin** that registers a single entry into the `conversation.input.dock` slot (the additive band above the composer card). It reads the live `ConversationSnapshot` through the slot's `useSession` hook, maps each durable `kind: 'user'` node to a tick, and measures the scrollport (`[data-conversation-scroll]`, `[data-composer-seat]`) to lay the rail out on the right edge. On mount it uses the scoped conversation service's `loadOlder()` action to fetch earlier pages automatically until the session history is complete; each returned page adds ticks immediately. It defines no new service.
 
-Positioning is computed against the same stable data attributes the product itself uses (`[data-conversation-scroll]`, `[data-chat-flow]`, `[data-chat-anchor-key]`, `[data-composer-seat]`), so the rail stays correct across sidebar collapse, the details panel, theme changes, and live message appends.
+Positioning is computed against the same stable data attributes the product itself uses (`[data-conversation-scroll]`, `[data-chat-flow]`, `[data-chat-anchor-key]`, `[data-composer-seat]`). The rail is constrained to the visible conversation area, and its empty gutter is pointer-transparent so it does not block conversation or Session Log scrolling. Long histories use an independent rail scrollport; scrolling the rail does not scroll the conversation.
 
 ## Install
 
@@ -71,8 +73,8 @@ pnpm run build     # typecheck (tsc) + bundle (tsdown) -> lib/
 ## Known limitations and deferred work
 
 - The rail renders only in the **web** client; headless/TUI profiles have no composer slot, so nothing shows there.
-- Ticks are currently **evenly spaced** (one per user message) rather than reflecting each message's true scroll position; a "minimap" mode that puts each tick at the message's real position is a natural follow-up.
-- Message preview text is clamped to four lines; longer messages are truncated without an affordance to expand in the rail itself (clicking the tick already jumps you to the full message).
+- Ticks are **evenly spaced** (one per user message) at a fixed 12px gap. Long histories make the rail content independently scrollable rather than compressing the gap; the ticks still do not represent each message's true scroll position. A real-position "minimap" mode is a natural follow-up.
+- Message previews clamp the user message to 2 lines and the assistant reply to 3 lines; longer text is truncated without an affordance to expand in the rail itself (clicking the tick already jumps you to the full message).
 - The plugin targets the slot contract as of the `0.0.1-rc.1` release line of the Harness client packages. If the `conversation.input.dock` contract changes in a later RC, this package may need a bump.
 
 ## License

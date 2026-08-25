@@ -1,11 +1,26 @@
 # dsh-jenkins
 
-A DeepSeek Harness plugin (dual-face: host + browser) for managing multiple Jenkins
-servers and triggering jobs — from a Settings page, from model tools, and from a
-per-workspace "Run Jenkins Job" entry. No hardcoded paths, TypeScript throughout,
-publishable to npm / GitHub. UI copy is bilingual (Chinese / English, following the host UI language).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jsoncode/dsh-jenkins/e0400cd9843b1f5768833383fb85c7b6bbfd6e51/assets/preview/1.png" alt="dsh-jenkins preview" width="800" />
+</p>
+
+**dsh-jenkins** is a Jenkins management plugin built on the DeepSeek Harness (DSH)
+host, centralizing multiple servers and jobs for fast build publishing.
+
+- **Multi-server / multi-job management** — configure and manage multiple Jenkins
+  servers and jobs in one place
+- **One-click publishing** — trigger parameterized builds, track
+  queue → building → result in real time
+- **Logs & operations** — view build logs, stop or cancel builds at any time
+- **Bilingual UI** — follows the host interface language (中文 / English)
+
+Available from the Settings page, a per-workspace entry, and model tools.
 
 [中文文档](README.zh.md)
+
+## Preview
+
+Screenshots of the Settings page, workspace entry and run/history modals: see [preview.md](preview.md).
 
 ## Features
 
@@ -45,7 +60,8 @@ publishable to npm / GitHub. UI copy is bilingual (Chinese / English, following 
 ├── cordis.patch.yml    # Bundle patch: plugin row referenced by package name (no paths)
 ├── package.json        # dsh.bundle + dsh.client(web) manifests + peerDependencies
 ├── README.md           # This file (English)
-└── README.zh.md        # 中文文档
+├── README.zh.md        # 中文文档
+└── preview.md          # Screenshot preview (references assets/preview/*.png)
 ```
 
 ## Workspace config file (`dsh-jenkins.json` / `.js` / `.ts`)

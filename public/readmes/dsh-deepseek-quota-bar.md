@@ -7,7 +7,7 @@ A floating bottom-right widget for the dsh web GUI: a blood-bar of your remainin
 DeepSeek API balance vs the month-opening balance, plus today's and this month's
 spend (official platform data when configured).
 
-![dsh-deepseek-quota-bar 截图](https://raw.githubusercontent.com/jiangli07/dsh-deepseek-quota-bar/d364d7f0e7c4d700e6e0627ea8088a2a662d1818/docs/screenshot.png)
+![dsh-deepseek-quota-bar 截图](https://raw.githubusercontent.com/jiangli07/dsh-deepseek-quota-bar/67556ca89abb5c1465244771801292e8469675d0/docs/screenshot.png)
 
 ## 功能 Features
 

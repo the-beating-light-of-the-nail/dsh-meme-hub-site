@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-community-task-board.png" alt="DSH Desktop 中通过官方 Profile 加载的社区任务看板" width="100%">
+  <img src="https://raw.githubusercontent.com/vibeinging/dsh-work/1bbea1d7ee953ab439d1763cb04e6ec8bb96c6d1/docs/images/readme/dsh-community-task-board.png" alt="DSH Desktop 中通过官方 Profile 加载的社区任务看板" width="100%">
 </p>
 
 DSH Desktop 是社区维护的 Electron 发行版。它固定并运行官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) npm 运行时，把 `dsh-web-app`、Session、Agent、Tool、Skill、MCP 与 Profile Bundle 组成可直接运行的本地桌面环境。项目不修改 DSH 源码，不另存一套插件状态，也不用私有 Chat 替换官方 Web。
@@ -93,19 +93,19 @@ flowchart LR
 
 ### 官方会话、问题与审批
 
-![官方 DSH Web 会话](https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-official-web-session-loopback.png)
+![官方 DSH Web 会话](https://raw.githubusercontent.com/vibeinging/dsh-work/1bbea1d7ee953ab439d1763cb04e6ec8bb96c6d1/docs/images/readme/dsh-official-web-session-loopback.png)
 
 会话、问题卡片、工具审批、消息排队和历史回放都留在官方 Session 中。截图使用真实 DeepSeek-V4-Flash 对话；密钥只注入当次临时进程，不写入 Profile 或截图。
 
 ### 官方设置中的插件市场
 
-![官方 Web 设置中的默认插件市场](https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-plugin-market.png)
+![官方 Web 设置中的默认插件市场](https://raw.githubusercontent.com/vibeinging/dsh-work/1bbea1d7ee953ab439d1763cb04e6ec8bb96c6d1/docs/images/readme/dsh-plugin-market.png)
 
 在“设置 → 插件市场”中可以搜索、查看兼容性与权限，并对当前 Profile 执行安装、更新和卸载。市场是普通 Client Bundle，不替换官方设置容器。
 
 ### 官方 Workspace 中的 Git Worktree
 
-![官方 Web 中的 Git Worktree Bundle](https://raw.githubusercontent.com/vibeinging/dsh-work/3e597ccb05d209bc4ec506fe8e92bf1a4d6652b0/docs/images/readme/dsh-worktree-official-web.png)
+![官方 Web 中的 Git Worktree Bundle](https://raw.githubusercontent.com/vibeinging/dsh-work/1bbea1d7ee953ab439d1763cb04e6ec8bb96c6d1/docs/images/readme/dsh-worktree-official-web.png)
 
 Git Worktree Bundle 从当前 Session 的 `cwd` 识别主检出，在侧边栏和工作区中管理隔离 worktree，并为新工作区创建官方 Session。它只使用 DSH Workspace 与 Slot，可作为独立 portable Bundle 安装或移除。
 

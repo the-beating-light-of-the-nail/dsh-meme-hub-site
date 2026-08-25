@@ -77,6 +77,30 @@ The plugin **does not bundle or pin rtk**. At `dsh` startup it probes `rtk --ver
 
 > **Requires:** `rtk` on `PATH` (`rtk --version` exits 0). The plugin does **not** install or manage rtk — **you must install and update rtk yourself** (e.g. `cargo install rtk` or download a release binary). When rtk is absent the plugin is a silent no-op passthrough.
 
+### Compatibility & version alignment
+
+This plugin depends on three `@deepseek-ai/dsh-*` packages that DeepSeek Harness publishes to npm **independently** from the `dsh` aggregate package. Because those sub-packages (and `dsh` itself) ship as **prereleases** (`x.y.z-rc.n`), the peer ranges must carry an explicit prerelease branch per [awesome-dsh-plugin/contributing.md](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/blob/main/contributing.md) — a broad-looking range like `>=0.0.1-rc.1 <0.2.0` would *silently* exclude every `0.1.0-*` / `0.1.1-*` prerelease (node-semver only lets a prerelease satisfy a range if some comparator shares its exact `major.minor.patch` tuple and also carries a prerelease tag).
+
+The actual ranges (see `peerDependencies` in `package.json`) are:
+
+```
+"@deepseek-ai/dsh-bash-local":   ">=0.0.1-rc.1 <0.1.0 || >=0.1.0-rc.1 <0.1.1 || >=0.1.1-rc.1 <0.2.0-0"
+"@deepseek-ai/dsh-bash-sandbox": ">=0.0.1-rc.1 <0.1.0 || >=0.1.0-rc.1 <0.1.1 || >=0.1.1-rc.1 <0.2.0-0"
+"@deepseek-ai/dsh-shell":        ">=0.0.1-rc.1 <0.1.0 || >=0.1.0-rc.1 <0.1.1 || >=0.1.1-rc.1 <0.2.0-0"
+```
+
+`cordis` is **not** a peer dependency: it is injected by `dsh` at runtime, so declaring it would break install for anyone on a registry that lacks a matching published `cordis`. All three `@deepseek-ai/dsh-*` peers are marked `optional` in `peerDependenciesMeta`, so the plugin still loads where they are absent (it then behaves as a passthrough).
+
+The plugin's `dsh.plugin.json` declares:
+
+```json
+"engines": { "dsh": ">=0.1.0-rc.6 <0.2.0 || >=0.1.1-rc.1 <0.2.0-0" }
+```
+
+i.e. it is verified against `dsh` `0.1.1-rc.2`, accepts any `0.1.x` prerelease/build, and deliberately **excludes** `0.2.0+` (a future major that may change the `LocalBashExecutor.resolve()` / `ShellExecSpec` API — a sub-package bump will be required before this plugin can track it).
+
+> **Known version skew:** `dsh` (the aggregate, what `npx @deepseek-ai/dsh` installs) and its `@deepseek-ai/dsh-*` sub-packages are on **separate semver tracks** — the aggregate can be `0.1.1-rc.2` while the published sub-packages are still `0.0.1-rc.1`. The ranges above pin to the *published* sub-package versions so a plain `dsh plugin add` resolves cleanly. Watch the [releases](https://github.com/DeepTrial/dsh-bash-rtk/releases) for a matching update.
+
 ## Install & enable
 
 The plugin is **disabled by default** — installing it does nothing until you opt in.
@@ -87,7 +111,7 @@ dsh plugin --profile web add "<path-to-this-dir>"
 
 # 2) or directly from the latest GitHub release tarball (no local clone needed)
 dsh plugin --profile web add \
-  "https://github.com/DeepTrial/dsh-bash-rtk/releases/latest/download/dsh-bash-rtk.tar.gz"
+  "https://github.com/DeepTrial/dsh-bash-rtk/releases/latest/download/dsh-bash-rtk-latest.tgz"
 
 # enable it via an optional overlay — add to your profile's cordis.patch.yml:
 #   - id: bash-sandbox

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/0950c63e035eb08d1c63bafeabc2c36d92d8fa6a/assets/readme/hero.svg" width="100%" alt="Argo 阿尔戈：给 Agent 用的统一搜索与证据核验">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/hero.svg" width="100%" alt="Argo 阿尔戈：给 Agent 用的统一搜索与证据核验">
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@
 > 简单来说：前三种方案解决「**人**找信息」，Argo 解决「**Agent 及搜索核查于一身，具备一条龙的搜索服务**」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/0950c63e035eb08d1c63bafeabc2c36d92d8fa6a/assets/readme/why-better.svg" width="100%" alt="左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/why-better.svg" width="100%" alt="左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON">
 </p>
 
 | 维度 | 模型自带搜索 | AI 搜索（总结型） | 聚合搜索 / 搜索引擎 | **Argo** |
@@ -78,7 +78,7 @@
 ## 问啥像啥
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/0950c63e035eb08d1c63bafeabc2c36d92d8fa6a/assets/readme/proof-routes.svg" width="100%" alt="四类真实路由：金融、影视、多语言、地理">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/proof-routes.svg" width="100%" alt="四类真实路由：金融、影视、多语言、地理">
 </p>
 
 | 你这样问 | 大致会怎样 |
@@ -100,7 +100,7 @@
 ## 它怎么工作
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/0950c63e035eb08d1c63bafeabc2c36d92d8fa6a/assets/readme/workflow.svg" width="100%" alt="查询 → 语言与域 → 多引擎召回 → RRF → 证据快评 → 统一 JSON">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/workflow.svg" width="100%" alt="查询 → 语言与域 → 多引擎召回 → RRF → 证据快评 → 统一 JSON">
 </p>
 
 ```
@@ -607,7 +607,7 @@ python3 scripts/ab_eval_p0p1.py   # 可选，含在线实测
 MIT License © 2026 [taxueseek](https://github.com/taxueseek)
 
 <p align="center">
-  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="https://raw.githubusercontent.com/taxueseek/argo/0950c63e035eb08d1c63bafeabc2c36d92d8fa6a/assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
+  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
 </p>
 
 ---

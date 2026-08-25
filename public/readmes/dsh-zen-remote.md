@@ -3,17 +3,17 @@
 
 <p align="center">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0B7285?style=flat-square" alt="MIT"></a>
-<img src="https://img.shields.io/badge/release-v1.1.6-5B4CF0?style=flat-square" alt="v1.1.6">
+<img src="https://img.shields.io/badge/release-v1.1.7-5B4CF0?style=flat-square" alt="v1.1.7">
 <img src="https://img.shields.io/badge/DSH-Web%20Profile-5B4CF0?style=flat-square" alt="DSH Web Profile">
 </p>
 
 | 会话列表主屏 | 会话页 | 会话信息卡 |
 | --- | --- | --- |
-| ![会话列表主屏](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a9a71cc31f10a7468024325dd8bf98e0a471af15/assets/home.png) | ![会话页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a9a71cc31f10a7468024325dd8bf98e0a471af15/assets/session.png) | ![会话信息卡](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a9a71cc31f10a7468024325dd8bf98e0a471af15/assets/info.png) |
+| ![会话列表主屏](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/7bdf7e1979c93114705d64dcb17d211202813a21/assets/home.png) | ![会话页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/7bdf7e1979c93114705d64dcb17d211202813a21/assets/session.png) | ![会话信息卡](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/7bdf7e1979c93114705d64dcb17d211202813a21/assets/info.png) |
 
 | composer 权限 sheet | 公网设备看到的配对页 |
 | --- | --- |
-| ![composer 权限 sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a9a71cc31f10a7468024325dd8bf98e0a471af15/assets/sheet.png) | ![配对页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a9a71cc31f10a7468024325dd8bf98e0a471af15/assets/pairing.png) |
+| ![composer 权限 sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/7bdf7e1979c93114705d64dcb17d211202813a21/assets/sheet.png) | ![配对页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/7bdf7e1979c93114705d64dcb17d211202813a21/assets/pairing.png) |
 
 > 截图为 390×844 手机视口、浅色主题；深浅主题均适配。配对页是网关自绘页面，固定深色设计。
 
@@ -39,7 +39,7 @@ dsh plugin add dsh-zen-remote
 ```jsonc
 {
   "dependencies": {
-    "dsh-zen-remote": "^1.1.6"        // 本地开发换成 "link:/path/to/dsh-zen-remote"
+    "dsh-zen-remote": "^1.1.7"        // 本地开发换成 "link:/path/to/dsh-zen-remote"
   },
   "dsh": { "profile": { "bundles": [
     "@deepseek-ai/dsh-base",

@@ -2,7 +2,7 @@
 
 # ⚡ dsh-codex-sync
 
-**The ultimate 2-way bridge between OpenAI Codex and DSH: bidirectional chat sync, live Skills mount & auto MCP mirroring.**<br/>
+**Two-way Codex↔DSH bridge: skills from `~/.codex/skills`, session import with workspace attach, live MCP mirroring of `mcp_servers`, and a Codex-side reverse MCP installer.**<br/>
 *2-way project chat sync · Live Skills mount · Auto MCP mirroring · Native modern UI*
 
 <p align="center">
@@ -23,21 +23,21 @@
   <tr>
     <td align="center" width="50%">
       <b>🎛️ Native Sync Settings Modal</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/0f2de6956de641458c273f89be5cf589156daa3a/docs/sync-settings-modal.png" alt="Codex Sync Settings modal: actions, switches, language" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/sync-settings-modal.png" alt="Codex Sync Settings modal: actions, switches, language" width="100%"/>
     </td>
     <td align="center" width="50%">
       <b>📍 Sidebar Workspace Trigger</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/0f2de6956de641458c273f89be5cf589156daa3a/docs/sidebar-entry.png" alt="Workspace header Codex quick entry button" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/sidebar-entry.png" alt="Workspace header Codex quick entry button" width="100%"/>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <b>📥 Import from Codex by Project</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/0f2de6956de641458c273f89be5cf589156daa3a/docs/import-picker.png" alt="Import picker: projects, chats, and status tags" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/import-picker.png" alt="Import picker: projects, chats, and status tags" width="100%"/>
     </td>
     <td align="center" width="50%">
       <b>📤 Export DSH Chats to Codex</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/0f2de6956de641458c273f89be5cf589156daa3a/docs/export-picker.png" alt="Export picker: smart workspace matching, source filter" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/export-picker.png" alt="Export picker: smart workspace matching, source filter" width="100%"/>
     </td>
   </tr>
 </table>

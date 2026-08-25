@@ -26,7 +26,7 @@ It does not install Git, PowerShell, busybox, WSL, or another DSH bundle on the 
 
 **Reproduced setup flow. This is not a screen recording.**
 
-![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/e727bef09b56ca3f52024e3362912d3c243f309f/assets/demo.gif)
+![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/05877962d2ecf12840f0db502bf957d413099526/assets/demo.gif)
 
 The command checks the official persistent PowerShell and Workspace Write packages, creates the shortcut, and leaves the profile on the stock Minimal preset.
 

@@ -6,8 +6,8 @@
 
 核心隐喻：**K 线图以股票行情展示 Token 消耗** —— 一次删掉 10,000 行死代码的大重构，烧穿 61.40亿 Token，K 线上一根大红烛拔地而起，子图的代码变更则是一根大绿柱一砸到底。
 
-![设计参考截图1](https://raw.githubusercontent.com/renat3u/tonghuashun-webui/a025c8b442f89032a5cfbd3b706a60f78f67df7f/assets/%E9%A2%84%E6%9C%9F%E6%95%88%E6%9E%9C%E5%9B%BE1.png)
-![设计参考截图2](https://raw.githubusercontent.com/renat3u/tonghuashun-webui/a025c8b442f89032a5cfbd3b706a60f78f67df7f/assets/%E9%A2%84%E6%9C%9F%E6%95%88%E6%9E%9C%E5%9B%BE2.png)
+![设计参考截图1](https://raw.githubusercontent.com/renat3u/tonghuashun-webui/e984c3f7cdd232f72f8832b30f659fc26973d7ff/assets/%E9%A2%84%E6%9C%9F%E6%95%88%E6%9E%9C%E5%9B%BE1.png)
+![设计参考截图2](https://raw.githubusercontent.com/renat3u/tonghuashun-webui/e984c3f7cdd232f72f8832b30f659fc26973d7ff/assets/%E9%A2%84%E6%9C%9F%E6%95%88%E6%9E%9C%E5%9B%BE2.png)
 
 ## 快速开始
 
@@ -34,6 +34,20 @@ npm run typecheck  # 仅类型检查
 | 底部状态栏 | `StatusBar` | DSH指数（今日 Token 消耗）/ 会话 / 插件三大指数、时钟、连接状态 |
 
 **独立运行**（`npm run dev`）时为确定性模拟行情；**嵌入 DSH** 后 token 行情、K 线、最近变更、git tree、权限、文件搜索全部来自真实数据，拿不到真实数据的面板显示明确空态，不回退模拟。
+
+### 真实数据口径
+
+| 指标 | 口径 |
+| --- | --- |
+| 分时 / 分时成交 | **仅当天**的每分钟 Token 消耗（meter 分钟桶按天隔离，历史与回填不会叠加到今天的同一时刻） |
+| 涨跌幅（左栏 / 右栏 / 搜索） | 当日该工作区消耗 **对昨日同一工作区**的环比；无昨日数据时显示 0.00% |
+| 日 K 收盘 | 当日总消耗；开盘 = 前一日收盘 |
+| 子图（代码变更量） | 该工作区当日 git 净变更行数（红 = 净增，绿 = 净删） |
+| 会话数 | meter 记录到的该工作区 distinct 会话数（无 meter 数据时退回 DSH 会话列表计数） |
+| 状态栏连接态 | 快照连续拉取失败会显示「数据延迟」，此时面板仍展示最后一次成功的快照 |
+
+所有工作区共享同一条全局分时序列（meter 未按工作区拆分钟桶）；每工作区独立分时需要
+变更 wire 格式，见 `plan/` 中的记录。
 
 ## 代码结构
 

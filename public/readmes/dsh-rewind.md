@@ -24,12 +24,12 @@ Each user message gains a compact **↶ rewind** action in its action row. Click
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/80d30f471c1fbc4dfdfbea1899829703bf302734/assets/screenshots/rewind-button.png" width="440" alt="Per-message ↶ rewind button"><br><sub>Per-message ↶ rewind button</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/80d30f471c1fbc4dfdfbea1899829703bf302734/assets/screenshots/mode-popover.png" width="440" alt="Mode-selection popover"><br><sub>Mode-selection popover</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/03d119d1a1f2c9b71987b02ae2b8b862d1e9d6cd/assets/screenshots/rewind-button.png" width="440" alt="Per-message ↶ rewind button"><br><sub>Per-message ↶ rewind button</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/03d119d1a1f2c9b71987b02ae2b8b862d1e9d6cd/assets/screenshots/mode-popover.png" width="440" alt="Mode-selection popover"><br><sub>Mode-selection popover</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/80d30f471c1fbc4dfdfbea1899829703bf302734/assets/screenshots/impact-list.png" width="440" alt="Impact list"><br><sub>"Conversation and code" impact list</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/80d30f471c1fbc4dfdfbea1899829703bf302734/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind candidate picker"><br><sub>/rewind candidate picker</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/03d119d1a1f2c9b71987b02ae2b8b862d1e9d6cd/assets/screenshots/impact-list.png" width="440" alt="Impact list"><br><sub>"Conversation and code" impact list</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/03d119d1a1f2c9b71987b02ae2b8b862d1e9d6cd/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind candidate picker"><br><sub>/rewind candidate picker</sub></td>
   </tr>
 </table>
 
@@ -66,6 +66,7 @@ The plugin appends an **empty-content marker** `assistant/message` into the sess
 - The marker carries `sourceEventSeqs` covering every shadowed node, and `Session.append`'s surface rules validate the cut (a contiguous range on the current surface).
 - Because the marker is **empty**, the harness derives it to `null` — it never enters the model context and never renders as conversation content. Agent and user both see the conversation exactly as it was at the target.
 - The marker's **turn number reuses the last started turn** (`markerTurnOf`), never `lastTurn + 1`: the harness numbers its next real turn exactly `last turn/start + 1`, so a `maxTurn + 1` marker would sit *before* that `turn/start` — the client conversation builder rejects the ordering (`…turn-tail… received an update before its start Match`) and history load fails. Reusing an already-consumed turn makes the marker a harmless trailing update on the previous completed turn's tail — it can never collide with a future turn.
+- The marker rides a **ghost step frame** — its own `step/start` … `step/end` with a fresh step number (`markerStepOf`) — because the harness token-meter requires every `assistant/message` to sit inside an open step of the same turn/step; a bare idle-time marker would fail its replay and break `/compact` for the session.
 - The append-only log is **untouched** — every withdrawn event stays in the audit trail; only the model-visible surface is cut, so the next request derives its context from the target onward.
 
 A running turn (LLM thinking / streaming) is force-stopped first (`cancel({ kind: 'user' })`) and the rewind waits for quiescence; if it can't stop, the rewind is aborted with an error.
@@ -109,11 +110,19 @@ The essential difference: dsh-turn-rewind keeps the log immutable and therefore 
 > This project and DeepSeek Harness are both in developer preview. Pin exact
 > versions in reproducible environments and review the behavior notes above.
 
+## Client contract
+
+Third-party DOM plugins that need to know which transcript rows a rewind
+withdrew should consume the stable, locale-independent helpers exported from
+`dsh-rewind-plugin/client` (`hiddenSeqsOf`, `targetSeqOfArgs`) — never parse
+`outcome.text`. The `data-dsh-rewind-hidden` attribute marks withdrawn rows
+(observational only). Details: [docs/client-contract.md](docs/client-contract.md).
+
 ## Known issues
 
-Rewinds created with versions `≤ v0.2.4` could corrupt client replay when followed by more conversation (a marker turn collides with the next `turn/start`). The offline repair tool ships **inside the npm package** (`dsh-rewind-repair`). This only affects sessions you already had before upgrading — a fresh install never hits it.
+Rewinds created with versions `≤ v0.2.4` could corrupt client replay when followed by more conversation (a marker turn collides with the next `turn/start`). Only pre-upgrade sessions are affected. The offline repair tool (`dsh-rewind-repair`) was shipped before v0.4.0 and is no longer provided from v0.4.0 on — install a pre-v0.4.0 release if you need it ([docs/troubleshooting.md](docs/troubleshooting.md)).
 
-Full instructions: [docs/troubleshooting.md](docs/troubleshooting.md)
+Rewinds from `≤ v0.3.3` appended a bare marker (no step frame); the harness token-meter rejects such a log on replay, so `/compact` fails for that session. Newer versions are compatible; affected old sessions have no online repair yet — start a new session.
 
 ## Security
 
@@ -125,11 +134,25 @@ This plugin only appends rewind-marker events to the session log; it never delet
 
 ```sh
 npm install            # devDeps from the npm registry
-npm run typecheck      # tsc on both compilation surfaces (host + client)
-npm test               # vitest: rewind / snapshot / hidden / session-cwd / integration
+npm run typecheck      # tsc on all three surfaces (host + client + client-test)
+npm test               # vitest: rewind / snapshot / hidden / session-cwd / integration / compat-invariants / compat-interop
 npm run build          # esbuild: lib/index.js (host ESM) + lib/client.js (loader closure) + .d.ts
-node scripts/verify-host.mjs   # boot the BUILT host artifact end-to-end
+node scripts/verify-host.mjs   # boot the BUILT host artifact end-to-end (incl. real /compact after rewind)
 ```
+
+`npm test` and `verify-host` include the **compatibility probe suites**
+([docs/compat-audit.md](docs/compat-audit.md)): scenario-generated logs drive the
+real harness packages (token-meter, compaction, session-stats/title/goal folds,
+resume preflight) through rewind markers and assert the compatibility
+invariants. A failing probe is a discovered incompatibility, not a mock
+artifact. One finding is recorded: **R-OPENSTEP** — a log carrying an
+unclosed `step/start` (crash leftover) makes any later step activity,
+including a rewind's ghost-step frame, break token-meter replay (and
+/compact). Harness `0.1.1-rc.2` fixes the crash path (`interruptedTurnClosers`
+closes leftover step/turn boundaries on load). A plugin-side guard was tried
+and reverted: it produced false positives on real session logs (rewind
+feature broken), so the plugin deliberately ships no guard — the residual
+risk (runtime-produced unclosed steps) is accepted.
 
 `prepare` runs the full build, so git installs and `npm pack` / `npm publish` always produce a complete `lib/` and the `LICENSE`.
 

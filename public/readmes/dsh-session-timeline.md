@@ -10,9 +10,9 @@ DeepSeek Harness 会话时间轴插件：在会话左侧渲染一条**横短横�
 
 ## 效果
 
-![会话时间轴主视图](https://raw.githubusercontent.com/XiLuovo/dsh-session-timeline/55f32688719aaf918de7e4bfe5099d9282309acb/docs/screenshots/timeline-main.png)
+![会话时间轴主视图](https://raw.githubusercontent.com/XiLuovo/dsh-session-timeline/a06e80b43f9b1612454f0a3069d2ec94a6c727df/docs/screenshots/timeline-main.png)
 
-![悬停预览 tooltip](https://raw.githubusercontent.com/XiLuovo/dsh-session-timeline/55f32688719aaf918de7e4bfe5099d9282309acb/docs/screenshots/timeline-tooltip.png)
+![悬停预览 tooltip](https://raw.githubusercontent.com/XiLuovo/dsh-session-timeline/a06e80b43f9b1612454f0a3069d2ec94a6c727df/docs/screenshots/timeline-tooltip.png)
 
 ## 功能
 

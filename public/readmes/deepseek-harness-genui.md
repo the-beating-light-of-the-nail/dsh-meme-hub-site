@@ -5,7 +5,7 @@ English | [简体中文](README.zh-CN.md)
 [![Node.js](https://img.shields.io/badge/Node.js-%E2%89%A522.19-339933?logo=nodedotjs&logoColor=white)](package.json)
 [![License](https://img.shields.io/badge/license-MIT-202124)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/59fa47b01281bf34dd1234f153ae60d2dc30a759/assets/hero-en.png" width="1280" alt="DeepSeek Harness with an interactive day plan inline and a scientific model open in Canvas">
+<img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/dc8471382c404fea873e11c947a4ef12b6ee4698/assets/hero-en.png" width="1280" alt="DeepSeek Harness with an interactive day plan inline and a scientific model open in Canvas">
 
 Some tasks are awkward in text. DeepSeek Harness GenUI lets an Agent create a focused interface for the current task: something that explains a difficult relationship or collects a complex user response.
 
@@ -18,15 +18,15 @@ Use an interface when the user needs to see a difficult relationship or make sev
 <table>
   <tr>
     <td><strong>Pick calendar slots</strong><br><br>Turn candidate availability into a short list of useful 90-minute writing blocks.<br><br>The interface saves the three choices to the task. A later calendar action remains separate and asks for approval.</td>
-    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/59fa47b01281bf34dd1234f153ae60d2dc30a759/screenshots/en/calendar-planner.jpg" width="280" alt="English interface for choosing three writing slots"></td>
+    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/dc8471382c404fea873e11c947a4ef12b6ee4698/screenshots/en/calendar-planner.jpg" width="280" alt="English interface for choosing three writing slots"></td>
   </tr>
   <tr>
     <td><strong>Explore photosynthesis</strong><br><br>Move light, carbon dioxide, temperature, and stomatal controls to find the limiting step.<br><br>The diagram changes with the controls, making each variable's effect easier to explore than to describe.</td>
-    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/59fa47b01281bf34dd1234f153ae60d2dc30a759/screenshots/en/photosynthesis-explorer.jpg" width="280" alt="English interactive photosynthesis model with four causal controls"></td>
+    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/dc8471382c404fea873e11c947a4ef12b6ee4698/screenshots/en/photosynthesis-explorer.jpg" width="280" alt="English interactive photosynthesis model with four causal controls"></td>
   </tr>
   <tr>
     <td><strong>Trace a code path</strong><br><br>Ask from the CLI for a source-grounded explanation of a real project flow.<br><br>The result is a local explorer with files, functions, branches, and the path selected by the user.</td>
-    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/59fa47b01281bf34dd1234f153ae60d2dc30a759/screenshots/en/code-path-explorer.jpg" width="280" alt="English source-grounded code path explorer returned from a CLI request"></td>
+    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/dc8471382c404fea873e11c947a4ef12b6ee4698/screenshots/en/code-path-explorer.jpg" width="280" alt="English source-grounded code path explorer returned from a CLI request"></td>
   </tr>
 </table>
 
@@ -36,7 +36,7 @@ The same app can sit inside the answer or open beside the conversation.
 
 | Inline | Canvas |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/59fa47b01281bf34dd1234f153ae60d2dc30a759/screenshots/en/code-path-inline.jpg" width="620" alt="An interactive code path shown inline in a DeepSeek Harness conversation"> | <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/59fa47b01281bf34dd1234f153ae60d2dc30a759/screenshots/en/code-path-canvas.jpg" width="620" alt="The DeepSeek Harness sidebar, conversation, and code-path explorer visible together in the right-side Canvas"> |
+| <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/dc8471382c404fea873e11c947a4ef12b6ee4698/screenshots/en/code-path-inline.jpg" width="620" alt="An interactive code path shown inline in a DeepSeek Harness conversation"> | <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/dc8471382c404fea873e11c947a4ef12b6ee4698/screenshots/en/code-path-canvas.jpg" width="620" alt="The DeepSeek Harness sidebar, conversation, and code-path explorer visible together in the right-side Canvas"> |
 | A compact control or focused choice. | More room without covering the conversation. |
 
 Inline, Canvas, fullscreen, and CLI/localhost are different surfaces over the same task state. Selections and inputs saved in one surface remain available to later Agent turns.

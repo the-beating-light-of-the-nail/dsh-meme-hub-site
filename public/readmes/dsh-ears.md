@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/d316c087283bcef92e09dfceab94a5cf6ca101ae/assets/banner.jpg" width="100%" alt="dsh-ears" />
+  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/b30486151afe2038353f7f0751132afa75887d7d/assets/banner.jpg" width="100%" alt="dsh-ears" />
 </p>
 
 <h1 align="center">dsh-ears</h1>
@@ -50,9 +50,11 @@ npx -y @deepseek-ai/dsh plugin --profile web add dsh-ears
 ```sh
 git clone https://github.com/WizisCool/dsh-ears.git
 cd dsh-ears
+pnpm use:platform
 pnpm install
 pnpm build
 dsh plugin --profile web add "$PWD"
+# Windows 的 cmd 请使用 "%CD%"；PowerShell 直接使用 $PWD
 ```
 
 安装完成后刷新 Web UI，输入框右侧会显示麦克风图标。
@@ -105,8 +107,10 @@ npx -y @deepseek-ai/dsh plugin --profile web remove dsh-ears
 ## 本地开发
 
 ```sh
+pnpm use:platform
 pnpm install
 dsh plugin --profile web add "$PWD"
+# Windows 的 cmd 请使用 "%CD%"；PowerShell 直接使用 $PWD
 pnpm check
 pnpm test
 pnpm build

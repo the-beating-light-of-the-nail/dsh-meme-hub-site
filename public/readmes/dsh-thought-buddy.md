@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/dsh-plugins/dsh-thought-buddy/3fcc172a38e1567a190ff644c581ff5ba4c8472a/docs/banner.png" alt="dsh-thought-buddy banner" style="max-width: 720px; width: 100%">
+<img src="https://raw.githubusercontent.com/dsh-plugins/dsh-thought-buddy/575de52864a702036f493d0b2c05a648dcf1f1a3/docs/banner.png" alt="dsh-thought-buddy banner" style="max-width: 720px; width: 100%">
 
 # dsh-thought-buddy
 
-<img src="https://raw.githubusercontent.com/dsh-plugins/dsh-thought-buddy/3fcc172a38e1567a190ff644c581ff5ba4c8472a/docs/effect.gif" alt="dsh-thought-buddy effect" style="max-width: 256px; width: 100%">
+<img src="https://raw.githubusercontent.com/dsh-plugins/dsh-thought-buddy/575de52864a702036f493d0b2c05a648dcf1f1a3/docs/effect.gif" alt="dsh-thought-buddy effect" style="max-width: 256px; width: 100%">
 
 **A DeepSeek Harness Web plugin that puts a dynamic little buddy — a GrokBot-style animated avatar with a synchronized typewriter status line — right in front of the "Deep diving..." indicator.**
 
@@ -27,7 +27,7 @@ English | [简体中文](README.zh_CN.md)
 
 The avatar animation is ported from [nasawz/GrokBot](https://github.com/nasawz/GrokBot) (a pure Flutter `CustomPaint` widget) to the web: all 25 expressions × 2 eyes × 48-point eye rings, 18 body shapes, and 39 states with their expression/blink cadences are preserved.
 
-![Effect preview — animated GrokBot avatar in front of the Deep diving... status](https://raw.githubusercontent.com/dsh-plugins/dsh-thought-buddy/3fcc172a38e1567a190ff644c581ff5ba4c8472a/docs/img.png)
+![Effect preview — animated GrokBot avatar in front of the Deep diving... status](https://raw.githubusercontent.com/dsh-plugins/dsh-thought-buddy/575de52864a702036f493d0b2c05a648dcf1f1a3/docs/img.png)
 
 ## Features
 

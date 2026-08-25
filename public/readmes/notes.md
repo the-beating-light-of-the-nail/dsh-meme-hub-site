@@ -1,15 +1,15 @@
 # 开源版锤子便签
 
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/aab7c89dace491a0c90f98d04f53ab503e755968249ea9a89521f56b69eedeac.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/aab7c89dace491a0c90f98d04f53ab503e755968249ea9a89521f56b69eedeac.png)
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/e99a408cc01fdffd81fca6dcafc4152b171f0be7d7003032338443197f9e23da.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/e99a408cc01fdffd81fca6dcafc4152b171f0be7d7003032338443197f9e23da.png)
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/fdf4b92e91f316425ce457400a9219fe91afbd8d87668c32a2c488579f2ac116.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/fdf4b92e91f316425ce457400a9219fe91afbd8d87668c32a2c488579f2ac116.png)
 
 | 支持手机版 | 一键发送公众号 |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/a1cc07be6396cb67288b2cebacc26b6746aa0409d976f230b762fcc467706ccc.gif) | ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/ef2ef8e599f5afb747e1c78f8bbb38bc4ce8209070cb699552607507dac63b6b.gif) |
+| ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/a1cc07be6396cb67288b2cebacc26b6746aa0409d976f230b762fcc467706ccc.gif) | ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/ef2ef8e599f5afb747e1c78f8bbb38bc4ce8209070cb699552607507dac63b6b.gif) |
 
 
 
@@ -47,7 +47,7 @@ dsh plugin --profile web add @zhaoolee/dsh-notes
 
 | Deepseek Harness 生成分享便签 | 导出效果 |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/b66a25f62ae0f1ab7f0ef0f71540594ac5c2a4c57b63bbfa4e693693fafb61dc.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/def783d53d1c75b1e8f74ff29c4bd4b460105d1c5c7453aa8c50615f8f92c86a.png) |
+| ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/b66a25f62ae0f1ab7f0ef0f71540594ac5c2a4c57b63bbfa4e693693fafb61dc.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/def783d53d1c75b1e8f74ff29c4bd4b460105d1c5c7453aa8c50615f8f92c86a.png) |
 
 
 
@@ -66,7 +66,7 @@ clawhub地址 https://clawhub.ai/zhaoolee/notes-export-api
 只要你喜欢，可以把底部的「锤子便签」改成「凿子便签」或「榔头便签」
 
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/e8549f76a4254c998d4b8aa2eb5be0bef5ecfcf3ddd56ee119cb159f993a3d67.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/e8549f76a4254c998d4b8aa2eb5be0bef5ecfcf3ddd56ee119cb159f993a3d67.png)
 
 
 
@@ -74,25 +74,25 @@ clawhub地址 https://clawhub.ai/zhaoolee/notes-export-api
 ## 支持下载文章，包含网页，markdown以及管理的图片资源
 
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/0c60fb3e65140f312596ea29be241881ffa7a67d50bcda49783117a8487d5fad.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/0c60fb3e65140f312596ea29be241881ffa7a67d50bcda49783117a8487d5fad.png)
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/6cfa5f69414ba904b1211b9fa1147209967c6010a6a69b4c8567a7ba90fdbfff.gif)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/6cfa5f69414ba904b1211b9fa1147209967c6010a6a69b4c8567a7ba90fdbfff.gif)
 
 ## 支持接入DeepSeek，修正语法错误，重点加粗，通俗化润色
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/44a5d5ab4aad2f44f713be9d06275c7bf8a8c73f22c124af7675bfbe81d17adb.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/44a5d5ab4aad2f44f713be9d06275c7bf8a8c73f22c124af7675bfbe81d17adb.png)
 
 ## 零配置，复制即可将权限导入hermes agent
 
 登陆后，复制一行专属链接，粘贴给Hermes Agent或OpenClaw，即可获取包含登身份认证的skill包，实现人机协同
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/c7cacf577167ab7ed8ca053b1bc0f68486959ba0dd2e662e8182cee37ed5283b.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/c7cacf577167ab7ed8ca053b1bc0f68486959ba0dd2e662e8182cee37ed5283b.png)
 
 ## 支持多用户隔离
 
 可以给AI分配一个账号，人类分配一个账号，数据严格隔离
 
-![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/0c079169e397b53644b312e54561db9c1da8477806ff290fa36eb7bfb7701178.png)
+![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/0c079169e397b53644b312e54561db9c1da8477806ff290fa36eb7bfb7701178.png)
 
 
 ## 支持一键粘贴到公众号助手
@@ -103,7 +103,7 @@ clawhub地址 https://clawhub.ai/zhaoolee/notes-export-api
 
 | 子公司主题  | 母公司主题 |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/526e1a90ca99914fdd811d22c53202e5c22c18c103b926baaab709728abac20e.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/23b514e3546014b65d00b7b0b655c3350cd4546a462e152538021010a750822e.png) |
+| ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/526e1a90ca99914fdd811d22c53202e5c22c18c103b926baaab709728abac20e.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/23b514e3546014b65d00b7b0b655c3350cd4546a462e152538021010a750822e.png) |
 
 
 ## 网页版
@@ -111,8 +111,8 @@ clawhub地址 https://clawhub.ai/zhaoolee/notes-export-api
 
 | 暖白纸感 | 深夜便签 |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/9182e3af534b27a1daac8cb9d301abe6935214ded96539df96b58727830a22bb.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/07b3426e6f163673cd4e0a1ebaf7e88f798aafcb795b7cb87dafce4643ba766b.png) |
-| ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/28d864deb17cb0ec9d9a7740392ca8bed1e71d3dabee8cc7cbb821d17f74176c.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/e76628622f2361c09c6a7887825d3c9d8e8cd703/README.assets/53da5ab92d9aaecb9d246124fd6db1592f528b3b5c1793b9c1bbdcec7beafddb.png) |
+| ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/9182e3af534b27a1daac8cb9d301abe6935214ded96539df96b58727830a22bb.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/07b3426e6f163673cd4e0a1ebaf7e88f798aafcb795b7cb87dafce4643ba766b.png) |
+| ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/28d864deb17cb0ec9d9a7740392ca8bed1e71d3dabee8cc7cbb821d17f74176c.png) | ![](https://raw.githubusercontent.com/zhaoolee/notes/12f662975dd36009df55d59fb26adaac367e4c10/README.assets/53da5ab92d9aaecb9d246124fd6db1592f528b3b5c1793b9c1bbdcec7beafddb.png) |
 
 
 ## Skill 服务地址

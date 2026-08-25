@@ -12,7 +12,7 @@
 
 左：默认 Web UI。右：dsh-smooth-stream。
 
-![左：未使用插件。右：使用 dsh-smooth-stream。](https://raw.githubusercontent.com/Laplace-bit/dsh-smooth-stream/3320436a4cf4d842ad89b361093a2ae6d6aa08df/docs/compare.gif)
+![左：未使用插件。右：使用 dsh-smooth-stream。](https://raw.githubusercontent.com/Laplace-bit/dsh-smooth-stream/b8c5eefc1584a5a1d69116a0b038acd2abc4adb6/docs/compare.gif)
 
 ## 核心体验
 

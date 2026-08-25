@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/84cdb066d0921f2e5a17363c844c36f4b2823d42/assets/whale/whale-happy.svg" alt="" width="56">
+  <img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/eead57b7ae57a6054940cb0d0511074db0ae6a31/assets/whale/whale-happy.svg" alt="" width="56">
 </p>
 
 <h1 align="center">深迹 · DeepTrace</h1>
@@ -40,7 +40,7 @@
 
 <br/>
 
-<img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/84cdb066d0921f2e5a17363c844c36f4b2823d42/docs/images/deeptrace-overview.png" alt="DeepTrace inside DSH" width="100%" style="border:1px solid #d9e3e8;border-radius:14px">
+<img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/eead57b7ae57a6054940cb0d0511074db0ae6a31/docs/images/deeptrace-overview.png" alt="DeepTrace inside DSH" width="100%" style="border:1px solid #d9e3e8;border-radius:14px">
 
 ---
 
@@ -87,11 +87,11 @@ DeepTrace 不是 log viewer，也不是普通 dashboard——它把会话事件�
 
 ## Product
 
-<img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/84cdb066d0921f2e5a17363c844c36f4b2823d42/docs/images/overview.png" alt="DeepTrace overview" width="100%" style="border:1px solid #d9e3e8;border-radius:14px">
+<img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/eead57b7ae57a6054940cb0d0511074db0ae6a31/docs/images/overview.png" alt="DeepTrace overview" width="100%" style="border:1px solid #d9e3e8;border-radius:14px">
 
 <sub>DeepTrace overview — hero, provider balance, cost, findings and the whale note.</sub>
 
-<img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/84cdb066d0921f2e5a17363c844c36f4b2823d42/docs/images/report.png" alt="Full report" width="100%" style="border:1px solid #d9e3e8;border-radius:14px">
+<img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/eead57b7ae57a6054940cb0d0511074db0ae6a31/docs/images/report.png" alt="Full report" width="100%" style="border:1px solid #d9e3e8;border-radius:14px">
 
 <sub>The full DeepTrace report — findings, collaboration review, activity, resources, risks and session trace.</sub>
 
@@ -268,5 +268,5 @@ MIT
 
 <p align="center"><em>DeepTrace is built to make Agent behavior inspectable, measurable, and easier to improve.</em></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/84cdb066d0921f2e5a17363c844c36f4b2823d42/assets/whale/whale-happy.svg" alt="" width="28"><br/>
+<p align="center"><img src="https://raw.githubusercontent.com/SenmuuuuW/dsh-whale-report/eead57b7ae57a6054940cb0d0511074db0ae6a31/assets/whale/whale-happy.svg" alt="" width="28"><br/>
 <sub>…and yes, the whale is watching. She reads every report first.</sub></p>

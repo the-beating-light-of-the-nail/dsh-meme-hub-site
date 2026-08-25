@@ -1,6 +1,6 @@
 # anime-find
 
-![anime-find](https://raw.githubusercontent.com/cocofhu/anime-find/911a44261208413678125de94df74d04c4ec799c/docs/banner.jpg)
+![anime-find](https://raw.githubusercontent.com/cocofhu/anime-find/85cd5c579b7ed567a700f1612589ea6e02f1f733/docs/banner.jpg)
 
 [![CI](https://github.com/cocofhu/anime-find/actions/workflows/ci.yml/badge.svg)](https://github.com/cocofhu/anime-find/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@cocofhu/anime-find.svg)](https://www.npmjs.com/package/@cocofhu/anime-find)
@@ -57,13 +57,13 @@ dsh plugin --profile web add /absolute/path/to/anime-find
 
 按字幕组浏览集数、复制磁力链接或打开种子文件：
 
-![资源详情：无职转生第三季的磁力与种子列表](https://raw.githubusercontent.com/cocofhu/anime-find/911a44261208413678125de94df74d04c4ec799c/docs/screenshot-resources.png)
+![资源详情：无职转生第三季的磁力与种子列表](https://raw.githubusercontent.com/cocofhu/anime-find/85cd5c579b7ed567a700f1612589ea6e02f1f733/docs/screenshot-resources.png)
 
 ### 流媒体播放
 
 在详情中切换到流媒体，选择剧集后可在对话中直接播放：
 
-![流媒体播放：无职转生第三季在线播放](https://raw.githubusercontent.com/cocofhu/anime-find/911a44261208413678125de94df74d04c4ec799c/docs/screenshot-streaming.png)
+![流媒体播放：无职转生第三季在线播放](https://raw.githubusercontent.com/cocofhu/anime-find/85cd5c579b7ed567a700f1612589ea6e02f1f733/docs/screenshot-streaming.png)
 
 ## 配置
 

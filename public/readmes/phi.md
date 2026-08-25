@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 A minimal terminal coding agent harness in Go — a sibling to Pi.
@@ -19,9 +19,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
   <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
 </p>
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/image.png)
 
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
@@ -110,7 +110,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/0a3e5e9f947ed264fcb135731c79d1316a0948dc/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -272,6 +272,10 @@ Flags:
 | `--session ID`       | Resume a persisted session by id or unique prefix |
 | `--continue-last`    | Resume the newest persisted session for this directory |
 | `--session-dir DIR`  | Override the session storage directory         |
+| `--tools LIST`       | Enable only these comma-separated built-in tools |
+
+`--tools` accepts built-in names such as `read,ls,grep`. MCP and agent tools
+still append when configured; the flag only scopes the built-in toolset.
 
 Exit codes: `0` success · `1` runtime/LLM error · `2` max rounds reached ·
 `3` config/usage error.

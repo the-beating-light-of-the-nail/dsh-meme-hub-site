@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/159ca38467ed5a25ead4d3e48f0284683f2f7836/docs/screenshots/cover.jpeg" alt="DeepSeek-Harness Widgets preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/0c904a264172b6372368407e36b329a95b489fdf/docs/screenshots/cover.jpeg" alt="DeepSeek-Harness Widgets preview" width="100%">
 </p>
 
 DeepSeek-Harness Widgets is a **persistent DSH bundle plugin** built on the Cordis composition model. It provides a customizable multi-column widget rail on the right side of the conversation page — real-time session insights, usage monitoring, and quick actions — with an extensible declarative registry.
@@ -110,6 +110,14 @@ pnpm run check      # typecheck + tests + build
 - Coordinates explicitly with `dsh-better-sidebar`'s right rail (shares `--dsh-sidebar-width`); no residue after uninstall.
 
 ## Changelog
+
+### v1.2.1
+**Fixed — the last edit is now flushed to the host store when the page closes, so widget state survives ANY desktop shell and every browser/device:**
+
+- **Root cause.** Widget config is written to two channels: `localStorage` (fast path) and the host file via a **400 ms debounced** PUT to `/api/widgets-state` (authoritative, origin-independent). The debounced write had **no unload flush**: if the window/tab closed within that 400 ms window (or while the PUT was still in flight), the request died with the page. On shells that spawn a fresh random loopback origin per launch (e.g. DSH Desktop builds), `localStorage` is a brand-new realm on every boot, so that single missed PUT meant the edit was lost for good — "changes don't save" on desktop while the fixed-port local web (stable origin) masked the same defect invisibly.
+- 💾 **Unload flush.** A `pagehide` listener now calls `flushPendingState()` the moment the page starts tearing down. It sends any state that has not yet reached the host store via `navigator.sendBeacon` (delivered by the browser even as the page is destroyed) with a keepalive-fetch fallback; the host route already accepted POST as well as PUT, so the same endpoint copes with it. A quick close after an edit can no longer lose the change, on any desktop shell, browser origin, private mode, or cleared-site-data session.
+- 🛡️ The debounced PUT also gained `keepalive: true`, so a write already in flight survives page teardown as well.
+- 🧪 Headless-verified end-to-end against the real host store: capsule-click (a real `setPrefs` → `saveState`) followed by an **immediate** `pagehide` (≈80 ms, well inside the 400 ms debounce) produced a real beacon; the host file's `savedAt` advanced to match `localStorage`, the debounce fetch did not re-fire, and the test restored the user's true state afterwards.
 
 ### v1.2.0
 **Fixed**

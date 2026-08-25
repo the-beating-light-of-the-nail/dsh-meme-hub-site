@@ -1,7 +1,6 @@
 # 🐳 Awesome DSH Plugins
 
-> 用 30 秒为你的 DeepSeek Harness（DSH）找到合适的插件。
-> 这不是又一个仓库清单：GitHub 上所有打着 `dsh-plugin` 标签的仓库由脚本每天自动抓取，再经人工逐个核实——真插件进目录，蹭热度的进黑名单，每条剔除理由公开可查。并告诉你每个插件适合谁、从哪里开始。
+> 30 秒找到真正适合你的 DeepSeek Harness 插件。每天自动抓取 GitHub 上的 `dsh-plugin` 项目并逐个复核：真实插件分类收录，蹭标签项目剔除。通过场景化分类、精选推荐、热度排行和图文导览，帮你快速看懂每个插件能做什么、适合谁，以及如何开始使用。欢迎 Star，让好用的插件更快被发现。
 
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![Repositories](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbruc3van%2Fawesome-dsh-plugin%2Fmain%2Fdata%2Frepositories.json&query=%24.total_count&label=repositories&color=2563eb)](./CATALOG.md)
@@ -28,51 +27,51 @@
 ## 🗺️ 生态全景
 
 <!-- dsh:panorama:start -->
-截至 2026-08-23 共收录 **8732** 个经核实的仓库。它们长这样：
+截至 2026-08-23 共收录 **9365** 个经核实的仓库。它们长这样：
 
 ```mermaid
 mindmap
-  root((DSH 插件生态 8732))
-    Agent 自动化与工作流 · 3558
+  root((DSH 插件生态 9365))
+    Agent 自动化与工作流 · 3762
       定时循环与事件唤醒
       多 Agent 协作
       长期记忆与自我进化
       审批、预算与检查点
-    界面与体验 · 1587
+    界面与体验 · 1715
       桌面客户端与终端 TUI
       侧边栏工作台
       皮肤与桌面宠物
       通知与输入增强
-    网页与浏览器 · 1232
+    网页与浏览器 · 1352
       浏览器桥接与页面操作
       网页搜索与引用
       归档与网页取证
-    设计媒体与视觉 · 458
+    设计媒体与视觉 · 499
       图片理解与 OCR
       设计画布与 UI 还原
-    实用工具与其他 · 432
+    实用工具与其他 · 467
       文件与编码
       格式转换
-    知识与研究 · 418
+    知识与研究 · 454
       知识库与跨会话记忆
       深度研究
       学术与数学
-    生态与资源 · 401
+    生态与资源 · 434
       插件市场与注册表
       开发模板与脚手架
       教程与手册
-    开发者工具 · 401
+    开发者工具 · 427
       Git 与 diff
       沙箱与运行时
       调试与诊断
-    集成与分享 · 245
+    集成与分享 · 255
       会话导入与分享
       远程访问
       IM 与外部集成
 ```
 <!-- dsh:panorama:end -->
 
-按分类浏览每个分类下的全部项目，见 [CATALOG.md](./CATALOG.md)。
+按分类浏览每个分类下的全部项目，见 [CATALOG.md](./CATALOG.md)——目录按类目分册，索引页列出每一册。
 
 ## ⭐ 精选推荐
 
@@ -80,7 +79,7 @@ mindmap
 
 ### 🖥️ 桌面与终端
 
-- **想要独立的桌面客户端**，而不是浏览器标签页：[dsh-desktop](https://github.com/bruc3van/dsh-desktop) —— 安全是身份：窗口加载官方 Web UI 本体（非仿制版），小边界 + 逐层加固——窗口沙箱、导航锁定、更新链路防劫持、权限最小化，插件先审查、再安装（内置安全市场默认关闭、开启才联网）；长任务托盘常驻随点随开，智能模式自动复用本机已运行的实例、或用内置运行时一键启动（无需 Node.js/CLI），固定地址模式直连你自行维护的实例。
+- **想要独立的桌面客户端**，而不是浏览器标签页：[dsh-desktop](https://github.com/bruc3van/dsh-desktop) —— 原汁原味的官方 Web UI，不做过多修改；关闭窗口任务照跑，常驻托盘随点随开。安装包自带官方运行时，双击即用，不用装 Node.js、也不用敲命令；智能模式自动复用本机已运行的实例，固定地址模式则直连你自己维护的地址。安全上逐层加固——窗口沙箱、导航锁定、更新链路防劫持、权限最小化，内置安全市场，精选分类600+插件，主打先审查、再安装。
 - **想在终端里用 Claude Code 风格界面**：[dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) · [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) —— 全屏交互终端：状态行、思考流展开、上下文/TPS 仪表；tianshu 版本还内置 TDD 与证据门工作流。
 
 | | | |
@@ -128,12 +127,10 @@ mindmap
 - **想像 Codex 一样用 @ 引用工作区文件**：[dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) —— 在输入框内按 @ 搜索工作区文件并把内容附进 prompt，免去手动复制粘贴。
 - **想调节思考强度**：[dsh-reasoning-effort](https://github.com/HanaAyane/dsh-reasoning-effort) —— Codex 风格的思考强度滑块，以及大肥鱼跑步滑块。
 - **想更顺手地阅读和操作长对话**：[dsh-annotation](https://github.com/omdsh-dev/dsh-annotation) · [dsh-navbar](https://github.com/vlln/dsh-navbar) —— 像 Codex 一样选中文本批注，并快速跳转用户消息节点。
-- **想给 DSH 上保险**：[dsh-undo-savepoint](https://github.com/lire1131/dsh-undo-savepoint) —— 撤销配置与插件代码改动、密钥安全快照、一键 SAFE MODE，DSH 无法启动时也有离线 CLI/GUI 可用。
 
 | | | |
 | :---: | :---: | :---: |
 | <a href="https://github.com/omdsh-dev/dsh-at-file"><img src="https://github.com/omdsh-dev/dsh-at-file/raw/main/assets/screenshots/workspace-path-picker.png" alt="dsh-at-file" width="280"></a><br>[dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) | <a href="https://github.com/HanaAyane/dsh-reasoning-effort"><img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/main/assets/readme/themes.webp" alt="dsh-reasoning-effort" width="280"></a><br>[dsh-reasoning-effort](https://github.com/HanaAyane/dsh-reasoning-effort) | <a href="https://github.com/vlln/dsh-navbar"><img src="https://raw.githubusercontent.com/vlln/dsh-navbar/main/docs/preview/navbar.png" alt="dsh-navbar" width="280"></a><br>[dsh-navbar](https://github.com/vlln/dsh-navbar) |
-| <a href="https://github.com/lire1131/dsh-undo-savepoint"><img src="https://github.com/lire1131/dsh-undo-savepoint/raw/master/docs/webui-header.png" alt="dsh-undo-savepoint" width="280"></a><br>[dsh-undo-savepoint](https://github.com/lire1131/dsh-undo-savepoint) | | |
 
 ### 🎨 创作与乐趣
 
@@ -211,26 +208,26 @@ mindmap
 <!-- dsh:leaderboard:start -->
 | # | 项目 | ⭐ Stars | License |
 | ---: | --- | ---: | --- |
-| 1 | [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | 5711 | Apache-2.0 |
-| 2 | [liustack/modlens](https://github.com/liustack/modlens) | 3545 | MIT |
-| 3 | [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 2706 | MIT |
-| 4 | [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 2356 | MIT |
-| 5 | [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | 1978 | MIT |
-| 6 | [Small-tailqwq/dsh-deep-whale](https://github.com/Small-tailqwq/dsh-deep-whale) | 1623 | — |
-| 7 | [Tencent/BrowserSkill](https://github.com/Tencent/BrowserSkill) | 1278 | MIT |
-| 8 | [mem9-ai/mem9](https://github.com/mem9-ai/mem9) | 1197 | Apache-2.0 |
-| 9 | [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router) | 941 | MIT |
-| 10 | [bowenliang123/dsh-context](https://github.com/bowenliang123/dsh-context) | 932 | Apache-2.0 |
-| 11 | [NanmiCoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | 884 | MIT |
-| 12 | [Anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) | 814 | MIT |
-| 13 | [toby-bridges/api-relay-audit](https://github.com/toby-bridges/api-relay-audit) | 801 | AGPL-3.0 |
-| 14 | [MeteorNOX/DeepSeek-Balance-Whale-Widget](https://github.com/MeteorNOX/DeepSeek-Balance-Whale-Widget) | 680 | MIT |
-| 15 | [ccch1mneyyy/working-activity](https://github.com/ccch1mneyyy/working-activity) | 654 | MIT |
-| 16 | [Electricitysheep/dsh-handbook](https://github.com/Electricitysheep/dsh-handbook) | 638 | — |
-| 17 | [xmanrui/dsh-im](https://github.com/xmanrui/dsh-im) | 635 | MIT |
-| 18 | [Nagi-ovo/dsh-ads](https://github.com/Nagi-ovo/dsh-ads) | 550 | BSD-3-Clause |
-| 19 | [shaobeichen/dsh-pocket](https://github.com/shaobeichen/dsh-pocket) | 514 | GPL-2.0 |
-| 20 | [fufankeji/deepseek-harness-studio](https://github.com/fufankeji/deepseek-harness-studio) | 474 | MIT |
+| 1 | [yjh051108/dsh-routing-suite](https://github.com/yjh051108/dsh-routing-suite) | 6692 | — |
+| 2 | [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | 5711 | Apache-2.0 |
+| 3 | [liustack/modlens](https://github.com/liustack/modlens) | 3545 | MIT |
+| 4 | [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 2706 | MIT |
+| 5 | [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 2356 | MIT |
+| 6 | [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | 1978 | MIT |
+| 7 | [Small-tailqwq/dsh-deep-whale](https://github.com/Small-tailqwq/dsh-deep-whale) | 1623 | — |
+| 8 | [Tencent/BrowserSkill](https://github.com/Tencent/BrowserSkill) | 1278 | MIT |
+| 9 | [mem9-ai/mem9](https://github.com/mem9-ai/mem9) | 1197 | Apache-2.0 |
+| 10 | [dsh-tauri-desk/deepseek-harness-desktop](https://github.com/dsh-tauri-desk/deepseek-harness-desktop) | 989 | MIT |
+| 11 | [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router) | 941 | MIT |
+| 12 | [bowenliang123/dsh-context](https://github.com/bowenliang123/dsh-context) | 932 | Apache-2.0 |
+| 13 | [NanmiCoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | 884 | MIT |
+| 14 | [Anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) | 814 | MIT |
+| 15 | [toby-bridges/api-relay-audit](https://github.com/toby-bridges/api-relay-audit) | 801 | AGPL-3.0 |
+| 16 | [MeteorNOX/DeepSeek-Balance-Whale-Widget](https://github.com/MeteorNOX/DeepSeek-Balance-Whale-Widget) | 680 | MIT |
+| 17 | [ccch1mneyyy/working-activity](https://github.com/ccch1mneyyy/working-activity) | 654 | MIT |
+| 18 | [Electricitysheep/dsh-handbook](https://github.com/Electricitysheep/dsh-handbook) | 638 | — |
+| 19 | [xmanrui/dsh-im](https://github.com/xmanrui/dsh-im) | 635 | MIT |
+| 20 | [vibeinging/dsh-desktop](https://github.com/vibeinging/dsh-desktop) | 621 | MIT |
 <!-- dsh:leaderboard:end -->
 
 [查看完整 Star Top 200 →](./TOP200.md)
@@ -241,19 +238,20 @@ mindmap
 
 | 项目 | 简介 | 创建日期 |
 | --- | --- | --- |
-| [swarm-apps/dsh-swarmdrop](https://github.com/swarm-apps/dsh-swarmdrop) | Send files from your DeepSeek Harness agent straight to your phone, and reference what your phone sent back — no account, no public IP, end-to-end encrypted. | 2026-08-21 |
-| [Quan-Chan/Weave-for-DSH](https://github.com/Quan-Chan/Weave-for-DSH) | Offline single-HTML node-graph editor with an AI teaching skill, installed as one DSH bundle. | 2026-08-21 |
-| [jiaererw/dsh-plugin-chrome](https://github.com/jiaererw/dsh-plugin-chrome) | Browser visualization: a visible Chrome window per session, 16 chrome_* agent tools, and a live view in the Web GUI. | 2026-08-20 |
-| [ai-yucheng/dsh-audio-copilot](https://github.com/ai-yucheng/dsh-audio-copilot) | Audio Copilot: transcribe audio (ASR) and synthesize speech (TTS), with an in-composer voice-input mic button. | 2026-08-20 |
-| [PolinniZhong/dsh-personal-center](https://github.com/PolinniZhong/dsh-personal-center) | Personal center in Settings: usage stats, custom instructions, cost estimation, and a local-only desktop pet. | 2026-08-19 |
-| [beihzb/dsh-notebook](https://github.com/beihzb/dsh-notebook) | Native Jupyter-style notebook for DeepSeek Harness: real ipykernel sidecar, VS Code-aligned cell UI, inline figures, per-cell AI revision. | 2026-08-19 |
-| [Asif2BD/JARVIS-Mission-Control-DeepSeek](https://github.com/Asif2BD/JARVIS-Mission-Control-DeepSeek) | Mission Control dashboard and human-review workflow for DeepSeek Harness sessions, turns, and tool activity. | 2026-08-17 |
-| [liangmianya/dsh-synapse](https://github.com/liangmianya/dsh-synapse) | A visual, non-linear conversation workspace: a canvas-based session explorer and branching workspace over DSH's native sessions. | 2026-08-16 |
+| [10086ggqq/dsh_theme_terraria](https://github.com/10086ggqq/dsh_theme_terraria) | Terraria pixel-world skin: wizard companion, live dialogue, tool approval, and difficulty switching. | 2026-08-22 |
+| [ZSeven-W/dsh-android](https://github.com/ZSeven-W/dsh-android) | Live Android emulator or USB device stream inside a DSH conversation, driven through adb. | 2026-08-21 |
+| [lna-lab/distill-kura](https://github.com/lna-lab/distill-kura) | Distilled long-term memory: recall by meaning, writing gated by evidence; DSH plugin + MCP server. | 2026-08-21 |
+| [qkycir-123/dsh-run2skill](https://github.com/qkycir-123/dsh-run2skill) | Local-first Run-to-Skill plugin: turn a completed run into a reusable DSH skill. | 2026-08-19 |
+| [yjh051108/dsh-routing-suite](https://github.com/yjh051108/dsh-routing-suite) | Injector + task-aware reasoning-mode router kit (measured P1–P23). | 2026-08-14 |
+| [yjh051108/dsh-router-standard](https://github.com/yjh051108/dsh-router-standard) | Task-aware reasoning-mode router with spec/mixed/react bands and phase-transition evidence. | 2026-08-14 |
+| [dsh-tauri-desk/deepseek-harness-desktop](https://github.com/dsh-tauri-desk/deepseek-harness-desktop) | 5 MB Tauri desktop client: zero environment setup, preset plugins, Windows/macOS/Linux. | 2026-08-14 |
+| [havingautism/dsh-deepresearch](https://github.com/havingautism/dsh-deepresearch) | Evidence-first deep-research workspace with persistent workflow state and a research Web UI. | 2026-08-12 |
 
 ## 📣 作者自荐
 
 插件作者按 [CONTRIBUTING](./CONTRIBUTING.md#作者自荐--self-promotion) 规范自行提交的推荐位：**不经编辑部审核，也不代表质量或安全背书**，安装前请自行评估（见下方「使用与安全」）。本区最多保留 30 条，区满后先进先出；条目若被上方[精选推荐](#-精选推荐)收录，会从本区移除、不占名额。首页只展示**最近 10 条**，完整列表见 [SHOWCASE.md](./SHOWCASE.md)。
 
+<!-- dsh:showcase:start -->
 - **[dsh-mcp-lens](https://github.com/labmimors/dsh-mcp-lens)**（[@labmimors](https://github.com/labmimors) · 2026-08-15）— 把大型 MCP 工具目录保持为 `mcp_search` 和 `mcp_call` 两个模型可见接口，按需返回少量精确 schema，再以 `allowTools` / `denyTools` 同时约束搜索和调用；适合接入几十到上千个 MCP 工具的 DSH 用户，并附本地 schema 字节计算器与 CI 预算 Action。
 - **[dsh-movein](https://github.com/sjh9714/dsh-movein)**（[@sjh9714](https://github.com/sjh9714) · 2026-08-16）— 把整套 Claude Code 配置一条命令搬进 DSH：技能、斜杠命令、MCP、hooks、子代理、权限规则（deny/ask 桥接 + 迁移差异报告），默认 dry run 先出搬家清单；`--reverse` 把 DSH 里长出来的技能搬回去实现双栖，v0.5 新增 doctor 搬家体检（含检测会被 DSH 静默丢弃的技能 frontmatter）与写入前自动备份、一键回滚。
 - **[dsh-compressor](https://github.com/lifeodyssey/dsh-compressor)**（[@lifeodyssey](https://github.com/lifeodyssey) · 2026-08-16）— Headroom 的精简移植：压工具输出，至多少 20% 上下文，不动模型缓存。适合工具日志 / JSON / diff 把上下文撑满、又不想改已发给模型的前缀的人。
@@ -263,21 +261,21 @@ mindmap
 - **[dsh-trace-compare](https://github.com/lamost423/dsh-trace-compare)**（[@lamost423](https://github.com/lamost423) · 2026-08-20）— 轨迹对比 + 实时迷宫：把 agent 真实的探索过程画在墙钟时间轴上——主干、失败/扑空的支路、折返点、子代理支路；上传 1–2 个 session log 做单跑复盘或同轴对比（按轮次自动对齐 + 支路盘点表），也可在会话页签实时看迷宫生长；判定全部是确定性规则、悬停可见依据，不调 LLM。
 - **[dsh-feishu](https://github.com/PGZXB/dsh-feishu)**（[@PGZXB](https://github.com/PGZXB) · 2026-08-20）— 把 DeepSeek Harness 装进飞书：一个聊天对应一个 dsh 会话，命令面板、审批与提问全部卡片化，流式卡片实时展示，扫码一次完成配置，随时在手机/桌面指挥本地 agent；已发布 npm `@dsh-feishu/dsh-feishu`。
 - **[dsh-easyrewrite](https://github.com/Renzic-Stone/DSH-EasyRewrite)**（[@Renzic-Stone](https://github.com/Renzic-Stone) · 2026-08-21）— DSH Web 用户消息气泡内联编辑与撤回插件：单击气泡原位编辑、撤回键一键截断重发，惰性提交、无痕替换，版本翻页器回看历史版本，草稿按会话持久化并超时自动备份，界面三语（中文 / English / 日本語），纯官方扩展点实现、零源码补丁。
-
 - **[tabbit-browser](https://github.com/Tabbit-Browser/dsh-tabbit)**（[@Tabbit-Browser](https://github.com/Tabbit-Browser) · 2026-08-21）— 让 DSH agent 接管你的 Tabbit 浏览器：通过浏览器自带的任务隔离 Playwright CLI（`tabbit-cli`）操作真实页面、真实登录态与真实交互，用于网页自动化、信息抽取、QA 与基准测试。自带 `tabbit-browser` 技能（持久任务空间、定位器与等待、截图、回执与恢复，随插件自动注册，`/tabbit-browser` 调用）与 `tabbit_browser_install` 环境预检工具（检测稳定版 ≥1.9.0 与运行时，缺失或过旧则按系统区域后台下载对应安装包）。一条命令安装：`dsh plugin --profile web add github:Tabbit-Browser/dsh-tabbit`。⚠️ 仓库暂无 LICENSE 文件（README 标注 MIT）。
+<!-- dsh:showcase:end -->
 
 [查看全部 30 条自荐 →](./SHOWCASE.md)
 
 ## 🔍 我们如何维护这个列表
 
 - **面向使用者，而不是爬虫：** 从「我想完成什么」出发组织首页，而不是让你阅读几百行仓库名称。
-- **人工推荐 + 全量索引分层：** 首页只放经过人工筛选的精选推荐与自荐预览；[CATALOG.md](./CATALOG.md) 收录全部经核实的仓库；新增仓库先进入[待审核队列](./data/review/pending.md)，核实后合并（约定见 [data/review/README.md](./data/review/README.md)）。
+- **人工推荐 + 全量索引分层：** 首页只放经过人工筛选的精选推荐与自荐预览；[CATALOG.md](./CATALOG.md) 及其分类分册收录全部经核实的仓库；新增仓库先进入[待审核队列](./data/review/pending.md)，核实后合并（约定见 [data/review/README.md](./data/review/README.md)）。
 - **数据自动、页面人工：** 原始快照与待审核队列每天由脚本自动刷新；全量目录与 Top 200 热度榜只在人工核实合并后重新生成（生成逻辑见 [scripts/merge.mjs](./scripts/merge.mjs) 与 [scripts/top.mjs](./scripts/top.mjs)，可随时切回 Top 100）；首页精选推荐、自荐与最近加入由人工维护，避免刷星、蹭 Topic 等被污染的接口数据直接改写推荐内容。
 - **剔除蹭热度条目：** 带 `dsh-plugin` Topic 但并非 DSH 插件的仓库（平台本体、其他 Agent 工具、同名目录站等）以及编辑部拉黑的仓库不计入目录与榜单，理由逐条记录在 [data/curated.json](./data/curated.json)（榜单另有 `leaderboard_exclusions`：保留在目录中、但不参与榜单排序的仓库），可随时复查与质疑。
 - **下游市场文件：** [data/market.json](./data/market.json) 是给下游市场（如 DSH 桌面端插件市场）消费的精选小文件——在快照与 curation 之上过滤、清洗并按类目均衡发牌（≤600 条、≤500 KB），每日快照刷新与 curation 合并后自动重建；字段与生成规则见下游的[发布规范](https://github.com/bruc3van/dsh-desktop-safe-market/blob/master/docs/market-json-spec.md)。同一时序下同步生成根目录 [MARKET.md](./MARKET.md)——这份文件的只读可视化（按 Star 数排名），可在 GitHub 上直接预览市场内容，无需安装下游插件。
 - **中文默认，中英双语：** 普通用户可以直接理解，英文读者也有独立入口。
 
-截至 2026-08-23，全量目录收录 **8732** 个仓库、**28** 种主要语言；其中 **7766** 个声明了许可证，**8706** 个未归档且未禁用（目录随人工审核合并更新，最新统计以 [CATALOG.md](./CATALOG.md) 为准）。
+截至 2026-08-23，全量目录收录 **9365** 个仓库、**28** 种主要语言；其中 **8309** 个声明了许可证，**9338** 个未归档且未禁用（目录随人工审核合并更新，最新统计以 [CATALOG.md](./CATALOG.md) 为准）。
 
 ## ⚠️ 使用与安全
 
@@ -301,7 +299,7 @@ mindmap
 
 **作者维护**
 
-- **[dsh-desktop](https://github.com/bruc3van/dsh-desktop)** — 让 Agent 安全常驻桌面的独立 DeepSeek Harness 客户端：窗口加载官方 Web UI 本体，小边界 + 逐层加固（窗口沙箱、导航锁定、更新链路防劫持、权限最小化），长任务常驻托盘，精选插件先审查、再安装。（其内置市场的目录数据即来自本仓库的 [`market.json`](./data/market.json)。）
+- **[dsh-desktop](https://github.com/bruc3van/dsh-desktop)** — 让 Agent 安全常驻桌面的独立 DeepSeek Harness 客户端。原汁原味的官方 Web UI，不做过多修改；关窗任务照跑，常驻托盘随点随开；安装包自带官方运行时，双击即用；智能模式复用已有实例、固定地址直连自己的实例。安全上逐层加固，内置安全市场精选 600+ 插件，先审查、再安装。（其内置市场的目录数据即来自本仓库的 [`market.json`](./data/market.json)。）
 - **[dsh-desktop-safe-market](https://github.com/bruc3van/dsh-desktop-safe-market)** — 先审查再安装的 DSH 市场（review-before-install DSH marketplace）。（消费本仓库 [`market.json`](./data/market.json) 的下游市场，DSH 桌面端内置的「插件市场」即由它实现。）
 
 **官方仓库**

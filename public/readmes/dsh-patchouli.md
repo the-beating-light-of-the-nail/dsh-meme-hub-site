@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/df90980d0f949326b824e87bf4f6c6176c4e85be/assets/patchouli-banner-en.png">
+  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/1ce2a6cda20b3b327f1f381055ab143154ab6480/assets/patchouli-banner-en.png">
 
   <h1>Patchouli</h1>
   <p>
@@ -65,17 +65,18 @@ upstream integrations from version-pinned patches.
 ## Install and use
 
 Requires Node.js `^22.19.0 || >=24`, pnpm 11, and a DeepSeek Harness runtime
-compatible with `0.1.0-rc.6`. Install the database daemon first:
+compatible with `0.1.0-rc.6`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/main/scripts/install.sh | sh
 dsh plugin --profile web add dsh-patchouli
 dsh --profile web --dump-config
 ```
 
-The installer downloads a checksum-verified daemon binary from the latest
-GitHub release. The bundled DSH profile enables its storage client by default;
-it connects to the local daemon and starts it when needed. The last command
+The plugin includes `patchouli-db` as a dependency. On first use it downloads
+the matching, checksum-verified daemon binary from the same-version GitHub
+release and initializes the default local database home. The bundled DSH profile
+enables its storage client by default; it connects to the local daemon and starts
+it when needed. The last command
 should list `patchouli`, `patchouli-storage`, and the connector plugins.
 Register at least one compatible memory or knowledge plugin to handle routed
 `update`, `retrieve`, and `subscribe` calls.

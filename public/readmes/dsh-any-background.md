@@ -13,43 +13,43 @@ A **DeepSeek Harness** appearance plugin that lets you fully customize the Web U
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image.png" alt="Custom homepage" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image.png" alt="Custom homepage" width="720">
   <br/>
   <em>Custom homepage · wallpaper + theme color applied</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image-2.png" alt="Theme color picker" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-2.png" alt="Theme color picker" width="720">
   <br/>
   <em>Theme color picker · PS-style wheel + precise HSL/RGB inputs</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image-3.png" alt="Per-part opacity and blur" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-3.png" alt="Per-part opacity and blur" width="720">
   <br/>
   <em>Per-part opacity and blur · main background, sidebar, cards, settings</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image-4.png" alt="Background editor" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-4.png" alt="Background editor" width="720">
   <br/>
   <em>Background editor · image/video wallpapers support drag-to-pan and scroll-to-zoom</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image-6.png" alt="Generated dynamic background" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-6.png" alt="Generated dynamic background" width="720">
   <br/>
   <em>Generated dynamic background · mesh gradient / Shader / geometric presets</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image-9.png" alt="Geometric background, low-poly mode" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-9.png" alt="Geometric background, low-poly mode" width="720">
   <br/>
   <em>Generated dynamic background · geometric low-poly mode preview</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/2f8020788479f2a5d05db302f64ceaed958f99f3/example_img/image-10.png" alt="Config export and import" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-10.png" alt="Config export and import" width="720">
   <br/>
   <em>Export and import configs to share</em>
 </p>
@@ -65,8 +65,8 @@ A **DeepSeek Harness** appearance plugin that lets you fully customize the Web U
 - **Position Editor** — One shared editor for images and videos: drag to pan, scroll to zoom, one-click reset. Image and video placements are stored separately and never overwrite each other.
 - **Layout Modes** — Fit / Fill / Stretch / Tile / Center for both images and videos; in Fit mode the editor-committed framing stays consistent across window resizes and cross-monitor moves.
 - **Generated Dynamic Backgrounds** — Choose mesh gradient, Shader, or geometric patterns with adjustable spread, intensity, and seed locking.
-- **Per-part Interface Opacity** — Independent sliders for main background, sidebar, cards & panels, plus the settings panel and wallpaper.
-- **Per-part Interface Blur** — Frosted-glass `backdrop-filter` blur (0–60 px) for each interface part.
+- **Per-part Interface Opacity** — Independent sliders for the main background, sidebar, cards & panels (including the dropdowns and menus around the dialog), the input & controls (composer box, Cordis panel), plus the settings panel and wallpaper.
+- **Per-part Interface Blur** — Frosted-glass `backdrop-filter` blur (0–60 px) for each interface part, including a real backdrop on the composer and Cordis panel via stable host selectors.
 - **Conversation View Cards** — The message list is wrapped in a translucent card automatically, and the trajectory page gets whole-page opacity & blur controls, letting the wallpaper shine through the content.
 - **Theme Export / Import** — One-click export to a self-contained `dsh-any-theme.json` (config + wallpaper, video embedded as a data URL) and import to restore it anywhere.
 - **File-based Persistence** — All settings are stored on the filesystem under `~/.dsh/.dsh-any-background-data/`, not `localStorage`.
@@ -84,6 +84,13 @@ A **DeepSeek Harness** appearance plugin that lets you fully customize the Web U
 - **Inspiration palette selection cleared** — Picking a theme color from the wheel deselects any previously selected inspiration swatch.
 - **Debug telemetry removed** — Temporary boot-time logging and `MutationObserver` instrumentation have been cleaned out.
 - **Per-part blur isolated** — Blur is applied on `::before` underlays so it never traps the host's fixed-position settings dialog.
+- **New "Input & controls" part** — The composer box, slash menu, and Cordis plugin panel own a dedicated opacity slider; their translucent surfaces get real frosted-glass backdrop blur attached through stable host data attributes (`[data-composer-card]`, `[data-cordis-panel]`).
+- **Native control contrast fixed** — Solid surface tokens (composer, menus, Cordis panel) now carry per-part alpha, and a forced `color-scheme` keeps native `<select>` popups legible — no more white-on-white when the wallpaper brightness verdict flips labels to white.
+- **Translucency without self-damage** — The "Input & controls" opacity slider is deliberately decoupled from the settings panel's own controls (which share the same button tokens), so adjusting it can never bleach the plugin's own sliders and buttons.
+- **Drag-time performance** — Opacity tokens are written as CSS variables on `<html>` instead of rebuilding the whole token stylesheet per tick; slider updates are coalesced to one rAF per frame; the main-background columns are only retinted when their own slider changes.
+- **Drag-time wallpaper downscaling** — While any slider is being dragged the wallpaper swaps to a (~720px) low-res copy for cheap rasterization over large images, then restores full resolution on release.
+- **Instant video playback on import** — A picked video starts playing immediately from a local object URL while its raw bytes stream to disk in the background; the persisted serve URL takes over on the next reload — no more upload + first-buffer wait after import.
+- **Option boxes follow the card slider** — The dropdowns, slash-trigger menu, model selector, and popovers around the dialog now follow the "Cards & panels" opacity slider instead of "Input & controls"; the Cordis panel keeps its own input-slider binding.
 
 ## Installation
 

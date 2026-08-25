@@ -9,12 +9,12 @@
 `dsh-whale-galgame` 是专为 DeepSeek Harness Web 打造的独立多角色 Galgame 界面插件。通过无缝融入日常工作流，它让冰凉的 AI 交互化作温暖长情的陪伴：
 
 - **6 位性格各异的模型娘**：支持 DeepSeek（鲸鱼娘）、Claude、GPT、Gemini、Kimi 与 Grok，立绘、好感度、记忆与背景相互独立。
-- **外观与内核解耦**：喜欢鲸鱼娘的立绘，又想用 Claude 或 DeepSeek-V4 进行深度对话？角色形象与底层回复模型可随心搭配。
+- **外观与内核解耦**：喜欢鲸鱼娘的立绘，又想用 Claude 或 GPT 进行深度对话？角色形象与底层回复模型可随心搭配。
 - **「小剧场」模式**：告别单一问答，解锁多角色联动日常、工作复盘短剧与专属里程碑剧情。
 - **伴你成长的羁绊系统**：日常互动与工作 Token 积累均可提升好感，解锁专属亲昵语气与 AI 生成的纪念 CG。
 - **轻量可爱的桌面宠物**：支持常驻屏幕一角，点击即可一键切入 Galgame 界面。
 
-![dsh-whale-galgame 在 DSH Web 中的实际运行界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/docs/screenshots/galgame-overview.jpg)
+![dsh-whale-galgame 在 DSH Web 中的实际运行界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/docs/screenshots/galgame-overview.jpg)
 
 ## 功能
 
@@ -45,14 +45,14 @@
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/maid-left.webp" width="180" alt="DeepSeek 鲸鱼娘默认立绘"><br><strong>DeepSeek · 鲸鱼娘</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/claude-amber-manuscript-mediator-v5.webp" width="180" alt="Claude 模型娘克洛德默认立绘"><br><strong>Claude · 克洛德</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/gpt-recursive-weaver-v7.webp" width="180" alt="GPT 模型娘小吉默认立绘"><br><strong>GPT · 小吉</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/maid-left.webp" width="180" alt="DeepSeek 鲸鱼娘默认立绘"><br><strong>DeepSeek · 鲸鱼娘</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/claude-amber-manuscript-mediator-v5.webp" width="180" alt="Claude 模型娘克洛德默认立绘"><br><strong>Claude · 克洛德</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/gpt-recursive-weaver-v7.webp" width="180" alt="GPT 模型娘小吉默认立绘"><br><strong>GPT · 小吉</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/gemini-dual-prism-translator-v4.webp" width="180" alt="Gemini 模型娘双子默认立绘"><br><strong>Gemini · 双子</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/kimi-lunar-scroll-navigator-v5.webp" width="180" alt="Kimi 模型娘月见默认立绘"><br><strong>Kimi · 月见</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/grok-cosmic-signal-ranger-v5.webp" width="180" alt="Grok 模型娘洛可默认立绘"><br><strong>Grok · 洛可</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/gemini-dual-prism-translator-v4.webp" width="180" alt="Gemini 模型娘双子默认立绘"><br><strong>Gemini · 双子</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/kimi-lunar-scroll-navigator-v5.webp" width="180" alt="Kimi 模型娘月见默认立绘"><br><strong>Kimi · 月见</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/grok-cosmic-signal-ranger-v5.webp" width="180" alt="Grok 模型娘洛可默认立绘"><br><strong>Grok · 洛可</strong></td>
   </tr>
 </table>
 
@@ -60,14 +60,14 @@
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/bg-deepseek-seaside-study.webp" width="260" alt="DeepSeek 鲸鱼娘海边书房可选背景"><br><strong>DeepSeek · 可选替代</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/bg-claude-writing-study.webp" width="260" alt="Claude 写作书房默认背景"><br><strong>Claude</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/bg-gpt-collaboration-workshop.webp" width="260" alt="GPT 协作工坊默认背景"><br><strong>GPT</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-deepseek-seaside-study.webp" width="260" alt="DeepSeek 鲸鱼娘海边书房可选背景"><br><strong>DeepSeek · 可选替代</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-claude-writing-study.webp" width="260" alt="Claude 写作书房默认背景"><br><strong>Claude</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-gpt-collaboration-workshop.webp" width="260" alt="GPT 协作工坊默认背景"><br><strong>GPT</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/bg-gemini-twin-creative-studio.webp" width="260" alt="Gemini 双子创意工作室默认背景"><br><strong>Gemini</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/bg-kimi-moonlit-reading-study.webp" width="260" alt="Kimi 月下阅读室默认背景"><br><strong>Kimi</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/assets/default/bg-grok-electronics-studio.webp" width="260" alt="Grok 电子工作室默认背景"><br><strong>Grok</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-gemini-twin-creative-studio.webp" width="260" alt="Gemini 双子创意工作室默认背景"><br><strong>Gemini</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-kimi-moonlit-reading-study.webp" width="260" alt="Kimi 月下阅读室默认背景"><br><strong>Kimi</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-grok-electronics-studio.webp" width="260" alt="Grok 电子工作室默认背景"><br><strong>Grok</strong></td>
   </tr>
 </table>
 
@@ -119,7 +119,7 @@ allowBuilds:
 
 ## 使用与设置
 
-![DSH Web 中的插件配置界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/baa9af043d62e2b1f115c64a5907b6e5851caf2b/docs/screenshots/plugin-settings.png)
+![DSH Web 中的插件配置界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/docs/screenshots/plugin-settings.png)
 
 在 Galgame 顶栏可以切换“角色来源”和“实际对话”，也可以上传背景或当前角色的立绘。背景和立绘支持 PNG、JPEG、WebP、AVIF，浏览器端单个文件上限为 12 MB。
 

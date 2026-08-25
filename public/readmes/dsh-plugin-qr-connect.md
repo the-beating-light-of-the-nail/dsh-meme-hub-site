@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/mervyn-teo/dsh-plugin-qr-connect">
-    <img src="https://raw.githubusercontent.com/mervyn-teo/dsh-plugin-qr-connect/938b32a13fb2634c3bc671ae1f95da1b61e62a17/assets/banner.png" alt="dsh-plugin-qr-connect banner — scan to connect any device to your DeepSeek Harness web UI" width="100%">
+    <img src="https://raw.githubusercontent.com/mervyn-teo/dsh-plugin-qr-connect/430ad448366fdf5303674295c793f85240ce0da5/assets/banner.png" alt="dsh-plugin-qr-connect banner — scan to connect any device to your DeepSeek Harness web UI" width="100%">
   </a>
 </p>
 
@@ -18,7 +18,7 @@ boot.
 ## Demo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mervyn-teo/dsh-plugin-qr-connect/938b32a13fb2634c3bc671ae1f95da1b61e62a17/assets/demo-v2.gif" alt="dsh-plugin-qr-connect demo — click the QR button, scan, connect" width="360">
+  <img src="https://raw.githubusercontent.com/mervyn-teo/dsh-plugin-qr-connect/430ad448366fdf5303674295c793f85240ce0da5/assets/demo-v2.gif" alt="dsh-plugin-qr-connect demo — click the QR button, scan, connect" width="360">
 </p>
 
 ## What it does
@@ -56,15 +56,21 @@ dsh plugin --profile web add github:mervyn-teo/dsh-plugin-qr-connect
 
 Then restart `dsh web` — host bundles load at boot.
 
-Defaults live in `cordis.patch.yml` (`port`, `sessionDays`, `refreshSeconds`).
-Change them there (or in the profile's own `cordis.patch.yml`) and restart, or
-adjust them at runtime from the settings card. The host half serves three
-same-origin routes the browser half uses: `GET /__qr/info`,
-`POST /__qr/rotate`, and `GET|POST /__qr/config`.
+Defaults live in `cordis.patch.yml` (`port`, `sessionDays`, `refreshSeconds`,
+`publicHost`). Change them there (or in the profile's own `cordis.patch.yml`)
+and restart, or adjust them from the settings card — edits are written to the
+`qr-connect` settings namespace's user layer, so they survive restarts and
+layer over the composition defaults. `publicHost` is a custom domain or IP
+used for the public-internet QR code instead of the auto-detected public IP
+(accepts `host`, `host:port`, or a full `https://` origin; empty = auto-detect). The host half serves three same-origin routes the
+browser half uses: `GET /__qr/info`, `POST /__qr/rotate`, and
+`GET|POST /__qr/config`.
 
 ## Requirements
 
-- DSH with the `subprocess`, `fs`, and `webServer` services mounted.
+- DSH with the `subprocess`, `fs`, and `webServer` services mounted, plus the
+  `settings` service for the Settings → Plugins card (without it the card is
+  hidden and edits stay runtime-only).
 - Internet access from the DSH host for the public-IP lookup
   (`https://api.ipify.org`).
 - The scanning device must be able to reach the proxy port (a host firewall may

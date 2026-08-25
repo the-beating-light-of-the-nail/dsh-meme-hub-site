@@ -4,7 +4,7 @@
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/87f15472a45344a0aa016f410cd6f90f4852b585/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
   <h1>Oh-DSH</h1>
   <p><strong>一套 DSH runtime，Desktop、Web 与 TUI 三种开发体验。</strong></p>
   <p>把 AI Agent、Workspace、本地工具与插件生态带到你习惯的界面。</p>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/87f15472a45344a0aa016f410cd6f90f4852b585/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
 </p>
 
 Oh-DSH 将 DeepSeek Harness、Node.js、本地开发工具和内置插件打包为可安装的
@@ -71,6 +71,59 @@ Git Review、浏览器、文件、会话与插件状态由本地工作台统一�
 
 ## 下载与安装
 
+### 首选：命令行安装
+
+Linux 与 macOS 使用仓库根目录的 `install.sh` 安装最新稳定版。默认安装
+TUI，并将 `ohdsh` 注册到 `~/.local/bin`；新开一个终端后即可使用：
+
+```sh
+curl -fsSL \
+  https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/main/install.sh \
+  | bash
+```
+
+需要 Web 或 Desktop 时显式选择发行形态：
+
+```sh
+curl -fsSL \
+  https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/main/install.sh \
+  | bash -s -- --surface web
+
+curl -fsSL \
+  https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/main/install.sh \
+  | bash -s -- --surface desktop
+```
+
+Windows 使用仓库根目录的 `install.ps1`；不带参数时同样默认安装 TUI：
+
+```powershell
+irm https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/main/install.ps1 | iex
+```
+
+安装完成后，通过统一命令启动已安装的界面：
+
+```sh
+# 终端界面
+ohdsh tui
+
+# Web 界面
+ohdsh web
+
+# Desktop 应用
+ohdsh desktop
+```
+
+`ohdsh` 只会启动已经安装的 surface；Desktop 的直接入口
+`oh-dsh-desktop` 仍然保留。Linux/macOS 如果当前终端还没有加载新的 PATH，
+请重新打开终端；Windows 请使用新终端。
+
+安装器在校验发布的 SHA-256 摘要之前不会触碰旧安装，下载失败、摘要不匹配
+或解压中断都保持原安装可用；重复执行同一命令即为原地升级，
+`--uninstall` 按 surface 卸载。完整选项、环境变量与 surface 矩阵见
+[安装说明](./docs/usage.zh.md#使用-installsh-安装)。
+
+### 从 GitHub Release 手动安装
+
 从 [GitHub Releases](https://github.com/hust-open-atom-club/oh-dsh/releases/latest)
 选择需要的发行形态：
 
@@ -84,29 +137,7 @@ Git Review、浏览器、文件、会话与插件状态由本地工作台统一�
 - **Windows：**运行安装包，或解压便携版后启动。
 - **Linux：**直接运行 AppImage，或使用 `apt` 安装 deb。
 
-Web-only 与 TUI-only 包解压后即可运行：
-
-```sh
-# Web UI，默认监听 http://127.0.0.1:3080
-./bin/ohdsh web
-
-# Terminal UI
-./bin/ohdsh tui
-```
-
-Windows 使用 `bin\ohdsh.cmd web` 或 `bin\ohdsh.cmd tui`。
-
-### 安装统一命令
-
-macOS 完整版可将应用内的启动器加入 `PATH`：
-
-```sh
-sudo ln -sf \
-  "/Applications/Oh-DSH Desktop.app/Contents/Resources/bin/ohdsh" \
-  /usr/local/bin/ohdsh
-```
-
-Web-only 与 TUI-only 包可直接运行 `./bin/ohdsh`，也可以把它加入 `PATH`。
+安装脚本是推荐入口；Release 资产适合需要手动选择包或离线分发的场景。
 
 ## 使用
 
@@ -177,11 +208,11 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ### 插件市场
 
-![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/oh-dsh-plugin-marketplace.png)
+![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/87f15472a45344a0aa016f410cd6f90f4852b585/assets/oh-dsh-plugin-marketplace.png)
 
 ### Oh-DSH 皮肤
 
-![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/ada16d233c37d1a33034299eb95e78d43a7889c9/assets/oh-dsh-desktop-skins.png)
+![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/87f15472a45344a0aa016f410cd6f90f4852b585/assets/oh-dsh-desktop-skins.png)
 
 </details>
 

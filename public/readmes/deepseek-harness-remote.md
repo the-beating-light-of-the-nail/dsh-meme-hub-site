@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -49,7 +49,7 @@ Linux. Remote is included and enabled by default, so no separate plugin installa
 Install the exact npm version for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote@0.3.29
+dsh plugin --profile web add ds-harness-remote@0.3.30
 ```
 
 Package: [npm](https://www.npmjs.com/package/ds-harness-remote) · [GitHub](https://github.com/liguobao/deepseek-harness-remote)
@@ -75,20 +75,20 @@ Enable **Allow control of this device** in Remote settings to make the current c
 available as a Host.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
 </p>
 
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -99,9 +99,9 @@ Sign in to the Android client with your existing account, select an available co
 open a workspace, and continue the conversation with text or image prompts.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/480236e15ffab0dd7c3c2f8908aa730334195c0b/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/98af619cd35496d3ab097cf5bb851c7ffe19f487/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -117,7 +117,9 @@ Harness sessions, tools, and workspaces
 The Harness Host does not need a public listening port. You can connect from
 anywhere with internet access, and Remote communicates over a bidirectional end-to-end encrypted channel.
 It switches the client to the selected Host's native Harness API, so the original workspace,
-model configuration, tools, and permission flow remain on that computer.
+tools, and permission flow remain on that computer. Every settings namespace currently
+registered by the Host can also be configured remotely through the official Harness settings
+API. Credential values remain write-only, and Host-local document/open actions are never exposed.
 
 ## Security
 

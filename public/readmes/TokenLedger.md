@@ -8,7 +8,7 @@
 Token-usage accounting for the DeepSeek Harness Web GUI (`dsh web`), attributed
 to the relay site that served each request. Zero configuration.
 
-![TokenLedger 面板](https://raw.githubusercontent.com/zh667/TokenLedger/87b3d1806ac4d204a9195fc04ae8af6d6ebdd3ee/docs/images/panel.png)
+![TokenLedger 面板](https://raw.githubusercontent.com/zh667/TokenLedger/8ad73de520a711ab37d38170c094b7e901044358/docs/images/panel.png)
 
 > 展示图使用演示数据与本机模拟中转站；面板上的每个数字都由真实代码路径算出，只是数据是造的。插件不会把 API Key 或上游原始响应发送到浏览器。
 

@@ -12,9 +12,9 @@
 
 ## Screenshot
 
-![Auto button in the composer tool row](https://raw.githubusercontent.com/a903067276-rgb/dsh-perm-guard/dcd8835c8ebd291ada31f96a60b2b4e46a6adc71/assets/screenshot-auto-button.png)
+![Auto button in the composer tool row](https://raw.githubusercontent.com/a903067276-rgb/dsh-perm-guard/d80cc2f3a549b2df5d5eea1b3a5afacd9dbfe921/assets/screenshot-auto-button.png)
 
-![Auto Permissions settings page](https://raw.githubusercontent.com/a903067276-rgb/dsh-perm-guard/dcd8835c8ebd291ada31f96a60b2b4e46a6adc71/assets/screenshot-settings.png)
+![Auto Permissions settings page](https://raw.githubusercontent.com/a903067276-rgb/dsh-perm-guard/d80cc2f3a549b2df5d5eea1b3a5afacd9dbfe921/assets/screenshot-settings.png)
 
 ## Features
 
@@ -74,7 +74,14 @@ Switching modes resets the category switches to that mode's defaults (adjustable
 |---|---|
 | macOS | ✅ development environment |
 | Linux | ⚠️ expected to work |
-| Windows | ⚠️ expected to work |
+| Windows | ✅ adapted & field-tested (win32 path handling + PowerShell vocabulary, 2026-08-24) |
+
+### Windows notes
+
+- Trusted dirs accept three absolute-path styles — `C:\…`, `C:/…`, `/c/…` (MSYS/Git-Bash) — normalized to `C:/…` on save; invalid entries are reported back by the UI instead of being silently dropped.
+- Classifier covers common PowerShell cmdlets: pipeline/formatting (`Select-Object` etc.) count as read-only; `Invoke-RestMethod`/`iwr` map to network; `Stop-Process`, `reg add`, `schtasks /create` etc. map to privilege (always human-confirmed); `vssadmin delete shadows`, `bcdedit`, `diskpart` are hard red lines.
+- `gh` CLI read-only subcommands (`view`/`list`/`status`…) auto-approve; write operations fall back to human confirmation.
+- Escalated retries (`sandbox_permissions`) raise exactly one confirmation card instead of two.
 
 ## Requirements
 

@@ -34,7 +34,7 @@ dsh plugin --profile web add dshmarket
 - 📦 **持久客户端插件**：npm 双面包 + 组合补丁层，包内自挂载（`dsh.bundle.patch`），安装即生效，重启不丢。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/0401b7b6fbbcdbba63422e13a599616a48ba7d3b/assets/demo.gif" width="640" alt="dsh-ui-agents-pixe 全功能演示：工作角色页签 + 像素办公室浮层（真实录屏）" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/36afdf5a0280950cd63846cfdff88a05b1d1c229/assets/screen/demo.gif" width="640" alt="dsh-ui-agents-pixe 全功能演示：工作角色页签 + 像素办公室浮层（真实录屏）" />
 </p>
 
 ## 界面预览（真实抓屏）
@@ -44,13 +44,25 @@ dsh plugin --profile web add dshmarket
 ### 🧑‍💼 工作角色页签
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/0401b7b6fbbcdbba63422e13a599616a48ba7d3b/assets/workspace-roles.png" width="820" alt="工作角色页签：选人 / 搜索 / 中英切换" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/36afdf5a0280950cd63846cfdff88a05b1d1c229/assets/screen/workspace-roles.png" width="820" alt="工作角色页签：选人 / 搜索 / 中英切换" />
 </p>
 
 ### 🏢 像素办公室浮层
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/0401b7b6fbbcdbba63422e13a599616a48ba7d3b/assets/pixel-office.png" width="820" alt="像素办公室：像素小人 / 聊天 / 团队编排" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/36afdf5a0280950cd63846cfdff88a05b1d1c229/assets/screen/workspace-pixe.png" width="820" alt="像素办公室：像素小人 / 团队编排 / 聊天" />
+</p>
+
+### 📇 点击像素人 → 查看完整角色卡
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/36afdf5a0280950cd63846cfdff88a05b1d1c229/assets/screen/workspace-pixe2.png" width="820" alt="点击像素人弹出完整角色卡（Identity / Core Mission / Critical Rules / Checklist 全章节）" />
+</p>
+
+### ⚙️ 设置 → 像素办公室（角色工具 / 取卡粒度）
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-ui-agents-pixe/36afdf5a0280950cd63846cfdff88a05b1d1c229/assets/screen/workspace-setting.png" width="820" alt="设置 → 像素办公室：角色工具开关 + 取卡粒度（完整卡/仅规则/仅交付物）" />
 </p>
 
 > 更多完整桌面壳效果（对话主界面等）见 [dsh-desktop](https://github.com/EternalNight996/dsh-desktop) 的 README。
@@ -110,9 +122,40 @@ window.__AGENTS_PIXE_CHAT_API__.isOn();                       // 当前开关状
 
 ### 角色工具：默认关闭，配置分区启用
 
-- **默认零消耗**：`agents_pixe_roles` 工具与提示段默认**不注册**——不开开关，每轮模型调用不背任何角色工具成本（省约 250 token/轮）。
+- **默认零消耗**：`agents_pixe_roles` / `agents_pixe_team` 工具与提示段默认**不注册**——不开开关，每轮模型调用不背任何角色工具成本。
 - **配置分区启用**：设置 → **像素办公室** 顶层分区，打开「角色工具」开关才注册工具（动态注入/移除，无需重启）。
-- **绝不导入全量角色卡**：启用后调角色也只返回**精简卡**——定位 + 关键规则前 3 条 + 沟通风格，单卡 ≤500 字符、单次调用总量 ≤2000（实测压缩比 90%+，最大 30K 字符的卡压到 ~500）；508 张完整卡始终在宿主侧按需读取，从不全量进模型上下文。
+- **完整卡默认（v1.0.7 起）**：`agents_pixe_roles` 默认返回**完整角色卡**（1:1 上游 508 张，定位/使命/关键规则/交付物/工作流程/沟通风格全部章节）；总量上限 100K 字符，超出跳过后续角色并说明。
+- **按需省 token**：设置 → 像素办公室 → 选「取卡粒度」——**完整卡 / 仅规则 / 仅交付物**（按钮，默认完整卡）——这是 `agents_pixe_roles` 的全局默认，不用每次口头交代（工具仍可被 `sections=rules/deliverables` 单次覆盖）。
+- **真·团队编排（v1.0.7 新增）**：`agents_pixe_team`——领袖拆解任务 → 每位成员开独立子代理（种子=完整角色卡，上下文互不挤占，provider spawn/fork）并行执行 → 领袖汇总。**工作角色页签**有「🚀 一键编排」按钮（最稳，走 dsh setDraft），办公室选人面板也有（有反馈），一点就把当前团队送进编排指令，补一句任务即可发送。预设 29 团队名直传或角色名列表；成员上限默认 4、最大 6。成本 = N+2 次子代理调用，深度任务再用。
+
+### 🧠 智子内核（v1.0.9 新增）：system prompt 注入
+
+设置 → 像素办公室 → **「开启内核模式」**开关 + 档位/语气/自称/称呼。开启后把「智子内核」注入每次对话的 system prompt（第一性原理 + 五步纲领：问清→方案→章程→执行→交付），团队/角色协作用上它。
+
+- **档位**：`minimal` 精简 / `balanced` 均衡 / `full` 完整（含示例），默认 balanced。
+- **语气**：傲慢 / 温和 / 热忱；**语言**：中 / 英；**自称 / 称呼**默认「本尊 / 主上」。
+- **内核覆盖**：设置里粘贴自定义文本（优先级最高，`{{self}}`/`{{master}}` 会替换）。
+- ⚠️ 开启即 token 成本（每轮 ~200-800 字进上下文），不用时可关。
+- **像素人点击查看角色卡详情（v1.0.11 新增）**：办公室浮层里，**左键点击任一像素人**即可打开该角色的**完整角色卡**（定位/使命/关键规则/交付物/沟通风格/工作流程全部章节，1:1 上游内容），分段展示、可滚动，点 ✕ 关闭。
+- **token 实时可见**：办公室浮层标题栏实时显示当前会话全局计量——`N 轮 · M 步 | 缓存命中 X% | 输入↑xx.xK | 输出↓xx.xK`（来自 dsh 真实 provider 用量的 `tokenUsage`/`sessionStats` 投影，非仅插件闲聊）。
+
+### 🧠 内核（推荐 dsh-ui-three-body）
+
+本插件**不自带**智子内核，也不注入 system prompt。想要「第一性原理 + 五步纲领（问清→方案→章程→执行→交付）」式的内核，请用专门的内核插件：
+
+- 推荐插件：[**dsh-ui-three-body**](https://github.com/EternalNight996/dsh-ui-three-body)（「驯兽师内核」）——`dsh plugin --profile web add dsh-ui-three-body`。它把内核注入每次对话的 system prompt，左上角悬浮萌宠做开关，设置面板可配内核档位（minimal/balanced/full × 中/英 × 傲慢/温和/热忱）与人设自称/称呼。与本插件同作者，可一并安装。
+
+> 说明：本插件聚焦「角色页签 + 像素办公室 + 角色/团队工具」，内核交给专门的 three-body 插件，职责单一、互不干扰。
+
+## 编排内核（团队协作）
+
+> 上游 agency-agents（en/zh）**没有**一份项目级共享纲领——每个角色卡自带的 frontmatter + 章节（Identity & Memory / Core Mission / Critical Rules / Communication Style / Deliverables）就是角色的「内核」。本插件的团队协作另有一套**编排内核**，贯穿 `agents_pixe_team` 的三段式：
+
+1. **领袖拆解**：唯一持完整卡 + 团队名册的调度者；输出 `{assignments:[{name,assignment}], synthesis_focus}` 的 JSON 分工。拆分失败自动退化为「各成员按自身专业并行处理同一任务」。
+2. **成员独立执行**：每位成员一个**独立子代理**，种子 = 该角色**完整角色卡**——因此 30K 字全卡第一次真正用上（上下文互不挤占），成员只在自身专业内对 `assignment` 负责，彼此不吞上下文。
+3. **领袖汇总**：收齐各成员产出后再合成为最终报告（结论先行、标注关键分歧、给出下一步行动），`synthesis_focus` 指定汇总重点。
+
+**成本与质量权衡**（编排内核的取舍）：完整卡保真度最高、最耗 token；`sections=rules/deliverables` 取单章节是质量/成本的中间档；`agents_pixe_team` 用 N+2 次子代理换真并行闭环。**简单问题不套团队，深度任务才编排。**
 
 ### AI 闲聊：同样省着花
 
@@ -184,19 +227,24 @@ dsh plugin --profile web add dsh-ui-agents-pixe
 
 ## 待办 / 后续开发方向
 
+> 已落地：角色卡完整化（sections=rules/deliverables）、一键团队编排（agents_pixe_team）、像素人点击查看角色卡详情、tok 实时计量、取卡配方按钮。
+
 ### 数据与持久化
 
 - [ ] 保存的自定义团队跨环境不丢（当前在 localStorage；可选导出/导入 JSON 或宿主侧持久化）。
-- [ ] 自定义角色表单编辑器：在 UI 里增删改角色卡（当前仅 AI 生成 + 导入），含角色卡格式校验。
+- [ ] 自定义角色**表单编辑器**：在 UI 里增删改角色卡字段（当前仅 AI 生成 + 导入 md），含角色卡格式校验。
 
 ### 角色工具（agent 侧）
 
 - [ ] 按部门 / 技能 / 关键词检索角色（当前 `agents_pixe_roles` 只按名查）。
-- [ ] 团队一键召唤：一次传入整个预设团队（29 个预设团队名 → 展开为成员角色卡）。
-- [ ] 角色卡增量追问：支持按章节取卡（只要规则 / 只要清单），进一步压 token。
+- [ ] 团队编排**多轮协作**：领袖收到成员产出后还能再派下一轮/驳回重做（当前一轮到底）。
+- [ ] 成员间传递**中间产物** + 依赖排序（A 的产出喂给 B），支持超时 / 断点续跑。
+- [ ] 编排 provider 混合：不同成员指定不同后端（spawn / fork / codex 等）。
 
 ### 像素办公室（表现层）
 
+- [ ] 「+选人」弹出面板右侧留空：推荐团队区右侧空白待利用（可放角色预览 / 搜索框 / 最近使用）。
+- [ ] 角色卡详情增强：详情里直接「加入团队」「设为领袖」「复制角色卡」快捷键。
 - [ ] 更多状态动画：喝咖啡 / 开会 / 庆祝等；agent 完成任务时小人举手提示。
 - [ ] 场景与皮肤：多背景（会议室 / 茶水间）、白天黑夜主题、像素人换装。
 - [ ] 精确运行态：目前靠会话 `running` 信号；精确到「每个角色各自的工具调用」需接真实事件流（HookProvider 形态）。
@@ -212,3 +260,4 @@ dsh plugin --profile web add dsh-ui-agents-pixe
 - [ ] 设置分区文案 i18n（当前硬编码中文）。
 - [ ] 客户端 bundle 自动化冒烟测试（当前测试仅覆盖宿主半边）。
 - [ ] CI：发布前自动跑 `gen-roles` 数据一致性校验（角色库上游更新时 508 张卡数量比对）。
+

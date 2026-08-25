@@ -40,7 +40,7 @@ DeepSeek Harness (DSH) 插件。**两大核心能力**：
 ## 🚀 安装
 
 ```sh
-dsh plugin --profile web add github:Fishsb/dsh-prompt-enhancer#v3.3.1
+dsh plugin --profile web add github:Fishsb/dsh-prompt-enhancer#v3.3.2
 ```
 
 安装后重启 DSH（`dsh web`），输入框工具行出现 ✨ 按钮即安装成功。
@@ -81,11 +81,11 @@ node "<DSH_HOME>\AppData\Local\dsh-prompt-enhancer\executor\0.1.11\lib\updater-h
 
 **语音识别**（输入框 🎤 录音按钮，说完自动停）：
 
-![语音识别](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/4fc9d3836e2f3855bcbf4c24afd2156a1574f3d3/docs/screenshots/voice-main.png)
+![语音识别](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/1f98600fc36040cf849214b3c2b15b181c3aefb9/docs/screenshots/voice-main.png)
 
 **语音识别设置**（引擎切换 / 快捷键唤醒 / 模型下载 / 文本规整）：
 
-![语音识别设置](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/4fc9d3836e2f3855bcbf4c24afd2156a1574f3d3/docs/screenshots/voice-settings.png)
+![语音识别设置](https://raw.githubusercontent.com/Fishsb/dsh-prompt-enhancer/1f98600fc36040cf849214b3c2b15b181c3aefb9/docs/screenshots/voice-settings.png)
 
 ## ⚙️ 配置
 

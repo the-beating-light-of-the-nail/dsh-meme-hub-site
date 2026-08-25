@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e577e66a93459ba71cdd772542c329d3723448e4/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e577e66a93459ba71cdd772542c329d3723448e4/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/10ca7eec2cdeb3bd2fdf71e4b32b9e2745841fa6/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/10ca7eec2cdeb3bd2fdf71e4b32b9e2745841fa6/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 ---
@@ -15,6 +15,7 @@
     <img src="https://img.shields.io/badge/agent-DeepSeek%20Harness-5865f2" alt="DeepSeek Harness">
     <a href="https://dshfind.com/zh/plugins/xmanrui/dsh-im?ref=badge"><img src="https://dshfind.com/api/badge/xmanrui/dsh-im?lang=zh" alt="dshfind"></a>
     <a href="https://dshfind.com/zh/plugins/xmanrui/dsh-im"><img src="https://img.shields.io/badge/dshfind-%E5%88%86%E7%B1%BB%E7%AC%AC%E4%B8%80-d97706" alt="dshfind: 分类第一"></a>
+    <a href="https://dshfind.com/zh/plugins/xmanrui/dsh-im?ref=badge"><img src="https://dshfind.com/api/badge/xmanrui/dsh-im?metric=downloads&amp;lang=zh" alt="dshfind downloads"></a>
   </p>
 
   <p>
@@ -42,14 +43,14 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 ## 界面
 
-![IM机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/e577e66a93459ba71cdd772542c329d3723448e4/docs/images/imbot.png)
+![IM机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/10ca7eec2cdeb3bd2fdf71e4b32b9e2745841fa6/docs/images/imbot.png)
 
 ## 当前内置渠道
 
 | 渠道 | 接入方式 | 消息与回复 |
 | --- | --- | --- |
 | 飞书 | 扫码创建机器人，或使用 App ID + App Secret 手动绑定 | 长连接接收消息；通过飞书流式卡片显示思考、工具进度和回答 |
-| 微信 | 使用微信扫码绑定机器人 | 腾讯 iLink 长轮询收发消息 |
+| 微信 | 使用微信扫码绑定机器人 | 腾讯 iLink 长轮询收发消息；长回复会按 1,800 字符分段发送 |
 | 钉钉 | 扫码创建机器人，或使用 Client ID + Client Secret 手动绑定 | 钉钉 Stream 长连接；通过 AI Card 流式显示回答 |
 | 企业微信 | 使用企业微信 App 扫码创建智能机器人，或使用 Bot ID + Secret 手动绑定 | 官方 WebSocket 长连接；原生显示“正在思考中”、工具执行进度和流式回答 |
 | QQ | 使用手机 QQ 扫码创建机器人，或使用 AppID + AppSecret 手动绑定 | WebSocket 长连接；私聊显示“正在输入”并以单条 Markdown 回复，群聊被 @ 后只发送最终答案 |
@@ -60,7 +61,7 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 其他 IM 平台可继续按同一渠道适配器结构接入。
 
-九个内置渠道均支持把 JPEG、PNG、WebP 图片，以及以图片文件方式发送的 GIF，连同可选文字说明发送给 Harness；单张图片上限为 5 MB，单条消息中的图片总大小上限为 20 MB。
+九个内置渠道均支持把 JPEG、PNG、WebP 图片，以及以图片文件方式发送的 GIF，连同可选文字说明发送给 Harness；单张图片上限为 5 MB，单条消息中的图片总大小上限为 20 MB。飞书下载用户消息中的图片或文件需要租户权限 `im:message:readonly`，确认页将其显示为“获取单聊、群组消息”；飞书目前没有为该下载接口提供仅限图片的更窄权限。扫码新建的应用会默认申请；已有或手动绑定的应用可私聊机器人执行 `/repair`，或在插件页面点击“补全权限”，扫码增量补全该权限、上传机器人图片或文件所需的 `im:resource`，以及卡片回调。
 
 ### 结果文件与图片回传
 
@@ -71,7 +72,7 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 | 渠道 | 平台要求 |
 | --- | --- |
 | 微信 | 当前绑定协议和会话需支持原生文件消息，实际可发送范围以微信接口返回为准。 |
-| 飞书 | 飞书文件上传接口要求文件非空且不超过平台 30 MB；应用需有租户权限 `im:resource`（“读取与上传图片或文件资源”）。内置扫码流程新建应用时默认申请该权限；已有或手动绑定的应用仍需在开发者后台添加并完成必要审批。飞书开发者后台当前没有单独的 `im:resource:upload` 权限。 |
+| 飞书 | 飞书文件上传接口要求文件非空且不超过平台 30 MB；应用需有租户权限 `im:resource`（“读取与上传图片或文件资源”）。内置扫码流程新建应用时默认申请该权限；已有或手动绑定的应用可通过“补全权限”或私聊 `/repair` 增量补全并完成飞书要求的审批。飞书开发者后台当前没有单独的 `im:resource:upload` 权限。 |
 | 钉钉 | 应用需开通 `qyapi_base`，机器人需具备文件消息能力；实际格式和大小以当前 OAPI 与机器人能力返回为准。 |
 | 企业微信 | 应用需具备素材上传和文件消息能力，实际可发送范围以企业微信接口返回为准。 |
 | QQ | 机器人需具备文件消息能力，并受 QQ 当日文件上传配额约束；额度耗尽时会明确提示稍后重试。 |
@@ -112,6 +113,18 @@ GitHub 源安装会直接拉取并构建 Git 依赖；pnpm 10 及以上版本可
 
 如果本机必须通过正向代理访问飞书，请在启动 `dsh web` 前把 `HTTPS_PROXY` 设置为包含协议的 HTTP 代理 URL（例如 `http://proxy:8080`；也支持小写 `https_proxy`，并兼容使用 `HTTP_PROXY` 作为回退），修改后重启 Host。飞书注册和凭据验证会复用 SDK 的代理感知 HTTP 客户端，消息长连接会显式通过这个代理建立 WebSocket；长连接目前不读取 `ALL_PROXY` 或 `NO_PROXY`。
 
+如果本机无法直连 Telegram Bot API，请使用 Node.js 22.21 或更高版本，并在启动 `dsh web` 前启用 Node 的环境变量代理支持：
+
+```sh
+NODE_USE_ENV_PROXY=1 \
+HTTPS_PROXY=http://proxy:8080 \
+HTTP_PROXY=http://proxy:8080 \
+NO_PROXY=localhost,127.0.0.1 \
+dsh web
+```
+
+代理地址按本机网络环境填写；修改代理后需要重启 Host。绑定 Telegram Bot Token 时，如果页面提示无法访问 Bot API，请优先检查代理地址、Node.js 版本和 `NO_PROXY` 配置。
+
 | 默认行为 | 说明 |
 | --- | --- |
 | 机器人工作区 | 每个机器人独立保存工作区。新机器人默认使用 Host 当时的工作目录；之后可在机器人卡片中修改。 |
@@ -119,7 +132,7 @@ GitHub 源安装会直接拉取并构建 Git 依赖；pnpm 10 及以上版本可
 
 每个 Telegram 机器人都可以在自己的卡片中切换访问模式。旧机器人和新接入机器人均默认使用**兼容模式**：私聊直接响应，群聊仅在提及机器人或回复机器人消息时响应。只有主动切换到**安全模式（私聊白名单）**后，机器人才会忽略全部群聊，并只接受该机器人白名单中的数字 User ID。白名单每行一个 ID、按机器人独立保存；切回兼容模式时会保留但不使用，再切回安全模式即可继续使用。安全模式的空白名单会拒绝该机器人的所有入站消息。
 
-每个 WhatsApp 机器人也有独立的访问模式。旧机器人升级后和新接入机器人都默认使用**仅自己模式**，只响应已绑定账号的自聊消息。**指定联系人模式**额外接受白名单电话号码的私聊并忽略群聊；号码需包含国家或地区代码，每行一个，可带开头的 `+`。**开放响应模式**保留原有行为：响应所有私聊，以及群聊中的提及或回复。切换模式会保留白名单；指定联系人模式的空白名单等同于仅自己模式。未授权消息会被静默忽略。
+每个 WhatsApp 机器人也有独立的访问模式。旧机器人升级后和新接入机器人都默认使用**仅自己模式**，只响应已绑定账号的自聊消息。**指定联系人模式**额外接受白名单电话号码的私聊并忽略群聊；号码需包含国家或地区代码，每行一个，可带开头的 `+`。**开放响应模式**响应所有私聊、已绑定账号自己发出的群聊消息，以及其他群成员对该账号的提及或回复；因此也可以把“仅自己”的群当作独立会话使用。切换模式会保留白名单；指定联系人模式的空白名单等同于仅自己模式。未授权消息会被静默忽略。
 
 ## 机器人命令
 
@@ -129,14 +142,22 @@ GitHub 源安装会直接拉取并构建 Git 依赖；pnpm 10 及以上版本可
 | `/new` | 解除当前聊天的会话绑定，让下一条普通消息开启全新 Harness 会话。 |
 | `/status` | 检查当前机器人与 DeepSeek Harness 的连接状态。 |
 | `/models` | 按序号列出当前配置的全部可用模型。 |
-| `/model` | 查看当前聊天绑定会话正在使用的模型。 |
-| `/model <序号或 Provider/模型ID>` | 切换当前聊天绑定会话的模型。 |
+| `/model` | 查看当前聊天绑定会话正在使用的模型和推理等级。 |
+| `/model <序号或 Provider/模型ID> [推理等级ID]` | 切换当前会话模型，并可同时指定目标模型支持的推理等级。 |
+| `/reasoninglist`、`/reasonings` | 等价命令；列出当前模型支持的推理等级。 |
+| `/reasoning` | 查看当前会话的模型和推理等级。 |
+| `/reasoning <序号或等级ID>` | 切换当前模型的推理等级。 |
+| `/reasoning --default` | 恢复当前模型的默认推理等级。 |
 | `/presetlist` | 按序号列出 Host 当前可用的 Agent Preset，并标记 Host 默认项和当前机器人的选择。 |
 | `/preset` | 查看当前机器人的新会话 Agent Preset 设置。 |
 | `/preset <序号或 Preset ID>` | 设置当前机器人的 Agent Preset；纯数字 ID 使用 `/preset id:<ID>`。 |
 | `/preset --default` | 清除当前机器人的显式选择，让后续新 Session 跟随 Host 默认。 |
 | `/stop` | 立即停止当前聊天正在运行的任务，并保留尚未开始的排队消息。 |
 | `/steer <补充指令>` | 把补充指令立即加入当前聊天正在运行的任务。 |
+| `/batch` | 在私聊中开启批量输入，最多收集 10 条纯文字消息。 |
+| `/send` | 将已收集的消息按原顺序作为一次输入提交。 |
+| `/cancel` | 取消批量输入并丢弃已收集的消息。 |
+| `/repair` | 在飞书私聊中增量修复卡片回调，并补全读取及上传消息图片或文件所需的权限。 |
 | `/compact` | 立即压缩当前聊天绑定会话的较早上下文。 |
 | `/workspace <工作区绝对路径>` | 切换当前机器人的 Harness 工作区。 |
 | `/workspacelist` | 列出当前 Harness Host 上仍然存在的工作区绝对路径。 |
@@ -145,7 +166,7 @@ GitHub 源安装会直接拉取并构建 Git 依赖；pnpm 10 及以上版本可
 | 交互式提问 | 回复选项序号、选项文字或自定义文字；多选时用逗号分隔。 |
 | 远程审批 | 回复 `批准` / `拒绝` / `同意` / `不同意` / `yes` / `no`。 |
 
-示例：先发送 `/models`，再发送 `/model 2` 切换到列表中的第 2 个模型；先发送 `/presetlist`，再发送 `/preset 2` 为当前机器人选择第 2 个 Agent Preset。其他命令示例：`/help`、`/new`、`/status`、`/model deepseek-official/deepseek-v4-pro`、`/preset marketing-jeep`、`/preset --default`、`/steer 只检查配置文件`、`/stop`、`/compact`、`/workspace /Users/alice/projects/my-app`、`/sessionlist 2`、`/sessionlist /Users/alice/projects/my-app` 或 `/session session-id`
+示例：先发送 `/models`，再发送 `/model 2` 切换到列表中的第 2 个模型；先发送 `/reasoninglist`，再发送 `/reasoning 2` 切换到当前模型的第 2 个推理等级；先发送 `/presetlist`，再发送 `/preset 2` 为当前机器人选择第 2 个 Agent Preset。其他命令示例：`/help`、`/new`、`/status`、`/model deepseek-official/deepseek-v4-pro max`、`/reasoning --default`、`/preset marketing-jeep`、`/preset --default`、`/steer 只检查配置文件`、`/stop`、`/compact`、`/workspace /Users/alice/projects/my-app`、`/sessionlist 2`、`/sessionlist /Users/alice/projects/my-app` 或 `/session session-id`
 
 Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/` 开头的消息。此时请加一个前导空格发送，例如 ` /presetlist` 或 ` /preset 2`；插件命令层会去除首尾空白，执行效果与无空格命令相同。
 
@@ -155,14 +176,17 @@ Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/
 - `/status` 不需要参数，也不会向模型发送消息或改变会话绑定；它用于确认当前机器人能够连接 DeepSeek Harness。
 - `/new` 只解除当前聊天在 dsh-im 中保存的会话绑定，不会删除、清空或归档旧 Session。下一条普通消息会在当前工作区创建并绑定一个新 Session。任务正在运行或等待问题、审批时，应先完成交互或使用 `/stop`，再使用 `/new`。
 - `/models` 不需要参数，也不会创建会话。它为 Harness 当前配置的全部可用模型分配序号，同时显示可稳定复制的 `Provider/模型ID`；某个 Provider 查询失败时，其他 Provider 的结果仍会显示。
-- `/model` 不带参数时只查看当前会话模型；带参数时接受 `/models` 列出的序号或完整模型 ID，例如 `/model 2`。完整 ID 必须精确匹配。聊天尚无会话时，有效的切换命令会创建并绑定一个空白会话，但不会触发模型回复。切换只影响当前会话；Harness 还会尝试把它保存为以后新会话的默认模型，已有其他会话不受影响。
-- 正在运行任务或等待审批、问题回答时不能切换模型；请等待完成，或先使用 `/stop`。含图片的会话无法切换到不支持图片输入的模型。
+- `/model` 不带参数时查看当前会话的模型和推理等级；带参数时接受 `/models` 列出的序号或精确完整模型 ID，并可追加目标模型元数据公布的精确推理等级 ID，例如 `/model 2 max`。省略推理等级时，由 Harness 解析目标模型的当前默认值。聊天尚无会话时，有效的切换命令会创建并绑定一个空白会话，但不会触发模型回复。
+- `/reasoninglist` 和 `/reasonings` 完全等价，按当前模型的元数据列出可选推理等级并标记当前值和默认值。`/reasoning` 查看当前值；`/reasoning <序号或等级ID>` 接受列表序号或元数据中的精确 ID；`/reasoning --default` 让 Harness 重新采用当前模型的默认推理等级。所有 `/reasoning...` 命令都要求当前聊天已有 Session，不会自行创建 Session 或触发模型回复。
+- 正在运行任务或等待审批、问题回答时不能修改模型或推理等级；请等待完成，或先使用 `/stop`。修改从下一次模型请求起生效，并沿用 Harness 的默认保存语义：Harness 会尝试把已接受的模型和推理等级保存为以后新会话的默认选择，已有其他会话不受影响。含图片的会话无法切换到不支持图片输入的模型。
 - `/presetlist` 不需要参数，也不会创建会话。它每次都读取 Host 当前可用的 Agent Preset，显示名称、稳定 ID、Host 默认项和当前机器人的选择；已删除或损坏的当前选择会保留并标记为“已不可用”，不会被自动清除。列表只公开安全的名称和 ID，不公开 Preset 路径、错误或其他 Host 内部字段。
 - `/preset` 不带参数时查看当前机器人的“新会话设置”，不是查看或修改当前 Session。带参数时接受最近一次 `/presetlist` 在当前聊天中显示的序号或完整 ID；纯数字 ID 使用 `/preset id:<ID>`。选择序号时会先按该次列表解析 ID，再用 Host 最新目录复验，目录已经变化时会要求重新列出。
 - `/preset --default` 清除当前机器人的显式覆盖值，让以后新建的 Session 在创建时跟随 Host 当前默认；显式选择一个恰好等于 Host 默认的 ID 则会固定该 ID。目录暂时不可读时仍可恢复为跟随 Host 默认。
 - Agent Preset 修改是机器人级配置，会影响该机器人所有聊天以后创建的新 Session，但不会修改、停止、解绑或重建已有 Session，也不会自动执行 `/new`。若当前聊天已有会话，继续发送消息仍使用原 Session；发送 `/new` 后的下一条普通消息才会按新设置创建 Session。任务正在运行或等待交互时也可查询或修改 Preset，因为命令不会触碰当前 Session。
 - `/stop` 和 `/steer` 只控制当前聊天自己发起的运行任务，即使多个聊天绑定同一个 Session，也不会有意控制其他聊天的任务。`/stop` 不删除会话或历史，并保留尚未开始的排队消息；重复发送是安全的。
 - `/steer` 只接受文字，可包含多行；它不会创建新会话或第二个任务。没有运行任务时请直接发送普通消息；等待审批或问题回答时请先处理交互，或使用 `/stop`。
+- `/batch`、`/send` 和 `/cancel` 仅在与机器人的私聊中可用。发送 `/batch` 后，接下来的纯文字消息会暂存，最多 10 条；第 10 条仍会收录并提示提交，之后的消息不会收录，也不会自动提交。发送 `/send` 后，机器人会按原顺序将整批内容作为一次输入处理；发送 `/cancel` 会直接丢弃当前批次。图片、文件和其他命令不会被收录。机器人重启会丢失尚未提交的批次。未进入批量输入模式时，普通聊天流程不变。
+- 飞书 `/repair` 仅在私聊中可用，并与其他命令一样只服从当前飞书机器人的渠道访问策略；插件不另行区分管理员和普通用户。它最多增量补全 `card.action.trigger`、`im:message:readonly` 和 `im:resource`，确认页只显示当前应用缺少的项。授权页必须由在飞书开放平台中有权访问目标应用的账号打开。普通 `/repair` 会启动修复；若旧任务仍在等待授权，会先作废旧的一次性链接再生成新链接。发送 `/repair qr` 获取当前链接的二维码，`/repair status` 查询当前任务，`/repair verify` 重新查询验证状态，`/repair cancel` 取消任务；这四个补充命令均不会另起授权。平台已接受更新、正在等待测试按钮回调时，不会并发启动第二次修复。
 - `/compact` 只作用于当前聊天已经绑定的 Harness 会话，不会把命令发送给模型。当前聊天尚未创建会话、会话正在生成回复或没有可压缩历史时，机器人会直接返回对应状态。
 - 只接受已经存在的绝对目录；路径无效时机器人会返回具体提示和正确用法。
 - `/workspacelist` 不需要参数。它合并 Harness 全局登记项与当前机器人的路径；当前路径仍存在且可安全显示时会排在首位并标记为“当前”。结果可直接复制到 `/workspace` 命令。
@@ -171,7 +195,7 @@ Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/
 - `/session` 只接受一个由 `/sessionlist` 获得的 Session ID。它不会新建会话或立即向模型发送消息；绑定成功后，当前聊天的后续消息会继续该会话。普通归档会话可以绑定但不会自动取消归档，子代理会话不能绑定。
 - `/session` 会自动定位会话唯一所属的工作区。同工作区绑定只替换当前聊天的映射；跨工作区绑定会切换该机器人的工作区、清除该机器人所有聊天的旧会话映射，再绑定当前聊天，因此会影响该机器人的其他聊天。已经开始生成的回复仍可完成。
 - 工作区切换和会话绑定只会清除或替换 dsh-im 的聊天映射，不会删除、清空或归档任何旧 Session 内容；旧 Session 仍可再次列出和绑定。
-- 任何通过当前渠道访问策略的用户都可以执行这些命令，不另行区分管理员和普通用户。Telegram 兼容模式遵循原有私聊及群聊提及/回复规则；安全模式只允许当前机器人白名单中的私聊用户执行。WhatsApp 仅自己模式只接受自聊，指定联系人模式接受自聊和白名单私聊，开放响应模式接受所有私聊及群聊中的提及或回复。
+- 任何通过当前渠道访问策略的用户都可以执行这些命令，不另行区分管理员和普通用户。Telegram 兼容模式遵循原有私聊及群聊提及/回复规则；安全模式只允许当前机器人白名单中的私聊用户执行。WhatsApp 仅自己模式只接受自聊，指定联系人模式接受自聊和白名单私聊，开放响应模式接受所有私聊、已绑定账号自己发出的群聊消息，以及其他群成员的提及或回复。
 - Agent Preset 名称和 ID 来自同一个 Harness Host，且任何有命令权限的用户都能修改该机器人所有聊天未来新 Session 的 Preset；请只向可信用户开放 `/presetlist` 和 `/preset`。
 - 工作区列表来自 Harness Host 的全局登记信息，可能包含其他机器人、其他渠道或非 IM 项目的本机绝对路径。请将机器人可见范围限制给可信用户。
 - 会话列表同样来自该全局 Harness Host；会话 ID 和标题可能属于其他机器人、其他渠道或非 IM 项目，并可能包含敏感元数据。开放命令前请确保所有可见用户都可信。
@@ -247,10 +271,10 @@ IM 管理 RPC 默认仅接受回环浏览器。如果 Web profile 在受信任�
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e577e66a93459ba71cdd772542c329d3723448e4/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/10ca7eec2cdeb3bd2fdf71e4b32b9e2745841fa6/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e577e66a93459ba71cdd772542c329d3723448e4/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/10ca7eec2cdeb3bd2fdf71e4b32b9e2745841fa6/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
   </tr>
 </table>

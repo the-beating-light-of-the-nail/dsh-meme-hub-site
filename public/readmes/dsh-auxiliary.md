@@ -1,6 +1,6 @@
 <div align="center">
 
-![Banner](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/27a04de87a69ad324e4db9bfbb0615f226f57f79/docs/banner.png)
+![Banner](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/10e8c9f2907955692b3269eeceed632849d764a8/docs/banner.png)
 
 # dsh-auxiliary
 
@@ -279,7 +279,7 @@ All fields are optional; defaults are shown.
 
 ### Settings page: Auxiliary Models
 
-![Auxiliary Models settings page](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/27a04de87a69ad324e4db9bfbb0615f226f57f79/docs/image.png)
+![Auxiliary Models settings page](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/10e8c9f2907955692b3269eeceed632849d764a8/docs/image.png)
 
 The plugin ships a web settings section (**Settings → Auxiliary Models**).
 Configure providers and models in the **Models** page first, then use the
@@ -323,9 +323,17 @@ adds/removes levels (only `off`, `minimal`, `low`, `medium`, `high`, `xhigh`,
 `max`), a pencil button batch-edits text such as `[low, high, max]` and rejects
 the whole input when any entry is invalid, and the default-thinking dropdown
 offers only the levels present in the list. New models start with an empty list
-and no default. These fields are plugin-owned raw model-row fields
-(`thinkingLevels` / `defaultThinkingLevel`) and are also written only after the
-provider card Apply closes, so they never race the page's revision checks.
+and no default. These read and write the OFFICIAL model `reasoningEfforts`
+field (level → same-name wire token, `off` → `null`) and the provider-level
+`reasoning` default — the very data pi-ai uses to decide whether a model is a
+reasoning model and to render the composer's reasoning-effort picker, so this
+editor is just an authoring surface for the official mechanism, with no
+plugin-owned storage. Changes are still written only after the provider card
+Apply closes, so they never race the page's revision checks.
+
+> Previous versions stored the levels in plugin-owned fields (`thinkingLevels`
+> / `defaultThinkingLevel`); the first save after upgrading migrates them to
+> the official fields and drops the old ones.
 
 ## Notes
 

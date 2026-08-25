@@ -17,7 +17,7 @@
 | 能力 | dsh-xueqiu | 股票皮肤类插件 |
 | --- | --- | --- |
 | 面板形态 | 嵌入输入框上方，不遮挡对话 | 全局换肤/状态栏 |
-| K线/分时 | 蜡烛图+均线+十字光标，7 档周期 | 部分有 |
+| K线/分时 | KLineChart 引擎蜡烛图/分时面积图+均线+十字光标，7 档周期 | 部分有 |
 | 热榜/快讯/KOL | 全有 | 多数无 |
 | 数据源 | 雪球（社区数据：帖子/热议用户独有） | 腾讯/Yahoo 等 |
 | 请求防护 | 闸门+看门狗+缓存+自愈+隐藏暂停 | 一般仅缓存 |
@@ -29,8 +29,8 @@
 | 功能 | 说明 |
 | --- | --- |
 | 📊 实时行情 | 大盘指数（上证/深证/创业板/科创50）+ 自选股列表，涨红跌绿，**表头点击排序** |
-| 🕯️ K线图 | **蜡烛图** + 成交量柱 + **MA5/10/20 均线** + **十字光标悬浮详情**（开高低收/涨跌/量/均线值），5分/15分/30分/60分/日K/周K/月K 7 档切换；**滚轮锚点缩放 + 拖拽平移**，拖到尽头自动追加更早历史，双击复位 |
-| ⏱️ 分时图 | 价格线 + 均价线 + 昨收基准虚线，十字光标查任意分钟报价 |
+| 🕯️ K线图 | 基于 [KLineChart v10](https://github.com/klinecharts/KLineChart) 引擎（canvas 渲染，内置主题适配）：蜡烛图 + 独立成交量窗格 + **MA 均线** + 十字光标 legend，5分/15分/30分/60分/日K/周K/月K 7 档切换；**滚轮缩放 + 拖拽平移**，左拖触底自动加载更早历史（500 根/次，已实测连续加载至 3400+ 根） |
+| ⏱️ 分时图 | 面积价格线（涨跌色）+ 均价线 + 昨收基准虚线，十字光标 tooltip 查任意分钟 价/均价/涨跌 |
 | 🔥 热榜 | 雪球热门榜，A股/美股/港股/全球 切换 |
 | 🔍 搜索 | 搜股票（一键加自选/看详情）、搜帖子 |
 | 📰 快讯 | 7×24 实时快讯，重要新闻高亮 |
@@ -55,25 +55,25 @@
 
 **嵌入式主面板**：停靠在输入框上方，指数卡 + 自选股行情 + 四个功能页签：
 
-![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/panel.png)
+![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/panel.png)
 
 **个股详情**：16 项行情数据 + K线蜡烛图（成交量柱 / MA5-10-20 均线 / 十字光标）+ 财务指标 + 热议用户：
 
-![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/detail.png)
+![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/detail.png)
 
 **迷你行情区域**：四大指数 + 自选 12 只两列平铺，⤡ 手柄调宽度，点击开合面板，可拖动：
 
-![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/badge.png)
+![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/badge.png)
 
 **Agent 工具调用卡片**（对话内直接问行情，结果渲染为专属卡片而非 JSON）：
 
 | `xueqiu_quote` 行情表 | `xueqiu_kline` 蜡烛图 |
 | --- | --- |
-| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/kline.png) |
+| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/kline.png) |
 
 | `xueqiu_hot` 热榜 | `xueqiu_news` 快讯时间线 |
 | --- | --- |
-| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/b413369560ee49c6a79c6413b5284052212cb4ee/assets/toolcards/news.png) |
+| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/news.png) |
 
 ## 📦 安装
 
@@ -190,6 +190,29 @@ dsh-xueqiu/
 
 ## 📋 更新日志
 
+- **1.22.7**（2026-08-26）
+  - 修复：**切换股票后分时图压成直线**（如看完茅台再看宁德时代）。`registerIndicator('xq-minute')` 全局只注册一次，其 calc 闭包捕获的是**首次挂载实例**的 `baseRef`——第二只股票的分时图复用了旧 calc，昨收基准仍是前一只股票的（宁德挂上茅台昨收 1304.66，y 轴被撑到 404~1229，而分时价格只在 378~388，曲线压成直线）。修复：每次挂载分时图用 `overrideIndicator` 重绑当前实例 baseRef 的新 calc。实测三股连环切换（茅台 1304.66 → 宁德 387.89 → 京东方 5.75），昨收均正确、价格波动 span 130~180px 饱满。
+- **1.22.6**（2026-08-26）
+  - 修复：**分时悬停信息双份叠加**（1.22.5 排查发现）。分时面积图"开=高=低=收"同值，canvas OHLC 图例纯冗余，且 xq-minute 指标图例（昨收/均价）与自定义 .xq-tip 重复显示两遍。分时模式现在彻底关闭 canvas 图例（蜡烛+指标），悬停只保留 .xq-tip。
+  - 新增：**K线悬停显示 MA 数值**（1.22.0 以来 MA 值无处可看的补课）。指标图例改 `follow_cross`：悬停时蜡烛行（开高低收量）下方第二行彩色显示 MA5/10/30/60 数值（实测茅台 MA 行单行占宽 70%，不折行），与雪球一致。
+- **1.22.5**（2026-08-26）
+  - 修复：**悬停 OHLC 图例折成两行压图**（1.22.3 遗留）。`follow_cross` 后默认英文 time/open/high/low/close/volume 标题过长，悬停时图例在窄面板折两行盖住蜡烛。改为紧凑中文单行（`开 高 低 收 量`，字号 10）+ 隐藏 ticker 标题——实测悬停图例单行 10px 高、占宽 45%，不再折行。
+- **1.22.4**（2026-08-26）
+  - 修复：**切分时整个面板崩溃消失**（1.22.3 回归）。双击回最新的清理函数里用了 `boxRef.current.removeEventListener`，但 React 卸载组件时先清 ref 再跑 effect 清理，此时 `boxRef.current` 已是 null → 抛 TypeError → `conversation.input.dock` 槽位整体崩溃，只剩自选股小徽章且无法重开。改为 effect 内闭包捕获节点。回归：K线↔分时来回 4 轮 + 收起/徽章重开/再进详情，0 报错。
+- **1.22.3**（2026-08-26）
+  - 修复：**K线 OHLC 图例常驻压蜡烛**。KLineChart v10 默认 `candle.tooltip.showRule: 'always'` 把 time/open/high/low/close/volume 永久画在蜡烛区左上角（像素级实测 1394 个文字像素自 y=23 起覆盖蜡烛）。改为 `follow_cross`（十字光标悬停才显示，与雪球一致），此前只关了指标 tooltip 漏了蜡烛自身的。
+  - 修复：**"双击回最新"标签承诺无实现**。图表下方文案写了"双击回最新"但代码没有 dblclick 处理（实测左拖加载 999 根后双击无反应）。现监听容器 dblclick → `chart.scrollToRealTime()`（实测可视区 132→430-500 回到最新）。
+  - 细节：K线日期标签补年份（500 根日K时"08-26 ~ 08-24"像时间倒流，实际跨两年；现显示"2024-08-02 ~ 2026-08-25"）；详情页 hero 现价/涨跌额按现价实际小数位显示（港股 00700 此前 440.40 → 440.4）。
+- **1.22.2**（2026-08-24）
+  - 修复：**K线均线 / 分时均价误落附图**。KLineChart v10 的 `createIndicator('MA')` 默认给指标新开 pane——均线不在蜡烛主图上（主图被挤到 72px），分时均价/昨收也在独立附图。须传 `{ name, paneId: 'candle_pane' }` 显式叠加到主图（pane id 从引擎源码确认）。修复后：K线主图 173px 蜡烛+MA5/10/30/60 叠加、附图仅成交量；分时只剩一张主图（分时曲线+均价+昨收全部叠加），与雪球布局一致。
+  - 样式：**详情页参考雪球重排版**——顶部行情主标题（大号红/绿现价 + 涨跌额 + 涨跌幅，如 `1304.66 +31.83 +2.50%`）；16 格 stat 卡片更轻盈（浅底/圆角/等宽数字/标签次要色）；卡片标题左侧主题色强调条；K线/分时与周期按钮选中态改主题色 tint 填充；K线画布 264→300px；MA 均线和谐四色（蓝/橙/紫/青）；关闭最高/最低点重复标注（消除窄图顶部杂乱数字）。
+- **1.22.1**（2026-08-24）
+  - chore：移除 peerDependencies 避免安装警告；静态冒烟脚本自动兜底本地 `npx dsh`（prepublishOnly 下找不到 dsh 命令）。
+- **1.22.0**（2026-08-24）
+  - 新增：**K线/分时切换 KLineChart v10 引擎**（canvas 渲染、内置明暗主题适配）：蜡烛图 + 成交量 + MA 均线 + 十字光标，5分/15分/30分/60分/日K/周K/月K 7 档；滚轮缩放、拖拽平移、左拖触底自动加载更早历史（500 根/次）；分时面积图（涨跌色）+ 均价线 + 昨收虚线。
+- **1.21.7**（2025-08-24）
+  - 修复：**越屏钳制改为逐渲染执行**。1.21.6 的"effect 依赖 badgePos + ResizeObserver"方案在 CI 慢环境仍漏过"渲染后才长高"的时序（数据异步到达→徽章长高→无重触发钳制）。现在 `useLayoutEffect` 每次渲染后钳制（数据到达必伴随重渲染，无时序死角；ui.set 仅在有变更时触发下一轮，收敛不循环）。CI 实测踩坑修复。
+  - 新增：**浏览器 E2E 进 CI**（`browser-e2e` job）。此前这层（唯一抓到过钳制死代码真 bug 的测试）只在本机手动跑。`scripts/e2e-ci-boot.sh` 合成"已完成引导"的隔离 DSH 实例（settings 跳过 onboarding + workspace 表 + 含完整一轮对话的逐行 zstd 会话日志——踩坑记录：DSH 逐记录写日志，每 zstd 帧恰好一行；slug 规则 cwd 去首 `/`、余 `/`→`-`、两端包 `--`），agent-browser 跑全部 18 项断言。E2E 脚本兜底：全新实例无活动对话时先展开会话分组再点开一个会话（conversation.input.dock 槽需要对话视图）。
 - **1.21.6**（2025-08-24）
   - 修复：**徽章越屏钳制是死代码**。挂载后的实测钳制 `useEffect` 依赖为 `[]`，只在首帧跑一次——而 hydrate 异步恢复 badgePos 发生在其后，钳制永远空跑；DockGate 恢复时的估算宽度（badgeW 空时按 320）又偏小，实测 346px。后果：恢复越屏坐标后徽章右/下缘出屏，真实鼠标点击落空，面板打不开（热榜/快讯/搜索随之全空）。修复：effect 依赖加 badgePos（hydrate 后按实测尺寸再钳一次）+ ResizeObserver 监听徽章自身长高长宽再钳。浏览器回归连跑 3 轮 18 项全绿。
   - 测试：浏览器回归脚本修两处不稳定——① `agent-browser dblclick` 的两次点击间隔超出系统双击判定阈值（页面 dblclick 监听计数为 0），改派发 dblclick 事件；② 交互步骤前 rpc 固定徽章到视口中部再刷新，消除"上一轮遗留位置导致真实鼠标命中失败"的漂移。

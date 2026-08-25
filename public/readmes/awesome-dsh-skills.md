@@ -1,6 +1,6 @@
 # 🐋 awesome-dsh-skills — Tested Skills for DeepSeek Harness
 
-**15 original engineering skills (SKILL.md). Every skill passes a format validator mirroring the official `@deepseek-ai/dsh-skill-filesystem` rules plus an isolated-DSH_HOME load smoke test. Copy, drop in, done.**
+**18 original engineering skills (SKILL.md). Every skill passes a format validator mirroring the official `@deepseek-ai/dsh-skill-filesystem` rules plus an isolated-DSH_HOME load smoke test. Copy, drop in, done.**
 
 [中文](README.zh.md) · Sibling repos: [dsh-lab](https://github.com/hackerFish/dsh-lab) · [awesome-dsh-presets](https://github.com/hackerFish/awesome-dsh-presets) · [dsh-video-studio](https://github.com/hackerFish/dsh-video-studio) · [dsh-restart](https://github.com/hackerFish/dsh-restart)
 
@@ -22,7 +22,7 @@ cp -r ~/dsh-skills/skills/* ~/.dsh/skills/   # all, or copy individual skill dir
 2. Load smoke test in an isolated `DSH_HOME` (skills placed, harness booted clean)
 3. Content rule: verified facts only; no unverified "magic prompts"
 
-## Skills (15)
+## Skills (18)
 
 | Skill | Purpose |
 |---|---|
@@ -31,6 +31,9 @@ cp -r ~/dsh-skills/skills/* ~/.dsh/skills/   # all, or copy individual skill dir
 | dsh-test-first | Red→green→refactor discipline |
 | dsh-doc-sync | Keep docs/changelog/versions in sync |
 | dsh-plugin-dev | DSH plugin dev with verified manifest/patch structures |
+| dsh-plugin-client | DSH plugin client half: slot/standard-kit registration, dual build, `__ModuleLoader__` wrap, self-test |
+| dsh-plugin-i18n | DSH plugin UI localization (zh/en): locale namespaces, slot `locale`, `t()` with instant switching |
+| dsh-plugin-publish | Publish a DSH plugin to GitHub + awesome-dsh inclusion: build-artifact commits, repo/topics API, PR etiquette, encoding traps |
 | dsh-dependency-audit | Dependency & install-script risk audit |
 | dsh-refactor-safe | Baseline-first safe refactoring |
 | dsh-debug-session | DSH boot/plugin failure triage |

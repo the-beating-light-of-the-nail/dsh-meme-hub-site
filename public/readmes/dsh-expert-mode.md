@@ -1,8 +1,8 @@
 # 🧠 DSH Expert Mode
 
 <p align="center">
-  <strong>1 Coordinator + 16 Experts — Full-Stack Multi-Agent Team</strong><br/>
-  <em>首席协调官 + 16 位领域专家 — 全栈多智能体团队</em>
+  <strong>1 Coordinator + 17 Experts — Full-Stack Multi-Agent Team</strong><br/>
+  <em>首席协调官 + 17 位领域专家 — 全栈多智能体团队</em>
 </p>
 
 <p align="center">
@@ -37,18 +37,18 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 ## 🖼️ Demo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/ca244948efe38b9382e548493cde939d4e24e318/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/a7695c6a1b5c6d07a16a42f902a06cf17c3ed0e4/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
   <em>Select the "Expert Mode" preset in DSH workspace to use</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/ca244948efe38b9382e548493cde939d4e24e318/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/a7695c6a1b5c6d07a16a42f902a06cf17c3ed0e4/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
   <em>5 expert subagents working in parallel, with real-time token usage and timing</em>
 </p>
 
 ---
 
-## 🧩 16 Experts
+## 🧩 17 Experts
 
 ### 🎯 Full-Stack Core (6)
 
@@ -75,6 +75,7 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 |--------|------|--------|
 | 📋 Product Manager | `expert_product_manager` | PRD, requirements, competitor research |
 | ✍️ Copywriter | `expert_copywriter` | Marketing copy, content creation |
+| 🎬 Media Creator | `expert_media_creator` | Storyboard, AI image, AI video, final cut |
 | ⚖️ Legal Review | `expert_legal_review` | Contract review, legal risk |
 | 📱 Social Media | `expert_social_media` | Multi-platform distribution |
 | 🚀 Growth Hacker | `expert_growth` | Growth strategy, A/B testing |

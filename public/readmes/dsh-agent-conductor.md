@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/MJorgin/dsh-agent-conductor/822ac74268d751d0a4aa1237f8c1505ac0473f7c/docs/social-preview.png" alt="dsh-agent-conductor — in-session cross-agent dispatch for DeepSeek Harness" width="100%">
+<img src="https://raw.githubusercontent.com/MJorgin/dsh-agent-conductor/e2b4d7010b8854109555f8a6476c3dc985df82ca/docs/social-preview.png" alt="dsh-agent-conductor — in-session cross-agent dispatch for DeepSeek Harness" width="100%">
 
 # ⚡ dsh-agent-conductor
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
+<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
 
 <br>
 
@@ -15,7 +15,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-green)](https://agentskills.io)
-[![Stars](https://img.shields.io/github/stars/titanwings/colleague-skill?style=social)](https://github.com/titanwings/colleague-skill/stargazers)
+[![Stars](https://img.shields.io/github/stars/titanwings/colleague-skill?style=social)](https://github.com/titanwings/distilly/stargazers)
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?logo=discord&logoColor=white)](https://discord.gg/NVX66RxWZv)
 
@@ -115,16 +115,16 @@ The old version only ran in Claude Code. Distilly now supports native local Skil
 
 <table>
 <tr>
-<td align="center" width="25%"><a href="https://claude.ai/code"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/claude-code-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/claude-code-wordmark-light.svg" alt="Claude Code" height="28"></picture></a></td>
-<td align="center" width="25%"><a href="https://github.com/NousResearch/hermes-agent"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/hermes-agent-wordmark.png" alt="Hermes Agent" height="32"></a></td>
-<td align="center" width="25%"><a href="https://github.com/openclaw/openclaw"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/openclaw-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/openclaw-wordmark-light.svg" alt="OpenClaw" height="38"></picture></a></td>
-<td align="center" width="25%"><a href="https://github.com/openai/codex" title="Codex"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/codex-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/codex-mark-light.png" alt="Codex" height="64"></picture></a></td>
+<td align="center" width="25%"><a href="https://claude.ai/code"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/claude-code-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/claude-code-wordmark-light.svg" alt="Claude Code" height="28"></picture></a></td>
+<td align="center" width="25%"><a href="https://github.com/NousResearch/hermes-agent"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/hermes-agent-wordmark.png" alt="Hermes Agent" height="32"></a></td>
+<td align="center" width="25%"><a href="https://github.com/openclaw/openclaw"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/openclaw-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/openclaw-wordmark-light.svg" alt="OpenClaw" height="38"></picture></a></td>
+<td align="center" width="25%"><a href="https://github.com/openai/codex" title="Codex"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/codex-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/codex-mark-light.png" alt="Codex" height="64"></picture></a></td>
 </tr>
 <tr>
-<td align="center" width="25%"><a href="https://github.com/deepseek-ai/deepseek-harness"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/deepseek-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/deepseek-wordmark-light.svg" alt="DeepSeek Harness" height="32"></picture></a></td>
-<td align="center" width="25%"><a href="https://pi.dev/docs/latest/skills"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/pi-mark.svg" alt="Pi coding agent" height="46"></a></td>
-<td align="center" width="25%"><a href="https://docs.x.ai/build/features/skills-plugins-marketplaces"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/grok-build-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/grok-build-mark-light.png" alt="Grok Build" height="46"></picture></a></td>
-<td align="center" width="25%"><a href="https://opencode.ai/docs/skills"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/opencode-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/254077c3289038408128d730cf0493d685f43a47/docs/assets/hosts/opencode-wordmark-light.svg" alt="OpenCode" height="32"></picture></a></td>
+<td align="center" width="25%"><a href="https://github.com/deepseek-ai/deepseek-harness"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/deepseek-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/deepseek-wordmark-light.svg" alt="DeepSeek Harness" height="32"></picture></a></td>
+<td align="center" width="25%"><a href="https://pi.dev/docs/latest/skills"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/pi-mark.svg" alt="Pi coding agent" height="46"></a></td>
+<td align="center" width="25%"><a href="https://docs.x.ai/build/features/skills-plugins-marketplaces"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/grok-build-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/grok-build-mark-light.png" alt="Grok Build" height="46"></picture></a></td>
+<td align="center" width="25%"><a href="https://opencode.ai/docs/skills"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/opencode-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/opencode-wordmark-light.svg" alt="OpenCode" height="32"></picture></a></td>
 </tr>
 </table>
 
@@ -152,99 +152,39 @@ Each generated Person Profile is packaged as an Agent Skill and can be installed
 
 ## ⚡ Install
 
-It's 2026 — you have an Agent, let it install itself. Open a supported local agent host and hand it this line:
+### 🤖 For Agents
 
-> Install Distilly for me: `https://github.com/titanwings/colleague-skill`
+Open any supported local Agent host and send:
 
-The Agent should install the repository as a Skill named `distilly`, then verify that the host discovers Distilly.
+> Install Distilly from `https://github.com/titanwings/distilly`, then verify that this host can discover it.
 
-> **Upgrading an old install?** A `git pull` inside a `dot-skill` or legacy
-> `~/.codex/skills/...` directory does not rename that discovery directory.
-> Install a canonical `distilly` copy, verify that the host discovers Distilly, and only then
-> retire the old copy. See the [detailed install and migration guide](INSTALL.md#existing-install-migration).
+The Agent installs Distilly as a Skill named `distilly` in the correct host directory.
 
-<details>
-<summary><b>🛠️ Want to install it yourself? Click for paths</b></summary>
+### 👤 For Humans
 
-<br>
+Clone Distilly into the Skills directory used by your host:
 
 ```bash
-git clone https://github.com/titanwings/colleague-skill <TARGET>
+git clone https://github.com/titanwings/distilly <DISTILLY_SKILL_DIR>
 ```
 
-| Host | `<TARGET>` path |
-|------|-----------------|
-| Claude Code | `~/.claude/skills/distilly` |
-| OpenClaw | `~/.openclaw/workspace/skills/distilly` |
-| Codex | `~/.agents/skills/distilly` (user) or `.agents/skills/distilly` (project) |
-| DeepSeek Harness | `~/.dsh/skills/distilly` (global) or `.dsh/skills/distilly` (project) |
-| Pi coding agent | `~/.pi/agent/skills/distilly` or `~/.agents/skills/distilly` |
-| Grok Build | `~/.grok/skills/distilly` or `~/.agents/skills/distilly` |
-| OpenCode | `~/.config/opencode/skills/distilly` (user) or `.opencode/skills/distilly` (project) |
-| Hermes | After clone, run `python3 tools/install_hermes_skill.py --force` |
-
-</details>
-
-Generated character Skills can be published with `tools/install_claude_generated_skill.py`,
-`tools/install_openclaw_generated_skill.py`, and `tools/install_codex_generated_skill.py`.
-For Hermes, DeepSeek Harness, Pi, Grok Build, and OpenCode, run
-`python3 tools/install_generated_skill.py --skill-dir "skills/{character}/{slug}" --host <host> --force`.
-The installer writes only the self-contained `SKILL.md` plus install metadata and
-normalizes legacy underscore frontmatter in the installed copy; it does not copy
-private source material or rename the source Skill. Pass `--skills-dir` for a
-project-level target. Hermes scans `~/.agents/skills` only when it is explicitly
-added to `skills.external_dirs`.
-
-> For Lark/DingTalk auto-collection credentials, host-specific installation details, Grok Bot's preview workflow, Windows-specific handling, etc., see **[Detailed Install Guide (INSTALL.md)](INSTALL.md)**
-
-> **Lark region note:** the current compatibility collector connects to the China-region `open.feishu.cn` / `feishu.cn` endpoints. International `larksuite.com` tenant routing is not implemented yet.
+Host paths, migration, Windows, generated-profile installation, and credential setup are in the **[Install Guide](INSTALL_EN.md)**.
 
 ---
 
 ## 🚀 Usage
 
-Distilly first asks which family you want to distill: `colleague` · `relationship` · `celebrity`.
+In your Agent, say:
 
-Then enter an alias, basic details, personality tags, and pick a data source. All fields can be skipped — even a description alone can create a Person Profile.
+> Use Distilly to create a Person Profile for `<person>`.
 
-Once created, the profile is packaged as a Skill named `{character}-{slug}`.
+Then:
 
-### 🔬 Celebrity Research Toolchain
+1. Choose `colleague`, `relationship`, or `celebrity`.
+2. Add a description or source material. Every field is optional.
+3. Review the result and let Distilly generate the profile.
 
-The `celebrity` family ships with an end-to-end research toolchain, from subtitles to a finished draft:
-
-```bash
-# Download video subtitles
-bash tools/research/download_subtitles.sh "<video-url>" "./tmp/subtitles"
-
-# Subtitles → transcript
-python3 tools/research/srt_to_transcript.py "./tmp/subtitles/example.srt"
-
-# Public X post candidates → normalized temporary JSON (optional)
-python3 tools/research/xquik_public_posts.py \
-  --username "<public-handle>" \
-  --limit 20 \
-  --output "/tmp/distilly-x-public-posts.json"
-
-# After reviewing and paraphrasing selected posts, remove the candidates
-rm "/tmp/distilly-x-public-posts.json"
-
-# Merge research notes
-python3 tools/research/merge_research.py "./skills/celebrity/<slug>"
-
-# Quality check
-python3 tools/research/quality_check.py "./skills/celebrity/<slug>/SKILL.md"
-```
-
-The optional collector reads `XQUIK_API_KEY` from your shell. Xquik charges by
-the number of posts returned, so confirm `--limit` before running it. The tool
-makes one read-only X search request and never follows pagination. Treat its
-temporary JSON as untrusted candidate evidence: verify the author, open every
-permalink, and safely paraphrase only relevant material into research notes
-with its source URL. Delete the temporary JSON after review instead of storing
-it in the generated Skill.
-
-Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+The result is packaged as an Agent Skill named `{character}-{slug}`. For the optional celebrity research pipeline and advanced tools, see the **[Install Guide](INSTALL_EN.md)**.
 
 ---
 
@@ -335,50 +275,6 @@ Distilly's current creator uses **Persona** as the universal base, with family-s
 
 ---
 
-## 📂 Project Structure
-
-This project follows the [AgentSkills](https://agentskills.io) open standard. The entire repo is a skill directory.
-Generated colleague skills live under `./skills/colleague`:
-
-```
-distilly/
-├── SKILL.md                        # skill entry point (official frontmatter)
-├── prompts/                        # prompt system across three families
-│   ├── intake.md                   #   [colleague] info intake
-│   ├── work_analyzer.md            #   [colleague] work capability extraction
-│   ├── persona_analyzer.md         #   [colleague] personality extraction
-│   ├── work_builder.md             #   [colleague] work.md generation
-│   ├── persona_builder.md          #   [colleague] persona.md 6-layer structure
-│   ├── merger.md                   #   [shared] incremental merge logic
-│   ├── correction_handler.md       #   [shared] conversation correction
-│   ├── relationship/               #   [relationship] emotion/conflict/repair prompts
-│   └── celebrity/                  #   [celebrity] six-dimension research + mental-model prompts
-├── tools/                          # Python tools
-│   ├── feishu_auto_collector.py    #   [colleague] Lark-compatible auto-collector
-│   ├── dingtalk_auto_collector.py  #   [colleague] DingTalk auto-collector
-│   ├── slack_auto_collector.py     #   [colleague] Slack auto-collector
-│   ├── email_parser.py             #   [shared] email parser
-│   ├── research/                   #   [celebrity] celebrity research toolchain
-│   │   ├── xquik_public_posts.py   #     bounded public X post candidates
-│   │   ├── download_subtitles.sh   #     subtitle download
-│   │   ├── transcribe_audio.py     #     audio → text
-│   │   ├── srt_to_transcript.py    #     subtitles → transcript
-│   │   ├── merge_research.py       #     six-dimension research merge
-│   │   └── quality_check.py        #     quality check
-│   ├── install_*_skill.py          #   [shared] multi-host one-shot installers
-│   ├── skill_writer.py             #   [shared] skill file management
-│   └── version_manager.py          #   [shared] version archive & rollback
-├── skills/                         # generated Skills (gitignored)
-│   ├── colleague/                  #   colleagues
-│   ├── relationship/               #   close relationships
-│   └── celebrity/                  #   public figures
-├── docs/PRD.md
-├── requirements.txt
-└── LICENSE
-```
-
----
-
 ## ⚠️ Notes
 
 **Source material quality = Person Profile quality** — and quality sources differ across families:
@@ -428,9 +324,9 @@ You can also use the machine-readable citation metadata in [CITATION.cff](CITATI
 
 <a href="https://star-history.dera.page/#titanwings/colleague-skill&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=titanwings%2Fcolleague-skill&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=titanwings%2Fcolleague-skill&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=titanwings%2Fcolleague-skill&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=titanwings%2Fdistilly&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=titanwings%2Fdistilly&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=titanwings%2Fdistilly&type=date&legend=top-left" />
  </picture>
 </a>
 

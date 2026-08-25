@@ -146,8 +146,8 @@ watchdog **启动时及每 6 小时**检查 npm registry，并用 pnpm 更新 pr
 
 - **版本策略**：同 major 版本（0.1.3 → 0.1.4、0.2.x → 0.2.y）自动更新；major 变更（0.x → 1.x、1.x → 2.x、…）仅提示，需人工执行 `dsh_daemon_update` 工具。
 - **更新模式**（`DSH_DAEMON_UPDATE_MODE`）：
-  - `download`（默认）：新包安装到 profile 并写入待生效标记；下次自然重启 `dsh web` 时生效。绝不中断任何会话。
-  - `restart`：下载完成后，watchdog 每 30 秒轮询插件的 `/dsh-daemon/activity` 端点（进行中的回合 + 后台任务），仅在安静窗口后重启 `dsh web`——进行中的对话或任务会推迟重启直到结束。端点不可达（插件未挂载）时，仍会在 `DSH_DAEMON_DEFER_MAX` 之后重启。
+  - `restart`（默认）：下载完成后，watchdog 每 30 秒轮询插件的 `/dsh-daemon/activity` 端点（进行中的回合 + 后台任务），仅在安静窗口后重启 `dsh web`——进行中的对话或任务会推迟重启直到结束。端点不可达（插件未挂载）时，仍会在 `DSH_DAEMON_DEFER_MAX` 之后重启。完全无人值守。
+  - `download`：新包安装到 profile 并写入待生效标记；下次自然重启 `dsh web` 时生效。绝不中断任何会话，把"何时生效"的控制权留给用户。
 - **失败安全**：registry 不可达、pnpm 失败或更新后版本不一致只会写日志行与检查状态；旧包保持安装（pnpm store 保留旧版本，`dsh plugin --profile web add @chenkai114/dsh-daemon@<旧版>` 可回滚）。
 
 配置在 `dsh_daemon_install`/`reinstall` 时捕获并嵌入生成的 watchdog 脚本：
@@ -156,12 +156,14 @@ watchdog **启动时及每 6 小时**检查 npm registry，并用 pnpm 更新 pr
 | --- | --- | --- |
 | `DSH_DAEMON_AUTO_UPDATE` | `1` | `0` 关闭检查 |
 | `DSH_DAEMON_UPDATE_INTERVAL` | `6h` | 检查间隔（`ms`/`s`/`m`/`h`/`d`） |
-| `DSH_DAEMON_UPDATE_MODE` | `download` | `download` 或 `restart` |
+| `DSH_DAEMON_UPDATE_MODE` | `restart` | `restart` 或 `download` |
 | `DSH_DAEMON_QUIET_WINDOW` | `5m` | restart 模式重启前所需的安静时间 |
 | `DSH_DAEMON_DEFER_MAX` | `15m` | 活动端点不可达时最多等待多久再重启 |
 | `DSH_DAEMON_NPM_REGISTRY` | `https://registry.npmjs.org` | 检查与 pnpm 更新所用的 registry |
 | `DSH_DAEMON_PROFILE` | `web` | 存放插件的 profile 目录 |
 | `DSH_DAEMON_HEALTH_INTERVAL` | `30s` | watchdog 循环的健康检查间隔（`ms`/`s`/`m`；连续 3 次失败触发重启） |
+| `DSH_DAEMON_CLI_DIR` | node bin 目录 | 生成的 `dsh-daemon` CLI 写入目录（测试/沙箱安装时指向临时目录，避免污染真实 PATH） |
+| `DSH_DAEMON_NO_SYSTEM` | 未设置 | `1` 时跳过系统级注册（launchd/schtasks/systemd）——测试/沙箱安装不触碰宿主系统服务，watchdog 仍直接启动 |
 
 > 自动更新逻辑位于生成的 `watchdog.js` 中；升级到含新更新逻辑的版本后，运行一次 `dsh_daemon_reinstall` 重新生成。
 
@@ -186,6 +188,53 @@ DYNAMIC=1 node test/harness.js dsh_daemon_status # 动态沙箱模式
 ```
 
 测试驱动运行真实插件代码（真实 bash/fs），并真实调用工具。
+
+### v0.1.16 — 健康检查、浏览器弹窗与环境变量转发
+
+- **`/health` 路由**：watchdog 每 30s 检查 `http://127.0.0.1:<port>/health`，
+  但 deepseek-harness 的 web server 没有该路由（未知路径 404），导致
+  web 明明在跑却永远报 unhealthy。插件现在自己注册 `/health`，返回
+  `200 {"ok":true}`——插件在线即 web 在线，检测可靠。
+- **`--no-open`**：daemon 托管的 web 重启（自动更新、自愈）不再自动
+  弹浏览器 tab；手动 `dsh web` 仍保持默认打开。
+- **环境变量转发**：`dsh-daemon install/uninstall/reinstall` 通过
+  `/dsh-daemon/command` 路由在 web 进程里执行，之前 shell 里的
+  `DSH_DAEMON_*` 变量到不了插件。现在 CLI wrapper 收集当前 shell 的
+  全部 `DSH_DAEMON_*` 并随请求转发，因此
+  `DSH_DAEMON_UPDATE_INTERVAL=1m dsh-daemon reinstall` 能正确配置
+  watchdog。
+
+### v0.1.15 — 测试/沙箱安装不再污染宿主系统
+
+测试 harness 用临时 HOME 跑 install 时会污染真实环境，两个开关封堵：
+
+- `DSH_DAEMON_CLI_DIR`：覆盖生成的 `dsh-daemon` CLI 的写入目录（默认
+  node bin），测试指向临时目录，不再覆盖真实 PATH 里的 wrapper；
+- `DSH_DAEMON_NO_SYSTEM`：`1` 时跳过系统级注册（launchd/schtasks/
+  systemd），防止测试 install 按 label 抢注系统服务、让真实 daemon
+  失效。harness 默认同时设置两者。
+
+### v0.1.14 — restart 成为默认自动更新模式
+
+`DSH_DAEMON_UPDATE_MODE` 的默认值从 `download` 改为 `restart`：未显式
+设置时，更新下载后 watchdog 会在 web 空闲时自动重启生效（完全无人
+值守，绝不打断进行中的会话）。需要手动控制生效时机时显式设为
+`download`。
+
+### v0.1.13 — 自动更新后自动重新生成 watchdog
+
+此前自动更新只刷新 npm 包，已生成的 `watchdog.js`（安装时的一次性产物）
+不会自动用上新版的生成逻辑——需要手动 `dsh_daemon_reinstall`。v0.1.13
+起：
+
+- 生成 watchdog 时把**插件版本**嵌入脚本（`GEN_VERSION` 常量）；
+- 插件每次启动时比对 `GEN_VERSION` 与当前安装版本，不一致（自动更新
+  后、或手动升级包后）即自动**重新生成 watchdog.js 与 CLI wrapper 并
+  重启 watchdog 进程**；
+- 因此自动更新（download 模式用户重启 web / restart 模式自动重启 web）
+  或手动升级后重启 `dsh web`，watchdog 都会自动跟上新版，无需手动
+  `dsh_daemon_reinstall`；
+- 测试/开发加载可通过 `DSH_DAEMON_AUTOREGEN=0` 跳过该同步。
 
 ### v0.1.12 — Windows 弹窗回归修复
 

@@ -90,11 +90,11 @@ grok2api-media-tool:
 | `video.provider` | `''` | 视频用途的 provider 覆盖；空则用全局 `llmProvider` |
 | `video.timeoutMs` | `1200000` | 视频生成总超时（毫秒） |
 | `video.pollIntervalMs` | `5000` | 视频进度轮询间隔（毫秒） |
-| `vision.enabled` | `true` | 是否启用 `recognize_image` |
+| `vision.enabled` | `false` | 是否启用 `recognize_image`；关闭时聊天输入框左侧的 🖼️ 上传按钮也会一并隐藏 |
 | `vision.model` | `latest` | 识图默认模型；`latest` 会查询 grok2api 的 `/v1/models` 自动选最新 Grok 语言模型（同一会话只查一次，失败回退 `grok-4.6`），也可直接填具体模型 id |
 | `vision.provider` | `''` | 识图用途的 provider 覆盖；空则用全局 `llmProvider` |
 | `vision.timeoutMs` | `60000` | 识图单次请求超时（毫秒） |
-| `vision.bridgeToText` | `true` | 是否把聊天上传的图片先用 Grok 转成文字，再交给纯文本主模型（如 DeepSeek） |
+| `vision.bridgeToText` | `true` | 是否把聊天上传的图片先用 Grok 转成文字，再交给纯文本主模型（如 DeepSeek）；仅在「图片识别」启用时生效 |
 | `saveToWorkspace` | `true` | 是否将生成的媒体下载到会话工作区 |
 | `saveDir` | `generated` | 媒体保存子目录（相对工作区根） |
 | `requestTimeoutMs` | `60000` | 单次 HTTP 请求超时（毫秒） |
@@ -108,7 +108,7 @@ grok2api-media-tool:
 - 「做一个 8 秒的视频：一只橘猫在雪地里奔跑」
 - 「生成 2 张水彩灯塔图片，保存到项目里」
 - 「分析这张图片里有什么」/「识别 `/path/to/image.png` 里是什么」
-- 点击聊天输入框左侧的 🖼️ 按钮，选择一张图片，插件会把本地路径插入输入框；发送后模型会调用 `recognize_image` 用 Grok 识别
+- 点击聊天输入框左侧的 🖼️ 按钮，选择一张图片，插件会把本地路径插入输入框；发送后模型会调用 `recognize_image` 用 Grok 识别。该按钮仅在「图片识别」启用时显示（默认关闭，需在设置里勾选「图片识别」的启用）。
 
 生成的图片会以内嵌卡片展示，视频可直接在对话中播放；本地保存的文件路径会以行内代码形式出现在回复里。识图结果会以普通文本返回。
 

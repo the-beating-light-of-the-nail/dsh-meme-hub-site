@@ -35,9 +35,9 @@ node --version
 npm install -g pnpm
 
 # 3. install the plugin
-#    (pnpm ≥ 11 blocks the protobufjs build script by default — if this
-#     fails with ERR_PNPM_IGNORED_BUILDS, append --allow-build=protobufjs)
-npx @deepseek-ai/dsh plugin --profile feishu add @dsh-feishu/dsh-feishu@latest
+#    (pnpm ≥ 11 blocks the protobufjs build script by default, so
+#     --allow-build=protobufjs lets pnpm run it)
+npx @deepseek-ai/dsh plugin --profile feishu add @dsh-feishu/dsh-feishu@latest --allow-build=protobufjs
 
 # 4. one QR scan — create + configure the Feishu app
 npx --yes --package @dsh-feishu/dsh-feishu dsh-feishu-setup --new --profile feishu
@@ -99,18 +99,18 @@ session goes like this:
    default policy; a group with just you and the bot also answers plain
    messages, and the policy is configurable).
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/1_chat.png" width="640" alt="Chat with the bot"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/1_chat.png" width="640" alt="Chat with the bot"></p>
 
 2. **Open the control panel.** Send `/panel` to pop up the panel card.
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/2_panel.png" width="640" alt="Control panel"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/2_panel.png" width="640" alt="Control panel"></p>
 
 3. **Pick a working directory.** The bot refuses work until the chat has
    one: tap **📚 Pick project** to choose from a list (the `/repo`
    equivalent), or **📁 Change dir** to type a path (the `/cd <path>`
    equivalent).
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/3_repo.png" width="640" alt="Project picker"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/3_repo.png" width="640" alt="Project picker"></p>
 
 4. **Ask.** Send a message — the agent runs and its output streams into a
    live card (tool calls, reasoning, markdown, tables). The card ends green
@@ -119,7 +119,7 @@ session goes like this:
 
    | Mid-stream | Finalized |
    |---|---|
-   | ![Card mid-stream](https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/4.1_streaming-mid.png) | ![Card finalized](https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/4.2_streaming-done.png) |
+   | ![Card mid-stream](https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/4.1_streaming-mid.png) | ![Card finalized](https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/4.2_streaming-done.png) |
 
 5. **Approve or answer when asked.** A permission escalation posts an
    approval card — tap **Allow once** (or **Reject**). A question posts a
@@ -127,14 +127,14 @@ session goes like this:
 
    | Approval | Question |
    |---|---|
-   | ![Approval card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/5.1_approval.png) | ![Question card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/5.2_question.png) |
+   | ![Approval card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/5.1_approval.png) | ![Question card](https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/5.2_question.png) |
 
 6. **Manage sessions.** Tap **🗂️ Sessions** to list saved sessions and
    resume any of them from the card (the `/sessions` equivalent; `/resume
    <id>` moves one into this chat), and tap **➕ New chat** (the `/clear`
    equivalent) to start fresh without deleting the old one.
 
-<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/70d22d4b02d75f866764b19b51309ed8dc31318e/docs/assets/snapshots/6_sessions.png" width="640" alt="Sessions picker"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/snapshots/6_sessions.png" width="640" alt="Sessions picker"></p>
 
 Every button on the panel card maps to a slash command — pick whichever
 feels faster; `/help` lists them all.
@@ -143,21 +143,25 @@ feels faster; `/help` lists them all.
 
 | Command | What it does |
 |---|---|
-| `/cd <path>` | set this chat's working directory |
-| `/repo` | list candidate project directories to pick from |
-| `/sessions` | list saved sessions (resume any of them from the card) |
-| `/resume [id]` | resume a saved session in this chat |
-| `/clear` `/new` | start a fresh conversation (the old session stays saved) |
-| `/cancel` | stop the running turn |
-| `/status` | show this chat's session status |
-| `/model` | pick or set the model |
-| `/export` | send this chat's session log as a file |
-| `/schedule` | list active reminders |
-| `/feishu-status` | show the surface diagnostic card |
-| `/group` | create a group with the bot |
-| `/panel` | open the control-panel card (all commands as buttons) |
 | `/help` | list all commands |
-| `/plan` `/permission` `/goal` `/compact` `/feedback` | dsh's own commands, same as the web UI |
+| `/panel` | open the control-panel card (all commands as buttons) |
+| `/group <name>` | create a group with the bot (bare opens a name-input card) |
+| `/cancel` | stop the running turn |
+| `/cd <path>` | set this chat's working directory (bare opens a path-input card) |
+| `/repo [path]` | pick a project directory (bare scans the default roots; `/repo <path>` scans that path) |
+| `/status` | show this chat's session status |
+| `/feishu-status` | show the surface diagnostic card |
+| `/schedule` | list active reminders |
+| `/model <provider/model>` | switch this session's model (bare opens the picker) |
+| `/export` | send this chat's session log as a file |
+| `/sessions` | list saved sessions (resume any of them from the card) |
+| `/resume <id>` | resume a saved session (bare opens the session list) |
+| `/clear` `/new` | start a fresh conversation (the old session stays saved) |
+| `/goal <text>` | set the task goal (bare opens a text-input card) |
+| `/compact` | compact older conversation history |
+| `/feedback <text>` | send feedback (bare opens a text-input card) |
+| `/permission <preset>` | switch the permission preset (bare opens the picker) |
+| `/plan [on\|off]` | enter or leave plan mode (bare toggles) |
 
 ## Features
 
@@ -172,6 +176,12 @@ feels faster; `/help` lists them all.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 Development, tests, and release: [docs/development.md](docs/development.md).
+
+## Community
+
+Join the dsh-feishu community group on Feishu:
+
+<img src="https://raw.githubusercontent.com/PGZXB/dsh-feishu/ff1ebbf646c831639de158a66212f43aceb2b825/docs/assets/feishu-group-qr-code.png" alt="dsh-feishu community group QR code" width="220">
 
 ## Credits
 
