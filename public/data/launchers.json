@@ -112,7 +112,7 @@
       "url": "https://github.com/myYangyunfan/dsh_desktop",
       "description_zh": "把 @deepseek-ai/dsh 封装成开箱即用的 Windows 客户端，内置 Node.js + dsh，便携版可放 U 盘，国内提供 Gitee 分片下载",
       "description_en": "Wraps @deepseek-ai/dsh into a ready-to-use Windows client with Node.js + dsh bundled in. A portable build fits on a USB stick; Gitee split downloads provided for users in China",
-      "stars": 347,
+      "stars": 558,
       "platforms": [
         "Windows"
       ],
@@ -129,7 +129,7 @@
         "Portable build for USB",
         "Gitee downloads for China"
       ],
-      "pushed_at": "2026-08-16T12:12:19Z",
+      "pushed_at": "2026-08-24T19:20:11Z",
       "image": null,
       "description_zh_TW": "把 @deepseek-ai/dsh 封裝成開箱即用的 Windows 客戶端，內建 Node.js + dsh，便攜版可放 U 盤，國內提供 Gitee 分片下載",
       "highlights_zh_TW": [
@@ -212,11 +212,11 @@
     {
       "slug": "deepseek-harness-desktop-app-vibe",
       "name": "DeepSeek Harness Desktop App",
-      "repo": "vibeinging/deepseek-harness-desktop-app",
-      "url": "https://github.com/vibeinging/deepseek-harness-desktop-app",
+      "repo": "vibeinging/dsh-desktop",
+      "url": "https://github.com/vibeinging/dsh-desktop",
       "description_zh": "建立在 DSH 之上的本地 AI 工作桌面，把 Session/Agent/Tool/Skill/MCP/插件 与项目、文件、Git Worktree、Canvas、Office 产物组织在同一个应用，另附二次元看板娘主题",
       "description_en": "A local AI work desktop on top of DSH, organizing Sessions, Agents, Tools, Skills, MCP and plugins alongside projects, files, Git worktrees, Canvas and Office artifacts — plus an anime waifu theme",
-      "stars": 209,
+      "stars": 631,
       "platforms": [
         "macOS"
       ],
@@ -231,7 +231,7 @@
         "Full workspace",
         "Anime waifu theme"
       ],
-      "pushed_at": "2026-08-15T08:56:28Z",
+      "pushed_at": "2026-08-25T03:36:50Z",
       "image": "/images/launchers/deepseek-harness-desktop-app-vibe.webp",
       "image_w": 960,
       "image_h": 617,
