@@ -30,7 +30,7 @@ DSH 在**每个会话第一个请求前**自动注入 `~/.dsh/AGENTS.md`（记�
 
 `reference/` 里就是按主题命名的 md 文件，一个主题一个文件，像这样：
 
-![reference 目录示例](https://raw.githubusercontent.com/rainow/dsh-simple-wiki-memory/3f10d31cc50013e89ba4626f2c4b2a7376f5bdbd/assets/reference-dir-example.png)
+![reference 目录示例](https://raw.githubusercontent.com/rainow/dsh-simple-wiki-memory/38f7d68d945008bf1bc972eef03d67ec35ea57e1/assets/reference-dir-example.png)
 
 每个文件是一个主题的完整细节（如 `DOCKER-NAS.md`、`INFRA-SERVERS.md`、`HOME-ASSISTANT-CONTROL.md`），由 `AGENTS.md` 索引条目指向；任务需要时才 read 对应文件，平时只加载索引，不占上下文。
 
@@ -45,8 +45,8 @@ DSH 在**每个会话第一个请求前**自动注入 `~/.dsh/AGENTS.md`（记�
 
 ## 兼容性
 
-- 已用 DSH 10.33.0（web profile，`dsh-agent-instructions` 基线注入）验证。
-- 最后验证日期：2026-08-18。
+- 已用 DSH **0.1.1-rc.2**（web profile，`dsh-agent-instructions` 基线注入）验证；peerDependencies 同时覆盖 `0.1.0-rc.7+` 与 `0.1.1-rc.2+` 两条发布线。
+- 最后验证日期：2026-08-25。
 - 依赖 DSH 原生 `dsh-agent-instructions` 机制（`dsh-base` bundle 默认启用）；若你的部署禁用了它，记忆注入将不生效。
 
 ### 与锚定模式的已知冲突（liangshen / Anchored Standard）
@@ -63,15 +63,21 @@ DSH 在**每个会话第一个请求前**自动注入 `~/.dsh/AGENTS.md`（记�
 
 ## 安装
 
-> **注意**：目前仅支持 GitHub 安装——本包**尚未发布到 npm**。
+**方式一：npm（推荐，支持自动更新）**
 
-**方式一：命令行**
+```bash
+dsh plugin --profile web add dsh-simple-wiki-memory
+```
+
+> 本包已发布到 npm。dsh-market 插件市场会显示版本号并自动检测更新（新版本发布满一天后提示更新）；也可以随时手动 `dsh plugin --profile web add dsh-simple-wiki-memory` 拉最新版。
+
+**方式二：GitHub（源码安装）**
 
 ```bash
 dsh plugin --profile web add github:rainow/dsh-simple-wiki-memory
 ```
 
-**方式二：交给 agent 安装**
+**方式三：交给 agent 安装**
 
 直接把下面的链接丢给 DSH 会话里的 agent，让它帮你安装即可：
 
@@ -79,7 +85,7 @@ dsh plugin --profile web add github:rainow/dsh-simple-wiki-memory
 https://github.com/rainow/dsh-simple-wiki-memory
 ```
 
-> agent 会执行 `dsh plugin --profile web add github:rainow/dsh-simple-wiki-memory`，并完成首次同步。
+> agent 会执行 `dsh plugin --profile web add dsh-simple-wiki-memory`，并完成首次同步。
 
 首次启动自动：同步 AGENTS.md 骨架、创建 vault 目录、git init `workspace/`。**幂等、只合并、绝不覆盖**你已有的 `~/.dsh/AGENTS.md` 索引条目。
 
@@ -101,7 +107,7 @@ dsh plugin --profile web remove dsh-simple-wiki-memory
 
 下次新会话开始时，agent 会自动提醒你待确认的记忆（写入是实时的，所以 `/new` 或关页面都不丢）：
 
-![pending 汇报示例](https://raw.githubusercontent.com/rainow/dsh-simple-wiki-memory/3f10d31cc50013e89ba4626f2c4b2a7376f5bdbd/assets/pending-report-example.png)
+![pending 汇报示例](https://raw.githubusercontent.com/rainow/dsh-simple-wiki-memory/38f7d68d945008bf1bc972eef03d67ec35ea57e1/assets/pending-report-example.png)
 
 ## 配置
 

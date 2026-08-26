@@ -7,6 +7,11 @@
 [![npm downloads](https://img.shields.io/npm/dt/@jiyr0119/dsh-service-console)](https://www.npmjs.com/package/@jiyr0119/dsh-service-console)
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 [![Last commit](https://img.shields.io/github/last-commit/Jiyr0119/dsh-service-console)](https://github.com/Jiyr0119/dsh-service-console)
+[![GitHub stars](https://img.shields.io/github/stars/Jiyr0119/dsh-service-console?style=social)](https://github.com/Jiyr0119/dsh-service-console/stargazers)
+
+<p align="center">
+  ⭐ Drop a Star if it helped — it makes the author's day · <a href="https://github.com/Jiyr0119/dsh-service-console">★ Give a Star</a>
+</p>
 
 > A local development service console for DSH: discover listening ports, identify services related to the current conversation or workspace, and safely inspect, stop, or restart them.
 
@@ -39,7 +44,7 @@ Alternative — dynamic paste (zero-build, process-local): paste `dynamic/host.j
 
 ## UI preview
 
-![Service Console 0.2.0 — all local services and DSH-style inspector](https://raw.githubusercontent.com/Jiyr0119/dsh-service-console/ef6f0a806714a12b86d66f7166e36bea04a20774/assets/service-console-0.2.0.gif)
+![Service Console 0.2.0 — all local services and DSH-style inspector](https://raw.githubusercontent.com/Jiyr0119/dsh-service-console/4b76aa919fe2e7fb89fc3b2bc634a55ed2212556/assets/service-console-0.2.0.gif)
 
 The preview shows the complete local listening-service list and the expanded inspector card. The ownership badge remains visible as a safety signal, while the list itself is no longer split into conversation/workspace/machine categories.
 

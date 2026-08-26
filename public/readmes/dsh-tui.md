@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
 </p>
 <p align="center">
   <strong>简体中文</strong> | <a href="README_EN.md">English</a>
@@ -33,7 +33,7 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
         <br>
         <strong>DeepSeek Harness 官方公众号推文收录</strong>
       </td>
@@ -49,10 +49,11 @@
     </tr>
   </table>
 </div>
+
 ## 核心能力
 
   - **终端交互**：低资源占用，长会话稳定可靠；多种主题切换，样式美观，实时显示工作状态、TPS、缓存命中率等
-    推理等级、输入/输出 token 与 Git/会话信息。
+    推理等级、输入/输出 token 与 Git/会话信息；终端卡多行命令可经 `/settings` 折叠为首行 + 计数提示（Ctrl+O 或点击卡片展开）。
   - **功能全面**：`/resume`、`/new`、`/compact`、`/export`、`/btw`，模型热切换，原生subagent，会话fork，自动更新；可在vs code中[以vscode插件形式启动](docs/vscode.md)，已上架 VS Code Marketplace。
   - **扩展丰富**：原生浏览器交互，compter use等大量附属功能性扩展
 
@@ -64,12 +65,12 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
         <br>
         <strong>首屏：像素鲸鱼顶栏</strong>
       </td>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/screenshots/working-line.png" alt="工作状态行 + 上下文进度条" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/working-line.png" alt="工作状态行 + 上下文进度条" width="480">
         <br>
         <strong>工作状态行 + 上下文进度条</strong>
       </td>
@@ -105,6 +106,16 @@ sh install.sh
 # 之后 dsh-tui 与 dsh --profile dsh-tui 等价
 ```
 
+> **新用户提示**：若 `dsh plugin` 安装时报 `ERR_PNPM_IGNORED_BUILDS`（pnpm ≥11 默认阻止带安装脚本的依赖，如 `@google/genai`、`protobufjs`——这些脚本运行时不需要，忽略即可），在 profile 的 `pnpm-workspace.yaml` 里加入：
+>
+> ```yaml
+> allowBuilds:
+>   '@google/genai': false
+>   protobufjs: false
+> ```
+>
+> `/update` 与 `dsh-tui update` 会自动写入这份配置，无需手工处理。
+
 更面向零基础的安装流程、profile 叠加机制、源码构建与常见问题见[安装与快速开始](docs/getting-started.md)。
 
 
@@ -113,8 +124,7 @@ sh install.sh
 
 想为 dsh-TUI 做插件/扩展？欢迎加入生态！
 
-- **接口与兼容性协定**：[终端交互生态插件准入规范与实施标准](https://github.com/T-Auto/dsh-ecosystem-spec)
-- **插件开发指南**：[`docs/plugins.md`](docs/plugins.md)（接缝、契约、规范与验证清单）
+- **接口与兼容性协定 / 插件开发指南**：[终端交互生态插件准入与开发指南](https://github.com/T-Auto/dsh-ecosystem-spec/blob/main/docs/plugin-admission-and-development.md)（准入规范、接缝、契约、验证清单）
 - **生态组织**：[dsh-tui-ecosystem](https://github.com/dsh-tui-ecosystem)（社区插件与模板的家）
 - **模板仓库**：[plugin-template](https://github.com/dsh-tui-ecosystem/plugin-template)（从模板起步，5 分钟出一个插件）
 - **参考实现**：`dsh-working-activity`（实时工作状态行：TUI 槽位 + `activity/status` 会话事件双出口）
@@ -132,7 +142,7 @@ sh install.sh
 | [架构与限制](docs/architecture.md) | 运行链路、渲染与持久化设计、安全边界、已知限制 |
 | [VS Code 使用指南](docs/vscode.md) | 在 VS Code 集成终端运行 dsh-tui；companion 扩展 `dsh-tui-vscode` 提供与 Claude Code 官方扩展几乎一致的体验（已上架 Marketplace） |
 | [贡献与开发约定](docs/contributing.md) | 贡献流程、仓库地图、构建产物、验证矩阵与修改规则 |
-| [插件开发指南](docs/plugins.md) | 插件接缝（会话事件 / 槽位 / 技能 / 主题 / prompt 段）、契约、规范与收录 |
+| [插件准入与开发指南](https://github.com/T-Auto/dsh-ecosystem-spec/blob/main/docs/plugin-admission-and-development.md) | 接口与兼容性协定 / 插件准入规范 / 插件接缝 / 契约 / 验证清单（已并入 dsh-ecosystem-spec） |
 
 完整的中英文索引见 [`docs/README.md`](docs/README.md)。
 
@@ -145,7 +155,7 @@ sh install.sh
 
 | 微信群 | QQ 群（群号 572549239） | 微信三群 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
+| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
 
 > 微信群二维码约 7 天过期一次，如遇失效请走 QQ 群（572549239），或开个 issue 提醒我们更新。
 
@@ -162,7 +172,7 @@ sh install.sh
 ## Stars
 
 <!-- star-history:start -->
-[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/7732f96b12266308debae0a48b1128dd398aed90/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
+[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
 <!-- star-history:end -->
 
 

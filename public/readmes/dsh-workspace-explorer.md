@@ -6,7 +6,12 @@
 [![npm](https://img.shields.io/npm/v/@jiyr0119/dsh-workspace-explorer)](https://www.npmjs.com/package/@jiyr0119/dsh-workspace-explorer)
 [![npm downloads](https://img.shields.io/npm/dt/@jiyr0119/dsh-workspace-explorer)](https://www.npmjs.com/package/@jiyr0119/dsh-workspace-explorer)
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+[![GitHub stars](https://img.shields.io/github/stars/Jiyr0119/dsh-workspace-explorer)](https://github.com/Jiyr0119/dsh-workspace-explorer/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/Jiyr0119/dsh-workspace-explorer)](https://github.com/Jiyr0119/dsh-workspace-explorer)
+
+<p align="center">
+  ⭐ If you find this useful, give it a Star — it makes the author's day &nbsp;·&nbsp; <a href="https://github.com/Jiyr0119/dsh-workspace-explorer">★ Give a Star</a>
+</p>
 
 > A workspace file explorer for the DeepSeek Harness Web UI: a **“Workspace Files” capsule button in the session header** (feature name + folder icon, beside the Session log button) opens an animated popup showing the current workspace's directory tree — click or drag a file to send its reference to the model.
 
@@ -14,22 +19,22 @@ Inspired by the VS Code / Cursor project tree, filling the gap of a missing dire
 
 ## 🖥 Demo
 
-![dsh-workspace-explorer demo](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/d40ef7f63cd8b652c053131e29cf33b8dd1c9c9a/demo/preview.gif)
+![dsh-workspace-explorer demo](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/demo/preview.gif)
 
 *Demo GIF (recorded at v0.5.1): the **“Workspace Files” pill entry**, multi-select batch insert, folder drag → compact tree text, paginated preview, and the settings tab. The v0.6.0 split-view preview and file editing are shown in the screenshots below.*
 
 <details>
 <summary><b>Screenshots</b> · 截图</summary>
 
-![Panel](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/d40ef7f63cd8b652c053131e29cf33b8dd1c9c9a/assets/screenshots/panel.png)
+![Panel](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/panel.png)
 
-![File tree](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/d40ef7f63cd8b652c053131e29cf33b8dd1c9c9a/assets/screenshots/tree.png)
+![File tree](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/tree.png)
 
-![Split-view preview](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/d40ef7f63cd8b652c053131e29cf33b8dd1c9c9a/assets/screenshots/preview.png)
+![Split-view preview](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/preview.png)
 
-![Edit mode](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/d40ef7f63cd8b652c053131e29cf33b8dd1c9c9a/assets/screenshots/edit.png)
+![Edit mode](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/edit.png)
 
-![Insert & send](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/d40ef7f63cd8b652c053131e29cf33b8dd1c9c9a/assets/screenshots/insert.png)
+![Insert & send](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/insert.png)
 
 </details>
 

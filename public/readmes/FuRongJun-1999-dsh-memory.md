@@ -129,6 +129,34 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 
 **角色扮演的白箱化**（v3.3 扮演论工程化）：角色条件单元（身份/住处/食物/性格/话风）× 场景组合生成 → 角色化回答（未预写）；**OOC 检测**（「你是人类吗」→ 角色化否认，逆转操作）；角色语录固化（生成→自校验→固化→直答）；多角色（鲸鱼娘/猫娘）防污染（角色特征隔离，双角色 7/7 零 LLM）。
 
+
+## 🔄 自迭代闭环 + 能力工作流化（第七阶段 · 条件递归到精准执行）
+
+**理论**：在给定条件空间与存在约束下，智能系统通过递归缩小问题与可执行规则之间的信息差，直到获得可验证的执行路径；若条件不足、冲突或不可判定，则延迟（DEFER）/拒绝（REJECT）/声明盲区（BLINDSPOT）；当子系统无法识别，由父系统判断，全层无法判断才标记盲区（分层升级 escalation）。
+
+**八步自迭代闭环**（`tools/self_iterate.py`，方向性自检含理论完整性自指检查）：
+
+```
+感知(6通道) → 识别(漂移分类) → 分析(影响范围) → 验证(honest+语法)
+→ 固化(字符串内注释对齐+技能) → 记录(轨迹可追溯) → 反馈(已吸收跳过) → 方向性自检
+```
+
+- **理论完整性**：第 8 步自检验证「理论八步被工程完整实现」（`test_theory_integrity.py` 6/6）——防步骤因记忆缺漏/遗忘丢失（曾 5 步偏离的教训）
+- **隐式盲区显式化**（荣：返回默认值=不知道=自带盲区）：19 处弱兜底漂移全部显式声明盲区，技能条件化（适用/不适用条件 + 判别词）
+- **自动运行**：`auto_iterate.py` 无人值守循环（感知→吸收→记录→稳态检测），后台持续自迭代
+
+**能力工作流化**（`tools/whitebox_workflow.py`，仿 ComfyUI——白箱能力知识图谱化）：
+
+```
+node{class_type, inputs} + 边引用[上游,idx] + prompt图 → 拓扑执行 + 循环检测 + JSON保存/复用
+节点类型: code_unit(681单元) / router(条件路由) / mos_declare(元操作声明) / pass(透传)
+```
+
+- **路由置信度**（DaoTi coherence 吸纳）：ACCEPT 含连续置信度 [0,1]，低置信可降级
+- **技能条件路由**（anthropics/skills + gliding_horse SkillLink 吸纳）：技能声明适用/不适用条件 + 关系边，条件路由加载
+
+**外部感知**：稳态≠停止自迭代——持续扫描 GitHub 高星项目吸纳未理论化的工程实践（langgraph/MetaGPT/cognee/anthropics-skills/DaoTi/gliding_horse 已分析并部分落地）。
+
 ## 🎭 角色扮演引擎（v3.3 · 扮演论）
 
 灵枢的角色扮演机制底座——**机制是灵枢的，载体是酒馆的**。自建两种交互方式（网页 / MCP），信息处理全部由灵枢完成。
@@ -171,7 +199,7 @@ python -m aeis.mcp.server
 > 视角：**使用性**（普通用户/开发者体感）——「存、找、想、准、安」五维。
 > 评估基准：公开能力 + 设计者校准（2026-08-17）。灵枢分数经设计者核对（不虚高）。
 
-![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/84a6d8bab174de27951f4172aad71dc384ab8daf/docs/memory_score.png)
+![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/75f427d2460ca26edae7397f50d25619a334c124/docs/memory_score.png)
 
 （插图源文件：[memory_score.html](docs/memory_score.html)，可浏览器打开重新截图）
 

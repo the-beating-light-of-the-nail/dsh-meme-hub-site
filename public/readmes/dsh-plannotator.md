@@ -28,13 +28,13 @@ Select exact plan text, collect precise comments, and return one structured revi
 
 **English** · [简体中文](README.zh-CN.md)
 
-![DSH Plannotator social preview with Liang Xiaojing reviewing an annotated plan](https://raw.githubusercontent.com/titanwings/dsh-plannotator/c0fe880107aa09ef595a8b6fdac6d7099e4b46da/docs/social-preview.png)
+![DSH Plannotator social preview with Liang Xiaojing reviewing an annotated plan](https://raw.githubusercontent.com/titanwings/dsh-plannotator/053c982f96b77fd750360ee66384bf90d5c1e603/docs/social-preview.png)
 
 </div>
 
 ---
 
-![A real plan review docked beside the DeepSeek Harness conversation](https://raw.githubusercontent.com/titanwings/dsh-plannotator/c0fe880107aa09ef595a8b6fdac6d7099e4b46da/docs/01-sidebar-open-en.png)
+![A real plan review docked beside the DeepSeek Harness conversation](https://raw.githubusercontent.com/titanwings/dsh-plannotator/053c982f96b77fd750360ee66384bf90d5c1e603/docs/01-sidebar-open-en.png)
 
 > “Change the third step” is vague. A comment attached to the exact sentence
 > preserves the context the agent needs to revise the plan correctly.
@@ -74,7 +74,7 @@ Drag over text for a precise annotation, or double-click a paragraph, list
 item, heading, bold phrase, or code fragment. The review keeps the quote and
 comment together within the current plan revision.
 
-![Writing a precise annotation in the docked review panel](https://raw.githubusercontent.com/titanwings/dsh-plannotator/c0fe880107aa09ef595a8b6fdac6d7099e4b46da/docs/02-precise-annotation-en.png)
+![Writing a precise annotation in the docked review panel](https://raw.githubusercontent.com/titanwings/dsh-plannotator/053c982f96b77fd750360ee66384bf90d5c1e603/docs/02-precise-annotation-en.png)
 
 ### Review the whole plan in one pass
 
@@ -83,7 +83,7 @@ add overall feedback; click an annotation in the review panel to return to its
 source; then send one coherent review. This keeps the review compact and less
 ambiguous than a sequence of detached chat messages.
 
-![Three anchored comments and overall feedback in one review](https://raw.githubusercontent.com/titanwings/dsh-plannotator/c0fe880107aa09ef595a8b6fdac6d7099e4b46da/docs/03-multi-comment-sidebar-en.png)
+![Three anchored comments and overall feedback in one review](https://raw.githubusercontent.com/titanwings/dsh-plannotator/053c982f96b77fd750360ee66384bf90d5c1e603/docs/03-multi-comment-sidebar-en.png)
 
 ### Collapse the review without losing your place
 
@@ -91,7 +91,7 @@ The review panel can shrink to a blue edge rail while the compact composer gate
 remains visible. Reopen either control to continue with the same comments and
 overall feedback.
 
-![The review collapsed to an edge rail while the conversation remains usable](https://raw.githubusercontent.com/titanwings/dsh-plannotator/c0fe880107aa09ef595a8b6fdac6d7099e4b46da/docs/04-collapsed-rail-en.png)
+![The review collapsed to an edge rail while the conversation remains usable](https://raw.githubusercontent.com/titanwings/dsh-plannotator/053c982f96b77fd750360ee66384bf90d5c1e603/docs/04-collapsed-rail-en.png)
 
 ### Return actionable feedback to the agent
 
@@ -100,6 +100,24 @@ quoted plan text, each requested change, and the overall feedback in the tool
 result and Session Log. The agent remains in plan mode and can immediately
 produce a revised proposal.
 
+### Ask AI about the plan
+
+Select plan text and choose **✦ Ask AI** to stage the excerpt, or just type
+into the **Ask AI** sidebar that sits permanently to the left of the plan
+preview. The question travels with the plan text, the quoted
+excerpt, and your earlier Q&A to a one-shot subagent of the reviewed session —
+a fork that inherits the same model, workspace, **and earlier conversation
+turns** (the plan itself always rides along verbatim, since it was submitted in
+the still-open review turn) — that can inspect the repository with read-only
+tools (`read`, `grep`, `glob`, `web_search`, `web_fetch`, probed against the
+session's actual tool set). The answer renders inline as Markdown; follow-up
+questions keep the thread's context, and **Stop** cancels a slow answer. The
+thread survives navigating into the answering subagent and page reloads (it is
+kept locally like annotation drafts), so an in-flight answer still lands when
+you come back. **Stop** silently drops the pending question, while a host-side
+cancellation stays visible as an error entry with Retry. The answering child
+never modifies files, never rewrites the plan, and cannot delegate further.
+
 ### Protect unfinished reviews
 
 Unsent comments are saved locally in the browser, isolated by Session, pending
@@ -107,7 +125,7 @@ request, and plan revision. If you try to approve while feedback is still
 pending, the plugin requires an explicit second confirmation instead of
 silently discarding your work.
 
-![Approval requires confirmation when comments have not been sent](https://raw.githubusercontent.com/titanwings/dsh-plannotator/c0fe880107aa09ef595a8b6fdac6d7099e4b46da/docs/05-safe-approval-en.png)
+![Approval requires confirmation when comments have not been sent](https://raw.githubusercontent.com/titanwings/dsh-plannotator/053c982f96b77fd750360ee66384bf90d5c1e603/docs/05-safe-approval-en.png)
 
 | Capability | What you get |
 | --- | --- |
@@ -115,6 +133,7 @@ silently discarding your work.
 | Multi-comment review | Anchored comments, source navigation, deletion, and overall feedback |
 | Responsive review column | Side-by-side on wide screens, an on-demand drawer on narrower desktops, and a bottom sheet on phones |
 | DSH response loop | Approve, request changes, or return to chat through the existing pending interaction |
+| Ask AI | Plan Q&A by a one-shot read-only subagent, with quoted excerpts, follow-ups, and cancellation |
 | Draft recovery | Best-effort local recovery without a plugin server or third-party service |
 | Review safeguards | Stale-plan draft rejection and explicit confirmation before discarding feedback |
 | UI fit | English and Chinese copy, keyboard shortcuts, responsive layout, and DSH theme tokens |
@@ -128,7 +147,7 @@ silently discarding your work.
 Install the GitHub bundle into the DSH Web profile, then restart `dsh web`:
 
 ```bash
-dsh plugin --profile web add github:titanwings/dsh-plannotator#v0.1.3
+dsh plugin --profile web add github:titanwings/dsh-plannotator#v0.1.4
 ```
 
 The repository ships its built Host and Web bundles, so installation runs no
@@ -203,20 +222,30 @@ must be correct before the first edit:
 - The companion panel is plugin-owned, not DSH's core `details` panel. It uses
   the stable Web `#root` mount boundary to reserve space and lets AppFrame
   reflow normally; it does not register in or rewrite the core details grid.
-- No custom Host route, third-party service, or telemetry is used. Feedback
-  travels through DSH's existing response channel.
+- The Ask AI channel is a loopback/trusted-host RPC channel (`/dsh-plannotator`)
+  on DSH's shared Connection transport. Each question runs as a one-shot
+  subagent (labelled `plan-ask`, visible in the session's subagent list) that
+  forks the reviewed session — inheriting its model, composition, and completed
+  conversation turns — under a read-only tool filter (a composition without the
+  fork provider, or whose fork lacks the requested tool-filter/persona
+  capabilities, falls back to a fresh child). Answers are unary (no streaming
+  yet), capped at 32k characters so they always fit a follow-up's context, and
+  the Q&A thread is kept in local storage per review — it survives panel
+  navigation and reloads, unlike annotation drafts which reject stale plans.
+- Feedback travels through DSH's existing response channel. No third-party
+  service or telemetry is used.
 
 <details>
 <summary>How it fits DSH's Cordis architecture</summary>
 
-The bundle inserts one Cordis Loader row. Its Host entry is deliberately a
-no-op; `package.json#dsh.client` exposes the Web bundle. The Client registers
-its locale namespace and a `conversation.composer` chain entry at priority
-`-10`, ahead of the default question renderer, and selects only Plan Review
-requests. That contribution renders the compact gate and mounts the
-plugin-owned panel through a React portal. Wide layouts reserve matching space
-at the stable Web root; narrower layouts reuse the panel as an on-demand drawer
-or bottom sheet.
+The bundle inserts one Cordis Loader row. Its Host entry registers only the
+Ask AI RPC channel on the shared Connection transport; `package.json#dsh.client`
+exposes the Web bundle. The Client registers its locale namespace and a
+`conversation.composer` chain entry at priority `-10`, ahead of the default
+question renderer, and selects only Plan Review requests. That contribution
+renders the compact gate and mounts the plugin-owned panel through a React
+portal. Wide layouts reserve matching space at the stable Web root; narrower
+layouts reuse the panel as an on-demand drawer or bottom sheet.
 
 There is no DSH core patch, parallel agent loop, duplicate persistence layer,
 or custom scheduler. Unloading the Cordis row removes the slot contribution and

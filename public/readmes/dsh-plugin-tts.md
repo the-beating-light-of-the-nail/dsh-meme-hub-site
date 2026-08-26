@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/1624318455/dsh-plugin-tts/136ed935bcaa741e623164dd7f9328f1bfce5481/logo.png" alt="dsh-plugin-tts" width="140" />
+  <img src="https://raw.githubusercontent.com/1624318455/dsh-plugin-tts/ec0cf87ef52abb81ae91681a966aa3096365e631/logo.png" alt="dsh-plugin-tts" width="140" />
 </p>
 
 <h1 align="center">dsh-plugin-tts</h1>
@@ -8,7 +8,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="license"></a>
   <a href="https://github.com/awesome-dsh-plugin/awesome-dsh-plugin"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="Awesome"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-22%2B-blue" alt="node"></a>
-  <a href="tests/smoke.mjs"><img src="https://img.shields.io/badge/tests-44%20passed-success" alt="tests"></a>
+  <a href="tests/smoke.mjs"><img src="https://img.shields.io/badge/tests-68%20passed-success" alt="tests"></a>
   <a href="https://github.com/1624318455/dsh-plugin-tts"><img src="https://img.shields.io/github/stars/1624318455/dsh-plugin-tts" alt="stars"></a>
   <a href="https://github.com/1624318455/dsh-plugin-tts/commits/main"><img src="https://img.shields.io/github/last-commit/1624318455/dsh-plugin-tts" alt="last commit"></a>
 </p>
@@ -71,6 +71,14 @@ RVC runtime** means no RVC WebUI install is needed.
 10. **Streaming long reads (Edge too)**: long plain-Edge reads also stream
     progressively (first chunk plays while the rest synthesize), reusing the
     gapless chunked pipeline — no more waiting for full synthesis.
+11. **Approval voice alerts**: optional voice broadcast of Agent approval events.
+    When enabled, an approval request (`approval/asked`) is announced aloud and
+    **interrupts the current read** (the agent is waiting on the decision); an
+    approval result (`approval/decided`) is announced only when idle. Alerts
+    always use Edge TTS with their own alert voice (independent of the RVC
+    service), are deduplicated by approval id, and off by default. (Scope note:
+    task-completion announcements are deferred to a later phase — the jobs
+    subsystem has no session-event channel this plugin can observe yet.)
 
 ## Requirements
 
@@ -136,15 +144,29 @@ derived from the voice locale, one retry on abnormal (1006) closures. Audio is
 - Audio is **autoplay-unlocked** on the first user gesture (Web Audio context
   resumed + silent clip) so reads aren't silently blocked by browser policy.
 - `Esc` / `S` (outside an input) stops the current read-aloud.
-- Synthesis / playback failures silently reset the icon state (the preview
-  panel shows an inline error message).
+- Synthesis / playback failures **surface a themed toast** (message read-aloud and
+  auto-read no longer fail silently; the preview panel keeps its inline error).
+  In RVC mode the error toast carries a one-click **"read with Edge TTS instead"**
+  action; with the opt-in toggle **"auto-switch to Edge TTS when RVC fails"** in
+  the RVC settings (off by default — RVC is fully local, auto-fallback sends the
+  text to Microsoft's endpoint), a failed RVC read silently retries with the RVC
+  base voice via Edge TTS and shows a warn toast.
+- **Smart chunking** never splits URLs / emails / decimals / versions ("3.14")
+  mid-token — hard cuts slide to word/punctuation boundaries, and a tiny trailing
+  sentence merges into the previous chunk instead of reading like a stutter.
+- **Approval voice alerts** (opt-in): the Host subscribes to the session/event
+  firehose (`approval/asked` / `approval/decided`), dedupes by approval id, and
+  the client polls `/dsh-tts-api/notify?s=N` — the first poll baseline-syncs the
+  cursor so a page refresh never replays stale alerts; announcements are silent
+  on failure (no error toasts while the agent loops).
 
 ## Settings persistence
 
-Voice, auto-read toggle, provider and RVC settings are **persisted to
-localStorage** (`dsh-tts-settings`) and restored on load, surviving refresh /
-reopen. A "Reset to defaults" button in the settings panel restores defaults and
-clears the stored settings.
+Voice, auto-read toggle, provider, the RVC fallback toggle, the approval-alert
+settings and RVC settings are **persisted to localStorage**
+(`dsh-tts-settings`) and restored on load, surviving refresh / reopen. A "Reset
+to defaults" button in the settings panel restores defaults and clears the
+stored settings.
 
 ## Custom voice (RVC)
 
@@ -172,6 +194,42 @@ portable runtime, settings reference and troubleshooting — lives in the
   console).
 
 > RVC-specific troubleshooting: [RVC Guide → Troubleshooting](docs/RVC-GUIDE.md#troubleshooting).
+
+## FAQ
+
+**Q: Is it big?**
+- Default experience (Edge TTS): the plugin itself is tiny (MB scale) — **no service or model to download**.
+- You only need a local RVC portable package if you want custom voices (RVC). Its size mostly comes from the **bundled offline Python runtime + inference deps + pretrained models**:
+  | Platform | Archive | Extracted |
+  |---|---:|---:|
+  | macOS (Apple Silicon) | ~660 MB | ~1.3 GB |
+  | Windows (CPU-minimal) | ~1–2 GB | ~2–3 GB |
+  | Windows (with NVIDIA GPU) | ~6 GB | ~7 GB |
+- These are self-contained runtimes; the **full RVC WebUI is 7.8 GB** — we don't ship the WebUI / training / realtime parts this plugin doesn't need.
+
+**Q: Are the dependencies big?**
+- The runtime is heavy but **you don't install anything**: the portable package bundles Python, ffmpeg (Windows) / PyAV (macOS), and all inference deps. Unzip and run — no compile, no env setup.
+- The plugin itself has minimal deps and only loads what it actually uses.
+
+**Q: Do I need a local TTS model?**
+- With the default Edge TTS: **no** — it synthesizes online (free).
+- With custom voices (RVC): you need **your own** RVC voice model (`.pth`), optionally a `.index`; the pretrained hubert / rmvpe are already bundled — you only provide your trained model.
+
+**Q: Is it easy to install?**
+- Install the plugin normally, then for RVC: download the portable package for your platform → unzip → run the launcher (double-click `.command` on macOS, `.bat` on Windows) → drop your `.pth` into `assets/weights` → pick it in the plugin panel.
+- No compile, no manual Python/ffmpeg install. Note: **the first macOS launch is slow (tens of seconds)** while macOS scans the extracted runtimes (one-time); later launches take a few seconds.
+
+**Q: Do I need a paid API?**
+- No. Edge TTS is free (no API key) and RVC runs fully locally and free.
+- Note: Edge TTS is Microsoft's public client-side, free capability — fine for personal use; check Microsoft's terms for commercial / heavy usage.
+
+**Q: Did this modify the DSH core?**
+- No. It's an **independent plugin** loaded through dsh's plugin mechanism. It doesn't touch the DSH main program and can be installed / paused / uninstalled anytime without affecting DSH or other plugins.
+
+**Other common questions**
+- **Do I need a GPU?** No — CPU works. For speed you can use Apple Silicon MPS (macOS) or an NVIDIA GPU (Windows, which needs the bigger CUDA torch build).
+- **Privacy?** RVC conversion is fully local — audio never leaves your machine. Edge TTS sends the text-to-read to Microsoft's endpoint for online synthesis (assess which voice before choosing).
+- **Apple Silicon only?** The macOS build is arm64 (M1–M5); Intel Macs would need a separate x86_64 build.
 
 ## UI language (i18n)
 

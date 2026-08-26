@@ -16,26 +16,26 @@
 </p>
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/9885d3e7ee93ad4c972e92be4b6f301105e73eb4/assets/preview.webp"/>
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/e66bc66d4fdd35f4ded808a9bffdee185f5bae76/assets/preview.webp"/>
 </p>
 
 ## Previews
 
 <details>
 <summary>🌻 Latte</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/9885d3e7ee93ad4c972e92be4b6f301105e73eb4/assets/latte.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/e66bc66d4fdd35f4ded808a9bffdee185f5bae76/assets/latte.webp"/>
 </details>
 <details>
 <summary>🪴 Frappé</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/9885d3e7ee93ad4c972e92be4b6f301105e73eb4/assets/frappe.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/e66bc66d4fdd35f4ded808a9bffdee185f5bae76/assets/frappe.webp"/>
 </details>
 <details>
 <summary>🌺 Macchiato</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/9885d3e7ee93ad4c972e92be4b6f301105e73eb4/assets/macchiato.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/e66bc66d4fdd35f4ded808a9bffdee185f5bae76/assets/macchiato.webp"/>
 </details>
 <details>
 <summary>🌿 Mocha</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/9885d3e7ee93ad4c972e92be4b6f301105e73eb4/assets/mocha.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/e66bc66d4fdd35f4ded808a9bffdee185f5bae76/assets/mocha.webp"/>
 </details>
 
 ## Features

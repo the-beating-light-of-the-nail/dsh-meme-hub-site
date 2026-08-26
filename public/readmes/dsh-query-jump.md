@@ -2,12 +2,12 @@
 
 # dsh-query-jump
 
-**DSH WebUI 会话提问导航** · `v0.3.1`
+**DSH WebUI 会话提问导航** · `v0.3.8`
 
 长对话里，把「我之前问过什么」找回来  
 `(｡･∀･)ﾉﾞ`
 
-[![version](https://img.shields.io/badge/v0.3.1-indigo?style=for-the-badge&label=release)](https://github.com/SocFeng/dsh-query-jump/releases/latest)
+[![version](https://img.shields.io/badge/v0.3.8-indigo?style=for-the-badge&label=release)](https://github.com/SocFeng/dsh-query-jump/releases/latest)
 [![license](https://img.shields.io/badge/MIT-blue?style=for-the-badge&label=license)](./LICENSE)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-WebUI-111827?style=for-the-badge)](https://github.com/deepseek-ai/deepseek-harness)
 
@@ -124,7 +124,7 @@ config:
 
 ## 版本
 
-当前稳定版：**`0.3.1`**
+当前稳定版：**`0.3.8`**
 
 完整变更记录见 **[CHANGELOG.md](./CHANGELOG.md)**。GitHub 上只维护 [Latest release](https://github.com/SocFeng/dsh-query-jump/releases/latest) 一条说明；历史版本不再单独建 Release。
 

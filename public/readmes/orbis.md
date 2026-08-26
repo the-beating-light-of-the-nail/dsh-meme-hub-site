@@ -7,7 +7,7 @@ Orbis is a remote control client for Deepseek Harness (DSH).
 The Orbis plugin provides device pairing, end-to-end encrypted transport, and real-time
 updates across multiple devices.
 
-![Screenshots](https://raw.githubusercontent.com/icodesign/orbis/9aa51eed6bd7786f2548510a5ca0a134ec563c4e/assets/orbis-screenshots.webp)
+![Screenshots](https://raw.githubusercontent.com/icodesign/orbis/8602620a5072ff72638a5099192147843e7ac926/assets/orbis-screenshots.webp)
 
 ## Getting Started
 
@@ -58,11 +58,16 @@ user-visible change with a changeset and commit it alongside the change:
 pnpm changeset
 ```
 
+Changesets maintains one draft release pull request containing all pending changesets. Keep that
+pull request open while changes accumulate. When the complete release is ready, review the combined
+version and changelog, mark the pull request as ready, and merge it to publish the release. Changes
+that do not affect a published package do not need a changeset.
+
 ## Community
 
 Wechat Group
 
-![Wechat group](https://raw.githubusercontent.com/icodesign/orbis/9aa51eed6bd7786f2548510a5ca0a134ec563c4e/assets/wechat-group.webp)
+![Wechat group](https://raw.githubusercontent.com/icodesign/orbis/8602620a5072ff72638a5099192147843e7ac926/assets/wechat-group.webp)
 
 ## License
 

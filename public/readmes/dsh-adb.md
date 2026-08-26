@@ -42,6 +42,8 @@ Topics: `dsh-plugin` `dsh` `adb` `android` `automotive` `bench`
 | `adb_device_report` | One-click health report: device identity + top-RSS processes + crash buffer (real crashes w/ stacks vs. boot markers) + W/E/F logcat aggregated by tag + storage + health verdict; each section degrades independently; persisted under `reportDir` |
 | `adb_wait_for` | Wait until a device condition holds — device-online / boot-complete / process appeared / logcat keyword — polling up to a budget, instead of sleeping a fixed number of seconds; returns `matched:false` on timeout |
 | `adb_operation_ledger` | Append-only device operation ledger (record/list/rollback): record installs/pushes/etc., list history, or roll an app back to its last known-good APK (`adb install -r`); persisted as `operations.json` — the trust base for agent-driven device modification |
+| `adb_screenshot` | Capture the device screen into a local PNG (screencap → pull), returning the saved path, byte size, and pixel dimensions — durable evidence for crash scenes / UI states / test frames |
+| `adb_watch_crash` | Watch the crash buffer for NEW real crashes (foreground poll or background job; boot markers ignored; `matched:false` on timeout) — the first link of the monitor→capture→attribute chain |
 
 Errors are structured `AdbError` with stable codes: `ADB_NOT_FOUND`, `ADB_UNAVAILABLE`, `DEVICE_NOT_FOUND`, `NO_DEVICES`, `CONNECT_FAILED`, `INSTALL_FAILED`, `ADB_EXIT_<code>`, etc.
 
@@ -65,6 +67,7 @@ Set the `config` block in `cordis.patch.yml` (or a profile patch):
 | `timeoutMs` | Per-command timeout | 30000 |
 | `baselineDir` | Directory for `adb_perf_baseline` storage | `~/.dsh/storages/dsh-adb` |
 | `reportDir` | Directory for `adb_device_report` storage | `<baselineDir>/reports` |
+| `screenshotDir` | Directory for `adb_screenshot` storage | `<baselineDir>/screenshots` |
 
 ## Development
 

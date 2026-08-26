@@ -15,7 +15,7 @@ Pilot, a sidecar, a local JSONL tap, or any particular vendor's backend.
 > market.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/loongsuite/dsh-plugin/5e893af6172beb703a98b56ccc5e443495287732/docs/assets/langfuse-trace.png" alt="One DeepSeek Harness turn as an OpenTelemetry GenAI trace, viewed in self-hosted Langfuse" width="900">
+  <img src="https://raw.githubusercontent.com/loongsuite/dsh-plugin/f216a4989dae0f5d96a231355557abd0623edf1c/docs/assets/langfuse-trace.png" alt="One DeepSeek Harness turn as an OpenTelemetry GenAI trace, viewed in self-hosted Langfuse" width="900">
   <br>
   <em>One DSH turn exported over OTLP into self-hosted Langfuse: four react steps, per-call latency
   and token counts, a failed <code>web_search</code> followed by <code>bash</code> fallbacks, and the
@@ -58,8 +58,11 @@ sessions create their own trace and carry DSH parent-session and delegation attr
 
 When content capture is enabled, `ENTRY` and `AGENT` input messages contain only the turn's direct
 `source.kind=user` input. Synthetic DSH context such as runtime snapshots, agent instructions,
-skill catalogs, goals, and coordinator relays remains visible on the `LLM` span as part of the
-complete request actually sent to the model, but is not presented as the user's original input.
+skill catalogs, goals, and coordinator relays remains visible on the `LLM` span, but prior-turn
+conversation history is excluded so every trace contains only its own turn context. Later LLM
+spans in a tool loop retain assistant tool calls and tool results produced earlier in the same
+turn. `ENTRY` and `AGENT` output messages contain only the final `stop` response; a turn that never
+reaches `stop` falls back to its last available assistant message.
 
 The plugin also exports the standard `gen_ai.client.operation.duration` and
 `gen_ai.client.token.usage` metrics. It does not export OpenTelemetry logs; it can coexist with a

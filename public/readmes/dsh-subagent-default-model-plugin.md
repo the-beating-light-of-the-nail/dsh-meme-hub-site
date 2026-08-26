@@ -16,13 +16,13 @@
 
 ## 截图
 
-**设置面板**（`设置 → 通用设置 → 子代理默认模型`）：配置一个或多个模型路由，支持 `round-robin` / `random` 分配策略与每路由推理强度。
+**设置面板**（`设置 → 插件配置 → 子代理默认模型`）：配置一个或多个模型路由，支持 `round-robin` / `random` 分配策略与每路由推理强度。
 
-![子代理默认模型设置面板](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/83cb6cc933a169180694aa61ac27f78ec8322ceb/assets/pic_01.png)
+![子代理默认模型设置面板](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/36f85e275ae85b9f3692c5ebc07f78cc7a464173/assets/pic_01.png)
 
 **效果验证**：10 个子代理在 `deepseek-v4-flash` 与 `Kimi-k3` 之间 5/5 均衡分配（round-robin 实测）。
 
-![子代理默认模型分配统计](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/83cb6cc933a169180694aa61ac27f78ec8322ceb/assets/pic_02.png)
+![子代理默认模型分配统计](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/36f85e275ae85b9f3692c5ebc07f78cc7a464173/assets/pic_02.png)
 
 ## 市场
 
@@ -64,7 +64,7 @@ npm publish
 ```
 
 > ⚠️ 发布前先跑一遍测试：`npm --prefix plugin test`。
-> `package.json` 的 `files` 字段已限定只发布 `lib/`、`cordis.patch.yml`、`LICENSE`、`README.md`、`README.en.md`、`CHANGELOG.md`，`test/` 和 `node_modules/` 不会进入发布包。
+> `package.json` 的 `files` 字段已限定只发布 `lib/`、`icons/`、`cordis.patch.yml`、`LICENSE`、`README.md`、`README.en.md`、`CHANGELOG.md`，`test/` 和 `node_modules/` 不会进入发布包。
 
 本地安装（DSH Desktop / desktop profile）：
 

@@ -19,10 +19,13 @@
 ## 🚀 快速开始（安装插件）
 
 ```sh
-dsh plugin --profile web add dsh-pet
+dsh plugin --profile web add dsh-pet          # 默认：Chrome/Edge/Firefox 版（webm）
+dsh plugin --profile web add dsh-pet@hevc     # Safari 版（HEVC-alpha mov）
 ```
 
 重启 `dsh web`，宠物出现在界面右下角——全部透明动画开箱即用，无需任何生成流程。
+
+> 💡 版本与格式绑定（发布期注入，无运行时浏览器判断）：`latest` 版内置 `.webm`（VP9-alpha），`hevc` 版内置 `.mov`（HEVC with Alpha）。Safari 请装 `@hevc` 版，否则黑底。
 
 > 💡 想自己造一只专属宠物？克隆 [PC2005-cloud/dsh-pet](https://github.com/PC2005-cloud/dsh-pet) 仓库，用内置素材链（AI 提示词 → 绿幕视频 → 透明动画，素材由豆包生成）从零生成，全流程可复现。
 
@@ -51,15 +54,15 @@ dsh plugin --profile web add dsh-pet
 
 用户数据统一收敛在 `$DSH_HOME/dsh-pet/`：
 
-| 层               | 路径                                 | 作用                                                                                |
-| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------- |
-| 默认配置（只读） | 包内 `assets/config.jsonc`           | 完整结构参考：宠物列表 / 动画池（idle/turn/drag/clicks/moves/categories）/ 播放权重 |
-| 用户配置         | `$DSH_HOME/dsh-pet/main-config.json` | 覆盖片段：可整体覆盖 `pets` / `animations` / `animationWeights`，缺省字段回落默认   |
-| 用户动画（可选） | `$DSH_HOME/dsh-pet/main-animation/`  | 放入 `.webm` 即可作为动画播放，**优先于包内素材**                                   |
+| 层               | 路径                                 | 作用                                                                                              |
+| ---------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| 默认配置（只读） | 包内 `assets/config.jsonc`           | 完整结构参考：宠物列表 / 动画池（idle/turn/drag/clicks/moves/categories）/ 播放权重               |
+| 用户配置         | `$DSH_HOME/dsh-pet/main-config.json` | 覆盖片段：可整体覆盖 `pets` / `animations` / `animationWeights`，缺省字段回落默认                 |
+| 用户动画（可选） | `$DSH_HOME/dsh-pet/main-animation/`  | 放入 `.webm` / `.mov` 即可作为动画播放，**优先于包内素材**（按扩展名进 `webm/` 或 `mov/` 子目录） |
 
 - 设置页底部会显示这些路径
-- 自定义动画：把 `xxx.webm` 放进 `main-animation/`，在动画池/分类里写 `"xxx"`，**刷新页面**即可（无需重启 DSH）
-- 格式：仅 `.webm`；**透明动画需 VP9 Alpha 编码**（与包内素材同规范，普通 webm 会有黑底）
+- 自定义动画：把 `xxx.webm`（或 `xxx.mov`）放进 `main-animation/webm/`（或 `main-animation/mov/`），在动画池/分类里写 `"xxx"`，**刷新页面**即可（无需重启 DSH）
+- 格式：`.webm` 需 **VP9 Alpha** 编码（Chrome/Edge/Firefox）；`.mov` 需 **HEVC with Alpha**（Safari，hvc1 tag）——均与包内素材同规范，普通编码会有黑底
 - 修改用户配置后同样**刷新页面**生效
 - 动画名请对照默认配置填写，避免引用不存在的动画
 
@@ -74,8 +77,8 @@ dsh plugin --profile web remove dsh-pet
 宠物实际运行在 DSH Web 界面中的样子：
 
 <p>
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/assets/screenshots/dsh-pet-running-1.png" width="380" alt="dsh-pet running in DSH Web UI 1" title="dsh-pet running in DSH Web UI 1">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/assets/screenshots/dsh-pet-running-2.png" width="380" alt="dsh-pet running in DSH Web UI 2" title="dsh-pet running in DSH Web UI 2">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/assets/screenshots/dsh-pet-running-1.png" width="380" alt="dsh-pet running in DSH Web UI 1" title="dsh-pet running in DSH Web UI 1">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/assets/screenshots/dsh-pet-running-2.png" width="380" alt="dsh-pet running in DSH Web UI 2" title="dsh-pet running in DSH Web UI 2">
 </p>
 
 ## 🎬 效果预览
@@ -83,15 +86,15 @@ dsh plugin --profile web remove dsh-pet
 > 动画为透明背景；GIF 预览中透明部分显示为页面底色，实际播放为透明。
 
 <p>
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="160" alt="待机呼吸休闲" title="待机呼吸休闲">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dongzhangxiwang.gif" width="160" alt="东张西望" title="东张西望">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-piaofu-tabu.gif" width="160" alt="原地漂浮踏步" title="原地漂浮踏步">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-xiaoqi-chenmian.gif" width="160" alt="原地小憩沉眠" title="原地小憩沉眠">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dianji-huiying-kaixin-yuedong.gif" width="160" alt="点击回应 - 开心跃动" title="点击回应 - 开心跃动">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/27533fd10e8b4268dd5d88e58bb65792c36326ca/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/beishubiao-tuozhuai-xuankong-fankui.gif" width="160" alt="被鼠标拖拽悬空反馈" title="被鼠标拖拽悬空反馈">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="160" alt="待机呼吸休闲" title="待机呼吸休闲">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dongzhangxiwang.gif" width="160" alt="东张西望" title="东张西望">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-piaofu-tabu.gif" width="160" alt="原地漂浮踏步" title="原地漂浮踏步">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-xiaoqi-chenmian.gif" width="160" alt="原地小憩沉眠" title="原地小憩沉眠">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dianji-huiying-kaixin-yuedong.gif" width="160" alt="点击回应 - 开心跃动" title="点击回应 - 开心跃动">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/9a2966c6af3b216216e0969aec0e5090eba9ddd6/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/beishubiao-tuozhuai-xuankong-fankui.gif" width="160" alt="被鼠标拖拽悬空反馈" title="被鼠标拖拽悬空反馈">
 </p>
 
-全部动画见仓库：`dsh-pet/assets/thumb/`。
+全部动画见仓库：`dsh-pet/assets/webm/`（VP9-alpha）与 `dsh-pet/assets/mov/`（HEVC-alpha）。
 
 ## 📚 完整项目（不止是插件）
 

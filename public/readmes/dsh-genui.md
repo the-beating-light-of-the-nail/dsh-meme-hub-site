@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/f5db33ec-7471-4d4a-a85b-79c9962ab4ef
 </div>
 
 <p align="center">
-  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
+  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/43b386221a332280dfe7104d225bb922e187d6ae/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
   <br><em>Click the preview to download the original MP4 if the GitHub player is unavailable.</em>
 </p>
 
@@ -49,21 +49,21 @@ The walkthrough moves from an answer-embedded panel through forms, plotting, Mer
 #### 1. A monitoring panel is an answer, not a separate dashboard
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/43b386221a332280dfe7104d225bb922e187d6ae/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
   <br><em>Real output: refresh/reset controls, time-range selection, statistics, charts, and a service table live inside the assistant reply.</em>
 </p>
 
 #### 2. A function plot redraws locally as its parameters change
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/43b386221a332280dfe7104d225bb922e187d6ae/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
   <br><em>Real output: `plot` renders curves while sliders, reset, and animation controls update the graph locally.</em>
 </p>
 
 #### 3. Layout primitives compose into structured work surfaces
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/d99c978d4b0b29ba2a6993f8544a24930fc7d25a/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/43b386221a332280dfe7104d225bb922e187d6ae/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
   <br><em>Real output: typography, grid, card, and row/column primitives combine into a hierarchy the model can describe declaratively.</em>
 </p>
 
@@ -117,14 +117,14 @@ npm install @changfenhuang/dsh-genui
 
 ### Migrating from the old `@omdsh-dev` package name
 
-If you installed the plugin before v0.9.2, remove the old dependency before installing the renamed package:
+If you installed from `github:omdsh-dev/dsh-genui` before v0.9.2, pnpm may keep the dependency under the old `@omdsh-dev/dsh-genui` key even though the repository now declares `@changfenhuang/dsh-genui`. The loader resolves plugins from the profile's dependency keys, so a later reinstall can then fail with `Cannot find package '@changfenhuang/dsh-genui'`. Re-add the plugin under its current package name:
 
 ```sh
 dsh plugin --profile web remove @omdsh-dev/dsh-genui
 dsh plugin --profile web add @changfenhuang/dsh-genui
 ```
 
-If `dsh web` still fails and mentions `@omdsh-dev/dsh-genui`, remove only the stale `genui` entry that uses that old name from `~/.dsh/profiles/web/cordis.patch.yml`. The plugin now supplies the `@changfenhuang/dsh-genui` entry itself.
+This migration is required once for old GitHub-spec installs. New npm and GitHub installs created with the commands above use the current dependency key.
 
 ### Verify the install in 60 seconds
 

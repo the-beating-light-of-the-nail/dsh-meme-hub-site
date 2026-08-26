@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/9fbd2c54f4438b65f8fc94cd57afd2806f62a459/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/eb057e5c1ba93e9c4bdc56768ae4fae18b10736b/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -18,6 +18,7 @@
 - **弹窗变浮层**：设置、文件树、预览改成底部 sheet，触屏好点
 - **状态栏避让**：刘海安全区、深/浅主题、双击缩放都处理
 - **输入区不打架**：权限胶囊、模型名、切换菜单在窄屏下不重叠
+- **长会话不卡流量**：宿主返回的大 JSON（会话历史等）自动 gzip/brotli 压缩，手机端加载明显提速
 - **平板也管**：768–1023px 限宽居中；桌面 ≥1024px 完全 no-op
 - **诊断方便**：`?mobile-nav-debug=1` 显示悬浮诊断条（视口 / 浮层状态 / JS 错误）
 
@@ -27,7 +28,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/9fbd2c54f4438b65f8fc94cd57afd2806f62a459/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/9fbd2c54f4438b65f8fc94cd57afd2806f62a459/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/9fbd2c54f4438b65f8fc94cd57afd2806f62a459/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/eb057e5c1ba93e9c4bdc56768ae4fae18b10736b/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/eb057e5c1ba93e9c4bdc56768ae4fae18b10736b/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/eb057e5c1ba93e9c4bdc56768ae4fae18b10736b/assets/settings.png) |
 
 ## 安装
 
@@ -46,6 +47,12 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 ```
 
 ## 更新内容
+
+### Unreleased
+
+**新功能**
+
+- 大 JSON 响应透明压缩：host 半加载时给 Node http.ServerResponse 打补丁，≥4KB 的 JSON 响应按客户端 Accept-Encoding 自动 gzip/brotli 压缩（brotli 优先，fork 实测 17MB → ~1MB）；小体积 JSON 与非 JSON 响应原样透传，SSE 流不受影响。移植自社区 fork wzxmt-zhc/dsh-web-mobile v2.5.0
 
 ### v2.1.1
 

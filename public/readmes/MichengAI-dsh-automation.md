@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
 </p>
 
 <div align="center">
@@ -8,7 +8,7 @@
 
   **Run standalone coding tasks on a schedule in DeepSeek Harness**
 
-  [简体中文](README.zh-CN.md) · [Apache-2.0](LICENSE)
+  [简体中文](README.zh-CN.md) · [Changelog](CHANGELOG.md) · [Apache-2.0](LICENSE)
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-automation.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-automation)
@@ -34,25 +34,25 @@
 
 Scheduled tasks live in the workspace **Scheduled** tab, next to **Tasks** and **Channels**:
 
-![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/workspace-scheduled.png)
+![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/screenshots/workspace-scheduled.png)
 
 Open **Settings → Scheduled Tasks** to search, create, pause, and inspect rules:
 
-![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/settings-tasks.png)
+![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/screenshots/settings-tasks.png)
 
 Describe the job in chat. The agent calls `automation_create` and asks through the official approval card:
 
-![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/chat-create.png)
+![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/screenshots/chat-create.png)
 
-![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/chat-approval.png)
+![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/screenshots/chat-approval.png)
 
 After approval, the rule is saved and summarized in the conversation:
 
-![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/chat-created.png)
+![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/screenshots/chat-created.png)
 
 Run history stays in Settings and can be filtered by day, week, month, task, or status:
 
-![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/99a8358d64b65c98d3a0685bcba1f85155ae6c98/assets/screenshots/settings-runs.png)
+![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/91d03abfd2b79046cd6345549a38433d919fd9d9/assets/screenshots/settings-runs.png)
 
 ## DSH product ecosystem
 
@@ -169,7 +169,3 @@ pnpm build
 Start from the [documentation entry](docs/00-交接入口/00-阅读导航.md) for project status, architecture, and the current iteration. Product notes live in NOTICE.
 
 This project uses [Apache License 2.0](LICENSE).
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for the five most recent releases.

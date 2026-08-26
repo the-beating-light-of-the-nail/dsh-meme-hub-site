@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/82480ddb8876f2e7abf9a30bf5113ca645fb88cc/docs/assets/hero-poster.webp" alt="dsh-image-gen 宣传海报" width="100%" style="max-width: 860px; border-radius: 12px;" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/hero-poster.webp" alt="dsh-image-gen 宣传海报" width="100%" style="max-width: 860px; border-radius: 12px;" />
 
 <br /><br />
 
@@ -12,6 +12,7 @@
 [![DSH Plugin](https://img.shields.io/badge/Plugin%20For-DeepSeek%20Harness-6366f1?style=flat-square)](https://github.com/deepseek-ai)
 [![npm downloads](https://img.shields.io/npm/dm/dsh-image-gen.svg?style=flat-square&color=emerald)](https://www.npmjs.com/package/dsh-image-gen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![LINUX DO](https://img.shields.io/badge/LINUX%20DO-社区友链-555?style=flat-square)](https://linux.do/)
 
 [English](README.en.md) | **简体中文**
 
@@ -37,7 +38,7 @@
 
 <br />
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/82480ddb8876f2e7abf9a30bf5113ca645fb88cc/docs/assets/chat-preview.png" alt="对话生图效果预览" width="820" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/chat-preview.png" alt="对话生图效果预览" width="820" />
 
 </div>
 
@@ -97,7 +98,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 3. 可按需开启 **保存到工作区**（默认开启）并自定义子目录，点击 **保存** 即可。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/82480ddb8876f2e7abf9a30bf5113ca645fb88cc/docs/assets/settings-preview.png%3Fv%3D0.1.7" alt="设置面板预览" width="720" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/settings-preview.png%3Fv%3D0.1.7" alt="设置面板预览" width="720" />
 </div>
 
 ### 3. 开始对话生图
@@ -115,7 +116,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 点击会话顶栏的 **`[画廊]`** Tab，即可集中查看和搜索所有对话生成的历史图片：
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/82480ddb8876f2e7abf9a30bf5113ca645fb88cc/docs/assets/gallery-preview.png" alt="原生生图画廊预览" width="820" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/gallery-preview.png" alt="原生生图画廊预览" width="820" />
 </div>
 
 ---

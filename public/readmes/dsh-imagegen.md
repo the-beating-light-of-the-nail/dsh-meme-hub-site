@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-DeepSeek%20Harness-111827)](https://github.com/dickpy/dsh-imagegen)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/0f4b0d394065ed006676db1a9576a54fed9da4e3/docs/images/imagegen-overview.png" alt="dsh-imagegen AI image studio" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/4db0b9097698958638a23c0c1044085ee3956e4d/docs/images/imagegen-overview.png" alt="dsh-imagegen AI image studio" width="100%" />
 </p>
 
 > 让 DeepSeek Harness 中的 Agent 不只会回答，还能把想法变成图片，并围绕成图继续迭代。
@@ -45,7 +45,7 @@
 
 接着，你可以基于结果继续提出修改。Agent 会携带该图片的引用调用图生图，不必重新上传文件，也不必重新描述全部上下文。它适合快速探索视觉方向、反复打磨 UI 视觉稿、海报或产品素材。
 
-![Agent 在对话中提交海报生成任务，成图作为工具结果显示](https://raw.githubusercontent.com/dickpy/dsh-imagegen/0f4b0d394065ed006676db1a9576a54fed9da4e3/docs/images/agent-chat-poster-workflow.png)
+![Agent 在对话中提交海报生成任务，成图作为工具结果显示](https://raw.githubusercontent.com/dickpy/dsh-imagegen/4db0b9097698958638a23c0c1044085ee3956e4d/docs/images/agent-chat-poster-workflow.png)
 
 ### 可直接使用的案例提示词
 
@@ -79,14 +79,14 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 
 同一个提示词往往在不同模型上呈现出完全不同的构图、质感与文字处理。打开“多模型对比”，选择多个已配置模型后，插件会以相同参数提交任务，并在画布和全屏预览中将结果并列展示。这样能更快选出真正适合当前任务的模型，而不是凭感觉反复试错。
 
-![gpt-image-2 与 grok-imagine-image 的多模型并列结果对比](https://raw.githubusercontent.com/dickpy/dsh-imagegen/0f4b0d394065ed006676db1a9576a54fed9da4e3/docs/images/multi-model-comparison.png)
+![gpt-image-2 与 grok-imagine-image 的多模型并列结果对比](https://raw.githubusercontent.com/dickpy/dsh-imagegen/4db0b9097698958638a23c0c1044085ee3956e4d/docs/images/multi-model-comparison.png)
 
 <a id="studio"></a>
 ## 原生图像工作台
 
 侧边栏打开后，参数、生成结果、后台任务和历史记录处于同一工作区。文生图和图生图均支持尺寸、清晰度、数量与细节等级；结果可下载、全屏查看、缩放、前后切换、复制提示词或一键作为下一次图生图的参考。
 
-![AI 生图工作台四图结果布局](https://raw.githubusercontent.com/dickpy/dsh-imagegen/0f4b0d394065ed006676db1a9576a54fed9da4e3/docs/images/image-generation-studio-four.png)
+![AI 生图工作台四图结果布局](https://raw.githubusercontent.com/dickpy/dsh-imagegen/4db0b9097698958638a23c0c1044085ee3956e4d/docs/images/image-generation-studio-four.png)
 
 **让首次生成更可控**
 
@@ -100,7 +100,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 
 满意的图片可从结果卡、全屏预览或历史记录一键加入画廊。画廊不是横向缩略图条，而是为持续积累作品设计的纵向工作区：左侧筛选，右侧瀑布流或整齐网格，点击任意图片即可打开大图预览。
 
-![画廊工作区：分类筛选、瀑布流和大图预览](https://raw.githubusercontent.com/dickpy/dsh-imagegen/0f4b0d394065ed006676db1a9576a54fed9da4e3/docs/images/gallery-workspace.png)
+![画廊工作区：分类筛选、瀑布流和大图预览](https://raw.githubusercontent.com/dickpy/dsh-imagegen/4db0b9097698958638a23c0c1044085ee3956e4d/docs/images/gallery-workspace.png)
 
 - 关键词搜索，按生成模式、模型、比例和自建标签过滤。
 - 标签可新建、编辑和删除；标签入口会同步出现在左侧筛选区。
@@ -133,7 +133,7 @@ Windows 如遇 PowerShell 脚本策略限制，请使用 `dsh.cmd`。安装后�
 从 [GitHub Releases](https://github.com/dickpy/dsh-imagegen/releases) 下载 tgz 后执行：
 
 ```bash
-dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.2.2.tgz
+dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.2.3.tgz
 ```
 
 <a id="configuration"></a>
@@ -155,6 +155,8 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.2.2.tgz
 
 - **OpenAI 兼容接口**：支持 `/images/generations`、`/images/edits` 和 `{ data: [{ b64_json | url }] }` 格式响应。
 - **Grok Imagine**：原生支持 `grok-imagine-image` 与 `grok-imagine-image-2.0`。将地址设为 `https://api.x.ai/v1` 后，图生图会使用其 JSON `image_url` 协议，比例和清晰度映射为 `aspect_ratio` 与 `resolution`。
+- **Nano Banana（谷歌 Gemini 图像系列）**：内置 `nanobanana2` / `nanobanana2-lite` / `nanobanana-pro`（也识别官方 `gemini-3.x-image*` ID）。走 OpenAI 兼容接口时，比例和清晰度映射为 `aspect_ratio` 与 `image_size`（1K/2K/4K），输出请求 base64。
+- **Seedream（字节跳动生图系列）**：内置 `seedream-5.0-pro`（也识别 `seedream-4.x`、`doubao-seedream-…`）。无 `/images/edits`，文生图与图生图统一走 `/images/generations`，参考图以 JSON `image` 数组发送；比例走 `size`，清晰度走 `resolution`（1K/2K，5.0-pro 上限 2K）。
 - **后续模型**：可将 `qwen-image`、Gemini 等 OpenAI 兼容网关模型加入清单；厂商专属鉴权或请求协议需要单独适配。
 
 <a id="community"></a>
@@ -163,7 +165,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.2.2.tgz
 欢迎加入 QQ 群，一起交流 DSH、AI 生图和插件使用体验，也欢迎分享提示词、工作流与改进建议。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/0f4b0d394065ed006676db1a9576a54fed9da4e3/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/4db0b9097698958638a23c0c1044085ee3956e4d/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
 </p>
 
 <a id="security"></a>

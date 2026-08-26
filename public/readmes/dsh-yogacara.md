@@ -131,7 +131,7 @@ pnpm add dsh-yogacara
 
 The published package ships prebuilt `lib/`, so installing it needs no build-approval step. To track `main` instead: `pnpm add github:tancheng33/dsh-yogacara`.
 
-Then list it in your profile's `cordis.patch.yml`. The bundle contributes the defaults shipped in [`cordis.patch.yml`](cordis.patch.yml) — including the storage rows, because the store consciousness is durable and `dsh-base` ships no storage stack. They are inserted under the same row ids `dsh-web-app` uses, so a profile that already has storage keeps its own. Your profile overrides any key:
+Adding it to your profile's `dsh.profile.bundles` is enough: the bundle contributes the defaults shipped in [`cordis.patch.yml`](cordis.patch.yml), and your own profile patch overrides any key:
 
 ```yaml
 - insert:
@@ -139,8 +139,10 @@ Then list it in your profile's `cordis.patch.yml`. The bundle contributes the de
       name: dsh-yogacara
       config:
         domain: alaya
+        observeChat: true
         observeTools: true
         promptSection: true
+        awareness: felt           # felt | report | silent
         promptMaxFactors: 5
         manasWarning: 0.5
         halfLifeMs: 300000        # 刹那: a factor halves in five minutes
@@ -149,7 +151,30 @@ Then list it in your profile's `cordis.patch.yml`. The bundle contributes the de
         flushIntervalMs: 15000
 ```
 
-It injects `storageDomain` and opportunistically uses `systemPrompt` and `tools`: without a prompt registry the state is still tracked and still queryable through `ctx.citta`, it simply is not shown to the model.
+### The storage stack is your profile's
+
+阿赖耶识 is durable, so this plugin injects `storageDomain` and does not start without one. It deliberately does not insert the storage rows itself: a bundle `insert` appends rows unconditionally and the loader rejects two rows sharing an id, so a bundle that inserts `storage` would break every profile that already has one.
+
+- **A profile stacking `@deepseek-ai/dsh-web-app`** (the `web` profile, and most real deployments) already has the stack. Nothing to do.
+- **A `dsh-base`-only profile** has none. Add three rows to the profile's own `cordis.patch.yml`:
+
+```yaml
+- insert:
+    - id: storage
+      name: '@deepseek-ai/dsh-storage'
+    - id: storage-json
+      name: '@deepseek-ai/dsh-storage-json'
+      config:
+        root: !!js dshHomePath('storages')
+    - id: storage-domain
+      name: '@deepseek-ai/dsh-storage-domain'
+      config:
+        backend: json
+```
+
+Without a storage domain the service simply never starts — no crash, no state, no tools. `dsh --profile <name> --dump-config` shows whether the rows are there, and each id must appear exactly once.
+
+It uses `systemPrompt` and `tools` opportunistically: without a prompt registry the state is still tracked and still queryable through `ctx.citta`, it simply is not shown to the model.
 
 ## Programmatic use
 
@@ -186,7 +211,7 @@ pnpm simulate    # replay a conversation through the core and watch it feel
 
 The catalogue is checked structurally: exactly 51 factors, each classical group at its classical size, every affliction carrying an antidote that is itself something a mind can cultivate. The plugin test boots `CittaService` in a real Cordis context over in-memory stand-ins for the harness services, so tool registration, the prompt section, automatic observation, persistence, and teardown are exercised rather than assumed.
 
-The harness packages are consumed from the `next` npm tag (`0.1.0-rc.6`); the `latest` tag points at an older line that cannot be installed.
+The harness packages are consumed from the `next` npm tag; the `latest` tag points at an older line that cannot be installed. `next` moves with each harness release, so the version this plugin is actually developed and tested against is whatever `devDependencies` pins — read it there rather than from this sentence. The `peerDependencies` ranges are open-ended above that floor, and deployments already run newer harness releases than the pinned one.
 
 ## Known limitations
 

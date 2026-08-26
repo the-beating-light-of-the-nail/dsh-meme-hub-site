@@ -12,8 +12,8 @@
 
 <table>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/8efd6ec4bd2f1662fd95b51e8a4bb9653e1ef84f/docs/images/usage-panel-demo-en-lightv1.0.0.png" alt="浅色主题的英文用量面板演示" /><br /><sub>浅色主题 · English</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/8efd6ec4bd2f1662fd95b51e8a4bb9653e1ef84f/docs/images/usage-panel-demo-zh-darkv1.0.0.png" alt="深色主题的简体中文用量面板演示" /><br /><sub>深色主题 · 简体中文</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/c874dd06630b914b91e4c091b57a2f68a3e85594/docs/images/usage-panel-demo-en-lightv1.0.0.png" alt="浅色主题的英文用量面板演示" /><br /><sub>浅色主题 · English</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/c874dd06630b914b91e4c091b57a2f68a3e85594/docs/images/usage-panel-demo-zh-darkv1.0.0.png" alt="深色主题的简体中文用量面板演示" /><br /><sub>深色主题 · 简体中文</sub></td>
   </tr>
 </table>
 
@@ -29,7 +29,7 @@
 
 - **会话用量汇总** — 输入（未命中/命中）、输出、缓存命中率、上下文占用（均来自官方 adapter 上报的 `tokenUsage` / `contextPressure` 投影）
 - **成本估算** — 按官方刊例价（CNY/USD 双币种 /1M tokens，高峰/空闲双时段）估算并标注来源与核验日期；支持用户覆盖 `pricing.json`；未定价模型显式标记「未定价模型」
-- **高峰/空闲时段计费（v1.0.1）** — 官方高峰时段（北京时间 09:00–12:00、14:00–18:00，即 UTC 01:00–04:00、06:00–10:00）价格为空闲时段的 2 倍；每轮成本按轮次开始时刻自动选用对应时段单价（时刻缺失按高峰保守估算）；面板顶部以**红/绿 tag 实时标注当前计费时段**（红=高峰、绿=空闲），每轮解释卡也显示该轮计费时段
+- **高峰/空闲时段计费（v1.0.1）** — 官方高峰时段（北京时间周一至周五 09:00–12:00、14:00–18:00，即 UTC 01:00–04:00、06:00–10:00）价格为空闲时段的 2 倍；其余时段及周末全天为空闲时段；每轮成本按轮次开始时刻自动选用对应时段单价（时刻缺失按高峰保守估算）；面板顶部以**红/绿 tag 实时标注当前计费时段**（红=高峰、绿=空闲），每轮解释卡也显示该轮计费时段
 - **双币种官方刊例价（v1.0.1）** — 中文定价页（CNY）与英文定价页（USD）的官方报价同时内置：CNY 显示用人民币报价、USD 显示用美元报价，**不做汇率换算**（与官方账单口径一致）；「刷新汇率」仅更新「1 USD ≈ X CNY」参考注记
 - **多币种成本（v0.3 / v1.0.1）** — 成本区 CNY/USD 一键切换（选择在浏览器记住），指示器、面板、图表与成本徽章全部跟随所选币种
 - **轮次用量** — 支持“总量 / 构成 / **成本**”三视角；**成本视角每根柱显示对应费用数值**（逐轮可见，不只在当前轮）；柱顶叠加**总耗时点线**；成本突增轮次加**异常标记**（归因 chip：输出增长 / 上下文膨胀 / 缓存命中下降）；柱底缓存命中迷你刻度；悬浮**解释卡**（token 分桶 + 成本 + 模型 + 计费时段 + 耗时/TTFT/TPS + 结束原因）；**全部轮次**横向滚动查看（固定细柱宽 + 自动滚到最新 + 箭头/渐隐提示），从宿主会话日志折叠完整历史，不可用时回退到本页观测增量（同样按快照估算逐轮成本）
@@ -181,8 +181,8 @@ dsh web --profile web
 ```
 
 或 `{ "models": { "<model>": { … } } }`。单价为 **双币种（CNY + USD）/ 1M tokens**：
-`peak` 为高峰时段（北京时间 09:00–12:00、14:00–18:00，即 UTC 01:00–04:00、06:00–10:00），
-`offPeak` 为空闲时段（其余时间）。兼容旧格式：平铺
+`peak` 为高峰时段（北京时间周一至周五 09:00–12:00、14:00–18:00，即 UTC 01:00–04:00、06:00–10:00），
+`offPeak` 为空闲时段（其余时间及周末全天）。兼容旧格式：平铺
 `{ "cacheMissInput": …, "cacheHitInput": …, "output": … }` 视为高峰/空闲同价、
 人民币报价（美元按默认汇率 6.76 折算）。`verifiedAt`（epoch 毫秒）可选，用于面板
 展示核验日期；未收录的模型会在 UI 中显式标记「未定价模型」，不会静默按 0 计。

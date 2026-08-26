@@ -58,7 +58,7 @@ The top bar shows the update area (`可更新: 1` = 1 update available, `重新�
 grouped cards. Every card carries the enable/disable toggle, version, GitHub
 button, update status and uninstall button:
 
-![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/73e9c9f0115454cd5592af493d69068447ffc78c/docs/plugin-catalog-updates.png)
+![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/93a2fdd2a1ee227813e99867e79fd12e4603bfa1/docs/plugin-catalog-updates.png)
 
 ## Quick start
 

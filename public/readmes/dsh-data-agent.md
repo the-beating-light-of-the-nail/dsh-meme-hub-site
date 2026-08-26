@@ -1,10 +1,11 @@
-# DSH Data Agent · 用对话分析数据
+# DSH Data Agent · 用对话分析数据与商业洞察
 
 **中文** | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/dsh-data-agent-banner.webp" alt="dsh-data-agent HERO图" width="100%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/1e7f3c7e48b137a8fb870e7db9c6d63d6c5969ce/assets/banner.webp" alt="DSH Data Agent Banner" width="100%">
 </p>
+
 <p align="center">
   <img src="https://img.shields.io/github/v/release/omdsh-dev/dsh-data-agent?style=flat-square" alt="Version">
   &nbsp;
@@ -16,275 +17,153 @@
   &nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License">
 </p>
+
 <p align="center">
-  <a href="https://dshfind.com/zh/plugins/omdsh-dev/dsh-data-agent?ref=badge"><img src="https://dshfind.com/api/card/omdsh-dev/dsh-data-agent?lang=zh" alt="dshfind 展示卡" width="440"></a>
-</p>
-<p align="center">
-  <strong>让DeepSeek Harness连接数据库，用对话完成数据分析与商业洞察</strong><br>
-  <em>自然语言查询 · 自动执行SQL · 连续分析 · Web UI · dsh-tui · 只读保护</em>
+  <strong>专为数据分析与商业分析人打造的 DeepSeek 智能数据分析助手</strong><br>
+  <em>自然语言提问 · 自动编写执行 SQL · 智能图表与报告 · AI 辅助业务治理 · 深度商业洞察 · 本地安全只读</em>
 </p>
 
 <p align="center">
 
-[项目简介](#项目简介) · [主要功能](#主要功能) · [快速安装](#快速安装) · [Web UI](#在web-ui中使用) · [dsh-tui](#在dsh-tui中使用) · [安全说明](#安全说明) · [本地开发](#本地开发) · [生态规范状态](#生态规范状态)
+[产品亮点](#产品亮点) · [快速上手](#快速上手) · [使用场景](#使用场景) · [工作台与报告](#工作台与报告产物) · [支持数据源](#支持数据源) · [安全与隐私](#安全与隐私) · [常见问题](#常见问题) · [开源协议](#开源协议)
 
 </p>
 
-## 项目简介
+## 产品亮点
 
-dsh-data-agent是DeepSeek Harness（DSH）的数据分析插件。连接数据库后，直接提出业务问题，DSH会自动查看库表、编写并执行SQL、根据真实结果继续分析，最终给出清晰的数据结论和商业洞察。插件同时支持Web UI与dsh-tui，无需修改DSH源码。
+每次做数据分析，都要反复提需求写 SQL、手动导出 Excel 拼接加工、在多个图表工具里调格式？面对繁杂的库表和晦涩的英文缩写字段，业务含义无从查起？
 
-![数据分析图表](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/charts.webp)
+**DSH Data Agent 让数据分析回归业务决策本身：**
 
-## 主要功能
+- 💬 **零门槛对话即分析**：告别繁琐的 SQL 语法，直接用大白话提问（如“对比最近 30 天各渠道转化率”）。AI 会自动理解业务意图、探查库表结构、编写并执行查询、连续推演并输出清晰结论。
+- 📊 **自动生成高品质图表与看板**：告别枯燥的纯文本与黑白表格。根据分析结论自动绘制折线图、柱状图、饼图、散点图或多维数据看板（Dashboard），并一键导出离线 HTML 报告方便分享汇报。
+- 🧠 **深度挖掘商业洞察**：不止是罗列查询数字，还能自动比较波动趋势、定位异常原因、识别高价值客群与畅销品类，把冷冰冰的数据转化为可直接落地的业务建议。
+- 🏷️ **AI 驱动的业务口径治理**：智能扫描数据库，自动为库表和字段标注通俗易懂的业务含义，支持人工审核与指标定义，确保每一次分析都基于统一、准确的业务口径。
+- 🔒 **本地安全与只读保护**：原生支持只读账号与只读模式，查询分析全程在本地安全受控运行，凭据严格保密，保障企业生产数据安全无忧。
+- 🖥️ **现代 Web 与高效终端双体验**：既可在直观的可视化 Web 界面中点击配置与浏览图表，也可在极客高效的命令行终端（dsh-tui）中一键唤起。
 
-![DSH Data Agent主要功能：对话、SQL、数据治理、商业洞察、分析报告与只读保护](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/dsh-data-agent-features.webp)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/1e7f3c7e48b137a8fb870e7db9c6d63d6c5969ce/assets/features.webp" alt="DSH Data Agent 核心特性" width="100%">
+</p>
 
-- **通过对话完成数据分析**：直接用自然语言描述目标，DSH会理解问题、拆解分析步骤、查询真实数据并整理结论。你可以继续追问，分析会沿着当前上下文逐步深入。
-- **自动寻找商业洞察**：不仅返回查询结果，还能帮助比较趋势、定位异常、识别高价值客户或商品，并把数据转化为便于业务决策的说明。
-- **AI驱动的数据治理**：使用当前DSH会话配置的AI模型扫描数据库，根据库表、字段、注释和关系，为每张表及每个字段生成业务含义候选。所有AI候选都需要人工确认，用户也可以人工补充业务术语和指标定义。后续查询分析时，数据Agent会通过内置的`catalog-search`、`catalog-get`和`metric-get`工具自动读取相关业务定义，让SQL和分析结论基于经过治理的业务口径。
-- **跨界面HTML分析报告（render-analysis）**：Agent可在普通工具调用里自主生成单图或Dashboard式综合分析报告（metric/line/bar/pie/scatter/table视图）。每次成功调用都会在当前工作目录的`analysis-reports/`中保存一份离线可打开的HTML；Web同时提供内联预览与“查看分析”Modal，dsh-tui直接返回文件路径。是否画图由Agent按问题判断，schema探查、单标量等查询不会被强制生成图表。
-- **共享Web UI与dsh-tui核心路径**：喜欢可视化操作时，可以在Web界面连接数据库、浏览库表和查看结果，推荐使用[zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui)；习惯键盘工作流时，可以在终端中使用同一“数据模式”，通过`/database`完成连接，然后直接开始对话分析，推荐使用[ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI)。两种界面共享数据Agent的数据库服务和工具协议；具体版本与部署仍应分别验证。
-- **连接常见业务数据库**：支持MySQL、PostgreSQL、SQLite、Oracle、Hive、Impala、ClickHouse、Apache Doris和SQL Server，可用于业务系统、分析库、本地数据文件及数仓场景。
-- **DSH自动完成分析闭环**：DSH会根据当前问题查看表结构、编写SQL、执行查询，并结合报错或返回结果继续调整，而不是只生成一段未经验证的SQL。
-- **专注数据任务的数据模式**：会话使用DSH原生`str_replace_editor`处理文件，并保留`sql-query`、`sql-write`、`sql-cmd`、`render-analysis`、`catalog-search`、`catalog-get`与`metric-get`；Web、Desktop、dsh-tui和headless profile使用同一套八工具协议。`describe_image`、`ssh_*`等宿主或社区插件工具不会进入数据模式。
-- **安全地使用真实数据**：支持只读模式和数据库只读账号；TUI密码会被隐藏，且不会作为表单草稿恢复。是否允许修改数据由你决定。
+## 快速上手
 
-### 数据库工作台
+### 1. 运行环境准备
 
-Web UI还提供按需数据库工作台：点击输入框右上角的数据库按钮，即可在同一个Modal的“连接配置、库表、数据治理、SQL”四个页签中配置连接、浏览结构、治理口径或临时运行SQL。
+- **DeepSeek Harness**（DSH 运行时环境）
+- 本机可访问目标数据库（支持本地 SQLite 文件或局域网/云端数据库）
 
-![数据库工作台](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/tables.webp)
+### 2. 快速安装
 
-### 通过对话完成数据分析
+在终端执行以下命令直接从 npm 安装插件：
 
-创建会话时选择“数据模式”，DSH就会以数据分析工作流处理后续问题。
-
-![数据模式预设](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/settings.webp)
-
-### 数据治理
-
-在Web数据库工作台打开“数据治理”页，选择数据源和扫描范围（全库、Schema或单表），点击“扫描”；全库扫描需再次确认。完成后可搜索表、字段、术语或指标，查看版本变化，并逐项确认或删除AI生成的表/字段业务含义，也可人工新增业务术语和指标定义。后续分析会自动参考已保存的口径。
-
-![数据治理：AI生成表和字段业务含义，并由用户审核](https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/001f9fd93a2aae50f0eb61abc1639730a96edf78/assets/data-governance.png)
-
-## 快速安装
-
-以下命令将插件安装到Web profile。
-
-### 方式一：npm安装（推荐）
-
-```sh
+```bash
+# 安装到 Web 界面（推荐）
 dsh plugin --profile web add @yejiming/dsh-data-agent
-```
 
-### 方式二：从GitHub安装
-
-```sh
-dsh plugin --profile web add github:omdsh-dev/dsh-data-agent
-```
-
-插件会自动安装“数据模式”预设，并在profile启动时为所有界面预加载该预设的数据库工具；`/database`与`/catalog`仅由当前组合中实际加载的`@deepseek-harness-tui/dsh-tui`运行时启用，与Profile名称无关。选择预设时不再动态导入插件子路径，无需本地构建。
-
-## 在Web UI中使用
-
-启动Web UI：
-
-```sh
-dsh --profile web
-```
-
-然后按下面的步骤操作：
-
-1. 新建会话并选择“数据模式”。
-2. 点击输入框右上角的数据库按钮，在工作台Modal中填写连接信息。
-3. 连接成功后，直接在对话框中提出分析问题。
-4. 根据第一轮结果继续追问，让DSH缩小范围、比较维度或总结结论。
-
-未加载`@deepseek-harness-tui/dsh-tui`的Web命令目录不会展示`/database`或`/catalog`；连接、扫描、取消和目录审核均从数据库工作台完成。
-
-例如，输入“分析最近30天订单变化，找出销售额下降最明显的地区和商品，并解释主要原因”，DSH会自行查看相关表、生成并执行查询，再根据真实结果完成分析。
-
-### 分析报告与HTML文件
-
-数据模式提供render-analysis工具：Agent会先用sql-query探查并核对事实，再自行判断可视化是否有帮助。判断需要画图时，一次工具调用会生成一份版本化分析报告：
-
-- 报告包含 1-6 个只读数据集与 1-8 个视图（metric、line、bar、pie、scatter、table），同一数据集可被多个视图复用，聚合与 Top N 都写在 SQL 中；
-- 简单问题生成单个主图（结果行内联预览），复杂问题生成紧凑摘要 + 「查看分析」按钮；
-- 「查看分析」在大型 Modal 中展示本次报告的全部视图：紧凑指标带、全宽主图、双列辅助图与明细表，浅色/深色主题与窄屏单列自适应；
-- 无论当前使用哪种UI，完整Dashboard都会原子保存到会话工作目录的`analysis-reports/*.html`，并在支持的DSH界面进入“产物”栏；文件名默认使用报告标题，也可用语义化`outputName`指定basename，不追加长UUID；文件内联数据、样式和SVG渲染代码，断网时也能直接打开；
-- 完整报告快照随会话日志持久化：刷新或历史回放不重新查询数据库，也不产生新的浏览器存储；
-- Web仍从同一份报告meta渲染预览；Node侧HTML生成器不加载ECharts或Web client代码。
-
-## 在dsh-tui中使用
-
-把Data Agent安装到dsh-tui profile即可；`render-analysis`不要求特定dsh-TUI版本或scene能力。Catalog持续状态和全屏结果浏览会在dsh-tui提供公开`status`/`scene`扩展服务时自动启用：
-
-```sh
+# 或安装到终端命令行（dsh-tui）
 dsh plugin --profile dsh-tui add @yejiming/dsh-data-agent
 ```
 
-启动终端界面：
+### 3. 开始分析
 
-```sh
+#### 方式一：Web 界面（推荐）
+启动 Web 控制台后，新建会话并选择 **「数据模式」**：
+```bash
+dsh --profile web
+```
+1. 点击输入框右上角的 **数据库图标**，在弹出的工作台中填写连接信息（支持测试连接）；
+2. 连接成功后，直接在对话框中用自然语言提出你的业务分析问题；
+3. 根据初步结论继续追问，AI 会沿着上下文层层下钻深挖。
+
+#### 方式二：终端命令行（dsh-tui）
+适合键盘流与极客用户，在终端中快速连接并展开分析：
+```bash
 dsh --profile dsh-tui
 ```
+在会话中输入 `/preset data-agent` 切换模式，输入 `/database connect` 连接数据库，即可开始提问。
 
-在空白会话中切换到数据模式，然后连接数据库：
+## 使用场景
 
-```text
-/preset data-agent
-/database connect
-```
+| 场景分类 | 提示词示例 |
+| :--- | :--- |
+| 📈 **销售与营收复盘** | *"分析最近 30 天各渠道销售额与环比变化，找出下滑最明显的商品品类，并分析主要原因"* |
+| 👥 **用户画像与客群分层** | *"根据近半年的购买频次和客单价对会员进行 RFM 分层，统计各层级用户的留存率与复购周期"* |
+| 🛒 **运营转化与漏斗分析** | *"统计本月新用户从注册、搜索、加购到下单的各环节转化率，找出流失率最高的步骤"* |
+| 📦 **库存与供应链监控** | *"排查周转天数超过 60 天的高库存 SKU，结合近期销售速度预测断货或积压风险"* |
+| 📑 **周报 / 月报自动生成** | *"汇总上周核心业务指标（GMV、活跃用户数、客单价），生成一段适合汇报的管理层周报小结"* |
 
-连接表单会一次展示所有相关字段。使用Tab或Shift+Tab切换输入项；数据库类型、ClickHouse HTTPS和只读模式按Enter展开选项，使用方向键选择并再次按Enter确认。网络数据库可以二选一填写临时密码或DSH凭据引用，不能同时填写。
+## 工作台与报告产物
 
-连接成功后，回到聊天输入框直接提出业务问题即可。常用的数据库命令还有：
+### 1. 多功能数据库工作台
+Web 界面内置一站式数据库工作台，包含 **连接配置**、**库表浏览**、**数据治理** 与 **SQL 执行** 四大功能模块，方便在对话之余随时查验数据资产。
 
-```text
-/database status       查看当前连接
-/database test         测试当前连接
-/database disconnect   断开当前连接
-/catalog scan           交互选择并启动Catalog扫描
-/catalog status [--run <run-id>]  查看最近结果或指定run
-/catalog diff           比较最近两个成功snapshot
-/catalog view           打开按表组织的只读Catalog结果
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/1e7f3c7e48b137a8fb870e7db9c6d63d6c5969ce/assets/tables.webp" alt="数据库工作台" width="90%">
+</p>
 
-扫描开始后无需反复执行`/catalog status`：输入框上方会持续显示技术采集和AI业务含义进度，并保留最终成功/失败状态。完成后执行`/catalog view`，使用↑↓或`j/k`选择表、Tab或←→切换左右区域、`/`搜索、`a`切换业务Schema/全部Schema、`r`刷新、Esc返回。TUI只提供读取；AI候选的确认与删除仍在Web“数据治理”页逐项完成。
+### 2. AI 辅助数据治理
+在工作台中打开“数据治理”，AI 会自动扫描库表结构并生成直观的中文业务释义，支持逐项确认、删除与补充业务指标，告别“字段对齐全靠问同事”的尴尬。
 
-Agent生成分析报告后，工具卡会显示数据集、视图、空数据摘要与HTML绝对路径。TUI不会输出字符Dashboard，也没有`/analysis`命令；直接在本机浏览器中打开该HTML即可查看六类视图和原始数据。文件来自本次工具调用，`/resume`不会重新查询数据库。
+<p align="center">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/1e7f3c7e48b137a8fb870e7db9c6d63d6c5969ce/assets/data-governance.webp" alt="AI 数据治理" width="90%">
+</p>
 
-同一会话再次打开连接表单时，会优先恢复该会话最近填写的数据库类型、地址、端口、用户、数据库、ClickHouse HTTPS和只读模式，并从已连接profile恢复凭据引用。新会话没有自己的配置时，会用最近一次成功连接的非敏感profile作为表单默认值，但仍是未连接状态，必须确认连接后才能查询。临时密码始终隐藏且不会恢复。
+### 3. 交互式离线分析报告
+当分析需要可视化呈现时，Agent 会自动生成单图或多维 Dashboard，并自动在工作目录的 `analysis-reports/` 目录下保存独立的离线 HTML 报告。包含丰富的指标卡、动态图表与明细数据表，无需网络即可随时双击打开或发送给同事。
 
-## 推荐的提问方式
+<p align="center">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/1e7f3c7e48b137a8fb870e7db9c6d63d6c5969ce/assets/charts.webp" alt="分析报告图表" width="90%">
+</p>
 
-为了获得更有价值的分析，可以在问题中补充业务目标、时间范围和关注维度。例如：
+## 支持数据源
 
-```text
-分析2026年第二季度各地区的销售额和毛利率变化，找出表现异常的地区，
-继续拆解到品类和核心客户，并给出三条可执行的业务建议。
-```
+DSH Data Agent 广泛支持各类主流业务数据库、分析型数仓及本地文件：
 
-你也可以让DSH保存分析过程或SQL，方便复查和复用：
+- 🐬 **关系型数据库**：MySQL, PostgreSQL, SQLite, Oracle, Microsoft SQL Server
+- ⚡ **分析型数仓 / OLAP**：ClickHouse, Apache Doris, Apache Hive, Apache Impala
+- 📁 **本地与轻量数据**：SQLite 数据文件（即开即用，无需额外服务）
 
-```text
-完成会员复购分析，把最终SQL保存到analysis/repurchase.sql，
-并用一段适合周报的文字总结主要发现。
-```
+## 安全与隐私
 
-## 使用前准备
+- 🛡️ **严格只读保护**：推荐使用只读数据库账号，并在连接时开启“只读模式”，确保不会意外修改或删除业务数据。
+- 🔑 **凭据安全隔离**：连接密码仅在当前会话运行时使用，不记录在明文历史中，绝不上报远程服务器。
+- 💻 **纯本地执行**：数据查询与分析报告生成均在本地安全受控运行，全面守护企业商业机密。
 
-DSH运行查询时需要本机能够访问目标数据库，并安装相应的数据库客户端：
+## 常见问题
 
-- SQLite通常已随macOS或Linux提供。
-- MySQL需要`mysql`客户端。
-- PostgreSQL需要`psql`客户端。
-- Oracle、Hive和Impala需要各自的命令行客户端。
-- Apache Doris通过MySQL协议连接，默认端口9030，需要支持`utf8mb4`的`mysql`客户端；首版只浏览当前/internal catalog中的数据库和表。
-- SQL Server默认端口1433，需要Microsoft ODBC `sqlcmd` 18.x；首版只支持SQL Login，不支持集成/Windows/Entra认证、DSN或命名实例。
-- ClickHouse不需要`clickhouse-client`。插件使用随包安装的官方`@clickhouse/client` 1.23.x HTTP适配器：HTTP默认8123；勾选HTTPS后默认8443并正常验证服务器证书。实际ClickHouse Server/Cloud组合仍应通过部署侧冒烟验证，不能据此推断所有Cloud/TLS配置都兼容。
+<details>
+<summary><b>Q: 我完全不会写 SQL，能用它做好数据分析吗？</b></summary>
+完全可以！DSH Data Agent 专门面向非技术背景的业务人员与分析师设计。你只需用平时的业务语言描述需求，AI 会自动理解意图、查找对应的数据表、编写并执行准确的 SQL 查询，并将结果整理成通俗易懂的商业图表与结论。
+</details>
 
-插件会先使用当前profile进程的PATH；找不到时，会继续检查客户端HOME环境变量以及Windows、macOS、Linux的常见安装位置，包括Homebrew、MacPorts、Linuxbrew、Snap、Nix、WinGet Links、Scoop、Chocolatey和Program Files下的版本目录。自动发现使用的补充PATH也会传给实际客户端进程，因此从Finder启动的DSH Desktop通常无需再为Homebrew客户端手工配置路径。
+<details>
+<summary><b>Q: 连接生产数据库会不会有误删或误改数据的风险？</b></summary>
+不会。我们建议连接时配置数据库只读账号并勾选“只读模式”。在只读保护下，任何写入、修改、删除（如 UPDATE, DELETE, DROP）等高危指令都会被严格拦截，保障生产数据绝对安全。
+</details>
 
-插件调用MySQL或Doris客户端时会内置`--default-character-set=utf8mb4`，确保Windows代码页不会使库名、表名、字段名或查询结果中的中文在进入DSH前乱码，无需在profile中重复配置该参数。
+<details>
+<summary><b>Q: 公司的数据库表名和字段都是缩写拼音/英文，AI 能看懂吗？</b></summary>
+可以。你可以使用内置的“数据治理”功能，让 AI 结合表注释和字段上下文一键扫描生成业务释义，你也可以手动录入公司特有的术语和计算公式（如“净成交额 = 订单金额 - 退款金额”），AI 会在后续分析中自动采用这些经过确认的业务口径。
+</details>
 
-库表元数据浏览支持由Unicode字母、组合标记、数字以及`_`、`$`组成的schema和表名，数据库返回的字段名会原样展示。例如SQLite中的`中文表名`及其`姓名`字段可以直接在工作台中浏览。为保持元数据SQL边界明确，schema和表名中的空白、控制字符、引号、反引号、反斜杠、分号、点号、连字符及其他标点仍会在启动数据库客户端前被拒绝。
+<details>
+<summary><b>Q: 生成的分析报告如何分享给不使用 DSH 的同事或领导？</b></summary>
+每次生成的图表报告都会在本地保存为独立的 <code>.html</code> 文件（位于 <code>analysis-reports/</code> 目录）。该文件内置了所有图表样式与交互数据，无需安装任何软件或连接网络，直接通过微信、邮件或钉钉发送给同事，用任意浏览器双击即可全屏查看与交互。
+</details>
 
-SQL Server查询使用T-SQL `TOP`或已有的`OFFSET ... FETCH`限行，绝不会追加`LIMIT`。为避免`sqlcmd`自身脚本能力绕过SQL边界，输入中的`GO`、`!!`、冒号命令和`$(...)`变量替换会在启动客户端前被拒绝。插件不会默认添加`-C`或其他“信任服务器证书”选项。
+<details>
+<summary><b>Q: 如果对分析出来的图表或结论有疑问，可以继续追问吗？</b></summary>
+当然可以！就像和真实的专业分析师沟通一样，你可以在当前对话中继续追问（例如“再帮我按省份拆解一下”、“把柱状图换成饼图”、“为什么华东区 5 月份环比下降了”），AI 会基于上一步的结果继续深入分析。
+</details>
 
-如果客户端安装在公司工具链或其他自定义目录，可在当前profile的`data-agent`配置中补充搜索目录；需要锁定具体版本时则直接填写绝对命令路径，也可通过`args`添加其他CLI参数。当前profile的PATH始终优先，`searchPaths`在系统常见目录之前：
+## 开源协议
 
-```yaml
-- id: data-agent
-  config:
-    clients:
-      mysql:
-        searchPaths:
-          - /opt/company/mysql/bin
-        # command: /opt/company/mysql/bin/mysql
-        # args:
-        #   - --protocol=tcp
-      # Doris也可覆盖mysql客户端位置：
-      # doris:
-      #   searchPaths: [/opt/company/mysql/bin]
-      # SQL Server可覆盖Microsoft ODBC sqlcmd位置：
-      # sqlserver:
-      #   searchPaths: [/opt/mssql-tools18/bin]
-```
-
-Windows路径可以写成`C:\Program Files\MySQL\MySQL Server 9.0\bin`。插件不会下载数据库客户端、执行登录shell或扫描整块磁盘；位于非常规目录且未进入PATH时，仍需使用`searchPaths`或`command`。
-
-建议先准备一个只读数据库账号，让数据Agent在不修改业务数据的前提下完成探索和分析。
-
-如果出现`failed to mount`或提示找不到`@yejiming/dsh-data-agent`，通常是当前profile还没有安装插件，或仍在使用旧版预设。请为Web UI、DSH Desktop或dsh-tui执行对应的安装命令，然后完全退出并重新启动DSH。未修改过的旧版预设会自动迁移；手工编辑过的预设需要删除其中指向`@yejiming/dsh-data-agent/tool`和`@yejiming/dsh-data-agent/command`的两行配置块。
-
-## 安全说明
-
-- 推荐使用数据库只读账号，并在连接表单中开启只读模式。
-- Web UI和dsh-tui中的临时密码只用于当前连接；TUI只显示`*`，重新打开表单时不会恢复密码。
-- 需要跨进程恢复认证时，可以在TUI表单填写DSH credential reference，或通过`--password-ref`传入；表单会恢复引用名，但不会读取、显示或持久化解析后的密码。
-- MySQL/Doris和SQL Server密码分别只传入`MYSQL_PWD`和`SQLCMDPASSWORD`；ClickHouse密码只进入官方HTTP客户端的认证字段，不进入URL、argv或持久化配置。
-- Catalog仅持久化脱敏source摘要、系统元数据、版本与人工口径；不保存密码、credential解析值、客户端stdout/stderr、业务查询结果或样例行。
-- 未开启只读模式时，数据Agent可以按你的要求执行更新或管理语句。连接生产数据库前，请先确认账号权限和数据备份策略。
-- 不同会话的数据库连接相互隔离，便于分别处理不同项目、客户或分析环境。
-- 插件及其生态适配器都运行在DSH进程内，不是OS、进程或realm沙箱；生态permission只能用于准入协商，不能替代数据库账号权限、网络隔离或运行环境安全策略。
-
-## 卸载与回滚
-
-```sh
-dsh plugin --profile web remove @yejiming/dsh-data-agent
-dsh plugin --profile desktop remove @yejiming/dsh-data-agent
-dsh plugin --profile dsh-tui remove @yejiming/dsh-data-agent
-```
-
-普通卸载只移除当前profile中的插件并释放运行时 effect，不会主动删除已安装的“数据模式”preset或已经保存的非敏感连接信息。若要显式清理preset，请在确认`DSH_HOME`指向目标profile数据目录后单独执行：
-
-```sh
-rm -rf "$DSH_HOME/.agent-presets/data-agent"
-```
-
-连接存储的彻底清理是另一个破坏性 purge 操作：请先备份，并通过目标DSH profile的存储管理方式删除`data_agent_connections@1`记录。移除生态manifest或回滚适配层不需要迁移现有数据；任何先前发布的生态claim都应明确标记为过期或撤销。
-
-## 本地开发
-
-```sh
-pnpm install
-pnpm build
-pnpm test
-pnpm conformance
-```
-
-`lib/`已提交到仓库，因此通过npm或GitHub安装时无需自行构建。
-
-升级规范基线必须显式更新`conformance/dsh-ecosystem/baseline.json`中的两个revision和固定digest，使用对应的本地checkout离线运行conformance，复核inventory/restriction漂移，并重新执行完整构建与测试。发布证据应运行`pnpm conformance:artifact --output-dir <工作树外目录>`，从真实`npm pack` tarball生成外部sidecar；文档和claim不得超过其中最弱的已验证证据等级。
-
-## 生态规范状态
-
-本包附带一层实验性的 [DSH Ecosystem Specification](https://github.com/T-Auto/dsh-ecosystem-spec) Community v0.15 声明。它不会替代或重复注册现有 Cordis 功能；原生 bundle、preset、命令、工具、路由、Web UI、TUI 表单和连接存储仍是唯一功能实现。
-
-| 项目 | 当前状态 |
-| --- | --- |
-| 规范与阶段 | Community v0.15，Draft / Experimental |
-| 固定基线 | `dsh-ecosystem-spec@ec80a4be5d92bbb971655afd0f097bb5586a1a28`；`dsh-std@614dfa1ac168db79fcf4577cf0ebb34e2e3b944b` |
-| Manifest | `dsh-plugin.json`，`manifestVersion: 0.15`，包身份 `@yejiming/dsh-data-agent@0.1.2` |
-| 准入结果 | 仓库内 eligible fixture 为 `compatible`；这不是实际 dsh-TUI Host 的准入结论 |
-| 证据等级 | `Parsed`；fixture negotiation 只记录为 `fixture-only`，不提升为 `Negotiated` |
-| 已执行环境 | 离线 parser/projector/definition 校验；`@dsh-std/adapter-dsh@0.1.0-rc3` 一次性本地 fixture 挂载/卸载 |
-| Artifact | 发布物身份为包名和版本；tarball SHA-256 只在真实 `npm pack` 后写入工作树外 sidecar，不嵌入 source manifest |
-| 未验证 | 真实 Host Descriptor、真实 Web/Desktop/dsh-tui、真实 TTY、数据库、remote、attach/detach、多 Presentation、`Observed`、`Attested` |
-
-主要限制包括：`UserInteraction` 因固定 Community manifest 无法携带 dsh-std definition 所需 requirement spec 而暂不声明；模型工具、agent preset、Cordis service、HTTP routes、Web slots、持久化域和本地 TTY 仍由原生 DSH 路径拥有。安装 `@dsh-std/adapter-dsh` 进行发现时，生态 facet 只发布降级快照，不发布第二个 Command、Tool 或 UI handler。
-
-该插件仍是 **trusted in-process**、非沙箱代码。Manifest permission 是 Host 的准入契约，不提供 OS、进程或 realm 隔离。上述结果不代表 DSH 官方认证、安全批准、无漏洞保证或对所有 Host 的普遍兼容承诺。
+本项目基于 [MIT License](LICENSE) 开源。
 
 ## 友情链接
 
-- [dshfind.com](https://dshfind.com)：面向DeepSeek Harness生态的中文技术社区，提供项目发现、实践分享与开发者交流
-- [dsh-web-ui](https://github.com/dsh-external/dsh-web-ui)：DeepSeek Harness的可扩展Web UI，支持浏览器端交互以及插件与主题扩展
-- [dsh-cc-tui](https://github.com/dsh-external/dsh-cc-tui)：面向DeepSeek Harness的键盘优先全屏终端界面，适用于高效的对话式开发工作流
-- [platonai/Browser4](https://github.com/platonai/Browser4)：面向自主智能体、智能信息抽取与大规模Web自动化的AI原生浏览器引擎
-
-## 许可
-
-MIT
+- [dshfind.com](https://dshfind.com)：DeepSeek Harness 插件与生态发现社区
+- [dsh-web-ui](https://github.com/dsh-external/dsh-web-ui)：DeepSeek Harness 可扩展 Web UI
+- [dsh-cc-tui](https://github.com/dsh-external/dsh-cc-tui)：DeepSeek Harness 终端全屏交互界面
+- [platonai/Browser4](https://github.com/platonai/Browser4)：面向智能体的大规模 Web 自动化浏览器引擎

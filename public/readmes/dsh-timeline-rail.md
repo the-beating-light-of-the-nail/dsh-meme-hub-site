@@ -8,7 +8,7 @@ Along the right edge of the conversation, above the composer, it draws a **low-c
 
 > **Desktop & Web both supported.** The DeepSeek Harness **desktop** app is an Electron shell that embeds the same browser client served over a localhost web server, so a "web" plugin renders identically on both. This package targets the browser-side conversation slot and works wherever that client runs — Desktop **and** Web. Only headless / TUI profiles have no composer slot and render nothing.
 
-![Timeline Rail Screenshot](https://raw.githubusercontent.com/lcthe/dsh-timeline-rail/ec92316f751f5d4b71cd0754b03affc3a7f5b7e0/assets/images1.png)
+![Timeline Rail Screenshot](https://raw.githubusercontent.com/lcthe/dsh-timeline-rail/661d4a859f80d8c6f445d844ee0fb081c30cbc66/assets/images1.png)
 
 ## Features
 

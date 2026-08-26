@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/cb595c532bb3a648c13bc38fc3424751353fc2aa/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 A minimal terminal coding agent harness in Go — a sibling to Pi.
@@ -19,9 +19,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
   <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
 </p>
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/cb595c532bb3a648c13bc38fc3424751353fc2aa/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/cb595c532bb3a648c13bc38fc3424751353fc2aa/assets/image.png)
 
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
@@ -110,7 +110,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/b0f1d2ef41e1f93b4e9566fee5c006171673a36a/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/cb595c532bb3a648c13bc38fc3424751353fc2aa/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -205,6 +205,7 @@ The editor supports:
 
 - `@` — fuzzy file mention picker (type `@` and start typing a path)
 - `/` — slash command picker (`/sessions`, `/resume`, `/clear`)
+- `?` — shortcut help picker (lists `/`, `!`, `@`, and key bindings; `Esc` closes)
 - `!command` — run a shell command locally and stream its output into the
   transcript (see [Commands](#commands))
 - `Ctrl+K` — command palette: settings → model / theme / permissions / agents, skills, hooks
@@ -216,6 +217,9 @@ The editor supports:
 | `Ctrl+C`       | Quit phi                        |
 | `Esc`          | Cancel the running agent / close pickers |
 | `Ctrl+K`       | Toggle the command palette      |
+| `Ctrl+A`       | Jump to the start of the line   |
+| `Ctrl+E`       | Jump to the end of the line     |
+| `Ctrl+U`       | Clear the composer input, images, and skills |
 | `Ctrl+Shift+C` | Copy the selected transcript text |
 
 Themes: `Dark`, `Darcula`, `Pink`, and `Terminal` (default), switchable from

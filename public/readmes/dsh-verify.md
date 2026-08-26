@@ -19,15 +19,15 @@
 
 `dsh-verify` opens a real browser and checks — so you never have to take the agent's word for it.
 
-![dsh-verify — Agents say done. The browser proves it.](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/social-card.png)
+![dsh-verify — Agents say done. The browser proves it.](https://raw.githubusercontent.com/263311487-ux/dsh-verify/c3633f19d2125becc9fe4da836bb864b766b8b27/assets/social-card.png)
 
-![dsh-verify in action](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/hero.gif)
+![dsh-verify in action](https://raw.githubusercontent.com/263311487-ux/dsh-verify/c3633f19d2125becc9fe4da836bb864b766b8b27/assets/hero.gif)
 
 The quality gate for **agent-built web apps**. Works with any agent — DeepSeek Harness (dsh), Claude Code, Cursor, Copilot, Codex — and with any CI. You write what a human would check in a browser; a real browser executes it and returns a `PASS`/`FAIL` verdict with receipts (screenshots + diff images).
 
 No LLM judges the outcome. **The browser is the judge.**
 
-![Same task, same AI, two builds — only a real browser tells the difference](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/wow-compare.png)
+![Same task, same AI, two builds — only a real browser tells the difference](https://raw.githubusercontent.com/263311487-ux/dsh-verify/c3633f19d2125becc9fe4da836bb864b766b8b27/assets/wow-compare.png)
 
 Same task. Same AI. Two builds. One missing CSS rule — the agent's self-review passed, a real browser caught it.
 
@@ -139,7 +139,7 @@ Top-level fields: `title`, `serve` (static dir) or `base` (target URL), `browser
 
 A self-contained HTML report — every step with a pass/fail badge, selector, and detail, plus screenshots:
 
-![dsh-verify report](https://raw.githubusercontent.com/263311487-ux/dsh-verify/7d4fb0bec3ae31f40561682a6d75d8a56f5a7ed5/assets/report-screenshot.png)
+![dsh-verify report](https://raw.githubusercontent.com/263311487-ux/dsh-verify/c3633f19d2125becc9fe4da836bb864b766b8b27/assets/report-screenshot.png)
 
 ## Agent Arena — bring your agent
 

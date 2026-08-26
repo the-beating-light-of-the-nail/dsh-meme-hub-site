@@ -4,9 +4,9 @@ English | [中文](README.zh.md)
 
 Cost tracking for DSH (DeepSeek Harness). A line under each turn tells you what that turn cost; the **Cost** tab tells you what the money went on.
 
-![Per-turn cost in the conversation](https://raw.githubusercontent.com/Jannchie/dsh-bill/a95b79dbe068060dc2723d4fd43d70bdceaf4728/docs/in-chat.png)
+![Per-turn cost in the conversation](https://raw.githubusercontent.com/Jannchie/dsh-bill/9051d5175890194eeba9ea239d2ae6ddc87dfda3/docs/in-chat.png)
 
-![Cost attribution](https://raw.githubusercontent.com/Jannchie/dsh-bill/a95b79dbe068060dc2723d4fd43d70bdceaf4728/docs/attribution.png)
+![Cost attribution](https://raw.githubusercontent.com/Jannchie/dsh-bill/9051d5175890194eeba9ea239d2ae6ddc87dfda3/docs/attribution.png)
 
 ## Install
 

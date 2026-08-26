@@ -8,7 +8,7 @@
 
 中文 | [English](README.en.md)
 
-![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/7a2cac0d520620ebeac100c4ce7ace6bb7f6100e/docs/promo.png)
+![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/dc5f7afe72bf1e8ecc9b87588d8de6f3bc5c8067/docs/promo.png)
 
 **dsh-tianshu-tui**（`@huiliyi37/dsh-tianshu-tui`）是官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 上的交互式终端 UI 插件。渲染核心为自研的 ANSI 极简引擎（由作者自己的开源项目 [天枢 Tianshu-Tui](https://github.com/huiliyi37/Tianshu-Tui) 演进而来，Apache-2.0；逐文件来源见 [SOURCE-MAP.md](SOURCE-MAP.md)），渲染轻量不打断，使用体验流畅。UI 是纯展示层：所有 agent 状态都来自会话事件流。在此之上做了 harness 工程层的个性化改造，如图像与视觉桥接、代码智能检索、记忆与跨会话召回等。
 
@@ -35,40 +35,71 @@
 
 本包不是独立程序。须先有官方 CLI [`@deepseek-ai/dsh`](https://www.npmjs.com/package/@deepseek-ai/dsh)（npm `latest`，当前 `0.1.1-rc.2`；需 ≥ `0.1.0-rc.8`，peer 依赖对齐）。只 `npm i` 本包跑不起来。
 
+**一键安装（推荐）**：仓库自带跨平台脚本，自动检测 Node/pnpm、经 pnpm 安装官方 CLI + 装配本插件并启动（国内网络默认走 npmmirror 镜像）：
+
+```sh
+# macOS / Linux（bash）
+bash <(curl -fsSL https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/main/scripts/install-tui.sh)
+# 只安装不启动：
+bash <(curl -fsSL https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/main/scripts/install-tui.sh) --no-launch
+
+# Windows（PowerShell）
+powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/main/scripts/install-tui.ps1 | iex"
+# 只安装不启动：
+powershell -ExecutionPolicy Bypass -File scripts\install-tui.ps1 -NoLaunch   # 克隆仓库后本地跑
+```
+
 ### 1. 准备环境
 
 - [Node.js](https://nodejs.org/) `^22.19 || >=24`
-- PATH 上有 [`pnpm`](https://pnpm.io/installation)（`dsh plugin` 会转发给它）
+- [`pnpm`](https://pnpm.io/installation)（`dsh plugin` 会转发给它；没有时 `corepack enable` 即可——Node 自带 corepack）
 
-**不要直接敲 `dsh`。** 若 PATH 上已有旧的 `dsh`（例如 `~/.local/bin/dsh`，`dsh --version` 低于 `0.1.0-rc.8`），会走到本地 staging，出现 `ERR_FS_EISDIR` / `Path is a directory .../@deepseek-ai/dsh`。请始终用下面的 `npx` 命令。
+> ⚠ **npm 11 的 OOM 坑**：官方 CLI `@deepseek-ai/dsh` 依赖树较大（60+ 子包），**npm 11（Node 24 自带）安装时会 JavaScript heap out of memory**（卡住数分钟后 OOM，实测复现）。请用 pnpm（下方命令）。若你已经在用 `npx -y @deepseek-ai/dsh` 且卡住/报 heap OOM，切到 pnpm 即可。
+
+**不要直接敲 `dsh`。** 若 PATH 上已有旧的 `dsh`（例如 `~/.local/bin/dsh`，`dsh --version` 低于 `0.1.0-rc.8`），会走到本地 staging，出现 `ERR_FS_EISDIR` / `Path is a directory .../@deepseek-ai/dsh`。请始终用下面的 `pnpm dlx` 命令。
 
 ### 2. 把本插件装进 tui profile
 
 ```sh
-npx -y @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
+pnpm dlx @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
 ```
 
-pnpm 可能提示 peer missing，可忽略：peer 由官方 `dsh` 宿主提供，不必另装。
+pnpm 可能提示 peer missing，可忽略：peer 由官方 `dsh` 宿主提供，不必另装。没有 pnpm 也可以 `npx -y pnpm dlx @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui`。
 
-从 npm 安装后，每次启动会对照 npm `latest`：有新版本就写入 profile，提示重启后生效。不想联网检查时设 `DSH_TUI_SKIP_UPDATE=1`。`github:` / `link:` 安装不会改写成 npm 包。
+从 npm 安装后，每次启动会对照 npm `latest`：有新版本就写入 profile，提示重启后生效。也可在 TUI 里敲 `/update` 手动检查（只查不装，给出更新命令）。不想联网检查时设 `DSH_TUI_SKIP_UPDATE=1`。`github:` / `link:` 安装不会改写成 npm 包。
 
-也可以从 Git 装：`npx -y @deepseek-ai/dsh plugin --profile tui add github:huiliyi37/dsh-tianshu-tui`（仓库已包含 `lib/index.js`，不必再打包）。
+也可以从 Git 装：`pnpm dlx @deepseek-ai/dsh plugin --profile tui add github:huiliyi37/dsh-tianshu-tui`（仓库已包含 `lib/index.js`，不必再打包）。
 
 ### 3. 启动
 
 ```sh
-npx -y @deepseek-ai/dsh --profile tui
+pnpm dlx @deepseek-ai/dsh --profile tui
 ```
 
 看到欢迎页品牌 **dsh-tianshu-tui** 即成功。`Ctrl+Q` 或 `/exit` 退出。
 
-已全局安装官方 CLI 且 `dsh --version` 不低于 `0.1.0-rc.8` 时，把上面的 `npx -y @deepseek-ai/dsh` 换成 `dsh` 即可。
+已全局安装官方 CLI（`pnpm add -g @deepseek-ai/dsh`）且 `dsh --version` 不低于 `0.1.0-rc.8` 时，把上面的 `pnpm dlx @deepseek-ai/dsh` 换成 `dsh` 即可。
+
+### 4.（可选）启用 agent 预设（`/preset`）
+
+`/preset` 查看/切换 agent 预设（标准 / PTC / 极简 / 创造），依赖官方 `@deepseek-ai/dsh-agent-presets` 插件——官方 dsh 默认不携带，需显式装配：
+
+```sh
+pnpm dlx @deepseek-ai/dsh plugin --profile tui add @deepseek-ai/dsh-agent-presets@0.1.1-rc.2
+```
+
+> ⚠ 版本要显式给 `@0.1.1-rc.2`：官方 npm `latest` 标签仍停在过时的 `0.0.1-rc.1`（`@latest` 会装到旧版）。未装配时 `/preset` 会提示「⚠ agent-presets 服务不可用（host 未装配 agent 预设）」——装配后重启即可用。
+
+用法：
+
+- `/preset` —— 列出全部预设与当前项（`*` 标记），并附当前工具面（wire）摘要
+- `/preset <id>` —— 切换到指定预设（仅空白会话可换：先 `/session new` 再切）
 
 若 `npx` 仍报 `ERR_FS_EISDIR`，是 `~/.dsh/profiles/node_modules` 里旧的安装 fallback 与官方 CLI 冲突。换干净目录再启动：
 
 ```sh
-DSH_HOME=/tmp/dsh-tianshu npx -y @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
-DSH_HOME=/tmp/dsh-tianshu npx -y @deepseek-ai/dsh --profile tui
+DSH_HOME=/tmp/dsh-tianshu pnpm dlx @deepseek-ai/dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
+DSH_HOME=/tmp/dsh-tianshu pnpm dlx @deepseek-ai/dsh --profile tui
 ```
 
 不要在 DeepSeek Harness 工作区根目录对本包跑 tsdown：会把未发布的 `@deepseek-ai/dsh-root` 写进 bundle，加载必失败。
@@ -97,7 +128,29 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 
 ## 更新说明
 
-当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.15`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.15)）。
+当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.18`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.18)）。
+
+### 0.1.2-rc.18（2026-08-26）
+
+待办卡离开思考区：挪到输入轨上方，默认列出条目。
+
+- **待办卡贴输入轨上方** — 从 glance/思考上方挪到 chrome（活动带之下、提问/审批/输入轨之上）；小窗口从顶裁动态段时不再把待办裁掉，也不跟思考抢视线
+- **默认列出条目** — 有进行中/待办时计数头 + 条目（进行中置顶），最多 5 条，超出 `└ …(+N)`；全完成仍一行；`/todos all` 看全表不封 5 条。计数头不再带 `· 当前项`
+
+### 0.1.2-rc.17（2026-08-25）
+
+活动带与启动默认语义版本：子代理/工作流改走统一活动带，启动项区分「仅本会话」与「写默认」，待办首写自动弹卡，`/fork` `/branch` 修复。
+
+- **子代理/工作流统一活动带** — 输入轨上方默认收敛为活动带（`◐ N 子代理 · M 工作流`）：进行中每项一行统计（封顶 `activityBandMaxRows`，默认 5，超限折叠为 `+N`），子代理结束塌成 `✓ {label} · N 工具 · X tok · 12s`，工作流结束再提交一行摘要；`activityBand: false` 回退为每条运行中子代理一行 spinner。`/subagents` 活区卡显示进行中第二行与失败态，宿主有外部 run 时追加「⤷ 外部子代理」；`/workflow` roster 在 childId 命中委派树时追加子会话 label / 运行态
+- **启动项拆成「仅本会话」与「写默认」** — 选择器 Enter / 带参命令只热切当前会话；选择器按 `S` 或命令末尾 `default` 才写入 `prefs.json` 作为新会话启动默认（`/theme` `/model` `/effort` `/density` `/preset`）；回显点名差异，不再分不清默认与本会话
+- **模型首次写入待办自动弹紧凑卡** — live 默认不画 todos 投影；模型第一次写入非空待办时自动弹出紧凑卡，手动关掉或 `/clear` 后本会话不再自动开
+- **`/fork` `/branch` 修复** — 改用 `agents.create({ seed })` 一次铸 child，不再 resume live 子会话（官方 `persistence.prepare` 对已在内存的会话抛 `cannot prepare while it is live`，此前 fork 后必炸）
+
+### 0.1.2-rc.16（2026-08-25）
+
+`/preset` 注入降级版本。
+
+- **`/preset` 不再 `without inject`（[#46](https://github.com/huiliyi37/dsh-tianshu-tui/issues/46)）** — 未装配官方 `@deepseek-ai/dsh-agent-presets` 时，经 `reflect.get('agentPresets', false)` 读可选服务，回显「服务不可用」而不抛 `cannot get property "agentPresets" without inject`（与 `/compact` `/goal` 同款）；跟仓 `lib/index.js` 已对齐，`github:` 安装也会吃到修复。装配预设：`pnpm dlx @deepseek-ai/dsh plugin --profile tui add @deepseek-ai/dsh-agent-presets@0.1.1-rc.2`（npm `latest` 标签仍停在过时的 `0.0.1-rc.1`，需显式版本）
 
 ### 0.1.2-rc.15（2026-08-25）
 

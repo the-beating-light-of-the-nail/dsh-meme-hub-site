@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/hero-v2.png" alt="DSH Vision Toolkit helps text-only DeepSeek Harness agents understand images and complete visual tasks" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/hero-v2.png" alt="DSH Vision Toolkit helps text-only DeepSeek Harness agents understand images and complete visual tasks" />
 </p>
 
 <div align="center">
@@ -61,8 +61,8 @@ dsh plugin --profile web add @anionex/dsh-vision-toolkit
 
 <table>
 <tr>
-<td width="220"><a href="https://aihubmix.com/?aff=5wj6sgx8"><img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/logo_aihubmix.png" alt="AIHubMix" height="48"></a></td>
-<td>Thanks to <a href="https://aihubmix.com/?aff=5wj6sgx8">AIHubMix</a> for sponsoring this project! AIHubMix is a stable, high-concurrency AI model API gateway that connects Claude, GPT, Gemini, DeepSeek, and other mainstream models through a single API key, compatible with multiple protocols, with <b>free model options</b> available. To sign up, use the <a href="https://aihubmix.com/?aff=5wj6sgx8">AIHubMix entry</a> outside mainland China or the <a href="https://inferera.com/?aff=5wj6sgx8">Inferera entry</a> within mainland China.</td>
+<td width="220"><a href="https://aihubmix.com/?aff=sinZ"><img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/logo_aihubmix.png" alt="AIHubMix" height="48"></a></td>
+<td>Thanks to <a href="https://aihubmix.com/?aff=sinZ">AIHubMix</a> for sponsoring this project! AIHubMix is a stable, high-concurrency AI model API gateway that connects Claude, GPT, Gemini, DeepSeek, and other mainstream models through a single API key, compatible with multiple protocols, with <b>free model options</b> available. To sign up, use the <a href="https://aihubmix.com/?aff=sinZ">AIHubMix entry</a> outside mainland China or the <a href="https://inferera.com/?aff=sinZ">Inferera entry</a> within mainland China.</td>
 </tr>
 </table>
 
@@ -111,7 +111,7 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Paste an image directly into DSH
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/dsh-view-example.png" width="82%" alt="A text-only DeepSeek model answering a question about a pasted image through Vision Toolkit in DSH Web" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/dsh-view-example.png" width="82%" alt="A text-only DeepSeek model answering a question about a pasted image through Vision Toolkit in DSH Web" />
 </p>
 
 *Paste an image into the conversation. A text-only model can switch to its `Vision Toolkit` variant and inspect the image in the context of the user's question.*
@@ -119,8 +119,8 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Screenshot to editable page
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/infographic-reference.webp" width="49%" alt="Reference infographic screenshot used for restoration" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/infographic-result.webp" width="49%" alt="Editable HTML and CSS reconstruction created from the reference screenshot" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/infographic-reference.webp" width="49%" alt="Reference infographic screenshot used for restoration" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/infographic-result.webp" width="49%" alt="Editable HTML and CSS reconstruction created from the reference screenshot" />
 </p>
 
 > Prompt example: “(Use vision-skills) Rebuild this image into HTML.”
@@ -130,8 +130,8 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Sketch to working interface
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/ui-sketch.webp" width="49%" alt="Hand-drawn JupyterLab interface used as the restoration reference" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/ui-result.webp" width="49%" alt="Working JupyterLab-style interface reconstructed from the sketch" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/ui-sketch.webp" width="49%" alt="Hand-drawn JupyterLab interface used as the restoration reference" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/ui-result.webp" width="49%" alt="Working JupyterLab-style interface reconstructed from the sketch" />
 </p>
 
 *Left: a hand-drawn reference. Right: the working interface reconstructed from it.*
@@ -141,8 +141,8 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Fast UI restoration: an approximate first pass
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/ui-fast-restore-reference.webp" width="49%" alt="Original YouMind homepage used as the fast UI restoration reference" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/ui-fast-restore-result.webp" width="49%" alt="Approximate YouMind homepage produced with fast UI restoration mode" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/ui-fast-restore-reference.webp" width="49%" alt="Original YouMind homepage used as the fast UI restoration reference" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/ui-fast-restore-result.webp" width="49%" alt="Approximate YouMind homepage produced with fast UI restoration mode" />
 </p>
 
 > Prompt example: “(Use vision-skills) Quickly rebuild this image into HTML.”
@@ -220,8 +220,8 @@ The plugin keeps image understanding and deterministic local image processing in
 Most vision bridges for text-only models ask a multimodal model for a generic description and hand it to the text model, adding a semantic layer where information is lost. Vision Toolkit instead recovers **why the agent wants to look at the image**: the user message or the model's stated reason becomes a focus hint passed to the vision model. The result is a task-aware description that emphasizes what matters for the current step — with fewer tokens, higher accuracy, and faster responses.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/focus-hint-comparison-1.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 1" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/upstream/focus-hint-comparison-2.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 2" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/focus-hint-comparison-1.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 1" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/upstream/focus-hint-comparison-2.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 2" />
 </p>
 
 **Architecture and image-input behavior**
@@ -304,7 +304,7 @@ No. Each inspection sends only the necessary intent and the image to the multimo
 
 If this project is valuable to you, you are welcome to buy the developer a coffee ☕️
 
-<img width="240" alt="WeChat reward code" src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/wechat-reward.png" />
+<img width="240" alt="WeChat reward code" src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/wechat-reward.png" />
 
 ## Development and community
 
@@ -315,7 +315,7 @@ If this project is valuable to you, you are welcome to buy the developer a coffe
 - Visit upstream [agent-vision-toolkit](https://github.com/Anionex/agent-vision-toolkit) for the general toolkit, cross-agent integrations, and visual-task playbooks.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/f56dd9bf2851fccf2699067291f5986ff2652769/assets/community-group-qr.png" alt="QR code for the agent-vision-toolkit community group" width="240" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/780b47ac29d6f97b217ec4a895d431b8d37c39b1/assets/community-group-qr.png" alt="QR code for the agent-vision-toolkit community group" width="240" />
 </p>
 
 I'm [anionex](https://anionex.me/), an AI-native developer who once ranked **No. 3** on GitHub's global developer trending list, with more than 16k stars across my projects. If you would like to follow my future work, [follow me on GitHub](https://github.com/Anionex).

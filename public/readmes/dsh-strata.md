@@ -21,7 +21,7 @@ is the shape of the run at a glance: where you spoke, how much work each prompt 
 where it went wrong.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jsdvjx/dsh-strata/e6690b39569f5b0fba992b9d80518d13cb74061a/docs/demo.gif" alt="Live demo: hovering expands the rail with a preview card, clicking a band or an anchor dot jumps, dragging the lens scrubs the whole session" width="840">
+  <img src="https://raw.githubusercontent.com/jsdvjx/dsh-strata/283bea4c66458165e4a32752e8f04c28074a6267/docs/demo.gif" alt="Live demo: hovering expands the rail with a preview card, clicking a band or an anchor dot jumps, dragging the lens scrubs the whole session" width="840">
 </p>
 
 ## What the map shows
@@ -151,6 +151,18 @@ disables the transitions.
   anchors; the map stands down there rather than guessing.
 - The rail occupies a ~14px strip of the transcript's right padding, so clicks in that
   strip go to the map.
+
+## Development
+
+```sh
+npm test                      # node --test over the DOM-free internals
+node test/replay/replay.mjs   # headless-Chrome replay against a live `dsh web` (see the file header)
+```
+
+The geometry, caches and the history-load state machine are exported as
+`internals` from `client.js` and tested without a browser; the replay drives
+a real session through Chrome's DevTools protocol (scroll consistency, drag,
+wall paging, load chains, session switch).
 
 ## License
 

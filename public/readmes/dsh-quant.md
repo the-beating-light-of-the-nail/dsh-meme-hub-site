@@ -120,7 +120,7 @@ Agent one-glance guide: [mcp/AGENT_GUIDE.md](mcp/AGENT_GUIDE.md)
 
 ## 🖥️ UI Workbench (dsh-quant-ui)
 
-![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/ee301d7ac5e0f32557f645ba73c497f42a1e6665/demos/ui-demo-preview.png)
+![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b5967d2699724ea1f2ba1d3501793b5d540b9440/demos/ui-demo-preview.png)
 
 [dsh-quant-ui](https://github.com/pengpengyi92/dsh-quant-ui): candlesticks + MA
 overlays + trade markers, equity curves, fund NAV / management-fee / performance-fee
@@ -440,7 +440,7 @@ cd deepseek-harness && pnpm exec tsx ../quant-indicators/consumer-test/boot.ts
 
 If dsh-quant helps your research, a ⭐ makes the project visible to more dsh users.
 
-<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/ee301d7ac5e0f32557f645ba73c497f42a1e6665/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b5967d2699724ea1f2ba1d3501793b5d540b9440/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
 
 This whale stands for DeepSeek Harness (dsh) — trading on its holographic screen 🐋
 
@@ -453,6 +453,17 @@ Ecosystem infrastructure: [quant ecosystem directory](docs/QUANT_ECOSYSTEM.md) �
 Research columns: [quant-history (firm archives)](quant-history/) · [quant-repo (open-source special)](quant-repo/)
 
 Plugin library (five slots × external repos & MCPs): [plugin/](plugin/)
+
+---
+
+## 🤝 Contribute & maintain
+
+- **Want to add a plugin / data source / learning material?** → [Issue #109（插件征集）](https://github.com/pengpengyi92/dsh-quant/issues/109) — data / risk / execution plugins, ML-DL & alpha learning resources all welcome
+- **Filing a bug / feature / help-wanted issue?** → [ISSUE_GUIDE.md](ISSUE_GUIDE.md) (agent-friendly rules)
+- **Sending a PR?** → [CONTRIBUTING.md](CONTRIBUTING.md) (dev loop + design contract)
+- **Maintainer view (how we review & merge):** [MAINTAINING.md](MAINTAINING.md)
+
+Every issue is a future PR; every contributor is a future maintainer. We review fast and merge small PRs quickly — credit goes into release notes + the author section. 🐳
 
 ---
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/b30486151afe2038353f7f0751132afa75887d7d/assets/banner.jpg" width="100%" alt="dsh-ears" />
+  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/2dcdd1cd9135ea7189c20ee600768cb2136e478a/assets/banner.jpg" width="100%" alt="dsh-ears" />
 </p>
 
 <h1 align="center">dsh-ears</h1>
@@ -17,6 +17,7 @@
 
 <p align="center">
   <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/dsh-0.1.0--rc.6%20--%200.1.1--rc.2-1a73e8?style=flat-square" alt="dsh 0.1.0-rc.6 - 0.1.1-rc.2"></a>
+  <a href="https://www.npmjs.com/package/dsh-ears"><img src="https://img.shields.io/npm/v/dsh-ears?style=flat-square&logo=npm" alt="npm version"></a>
   <img src="https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT"></a>
 </p>
@@ -29,23 +30,19 @@ https://github.com/user-attachments/assets/1363768e-a393-44bd-a008-1ce2055cac41
 
 ---
 
+录音时，输入框上方会显示带波形和停止按钮的识别条。转写或润色进行中，可点击垃圾桶图标丢弃本次录音。
+
 ## 安装
 
 前置依赖：[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（`0.1.0-rc.6` 至 `0.1.1-rc.2`）和 Node.js `^22.19.0 || >=24.0.0`。
 
-**通过 npm 安装：**
+### 通过 npm 安装
 
 ```sh
 dsh plugin --profile web add dsh-ears
 ```
 
-尚未安装 `dsh` CLI 时：
-
-```sh
-npx -y @deepseek-ai/dsh plugin --profile web add dsh-ears
-```
-
-**从源码安装：**
+### 从源码安装
 
 ```sh
 git clone https://github.com/WizisCool/dsh-ears.git
@@ -75,28 +72,40 @@ dsh plugin --profile web update dsh-ears
 dsh plugin --profile web remove dsh-ears
 ```
 
-尚未安装 `dsh` CLI 时：
+这条命令会移除 dsh 中的插件注册，源码目录保持不变。卸载后刷新 Web UI，麦克风图标会消失。
 
-```sh
-npx -y @deepseek-ai/dsh plugin --profile web remove dsh-ears
-```
+## 使用
 
-无论通过 npm 还是源码安装，都使用这条命令。卸载后刷新 Web UI，麦克风图标会消失。源码仓库不会被删除；如有需要，请手动删除。
+1. 点击麦克风图标，或按下 `Ctrl+Shift+Space`
+2. 开始说话
+3. 再次按下快捷键，或点击麦克风，停止录音并开始转写
+4. 开启润色后，原始转写会先写入草稿，润色完成后再更新，期间的手动编辑会被保留
+5. 检查内容后手动发送
+
+如果所选后端尚未就绪，麦克风图标会变灰，悬停即可查看原因。
 
 ## 识别后端
 
 | 后端 | 工作方式 | 需要什么 | 免费额度 |
 | --- | --- | --- | --- |
 | Web Speech | 浏览器实时识别，边说边出字 | Chromium 内核浏览器。音频可能经由浏览器厂商处理 | — |
-| 本地 Whisper | 停止录音后由 Host 调用本机 `whisper` CLI 转写 | 预装 openai-whisper，并在插件设置页下载模型（权重不随插件打包） | — |
+| 本地 Whisper | 浏览器停止录音后标准化为单声道 16 kHz PCM16 WAV，再由 Host 通过内置 whisper.node native 依赖转写 | npm 安装会带来对应平台的 native 变体；在设置页下载 whisper.cpp GGML 模型，模型不随 npm 包打包 | — |
 | [Groq](https://console.groq.com) | Host 将录音发送到 Groq Whisper API | Groq API key | Always Free，[Rate Limits](https://console.groq.com/docs/rate-limits) |
 | [阿里云百炼](https://www.aliyun.com/product/bailian) | DashScope 同步转写（Flash 系列） | HTTPS 源站、API key 和模型名；单次录音最长 300 秒 | [新人免费额度](https://help.aliyun.com/zh/model-studio/new-free-quota) |
 | 自定义 OpenAI 兼容 | 向指定的 `/audio/transcriptions` 端点发送请求 | 端点地址、API key 和模型名 | — |
 | 贡献新后端 | — | 欢迎通过 [提交 PR](https://github.com/WizisCool/dsh-ears/pulls) 接入更多转写服务 | — |
 
 > 表中的额度来自提供商文档，可能随时变化，请以提供商的最新说明为准。
+>
+> 本地 Whisper 使用随包提供的 `@fugood/whisper.node` native runtime 和单独下载的 whisper.cpp GGML 模型，浏览器负责把录音转为单声道 16 kHz PCM16 WAV
+>
+> Recognition 设置页只显示当前平台和已安装 native variant 支持的加速后端。macOS 的官方产物只提供 Default，因此不会显示 CUDA；Windows x64 和 Linux 的可用项以实际安装的 optional variant 为准。无法加载的 native variant 会从可用选项中省略。native runtime 首次加载后切换加速后端需要重启 dsh Host。当前锁定的 `@fugood/whisper.node@1.1.2` Windows x64 CUDA 产物需要 CUDA 12 的 `cudart64_12.dll` 和 `cublas64_12.dll`；模型按需下载到本机缓存
 
-> Whisper `medium` 及以上模型仅靠 CPU 通常难以在 120 秒内完成转写，建议使用 GPU 或更快的本地运行时。
+## 本地 Whisper 运行时
+
+本地 Whisper 包含 npm 包内的 `@fugood/whisper.node` native dependency，以及插件单独下载的 whisper.cpp GGML 模型文件。模型下载使用固定 manifest、校验和、临时文件和完成标记，模型权重存储在本机缓存。
+
+浏览器录音会先下混、重采样并编码为单声道 16 kHz PCM16 WAV，再发送给 Host。设置页会显示 native package 或所选加速后端的状态，并提供模型下载与重新检测入口。
 
 ## 润色
 
@@ -118,7 +127,7 @@ pnpm dev:config   # 构建并生成 HMR 配置
 pnpm dev:web      # 启动 dsh web
 ```
 
-开发时，在另一个终端运行 `pnpm dev:watch`。`pnpm dev:config` 会写出 `.dsh/cordis.patch.yml`（已在 `.gitignore` 中）用于 HMR，不会重复注册插件。
+开发时，在另一个终端运行 `pnpm dev:watch`。`pnpm dev:config` 会写出 `.dsh/cordis.patch.yml`（已在 `.gitignore` 中）用于 HMR，并保持单个插件加载项。
 
 ## 文档
 

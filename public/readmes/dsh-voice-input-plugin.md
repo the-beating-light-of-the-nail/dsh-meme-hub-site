@@ -7,6 +7,7 @@ Composer **voice control** for [DeepSeek Harness](https://github.com/deepseek-ai
 ## Features
 
 - **Tap to monitor**: click the mic, speak — text streams into the draft live (逐字输入), the mic keeps listening even in silence, and you can send or keep adding speech anytime. Tap again to stop.
+- **Auto-send on silence** *(optional)*: with `autoSendOnSilenceMs` configured, tap-to-monitor becomes hands-free — once you stop talking for the configured window, the message sends itself ("tap, speak, walk away"). Continued speech cancels the pending send.
 - **Hold to talk**: press-and-hold to record a voice-chat message, release to send it; the assistant's reply is read aloud — host Edge neural TTS (`/api/tts`) first, browser `speechSynthesis` as fallback.
 - **Continuous across silences**: each recognition segment auto-restarts so monitoring never drops.
 - **Respects the composer**: speech appends to the draft (base preserved); a send clears the draft cleanly without re-filling old text; monitoring continues after a send on a fresh recognizer.
@@ -57,6 +58,7 @@ After refreshing the Web UI, the composer tool row shows a linear mic button.
 2. **Speak** → text appears in the input box live, word by word.
 3. Send anytime with the composer's send button; keep talking to add more.
 4. **Click the mic again** to stop monitoring.
+5. With `autoSendOnSilenceMs` set, stopping speech for that long **auto-sends** the message — the mic stops listening, so you don't need the extra tap.
 
 ### Voice chat (hold)
 
@@ -76,6 +78,7 @@ A send that follows mic use (within 5 minutes) — hold **or** tap-monitoring + 
   config:
     language: 'zh-CN'      # Web Speech recognition language tag
     interimResults: true   # stream live interim transcript into the draft
+    autoSendOnSilenceMs: 0 # auto-submit after this many ms of silence following committed speech (0 = off)
 ```
 
 ## How it works
@@ -86,6 +89,7 @@ MicButton (conversation.input.left)
   │     → SpeechRecognition (continuous:false, interimResults)  // reliable results
   │     → onresult → TranscriptAccumulator → inputActions.setDraft(base + transcript)
   │     → onend (silence) → auto-restart (keep monitoring)      // continuous
+  │     → onend + committed speech + autoSendOnSilenceMs>0 → silence window → auto-submit
   │     → tap again → stop
   └─ hold → submitChat()
         → on release: stop + inputActions.setDraft(text) + inputActions.submit()
@@ -120,9 +124,17 @@ Notes:
 
 ## Tests
 
+The plugin ships with two standalone-runnable suites plus a registration suite that needs the Harness monorepo.
+
 ```sh
-npx vitest run   # 26 tests: tap monitoring, hold submit, auto-restart, send-clear, streaming reply reading, tap-send arming, stop-reading
+npm install --legacy-peer-deps   # peers reference monorepo-only @deepseek-ai/* packages
+npm test                         # 36 tests: tap monitoring, auto-send on silence, hold submit,
+                                 # streaming reply reading, tap-send arming, stop-reading, markdown/emoji stripping
 ```
+
+- **`tests/mic-button.client.spec.tsx`** — component behavior (tap-to-monitor, auto-send on silence, hold-to-talk, streaming reply reading) and the `splitStreamSegments` / `commonPrefixLength` helpers.
+- **`tests/speech.client.spec.ts`** — `stripMarkdownForSpeech` and `applyResults`.
+- **`tests/apply.client.spec.ts`** — plugin registration; it binds real Harness services (`@deepseek-ai/cordis`, `-runtime`, `-locale`) that are built from the DeepSeek Harness monorepo, so it runs there (a plain `vitest run` from this package) rather than standalone. CI runs the standalone suites on Linux.
 
 ## License
 

@@ -1,6 +1,8 @@
 [![npm version](https://img.shields.io/npm/v/dsh-taskboard.svg)](https://www.npmjs.com/package/dsh-taskboard)
 [![License](https://img.shields.io/npm/l/dsh-taskboard.svg)](https://github.com/cloader/dsh-taskboard/blob/main/LICENSE)
 
+[English](./README_en.md) | 简体中文
+
 # dsh-taskboard
 
 DeepSeek Harness 的**任务看板插件**：人建卡、agent 认领执行、人验收。任务挂项目（workspace）、可指定模型与 preset、支持手动与定时执行，全流程双向协作。
@@ -16,9 +18,9 @@ DeepSeek Harness 的**任务看板插件**：人建卡、agent 认领执行、�
 
 ## 界面
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/2eb7f185ecb67fd971da09dbe9a88d17496d3dd0/img/board.png" alt="任务看板" width="880"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/d3ab335b508accd5b6ab52fa185b6133785abca0/img/board.png" alt="任务看板" width="880"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/2eb7f185ecb67fd971da09dbe9a88d17496d3dd0/img/modal.png" alt="新建任务" width="440"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/d3ab335b508accd5b6ab52fa185b6133785abca0/img/modal.png" alt="新建任务" width="440"></p>
 
 ## 目录
 

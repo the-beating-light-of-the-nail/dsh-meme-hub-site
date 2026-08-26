@@ -23,21 +23,21 @@
   <tr>
     <td align="center" width="50%">
       <b>🎛️ Native Sync Settings Modal</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/sync-settings-modal.png" alt="Codex Sync Settings modal: actions, switches, language" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/sync-settings-modal.png" alt="Codex Sync Settings modal: actions, switches, language" width="100%"/>
     </td>
     <td align="center" width="50%">
       <b>📍 Sidebar Workspace Trigger</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/sidebar-entry.png" alt="Workspace header Codex quick entry button" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/sidebar-entry.png" alt="Workspace header Codex quick entry button" width="100%"/>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <b>📥 Import from Codex by Project</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/import-picker.png" alt="Import picker: projects, chats, and status tags" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/import-picker.png" alt="Import picker: projects, chats, and status tags" width="100%"/>
     </td>
     <td align="center" width="50%">
       <b>📤 Export DSH Chats to Codex</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2076a6db5d7d8261c6dc6f6bc2a3d7c691a6dcdb/docs/export-picker.png" alt="Export picker: smart workspace matching, source filter" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/export-picker.png" alt="Export picker: smart workspace matching, source filter" width="100%"/>
     </td>
   </tr>
 </table>

@@ -6,7 +6,7 @@
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-![Footer demo](https://raw.githubusercontent.com/v587d/dsh-opencode-go-usage/721dfebbfa6329fb3345cee3fc9e673aad0b2971/assets/custom-footer.png)
+![Footer demo](https://raw.githubusercontent.com/v587d/dsh-opencode-go-usage/682a7872e6a3bf9313f08b9337319678b8a25895/assets/custom-footer.png)
 
 一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh) **bundle**，在 Web 界面的输入框上方 dock（与内置 token 统计同位置）显示 [OpenCode Go](https://opencode.ai/docs/go/) 订阅用量。
 
@@ -84,7 +84,7 @@ dsh --profile web --dump-config   # 应显示 "# == dsh-ocgo-usage" 层
 
 点击 chip 展开详情 → 左下角 `Set` → 输入 workspace id 与 cookie（已设置的值以 `••••` + 末尾 4 位显示，聚焦即可输入新值）→ 点击外部 / Esc / 保存按钮确认，立即生效。
 
-![Set editor](https://raw.githubusercontent.com/v587d/dsh-opencode-go-usage/721dfebbfa6329fb3345cee3fc9e673aad0b2971/assets/set-cookie-wid.png)
+![Set editor](https://raw.githubusercontent.com/v587d/dsh-opencode-go-usage/682a7872e6a3bf9313f08b9337319678b8a25895/assets/set-cookie-wid.png)
 
 ### 方式二：环境变量（与 pi-ocgo-usage 同名）
 
@@ -132,7 +132,7 @@ chmod 600 ~/.dsh/ocgo-usage.json
 
 点击 chip 展开详情面板：每个窗口显示完整名称、百分比与重置倒计时；右下角 `refresh upd HH:MM` 手动刷新并显示数据时间。
 
-![Usage detail](https://raw.githubusercontent.com/v587d/dsh-opencode-go-usage/721dfebbfa6329fb3345cee3fc9e673aad0b2971/assets/usage-detail.png)
+![Usage detail](https://raw.githubusercontent.com/v587d/dsh-opencode-go-usage/682a7872e6a3bf9313f08b9337319678b8a25895/assets/usage-detail.png)
 
 ## 工作原理
 

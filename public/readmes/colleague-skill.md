@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
+<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
 
 <br>
 
@@ -115,16 +115,16 @@ The old version only ran in Claude Code. Distilly now supports native local Skil
 
 <table>
 <tr>
-<td align="center" width="25%"><a href="https://claude.ai/code"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/claude-code-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/claude-code-wordmark-light.svg" alt="Claude Code" height="28"></picture></a></td>
-<td align="center" width="25%"><a href="https://github.com/NousResearch/hermes-agent"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/hermes-agent-wordmark.png" alt="Hermes Agent" height="32"></a></td>
-<td align="center" width="25%"><a href="https://github.com/openclaw/openclaw"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/openclaw-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/openclaw-wordmark-light.svg" alt="OpenClaw" height="38"></picture></a></td>
-<td align="center" width="25%"><a href="https://github.com/openai/codex" title="Codex"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/codex-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/codex-mark-light.png" alt="Codex" height="64"></picture></a></td>
+<td align="center" width="25%"><a href="https://claude.ai/code"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/claude-code-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/claude-code-wordmark-light.svg" alt="Claude Code" height="28"></picture></a></td>
+<td align="center" width="25%"><a href="https://github.com/NousResearch/hermes-agent"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/hermes-agent-wordmark.png" alt="Hermes Agent" height="32"></a></td>
+<td align="center" width="25%"><a href="https://github.com/openclaw/openclaw"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/openclaw-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/openclaw-wordmark-light.svg" alt="OpenClaw" height="38"></picture></a></td>
+<td align="center" width="25%"><a href="https://github.com/openai/codex" title="Codex"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/codex-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/codex-mark-light.png" alt="Codex" height="64"></picture></a></td>
 </tr>
 <tr>
-<td align="center" width="25%"><a href="https://github.com/deepseek-ai/deepseek-harness"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/deepseek-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/deepseek-wordmark-light.svg" alt="DeepSeek Harness" height="32"></picture></a></td>
-<td align="center" width="25%"><a href="https://pi.dev/docs/latest/skills"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/pi-mark.svg" alt="Pi coding agent" height="46"></a></td>
-<td align="center" width="25%"><a href="https://docs.x.ai/build/features/skills-plugins-marketplaces"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/grok-build-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/grok-build-mark-light.png" alt="Grok Build" height="46"></picture></a></td>
-<td align="center" width="25%"><a href="https://opencode.ai/docs/skills"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/opencode-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/04c72cc26c04e12c673405b94c8a42400287d403/docs/assets/hosts/opencode-wordmark-light.svg" alt="OpenCode" height="32"></picture></a></td>
+<td align="center" width="25%"><a href="https://github.com/deepseek-ai/deepseek-harness"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/deepseek-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/deepseek-wordmark-light.svg" alt="DeepSeek Harness" height="32"></picture></a></td>
+<td align="center" width="25%"><a href="https://pi.dev/docs/latest/skills"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/pi-mark.svg" alt="Pi coding agent" height="46"></a></td>
+<td align="center" width="25%"><a href="https://docs.x.ai/build/features/skills-plugins-marketplaces"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/grok-build-mark-dark.png"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/grok-build-mark-light.png" alt="Grok Build" height="46"></picture></a></td>
+<td align="center" width="25%"><a href="https://opencode.ai/docs/skills"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/hosts/opencode-wordmark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/hosts/opencode-wordmark-light.svg" alt="OpenCode" height="32"></picture></a></td>
 </tr>
 </table>
 
@@ -136,17 +136,17 @@ Each generated Person Profile is packaged as an Agent Skill and can be installed
 
 ## 📦 Supported Data Sources
 
-| Source | Messages | Docs / Wiki | Spreadsheets | Notes |
-|--------|:--------:|:-----------:|:------------:|-------|
-| 🟢 Lark (auto) | ✅ API | ✅ | ✅ | Just enter a name, fully automatic |
-| 🟡 DingTalk (auto) | ⚠️ Browser | ✅ | ✅ | DingTalk API doesn't support message history |
-| 🟣 Slack (auto) | ✅ API | — | — | Requires admin to install Bot; free plan limited to 90 days |
-| 𝕏 Public X posts | ✅ API | — | — | Optional, bounded celebrity research candidates through metered third-party service Xquik |
-| 💬 WeChat chat history | ✅ SQLite | — | — | Export first with WeChatMsg or PyWxDump |
-| 📄 PDF / Images / Screenshots | — | ✅ | — | Manual upload |
-| 📦 Lark JSON export | ✅ | ✅ | — | Manual upload |
-| ✉️ Email `.eml` / `.mbox` | ✅ | — | — | Manual upload |
-| 📝 Markdown / direct paste | ✅ | ✅ | — | Manual input |
+| Logo | Source | Messages | Docs / Wiki | Notes |
+|:----:|--------|:--------:|:-----------:|-------|
+| <img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/sources/lark-mark.png" alt="Lark" width="32" height="32"> | Lark (auto) | ✅ API | ✅ | Just enter a name, fully automatic |
+| <img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/sources/dingtalk-mark.jpg" alt="DingTalk" width="32" height="32"> | DingTalk (auto) | ⚠️ Browser | ✅ | DingTalk API doesn't support message history |
+| <img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/sources/slack-mark.png" alt="Slack" width="32" height="32"> | Slack (auto) | ✅ API | — | Requires admin to install Bot; free plan limited to 90 days |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/sources/x-mark-dark.svg"><img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/sources/x-mark-light.svg" alt="X" width="32" height="32"></picture> | Public X posts | ✅ API | — | Optional, bounded celebrity research candidates through metered third-party service Xquik |
+| <img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/sources/wechat-mark.jpg" alt="WeChat" width="32" height="32"> | WeChat chat history | ✅ SQLite | — | Export first with WeChatMsg or PyWxDump |
+| 📄 | PDF / Images / Screenshots | — | ✅ | Manual upload |
+| <img src="https://raw.githubusercontent.com/titanwings/colleague-skill/868c293f56116081733b78fc7db5f91634d7b62a/docs/assets/sources/lark-mark.png" alt="Lark" width="32" height="32"> | Lark JSON export | ✅ | ✅ | Manual upload |
+| ✉️ | Email `.eml` / `.mbox` | ✅ | — | Manual upload |
+| 📝 | Markdown / direct paste | ✅ | ✅ | Manual input |
 
 ---
 

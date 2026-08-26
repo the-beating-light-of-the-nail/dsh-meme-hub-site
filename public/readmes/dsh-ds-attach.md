@@ -2,7 +2,7 @@
 
 **DeepSeek Chat（chat.deepseek.com）同款附件渲染样式** —— 上传按钮、文件卡片、图标、消息内附件展示，全部一比一复刻官方前端（图标与样式直接提取自 chat.deepseek.com 前端 bundle）。DeepSeek Harness 插件（dual-face bundle）。
 
-![预览](https://raw.githubusercontent.com/wqx-txdsyl/dsh-ds-attach/d26ca526cbdf4e0741ad4ff69aa5692df3369e4d/docs/images/preview.svg)
+![预览](https://raw.githubusercontent.com/wqx-txdsyl/dsh-ds-attach/7b11a471e731253b74d6f41a34e15dabaa715244/docs/images/preview.svg)
 
 ## 功能（与 chat.deepseek.com 一致）
 

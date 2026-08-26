@@ -92,7 +92,7 @@ export function apply(ctx: Context) {
 
 `unrestricted` 会允许模型直接运行外部脚本、通用 CLI 和安装命令，只应在隔离的测试 profile 或明确授权的自动化环境中使用；日常 profile 保持 `standard`。它只取消人工确认，**不会取消 `usagePolicy` 的并发、突发、页数、深度、重试与冷却保护**。模式改变后需要重启 DSH profile，工具目录才会按新配置重新注册。
 
-## 工具（最多 18 个）
+## 工具（最多 21 个）
 
 | 工具 | 作用 |
 |---|---|
@@ -110,10 +110,42 @@ export function apply(ctx: Context) {
 | `browser_script_run_builtin` | 在独立 Playwright context 中运行内置只读脚本 |
 | `browser_userscript_run` | 运行外部 UserScript；强制域名匹配，审批策略由模式决定 |
 | `browser_recipe_run` | 最多 25 步 Playwright Recipe；支持等待、定位、表单、键盘、提取、断言和截图 |
+| `browser_automation_search` | 只有显式关键词调用才检索；可限定 active/draft/all、域名和类型，最多返回 `retrievalTopK` 条摘要 |
+| `browser_automation_develop` | 按确切 ID 读取源码，或显式保存、静态校验、真实回放草稿；永远不能激活资产 |
+| `browser_automation_run` | 按 ID 运行已激活资产；再次执行限域和输入大小校验，审批由 `automationMode` 决定 |
 | `browser_opencli_status` | 实际运行 OpenCLI doctor，报告 daemon/extension/profile 连通性 |
 | `browser_opencli_catalog` | 对 OpenCLI 大目录按 query/site/access/strategy 过滤，单次最多返回 100 条 |
 | `browser_opencli_run` | 通用 OpenCLI argv 网关；除 `unrestricted` 外触发 DSH 原生一次性审批 |
 | `browser_crawl` | 匿名、有限广度遍历；默认同源，强制使用全局调用缓冲和单次页数/深度预算 |
+
+## 可复用自动化资产（实验性）
+
+> **Experimental:** Recipe/UserScript 的积累、模型开发、检索和复用接口仍可能调整。建议先在隔离 profile 中启用，审阅草稿并完成真实浏览器回放后再手动激活；不要把它作为无人监管的生产写操作入口。
+
+自动化执行自由度与资产持久化是两套独立开关。`automationMode: unrestricted` 只影响执行审批，不会让 Agent 自动保存脚本；默认 `automationAssets.persistenceMode: suggest` 仅对成功的 `browser_recipe_run` 记录脱敏语义步骤。具体输入会替换为 `{{input}}` / `{{secret}}`，会话 ID 只保存短哈希，不保存页面正文、cookie、token、密码或聊天记录。
+
+默认在 14 天窗口内，同一域名和步骤指纹至少成功 3 次、来自至少 2 个会话且成功率达到 80%，面板才出现“是否总结”候选。每天最多提示 2 次；候选、草稿和已激活资产均有数量上限。推荐流程是：
+
+1. 候选达到阈值后，在“浏览器自动化 → 可复用自动化资产”选择“总结为草稿”或“暂不总结”。
+2. 在脚本列表点选草稿；只有此时前端才按 ID 读取完整 recipe / UserScript。编辑器支持 recipe 和带 `@match`、`@grant none` 的 UserScript。UserScript 可从只读对象 `__DSH_INPUTS__` 读取 `inputNames` 声明的运行时输入，输入不会写入资产文件。
+3. 保存后先做静态校验，再填写测试 URL/输入执行真实浏览器回放。只有真实回放成功才可手动激活；已激活版本不可原地编辑，避免后台行为静默漂移。
+4. Agent 用 `browser_automation_search` 获取有界摘要，再用 `browser_automation_run` 按 ID 调用。检索默认 top 5、目录预算约 800 tokens，源码不会进入模型上下文。
+
+`persistenceMode` 可选 `off | manual | suggest | auto-draft`。日常使用建议 `suggest`；`auto-draft` 只适合隔离测试 profile，并且仍不会自动激活。`activationMode` 当前默认并推荐 `manual`；`auto-tested` 作为后续真实沙箱回放策略的保留配置，不会把一次静态校验当成生产激活依据。
+
+### 模型显式开发 recipe / UserScript
+
+模型目录不会预载任何 recipe 或源码。需要批量索引等强指向自动化时，模型按以下顺序显式访问：
+
+1. 调用 `browser_automation_search(query="batch-index issues", status="draft|active", kind="recipe")`，仅得到 ID、名称、标签、域名、输入名和运行统计。
+2. 确认要修改某项后，调用 `browser_automation_develop(action="get", id="...")`；只有这一步会把单个资产的完整 recipe/源码带入当前上下文。
+3. `action="save"` 可直接声明新的 recipe，或保存带 `@match` / `@grant none` 的 UserScript；只能生成/更新 draft。默认每个模型会话最多写 3 次，仍受全局 `maxDrafts` 限制。
+4. `action="validate"` 只做结构与 UserScript 元数据校验，不提供激活资格；`action="test"` 必须给 URL 和声明输入，执行真实 Playwright 回放，成功后才标记 `passed`。
+5. 激活、归档和回滚只在可视化面板完成，模型开发工具没有对应动作。
+
+recipe 建议把检索意图固化在 `name`、`description` 和 `tags`，例如 `batch-index`、`issues`、`community-search`。检索采用小规模确定性关键词评分和 token 预算，不自动把整个资产库升级成模型工具，也不使用隐藏的全量 prompt 注入。
+
+`modelDevelopmentEnabled: false` 会在重启后直接从模型工具目录移除开发入口；`standard` 保存草稿和真实回放均需审批，`autonomous` 可直接保存草稿但真实回放仍需审批，只有 `unrestricted` 才会跳过回放审批。所有模式仍执行域名、UserScript 元数据、输入、源码大小和使用频率限制。
 
 ## 使用策略：防止过度调用的缓冲
 
@@ -203,6 +235,23 @@ Recipe 适合让模型生成可审计、可复现的多步操作，不必生成 
           retryLimit: 2
           backoffBaseMs: 1000
           cooldownMs: 30000
+        automationAssets:
+          enabled: true
+          persistenceMode: suggest # off | manual | suggest | auto-draft
+          activationMode: manual   # 当前推荐值；不会因静态校验自动激活
+          minSuccessfulRuns: 3
+          minDistinctSessions: 2
+          successWindowDays: 14
+          minSuccessRate: 0.8
+          maxCandidates: 20
+          candidateTtlDays: 14
+          maxSuggestionsPerDay: 2
+          maxDrafts: 10
+          maxActiveAssets: 50
+          retrievalTopK: 5
+          catalogTokenBudget: 800
+          modelDevelopmentEnabled: true
+          maxModelDraftWritesPerSession: 3
         storageStatePath: ''     # Playwright 登录态 JSON（复用已登录会话）
         authProfiles:
           forum:
@@ -221,7 +270,7 @@ Recipe 适合让模型生成可审计、可复现的多步操作，不必生成 
         verbose: false
 ```
 
-这些字段同时进入 Host settings 命名空间和专用可视化卡片：打开 `设置 → 插件 → 插件配置 → 浏览器自动化`，可调整工具自由度、Playwright/Patchright、OpenCLI、`usagePolicy` 与限域登录态。保存后需要重启 profile。若没有看到“浏览器自动化”卡片，先确认 `@anweat/dsh-browser` 已同步升级，再完整重启，而不是只刷新 Web Search Pro 页面。
+这些字段同时进入 Host settings 命名空间和专用可视化卡片：打开 `设置 → 插件 → 插件配置 → 浏览器自动化`，可调整工具自由度、Playwright/Patchright、OpenCLI、`usagePolicy`、自动化资产策略与限域登录态；同一卡片包含候选提示、脚本列表、JSON 编辑器、测试、激活和归档操作。保存运行时配置后需要重启 profile；资产 CRUD 通过 loopback-only Host RPC 即时落盘。若没有看到卡片，先确认浏览器插件已同步升级并完整重启，而不是只刷新 Web Search Pro 页面。
 
 ### Patchright 可选内核
 
@@ -296,6 +345,7 @@ opencli doctor
 pnpm install          # 装依赖（playwright / patchright / opencli / @deepseek-ai/*）
 pnpm test
 pnpm run build        # tsc → lib/
+pnpm run verify       # typecheck → build → real-browser tests → client bundle check
 node scripts/install-browser.mjs   # 安装 chromium 内核（发布前验证，可选）
 ```
 

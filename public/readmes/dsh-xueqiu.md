@@ -29,7 +29,7 @@
 | 功能 | 说明 |
 | --- | --- |
 | 📊 实时行情 | 大盘指数（上证/深证/创业板/科创50）+ 自选股列表，涨红跌绿，**表头点击排序** |
-| 🕯️ K线图 | 基于 [KLineChart v10](https://github.com/klinecharts/KLineChart) 引擎（canvas 渲染，内置主题适配）：蜡烛图 + 独立成交量窗格 + **MA 均线** + 十字光标 legend，5分/15分/30分/60分/日K/周K/月K 7 档切换；**滚轮缩放 + 拖拽平移**，左拖触底自动加载更早历史（500 根/次，已实测连续加载至 3400+ 根） |
+| 🕯️ K线图 | 基于 [KLineChart v10](https://github.com/klinecharts/KLineChart) 引擎（canvas 渲染，内置主题适配）：蜡烛图 + 独立成交量窗格 + **MA 均线** + 十字光标 legend，5分/15分/30分/60分/日K/周K/月K 7 档切换；**滚轮缩放 + 拖拽平移**，右拖触底自动加载更早历史（500 根/次，已实测连续加载至 3400+ 根） |
 | ⏱️ 分时图 | 面积价格线（涨跌色）+ 均价线 + 昨收基准虚线，十字光标 tooltip 查任意分钟 价/均价/涨跌 |
 | 🔥 热榜 | 雪球热门榜，A股/美股/港股/全球 切换 |
 | 🔍 搜索 | 搜股票（一键加自选/看详情）、搜帖子 |
@@ -55,25 +55,25 @@
 
 **嵌入式主面板**：停靠在输入框上方，指数卡 + 自选股行情 + 四个功能页签：
 
-![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/panel.png)
+![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/panel.png)
 
 **个股详情**：16 项行情数据 + K线蜡烛图（成交量柱 / MA5-10-20 均线 / 十字光标）+ 财务指标 + 热议用户：
 
-![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/detail.png)
+![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/detail.png)
 
 **迷你行情区域**：四大指数 + 自选 12 只两列平铺，⤡ 手柄调宽度，点击开合面板，可拖动：
 
-![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/badge.png)
+![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/badge.png)
 
 **Agent 工具调用卡片**（对话内直接问行情，结果渲染为专属卡片而非 JSON）：
 
 | `xueqiu_quote` 行情表 | `xueqiu_kline` 蜡烛图 |
 | --- | --- |
-| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/kline.png) |
+| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/kline.png) |
 
 | `xueqiu_hot` 热榜 | `xueqiu_news` 快讯时间线 |
 | --- | --- |
-| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/ea9c3d28d8d6557fd4c8cf7e0172db7811a98dd8/assets/toolcards/news.png) |
+| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/news.png) |
 
 ## 📦 安装
 
@@ -190,6 +190,26 @@ dsh-xueqiu/
 
 ## 📋 更新日志
 
+- **1.22.12**（2026-08-26）
+  - 修复：**状态文件跟启动目录漂移**。自选/登录/界面状态原先落在 dsh web 的启动目录（cwd=工作区根）——换目录启动就"换一套状态"。现在优先写 `$DSH_HOME/dsh-xueqiu/`（稳定目录，writeText 自动建目录）；沙箱策略拒绝工作区外绝对路径写入时探测失败，透明回退旧工作区行为（零回归）；读取时稳定文件缺失则回读旧工作区文件，存量数据无缝迁移（首次保存落到稳定目录，旧文件不删）。`qa/state-paths.mjs` 11 例覆盖四种模式（稳定/迁移/回退/首启）。注意：host 侧改动需重启 dsh web 生效，迁移发生在重启后首次写入。
+  - 修复：**K线交互提示文案方向写反**（v1.22.0 起）。"左拖加载更早"实为**右拖**——klinecharts 源码 `scroll(拖拽位移)` 内容跟手：右拖=左缘涌出更早历史+触底自动加载；左拖是回最新方向、右边留白。用户指出后核对引擎源码确认，client 6 处 + README 3 处已正。
+  - 新增：**K线/分时拖拽光标反馈**（用户建议）。悬停小手 `grab`、按住抓手 `grabbing`、松手复位（松手点在图外时 window mouseup 兜底）；监听统一在 klcSetup 随 dispose 清理。
+  - 修复：`::1` 裸 IPv6 回环白名单死代码。端口剥离正则 `/:\d+$/` 会把裸 `::1` 末尾 `:1` 误剥，改 `/^(.*[^:]):\d+$/`；fence.mjs 原 xfail 用例转正（两形态均 200）。
+- **1.22.11**（2026-08-26）
+  - 修复：**打开面板的 `open=true` 从未落盘——刷新必丢**（1.22.10 的姊妹问题）。`ui.set({open:true})` 发生在面板组件订阅建立之前（订阅挂载后才生效），无人续触发时 saveUi 永不执行。open 翻转现在在 ui.set 内直接触发落盘。闭环实测：开面板 → host open:true → 刷新 → 面板自动恢复。
+  - 修复：**CI 时区炸弹**。live 测试分时点数断言硬编码 `>30`，北京时间 9:30~10:01 触发的 CI 必红（开盘仅十几个点）。改按盘中时间自适应下限。
+- **1.22.10**（2026-08-25）
+  - 修复：**刷新后面板开合状态不恢复**（1.22.8 引入的回归）。`ui.get` 里 `open: s.open !== false` 被上一行的行尾注释吞掉，客户端 hydrate 永远拿不到该字段。254 例边界套件捕获（`qa/edge.mjs` 保持红用例直至修复）。
+  - 修复：**切 K 线周期闪整屏 + 连点丢按钮**。周期在详情 effect 依赖里，切一次周期会把整个详情（报价/分时/财务/KOL）清空重拉 5 个接口——周期丸整排消失 100-300ms，真人节奏（300ms）连点会丢击。现在周期切换只清图表数据、只发 1 个 kline 请求，报价与周期丸全程可点（实测 300ms 全序列 11/11 命中、130ms 机枪档终态正确）。
+  - 修复：**浅色主题图表文字几乎不可读**。`cssVarColor` 在 `<html>` 上读主题令牌，而 GUI 把令牌定义在 `<body>`——两主题都渲染硬编码回退 `#8a8f98`，白底对比度仅 ~1.8:1（WCAG AA 要 4.5:1）。改为先读 body：浅色下图例/轴文字用真实令牌 `#61666b`（~5.8:1）。
+  - 修复：**主题切换图表不跟着换色**。GUI 跟随系统配色时 DOM 属性不变，MutationObserver 永不触发；补 `matchMedia('(prefers-color-scheme)')` change 监听，主题翻转即时重设图表样式。
+  - 修复：**页面刚加载就点开面板会被迟到的持久化打回**。hydrate 回填 open/tab 前先检查用户是否已交互（touched 标记），水合不再覆盖用户刚做的选择。
+  - 加固：KlineChart 空 rows 不建图（hasRows 门控，与分时 hasData 同款），配合周期切换的"先清后到"数据流。
+  - 测试：新增 4 套离线资产并入 scripts——`qa/edge.mjs`（254 例黑盒边界）、`qa/fence.mjs`（同源栅栏 18 例，含 1 例 `::1` 死代码 xfail 标记）、`qa/regress-v1228.mjs`（21 例）、`qa/persist-upgrade.mjs`（16 例，含真实状态文件升级演练）。`check:fast` 保持秒级（1.8s）。
+- **1.22.9**（2026-08-25）
+  - 新增：**K线 OHLC 图例常显**。`showRule` follow_cross → always：进详情即见最新一根 开高低收量，悬停时跟随十字光标那根（MA 彩色行仍悬停显示）。v1.22.3 改悬停触发是因为当时英文两行图例压蜡烛；v1.22.5 起已是紧凑中文单行（字号10），实测图例带 0 蜡烛像素、无遮挡。
+- **1.22.8**（2026-08-25）
+  - 修复：综合测试暴露的 4 类缺陷 + 6 项低危加固——`/xq-rpc` 同源栅栏收紧（Origin 必须存在且同源，浏览器同源 POST 必带 Origin，无 Origin 的 curl/跨进程直调一律 403）；`ui.get` tab 白名单（损坏状态文件的非法 tab 回退 market）；curl 失败错误不再回显 stderr（信息泄漏）；空云结果也推进同步节流时间戳；云增删失败静默兜底；工具 execute 参数空值兜底 `args || {}`；快讯无效 `created_at` 不再渲染 NaN 月NaN 日。
 - **1.22.7**（2026-08-26）
   - 修复：**切换股票后分时图压成直线**（如看完茅台再看宁德时代）。`registerIndicator('xq-minute')` 全局只注册一次，其 calc 闭包捕获的是**首次挂载实例**的 `baseRef`——第二只股票的分时图复用了旧 calc，昨收基准仍是前一只股票的（宁德挂上茅台昨收 1304.66，y 轴被撑到 404~1229，而分时价格只在 378~388，曲线压成直线）。修复：每次挂载分时图用 `overrideIndicator` 重绑当前实例 baseRef 的新 calc。实测三股连环切换（茅台 1304.66 → 宁德 387.89 → 京东方 5.75），昨收均正确、价格波动 span 130~180px 饱满。
 - **1.22.6**（2026-08-26）
@@ -201,7 +221,7 @@ dsh-xueqiu/
   - 修复：**切分时整个面板崩溃消失**（1.22.3 回归）。双击回最新的清理函数里用了 `boxRef.current.removeEventListener`，但 React 卸载组件时先清 ref 再跑 effect 清理，此时 `boxRef.current` 已是 null → 抛 TypeError → `conversation.input.dock` 槽位整体崩溃，只剩自选股小徽章且无法重开。改为 effect 内闭包捕获节点。回归：K线↔分时来回 4 轮 + 收起/徽章重开/再进详情，0 报错。
 - **1.22.3**（2026-08-26）
   - 修复：**K线 OHLC 图例常驻压蜡烛**。KLineChart v10 默认 `candle.tooltip.showRule: 'always'` 把 time/open/high/low/close/volume 永久画在蜡烛区左上角（像素级实测 1394 个文字像素自 y=23 起覆盖蜡烛）。改为 `follow_cross`（十字光标悬停才显示，与雪球一致），此前只关了指标 tooltip 漏了蜡烛自身的。
-  - 修复：**"双击回最新"标签承诺无实现**。图表下方文案写了"双击回最新"但代码没有 dblclick 处理（实测左拖加载 999 根后双击无反应）。现监听容器 dblclick → `chart.scrollToRealTime()`（实测可视区 132→430-500 回到最新）。
+  - 修复：**"双击回最新"标签承诺无实现**。图表下方文案写了"双击回最新"但代码没有 dblclick 处理（实测右拖加载 999 根后双击无反应）。现监听容器 dblclick → `chart.scrollToRealTime()`（实测可视区 132→430-500 回到最新）。
   - 细节：K线日期标签补年份（500 根日K时"08-26 ~ 08-24"像时间倒流，实际跨两年；现显示"2024-08-02 ~ 2026-08-25"）；详情页 hero 现价/涨跌额按现价实际小数位显示（港股 00700 此前 440.40 → 440.4）。
 - **1.22.2**（2026-08-24）
   - 修复：**K线均线 / 分时均价误落附图**。KLineChart v10 的 `createIndicator('MA')` 默认给指标新开 pane——均线不在蜡烛主图上（主图被挤到 72px），分时均价/昨收也在独立附图。须传 `{ name, paneId: 'candle_pane' }` 显式叠加到主图（pane id 从引擎源码确认）。修复后：K线主图 173px 蜡烛+MA5/10/30/60 叠加、附图仅成交量；分时只剩一张主图（分时曲线+均价+昨收全部叠加），与雪球布局一致。
@@ -209,7 +229,7 @@ dsh-xueqiu/
 - **1.22.1**（2026-08-24）
   - chore：移除 peerDependencies 避免安装警告；静态冒烟脚本自动兜底本地 `npx dsh`（prepublishOnly 下找不到 dsh 命令）。
 - **1.22.0**（2026-08-24）
-  - 新增：**K线/分时切换 KLineChart v10 引擎**（canvas 渲染、内置明暗主题适配）：蜡烛图 + 成交量 + MA 均线 + 十字光标，5分/15分/30分/60分/日K/周K/月K 7 档；滚轮缩放、拖拽平移、左拖触底自动加载更早历史（500 根/次）；分时面积图（涨跌色）+ 均价线 + 昨收虚线。
+  - 新增：**K线/分时切换 KLineChart v10 引擎**（canvas 渲染、内置明暗主题适配）：蜡烛图 + 成交量 + MA 均线 + 十字光标，5分/15分/30分/60分/日K/周K/月K 7 档；滚轮缩放、拖拽平移、右拖触底自动加载更早历史（500 根/次）；分时面积图（涨跌色）+ 均价线 + 昨收虚线。
 - **1.21.7**（2025-08-24）
   - 修复：**越屏钳制改为逐渲染执行**。1.21.6 的"effect 依赖 badgePos + ResizeObserver"方案在 CI 慢环境仍漏过"渲染后才长高"的时序（数据异步到达→徽章长高→无重触发钳制）。现在 `useLayoutEffect` 每次渲染后钳制（数据到达必伴随重渲染，无时序死角；ui.set 仅在有变更时触发下一轮，收敛不循环）。CI 实测踩坑修复。
   - 新增：**浏览器 E2E 进 CI**（`browser-e2e` job）。此前这层（唯一抓到过钳制死代码真 bug 的测试）只在本机手动跑。`scripts/e2e-ci-boot.sh` 合成"已完成引导"的隔离 DSH 实例（settings 跳过 onboarding + workspace 表 + 含完整一轮对话的逐行 zstd 会话日志——踩坑记录：DSH 逐记录写日志，每 zstd 帧恰好一行；slug 规则 cwd 去首 `/`、余 `/`→`-`、两端包 `--`），agent-browser 跑全部 18 项断言。E2E 脚本兜底：全新实例无活动对话时先展开会话分组再点开一个会话（conversation.input.dock 槽需要对话视图）。

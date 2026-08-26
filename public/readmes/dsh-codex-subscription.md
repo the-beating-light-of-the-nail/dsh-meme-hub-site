@@ -17,7 +17,7 @@ No OpenAI API key or Codex CLI. Models, search, quota, and image generation stay
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
 </p>
 
 ## Three-step start
@@ -51,27 +51,23 @@ DSH-Portable exposes the same standard plugin command, so the command above also
 | **Subscription search** | Explicitly choose DSH default search or Codex subscription search |
 | **Codex image generation and editing (Beta)** | Generate without references, or explicitly edit one selected image; preview, zoom, annotate regions, download the original, and continue in the same composer |
 | **Fast mode** | Switch between Standard and Fast directly in the composer |
+| **Model-aware context** | Keep catalog defaults, use each model's supported extended window, or enter a full numeric token limit for each model |
 
 These capabilities reuse the same local ChatGPT sign-in. Subscription routing failures stay visible and never silently switch to another paid route.
 
 ## Product screen
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/settings-focus-en.png" width="820" alt="Codex subscription settings in DeepSeek Harness">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/context-settings-en.png" width="820" alt="Current Codex subscription settings in DeepSeek Harness with search, model-aware context, composer quota, and support diagnostics">
 </p>
 
-<details>
-<summary>View the complete settings screen</summary>
-
-![Complete Codex subscription settings in DeepSeek Harness](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/settings-en.png)
-
-</details>
+Captured from the installed official DeepSeek Harness `0.1.1-rc.2` product with the current plugin build.
 
 ## Prepare DSH
 
 This plugin is currently compatible through DeepSeek Harness `0.1.1-rc.2` and requires a ChatGPT account that currently has Codex access.
 
-- Do not want to configure Node.js? Use [DSH-Portable](https://github.com/WSL043/DSH-Portable), a community desktop distribution with portable and installed editions for Windows plus desktop packages for macOS and Linux.
+- Do not want to configure Node.js? Use [DSH-Portable](https://github.com/WSL043/DSH-Portable), a community portable desktop distribution for Windows, macOS, and Linux.
 - Prefer the official route? Follow the [DeepSeek Harness run guide](https://github.com/deepseek-ai/deepseek-harness#run).
 
 ## Install
@@ -147,13 +143,16 @@ Restart DSH manually after installation, then:
 - Visible quota-reset count and earliest expiry, with deliberate early redemption, layered confirmation, and no automatic retry;
 - Optional percentage or progress bar for the selected Codex model (off by default);
 - Standard or Fast mode for supported Codex models directly in the composer;
-- A copyable support report and direct feedback link in Settings; the report excludes OAuth credentials, account identifiers, and authorization timestamps;
+- Standard, Extended, and per-model Custom context windows; Custom accepts a full numeric token count, stays within each audited model capacity, and feeds DSH's native agent compaction policy;
+- A copyable support report and direct feedback link in Settings; the report includes bounded request stages, HTTP/transport classes, elapsed ranges, and route source types while excluding OAuth credentials, account identifiers, proxy addresses, and authorization timestamps;
 - Visible errors when subscription routing is unavailable, with no silent paid fallback.
+
+The plugin can follow an existing HTTPS proxy from the process environment or operating-system proxy settings for official OpenAI and ChatGPT requests. It does not provide a proxy, relay, node list, or system-proxy configuration.
 
 ### Composer quota
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
 </p>
 
 Choose Off, Percent, or Progress bar in Settings. The compact display appears only for a selected Codex model.
@@ -176,7 +175,7 @@ sending it. A new image request does not silently include earlier images. GPT Im
 turn, and detailed text, exact composition, or repeated-character consistency may still need another pass.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/adb208c1f5bfbd65fc11085f23acd8d6be6485ec/docs/assets/image-preview-annotations-en.png" width="900" alt="DSH-native generated-image preview with zoom, original download, and numbered region annotations">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/image-preview-annotations-en.png" width="900" alt="DSH-native generated-image preview with zoom, original download, and numbered region annotations">
 </p>
 
 ### Composer speed
@@ -215,7 +214,7 @@ dsh plugin --profile web remove dsh-codex-subscription
 - **`dsh` is not recognized:** the official npm route does not create a global `dsh` command; use the complete `npx -y @deepseek-ai/dsh@0.1.1-rc.2 ...` command above;
 - **More than one DSH exists:** run the standard command from the intended DSH environment. For an Agent, specify the target or pass `-DshPath` explicitly;
 - **Setup still fails:** send the Agent guide above to an Agent. Do not delete the profile or change the system PATH to force an install.
-- **Need to report a problem:** generate a **Support diagnostics** report at the bottom of Settings, then open the [bug report form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml). The report includes the OS/runtime and a bounded sign-in phase, but excludes credentials, account identifiers, raw errors, and full logs. Paste it into the required diagnostics field; never attach sign-in URLs, authorization codes, or browser callback addresses.
+- **Need to report a problem:** generate a **Support diagnostics** report at the bottom of Settings, then open the [bug report form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml). The report includes the OS/runtime, bounded sign-in phase, and safe request-failure categories, but excludes credentials, account identifiers, proxy addresses, raw responses, and full logs. Paste it into the required diagnostics field; never attach sign-in URLs, authorization codes, or browser callback addresses.
 
 The ChatGPT Codex backend and DSH can change independently. This community project is not affiliated with or endorsed by DeepSeek or OpenAI.
 

@@ -1,6 +1,6 @@
 # Graph Memory
 
-![DeepSeek Harness + OpenClaw → Graph Memory](https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/brand/graph-memory-hosts-banner.png)
+![DeepSeek Harness + OpenClaw → Graph Memory](https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/brand/graph-memory-hosts-banner.png)
 
 <p align="center">
   <strong>Traceable, searchable, cross-session memory for AI agents.</strong><br>
@@ -72,7 +72,7 @@ Typed edges such as `USED_SKILL`, `SOLVED_BY`, `REQUIRES`, `PATCHES`, and `CONFL
 The original OpenClaw adapter was measured in a seven-turn workflow that installed, authenticated, and queried `bilibili-mcp`:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/token-comparison.png" alt="Seven-turn token comparison" width="82%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/token-comparison.png" alt="Seven-turn token comparison" width="82%">
 </p>
 
 | Turn | Without Graph Memory | With Graph Memory |
@@ -97,8 +97,8 @@ The DSH integration does not discard the original project. Graph Memory is evolv
 On March 15, 2026, the project owner presented Graph Memory's architecture at the CLAW program event held in Tsinghua Science Park. The following owner-supplied materials and the [Sina Finance event report](https://cj.sina.com.cn/articles/view/7984421895/1dbe89c0700101nnpq) document that development.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/history/tsinghua-sharing.jpg" alt="Graph Memory technical sharing" width="47%">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/history/sina-report.jpg" alt="Sina Finance event coverage" width="28%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/history/tsinghua-sharing.jpg" alt="Graph Memory technical sharing" width="47%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/history/sina-report.jpg" alt="Sina Finance event coverage" width="28%">
 </p>
 
 - [Community cross-session memory demo](https://www.bilibili.com/video/BV1xUcZzfEaB/)
@@ -107,7 +107,7 @@ On March 15, 2026, the project owner presented Graph Memory's architecture at th
 The image below is the existing OpenClaw / ClawX-era Pro graph prototype. It demonstrates a previously explored interaction direction; it is not a shipped DSH frontend.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/graph-ui.png" alt="Existing Graph Memory Pro prototype" width="92%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/graph-ui.png" alt="Existing Graph Memory Pro prototype" width="92%">
 </p>
 
 Names and venue information document project history only and do not imply endorsement by Tsinghua University, Sina Finance, DeepSeek, or OpenClaw.
@@ -191,41 +191,37 @@ graph-memory/
 | Visible plugin state | **Done** | Active in Plugin Inventory |
 | Pro visual workbench | **Experimental** | Separate DSH Client Plugin with a read-only card snapshot |
 
-Current beta: `1.6.0-beta.8`. Local acceptance used DeepSeek Harness `0.1.0-rc.8`. Testing covered tarball installation, Web profile loading, configurable five-turn rolling compaction through the public agent-preset compaction service, exact source provenance, token-budget enforcement, high-precision automatic recall, FTS5 fallback, and the Pro Lite Host, Typed Remote, and Client bundle boundaries. All 127 automated tests passed. Real model-backed acceptance also verified rolling checkpoint replacement, 1024-dimensional `text-embedding-v4` vectors, and automatic cross-project recall without an explicit memory tool call.
+Current beta: `1.6.0-beta.9`. Local acceptance used DeepSeek Harness `0.1.0-rc.8`. Testing covered script-free Git and tarball installation, Web profile loading, configurable five-turn rolling compaction through the public agent-preset compaction service, exact source provenance, token-budget enforcement, high-precision automatic recall, FTS5 fallback, and the Pro Lite Host, Typed Remote, and Client bundle boundaries. All 130 automated tests passed. Real model-backed acceptance also verified rolling checkpoint replacement, 1024-dimensional `text-embedding-v4` vectors, and automatic cross-project recall without an explicit memory tool call.
 
 <p align="center">
   <strong>Plugin enabled: graph-memory/dsh is active in the DSH plugin list</strong><br>
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in the DSH plugin list" width="88%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in the DSH plugin list" width="88%">
 </p>
 
 <p align="center">
   <strong>Cross-session semantic recall in a fresh Session</strong><br>
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session vector recall in DSH" width="88%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session vector recall in DSH" width="88%">
 </p>
 
 ## Install on DeepSeek Harness
 
-Prerequisites: Node.js `22.19+` or `24+`. The current beta is not yet published to npm, so build the tarball from source:
+Prerequisite: Node.js `22.13+`. The current beta is not yet published to npm, but the repository ships its prebuilt runtime and can be installed without authorizing install scripts:
+
+```bash
+npx @deepseek-ai/dsh plugin --profile web add git+https://github.com/adoresever/graph-memory.git
+npx @deepseek-ai/dsh --profile web --dump-config
+npx @deepseek-ai/dsh web
+```
+
+Alternatively, build and install a tarball from a checkout:
 
 ```bash
 git clone https://github.com/adoresever/graph-memory.git
 cd graph-memory
 npm install
 npm test
-npm run build
 npm pack
-```
-
-Install the generated tarball into the DSH Web profile:
-
-```bash
-npx @deepseek-ai/dsh plugin --profile web add /absolute/path/to/graph-memory-1.6.0-beta.8.tgz
-npx @deepseek-ai/dsh --profile web --dump-config
-npx @deepseek-ai/dsh web
-
-# From a deepseek-harness source checkout:
-pnpm dsh plugin --profile web add /absolute/path/to/graph-memory-1.6.0-beta.8.tgz
-pnpm dsh web
+npx @deepseek-ai/dsh plugin --profile web add /absolute/path/to/graph-memory-1.6.0-beta.9.tgz
 ```
 
 After installation, verify that `graph-memory/dsh` is enabled under **Settings → Plugins → Plugin list**.
@@ -254,7 +250,7 @@ dsh web
 
 Without embeddings, Graph Memory continues with FTS5 and does not block conversation.
 
-![Vector status](https://raw.githubusercontent.com/adoresever/graph-memory/83ffb2771022a8d323feefc280ae4f198d8b85e5/docs/images/dsh/vector-status.png)
+![Vector status](https://raw.githubusercontent.com/adoresever/graph-memory/e674b34ad9f035eeaf00f98a0b9ffdac6c0e3a57/docs/images/dsh/vector-status.png)
 
 ## DSH tools
 
@@ -312,12 +308,11 @@ The first milestone should be **Pro Lite**: reuse the existing SQLite graph and 
 
 ### Current local installation
 
-The npm package `graph-memory@1.5.8` is still the OpenClaw release. The new Community beta and `graph-memory-pro-dsh` have not been published to npm, so install them from this checkout:
+The npm package `graph-memory@1.5.8` is still the OpenClaw release. The new Community beta can be installed from GitHub; `graph-memory-pro-dsh` still installs from a checkout:
 
 ```bash
 dsh plugin --profile web add \
-  --allow-build=@photostructure/sqlite \
-  /absolute/path/to/graph-memory
+  git+https://github.com/adoresever/graph-memory.git
 
 dsh plugin --profile web add \
   /absolute/path/to/graph-memory/dsh-pro

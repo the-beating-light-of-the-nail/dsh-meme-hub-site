@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/hero.png" alt="agent-vision-toolkit — Give text-only LLM agents eyes." width="100%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/hero.png" alt="agent-vision-toolkit — Give text-only LLM agents eyes." width="100%">
 </p>
 
 <div align="center">
@@ -44,8 +44,8 @@ All code has been verified in real Codex + DeepSeek sessions, and the same pipel
 
 <table>
 <tr>
-<td width="220"><a href="https://aihubmix.com/?aff=5wj6sgx8"><img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/logo_aihubmix.png" alt="AIHubMix" height="48"></a></td>
-<td>Thanks to <a href="https://aihubmix.com/?aff=5wj6sgx8">AIHubMix</a> for sponsoring this project! AIHubMix is a stable, high-concurrency AI model API gateway that connects Claude, GPT, Gemini, DeepSeek, and other mainstream models through a single API key, compatible with multiple protocols, with <b>free model options</b> available. Users in China can use it via the <a href="https://inferera.com/?aff=5wj6sgx8">China entry</a>, and users abroad via the <a href="https://aihubmix.com/?aff=5wj6sgx8">Global entry</a>.</td>
+<td width="220"><a href="https://aihubmix.com/?aff=sinZ"><img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/logo_aihubmix.png" alt="AIHubMix" height="48"></a></td>
+<td>Thanks to <a href="https://aihubmix.com/?aff=sinZ">AIHubMix</a> for sponsoring this project! AIHubMix is a stable, high-concurrency AI model API gateway that connects Claude, GPT, Gemini, DeepSeek, and other mainstream models through a single API key, compatible with multiple protocols, with <b>free model options</b> available. Users in China can use it via the <a href="https://inferera.com/?aff=sinZ">China entry</a>, and users abroad via the <a href="https://aihubmix.com/?aff=sinZ">Global entry</a>.</td>
 </tr>
 </table>
 
@@ -107,9 +107,9 @@ When to use them, the order in which to call tools, and how to verify the result
 ### Infographic restoration: screenshot to HTML in one sentence
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/infographic-restore-reference.png" alt="Original infographic showing how the model is trained" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/infographic-restore-reference.png" alt="Original infographic showing how the model is trained" width="49%">
   <a href="examples/infographic-restoration/how-is-the-model-trained.html">
-    <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/infographic-restore-result.png" alt="HTML and CSS reconstruction of the model-training infographic" width="49%">
+    <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/infographic-restore-result.png" alt="HTML and CSS reconstruction of the model-training infographic" width="49%">
   </a>
 </p>
 
@@ -118,8 +118,8 @@ When to use them, the order in which to call tools, and how to verify the result
 ### UI restoration: sketch to interface in one sentence
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/ui-restore-sketch.png" alt="Hand-drawn JupyterLab interface used as a UI restoration reference" width="49%">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/ui-restore-result.png" alt="Restored JupyterLab workspace made from the hand-drawn reference" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/ui-restore-sketch.png" alt="Hand-drawn JupyterLab interface used as a UI restoration reference" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/ui-restore-result.png" alt="Restored JupyterLab workspace made from the hand-drawn reference" width="49%">
 </p>
 
 *Left: the hand-drawn reference. Right: the restored JupyterLab workspace made from it. See the [UI restoration playbook](skills/vision-skills/references/restore-ui.md) for the workflow. Executed in Codex with `deepseek-v4-flash`.*
@@ -127,22 +127,22 @@ When to use them, the order in which to call tools, and how to verify the result
 ### Fast UI restoration: an approximate first pass
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/ui-fast-restore-reference.png" alt="Original YouMind homepage used as the fast UI restoration reference" width="49%">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/ui-fast-restore-result.png" alt="Approximate YouMind homepage produced with fast UI restoration mode" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/ui-fast-restore-reference.png" alt="Original YouMind homepage used as the fast UI restoration reference" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/ui-fast-restore-result.png" alt="Approximate YouMind homepage produced with fast UI restoration mode" width="49%">
 </p>
 
 *Left: the original page. Right: a fast reconstruction that preserves the main layout, content, and visual hierarchy while allowing approximate colors and library icons. Fast mode targets a first screenshot in about three minutes.*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/effect-3.jpg" alt="Multi-round image Q&A with the optional glance CLI" width="49%">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/effect-4.jpg" alt="DeepSeek V4 playing chess by locating screen elements with glance/ground" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/effect-3.jpg" alt="Multi-round image Q&A with the optional glance CLI" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/effect-4.jpg" alt="DeepSeek V4 playing chess by locating screen elements with glance/ground" width="49%">
 </p>
 
 *Left: multi-round image Q&A with `glance`. Right: with `ground`, DeepSeek V4 locates screen elements to play chess autonomously.*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/effect-1.jpg" alt="DeepSeek in Codex answering a style question about a UI screenshot" width="49%">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/effect-2.jpg" alt="DeepSeek in Codex debugging mismatched UI fields from a screenshot" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/effect-1.jpg" alt="DeepSeek in Codex answering a style question about a UI screenshot" width="49%">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/effect-2.jpg" alt="DeepSeek in Codex debugging mismatched UI fields from a screenshot" width="49%">
 </p>
 
 *Left: DeepSeek V4 answers a UI style question with similar-style comparisons. Right: DeepSeek V4 debugs a field-name mismatch from a screenshot.*
@@ -317,10 +317,10 @@ Most vision bridges for text-only models simply ask a multimodal model to turn a
 To address this, `agent-vision-toolkit` tries to recover **why the agent wants to look at the image**. It extracts the viewing intent from the user message or from the model's stated reason for calling a built-in image tool, then passes that intent to the vision model as a **focus hint**. The result is a task-aware description that emphasizes what matters for the current step instead of producing a generic "detailed description" — at lower cost, with higher accuracy and faster responses.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/focus-hint-comparison-1.png"
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/focus-hint-comparison-1.png"
        alt="Generic image descriptions compared with task-aware vision using a focus hint - Part 1"
        width="49%">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/focus-hint-comparison-2.png"
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/focus-hint-comparison-2.png"
        alt="Generic image descriptions compared with task-aware vision using a focus hint - Part 2"
        width="49%">
 </p>
@@ -413,7 +413,7 @@ To reduce costs further, you can use a locally deployed small multimodal side mo
 
 If this project is valuable to you, you are welcome to buy the developer a coffee ☕️
 
-<img width="240" alt="WeChat reward code" src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/wechat-reward.png" />
+<img width="240" alt="WeChat reward code" src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/wechat-reward.png" />
 
 ## Community
 
@@ -435,7 +435,7 @@ I'm [anionex](https://anionex.me/), an AI-native developer who once ranked No. 4
 You are welcome to join the `agent-vision-toolkit` community group to exchange usage tips, share feedback, and suggest improvements. Scan the QR code below to join.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/f32696c0b848210abd2db72e0e585dc630639feb/assets/community-group-qr.png" alt="QR code for the agent-vision-toolkit community group" width="320">
+  <img src="https://raw.githubusercontent.com/Anionex/agent-vision-toolkit/3f65bd82e05c239027f07f33aaf603e4c5310883/assets/community-group-qr.png" alt="QR code for the agent-vision-toolkit community group" width="320">
 </p>
 
 <a href="https://www.star-history.com/?repos=Anionex%2Fagent-vision-toolkit&type=date&legend=top-left">

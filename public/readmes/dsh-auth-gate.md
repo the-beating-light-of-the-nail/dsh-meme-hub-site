@@ -2,6 +2,14 @@
 
 **English** | [简体中文](README.zh.md)
 
+[![npm version](https://img.shields.io/npm/v/dsh-auth-gate.svg)](https://www.npmjs.com/package/dsh-auth-gate)
+[![npm downloads](https://img.shields.io/npm/dt/dsh-auth-gate.svg)](https://www.npmjs.com/package/dsh-auth-gate)
+[![npm monthly downloads](https://img.shields.io/npm/dm/dsh-auth-gate.svg)](https://www.npmjs.com/package/dsh-auth-gate)
+[![node](https://img.shields.io/node/v/dsh-auth-gate.svg)](https://www.npmjs.com/package/dsh-auth-gate)
+[![types](https://img.shields.io/npm/types/dsh-auth-gate.svg)](https://www.npmjs.com/package/dsh-auth-gate)
+[![CI](https://github.com/TecFancy/dsh-auth-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/TecFancy/dsh-auth-gate/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/dsh-auth-gate.svg)](LICENSE)
+
 A login door for your [DeepSeek Harness](https://github.com/deepseek-ai/dsh)
 (dsh) web instance. Put it in front of a public dsh deployment and nobody can
 reach your agents, your chat sessions, or your LLM credentials without signing
@@ -51,25 +59,18 @@ printf '%s\n' 'choose-a-strong-password' | dsh-auth user add admin --password-st
 
 Visitors without a session are sent to the login page:
 
-![Login page](https://raw.githubusercontent.com/TecFancy/dsh-auth-gate/5fbf32d4987a93fb61e3b5ea2861bac16dab3d19/docs/demo/login-page.png)
+![Login page](https://raw.githubusercontent.com/TecFancy/dsh-auth-gate/8f8876bce9159366d28e91d23077dacfc89d28a6/docs/demo/login-page.png)
 
 After signing in, they land on your instance:
 
-![dsh instance](https://raw.githubusercontent.com/TecFancy/dsh-auth-gate/5fbf32d4987a93fb61e3b5ea2861bac16dab3d19/docs/demo/dashboard.png)
+![dsh instance](https://raw.githubusercontent.com/TecFancy/dsh-auth-gate/8f8876bce9159366d28e91d23077dacfc89d28a6/docs/demo/dashboard.png)
 
-A Sign out icon button sits at the **top-right**: inside a session, at the
-right of the Session log button in the session header; on the new-session
-page (no session open), at the window's top-right corner. Icon-only, with a
-theme-aware hover background (light/dark follow the active theme), matching
-the header's other icon buttons.
-
-New-session page (no input/response yet):
-
-![Sign out on the new-session page](https://raw.githubusercontent.com/TecFancy/dsh-auth-gate/5fbf32d4987a93fb61e3b5ea2861bac16dab3d19/docs/demo/logout-hero-blank.png)
-
-Real conversation (session header, right of the Session log):
-
-![Sign out in a conversation](https://raw.githubusercontent.com/TecFancy/dsh-auth-gate/5fbf32d4987a93fb61e3b5ea2861bac16dab3d19/docs/demo/logout-conversation-en.png)
+A prominent **Sign out / 退出登录** button sits inside the **Settings panel**
+(the Settings → General page, below the last preference row). It's a centered,
+danger-styled filled button (16px door icon + localized label, theme tokens
+for light/dark), and its label follows the GUI language through the same
+locale mechanism the Settings language switch uses. Clicking it runs the same
+native `POST /auth/logout?next=/` flow as before.
 
 ## Configuration
 
@@ -123,11 +124,10 @@ in `deploy/cordis.patch.yml`). The override targets the mounted row by id
   valid until they expire.
 - Login rate limiting resets when the server restarts.
 - Behind a reverse proxy, rate limiting counts by the proxy's address.
-- Sign out from the GUI: a Sign out icon button sits at the top-right — in
-  the session header right of the Session log button inside a session, and at
-  the window's top-right on the new-session page (client half, requires the
-  web app's client bundle — dsh 0.1.0-rc.6+); the direct `/auth/logout?next=/`
-  URL always works as a fallback.
+- Sign out from the GUI: a prominent "Sign out / 退出登录" button sits in the
+  Settings panel (Settings → General, bottom) — client half, requires the
+  web app's client bundle (dsh 0.1.0-rc.6+); the direct
+  `/auth/logout?next=/` URL always works as a fallback.
 - The plugin only protects dsh's web surface. It is not a replacement for
   server-level security: keep the server OS user locked down and the config
   files private (`.credentials.yaml` and `auth/users.yaml` are created with

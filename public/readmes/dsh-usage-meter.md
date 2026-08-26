@@ -69,6 +69,7 @@ dsh plugin --profile web add dsh-usage-meter
 
 - 行标识：`app_type='dsh'`、`data_source='dsh_session'`、`request_id='dsh:<会话ID>:<seq>'`；`input_token_semantics=2`（input 不含 cacheRead）；费用一律写 0，只搬 token
 - 幂等：判重只查 `session_usage_dedup`（该表永不清理；cc-switch 归档会删 `proxy_request_logs` 旧明细，不能拿明细表判重）；日志行与 dedup 行同事务写入，短事务 + `busy_timeout=5000` + BUSY 退避重试
+- 跨源 proxy 指纹去重：DSH 请求经 cc-switch 的 Claude/Codex proxy 时，proxy 用不同 `request_id` 已记同一用量。写入前按指纹（`app_type` 跨 `dsh→claude/codex`、`model`、`input/output/cache_read`、`created_at` ±600s）匹配 `data_source='proxy'` 的行，命中即跳过且不写 ledger（以便 proxy 行日后被归档删除时下次同步能补导）。对齐 cc-switch PR [#6724](https://github.com/farion1231/cc-switch/pull/6724) review fix 写入侧
 - 同步时机：复用 debounce 落盘路径（回放回填与活会话增量同一条幂等路径）；一次性历史回填可用 `node scripts/backfill-ccswitch.mjs`（`--dry-run` 只读对账；首次写真库前自动把库备份到仓库 `backups/`）
 - `created_at` 为秒级 epoch（与库内既有行一致），来自事件 `time`（毫秒）取整
 - 开关：环境变量 `DSH_CC_SWITCH_SYNC=0` 关闭（默认开）；`DSH_CC_SWITCH_DB` 可覆盖目标库路径（测试用）

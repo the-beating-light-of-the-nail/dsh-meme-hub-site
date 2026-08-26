@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-nocturne-memory/ba1a943bf1c4db526a900119a0b37689406e0ddb/assets/readme/hero.svg" alt="dsh-noc-memory — long-term memory for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-nocturne-memory/01391dda2364efcffa4d743c998a44c61373d5ad/assets/readme/hero.svg" alt="dsh-noc-memory — long-term memory for DeepSeek Harness" width="100%">
 </p>
 
 # dsh-noc-memory

@@ -1,6 +1,6 @@
 # MindsEye
 
-![MindsEye header](https://raw.githubusercontent.com/kanchengw/dsh-mindseye/9c918efc90288b104e0adc909129e13ea53cec1f/assets/MindsEye-header.png)
+![MindsEye header](https://raw.githubusercontent.com/kanchengw/dsh-mindseye/f3ed8947b3cccaf4060a70e589e61ab79d26e070/assets/MindsEye-header.png)
 
 [![dsh.so security](https://www.dsh.so/badges/dsh-mindseye.svg)](https://www.dsh.so/artifact/dsh-mindseye/)
 
@@ -84,6 +84,7 @@ Vision routes use OpenAI-compatible Chat Completions or Responses APIs. Image ro
 ## Install
 
 ```sh
+npm install dsh-mindseye
 npx @deepseek-ai/dsh plugin --profile web add dsh-mindseye
 ```
 

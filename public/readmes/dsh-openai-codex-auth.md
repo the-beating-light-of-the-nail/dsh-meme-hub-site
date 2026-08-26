@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yoke233/dsh-openai-codex-auth/44828c88dabfa90d2bd800a8019eec61abd260e2/assets/readme/hero.svg" width="100%" alt="dsh-openai-codex-auth：在 DeepSeek Harness 中完成 OpenAI Codex 订阅登录、用量查看与本地凭据接入">
+  <img src="https://raw.githubusercontent.com/yoke233/dsh-openai-codex-auth/6e22e337529e0d74ddb63d588351161977f6c523/assets/readme/hero.svg" width="100%" alt="dsh-openai-codex-auth：在 DeepSeek Harness 中完成 OpenAI Codex 订阅登录、用量查看与本地凭据接入">
 </p>
 
 <p align="center">
@@ -51,7 +51,7 @@ dsh --profile web
 ## 工作方式
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yoke233/dsh-openai-codex-auth/44828c88dabfa90d2bd800a8019eec61abd260e2/assets/readme/workflow.svg" width="100%" alt="OpenAI OAuth 授权经本机回调写入受保护凭据，再供 openai-codex 提供方和 DSH 用量面板使用">
+  <img src="https://raw.githubusercontent.com/yoke233/dsh-openai-codex-auth/6e22e337529e0d74ddb63d588351161977f6c523/assets/readme/workflow.svg" width="100%" alt="OpenAI OAuth 授权经本机回调写入受保护凭据，再供 openai-codex 提供方和 DSH 用量面板使用">
 </p>
 
 1. 插件生成 PKCE verifier、challenge 和随机 `state`，再打开 OpenAI 授权页。

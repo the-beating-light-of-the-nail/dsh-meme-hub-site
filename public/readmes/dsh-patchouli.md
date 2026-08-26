@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/1ce2a6cda20b3b327f1f381055ab143154ab6480/assets/patchouli-banner-en.png">
+  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/f23c5989d2dabe3ccbc49ec97286bbc21060a95d/assets/patchouli-banner-en.png">
 
   <h1>Patchouli</h1>
   <p>
@@ -32,6 +32,7 @@ remains harness-neutral.
 
 - Common Memory Service with provider filters, user routing policies, and provenance.
 - Consumer-side aggregation that keeps native plugin results intact.
+- Incremental retrieval streams with backpressure and a final `complete` aggregate.
 - Agent Loop connector with configurable hooks and model tools.
 - Pluggable local or remote memory and knowledge implementations.
 - Managed image and workspace-file ingestion as typed Artifacts.

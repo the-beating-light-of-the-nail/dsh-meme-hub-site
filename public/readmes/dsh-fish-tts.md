@@ -3,7 +3,7 @@
 **中文 | [English](./README.en.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/hero.svg" width="100%" alt="dsh-fish-tts — DeepSeek Harness 语音合成插件（仅支持 Fish Audio API）" />
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/hero.svg" width="100%" alt="dsh-fish-tts — DeepSeek Harness 语音合成插件（仅支持 Fish Audio API）" />
 </p>
 
 <p align="center">
@@ -47,17 +47,17 @@
 ## 界面截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/screenshot-read-aloud.png" width="75%" alt="消息操作条上的朗读按钮" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/screenshot-read-aloud.png" width="75%" alt="消息操作条上的朗读按钮" /><br>
   <em>消息操作条上的「朗读」按钮</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/screenshot-auto-read.png" width="75%" alt="输入栏的自动朗读开关" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/screenshot-auto-read.png" width="75%" alt="输入栏的自动朗读开关" /><br>
   <em>输入栏的自动朗读开关</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/b385f26d32ef08e2331ed7d59e77962d7ff7bd58/assets/readme/screenshot-settings.png" width="75%" alt="语音合成设置页（模型 / 音色 / API Key / 代理）" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/screenshot-settings.png" width="75%" alt="语音合成设置页（模型 / 音色 / API Key / 代理）" /><br>
   <em>设置页：模型 / 音色 / API Key / 代理 / 试听</em>
 </p>
 

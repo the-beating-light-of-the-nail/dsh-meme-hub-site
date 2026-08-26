@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/472524a45ef7b1ff6fbd9c3bf50787680a5497c3/docs/banner.jpg" alt="DSH Pocket" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/13e52db3ece072a17ee76fcd5125cebd66c809eb/docs/banner.jpg" alt="DSH Pocket" width="100%">
 </p>
 
 <h1 align="center">DSH Pocket</h1>
@@ -34,7 +34,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 实际效果——手机上的界面就是电脑上的界面，实时同步：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/472524a45ef7b1ff6fbd9c3bf50787680a5497c3/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/13e52db3ece072a17ee76fcd5125cebd66c809eb/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
 </p>
 
 ## ✨ 特性
@@ -42,6 +42,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 | 特性 | 说明 |
 |---|---|
 | 📶 局域网扫码 | 装好即用：设置 → 手机访问，打开就有局域网二维码，手机连同一 WiFi 扫码即开（自动识别本机局域网 IP，**WSL 环境自动取 Windows 物理网卡 IP**） |
+| 🚪 局域网开关 | 设置页可**一键关闭/开启局域网访问**（切换时弹窗提醒）：关闭后局域网二维码/链接立即失效，仅公网可用 |
 | 🌐 公网扫码（人在外面） | 点「开启公网访问」→ cloudflared 隧道 → 出公网二维码，4G/任何网络都能访问 |
 | 🔐 访问密码 | 公网链接需输入 **8 位数字密码**（默认每次开启公网自动换新；**可自定义固定密码**——自定义后不再换新）；局域网有独立 **8 位数字密码**（默认开启，设置页可**一键关闭**——关闭后局域网扫码直连） |
 | 🔑 自定义密码 | 公网/局域网密码都可在设置页**设成自己固定的 8 位数字**（自定义后公网不再自动换新） |
@@ -58,7 +59,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 **入口在哪**：安装完成并重启 `dsh web` 后，打开 **设置**，左侧边栏就能看到 **「手机访问」** 入口（和「通用设置」「模型」同级）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/472524a45ef7b1ff6fbd9c3bf50787680a5497c3/docs/entry.jpg" alt="手机访问入口" width="70%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/13e52db3ece072a17ee76fcd5125cebd66c809eb/docs/entry.jpg" alt="手机访问入口" width="70%">
 </p>
 
 **前提**：电脑上已装好 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。如果终端提示 `dsh: command not found`（找不到 dsh 命令），先安装：
@@ -80,6 +81,8 @@ npx @deepseek-ai/dsh web
 
 设置 → **手机访问** → 手机扫「📶 局域网」二维码 → 打开链接**输入局域网密码**（显示在设置页局域网区块，点「刷新」可换新，或点「自定义」设成自己固定的 8 位数字）→ 打开的就是电脑上的 DSH，实时同步。
 
+> 「**局域网访问**」开关默认**开**：可一键**关闭/开启**（切换时弹窗提醒）——关闭后局域网二维码/链接立即失效（手机打不开），**公网不受影响**；想恢复时再点「开」即可。
+>
 > 局域网密码**默认开启**（安全优先）。如果只有自己用、嫌每次输密码麻烦，可在设置页局域网区块把「局域网访问密码」切到**关**——之后局域网扫码直连、无需密码（仅同一局域网设备可访问；**公网始终要密码**，不受影响）。
 >
 > 手机登录一次后**长期免输**：只要电脑上的 dsh web 不重启，再次打开手机不用再输入（**dsh web 重启/更新后需重新输入一次**）。
@@ -162,12 +165,12 @@ npx @deepseek-ai/dsh web
 
 | 文件 | 说明 |
 |---|---|
-| `lib/index.js` | 插件入口：自动起代理 + 注册 RPC + 访问密码管理（公网 8 位每次开启变新；局域网独立 8 位可手动刷新/开关）+ 桌面端环境适配 |
-| `lib/settings.mjs` | 设置持久化：局域网密码开关（默认开启）存 `$DSH_HOME/dsh-pocket/settings.json` |
+| `lib/index.js` | 插件入口：自动起代理 + 注册 RPC + 访问密码管理（公网 8 位每次开启变新；局域网独立 8 位可手动刷新/开关）+ 局域网访问总开关 + 桌面端环境适配 |
+| `lib/settings.mjs` | 设置持久化：局域网访问总开关（默认开启）+ 局域网密码开关（默认开启）存 `$DSH_HOME/dsh-pocket/settings.json` |
 | `lib/service.mjs` | 服务：代理生命周期（端口自适应）、公网隧道（自动恢复）、状态快照（含二维码） |
-| `lib/proxy.mjs` | 改头反向代理：Host/Origin → loopback，HTTP + WebSocket 透传 + polyfill 注入 + gzip/brotli 压缩 + 按 Host 区分的访问令牌认证（公网必验；局域网按开关） |
+| `lib/proxy.mjs` | 改头反向代理：Host/Origin → loopback，HTTP + WebSocket 透传 + polyfill 注入 + gzip/brotli 压缩 + 按 Host 区分的访问令牌认证（公网必验；局域网按开关）+ 局域网关闭时拦截局域网 Host |
 | `lib/tunnel.mjs` | cloudflared：多镜像源下载（清华优先）/自适应多线程/启动/解析公网 URL（HTTP/2） |
-| `lib/web-rpc.js` | loopback RPC：`status` / `tunnel.start` / `tunnel.stop` / `version` / `update` / `restart` |
+| `lib/web-rpc.js` | loopback RPC：`status` / `tunnel.start` / `tunnel.stop` / `lan.setEnabled` / `version` / `update` / `restart` |
 | `client/` | 设置页「手机访问」+ 移动端适配（dsh-web-mobile 移植） |
 | `bin/dsh-pocket.mjs` | CLI：局域网/公网模式，打印 URL + 二维码 |
 

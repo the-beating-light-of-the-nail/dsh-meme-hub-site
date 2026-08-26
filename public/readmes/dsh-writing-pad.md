@@ -9,7 +9,7 @@
 
 面向 DeepSeek Harness Web 的会话级 Markdown 写作板。它直接停靠在对话右侧，让起草、预览和 AI 局部改写保持在同一个工作流中。
 
-![dsh-writing-pad 在 DeepSeek Harness Web 中的写作板侧栏](https://raw.githubusercontent.com/linhx1999/dsh-writing-pad/0c41ccbebf7edb7ce6e0867509b9d65626db8ff1/docs/assets/writing-pad-overview.png)
+![dsh-writing-pad 在 DeepSeek Harness Web 中的写作板侧栏](https://raw.githubusercontent.com/linhx1999/dsh-writing-pad/b70b77310d21a46878dbfd9e6e3b4dfd208c8b43/docs/assets/writing-pad-overview.png)
 
 ## 亮点
 
@@ -36,7 +36,7 @@ dsh plugin --profile web add dsh-writing-pad
 dsh web
 ```
 
-本地开发时，可一键打包、重装当前版本并启动 Web：
+本地开发时，可一键打包、通过 npm `latest` 标签运行最新版 dsh、重装当前插件并启动 Web：
 
 ```sh
 pnpm dev

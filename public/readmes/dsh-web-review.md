@@ -7,12 +7,12 @@
 在内置浏览器中，像使用设计工具一样选择页面元素、填写修改意见，并临时调整文本、颜色、字体、尺寸、间距、边框与效果。确认发送后，Agent 会结合页面批注修改当前工作区中的源码。
 
 <p align="center">
-  <img width="100%" alt="dsh-web-review 网页预览、元素批注与视觉调整演示" src="https://raw.githubusercontent.com/CanglongCl/dsh-web-review/63e258bda8c94488079ff15de55295262e844271/docs/assets/web-review-demo.gif" />
+  <img width="100%" alt="dsh-web-review 网页预览、元素批注与视觉调整演示" src="https://raw.githubusercontent.com/CanglongCl/dsh-web-review/220cc988ff31546321abeb24b1526ca6f5c37aaa/docs/assets/web-review-demo.gif" />
 </p>
 
 <p align="center">
-  <img width="49%" alt="dsh-web-review 网页预览" src="https://raw.githubusercontent.com/CanglongCl/dsh-web-review/63e258bda8c94488079ff15de55295262e844271/docs/assets/web-review-preview.jpg" />
-  <img width="49%" alt="dsh-web-review 元素批注与属性调整器" src="https://raw.githubusercontent.com/CanglongCl/dsh-web-review/63e258bda8c94488079ff15de55295262e844271/docs/assets/web-review-annotation-editor.jpg" />
+  <img width="49%" alt="dsh-web-review 网页预览" src="https://raw.githubusercontent.com/CanglongCl/dsh-web-review/220cc988ff31546321abeb24b1526ca6f5c37aaa/docs/assets/web-review-preview.jpg" />
+  <img width="49%" alt="dsh-web-review 元素批注与属性调整器" src="https://raw.githubusercontent.com/CanglongCl/dsh-web-review/220cc988ff31546321abeb24b1526ca6f5c37aaa/docs/assets/web-review-annotation-editor.jpg" />
 </p>
 
 > 如果你用过 v0、Codex 等 Coding Agent 应用的内置浏览器，你应该对此会很熟悉。
@@ -59,6 +59,10 @@ dsh web
 - 对话中的页面批注沿用 DSH 原生折叠行：收起时显示页面与批注数，展开后只展示目标、修改意图、前后值和可用源码线索。
 - Agent 根据批注修改当前工作区源码，页面中的临时调整不会直接写入工程。
 
+### `dsh-better-sidebar`集成
+
+安装 [dsh-better-sidebar](https://www.npmjs.com/package/dsh-better-sidebar) 后，网页预览会自动在侧边栏中打开。你也可以在侧边栏新建 `tab` 菜单中打开`网页预览`以启用。
+
 ### UI 优化 Skills
 
 插件内置了 [Jakub Krehel 的设计 Skills](https://github.com/jakubkrehel/skills)：
@@ -93,3 +97,5 @@ dsh web
 ## 参与开发
 
 开发环境、架构说明与验证流程见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
+
+版本变更记录见 [CHANGELOG.md](./CHANGELOG.md)。

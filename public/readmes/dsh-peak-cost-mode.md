@@ -1,16 +1,17 @@
 # dsh-peak-cost-mode
 
-DeepSeek peak-pricing cost guard for [DeepSeek Harness](https://github.com/deepseek-ai/dsh) (DSH): during DeepSeek peak-pricing hours (Beijing time 09:00–12:00 and 14:00–18:00, price ×2) the agent automatically switches to ultra-compressed **caveman-style output** to cut output tokens, and a header badge + toast keep you posted on every peak/valley transition.
+DeepSeek peak-pricing cost guard for [DeepSeek Harness](https://github.com/deepseek-ai/dsh) (DSH): during DeepSeek peak-pricing hours (Mon–Fri Beijing time 09:00–12:00 and 14:00–18:00, price ×2; weekends are always valley) the agent automatically switches to ultra-compressed **caveman-style output** to cut output tokens, and a header badge + toast keep you posted on every peak/valley transition.
 
 ## Features
 
 - **Automatic peak detection** — Beijing time (UTC+8, no DST) is checked every 30 s against the DeepSeek V4 peak-pricing schedule:
   | Window (Beijing) | Tier | Price |
   |---|---|---|
-  | 09:00–12:00 | Peak | ×2 |
-  | 12:00–14:00 | Valley | ×1 |
-  | 14:00–18:00 | Peak | ×2 |
-  | 18:00–next 09:00 | Valley | ×1 |
+  | Mon–Fri 09:00–12:00 | Peak | ×2 |
+  | Mon–Fri 12:00–14:00 | Valley | ×1 |
+  | Mon–Fri 14:00–18:00 | Peak | ×2 |
+  | Mon–Fri 18:00–next 09:00 | Valley | ×1 |
+  | **Sat & Sun (all day)** | **Valley (weekend)** | **×1** |
 - **Peak-hour cost saving** — while in a peak window, a "Peak Cost Mode" prompt section is injected, instructing the model to reply in ultra-compressed caveman style (drop filler/pleasantries/hedging, keep all technical content verbatim: code, commands, API names, file paths, exact error strings, numbers; safety warnings and irreversible-action confirmations are never compressed).
 - **Transition reminders** — toasts on every tier switch:
   - valley → peak: 「梁文锋来了，少说话多做事。」(Liang Wenfeng is here — talk less, do more.)
@@ -44,6 +45,11 @@ Optional JSON file at `${DSH_HOME:-~/.dsh}/dsh-peak-cost-mode/config.json`:
   "saveRatio": 0.6,
   "baseCacheHitRate": 0.5,
   "multiplier": 2,
+  "peakWindows": [
+    { "start": 9, "end": 12 },
+    { "start": 14, "end": 18 }
+  ],
+  "weekendValley": true,
   "prices": {
     "deepseek-v4-flash": { "hit": 0.05, "miss": 1.5, "output": 4.5 },
     "deepseek-v4-pro": { "hit": 0.15, "miss": 4.5, "output": 13.5 }
@@ -53,6 +59,8 @@ Optional JSON file at `${DSH_HOME:-~/.dsh}/dsh-peak-cost-mode/config.json`:
 
 - `saveRatio` — assumed output-compression ratio of the cave-man mode (default 0.6; bounds 0–0.9).
 - `baseCacheHitRate` — assumed input cache-hit rate for the “without plugin” counterfactual input invoice when no valley-time measurement exists (default 0.5).
+- `peakWindows` — array of Beijing-hour peak windows, each `{start, end}` (default `[{9,12},{14,18}]`).
+- `weekendValley` — `true` (default) means Sat/Sun are always valley/off-peak; set `false` to restore the old weekend-peak behavior.
 - `multiplier` — peak multiplier used for the RMB conversion (default 2).
 - `prices` — per-model valley prices in ¥ per million tokens; exact model keys override the built-in flash/pro defaults. **Prices go stale — verify against the official DeepSeek pricing page; displayed savings are estimates, not an invoice.**
 

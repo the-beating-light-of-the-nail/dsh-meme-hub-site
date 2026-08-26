@@ -6,20 +6,19 @@
 
 一个 DSH bundle，把你电脑上的 **Wallpaper Engine** 壁纸变成 **DSH 网页界面（`dsh web`）的背景**。
 
-> ✅ **已修复：沉浸式全屏窗口偶尔全屏闪白**（v0.6.2）
-> 早期版本在**桌面快捷方式打开的沉浸式全屏窗口**（独立应用 / kiosk 窗口）里，点击对话或输入文字时**可能整屏闪白一下**——这是该更新新增的浮动仓库面板/拉绳等合成层，在 kiosk/全屏窗口 + 硬件加速下让 Chromium 偶发把背景画白。
-> **v0.6.2 已修复**：插件现在会在**仓库面板关闭时不挂载其内容（懒加载）**，大幅减少不必要的合成层；普通浏览器标签页不受影响，保持原有毛玻璃效果。
-> 若在极少数环境下仍遇到闪白，可在**该窗口的浏览器配置**里关闭「使用硬件加速(可用时)」并重启作为兜底（沉浸式窗口即使关硬件加速也很顺滑；普通标签页请保持开启以免变卡）。
-> 插件更新后会弹一次提示，告知此修复（每个新版本仅出现一次）。
+> ✅ **已优化：沉浸式全屏窗口偶尔全屏闪白**（v0.6.4，保留完整毛玻璃）
+> 早期版本在**桌面快捷方式打开的沉浸式全屏窗口**（独立应用 / kiosk 窗口）里，点击对话或输入文字时**可能整屏闪白一下**——这是该窗口 + 硬件加速下，Chromium 合成器对壁纸重绘时偶发把整屏画白。
+> **v0.6.4 继续按「减少合成层」处理**：仓库面板关闭时懒加载、拉绳无永久滤镜、壁纸媒体默认下不再强制一个变换合成层——同时**完整保留毛玻璃**；普通浏览器标签页完全不受影响，保持完整毛玻璃与硬件加速。
+> 插件更新后会弹一次提示，告知此优化（每个新版本仅出现一次）。
 
-它会自动发现你本机的 Wallpaper Engine 安装，列出你的壁纸，并把*可移植*的类型渲染到 DSH 对话界面的后方，配以 **iOS 风格液态玻璃**效果：Video（`.mp4`）动态播放、Web/HTML 以 iframe 加载，**Scene（场景）提取主纹理作为静态帧**。v0.2 起还支持：
+它会自动发现你本机的 Wallpaper Engine 安装，列出你的壁纸，并把*可移植*的类型渲染到 DSH 对话界面的后方，配以 **iOS 风格液态玻璃**效果：Video（`.mp4`）动态播放、Web/HTML 以 iframe 加载，**Scene（场景）由内置渲染器输出完整场景帧（对象树/纹理/粒子/shader 效果）**。v0.2 起还支持：
 
 - **壁纸选择弹窗**：缩略图网格收纳进独立弹窗，设置页不再被长列表占满；
 - **隐藏 / 恢复**：不想看的壁纸一键隐藏（软删除），随时恢复，不碰源文件；
 - **视频倍速**：0.5x – 2x 六档原生调速，即时生效、不重载；
 - **水平翻转**：镜像画面（视频 / 网页 / 上传图片均适用）；
 - **自定义壁纸**：直接上传本地 JPG / PNG / MP4 当壁纸，可选存储位置与画面适配模式；
-- **场景壁纸静态帧**（v0.3）：Scene 壁纸提取主纹理作为静态背景，不再只是"不可播放"的占位。
+- **场景壁纸完整场景帧**（v0.6）：Scene 壁纸由纯 JS 场景渲染器完整重放（对象树/纹理/粒子/shader 效果），不再是主纹理静态帧。
 - **液态玻璃设置页**（v0.3.1）：设置页升级为**一级设置页**（参照 dsh-web-ui-all 皮肤中心的设计），整页是可自定义的液态玻璃卡片 —— **配色**（6 种预设 + 自定义取色）与**玻璃透明度**（0–60%）即时生效、持久保存。
 - **整个设置窗口液态玻璃化**（v0.3.2）：一键把 **DSH 原生设置窗口整体**（对话框 + 左侧导航 + General / 模型 / 插件等**全部原生分区**）换成液态玻璃 + 自定义配色 —— 开启「设置窗口液态玻璃」开关后，窗口背景、导航选中/悬停、按钮、开关、链接等全部跟随 **配色** 与 **玻璃透明度**，关闭则恢复原生样式。
 - **玻璃调节统一**（v0.3.3–v0.3.5）：设置窗口的玻璃模糊与**对话栏共用同一套调节参数**（「玻璃」滑动条 0–60 px 同时控制设置窗口与输入栏/气泡的模糊半径，饱和度/亮度/对比度配方一致）；新增「**玻璃颜色**」—— 设置窗口玻璃的**底色色调**可自定义（6 预设 + 自定义取色，默认浅色白 / 深色深夜蓝，选定后两种主题统一使用该色），与「配色」（交互元素）分工：**配色管控件、玻璃颜色管玻璃本身**。
@@ -29,7 +28,7 @@
 - **遮挡暂停（省电三档）**：类似 Wallpaper Engine 的「被遮挡时暂停」——最小化 / 切页、窗口失焦、使用电池供电时自动暂停视频壁纸，**解码引擎直接归零**；回到界面 / 接通电源自动继续（网页壁纸仅随页面隐藏被浏览器节流）。三档开关均持久保存。
 - **解码帧率上限（抽帧转码）**：高帧率源（如 4K120 H.264）的硬解是 GPU 占用大头（4060 实测 1.0x 达 ~60% Video Decode）。「壁纸效果」区设置 **帧率上限**（无限制 / 60 / 48 / 30 / 24 fps），宿主端用 ffmpeg 一次性重编码为上限帧率（时间线保持 1.0x **正常速度**、与倍速完全解耦），输出 **4K 保留 + AV1**，带**下载 / 转码实时进度条**；实测 4K120→24fps 后占用从 ~60% 降至 **~15%**。ffmpeg 三档供给：显式指定 → **自动下载**（npmmirror + GitHub 双源竞速，跨平台资产表已验证）→ 系统 PATH。
 
-![基础效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/showcase.png)
+![基础效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/showcase.png)
 
 > 壁纸 + 磨砂遮罩 + iOS 液态玻璃，渲染在 DSH 界面后方。
 
@@ -39,23 +38,20 @@ Wallpaper Engine 的壁纸分四种类型：
 
 | 类型 | 由谁渲染 | 能否搬到 DSH |
 |---|---|---|
-| **Scene（场景）** | Wallpaper Engine 自带的 3D 引擎 | ✅ 静态帧 — 提取主纹理（`.pkg`/`.json` 内的 .tex/JPEG），见下文 |
-| **Video（视频）** | 就是一个 `.mp4` 文件 | ✅ 能 — 在 `<video>` 标签里播放 |
-| **Web（网页）** | WE 内置的 Chromium 壳（`webwallpaper64.exe`）承载 HTML | ✅ 能 — 在 `<iframe>` 里加载 |
-| **Application（应用）** | 注入的外部窗口 | ❌ 不能 |
+| **Scene（场景）** | Wallpaper Engine 自带的 3D 引擎 | ✅ 完整场景帧 — 纯 JS 场景渲染器（对象树/纹理/粒子/shader 效果），见下文 |
 
-Scene 壁纸的 3D 场景（shader/粒子/几何）本身无法在浏览器里重放，但它的**主纹理**（通常是背景艺术图）可以提取出来作为**静态帧**背景——对摄影类、插画类场景壁纸效果接近原图。选择器里场景卡片带有「静态帧」徽标，可与动态壁纸区分。
+Scene 壁纸的 3D 场景由本插件内置的**纯 JS 场景渲染器**（`lib/scene-renderer.js`，参考 linux-wallpaperengine / repkg 逆向成果）完整重放：解析 `scene.pkg` 的对象树，渲染全部 image 层（含 waterwaves/waterripple/shake 等 shader 效果的 CPU 实现）、puppet 骨骼网格（绑定姿态）、以及粒子系统（发射器/初始化器/运算符/精灵绘制）。选择器里场景卡片带有「静态帧」徽标，可与动态壁纸区分。
 
-> **展现效果**：**大部分场景壁纸都能有较好的静态帧展现**（本机实测约 80%+ 的 Scene 壁纸能提取出接近原图的彩色主图，尤其摄影、插画、动画截图类）；**少部分无法正常展示**，包括纯 shader 粒子/程序生成类场景（没有可提取的主纹理）、使用特殊纹理格式（如 BC7）的场景、以及以视频纹理驱动的动画场景——这类会自动回退显示工坊预览图（`preview.jpg`），属预期行为，不视为缺陷。
+> **展现效果**：渲染器输出 3840×2160 完整场景帧（背景+水+后发+人物+伞+粒子），对摄影、插画、动画截图类场景壁纸效果接近原版；渲染失败（纯 shader 生成类/特殊纹理格式）时自动回退旧的主纹理提取，再失败回退工坊预览图（`preview.jpg`），属预期行为，不视为缺陷。
 
-### 场景静态帧：怎么工作的
+### 场景渲染：怎么工作的
 
-- **读取**：解析 `scene.pkg`（PKGV 容器 + LZ4 条目链）或松散 `scene.json` 目录，从 `scene.json` 的第一个 image 对象出发定位主纹理（material / instance 引用的 .tex），其余 .tex 按"艺术图可能性"评分兜底（内嵌 JPEG/PNG 最高分，mask/effect/depth/workshop 辅助纹理降权，R8/RG88 灰度格式几乎排除）。
-- **解码**：TEX 容器（TEXV0005/TEXI0001、TEXB0001-4 mipmap、LZ4 或原始数据）解码为静态图，支持 **RGBA8888 / R8 / RG88 / DXT1 / DXT3 / DXT5**，以及 **WE 内嵌 JPEG / PNG 纹理**（摄影类壁纸常见，原样直出、零解码、保真度最高）。
-- **质量门**：解码后抽样质检——灰度 >88% 或纯色（方差 <3）的帧会被拒绝并尝试下一候选；全部不通过时自动回退到项目 `preview.jpg`（灰度遮罩、深度图、纯色占位不会冒充壁纸）。
-- **视频纹理识别**：WE 的动画同步纹理（内嵌 MP4，如 `*_sync` 纹理）无法出静态帧，识别后直接回退预览图，不再输出乱码画面。
-- **缓存**：提取结果按 `<版本>_<路径>_<mtime>` 缓存到 `~/.dsh-wallpaper-engine/cache/frames/`（可用 `DSH_WE_CACHE_DIR` 覆盖），工坊更新后自动失效重建；提取管线升级会更换版本前缀使旧缓存失效重提。
-- **限制**：BC7 / RGB565 / 16 位浮点等纹理格式无法解码（回退到 preview.jpg）；静态帧≠3D 渲染，动画粒子/水波等动态效果不会出现。
+- **对象树**：解析 `scene.pkg`（PKGV 容器 + LZ4 条目链）或松散 `scene.json` 目录，按 dependencies/parent 拓扑排序全部对象（image / particle / text / sound）。
+- **image 层**：加载材质主纹理（RGBA8888 / DXT1/3/5 等），按 scene 坐标定位（origin/scale/angle 父链累积），应用 alpha/brightness。
+- **puppet 网格**：MDL（MDLV）网格 + 绑定姿态光栅化（软件光栅 + 双线性 UV 采样 + 透明合成），人物/后发等骨骼模型正确显示。
+- **shader 效果链**：waterwaves（含 DUALWAVES 双波乘积）/ waterripple / shake 按 shader 精确数学在 CPU 实现；mask 纹理支持。
+- **粒子系统**：boxrandom/sphererandom 发射器、color/size/alpha/lifetime/velocity/rotation 等初始化器、movement/alphafade/sizechange/turbulence/oscillate* 等运算符、sprite 精灵绘制。
+- **缓存**：渲染结果按 `<版本>_<路径>_<mtime>` 缓存到 `~/.dsh-wallpaper-engine/cache/frames/`（可用 `DSH_WE_CACHE_DIR` 覆盖），工坊更新后自动失效重建；首次渲染约 3-4 秒，之后秒级命中。
 
 ## 工作原理
 
@@ -66,7 +62,7 @@ Scene 壁纸的 3D 场景（shader/粒子/几何）本身无法在浏览器里�
      - `GET /wallpaper-engine/inventory` → 壁纸 JSON 列表
      - `GET /wallpaper-engine/media/<token>` → 视频 / HTML（支持 Range）
      - `GET /wallpaper-engine/preview/<token>` → 预览图
-     - `GET /wallpaper-engine/scene-frame/<token>` → 场景壁纸静态帧（提取主纹理，JPEG 直出或 PNG，磁盘缓存）
+     - `GET /wallpaper-engine/scene-frame/<token>` → 场景壁纸完整场景帧（纯 JS 渲染器输出 3840×2160，失败回退主纹理提取，PNG 磁盘缓存）
      - `POST /wallpaper-engine/upload` → 上传自定义壁纸（JPG / PNG / MP4，原始字节流）
      - `POST /wallpaper-engine/remove` → 移除已上传的壁纸
      - `POST /wallpaper-engine/upload-dir` → 更改上传目录（持久化到 `~/.dsh-wallpaper-engine/config.json`，自动迁移已有文件）
@@ -163,11 +159,11 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 4. 用 **暂停/播放** 暂停视频壁纸，用 **关闭** 清除壁纸。
    选择会保存在浏览器的 `localStorage`（键 `dsh-wallpaper-engine:selection`）中。
 
-![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/features.png)
+![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/features.png)
 
 > 设置界面：液态玻璃卡片（「外观」配色/透明度）、当前壁纸卡片、「自定义壁纸」「轮播列表」「壁纸效果」分区。
 
-![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/wallpaper-library.png)
+![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/wallpaper-library.png)
 
 > 选择弹窗：浏览全部壁纸缩略图，支持批量隐藏与已隐藏恢复。
 
@@ -191,11 +187,11 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 - **紧凑布局**：设置页顶部有一个**滑动开关**。开启后为 **CD 架效果** —— 卡片像 CD 盒一样纵向层叠（下排上沿盖住上排下沿、左右不遮挡），鼠标悬停放大置顶；网格更紧凑（每行约 7 个）且**一页到底不翻页**。关闭则为常规网格（固定高度防重叠 + 分页，默认）。选择保存在浏览器 `localStorage`。
 - **黑胶唱片**：选择壁纸界面旁边有一个**旋转的黑胶唱片**，把当前选中壁纸的封面当作唱片标签展示 —— 播放时旋转、暂停即停（系统开启「减少动态效果」时停用动画）。弹窗头部也保留小号黑胶。该效果在**经典与新版两种卡片样式下都显示**。
 
-![紧凑布局壁纸仓库（CD 架效果）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/compact-wallpaper-library.png)
+![紧凑布局壁纸仓库（CD 架效果）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/compact-wallpaper-library.png)
 
 > 紧凑布局：CD 架式层叠网格，悬停放大置顶，一页到底不翻页。
 
-![旋转的黑胶唱片（黑胶 CD 壁纸展示）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/vinyl-record.gif)
+![旋转的黑胶唱片（黑胶 CD 壁纸展示）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/vinyl-record.gif)
 
 > 黑胶唱片：当前选中壁纸的封面作为唱片标签，播放时旋转、暂停即停。
 
@@ -263,9 +259,21 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 > 开启「设置窗口液态玻璃」后，**General、模型、插件等所有原生分区**和左侧导航都会变成同一套液态玻璃 + 配色（通过覆盖设置对话框作用域内的 shell token 实现，不侵入其他界面）。设置窗口的玻璃模糊与**对话栏使用同一套调节参数**：「玻璃」滑动条（0–60 px）同时控制设置窗口与输入栏/气泡的模糊半径，饱和度/亮度/对比度配方完全一致；**玻璃颜色**决定玻璃底色本身的色调（默认浅色白/深色深夜蓝，选定后两种主题统一使用该色），**玻璃透明度**决定浓淡，越高越"透"（壁纸颜色更清晰地透过面板），越低越接近实色。不支持 `backdrop-filter` 的浏览器自动回退到高不透明实色，保证文字可读。所有控件即时生效并保存在浏览器 `localStorage`，刷新不丢。
 
-![液态玻璃全新设置窗口](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/liquid-glass-window.png)
+![液态玻璃全新设置窗口](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/liquid-glass-window.png)
 
 > 液态玻璃：整个设置窗口统一玻璃质感，跟随「配色」「玻璃颜色」与「玻璃透明度」。
+
+### 吉祥物（聊天顶部拉绳）
+
+「外观」区底部还有一组吉祥物控件，控制聊天的**拉绳吉祥物**（一条可拖拽的拉绳，沿顶部吸附，向下拉即拉出**壁纸仓库**抽屉）：
+
+| 控件 | 作用 | 范围 | 默认 |
+|---|---|---|---|
+| **显示吉祥物** | 是否显示拉绳吉祥物与其壁纸仓库抽屉 | 开 / 关 | 开 |
+| **吉祥物形态** | 切换吉祥物立绘：默认**小女仆**（近方形 chibi）或**鲸御姐**（竖版 2:3 全身体） | 小女仆 / 鲸御姐 | 小女仆 |
+| **吉祥物大小** | 缩放吉祥物（拉绳盒尺寸随比例变化，拖拽 / 吸附几何自动适配） | 0.5×–2.5× | 1× |
+
+> 两幅立绘在打包时都已内联为 base64（透明背景），单文件客户端资源依然自包含。**大小**只改变拉绳自身的盒尺寸，不影响下方的壁纸仓库抽屉。设置即时生效并保存在宿主端配置文件里。
 
 ### 四个滑动条
 
@@ -297,7 +305,18 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 本插件的液态玻璃效果对 dsh-better-sidebar 的侧边栏面板做了专门适配（毛玻璃、高光与层级统一），让侧边栏与对话区共享同一套「壁纸 + 遮罩」背景，三列视觉一致、不再割裂。
 
-![dsh-better-sidebar 兼容适配](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/3dbed7121d6c9734ce51b2b3fafcf96d78ea8026/docs/images/better-sidebar.png)
+「外观」区提供一组独立于会话玻璃的**侧栏玻璃**细粒度控制（只作用于 dsh-better-sidebar 的侧边栏子树，不支持 `backdrop-filter` 的浏览器自动回退高不透明实色）：
+
+| 控件 | 作用 | 范围 | 默认 |
+|---|---|---|---|
+| **侧栏液态玻璃** | 总开关：把侧边栏面板换成液态毛玻璃 | 开 / 关 | 开 |
+| **侧栏模糊** | 侧边栏毛玻璃的模糊半径 | 0–200 px | 16 |
+| **侧栏透明度** | 侧边栏玻璃的浓淡（**越大越透**：0 最实 / 200 最透） | 0–200 % | 12 % |
+| **侧栏玻璃颜色** | 侧边栏玻璃的**底色色调** | 6 预设 + 自定义取色 | `#ffffff` 白 |
+
+> 侧栏玻璃与设置窗口玻璃是两套独立参数：会话玻璃的「玻璃」滑杆只管输入栏/气泡，侧栏玻璃滑杆管侧边栏；侧边栏默认玻璃比设置窗口稍密（保证窄面板里目录/终端的文字可读）。
+
+![dsh-better-sidebar 兼容适配](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/better-sidebar.png)
 
 ## 已知限制
 
@@ -310,11 +329,14 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 ## 开发 / 重建
 
+准备提交代码前，请先阅读 [贡献指南](CONTRIBUTING.md)。Windows、WSL 与跨平台公共功能提交到 `main`；macOS、WaifuX 与松散媒体相关改动提交到 `dsh-wallpaper-engine-mac`，由 [Jerry（@ruijiaang-lab）](https://github.com/ruijiaang-lab)维护。
+
 host 端（`lib/index.js`）是纯 ESM，无需构建。client 端（`lib/client.js`）是**编译产物**，由规范源文件 `src/client.js` 经 `scripts/build-client.mjs` 生成，输出 DSH 模块加载器要求的 `window.__ModuleLoader__.load({ id, factory })` 外壳（与盒内 client 包 `tsdown` 产出的形态一致）。
 
 ```sh
-npm run build      # 从 src/client.js 重新生成 lib/client.js
-npm run verify     # 物化生成的 bundle 并断言其导出
+npm run build                  # 从 src/client.js 重新生成 lib/client.js
+npm run verify                 # 物化生成的 bundle 并断言其导出
+node scripts/verify-scene.mjs  # 场景静态帧提取 / scene-frame 路由自检（含合成 fixture）
 ```
 
 编辑 `src/client.js` 后运行 `npm run build`，不要手改 `lib/client.js`。`npm install`/`pnpm install` 会自动触发 `prepare` → `build`，因此全新 checkout 总是带最新的 `lib/client.js`。

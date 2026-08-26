@@ -15,7 +15,7 @@
 <p align="center"><sub>中文 · <a href="README.en.md">English</a></sub></p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wydddddcool/dsh-hover-approve/6768c7851c674311183e61f2f966ec67e64e37e2/assets/shot-approval.png" alt="需要你授权：操作/智能体说明/文件高亮/一键拒绝或授权" width="85%">
+  <img src="https://raw.githubusercontent.com/wydddddcool/dsh-hover-approve/70cd0c3176431eab98c8f8158f7381d7d7ecea2c/assets/shot-approval.png" alt="需要你授权：操作/智能体说明/文件高亮/一键拒绝或授权" width="85%">
 </p>
 
 ## 为什么需要它
@@ -53,9 +53,9 @@ DSH 的会话经常需要你停下来处理：**授权写文件、回答一个�
 
 > 真实 DSH Web 界面演示（会话行右侧锚定气泡，引线 + 圆点连到对应会话）：
 
-![需要你授权：操作/智能体说明/写入文件高亮/一键拒绝或授权](https://raw.githubusercontent.com/wydddddcool/dsh-hover-approve/6768c7851c674311183e61f2f966ec67e64e37e2/assets/shot-approval.png)
+![需要你授权：操作/智能体说明/写入文件高亮/一键拒绝或授权](https://raw.githubusercontent.com/wydddddcool/dsh-hover-approve/70cd0c3176431eab98c8f8158f7381d7d7ecea2c/assets/shot-approval.png)
 
-![目标已阻断：红色原因 + 目标内容 + 去会话查看](https://raw.githubusercontent.com/wydddddcool/dsh-hover-approve/6768c7851c674311183e61f2f966ec67e64e37e2/assets/shot-goal-blocked.png)
+![目标已阻断：红色原因 + 目标内容 + 去会话查看](https://raw.githubusercontent.com/wydddddcool/dsh-hover-approve/70cd0c3176431eab98c8f8158f7381d7d7ecea2c/assets/shot-goal-blocked.png)
 
 - **自动弹出，不用悬停**：锚定在会话行右侧，一眼看出是哪个会话在等你；
 - **信息完整**：操作类型用大白话（bash→运行终端命令、write→写入文件…）、文件路径高亮块、命令默认单行截断点击展开、智能体说明重点显示；

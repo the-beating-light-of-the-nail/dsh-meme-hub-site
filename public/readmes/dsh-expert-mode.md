@@ -37,12 +37,12 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 ## 🖼️ Demo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/a7695c6a1b5c6d07a16a42f902a06cf17c3ed0e4/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/8ee4bd8dbb72dc4583b031eb9cdffe1b8a331dfc/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
   <em>Select the "Expert Mode" preset in DSH workspace to use</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/a7695c6a1b5c6d07a16a42f902a06cf17c3ed0e4/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/8ee4bd8dbb72dc4583b031eb9cdffe1b8a331dfc/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
   <em>5 expert subagents working in parallel, with real-time token usage and timing</em>
 </p>
 

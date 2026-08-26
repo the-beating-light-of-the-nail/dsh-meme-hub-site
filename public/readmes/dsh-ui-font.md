@@ -8,11 +8,11 @@
 
 |            安装前            |           安装后            |
 | :--------------------------: | :-------------------------: |
-| ![安装前](https://raw.githubusercontent.com/warmwine/dsh-ui-font/b5db5718c8718f0d926090c18e33ac04e2b27744/images/before.png) | ![安装后](https://raw.githubusercontent.com/warmwine/dsh-ui-font/b5db5718c8718f0d926090c18e33ac04e2b27744/images/after.png) |
+| ![安装前](https://raw.githubusercontent.com/warmwine/dsh-ui-font/3d986759e4d8b083016959f982a2cb0b3fc30880/images/before.png) | ![安装后](https://raw.githubusercontent.com/warmwine/dsh-ui-font/3d986759e4d8b083016959f982a2cb0b3fc30880/images/after.png) |
 
 设置界面（侧边栏 → 设置 → 字体）：
 
-![设置界面](https://raw.githubusercontent.com/warmwine/dsh-ui-font/b5db5718c8718f0d926090c18e33ac04e2b27744/images/setting.png)
+![设置界面](https://raw.githubusercontent.com/warmwine/dsh-ui-font/3d986759e4d8b083016959f982a2cb0b3fc30880/images/setting.png)
 
 ## 它能干什么
 
