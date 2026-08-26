@@ -207,7 +207,13 @@
       "q7": "Does it work on Windows, macOS and Linux?",
       "a7": "Yes. dsh is a Node.js program and works on all three desktop systems: PowerShell on Windows, Terminal on macOS, whatever your Linux distro ships. Once Node.js v20+ is installed the commands are identical. Curious about phones? See the community Android project on the launchers page.",
       "q8": "What are the common dsh commands?",
-      "a8": "Three core ones: npx {'@'}deepseek-ai/dsh web starts the Web UI; npm install -g {'@'}deepseek-ai/dsh installs the dsh CLI globally; dsh plugin add github:owner/repo installs a plugin (swap in the owner/repo). Then manage and enable plugins from the Web UI — every plugin page on this site has a copy-ready command."
+      "a8": "Three core ones: npx {'@'}deepseek-ai/dsh web starts the Web UI; npm install -g {'@'}deepseek-ai/dsh installs the dsh CLI globally; dsh plugin add github:owner/repo installs a plugin (swap in the owner/repo). Then manage and enable plugins from the Web UI — every plugin page on this site has a copy-ready command.",
+      "q9": "How do I check the dsh version?",
+      "a9": "Run dsh --version in your terminal (or npm list -g {'@'}deepseek-ai/dsh). To upgrade to the latest release: npm update -g {'@'}deepseek-ai/dsh. To install a specific version: npm install -g {'@'}deepseek-ai/dsh{'@'}<version>.",
+      "q10": "Does it work on aaPanel (BaoTa) or a Linux server?",
+      "a10": "Yes. dsh is a Node.js program — as long as the server has Node.js v20+ installed, run npx {'@'}deepseek-ai/dsh web in the terminal. On aaPanel (the BaoTa panel) you can run it from the built-in terminal or as a scheduled task. Note that servers typically have no desktop environment, so plan on accessing the Web UI remotely.",
+      "q11": "Can dsh run tasks on a schedule?",
+      "a11": "Use system-level tooling: cron on Linux or Task Scheduler on Windows, calling dsh commands or plugins on a timer. Some agent-orchestration plugins ship with their own scheduling — check the plugin detail page."
     },
     "typoH": "Misspelled it? Happens a lot",
     "typoP": "A fair share of visitors get here by typing it wrong. deepseekharness without the space, deepseek hardness with an extra d, deepseek herness missing an a — all point to the same project. The correct spelling is DeepSeek Harness, two words, dsh for short. The commands above work no matter how you spelled it.",

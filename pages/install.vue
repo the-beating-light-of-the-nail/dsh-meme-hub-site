@@ -208,7 +208,7 @@ useHead({
         <!-- FAQ -->
         <section class="step-card">
           <h2>{{ t('install.faqH') }}</h2>
-          <div v-for="i in 8" :key="i" class="faq-item">
+          <div v-for="i in 11" :key="i" class="faq-item">
             <h3>{{ t(`install.faq.q${i}`) }}</h3>
             <p>{{ t(`install.faq.a${i}`) }}</p>
           </div>

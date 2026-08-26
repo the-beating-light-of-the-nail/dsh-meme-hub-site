@@ -207,7 +207,13 @@
       "q7": "Windows / macOS / Linux 都能装吗？",
       "a7": "能。dsh 是 Node.js 程序，三大桌面系统通用：Windows 用 PowerShell，macOS 用终端，Linux 各发行版自带终端。装好 Node.js v20+ 之后命令完全一样。想在手机上碰运气的，去看启动器页的社区安卓项目。",
       "q8": "dsh 有哪些常用命令？",
-      "a8": "核心就三条：npx {'@'}deepseek-ai/dsh web 启动 Web UI；npm install -g {'@'}deepseek-ai/dsh 全局安装 dsh 命令；dsh plugin add github:owner/repo 安装插件（owner/repo 换成插件仓库）。装好后去 Web UI 的插件页管理、启用。本站每个插件详情页都有一键复制的命令，直接抄。"
+      "a8": "核心就三条：npx {'@'}deepseek-ai/dsh web 启动 Web UI；npm install -g {'@'}deepseek-ai/dsh 全局安装 dsh 命令；dsh plugin add github:owner/repo 安装插件（owner/repo 换成插件仓库）。装好后去 Web UI 的插件页管理、启用。本站每个插件详情页都有一键复制的命令，直接抄。",
+      "q9": "怎么查看 dsh 版本？",
+      "a9": "终端里运行 dsh --version（或 npm list -g {'@'}deepseek-ai/dsh）。升级到最新版：npm update -g {'@'}deepseek-ai/dsh。要装指定版本：npm install -g {'@'}deepseek-ai/dsh{'@'}<版本号>。",
+      "q10": "宝塔面板 / Linux 服务器能装吗？",
+      "a10": "能。dsh 是 Node.js 程序，只要服务器装了 Node.js v20+，在终端跑 npx {'@'}deepseek-ai/dsh web 即可，宝塔面板在「终端」或计划任务里执行都行。注意服务器版默认无图形界面，建议配合 Web UI 远程访问。",
+      "q11": "dsh 能定时执行任务吗？",
+      "a11": "可以用系统级方案：Linux 用 cron、Windows 用任务计划程序，定时调用 dsh 命令或插件。部分 Agent 编排类插件自带调度功能，可在插件详情页查看。"
     },
     "typoH": "拼错了？太正常了",
     "typoP": "相当一部分访客是拼错了才搜进来的。deepseekharness 不带空格、deepseek hardness 多个 d、deepseek herness 少个 a，搜的都是同一个东西。正确写法是 DeepSeek Harness，两个词，社区简称 dsh。不管你当初是怎么拼的，上面的命令照用不误。",

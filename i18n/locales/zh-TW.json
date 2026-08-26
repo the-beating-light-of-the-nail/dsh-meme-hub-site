@@ -207,7 +207,13 @@
       "q7": "Windows / macOS / Linux 都能裝嗎？",
       "a7": "能。dsh 是 Node.js 程式，三大桌面系統通用：Windows 用 PowerShell，macOS 用終端，Linux 各發行版自帶終端。裝好 Node.js v20+ 之後命令完全一樣。想在手機上碰運氣的，去看啟動器頁的社群安卓專案。",
       "q8": "dsh 有哪些常用指令？",
-      "a8": "核心就三條：npx {'@'}deepseek-ai/dsh web 啟動 Web UI；npm install -g {'@'}deepseek-ai/dsh 全域安裝 dsh 指令；dsh plugin add github:owner/repo 安裝外掛（owner/repo 換成外掛倉庫）。裝好後去 Web UI 的外掛頁管理、啟用。本站每個外掛詳情頁都有一鍵複製的指令，直接抄。"
+      "a8": "核心就三條：npx {'@'}deepseek-ai/dsh web 啟動 Web UI；npm install -g {'@'}deepseek-ai/dsh 全域安裝 dsh 指令；dsh plugin add github:owner/repo 安裝外掛（owner/repo 換成外掛倉庫）。裝好後去 Web UI 的外掛頁管理、啟用。本站每個外掛詳情頁都有一鍵複製的指令，直接抄。",
+      "q9": "怎麼查看 dsh 版本？",
+      "a9": "終端裡執行 dsh --version（或 npm list -g {'@'}deepseek-ai/dsh）。升級到最新版：npm update -g {'@'}deepseek-ai/dsh。要安裝指定版本：npm install -g {'@'}deepseek-ai/dsh{'@'}<版本號>。",
+      "q10": "寶塔面板 / Linux 伺服器能裝嗎？",
+      "a10": "能。dsh 是 Node.js 程式，只要伺服器裝了 Node.js v20+，在終端跑 npx {'@'}deepseek-ai/dsh web 即可，寶塔面板在「終端機」或計畫任務裡執行都行。注意伺服器版預設無圖形介面，建議配合 Web UI 遠端存取。",
+      "q11": "dsh 能定時執行任務嗎？",
+      "a11": "可以用系統級方案：Linux 用 cron、Windows 用工作排程器，定時呼叫 dsh 命令或外掛。部分 Agent 編排類外掛自帶排程功能，可在外掛詳情頁查看。"
     },
     "typoH": "拼錯了？太正常了",
     "typoP": "相當一部分訪客是拼錯了才搜進來的。deepseekharness 不帶空格、deepseek hardness 多個 d、deepseek herness 少個 a，搜的都是同一個東西。正確寫法是 DeepSeek Harness，兩個詞，社群簡稱 dsh。不管你當初是怎麼拼的，上面的命令照用不誤。",

@@ -207,7 +207,13 @@
       "q7": "Läuft es auf Windows, macOS und Linux?",
       "a7": "Ja. dsh ist ein Node.js-Programm und läuft auf allen drei Desktop-Systemen: PowerShell auf Windows, Terminal auf macOS, was auch immer deine Linux-Distro mitbringt. Sobald Node.js v20+ installiert ist, sind die Befehle identisch. Neugierig auf Handys? Sieh dir das Community-Android-Projekt auf der Launcher-Seite an.",
       "q8": "Welche Befehle gibt es für dsh?",
-      "a8": "Drei Kernbefehle: npx {'@'}deepseek-ai/dsh web startet die Web-UI; npm install -g {'@'}deepseek-ai/dsh installiert die dsh-CLI global; dsh plugin add github:owner/repo installiert ein Plugin (owner/repo ersetzen). Danach lassen sich Plugins in der Web-UI verwalten und aktivieren — auf jeder Plugin-Seite dieser Site gibt es einen kopierfertigen Befehl."
+      "a8": "Drei Kernbefehle: npx {'@'}deepseek-ai/dsh web startet die Web-UI; npm install -g {'@'}deepseek-ai/dsh installiert die dsh-CLI global; dsh plugin add github:owner/repo installiert ein Plugin (owner/repo ersetzen). Danach lassen sich Plugins in der Web-UI verwalten und aktivieren — auf jeder Plugin-Seite dieser Site gibt es einen kopierfertigen Befehl.",
+      "q9": "Wie sehe ich die dsh-Version nach?",
+      "a9": "Führe im Terminal dsh --version aus (oder npm list -g {'@'}deepseek-ai/dsh). Upgrade auf die neueste Version: npm update -g {'@'}deepseek-ai/dsh. Eine bestimmte Version installieren: npm install -g {'@'}deepseek-ai/dsh{'@'}<Versionsnummer>.",
+      "q10": "Läuft es auf aaPanel (BaoTa) oder einem Linux-Server?",
+      "a10": "Ja. dsh ist ein Node.js-Programm — solange auf dem Server Node.js v20+ installiert ist, führst du im Terminal einfach npx {'@'}deepseek-ai/dsh web aus; im aaPanel (dem BaoTa-Panel) geht das über das eingebaute Terminal oder als geplante Aufgabe. Beachte: Server haben in der Regel keine Desktop-Oberfläche — die Web-UI am besten remote nutzen.",
+      "q11": "Kann dsh Aufgaben zeitgesteuert ausführen?",
+      "a11": "Nutze Lösungen auf Systemebene: cron unter Linux, die Aufgabenplanung unter Windows — damit lassen sich dsh-Befehle oder Plugins zeitgesteuert aufrufen. Einige Agent-Orchestrierungs-Plugins bringen einen eigenen Scheduler mit — sieh auf der Plugin-Detailseite nach."
     },
     "typoH": "Verschrieben? Kommt ständig vor",
     "typoP": "Ein guter Teil der Besucher landet hier durch Tippfehler. deepseekharness ohne Leerzeichen, deepseek hardness mit extra d, deepseek herness ohne a — alle meinen dasselbe Projekt. Richtig ist DeepSeek Harness, zwei Wörter, kurz dsh. Die Befehle oben funktionieren unabhängig davon, wie du es geschrieben hast.",
