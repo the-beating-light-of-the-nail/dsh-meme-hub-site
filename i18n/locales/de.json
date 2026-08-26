@@ -106,7 +106,7 @@
     "loadMore": "Mehr laden ({n} weitere)"
   },
   "best": {
-    "title": "Die besten DeepSeek-Harness-Plugins (dsh) — die Ranglisten",
+    "title": "Beste dsh-Plugins — DeepSeek Harness Rangliste",
     "sub": "Alle {n} handverlesenen dsh-Plugins dieser Seite in drei Ranglisten: die ewige Bestenliste, für die die Community mit Sternen gestimmt hat, was noch aktiv weiterentwickelt wird — und unsere Redaktionsfavoriten: das, was wir wirklich installiert haben und dabei lachen mussten.",
     "updatedNote": "Datenstand {date}; Sterne und letzte Pushes werden täglich automatisch von GitHub aktualisiert",
     "tabStars": "🏆 Sterne-Bestenliste",
@@ -502,7 +502,7 @@
     "vsCxDesc": "dsh oder Codex? TypeScript gegen Rust, MIT gegen Apache-2.0, 143.374 gegen 106.397 Stars — eine Vergleichstabelle plus faire Analyse.",
     "installTitle": "DeepSeek Harness (dsh) installieren — Windows, macOS & Linux {'|'} DSH Meme Hub",
     "installDesc": "DeepSeek Harness (dsh) unter Windows, macOS und Linux installieren: Node.js prüfen, mit einer npx-Zeile starten, Plugins hinzufügen — und was zu tun ist, wenn die Installation fehlschlägt, Fehler meldet oder sich nicht öffnet. Lösungen und Troubleshooting in der FAQ.",
-    "launcherTitle": "DeepSeek-Harness-Desktop (dsh) — GUI, ohne Kommandozeile {'|'} DSH Meme Hub",
+    "launcherTitle": "dsh Desktop (DeepSeek Harness) — GUI, ohne Kommandozeile {'|'} DSH Meme Hub",
     "launcherDesc": "Du willst ein DeepSeek-Desktop? Diese Community-Launcher geben DSH eine grafische Oberfläche: die Desktop-Version für Windows, macOS, Linux oder Android herunterladen — installieren, doppelklicken, ganz ohne Kommandozeile.",
     "launcherCollectionName": "DSH Desktop-Launcher — DSH Meme Hub",
     "launcherCollectionDesc": "Community-Ein-Klick-Launcher, die DSH in ein natives Desktop-Fenster packen: nach Plattform filtern, nach Sternen sortieren. Gebaut für Menschen, die nie ein Terminal öffnen wollen.",

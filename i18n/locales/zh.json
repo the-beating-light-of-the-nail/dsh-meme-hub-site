@@ -106,7 +106,7 @@
     "loadMore": "加载更多（还有 {n} 个）"
   },
   "best": {
-    "title": "DeepSeek Harness (dsh) 插件排行榜",
+    "title": "dsh 插件排行榜 — DeepSeek Harness 最佳插件精选",
     "sub": "本站人工精选的 {n} 个 dsh 插件，三张榜单看全生态：社区用 star 投出来的总榜、最近还在更新的活跃榜，和我们真的装过、真笑过的编辑精选。",
     "updatedNote": "数据更新于 {date}，star 数与推送时间每日自动从 GitHub 刷新",
     "tabStars": "🏆 Star 总榜",
@@ -502,7 +502,7 @@
     "vsCxDesc": "dsh 和 Codex 怎么选？TypeScript vs Rust、MIT vs Apache-2.0、DeepSeek 生态 vs OpenAI 生态、143,374 vs 106,397 star，一张对比表 + 公允分析。",
     "installTitle": "如何安装 dsh（DeepSeek Harness）— 常用命令/Windows/macOS/Linux {'|'} DSH Meme Hub",
     "installDesc": "DeepSeek Harness 下载安装教程：Windows/macOS/Linux 三系统通用，Node.js 环境检查、npx 一行启动、装插件、安装失败报错打不开怎么办，FAQ 一步不落。",
-    "launcherTitle": "DeepSeek Harness (dsh) 桌面版下载 — 图形界面/不用命令行 {'|'} DSH Meme Hub",
+    "launcherTitle": "dsh Desktop 桌面端下载 — DeepSeek Harness 图形界面/不用命令行 {'|'} DSH Meme Hub",
     "launcherDesc": "想要 deepseek desktop 桌面版？社区启动器给 DSH 套上图形界面：Windows/macOS/Linux/安卓下载安装、双击即用，全程不碰命令行。",
     "launcherCollectionName": "DSH 桌面启动器目录 — DSH Meme Hub",
     "launcherCollectionDesc": "把 DSH 装进原生桌面窗口的一键启动器收录：按平台筛选，按 star 排序，面向不想敲命令行的新手。",
