@@ -22,21 +22,21 @@ DeepSeek Harness（dsh web）的定时任务插件：在左侧栏 **「新会话
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/31a8627ebf9af56d30c2e385f0f72ee22cc78a08/assets/sidebar-entry.png" width="240" alt="侧栏入口（展开 / 收缩态）"><br>
+      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/99a223edfa090afa2f1f05c77526a53a0f277961/assets/sidebar-entry.png" width="240" alt="侧栏入口（展开 / 收缩态）"><br>
       <sub>侧栏入口（展开 / 收缩态）</sub>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/31a8627ebf9af56d30c2e385f0f72ee22cc78a08/assets/settings-1.png" width="240" alt="任务与推送设置 1"><br>
+      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/99a223edfa090afa2f1f05c77526a53a0f277961/assets/settings-1.png" width="240" alt="任务与推送设置 1"><br>
       <sub>任务与推送设置 1</sub>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/31a8627ebf9af56d30c2e385f0f72ee22cc78a08/assets/settings-2.png" width="240" alt="任务与推送设置 2"><br>
+      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/99a223edfa090afa2f1f05c77526a53a0f277961/assets/settings-2.png" width="240" alt="任务与推送设置 2"><br>
       <sub>任务与推送设置 2</sub>
     </td>
   </tr>
   <tr>
     <td colspan="3" align="center">
-      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/31a8627ebf9af56d30c2e385f0f72ee22cc78a08/assets/output-popup.png" width="240" alt="执行历史与输出弹窗"><br>
+      <img src="https://raw.githubusercontent.com/534119219/chicheng-cron/99a223edfa090afa2f1f05c77526a53a0f277961/assets/output-popup.png" width="240" alt="执行历史与输出弹窗"><br>
       <sub>执行历史与输出弹窗</sub>
     </td>
   </tr>

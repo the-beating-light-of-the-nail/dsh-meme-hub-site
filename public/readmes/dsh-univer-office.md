@@ -1,4 +1,4 @@
-![Univer × DeepSeek](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/univer-deepseek-banner.png)
+![Univer × DeepSeek](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/univer-deepseek-banner.png)
 
 # DSH × Univer Office
 
@@ -18,9 +18,12 @@ After installation, describe the result you want in natural language. The agent 
 
 ## See it in action
 
+[![Play the DSH × Univer Office demo](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/nike-presentation-demo.png)](https://www.youtube.com/watch?v=k-2zW_CMiew)
+
+
 The agent created this spreadsheet from a natural-language request, then added conditional formatting and a chart in the same conversation. The result can be previewed, revised, merged into the current version, or discarded in place.
 
-![Reviewing a spreadsheet with conditional formatting and a chart in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/chart-and-formatting.png)
+![Reviewing a spreadsheet with conditional formatting and a chart in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/chart-and-formatting.png)
 
 > **Deliver a standard Excel file:** after review, ask the agent to export the spreadsheet as `.xlsx` so it can be opened and edited in Excel, WPS Office, and other compatible office applications.
 
@@ -29,15 +32,15 @@ The agent created this spreadsheet from a natural-language request, then added c
 
 ### 1. Describe the task in natural language
 
-![Asking the agent to create a class score sheet](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/spreadsheet-request.png)
+![Asking the agent to create a class score sheet](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/spreadsheet-request.png)
 
 ### 2. Follow the result live while the agent works
 
-![A live spreadsheet window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/live-worktree.png)
+![A live spreadsheet window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/live-worktree.png)
 
 ### 3. Approve or discard the changes in the conversation
 
-![The spreadsheet review card after the task completes](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/review-result.png)
+![The spreadsheet review card after the task completes](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/review-result.png)
 
 </details>
 
@@ -45,7 +48,7 @@ The agent created this spreadsheet from a natural-language request, then added c
 
 Give the agent a topic, audience, page count, content outline, and visual direction. It can build the complete presentation, verify content and layout page by page, and leave the result in the conversation for review.
 
-![Reviewing a bubble sort teaching presentation in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/presentation-review.png)
+![Reviewing a bubble sort teaching presentation in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/presentation-review.png)
 
 > **Deliver a standard PowerPoint file:** after review, ask the agent to export the presentation as `.pptx` so it can be presented and edited in PowerPoint, WPS Office, and other compatible office applications.
 
@@ -54,11 +57,11 @@ Give the agent a topic, audience, page count, content outline, and visual direct
 
 #### 1. Specify the topic, audience, and page requirements
 
-![Asking the agent to create a bubble sort teaching presentation](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/presentation-request.png)
+![Asking the agent to create a bubble sort teaching presentation](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/presentation-request.png)
 
 #### 2. Follow and verify the pages while the agent works
 
-![A live presentation window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/17f4660c1381d1a4eed3f310b0c0cf26a51d102d/docs/assets/readme/presentation-live.png)
+![A live presentation window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/97e348cf44b1eb57d5025dbf7155c8148d72683d/docs/assets/readme/presentation-live.png)
 
 </details>
 
@@ -119,10 +122,10 @@ dsh web
 
 After DSH starts successfully, refresh the existing DeepSeek Harness browser page with **Cmd+R / Ctrl+R**.
 
-### 2. Describe the result you want
+### 2. Describe what you need
 
 ```text
-Create reports/q2-review.univer. Read data/q2-sales.xlsx and build a management dashboard with summary metrics, monthly trends, and regional rankings.
+Create a monthly expense spreadsheet with dates, categories, amounts, a total, and a few rows of sample data.
 ```
 
 ### 3. Review it in the conversation

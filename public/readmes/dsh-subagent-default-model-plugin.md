@@ -18,11 +18,11 @@
 
 **设置面板**（`设置 → 插件配置 → 子代理默认模型`）：配置一个或多个模型路由，支持 `round-robin` / `random` 分配策略与每路由推理强度。
 
-![子代理默认模型设置面板](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/36f85e275ae85b9f3692c5ebc07f78cc7a464173/assets/pic_01.png)
+![子代理默认模型设置面板](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/18fd3cf5ca155163e17c1bb76c78eb5f57ea9a95/assets/pic_01.png)
 
 **效果验证**：10 个子代理在 `deepseek-v4-flash` 与 `Kimi-k3` 之间 5/5 均衡分配（round-robin 实测）。
 
-![子代理默认模型分配统计](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/36f85e275ae85b9f3692c5ebc07f78cc7a464173/assets/pic_02.png)
+![子代理默认模型分配统计](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/18fd3cf5ca155163e17c1bb76c78eb5f57ea9a95/assets/pic_02.png)
 
 ## 市场
 

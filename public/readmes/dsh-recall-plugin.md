@@ -5,7 +5,7 @@
 ![npm](https://img.shields.io/npm/v/dsh-recall-plugin?label=npm&color=cb3837)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blue)
-![Build](https://img.shields.io/badge/%E7%BA%AFJS-%E9%9B%B6%E6%9E%84%E5%BB%BA-green)
+![Build](https://img.shields.io/badge/%E7%BA%AFJS-green)
 
 ![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-blue)
 ![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.1-blue)
@@ -19,17 +19,17 @@
 
 - 撤回按钮位置
 
-![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/d2e35061ec67812ee850513a5afaff43b6abac27/docs/screenshots/recall-button.png)
+![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/92858bac365801b4fdeebadc3e2242936dc249d6/docs/screenshots/recall-button.png)
 
 ---
 | 确认面板 · 变更文件清单 | 确认面板 · 回退范围说明 |
 | --- | --- |
-| ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/d2e35061ec67812ee850513a5afaff43b6abac27/docs/screenshots/confirm-panel-1.png) | ![确认面板 · 回退范围说明](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/d2e35061ec67812ee850513a5afaff43b6abac27/docs/screenshots/confirm-panel-2.png) |
+| ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/92858bac365801b4fdeebadc3e2242936dc249d6/docs/screenshots/confirm-panel-1.png) | ![确认面板 · 回退范围说明](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/92858bac365801b4fdeebadc3e2242936dc249d6/docs/screenshots/confirm-panel-2.png) |
 
 - 撤回后自动把消息文本回填到输入框，方便修改后重发（可在设置卡片关闭）
 - 设置页 · 插件配置卡片（阈值 / 排除表 / 快照管理，保存即热生效）
 
- ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/d2e35061ec67812ee850513a5afaff43b6abac27/docs/screenshots/settings-exclude-2.png) 
+ ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/92858bac365801b4fdeebadc3e2242936dc249d6/docs/screenshots/settings-exclude-2.png) 
 
 
 ## 功能亮点
@@ -53,6 +53,7 @@
 - 支持 Windows（PowerShell 5.1/7 + git CLI）与 Linux/macOS（bash + git CLI）。Windows 真机验证充分；Linux 已在 WSL2（Ubuntu 26.04，bash 5.3 + git 2.53）实测全流程（含中文路径、home 降级、会话清理、gc）；macOS 侧脚本按 bash 3.2 兼容编写，尚未真机实测。
 - 工作区内嵌套的其他 git 仓库（子目录自带 `.git`）无法索引：快照对其余部分照常（fail-open，页面会提示跳过了哪些路径），但其内容不参与回退。
 - 文件名含换行/TAB 的极端情形不在 diff 清单的解析能力内（概率可忽略）。
+- **与 dsh-routing-suite（渐进式工具披露路由）的交互**：若同时启用 dsh-routing-suite 的 router-standard 预设，撤回会经 `sessions.fork` 出新会话，导致路由阶段重置为默认（工具面临时收窄）。现象、成因与解决方案见 [docs/routing-interplay.md](docs/routing-interplay.md)。
 
 ## 安装
 
@@ -63,7 +64,7 @@
 ```powershell
 dsh plugin --profile web add dsh-recall-plugin
 ```
-- 也可从 git 直接安装（纯 JS 无构建，免 prepare/allowBuilds）：
+- 也可从 git 直接安装：
 ```powershell
 dsh plugin --profile web add github:limbo947/dsh-recall-plugin
 ```
@@ -127,6 +128,12 @@ pnpm install
 # 3. 重启 DSH + 硬刷新页面（Ctrl+Shift+R）
 ```
 
+
+### 测试
+
+- `npm test`：纯逻辑单测（vitest，无 DSH 依赖，CI 与本地同跑）——配置解析、快照解析器、脚本模板同名导出契约、客户端纯函数、发布包内容布局、快照索引持久化、存储总量上限；
+- `npm run test:probe`：官方 API 字段探针（依赖本机 dsh 安装；dsh 升级后本地必跑）——钉住 `renderMessageImages`/`node`/`cwd`、`sessions.fork` 的 `atSeq`/`increaseTitle`、`listSessions` 记录结构、`AgentRegistry` 等字段，违反即红（合规清单 #8 的机器化）。
+- CI（GitHub Actions）跑 `npm ci --legacy-peer-deps` + `npm test`（探针只在有 dsh 的机器跑）。
 
 ## License
 

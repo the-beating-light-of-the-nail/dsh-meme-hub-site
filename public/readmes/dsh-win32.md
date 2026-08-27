@@ -26,7 +26,7 @@ It does not install Git, PowerShell, busybox, WSL, or another DSH bundle on the 
 
 **Reproduced setup flow. This is not a screen recording.**
 
-![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/ce5320a746c4a032a6f4523b8ea020a89cf6a1bd/assets/demo.gif)
+![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/94d3947a73b624f2d19113e4230e6e46a39a9632/assets/demo.gif)
 
 The command checks the official persistent PowerShell and Workspace Write packages, creates the shortcut, and leaves the profile on the stock Minimal preset.
 
@@ -39,6 +39,8 @@ The command checks the official persistent PowerShell and Workspace Write packag
 - Shows the exact next steps for a first session
 
 After setup, open DSH, add a workspace, choose the stock **Minimal** preset, and keep **Workspace Write** enabled.
+
+After a successful setup in a human-operated terminal, the CLI asks once whether to Star the repository. The prompt is `[Y/n]`, states that Enter means Yes, and explains that Yes adds a public Star using the account authenticated in GitHub CLI. In any non-TTY run, and in detected Codex, Claude Code, Cursor, and other agent sessions, setup never answers for the user: it emits `USER_CONFIRMATION_REQUIRED` and instructs the agent to ask `Star dsh-win32? Yes / No`. Only after the user's explicit answer may the agent run `npx dsh-win32 star --yes` or `npx dsh-win32 star --no`. CI performs no prompt, marker write, or GitHub action.
 
 Use another profile without creating a shortcut.
 
@@ -70,7 +72,9 @@ No user DSH profile, config, workspace, or PowerShell profile is loaded or chang
 
 If a timeout or output limit leaves worker or descendant containment unconfirmed, verification fails and preserves the isolated snapshot instead of deleting files under a potentially live process.
 
-The boundary is deliberate: this composes the installed official components and invokes the real persistent tool, but it does not start the complete stock Minimal host/preset or make a model request. A pass must therefore be read as component-chain acceptance, not as an end-to-end stock-session claim.
+The boundary is deliberate: this composes the installed official components and invokes the real persistent tool, but it does not start the complete stock Minimal host/preset, run the plugin installer, execute hook bridges, or make a model request. A pass must therefore be read as component-chain acceptance, not as an end-to-end stock-session or hook-enforcement claim.
+
+The repository CI installs `@deepseek-ai/dsh@latest` from scratch and runs this acceptance on real Windows. Pushes, pull requests, and manual runs cover npm and strict pnpm layouts on Node 22.19 and 24. A weekly upstream watch retains both installers on Node 22.19, so a new DSH publication is checked even when dsh-win32 itself has not changed.
 
 ## Doctor and safe repair
 
@@ -83,6 +87,15 @@ npx dsh-win32 fix
 `doctor` verifies the published DSH Windows package contract and checks local Windows failures. Its JSON output follows the `dsh-doctor/v1` envelope. Use `verify` when you need live evidence from the installed stack rather than registry metadata.
 
 `fix` only repairs installed koffi versions that are known broken or fail a real runtime load. It verifies the load again after repair.
+
+## Upstream plugin and hook boundaries
+
+Two current DSH control paths sit outside repairs that dsh-win32 can safely apply:
+
+- On Windows, `dsh plugin add` can split a local package path containing spaces, and relative package paths can resolve from an unexpected working directory ([upstream #2485](https://github.com/deepseek-ai/deepseek-harness/discussions/2485)). Prefer a published package specifier. If a local package is unavoidable, stage it at a space-free absolute path and read back the installed package identity rather than trusting a successful command alone.
+- Hook logs are not proof that enforcement happened. An interpreter-backed Claude Code hook can lose its blocking exit code through PowerShell on Windows ([upstream #2485](https://github.com/deepseek-ai/deepseek-harness/discussions/2485)), while a `{"continue": false}` result can be recorded as `decision: stop` without halting the run ([upstream #1514](https://github.com/deepseek-ai/deepseek-harness/discussions/1514)). After changing hooks or upgrading DSH, run a harmless unconditional deny canary and confirm the target action is actually blocked.
+
+`doctor` cannot prove either behavior from package metadata, and `verify` deliberately avoids user profiles, hook configuration, model requests, and plugin installation. They therefore do not report these upstream paths as passing. The canary remains a user-controlled end-to-end check until DSH exposes a safe, isolated hook acceptance interface.
 
 ## Legacy DSH
 
@@ -102,6 +115,7 @@ The legacy Git Bash preset needs `danger-full-access`. The legacy busybox preset
 
 - `doctor` checks published package metadata; `verify` separately reports and loads the selected installed DSH identity.
 - `verify` does not boot the complete stock Minimal host/preset, so host wiring and UI session ownership remain outside its pass claim.
+- Neither command validates `dsh plugin add` path handling or hook enforcement; see the upstream boundaries above.
 - PowerShell 7 is recommended. dsh-win32 does not install it.
 - A legacy busybox session uses ash rather than Bash.
 - Editing a legacy encoded file writes UTF-8.

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/b6c1425990b783bb7827384caefa7fc1b95060fc/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
+  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/fd2253dde9372d1212be3f0e219237572acc0bff/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
 </p>
 
 <h1 align="center">dsh-md-notes</h1>

@@ -4,7 +4,7 @@
 > 折叠条，只展示最后一个调用的一行摘要，点击即可展开/收起。
 > 不替换任何内置渲染器，卸载后界面完全恢复原样。
 
-![折叠效果演示](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/ce45688ac535835bca7046807cb647a6f5557269/assets/demo-fold.gif)
+![折叠效果演示](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/b0eac08f00651562e62fa24c8d13f1b8cc42084a/assets/demo-fold.gif)
 <!-- 🖼️ 图片位：assets/demo-fold.gif —— 建议录制 6~10s：多个工具调用自动折成一条 → 点击展开（卡片瀑布落下）→ 点击收起（卡片上行、高度收缩），16:9，≤2MB -->
 
 ## 特性一览
@@ -22,7 +22,7 @@
 - **接近零性能占用**：无页面级观察器、流式期间引擎零工作、标签页隐藏时全部暂停——
   实机测量空闲开销约 0.03% 单核（详见[性能](#性能)）。
 
-![展开/收起动画](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/ce45688ac535835bca7046807cb647a6f5557269/assets/expand-collapse.gif)
+![展开/收起动画](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/b0eac08f00651562e62fa24c8d13f1b8cc42084a/assets/expand-collapse.gif)
 <!-- 🖼️ 图片位：assets/expand-collapse.gif —— 建议：单段 3~4 个调用的展开（瀑布落下 + 标签滑左）与收起（上行 + 高度收缩）特写，正方形或 4:3，≤2MB -->
 
 ## 安装
@@ -63,7 +63,7 @@ dsh plugin --profile web remove dsh-toolfold
 
 设置入口：**设置 → 插件 → 工具折叠**（卡片外观与内置插件卡片一致，跟随深浅主题）。
 
-![设置卡片](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/ce45688ac535835bca7046807cb647a6f5557269/assets/settings.png)
+![设置卡片](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/b0eac08f00651562e62fa24c8d13f1b8cc42084a/assets/settings.png)
 <!-- 🖼️ 图片位：assets/settings.png —— 截图建议：设置 → 插件 页内「工具折叠」卡片展开态（时长滑块 + 保留思考开关 + 性能统计开关 + 存储位置提示），浅色主题，PNG/WebP ≤1MB -->
 
 | 设置项 | 说明 |
@@ -94,7 +94,7 @@ dsh plugin --profile web remove dsh-toolfold
   `localStorage`（键 `dsh-toolfold.settings.v1`），卡片会显示「仅保存在本浏览器」；
   旧版键 `dsh-codex-collapse.settings.v1` 首次加载自动迁移。
 
-![保留思考对比](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/ce45688ac535835bca7046807cb647a6f5557269/assets/keep-think.gif)
+![保留思考对比](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/b0eac08f00651562e62fa24c8d13f1b8cc42084a/assets/keep-think.gif)
 <!-- 🖼️ 图片位：assets/keep-think.gif —— 建议：同一段调用分别以「保留思考 关 / 开」各演示一次展开，展示思考不显示 / 按原顺序插回，≤2MB -->
 
 ## 性能

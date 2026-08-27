@@ -96,6 +96,8 @@ All tunables are Schemastery `Config` fields (changeable from cordis.yml). An id
 | `riskPolicy` | `{maxAutoAllow: high, onHighRisk: delegate}` | `allow` verdicts above `maxAutoAllow` delegate or deny |
 | `circuitBreaker` | `{consecutiveDenies: 3, windowDenies: 6, windowSize: 10, action: delegate}` | Rejection circuit breaker |
 | `overrideTtlMs` | `300000` | How long a `/auto-review approve` override stays usable |
+| `verdictCacheTtlMs` | `60000` | Reuse a recent verdict for an identical `tool + arguments` fingerprint; `0` disables the cache |
+| `verdictCacheMaxEntries` | `256` | Maximum cached fingerprints before oldest-eviction |
 | `language` | `en` | UI language of the `/auto-review` command output (`en` \| `zh`) |
 | `allowUnmarkedAudit` | `false` | Force session-log audit on hosts that drop the `ignorable` marker (dangerous: unmarked events make sessions unresumable elsewhere); default is detect-and-degrade |
 
@@ -142,7 +144,7 @@ Example (annotated full form: `fixtures/config/config-full.yaml`):
 
 ## Web review panel
 
-In the Web GUI (web profile), the package contributes a session-header action (**AI Review**) that opens a panel with the session's auto-review state: the switch with on/off buttons (they execute `/auto-review on|off`), both per-turn budgets, cumulative statistics (including hard-disable rejections), the circuit trip, the recent verdicts, and one-shot **approve** buttons for recent denials (they execute `/auto-review approve [n]`).
+In the Web GUI (web profile), the package contributes a session-header action (**AI Review**) that opens a panel with the session's auto-review state: the switch with on/off buttons (they execute `/auto-review on|off`), both per-turn budgets, cumulative statistics (including hard-disable rejections and cache hits), the circuit trip, the recent verdicts, and one-shot **approve** buttons for recent denials (they execute `/auto-review approve [n]`).
 
 How it is wired:
 
@@ -251,6 +253,49 @@ CI gate: the process exits 0 only when every case of every suite passed — fail
 ```
 
 `dsh-eval` differs from [openai/codex-research](https://github.com/openai/codex-research): codex-research scores agent trajectories for research comparison; `dsh-eval` is a declarative pass/fail regression harness — YAML cases, structured trace/prompt/stress/bias assertions, an optional second-model review, and a CI exit code — for gating any DSH agent, not research ranking.
+
+## MCP server (standalone)
+
+`dsh-auto-review` also ships a stdio **MCP server** (`dsh-auto-review-mcp`) so external MCP clients (Claude, Codex, …) can consume a deterministic review path without a harness. It speaks JSON-RPC 2.0 over newline-delimited JSON (NDJSON) — one JSON object per line, no `Content-Length` framing.
+
+**Boundary.** The full reviewer needs the harness subagent seam and a second model, which a separate stdio process cannot reach. The standalone server is therefore **deterministic rules + cache, no model review**:
+
+- `review_action` reuses the same-fingerprint verdict cache (`src/cache.ts`) and the risk-rule / tool-policy resolution (`src/config.ts`): a `never` rule → `deny`; a cache hit on an identical `tool + arguments` fingerprint replays that verdict; anything else (`ai` needs a model, `human` needs a human) → fail-closed `deny` with `reason: "standalone path, no model"`. It never allows an action a model did not already allow.
+- `cache_stats` reports hit/store counts and the TTL status.
+
+| Tool | Purpose |
+|---|---|
+| `review_action` | `{tool, args?, reason?}` → `{decision, reason, riskLevel}` — deterministic deny / cache replay |
+| `cache_stats` | `{}` → `{hits, stores, size, ttlMs, enabled}` |
+
+Run it directly:
+
+```sh
+# risk rules come from environment variables
+export DSH_AUTO_REVIEW_RISK_RULES='[{"pattern":"rm -rf","policy":"never","field":"arguments"}]'
+node bin/dsh-auto-review-mcp.mjs
+# or, after npm install: npx dsh-auto-review-mcp
+```
+
+Environment config: `DSH_AUTO_REVIEW_RISK_RULES` (JSON array of `{pattern, policy, field?}`), `DSH_AUTO_REVIEW_TOOLS_POLICY` (JSON `{default?, overrides?}`), `DSH_AUTO_REVIEW_CACHE_TTL_MS`, `DSH_AUTO_REVIEW_CACHE_MAX_ENTRIES`.
+
+Claude Desktop (`claude_desktop_config.json`) example:
+
+```json
+{
+  "mcpServers": {
+    "dsh-auto-review": {
+      "command": "npx",
+      "args": ["-y", "dsh-auto-review-mcp"],
+      "env": {
+        "DSH_AUTO_REVIEW_RISK_RULES": "[{\"pattern\":\"rm -rf\",\"policy\":\"never\",\"field\":\"arguments\"}]"
+      }
+    }
+  }
+}
+```
+
+The server is read-only and deterministic: no network, no model, no writes.
 
 ## Permissions & data
 

@@ -16,13 +16,13 @@ DeepSeek Harness 外观自定义插件 —— 自由调色的主题色板、壁�
 
 | 设置面板 | 壁纸 + 毛玻璃效果 |
 |---|---|
-| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/3ff13146ed1838ad8fd9338c392a4b4748eb26ad/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/3ff13146ed1838ad8fd9338c392a4b4748eb26ad/docs/screenshot-wallpaper.png) |
+| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-wallpaper.png) |
 
 在 **[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)**(桌面客户端)中同样开箱即用,以下为实拍:
 
 | 高级模式(桌面原生布局与材质) | 兼容模式(上游默认 Web client) |
 |---|---|
-| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/3ff13146ed1838ad8fd9338c392a4b4748eb26ad/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/3ff13146ed1838ad8fd9338c392a4b4748eb26ad/docs/screenshot-desktop-compat.webp) |
+| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-desktop-compat.webp) |
 
 > 效果图中的壁纸素材 © MadYY([原图](docs/wallpaper-madYY.png)),仅作演示;用户上传自己的图片即可。
 
@@ -59,7 +59,7 @@ powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest 'https://raw.gith
 脚本直接从 npm registry 拉取已构建的发布包（`lib/` 预构建产物随包分发），链接进 profile 自己的 `node_modules` 并在该 profile 的 `package.json` 中注册（`dependencies` 条目 + `dsh.profile.bundles`，与 `dsh plugin add` 的产物一致）——幂等，可重复执行。可选参数：
 
 ```powershell
-.\install.ps1 -Version '0.1.5'      # 固定版本（默认装最新发布版）
+.\install.ps1 -Version '0.1.6'      # 固定版本（默认装最新发布版）
 .\install.ps1 -DshHome 'D:\.dsh'    # 自定义 DSH 主目录（默认 %DSH_HOME% 或 %USERPROFILE%\.dsh）
 .\install.ps1 -ProfileName 'web'    # 目标 profile（默认 web；profile 需已初始化）
 ```
@@ -125,6 +125,24 @@ dsh plugin --profile <name> add file:<克隆到的本地路径>
 - 视频背景上限 50MB;建议使用 H.264(MP4)或 VP8/VP9(WebM)编码;不支持的编码(如 HEVC)会自动降级回壁纸;更换视频会同步清理 IndexedDB 中的旧记录
 - 代码的语法高亮文字色(shiki `--shiki-token-*`)是独立的语法语言配色,不随主色变化(与 IDE 惯例一致);主色为白色时强调字背景为白色半透明,在浅色表面上视觉上接近不可见,属正常物理结果
 - 气泡跟随主色,没有独立的气泡颜色设置:harness 把唯一的气泡背景渲染在用户消息上,AI 消息没有气泡(渲染事实,插件无法细分);主色未设置时气泡保持默认浅蓝白
+
+## 常见问题
+
+- **Q: 安装或更新后在 DSH 设置中没有看到「个性化外观」入口？**
+  - **检查 Profile**：确认插件装入了当前运行的 profile（DSH Desktop 默认 profile 为 `desktop`，Web 版通常为 `web`；可运行 `dsh plugin list` 检查）。
+  - **编译与重启**：若克隆源码直装，请确保先执行了 `pnpm prepare` 生成 `lib/` 产物，并重启 DSH 服务（如 `dsh web`）。
+  - **强制刷新**：按 `Ctrl + F5`（Mac 为 `Cmd + Shift + R`）强制刷新浏览器，清除旧前端 bundle 缓存。
+- **Q: 我的外观配置保存在哪里？如何备份与迁移？**
+  - 设置保存在浏览器 `localStorage`（键 `dsh-ui-appearance.settings`），壁纸与视频原画质存入 `IndexedDB`，刷新与重启自动保留。
+  - **备份迁移**：在设置面板底部的「配色方案」区块点击「导出配色」复制 JSON 文本；在其他浏览器/设备上粘贴后点击「导入」即可一键恢复。
+- **Q: 卸载插件后会残留样式或影响 DSH 界面吗？**
+  - 完全不会。本插件严格基于官方 `ctx.theme.overrideTokens()` 与设置插槽开发，零核心代码改动。执行 `dsh plugin remove dsh-ui-appearance` 卸载后会自动注销所有覆盖 token、样式表与背景图层，彻底恢复原生默认 UI。
+- **Q: 与第三方插件（如侧边栏、弹窗等）共存是否会有冲突？**
+  - **层级遮挡已修复**：自 v0.1.5 起，壁纸图层已沉底至 `z-index: -1`，`#root` 不创建额外层叠上下文（Stacking Context），第三方顶层浮层（如 `dsh-better-sidebar` 等）与设置弹窗层级互不干扰（[#10](https://github.com/TQSY114514/dsh-ui-appearance/issues/10)）。
+  - **样式覆盖排查**：若共存的其他插件使用了强行覆盖全局样式的规则，可能产生视觉竞争；排查时可先单独禁用其他 UI 类插件定位。
+- **Q: 壁纸或视频背景无法显示 / 加载失败？**
+  - **本地文件**：图片原画质存入 IndexedDB（超过 4096px 自动等比缩边，限内 GIF 保留动画）；视频上限 50MB（推荐 MP4 H.264 或 WebM VP8/VP9，不支持的编码会自动降级为壁纸）。
+  - **网络 URL**：部分外链图床或视频站点开启了防盗链或缺少 CORS 跨域头，浏览器会阻止加载；建议下载后本地上传，或选用支持 CORS 的直链。
 
 ## 包结构
 

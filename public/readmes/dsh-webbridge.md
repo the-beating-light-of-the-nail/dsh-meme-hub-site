@@ -1,11 +1,11 @@
 # dsh-webbridge — Model tools that drive your REAL browser via Kimi WebBridge
 
-[![Release v0.0.2](https://img.shields.io/badge/release-v0.0.2-5B4CF0?style=flat-square)](https://github.com/bill9109/dsh-webbridge/releases/tag/v0.0.2)
+[![Release v0.0.3](https://img.shields.io/badge/release-v0.0.3-5B4CF0?style=flat-square)](https://github.com/omdsh-dev/dsh-webbridge/releases/tag/v0.0.3)
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-0B7285?style=flat-square)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%5E20%20%7C%20%3E%3D22-339933?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
 [![DSH profiles](https://img.shields.io/badge/DSH-Web-5B4CF0?style=flat-square)](cordis.patch.yml)
 
-**Install:** `dsh plugin --profile web add github:bill9109/dsh-webbridge`
+**Install:** `dsh plugin --profile web add github:omdsh-dev/dsh-webbridge`
 
 **A DeepSeek Harness host plugin: it bridges Kimi WebBridge's local daemon into eleven `webbridge_*` model tools, so the model operates **your own browser** — logins, cookies, and already-open tabs included — instead of a headless one.**
 
@@ -95,11 +95,11 @@ with the standard `dsh plugin` mechanism — **no DSH source changes and no
 hand-written patch**:
 
 ```sh
-dsh plugin --profile web add github:bill9109/dsh-webbridge
+dsh plugin --profile web add github:omdsh-dev/dsh-webbridge
 ```
 
 For a stable install, pin the version:
-`dsh plugin --profile web add github:bill9109/dsh-webbridge#v0.0.2`.
+`dsh plugin --profile web add github:omdsh-dev/dsh-webbridge#v0.0.3`.
 
 Internally the command runs `pnpm add <spec>` in the profile directory and
 automatically appends packages that declare `dsh.bundle` to
@@ -118,7 +118,7 @@ UI** (production mode has no hot reload) and refresh the page — the
 ### Upgrade
 
 ```sh
-dsh plugin --profile web update github:bill9109/dsh-webbridge
+dsh plugin --profile web update github:omdsh-dev/dsh-webbridge
 ```
 
 For a local-path installation, run `add` again against the replacement
@@ -127,7 +127,7 @@ checkout, then restart the Web UI and refresh.
 ### Uninstall
 
 ```sh
-dsh plugin --profile web remove @bill9109/dsh-webbridge
+dsh plugin --profile web remove dsh-webbridge
 ```
 
 The command runs `pnpm remove <pkg>` in the profile directory and removes
@@ -139,7 +139,7 @@ refresh — the DSH built-in plugin (same row id `webbridge`) takes over again.
 DSH's official `dsh-web-app` bundle ships a built-in plugin of the same
 nature (`@deepseek-ai/dsh-webbridge`, row id `webbridge`). This repository
 is the independent open-source edition, distributed as
-`@bill9109/dsh-webbridge`: installing it **overrides the built-in by the
+`dsh-webbridge`: installing it **overrides the built-in by the
 same row id** and uses this package's code; without it, the built-in applies.
 The tools behave identically — same protocol layer — the difference is only
 who maintains the package.
@@ -224,7 +224,7 @@ Keep the bilingual README in sync: edit both `README.md` and
 
 ## Community and About
 
-- Use [GitHub Issues](https://github.com/bill9109/dsh-webbridge/issues) for
+- Use [GitHub Issues](https://github.com/omdsh-dev/dsh-webbridge/issues) for
   reproducible bugs, focused feature requests, and usage questions.
 - Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes; report
   vulnerabilities privately via [SECURITY.md](SECURITY.md).

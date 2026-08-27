@@ -12,7 +12,7 @@
 
 ## Screenshot
 
-![dsh-file-upload in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-upload/6b39d6f5f09c99d86ee122bd1b76b0809f69a321/assets/screenshot.png)
+![dsh-file-upload in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-upload/d55d7322492de4776eaab0294f75033113a9f353/assets/screenshot.png)
 
 The upload icon button in the composer tool row (official DSH design tokens, follows dark/light theme); either the file's path is inserted into the input box, or — for supported images — the image lands in the official attachment rail (auto `file_id` reuse).
 
@@ -33,7 +33,7 @@ The upload icon button in the composer tool row (official DSH design tokens, fol
 
 ## Settings card
 
-![Settings card](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-upload/6b39d6f5f09c99d86ee122bd1b76b0809f69a321/assets/settings.png)
+![Settings card](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-upload/d55d7322492de4776eaab0294f75033113a9f353/assets/settings.png)
 
 - **Attachment directory** (`~/Documents/DSH/Attachments` default, `~` supported) — only used for image archives
 - **Path prefix** (`[上传文件]` default) — text prepended to paths in the draft; clear it to send bare paths

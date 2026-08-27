@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/readme-cover.en.jpg" alt="Abu — Your AI Desktop Office Assistant" width="100%" />
+<img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/readme-cover.en.jpg" alt="Abu — Your AI Desktop Office Assistant" width="100%" />
 
 **English** | [中文](README.zh-CN.md)
 
@@ -53,61 +53,61 @@ Recent highlights: **Workspace file tree + code canvas** (browse / preview / edi
 
 <table>
 <tr>
-<td align="center" width="50%"><b>Welcome</b><br/>Natural language input — conversation is the command<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-welcome.en.png" width="100%" /></td>
-<td align="center" width="50%"><b>Task Execution</b><br/>Autonomous planning & tool invocation for complex tasks<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-execution.en.png" width="100%" /></td>
+<td align="center" width="50%"><b>Welcome</b><br/>Natural language input — conversation is the command<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-welcome.en.png" width="100%" /></td>
+<td align="center" width="50%"><b>Task Execution</b><br/>Autonomous planning & tool invocation for complex tasks<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-execution.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Web Pages · Live Preview</b><br/>Generate a site and preview it live, side by side<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-web-pages.en.png" width="100%" /></td>
-<td align="center"><b>Content Creation · Live Preview</b><br/>Draft documents with a real-time Markdown preview<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-doc-edit.en.png" width="100%" /></td>
+<td align="center"><b>Web Pages · Live Preview</b><br/>Generate a site and preview it live, side by side<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-web-pages.en.png" width="100%" /></td>
+<td align="center"><b>Content Creation · Live Preview</b><br/>Draft documents with a real-time Markdown preview<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-doc-edit.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Plan Mode</b><br/>High-risk tasks show a plan first — runs only after you confirm<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-plan-mode.en.png" width="100%" /></td>
-<td align="center"><b>Interactive Questions</b><br/>Abu pops an option card when it needs you to decide (single / multi-select)<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-ask-question.en.png" width="100%" /></td>
+<td align="center"><b>Plan Mode</b><br/>High-risk tasks show a plan first — runs only after you confirm<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-plan-mode.en.png" width="100%" /></td>
+<td align="center"><b>Interactive Questions</b><br/>Abu pops an option card when it needs you to decide (single / multi-select)<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-ask-question.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Multi-Agent Parallel</b><br/>Up to 5 background agents working at once, progress in real time<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-multi-agent.en.png" width="100%" /></td>
-<td align="center"><b>Desktop Pet · Activity Tray</b><br/>A floating pet on your desktop, its tray showing Abu's live status<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-pet.en.png" width="100%" /></td>
+<td align="center"><b>Multi-Agent Parallel</b><br/>Up to 5 background agents working at once, progress in real time<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-multi-agent.en.png" width="100%" /></td>
+<td align="center"><b>Desktop Pet · Activity Tray</b><br/>A floating pet on your desktop, its tray showing Abu's live status<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-pet.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Theme · Dark</b><br/>A polished, low-glare dark theme<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-theme.en.png" width="100%" /></td>
-<td align="center"><b>Theme · Light</b><br/>Switch between light / dark / follow-system<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-theme-light.en.png" width="100%" /></td>
+<td align="center"><b>Theme · Dark</b><br/>A polished, low-glare dark theme<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-theme.en.png" width="100%" /></td>
+<td align="center"><b>Theme · Light</b><br/>Switch between light / dark / follow-system<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-theme-light.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center" colspan="2"><b>Labs</b><br/>In-progress features, off by default, opt-in (currently hosting: Desktop Pet)<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-labs.en.png" width="60%" /></td>
+<td align="center" colspan="2"><b>Labs</b><br/>In-progress features, off by default, opt-in (currently hosting: Desktop Pet)<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-labs.en.png" width="60%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Permission Control</b><br/>File access requires user authorization<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-permission.en.png" width="100%" /></td>
-<td align="center"><b>IM Channel Chat</b><br/>@Abu in Lark/DingTalk to interact<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-im-chat.en.png" width="100%" /></td>
+<td align="center"><b>Permission Control</b><br/>File access requires user authorization<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-permission.en.png" width="100%" /></td>
+<td align="center"><b>IM Channel Chat</b><br/>@Abu in Lark/DingTalk to interact<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-im-chat.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Skills</b><br/>29 built-in skills + self-evolving + custom<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-skills.en.png" width="100%" /></td>
-<td align="center"><b>MCP Connectors</b><br/>One-click integration with Playwright, GitHub & more<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-mcp.en.png" width="100%" /></td>
+<td align="center"><b>Skills</b><br/>29 built-in skills + self-evolving + custom<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-skills.en.png" width="100%" /></td>
+<td align="center"><b>MCP Connectors</b><br/>One-click integration with Playwright, GitHub & more<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-mcp.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Scheduled Tasks</b><br/>Cron-based scheduling for automated workflows<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-schedule-create.en.png" width="100%" /></td>
-<td align="center"><b>Triggers / Watch</b><br/>HTTP, file changes, IM messages auto-trigger tasks<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-triggers.en.png" width="100%" /></td>
+<td align="center"><b>Scheduled Tasks</b><br/>Cron-based scheduling for automated workflows<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-schedule-create.en.png" width="100%" /></td>
+<td align="center"><b>Triggers / Watch</b><br/>HTTP, file changes, IM messages auto-trigger tasks<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-triggers.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>AI Service Management</b><br/>Multi-provider management with health checks<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-settings-ai.en.png" width="100%" /></td>
-<td align="center"><b>IM Channel Config</b><br/>Connect Lark, DingTalk, WeCom & more<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-settings-im.en.png" width="100%" /></td>
+<td align="center"><b>AI Service Management</b><br/>Multi-provider management with health checks<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-settings-ai.en.png" width="100%" /></td>
+<td align="center"><b>IM Channel Config</b><br/>Connect Lark, DingTalk, WeCom & more<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-settings-im.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Personal Memory</b><br/>Remembers your preferences and work habits<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-memory.en.png" width="100%" /></td>
-<td align="center"><b>Security Sandbox</b><br/>Seatbelt sandbox + network isolation for privacy<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-security.en.png" width="100%" /></td>
+<td align="center"><b>Personal Memory</b><br/>Remembers your preferences and work habits<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-memory.en.png" width="100%" /></td>
+<td align="center"><b>Security Sandbox</b><br/>Seatbelt sandbox + network isolation for privacy<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-security.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Soul (Personality)</b><br/>3 proactivity presets + custom SOUL.md for tone & style<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-soul.en.png" width="100%" /></td>
-<td align="center"><b>Diagnostic Panel</b><br/>One-click self-check across AI / MCP / skills / network + bundle export<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-diagnostic.en.png" width="100%" /></td>
+<td align="center"><b>Soul (Personality)</b><br/>3 proactivity presets + custom SOUL.md for tone & style<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-soul.en.png" width="100%" /></td>
+<td align="center"><b>Diagnostic Panel</b><br/>One-click self-check across AI / MCP / skills / network + bundle export<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-diagnostic.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b>Expert Agents</b><br/>A library of expert agents you can summon by @name<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-agents.en.png" width="100%" /></td>
-<td align="center"><b>Usage Stats</b><br/>Requests, tokens, cache hits, and per model / skill usage<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-usage.en.png" width="100%" /></td>
+<td align="center"><b>Expert Agents</b><br/>A library of expert agents you can summon by @name<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-agents.en.png" width="100%" /></td>
+<td align="center"><b>Usage Stats</b><br/>Requests, tokens, cache hits, and per model / skill usage<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-usage.en.png" width="100%" /></td>
 </tr>
 <tr>
-<td align="center" colspan="2"><b>Projects & Workspaces</b><br/>Group work into projects, each with its own skills & MCP<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-project.en.png" width="60%" /></td>
+<td align="center" colspan="2"><b>Projects & Workspaces</b><br/>Group work into projects, each with its own skills & MCP<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-project.en.png" width="60%" /></td>
 </tr>
 <tr>
-<td align="center" colspan="2"><b>Content Safety Scan</b><br/>Three permission modes (Request Approval / Smart Review / Full Autonomy) + scan agents / skills / memory for prompt injection & dangerous instructions<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/6c63e321b2752f85de22f470f69e0939bee79450/website/assets/screenshot-security-scan.en.png" width="60%" /></td>
+<td align="center" colspan="2"><b>Content Safety Scan</b><br/>Three permission modes (Request Approval / Smart Review / Full Autonomy) + scan agents / skills / memory for prompt injection & dangerous instructions<br/><br/><img src="https://raw.githubusercontent.com/PM-Shawn/Abu-Cowork/24ece8c229ca4dce1ebfe51044e9a4fd97b69088/website/assets/screenshot-security-scan.en.png" width="60%" /></td>
 </tr>
 </table>
 

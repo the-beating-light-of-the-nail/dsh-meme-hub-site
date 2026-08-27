@@ -48,14 +48,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-web-ui#dsh-aionui-panel",
-    "slug": "dsh-web-ui-dsh-aionui-panel",
+    "repo": "DamonKoy/dsh-web-ui#dsh-task-board",
+    "slug": "dsh-web-ui-dsh-task-board",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-web-ui#dsh-task-board",
-    "slug": "dsh-web-ui-dsh-task-board",
+    "repo": "DamonKoy/dsh-web-ui#dsh-aionui-panel",
+    "slug": "dsh-web-ui-dsh-aionui-panel",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -66,26 +66,26 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-web-ui#dsh-web-ui-settings",
-    "slug": "dsh-web-ui-dsh-web-ui-settings",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
-  },
-  {
     "repo": "DamonKoy/dsh-web-ui#dsh-web-ui-all",
     "slug": "dsh-web-ui-dsh-web-ui-all",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "Devin-AXIS/deepseek-design#deepseek-ivideo",
-    "slug": "deepseek-design-deepseek-ivideo",
+    "repo": "DamonKoy/dsh-web-ui#dsh-web-ui-settings",
+    "slug": "dsh-web-ui-dsh-web-ui-settings",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
     "repo": "Devin-AXIS/deepseek-design#deepseek-idesign",
     "slug": "deepseek-design-deepseek-idesign",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
+  },
+  {
+    "repo": "Devin-AXIS/deepseek-design#deepseek-ivideo",
+    "slug": "deepseek-design-deepseek-ivideo",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -114,14 +114,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "TZHR-invest/dsh-plugins#dsh-mobile-ui",
-    "slug": "dsh-plugins-dsh-mobile-ui",
+    "repo": "TianYa-DAO/dsh-wallpaper-engine#plugin",
+    "slug": "dsh-wallpaper-engine-plugin",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "TianYa-DAO/dsh-wallpaper-engine#plugin",
-    "slug": "dsh-wallpaper-engine-plugin",
+    "repo": "TZHR-invest/dsh-plugins#dsh-mobile-ui",
+    "slug": "dsh-plugins-dsh-mobile-ui",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -318,14 +318,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "jiayan-xu/dsh-nuphus-mcp",
-    "slug": "dsh-nuphus-mcp",
+    "repo": "jiayan-xu/dsh-codebase-memory",
+    "slug": "dsh-codebase-memory",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "jiayan-xu/dsh-codebase-memory",
-    "slug": "dsh-codebase-memory",
+    "repo": "jiayan-xu/dsh-nuphus-mcp",
+    "slug": "dsh-nuphus-mcp",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -582,14 +582,14 @@
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/JohnXu22786/notifier.git/' not found"
   },
   {
-    "repo": "whyihaveyou/dsh-suite#plugin-notify",
-    "slug": "dsh-suite-plugin-notify",
+    "repo": "wsxwj123/dsh-plugins#dsh-pet-bridge",
+    "slug": "dsh-plugins-dsh-pet-bridge",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "wsxwj123/dsh-plugins#dsh-pet-bridge",
-    "slug": "dsh-plugins-dsh-pet-bridge",
+    "repo": "whyihaveyou/dsh-suite#plugin-notify",
+    "slug": "dsh-suite-plugin-notify",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -738,14 +738,14 @@
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/sjh9714/clippy-harness.git/' not found"
   },
   {
-    "repo": "skr311/dsh-codex-pet#dsh-codex-pet",
-    "slug": "dsh-codex-pet-dsh-codex-pet",
+    "repo": "Signalight/codex-to-dsh-pet#dsh-codex-pet",
+    "slug": "codex-to-dsh-pet-dsh-codex-pet",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "Signalight/codex-to-dsh-pet#dsh-codex-pet",
-    "slug": "codex-to-dsh-pet-dsh-codex-pet",
+    "repo": "skr311/dsh-codex-pet#dsh-codex-pet",
+    "slug": "dsh-codex-pet-dsh-codex-pet",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   }

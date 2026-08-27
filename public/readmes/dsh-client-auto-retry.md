@@ -9,7 +9,7 @@
 English version: [README-EN.md](./README-EN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Frog755/dsh-client-auto-retry/18fe5c5c4d740effa63b33a757ef8c92ac492cdf/assets/demo.svg" alt="dsh-client-auto-retry 工作流程" width="720">
+  <img src="https://raw.githubusercontent.com/Frog755/dsh-client-auto-retry/adffe5341ea25c15646fff6fb09b21e70cd23048/assets/demo.svg" alt="dsh-client-auto-retry 工作流程" width="720">
 </p>
 
 ---

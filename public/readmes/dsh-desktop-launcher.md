@@ -2,7 +2,13 @@
 
 <p align="center">在 DSH 设置页一键创建 Windows 桌面快捷方式 —— 把任意本地服务（DeepSeek Harness、开发服务器、npx 工具）变成双击启动的桌面图标，自动打开浏览器，还能固定到任务栏。</p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/Yvesgao/dsh-desktop-launcher/9f2a98a819bc3809351f4591815794e8285f1283/docs/hero.svg" alt="dsh-desktop-launcher" width="100%"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Yvesgao/dsh-desktop-launcher/01d64b20f6f8ab4297f01c19e97074a313db1bda/docs/hero.svg" alt="dsh-desktop-launcher" width="100%"/></p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/dsh-shortcut-creator"><img src="https://img.shields.io/npm/v/dsh-shortcut-creator?label=npm" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/dsh-shortcut-creator"><img src="https://img.shields.io/npm/dm/dsh-shortcut-creator?label=npm%20downloads" alt="npm downloads"></a>
+  <a href="https://awesome-dsh-plugin.com"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="awesome · DSH plugin"></a>
+</p>
 
 ## 功能
 
@@ -25,13 +31,21 @@
 
 ## 安装（bundle 形态，需重启 web）
 
-```sh
-# git 源（lib/ 已入库）
-dsh plugin --profile web add github:Yvesgao/dsh-desktop-launcher#main
+### 方式一：npm（推荐）
 
-# 或 npm
-dsh plugin --profile web add dsh-desktop-launcher
+```sh
+dsh plugin --profile web add dsh-shortcut-creator
 ```
+
+### 方式二：GitHub 源（lib/ 已入库）
+
+```sh
+dsh plugin --profile web add github:Yvesgao/dsh-desktop-launcher#main
+```
+
+### 方式三：Windows 一键安装包（给小白同事）
+
+从 [GitHub Releases](https://github.com/Yvesgao/dsh-desktop-launcher/releases) 下载 **DeepSeekHarnessSetup.exe** → 双击安装（自动装 Node.js + dsh + 插件）→ 桌面出现「DeepSeek Harness」图标 → 双击即用。
 
 重启 web（`dsh web`）后，打开 **设置 → Desktop Shortcut**，填好表单点 **Create desktop shortcut** 即可。
 
@@ -90,13 +104,21 @@ The heavy lifting is done by the bundled, self-contained `assets/New-DesktopShor
 
 ## Install (bundle, requires web restart)
 
-```sh
-# from a git repo (lib/ committed)
-dsh plugin --profile web add github:Yvesgao/dsh-desktop-launcher#main
+### Option 1: npm (recommended)
 
-# or from npm
-dsh plugin --profile web add dsh-desktop-launcher
+```sh
+dsh plugin --profile web add dsh-shortcut-creator
 ```
+
+### Option 2: GitHub source (lib/ committed)
+
+```sh
+dsh plugin --profile web add github:Yvesgao/dsh-desktop-launcher#main
+```
+
+### Option 3: Windows one-click installer (for non-technical users)
+
+Download **DeepSeekHarnessSetup.exe** from [GitHub Releases](https://github.com/Yvesgao/dsh-desktop-launcher/releases) → double-click to install (Node.js + dsh + plugin, automatically) → a "DeepSeek Harness" icon appears on the desktop → double-click to use.
 
 Restart the web UI (`dsh web`). Then open **Settings → Desktop Shortcut**, fill the form and click **Create desktop shortcut**.
 

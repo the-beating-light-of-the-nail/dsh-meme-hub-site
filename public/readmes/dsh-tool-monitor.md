@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yoke233/dsh-tool-monitor/707b3f4ed8fc2301393dccdf537d531d128d449c/assets/readme/hero.svg" width="100%" alt="dsh-tool-monitor 通过惰性输出 tee 监听现有 DSH 后台 Job，而不重复执行原命令">
+  <img src="https://raw.githubusercontent.com/yoke233/dsh-tool-monitor/9b6aac3701560309ac4e3befcf646a1eca920e77/assets/readme/hero.svg" width="100%" alt="dsh-tool-monitor 通过惰性输出 tee 监听现有 DSH 后台 Job，而不重复执行原命令">
 </p>
 
 <p align="center">

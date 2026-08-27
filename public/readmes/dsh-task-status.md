@@ -6,13 +6,15 @@
 
 <p align="center">
   <img src="https://badgen.net/badge/license/MIT/green" alt="license">
+  <a href="https://dshfind.com/en/plugins/vlln/dsh-task-status?ref=badge"><img src="https://dshfind.com/api/badge/vlln/dsh-task-status" alt="dshfind" /></a>
+  <a href="https://www.dsh.so/artifact/dsh-task-status"><img src="https://www.dsh.so/badge/dsh-task-status.svg" alt="dsh.so security" /></a>
 </p>
 
 A background-task status bar above the chat input box: running-task count + click-to-expand per-task details + **live output tail** (auto-polling, 10-line scrolling area). Registered through the official `conversation.input.dock` slot (same family as queue/todo/goal). Ships as an official **bundle plugin** (`dsh.bundle` + dshClient channel), 0 patches.
 
 ## Preview
 
-![task-status (real run screenshot: task rows + expanded output tail)](https://raw.githubusercontent.com/vlln/dsh-task-status/3127246ce2d93ccf841767fa43ee5d2a571f4a8f/docs/preview/task-status.png)
+![task-status (real run screenshot: task rows + expanded output tail)](https://raw.githubusercontent.com/vlln/dsh-task-status/f03094e2d5c6a81644d66b0c2f869b8f6d13f966/docs/preview/task-status.png)
 
 ## Features
 

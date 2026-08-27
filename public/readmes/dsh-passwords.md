@@ -42,15 +42,15 @@ dsh 自带的网页界面没有登录、没有权限、没有用量控制。放�
 
 | 登录页 · 浅色 | 登录页 · 深色 | 登录页 · English |
 |:---:|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/white-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/black-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/white-login-en.png" width="360"> |
+| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/white-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/black-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/white-login-en.png" width="360"> |
 
 | dsh 主界面（登录后） | 聊天 / 留言 | 设置页卡片 · 账号管理 |
 |:---:|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/main-ui.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/chat.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/card-front.png" width="360"> |
+| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/main-ui.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/chat.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/card-front.png" width="360"> |
 
 | | 设置页卡片 · 权限与配额 | |
 |:---:|:---:|:---:|
-| | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/91114eceab8b37fa246a166d5a445c5d7a2f45e0/docs/screenshots/card-back.png" width="360"> | |
+| | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/405c0fe9b20596a328be8aa9905ebb2de04e72f2/docs/screenshots/card-back.png" width="360"> | |
 
 ## 快速开始
 

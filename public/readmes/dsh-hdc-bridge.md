@@ -16,7 +16,7 @@
 
 浮动设备面板（点左侧边栏「鸿蒙」入口打开；设备列表 / 系统区 / 工具链徽章 / hilog 尾部，官方主题随深浅色自适应）：
 
-![鸿蒙开发面板](https://raw.githubusercontent.com/1na-ko/dsh-hdc-bridge/94ad718ca3db1dafacc02330aaa608bd66ede1c5/docs/screenshots/panel.png)
+![鸿蒙开发面板](https://raw.githubusercontent.com/1na-ko/dsh-hdc-bridge/d98fc945db7e7a0032cfbc27392fc8931b43986a/docs/screenshots/panel.png)
 
 ## 工具
 
@@ -67,9 +67,13 @@ dsh --profile <name>
 ## 环境要求
 
 - HarmonyOS 设备/模拟器；真机需开发者模式 + USB 调试
-- hdc 二进制自动探测：DevEco Studio 常见 SDK 路径（`<DevEco>\sdk\<apiVer>\openharmony\toolchains\hdc.exe`，apiVer 覆盖 default/10…18）→ PATH（`where.exe` / `Get-Command` / `which`）
+- hdc 二进制自动探测（工具与面板共用同一套清单）：`DEVECO_SDK_HOME` 环境变量 > 本机检测到的 DevEco Studio SDK（非默认安装同样识别）> 默认安装根（apiVer 覆盖 default/10…18）→ PATH 回退（`where.exe` / `Get-Command` / `which`）；面板优先复用工具层已解析的路径，两侧行为一致
 - 截图查看需图像输入模型；纯文本模型可用 `hdc_ui_dump` 做文本化 UI 检查
-- 可选后端 `@deveco/deveco-cli`（MIT）**不随插件安装**（插件零依赖，安装期不执行任何第三方脚本）：需要构建/签名/lint/模拟器控制时自行 `npm i -g @deveco/deveco-cli`（需 DevEco Studio ≥ 6.1.0，macOS/Windows，Node ≥ 18）；未安装时相关工具全部优雅降级并给出安装指引。签名前需一次人工 `devecocli auth login`（浏览器 OAuth）
+- 可选后端 `@deveco/deveco-cli`（MIT）**不随插件安装**（插件零依赖，安装期不执行任何第三方脚本），工具链二选一：
+  - **路线 A｜DevEco Studio**：本机装 DevEco Studio ≥ 6.1.0（macOS/Windows）+ `npm i -g @deveco/deveco-cli`；
+  - **路线 B｜独立 Command Line Tools**：华为官方 zip 发行版（codelinter / hvigorw / ohpm / emulator / 内嵌 SDK，≥ 26.0.0，解压即用），下载自 developer.huawei.com/consumer/cn/download/command-line-tools-for-hmos，设置 `DEVECO_CLI_CLT_PATH` 指向解压目录即可被自动识别；**Linux 主机仅支持此形态**。
+  - 未安装时相关工具全部优雅降级并给出安装指引；`hms_setup` 一眼可查当前 `toolchainKind`（studio / clt）。签名前需一次人工 `devecocli auth login`（浏览器 OAuth）
+- 本机无任何工具链时仍可用：hdc_* 全部工具、设备面板与 Tier-1 离线知识层（随包内置）
 - `hms_api` / `hms_lint rules` 直接读本机 DevEco Studio/SDK 安装（零再分发）；未装 Studio 时这两项降级并给出指引
 - `hms_knowledge` 的 Tier-1 官方知识节选随包内置（28 篇约 1.7MB，CC-BY-4.0 逐字节选并附署名 + 逐文件溯源），**离线可用**，无需任何本机安装
 - `hms_api_change`（check compat）需要更高版本的 DevEco Studio（实测 6.1.0.830 报"min required 26.0.0.810"）；不满足时工具返回官方错误原文 + 升级指引，并提示先用 `hms_api` 的 `@since/@deprecated` 版本知识
@@ -103,13 +107,14 @@ dsh --profile <name>
 | v0.2 实机登录流程 | 拉起 → dump 定位 → 分段输入 → 校验 → 点登录、请求发出 ✓（真机实测） |
 | v0.7 面板三态（无头 Edge 实测） | 展开态入口贴排（6px 官方间距）、折叠态四行图标列、往返切换、浮动面板截图即时出图、层级正确 ✓ |
 | v0.7 模拟器全量 | 20 工具 + 4 REST 路由 + 知识层 28 篇读取 + `hms_emulator` 降级指路 ✓（发布前回归） |
+| v0.7.4 统一 hdc 发现（issue #4 回归） | 工具层候选全败时 PATH 回退命中、面板复用工具层解析结果、面板自身 PATH 回退三场景断言 ✓（smoke）；真机环境经 `DEVECO_SDK_HOME` 动态根端到端解析直连 ✓ |
 
 ## 已知限制 / Known limitations
 
 - `snapshot_display` 仅支持 `.jpeg`（API 10+ 实测；API 24 真机 2800×1840 已验证）
 - 真机安装需签名 profile 绑定设备 UDID，否则报 `9568332 install sign info inconsistent`（应用签名问题，非插件问题）
 - hdc 客户端对远端失败可能仍返回退出码 0，插件以输出标记 + 落盘校验兜底
-- **UI 输入实战经验（真机实测）**：
+- `hdc_shell` 的命令跨三层解析（本机宿主 shell → hdc 参数拼接 → 设备端 sh），插件自 v0.8.1 起自动逐层转义保证保真（pwsh 与 POSIX 宿主一致）；命令中的其余 sh 元字符（双引号、`$`、`;` 等）按设备端 sh 原语义生效，请直接传入目标语义的合法命令- **UI 输入实战经验（真机实测）**：
   - 混合字符串（数字→字母→数字）注入时，IME 模式切换会稳定吞掉紧跟字母后的第一个字符；规避：分段输入 + `hdc_ui_dump` 校验 + 缺失字符单独补发
   - 软键盘会改变页面布局：每次点击/输入前使用最新 dump 的坐标，否则可能点到键盘区
   - 键盘可能遮住按钮：先 `hdc_ui action=key key=Back` 收起键盘，再按新坐标点击
@@ -121,7 +126,8 @@ dsh --profile <name>
 - [x] 按 API 版本整理的官方知识节选随包内置（v0.5：`hms_knowledge`，20 个高频主题逐字节选，CC-BY-4.0 合规）
 - [x] 会话头部设备面板（v0.6：web 宿主浮动面板 + /api2 REST 数据通道）
 - [x] 深度优化 + 面板官方化（v0.7：全量回归 smoke 入 CI、hdc-core/errors 拆分与 11 条错误码、hms_build 工作区预检、`hms_emulator` 模拟器控制、签名三类指引、Tier-1 扩至 28 篇；面板按官方 client 插件形态重做——边栏入口 + portal 浮动面板 + 官方主题 token + 无头浏览器逐态实测）
-- [ ] macOS 实机验证
+- [x] 统一 hdc 发现 + 支持独立 Command Line Tools（v0.7.4/v0.8.0：面板/工具层单源探测、DEVECO_SDK_HOME 动态根、CLT ≥26 双形态识别——SDK/hdc/hvigorw/codelinter 全链自动覆盖，Linux 仅 CLT 形态）
+- [ ] macOS 实机验证（macOS 路径识别逻辑已内置并随 CI 在无设备环境回归，欢迎社区以 issue 反馈实测结果）
 
 ## License
 

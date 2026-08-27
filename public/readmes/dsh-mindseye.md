@@ -1,6 +1,6 @@
 # MindsEye
 
-![MindsEye header](https://raw.githubusercontent.com/kanchengw/dsh-mindseye/f3ed8947b3cccaf4060a70e589e61ab79d26e070/assets/MindsEye-header.png)
+![MindsEye header](https://raw.githubusercontent.com/kanchengw/dsh-mindseye/ad356c067ec51d37e338cf9c8e5c8a2eea6613f2/assets/MindsEye-header.png)
 
 [![dsh.so security](https://www.dsh.so/badges/dsh-mindseye.svg)](https://www.dsh.so/artifact/dsh-mindseye/)
 

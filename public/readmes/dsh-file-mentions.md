@@ -12,18 +12,19 @@
 
 ## Screenshot
 
-![dsh-file-mentions in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/7de42508387397ebdb99518b28918554f9cae6e3/assets/screenshot.png)
+![dsh-file-mentions in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/21d8da94b174e37eda13274e74c4ed2459be612e/assets/screenshot.png)
 
 Inline paths wrapped in backticks (`` `~/...` ``, absolute, relative, or Chinese paths) become
 **click-to-open**; each clickable path carries a small folder-icon button that reveals the file in your
 file manager; a "📎 mentioned files" chip list at the turn tail covers the rest. URLs are
 already auto-linked by the official renderer, so this plugin leaves them alone.
 
-![External-drive whitelist settings](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/7de42508387397ebdb99518b28918554f9cae6e3/assets/screenshot-settings.png)
+![External-drive whitelist settings](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/21d8da94b174e37eda13274e74c4ed2459be612e/assets/screenshot-settings.png)
 
-The external-drive whitelist (Settings → Plugins → file-mentions): paths outside the session
-working directory (external drives, `~/Desktop`, etc.) become clickable once added — one path
-per line. System-disk marker directories (`/System`, `/etc`) are rejected automatically.
+The external-drive whitelist (Settings → Plugins → file-mentions): **local files in your home
+directory are clickable by default**; only external drives / network volumes (e.g.
+`/Volumes/USB`) need their root added here — one path per line. System-disk marker
+directories (`/System`, `/etc`) are rejected automatically.
 
 ## Features
 
@@ -59,11 +60,10 @@ inline. The tail chip list appears automatically — no configuration.
 
 ### Paths outside the session directory (external drives, etc.)
 
-For safety, absolute/`~/` paths are only probed inside the current session's working
-directory. To make paths on an external drive (e.g. `/Volumes/USB`) or any other directory
-outside the session working dir clickable, add that directory to the **external-drive
-whitelist** in Settings → Plugins → file-mentions (one path per line). Saving takes effect
-immediately — no restart required.
+Local files inside your **home directory** (e.g. `~/Downloads`, `~/Desktop`) are clickable by
+default — no configuration needed. For paths on an **external drive / network volume** (e.g.
+`/Volumes/USB`), add that root to the **external-drive whitelist** in Settings → Plugins →
+file-mentions (one path per line). Saving takes effect immediately — no restart required.
 
 System-disk protection: whitelist roots containing system marker directories (`/System`,
 `/etc`, or `\Windows` on Windows) are rejected automatically, so a full system disk mounted
@@ -92,8 +92,8 @@ externally can never be whitelisted by mistake.
 
 - **Host** (`lib/index.js`): three routes — `/api/file-mentions/check` (existence check),
   `/api/file-mentions/open` (system open, `mode: open/reveal`, per-platform command) and
-  `/api/file-mentions/config` (whitelist read/write for the settings page, same-origin
-  guarded). Probe surface: absolute/`~/` paths are checked only inside the session cwd or
+  `/api/file-mentions/config` (whitelist read/write for the settings page). All three routes
+  are same-origin guarded. Probe surface: absolute/`~/` paths are checked only inside the session cwd or
   user-declared whitelist roots (stored via the official settings service — immediate
   effect, no restart); whitelist roots are protected against system disks and symlink
   escapes. Pure Node stdlib; `execFile` avoids shell injection.

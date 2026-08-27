@@ -17,7 +17,7 @@ No OpenAI API key or Codex CLI. Models, search, quota, and image generation stay
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d2e43ea141aa564f6ae1070c1906757e864a522a/docs/assets/readme-hero-en.webp" width="900" alt="Your Codex subscription inside DSH: models, web search, quota and safe reset, image generation, and Fast mode">
 </p>
 
 ## Three-step start
@@ -48,7 +48,7 @@ DSH-Portable exposes the same standard plugin command, so the command above also
 | **Visible quota** | Keep backend-provided standard Codex, Spark, and other limits separate |
 | **Composer quota** | Choose a compact percentage, progress bar, or no inline quota display |
 | **Safe quota reset** | See the next expiry and deliberately try a reset with a cooldown and acknowledgement |
-| **Subscription search** | Explicitly choose DSH default search or Codex subscription search |
+| **Subscription search** | Explicitly route search globally through DSH default search or the signed-in Codex subscription |
 | **Codex image generation and editing (Beta)** | Generate without references, or explicitly edit one selected image; preview, zoom, annotate regions, download the original, and continue in the same composer |
 | **Fast mode** | Switch between Standard and Fast directly in the composer |
 | **Model-aware context** | Keep catalog defaults, use each model's supported extended window, or enter a full numeric token limit for each model |
@@ -58,14 +58,14 @@ These capabilities reuse the same local ChatGPT sign-in. Subscription routing fa
 ## Product screen
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/context-settings-en.png" width="820" alt="Current Codex subscription settings in DeepSeek Harness with search, model-aware context, composer quota, and support diagnostics">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d2e43ea141aa564f6ae1070c1906757e864a522a/docs/assets/context-settings-en.png" width="820" alt="Current Codex subscription settings in DeepSeek Harness with search, model-aware context, composer quota, and support diagnostics">
 </p>
 
 Captured from the installed official DeepSeek Harness `0.1.1-rc.2` product with the current plugin build.
 
 ## Prepare DSH
 
-This plugin is currently compatible through DeepSeek Harness `0.1.1-rc.2` and requires a ChatGPT account that currently has Codex access.
+This plugin supports the latest DeepSeek Harness release recorded in its package metadata and requires a ChatGPT account that currently has Codex access.
 
 - Do not want to configure Node.js? Use [DSH-Portable](https://github.com/WSL043/DSH-Portable), a community portable desktop distribution for Windows, macOS, and Linux.
 - Prefer the official route? Follow the [DeepSeek Harness run guide](https://github.com/deepseek-ai/deepseek-harness#run).
@@ -137,7 +137,7 @@ Restart DSH manually after installation, then:
 
 - ChatGPT OAuth sign-in with credentials kept on the host;
 - Codex models and Beta image generation/editing directly inside DSH conversations;
-- A clear choice between DSH default search and Codex subscription search;
+- A clear global choice between DSH default search and Codex subscription search; it applies to every model and session rather than following the selected model;
 - Actual backend-provided quota, reset time, and freshness;
 - Separate standard Codex, Codex-Spark, Credits, and other independent limits;
 - Visible quota-reset count and earliest expiry, with deliberate early redemption, layered confirmation, and no automatic retry;
@@ -152,7 +152,7 @@ The plugin can follow an existing HTTPS proxy from the process environment or op
 ### Composer quota
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d2e43ea141aa564f6ae1070c1906757e864a522a/docs/assets/composer-quota-en.png" width="800" alt="Codex quota inside the composer">
 </p>
 
 Choose Off, Percent, or Progress bar in Settings. The compact display appears only for a selected Codex model.
@@ -175,7 +175,7 @@ sending it. A new image request does not silently include earlier images. GPT Im
 turn, and detailed text, exact composition, or repeated-character consistency may still need another pass.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/dfaaa772db33db73d9cbb603489731208c4c4551/docs/assets/image-preview-annotations-en.png" width="900" alt="DSH-native generated-image preview with zoom, original download, and numbered region annotations">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d2e43ea141aa564f6ae1070c1906757e864a522a/docs/assets/image-preview-annotations-en.png" width="900" alt="DSH-native generated-image preview with zoom, original download, and numbered region annotations">
 </p>
 
 ### Composer speed
@@ -219,9 +219,10 @@ dsh plugin --profile web remove dsh-codex-subscription
 The ChatGPT Codex backend and DSH can change independently. This community project is not affiliated with or endorsed by DeepSeek or OpenAI.
 
 Use the [bug report form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml) for project feedback.
+Use the [feature request form](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=feature-request.yml) for focused product suggestions.
 For DSH plugin discussion, visit [DeepSeek Harness Discussions](https://github.com/deepseek-ai/deepseek-harness/discussions).
 Read [SECURITY.md](SECURITY.md) before reporting sensitive issues.
 
 If this project is useful, the [Star button](https://github.com/WSL043/dsh-codex-subscription/stargazers) helps more DSH users find it.
 
-[简体中文](README.md) · [MIT](LICENSE)
+[简体中文](README.zh-CN.md) · [MIT](LICENSE)

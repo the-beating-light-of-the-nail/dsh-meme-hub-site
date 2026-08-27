@@ -11,10 +11,10 @@
 [English](README.en.md)&ensp;·&ensp;[AI 版本](README.ai.md)&ensp;·&ensp;[更新日志](CHANGELOG.md)
 
 [![listed on awesome dsh plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/demacia1314/dsh-airdrop/)
-![DSH](https://img.shields.io/badge/DSH-0.1.0--rc.6-4c8dff)
+![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-4c8dff)
 ![License](https://img.shields.io/badge/license-MIT-3fb950)
 
-<img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/05e6b924764f8ab6561467dbecff12978fd4940c/assets/in-chat.png" alt="附件随消息发出,AI 直接读取文件内容" width="880">
+<img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/d556bebd6c209715656f6b358ae51160e918428e/assets/in-chat.png" alt="附件随消息发出,AI 直接读取文件内容" width="880">
 
 </div>
 
@@ -31,7 +31,7 @@
 
 | 拖进来 | 发出去 | 随时预览 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/05e6b924764f8ab6561467dbecff12978fd4940c/assets/drop-in.png" alt="拖入文件后显示附件卡片"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/05e6b924764f8ab6561467dbecff12978fd4940c/assets/in-chat.png" alt="附件随消息发出,AI 读取内容"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/05e6b924764f8ab6561467dbecff12978fd4940c/assets/preview-modal.png" alt="浏览器内预览附件"> |
+| <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/d556bebd6c209715656f6b358ae51160e918428e/assets/drop-in.png" alt="拖入文件后显示附件卡片"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/d556bebd6c209715656f6b358ae51160e918428e/assets/in-chat.png" alt="附件随消息发出,AI 读取内容"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/d556bebd6c209715656f6b358ae51160e918428e/assets/preview-modal.png" alt="浏览器内预览附件"> |
 | 拖到窗口任意位置,卡片立刻出现 | 附件跟着消息走,AI 直接读内容 | 点开就能预览,还能下载 |
 
 ## 🚀 三分钟上手

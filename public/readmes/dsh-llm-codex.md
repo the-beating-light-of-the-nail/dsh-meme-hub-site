@@ -11,7 +11,7 @@ The package root exposes the Cordis plugin contract. The same artifact exports `
 DeepSeek Harness 0.1.0-rc.6 or later is required. Install directly from GitHub:
 
 ~~~sh
-dsh plugin --profile web add github:NOirBRight/dsh-llm-codex#v0.2.8
+dsh plugin --profile web add github:NOirBRight/dsh-llm-codex#v0.3.0
 dsh web
 ~~~
 
@@ -21,7 +21,7 @@ The repository tracks release-ready lib artifacts, so GitHub installation needs 
 
 Open Settings → LLM Providers → Codex. **Sign in with ChatGPT** starts the official ChatGPT OAuth flow, opens the system browser, and stores the session only on the Host at `$DSH_HOME/codex-oauth.json` (mode `0600`). The card then shows usage limits. Sign out deletes that file. The browser never receives tokens.
 
-![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/bfc494e84b35770e39bdb0e8e6a89a02b50a680a/docs/images/plugin-card-catalog.png)
+![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/7e6ed3d837afb5091af153c0f58023fe203b9f8d/docs/images/plugin-card-catalog.png)
 
 ### Model catalog
 
@@ -33,9 +33,15 @@ The conversation picker uses the displayed catalog stored as `settings.models`. 
 
 Fast and 1M are first-class picker rows, not checkboxes. Chat still uses the official wire id; Fast rows send `service_tier: "priority"`. 1M rows (`gpt-5.6-sol-1m`, `gpt-5.6-sol-1m-fast`, and the Terra/Luna equivalents) set `contextWindow` to 1,000,000 so DSH compaction waits until 80% of that budget (800k). They are not in the default six-row catalog; add them from the official picker. The overlay can also add `gpt-5.5`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.3-codex-spark`, and Fast variants. Custom ids can be added manually.
 
+Picker ids may also use a generic context suffix `-<n>k` or `-<n>m` (for example `gpt-5.6-sol-272k` or `gpt-5.6-sol-272k-fast`). The plugin peels that suffix before talking to ChatGPT and uses `n×1000` / `n×1,000,000` as the DSH compaction budget, so a 272K row starts compacting earlier than a 1M row. Product names such as `kimi-k3-max` are not treated as a context tier. The composer picker groups sibling rows that share a base id.
+
 Default reasoning effort is per model and editable on the row: Luna uses `max`, Terra `xhigh`, Sol `high`, and every other official Codex model `xhigh`. Fast and 1M rows use their base model's default. A reasoning effort explicitly selected in a conversation takes precedence.
 
 Chat goes through pi-ai `openai-codex-responses` against `https://chatgpt.com/backend-api`. Chat without a session fails `MISSING_CREDENTIAL`. A stored session whose refresh fails is reported as `AUTH`.
+
+### Model Switch integration
+
+When `dsh-model-switch` v0.2+ is present, Codex registers optional Search and Image adapters that reuse this plugin's authenticated clients. Model Switch keeps official `web_search` ownership and leaves `view_image` / `codex_generate_image` unchanged. No Vision adapter is registered.
 
 ### Optional capabilities
 
@@ -49,9 +55,9 @@ Search, `view_image`, and `codex_generate_image` are implemented but default off
 
 `codex_generate_image` is a separate model-invoked tool. Any conversation model can call it; it uses this plugin's ChatGPT login and Codex usage (typically 3–5× a text turn) and draws with backend `gpt-image-2`. The routing-model dropdown lists official vision models and defaults to `gpt-5.6-luna`. The name is intentionally not `generate_image`, so it does not collide with other provider plugins. Generated files land under `generated-images/` unless `path` is set.
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/bfc494e84b35770e39bdb0e8e6a89a02b50a680a/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/7e6ed3d837afb5091af153c0f58023fe203b9f8d/docs/images/plugin-card-capabilities.png)
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/bfc494e84b35770e39bdb0e8e6a89a02b50a680a/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/7e6ed3d837afb5091af153c0f58023fe203b9f8d/docs/images/plugin-card-capabilities.png)
 
 ## Config
 

@@ -68,7 +68,7 @@ npx @deepseek-ai/dsh plugin --profile web update @wingsky-1/dsh-notifier
 
 - **向你提问**（默认开）：`ask_user_question` / GUI 提问弹窗触发时通知
 - **审批提醒**：真实审批路径 `approval/request` 触发时通知，含任务标题、工具中文名、申请理由与操作提示
-- **完成提醒**：任务从运行到空闲（`agent/status` running → idle）时通知，含任务标题与耗时；子代理完成走独立开关 `notifySubagentDone`（默认关；子代理含 `origin: subagent` 的 spawn 型与运行时归属成立的 fork 型委派——无归属的 fork 主线会话不受影响，仍报主任务完成）；用户停止生成/中断/任务失败/被阻塞时不通知完成（本轮 `turn/end` reason 为 `aborted`/`interrupted`/`error`/`blocked` 时固定静默——失败任务由错误提醒单独负责「任务出错」，避免同一轮既报错又误报完成）
+- **完成提醒**：任务从运行到空闲（`agent/status` running → idle）时通知，含任务标题与耗时；完成判定为双源——idle 时从会话事件快照回读最新 `turn/end`，与 `session/event` 推送流记忆的最新 `turn/end` 取新者为结束证据（issue #272：快照一次性读滞后不再固化为永久静默，同一轮次两源只通知一次，判定被跳过时输出可观测 warn 日志）；子代理完成走独立开关 `notifySubagentDone`（默认关；子代理含 `origin: subagent` 的 spawn 型与运行时归属成立的 fork 型委派——无归属的 fork 主线会话不受影响，仍报主任务完成）；用户停止生成/中断/任务失败/被阻塞时不通知完成（本轮 `turn/end` reason 为 `aborted`/`interrupted`/`error`/`blocked` 时固定静默——失败任务由错误提醒单独负责「任务出错」，避免同一轮既报错又误报完成）
 - **错误提醒**：任务出错（`agent/error`）时通知，含任务标题、出错轮次/步骤、错误信息（前 300 字符）；同类错误 60 秒窗口内自动合并
 - **轮次完成**（默认关）：`agent/turn-stopping` 时通知
 - **双通道**：
@@ -80,6 +80,26 @@ npx @deepseek-ai/dsh plugin --profile web update @wingsky-1/dsh-notifier
 - **完成风暴聚合**：多任务/子代理同时收尾自动聚合为「另有 N 个任务已完成」，避免刷屏
 - **面板诊断**：配置面板显示浏览器通知授权状态与安全上下文提示
 - **未读角标**：有通知未查看时侧边栏「通知」入口显示红点计数，打开面板即清零
+
+## 事件订阅与 scope 语义（{global:true} 取舍）
+
+本插件监听宿主事件（`approval/request`、`internal/service`、`session/event`、
+`agent/status`、`agent/disposed`、`agent/error`、`agent/turn-stopping`）时统一
+注册 `{ global: true }`（cordis `EventOptions`「Receive the event regardless of
+context filter checks」）。取舍如下（issue #290）：
+
+- **untagged 平铺挂载下事件默认可达**：经 `cordis.patch.yml` 平铺 insert 挂载
+  的插件 ctx 无 scope 标签，宿主 dsh-scope 事件分发对无 scope 标签的 listener
+  ctx 直接放行——即便不加 `{ global: true }` 也能收到 agent 作用域事件；
+- **`{ global: true }` 是消费端防御**：把事件到达与宿主 scope 分发语义解耦——
+  若未来以 private-scoped 挂载形态运行（listener ctx 带 scope 标签且与事件
+  carrier 的 scope 不一致），`hook.global` 在 dispatch 过滤中无条件放行，
+  通知不因 scope 过滤哑火（本插件所有 `ctx.on` 注册处均带该参数）；
+- **代价（取舍）**：`global` 会收到**跨 scope** 的事件——极端多插件多 scope
+  部署形态下可能收到不属于当前 ctx 作用域的事件。本插件全部 listener 以
+  「payload 自校验 + per-agent/事件内容过滤」消费（事件载荷跨宿主边界不受信，
+  逐字段运行时校验，非有限 turn 直接 skip），跨 scope 到达只会被过滤后静默，
+  不产生错误通知；本阶段**不新增配置键**控制该行为。
 
 ## 配置（~/.dsh/dsh-notifier.json，GUI「通知」面板可改）
 

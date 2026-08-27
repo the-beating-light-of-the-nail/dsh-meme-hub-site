@@ -4,7 +4,7 @@
 
 实现了在 [DeepSeek Harness（DSH）](https://github.com/deepseek-ai/deepseek-harness) 的聊天窗口中自动调用生图工具（API 渠道，或本机 CLI：已支持mmx / codex / agy）并展示图片，也支持利用对应 CLI 识别图片。
 
-![在 DSH 对话中生成的图片](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/0c3e600c5a2e4a5b22617c9d8e82eaf46779be79/assets/1.png)
+![在 DSH 对话中生成的图片](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/2b54498963382690703692c3397c3f11723674d5/assets/1.png)
 
 ## 说明
 
@@ -35,6 +35,10 @@
 ## 安装
 
 ```sh
+# npm（推荐，自带预构建产物）
+dsh plugin --profile web add dsh-chat-imagine
+
+# 或从 GitHub 源码安装
 dsh plugin --profile web add github:corrinehu/dsh-chat-imagine
 ```
 
@@ -48,7 +52,7 @@ dsh plugin --profile web add github:corrinehu/dsh-chat-imagine
 
 插件会检索可用的渠道和模型，并询问默认生图的渠道：
 
-![首次生成时选择默认渠道](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/0c3e600c5a2e4a5b22617c9d8e82eaf46779be79/assets/2.png)
+![首次生成时选择默认渠道](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/2b54498963382690703692c3397c3f11723674d5/assets/2.png)
 
 设置后，不必重复选择。之后，直接在聊天里描述你想要的图片：
 
@@ -60,7 +64,7 @@ dsh plugin --profile web add github:corrinehu/dsh-chat-imagine
 
 也可使用其他生图渠道：
 
-![选择非默认渠道](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/0c3e600c5a2e4a5b22617c9d8e82eaf46779be79/assets/3.png)
+![选择非默认渠道](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/2b54498963382690703692c3397c3f11723674d5/assets/3.png)
 
 在对话中直接说明即可，例如：
 
@@ -68,7 +72,7 @@ dsh plugin --profile web add github:corrinehu/dsh-chat-imagine
 用 agy 生成一张手绘彩铅风格说明大模型后训练的宽屏图片
 ```
 
-![agy 生成图片](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/0c3e600c5a2e4a5b22617c9d8e82eaf46779be79/assets/4.png)
+![agy 生成图片](https://raw.githubusercontent.com/corrinehu/dsh-chat-imagine/2b54498963382690703692c3397c3f11723674d5/assets/4.png)
 
 
 ## 识图（读图）

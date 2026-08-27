@@ -4,7 +4,7 @@ English | [中文](README.zh.md)
 
 Condition-driven wakeup for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): the agent registers a watch, goes to sleep — even closes the session — and the sentinel wakes it when the condition happens. Every subscription and every fire is a user-visible session event, and the browser dock shows what is on duty.
 
-![Sentinel dock panel, expanded](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/833a4e95d00f3fe9777df2cf8f3db7edf62852c1/docs/preview/sentinel-panel.png)
+![Sentinel dock panel, expanded](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/ce614037444ffb34348fa1869841cce67de4b3e7/docs/preview/sentinel-panel.png)
 
 ## How it works
 
@@ -20,7 +20,7 @@ Two surfaces make the server-global watch set visible. A sidebar branch grows un
 
 | Sidebar branch | Global dashboard |
 | --- | --- |
-| ![Sidebar branch](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/833a4e95d00f3fe9777df2cf8f3db7edf62852c1/docs/preview/sentinel-sidebar-branch.png) | ![Dashboard](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/833a4e95d00f3fe9777df2cf8f3db7edf62852c1/docs/preview/sentinel-dashboard.png) |
+| ![Sidebar branch](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/ce614037444ffb34348fa1869841cce67de4b3e7/docs/preview/sentinel-sidebar-branch.png) | ![Dashboard](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/ce614037444ffb34348fa1869841cce67de4b3e7/docs/preview/sentinel-dashboard.png) |
 
 ## Sensors
 
@@ -77,6 +77,7 @@ First-probe semantics: a pattern-less watch absorbs its first observation as the
 
 Verified against these harness versions (plugin loads, duty lease is held, web routes answer):
 
+- `0.1.1-rc.2` — 2026-08-26, source-build smoke: git install into a web profile, duty lease held, state and dashboard routes answer
 - `0.1.0-rc.8` — 2026-08-20, scratch-profile smoke
 - `0.1.0-rc.7` — 2026-08-20, live web deployment
 
@@ -122,7 +123,7 @@ The patch declares `sidebar.workspaces.sessionRow` and `sidebar.workspaces.sessi
 
 When [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) is installed in the same profile, sentinel registers its global watch table as a sidebar tab (`dsh-sentinel:watches`, in the **+** menu) through better-sidebar's documented `ctx.betterSidebar.registerTab` extension surface: every watch server-wide with live probe state, fire budgets and recent fire history, fed by one shared poller. No configuration needed; without better-sidebar the registration is silently skipped and the dock / branch / dashboard keep working as before.
 
-![Sentinel tab inside the better-sidebar workbench](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/833a4e95d00f3fe9777df2cf8f3db7edf62852c1/docs/preview/sentinel-better-sidebar-tab.png)
+![Sentinel tab inside the better-sidebar workbench](https://raw.githubusercontent.com/fuhefei/dsh-sentinel/ce614037444ffb34348fa1869841cce67de4b3e7/docs/preview/sentinel-better-sidebar-tab.png)
 
 ### Plays well with
 

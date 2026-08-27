@@ -10,7 +10,7 @@
 
 [简体中文](README.zh.md)
 
-![Abstract bridge carrying conversation nodes and software assets from an amber source environment into a cyan destination environment](https://raw.githubusercontent.com/kirkchinese/claude2dsh/1233b097ecb7651eafb7ed7d4b379c572e510960/assets/hero.webp)
+![Abstract bridge carrying conversation nodes and software assets from an amber source environment into a cyan destination environment](https://raw.githubusercontent.com/kirkchinese/claude2dsh/8499f7577dfb9645e8a932d767b408163f4ee99f/assets/hero.webp)
 
 Claude Code is the first source adapter in a multi-tool migration layer. Claude2DSH preserves the useful conversation structure, writes through DSH's native persistence APIs, and keeps the original Claude directory read-only by default.
 
@@ -67,15 +67,15 @@ flowchart LR
 
 The first section of **Settings → Claude2DSH** is the migration guide; Chinese is the default UI language and English is selectable. If port 3080 is already in use, run `dsh web --port 0` and open the URL printed by DSH.
 
-![Real Claude2DSH first-run migration guide in English, showing language, source directory, subagent option, Preview import, Run import, and Auto mirror defaults](https://raw.githubusercontent.com/kirkchinese/claude2dsh/1233b097ecb7651eafb7ed7d4b379c572e510960/assets/migration-wizard-en.png)
+![Real Claude2DSH first-run migration guide in English, showing language, source directory, subagent option, Preview import, Run import, and Auto mirror defaults](https://raw.githubusercontent.com/kirkchinese/claude2dsh/8499f7577dfb9645e8a932d767b408163f4ee99f/assets/migration-wizard-en.png)
 
 Preview is read-only and returns an itemized plan before any DSH write.
 
-![Real Claude2DSH Preview import report in the default Chinese UI, showing one privacy-safe synthetic session ready to import](https://raw.githubusercontent.com/kirkchinese/claude2dsh/1233b097ecb7651eafb7ed7d4b379c572e510960/assets/migration-preview.png)
+![Real Claude2DSH Preview import report in the default Chinese UI, showing one privacy-safe synthetic session ready to import](https://raw.githubusercontent.com/kirkchinese/claude2dsh/8499f7577dfb9645e8a932d767b408163f4ee99f/assets/migration-preview.png)
 
 This is what a successful run looks like. The screenshot comes from the real `0.2.0-rc.5` UI using a synthetic, privacy-safe Claude transcript.
 
-![Real Claude2DSH import result in the default Chinese UI, showing one newly imported synthetic session and zero failures](https://raw.githubusercontent.com/kirkchinese/claude2dsh/1233b097ecb7651eafb7ed7d4b379c572e510960/assets/migration-result.png)
+![Real Claude2DSH import result in the default Chinese UI, showing one newly imported synthetic session and zero failures](https://raw.githubusercontent.com/kirkchinese/claude2dsh/8499f7577dfb9645e8a932d767b408163f4ee99f/assets/migration-result.png)
 
 ### Repository helper
 
@@ -120,9 +120,9 @@ The Claude2DSH settings page keeps the first migration and safety-critical defau
 
 The following real screenshots use the default Chinese UI and synthetic data; labels switch with the language selector.
 
-![Claude2DSH Settings sections for Auto mirror, Import defaults, and Export or write-back, with safe defaults visible](https://raw.githubusercontent.com/kirkchinese/claude2dsh/1233b097ecb7651eafb7ed7d4b379c572e510960/assets/settings-import-export.png)
+![Claude2DSH Settings sections for Auto mirror, Import defaults, and Export or write-back, with safe defaults visible](https://raw.githubusercontent.com/kirkchinese/claude2dsh/8499f7577dfb9645e8a932d767b408163f4ee99f/assets/settings-import-export.png)
 
-![Claude2DSH Settings sections for the startup hook bridge and session sources, showing one privacy-safe synthetic Claude main session](https://raw.githubusercontent.com/kirkchinese/claude2dsh/1233b097ecb7651eafb7ed7d4b379c572e510960/assets/settings-hooks-sources.png)
+![Claude2DSH Settings sections for the startup hook bridge and session sources, showing one privacy-safe synthetic Claude main session](https://raw.githubusercontent.com/kirkchinese/claude2dsh/8499f7577dfb9645e8a932d767b408163f4ee99f/assets/settings-hooks-sources.png)
 
 ## Safety model
 

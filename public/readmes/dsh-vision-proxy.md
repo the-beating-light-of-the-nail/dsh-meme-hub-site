@@ -99,8 +99,8 @@ dsh plugin --profile web add dsh-vision-proxy   # 批准后重跑
 一段 `deepseek-vision` 路由上的真实对话（DeepSeek-V4-Flash 作为大脑）：用户粘贴了一张表情包并问 **"你看到了什么"**，图片被 VLM 自动转译，DeepSeek 基于文字完整作答——单步，约 7.6 秒。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/68d3b59148b0d6c80fc919c231512642302d9418/assets/demo-selector.png" width="49%" alt="模型选择器：DeepSeek + 自动识图 路由已选中" />
-  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/68d3b59148b0d6c80fc919c231512642302d9418/assets/demo-reply.png" width="49%" alt="DeepSeek 基于转译内容的完整回答" />
+  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/d4ac2622e8eb0d9f0121d99466c7946f1567fbf8/assets/demo-selector.png" width="49%" alt="模型选择器：DeepSeek + 自动识图 路由已选中" />
+  <img src="https://raw.githubusercontent.com/Flyvhidbwo/dsh-vision-proxy/d4ac2622e8eb0d9f0121d99466c7946f1567fbf8/assets/demo-reply.png" width="49%" alt="DeepSeek 基于转译内容的完整回答" />
 </p>
 
 *左图：模型选择器显示 `deepseek-vision` 路由（**DeepSeek + 自动识图**）已选中——这正是图片附件得以放行的原因。右图：DeepSeek 基于转译文字给出的完整回答。*

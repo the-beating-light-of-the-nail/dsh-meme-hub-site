@@ -23,21 +23,21 @@
   <tr>
     <td align="center" width="50%">
       <b>🎛️ Native Sync Settings Modal</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/sync-settings-modal.png" alt="Codex Sync Settings modal: actions, switches, language" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/20f707a76d2a172951932d4b1734f578f6a99dd8/docs/sync-settings-modal.png" alt="Codex Sync Settings modal: actions, switches, language" width="100%"/>
     </td>
     <td align="center" width="50%">
       <b>📍 Sidebar Workspace Trigger</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/sidebar-entry.png" alt="Workspace header Codex quick entry button" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/20f707a76d2a172951932d4b1734f578f6a99dd8/docs/sidebar-entry.png" alt="Workspace header Codex quick entry button" width="100%"/>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <b>📥 Import from Codex by Project</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/import-picker.png" alt="Import picker: projects, chats, and status tags" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/20f707a76d2a172951932d4b1734f578f6a99dd8/docs/import-picker.png" alt="Import picker: projects, chats, and status tags" width="100%"/>
     </td>
     <td align="center" width="50%">
       <b>📤 Export DSH Chats to Codex</b><br/>
-      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/2e48c480847622807197eb1acec398f171b4e983/docs/export-picker.png" alt="Export picker: smart workspace matching, source filter" width="100%"/>
+      <img src="https://raw.githubusercontent.com/Walvez/dsh-codex-sync/20f707a76d2a172951932d4b1734f578f6a99dd8/docs/export-picker.png" alt="Export picker: smart workspace matching, source filter" width="100%"/>
     </td>
   </tr>
 </table>
@@ -137,6 +137,7 @@ Click the **Codex Icon** in the sidebar to open the centered control modal:
 |---|---|---|---|
 | **Actions** | Import from Codex | `/import-all` | Open project picker to import chats into DSH |
 | | Export to Codex | `/export-codex` | Export DSH chats into new Codex conversation copies |
+| | Repair sessions¹ | `/repair-sessions [--fix]` | Scan stored session logs for replay damage and heal them in place (see below) |
 | | Mirror status | `/mcp-status` | Modal overview of MCP servers, health, and statuses |
 | | Refresh states | `/codex-settings` | Re-sync all switch states from the host |
 | **Features** | Import commands | `enableImport` | Enable `/import-codex` slash command family |
@@ -146,6 +147,29 @@ Click the **Codex Icon** in the sidebar to open the centered control modal:
 | | Skills | `enableSkills` | Register `~/.codex/skills` as live DSH skills |
 | | MCP mirror | `mcpMirror` | Auto-mirror `[mcp_servers.*]` (applies immediately) |
 | **Language** | Language Switcher | `Language` | Toggle between 简体中文 / English |
+
+> ¹ A subtle hint at the bottom-left of the settings modal links imported-chat errors to this command.
+
+---
+
+## 🩺 Troubleshooting: `token meter` / replay errors on imported chats
+
+**Symptom** — switching the model or running compaction on an (imported) conversation fails with:
+
+```
+command.execute failed: internal: token meter: assistant/message at seq N has no matching step/start event
+corrupt session log: seq gap in committed region at line L
+```
+
+**Why** — DSH's token meter validates the whole event log via cold replay when the model changes (provider usage anchors become invalid). Logs written before v1.6.0 lacked paired `step/start…step/end` markers, and mixed logs can carry stale seq citations — both fail loud only during that replay.
+
+**Fix** — run this in any DSH chat (or `dsh-codex-sync repair-sessions --fix` in a terminal):
+
+```
+/repair-sessions --fix
+```
+
+The repair merges seams, inserts missing step markers, remaps citations, renumbers sequences, validates every candidate with the real `@deepseek-ai/dsh-token-meter`, and keeps a `.bak` next to each repaired log. Imports created by **v1.6.0+** are replay-safe by construction, so this should never trigger again.
 
 ---
 

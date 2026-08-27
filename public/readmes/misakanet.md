@@ -11,7 +11,7 @@
 > MisakaNet searches 310+ failure lessons so your agent skips known bugs.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/116f786b879735d92730ebcea135437bc30c3cba/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fa89ef873993bb74e3197c0cb5f4c17c565a1336/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 [![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
@@ -83,8 +83,12 @@ for r in results:
     print(r["title"], r["score"])
 ```
 
-**Option 5 — DeepSeek Harness:**
+**Option 5 — DeepSeek Harness (DSH plugin):**
 ```bash
+# Install as DSH plugin
+dsh plugin add git+https://github.com/Ikalus1988/MisakaNet.git
+
+# Or run adapter directly
 python3 scripts/mcp_deepseek_adapter.py
 ```
 
@@ -207,7 +211,7 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/116f786b879735d92730ebcea135437bc30c3cba/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fa89ef873993bb74e3197c0cb5f4c17c565a1336/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -484,7 +488,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/116f786b879735d92730ebcea135437bc30c3cba/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fa89ef873993bb74e3197c0cb5f4c17c565a1336/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

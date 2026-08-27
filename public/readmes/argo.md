@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/hero.svg" width="100%" alt="Argo 阿尔戈：给 Agent 用的统一搜索与证据核验">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/hero.svg" width="100%" alt="Argo 阿尔戈：给 Agent 用的统一搜索与证据核验">
 </p>
 
 <p align="center">
@@ -24,10 +24,24 @@
 <p align="center">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="python" src="https://img.shields.io/badge/python-3.10+-green">
-  <img alt="version" src="https://img.shields.io/badge/version-2.8.3-informational">
-  <img alt="engines" src="https://img.shields.io/badge/engines-120+-orange">
-  <img alt="mcp" src="https://img.shields.io/badge/MCP-10%20tools-purple">
+  <img alt="version" src="https://img.shields.io/badge/version-2.8.4-informational">
+  <img alt="engines" src="https://img.shields.io/badge/engines-150+-orange">
+  <img alt="mcp" src="https://img.shields.io/badge/MCP-12%20tools-purple">
 </p>
+
+---
+
+## v2.8.4 更新亮点（在 v2.8.3 基础上再进一步）
+
+> 一句话：这版把「帮你搜到」再往前推进——**本地一手数据能进研究**、**给各种 Agent 挂 MCP 一条命令搞定**、**简单问题不再被多轮拖慢**、**多接了一个免费搜索源**，顺手加固了几处安全细节。
+
+- **深度研究能吃你本地的数据了**：以前 `argo research` 只吃网页，现在工作包能带 `file_inputs`（你的一手 CSV / XLSX / 文献，登记哈希、内容不入账）+ `recompute`（可复算执行器，安全地重算数字并和检索对账，对不上就提示）
+- **挂 MCP 不再手改配置**：`argo mcp inject` 一条命令把 argo 注入 Claude Code / Cursor / Windsurf / Codex / OpenCode / Cline（原子写 + 自动备份 + 可还原）
+- **简单问题不被拖成多轮**：查询归一化（全角→半角、版本号拆斜杠）+ 复杂度门控（低复杂度查询不放行高价多源）+ 社交/平台检索语法优先 + 丢了一个中文引擎会继续看备选
+- **多接一个免费搜索源 Keenable**（免费体验期、量较大，到期出问题直接停用即可）
+- **安全加固**：recompute 封死外部进程出网、主机路径全部改为安装感知（不再写死 `~/.agents` 这类）、修了一处会把用户引向陈旧 npm 包的安装提示
+
+> 完整变更见文末 [版本记录](#版本记录) 与 [发布说明](docs/RELEASE_NOTES_v2.8.4.md)。
 
 ---
 
@@ -36,7 +50,7 @@
 > 简单来说：前三种方案解决「**人**找信息」，Argo 解决「**Agent 及搜索核查于一身，具备一条龙的搜索服务**」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/why-better.svg" width="100%" alt="左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/why-better.svg" width="100%" alt="左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON">
 </p>
 
 | 维度 | 模型自带搜索 | AI 搜索（总结型） | 聚合搜索 / 搜索引擎 | **Argo** |
@@ -78,7 +92,7 @@
 ## 问啥像啥
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/proof-routes.svg" width="100%" alt="四类真实路由：金融、影视、多语言、地理">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/proof-routes.svg" width="100%" alt="四类真实路由：金融、影视、多语言、地理">
 </p>
 
 | 你这样问 | 大致会怎样 |
@@ -100,7 +114,7 @@
 ## 它怎么工作
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/workflow.svg" width="100%" alt="查询 → 语言与域 → 多引擎召回 → RRF → 证据快评 → 统一 JSON">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/workflow.svg" width="100%" alt="查询 → 语言与域 → 多引擎召回 → RRF → 证据快评 → 统一 JSON">
 </p>
 
 ```
@@ -139,7 +153,7 @@ freshness  ≈ 发布时间（会忽略「2015 年以来」这类历史对比年
 
 ## 快速开始
 
-任选一种即可。**以 GitHub 为唯一安装真源**（`npx github:taxueseek/argo` 或 `install.sh`），当前推荐 **v2.8.3**。**请勿用 `npm install argo-search`**——npm registry 上那份是**非官方陈旧版 v1.0.1**（非本仓库维护，功能残缺、不随本项目更新）。本包 `package.json` 已设 `private: true` 防止误发布到 npm registry。
+任选一种即可。**以 GitHub 为唯一安装真源**（`npx github:taxueseek/argo` 或 `install.sh`），当前推荐 **v2.8.4**。**请勿用 `npm install argo-search`**——npm registry 上那份是**非官方陈旧版 v1.0.1**（非本仓库维护，功能残缺、不随本项目更新）。本包 `package.json` 已设 `private: true` 防止误发布到 npm registry。
 
 **零配置就能跑**：不配 API Key 时走免费引擎 + 本地 `local_*` 引擎；配了 Key 的源质量通常更好，没配则自动跳过。
 
@@ -193,7 +207,7 @@ npx -y github:taxueseek/argo
 在 DeepSeek Harness 里一行安装（两种装法）：
 
 ```bash
-# 装法 A：仅 10 个 mcp__argo__* 搜索工具（主包自带 bundle）
+# 装法 A：12 个 mcp__argo__* 工具（主包自带 bundle，与 MCP 全量相同）
 dsh plugin --profile web add "github:taxueseek/argo"
 
 # 装法 B：搜索工具 + wide_research 并行研究编排（子包）
@@ -269,7 +283,7 @@ python3 scripts/search.py --list-engines
 
 **1. 通用搜索 + 垂直搜索，双管齐下**
 
-日常问题走通用网页搜索；一问到行情、影视、体育、宏观这类「有标准答案」的问题，自动切到垂直源直接给答案，而不是扔给你一堆链接。目前约 120+ 个源、60+ 业务域，金融 / 宏观 / 影视 / 体育 / 地理 / 组织 / 媒体 / 化学 / 学术 / 代码等都有专门的路。
+日常问题走通用网页搜索；一问到行情、影视、体育、宏观这类「有标准答案」的问题，自动切到垂直源直接给答案，而不是扔给你一堆链接。目前约 150+ 个源、70+ 业务域，金融 / 宏观 / 影视 / 体育 / 地理 / 组织 / 媒体 / 化学 / 学术 / 代码等都有专门的路。
 
 **2. 缓存：不重复花冤枉钱**
 
@@ -297,6 +311,8 @@ python3 scripts/search.py --list-engines
 |------|------|------|
 | 统一搜索 | 路由 → 召回 → 融合 → 快评 | `search.py` / `argo_search` |
 | 本地文件搜索 | 本机代码/笔记/记忆（非联网） | `argo_local_search` |
+| 本地文本预览 | 白名单目录内预览（fail-closed） | `argo_local_read` |
+| 可复算 | 受限子进程重算数字（默认拒绝） | `argo_recompute` |
 | 深度研究 | 拆子问题、多源采集、缺口提示 | `research.py` / `argo_research` |
 | 可信度评估 | 权威 / 证据密度 / 时效 / 交叉验证 | `evidence.py` / `argo_evidence` |
 | 证据核验（闭环） | 高后果问题标记 `fetch_required` + 每条 `fetch_suggested`；`--verify` 一键抓正文核验、回填「核实后证据分」、核实过的链接自动记住 | `search.py --verify 3` / `research.py --verify 3` |
@@ -319,12 +335,17 @@ python3 scripts/search.py --list-engines
 | `deep` | 调研、综述 | 质量优先，可多用引擎 |
 | `budget` | 额度紧 | 配额控制，用完降级 |
 
-### 当前大致能力（v2.8.3）
+### 当前大致能力（v2.8.4）
+
+- **本地数据融合（v2.8.4 新增，深度研究 L1）**：工作包可带 `file_inputs`（本地一手数据白名单入账，登记 sha256/血缘）与 `recompute`（可复算执行器，受限子进程安全重算，重算值与检索数字冲突触发 `recompute_conflict`）；dossier 输出 `local_sources`，本地一手计入一手命中（防 `no_sources` 假阴性）
+- **多客户端 MCP 一键接入（v2.8.4 新增）**：`argo mcp inject` 一键给 Claude Code / Cursor / Windsurf / Codex / OpenCode / Cline 注入 argo MCP（原子写 + 备份 + 可逆，客户端真源 `mcp/clients.yaml`）
+- **结构化搜索增强（v2.8.4 新增）**：查询归一化（全角→半角、点号版本拆斜杠）+ 检索变体 + 复杂度门控（低复杂度查询不放行高价多轮）；social 域语法优先（from:/subreddit:/lang: 命中提前）+ TF-IDF 检索修复（丢弃中文引擎后继续看 top-2/3）；`--include-local` 本机命中并入（默认关）
+- **Keenable（v2.8.4 新增）**：接入通用网页搜索引擎（L1 声明式 HTTP，免费体验期，`ARGO_KEENABLE_API_KEY`）
 
 - **多语言路由修复（v2.8.3 新增）**：ja/ko 查询返回目标语言（不再被中文引擎污染）；德法西意等多语言走 anysearch 返回对应语言；weighted RRF 弱源降权（weakest-link，论文 2508.01405）；anysearch 进程内 builder（更快更稳）
 
 - **Windows 全平台可用（v2.8.2 新增）**：移除 npm `os` 限制；全链路 UTF-8 防线（`PYTHONUTF8` + `-X utf8` + 6 处 JSON `read_bytes`）根治 GBK 崩溃；工具探测改 `shutil.which`；Chrome/Edge 自动发现；Ctrl+C 干净退出
-- **DSH 插件两种装法（v2.8.2 新增）**：主包自带 `dsh.bundle`，`dsh plugin add github:taxueseek/argo` 即得 10 个 MCP 工具；子包再加 `wide_research` 并行研究编排
+- **DSH 插件两种装法（v2.8.2 新增）**：主包自带 `dsh.bundle`，`dsh plugin add github:taxueseek/argo` 即得 12 个 MCP 工具；子包再加 `wide_research` 并行研究编排
 - **wide_research 证据门禁（v2.8.2 新增）**：输出自带 `quality_gate_results`（`conclusion_cap` low/medium/high），与 dossier 同一套语义；`depends_on` 依赖分阶段；仅 http(s) 入证据账本；worker 不可调 `argo_research`（防研究套研究）
 - **取证协议化（v2.8.2）**：深度研究只产 dossier（来源/覆盖/缺口/门禁），判断稿归 Agent；`--work-packages` 按 `depends_on` 分阶段
 - **证据闭环（v2.8.0 新增）**：搜索输出自带证据门控——高后果问题（金融/医疗/法律）标 `fetch_required`，每条结果标 `fetch_suggested`；`--verify` 一键核验正文并回填「核实后证据分」，核实过的链接自动记住，下次搜索直接显示已核实
@@ -335,7 +356,7 @@ python3 scripts/search.py --list-engines
 - **垂直结构化模态卡**：火车票 / 油价 / 贵金属 / 万年历 / 星座 / 手机参数 / 汽车 / 医疗挂号等查询返回实时结构化卡片（`modal_card` 域 → `bocha_ai` 原生引擎，失败自动回落 web 搜索）
 - **双层缓存**：内存 LRU + SQLite 持久化，时效性弱的内容不重复打 API；登录态结果单独隔离，不污染公共缓存
 - **为 Agent 节省 Token**：MCP 响应可紧凑裁剪、snippet 可控，输出为精简 JSON 而非整页文本
-- **10 个 MCP 工具**：搜索、研究、证据、消歧、抓取、截图、PDF、社交舆情、本地文件搜索、站点爬取
+- **12 个 MCP 工具**：搜索、研究、证据、消歧、抓取、截图、PDF、社交舆情、本地文件搜索、站点爬取、本地预览、可复算
 - **多语言搜索**：中、英、日、韩、西里尔、泰、阿、希伯来、希腊、天城体等；路由与引擎参数跟着语言走；非中文查询避免误入知乎 / 搜狗微信 / A 股快照等中文专用源
 - **登录态专业搜索**：ego-search 子技能，登录墙正文 / JS 渲染页 / 登录站点接口直取（默认关闭，见上节）
 - **垂直域门禁**：空结果恢复时不把 pypi / npm / 快讯等无关源「串」进影视、体育查询
@@ -349,7 +370,7 @@ python3 scripts/search.py --list-engines
 
 ## 引擎与路由
 
-当前配置大约 **120+** 个源、**60+** 业务域（以 `config.yaml` 与 `--list-engines` 为准）。
+当前配置大约 **150+** 个源、**70+** 业务域（以 `config.yaml` 与 `--list-engines` 为准）。
 
 ### 直连与垂类（节选）
 
@@ -420,12 +441,14 @@ python3 scripts/search.py "同一查询" --json | \
   python3 scripts/evidence.py "同一查询" --stdin --json
 ```
 
-### MCP 工具一览（10）
+### MCP 工具一览（12）
 
 | 工具 | 用途 |
 |------|------|
 | `argo_search` | 统一搜索 |
 | `argo_local_search` | 本地文件搜索（非联网） |
+| `argo_local_read` | 白名单本地文本预览（fail-closed） |
+| `argo_recompute` | 受限子进程可复算（默认拒绝，需授权） |
 | `argo_research` | 深度研究（含 social-sentiment 模式） |
 | `argo_evidence` | 可信度评估 |
 | `argo_clarify` | 意图消歧 |
@@ -467,6 +490,7 @@ export GITHUB_TOKEN="你的密钥"
 export WEB_SEARCH_API_KEY="你的密钥"
 export ANYSEARCH_API_KEY="你的密钥"
 export OCTEN_API_KEY="你的密钥"
+export ARGO_KEENABLE_API_KEY="你的密钥"   # 可选；Keenable 免费体验期
 ```
 
 `config.yaml` 里只写 `{ENV_NAME}` 占位，不会提交明文密钥。
@@ -555,6 +579,7 @@ argo/
 ├── config.yaml              # 引擎与域配置（真源）
 ├── assets/readme/           # README 视觉资源
 ├── backends/
+├── mcp/                     # 多客户端 MCP 注入真源（clients.yaml）
 ├── scripts/                 # search / research / mcp / install …
 ├── sub-skills/local-search/
 ├── sub-skills/ego-search/      # 登录态专业搜索（默认关闭，开启命令见正文）
@@ -568,6 +593,7 @@ argo/
 
 | 版本 | 说明 |
 |------|------|
+| **v2.8.4** | **本地数据融合 + 多客户端 MCP 接入 + 结构化搜索增强 + Keenable**：深度研究 L1 本地一手数据入账（`file_inputs` 白名单 + `recompute` 可复算执行器 + `local_sources`，`no_primary_sources` 计入本地一手）；`argo mcp inject` 多客户端 MCP 一键注入/诊断/还原（`mcp/clients.yaml` 声明式真源）；结构化搜索增强（查询归一化 + 检索变体 + 复杂度门控 + social 域优先 + TF-IDF 检索修复 + `--include-local`）；接入 Keenable 通用网页搜索（L1 声明式 HTTP，免费体验期）；安全加固（recompute 封死 `subprocess`/`os.system` 出网通道 + 主机路径单真源化）。详见 [发布说明](docs/RELEASE_NOTES_v2.8.4.md) |
 | **v2.8.3** | **多语言路由修复 + anysearch 进程化 + weighted RRF**：anysearch 从 subprocess 改为进程内 builder（省 python 启动开销 + `HttpClient.post` UA 轮换/重试/退避）；weighted RRF 新增动态可靠性因子（weakest-link 弱源降权，论文 2508.01405）；多语言路由修复——ja/ko 查询返回目标语言（韩语/日语），欧语言（德法西意）走 anysearch 返回目标语言，中文内容/金融/技术引擎双层过滤（域命中 + TF-IDF），Bing `mkt` 市场码 + 语言偏好软排序。详见 [发布说明](docs/RELEASE_NOTES_v2.8.3.md) |
 | **v2.8.2** | **Windows 全平台 + 证据语义统一**：移除 npm `os` 限制；全链路 UTF-8 防线（`PYTHONUTF8` + `-X utf8` + JSON `read_bytes`）根治 GBK 崩溃；工具探测改 `shutil.which`；Chrome/Edge 自动发现；Ctrl+C 干净退出。主包新增 `dsh.bundle` 声明（`dsh plugin add github:taxueseek/argo` 即得 MCP 工具）；npm 包补 `engines/`、`data/`。`wide_research` 输出新增 `quality_gate_results` 门禁 + `depends_on` 分阶段 + SSRF 防线 + 研究递归硬保护；深度研究协议化（机器产 dossier、Agent 写判断稿，`--work-packages` 分阶段取证）。详见 [发布说明](docs/RELEASE_NOTES_v2.8.2.md) |
 | **v2.8.0** | **证据闭环 + 求职 v3 + 天气双源**：搜索输出自带证据门控（高后果问题标 `fetch_required`、每条结果标 `fetch_suggested`、`--verify` 一键核验回填「核实后证据分」、核实过的链接自动记住下次搜索直接显示已核实）；`argo job` 求职搜索 v3（结构化字段 + 增量监控 + 指纹去重 + Ashby ATS / 北京高校源）；天气双源并行（wttr.in + Open-Meteo，地理编码 + 空气质量）；新增 Parallel / You.com 通用引擎；health_check 崩溃修复 + 日韩股票查询错配修复。详见 [发布说明](docs/RELEASE_NOTES_v2.8.0.md) |
@@ -607,9 +633,19 @@ python3 scripts/ab_eval_p0p1.py   # 可选，含在线实测
 MIT License © 2026 [taxueseek](https://github.com/taxueseek)
 
 <p align="center">
-  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="https://raw.githubusercontent.com/taxueseek/argo/3d309d3c54e7b0aa940c74d537e4c433ffc73ed9/assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
+  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
 </p>
 
 ---
 
 > 好的搜索不是让你看得更多，是让你更敢下结论——以及知道什么时候还不该下结论。
+
+---
+
+## 生态联动：与 Invest 系列投资技能集成
+
+本引擎的财经垂直源（`eastmoney`、`nbs_stats`、`jin10`、`nbs`、`fred`、`eurostat`、`finviz` 等）已接入 [invest 系列投资技能](https://github.com/taxueseek/fund-investment-guide)。
+
+invest-cli 通过 `info`（`invest-cli info <词> --engine eastmoney`）与 `intent macro` 直接复用 argo 的财经 / 宏观 / 资讯取数，用于环节配额、低成本、多源数据，与 invest-cli 的结构化数据层（Wind / 盈米 / 东财 / yfinance / 天天基金）协同。
+
+> 最新版已完成 argo 数据与 invest 系列技能（v2.0.5）的集成。

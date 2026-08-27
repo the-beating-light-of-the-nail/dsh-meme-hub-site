@@ -4,6 +4,9 @@
 
 界面采用可复用的政务服务门户设计语言，完整设计规范见 [`docs/design-system.md`](docs/design-system.md)；宿主集成面调研见 [`docs/harness-integration.md`](docs/harness-integration.md)。
 
+
+
+[![dsh.so install](https://www.dsh.so/badge/install/dsh-gov-portal.svg)](https://www.dsh.so/artifact/dsh-gov-portal) [![dsh.so security](https://www.dsh.so/badge/dsh-gov-portal.svg)](https://www.dsh.so/artifact/dsh-gov-portal)
 ---
 
 ## 功能总览

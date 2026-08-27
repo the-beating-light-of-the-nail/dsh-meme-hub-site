@@ -13,7 +13,7 @@
 - 📊 跟踪问题覆盖度、搜索与抓取预算、局限和部分完成状态。
 - 📝 保存结论，以及完整或明确标记为未完成的最终报告。
 - 🗂️ 在 Web 资料库中搜索、筛选、排序、恢复、中止或删除项目。
-- 🤖 创建项目后由私有规划 Agent 只提交计划；确认后再按子问题并行派出 Scout / Evaluator，最后用写作包撰写报告。普通聊天不挂研究工具，也不开通用 fetch。项目持久化在 SQLite（`~/.dsh/storages/deepresearch.sqlite`）；首次启动会导入旧的 JSON 文件。
+- 🤖 创建项目后由私有规划 Agent 只提交计划；确认后再按子问题并行派出 Scout / Evaluator，最后用写作包撰写报告。普通聊天不挂研究工具，也不开通用 fetch。项目持久化在与随手记共用的 SQLite（默认 `~/.dsh/storages/dsh.sqlite`，domain `deepresearch`）；启动时先迁旧的 `deepresearch.sqlite`，只有那份也空时才导入更早的 JSON 文件。
 - 🔄 研究页每 750ms 刷新 `progress`：题列表、Scout 卡（工具 fuse、最近检索/抓取、核验、handoff）和已接受证据。
 - ✨ 对齐 Codemini 的研究 Modal、加载动效和各场景按钮形态。
 
@@ -26,9 +26,17 @@ dsh plugin --profile web add github:havingautism/dsh-deepresearch
 dsh web
 ```
 
-在左侧边栏底部打开「深度研究」，创建项目。插件会在后台建立仅供研究使用的 DSH Agent 来生成计划；页面持续刷新，计划生成后可编辑并确认。点击“确认并开始”会建立新的私有调查 Agent，使用该 profile 已安装的 Web 与 subagent 能力，并把每次检索、证据、覆盖状态和最终报告写回研究工作区。普通聊天不会收到研究 prompt、工具调用或模型输出。插件 patch 显式启用 runner，并设置项目、问题、标准、证据和报告上限。
+在左侧边栏底部打开「深度研究」，创建项目。插件会在后台建立仅供研究使用的 DSH Agent 来生成计划；页面持续刷新，计划生成后可编辑并确认。点击“确认并开始”会建立新的私有调查 Agent，使用该 profile 已安装的 Web 与 subagent 能力，并把每次检索、证据、覆盖状态和最终报告写回研究工作区。普通聊天不会收到研究 prompt、工具调用或模型输出。插件 patch 显式启用 runner，并设置项目、问题、标准、证据和报告上限。单独安装即可使用，不必先装随手记或手写 yml。
 
 私有研究 Session 会记录宿主启动目录作为 `cwd`，以便 DSH persona 和运行时上下文可以完整装配。规划失败会停留在“计划”步骤并显示持久化错误，不会跳到空的调查看板。
+
+启动时若宿主还没有 sqlite / HTTP fetch，插件会自行挂上；已经有了则共用。研究数据在 sqlite 里占用独立的 `deepresearch` 域。不要再 YAML `insert` 一遍 `storage-sqlite`。
+
+## 网页抓取与安全
+
+DSH 默认不挂载 fetch provider、不开放聊天 `web_fetch`（见 [dsh-base `cordis.patch.yml`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/base/cordis.patch.yml#L396-L418)）。本插件在启动时若还没有 `@deepseek-ai/dsh-web-fetch-http`，会自行挂上，供私有 Scout 的 `research_web_fetch` 与宿主 `ctx.web.fetch` 使用；已挂过则跳过。因此和 `@deepseek-ai/dsh-notebooks` 同时安装不会抢同一个 loader id。聊天里的 `web_fetch` 仍然保持关闭。
+
+安装即表示你接受网页抓取带来的 SSRF 类风险；请在可信环境使用。详见 [Web 默认搜索决策说明](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/feature/2026-07-31-web-default-search.zh.md)。
 
 ## 模型体验
 

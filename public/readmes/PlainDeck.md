@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Mappedinfo/PlainDeck/b68b91134624c7d94b3088df04162e44c0a52ac2/public/plaindeck-mark.svg" alt="PlainDeck logo" width="88" height="88">
+  <img src="https://raw.githubusercontent.com/Mappedinfo/PlainDeck/442e5d4df8bebe7a4c575f360db8d697b2d5a217/public/plaindeck-mark.svg" alt="PlainDeck logo" width="88" height="88">
 </p>
 
 <h1 align="center">PlainDeck</h1>
@@ -33,7 +33,7 @@ PlainDeck 是一个以用户操作为先的幻灯片编辑器：你在浏览器�
 
 | 生成式 AI | 互联网如何工作 | 学习如何留下来 |
 | --- | --- | --- |
-| [![Generative AI demo](https://raw.githubusercontent.com/Mappedinfo/PlainDeck/b68b91134624c7d94b3088df04162e44c0a52ac2/demo/renders/generative-ai-cover.png)](./demo/renders/generative-ai.pdf) | [![Internet demo](https://raw.githubusercontent.com/Mappedinfo/PlainDeck/b68b91134624c7d94b3088df04162e44c0a52ac2/demo/renders/how-the-internet-works-cover.png)](./demo/renders/how-the-internet-works.pdf) | [![Learning demo](https://raw.githubusercontent.com/Mappedinfo/PlainDeck/b68b91134624c7d94b3088df04162e44c0a52ac2/demo/renders/how-learning-sticks-cover.png)](./demo/renders/how-learning-sticks.pdf) |
+| [![Generative AI demo](https://raw.githubusercontent.com/Mappedinfo/PlainDeck/442e5d4df8bebe7a4c575f360db8d697b2d5a217/demo/renders/generative-ai-cover.png)](./demo/renders/generative-ai.pdf) | [![Internet demo](https://raw.githubusercontent.com/Mappedinfo/PlainDeck/442e5d4df8bebe7a4c575f360db8d697b2d5a217/demo/renders/how-the-internet-works-cover.png)](./demo/renders/how-the-internet-works.pdf) | [![Learning demo](https://raw.githubusercontent.com/Mappedinfo/PlainDeck/442e5d4df8bebe7a4c575f360db8d697b2d5a217/demo/renders/how-learning-sticks-cover.png)](./demo/renders/how-learning-sticks.pdf) |
 | [`源文件`](./demo/generative-ai) · [`PDF`](./demo/renders/generative-ai.pdf) | [`源文件`](./demo/how-the-internet-works) · [`PDF`](./demo/renders/how-the-internet-works.pdf) | [`源文件`](./demo/how-learning-sticks) · [`PDF`](./demo/renders/how-learning-sticks.pdf) |
 
 [查看完整 demo gallery 与复现命令](./demo/README.md)

@@ -8,7 +8,7 @@
 
 独立 Git 状态（Git Graph）插件：DSH Web 右缘 **Git 状态浮窗** —— commit DAG 泳道图 + 未提交改动/stash + 行内详情 diff + 分支操作。
 
-🔖 **v0.5.3** · 🧩 纯前端自渲染 DOM（greeter 模式，零 React、零构建链）· 🛠 Node half 只读/写路由 · 📜 MIT · 📦 npm `@wongzexu/dsh-git-status`
+🔖 **v1.0.0** · 🧩 纯前端自渲染 DOM（greeter 模式，零 React、零构建链）· 🛠 Node half 只读/写路由 · 📜 MIT · 📦 npm `@wongzexu/dsh-git-status`
 
 </div>
 
@@ -45,10 +45,12 @@
   - 右键远程分支徽标：「创建本地分支 x 并检出」/「删除远程分支 x…」（远程已删时自动降级清理本地跟踪引用）；
     本地已有同名分支时弹三选：检出已有分支并快进到远程最新 / 其他名称从远程创建（自动建上游跟踪）/ 取消
     （对齐上游 checkoutBranchAction；快进为 `git merge --ff-only`，分叉/领先时拒绝且分支不动）；
-    折叠计数徽标右键先选远程、再出该远程的操作菜单；
-    右键 tag 徽标：「在 x 创建分支并检出…」/「推送 tag 到 <远程>…」（每远程一项）/「删除 tag」
-    （可选同步删除远程）；右键 commit 行「创建 tag…」（轻量/附注 + 多远程推送）/
-    「在 x 新建分支并检出…」（以该提交为起点）
+折叠计数徽标右键先选远程、再出该远程的操作菜单；
+     右键 tag 徽标：「在 x 创建分支…」/「推送 tag…」（每远程一项，跳确认框）/
+     「删除 tag…」（仅本地 / 全部远程一次删净 / 逐远程定向；
+     远程无该 tag 视为已删，部分失败不阻断本地删除并给明细）；
+     右键 commit 行「创建 tag…」（轻量/附注 + 多远程推送）/
+     「在 x 新建分支并检出…」（以该提交为起点）
   - **历史操作**（`/git/history` 路由，镜像上游 dataSource 的 rebase/reset/cherry-pick/revert/pull）：
     - 右键 commit 行（目标以短 hash 显示）：**Cherry-pick…**（合并提交需选主父提交，可勾
       `-x` 记录来源 / `-n` 仅应用到暂存区）、**Revert…**（合并提交默认主父 1）、
@@ -56,7 +58,7 @@
       （Soft / Mixed / Hard 三选，Hard 为红色确认钮）
     - 右键本地分支「**Rebase current branch on {branch}…**」（非当前分支时）；
       rebase 仅**非交互** + 红色危险确认（重写历史）
-    - 右键远程分支「**Pull {branch} into current…**」（并入远程分支菜单、紧邻
+    - 右键远程分支「**Pull & merge {branch} into current branch…**」（并入远程分支菜单、紧邻
       「创建本地分支并检出」；`--no-rebase` 强制合并语义，模式三选默认/NoFF/Squash，
       冲突走现有合并分类由合并条接管）
     - **Reset 祖先守卫**：目标不在当前分支历史（非祖先）→ 服务端拒绝 `reset-not-ancestor`，
@@ -132,9 +134,9 @@ dsh plugin --profile web add /path/to/dsh-git-status
 3. 浮窗头部可切换「所有分支 / 当前分支」、手动刷新（↻）；打开期间 SSE 即时刷新（断连时 10s 轮询兜底）；
 4. 点击 commit 行展开详情（提交信息 / 变更文件 / 逐文件 diff）；点击文件行查看该文件 patch；
 5. 右键分支徽标：本地「切换到 x / 推送到远程… / 合并 x / 重命名 x / 删除 x（可强删）/
-   变基当前分支到 x（红色确认，重写历史）」；远程「创建本地分支 x 并检出 / 拉取 x 到当前分支（默认/NoFF/Squash）」
+   变基当前分支到 x（红色确认，重写历史）」；远程「创建本地分支 x 并检出 / 拉取并合并 x 到当前分支（默认/NoFF/Squash）」
    （本地已有同名分支时弹框三选：检出已有分支并快进 / 其他名称从远程创建 / 取消）；
-6. 右键 tag 徽标「在 x 创建分支并检出」/「推送 tag 到 <远程>」/「删除 tag（可选同步远程）」；头部「＋ 新分支」：输入名称创建并检出新分支（非法名称即时拦截）；
+6. 右键 tag 徽标「在 x 创建分支…」/「推送 tag…」（每远程一项）/「删除 tag…」（仅本地 / 全部远程一次删净 / 逐远程定向）；头部「＋ 新分支」：输入名称创建并检出新分支（非法名称即时拦截）；
 7. 右键 commit 行：创建 tag / 以该提交建分支 / **Cherry-pick…**（合并提交选主父，可勾 -x/-n）/
    **Revert…** / **变基当前分支到该提交** / **重置当前分支到该提交（Soft/Mixed/Hard）**；
    重置目标不在当前分支历史时会先被拒绝，弹红色确认框后强制重置；
@@ -197,7 +199,7 @@ dsh-git-status/
 
 ```sh
 node scripts/build-client.js   # 改 src/client/index.js 后重新打包 client（lib/client.js）
-npm test                       # node:test 套件（265 用例，真实 git fixture，零依赖）
+npm test                       # node:test 套件（269 用例，真实 git fixture，零依赖）
 ```
 
 改 Node half 直接改 `lib/index.mjs`（无构建步骤），改完跑 `npm test` 回归。

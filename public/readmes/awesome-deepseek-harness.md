@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
- <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/e27f0a99bd00e1da099b3e3b5bda4fc3ea20d6a9/assets/banner.jpg" alt="Awesome DeepSeek Harness">
+ <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/b645315e2bc3987cf741db255cc233a0d40d3c4a/assets/banner.jpg" alt="Awesome DeepSeek Harness">
 </div>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -165,13 +165,13 @@ Management panel: Settings → Plugins.
 - [url-manager-mcp](https://github.com/Piccolo123/url-manager-mcp) - MCP server companion for url-manager: 21 tools (mcp__url_manager__*) for save/search/categorize/share and magic-link delivery. Stdio or streamable-http.
 - [dsh-kb-sieve](https://github.com/dsh-external/dsh-kb-sieve) - Knowledge-base plugin: build auditable KB packages (references + SQL).
 - [kb-rag](https://github.com/Breeze136/kb-rag) - Local literature knowledge-base RAG: 8 tools (PDF/folder/Zotero ingest, hybrid BM25+vector+reranker search, cited QA with clickable DOI links, scope/strict modes, dedup/clear/stats), all-local bge embeddings + single-file SQLite, measured 242-doc/86s ingest and sub-second hot queries on 20k chunks.
-- [geometry-knowledge](https://github.com/sdoygb/conjugate-spectral-geometry/tree/main/dsh-geometry-plugin) - Conjugate Spectral Geometry knowledge base for DSH: fully offline BM25 retrieval over 166 articles / 3224 chunks / 860 verified truths, 4 tools (geo_list / geo_search / geo_read / geo_truth), zero runtime deps, `dsh plugin add geometry-knowledge`.
+- [geometry-knowledge](https://github.com/sdoygb/geometry-knowledge) - Offline BM25 knowledge base for the Conjugate Spectral Geometry (CSG) corpus: 208 articles / 3833 chunks / 871 verified truths, 5 geo_* tools (list / search / read / calc / truth) with LaTeX→Unicode rendering, truth→article citation chains and single-character query support, zero runtime deps, `dsh plugin add geometry-knowledge`.
 - [dsh-memento](https://github.com/PerryLink/dsh-memento) - Bounded, layered, approval-gated, auditable cross-session memory: typed ctx.memory seam, zero-dependency SQLite provider, memory tool and frozen snapshot injection, plus the dsh-memory-protocol v1 rehearsal with an adapter registry and a conformance suite.
 - [dsh-engramory](https://github.com/tinqiao-oss/engramory/tree/master/adapters/dsh) - File-based curated memory: a line/byte-capped `MEMORY.md` index plus one markdown file per fact, versioned with git and readable without a tool. The cap is enforced through `ctx.tools.guard()` rather than asked for in a prompt, and the protocol is registered as a runtime skill; the same store is also read by Claude Code, Codex, Kiro, and OpenClaw.
 - [plur-ai/dsh-plugin](https://github.com/plur-ai/dsh-plugin) - PLUR persistent memory: engrams are rendered into the system prompt on each assembly rather than sitting behind a tool call, so recall needs no round trip and the block never accumulates in context; fully local search (BM25 + BGE), plain YAML storage you can edit, per-workspace scoping, and a /plur-memory viewer.
 - [dsh-memory-plugin](https://github.com/volcengine/OpenViking/tree/main/examples/dsh-memory-plugin) - OpenViking memory/context plugin for DeepSeek Harness: connects dsh to OpenViking's self-evolving context database for cross-session agent memory and knowledge RAG.
 - [dsh-continual-evolve](https://github.com/ZK-Andy/dsh-continual-evolve) - Continual self-evolution: versioned, auditable, rollback-safe harness state (prompt notes, memories, skills, subagent specs) refined from session trajectories.
-- [ccch713/deepddw](https://github.com/ccch713/deepddw) - deepDDW: memory + knowledge base + document search for DSH, reachable from ANY device on your LAN — built on a production-grade AI platform (team-ready, up to ~20 people); MIT-licensed, Docker Compose deploy.
+- [ccch713/deepddw](https://github.com/ccch713/deepddw) - Memory + KB + doc search for DSH on all your LAN devices (PC, phone, tablet) — not local-only.
 - [dsh-mnemon](https://github.com/dsh-external/dsh-mnemon) - Mnemonic layer.
 - [zoahdev/dsh-zh](https://github.com/zoahdev/dsh-zh) - Chinese-thinking system-prompt section: makes the agent answer in simplified Chinese while keeping code/commands verbatim.
 - [memory-mcp-server](https://github.com/BingoAgentTouch/Personal_MCP) - Layered long-term memory MCP server: raw turns → task fragments → daily summaries → topic indexes, local MiniLM 384-dim embeddings or OpenAI-compatible API backend, semantic + Jaccard-fallback search, one-command DSH plugin install.
@@ -275,6 +275,7 @@ Management panel: Settings → Plugins.
 - [dsh-mcp-panel](https://github.com/PerryLink/dsh-mcp-panel) - MCP management console for the official DSH MCP client: server CRUD with approval-gated, backed-up profile writes, a tool trial console through the official tool pipeline, health diagnostics, and connection status.
 - [dsh-session-pin](https://github.com/PerryLink/dsh-session-pin) - Pin sessions and workspaces to the top of the sidebar with per-pin colors, plus a navigation organizer: boards, tags and saved views, health summaries, and /goto.
 - [RevolutionLA/dsh-dream-skin](https://github.com/RevolutionLA/dsh-dream-skin) - One-command skinning for DSH Web: 8 original themes, wallpaper (opacity/blur/gradient/URL), per-user accent, and shareable theme packs + favorites + surprise-me. Purely native token system.
+- [dsh-workspace-sort](https://github.com/Moonshile/moonshile-dsh-plugins) - Re-sorts sidebar workspaces by last activity once per day; stable order within the day.
 
 ## Dashboards & Session UX
 
@@ -316,6 +317,7 @@ Management panel: Settings → Plugins.
 - [dsh-tps](https://github.com/dsh-external/dsh-tps) - TPS meter.
 - [DSH-better-sidebar](https://github.com/dsh-external/DSH-better-sidebar) - Sidebar: file rendering/terminal/Git/subagents/custom APIs.
 - [dsh-web-panel](https://github.com/dsh-external/dsh-web-panel) - Embedded terminal dock + Git Review + file view.
+- [dsh-tmux-cc](https://github.com/adrianleb/dsh-tmux-cc) - Persistent tmux control-mode cockpit for DSH Web that mirrors native panes in a dock.
 - [dsh-subagent-tree](https://github.com/dsh-external/dsh-subagent-tree) - Subagent tree visualization.
 - [dsh-web-workflow-visualizer](https://github.com/dsh-external/dsh-web-workflow-visualizer) - Workflow visualization.
 - [dsh-ui-progress](https://github.com/dsh-external/dsh-ui-progress) - Progress indicators.
@@ -342,6 +344,7 @@ Management panel: Settings → Plugins.
 - [plugin-team-board](https://github.com/whyihaveyou/dsh-suite/tree/main/packages/plugins/plugin-team-board) - Shared multi-agent task board (create / claim / transition / query) over a Cordis service key.
 - [zoahdev/dsh-code](https://github.com/zoahdev/dsh-code) - VS Code extension: run one-shot DeepSeek Harness tasks (`dsh --profile headless`) from a command or panel.
 - [dsh-event-auditor](https://github.com/qing3a/dsh-event-auditor) - Event-flow audit panel: event types, distribution, counts, and recent events for plugin authors.
+- [dsh-session-explorer](https://github.com/Zn-Dk/dsh-session-explorer) - Message-level full-text search browser across DSH sessions (FTS5 trigram over user / assistant / steering / tool with per-kind filters), deduplicated across fork/continued sessions, read-only context preview with auto-scroll to the focused message and one-click jump to the real session, incremental/full rebuild with health check, zh/en i18n follows the Host locale.
 - [dsh-whale-meter](https://github.com/Shiye-10Pages/dsh-whale-meter) - Usage tiers (🐟→🐳) with a locally-estimated percentile and shareable stats card; 46 models across 6 vendors including size-tiered Chinese pricing; backfills pre-install sessions; old-vs-new rates across the 2026-08-17 change.
 - [dsh-file-upload](https://github.com/a903067276-rgb/dsh-file-upload) - One upload button plus drag-and-drop files into the conversation as local paths: save to the project's uploads/, path text into the input box, works with any vision tool.
 - [dsh-bill](https://github.com/Jannchie/dsh-bill) - Cost tracking: per-turn cost line, spend attributed to tool output / model output / system prompt / commands, budget, forecast; priced per call from models.dev + OpenRouter (8000+ models) and never recomputed.
@@ -416,6 +419,7 @@ Management panel: Settings → Plugins.
 - [dsh-antigravity](https://github.com/LiZhenNet/dsh-antigravity) - Google Antigravity / Cloud Code Assist model provider for DSH with native Web OAuth, real-time quota tracking, and dynamic reasoning effort routing.
 - [JohnXu22786/model-catalog](https://github.com/JohnXu22786/model-catalog) - Model catalog auto-discovery: fetch model listings, pricing and capabilities from OpenAI-compatible API hosts, normalized into ready-to-use config.
 - [dsh-browser-vision](https://github.com/tristan-mcinnis/dsh-browser-vision) - Vision browser tool: drives real Chrome over CDP with browser-use and reads the page with deepseek-v4-flash-vision-exp, so canvas text, text baked into images and values in rendered charts are readable; returns JSON validated against a caller-supplied schema and reports per-run token cost.
+- [harness-unity-bridge](https://github.com/WarrenMondeville/harness-unity-bridge) - File-based bridge that lets DeepSeek Harness control the Unity Editor: run EditMode/PlayMode tests, compile scripts, refresh assets, read console logs, control Play Mode, and build — via a deterministic Python CLI, a Unity UPM package, and an installable DSH skill (`unity-bridge`).
 
 ## Models & Inference
 
@@ -565,7 +569,7 @@ Management panel: Settings → Plugins.
 
 ## Office & Documents
 
-- [dream-num/dsh-univer-office](https://github.com/dream-num/dsh-univer-office) - Create, edit, inspect, and deliver spreadsheets, documents, presentations, databases, and canvases in DeepSeek Harness, with live preview and worktree review.
+- [dream-num/dsh-univer-office](https://github.com/dream-num/dsh-univer-office) - Give DeepSeek Harness a real office environment. Univer Office Plugin brings spreadsheets, docs, slides, canvases, relational tables, and more into one runtime — with connected data, validation, versioned changes, and isolated worktrees for multi-agent collaboration.
 
 ## Notifications & Channels
 
@@ -682,6 +686,7 @@ Management panel: Settings → Plugins.
 
 ## Runtime & Operations
 
+- [Ghost011118/dsh-plugin-governor-extension](https://github.com/Ghost011118/dsh-plugin-governor-extension) - Patch-based DSH plugin governance extension: plugin inventory and whitelist controls, policy trials, runtime tool-call admission rules, plus supervised restart and automatic rollback through dsh-autostart.
 - [fakechris/dsh-harness-ops](https://github.com/fakechris/dsh-harness-ops) - Self-healing DSH ops toolbox: official daily-snapshot A/B slot rotation (auto plugin migration + acceptance-gated atomic switch + one-click rollback), a 10s watchdog that auto-relaunches the web and resumes interrupted turns, and an out-of-band dsh-doctor (diagnosis → mechanical repair → LLM deep repair → relaunch) when web and agent are both down.
 - [zoahdev/dsh-disk-audit](https://github.com/zoahdev/dsh-disk-audit) - Disk-usage audit for dsh data directories: total size, per-directory breakdown, largest files, oversized-file warnings (session logs can hit hundreds of MB) and cleanup suggestions (CLI + `disk_audit` tool).
 - [zoahdev/dsh-cn-boot](https://github.com/zoahdev/dsh-cn-boot) - China-network bootstrap: probes npm/npmmirror/GitHub/HuggingFace/Gitee and local proxies, recommends mirrors/proxy, generates a PowerShell + bash bootstrap (CLI + `cn_boot` tool).

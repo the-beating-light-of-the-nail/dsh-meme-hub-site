@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/0c904a264172b6372368407e36b329a95b489fdf/docs/screenshots/cover.jpeg" alt="DeepSeek-Harness Widgets preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/25f19260525f178f06c2fef21f79feda97fee5fa/docs/screenshots/cover.png" alt="DeepSeek-Harness Widgets preview" width="100%">
 </p>
 
 DeepSeek-Harness Widgets is a **persistent DSH bundle plugin** built on the Cordis composition model. It provides a customizable multi-column widget rail on the right side of the conversation page — real-time session insights, usage monitoring, and quick actions — with an extensible declarative registry.
@@ -68,7 +68,11 @@ In both modes the magnified deck is painted by a fixed overlay **outside** the r
 
 ### OpenCode Go Usage
 
-Rolling / weekly / monthly usage windows + percentage + reset time. The host half registers a same-origin route proxying `opencode.ai`; the browser makes no cross-origin requests, and keys go through DSH credentials.
+Rolling / weekly / monthly usage windows + percentage + reset time. The host half registers a same-origin route proxying `opencode.ai`; the browser makes no cross-origin requests, and keys go through DSH credentials. Two presentations: **用量对比** (three-window bars) and **用量环图** (three-window donut rings — percent in each ring centre, exact value on hover, same urgency colouring).
+
+### Peak Pricing (market widget)
+
+A 2×2-only 峰谷定价 card showing whether the current moment is inside a DeepSeek peak-pricing window. Peak hours (Beijing time, UTC+8): Mon–Fri **09:00–12:00** and **14:00–18:00** — everything else, including weekends, is off-peak. Off-peak shows **CHEAP**; during a peak window the whole card glows with a breathing red inner glow (never a solid fill — the centre stays fully readable) and shows **EXPENSIVE**, while the corresponding window row under the title lights up brand-blue and scales up slightly. The schedule is hard-coded for now; a custom-schedule setting is on the roadmap.
 
 ---
 
@@ -110,6 +114,45 @@ pnpm run check      # typecheck + tests + build
 - Coordinates explicitly with `dsh-better-sidebar`'s right rail (shares `--dsh-sidebar-width`); no residue after uninstall.
 
 ## Changelog
+
+### v1.2.2
+**New — 峰谷定价 (peak-pricing) widget:**
+
+- ⏱️ New market widget 峰谷定价 (2×2 only): shows whether right now is inside a DeepSeek V4 peak-pricing window. Hard-coded to Beijing time (Mon–Fri **09:00–12:00** & **14:00–18:00**, the UTC 01:00–04:00 / 06:00–10:00 windows); a custom-schedule setting is on the roadmap.
+- 💰 Bottom-left big label mirrors the cache/tokens card (same font, size, position): red **EXPENSIVE** inside a peak window, **CHEAP** otherwise.
+- 🟥 During a peak window the whole card glows with a gentle breathing red inner glow (scheme B — bleeds in from the edges, centre stays readable, never a solid fill; 2.2s, modest swing, pure urgency, no click bait); `prefers-reduced-motion` users get the static steady glow.
+- 🔵 The two window rows under the title reuse the token-bar legend font: the live row lights up brand-blue and scales up slightly (10px→12px, 500→600), the other stays faint.
+- ⏲️ A 30s always-on tick rebuilds stats even with no turn running, so a peak/off-peak flip at a window boundary lands promptly (the previous 1s tick only existed while a turn was running).
+
+**New — OpenCode usage rings widget:**
+
+- 🍩 New market widget 用量环图 (usage-rings, OpenCode Go group): one donut per window (rolling / weekly / monthly) side by side — the same data as the 用量对比 bars chart, in circle form.
+- ⭕ The ring centres stay clean (no in-ring text), so the rings can be drawn thick and full (5px stroke, maximised diameter); each percent sits directly under its ring in a larger weight, and the window name + exact value surface on hover via the title tooltip (same urgency colours as the bars chart: ≥95 red, ≥75 amber, else green). Ring-to-ring spacing equals the card inner padding (12px on a 2×2) — the rings tighten to keep the three-across footprint — and the number-to-ring gap is slightly wider than snug (4px) so the layout carries over cleanly to planned 2×1 wide cards.
+- 🧭 The existing 用量对比 bars widget is untouched — both presentations coexist and install independently.
+
+**Changed — the OpenCode usage bars are now proportioned like a proper data-viz bar chart:**
+
+- 📊 The 用量对比 (usage-bars) component's three bars no longer use a fixed ~12px width spread by `space-around`. Each bar's column now flexes to an equal share of the card width (the same elastic columns as the 用量柱状图 daily token bars) with the same 4px gutter, and each bar fills ~60% of its column — ≈24px on a 2×2 card, proportionate to its 56px height (a full-width 100% version read as fat blocks).
+- 🟣 Bars are fully rounded (5px corners) — without a baseline track underneath, square bottoms read as overly sharp.
+- 📏 No value labels on the bars (small-chart convention — labels on a 3-bar mini chart read as chartjunk); the exact percent surfaces on hover via the native title tooltip, and faint dashed 25/50/75% reference lines behind the bars let each bar's height be eyeballed against a quarter scale at a glance.
+
+**Improved — preview state toggling + dark-mode select arrow fix:**
+
+- 🖱️ Stateful widgets (currently 峰谷定价) now let you **click the preview card to flip its state** (peak/off-peak) in both the 组件配置 and 组件市场 previews — no need to wait for the real window to review the EXPENSIVE red glow and the CHEAP look; a "点击卡片切换：高峰/低峰" hint shows under the card. Declared per-widget via the `simToggle` descriptor, so future stateful widgets just add one line.
+- 🔽 Fixed `.dsx-select` chevron not rendering/not following the dark theme: `fill='currentColor'` in a background-image data-URI SVG draws nothing (SVG-as-background-image resolves in an isolated image context), so the arrow now uses explicit fills — mid-grey in light mode, near-white under `body[data-ds-dark-theme]`.
+
+**Fixed — filled action buttons are readable in dark mode again:**
+
+- 🌗 Filled primary buttons (`dsx-btn-primary` — 已添加 / 添加 / 查看详情), the pressed state of the 组件 stats capsule, and widget-card action buttons (primary/danger kinds) painted `var(--dsw-alias-brand-primary)` behind hard-coded white text. In dark mode the brand token renders near-white, so the label merged into the fill and became invisible. Primary now fills with `var(--dsw-alias-state-business-primary)` and danger with `var(--dsw-alias-state-error-primary)` — the same token pair the official UI uses for filled action buttons — so the white label stays legible in both light and dark themes.
+
+**Fixed — the add-panel height no longer collapses when dsh-better-sidebar's right panel is open:**
+
+- 📐 The temporary add panel's `bottom` offset tracked `--dsh-sidebar-width` — the better-sidebar *width* variable that pushes `#root` aside when the right panel is open. With the right sidebar open (e.g. 320px) the bottom lifted by that whole width while `top` stayed fixed, halving the visible panel; it reproduced regardless of open order. It now anchors to the input-box breathing gap (`--dsx-input-bottom`), the intent the rail-measure comment always stated — the right offset still follows the sidebar, the vertical one never does. Headless-verified: panel height is identical with the sidebar off / 320px / 480px, vs the old rule dropping 886→566px at 320px.
+
+**Fixed — 2×4 tiles are correctly masked in a 1-column layout:**
+
+- 🧱 In 1-column mode a 2×4 tile (two cells wide) has nowhere to sit. The rail now hides installed 2×4 instances (temporarily — switching back to 2/4 columns restores them as-is), and the market says so: the 2×4 entry's title is struck through with a yellow "1列不可用" capsule beside it and its add button disabled. The `right` offset still follows the sidebar width; only height no longer does.
+- 🧪 Headless end-to-end: added heatmap@2×4 on a 2-column rail (324px slot), switched to 1 column → title struck through + capsule shown + add disabled + wide slot gone (150px only); user state restored afterwards.
 
 ### v1.2.1
 **Fixed — the last edit is now flushed to the host store when the page closes, so widget state survives ANY desktop shell and every browser/device:**
@@ -249,6 +292,7 @@ The widget registry (`WIDGETS` descriptors) already lays the foundation for more
 
 - **Heatmap range/period controls**: let the 2×4 heatmap and bars pick custom ranges (weekly/monthly/etc.) beyond the current half-year / 7-day defaults;
 - **Multi-platform usage widgets**: Z.ai, DeepSeek balance, etc., reusing the host same-origin proxy + credentials pattern;
+- **Custom peak-pricing schedules**: expose window customization for the 峰谷定价 widget (currently hard-coded Beijing weekdays 09:00–12:00 / 14:00–18:00) — custom start/end times, weekday sets, and timezone;
 - **Utility widgets**: one-click compact (needs DSH official compaction) and more;
 - **External integrations**: Feishu / WeChat push & interaction, keys strictly via DSH credentials;
 - **Widget marketplace**: open a third-party widget registration mechanism so community widgets can join like plugins;

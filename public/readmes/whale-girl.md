@@ -12,6 +12,8 @@
 <p align="center">
   <img src="https://badgen.net/badge/license/MIT/green" alt="license" />
   <img src="https://badgen.net/badge/format/official%20bundle/8257D0" alt="official bundle" />
+  <a href="https://dshfind.com/en/plugins/vlln/whale-girl?ref=badge"><img src="https://dshfind.com/api/badge/vlln/whale-girl" alt="dshfind" /></a>
+  <a href="https://www.dsh.so/artifact/whale-girl"><img src="https://www.dsh.so/badge/whale-girl.svg" alt="dsh.so security" /></a>
 </p>
 
 ---
@@ -69,21 +71,21 @@ cd "$(npm root -g)/whale-girl-desktop/src-tauri" && cargo build --release  # fir
 
 | State | Trigger | Preview |
 |---|---|---|
-| `idle` | Default standby | ![idle](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/idle.gif) |
-| `working` | Random work spell while session thinks | ![working](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/working.gif) |
-| `celebrate` | Task done / level-up / title / round done | ![celebrate](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/celebrate.gif) |
-| `error` | Task failed / request error | ![error](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/error.gif) |
-| `disappointed` | Brief dejection after failure | ![disappointed](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/disappointed.gif) |
-| `joy` | Happy after feeding / playing | ![joy](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/joy.gif) |
-| `eat` | Click to feed | ![eat](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/eat.gif) |
-| `play` | Click to play | ![play](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/play.gif) |
-| `drag` | While dragging | ![drag](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/drag.gif) |
-| `walk` | Periodic wandering | ![walk](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/walk.gif) |
-| `sleep` | Idle ≥60s | ![sleep](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/sleep.gif) |
-| `wake` | Wake-up transition | ![wake](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/wake.gif) |
-| `welcome` | New session | ![welcome](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/welcome.gif) |
-| `think` | Company while session thinks | ![think](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/think.gif) |
-| `wait` | Awaiting approval | ![wait](https://raw.githubusercontent.com/vlln/whale-girl/e22e1fd918746e610f7bfb1713cef1e57a56f37c/docs/preview/wait.gif) |
+| `idle` | Default standby | ![idle](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/idle.gif) |
+| `working` | Random work spell while session thinks | ![working](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/working.gif) |
+| `celebrate` | Task done / level-up / title / round done | ![celebrate](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/celebrate.gif) |
+| `error` | Task failed / request error | ![error](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/error.gif) |
+| `disappointed` | Brief dejection after failure | ![disappointed](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/disappointed.gif) |
+| `joy` | Happy after feeding / playing | ![joy](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/joy.gif) |
+| `eat` | Click to feed | ![eat](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/eat.gif) |
+| `play` | Click to play | ![play](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/play.gif) |
+| `drag` | While dragging | ![drag](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/drag.gif) |
+| `walk` | Periodic wandering | ![walk](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/walk.gif) |
+| `sleep` | Idle ≥60s | ![sleep](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/sleep.gif) |
+| `wake` | Wake-up transition | ![wake](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/wake.gif) |
+| `welcome` | New session | ![welcome](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/welcome.gif) |
+| `think` | Company while session thinks | ![think](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/think.gif) |
+| `wait` | Awaiting approval | ![wait](https://raw.githubusercontent.com/vlln/whale-girl/267e64fa61e6429bdd7cc06bf32cc53e559ff71c/docs/preview/wait.gif) |
 
 ## Configuration
 

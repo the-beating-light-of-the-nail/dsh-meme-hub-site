@@ -83,6 +83,7 @@ All tunables are Schemastery `Config` fields (changeable from cordis.yml). Inval
 | `recall.snippetCap` | `5` | `memory_recall` snippets per session |
 | `recall.snippetChars` | `300` | `memory_recall` snippet characters |
 | `recall.windowDays` | `30` | `memory_recall` recency window in days |
+| `retrieval.vector` | `false` | Semantic recall switch: `true` enables `memory_recall` vector recall (fake hash embedding) when an embedding provider is available; otherwise degrades to substring |
 | `panelEntriesLimit` | `200` | Web panel entries page size |
 | `panelAuditLimit` | `20` | Web panel audit rows by default |
 | `auditRetentionDays` | `0` | Audit retention (0 = keep forever) |
@@ -98,6 +99,44 @@ All tunables are Schemastery `Config` fields (changeable from cordis.yml). Inval
 | `memory_recall` | tool | Bounded memory matches plus recent session-history matches |
 | `/memory` | command | `list` · `query` · `add` · `remove` · `consolidate` · `proposals` · `budgets` · `audit` · `export` · `import <path>` · `adapters` |
 | web panel | client drawer | Read-only: browse entries, search, budget bars, audit tail |
+
+## MCP server
+
+`dsh-memento` ships a read-only stdio **MCP server** (`dsh-memento-mcp`) so external MCP clients (Claude, Codex, …) can search the memory store without a harness. It speaks JSON-RPC 2.0 over newline-delimited JSON (NDJSON) — one JSON object per line, no `Content-Length` framing.
+
+**Read-only.** The database is opened with `node:sqlite` `readOnly: true` (no migrations, no WAL writes, no recall-count bump); a missing database returns empty results instead of crashing.
+
+| Tool | Purpose |
+|---|---|
+| `memory_search` | `{query, limit?}` → ranked entries (case-insensitive substring via the retrieval Provider seam) |
+| `memory_stats` | `{}` → `{total, namespaces}` entry count + per-track/scope overview |
+
+Run it directly:
+
+```sh
+node bin/mcp-server.mjs
+# or, after npm install: npx dsh-memento-mcp
+```
+
+The database path is `$DSH_MEMENTO_DB_PATH` (absolute, or relative to `$DSH_HOME`); it defaults to `$DSH_HOME/dsh-memento/memory.db`.
+
+Claude Desktop (`claude_desktop_config.json`) example:
+
+```json
+{
+  "mcpServers": {
+    "dsh-memento": {
+      "command": "npx",
+      "args": ["-y", "dsh-memento-mcp"],
+      "env": {
+        "DSH_MEMENTO_DB_PATH": "/home/you/.dsh/dsh-memento/memory.db"
+      }
+    }
+  }
+}
+```
+
+The server is read-only: no network, no writes, no approval gate — search and stats only.
 
 ## How it's different
 

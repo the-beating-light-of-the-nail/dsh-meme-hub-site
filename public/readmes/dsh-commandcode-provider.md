@@ -158,12 +158,12 @@ MIT — see [LICENSE](./LICENSE). Portions ported from [pi-commandcode-provider]
 
 **Model picker** — plan tier, deal/FREE, peak/off-peak, Image and context annotations:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/5d3c5e6ca9109cdd63745ebcb018ac2108229275/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/474e636431c09121fb40720d23ce0b0e48442b75/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
 
 **Usage dashboard** — `/commandcode` per-account report:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/5d3c5e6ca9109cdd63745ebcb018ac2108229275/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/474e636431c09121fb40720d23ce0b0e48442b75/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
 
 **Settings page** — API key, connection knobs, account rotation and the live account-usage card:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/5d3c5e6ca9109cdd63745ebcb018ac2108229275/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/474e636431c09121fb40720d23ce0b0e48442b75/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">

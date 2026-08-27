@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/758f51e48d2cd6e9fcc58d034cbe807a9cfd9814/assets/logo.svg" alt="Morning Star Harness" width="96">
+<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/a9fe242bef0ea364fcfe68164c47d256bdaada7b/assets/logo.svg" alt="Morning Star Harness" width="96">
 
 # [Morning Star](https://github.com/btspoony/mstar-harness)
 
@@ -13,7 +13,11 @@ English / [中文](README_CN.md)
 [![CI](https://img.shields.io/github/actions/workflow/status/btspoony/mstar-harness/ci.yml?branch=main&style=flat-square&label=CI&labelColor=black)](https://github.com/btspoony/mstar-harness/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-white?labelColor=black&style=flat-square)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/btspoony/mstar-harness?include_prereleases&sort=semver&label=version&style=flat-square&labelColor=black&color=c4f042)](https://github.com/btspoony/mstar-harness/releases)
+[![npm: cli](https://img.shields.io/npm/dt/@mstar-harness/cli?style=flat-square&labelColor=black&color=c4f042&label=npm%3A%20cli)](https://www.npmjs.com/package/@mstar-harness/cli)
+[![npm: dsh](https://img.shields.io/npm/dt/@mstar-harness/dsh?style=flat-square&labelColor=black&color=c4f042&label=npm%3A%20dsh)](https://www.npmjs.com/package/@mstar-harness/dsh)
+[![npm: opencode](https://img.shields.io/npm/dt/@mstar-harness/opencode?style=flat-square&labelColor=black&color=c4f042&label=npm%3A%20opencode)](https://www.npmjs.com/package/@mstar-harness/opencode)
 [![Last commit](https://img.shields.io/github/last-commit/btspoony/mstar-harness?color=c4f042&labelColor=black&style=flat-square)](https://github.com/btspoony/mstar-harness/commits/main)
+
 [![dshfind](https://dshfind.com/api/badge/btspoony/mstar-harness?lang=en)](https://dshfind.com/zh/plugins/btspoony/mstar-harness?ref=badge)
 [![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
 
@@ -104,7 +108,7 @@ Two read-only, advisory commands under one roof — they never edit source; find
 | Command | When |
 |---------|------|
 | `/codebase-audit [keywords]` | Read-only survey of what's worth doing — prioritized, ready-to-execute plans; narrow it with category focus (`bug`, `security`, `perf`, `tech-debt`, …) when you want a targeted pass. |
-| `/pr-deep-review [pr\|branch\|scope]` | Deep pre-merge review of a PR / branch / diff → one verdict (`ship it` / `needs fixes` / `blocked`) and every finding, posted to GitHub when a PR number is given. |
+| `/amazing-pr-review [pr\|branch\|scope] [quick\|default\|deep]` | Deep pre-merge review of a PR / branch / diff at three strengths — `quick` (single-pass, 1 seat) / `default` (no-flag landing tier, reduced seats) / `deep` (full three-stage pipeline) — one verdict (`ship it` / `needs fixes` / `blocked`) and every finding, posted to GitHub by the command's main agent at Stage 3 synthesis when a PR number is given. `deep` runs the full three-stage pipeline (collect → domain review → main-agent synthesis; one verdict / one GitHub Review); `default` / `quick` are lighter single/dual-seat passes. Multi-PR input → first PR only; remaining PRs queued as audit todos (next session); suggest one session per PR. |
 
 ## Harness Workflow
 

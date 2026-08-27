@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
 
   # DSH Skills Manager
 
-  **Safely manage local skills and inspect shared Agent skills in DeepSeek Harness**
+  **Load and safely manage skills from DSH and common local Agents**
 
   [简体中文](README.zh-CN.md) · [Apache-2.0](LICENSE)
 
@@ -21,29 +21,26 @@
 
 ## Features
 
-- Filter by category or search, then inspect DSH-local and shared Agent skills in **Settings → Skills**.
-- Enable, disable, upload, replace, and delete DSH-local skills.
-- Keep shared Agent skills strictly read-only and never change their global metadata.
-- Import a plugin directory containing `SKILL.md` through the native file picker and confirm every name collision.
-- Paste one sentence into DSH, Codex, or WorkBuddy and let that agent install the plugin locally.
+- Discover and load user-level skills from `.agents`, Codex, Claude, Gemini, and OpenCode into DSH.
+- Persist external source and skill toggles under `$DSH_HOME/skills-manager/state.json` without rewriting shared source files.
+- Inspect Markdown bodies, frontmatter, load state, duplicate shadowing, and format diagnostics in a source-first UI.
+- Create a local DSH skill from Settings or conversation; conversational writes require user approval.
+- Move DSH-local skills to recoverable Trash, then restore or permanently delete them.
+- Import `.zip` archives, skill folders, or a single `SKILL.md` safely into `$DSH_HOME/skills`.
 
 ## Screenshots
 
-Filter by category or search in **Settings → Skills**. DSH-local skills can be enabled, disabled, or deleted; shared Agent skills stay read-only:
+Browse by source or search in **Settings → Skills**. External Agent sources are loaded through a manager-owned provider while their files stay read-only:
 
-![Skills Manager settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/skills-manager-en.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/screenshots/skills-manager-v2-preview.png)
 
-Shared Agent skills stay visible when the DSH-local group is empty:
+Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Shared Agent skills remain visible](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/skills-public.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/screenshots/skill-detail.png)
 
-The compact upload dialog accepts a plugin `SKILL.md`, a plugin directory, or drag-and-drop:
+Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Upload plugin dialog](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/upload-plugin.png)
-
-Enabling a DSH-local skill restores its `/` command in the chat composer:
-
-![Chat slash command after enabling a local skill](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/slash-command.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 
@@ -109,7 +106,7 @@ dsh plugin --profile web add @michengai/dsh-skills-manager@latest --registry=htt
 dsh --profile web --dump-config
 ```
 
-To pin a release, replace `@latest` with a version such as `@0.1.23`.
+To pin a release, replace `@latest` with a version such as `@0.1.25`.
 
 The configuration output should contain `skills-manager`. Restart DSH Web and hard-refresh the browser. Do not copy client files manually: `dsh plugin add` also applies `cordis.patch.yml`.
 
@@ -137,26 +134,24 @@ Open **Settings → Skills**, then use the panel as follows:
 
 | Goal | Action | Scope |
 | --- | --- | --- |
-| Search or filter | Use **Category** and **Search** to narrow by directory, name, kind, or description. | DSH and shared Agent skills |
-| Inspect a skill | Review its name, form, description, and invocation state. | DSH and shared Agent skills |
-| Enable or disable | Select **Enable** or **Disable**; this controls model invocation and the `/` command. | DSH-local skills only |
-| Upload a plugin | Select **Upload**, then choose the plugin directory’s `SKILL.md`. Its scripts and resources are copied too. | DSH-local skills only |
-| Choose the directory | If the selected file has no usable path, choose the directory containing `SKILL.md`. | DSH-local skills only |
-| Replace or delete | Confirm a name collision, or select **Delete** for an unneeded local skill. | DSH-local skills only |
-| Inspect shared skills | Review shared Agent skills without changing their metadata. | Read-only |
+| Search or filter | Narrow by source, name, or description. | All sources |
+| Inspect details | Review body, frontmatter, path, format diagnostics, and duplicate shadowing. | All sources |
+| Enable or disable | DSH skills update their own invocation policy; external skills update manager-local state only. | All sources |
+| Create or import | Create in Settings, or import `.zip`, a folder containing `SKILL.md`, or one `SKILL.md`. | `$DSH_HOME/skills` |
+| Create from conversation | Let an Agent call `create_skill`; DSH asks for approval before writing. | `$DSH_HOME/skills` |
+| Delete and recover | Move to Trash, restore, or permanently delete in a second step. | DSH-local skills |
 
-![Delete plugin confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/e3407bf2d00ccc06b9931aaea52cfa1ed6706376/assets/screenshots/delete-plugin.png)
-
-> Deleting a DSH-local skill requires confirmation and cannot be undone.
+> Toggling a shared source never changes its files; only DSH-local skills can move to Trash.
 
 Escape closes only the frontmost upload or confirmation dialog and leaves Settings open.
 
 ## Permissions and safety limits
 
-| Directory | View | Enable or disable | Upload or replace | Delete |
+| Directory | View/load | Enable or disable | Create/import | Delete |
 | --- | --- | --- | --- | --- |
-| `$DSH_HOME\skills` | Yes | Yes | Yes | Yes |
-| `$DSH_AGENTS_HOME\skills` | Yes | No | No | No |
+| `$DSH_HOME\skills` | Yes | Updates local invocation policy | Yes | Moves to Trash |
+| `$DSH_AGENTS_HOME\skills` | Yes | Manager state only | No | No |
+| `~/.codex/skills`, `~/.claude/skills`, `~/.gemini/skills`, `~/.config/opencode/skills` | Yes | Manager state only | No | No |
 
 - Enable, disable, and delete accept only one ordinary skill-name path segment.
 - Replacements copy to a temporary sibling path first and keep the original until that succeeds.

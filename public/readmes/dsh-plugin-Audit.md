@@ -36,6 +36,12 @@ plugin-management enhancement: group the plugin list by source so you can tell
     **Update** button plus a progress bar while running
     (`pnpm add <pkg>@latest --config.minimumReleaseAge=0`, corepack/npx
     fallback, live output);
+  - **GitHub plugin updates (v0.9)**: plugins installed from `github:` / `git+`
+    / `git://` / `git@` specs can be updated even without an npm package —
+    branch/default-branch refs compare the locally-locked commit against the
+    remote HEAD via `git ls-remote`, tag refs list all tags to find a newer
+    stable tag; updates re-run `pnpm add <original spec>` (or the new tag spec);
+    refs pinned to a specific commit are marked not auto-updatable;
   - Updates are queued in a module-level store: clicks during a run merge into
     the next batch, two pnpm processes are never started concurrently, and the
     task keeps running (and stays observable) even if you close the panel;
@@ -58,7 +64,7 @@ The top bar shows the update area (`可更新: 1` = 1 update available, `重新�
 grouped cards. Every card carries the enable/disable toggle, version, GitHub
 button, update status and uninstall button:
 
-![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/93a2fdd2a1ee227813e99867e79fd12e4603bfa1/docs/plugin-catalog-updates.png)
+![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/288f4b3eed0f0156279a9a4ee103df555366e61f/docs/plugin-catalog-updates.png)
 
 ## Quick start
 
@@ -123,7 +129,8 @@ dsh-plugin-diraud/
   src/classify.ts        origin-classification pure function (single source of truth)
   src/patch.ts           cordis.patch.yml read/write (persist toggles)
   src/toggle.ts          shared toggle core (persist + ctx.loader.update)
-  src/updates.ts         update core: semver compare, registry probe, pnpm exec (unit-testable)
+  src/updates.ts         update core: semver compare, registry/git probe, pnpm exec (unit-testable)
+  src/gitspec.ts         git-hosted dependency parsing + lockfile/ls-remote helpers (v0.9)
   src/metadata.ts        GitHub repository/homepage → canonical URL (v0.8)
   src/translations.ts    bilingual description dictionary (v0.6)
   src/render.ts          /plugin-audit output rendering (grouped view)

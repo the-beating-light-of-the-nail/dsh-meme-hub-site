@@ -10,7 +10,7 @@ A notification plugin for the dsh web GUI. When a session finishes, hits an erro
 
 | The settings panel with the **Notifications** entry in the sidebar and the section content | The sound picker for each kind (the official dropdown) |
 | --- | --- |
-| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/91e386dc9a02bd6c9405abe21c1d6272709fadd0/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/91e386dc9a02bd6c9405abe21c1d6272709fadd0/screenshots/02-sound-menu-open.png) |
+| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/83b52be14803ccef7ed909acfcd071b5c64241e6/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/83b52be14803ccef7ed909acfcd071b5c64241e6/screenshots/02-sound-menu-open.png) |
 
 ## Install
 
@@ -36,7 +36,7 @@ Everything lives in this plugin — no harness (host) changes:
 | Question asked | The agent is waiting for your answer (`question/requested`) | pop |
 | Permission requested | The agent requests an authorized operation (`approval/requested`) | alert |
 
-Each kind can be enabled or disabled and reassigned to any of the four built-in sound effects (or muted). The four sounds are synthesized with Web Audio — no audio files are shipped — and the master volume is adjustable with the official-style slider (0–200%; above 100% amplifies the built-in sounds).
+Each kind can be enabled or disabled and reassigned to any of the four built-in sound effects (or muted). The four sounds are synthesized with Web Audio — no audio files are shipped — and the master volume is adjustable with the official-style slider (0–100%). A fixed loudness boost (~+6 dB) with a soft limiter on the playback chain makes every sound noticeably louder without distortion; custom audio feeds the same chain.
 
 ## Custom audio
 
@@ -53,7 +53,7 @@ The plugin registers a **Notifications** section in the settings panel (Settings
 - **Browser notifications** master switch (+ permission state and an enable button),
 - **Alert for the current session** toggle (opt in to being alerted while reading that session),
 - **Sound** master switch,
-- **Volume** slider (0–200%),
+- **Volume** slider (0–100%),
 - one row per notification kind: enable switch, custom-audio upload, sound picker (the official dropdown menu), and a Preview button,
 - a Test notification button on the browser-notifications row (verifies the OS channel once permission is granted).
 

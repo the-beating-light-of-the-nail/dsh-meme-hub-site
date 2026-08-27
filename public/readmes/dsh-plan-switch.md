@@ -12,7 +12,7 @@ A one-click **enter/exit Plan mode** button for the DSH web input bar (a quick-c
 
 ## Screenshot
 
-![dsh-plan-switch plan button in the input bar](https://raw.githubusercontent.com/a903067276-rgb/dsh-plan-switch/e06fa21078df9e6a839306cc748814c8965632a4/assets/plan-button.png)
+![dsh-plan-switch plan button in the input bar](https://raw.githubusercontent.com/a903067276-rgb/dsh-plan-switch/7038ef4f996c577eaeba0c98eb07a233707f0ab9/assets/plan-button.png)
 
 The checklist icon button at the left end of the input tool row (official DSH design tokens, follows dark/light theme).
 

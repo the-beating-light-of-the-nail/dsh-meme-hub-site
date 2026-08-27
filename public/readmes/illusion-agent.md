@@ -20,7 +20,8 @@ a flexible extension ecosystem into a single intelligent agent — at home
 on Windows, macOS, and Linux.
 
 Whether you prefer the discipline of the terminal or the ease of the browser,
-IllusionAgent resonates with your workflow: 34 built-in tools, 7 specialized sub-agents, 2 compaction methods, MCP server support, hooks, plugins, and
+IllusionAgent resonates with your workflow: a rich built-in toolset, specialized
+sub-agents, two compaction methods, MCP server support, hooks, plugins, and
 a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
 > Standing on the shoulders of giants — Claude Code prompts, OpenHarness
@@ -30,8 +31,8 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 ### Core Features
 
 - 🤖 **Multi AI Provider Support** - Anthropic, OpenAI, Copilot, Codex, and any compatible endpoint
-- 🧠 **Multi-Agent Collaboration** - 7 built-in specialized Agents
-- 🛠️ **Rich Toolset** - 34 built-in tools (30 base + 4 channel) + MCP dynamic tool extension
+- 🧠 **Multi-Agent Collaboration** - Built-in specialized agents (general-purpose, explore, verification)
+- 🛠️ **Rich Toolset** - Full base + channel toolset + MCP dynamic tool extension
 - 📦 **Context Compaction** - Microcompact (clear old tool results) + full compaction (LLM summary), auto-triggered as context fills
 - 🌐 **Web UI Interface** - Browser-based chat interface with `illusion web`, independently usable alongside the terminal
 - 🌍 **Bilingual Interface** - Chinese/English auto-switch via `ui_language` setting
@@ -47,14 +48,14 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
 <div align="center">
   <p>Welcome screen & rich text rendering</p>
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/84d5189cb1f1dfedd82f88bd4a91bc64d60fd65a/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/84d5189cb1f1dfedd82f88bd4a91bc64d60fd65a/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/76626312327e05bd29d8a60b832eba2ad5ec8a1a/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/76626312327e05bd29d8a60b832eba2ad5ec8a1a/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
 </div>
 
 <div align="center">
   <p>Demo video</p>
   <a href="https://www.youtube.com/watch?v=ExrzKVjWPls">
-    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/84d5189cb1f1dfedd82f88bd4a91bc64d60fd65a/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
+    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/76626312327e05bd29d8a60b832eba2ad5ec8a1a/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
   </a>
   <p><a href="https://www.youtube.com/watch?v=ExrzKVjWPls">📺 Watch demo on YouTube</a></p>
 </div>

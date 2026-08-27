@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/88d7ec22907e6871d366f71ab83686424fade993/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/090612b8beb45e3f6be496db1b4502e1140b5a27/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -35,11 +35,11 @@
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/88d7ec22907e6871d366f71ab83686424fade993/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/090612b8beb45e3f6be496db1b4502e1140b5a27/assets/screenshots/archive-session-menu.png)
 
 Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/88d7ec22907e6871d366f71ab83686424fade993/assets/screenshots/archived-sessions.png)
+![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/090612b8beb45e3f6be496db1b4502e1140b5a27/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 
@@ -105,7 +105,7 @@ dsh plugin --profile web add @michengai/dsh-archive-manager@latest --registry=ht
 dsh --profile web --dump-config
 ```
 
-To pin a release, replace `@latest` with a version such as `@0.1.8`.
+To pin a release, replace `@latest` with a specific version such as `@x.y.z`.
 
 The configuration output should contain `workspace-archive-manager` and `ui-workspace-archive-manager`. Restart DSH Web and hard-refresh the browser. Do not copy client files manually: the Settings page and archive menu need the mounted plugin.
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -19,6 +19,14 @@
   <a href="https://dsh.r2049.cn/app">Web</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/liguobao/deepseek-harness-remote/releases/latest">Android</a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/ds-harness-remote">npm</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/liguobao/deepseek-harness-remote">GitHub</a>
+  &nbsp;·&nbsp;
+  <a href="https://dshfind.com/zh/plugins/liguobao/deepseek-harness-remote?ref=badge"><img src="https://dshfind.com/api/badge/liguobao/deepseek-harness-remote?metric=downloads&amp;lang=zh" alt="dshfind downloads" width="137" height="20" align="absmiddle"></a>
 </p>
 
 ## Connect once. Ready whenever you are.
@@ -49,10 +57,8 @@ Linux. Remote is included and enabled by default, so no separate plugin installa
 Install the exact npm version for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote@0.3.32
+dsh plugin --profile web add ds-harness-remote@0.3.34
 ```
-
-Package: [npm](https://www.npmjs.com/package/ds-harness-remote) · [GitHub](https://github.com/liguobao/deepseek-harness-remote)
 
 Restart Harness after installation.
 
@@ -75,20 +81,20 @@ Enable **Allow control of this device** in Remote settings to make the current c
 available as a Host.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
 </p>
 
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -99,9 +105,9 @@ Sign in to the Android client with your existing account, select an available co
 open a workspace, and continue the conversation with text or image prompts.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/4b5d0879d22ef0af2f15e1cf8ad1716ffd3222b9/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works

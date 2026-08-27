@@ -12,9 +12,9 @@ A **HUD status panel** plugin for [DeepSeek Harness](https://github.com/deepseek
 
 ## Screenshot
 
-![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/af2622afbbc512139851d5a2b8cbe6cf19b4c653/assets/hud-button.png)
+![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/ba0e78adae6fc0645d42ec243700e8c81151e98a/assets/hud-button.png)
 
-![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/af2622afbbc512139851d5a2b8cbe6cf19b4c653/assets/hud-panel.png)
+![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/ba0e78adae6fc0645d42ec243700e8c81151e98a/assets/hud-panel.png)
 
 The gauge button in the input toolbar opens the floating panel showing git status, commit history, MCP servers, skills and official usage info (tokens, cache hit rate, turns/steps, LLM & tool time, context usage).
 

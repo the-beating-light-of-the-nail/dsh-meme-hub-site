@@ -11,6 +11,8 @@
 <p align="center">
   <img src="https://badgen.net/badge/license/MIT/green" alt="license" />
   <img src="https://badgen.net/badge/format/official%20plugin/8257D0" alt="official plugin" />
+  <a href="https://dshfind.com/en/plugins/vlln/plugin-registry?ref=badge"><img src="https://dshfind.com/api/badge/vlln/plugin-registry" alt="dshfind" /></a>
+  <a href="https://www.dsh.so/artifact/plugin-registry"><img src="https://www.dsh.so/badge/plugin-registry.svg" alt="dsh.so security" /></a>
 </p>
 
 ---
@@ -43,7 +45,7 @@ Plugin forms and install paths: [plugin type comparison](docs/plugin-types.md); 
 
 ## Thin console
 
-![Plugin management panel](https://raw.githubusercontent.com/vlln/plugin-registry/1af2066f2c410e40ae3f7e4a024de6e066c0dc7a/screenshots/console-panel.png)
+![Plugin management panel](https://raw.githubusercontent.com/vlln/plugin-registry/e35b86783b9dc932a8e9a7199d0799a2e76a8011/screenshots/console-panel.png)
 
 The settings page's "Plugin Management" panel manages a profile's plugin install state: **install area** (single entry — npm package name or GitHub project (`https://github.com/o/r` / `github.com/o/r` / `github:o/r`, URL auto-normalized) — automatic pnpm add; bundles enter the layer stack, non-bundles get insert rows) + **loaded area** (version check/update, `disabled` toggle, bundle uninstall).
 

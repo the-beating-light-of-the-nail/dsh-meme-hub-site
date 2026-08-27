@@ -12,13 +12,13 @@
 
 </div>
 
-![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/dsh-bigfish-running.png)
+![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/dsh-bigfish-running.png)
 
 DSH 大肥鱼不是一个需要单独启动的桌宠应用。它由 DSH 插件启用，跟随 DSH
 一起启动和退出，并以透明、无边框、始终置顶的原生窗口显示在桌面上。即使切换到
 VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修改、测试、等待还是已经完成。
 
-> 当前版本：`0.1.5` · Windows / WSL2 / Linux x64 · macOS 实验性支持
+> 当前版本：`0.1.6` · Windows / WSL2 / Linux x64 · macOS 实验性支持
 
 ## 关注最新进展
 
@@ -36,6 +36,7 @@ VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修�
 
 - **离开 DSH 页面也能看到状态**：大肥鱼始终显示在桌面最上层。
 - **反馈来自真实 Agent 事件**：不会读取屏幕，也不会把你在其他软件里的操作误判为 DSH 工作。
+- **显示真实推理强度**：当 DSH 提供请求实际采用的 reasoning effort 时，状态详情会持续显示该值，不会根据模型名称自行猜测。
 - **展示足够但不过量的信息**：项目名、当前阶段、正在进行的步骤和真实待办进度会显示在状态卡上。
 - **有生命力但不打扰**：思考、查找、修改、执行、验证、等待、完成和错误都有对应动作与自然文案。
 - **没有第二套应用入口**：无需单独运行 Helper、安装 Python或配置额外端口。
@@ -47,15 +48,15 @@ VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修�
 
 | 思考 | 工作 |
 | --- | --- |
-| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/status-working.png) |
+| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/status-working.png) |
 
 | 等待确认 | 完成 |
 | --- | --- |
-| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/status-success.png) |
+| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/status-success.png) |
 
 | 遇到问题 |
 | --- |
-| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/status-error.png) |
+| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/status-error.png) |
 
 状态大致按照下面的流程变化：
 
@@ -232,7 +233,7 @@ pnpm dsh plugin --profile web add "C:\Users\you\Downloads\dsh-dafeiyu-<version>.
 设置 → 插件 → 插件配置 → 大肥鱼桌面伴侣
 ```
 
-![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/29bbe09404b230f4e2a0c4949ab4c8b0252f5339/docs/images/dsh-bigfish-settings.png)
+![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/3bbe6e25c87c043bd1fa4b37ad99bd5dd03a3b90/docs/images/dsh-bigfish-settings.png)
 
 ## 怎么使用？
 
@@ -272,7 +273,7 @@ pnpm dsh plugin --profile web add "C:\Users\you\Downloads\dsh-dafeiyu-<version>.
 
 ## 桌面互动
 
-- **拖动**：按住大肥鱼移动位置，位置会自动保存。
+- **拖动**：按住大肥鱼移动位置，位置会自动保存；松手后会依次出现弹开、晕乎和抗议的短反馈，开启“减少动态”时自动跳过。
 - **点击或双击**：触发摸头、戳一下、尾巴等短互动，之后恢复最新 DSH 状态。
 - **右键菜单**：调整大小、气泡大小、减少动态、打开 WebUI、本次隐藏或本次关闭。
 - **本次隐藏**：只隐藏窗口，不禁用插件。
@@ -443,8 +444,6 @@ macOS 原生 Helper 的构建说明见 [native/macos/README.md](native/macos/REA
 ## 更多文档
 
 - [产品范围与取舍](docs/PRODUCT_SCOPE.md)
-- [执行计划](docs/EXECUTION_PLAN.md)
-- [兼容性验证](docs/PHASE0.md)
 - [Windows 验收与性能记录](docs/ACCEPTANCE.md)
 - [更新、回退与卸载](docs/UPDATING.md)
 - [维护者发布流程](docs/RELEASING.md)

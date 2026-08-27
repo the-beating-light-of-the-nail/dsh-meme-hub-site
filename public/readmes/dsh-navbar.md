@@ -6,13 +6,15 @@
 
 <p align="center">
   <img src="https://badgen.net/badge/license/MIT/green" alt="license">
+  <a href="https://dshfind.com/en/plugins/vlln/dsh-navbar?ref=badge"><img src="https://dshfind.com/api/badge/vlln/dsh-navbar" alt="dshfind" /></a>
+  <a href="https://www.dsh.so/artifact/dsh-navbar"><img src="https://www.dsh.so/badge/dsh-navbar.svg" alt="dsh.so security" /></a>
 </p>
 
 An evenly spaced node strip along the right edge of the conversation area (one node per user message): the active pill follows your reading position, hovering shows a preview card (truncated at 6 lines), clicking smooth-scrolls with a brand-blue highlight ring, more than 11 nodes automatically switch to a sliding window, it stays invisible until hovered, and it auto-hides when there are fewer than 2 user messages. Implements the dsh-external/issues#144 spec. Form: an official **bundle plugin** (`dsh.bundle` + dshClient channel, **browser-only**, empty Node half), 0 patches.
 
 ## Preview
 
-![navbar node navigation rail (real runtime screenshot: node strip on the right edge + active highlight)](https://raw.githubusercontent.com/vlln/dsh-navbar/d89ba74f4e0403462a5e4c4feeec84a3e7a1cca2/docs/preview/navbar.png)
+![navbar node navigation rail (real runtime screenshot: node strip on the right edge + active highlight)](https://raw.githubusercontent.com/vlln/dsh-navbar/4542a8e1fc94c153faee4f68ef03650b933fea94/docs/preview/navbar.png)
 
 ## Features
 

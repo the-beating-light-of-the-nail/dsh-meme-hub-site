@@ -4,18 +4,23 @@
 [![npm downloads](https://img.shields.io/npm/dm/dsh-harness-zh-cn.svg)](https://www.npmjs.com/package/dsh-harness-zh-cn)
 [![License](https://img.shields.io/npm/l/dsh-harness-zh-cn.svg)](LICENSE)
 
-**DeepSeek Harness 中文汉化插件** —— 在运行时把 DSH 的全部系统提示词、工具描述与运行时上下文翻译成中文。
+**DeepSeek Harness 中文汉化插件** —— 在运行时把 DSH 的全部系统提示词、工具描述、运行时上下文，以及**前端 UI 文本**翻译成中文。
 
-这是一个**纯运行时**插件：它通过 DSH 的 `system-prompt/assemble` 瀑布钩子，在每次组装提示词后把模型可见的英文文本替换为中文，**不修改任何 DSH 源码**。卸载插件即完全还原英文。
+这是一个**纯运行时**插件，分**宿主半**与**客户端半**两部分，均通过 DSH 的公开扩展点工作，**不修改任何 DSH 源码**；卸载插件即完全还原英文：
 
-当前内置 **1788 条翻译**，覆盖系统提示 sections、运行时上下文、全部工具描述与参数描述，以及 cordis 完整 API 目录（55 服务 + 56 事件）。
+- **宿主半**：通过 `system-prompt/assemble` 瀑布钩子，在每次组装提示词后把模型可见的英文文本替换为中文；并 patch `commands.list`，汉化斜杠命令菜单的描述。
+- **客户端半**：patch `ctx.locale.lookup`（`t()` 标签的底层实现）让所有命名空间的 `zh` 词典生效；拦截 `/api/market/list` 汉化插件市场描述；patch `ctx.remote.commands.list` 汉化命令菜单描述。
+
+当前内置 **1814 条翻译**，覆盖系统提示 sections、运行时上下文、全部工具描述与参数描述、cordis 完整 API 目录（55 服务 + 56 事件），以及前端 UI 的 `t()` 标签与命令菜单描述。
 
 ## 特性
 
 - ✅ **零源码修改**：不碰 `node_modules`，升级 DSH 后依然有效
-- ✅ **覆盖面广**：系统提示 sections、运行时上下文 contexts、工具描述与参数描述、cordis API 目录全部汉化
+- ✅ **覆盖面广**：系统提示 sections、运行时上下文 contexts、工具描述与参数描述、cordis API 目录、前端 UI 标签、命令菜单描述全部汉化
 - ✅ **协议安全**：`[exit code: N]`、`[killed by signal: X]`、`[sandbox: ...]`、`[stderr]` 等被 DSH 或前端解析的机器协议标记**保留原样**，不破坏下游解析
 - ✅ **可开关**：`sections / contexts / tools` 三类翻译可分别关闭
+- ✅ **前端 UI 汉化**：patch `ctx.locale.lookup` 让所有命名空间的 `zh` 词典在 `t()` 标签上生效——包括 composer 的 `+` 按钮、斜杠菜单的分组标题与周边文案，无需改动 DSH 前端代码
+- ✅ **命令菜单汉化**：host 半 patch `commands.list`、client 半 patch `ctx.remote.commands.list` 双保险，把 `+` 菜单里各命令的英文描述翻译成中文；命令**名称保持英文**（它是 `/goal` 解析、派发与模糊匹配依赖的标识符），且命令是否展示由 DSH 按"是否在行首 / 是否带参数"正常过滤，汉化不改变行为
 - ✅ **插件市场描述翻译**：安装 [dsh-plugin-marketplace](https://github.com/AwesomeHou/dsh-plugin-marketplace) 后，插件市场里各插件的英文描述会自动翻译成中文——先即时显示（词表兜底，不卡加载），后台用 LLM 批量翻译后自动刷新一次显示流畅中文，结果缓存（同一描述只翻一次，不重复消耗 token）
 - ✅ **即插即用**：作为普通 DSH 插件加载，卸载即还原
 
@@ -104,6 +109,16 @@ DSH 在每次模型请求前通过 `ctx.systemPrompt.assemble()` 组装提示词
 
 机器协议标记与代码标识符一律保留。
 
+### 客户端 UI 汉化（额外能力）
+
+本插件带一个 **client 半**（浏览器端），其 `apply(ctx)` 会收到真正的客户端根 Context，在**只读扩展点**上做三件事（卸载即还原，均不修改 DSH 前端源码）：
+
+1. **`t()` 标签汉化**：patch `ctx.locale.lookup`（LocaleRuntime 实例方法，是每个 `t()` 标签的底层实现），让任何自带 `zh` 词典的命名空间的 `zh` 翻译**优先生效**——包括 composer 的 `+` 按钮、斜杠菜单的分组标题与周边文案，不动当前 locale 也不改 boot-once 的 locale 面孔。
+2. **命令菜单描述汉化**：patch `ctx.remote.commands.list` 的 getter，把每个斜杠命令描述符里**仅用于展示的** `description` 翻译成中文；命令 `name` 保持不变（它是 `/goal` 式解析、派发与模糊匹配依赖的标识）。内置精确翻译表覆盖 `/compact` `/export` `/goal` `/feedback` `/permission` `/plan`，未命中表项则后台用 LLM 翻译并写入 `localStorage` 缓存、下次打开即中文（不阻塞首次渲染）；并通过 `commands/change` 失效已缓存列表，让菜单始终以中文重拉。
+3. **插件市场描述翻译**：拦截 `window.fetch` 对 `/api/market/list` 的响应（详见下节）。
+
+> 说明：命令菜单的 7/3 切换是 DSH 的正常交互——**输入框为空**（命令在行首）时显示全部命令，**输入框有内容**时只显示不带参数的命令、隐藏需要吃整行参数的命令（`/goal`、`/feedback`、`/permission`、`/plan`）。这与汉化无关，插件不改变该行为。
+
 ### 插件市场描述翻译（额外能力）
 
 本插件还带一个 **client 半**（浏览器端），配合 [dsh-plugin-marketplace](https://github.com/AwesomeHou/dsh-plugin-marketplace) 使用：
@@ -117,14 +132,14 @@ DSH 在每次模型请求前通过 `ctx.systemPrompt.assemble()` 组装提示词
 
 ## 翻译字典
 
-所有译文集中存放在 [`dict/`](./dict) 目录，当前 5 个字典共 **1788 条**：
+所有译文集中存放在 [`dict/`](./dict) 目录，当前 5 个字典共 **1814 条**：
 
 | 字典 | 条目数 | 覆盖内容 |
 | --- | --- | --- |
-| `core.json` | 23 | 身份行、沙箱/审批策略、委托声明、工作区指令 |
+| `core.json` | 28 | 身份行、沙箱/审批策略、委托声明、工作区指令、GUI/检出说明 |
 | `tools-fs-bash.json` | 39 | read/write/edit/bash 工具与参数 |
 | `tools-fs-core.json` | 221 | pwsh/fs/cordis 工具、plan-mode、sandbox 等 |
-| `tools-web-jobs-goal.json` | 264 | web/jobs/goal/ralph/workflow/subagent 等 |
+| `tools-web-jobs-goal.json` | 285 | web/jobs/goal/ralph/workflow/subagent 等 |
 | `cordis-api.json` | 1241 | cordis 完整 API 目录（55 服务 + 56 事件 + 方法/参数/返回值） |
 
 字典格式：

@@ -3,7 +3,7 @@
 [English](README.en.md) | 中文
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/4fccc7892fd1b5c1fedc5e9300d26dafd909e1c2/docs/images/cover.png" width="960" alt="DSH Codex Timeline 封面：对话左侧的轮次轨道、预览和搜索" />
+  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/cover.png" width="960" alt="DSH Codex Timeline 封面：对话左侧的轮次轨道、预览和搜索" />
 </p>
 
 [![CI](https://github.com/Wine-Red/dsh-codex-timeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Wine-Red/dsh-codex-timeline/actions/workflows/ci.yml)
@@ -11,20 +11,6 @@
 [![license](https://img.shields.io/github/license/Wine-Red/dsh-codex-timeline.svg)](LICENSE)
 
 为 DeepSeek Harness Web 长会话提供一个低干扰的用户 Turn 导航轨道。它只标记真正改变会话方向的用户轮次，在正文旁提供完整历史索引、预览、搜索和可靠跳转；默认位于左侧，也可以完整镜像到右侧。
-
-## 0.5.3 更新重点
-
-- **加载提示移到会话区域左下角**：点击导航轨道后出现的补页进度提示不再挂在轨道控件下方，窄屏也不再使用顶部居中横幅；文案、300ms 延迟、页数、错误配色和读屏播报保持不变，轨道显示在右侧时同样停靠左下角。
-
-## 0.5.2 更新重点
-
-- **落点提示更轻、更自然**：定位成功后不再绘制高对比度外框，改为目标用户气泡进行一次短暂的主题色闪烁；浅色、深色与彩色主题均沿用 DSH 自身的语义颜色。
-- **闪烁可单独关闭**：设置 → 插件 → 插件配置新增“跳转后闪烁提示”开关，默认开启；关闭后跳转、落点校验与读屏播报保持不变。
-- **修复时间线不显示**：兼容 DSH `0.1.1-rc.2` 的空会话启动顺序，在正文首次就绪时补挂载时间线，同时避免历史补页重建轨道状态。
-- **一次选择即可定位**：点击未加载轮次会自动连续补页、保护阅读锚点并校验最终落点，不再需要反复点击。
-- **边缘索引也是真实入口**：窗口外的两级视觉指引支持悬停预览、点击、键盘操作和邻近波动，不再只是装饰。
-- **动效有方向但不拖沓**：近距离平滑滚动，远距离快速抵达后用 180ms 收尾；滚轮连续操作可以从动画中途重新定向。
-- **更干净、更可靠的浮层**：桌面端移除重复的手动补页省略号；预览卡始终位于正文、表格和 sticky 代码块之上。
 
 ## 界面预览
 
@@ -37,8 +23,8 @@
 <table>
   <thead><tr><th>DSH 原生浅色</th><th>DSH 原生深色</th></tr></thead>
   <tbody><tr>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/4fccc7892fd1b5c1fedc5e9300d26dafd909e1c2/docs/images/timeline-default-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/4fccc7892fd1b5c1fedc5e9300d26dafd909e1c2/docs/images/timeline-default-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-default-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-default-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
   </tr></tbody>
 </table>
 
@@ -49,8 +35,8 @@
 <table>
   <thead><tr><th>DSH 原生浅色</th><th>DSH 原生深色</th></tr></thead>
   <tbody><tr>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/4fccc7892fd1b5c1fedc5e9300d26dafd909e1c2/docs/images/timeline-hover-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/4fccc7892fd1b5c1fedc5e9300d26dafd909e1c2/docs/images/timeline-hover-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-hover-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-hover-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
   </tr></tbody>
 </table>
 
@@ -165,7 +151,7 @@ pnpm pack --pack-destination artifacts
 安装本地 tarball做 profile 契约验证：
 
 ```powershell
-dsh plugin --profile web add ".\artifacts\dsh-codex-timeline-0.5.3.tgz"
+dsh plugin --profile web add ".\artifacts\dsh-codex-timeline-0.5.4.tgz"
 dsh --profile web --dump-config
 ```
 

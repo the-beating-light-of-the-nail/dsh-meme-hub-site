@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/logo.png" alt="dsh-reference-anything logo" width="180" />
+<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/logo.png" alt="dsh-reference-anything logo" width="180" />
 
 <h1>dsh-reference-anything</h1>
 
@@ -30,7 +30,7 @@ One `@` for them all.
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/demo.gif" alt="dsh-reference-anything demo" width="800" />
+<img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/demo.gif" alt="dsh-reference-anything demo" width="800" />
 
 </div>
 
@@ -60,8 +60,8 @@ Beyond extending what `@` can reference, Reference Anything also enhances the `@
     <th width="50%">Reference Anything icon enhancements</th>
   </tr>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-files-native-comparison.png" alt="Native DSH file list" width="100%" /></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-files-enhanced-comparison.png" alt="Reference Anything file-type icon enhancements" width="100%" /></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-files-native-comparison.png" alt="Native DSH file list" width="100%" /></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-files-enhanced-comparison.png" alt="Reference Anything file-type icon enhancements" width="100%" /></td>
   </tr>
 </table>
 
@@ -84,6 +84,7 @@ Type `@`, search across enabled sources, and insert the selected reference into 
 ## 🧭 Roadmap
 
 - [x] Support referencing historical conversations from other local agents
+- [ ] Support continuing referenced local-agent sessions
 - [x] Reference cloud-drive files through OpenList
 - [ ] Manage cloud-drive files inside the plugin (in progress; current access is read-only)
 - [ ] Support more keyword matching rules, including blacklists and whitelists, especially for file search
@@ -152,19 +153,19 @@ The `@` menu contains seven groups: `Commands`, `Skills`, `Files and folders`, `
 
 To browse commands, use `@commands`; selecting one hands `/command` back to DSH's native slash pipeline.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-commands.png" alt="Browse DSH commands from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-commands.png" alt="Browse DSH commands from the @ menu" width="800" /></p>
 
 #### 🛠️ @Skills — DSH skill library
 
 To browse skills, use `@skills:`; selecting one inserts `/skill` for DSH's native skill handling.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-skills.png" alt="Browse DSH skills from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-skills.png" alt="Browse DSH skills from the @ menu" width="800" /></p>
 
 #### 📁 @Files and folders — workspace files and directories
 
 Type `@files:` in the input box to browse files and folders through DSH's official file-reference Remote.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-files.png" alt="Browse workspace files and folders from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-files.png" alt="Browse workspace files and folders from the @ menu" width="800" /></p>
 
 **Features:**
 - Uses the official `@path` / `@"path with spaces"` grammar and canonical file candidate service
@@ -175,7 +176,7 @@ Type `@files:` in the input box to browse files and folders through DSH's offici
 
 Type `@sessions:` to browse DSH sessions through the official session-reference Remote.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-sessions.png" alt="Browse DSH sessions from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-sessions.png" alt="Browse DSH sessions from the @ menu" width="800" /></p>
 
 Selected sessions use DSH's canonical `dsh-session:` mention and native session appearance. Snapshot preparation and resolution remain owned by DSH rather than this plugin.
 
@@ -183,7 +184,7 @@ Selected sessions use DSH's canonical `dsh-session:` mention and native session 
 
 Type `@agents:` to search and reference conversations saved by other local agent tools.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-local-agents.png" alt="Browse other local agents' transcripts from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-local-agents.png" alt="Browse other local agents' transcripts from the @ menu" width="800" /></p>
 
 **Supported agents:** Claude Code, Codex, Cursor, Qoder, Reasonix, OpenClaw, Kimi, Grok Build, Hermes, Gemini CLI, Pi, opencode, mimocode, and zcode.
 
@@ -199,7 +200,7 @@ Type `@agents:` to search and reference conversations saved by other local agent
 
 Supports historical conversations from ChatGPT, Claude, Gemini, DeepSeek, Grok, and Kimi.
 
-<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/b6b3b4dc6f2952d9f033772713ddc48b46167142/images/at-external-conversations.png" alt="Browse external conversations from the @ menu" width="800" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Chael-Chael/dsh-reference-anything/15a72701a27c47c2d219588f9ccc62358e015f83/images/at-external-conversations.png" alt="Browse external conversations from the @ menu" width="800" /></p>
 
 **Platform filtering:**
 - Use `@chatgpt:cache` or `@claude:refactor` to filter a specific platform

@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/xiaoshihou514/dsh-weixin/6123291a72f19bc80861bbe83b6d024d90f8fe15/assets/logo.svg" width="160" alt="dsh-weixin logo"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/xiaoshihou514/dsh-weixin/a83ecd355e751219c177f5e0e105075fd8680ac6/assets/logo.svg" width="160" alt="dsh-weixin logo"></p>
 <h1 align="center">dsh-weixin</h1>
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) ：微信

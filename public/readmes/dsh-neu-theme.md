@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Lhy723/dsh-neu-theme/54f4a07c0364f9f9d571a1384471e3825e1c14a4/.github/asset/dsh-neu-theme-hero.png" alt="dsh-neu-theme — Neumorphism and Glassmorphism for DeepSeek Harness" width="1280">
+  <img src="https://raw.githubusercontent.com/Lhy723/dsh-neu-theme/834bf7100d8b298e74921ae3605f7b2045bd25aa/.github/asset/dsh-neu-theme-hero.png" alt="dsh-neu-theme — Neumorphism and Glassmorphism for DeepSeek Harness" width="1280">
 </p>
 
 # dsh-neu-theme
@@ -36,7 +36,8 @@ glassmorphism and micro-interactions.
   reasoning rows strengthen on hover; all gated under
   `@media (prefers-reduced-motion: no-preference)`.
 - **Settings row** — Settings → General gains a Neumorphism picker
-  (Default / Neu Light / Neu Dark), persisted in localStorage.
+  (Default / Neu Light / Neu Dark), persisted through the Host settings
+  document.
 - **Default is pristine** — selecting Default (or having no saved skin)
   leaves the document exactly as dsh ships it: no injected stylesheet, no
   body attribute, native colors and shadows.
@@ -46,13 +47,13 @@ glassmorphism and micro-interactions.
 ### Neu Light
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Lhy723/dsh-neu-theme/54f4a07c0364f9f9d571a1384471e3825e1c14a4/.github/asset/light.webp" alt="dsh-neu-theme Neu Light preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Lhy723/dsh-neu-theme/834bf7100d8b298e74921ae3605f7b2045bd25aa/.github/asset/light.webp" alt="dsh-neu-theme Neu Light preview" width="100%">
 </p>
 
 ### Neu Dark
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Lhy723/dsh-neu-theme/54f4a07c0364f9f9d571a1384471e3825e1c14a4/.github/asset/dark.webp" alt="dsh-neu-theme Neu Dark preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Lhy723/dsh-neu-theme/834bf7100d8b298e74921ae3605f7b2045bd25aa/.github/asset/dark.webp" alt="dsh-neu-theme Neu Dark preview" width="100%">
 </p>
 
 ## Install
@@ -73,9 +74,13 @@ Then add `"dsh-neu-theme"` to `dsh.profile.bundles` in the profile's
 `package.json`, and restart `dsh web`.
 
 Once running: **Settings → General → Neumorphism theme** → pick
-**Default / Neu Light / Neu Dark**. The choice is stored in
-`localStorage` under `dsh-neu:skin` (clear the key to go back to the
-built-in appearance).
+**Default / Neu Light / Neu Dark**. The choice is stored in the Host settings
+namespace `dsh-neu-theme` (normally `~/.dsh/settings.yaml`); choose **Default**
+to return to the built-in appearance.
+
+The Host-backed settings path requires DSH Web Host `0.1.1-rc.2` or newer.
+Remote browsers cannot access the loopback settings API, so their selection
+remains process-local by design.
 
 ## Develop
 

@@ -15,7 +15,7 @@ Source file: [`docs/demo.mp4`](docs/demo.mp4)
 
 ## Screenshots
 
-![dsh-sound settings](https://raw.githubusercontent.com/AI-Galaxy-GPU/dsh-sound/99b20f3bb5ca27c64d37a1a855900ce832a541e5/assets/screenshots/sound-image.png)
+![dsh-sound settings](https://raw.githubusercontent.com/AI-Galaxy-GPU/dsh-sound/92deeda22be4a7d7f3f2d75be0922e18d26e86ca/assets/screenshots/sound-image.png)
 
 ## Features
 

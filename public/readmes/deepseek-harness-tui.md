@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/8943cc4488594cf646c8fabe7458bc4f95c6a71a/assets/martty-lockup.svg" width="650" alt="Martty terminal lockup" />
+  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/8a38d765acbfc4ffc22443c7e1b9dc31b5c62666/assets/martty-lockup.svg" width="650" alt="Martty terminal lockup" />
 </p>
 
 <h1 align="center">Martty</h1>
@@ -61,7 +61,7 @@ subagent、Plan、token 用量和持久化会话。图片可以从文件或剪�
 `/resume` 和 `--session-id` 管理，workspace、模型、权限和界面选择会随会话恢复。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/8943cc4488594cf646c8fabe7458bc4f95c6a71a/assets/screenshots/agent-turn.png" width="720"
+  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/8a38d765acbfc4ffc22443c7e1b9dc31b5c62666/assets/screenshots/agent-turn.png" width="720"
        alt="Martty 中的 Markdown 回复、工具调用和运行状态" />
 </p>
 

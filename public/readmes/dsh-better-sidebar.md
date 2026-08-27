@@ -49,6 +49,7 @@
 - **💬 侧边对话(beta)**：Codex 风格的侧边线程——继承主会话完整上下文（含进行中的回合与工具调用）独立运行，不进入主会话；线程内可持续追问，一键「保存为新会话」提升为顶层会话
 - **🪟 双工作台**：右侧栏 + 底部面板；拖 Tab 拆分 / 合并分栏（可跨面板），移动端自动合并全宽抽屉
 - **🪟 自由窗口**：把标签栏的任一 tab 拖到主会话区域——成为可移动 / 缩放 / 置顶的悬浮窗口（默认 390×780），拖回侧边栏 pane 即停靠，随会话持久化；`features` 含 `'floatWindows'`，插件 tab 无差别支持
+- **📌 固定终端**：右键终端 Tab 可「固定到工作区 / 固定到全局」——固定后切换会话不消失，在 TabBar 内联呈现（跨会话虚拟 Tab，点击就地激活，PTY 按 home 会话 id+tab 直连宿主 PTY，无需切回宿主会话）；Agent 终端被 reconcile 移除时豁免保留
 - **🔁 会话隔离**：布局 / Tab / 面板按会话持久化，陈旧状态自动净化
 - **⚙️ 声明式设置**：设置页「侧边卡片」逐项独立开关，二级设置经齿轮弹窗
 - **⚡ 按需加载**：启动只拉 ~325KB 核心，终端 / 编辑器 / Mermaid 图表等重依赖用到才按需拉取（[设计文档](docs/plans/2026-08-12-lazy-chunks-design.md)）
@@ -277,7 +278,7 @@ GitHub topic [`dsh-better-sidebar`](https://github.com/topics/dsh-better-sidebar
 - 🖥️ **浏览器本地回环允许清单**（[#365](https://github.com/omdsh-dev/DSH-better-sidebar/pull/365)）：新增侧边卡设置 `browserAllowedLoopback`（逗号分隔 host 或 host:port；裸 host 匹配任意端口、带有端口精确匹配）——显式信任的本地开发服务器（如 Vite）可导航，并额外获得 iframe `allow-same-origin` 令牌（模块 / HMR / fetch 管线需要真实 origin，否则白屏）；页面相对 GUI 与其他站点仍是跨源；服务端 `browser.probe` 镜像同一允许清单，本地服务器不再被误拒
 - 📝 **编辑器 Vue + 28 种 legacy 语言语法高亮**（[#202](https://github.com/omdsh-dev/DSH-better-sidebar/pull/202)）：`.vue` 映射 `@codemirror/lang-vue`（template / script / style 按 `lang` 属性分派、`<style lang="scss">` 预处理器）；零新依赖用 legacy-modes 补齐 scss/sass/less/stylus/ruby/lua/perl/r/dart/scala/groovy/powershell/diff/protobuf/cmake/pug/tcl/haskell/clojure/erlang/julia/pascal/vb/vhdl/stex/objectivecpp；语言工厂抛错降级纯文本（console.warn），不再炸编辑器；`.v` / `.m` 跨语言歧义故意不映射
 - 🔄 **编辑器预览刷新三件套**（[#215](https://github.com/omdsh-dev/DSH-better-sidebar/pull/215) [#228](https://github.com/omdsh-dev/DSH-better-sidebar/pull/228)，修复 [#167](https://github.com/omdsh-dev/DSH-better-sidebar/issues/167)）：文本预览新增**手动刷新**按钮；编辑保存后切回预览自动重载（dirty 时抑制，草稿不丢）；预览模式下保存成功边沿自动重载；移除自动轮询与 `fs.stat` 版本端点（后台 API 零流量）
-- 🖼️ **Markdown 本地 / 相对图片**（[#292](https://github.com/omdsh-dev/DSH-better-sidebar/pull/292)）：`![alt](https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/f9153dfc1ce47cf43445c1b351ee3ae47b4ad9f1/img.png)`、`/cwd/img.png` 与引用式 `[id]: url` 目标重写为 `/sidebar/file` 媒体 URL（会话 cwd 边界不变）——预览不再只显示 alt 文本
+- 🖼️ **Markdown 本地 / 相对图片**（[#292](https://github.com/omdsh-dev/DSH-better-sidebar/pull/292)）：`![alt](https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/20da6479f14689db126a3f147670220a70dfbf6b/img.png)`、`/cwd/img.png` 与引用式 `[id]: url` 目标重写为 `/sidebar/file` 媒体 URL（会话 cwd 边界不变）——预览不再只显示 alt 文本
 - ➕ **推荐插件目录新增 ego-browser**（[#340](https://github.com/omdsh-dev/DSH-better-sidebar/pull/340)）：`@dsh-external/ego-browser` Agent 浏览器 Tab（会话侧边栏自动注册本机浏览器页，无 better-sidebar 时回退浮动浮窗）；描述词典 19 语言补全（[#371](https://github.com/omdsh-dev/DSH-better-sidebar/pull/371)）
 
 **🐛 修复**

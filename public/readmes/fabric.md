@@ -38,9 +38,12 @@ an upstream dependency and is not republished here.
 
 The three packages install hooks and mount facades through the compiled launcher.
 `src/stent-dsh.ts` compiles to `lib/stent-dsh.js`, while
-`src/stent-dsh-preload.ts` compiles to `lib/stent-dsh-preload.js`; the launcher
-injects that compiled preload before the official CLI loads. No host patch
-checkout is required. The preload also records a process-local `stent-dsh`
+`src/stent-dsh-preload.ts` compiles to `lib/stent-dsh-preload.js`. The bin only
+resolves the DSH path and forwards its arguments; it injects the compiled
+preload through `NODE_OPTIONS=--import ...` before the official CLI loads. The
+preload owns profile composition, dependency healing, argv normalization,
+environment setup, and hook registration. No host patch checkout is required.
+The preload also records a process-local `stent-dsh`
 launch capability, so Stent-dependent plugins stay unavailable under plain
 `dsh` even if low-level hooks were installed by another path. The same
 capability gate is enforced by `getStent(ctx)`: a plugin that omitted
@@ -50,25 +53,57 @@ capability gate is enforced by `getStent(ctx)`: a plugin that omitted
 Everything the official channels already cover is deliberately excluded:
 installing the trio (`dsh plugin add`), bundle roster rows and dependencies,
 catalog generation, invariant/gate exemptions for trio-in-workspace, and all
-documentation (`README*`, `docs/`, `.agents/`). What remains is what no channel
-can provide: launcher bootstrap (`apps/cli/src/profile-boot.ts` calls
-`installStentBootstrap` before any target import and
-`checkStentRequiredPatches` after boot), the `clientBundle` source-transform
-build seam (`packages/client/tsdown.client.ts`), catalog entries compiled into
-the official `tool-cordis` package, their tests, and the pnpm-policy seams.
+documentation (`README*`, `docs/`, `.agents/`). What remains is what no
+channel can provide: the launcher-owned preload/bootstrap and its tests, the
+`clientBundle` source-transform build seam, catalog entries compiled into the
+official `tool-cordis` package, and the pnpm-policy seams.
 
 ### 2.1 The disabled opt-in rows
 
 The web-app bundle layer inserts the `stent` / `stent-dsh` rows as
-**disabled opt-ins**. The pure `stent` package remains disabled because its
-root row is a descriptor carrier rather than a Loader plugin. A profile boot
-through the explicit `stent-dsh` launcher automatically enables the
-`stent-dsh` integration row through a generated overlay, so its post-boot
-required-patch check and hook summary run. Plain `dsh` leaves the rows disabled;
-the bundle layer still applies on every boot, so pre-existing profiles need no
-manual edit.
+**disabled opt-ins**. A dynamic patch plugin marks its row with a Stent
+configuration marker (for example `config: { stent: true }`); the launcher
+only uses that marker to enable the row through a generated overlay. It never
+extracts patch metadata from YAML. Plugin code registers the target metadata
+and executable handler through `ctx.stent.register()` after `installStentHooks()` has
+been installed. Plain `dsh` leaves these rows disabled.
 
-### 2.2 The TSX dead end (recorded and reverted)
+### 2.2 Dynamic patch registration
+
+The Node launcher installs `installStentHooks()` before the
+official CLI imports target plugins. A plugin's `ctx.stent.register({ id,
+target, operation, priority, required, handler })` call is the single source of
+truth for a patch: runtime metadata updates the loader matcher, while the
+handler remains in process memory and is never serialized. New imports use the
+new matcher immediately. If a target was already loaded, the loader schedules
+CJS/ESM cache re-transformation under the new matcher when the synchronous Node
+hooks are available; an async loader-thread fallback applies the update to
+future ESM loads.
+
+Removing a patch refreshes the matcher and re-transforms loaded targets when
+possible. Enabling or disabling a handler does not need a code transform,
+because transformed bridge calls dispatch against the live runtime registry.
+`required: true` is checked from the runtime registry after boot, not from a
+YAML descriptor list. Profile YAML may mark a row as Stent-dependent for
+activation, but it must not contain `config.stent.patches` descriptors.
+### 2.3 Public API boundaries
+
+The `@oh-my-dsh/stent` package is intentionally split by platform:
+
+- `@oh-my-dsh/stent` — platform-free runtime, bridge, service, and patch types;
+- `@oh-my-dsh/stent/node` — Node hook installation, binding flush, and cache re-transformation;
+- `@oh-my-dsh/stent/browser` — build transforms, package identity resolvers, and runtime bundle serving;
+- `@oh-my-dsh/stent/client` — browser Cordis client artifact;
+- `@oh-my-dsh/stent/testing` — isolated child-process fixtures.
+
+Orchestrion configuration, wire serialization, module identity internals, and
+loader-thread implementation remain private under `packages/stent/src/transform`
+and `packages/stent/src/node`. Browser transforms accept public `StentPatchStub`
+arrays and convert them internally; Node hooks read only the live runtime
+registry. The package no longer exports platform implementation files as
+compatibility subpaths.
+
+### 2.4 The TSX dead end (recorded and reverted)
 
 The `dsh` source launch (`node --import tsx/esm apps/cli/src/bin.ts`) once
 appeared to need `TSX_TSCONFIG_PATH` or a register preload: `FiberState` (a
@@ -215,11 +250,13 @@ has registry `lib` artifacts, which drove the evolution below.
 
 ## 7. Linting
 
-Each package runs Oxlint from its own package root with the pinned DSH toolchain (`oxlint` plus `oxlint-tsgolint`) and selected type-aware TypeScript rules; the root and package configs share a checked-in baseline. Warnings are failures. Generated `lib/` output, JavaScript fixture launchers, and build configs stay outside this TypeScript lint face.
+Each package runs Oxlint from its own package root with the pinned DSH toolchain (`oxlint` plus `oxlint-tsgolint`) and selected type-aware TypeScript rules; the root and package configs share a checked-in baseline. Warnings are failures. Every control statement must use braces (`curly: all`). Generated `lib/` output, JavaScript fixture launchers, and build configs stay outside this TypeScript lint face.
 
-Oxfmt is the workspace formatter, with the shared policy in `.oxfmtrc.json`: two-space indentation, single quotes, no semicolons, trailing commas, and a 120-column print width. Each package owns its `fmt` and `fmt:check` commands; the carrier root's `pack:fmt:check` orchestrates the check across the root and all implementation packages. Generated `lib/` output, fixture trees, JavaScript launcher fixtures, and build configs remain outside the formatting face.
+The shared source override also loads `tools/oxlint/stent-plugin.ts` and enables `stent/comment-shorter-than-function` and `stent/min-function-lines`. The comment rule reports when a contiguous documentation block directly preceding a function has at least as many meaningful lines as the function's effective implementation; this treats an over-documented function as a candidate for removal or simplification. It ignores blank-line-separated headers, inline comments, function-body comments, and lint/compiler directives. Exported functions and anonymous callbacks are skipped by default because public API documentation and callback context may legitimately need more explanation; `includeExported` and `includeAnonymous` opt them in. By default, block-comment delimiters and JSDoc decoration do not count; `countCommentDelimiters` enables physical nonblank comment-line counting. The function rule counts effective source lines, including the function definition line; blank and comment-only lines are ignored. Its baseline thresholds are `declaration: 5`, `expression: 3`, `method: 2`, and `arrow: 3`. The `minimums` option independently configures each syntax; an integer sets that syntax's threshold and `false` disables it. Intentional short adapters must use `// oxlint-disable-next-line stent/min-function-lines -- reason` with an explanation.
 
-The carrier root owns only the launcher under `src/` and its root integration tests under `tests/`. Its `lint`, `lint:fix`, `test`, `build`, and `knip` commands never scan implementation package files; it has no `pack:lint:fix` command. Each implementation package declares its own toolchain and exposes independent `lint`, `lint:fix`, `test`, `build`, and `knip` commands scoped to that package; type checking is provided by each package's type-aware lint command rather than a separate `typecheck` script. The `pack:*` scripts at the carrier root are orchestration only: they keep the root-package checks separate from the package-owned commands and invoke the latter with `pnpm --filter`.
+Oxfmt is the workspace formatter, with the shared policy in `.oxfmtrc.json`: two-space indentation, single quotes in JavaScript and TypeScript, single quotes in JSX attributes, no semicolons, all trailing commas, and an 80-column print width. Each package owns its `fmt` and `fmt:check` commands; the carrier root's `pack:fmt:check` orchestrates the check across the root and all implementation packages. Generated `lib/` output, fixture trees, JavaScript launcher fixtures, and build configs remain outside the formatting face.
+
+The carrier root owns the launcher under `src/`, the root integration tests under `tests/`, and the project-local lint plugin under `tools/`. Its `lint`, `lint:fix`, `test`, `build`, and `knip` commands never scan implementation package files; it has no `pack:lint:fix` command. Each implementation package declares its own toolchain and exposes independent `lint`, `lint:fix`, `test`, `build`, and `knip` commands scoped to that package; type checking is provided by each package's type-aware lint command rather than a separate `typecheck` script. The `pack:*` scripts at the carrier root are orchestration only: they keep the root-package checks separate from the package-owned commands and invoke the latter with `pnpm --filter`.
 
 ## 8. Timeline (abridged)
 

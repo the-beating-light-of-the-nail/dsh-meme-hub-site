@@ -3,7 +3,7 @@
 中文 | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/0d066fe583be48341fcf8064fd6dfc4ea760bc8a/assets/logo/your-name-movie-logo-blue.svg" alt="Kimi no Na wa" width="460">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/2c74b3f1c6ba4090409c4f73dc628f6804ec9961/assets/logo/your-name-movie-logo-blue.svg" alt="Kimi no Na wa" width="460">
 </p>
 
 <p align="center">
@@ -45,7 +45,7 @@ dsh-kimino-theme 把 DSH Web GUI 变成新海诚《你的名字。》的模样�
 | 还原 | — | 卸载即完全还原 |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/0d066fe583be48341fcf8064fd6dfc4ea760bc8a/docs/screenshots/home-hero.png" alt="主页：居中大尺寸电影 Logo" width="760">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/2c74b3f1c6ba4090409c4f73dc628f6804ec9961/docs/screenshots/home-hero.png" alt="主页：居中大尺寸电影 Logo" width="760">
 </p>
 
 ## 主题细节
@@ -61,8 +61,8 @@ dsh-kimino-theme 把 DSH Web GUI 变成新海诚《你的名字。》的模样�
 - 首页（hero）标题替换为居中大尺寸 Logo。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/0d066fe583be48341fcf8064fd6dfc4ea760bc8a/docs/screenshots/sidebar.png" alt="侧边栏：展开态的电影品牌标识" width="123">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/0d066fe583be48341fcf8064fd6dfc4ea760bc8a/docs/screenshots/chat-main.png" alt="主界面：壁纸上的玻璃拟态会话视图" width="676">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/2c74b3f1c6ba4090409c4f73dc628f6804ec9961/docs/screenshots/sidebar.png" alt="侧边栏：展开态的电影品牌标识" width="123">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/2c74b3f1c6ba4090409c4f73dc628f6804ec9961/docs/screenshots/chat-main.png" alt="主界面：壁纸上的玻璃拟态会话视图" width="676">
 </p>
 
 ### 输入卡与占位文案
@@ -94,8 +94,14 @@ dsh-kimino-theme 把 DSH Web GUI 变成新海诚《你的名字。》的模样�
 ### 安装
 
 ```sh
-dsh plugin --profile web add github:niiang/dsh-kimino-theme
+dsh plugin --profile web add dsh-kimino-theme
 dsh web   # 重启 DSH 生效
+```
+
+也可以直接从 GitHub 安装：
+
+```sh
+dsh plugin --profile web add github:niiang/dsh-kimino-theme
 ```
 
 壁纸出现、侧边栏 Logo 变化，即安装成功。安装后随 DSH 启动常驻，无需每次重装。

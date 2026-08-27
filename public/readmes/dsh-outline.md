@@ -9,7 +9,7 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）Web GUI 的**实时大纲插件**：在会话页提供一棵"用户问题 + Markdown 标题（H1~H6）"的大纲树，流式生成时实时更新，点击节点即可定位正文并高亮当前阅读位置。
 
-![demo](https://raw.githubusercontent.com/urzeye/dsh-outline/2978994bca5fa8b86fcaac245da1f9e6135ac66f/docs/media/demo.gif)
+![demo](https://raw.githubusercontent.com/urzeye/dsh-outline/8f2c3e0a17c1d6e2c10394ffdaed7c1eb81cef9f/docs/media/demo.gif)
 
 > [!TIP]
 > 若您以浏览器方式使用 DeepSeek Harness，建议优先体验 [Ophel](https://github.com/urzeye/ophel)：专为浏览器场景深度优化，功能更全面、体验更流畅。
@@ -59,7 +59,7 @@ dsh plugin --profile web add dsh-outline@latest
 
 ```sh
 pnpm pack                                          # 产出 dsh-outline-<version>.tgz
-dsh plugin --profile web add ./dsh-outline-0.1.5.tgz
+dsh plugin --profile web add ./dsh-outline-0.1.6.tgz
 ```
 
 ### 本地路径安装（开发调试）

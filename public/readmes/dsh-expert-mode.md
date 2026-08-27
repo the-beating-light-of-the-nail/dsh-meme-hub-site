@@ -6,6 +6,17 @@
 </p>
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/b524f7b7e761a8083f76ddd1a2f16221c7f24ee2/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="600" />
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/dsh-expert-mode"><img src="https://img.shields.io/npm/v/dsh-expert-mode?style=flat-square&color=5B4CF0" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/dsh-expert-mode"><img src="https://img.shields.io/npm/dm/dsh-expert-mode?style=flat-square&color=5B4CF0" alt="npm downloads"></a>
+  <a href="https://dshfind.com/en/plugins/Asher-2000/dsh-expert-mode"><img src="https://dshfind.com/api/badge/Asher-2000/dsh-expert-mode" alt="dshfind"></a>
+  <a href="https://dshfind.com/en/plugins/Asher-2000/dsh-expert-mode"><img src="https://dshfind.com/api/card/Asher-2000/dsh-expert-mode" alt="dshfind card" width="220"></a>
+</p>
+
+<p align="center">
   <a href="https://github.com/topics/dsh-plugin"><img src="https://img.shields.io/badge/dsh--plugin-ready-478CBF?logo=deepseek&logoColor=white" alt="dsh-plugin"></a>
   <a href="https://github.com/awesome-dsh-plugin/awesome-dsh-plugin"><img src="https://img.shields.io/badge/awesome--dsh--plugin-featured-1a56db?logo=deepseek&logoColor=white" alt="Featured in Awesome DSH Plugin"></a>
   <a href="https://github.com/Asher-2000/dsh-expert-mode/releases"><img src="https://img.shields.io/github/v/release/Asher-2000/dsh-expert-mode?label=release" alt="Release"></a>
@@ -37,12 +48,12 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 ## 🖼️ Demo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/8ee4bd8dbb72dc4583b031eb9cdffe1b8a331dfc/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/b524f7b7e761a8083f76ddd1a2f16221c7f24ee2/assets/main-ui.jpg" alt="DSH Expert Mode main interface" width="500" /><br/>
   <em>Select the "Expert Mode" preset in DSH workspace to use</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/8ee4bd8dbb72dc4583b031eb9cdffe1b8a331dfc/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
+  <img src="https://raw.githubusercontent.com/Asher-2000/dsh-expert-mode/b524f7b7e761a8083f76ddd1a2f16221c7f24ee2/assets/expert-mode-run.jpg" alt="Expert Mode running" width="500" /><br/>
   <em>5 expert subagents working in parallel, with real-time token usage and timing</em>
 </p>
 
@@ -94,6 +105,8 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 | 🤝 **Cross Review** | High-risk tasks get multi-expert independent review |
 | 💾 **Experience Pool** | Lessons learned are saved and injected next time |
 | 💬 **Inter-Expert Bus** | File-based message bus (bus.py): experts send/read directly, zero coordinator relay, P2P capable |
+| 📋 **Taskboard** | File-system task scheduler (taskboard.py): pending/ready/running/done/failed state machine, dependency DAG, retry, crash recovery — real scheduling, not just chat coordination |
+| 🚦 **Quality Gates** | 5-stage pipeline for high-risk tasks: requirement clarity → implementation → verification → review → integration. Independent-expert review with 2-round rework limit |
 | ⚡ **Fault Recovery** | Auto-retry on timeout, strategy switch on failure |
 | 📉 **Progressive Disclosure** | Methodology injected on-demand, 28% token savings |
 | 🌐 **Bilingual** | Complete EN/ZH documentation |
@@ -102,16 +115,44 @@ No custom prompts to write. No multi-config to maintain. **Just install and use.
 
 ## 📦 Installation
 
-### Option A: `dsh plugin add` (won't crash, but ❌ does NOT activate expert mode)
+### Option A: npm one-click (recommended) 🚀
+
+The package is published on npm as [`dsh-expert-mode`](https://www.npmjs.com/package/dsh-expert-mode). You can install it with the DSH plugin manager or npm directly:
 
 ```bash
-# In DSH workspace
-dsh plugin add github:Asher-2000/dsh-expert-mode
+# In DSH workspace — via plugin manager
+dsh plugin add dsh-expert-mode
+
+# ...or install the npm package directly
+npm install dsh-expert-mode
 ```
 
-> ⚠️ **Important**: this is an **agent-preset plugin**, not a Cordis service plugin. `dsh plugin add` only guarantees the bundle loads without crashing — it does **not** mount expert mode into your sessions. The preset only works via Option B (`~/.dsh/.agent-presets/`). Use Option B. This entry is a compatibility placeholder only.
+> ℹ️ **How agent-presets work**: this is an **agent-preset plugin**, not a Cordis service plugin. Installing the npm package pulls all files into your `node_modules` — but the preset only **activates** once its files are mounted into DSH's preset discovery directory. The preset ships a copy step (below) that makes this one command.
 
-### Option B: Manual install from GitHub (current)
+### Option B: One-command preset mount (recommended for activation)
+
+After installing the npm package, mount the preset into DSH's preset discovery directory:
+
+```bash
+# 1. Find where npm put the package
+#    (usually ./node_modules/dsh-expert-mode in your DSH workspace, or globally)
+
+# 2. Mount the preset into DSH's agent-presets directory
+mkdir -p ~/.dsh/.agent-presets/expert-mode
+cp -r node_modules/dsh-expert-mode/agent.cordis.yml \
+      node_modules/dsh-expert-mode/preset.yml \
+      node_modules/dsh-expert-mode/cordis.patch.yml \
+      ~/.dsh/.agent-presets/expert-mode/
+# If you want the full methodology docs (methods/, experts/, comm/ bus, taskboard):
+# cp -r node_modules/dsh-expert-mode/.expert-mode ~/.dsh/.agent-presets/expert-mode/
+
+# 3. Restart DSH web, then select "专家模式" in the workspace preset selector
+dsh web
+```
+
+> **Note**: `~/.dsh/.agent-presets/` is DSH's preset discovery directory. Each subdirectory = one preset. The preset name comes from `preset.yml`'s `name` field.
+
+### Option C: Manual install from GitHub
 
 Clone the repository, then copy the preset into DSH's agent-presets directory:
 

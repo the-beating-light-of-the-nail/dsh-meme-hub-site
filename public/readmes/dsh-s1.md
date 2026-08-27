@@ -23,7 +23,7 @@ the official [`@search1api/client`](https://www.npmjs.com/package/@search1api/cl
 Not yet implemented: `s1_screenshot` (needs DSH attachment/image support) and
 `s1_deepcrawl` (long-polling task).
 
-![s1_crawl in DeepSeek Harness](https://raw.githubusercontent.com/superagents-lab/dsh-s1/ce2b0905f46364a62fbeba1d6e6e21871501fc8a/assets/dsh-s1.png)
+![s1_crawl in DeepSeek Harness](https://raw.githubusercontent.com/superagents-lab/dsh-s1/c1bb34e6a56a2fe1739a1ed2571b75682d5320b7/assets/dsh-s1.png)
 
 ## Skill
 

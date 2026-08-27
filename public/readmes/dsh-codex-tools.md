@@ -2,20 +2,19 @@
 
 [中文](./README.zh-CN.md)
 
-A DeepSeek Harness plugin that registers three model tools backed by the ChatGPT Codex transport:
+A DeepSeek Harness plugin that registers three tools provided by ChatGPT Codex:
 
 | Tool | Function |
 | --- | --- |
-| `web_search` | Searches the public web and returns a summary with source URLs. |
+| `codex_web_search` | Searches the public web and returns a summary with source URLs. |
 | `image_gen` | Generates a bitmap image. It does not edit or transform an existing image. |
 | `image_vision` | Reads a local image and returns a description or an answer to a question about it. |
 
-The package has no npm runtime dependencies and uses Node's built-in `https` transport. It consumes an existing Codex/ChatGPT login; it does not provide login or an LLM provider.
+It consumes an existing Codex/ChatGPT login; it does not provide login or an LLM provider.
 
 ## Runtime requirements
 
-- DeepSeek Harness, with the plugin installed as a profile-level Cordis bundle.
-- Node.js >= 22.
+- DeepSeek Harness.
 - A ChatGPT/Codex login state, either `codex login` with an auth file, or credentials in DSH:
   - `OPENAI_CODEX_API_KEY`
   - `OPENAI_CODEX_REFRESH_TOKEN`
@@ -24,46 +23,30 @@ Credentials are resolved from `CODEX_ACCESS_TOKEN` and `CODEX_REFRESH_TOKEN` env
 
 ## Installation
 
-The package is a bundle. Installing it into a profile registers the tools for every session of that profile.
-
 ```bash
-# Git (there is no build step)
+# Git
 dsh plugin --profile web add github:SPYQWER1/dsh-codex-tools
 
-# Local or downloaded tarball
-dsh plugin --profile web add ./dsh-codex-tools-1.0.0.tgz
-
-# npm, once published
+# npm
 dsh plugin --profile web add dsh-codex-tools
 ```
 
-Restart the profile (`dsh web` or `dsh --profile web`) after installation. Remove it with `dsh plugin --profile web remove dsh-codex-tools`. For a Git install, pin a commit, for example `github:SPYQWER1/dsh-codex-tools#<sha>`.
+Restart after installation (`dsh web` or `dsh --profile web`).
+Remove it with `dsh plugin --profile web remove dsh-codex-tools`.
 
-The bundle entry is `index.js`; `tools.js` invokes the transports in `scripts/`. The optional peer packages are resolved from the Harness installation. To inspect the files that would be published, run `npm pack --dry-run`.
+## Screenshots
 
-## Standalone CLI
+### Image generation
 
-The transports also run without the Harness. Inputs are environment variables and each command prints one JSON result line:
+![Image generation example](https://raw.githubusercontent.com/SPYQWER1/dsh-codex-tools/68efb8c16bcfb208a4b118b4827e878837630ff7/%E7%94%9F%E5%9B%BE.png)
 
-```bash
-# Generate an image. CG_OUT must be relative to the transport workspace.
-CG_PROMPT="a cute whale icon, flat vector style" CG_OUT=output/whale.png CG_SIZE=1024x1024 \
-  node scripts/codex-imagegen.mjs
+### Image vision
 
-# Describe an image; VG_IMAGE must be relative to the transport workspace.
-VG_IMAGE=output/whale.png VG_QUESTION="what is this?" \
-  node scripts/codex-vision.mjs
-
-# Search the public web.
-CS_QUERY="latest DeepSeek Harness release" CS_FRESHNESS=live \
-  node scripts/codex-search.mjs
-```
-
-These commands need network access and valid ChatGPT/Codex OAuth credentials. Standalone scripts read `CODEX_ACCESS_TOKEN` and `CODEX_REFRESH_TOKEN`, or the auth file described above; the `OPENAI_CODEX_*` names are the DSH credential names used by the plugin. Do not treat a network smoke test as passing unless it was actually run with credentials.
+![Image vision example](https://raw.githubusercontent.com/SPYQWER1/dsh-codex-tools/68efb8c16bcfb208a4b118b4827e878837630ff7/%E8%AF%86%E5%9B%BE.png)
 
 ## Tool parameters
 
-### `web_search`
+### `codex_web_search`
 
 | Parameter | Type | Default / limits |
 | --- | --- | --- |
@@ -79,18 +62,16 @@ The result contains `summary` and `sources`; each source has a title, URL, and s
 | Parameter | Type | Default / limits |
 | --- | --- | --- |
 | `prompt` | string (required) | Describe the subject, style, composition, palette, and constraints. |
-| `out` | string | `output/imagegen/<timestamp>.<format>`; must be relative to the transport workspace. Absolute paths, parent-directory segments, and symbolic links are rejected. Parent directories are created, and existing files are never overwritten. If `out` is omitted, the extension follows `format`. |
+| `out` | string | `output/imagegen/<timestamp>.<format>`; must be relative to the current DSH session workspace. The workspace root comes from DSH's sandbox-policy service. Absolute paths, parent-directory segments, and symbolic links are rejected. Parent directories are created, and existing files are never overwritten. If `out` is omitted, the extension follows `format`. |
 | `size` | string | `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `2048x2048`, or `2048x1152`. |
 | `format` | string | `png`, `jpeg`, or `webp`; default `png`. |
 | `model` | string | `gpt-5.5`. |
-
-Transparent-background output is unsupported; request a suitable solid/chroma-key background and remove it locally if needed.
 
 ### `image_vision`
 
 | Parameter | Type | Default / limits |
 | --- | --- | --- |
-| `image` | string (required) | Existing `png`, `jpeg/jpg`, `webp`, or `gif` under the transport workspace; absolute paths, parent-directory segments, and symbolic links are rejected. Maximum 15 MiB. |
+| `image` | string (required) | Existing `png`, `jpeg/jpg`, `webp`, or `gif` under the current DSH session workspace; absolute paths, parent-directory segments, and symbolic links are rejected. Maximum 15 MiB. |
 | `question` | string | Optional focus question; omitted means a full description. |
 | `model` | string | `gpt-5.5`. |
 
@@ -107,7 +88,7 @@ index.js -> tools.js -> scripts/codex-*.mjs
                               +-- OAuth refresh (auth.openai.com)
                               +-- POST chatgpt.com/backend-api/codex/responses
                               |
-             web_search: gpt-5.4-mini by default
+             codex_web_search: gpt-5.4-mini by default
              image_gen / image_vision: gpt-5.5 by default
 ```
 
@@ -117,27 +98,6 @@ index.js -> tools.js -> scripts/codex-*.mjs
 - Search summaries and snippets are model-generated; open the returned source URLs and check the original text before relying on them.
 - Web search and image generation use the metered **Codex-usage** bucket of the ChatGPT plan.
 - Follow OpenAI's Terms of Use; do not use a ChatGPT subscription to power a public-facing image-generation service.
-
-## Known limitations and follow-up
-
-- `image_gen` and `image_vision` accept only workspace-relative paths. Absolute paths, parent-directory segments, and symbolic links are rejected. Image generation creates parent directories but never overwrites an existing file.
-- Image files are still sent to the ChatGPT Codex endpoint for analysis. Do not pass sensitive images.
-- The transports enforce basic input length, image-size, path, and format limits. Profile installation, restart/removal, OAuth refresh, and cross-platform behavior still require integration testing; the offline checks below do not cover those cases.
-
-## Development checks
-
-Run the following offline checks before submitting documentation or code changes:
-
-```bash
-npm pack --dry-run
-node --check index.js
-node --check tools.js
-node --check scripts/codex-common.mjs
-node --check scripts/codex-imagegen.mjs
-node --check scripts/codex-vision.mjs
-node --check scripts/codex-search.mjs
-node --test test/tools.test.mjs
-```
 
 ## License
 

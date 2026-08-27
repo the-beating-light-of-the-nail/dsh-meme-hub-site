@@ -7,7 +7,7 @@
 Token cost tracking for DeepSeek Harness, with per-model configurable pricing and
 peak/off-peak rates.
 
-![dsh-cost-tracker: per-session cost bar and the /cost command](https://raw.githubusercontent.com/yflmq001/dsh-cost-tracker/096b1ae917ae127f08aa3f0cad4ca320e58448ef/assets/screenshots/hero.png)
+![dsh-cost-tracker: per-session cost bar and the /cost command](https://raw.githubusercontent.com/yflmq001/dsh-cost-tracker/62ae4bdb06f2f77448cfb066420aa304435a62be/assets/screenshots/hero.png)
 
 ## What it does
 

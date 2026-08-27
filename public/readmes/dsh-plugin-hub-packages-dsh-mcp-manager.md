@@ -3,10 +3,30 @@
 [![GitHub Releases](https://img.shields.io/github/v/release/wingsky-1/dsh-plugin-hub)](https://github.com/wingsky-1/dsh-plugin-hub/releases)
 
 DSH（DeepSeek Harness）的 **MCP 服务器管理插件**：会话界面右上角浮窗 + 分级面板 +
-快速接入（手工表单 + 粘贴 mcpServers JSON 导入，**不预设任何服务器**），支持
-**项目级 MCP 跟随会话切换**。已连接服务器的工具以 `mcp__<serverName>__<rawName>`
-注册给模型直接调用。MCP 协议客户端基于 `node:child_process`
-与全局 `fetch` 直接实现，无需额外安装。
+快速接入（手工表单 + 粘贴 mcpServers JSON 导入，**不预设任何服务器**）。
+MCP 协议客户端基于 `node:child_process` 与全局 `fetch` 直接实现，无需额外安装。
+
+三档中间层模式（`middleware`）：`off`——全部服务器直呼 `mcp__<server>__<tool>`（旧行为）；
+`project`（**默认**）——项目级走中间层、全局仍直呼；`all`——全局也走中间层，
+cwd 无项目时回落全局虚拟 root `@global`，模型面完全收敛为两个原子工具。
+注意生效时机：`middleware` / `middlewarePolicy` 只在插件启动时读取，**变更后需重启
+`dsh web`**；两级配置文件中的服务器列表（增删/启停/改配置）支持热加载、即时生效，
+无需重启。
+
+## 核心优势
+
+- **上下文成本可控**：项目级 MCP 默认经中间层收敛，模型面只占 `ws_mcp_search` /
+  `ws_mcp_call` 两个原子工具位——当前工作空间的项目级接多少台服务器、多少个工具都
+  不膨胀系统提示词；`middleware: all` 可把全局服务器也收进中间层，实现全量收敛
+- **分工作目录维护**：项目级配置 `<项目根>/.dsh/mcp.json` 随仓库走、可提交 git 团队共享；
+  全局配置 `<DSH_HOME>/dsh-mcp.json` 常连；切换会话自动加载当前目录的 MCP 集
+- **工作空间隔离**：中间层以会话 cwd 路由到对应连接池，server 全名一致性校验防跨空间
+  串台；不同目录注入同名 server 也互不冲突
+- **安全的默认值**：配置只存 `${ENV}` 引用、不落盘密钥本身（0600 权限 + 原子写入）；
+  stdio 子进程环境净化，宿主凭据形状变量不透传；目录摘要与错误路径经 redactor 脱敏
+- **运维省心**：运行中/连接中/失败等分级状态一目了然；断线有界指数退避自动重连；
+  直连模式下工具结果按 8KB 截断、调用超时可按 server 覆盖（`toolCallTimeoutMs`），
+  中间层调用超时固定 30s
 
 ## 安装
 
@@ -65,6 +85,7 @@ npx @deepseek-ai/dsh plugin --profile web update @wingsky-1/dsh-mcp-manager
 | 断线重连 | 有界指数退避（500ms 起、30s 上限、10 次后停止后台重试；用户手动连接或 ws_mcp_call 触发可再试） |
 | 结果截断 | 工具结果按 8KB 截断并标注（防超长 JSON 全量进上下文） |
 | 超时下探 | 工具调用超时默认 60s → 15s（可按服务器 `toolCallTimeoutMs` 覆盖） |
+| 状态推送自愈 | SSE 通道三重防护：服务端每 30s 发 data ping 心跳、客户端 60s 无帧即关旧建新（watchdog）、页面回前台强制重建连接——移动端切后台被系统静默掐断的半开连接可自愈，不堆积僵尸连接 |
 
 ## 配置（浮窗位置）
 
@@ -73,24 +94,39 @@ npx @deepseek-ai/dsh plugin --profile web update @wingsky-1/dsh-mcp-manager
 
 | 键 | 值域 | 默认 |
 | --- | --- | --- |
-| `position` | `top-right`（右上，默认）/ `bottom-right`（右下） | `top-right` |
+| `position` | `top-right`（右上，默认）/ `top-left`（左上）/ `bottom-right`（右下）/ `bottom-left`（左下） | `top-right` |
 | `offset.x` | 非负整数（水平偏移，单位 px） | `8` |
 | `offset.y` | 非负整数（垂直偏移，单位 px） | `8` |
 | `offset.blankY` | 非负整数（空白会话垂直偏移，单位 px） | `40` |
+| `zIndexBase` | 整数，clamp 到 1–9000（浮窗层级基准；下拉面板自动取基准 +30，模态管理面板不受影响） | `10` |
 
-当 `position = bottom-right` 时，下拉面板会**在胶囊上方展开**（底部锚点向上弹出），
-不溢出视口、内容完整可见可点击；`top-right` 时向下展开（历史行为，默认不变）。
+当 `position = bottom-right` 或 `bottom-left` 时，下拉面板会**在胶囊上方展开**（底部
+锚点向上弹出），不溢出视口、内容完整可见可点击；顶部锚点向下展开（历史行为，默认不变）。
+
+**移动端 / 平板端适配**（issue #128）：断点判定基准是会话容器（conversationHost）
+的视口宽度而非窗口媒体查询——窄屏（≤480px，手机竖屏 / 极窄分栏）下面板近全屏宽、
+服务器卡片重排、操作按钮触控目标加大到 ≈44px；平板档（≤834px）过渡；桌面维持现状。
+浮窗最终坐标经 JS 视口 clamp（safe-area 语义：宿主无 `viewport-fit=cover`，
+`env(safe-area-inset-*)` 恒 0 时自然退化为普通 clamp）；软键盘弹出经
+`visualViewport` resize 跟随，横竖屏切换后下一帧重算。
+
+**跨包避让契约（源自 issue #116，不可回退）**：本插件浮窗默认 `top-right` 且距顶
+8px、高约 26px；dsh-provider-usage 用量胶囊依赖这一默认位置以 `offsetY: 48`
+在其正下方让位（两胶囊默认互不重叠）。修改本插件默认锚点 / 垂直偏移会使该避让
+失效，属跨包行为契约，回退前须同步调整 provider-usage 默认值。
 
 在设置页保存后即时生效，**无需重启 dsh web**、也无需手动刷新页面：宿主端经既有
 SSE events 通道推送一变，客户端自动重新拉取 `/api/dsh-mcp/config` 并就地更新浮窗位置。
 
 ## 配置（中间层）
 
-项目级 MCP 经中间层访问（`middleware: project`，默认）：模型面恒定两个工具
-`ws_mcp_search`（先检索当前工作空间 MCP 工具）/ `ws_mcp_call`（按 `@<root>/<server>`
-全名调用），执行时按调用方会话当前 cwd 路由到对应工作空间连接池，不同工作空间
-注入不同 MCP、无命名冲突。切换 `middleware: off` 回到旧行为（项目级也直接注册
-`mcp__` 工具）；`middleware: all` 则全局服务器也走中间层。
+项目级 MCP 经中间层访问（`middleware: project`，默认）：项目级服务器不再注册
+`mcp__` 工具，改经模型面两个原子工具访问——`ws_mcp_search`（先检索当前工作空间 MCP
+工具）/ `ws_mcp_call`（按 `@<root>/<server>` 全名调用），执行时按调用方会话当前 cwd
+路由到对应工作空间连接池，不同工作空间注入不同 MCP、无命名冲突；全局服务器仍直呼
+`mcp__<server>__<tool>`。切换 `middleware: off` 回到旧行为（项目级也直接注册 `mcp__`
+工具）；`middleware: all` 则全局服务器也走中间层（cwd 无项目时回落全局虚拟 root
+`@global`），模型面完全收敛为两个原子工具。
 
 | 键 | 值域 | 默认 |
 | --- | --- | --- |

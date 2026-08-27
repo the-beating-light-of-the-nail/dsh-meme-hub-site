@@ -55,25 +55,25 @@
 
 **嵌入式主面板**：停靠在输入框上方，指数卡 + 自选股行情 + 四个功能页签：
 
-![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/panel.png)
+![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/panel.png)
 
 **个股详情**：16 项行情数据 + K线蜡烛图（成交量柱 / MA5-10-20 均线 / 十字光标）+ 财务指标 + 热议用户：
 
-![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/detail.png)
+![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/detail.png)
 
 **迷你行情区域**：四大指数 + 自选 12 只两列平铺，⤡ 手柄调宽度，点击开合面板，可拖动：
 
-![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/badge.png)
+![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/badge.png)
 
 **Agent 工具调用卡片**（对话内直接问行情，结果渲染为专属卡片而非 JSON）：
 
 | `xueqiu_quote` 行情表 | `xueqiu_kline` 蜡烛图 |
 | --- | --- |
-| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/kline.png) |
+| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/kline.png) |
 
 | `xueqiu_hot` 热榜 | `xueqiu_news` 快讯时间线 |
 | --- | --- |
-| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/dc4c6ee462a78f593e1ec816fd3c4cb82c94f3a7/assets/toolcards/news.png) |
+| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/news.png) |
 
 ## 📦 安装
 
@@ -190,6 +190,12 @@ dsh-xueqiu/
 
 ## 📋 更新日志
 
+- **1.22.13**（2026-08-26）
+  - 修复：**A 股成交量显示虚高 100 倍 + 港/美单位错**。雪球 `volume` 字段全市场均为**股**（实证 `amount/volume ≈ price`，quote/kline/minute 三接口、A/港/美/ETF/指数一致），而 `fmtVol` 一律按"手"格式化：茅台 145 万股显示成"145.05万手"（实为 1.45 万手）。现按市场感知：A 股（SH/SZ/BJ 前缀，含 ETF/指数/北交所）÷100 换算成手，港/美维持股。`qa/vol-units.mjs` 26 例（从 client 源码提取 fmtVol 独立求值 + host 周期白名单）。
+  - 修复：**自选"死条目"凭空消失**。批量行情会整只丢弃无效/退市代码——添加 SH999999 提示成功，但列表里永远看不到，无任何反馈。现在补占位行（现价/涨跌全 `--`，名称回退显示代码，仍可删除/查详情），价格闪烁逻辑对 null 现价免疫。
+  - 修复：**kline 垃圾周期静默空数据**。上游对未知 `period`（如模型手滑传 `1h`）返回 200+0 根；host 侧加白名单兜底为 `day`。
+  - 修复：**CI 午休/午后时段必红**（v1.22.11 修复的延伸）。live 分时点数下限按"9:30 至今分钟数"线性外推，但 A 股午休（11:30-13:00）分时停在 ~121 点、午后累计从 13:00 重算——11:44 触发的 CI 实际 121 点 vs 下限 132 必红。改为两段交易时段感知（早盘线性 / 午休恒 118 / 午后 121+线性封顶 238 / 盘外 200），全天 1440 分钟边界模拟通过。
+  - 工具描述补充 `volume 单位为股（A股 1手=100股）`，防模型侧误读换算。
 - **1.22.12**（2026-08-26）
   - 修复：**状态文件跟启动目录漂移**。自选/登录/界面状态原先落在 dsh web 的启动目录（cwd=工作区根）——换目录启动就"换一套状态"。现在优先写 `$DSH_HOME/dsh-xueqiu/`（稳定目录，writeText 自动建目录）；沙箱策略拒绝工作区外绝对路径写入时探测失败，透明回退旧工作区行为（零回归）；读取时稳定文件缺失则回读旧工作区文件，存量数据无缝迁移（首次保存落到稳定目录，旧文件不删）。`qa/state-paths.mjs` 11 例覆盖四种模式（稳定/迁移/回退/首启）。注意：host 侧改动需重启 dsh web 生效，迁移发生在重启后首次写入。
   - 修复：**K线交互提示文案方向写反**（v1.22.0 起）。"左拖加载更早"实为**右拖**——klinecharts 源码 `scroll(拖拽位移)` 内容跟手：右拖=左缘涌出更早历史+触底自动加载；左拖是回最新方向、右边留白。用户指出后核对引擎源码确认，client 6 处 + README 3 处已正。

@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/hero-poster.webp" alt="dsh-image-gen 宣传海报" width="100%" style="max-width: 860px; border-radius: 12px;" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fee46ca610813a1e112a50bcaaaea3c8f8018ea7/docs/assets/hero-poster.webp" alt="dsh-image-gen 宣传海报" width="100%" style="max-width: 860px; border-radius: 12px;" />
 
 <br /><br />
 
 # 🎨 dsh-image-gen
 
-**让 DeepSeek Harness 像 ChatGPT 一样在对话中直接生成图片，支持画廊汇总,全屏预览、快捷复制与一键下载。**
+**让 DeepSeek Harness 拥有类似 ChatGPT 的原生对话生图与图片编辑能力，支持文生图、图生图、连续编辑，并兼容多家图像模型提供商。**
 
 [![npm version](https://img.shields.io/npm/v/dsh-image-gen.svg?style=flat-square&color=blue)](https://www.npmjs.com/package/dsh-image-gen)
 [![DSH Plugin](https://img.shields.io/badge/Plugin%20For-DeepSeek%20Harness-6366f1?style=flat-square)](https://github.com/deepseek-ai)
@@ -34,11 +34,14 @@
 帮我画一张雨夜霓虹街头的赛博朋克猫咪。
 ```
 
-<p align="center">Agent 会自动调用 <code>generate_image</code>，生成图片并直接显示在当前对话中。</p>
+<p align="center">Agent 会自动完成图片生成，也可以直接基于上一张图片继续修改。</p>
 
 <br />
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/chat-preview.png" alt="对话生图效果预览" width="820" />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fee46ca610813a1e112a50bcaaaea3c8f8018ea7/docs/assets/generate-example.png" alt="首次生成图片的对话截图" width="48%" style="vertical-align: top;" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fee46ca610813a1e112a50bcaaaea3c8f8018ea7/docs/assets/edit-example.png" alt="基于上一张图片继续编辑的对话截图" width="48%" style="vertical-align: top;" />
+</div>
 
 </div>
 
@@ -46,14 +49,14 @@
 
 ## 💡 它解决什么问题？
 
-**`dsh-image-gen` 是专为 DeepSeek Harness (DSH) 打造的开源图像生成插件。**
+**`dsh-image-gen` 是专为 DeepSeek Harness (DSH) 打造的开源图像生成与编辑插件。**
 
-DeepSeek Harness 已经可以让 Agent 调用不同工具完成任务，本项目为它补上了原生的**多模态生图能力**：
+DeepSeek Harness 已经可以让 Agent 调用不同工具完成任务，本项目为它补上了原生的**图像生成与编辑能力**：
 
 ```mermaid
 graph LR
     A[用户 Prompt] --> B[DeepSeek Harness Agent]
-    B --> C[generate_image 工具]
+    B --> C[generate_image / edit_image]
     C --> D[Gemini / OpenAI / Seedream / DashScope]
     D --> E[图片数据]
     E --> F[当前 Conversation 对话流]
@@ -98,7 +101,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 3. 可按需开启 **保存到工作区**（默认开启）并自定义子目录，点击 **保存** 即可。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/settings-preview.png%3Fv%3D0.1.7" alt="设置面板预览" width="720" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fee46ca610813a1e112a50bcaaaea3c8f8018ea7/docs/assets/settings-preview.png%3Fv%3D0.1.7" alt="设置面板预览" width="720" />
 </div>
 
 ### 3. 开始对话生图
@@ -111,26 +114,32 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 
 当前 Agent 就会自动调用 `generate_image` 工具并在对话流中返回图片。
 
+也可以继续基于上一张图进行编辑：
+
+```text
+给刚才那张图加上落地窗，并把窗外改成雪山。
+```
+
+Agent 会调用 `edit_image`，复用当前会话中的图片继续修改。
+
 ### 4. 查看原生生图画廊
 
 点击会话顶栏的 **`[画廊]`** Tab，即可集中查看和搜索所有对话生成的历史图片：
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/1093a9b2188f2e25dab90a4cd526ba9f77b19e61/docs/assets/gallery-preview.png" alt="原生生图画廊预览" width="820" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fee46ca610813a1e112a50bcaaaea3c8f8018ea7/docs/assets/gallery-preview.png" alt="原生生图画廊预览" width="820" />
 </div>
 
 ---
 
 ## ✨ 主要能力
 
-- 💬 **对话中直接生图**：不需要切换到其他网站，也不需要手动复制 Prompt，直接告诉 Agent 你想画什么即可。
-- 🖼️ **历史生图画廊**：顶栏自带「画廊」Tab，自动汇总所有历史生成的图片，支持关键词搜索、厂商筛选、单张删除（带防误触确认与持久化墓碑）与一键复制/下载。
-- 🔍 **交互式图片工具**：支持点击全屏大图预览、一键复制图片到剪贴板、本地下载与新标签页打开。
-- 🎨 **多 Provider 支持**：支持 Google Gemini、OpenAI Images、OpenAI Compatible API、ByteDance Seedream / 火山方舟以及阿里云 DashScope（通义万相 / Qwen-Image）。Provider、模型和 Endpoint 均可在设置中自由定制。
-- 🔑 **BYOK (自带 Key)**：插件使用你自己的 API Key。API Key 通过 DeepSeek Harness 的 `credentials` 服务管理，采用写保护隔离，不需要写进项目源码或配置文件，前端不存明文。
-- 🖼️ **图片跟随会话保存**：生成结果会接入 DeepSeek Harness 的 Attachment / Conversation 体系，重新打开历史会话后，仍然可以看到之前生成的图片。
-- 💾 **生成图片自动落盘到工作区**：默认在每次生成后把图片文件保存到当前会话工作区，工具结果会返回文件的绝对路径；可在设置中关闭或修改保存目录。
-- ⚙️ **原生设置界面**：Provider、API Key、模型和 Endpoint 都可以直接在 DSH Web 设置中修改，不需要手动编辑配置文件。
+- 💬 **原生对话生图与编辑**：直接在 DeepSeek Harness 对话中生成图片，也可以基于已有图片继续修改。
+- 🔁 **连续多轮编辑**：支持复用当前会话中的上传图片、历史生成图和上一轮编辑结果继续迭代。
+- 🖼️ **画廊与图片工具**：自动汇总历史图片，支持搜索、筛选、全屏预览、复制、下载与删除。
+- 🎨 **多 Provider 支持**：兼容 Google Gemini、OpenAI Images / Compatible、Seedream、DashScope Qwen Image。
+- 🔑 **BYOK + 原生设置**：API Key、Provider、模型和 Endpoint 都可以直接在 DSH 设置中配置。
+- 💾 **会话与工作区保存**：图片接入 DSH Attachment / Conversation，并可自动保存到当前工作区。
 
 ---
 
@@ -142,7 +151,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 | **OpenAI Images** | `gpt-image-2` | `https://api.openai.com/v1` |
 | **OpenAI Compatible** | 自定义 | 自定义 Base URL |
 | **ByteDance Seedream / 火山方舟** | `doubao-seedream-5-0-260128` | `https://ark.cn-beijing.volces.com/api/v3` |
-| **Aliyun DashScope / 通义万相** | `wanx2.1-t2i-turbo` | `https://dashscope.aliyuncs.com/api/v1` |
+| **Aliyun DashScope / Qwen Image** | `qwen-image-3.0` | `https://dashscope.aliyuncs.com/api/v1` |
 
 ---
 

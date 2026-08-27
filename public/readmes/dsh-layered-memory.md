@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/Hero.png" width="100%"
+<img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/Hero.png" width="100%"
      alt="DeepSeek Harness hero 横幅：对话自动分层蒸馏成记忆，模型每步前自动召回注入——右侧对话气泡逐层溶解为三层渐亮光带，流入带发光圆球与渐变轨道的玻璃胶囊（下有 日常·工作·智能·关闭 四档刻度），光丝回流示意召回注入">
 
 # dsh-layered-memory
@@ -70,7 +70,7 @@ npx tsc src/smoke.ts --outDir dist-smoke --module nodenext --moduleResolution no
 ## 运行时数据流
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/readme/flow.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/readme/flow.svg" width="100%"
        alt="dsh-layered-memory 运行时数据流：左侧 User 与 Assistant 的会话事件流入插件（L0 捕获、L1–L3 蒸馏、检索召回、记忆工具），插件经 agent/pre-step 把相关记忆注入右侧 DSH 核心；蒸馏复用核心的 ctx.llm，数据双写 ~/.dsh/memory/">
 </p>
 
@@ -91,28 +91,28 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 真机实录：召回注入与工具调用在对话里的样子——"上下文注入 · memory"行先带出相关记忆，模型再按需调 `memory_read_scene` 读取场景块，凭记忆直接作答：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/MemoryTools.png" width="60%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/MemoryTools.png" width="60%"
        alt="对话界面实录（浅色主题）：用户消息"我们最近要干什么？"上方可见"上下文注入 · memory"行；助手回答前列出 4 次 memory_read_scene 工具调用（参数为 scenes 场景块的 .md 文件名），随后凭记忆梳理近期目标与推进路线">
 </p>
 
 在只开放代码执行入口的受限会话中，模型经由 `run_code` 间接调用记忆工具（轨迹视图中的 SUBTOOL 嵌套）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/ToolTrajectory.png" width="80%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/ToolTrajectory.png" width="80%"
        alt="工具调用轨迹视图：顶部彩色时间线与左侧步骤列表（SYSTEM/CONTEXT/USER/ASSISTANT/TOOL/SUBTOOL 彩色标签），run_code 工具步骤内嵌套 5 次 memory_read_scene 子工具调用（SUBTOOL 标记），右侧为所选步骤的详情面板">
 </p>
 
 ## 分层记忆（L0–L3）
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/Layers.png" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/Layers.png" width="100%"
        alt="分层记忆四层（自左上向右下逐层精炼）：L0 原始对话（对话气泡）→ L1 原子记忆（发光事实粒子）→ L2 场景块（玻璃文档板）→ L3 核心画像（发光晶核）；层间由 LLM 提取/整合/蒸馏光束相连，宽度递减表示数据逐层精炼">
 </p>
 
 ## 会话级记忆档位
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/Modes.png" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/Modes.png" width="100%"
        alt="会话级记忆档位：一条玻璃胶囊滑轨四个停点（日常·工作·智能·关闭），发光圆球停在智能（默认）档；各档上方微场景——日常为个人聊天气泡、工作为代码文档窗格、智能为双流合流最亮、关闭为暗淡虚线幽灵泡">
 </p>
 
@@ -128,9 +128,9 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 ## 界面预览
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/ui-dark.jpg" width="49.5%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/ui-dark.jpg" width="49.5%"
        alt="深色主题下的设置页记忆浏览器概览：状态卡（插件版本、捕获/蒸馏/召回开关状态、FTS 与向量能力、L1 记忆计数、蒸馏模型）与统计瓦片，玻璃质感控件与冷蓝强调色">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/ui-light.jpg" width="49.5%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/ui-light.jpg" width="49.5%"
        alt="浅色主题下的同一设置页记忆浏览器概览：同款布局与信息，浅色卡片底与同套强调色，主题切换无需重载">
 </p>
 
@@ -145,7 +145,7 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 > 0.8.5 基线（A 组数据；对话赛道 B 组已下线，只跑 A 组）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/readme/bench-dialog.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/readme/bench-dialog.svg" width="100%"
        alt="DSH-MemBench 对话赛道准确率图（A 组·记忆开）：总准确率 95.2%（400/420）；核心六题型各 60 题——抽取 58/60、多跳 60/60、时序 56/60、更新 55/60、场景回忆 52/60、拒答 60/60 且 0 编造；扩展四题型各 15 题——增量积累 15/15、连锁更新 15/15、事件排序 14/15、同义改写 15/15">
 </p>
 
@@ -156,7 +156,7 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 ### 工作流赛道（0.8.3 存档 · 7 场景版 · A 组 3 次 / B 组 1 次，真实工具沙箱）：做得对、做得省吗
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/readme/bench-workflow.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/readme/bench-workflow.svg" width="100%"
        alt="DSH-MemBench 工作流赛道 A/B 对照图：探针段完成度 A 组 59/69（85.5%）对 B 组 10/23（43.5%）；成本对比（B 组为满格基准，每场景均值）——步骤 24.3 对 41.4（B +70%）、工具调用 37.7 对 62.1（B +65%）、输入 token 266k 对 1.81M（B 6.8 倍）；风格规范场景探针 A 12/12 对 B 0/4；长任务每场景输入 token A 266k 对 B 1.81M">
 </p>
 
@@ -186,7 +186,7 @@ node bench/harness/retrieval-metrics.mjs <runDir> --flood 200,600               
 ## 存储布局
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/readme/storage.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/readme/storage.svg" width="100%"
        alt="存储布局：双写架构（JSONL 事实源只增不改 + memory.db 主检索库）；文件形态含 conversations/records/scenes/persona/state/pending/session-modes/embedding-source/模型目录/推理运行时/日志与重建归档；检索三策略 keyword/embedding/hybrid（RRF k=60）；降级链保证永不阻塞宿主">
 </p>
 
@@ -198,7 +198,7 @@ node bench/harness/retrieval-metrics.mjs <runDir> --flood 200,600               
 设置页（记忆 → 概览 → 语义检索）选择嵌入源，即时生效、无需改配置重启：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/c32ae991cfc2480fa441172c2359135d4bf4e4d1/assets/img/EmbeddingSource.png" width="70%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/08b61096e4758da1af5daf854b05c5daa292021b/assets/img/EmbeddingSource.png" width="70%"
        alt="设置页语义检索（嵌入源）面板（浅色主题）：三态选择器（关闭/本地/远程，本地选中）显示当前嵌入源与首次启用自动安装运行时提示；下方本地模型目录列出 BGE small 中文（使用中/已就绪）、EmbeddingGemma 300M（下载 316MB）、BGE-M3（下载 560MB）三款模型的维度/上下文/体积/特点与下载入口">
 </p>
 
@@ -232,8 +232,8 @@ ONNX 量化 **CPU 推理**——无需 API Key，数据不出本机）。本地�
   name: dsh-layered-memory
   config:                    # 键按行整体替换（不深合并），按需写全要保留的键
     family: auto             # 新会话默认档：auto | chat | work
-    llm:                     # 蒸馏模型静态路由（双字段齐 = 部署 pin，优先于设置页选择；
-      provider: ''           # 留空则跟随设置页"蒸馏模型"选择器或当前默认模型）
+    llm:                     # 蒸馏模型静态路由（双字段齐 = 部署 pin，优先于设置页路由链；
+      provider: ''           # 留空则跟随设置页路由链主路由或当前默认模型）
       model: ''
 ```
 
@@ -275,15 +275,62 @@ ONNX 量化 **CPU 推理**——无需 API Key，数据不出本机）。本地�
 | `embedding.allowLocalModels` | `true` | 允许本地嵌入档（部署上限：关闭后设置页不能下载模型、不能切本地档） |
 | `embedding.mirror` | `https://hf-mirror.com` | 本地模型下载镜像根地址（可改回官方 `https://huggingface.co`） |
 | `embedding.proxy` | `''` | 模型下载代理三态：`''`（默认）= 自动探测代理环境变量（`HTTPS_PROXY`/`ALL_PROXY` 等，尊重 `NO_PROXY`）；`none` = 禁用强制直连；其他值 = 代理 URL（如 `http://127.0.0.1:7890`）。镜像直连在国内网络间歇不可达（直连超时与污染字节交替出现过），开代理的机器建议保持默认自动探测 |
-| `llm.provider/model` | 空 | 蒸馏模型静态路由（部署 pin）：provider 与 model **双字段齐**时锁定蒸馏路由，优先于设置页的运行时选择与默认模型（部署可强制蒸馏走指定路由）；留空则跟随"设置页选择 → 默认模型"。运行时可在设置页 → 记忆 → 概览的"蒸馏模型"选择器从**已配置的供应商**（含 dsh 设置 → 模型里添加的自定义供应商）中切换，即时生效无需重启 |
+| `llm.provider/model` | 空 | 蒸馏模型静态路由（部署 pin）：provider 与 model **双字段齐**时锁定蒸馏路由，优先于设置页的运行时路由链与默认模型（部署可强制蒸馏走指定路由）；留空则跟随"设置页路由链主路由 → 默认模型"。运行时可在设置页 → 记忆 → 概览 → 蒸馏参数的**蒸馏路由链编辑器**里配置主路由与回退链（从**已配置的供应商**（含 dsh 设置 → 模型里添加的自定义供应商）中选择，主路由行可留空跟随默认模型），非空即整体接管本静态配置，即时生效无需重启 |
+| `llm.fallbacks` | `[]` | 蒸馏回退链：主路由失败（报错/被掐断/网络异常/**空输出**）后按条目顺序逐个降级尝试的备用路由列表，条目 = `{provider, model, reasoningEffort?}`（档位非空覆盖全局 `llm.reasoningEffort`，仍按模型能力钳制）；与主路由完全相同的条目自动跳过；**每条路由各享全额 `timeoutMs`**；全部失败交既有按会话退避重试。空数组（缺省）= 单路由行为不变（详见下方[蒸馏回退链与慢 TTFT 模型](#蒸馏回退链与慢-ttft-模型)）；设置页运行时路由链（`distillChain`）非空时**整体接管**主路由与回退链（单行链 = 显式无回退），空 = 跟随本配置 |
+| `llm.layerRoutes` | `{}` | 蒸馏**按层路由**：层键 `l1`/`l2`/`l3` 各配一条**完整链**（条目同 `llm.fallbacks`，**头行必须 provider+model 双显式**），非空即**完整替换**该层解析（该层主路由与回退都归层链管，全局链对该层不参与），空/缺省 = 该层跟随全局；`l1` 同管抽取+去重两个调用点。运行时可在设置页「蒸馏参数」分段面板里按层编辑（优先于本静态配置）；部署 pin 不废静态层链（同为部署配置，同回退链先例）。与回退链正交可组合——每层各自一条链（ADR-0005） |
 | `llm.maxTokens` | `65536` | 未分层调用的兜底输出总闸。各蒸馏层有独立预算（抽取 16k / 去重 8k / L2 32k / L3 16k；思考档 high/xhigh/max 时自动 ×4，防 reasoning 吃光预算），分层预算可在设置页 → 记忆 → 概览 → 蒸馏参数运行时调整（留空/0 = 跟随内置默认） |
-| `llm.reasoningEffort` | 空 | 蒸馏思考档位：空串 = **自动**（按模型能力解析：模型默认档 → `high`）；显式值（`off`/`none`/`minimal`/`low`/`medium`/`high`/`xhigh`/`max`）仅在该模型声明支持时发送——跨供应商 effort 词汇表不同（deepseek 认 `off`，OpenAI 系是 `none`，未声明档位的模型不传），不支持的档位自动降级为不传并告警一次；思考档 high/xhigh/max 时输出预算自动 ×4。运行时在设置页 → 记忆 → 概览切换，可选档位表跟随当前模型实时显示 |
+| `llm.reasoningEffort` | 空 | 蒸馏思考档位：空串 = **自动**（按模型能力解析：模型默认档 → `high`）；显式值（`off`/`none`/`minimal`/`low`/`medium`/`high`/`xhigh`/`max`）仅在该模型声明支持时发送——跨供应商 effort 词汇表不同（deepseek 认 `off`，OpenAI 系是 `none`，未声明档位的模型不传），不支持的档位自动降级为不传并告警一次；思考档 high/xhigh/max 时输出预算自动 ×4。运行时可在设置页路由链编辑器里**逐路由**覆盖档位（行内下拉，词表按各模型声明的能力实时显示，缺省跟随本值） |
 | `llm.temperature` | `0.3` | 蒸馏温度 |
 | `llm.maxInputChars` | `700000` | 单次蒸馏输入字符预算（超限的 L1 输入自动分块抽取）；运行时可在设置页 → 蒸馏参数 → 输入预算调整（留空/0 = 跟随本值） |
 | `llm.timeoutMs` | `120000` | 单次蒸馏调用超时（ms） |
 | `tokenCost.retentionDays` | `365` | 蒸馏成本明细（token_cost 表）保留天数，写入时滚动清理更早行；`0` = 永久保留。成本看板「近 N 天」窗口上限同此值 |
 | `tools` | `true` | 是否注册模型可调用的记忆工具 |
 | `benchControl` | `false` | 注册 bench 控制服务（进程内 rebuild 触发/会话档位设置/蒸馏用量快照，供基准 lifecycle 赛道）。默认关——生产部署零表面积，勿随意开启 |
+
+### 蒸馏回退链与慢 TTFT 模型
+
+部分推理供应商的免费/慢速档位**首 token 延迟（TTFT）可达 20 秒以上**，而部分上游网关会在连接静默约 20 秒时掐断——蒸馏调用以固定 ~20s 失败（`llm aborted`），插件侧 120s 超时根本轮不到生效（[#31](https://github.com/JunNanLYS/dsh-layered-memory/issues/31) 的实测场景）。三层缓解按需取用：
+
+1. **换路由**（最直接）：设置页 → 记忆 → 概览 → 蒸馏参数的路由链编辑器即时改主路由（或把快路由排到链首），或静态 pin `llm.provider`/`llm.model`。
+2. **回退链**（自动降级）：主路由失败时按序自动换备用路由，无需人工干预：
+
+   ```yaml
+   llm:
+     provider: opencode-go          # 主路由（也可不 pin，跟随设置页路由链主路由/默认模型）
+     model: ox-alpha-free
+     fallbacks:                     # 条目顺序 = 降级优先级；不配置 = 单路由行为不变
+       - provider: opencode-go
+         model: deepseek-v4-flash
+         reasoningEffort: low       # 可选：该路由的档位覆盖（缺省跟随全局）
+       - provider: deepseek-official
+         model: deepseek-v4-flash
+   ```
+
+3. **按层路由**（各走各的通道）：不同蒸馏层对模型诉求不同（L1 高频要便宜快稳、
+   L3 低频可容忍慢首包但要强能力），可给差异层单独配链——每层一条**完整回退链**，
+   未配置的层照走全局链：
+
+   ```yaml
+   llm:
+     layerRoutes:                  # 按层独立路由（#34）；头行必须显式 provider+model
+       l1:                         # l1 同管抽取 + 去重两个调用点：配条便宜快稳的链
+         - provider: opencode-go
+           model: deepseek-v4-flash
+           reasoningEffort: low
+         - provider: deepseek-official   # 层内回退：L1 故障只降级到这里，不落全局链
+           model: deepseek-v4-flash
+       l3:                         # L3 画像蒸馏：低频大输入，配强能力链
+         - provider: deepseek-official
+           model: deepseek-v4-flash
+           reasoningEffort: high
+   ```
+
+   也可在设置页 → 记忆 → 概览 → 蒸馏参数的**分段面板**（全局默认 / L1 / L2 / L3）
+   里按层运行时编辑，层内优先级：运行时层链 > 本 YAML 静态层链 > 全局默认链，
+   逐级兜底。
+
+   失败 = 报错 / 被掐断 / 网络异常 / **空输出**（流正常结束但 0 字符——对蒸馏而言必然在解析阶段报废，改判为该路由失败而非返回空串）；调用方主动取消不降级；每条路由各享**全额** `llm.timeoutMs`（共享预算会让慢 TTFT 的回退路由拿到的窗口小于它真实需要的首包时间，回退链形同虚设）；token 成本逐次尝试记账（失败尝试也计一行，含流中断前已到的 token），成功调用归因到实际服务的路由。路由链也可在设置页 → 记忆 → 概览 → 蒸馏参数的「蒸馏路由链」编辑器里运行时调整（无需改配置重启）；本 YAML 适合部署者固化静态链。
+4. **调高超时**：`llm.timeoutMs` 只在路由确实慢但网关不掐时有用；网关 20s 掐断的场景调插件超时无效，请用前两层。
 
 ## 日志与故障排查
 

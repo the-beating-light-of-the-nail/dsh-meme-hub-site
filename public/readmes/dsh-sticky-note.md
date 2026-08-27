@@ -6,7 +6,7 @@
 
 > 适配 DSH `0.1.0-rc.7` ~ `0.1.1-rc.2`：最低要求 `0.1.0-rc.7`（设置卡片 keyed slot 强校验），最高已验证 `0.1.1-rc.2`。
 
-![dsh-sticky-note 示意图](https://raw.githubusercontent.com/Meredith2328/dsh-sticky-note/b91858044fe8ba73a4db677565e2477206fbfad1/assets/screenshot.png)
+![dsh-sticky-note 示意图](https://raw.githubusercontent.com/Meredith2328/dsh-sticky-note/be79b18d044fc72ffd4ffe535178416decccc4e9/assets/screenshot.png)
 
 ## ✨ 功能
 

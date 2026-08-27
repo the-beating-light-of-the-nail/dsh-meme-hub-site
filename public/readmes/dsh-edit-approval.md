@@ -22,12 +22,12 @@ After installing, Settings → General gains two rows — **编辑审批 / 命�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3d17b5220daeeb2ea5a18c52f0616c7a629f7b59/assets/screenshots/settings-rows.png" width="440" alt="Settings → General: Edit approval and Bash approval rows"><br><sub>Master switches in Settings → General</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3d17b5220daeeb2ea5a18c52f0616c7a629f7b59/assets/screenshots/edit-approval-panel.png" width="440" alt="Edit approval panel: red/green line-level diff"><br><sub>Edit approval panel — red/green line diff</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/0cc922818e941c5bcdc37da39208c35f8ada1412/assets/screenshots/settings-rows.png" width="440" alt="Settings → General: Edit approval and Bash approval rows"><br><sub>Master switches in Settings → General</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/0cc922818e941c5bcdc37da39208c35f8ada1412/assets/screenshots/edit-approval-panel.png" width="440" alt="Edit approval panel: red/green line-level diff"><br><sub>Edit approval panel — red/green line diff</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3d17b5220daeeb2ea5a18c52f0616c7a629f7b59/assets/screenshots/bash-approval-panel.png" width="440" alt="Bash approval panel: description headline and command row"><br><sub>Bash approval panel — description + command</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3d17b5220daeeb2ea5a18c52f0616c7a629f7b59/assets/screenshots/approval-commands.png" width="440" alt="/approval-edit and /approval-bash slash commands"><br><sub>/approval-edit and /approval-bash commands</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/0cc922818e941c5bcdc37da39208c35f8ada1412/assets/screenshots/bash-approval-panel.png" width="440" alt="Bash approval panel: description headline and command row"><br><sub>Bash approval panel — description + command</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/0cc922818e941c5bcdc37da39208c35f8ada1412/assets/screenshots/approval-commands.png" width="440" alt="/approval-edit and /approval-bash slash commands"><br><sub>/approval-edit and /approval-bash commands</sub></td>
   </tr>
 </table>
 

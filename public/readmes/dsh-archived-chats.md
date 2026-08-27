@@ -1,270 +1,139 @@
-# dsh-archived-chats
-
-[![npm version](https://img.shields.io/npm/v/dsh-archived-chats)](https://www.npmjs.com/package/dsh-archived-chats)
-[![npm downloads](https://img.shields.io/npm/dm/dsh-archived-chats)](https://www.npmjs.com/package/dsh-archived-chats)
-[![CI](https://github.com/Ultronen/dsh-archived-chats/actions/workflows/ci.yml/badge.svg)](https://github.com/Ultronen/dsh-archived-chats/actions/workflows/ci.yml)
-[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/Ultronen/dsh-archived-chats/)
-
-[English](README.en.md) | 中文
-
-> 🔎 **归档不再等于消失。** 直接搜索聊天正文、阅读完整对话和工具调用，然后安全备份、恢复或删除。
-
-> ♻️ **在本插件中移除归档聊天可以撤销。** 插件会先创建包含会话与附件的本地恢复快照，再移入回收站；只有在回收站中明确选择「永久删除」才会物理清除。
-
-为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 新增一个本地归档聊天中心：搜索和预览完整对话，备份与恢复会话，并通过可撤销回收站、恢复快照、保留策略及来源与分支安全管理历史聊天。
-
-在 DeepSeek Harness 里，聊天一旦归档就会从侧边栏消失，界面中没有任何入口可以再看到它，只有工作区存档（`~/.dsh/storages/workspace.json`）还记得它。这个插件在「设置」中补上一个「已归档的聊天」页面，让所有归档会话都可见、可搜索、可管理。
-
-[插件市场](https://awesome-dsh-plugin.com/p/Ultronen/dsh-archived-chats/) · [npm](https://www.npmjs.com/package/dsh-archived-chats) · [版本发布](https://github.com/Ultronen/dsh-archived-chats/releases) · [问题交流](https://github.com/Ultronen/dsh-archived-chats/discussions) · [私密报告漏洞](https://github.com/Ultronen/dsh-archived-chats/security/advisories/new)
-
 <p align="center">
-  <a href="assets/screenshots/04-conversation-preview.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/04-conversation-preview.png" width="49%" alt="归档聊天正文搜索与只读对话预览"></a>
-  <a href="assets/screenshots/11-storage-retention.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/11-storage-retention.png" width="49%" alt="空间与策略中的会话目录、恢复快照和保留策略"></a>
+  <img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/brand/session-archive-banner.png" alt="Session Archive: local-first archived-chat center for DeepSeek Harness" width="100%">
 </p>
 
-<p align="center"><sub>无需先取消归档即可搜索和阅读；从本插件移除归档聊天时会先进入带恢复快照的回收站。</sub></p>
+<div align="center">
 
-如果它帮你找回或保护过一次重要对话，欢迎给仓库一个 Star——这能帮助真正需要归档恢复功能的用户更容易发现它。
+<h1>Session Archive</h1>
 
-## 🚀 安装
+<p><strong>A local-first archived-chat center for DeepSeek Harness</strong></p>
+<p><code>dsh-archived-chats</code></p>
+
+<p>
+  <a href="https://www.npmjs.com/package/dsh-archived-chats"><img alt="npm version" src="https://img.shields.io/npm/v/dsh-archived-chats?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/dsh-archived-chats"><img alt="npm downloads" src="https://img.shields.io/npm/dm/dsh-archived-chats?style=flat-square"></a>
+  <a href="https://github.com/Ultronen/dsh-archived-chats/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Ultronen/dsh-archived-chats/ci.yml?branch=main&amp;style=flat-square&amp;label=CI"></a>
+  <a href="https://github.com/Ultronen/dsh-archived-chats/actions/workflows/ci.yml"><img alt="Node.js 18 and 24" src="https://img.shields.io/badge/Node.js-18%20%7C%2024-339933?style=flat-square&amp;logo=nodedotjs&amp;logoColor=white"></a>
+</p>
+<p>
+  <a href="https://github.com/Ultronen/dsh-archived-chats/blob/main/LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-2ea44f?style=flat-square"></a>
+  <a href="https://awesome-dsh-plugin.com/p/Ultronen/dsh-archived-chats/"><img alt="Awesome DSH Plugin" src="https://awesome-dsh-plugin.com/badge.svg"></a>
+  <a href="https://github.com/Ultronen/dsh-archived-chats/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Ultronen/dsh-archived-chats?style=flat-square"></a>
+</p>
+
+<p>English · <a href="README.zh-CN.md">简体中文</a></p>
+<p><a href="https://awesome-dsh-plugin.com/p/Ultronen/dsh-archived-chats/">Plugin market</a> · <a href="https://www.npmjs.com/package/dsh-archived-chats">npm</a> · <a href="https://github.com/Ultronen/dsh-archived-chats/releases">Releases</a> · <a href="https://github.com/Ultronen/dsh-archived-chats/discussions">Discussions</a> · <a href="https://github.com/Ultronen/dsh-archived-chats/security/advisories/new">Private security report</a></p>
+
+</div>
+
+Session Archive gives DeepSeek Harness a first-class home for chats that disappear from the sidebar after archive. Browse every archived conversation by workspace, search its full content, inspect validated local history, and recover or remove it through explicit, reversible workflows.
+
+> Formerly **Archived Chats**, now **Session Archive / 会话档案**. The package name, repository, install command, and local data location are unchanged; existing users need no data migration.
+
+## Quick start
 
 ```sh
 dsh plugin --profile web add dsh-archived-chats@latest
 ```
 
-安装后重启一次 DSH，然后打开 **设置 → 已归档的聊天**。
+Restart DSH once, then open **Settings → Session Archive**.
 
-更新已有安装：
+Update an existing installation:
 
 ```sh
 dsh plugin --profile web update dsh-archived-chats
 ```
 
-## 兼容性
+<p align="center">
+  <a href="assets/screenshots/preview-03.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-03.png" width="49%" alt="Native read-only History preview with snapshot time and a synthetic stored image"></a>
+  <a href="assets/screenshots/preview-07.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-07.png" width="49%" alt="Storage and Retention with session directories, protection snapshots, and policy controls"></a>
+</p>
 
-0.12.0 的完整功能目标是 DeepSeek Harness `0.1.1-rc.2`。较旧宿主仍可使用归档列表，但缺少持久层、附件或运行中会话生命周期能力时，回收、空间分析或血缘功能会返回明确的能力错误，不会猜测宿主内部结构或写入不完整数据。
+## Core capabilities
 
-## 预览
+| Area | What it provides |
+| --- | --- |
+| **Browse and search** | Workspace-grouped archive browsing, full-text search across messages and tool results, filters, sorting, tags, and notes. |
+| **Read-only preview** | Native conversation layout for Markdown, reasoning, tool activity, JSON, code, and available stored images, with responsive turn navigation. |
+| **Local History** | Validated versions captured after archive, read-only snapshot preview, confirmed deletion, clear-history, and **Restore as copy** without overwriting the source. |
+| **Backup and restore** | JSON + Markdown ZIP export with preview-first, conflict-safe import. Existing session IDs are never overwritten. |
+| **Recoverable deletion** | Snapshot-protected Recycle Bin with immediate Undo, two-level restore, and separately confirmed permanent deletion. |
+| **Storage and relationships** | Separate storage accounting, preview-first retention policies, and read-only Origins & Branches for forks and subagent trees. |
 
-以下截图均来自当前 `0.12.0` 功能，在隔离的真实 DeepSeek Harness `0.1.1-rc.2` 中文浅色 Web profile 中捕获，只使用合成演示会话，不包含真实用户数据。截图顺序对应从归档入口、搜索与预览，到回收、空间治理和来源分支的完整发布路径。
+## Safety by design
 
-![从会话菜单点击归档](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/01-archive-entry.png)
-![归档成功后的三秒提示](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/01b-archive-success.png)
-![已归档的聊天总览](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/02-archived-overview.png)
-![聊天正文与工具结果全文搜索](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/03-full-text-search.png)
-![归档对话只读预览](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/04-conversation-preview.png)
-![标签与备注编辑](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/05-metadata-editor.png)
-![按需批量选择](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/06-bulk-selection.png)
-![导入归档备份预览](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/07-import-preview.png)
-![移至回收站后的撤销提示](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/08-move-undo.png)
-![回收站中的恢复快照与恢复操作](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/09-recycle-restore.png)
-![永久删除会话与保护快照确认](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/10-permanent-delete.png)
-![空间与策略概览](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/11-storage-retention.png)
-![保护快照明细](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/12-storage-details.png)
-![保留策略清理预览](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/13-retention-preview.png)
-![来源与分支关系视图](https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/f0831d013f6cd2bd9d3be712e180502cb10073fe/assets/screenshots/14-origins-branches.png)
+- **Local only:** plugin metadata, recycle records, policies, and validated snapshots stay under `$DSH_HOME/plugin-data/archived-chats/`. Nothing is uploaded or cloud-synced.
+- **No silent overwrite:** imports and History restores create or select non-conflicting IDs; they never replace an existing session.
+- **Deletion stays explicit:** ordinary removal enters the Recycle Bin after snapshot protection. Physical removal is available only through confirmed permanent-purge actions.
+- **No automatic cleanup:** retention policies are saved separately from execution. Every cleanup starts with a short-lived preview and explicit selection.
+- **Backup scope is visible:** ZIP exports preserve complete session JSON and readable Markdown, but do not include attachment bytes or descendant sessions.
 
-## 使用流程
+## Compatibility
 
-1. 在 DSH 正常聊天的会话菜单中点击归档。宿主确认成功后，页面顶部会显示 3 秒的 **已归档的聊天** 提示，可立即 **查看** 归档中心或 **撤销**；悬停或键盘聚焦时计时暂停。归档只会把会话从侧边栏隐藏，工作区存档仍会保留会话数据。
-2. 打开 **设置 → 已归档的聊天**。页面按工作区分组，并在当前浏览器中记住分组的折叠状态。
-3. 搜索标题、标签、备注、聊天正文或工具结果；点击行内预览按钮可直接阅读归档对话，无需先取消归档。需要多选时点击 **批量选择** 显示复选框。
-4. 点击顶部 **导入备份** 选择本插件导出的 ZIP，预览后确认无冲突会话；点击 **导出备份** 导出当前选中项，未选择时导出全部归档会话。单条会话也可以从行内操作导出。
-5. 点击 **取消归档** 将会话放回侧边栏；点击 **移至回收站** 会创建保护快照，可立即点击 **撤销**，也可稍后在 **回收站** 标签恢复。只有回收站中的 **永久删除 / 清空回收站** 会不可撤销地移除原会话和快照。
-6. 打开 **空间与策略** 查看归档/回收站会话目录，以及本插件为它们创建并保留的恢复快照。恢复聊天后快照仍可保留，所以归档列表为空时这里仍可能有数据。保留数量按每个原会话分别计算；保存策略不会执行清理，必须再预览并确认具体候选。**来源与分支** 用可折叠的连接线分支树只读展示已归档/回收站会话从哪里产生、又分出了哪些会话，并可按项目筛选或搜索。
+Features activate from the public capabilities exposed by the DeepSeek Harness Host instead of a hard-coded Host version.
 
-## 功能
+| Host capability | Plugin behavior |
+| --- | --- |
+| Archive and session reads | Browsing, search, preview, History inventory, storage accounting, and lineage. |
+| Attachment reads | Stored images appear in conversation and snapshot previews; without it, text remains readable. |
+| Public persistence writer | Required for ZIP import, **Restore as copy**, and snapshot fallback when an original is missing. |
+| Missing write capability | The operation returns `restore-unsupported` without writing or overwriting data. |
 
-- **完整归档列表**：按工作区（项目）分组并显示每组数量；每个分组都可折叠/展开，状态按浏览器记忆。
-- **归档成功提示**：会话归档成功后，在 DSH 全局浮层显示 3 秒的紧凑提示，提供 **查看**、**撤销** 和关闭操作；鼠标悬停或键盘聚焦会暂停计时，查看/撤销进行中不会自动消失，失败时保留重试入口。
-- **聊天正文全文搜索**：同一个搜索框同时匹配标题、项目、标签、备注、用户消息、助手回答与工具结果，并在结果行显示命中摘要。
-- **原生归档对话预览与轮次导航**：沿用 Harness 会话布局，用户消息靠右、助手消息靠左；以只读方式展示 Markdown、思考过程、工具活动、JSON、代码和可用的已存储图片，并保留可快速跳转的响应式轮次轨道。宿主缺少附件能力时只影响图片，其他预览内容仍可阅读。
-- **筛选与排序**：用类型（全部 / 普通会话 / 子代理会话）、项目和标签筛选，并按最新、最早或标题排序。
-- **标签与备注**：任意行打开编辑器即可添加最多 8 个标签（每个最多 24 个 Unicode 字符）和一条备注（最多 2,000 个 Unicode 字符）。每行渲染标签小徽章，超过 3 个折叠为 `+N`，标签筛选不区分大小写。
-- **存储统计**：概览条显示归档数量、已统计总大小与无法统计的会话数；每行显示各自占用。统计不会跟随符号链接，无法读取的会话目录显示为「无法统计」而非让请求失败。
-- **JSON + Markdown 备份**：可导出单条、当前选中项或全部归档会话。每个 ZIP 都包含带版本的清单、用于机器恢复的完整会话 JSON，以及方便阅读的 Markdown 对话稿。
-- **预览后导入与恢复**：选择 ZIP 备份后先检查全部会话，默认选中无冲突 ID 的项目，确认后作为已归档聊天恢复。已有 ID 会跳过，绝不会覆盖。
-- **紧凑顶部操作**：常用的 **导入备份** / **导出备份** 直接可用，低频危险操作收纳在 **更多**；页面专注于 DSH 归档管理，不常驻来源选择器或冗余菜单。
-- **按需多选**：复选框默认隐藏，点击 **批量选择** 后才显示；可逐条选择、选择当前筛选结果或整个项目。选中后可一次导出、取消归档或移至回收站，隐藏在其他筛选结果中的选择不会丢失。
-- **取消归档**单个聊天，或从分组的 `⋯` 菜单整组取消——恢复的聊天会立刻回到侧边栏。
-- **四个归档管理视图**：归档、回收站、空间与策略、来源与分支。回收站按原工作区分组并可独立折叠，显示移入时间、快照大小、附件数和 `trashed` / `degraded` / `purge-pending` 状态；复选框默认隐藏，点击 **批量选择** 后才显示。
-- **空间分析**：分别统计归档/回收会话目录与插件保护快照，标出无法统计项、降级快照和重复快照附件字节；会话目录与快照明细从摘要卡片进入可搜索弹窗，不会把保留策略持续向下推，也不会把这些数字描述为 Harness 全局附件可回收空间。
-- **预览优先的保留策略**：可按每个原会话的保留快照数、快照年龄、快照容量和回收站年龄生成候选；默认每个原会话保留一份恢复快照。保存策略绝不自动执行，回收站正在使用或不可用的快照不会被选中，回收站永久删除默认不勾选。
-- **只读来源与分支**：使用 Harness 持久化 `parentSession` 展示已归档/回收站会话的来源、分叉和子代理树，并保留解释关系所需的父子上下文；无关活动会话不会发送到浏览器。管理卡片把来源说明放在卡片内容中，底部独立一排居中显示折叠箭头；可复制完整 ID、点击整张卡片或箭头折叠，使用项目/状态筛选和全局展开/折叠。搜索标题、项目或 ID 时会自动展开命中路径，独立滚动区域避免大树持续推长页面，超过 50 个节点时根分支默认折叠。本版只诊断缺失父节点、循环与委派深度不一致，不修改关系。
-- **自动恢复快照与保留历史**：已归档聊天移入回收站前保存完整会话事件和经校验的图片附件字节。恢复只移除回收记录，不自动删除快照；它会显示为“已保留的恢复快照”，即使当前没有归档聊天。重复恢复/回收会继续保留旧的有效快照，直到用户明确应用保留策略或永久删除该会话。
-- **两级恢复**：原会话仍完好时只移除回收标记，不重写持久层；原件丢失时才使用已验证快照和官方写入能力回退恢复，且绝不覆盖同 ID 会话。
-- **明确的永久删除**：仅回收站提供永久删除与清空。插件先写入 `purge-pending` 崩溃恢复意图，再删除原会话和保护快照；中途失败会在下次启动重试。
-- 适配浅色/深色主题，支持中文和英文界面。
+Back up `$DSH_HOME/plugin-data/archived-chats/` before downgrading to a release that does not display History or understand recycle snapshots.
 
-## 回收站、隐私与附件限制
+## Demo preview
 
-回收目录 `trash.json` 与保护快照位于 `$DSH_HOME/plugin-data/archived-chats/`，全部只保存在本机。快照会逐个读取附件、校验摘要并使用原子发布；不会上传会话或附件。回收站中的预览也使用单独授权范围。
-
-保留策略保存在同目录的 `retention.json`。插件不会在后台、启动时或定时自动应用策略；每次清理都要先生成五分钟有效的单次预览，再由用户选择并确认。
-
-永久删除会删掉该会话的快照附件副本，但 Harness 全局附件存储可能仍因其他会话引用或宿主垃圾回收策略保留相同字节；本插件不声称会立即清理宿主的全局附件库。
-
-## 标签、备注与统计
-
-标签和备注**只保存在本机**的 `$DSH_HOME/plugin-data/archived-chats/metadata.json` 中——不会被上传、同步或发送到任何其他地方。取消归档会保留元数据；物理删除完成后会移除它，而延后或失败的删除会保留它。元数据与统计失败永远不阻塞：即使元数据存储无法读取或某个会话目录无法统计，列表、取消归档和删除仍然可用。
-
-## 导出与备份
-
-导出只会触发本地浏览器下载。单条和批量使用同一种 ZIP 格式：
-
-```text
-manifest.json
-sessions/001-<安全标题>-<id>/session.json
-sessions/001-<安全标题>-<id>/transcript.md
-```
-
-`session.json` 是权威备份记录：原样保存 Harness 持久层返回的完整元数据和事件，并附带归档标题、工作区、时间、来源、标签、备注和存储统计。`transcript.md` 是通过 Harness 官方消息投影生成的可读副本。ZIP 路径会净化并处理重名，批量导出逐个会话生成，不会同时把所有会话内容堆进内存。
-
-JSON 会保留附件引用，但**本版不复制附件二进制，也不包含子会话**。需要带完整附件的会话树时，请使用 Harness 官方的 Session log 导出。
-
-## 导入与恢复
-
-导入只接受本插件版本一的导出 ZIP。浏览器会先上传并进行有界校验，然后展示标题、项目、标签、备注、存储信息、ID 冲突、项目不存在警告和附件引用警告；预览不会渲染原始事件或 Markdown。已有会话 ID 会被禁用并跳过，找不到的项目会恢复为未分组。确认令牌 10 分钟后过期且只能使用一次。标签和备注通过现有本地元数据限制恢复，不会恢复附件二进制。宿主没有可用的 Harness 写入能力时返回 `restore-unsupported`，不会写入任何数据。
-
-## 常见问题
+The eight fixed screenshots below come from an isolated Simplified Chinese light-theme Web environment with synthetic conversations. They contain no real user data, paths, notes, or credentials, and are the same ordered image set declared to the plugin market.
 
 <details>
-<summary><b>归档会删除聊天吗？</b></summary>
-
-不会。DSH 只是把聊天从侧边栏隐藏，并保留归档会话记录。这个插件提供设置页，用来查找、导出、恢复、取消归档或删除这些记录。
-
+<summary><strong>View all eight screenshots</strong></summary>
+<br>
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-01.png" alt="Session Archive overview with five management views"><br><sub>Archive overview</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-02.png" alt="Full-text search, filters, tags, and readable hit excerpts"><br><sub>Full-text search</sub></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-03.png" alt="Native read-only History preview with a stored image"><br><sub>Read-only preview</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-04.png" alt="History timeline with restore-as-copy and deletion actions"><br><sub>History timeline</sub></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-05.png" alt="Irreversible confirmation before clearing ordinary History"><br><sub>Clear History confirmation</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-06.png" alt="Recycle Bin protection snapshot, restore, and permanent deletion"><br><sub>Recycle Bin</sub></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-07.png" alt="Storage accounting and retention policy controls"><br><sub>Storage and retention</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/e36e478e3b9a33b32a30159eb2d113f1fcbb328f/assets/screenshots/preview-08.png" alt="Origins and Branches with forks, subagents, and recycled state"><br><sub>Origins and Branches</sub></td>
+  </tr>
+</table>
 </details>
 
-<details>
-<summary><b>导入备份包含已存在的会话 ID 时会怎样？</b></summary>
+## Documentation
 
-冲突行会在预览中明确标记，默认禁用并跳过。导入流程绝不会覆盖已有会话。
+| Resource | English | 简体中文 |
+| --- | --- | --- |
+| User guide | [Read the guide](docs/USER_GUIDE.md) | [查看指南](docs/USER_GUIDE.zh-CN.md) |
+| Architecture | [Maintainer architecture](docs/ARCHITECTURE.en.md) | [维护者架构](docs/ARCHITECTURE.md) |
+| Release history | [GitHub Releases](https://github.com/Ultronen/dsh-archived-chats/releases) | [GitHub Releases](https://github.com/Ultronen/dsh-archived-chats/releases) |
 
-</details>
+See also [Security](SECURITY.md), [Contributing](CONTRIBUTING.md), and [Discussions](https://github.com/Ultronen/dsh-archived-chats/discussions).
 
-<details>
-<summary><b>ZIP 备份包含附件吗？</b></summary>
-
-`session.json` 会保留附件引用，但不会包含附件二进制或子会话。需要完整附件会话树时，请使用 Harness 官方 Session log 导出。
-
-</details>
-
-<details>
-<summary><b>移入回收站后可以马上恢复吗？</b></summary>
-
-可以。完成移入后的提示会提供 **撤销**，回收站中也可随时恢复。运行中会话会先按宿主生命周期安全停用或停放，然后才提交回收记录；如果宿主能力不足，操作会明确失败并保留归档会话。
-
-</details>
-
-<details>
-<summary><b>为什么没有已归档聊天，空间页仍显示恢复快照？</b></summary>
-
-恢复快照是在已归档聊天移入回收站前创建的。恢复聊天时插件会移除回收记录，但故意保留已经验证的快照作为恢复历史，因此当前归档列表为空时仍可能占用空间。默认策略按每个原会话保留一份；如需删除，请把数量改为 `0`，保存后再执行 **预览清理 → 应用所选清理**。仅保存策略不会删除数据。
-
-</details>
-
-## 实现概览
-
-插件由两部分组成：Host 服务层负责读取本地归档、快照、回收目录和恢复/清除事务，浏览器设置页负责搜索、预览、备份、恢复与明确确认。所有修改都通过受保护的本地路由完成；普通移除只提交回收记录，物理清除仅由回收站的崩溃安全 purge 流程触发。
-
-普通用户需要了解的数据保存、备份限制、删除结果和兼容性说明已列在本 README 中。路由清单、数据流、恢复事务、实时删除生命周期和失败回退等维护者细节请参阅 [架构文档](docs/ARCHITECTURE.md)。
-
-## 开发
+## Development
 
 ```sh
 npm test
 ```
 
-测试套件（`test/*.test.mjs`）覆盖导出记录与真实 ZIP 解包、有界导入校验、恢复事务、元数据存储、统计服务、全文搜索、对话预览，以及宿主+浏览器冒烟测试。测试使用隔离的临时 DSH 主目录和模拟运行时，不会读取或修改真实会话。
+The suite covers Host and browser behavior, export/import, History, Recycle Bin, retention, search, responsive layout, public types, package contents, and repository hygiene. It uses isolated temporary data and never reads real sessions.
 
-## 版本更新记录
-
-### 0.12.0
-
-- 归档成功后新增 3 秒顶部提示，可立即查看归档中心或撤销；悬停/聚焦暂停，操作失败保留重试。
-- 新增会话目录与保护快照分账、重复快照附件统计和不可用/降级诊断。
-- 新增按历史数、年龄与容量规划的保留策略；保存与执行分离，清理使用单次短效预览并在执行前重检。
-- 新增只读“来源与分支”树，只展示已归档/回收站会话和必要关系上下文，并诊断缺失父节点、循环和委派深度异常。
-- 重复回收周期不再立即删除上一份有效保护快照；永久删除仍通过 `purge-pending` 事务移除原会话和全部有效快照。
-- **降级提醒：** 0.11.x 不显示或治理多份历史快照，但能容忍它们并在永久删除时清理。降级前请备份 `$DSH_HOME/plugin-data/archived-chats/`。
-
-### 0.11.0
-
-- 新增 **归档 / 回收站** 双标签、独立批量选择、回收站范围预览、恢复、永久删除和清空。
-- 普通删除改为创建完整本地保护快照并移入回收站，成功后可立即 **撤销**。
-- 恢复优先使用完好原会话；原件丢失时改用已校验的会话+附件快照，不覆盖同 ID 会话。
-- 新增 `purge-pending` 崩溃恢复意图、快照恢复扫描、降级状态，并将旧版 `pending-deletions.json` 安全迁移为可恢复回收记录，不在启动时静默删除。
-- **降级警告**：安装 0.11 后如回退到 0.10，旧版不会识别回收目录和保护快照；回退前请先在 0.11 恢复需要的会话并备份 `$DSH_HOME/plugin-data/archived-chats/`。
-
-### 0.10.0
-
-- 新增遵循 Harness 会话布局的归档对话预览：用户消息靠右，助手消息靠左，并支持分页与响应式轮次导航。
-- Markdown、思考过程、工具活动、JSON、代码和可用的已存储图片均以只读方式呈现；宿主缺少附件能力时只影响图片，不影响其余对话内容。
-- 新增归档聊天正文全文搜索：匹配 Unicode 文本和工具结果，在原有标题/标签/备注筛选上合并命中结果。
-- 搜索与预览使用受保护的本地 POST 路由、有界请求、并发 4 的读取、部分失败降级和有上限的 TTL/LRU 内存缓存。
-
-### 0.9.0
-
-- 新增按需显示的批量选择模式：列表默认不展示复选框，点击入口后才显示，完成批量操作后自动退出。
-- 将常用 ZIP 备份操作改为直接的 **导入备份 / 导出备份**，危险操作收纳到 **更多**，精简页头布局。
-- 移除未提供原生继续能力的跨工具 JSONL 迁移入口，让插件专注于 DSH 已归档聊天管理。
-- 在 DeepSeek Harness `0.1.0-rc.8` 真实宿主中复核新控件、备份预览和标题单行布局。
-
-### 0.8.1
-
-- 将中文 README 设为仓库和 npm 包的默认入口，英文文档改为 `README.en.md`。
-- 将维护者架构、路由、恢复事务和删除生命周期细节移到 `docs/ARCHITECTURE.md` 与 `docs/ARCHITECTURE.en.md`。
-- 安装章节增加快速识别用的 🚀 图标；插件运行时行为保持与 0.8.0 一致。
-
-### 0.8.0
-
-- 新增版本一 ZIP 备份的预览后导入。
-- 新增不会覆盖已有会话的冲突安全恢复和事务式写入。
-- 新增工作区/附件警告、有界校验、一次性确认令牌和元数据恢复。
-
-### 0.7.0
-
-- 新增单条、选中项和全部归档会话的带版本 JSON + Markdown ZIP 备份。
-- 新增流式导出、安全 ZIP 路径、清单记录和官方消息投影生成的 Markdown 对话稿。
-
-### 0.6.0
-
-- 新增标签、备注、存储统计、元数据持久化和归档洞察界面。
-- 加固仍在运行会话的删除流程，并为不提供内部生命周期接口的宿主增加回退处理。
-
-### 0.5.1
-
-- 发布面向 DeepSeek Harness `0.1.0-rc.7` 的兼容性修订版本。
-- 更新浏览器设置区块，使用 rc.7 的浮层和状态设计令牌。
-
-### 0.5.0
-
-- 新增多选以及批量取消归档/删除流程。
-- 改进破坏性操作后的焦点恢复和项目范围选择行为。
-
-### 0.4.0
-
-- 在宿主提供所需生命周期接口时，新增仍在运行会话的原地删除。
-- 新增安全的待删队列回退、标题缓存，以及破坏性操作完成后的成功提示。
-
-### 0.3.0
-
-- 首个公开发布版本，提供「已归档的聊天」设置页。
-- 新增按工作区分组浏览、标题搜索、类型/项目筛选、取消归档，以及带确认的单条/分组/全部删除。
-- 新增 Host 路由、浏览器设置区块，以及用于处理运行中会话的待删队列清扫。
-
-### 0.1.0 和 0.2.0
-
-- 这两个版本从未发布到 npm，也没有对应的仓库标签；`0.3.0` 是首个公开版本。
-
-## 卸载
+## Uninstall
 
 ```sh
 dsh plugin --profile web remove dsh-archived-chats
 ```
 
-卸载不会删除 `$DSH_HOME/plugin-data/archived-chats/` 中的 `metadata.json`、`trash.json`、`retention.json`、保护快照或旧版 `pending-deletions.json`，也不会触发永久删除。这是故意的本地数据保护；请先恢复或备份需要的会话，再手动处理该目录。
+Uninstalling removes only the plugin package. It does not delete local data under `$DSH_HOME/plugin-data/archived-chats/` or trigger Recycle Bin permanent purge. Retained data includes `metadata.json`, `trash.json`, `retention.json`, the `snapshots/` directory, and any legacy `pending-deletions.json` that has not yet been migrated. A later reinstall can use this data. Before permanently removing the directory, restore and back up anything you need, then delete it manually only after confirming that none of its data is still required.
 
 ## License
 
-MIT
+[MIT](LICENSE)

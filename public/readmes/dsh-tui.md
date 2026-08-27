@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
 </p>
 <p align="center">
   <strong>简体中文</strong> | <a href="README_EN.md">English</a>
@@ -33,7 +33,7 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
         <br>
         <strong>DeepSeek Harness 官方公众号推文收录</strong>
       </td>
@@ -54,7 +54,7 @@
 
   - **终端交互**：低资源占用，长会话稳定可靠；多种主题切换，样式美观，实时显示工作状态、TPS、缓存命中率等
     推理等级、输入/输出 token 与 Git/会话信息；终端卡多行命令可经 `/settings` 折叠为首行 + 计数提示（Ctrl+O 或点击卡片展开）。
-  - **功能全面**：`/resume`、`/new`、`/compact`、`/export`、`/btw`，模型热切换，原生subagent，会话fork，自动更新；可在vs code中[以vscode插件形式启动](docs/vscode.md)，已上架 VS Code Marketplace。
+  - **功能全面**：`/resume` 按工作目录分类浏览、搜索与预览历史会话（左键恢复、右键弹出操作菜单），另有 `/new`、`/compact`、`/export`、`/btw`，模型热切换，原生subagent，会话fork，自动更新，输入框 `/vim` vim 编辑模式；可在vs code中[以vscode插件形式启动](docs/vscode.md)，已上架 VS Code Marketplace。
   - **扩展丰富**：原生浏览器交互，compter use等大量附属功能性扩展
 
 
@@ -65,12 +65,12 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
         <br>
         <strong>首屏：像素鲸鱼顶栏</strong>
       </td>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/working-line.png" alt="工作状态行 + 上下文进度条" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/screenshots/working-line.png" alt="工作状态行 + 上下文进度条" width="480">
         <br>
         <strong>工作状态行 + 上下文进度条</strong>
       </td>
@@ -155,7 +155,7 @@ sh install.sh
 
 | 微信群 | QQ 群（群号 572549239） | 微信三群 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
+| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
 
 > 微信群二维码约 7 天过期一次，如遇失效请走 QQ 群（572549239），或开个 issue 提醒我们更新。
 
@@ -172,7 +172,7 @@ sh install.sh
 ## Stars
 
 <!-- star-history:start -->
-[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/150c19bdb23fbd8a018ad563294b13cd83dc2819/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
+[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/4c1d09f1259690352b8854062119f47d04f66523/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
 <!-- star-history:end -->
 
 

@@ -27,8 +27,10 @@
 - **媒体流句柄修复 + 扫描提速**（v0.4.1）：媒体/预览/场景帧流在客户端断开时**立即释放文件句柄**（修复反复切壁纸/刷新累积句柄、Windows 上壁纸文件被锁无法删除/移动的问题）；壁纸库扫描改**全异步**（fs.promises 线程池），不再阻塞事件循环（WSL / 大壁纸库下启动明显更快）；**WSL 支持**：自动探测 `/mnt/<盘符>` 挂载的 Windows Steam 库，WSL 里也能发现壁纸。
 - **遮挡暂停（省电三档）**：类似 Wallpaper Engine 的「被遮挡时暂停」——最小化 / 切页、窗口失焦、使用电池供电时自动暂停视频壁纸，**解码引擎直接归零**；回到界面 / 接通电源自动继续（网页壁纸仅随页面隐藏被浏览器节流）。三档开关均持久保存。
 - **解码帧率上限（抽帧转码）**：高帧率源（如 4K120 H.264）的硬解是 GPU 占用大头（4060 实测 1.0x 达 ~60% Video Decode）。「壁纸效果」区设置 **帧率上限**（无限制 / 60 / 48 / 30 / 24 fps），宿主端用 ffmpeg 一次性重编码为上限帧率（时间线保持 1.0x **正常速度**、与倍速完全解耦），输出 **4K 保留 + AV1**，带**下载 / 转码实时进度条**；实测 4K120→24fps 后占用从 ~60% 降至 **~15%**。ffmpeg 三档供给：显式指定 → **自动下载**（npmmirror + GitHub 双源竞速，跨平台资产表已验证）→ 系统 PATH。
+- **壁纸效果调节条扩充**（v0.6.x）：「壁纸效果」区新增 **亮度 / 对比度 / 饱和度** 三个滑动条（作用于壁纸媒体滤镜），与壁纸模糊 / 暗化等配合，任意壁纸都能调到与界面融合舒服的状态；全部即时生效、持久保存。
+- **字体自定义**（v0.6.7）：设置新增「字体」分区——总开关默认关闭（即 dsh 原生外观），开启后可调 **字体颜色 / 字重(100–900) / 字体族**（默认 · 雅黑 · 楷体 · 宋体 · 黑体 · 行楷 · 等宽，选项按钮以各自字体实时预览）；报错红字不受染色影响，关闭总开关即一键恢复默认。
 
-![基础效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/showcase.png)
+![基础效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/showcase.png)
 
 > 壁纸 + 磨砂遮罩 + iOS 液态玻璃，渲染在 DSH 界面后方。
 
@@ -159,11 +161,11 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 4. 用 **暂停/播放** 暂停视频壁纸，用 **关闭** 清除壁纸。
    选择会保存在浏览器的 `localStorage`（键 `dsh-wallpaper-engine:selection`）中。
 
-![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/features.png)
+![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/features.png)
 
 > 设置界面：液态玻璃卡片（「外观」配色/透明度）、当前壁纸卡片、「自定义壁纸」「轮播列表」「壁纸效果」分区。
 
-![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/wallpaper-library.png)
+![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/wallpaper-library.png)
 
 > 选择弹窗：浏览全部壁纸缩略图，支持批量隐藏与已隐藏恢复。
 
@@ -187,11 +189,11 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 - **紧凑布局**：设置页顶部有一个**滑动开关**。开启后为 **CD 架效果** —— 卡片像 CD 盒一样纵向层叠（下排上沿盖住上排下沿、左右不遮挡），鼠标悬停放大置顶；网格更紧凑（每行约 7 个）且**一页到底不翻页**。关闭则为常规网格（固定高度防重叠 + 分页，默认）。选择保存在浏览器 `localStorage`。
 - **黑胶唱片**：选择壁纸界面旁边有一个**旋转的黑胶唱片**，把当前选中壁纸的封面当作唱片标签展示 —— 播放时旋转、暂停即停（系统开启「减少动态效果」时停用动画）。弹窗头部也保留小号黑胶。该效果在**经典与新版两种卡片样式下都显示**。
 
-![紧凑布局壁纸仓库（CD 架效果）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/compact-wallpaper-library.png)
+![紧凑布局壁纸仓库（CD 架效果）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/compact-wallpaper-library.png)
 
 > 紧凑布局：CD 架式层叠网格，悬停放大置顶，一页到底不翻页。
 
-![旋转的黑胶唱片（黑胶 CD 壁纸展示）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/vinyl-record.gif)
+![旋转的黑胶唱片（黑胶 CD 壁纸展示）](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/vinyl-record.gif)
 
 > 黑胶唱片：当前选中壁纸的封面作为唱片标签，播放时旋转、暂停即停。
 
@@ -259,7 +261,7 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 > 开启「设置窗口液态玻璃」后，**General、模型、插件等所有原生分区**和左侧导航都会变成同一套液态玻璃 + 配色（通过覆盖设置对话框作用域内的 shell token 实现，不侵入其他界面）。设置窗口的玻璃模糊与**对话栏使用同一套调节参数**：「玻璃」滑动条（0–60 px）同时控制设置窗口与输入栏/气泡的模糊半径，饱和度/亮度/对比度配方完全一致；**玻璃颜色**决定玻璃底色本身的色调（默认浅色白/深色深夜蓝，选定后两种主题统一使用该色），**玻璃透明度**决定浓淡，越高越"透"（壁纸颜色更清晰地透过面板），越低越接近实色。不支持 `backdrop-filter` 的浏览器自动回退到高不透明实色，保证文字可读。所有控件即时生效并保存在浏览器 `localStorage`，刷新不丢。
 
-![液态玻璃全新设置窗口](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/liquid-glass-window.png)
+![液态玻璃全新设置窗口](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/liquid-glass-window.png)
 
 > 液态玻璃：整个设置窗口统一玻璃质感，跟随「配色」「玻璃颜色」与「玻璃透明度」。
 
@@ -275,18 +277,34 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 
 > 两幅立绘在打包时都已内联为 base64（透明背景），单文件客户端资源依然自包含。**大小**只改变拉绳自身的盒尺寸，不影响下方的壁纸仓库抽屉。设置即时生效并保存在宿主端配置文件里。
 
-### 四个滑动条
+### 字体自定义
 
-壁纸激活后，四个滑动条可以微调它与界面的融合效果：
+设置页提供独立的「字体」分区（位于「外观」之前）。**总开关默认关闭**——此时整个界面维持 dsh 原生字体外观，不注入任何样式；开启后才应用下方三项，各项改动即时生效并持久保存：
+
+| 控件 | 作用 | 范围 / 选项 | 默认 |
+|---|---|---|---|
+| **字体自定义** | 总开关：关闭 = 完全恢复 dsh 原生字体（一键还原） | 开 / 关 | 关 |
+| **字体颜色** | 全局文本染色 | 自定义取色 | `#000000` |
+| **字重** | 全局字体粗细 | 100–900（步进 50） | 400 |
+| **字体** | 字体族切换 | 默认 · 雅黑 · 楷体 · 宋体 · 黑体 · 行楷 · 等宽 | 默认 |
+
+> 每个**字体**选项按钮都以它自己的字体渲染（所见即所得）；行楷使用华文行楷 `STXingkai`（未安装时自动回退楷体，macOS 走 Xingkai SC）。报错 / 危险 / 警告语义元素强制保留系统红字，不会被全局染色盖住。
+
+### 七个滑动条
+
+壁纸激活后，七个滑动条可以微调它与界面的融合效果：
 
 | 滑动条 | 作用 | 范围 | 默认 |
 |---|---|---|---|
 | **壁纸模糊** | 模糊壁纸本身 | 0–60 px | 0 |
+| **亮度** | 壁纸画面亮度（媒体滤镜） | 40–160 % | 100 % |
+| **对比度** | 壁纸画面对比度（媒体滤镜） | 40–200 % | 100 % |
+| **饱和度** | 壁纸画面饱和度（媒体滤镜） | 0–200 % | 100 % |
 | **暗化** | 加深壁纸与文字之间的遮罩 | 0–90 % | 25 % |
 | **边框** | 提高边框 / 分割线的对比度 | 0–90 % | 35 % |
 | **玻璃** | 玻璃面板（输入栏、气泡）的模糊半径 | 0–60 px | 24 |
 
-> **浅色 / 深色模式的适配提醒** — 每张壁纸的色系和明暗差异很大，**没有哪一种模式能适配所有壁纸**。请在 DSH 的「浅色 / 深色」主题之间来回切换，找到适合当前壁纸的那一种。如果在偏亮或花纹复杂的壁纸上 **文字或分割线看不清**，就把 **暗化**、**边框** 两个滑动条调高（必要时再稍微加一点 **壁纸模糊**），直到看着舒服为止。四个滑动条都是即时生效的，**无需刷新页面**。
+> **浅色 / 深色模式的适配提醒** — 每张壁纸的色系和明暗差异很大，**没有哪一种模式能适配所有壁纸**。请在 DSH 的「浅色 / 深色」主题之间来回切换，找到适合当前壁纸的那一种。如果在偏亮或花纹复杂的壁纸上 **文字或分割线看不清**，就把 **暗化**、**边框** 两个滑动条调高，或用 **亮度** 压低过亮的壁纸（必要时再稍微加一点 **壁纸模糊**），直到看着舒服为止。七个滑动条都是即时生效的，**无需刷新页面**。
 
 ## 配置
 
@@ -311,12 +329,12 @@ dsh plugin --profile web add link:./dsh-wallpaper-engine
 |---|---|---|---|
 | **侧栏液态玻璃** | 总开关：把侧边栏面板换成液态毛玻璃 | 开 / 关 | 开 |
 | **侧栏模糊** | 侧边栏毛玻璃的模糊半径 | 0–200 px | 16 |
-| **侧栏透明度** | 侧边栏玻璃的浓淡（**越大越透**：0 最实 / 200 最透） | 0–200 % | 12 % |
+| **侧栏透明度** | 侧边栏玻璃的浓淡（**越大越透**：0 最实 / 200 最透） | 0–200 % | 120 % |
 | **侧栏玻璃颜色** | 侧边栏玻璃的**底色色调** | 6 预设 + 自定义取色 | `#ffffff` 白 |
 
-> 侧栏玻璃与设置窗口玻璃是两套独立参数：会话玻璃的「玻璃」滑杆只管输入栏/气泡，侧栏玻璃滑杆管侧边栏；侧边栏默认玻璃比设置窗口稍密（保证窄面板里目录/终端的文字可读）。
+> 侧栏玻璃与设置窗口玻璃是两套独立参数：会话玻璃的「玻璃」滑杆只管输入栏/气泡，侧栏玻璃滑杆管侧边栏。侧边栏默认较透（与壁纸观感一致、避免面板发白）；编辑器/终端等内容面另有独立的近不透明底色 + 透明度控制，保证窄面板里文字可读。
 
-![dsh-better-sidebar 兼容适配](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/5f889e878c4ee99e1fbfaa5dce2a83ce6d4bcf3c/docs/images/better-sidebar.png)
+![dsh-better-sidebar 兼容适配](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/ff363e22eef46db08771e43569c0d43a622bdb93/docs/images/better-sidebar.png)
 
 ## 已知限制
 
