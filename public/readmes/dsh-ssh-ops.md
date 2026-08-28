@@ -14,15 +14,15 @@
 
 Drive the connected server directly from the main conversation, with a real interactive terminal on the right and panels for files (SFTP), tunnels, and databases:
 
-![SSH main view](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/bcba4aaecbd578ecf6bedf1522408bf03d1ae31e/assets/screenshots/ssh-main-view.png)
+![SSH main view](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/c17b4d96ed774a5f9a6d21525e43c9a9d2dc468b/assets/screenshots/ssh-main-view.png)
 
-![File management (SFTP)](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/bcba4aaecbd578ecf6bedf1522408bf03d1ae31e/assets/screenshots/ssh-files-tab.png)
+![File management (SFTP)](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/c17b4d96ed774a5f9a6d21525e43c9a9d2dc468b/assets/screenshots/ssh-files-tab.png)
 
-![Port forwarding](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/bcba4aaecbd578ecf6bedf1522408bf03d1ae31e/assets/screenshots/ssh-tunnels-tab.png)
+![Port forwarding](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/c17b4d96ed774a5f9a6d21525e43c9a9d2dc468b/assets/screenshots/ssh-tunnels-tab.png)
 
-![Database management](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/bcba4aaecbd578ecf6bedf1522408bf03d1ae31e/assets/screenshots/db-panel.png)
+![Database management](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/c17b4d96ed774a5f9a6d21525e43c9a9d2dc468b/assets/screenshots/db-panel.png)
 
-![SSH resources](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/bcba4aaecbd578ecf6bedf1522408bf03d1ae31e/assets/screenshots/ssh-resources.png)
+![SSH resources](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/c17b4d96ed774a5f9a6d21525e43c9a9d2dc468b/assets/screenshots/ssh-resources.png)
 
 ## What it does
 

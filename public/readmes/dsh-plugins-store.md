@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DshMarketPlace/dsh-plugins-store/8354d9a0a1ad49ad12075d8ec0c2bf44f4349856/.github/assets/banner.jpg" alt="DSH Marketplace — install DeepSeek Harness plugins without leaving DSH" width="100%">
+  <img src="https://raw.githubusercontent.com/DshMarketPlace/dsh-plugins-store/6584015195df5a445edbc3db5ba133a995328dc6/.github/assets/banner.jpg" alt="DSH Marketplace — install DeepSeek Harness plugins without leaving DSH" width="100%">
 </p>
 
 <p align="center">
@@ -41,6 +41,7 @@ you run another one.
 | | |
 | --- | --- |
 | **`/store`** | Opens the catalogue over the session — search by capability, see what each plugin reaches, install without leaving the harness. |
+| **Install-tested only** | Every plugin offered here already installed cleanly in a throwaway sandbox. Anything that failed, needs a manual build-script approval, or was never tested stays off the shelf — the full catalogue, verdicts included, is on [dshmarketplace.dev](https://dshmarketplace.dev). |
 | **Settings tab** | The same catalogue, docked under Settings → Plugins. |
 | **Agent tools** | `dshmarketplace_search` and `dshmarketplace_install`, so *"find me a memory plugin and set it up"* works in conversation. |
 | **Bundled skill** | Teaches the agent to search rather than recall a plugin name from training data — for an ecosystem this young, a remembered name is usually wrong. |

@@ -1,0 +1,123 @@
+# dsh-deep-dive-skins
+
+Pre-deep-dive ornaments for the DSH Web GUI turn-status row. When the shell
+shows its "Deep diving..." status, this plugin swaps the little spouting
+whale (or the ornament dsh-pet adds) for a chosen anime skin — whale-girl
+variant, cat-girl or mermaid — with a two-beat choreography: a surface
+prepare bob, then a gentle dive sway with rising bubbles.
+
+Built as an official DeepSeek Harness cordis bundle: host half registers one
+settings namespace, browser half patches the status row. No dsh source
+changes, hot-swappable through the profile mechanism.
+
+## Features
+
+- Replaces the ornament ahead of the native "Deep diving..." status row
+  (`[data-chat-flow] [role="status"][aria-live="polite"]`).
+- Four bundled anime skins with dedicated vector artwork:
+  - **whale** — whale-girl dive (鲸鱼娘), anime blue twintails & maid headdress
+  - **dafeiyu** — the chubby anime "big fat fish" (大肥鱼), sparkly anime eyes, indigo whale body, white belly & blush
+  - **catgirl** — cat-girl dive (猫娘), sakura pink cat ears, ribbon collar & bell
+  - **mermaid** — mermaid dive (人鱼), ocean cyan waves, shell top & emerald fish tail
+- **random** mode picks a skin per status-row appearance.
+- Settings card (Settings -> plugin configuration): master switch, skin,
+  ornament size (14-40 px), and optional status-text replacement
+  ("Deep diving..." becomes a skin-specific line).
+- Coexists with dsh-pet: the ornament carries the same marker dsh-pet's
+  working-whale checks, so the two plugins never stack.
+- `prefers-reduced-motion` stops the animation and keeps the figure static.
+
+## Screenshots
+
+![All four pre-dive anime skins](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/deep-diving-skins.png)
+
+| Skin | Dark Theme | Light Theme |
+| --- | --- | --- |
+| Whale-girl dive (鲸鱼娘) | ![whale dark](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/whale-dark.png) | ![whale light](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/whale-light.png) |
+| Big fat fish (大肥鱼) | ![dafeiyu dark](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/dafeiyu-dark.png) | ![dafeiyu light](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/dafeiyu-light.png) |
+| Cat-girl dive (猫娘) | ![catgirl dark](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/catgirl-dark.png) | ![catgirl light](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/catgirl-light.png) |
+| Mermaid dive (人鱼) | ![mermaid dark](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/mermaid-dark.png) | ![mermaid light](https://raw.githubusercontent.com/skymecode/dsh-deep-diving/c5a5916aa9894dbdfb0516e6977451bff610504b/preview/mermaid-light.png) |
+
+The pill above mirrors the native DSH turn-status row: the ornament sits ahead of
+the "Deep diving..." text. Regenerate the captures with
+`node scripts/build-preview.mjs && node scripts/capture-previews.mjs`.
+
+## Install
+
+From npm once published:
+
+```sh
+dsh plugin --profile web add dsh-deep-dive-skins@latest
+```
+
+From this repository (development):
+
+```sh
+git clone <your-repo-url> dsh-deep-dive-skins
+cd dsh-deep-dive-skins
+pnpm install && pnpm build
+dsh plugin --profile web add link:$(pwd)
+```
+
+Restart `dsh web` afterwards. In link mode, rebuild (`pnpm build`) and
+refresh the page after code changes — no reinstall needed.
+
+## Compatibility
+
+The plugin is developed and type-checked against DeepSeek Harness
+`dsh-v0.1.1-rc.2`. Its peer ranges and runtime adapters retain compatibility
+with `0.1.1-rc.1` and the `0.1.0-rc.7` / `0.1.0-rc.8` Web GUI line: settings
+cards use the official keyed slot contract and automatically fall back to the
+legacy `webUiSettings` scope binder when present.
+
+## Settings
+
+| Field | Meaning |
+| --- | --- |
+| Enable plugin | Master switch; off leaves the status row untouched |
+| Skin | whale / dafeiyu / catgirl / mermaid / random |
+| Ornament size | Height in px (14-40, default 20) |
+| Replace status text | Swap "Deep diving..." for the skin's line (zh/en follows the UI language) |
+
+## How it works
+
+- The browser half observes the turn-status row with a MutationObserver and
+  claims the slot dsh-pet's working-whale uses: it removes any existing
+  `[data-dsh-pet-working-whale]` ornament, inserts its own
+  `[data-dsh-deep-dive-skin]` ornament (also marked
+  `data-dsh-pet-working-whale` so dsh-pet skips), and self-heals when React
+  re-renders the row.
+- Each skin is pure data in `src/client/skins.ts`: id, labels, accent color
+  and an inline SVG figure (currentColor).
+- Animation is pure CSS: `dds-prepare` (one bob) then `dds-sway` (infinite
+  dive loop) plus rising bubbles, in `src/client/ornament.module.css`.
+- Settings are read live on every mutation; changing a value applies on the
+  next status-row render.
+
+## Development
+
+```sh
+pnpm build        # tsc (types) + tsdown (node half + browser bundle)
+pnpm test         # vitest (registration + manifest + UI behavior)
+pnpm typecheck    # type check only
+```
+
+The browser bundle follows the `window.__ModuleLoader__.load` contract; the
+build preset tracks the official lazy-CJS format used by supported DSH releases
+and is vendored from the dsh-web-ui monorepo
+(`build/tsdown.client.ts` + `build/web-platform.ts`, Apache-2.0), and the
+settings card chrome is vendored from `shared/client/settings`.
+
+## Roadmap
+
+- Real sprite art for each skin (replace the placeholder SVGs).
+- Phase-aware choreography driven by `/api/pet/state` (waiting = surface
+  bob, thinking = dive, review = ascend, done = splash).
+- An asset pack (decoration.json strips) for the pet status bubble, pending
+  dsh-pet decoration-id selection support.
+- Community-plugin index registration (community.json PR) once published.
+
+## License
+
+Apache-2.0. Vendored build/card files retain their dsh-web-ui provenance;
+see the file headers and LICENSE.

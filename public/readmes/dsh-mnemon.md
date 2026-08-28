@@ -17,14 +17,14 @@
 
 <p align="center">
   <a href="https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/media/dsh-mnemon-memory-system-demo.mp4">
-    <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/91af2d86ee71982f4f5bfbccb8ad7acf308496f5/docs/assets/media/dsh-mnemon-memory-system-demo-poster.jpg" alt="dsh-mnemon v0.2.0 live multi-memory snapshot and observable provider surfaces" width="1180">
+    <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/82e586d9cc9592a9c972c7f555d40505d1517bff/docs/assets/media/dsh-mnemon-memory-system-demo-poster.jpg" alt="dsh-mnemon v0.2.0 live multi-memory snapshot and observable provider surfaces" width="1180">
   </a>
 </p>
 
 <p align="center">
   <a href="./docs/en/capabilities.md"><strong>Explore the capability map</strong></a> ·
   <a href="./docs/en/getting-started.md">Start in five minutes</a> ·
-  <a href="./docs/en/releases/v0.3.2.md">Read the v0.3.2 notes</a> ·
+  <a href="./docs/en/releases/v0.3.5.md">Read the v0.3.5 notes</a> ·
   <a href="https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/media/dsh-mnemon-memory-system-demo.mp4">Watch the widescreen demo</a>
 </p>
 
@@ -84,7 +84,7 @@ See the [provider capability and deployment matrix](./docs/en/memory-providers.m
 
 The following roughly 55-second capture comes from a live 1600×900 DSH WebUI. It deliberately pauses on full-page scrolling, page transitions, Provider cards, dialogs, button-state changes, and a completed read-only Agent Query. Destructive confirmations are deliberately not submitted.
 
-![Full dsh-mnemon v0.2.0 WebUI walkthrough with scrolling and button interactions](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/91af2d86ee71982f4f5bfbccb8ad7acf308496f5/docs/assets/media/dsh-mnemon-memory-system-demo.gif)
+![Full dsh-mnemon v0.2.0 WebUI walkthrough with scrolling and button interactions](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/82e586d9cc9592a9c972c7f555d40505d1517bff/docs/assets/media/dsh-mnemon-memory-system-demo.gif)
 
 [Watch the 1600×900 MP4](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/media/dsh-mnemon-memory-system-demo.mp4) · [Open the page-by-page UI guide](./docs/en/ui-guide.md)
 
@@ -108,7 +108,7 @@ Windows users can install the official v0.2.3-or-newer release ZIP. The expected
 
 ### 2. Install DSH and the plugin
 
-This release is verified against DSH 0.1.1-rc.2, whose complete profiles require Node.js `^22.19.0 || >=24.0.0`; Node 20 lacks host primitives used by rc.2. The dsh-mnemon package itself retains Node.js 20 compatibility for older compatible DSH hosts. DSH rc.2 is published on npm's `latest` and `next` tags; use the exact version below for a reproducible installation:
+The registry installation remains verified against DSH 0.1.1-rc.2, whose complete profiles require Node.js `^22.19.0 || >=24.0.0`; Node 20 lacks host primitives used by rc.2. Source compatibility is also verified against the source-only DSH 0.1.2-alpha.1 preview; it is not an npm installation target. The dsh-mnemon package itself retains Node.js 20 compatibility for older compatible DSH hosts. Use the exact published version below for a reproducible installation; plugin authors can follow the [alpha source workflow](./docs/en/development.md#dsh-012-alpha1-source-verification).
 
 ```sh
 npm install -g @deepseek-ai/dsh@0.1.1-rc.2
@@ -150,7 +150,7 @@ The primary tab order is intentionally stable: **Status, Runtime, Documents, Mem
 
 | Supervised distillation | Bounded Agent query |
 |---|---|
-| [![Edit a candidate before dispatching an independent task Agent](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/91af2d86ee71982f4f5bfbccb8ad7acf308496f5/docs/assets/screenshots/remember-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/remember-dialog.png) | [![Read-only Agent answer grounded in bounded multi-provider evidence](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/91af2d86ee71982f4f5bfbccb8ad7acf308496f5/docs/assets/screenshots/recall-agent-answer.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/recall-agent-answer.png) |
+| [![Edit a candidate before dispatching an independent task Agent](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/82e586d9cc9592a9c972c7f555d40505d1517bff/docs/assets/screenshots/remember-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/remember-dialog.png) | [![Read-only Agent answer grounded in bounded multi-provider evidence](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/82e586d9cc9592a9c972c7f555d40505d1517bff/docs/assets/screenshots/recall-agent-answer.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/recall-agent-answer.png) |
 
 The workbench makes the task boundary explicit before dispatch and keeps the returned answer beside its evidence scope. Conversation-native Turn memory and Save to memory remain enabled by default and can be changed independently under **Settings → Memory System → Conversation interface**.
 
@@ -158,7 +158,7 @@ The workbench makes the task boundary explicit before dispatch and keeps the ret
 
 | Create explicitly | Route future distillation intelligently |
 |---|---|
-| [![Choose a Provider while creating a Memory Space](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/91af2d86ee71982f4f5bfbccb8ad7acf308496f5/docs/assets/screenshots/memory-space-create-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/memory-space-create-dialog.png) | [![Choose manual or smart Provider placement](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/91af2d86ee71982f4f5bfbccb8ad7acf308496f5/docs/assets/screenshots/distillation-strategy.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/distillation-strategy.png) |
+| [![Choose a Provider while creating a Memory Space](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/82e586d9cc9592a9c972c7f555d40505d1517bff/docs/assets/screenshots/memory-space-create-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/memory-space-create-dialog.png) | [![Choose manual or smart Provider placement](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/82e586d9cc9592a9c972c7f555d40505d1517bff/docs/assets/screenshots/distillation-strategy.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/distillation-strategy.png) |
 
 Manual creation always asks the user to choose. Smart selection is a distillation policy: hard rules define the eligible set, then an optional prompt guides the Agent only when several candidates remain.
 
@@ -169,6 +169,8 @@ Manual creation always asks the user to choose. Smart selection is a distillatio
 | `global` | Uses `~/.mnemon`; ideal for a local control plane shared across workspaces and Agents |
 | `workspace` | Uses `<workspace>/.mnemon`; local Providers that support workspace following move with the effective workspace |
 | `custom` | An explicit path with global semantics, useful for team conventions or isolated environments |
+
+Set `runtimeUserScope: global` together with `storageScope: workspace` to project the global USER.md profile and workspace MEMORY.md at the same time. User-profile writes stay global; project Runtime, Documents, Memory Spaces, and Provider state remain isolated. No existing entries are copied or deleted when switching.
 
 Remote Provider workspaces, users, banks, projects, containers, and URIs remain their own namespaces; switching the DSH workspace never silently rewrites them. In workspace mode, the workbench may inspect one selected workspace while the current conversation continues to execute in its own cwd. Independent task Agents launched from the workbench use the inspected workspace even when no main session is selected.
 
@@ -206,7 +208,7 @@ See [Operations, security, and troubleshooting](./docs/en/operations.md) for bac
 | Back up, update, or troubleshoot | [Operations](./docs/en/operations.md) |
 | Integrate tools, commands, or RPC | [Interface reference](./docs/en/interfaces.md) |
 | Build a Layer, Adapter, Strategy, Guard, or MemorySource extension | [Extension guide](./docs/en/extensions.md) |
-| Review the release | [v0.3.2 release notes](./docs/en/releases/v0.3.2.md) |
+| Review the release | [v0.3.5 release notes](./docs/en/releases/v0.3.5.md) |
 
 See the [documentation hub](./docs/en/README.md) for the full map.
 

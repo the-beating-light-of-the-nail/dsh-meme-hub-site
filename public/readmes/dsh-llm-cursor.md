@@ -19,11 +19,32 @@ dsh web
 
 The repository tracks release-ready lib artifacts, so GitHub installation needs no build-script allowlist. A source checkout can use a link installation after running `pnpm run build`.
 
+## Remote management
+
+By default the plugin's settings RPC is loopback-only. When you open DSH from a non-loopback host (e.g. https://dsh.noirbright.top or http://192.168.50.75:3080), the card shows “A remote browser cannot edit plugin settings”.
+
+To allow editing from a trusted host:
+
+1. Add to your profile patch (`~/.dsh/profiles/web/cordis.patch.yml` for production, `~/.dsh-lab/profiles/web/cordis.patch.yml` for lab):
+   ```yaml
+   - id: llm-cursor
+     config:
+       remoteManagement: true
+   ```
+2. Restart DSH with the host allowlisted:
+   ```sh
+   dsh web --trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top
+   ```
+   The current production launch already uses `--trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top`; add any additional host you use.
+3. Refresh the browser. Settings saved on the host keep working for remote sessions.
+
+Without `remoteManagement: true`, use `ssh -L 3080:127.0.0.1:3080 user@host` and open `http://127.0.0.1:3080`.
+
 ## Web configuration
 
 Open Settings → LLM Providers → Cursor. The card subtitle is the same warning as above: unofficial private endpoints; Cursor staff treat this as against ToS; **the account can be banned**.
 
-![Cursor plugin card: ToS warning, sign-in, subscription usage, and saved catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/5451cbe1be5df8b14fee87673b8794be65bfd912/docs/screenshots/plugin-card.png)
+![Cursor plugin card: ToS warning, sign-in, subscription usage, and saved catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/4530bb66d3fb135d3e44472bbf2dff52c1aaafd0/docs/screenshots/plugin-card.png)
 
 **Sign in with Cursor** starts a Host-owned Deep Control PKCE flow (the same session entry the official CLI uses), opens the system browser, and polls until the login completes. The session is stored only on the Host at `$DSH_HOME/cursor-oauth.json` (mode `0600`). The card then shows the account email when known. Sign out deletes that file. The browser never receives tokens.
 
@@ -31,9 +52,9 @@ This plugin does **not** read or write `~/.cursor` or official CLI credential fi
 
 After sign-in, **Fetch available models** reads the account catalog with `GetUsableModels`. Cursor lists every thinking-level SKU as a separate wire id; the plugin collapses those into one family and maps the chat thinking-level picker back to the matching wire id. Fast SKUs stay their own models. Fetch offers a sibling `-1m` row only for families Cursor actually has Max Context for (for example `claude-opus-5-1m`), not for every `maxMode` flag; saving keeps only the rows you picked. You can then reorder, rename, or edit capability flags. Chat uses that saved catalog.
 
-![Fetch picker: choose which model families to keep in the catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/5451cbe1be5df8b14fee87673b8794be65bfd912/docs/screenshots/catalog-picker.png)
+![Fetch picker: choose which model families to keep in the catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/4530bb66d3fb135d3e44472bbf2dff52c1aaafd0/docs/screenshots/catalog-picker.png)
 
-![Chat model picker after the catalog is saved](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/5451cbe1be5df8b14fee87673b8794be65bfd912/docs/screenshots/chat-model-menu.png)
+![Chat model picker after the catalog is saved](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/4530bb66d3fb135d3e44472bbf2dff52c1aaafd0/docs/screenshots/chat-model-menu.png)
 
 Chat itself goes through HTTP/2 Connect+protobuf `POST https://api2.cursor.sh/agent.v1.AgentService/Run`. DSH remains the only agent loop and tool executor. When signed in, the card also shows subscription usage from the Cursor dashboard rails (Cursor Models / Other Models, and On-Demand when it has spend or a cap). Logged-out cards do not request usage; an unrecognized surface is shown as unsupported, not as an error.
 
@@ -73,6 +94,7 @@ This is not legal advice. Install and use at your own risk. Also see the [Accept
 - Token usage chunks from `Run` do not include cache fields, so DSH cache-hit rate stays empty.
 - Fast SKUs are separate catalog families (`gpt-5.2` vs `gpt-5.2-fast`), not a third picker toggle.
 - 1M SKUs appear in Fetch for families Cursor offers Max Context (`claude-opus-5` vs `claude-opus-5-1m`). Saving does not re-insert a Max row you left unchecked. The Max row always sends `maxMode: true`. Composer and Cursor Grok do not get a 1M row.
+- You can also add a generic context row yourself (`claude-opus-5-272k`). The plugin peels a trailing `-<n>k` / `-<n>m` before talking to Cursor; DSH uses `n×1000` / `n×1,000,000` as the compaction budget. Cursor's API only has a binary `maxMode`, so a 272K row still sends `maxMode: false` — the suffix only changes DSH's compaction trigger. Product names such as `kimi-k3-max` are not treated as a context tier. The composer picker groups sibling rows that share a base id.
 
 ## Config
 
@@ -81,6 +103,15 @@ This is not legal advice. Install and use at your own risk. Also see the [Accept
   name: 'dsh-llm-cursor'
   config:
     streamIdleTimeoutMs: 300000
+    # Opt in only when the DSH serving authority is explicitly trusted.
+    remoteManagement: false
+    runLifecycle:
+      parkedRunTtlMs: 900000
+      bindingIdleTtlMs: 3600000
+      maxOpenRuns: 64
+      maxBindings: 256
+      heartbeatIntervalMs: 5000
+      heartbeatJitterRatio: 0.1
     retryPolicy:
       mode: normal
       maxRetries: 8
@@ -92,9 +123,17 @@ This is not legal advice. Install and use at your own risk. Also see the [Accept
 
 The bundle retries eligible model-request failures up to eight times by default. Connect and gRPC deadlines use `TIMEOUT`; HTTP 429 uses `RATE_LIMIT`; HTTP/2 faults and premature stream endings use `TRANSPORT`; unavailable, resource-exhausted, and HTTP 5xx failures use `SERVER`. Authentication, cancellation, invalid-argument, and other HTTP 4xx failures remain non-retryable.
 
+Each adapter instance owns its active Runs, parked Runs, and conversation bindings. A parked Run expires after 15 minutes by default, while its idle binding remains available for one hour so a later tool result can open a full-history resume Run. Capacity recovery evicts the oldest parked Run and then the oldest idle binding; it never evicts active work. If all 64 Run slots are active, the request fails locally with `LOCAL_CAPACITY` before opening a socket. Heartbeat jitter is sampled again for every write, and provider silence after a resumed `mcpResult` still uses `streamIdleTimeoutMs`. See [ADR 0002](docs/adr/0002-adapter-owned-run-lifecycle.md).
+
 There is no `apiKeyEnv` and no user-editable chat base URL or CLI version. The selected catalog is stored under `models` after you save it on the plugin card.
 
 The Models page, if it lists Cursor at all, is hint-only. Because this package does not declare `apiKeyEnv`, that row must not show a missing-API-key badge.
+
+## Remote management and provider flow
+
+`remoteManagement` defaults to `false` and keeps management RPC loopback-only. Set it to `true` only when the serving authority is declared trusted; `trusted-host` is a reachability/DNS-rebinding fence, not authentication. Settings are whitelist-decoded, revision-fenced, and secret-free.
+
+Cursor uses external authentication: Host returns a UUID/PKCE authorization URL immediately, the browser opens it, and Host polls in the background. Begin, status, cancel, and logout are attempt-scoped. Restarting DSH cancels in-memory attempts; restart and begin a new provider flow.
 
 ## License
 

@@ -17,9 +17,32 @@ dsh web
 
 The repository tracks release-ready lib artifacts, so GitHub installation needs no build-script allowlist. A source checkout can use a link installation after running pnpm run build.
 
+## Remote management
+
+By default the plugin's settings RPC is loopback-only. When you open DSH from a non-loopback host (e.g. https://dsh.noirbright.top or http://192.168.50.75:3080), the card shows “A remote browser cannot edit plugin settings”.
+
+To allow editing from a trusted host:
+
+1. Add to your profile patch (`~/.dsh/profiles/web/cordis.patch.yml` for production, `~/.dsh-lab/profiles/web/cordis.patch.yml` for lab):
+   ```yaml
+   - id: llm-ollama
+     config:
+       remoteManagement: true
+   ```
+2. Restart DSH with the host allowlisted:
+   ```sh
+   dsh web --trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top
+   ```
+   The current production launch already uses `--trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top`; add any additional host you use.
+3. Refresh the browser. Settings saved on the host keep working for remote sessions.
+
+Without `remoteManagement: true`, use `ssh -L 3080:127.0.0.1:3080 user@host` and open `http://127.0.0.1:3080`.
+
 ## Web configuration
 
-Open Settings → LLM Providers → Ollama Cloud. The card stores the API key through the Harness credentials API under OLLAMA_API_KEY; the Host never returns the stored literal. It saves the native base URL and model catalog together as one revision-fenced llm-ollama settings mutation.
+Open Settings → LLM Providers → Ollama Cloud. The card manages settings and credentials through the provider RPC. The Host never returns the stored literal, and settings revision fencing does not pretend that credential storage and settings save are one atomic transaction.
+
+For external-auth or non-loopback deployments, set `remoteManagement: true` in the provider config and restart the Host. Start the deployment with a trusted host (for example `dsh web --trusted-host <origin>`); keep it `false` unless you explicitly need remote management. When disabled, configure the key from a loopback browser or export `OLLAMA_API_KEY` in the launching environment. Changes to `remoteManagement` require a Host restart.
 
 Fetch available models opens the picker immediately and calls the package's loopback-only RPC with the unsaved endpoint and one-shot key. The Host reads /api/tags, deduplicates native ids, and enriches up to six models concurrently through /api/show. The native metadata supplies context windows plus vision, thinking, and tools flags that /v1/models does not expose. The picker starts from the current draft selection, preserves current-only models, and replaces the draft catalog when applied.
 
@@ -31,11 +54,11 @@ The model catalog starts collapsed and lists one row per model: a drag handle re
 
 Cloud usage and the complete weekly model activity list:
 
-![Ollama Cloud connection and usage](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/b45d6b4b8de6b2cf5f5e2eeeab372467c19b1f44/docs/images/ollama-cloud-usage.png)
+![Ollama Cloud connection and usage](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/6f59423885ff2f082c91c3746eac2b51d1b41c89/docs/images/ollama-cloud-usage.png)
 
 Sortable model catalog:
 
-![Ollama Cloud sortable model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/b45d6b4b8de6b2cf5f5e2eeeab372467c19b1f44/docs/images/ollama-model-catalog.png)
+![Ollama Cloud sortable model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/6f59423885ff2f082c91c3746eac2b51d1b41c89/docs/images/ollama-model-catalog.png)
 
 The Models page lists saved ollama-cloud models and can select them. Current Harness releases do not expose a third-party editor slot inside that page, so this package owns its editor under Plugin configuration.
 
@@ -105,6 +128,8 @@ Omit fetchProvider to keep the built-in HTTP fetcher while moving only search. B
 The bundle retries eligible model-request failures up to eight times by default. Documented status-less generation, reachability, and overload failures are classified as `SERVER`; authentication, invalid-request, and unsupported-content failures remain non-retryable.
 
 The provider route remains ollama-cloud and the settings namespace remains llm-ollama. Only configured catalog models are accepted for chat. The adapter does not install a request-level maxTokens default; output is not capped from the catalog. Per-row `contextWindow` is the DSH compaction budget.
+
+Picker ids may use a generic context suffix `-<n>k` or `-<n>m` (for example `qwen3-272k` or `qwen3-1m`). The plugin peels that suffix before talking to Ollama and, when the row has no explicit `contextWindow`, uses `n×1000` / `n×1,000,000` as the DSH compaction budget. Product names such as `kimi-k3-max` are not treated as a context tier. The composer picker groups sibling rows that share a base id. `-fast` is recognized as a Fast sibling for grouping; Ollama Cloud has no Fast API field, so the wire id is still the peeled base.
 
 The fallback context window is 262,144 tokens. Discovery should normally provide an exact model value; the fallback also leaves room for pi-ai's context-safety reserve when metadata is unavailable.
 

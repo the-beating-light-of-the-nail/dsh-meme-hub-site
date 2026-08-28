@@ -9,9 +9,9 @@ Generate images in DeepSeek Harness with OpenAI `gpt-image-2`, using a signed-in
 
 [中文说明](./README.zh.md)
 
-<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/36a7b827dbbfe83cae51cbfc64740c64ea22c96a/assets/demo.svg" width="760" alt="Animated dsh-image-gen progressive preview" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/78ce9537e1558cea64eb2116997ccba6cf52fc7c/assets/demo.svg" width="760" alt="Animated dsh-image-gen progressive preview" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/36a7b827dbbfe83cae51cbfc64740c64ea22c96a/assets/final-card.png" width="760" alt="dsh-image-gen completed durable image card" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/78ce9537e1558cea64eb2116997ccba6cf52fc7c/assets/final-card.png" width="760" alt="dsh-image-gen completed durable image card" /></p>
 
 These illustrations mirror the shipped developing and completed card states. API-key mode can replace the light field with real streamed drafts; Codex subscription mode animates until its non-streaming response arrives. The completed state remains available as a durable DSH attachment with preview and download controls.
 

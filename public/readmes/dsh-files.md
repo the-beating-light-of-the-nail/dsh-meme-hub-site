@@ -5,15 +5,17 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/93552711542e628ab311c74a5ea175a703792a2d/assets/readme/hero.svg" width="100%" alt="dsh-files: one package. A composer paperclip for uploads, a document-reading tool for the model, and native image support for vision models.">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/38dd56729ef769c59ec3b91ff33321db4015c4b7/assets/readme/hero.svg" width="100%" alt="dsh-files: one package. A composer paperclip for uploads, a document-reading tool for the model, and native image support for vision models.">
 </p>
 
 # dsh-files
 
 One package, one line of cordis config. A composer paperclip for uploads, a document-reading tool for the model, and native image support that hands JPEG/PNG/WebP/GIF to any vision-capable model.
 
+> **Part of the taxueseek DeepSeek Harness plugin lineup** — flagship: [argo](https://github.com/taxueseek/argo) (search infrastructure for agents) · siblings: [dsh-snippets](https://github.com/taxueseek/dsh-snippets) (snippet favorites) · [dsh-healthcheck](https://github.com/taxueseek/dsh-healthcheck) (read-only checkup) · [dsh-plugin-guard](https://github.com/taxueseek/dsh-plugin-guard) (plugin security audit) · [taxue-dsh-artisan](https://github.com/taxueseek/taxue-dsh-artisan) (prompt reverse-engineering & multi-provider image generation) — see all plugins on the [profile](https://github.com/taxueseek#deepseek-harness-plugins)
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/93552711542e628ab311c74a5ea175a703792a2d/assets/composer.png" alt="DeepSeek Harness composer: paperclip upload button and colored file cards" width="900">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/38dd56729ef769c59ec3b91ff33321db4015c4b7/assets/composer.png" alt="DeepSeek Harness composer: paperclip upload button and colored file cards" width="900">
 </p>
 
 DeepSeek Harness dual-face plugin. Three capabilities:
@@ -29,7 +31,7 @@ DeepSeek Harness dual-face plugin. Three capabilities:
 - **Three entry points**: a paperclip button in the composer toolbar for multi-select files, a folder button for an entire directory (the browser flattens the tree and preserves relative paths per sub-directory), and drag-and-drop anywhere on the page (a drag overlay hints while hovering). Batch uploads are bounded to 4 concurrent requests, and a per-file failure never blocks the rest.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/93552711542e628ab311c74a5ea175a703792a2d/assets/upload-folder-images.png" alt="Batch folder upload: multiple images uploaded at once and shown as a grid" width="900">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/38dd56729ef769c59ec3b91ff33321db4015c4b7/assets/upload-folder-images.png" alt="Batch folder upload: multiple images uploaded at once and shown as a grid" width="900">
 </p>
 
 - **Folder batch upload**: selecting or dropping a folder recursively flattens its files, keeps the sub-directory layout under the session dir, and uploads with bounded concurrency — so a whole folder's content lands in one go.
@@ -46,7 +48,7 @@ DeepSeek Harness dual-face plugin. Three capabilities:
 - **Native UI**: the attachment is rendered by the harness's stock `conversation.input.attachments` rail — thumbnail, click-to-zoom lightbox, native remove — so images look native instead of a grey badge card. dsh-files does not inject that slot; it hands the image to the core and lets the official components render it.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/93552711542e628ab311c74a5ea175a703792a2d/assets/native-image-dialog.png" alt="Vision model reading an uploaded image through the native pipeline" width="900">
+  <img src="https://raw.githubusercontent.com/taxueseek/dsh-files/38dd56729ef769c59ec3b91ff33321db4015c4b7/assets/native-image-dialog.png" alt="Vision model reading an uploaded image through the native pipeline" width="900">
 </p>
 
 ### Document reading

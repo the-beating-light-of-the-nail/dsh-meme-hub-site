@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
@@ -8,7 +8,7 @@
 
   **Load and safely manage skills from DSH and common local Agents**
 
-  [简体中文](README.zh-CN.md) · [Apache-2.0](LICENSE)
+  [简体中文](README.zh-CN.md) · [Changelog](CHANGELOG.md) · [Apache-2.0](LICENSE)
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-skills-manager.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-skills-manager)
@@ -18,6 +18,7 @@
 </div>
 
 > DSH Skills Manager is a community-maintained DeepSeek Harness (DSH) plugin, not an official DeepSeek AI product.
+
 
 ## Features
 
@@ -32,15 +33,15 @@
 
 Browse by source or search in **Settings → Skills**. External Agent sources are loaded through a manager-owned provider while their files stay read-only:
 
-![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/screenshots/skills-manager-v2-preview.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/screenshots/skills-manager-v2-preview.png)
 
 Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/screenshots/skill-detail.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/screenshots/skill-detail.png)
 
 Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/68296bf1de0b59dd22bade4dd28fe1aba067710f/assets/screenshots/delete-plugin.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 
@@ -50,7 +51,6 @@ This product can be installed independently or used through the desktop app or W
 | --- | --- |
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | The host runtime that provides models, sessions, tools, and the plugin system |
 | [DSH Codex Desktop](https://github.com/MichengAI/dsh-codex-desktop) | A ready-to-install desktop product with this product and the other five feature products built in |
-| [DSH Codex Suite](https://github.com/MichengAI/dsh-codex-ui/tree/main/packages/dsh-codex-suite) | A one-click suite for existing DSH Web environments that installs this product and the other five feature products |
 | Six feature products | [Codex UI](https://github.com/MichengAI/dsh-codex-ui) · [IM Connect](https://github.com/MichengAI/dsh-im-connect) · [Automation](https://github.com/MichengAI/dsh-automation) · [Skills Manager](https://github.com/MichengAI/dsh-skills-manager) · [Archive Manager](https://github.com/MichengAI/dsh-archive-manager) · [Agency Agents](https://github.com/MichengAI/dsh-agency-agents) |
 
 ## Prerequisites
@@ -155,9 +155,9 @@ Escape closes only the frontmost upload or confirmation dialog and leaves Settin
 
 - Enable, disable, and delete accept only one ordinary skill-name path segment.
 - Replacements copy to a temporary sibling path first and keep the original until that succeeds.
-- All endpoints, including GET `/state`, accept only loopback `Host` values (`localhost`, `127.0.0.1`, `[::1]`).
-- Write endpoints also require JSON and the DSH client request marker, so cross-site browser requests cannot trigger local file operations.
-- Import accepts the local path the user selected. The HTTP API trusts loopback callers only; do not expose the host web server beyond this machine.
+- Every endpoint, including GET `/state`, accepts only a loopback `Host` or a canonical `host[:port]` that the DSH Web runtime already trusts through its LAN bind and `--trusted-host`; unknown hosts still receive 403.
+- Browser requests must also carry a same-origin `Origin` when present and must not be marked cross-site; write endpoints continue to require JSON and the DSH client request marker.
+- Import accepts the local path selected by the user. The Host trust fence prevents DNS rebinding but is not authentication; reverse-proxy and LAN deployments still need authentication, a VPN, or network access controls.
 
 ## Secondary development
 
@@ -196,7 +196,3 @@ npm run pack:check
 Project status, usage boundaries, architecture, and iteration records begin at the [documentation entry point](docs/00-交接入口/00-阅读导航.md). The detailed operational guide is `docs\02-产品与业务\01-使用说明.md`.
 
 Licensed under [Apache License 2.0](LICENSE).
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for the five most recent releases.

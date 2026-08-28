@@ -21,7 +21,7 @@
 
 下图标注了启用本插件后，DSH 界面中被增强 / 修改的各区域位置，供快速对照：
 
-<img src="https://raw.githubusercontent.com/dsh-niao/dsh-niao-quick-open/96a9bf6d3c8ceb7154ddc9d4ee31881f2eb1f5c4/docs/ui-enhancements.png" alt="界面增强位置总览" width="800">
+<img src="https://raw.githubusercontent.com/dsh-niao/dsh-niao-quick-open/572efa89887ccb8331b318412406b9975f9684b4/docs/ui-enhancements.png" alt="界面增强位置总览" width="800">
 
 ## 🚀 安装
 
@@ -86,7 +86,7 @@ dsh plugin --profile web add dsh-niao-quick-open
 
 在 DSH 设置面板左侧边注册「界面功能」页，按功能区域分组，每个配置项提供一句话说明 + 可展开的详细说明：
 
-<img src="https://raw.githubusercontent.com/dsh-niao/dsh-niao-quick-open/96a9bf6d3c8ceb7154ddc9d4ee31881f2eb1f5c4/docs/config-panel.png" alt="设置面板：界面功能" width="800">
+<img src="https://raw.githubusercontent.com/dsh-niao/dsh-niao-quick-open/572efa89887ccb8331b318412406b9975f9684b4/docs/config-panel.png" alt="设置面板：界面功能" width="800">
 
 ### 侧边栏
 

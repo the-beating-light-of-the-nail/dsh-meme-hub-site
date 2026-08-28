@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ae03d30adf158c1fbc2a335d85aad1f5143b3000/assets/dsh-open-eyes.png" width="240" alt="dsh-open-eyes">
+  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ce38e45baa5a64173ae5a9e91fcfb284528d469a/assets/dsh-open-eyes.png" width="240" alt="dsh-open-eyes">
 </p>
 
 <h1 align="center">dsh-open-eyes</h1>
@@ -16,11 +16,13 @@ Open Eyes supports OpenAI Responses, OpenAI Chat Completions, and Anthropic Mess
 
 ## Install
 
-Requirements: DeepSeek Harness `0.1.1-rc.2` and Node.js `>=22.19.0`.
+Requires Node.js `>=22.19.0`. Open Eyes requires exact one-to-one version matching with DSH; releases are neither forward nor backward compatible.
 
-```sh
-dsh plugin --profile web add dsh-open-eyes@0.1.1-rc.2
-```
+| DeepSeek Harness version | Install command |
+| --- | --- |
+| `0.1.0-rc.6` | `dsh plugin --profile web add dsh-open-eyes@0.1.0` |
+| `0.1.1-rc.2` | `dsh plugin --profile web add dsh-open-eyes@0.1.1-rc.2` |
+| `0.1.2-alpha.1` | `dsh plugin --profile web add dsh-open-eyes@0.1.2-alpha.1` |
 
 Restart DSH Web after installation, then reload the page. DSH profiles are independent, so install the plugin separately in every profile where you want to use it.
 
@@ -29,7 +31,7 @@ Restart DSH Web after installation, then reload the page. DSH profiles are indep
 Open **Settings → Plugins → Plugin configuration** and expand **Open Eyes**. The card is named **Open Eyes** in English and **开放视觉** in Chinese, following the DSH interface language.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ae03d30adf158c1fbc2a335d85aad1f5143b3000/assets/screenshots/open-eyes-settings.png" width="860" alt="Open Eyes card in Settings, Plugins, Plugin configuration">
+  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ce38e45baa5a64173ae5a9e91fcfb284528d469a/assets/screenshots/open-eyes-settings.png" width="860" alt="Open Eyes card in Settings, Plugins, Plugin configuration">
 </p>
 
 ## Configure your vision model
@@ -45,7 +47,7 @@ Three protocols are available:
 You can enter a model manually or use **Fetch models** to read the service's model list. Because a model catalog does not reliably declare image capability, confirm that the model you select is multimodal. **Validate connection** sends one tiny test image through the real configured model, while **Save and validate** checks a new or edited scheme immediately.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ae03d30adf158c1fbc2a335d85aad1f5143b3000/assets/screenshots/provider-configuration.png" width="600" alt="Open Eyes vision provider scheme editor">
+  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ce38e45baa5a64173ae5a9e91fcfb284528d469a/assets/screenshots/provider-configuration.png" width="600" alt="Open Eyes vision provider scheme editor">
 </p>
 
 The compact scheme list shows only the display name and model. Use the radio button on the left to select the default scheme. Editing opens directly below the matching scheme, and the same button collapses it again. Validation results appear without expanding or reshaping the scheme row.
@@ -71,7 +73,7 @@ The conversation model creates a task-specific `vision_analyze` prompt from your
 - **Custom supplement:** up to 50 words or text units of your own guidance.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ae03d30adf158c1fbc2a335d85aad1f5143b3000/assets/screenshots/visual-preferences.png" width="660" alt="Open Eyes visual analysis preferences">
+  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ce38e45baa5a64173ae5a9e91fcfb284528d469a/assets/screenshots/visual-preferences.png" width="660" alt="Open Eyes visual analysis preferences">
 </p>
 
 Preferences are applied internally after the visible Tool Call and immediately before the request is sent to the vision model. This is why the extra preference text does not appear in the Tool Call arguments. It does not modify the main model's system prompt, conversation history, tool declaration, or Harness loop. Leaving every option at **Default** adds nothing and preserves the original task prompt exactly.
@@ -85,7 +87,7 @@ Paste, drop, or select an image in DSH Web, ask the question you actually want a
 In the example below, the non-multimodal main model **GLM-5.3 (High effort)** receives an image question, calls `vision_analyze`, delegates the image to **GPT-5.6-Luna**, and uses the returned visual evidence in its answer.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ae03d30adf158c1fbc2a335d85aad1f5143b3000/assets/screenshots/vision-delegation-example.png" width="560" alt="GLM-5.3 delegates an attached image to GPT-5.6-Luna through Open Eyes">
+  <img src="https://raw.githubusercontent.com/Hyp6666/dsh-open-eyes/ce38e45baa5a64173ae5a9e91fcfb284528d469a/assets/screenshots/vision-delegation-example.png" width="560" alt="GLM-5.3 delegates an attached image to GPT-5.6-Luna through Open Eyes">
 </p>
 
 The same tool can analyze image files already available to an Agent:
@@ -147,8 +149,7 @@ For a headless profile, replace `web` in the installation and inspection command
 
 ## Reliability and compatibility
 
-- Designed and tested for DeepSeek Harness `0.1.1-rc.2`.
-- Compatible with `dsh-open-file@0.1.1-rc.2` in either installation order.
+- Each Open Eyes release is designed and tested only for the exact DeepSeek Harness version listed in the installation table; compatibility does not extend to earlier or later DSH versions.
 - Text-only submissions and disabled conversations stay on the original DSH submission path.
 - Submission outcomes, cancellation, errors, and draft images are preserved through the Web wrapper.
 - Model discovery, validation, and visual inference recover from bounded transient network, timeout, response-body, rate-limit, and gateway failures. The default is a five-minute deadline per attempt with up to two retries.
@@ -190,7 +191,7 @@ npm pack --dry-run
 pnpm run test:e2e
 ```
 
-The test suite does not require a paid vision API. The packed-profile test installs, starts, and removes the real tarball in a temporary DSH profile and also exercises coexistence with `dsh-open-file` in both installation orders.
+The test suite does not require a paid vision API. The packed-profile test installs, starts, and removes the real tarball in a temporary DSH profile.
 
 ## License
 

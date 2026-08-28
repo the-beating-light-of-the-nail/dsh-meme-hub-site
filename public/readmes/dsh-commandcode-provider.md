@@ -18,6 +18,7 @@ Unofficial [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harnes
 
 - **Plugin bundle** — install into any dsh profile with `dsh plugin add`; registers a `commandcode` provider route with a live model catalog.
 - **Dedicated settings page** — API key, connection options, a live account-usage card, and a "Hide out-of-plan models" toggle.
+- **Models-page key card** — on dsh 0.1.2-alpha.1 and later, the **Settings → Models → Command Code** card carries the key status, a paste field, and the sign-in button inline; on older dsh builds it is simply absent and the dedicated page remains the surface.
 - **In-browser sign-in for keys** — start the official authorization flow (the same one `cmd login` runs) from the settings page; the approved key lands in the local credential service automatically. Manual paste remains the fallback.
 - **Multi-account rotation** — when one account hits its usage limit, requests switch to the next account automatically. See [Account rotation](#account-rotation).
 - **Flexible API key setup** — via the settings page, an environment variable, or the official CLI login file.
@@ -66,6 +67,8 @@ The plugin registers a `/commandcode` slash command showing per-account usage:
 ```text
 /commandcode        (or /commandcode status)
 ```
+
+The command's user-facing copy follows the shell's locale: explicit `lang: 'en' | 'zh'` in the `llm-commandcode` plugin config wins, otherwise `LC_ALL`/`LANG` is read, otherwise it falls back to `zh`. The web settings page is independent — it follows the browser's language preference on its own.
 
 ## Account rotation
 
@@ -158,12 +161,12 @@ MIT — see [LICENSE](./LICENSE). Portions ported from [pi-commandcode-provider]
 
 **Model picker** — plan tier, deal/FREE, peak/off-peak, Image and context annotations:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/474e636431c09121fb40720d23ce0b0e48442b75/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/b3f5140eb230ca8510623109bad276638e46a5ed/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
 
 **Usage dashboard** — `/commandcode` per-account report:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/474e636431c09121fb40720d23ce0b0e48442b75/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/b3f5140eb230ca8510623109bad276638e46a5ed/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
 
 **Settings page** — API key, connection knobs, account rotation and the live account-usage card:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/474e636431c09121fb40720d23ce0b0e48442b75/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/b3f5140eb230ca8510623109bad276638e46a5ed/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">

@@ -9,7 +9,7 @@
   <a href="https://github.com/omdsh-dev/DSH-better-sidebar/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/omdsh-dev/DSH-better-sidebar" /></a>
   <a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
   <a href="https://dshfind.com/zh/plugins/omdsh-dev/DSH-better-sidebar?ref=badge"><img alt="dshfind" src="https://dshfind.com/api/badge/omdsh-dev/DSH-better-sidebar?lang=zh" /></a><br /><br />
-  <a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.1.0-rc.8 · 0.1.1-rc.1 · 0.1.1-rc.2" src="https://img.shields.io/badge/DSH-0.1.0--rc.8_%C2%B7_0.1.1--rc.1_%C2%B7_0.1.1--rc.2-4d6bfe" /></a>
+  <a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.1.0-rc.8 · 0.1.1-rc.1 · 0.1.1-rc.2 · 0.1.2-alpha.1" src="https://img.shields.io/badge/DSH-0.1.0--rc.8_%C2%B7_0.1.1--rc.1_%C2%B7_0.1.1--rc.2_%C2%B7_0.1.2--alpha.1-4d6bfe" /></a>
   <a href="https://github.com/topics/dsh-better-sidebar"><img alt="插件生态：GitHub topic dsh-better-sidebar" src="https://img.shields.io/badge/%E6%8F%92%E4%BB%B6%E7%94%9F%E6%80%81-topic%20dsh--better--sidebar-4d6bfe" /></a><br /><br />
   <img alt="文件管理" src="https://img.shields.io/badge/-文件管理-4d6bfe" /> <img alt="编辑预览" src="https://img.shields.io/badge/-编辑预览-4d6bfe" /> <img alt="内嵌浏览器" src="https://img.shields.io/badge/-内嵌浏览器-4d6bfe" /> <img alt="真实终端" src="https://img.shields.io/badge/-真实终端-4d6bfe" /> <img alt="Git 面板" src="https://img.shields.io/badge/-Git%20面板-4d6bfe" /> <img alt="后台任务" src="https://img.shields.io/badge/-后台任务-4d6bfe" /> <img alt="侧边对话" src="https://img.shields.io/badge/-侧边对话-4d6bfe" /> <img alt="插件接入" src="https://img.shields.io/badge/-插件接入-4d6bfe" /><br /><br />
   <b>右侧栏 + 底部面板双工作台</b>，并把 <code>ctx.betterSidebar</code> 服务开放给所有插件——<br />
@@ -62,7 +62,7 @@
 **前置**：已装好 DSH（`dsh web` 能正常运行），Node.js ≥ 20、pnpm ≥ 10。
 
 **支持的 DSH 版本**：
-<a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.1.0-rc.8 · 0.1.1-rc.1 · 0.1.1-rc.2" src="https://img.shields.io/badge/DSH-0.1.0--rc.8_%C2%B7_0.1.1--rc.1_%C2%B7_0.1.1--rc.2-4d6bfe" /></a>
+<a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.1.0-rc.8 · 0.1.1-rc.1 · 0.1.1-rc.2 · 0.1.2-alpha.1" src="https://img.shields.io/badge/DSH-0.1.0--rc.8_%C2%B7_0.1.1--rc.1_%C2%B7_0.1.1--rc.2_%C2%B7_0.1.2--alpha.1-4d6bfe" /></a>
 
 ```sh
 dsh plugin --profile web add dsh-better-sidebar@latest   # 首次会因 pnpm 11 拦截 node-pty 构建脚本而失败（依赖已写入）
@@ -254,7 +254,11 @@ GitHub topic [`dsh-better-sidebar`](https://github.com/topics/dsh-better-sidebar
 
 ## 🆕 最近更新
 
-**支持的 DSH 版本**：<a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.1.0-rc.8 · 0.1.1-rc.1 · 0.1.1-rc.2" src="https://img.shields.io/badge/DSH-0.1.0--rc.8_%C2%B7_0.1.1--rc.1_%C2%B7_0.1.1--rc.2-4d6bfe" /></a> · 完整发布历史见 [Releases](https://github.com/omdsh-dev/DSH-better-sidebar/releases)
+**支持的 DSH 版本**：<a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.1.0-rc.8 · 0.1.1-rc.1 · 0.1.1-rc.2 · 0.1.2-alpha.1" src="https://img.shields.io/badge/DSH-0.1.0--rc.8_%C2%B7_0.1.1--rc.1_%C2%B7_0.1.1--rc.2_%C2%B7_0.1.2--alpha.1-4d6bfe" /></a> · 完整发布历史见 [Releases](https://github.com/omdsh-dev/DSH-better-sidebar/releases)
+
+### v0.17.1
+
+- 🔗 **DSH 0.1.2-alpha.1 适配（双版本兼容）**：DSH 0.1.2-alpha.1 的 Remote gateway、一次性 token 浏览器鉴权与 `MarkdownText` labels 契约变更已全量适配，插件在 0.1.0-rc.8 ~ 0.1.1-rc.2 与 0.1.2-alpha.1 上一致工作（后者经 GitHub tag 源码构建的真机挂载冒烟 14/14 验证；该版本 npm 尚未发布，CI 钉版暂保持 0.1.1-rc.2，发布后平移）。要点：`MarkdownText` 四个渲染点统一改走双形状 labels helper（[markdown-labels.tsx](./src/client/markdown-labels.tsx)），修复 alpha.1 上 markdown/mermaid 预览的 `reading 'code'` 崩溃；e2e 冒烟双协议化（token URL 换 cookie、`/api` 斜杠端点 + 按参数名包装 args，[tests/e2e/host-protocol.ts](./tests/e2e/host-protocol.ts)）；移除已在 0.1.2-alpha.1 消亡的 `@deepseek-ai/dsh-client-runtime` peer
 
 ### v0.16.1
 
@@ -278,7 +282,7 @@ GitHub topic [`dsh-better-sidebar`](https://github.com/topics/dsh-better-sidebar
 - 🖥️ **浏览器本地回环允许清单**（[#365](https://github.com/omdsh-dev/DSH-better-sidebar/pull/365)）：新增侧边卡设置 `browserAllowedLoopback`（逗号分隔 host 或 host:port；裸 host 匹配任意端口、带有端口精确匹配）——显式信任的本地开发服务器（如 Vite）可导航，并额外获得 iframe `allow-same-origin` 令牌（模块 / HMR / fetch 管线需要真实 origin，否则白屏）；页面相对 GUI 与其他站点仍是跨源；服务端 `browser.probe` 镜像同一允许清单，本地服务器不再被误拒
 - 📝 **编辑器 Vue + 28 种 legacy 语言语法高亮**（[#202](https://github.com/omdsh-dev/DSH-better-sidebar/pull/202)）：`.vue` 映射 `@codemirror/lang-vue`（template / script / style 按 `lang` 属性分派、`<style lang="scss">` 预处理器）；零新依赖用 legacy-modes 补齐 scss/sass/less/stylus/ruby/lua/perl/r/dart/scala/groovy/powershell/diff/protobuf/cmake/pug/tcl/haskell/clojure/erlang/julia/pascal/vb/vhdl/stex/objectivecpp；语言工厂抛错降级纯文本（console.warn），不再炸编辑器；`.v` / `.m` 跨语言歧义故意不映射
 - 🔄 **编辑器预览刷新三件套**（[#215](https://github.com/omdsh-dev/DSH-better-sidebar/pull/215) [#228](https://github.com/omdsh-dev/DSH-better-sidebar/pull/228)，修复 [#167](https://github.com/omdsh-dev/DSH-better-sidebar/issues/167)）：文本预览新增**手动刷新**按钮；编辑保存后切回预览自动重载（dirty 时抑制，草稿不丢）；预览模式下保存成功边沿自动重载；移除自动轮询与 `fs.stat` 版本端点（后台 API 零流量）
-- 🖼️ **Markdown 本地 / 相对图片**（[#292](https://github.com/omdsh-dev/DSH-better-sidebar/pull/292)）：`![alt](https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/20da6479f14689db126a3f147670220a70dfbf6b/img.png)`、`/cwd/img.png` 与引用式 `[id]: url` 目标重写为 `/sidebar/file` 媒体 URL（会话 cwd 边界不变）——预览不再只显示 alt 文本
+- 🖼️ **Markdown 本地 / 相对图片**（[#292](https://github.com/omdsh-dev/DSH-better-sidebar/pull/292)）：`![alt](https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/50e05ecea0f2f4ba07775d47eed1fdb30831eec8/img.png)`、`/cwd/img.png` 与引用式 `[id]: url` 目标重写为 `/sidebar/file` 媒体 URL（会话 cwd 边界不变）——预览不再只显示 alt 文本
 - ➕ **推荐插件目录新增 ego-browser**（[#340](https://github.com/omdsh-dev/DSH-better-sidebar/pull/340)）：`@dsh-external/ego-browser` Agent 浏览器 Tab（会话侧边栏自动注册本机浏览器页，无 better-sidebar 时回退浮动浮窗）；描述词典 19 语言补全（[#371](https://github.com/omdsh-dev/DSH-better-sidebar/pull/371)）
 
 **🐛 修复**
@@ -445,9 +449,7 @@ GitHub topic [`dsh-better-sidebar`](https://github.com/topics/dsh-better-sidebar
 
 从 v0.4.0 起暴露 `ctx.betterSidebar` 服务，其他插件可注册侧边栏页面与文件预览器（内置 7 tab + 6 viewer 亦通过同一服务注册）。v0.12.1 补齐基座能力（完整类型导出、能力探测、状态订阅、tab 角标、生命周期回调、定向打开、插件自有设置等）。
 
-完整接入文档：
-- **[`AGENTS.md`](./AGENTS.md)**——仓库内维护的接入文档（全字段、匹配算法、HMR 陷阱、声明式设置、版本探测）；
-- **[`docs/external-plugin-guide.md`](./docs/external-plugin-guide.md)**——面向外部插件开发者的接入指南（含完整最小示例）。
+完整接入文档（全字段、匹配算法、HMR 陷阱、声明式设置、版本探测、自由窗口与皮肤契约）：**[`docs/external-plugin-guide.md`](./docs/external-plugin-guide.md)**；仓库开发规则（硬约束 / CI / 发版）见 [`AGENTS.md`](./AGENTS.md)。
 
 ### ➕ 添加插件（推荐插件目录）
 

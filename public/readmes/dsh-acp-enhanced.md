@@ -30,9 +30,13 @@ over the ACP wire.
 ### Zed deep integration
 
 - **Tool cards**: one-line summary in the collapsed header — `Read <path>`, the
-  executed command, `Search: <pattern>`, `Fetch: <url>`, etc. — with the full
-  arguments and result preview (`rawInput` / `rawOutput`) one click away, plus
-  per-kind icons
+  model's own intent line for shell commands (`description`, Codex-style — the
+  exact command stays one click away), `Search: <pattern>`, `Fetch: <url>`, etc.
+  The card body follows the ACP best practice: file edits render as a real
+  **diff**, shell commands as a syntax-highlighted code block with the output
+  beneath, and touched files as **clickable locations** that open the file —
+  with `rawInput` / `rawOutput` kept one click away for transparency, plus
+  per-kind icons and a proper in-progress → completed/failed status lifecycle
 - **Zed files & terminal**: `zed_read_text_file` / `zed_write_text_file` / `zed_terminal`
   put file edits into Zed's "edited files" area (diff + accept/reject) and commands into a
   real Zed terminal
@@ -45,6 +49,11 @@ over the ACP wire.
 - **Resume & archive**: `session/load` restores past threads (full replay);
   `session/list` / `session/delete` manage the thread archive (titled, sorted by last
   activity); live title updates
+- **Multi-root workspaces**: `sessionCapabilities.additionalDirectories` is advertised,
+  so Zed no longer shows "this agent doesn't currently support multi-root workspaces"
+  and instead passes every workspace root on `session/new` / `session/load`. All roots
+  are described to the model in the system prompt and reported on `session/list`; the
+  sandbox keeps the primary `cwd` as its single writable root (see Known limitations)
 
 ### Commands
 
@@ -65,9 +74,9 @@ over the ACP wire.
 
 After picking **dsh-acp-enhanced** in Zed's AI Agent panel:
 
-<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/0118f33fdc88b8c69a84a3d624bc15b5c099acfb/assets/screenshots/approval-config-context.png" width="560">
+<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/13715fd06866c25e2e9dfa5d90c4d1d77ddda34b/assets/screenshots/approval-config-context.png" width="560">
 
-<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/0118f33fdc88b8c69a84a3d624bc15b5c099acfb/assets/screenshots/tool-cards-elicitation.png" width="560">
+<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/13715fd06866c25e2e9dfa5d90c4d1d77ddda34b/assets/screenshots/tool-cards-elicitation.png" width="560">
 
 ## Quick start
 
@@ -206,7 +215,8 @@ dsh plugin --profile acp-enhanced add dsh-web-search-openrouter
 |---|---|
 | `exec: dsh: not found` (status 127) | Use the shipped `dsh-acp-zed.sh` launcher (locates node/dsh itself) |
 | `no API key for provider route "xxx"` | Write `~/.dsh/.credentials.yaml`, or set `env.DEEPSEEK_API_KEY` on the agent_servers entry |
-| Cannot switch models / context usage missing | A "phantom provider" route was picked; this bridge filters them by default (only `config.provider`'s models are advertised) — point the profile's provider at a real route |
+| Cannot switch models | The saved `reasoning_effort` default (or the session's current effort) is carried onto the new model; since 0.3.3 an unsupported effort resets to the model's default instead of failing the switch. Also check: a "phantom provider" route was picked — this bridge filters them by default (only `config.provider`'s models are advertised), so point the profile's provider at a real route |
+| Context usage missing | A "phantom provider" route was picked; this bridge filters them by default (only `config.provider`'s models are advertised) — point the profile's provider at a real route |
 | Need detailed diagnostics | `ACP_DEBUG=1 dsh --profile acp-enhanced` (stderr lifecycle trace) |
 
 ## Development
@@ -221,9 +231,17 @@ node scripts/acp-resume-test.mjs      # session resume test
 
 ## Known limitations
 
-Baseline prompts only (no image/audio attachments), no `additionalDirectories`, text
-streams at block granularity, one in-flight prompt per session. MCP supports stdio and
-streamable HTTP (legacy SSE / `acp` transports are not advertised).
+Baseline prompts only (no image/audio attachments), text streams at block granularity,
+one in-flight prompt per session. MCP supports stdio and streamable HTTP (legacy SSE /
+`acp` transports are not advertised).
 `session/close` / `session/fork` / `session/resume` are not implemented (capabilities
-undeclared, compliant clients will not call them); `session/delete` removes the persisted
-directory directly because dsh persistence has no official delete API.
+undeclared, compliant clients will not call them); `session/delete` removes the
+persisted directory directly because dsh persistence has no official delete API.
+
+Multi-root workspaces are advertised and all roots are visible to the model, but dsh's
+sandbox policy resolves **one writable root per session** (the primary `cwd`, i.e.
+`session.header.cwd`) and the local sandboxes bind exactly that root for writes. Reads
+work in every root; under `workspace-write` a write under an additional root is denied
+first and needs escalation/approval, while `danger-full-access` writes everywhere.
+True multi-root write enforcement belongs in dsh core (`dsh-sandbox-policy` /
+`dsh-sandbox-local` would need a root list instead of a single root).

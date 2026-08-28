@@ -1,0 +1,177 @@
+# dsh-auto-evolve
+
+A **self-evolving plugin** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`). It observes how the agent runs, proposes improvements to *its own* assets via the LLM, validates each proposal inside a sandboxed trial agent, and applies only verified mutations — with a versioned ledger and automatic rollback on regression.
+
+[中文](README.zh.md)
+
+> **The idea.** Instead of shipping a static skill set, the plugin owns a small *genome* of evolvable assets (skills, tool-result post-processors, prompt sections, guard policies). Every runtime signal (tool failures, repeated calls, request errors) is collected; when a threshold crosses, a proposal cycle drafts a mutation, a sandboxed agent replays the failing episode with and without the change, and the change is applied only if the trial shows measurable improvement. Every mutation is versioned in a durable ledger and can be rolled back.
+
+## How it works
+
+```
+Observe ──▶ Propose ──▶ Validate ──▶ Apply ──▶ (observe again, for regressions)
+  │             │            │            │
+  tools/result  ctx.llm      sandboxed    ctx.skills.register + ledger
+  request-error (stream)     sub-agent    disposer kept for rollback
+```
+
+### The evolution loop
+
+| Layer | Module | What it does |
+|---|---|---|
+| **Observe** | `src/observe` | Listens on `tools/result` and `agent/request-error`; records deduplicated signals (tool failures, no-progress repeats, request errors) into the durable observations table; fires `onTrigger` when a threshold crosses. |
+| **Propose** | `src/propose` | A bounded cycle snapshots the genome + recent observations, calls `ctx.llm.stream()` with a strict prompt, and validates the model output against a closed mutation vocabulary (`add` / `patch` / `retire` over `skill` / `post-processor` / `prompt-section` / `guard-policy`). Anything that fails parsing or schema validation is discarded — never applied. Mutations whose content fingerprint already matches a pending `candidate` are dropped, so the same patch is never re-trialed while awaiting validation. |
+| **Validate** | `src/validate` | Replays the failing episode inside a fresh scoped sub-agent (`ctx.agents.create` + `setup`), once without the candidate mutations (baseline) and once with them (trial), then compares metrics: completion, tool failures, tool-call cost. Every kind with a runtime contribution — skill, tool-wrapper, guard-policy, post-processor — is exercised via the shared mutation applier (the same code the live apply path uses, so validation == deployment); prompt-section candidates are recorded but not auto-applied. |
+| **Apply** | `src/apply` | Promotes a validated candidate to the live genome: skills are registered on the plugin context via `ctx.skills.register` (immediately visible), the ledger records the apply with the previous content captured, and the disposer is kept for rollback. |
+| **Rollback** | `src/apply` | Unregisters the live contribution, restores the parent content as a fresh candidate, and writes a `rollback` ledger entry. On plugin disposal every live registration is torn down. |
+
+### Safety boundaries
+
+- **The mutation vocabulary is code, the content is model-generated.** The LLM never invents asset kinds or operators; it only fills in payloads that pass the closed zod schema.
+- **Validation is by execution, not by self-claim.** A proposal is applied only when a sandboxed trial beats the baseline on observable metrics.
+- **Cost is capped per cycle and per day.** The budget gate (`maxCostPerCycle` / `dailyBudget`) bounds the proposal call and every trial replay in auto-apply; an exhausted cap pauses the loop instead of silently burning tokens.
+- **Rollback is first-class.** Every applied mutation keeps its disposer and its parent content; regression reverts the exact previous state.
+- **Observe-only is the default.** In `observe` mode the plugin never proposes — it just collects signals and logs triggers.
+
+## Installation
+
+The plugin is a **dsh bundle**: install it with the official CLI in one command — no manual `cordis.yml` editing required.
+
+```sh
+# Install into the web profile (the default UI profile)
+dsh plugin --profile web add dsh-auto-evolve
+
+# Or into the TUI profile
+dsh plugin --profile tui add dsh-auto-evolve
+```
+
+`dsh plugin add` initializes the profile if needed, installs the package, and automatically adds `dsh-auto-evolve` to the profile's bundle stack (`dsh.profile.bundles`). The bundled `cordis.patch.yml` registers the plugin row with the defaults below; restart `dsh` and the plugin is live.
+
+Local development / source build:
+
+```sh
+git clone https://github.com/lispking/dsh-auto-evolve.git
+cd dsh-auto-evolve
+pnpm install
+pnpm build
+# Install your local checkout into a profile
+dsh plugin --profile web add /absolute/path/to/dsh-auto-evolve
+```
+
+### Custom configuration
+
+The bundle applies a default config; to change it, override the row in your own profile patch (applied after every bundle layer):
+
+```yaml
+# ~/.dsh/profiles/web/cordis.patch.yml
+- id: self-evolve
+  config:
+    mode: auto-apply        # observe | propose | auto-apply
+    observation:
+      toolFailureThreshold: 3
+      repeatThreshold: 3
+      requestErrorThreshold: 3
+      windowMs: 300000
+    proposal:
+      maxProposalsPerTrigger: 1
+      maxEpisodesPerProposal: 5
+      maxPromptChars: 24000
+      maxTokens: 2000
+    budget:
+      maxCostPerCycle: 0       # 0 disables the per-cycle cap
+      dailyBudget: 0           # 0 disables the daily cap
+    validation:
+      maxTrialMs: 30000
+      maxToolCalls: 20
+      maxTrialSteps: 12
+      maxTrialTokens: 8000
+    evolution:
+      stallThreshold: 3
+      stallPauseMs: 1800000
+      cooldownMs: 600000
+```
+
+> Note: a patch **replaces** the row's whole config rather than merging into it, so specify every field you want to keep. The plugin's peer services (storage, LLM, tools, skills) come from the dsh-base/web bundles — no extra setup.
+
+### Modes
+
+| Mode | Behavior |
+|---|---|
+| `observe` | Collect signals, fire triggers, **never propose**. Safe default. |
+| `propose` | Generate and persist candidate mutations when thresholds cross. Candidates await validation/application — manual approval via the `evolve_apply` operator tool, or via the exported API. |
+| `auto-apply` | Run the full loop: observe → propose → validate → apply verified mutations automatically, with automatic rollback when the same failure key recurs after an apply (regression watch). After repeated stalled cycles the loop pauses (convergence) and each failed/rolled-back key enters a cooldown, so it cannot thrash propose → fail → propose. The regression watch is persisted, so applied fixes stay monitored across plugin restarts. |
+
+### Operator tools
+
+The plugin registers a small set of **agent-callable tools** (dsh exposes no
+chat-command framework; in an agent harness the operator surface is tools).
+Ask the agent to inspect or drive the loop — no manual API calls needed:
+
+| Tool | Params | What it does |
+|---|---|---|
+| `evolve_status` | — | Health summary: mode, generation, asset status counts, ledger/observation totals, convergence pause state, regression watch size. |
+| `evolve_candidates` | — | List candidate mutations awaiting validation or manual application. |
+| `evolve_apply` | `assetId` | Apply one candidate immediately (manual approval), registering it live. |
+| `evolve_rollback` | `assetId` | Roll back an applied asset, restoring its previous content as a candidate. |
+| `evolve_cycle` | — | Trigger one cycle manually: materialize candidates (propose) or run the full validate-and-apply loop (auto-apply). |
+
+Availability by mode: all five tools are registered in every mode;
+`evolve_apply` / `evolve_rollback` need the applier (mounted in `propose` and
+`auto-apply`), and `evolve_cycle` needs an LLM provider and rejects in
+`observe` mode.
+
+### Configuration
+
+| Field | Default | Meaning |
+|---|---|---|
+| `mode` | `observe` | Evolution mode (see above). |
+| `observation.toolFailureThreshold` | `3` | Tool-failure burst count that triggers a cycle. |
+| `observation.repeatThreshold` | `3` | Identical-call count treated as a no-progress loop. |
+| `observation.requestErrorThreshold` | `3` | LLM request-error count that triggers a cycle. |
+| `observation.windowMs` | `300000` | Rolling window (ms) over which signal counts aggregate. |
+| `proposal.maxProposalsPerTrigger` | `1` | Max mutations per proposal. |
+| `proposal.maxEpisodesPerProposal` | `5` | Max observations rendered into the proposal prompt. |
+| `proposal.maxPromptChars` | `24000` | Prompt size cap (bounds cost). |
+| `proposal.maxTokens` | `2000` | Max output tokens for one proposal call. |
+| `budget.maxCostPerCycle` | `0` (off) | Max tokens spendable in one cycle: the proposal call plus every trial replay in auto-apply. `0` disables the cap. |
+| `budget.dailyBudget` | `0` (off) | Max tokens spendable in one UTC day across all cycles. `0` disables the cap. |
+| `validation.maxTrialMs` / `maxToolCalls` | `30000` / `20` | Trial wall-clock and tool-call caps. |
+| `validation.maxTrialSteps` / `maxTrialTokens` | `12` / `8000` | Trial model-step and per-request token caps. |
+| `evolution.stallThreshold` | `3` | Consecutive stalled cycles before auto-apply pauses. |
+| `evolution.stallPauseMs` | `1800000` | How long an auto-apply pause lasts (ms) before it resumes. |
+| `evolution.cooldownMs` | `600000` | Per-key cooldown (ms) after a failed or rolled-back cycle. |
+
+## Programmatic API
+
+```ts
+import { SelfEvolveStore, SelfEvolveApplier, runProposalCycle, validateMutations } from 'dsh-auto-evolve'
+
+// Run one proposal cycle (persists candidate assets).
+const materialized = await runProposalCycle(ctx, store, { provider, model, maxTokens: 2000 })
+
+// Validate a candidate: baseline vs trial replay, returns the verdict.
+const { baseline, trial, comparison } = await validateMutations(ctx, {
+  provider,
+  model,
+  episode: 'replay of the failing scenario',
+  mutations: [candidateAsset],
+  bounds: { maxTrialMs: 30_000, maxToolCalls: 20 },
+})
+
+// Apply a validated candidate (registers the skill live) or roll it back.
+await applier.applyCandidate(candidate.id, trialId, 'validated')
+await applier.rollback(candidate.id, 'regression observed')
+```
+
+## Development
+
+```sh
+pnpm build   # tsc + tsdown → lib/
+pnpm test    # vitest (unit + integration over a memory storage backend)
+```
+
+The test suite covers the pure decision logic (metrics comparison, mutation schema, thresholds) and the full wiring (durable store, observation collector, proposal cycle with a scripted LLM adapter, apply/rollback with the real skill registry).
+
+## License
+
+[MIT](LICENSE)

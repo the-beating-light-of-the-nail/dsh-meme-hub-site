@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e235fe6d1593737af9b7900e6c527a9381b3869d/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
+  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/88403eaa76b929f56d48949fb854c19966570e4f/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
 </p>
 
 **In-GUI skill hub for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh).**
@@ -188,13 +188,13 @@ Open **Settings → 技能** (Skill Hub) in the dsh web GUI. Three tabs:
   tags, assign members, and flip a whole scene on/off with one switch.
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e235fe6d1593737af9b7900e6c527a9381b3869d/promo/real-skill-hub-scenes.png" alt="场景 tab" width="560">
+    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/88403eaa76b929f56d48949fb854c19966570e4f/promo/real-skill-hub-scenes.png" alt="场景 tab" width="560">
   </p>
 - **市场 (Market)** — one unified list: built-in curated repos (Add button until added) and your
   custom sources; scan to install, check for updates, update all in one pass.
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/e235fe6d1593737af9b7900e6c527a9381b3869d/promo/real-skill-hub-catalog.png" alt="市场 tab" width="560">
+    <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/88403eaa76b929f56d48949fb854c19966570e4f/promo/real-skill-hub-catalog.png" alt="市场 tab" width="560">
   </p>
 
 Everywhere: **work space field** in the header (enter a project path to see its read-only project
@@ -254,7 +254,9 @@ All endpoints are **loopback-only** (`127.0.0.1`/`localhost`) and JSON.
 | `/api/skill-hub/market/check` | GET | Check market sources for newer releases (throttled). |
 | `/api/skill-hub/market/source/sync` | POST | Align a market source to its pinned ref; returns tracked skills. |
 | `/api/skill-hub/repo?repo=` | GET | Discover importable skills in a GitHub repo. |
-| `/api/skill-hub/repo/import` | POST | Import selected repo skills (records the source + default scene). |
+| `/api/skill-hub/repo/import` | POST | Create an async import job (returns `{jobId, total, totalBytes}`); poll progress below. |
+| `/api/skill-hub/repo/import/progress?jobId=` | GET | Poll a running import job (`{status, done, total, downloadedBytes, totalBytes, bytesPerSecond, current, imported, skipped, failed}`). |
+| `/api/skill-hub/repo/import/cancel` | POST | Cancel a running import job (`{jobId}`). |
 | `/api/skill-hub/sources` | GET | Source records, derived origins/collections, trash. |
 | `/api/skill-hub/sources/check` | POST | Check upstream updates (throttled, 5 min). |
 | `/api/skill-hub/sources/sync` | POST | Sync selected (or all) skills of a source. |

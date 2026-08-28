@@ -14,7 +14,7 @@
 - **伴你成长的羁绊系统**：日常互动与工作 Token 积累均可提升好感，解锁专属亲昵语气与 AI 生成的纪念 CG。
 - **轻量可爱的桌面宠物**：支持常驻屏幕一角，点击即可一键切入 Galgame 界面。
 
-![dsh-whale-galgame 在 DSH Web 中的实际运行界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/docs/screenshots/galgame-overview.jpg)
+![dsh-whale-galgame 在 DSH Web 中的实际运行界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/docs/screenshots/galgame-overview.jpg)
 
 ## 功能
 
@@ -45,14 +45,14 @@
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/maid-left.webp" width="180" alt="DeepSeek 鲸鱼娘默认立绘"><br><strong>DeepSeek · 鲸鱼娘</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/claude-amber-manuscript-mediator-v5.webp" width="180" alt="Claude 模型娘克洛德默认立绘"><br><strong>Claude · 克洛德</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/gpt-recursive-weaver-v7.webp" width="180" alt="GPT 模型娘小吉默认立绘"><br><strong>GPT · 小吉</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/maid-left.webp" width="180" alt="DeepSeek 鲸鱼娘默认立绘"><br><strong>DeepSeek · 鲸鱼娘</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/claude-amber-manuscript-mediator-v5.webp" width="180" alt="Claude 模型娘克洛德默认立绘"><br><strong>Claude · 克洛德</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/gpt-recursive-weaver-v7.webp" width="180" alt="GPT 模型娘小吉默认立绘"><br><strong>GPT · 小吉</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/gemini-dual-prism-translator-v4.webp" width="180" alt="Gemini 模型娘双子默认立绘"><br><strong>Gemini · 双子</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/kimi-lunar-scroll-navigator-v5.webp" width="180" alt="Kimi 模型娘月见默认立绘"><br><strong>Kimi · 月见</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/grok-cosmic-signal-ranger-v5.webp" width="180" alt="Grok 模型娘洛可默认立绘"><br><strong>Grok · 洛可</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/gemini-dual-prism-translator-v4.webp" width="180" alt="Gemini 模型娘双子默认立绘"><br><strong>Gemini · 双子</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/kimi-lunar-scroll-navigator-v5.webp" width="180" alt="Kimi 模型娘月见默认立绘"><br><strong>Kimi · 月见</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/grok-cosmic-signal-ranger-v5.webp" width="180" alt="Grok 模型娘洛可默认立绘"><br><strong>Grok · 洛可</strong></td>
   </tr>
 </table>
 
@@ -60,14 +60,14 @@
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-deepseek-seaside-study.webp" width="260" alt="DeepSeek 鲸鱼娘海边书房可选背景"><br><strong>DeepSeek · 可选替代</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-claude-writing-study.webp" width="260" alt="Claude 写作书房默认背景"><br><strong>Claude</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-gpt-collaboration-workshop.webp" width="260" alt="GPT 协作工坊默认背景"><br><strong>GPT</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/bg-deepseek-seaside-study.webp" width="260" alt="DeepSeek 鲸鱼娘海边书房可选背景"><br><strong>DeepSeek · 可选替代</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/bg-claude-writing-study.webp" width="260" alt="Claude 写作书房默认背景"><br><strong>Claude</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/bg-gpt-collaboration-workshop.webp" width="260" alt="GPT 协作工坊默认背景"><br><strong>GPT</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-gemini-twin-creative-studio.webp" width="260" alt="Gemini 双子创意工作室默认背景"><br><strong>Gemini</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-kimi-moonlit-reading-study.webp" width="260" alt="Kimi 月下阅读室默认背景"><br><strong>Kimi</strong></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/assets/default/bg-grok-electronics-studio.webp" width="260" alt="Grok 电子工作室默认背景"><br><strong>Grok</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/bg-gemini-twin-creative-studio.webp" width="260" alt="Gemini 双子创意工作室默认背景"><br><strong>Gemini</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/bg-kimi-moonlit-reading-study.webp" width="260" alt="Kimi 月下阅读室默认背景"><br><strong>Kimi</strong></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/assets/default/bg-grok-electronics-studio.webp" width="260" alt="Grok 电子工作室默认背景"><br><strong>Grok</strong></td>
   </tr>
 </table>
 
@@ -119,11 +119,11 @@ allowBuilds:
 
 ## 使用与设置
 
-![DSH Web 中的插件配置界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/24afd3bcd1fc0265629f811cb30d650a52c22197/docs/screenshots/plugin-settings.png)
+![DSH Web 中的插件配置界面](https://raw.githubusercontent.com/JAdpp/dsh-whale-galgame/3be8d28bb706e16f7a23ed852bd74941339e6eda/docs/screenshots/plugin-settings.png)
 
 在 Galgame 顶栏可以切换“角色来源”和“实际对话”，也可以上传背景或当前角色的立绘。背景和立绘支持 PNG、JPEG、WebP、AVIF，浏览器端单个文件上限为 12 MB。
 
-在“设置 → 插件 → 插件配置”中可以启停插件、设置默认角色和默认回复模型。关闭插件会暂停 Galgame 对话和好感度结算，但不会删除已有数据。
+在“设置 → 插件 → 鲸鱼娘”中可以启停插件、单独显示或隐藏桌宠、设置默认角色和默认回复模型。关闭“显示桌宠”后，仍可从会话顶部的 `galgame` 页签进入并重新开启；关闭“启用插件”会暂停 Galgame 对话和好感度结算，但不会删除已有数据。
 
 ### 自定义角色设定
 
@@ -148,7 +148,7 @@ allowBuilds:
 
 ### 内置桌宠
 
-桌宠已经内置在本插件中，无需另外安装。新安装时默认开启，显示在 DSH 主界面右下角；点击桌宠会打开 `galgame` 标签页。Galgame 顶栏的“桌宠 · 开/关”是独立开关，只控制桌宠是否显示。“设置 → 插件 → 插件配置”中的“启用插件”控制的是整个插件；关闭后会隐藏桌宠，并暂停 Galgame 对话和好感度结算。
+桌宠已经内置在本插件中，无需另外安装。新安装时默认开启，显示在 DSH 主界面右下角；点击桌宠会打开 `galgame` 标签页。Galgame 顶栏的“桌宠 · 开/关”和“设置 → 插件 → 鲸鱼娘”中的“显示桌宠”会同步控制桌宠是否显示；隐藏后仍可通过 `galgame` 页签或插件设置重新开启。“启用插件”控制的是整个插件；关闭后会隐藏桌宠，并暂停 Galgame 对话和好感度结算。
 
 ## 可选的升级 CG
 
@@ -180,7 +180,7 @@ DASHSCOPE_API_KEY='your-local-key' dsh --profile web
 - 生成升级 CG 时，插件会把文本提示发送到 DashScope。
 - 开启小剧场的联网取材后（默认开启），插件会通过 DSH 的 web 能力发起检索。检索词只由角色对应的模型名与题材词构成，**不包含**你的对话内容、工作区内容或任何 Harness 原文。
 - 检索结果只用于本次小剧场生成；摘要与来源链接会写入小剧场记录（存档内），网页正文不落盘。
-- 在「设置 → 插件 → 插件配置 → 小剧场取材」中选择「只用本地任务类别」即可完全关闭联网，插件不会发起任何检索请求。
+- 在「设置 → 插件 → 鲸鱼娘 → 小剧场取材」中选择「只用本地任务类别」即可完全关闭联网，插件不会发起任何检索请求。
 - 生成合影 CG 时，插件会把角色外观描述与该场小剧场的情境作为文本提示发送到 DashScope；这一步需要你手动点击触发。
 - 用户上传的背景和立绘保存在全局存档中，不会随上述两类外部请求发送。
 - Harness 原文不会写入 Galgame 存档。全局状态只保存固定的类别与状态线索、匿名去重指纹和最近提及时间；外部请求中也只包含固定的类别与状态提示。

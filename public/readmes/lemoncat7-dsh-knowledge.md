@@ -23,15 +23,18 @@
 - SQLite WAL、FTS5 全文搜索、原子事务、完整版本历史和幂等提取任务。
 - 回答前通过 DSH 官方提示组装接口提供有界的挂载库地图，并自动召回最多 3 条达到相关性门槛的摘要；不自动注入完整文档。模型可继续按“`knowledge_base_search` 找库 → `knowledge_search` 搜索指定库 → `knowledge_read` 读取文档”的顺序核对完整内容。
 - 内容回写完全独立于主 Agent：主模型不暴露 `knowledge_write`，普通沉淀和用户明确提出的“写入知识库”都在回答完整结束后由独立提取调用处理；正文不得叙述尝试、拒绝或结果，真实状态只显示在回答下方，也不追加伪用户消息。
-- 用户明确要求时，模型可调用 `knowledge_base_create` 和 `knowledge_base_update` 创建或修改知识库；工具内部跟随当前 Provider 自动写入本地 SQLite 或远程中央服务，模型不传也不猜存储位置。
+- 用户明确要求时，模型可调用 `knowledge_base_create` 和 `knowledge_base_update` 创建或修改知识库，包括描述、标签、回写策略与专用回写模型；工具内部跟随当前 Provider 自动写入本地 SQLite 或远程中央服务，模型不传也不猜存储位置。
 - 创建或修改工具不会自动挂载知识库，也不会回退、双写或同步到另一端；结果会明确返回实际写入的 `local` 或 `remote`。
 - 搜索和读取由服务端按当前会话挂载、项目范围及包含/排除标签强制限权，读取句柄带签名且仅限当前会话。
 - 本地与远程 Provider 使用同一接口；远程模式不做隐式双向同步。
 - DSH“设置 → 插件”提供“知识库连接”卡片，可选择本地来源或填写中央服务地址和只写客户端令牌，保存后实时验证并切换 Provider。
 - Bearer Token 仅保存 SHA-256 摘要，支持 `read / propose / write / admin` 权限及吊销。
 - 认证 HTTP API，可作为其他 DSH 客户端和未来桌面端的中央知识库。
-- 笔记软件式双栏文档界面：左侧以“知识库 → 文档”树形目录浏览和新建，右侧支持 Markdown 编辑与安全预览；已有文档默认预览，新建文档默认编辑。
+- 笔记软件式双栏文档界面：左侧以“知识库 → 文档”树形目录浏览和新建，右侧支持 Markdown 编辑与安全预览；目录按知识库懒加载并分页，只有打开文档时才读取正文。已有文档默认预览，新建文档默认编辑。
 - 每个生效主题对应一篇真实 Markdown 文档；相似知识作为章节或增量内容写入同一文档。创建、改名、保存、归档和删除会同步 SQLite、全文索引、版本历史与物理文件。
+- 独立的笔记工作区：在知识工作区上方提供可无限嵌套的目录树，支持 Markdown 与常见文本文件直接编辑，图片和 PDF 就地浏览，以及任意文件的拖拽移动、复制、重命名和下载。笔记默认不参与知识检索、自动召回或 AI 回写。
+- 知识文档使用独立的“关联笔记”列表引用笔记文档或文件，正文不再插入引用语法。关系绑定稳定编号，笔记移动或改名不会失效；旧 `note://` 引用会在升级时安全回填为结构化关系。
+- 用户明确要求时，AI 可用 `knowledge_note_search` 搜索笔记名称与元数据，再用 `knowledge_note_references` 查看、添加或移除关联。工具不读取笔记正文，且在执行时重新检查会话句柄、挂载范围和写权限。
 - 文档可标记为“已解决”或“已收集完成”。结束后的文档仍参与搜索和召回，但被服务端强制封存为只读；AI 回写、候选审核和人工编辑都必须先重新打开文档。
 - 知识库管理拆分为“知识库”和“项目与会话挂载”两个工作区；支持按名称、描述、标签和模型即时搜索，避免知识库较多时逐张翻找。
 - 随插件安装的响应式 Web 管理台，覆盖概览、文档树与编辑器、AI 候选审核和客户端令牌管理。
@@ -99,7 +102,7 @@ pnpm dsh web
 
 本地管理台默认开启。它使用独立的同源管理接口，不要求开放远程 API，也不要求输入访问令牌；侧栏“知识库”安装后即可使用。任何能访问 DSH Web 的用户都具有本地管理权限，因此把 DSH 暴露到公网时，应继续使用反向代理登录保护整个 DSH 站点。
 
-提取模型默认沿用刚完成回答的 provider/model。可在单个知识库中设置专用回写模型；以下全局配置仅作为兼容性后备：
+提取模型默认沿用刚完成回答的 provider/model。可在单个知识库中设置专用回写模型；“本机回写模型”是当前客户端的最高优先级覆盖，适合中央知识库在不同客户端使用不同模型。实际优先级为：本机覆盖 → 知识库专用模型 → 当前会话模型 → 以下兼容性后备配置：
 
 ```yaml
     extractionProvider: deepseek-official
@@ -137,6 +140,7 @@ pnpm dsh web
 - 在知识库页切换全局“严谨 / 主动”回写策略。
 - 管理当前项目挂载和会话覆盖，设定召回、写入模式与标签范围。
 - 在左侧知识目录中搜索、新建和切换文档，在右侧进行 Markdown 编辑与安全预览；文档区域随窗口自适应，窄屏时知识目录切换为抽屉。
+- 在“笔记工作区”中建立多级目录，直接编辑 Markdown、文本、JSON、YAML、代码和配置文件，并上传、拖放、复制、移动、搜索、就地浏览图片与 PDF；知识文档底部的“关联笔记”栏用于查看、打开、添加和移除资料关系。
 - 查看 AI 提取依据，直接通过、编辑后通过或拒绝候选。
 - 创建、查看和撤销客户端令牌；新令牌原文只显示一次。
 
@@ -173,11 +177,22 @@ pnpm dsh web
 | POST | `/mounts/bulk` | write | 事务型批量挂载与取消 |
 | GET | `/mounts/resolve` | read | 解析项目继承与会话覆盖 |
 | GET | `/documents` | read | 按知识库或正文搜索 Markdown 文档 |
+| GET | `/document-index` | read | 分页读取不含正文的文档目录；支持 `knowledgeBaseId`、`q`、`limit` 和 `cursor` |
 | GET | `/documents/:id` | read | 读取单篇 Markdown 文档 |
 | POST | `/documents/:id/finalize` | write | 标记为已解决或已收集完成并封存 |
 | POST | `/documents/:id/reopen` | write | 重新打开封存文档 |
+| GET | `/notes` | read | 懒加载目录子节点，或使用 `q` 搜索全部笔记文档 |
+| POST | `/notes/folders` | write | 在任意层级创建目录 |
+| POST | `/notes/documents` | write | 创建可编辑的 Markdown 笔记文档 |
+| POST | `/notes/files` | write | 上传原始文件；名称和父目录通过查询参数传入 |
+| GET/PATCH/DELETE | `/notes/:id` | read/write/admin | 读取元数据、重命名或移动、递归删除 |
+| POST | `/notes/:id/copy` | write | 复制文档、文件或完整目录树 |
+| GET/PUT | `/notes/:id/content` | read/write | 读取文件内容，或保存 Markdown 与受支持的文本文件；支持 `?download=1` |
+| GET | `/notes/:id/references` | read | 列出引用该节点或其目录后代的知识文档 |
 | GET/POST | `/entries` | read/write | 列表和直接创建 |
 | GET/PUT/DELETE | `/entries/:id` | read/write/admin | 详情、更新、彻底删除 |
+| GET/POST | `/entries/:id/note-references` | read/write | 查看或添加结构化笔记关联 |
+| DELETE | `/entries/:id/note-references/:noteId` | write | 移除一项笔记关联 |
 | GET | `/entries/:id/versions` | read | 版本历史 |
 | GET/POST | `/candidates` | read/propose | 候选列表和提交 |
 | POST | `/candidates/direct` | propose + write | 原子直写、兼容合并、重复跳过和冲突转审 |
@@ -186,9 +201,11 @@ pnpm dsh web
 
 路径均位于配置的 `apiPrefix` 下。创建令牌时，原始令牌只在响应中返回一次。
 
+笔记文件上传使用请求体原始字节，不使用 Base64 或 multipart；单文件上限为 64 MiB。目录和文件元数据与知识 SQLite 分开保存在 `notes/notes.sqlite`，内容按稳定编号保存在 `notes/objects/`。知识库删除或归档不会删除笔记；仍被知识文档引用的节点及其上级目录默认禁止删除。
+
 ## 远程客户端
 
-先在中央实例的“知识库 → 客户端令牌”中为每台客户端分别创建令牌。普通 DSH 客户端建议选择 `read + propose`；需要直接写入或管理挂载时再增加 `write`。令牌原文只显示一次。
+先在中央实例的“知识库 → 客户端令牌”中为每台客户端分别创建令牌。普通 DSH 客户端建议选择 `read + propose`。`write` 是当前中央服务的全局写权限，同时允许直接写入知识、管理知识库、挂载和笔记；只在客户端确实需要这些能力时授予。令牌原文只显示一次。
 
 其他 DSH 客户端安装本插件后，打开“设置 → 插件 → 知识库连接”，选择“远程”，填写中央实例的知识库 API 地址和客户端令牌，再点“验证并连接”。插件会先验证地址和令牌，成功后立即热切换，并把连接持久化到 DSH 数据目录；令牌不会在页面或控制接口中回显，只能覆盖。
 

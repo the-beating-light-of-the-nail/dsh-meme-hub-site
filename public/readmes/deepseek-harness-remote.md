@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -38,7 +38,7 @@ Return to the same Harness session from whichever device is with you. Harness ke
 ## Features
 
 - Continue active sessions and review their latest progress from another device
-- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2`
+- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2` or `dsh-v0.1.2-alpha.1`
 - Answer questions and permission requests from clients with live conversation controls
 - Open workspaces from another authorized computer on the same account
 - Reuse the native Harness interface instead of maintaining a separate desktop conversation UI
@@ -57,7 +57,7 @@ Linux. Remote is included and enabled by default, so no separate plugin installa
 Install the exact npm version for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote@0.3.34
+dsh plugin --profile web add ds-harness-remote@0.4.0
 ```
 
 Restart Harness after installation.
@@ -81,20 +81,20 @@ Enable **Allow control of this device** in Remote settings to make the current c
 available as a Host.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
 </p>
 
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -105,9 +105,9 @@ Sign in to the Android client with your existing account, select an available co
 open a workspace, and continue the conversation with text or image prompts.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/3f8bd3b17f84fc6d8e04adabe2b078b1bbcd88e2/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/d498952dff79a8b3d7eca2a16bfa8344fd12f43f/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -139,7 +139,21 @@ API. Credential values remain write-only, and Host-local document/open actions a
 
 ## Compatibility
 
-Compatible with DeepSeek Harness `dsh-v0.1.1-rc.2`.
+**Breaking change notice:** Plugin `0.4.0` removes the earlier experimental
+Remote business RPC surface (`sessions.*`, `session.*`, `permissions.respond`,
+`sync.from`). Harness session traffic now only uses the official rc.2
+`ApiProxy` or alpha.1 Typert Remote Gateway, and this plugin does not provide
+an adapter or wire-format translation for the old RPC surface.
+
+Plugin `0.4.0` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
+official `ApiProxy` and `dsh-v0.1.2-alpha.1` through the official Typert Remote
+Gateway. A `0.4.0` Client running rc.2 remains compatible with older rc.2 Hosts
+through the legacy capability fallback.
+
+Both Desktop endpoints must use the same Harness transport generation. Plugin
+`0.4.0` does not translate rc.2 and alpha.1 business models: an alpha.1 Client
+cannot open an rc.2 Host, and an rc.2 Client cannot open an alpha.1 Host. Mixed
+connections are rejected before switching the native UI or mutating a Workspace.
 
 ## Documentation
 

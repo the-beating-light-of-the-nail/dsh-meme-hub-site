@@ -1,7 +1,7 @@
 # dsh-visual-plugin
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/5b7940e28461790ad786c22407df45b881623c6a/assets/deepseek_neon_pixel_whale_transparent.svg" width="240" alt="DeepSeek neon pixel whale">
+  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/7880a9bd25affa5437be977ce166534a070afc73/assets/deepseek_neon_pixel_whale_transparent.svg" width="240" alt="DeepSeek neon pixel whale">
 </p>
 
 <p align="center">
@@ -37,7 +37,7 @@ A plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/5b7940e28461790ad786c22407df45b881623c6a/assets/vision-bridge-flow.svg" width="720" alt="Image and video analysis in the dsh web right panel">
+  <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/7880a9bd25affa5437be977ce166534a070afc73/assets/vision-bridge-flow.svg" width="720" alt="Image and video analysis in the dsh web right panel">
 </p>
 
 ```
@@ -86,7 +86,7 @@ Restart `dsh web`, then:
 
 1. Open **Settings → Plugins → Plugin configuration** and expand the **Visual Media** card. Use **Sidebar** to show or hide the right panel, and adjust the advanced video settings when needed.
 
-   <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/5b7940e28461790ad786c22407df45b881623c6a/assets/vision-bridge-config.png" width="560" alt="Visual Media settings card with video dependencies and advanced processing controls">
+   <img src="https://raw.githubusercontent.com/jyh20030112/dsh-visual-plugin/7880a9bd25affa5437be977ce166534a070afc73/assets/vision-bridge-config.png" width="560" alt="Visual Media settings card with video dependencies and advanced processing controls">
 
 2. Select an image-capable model in DSH; there is no separate vision-model configuration in this plugin.
 3. Send an image. The current model answers natively, and the image panel records the thumbnail and final answer for copying.

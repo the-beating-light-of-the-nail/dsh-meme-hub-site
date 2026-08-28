@@ -11,7 +11,7 @@ dsh plugin --profile web add github:litestartup-com/dsh-api-gateway
 ## Features
 
 - **REST + SSE**: 9 endpoints; token-level streaming (`assistant/chunk`), server closes the stream at `turn_end`
-- **GUI settings card**: Settings → Plugins → Configurable → API Gateway (status, soft on/off, key rotation)
+- **GUI settings card**: Settings → Plugins → Configurable → **dsh-api-gw** (collapsed by default, discloses via the chevron; status, soft on/off, key rotation)
 - **Workspace membership**: API sessions land in real workspaces and show grouped in the sidebar, never under "ungrouped"
 - **Session discovery & adoption**: list all sessions, read any session's full history (read-only), and adopt a GUI session to keep driving it over the API — live co-driving or cold resume with full context
 - **Reasoning split**: replies separate `text` (visible answer) from `reasoning` (thinking), never concatenated
@@ -52,7 +52,7 @@ The plugin is an ordinary Cordis row; you can also compose it by hand. It publis
     defaultWorkspacePath: ''    # fallback directory for auto mode
     allowDiscover: true         # GET /sessions/discover
     allowAdopt: true            # POST /sessions/:id/adopt
-    corsOrigin: '*'             # '*' or an explicit origin / list
+    corsOrigin: '*'             # '*' or an explicit origin / list (list is matched against the request Origin)
     exposeErrors: true          # include internal details in error responses
     sseHeartbeatMs: 30000       # SSE heartbeat interval (0 disables)
     bodyTimeoutMs: 30000        # request body read timeout
@@ -62,46 +62,52 @@ Every key has a schema default — see `examples/cordis.yml` for the annotated r
 
 ## Quick start
 
-```bash
-BASE=http://127.0.0.1:3080/api-gw/v1
-KEY=$(curl -s -X POST $BASE/key | jq -r .apiKey)              # first call claims the key, once
-SID=$(curl -s -X POST $BASE/sessions -H "Authorization: Bearer $KEY" | jq -r .sessionId)
-curl -N $BASE/sessions/$SID/stream -H "Authorization: Bearer $KEY" &    # SSE
-curl -s -X POST $BASE/sessions/$SID/messages \
-  -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" \
-  -d '{"content":"你好，介绍一下你自己"}'
-```
+With DSH running, ask an agent something. The script claims the API key, opens a
+session, sends the prompt and prints the reply token by token:
 
-Windows PowerShell (no extra tools; UTF-8 safe):
+```bash
+./examples/ask.py "introduce yourself"     # any OS, stdlib only
+```
 
 ```powershell
-$BASE = 'http://127.0.0.1:3080/api-gw/v1'
-$KEY  = (Invoke-RestMethod -Method Post "$BASE/key").apiKey
-$SID  = (Invoke-RestMethod -Method Post "$BASE/sessions" -Headers @{ Authorization = "Bearer $KEY" }).sessionId
-$json  = '{"content":"你好，介绍一下你自己"}'
-$bytes = [System.Text.Encoding]::UTF8.GetBytes($json)
-Invoke-RestMethod -Method Post "$BASE/sessions/$SID/messages" `
-  -Headers @{ Authorization = "Bearer $KEY" } -ContentType 'application/json; charset=utf-8' -Body $bytes
+.\examples\ask.ps1 "introduce yourself"    # Windows-native, no extra tools
 ```
 
-> PowerShell 5.1 sends ANSI/GBK by default → garbled Chinese. Use the UTF-8 byte form above (or declare `charset=utf-8`); PowerShell 7 is UTF-8 by default. The server honors the request `Content-Type` charset (default UTF-8, GBK-tolerant). No `jq`? `brew install jq`, or use the Python/PowerShell examples.
+Drop the prompt for interactive mode (many turns, one session). `--help` lists
+everything; the flags you'll actually reach for:
 
-> ⚠️ **In Windows PowerShell, do not inline JSON with `curl.exe -d '{"...":"..."}'`**: PowerShell 5.1 strips the inner double quotes when passing arguments to native programs (a 58-byte JSON measured only 50 bytes on the wire), so the server receives invalid JSON and answers 400 — which `curl -s` hides, making the request look stuck. Either write the body to a file and use `--data-binary "@file"`, or use the Invoke-RestMethod form above (.NET argument passing is unaffected).
+| Flag | Meaning |
+| --- | --- |
+| `-s <id>` | talk to an existing session — including one open in the GUI |
+| `-l` | list every session the gateway can see |
+| `--no-stream` | skip SSE, poll for the final answer |
+| `-c <path>` | working directory (and therefore workspace) of a new session |
 
-Python (httpx):
+The raw protocol, if you'd rather see the wire:
 
-```python
-import httpx, json
-base = "http://127.0.0.1:3080/api-gw/v1"
-key = httpx.post(f"{base}/key").json()["apiKey"]
-h = {"Authorization": f"Bearer {key}"}
-sid = httpx.post(f"{base}/sessions", headers=h).json()["sessionId"]
-httpx.post(f"{base}/sessions/{sid}/messages", headers=h, json={"content": "你好，介绍一下你自己"})
-with httpx.stream("GET", f"{base}/sessions/{sid}/stream", headers=h) as r:
-    for line in r.iter_lines():
-        if line.startswith("data: "):
-            print(json.loads(line[6:])["kind"])
+```bash
+BASE=http://127.0.0.1:3080/api-gw/v1
+KEY=$(curl -s -X POST $BASE/key | jq -r .apiKey)                       # claims the key, once
+SID=$(curl -s -X POST $BASE/sessions -H "Authorization: Bearer $KEY" | jq -r .sessionId)
+curl -sN $BASE/sessions/$SID/stream -H "Authorization: Bearer $KEY" &   # attach before asking
+curl -s -X POST $BASE/sessions/$SID/messages -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"content":"hello"}'         # 202 accepted
 ```
+
+### Client examples
+
+Three readable, self-documenting clients — same flags, same behaviour:
+
+| Script | Needs | Notes |
+| --- | --- | --- |
+| `examples/ask.py` | Python 3.8+ | stdlib only; the reference client |
+| `examples/ask.ps1` | PowerShell 5.1+ | UTF-8 safe on Windows |
+| `examples/ask.sh` | bash 4+, curl, jq | |
+
+Two things they get right that ad-hoc snippets often don't:
+
+- **Attach the stream before sending.** The server ends a stream at `turn_end`, so a client that attaches after the turn finished waits forever; attaching early is free because the first `hello` frame replays the history. Missed the turn entirely? Read `GET /sessions/:id/history`.
+- **Declare the charset.** The server decodes bodies per the request `Content-Type` (UTF-8 default, GBK-tolerant). PowerShell 5.1 otherwise sends ANSI/GBK and mangles non-ASCII prompts, and `curl.exe -d '{"a":"b"}'` under PowerShell 5.1 loses the inner quotes (invalid JSON → 400, silenced by `-s`). Send UTF-8 bytes, or `--data-binary "@file"`.
 
 ## Endpoints
 

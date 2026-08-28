@@ -1,0 +1,318 @@
+# SpecFusion
+
+[![GitHub stars](https://img.shields.io/github/stars/wxkingstar/SpecFusion?style=flat-square)](https://github.com/wxkingstar/SpecFusion/stargazers)
+[![License: MIT](https://img.shields.io/github/license/wxkingstar/SpecFusion?style=flat-square)](LICENSE)
+[![DSH plugin](https://img.shields.io/npm/v/@wxkingstar/specfusion-dsh?style=flat-square&label=DSH%20plugin)](https://www.npmjs.com/package/@wxkingstar/specfusion-dsh)
+[![官网](https://img.shields.io/website?url=https%3A%2F%2Fspecfusion.kingstar.xin&label=官网&style=flat-square)](https://specfusion.kingstar.xin/)
+
+🌐 **官网：[specfusion.kingstar.xin](https://specfusion.kingstar.xin/)**
+
+**在 Claude Code 里直接搜企业微信、飞书、钉钉、淘宝开放平台、小红书、抖音电商开放平台、微信小程序、微信小店、拼多多开放平台、有赞开放平台、微信支付、支付宝开放平台、京东商家开放平台、SHEIN开放平台、得物开放平台、火山引擎、阿里云百炼、泛微 e-teams 开放平台、北森 iTalent 开放平台的 API 文档。**
+
+不用切浏览器，不用翻文档站——输入问题，拿到接口参数，继续写代码。
+
+```
+> 企业微信怎么发应用消息？
+
+  搜索到 3 篇相关文档：
+  1. 发送应用消息 — POST /cgi-bin/message/send
+  2. 接收消息与事件 — 被动回复消息
+  3. 消息类型及数据格式 — text/image/voice/...
+```
+
+## 为什么用 SpecFusion
+
+- **不离开终端** — 写代码时直接问，Claude 帮你查文档、给出接口参数和示例
+- **中文搜索准确** — jieba 分词 + FTS5 全文索引，`发送应用消息`、`access_token`、`40001` 都能搜到
+- **68,000+ 篇文档** — 企业微信 ~2,790 篇 + 飞书 ~4,260 篇 + 钉钉 ~2,760 篇 + 淘宝 ~6,960 篇 + 小红书 ~100 篇 + 抖音电商 ~1,400 篇 + 微信小程序 ~470 篇 + 微信小店 ~490 篇 + 拼多多 ~290 篇 + 有赞 ~1,250 篇 + 微信支付 ~550 篇 + 支付宝 ~600 篇 + 京东 ~6,280 篇 + SHEIN ~250 篇 + 得物 ~270 篇 + 火山引擎ECS ~121 篇 + 火山引擎 ~36,660 篇 + 阿里云百炼 ~1,670 篇 + 泛微 ~560 篇 + 北森 ~1,090 篇，接口参数、错误码、事件订阅全覆盖
+- **零配置** — 云端服务已部署好，安装 Skill 后即可使用，无需自建后端
+
+## 安装
+
+### 方式一：skills CLI（推荐）
+
+自动检测已安装的 Agent，一键**全局安装**到 Claude Code、Codex、Gemini CLI 等：
+
+```bash
+npx skills add wxkingstar/SpecFusion -g -y
+```
+
+> **⚠️ 必须加 `-g` 参数！** 不加 `-g` 会安装到当前目录，只在该目录下生效。加 `-g` 安装到 `~/.claude/skills/`，所有项目都能用。
+
+仅安装到 Claude Code：
+
+```bash
+npx skills add wxkingstar/SpecFusion -g -a claude-code -y
+```
+
+也可以按平台名搜索安装：
+
+```bash
+npx skills find "feishu"      # 搜索飞书相关技能
+npx skills find "taobao"      # 搜索淘宝相关技能
+npx skills find "wecom"       # 搜索企业微信相关技能
+npx skills find "dingtalk"    # 搜索钉钉相关技能
+npx skills find "alipay"      # 搜索支付宝相关技能
+npx skills find "jd"          # 搜索京东相关技能
+# ... 支持所有已接入平台的英文名搜索
+```
+
+### 方式二：DeepSeek Harness 插件
+
+在 DeepSeek Harness 中安装 SpecFusion 插件（自动注册 skill + 5 个原生搜索工具，无需 Bash + curl）：
+
+```bash
+dsh plugin --profile web add @wxkingstar/specfusion-dsh
+```
+
+安装后重启 `dsh web` 即可。插件目录见 [`dsh-plugin/`](dsh-plugin/)。
+
+### 方式三：手动安装
+
+**Claude Code（macOS / Linux）：**
+
+```bash
+curl -fsSL --create-dirs -o ~/.claude/skills/specfusion/SKILL.md \
+  https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md
+```
+
+**Claude Code（Windows PowerShell）：**
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\specfusion" | Out-Null
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md" `
+  -OutFile "$env:USERPROFILE\.claude\skills\specfusion\SKILL.md"
+```
+
+**Cursor（macOS / Linux）：**
+
+```bash
+curl -fsSL --create-dirs -o ~/.cursor/rules/specfusion.mdc \
+  https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md
+```
+
+**Cursor（Windows PowerShell）：**
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.cursor\rules" | Out-Null
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md" `
+  -OutFile "$env:USERPROFILE\.cursor\rules\specfusion.mdc"
+```
+
+安装完成。打开 Claude Code 或 Cursor，开始提问即可。
+
+### 安装后找不到 Skill？
+
+| 问题 | 原因 | 解决方案 |
+|------|------|---------|
+| Claude Code 找不到 | 安装时没加 `-g`，只装到了当前目录 | 重新运行 `npx skills add wxkingstar/SpecFusion -g -y` |
+| Cursor 找不到 | skills CLI 目前不会为 Cursor 创建规则文件 | 用上面的手动安装命令 |
+| 验证是否安装成功 | — | Claude Code: `ls ~/.claude/skills/specfusion/SKILL.md`<br>Cursor: `ls ~/.cursor/rules/specfusion.mdc` |
+
+## 使用方式
+
+**方式一：直接提问**（提到企业微信、飞书、钉钉、淘宝、小红书、抖音电商、微信小程序、微信小店、拼多多、有赞、微信支付、支付宝、京东、SHEIN、得物、火山引擎、百炼、泛微、北森等关键词时自动触发）
+
+```
+> 飞书如何创建审批实例？
+> 企业微信的 access_token 怎么获取？
+> 钉钉怎么发工作通知？
+> 淘宝商品发布接口怎么用？
+> 抖音电商怎么查询订单列表？
+> 微信小程序怎么获取手机号？
+> 微信小店怎么获取订单列表？
+> 拼多多怎么同步订单？
+> 有赞怎么查询交易订单？
+> wecom webhook 怎么发消息？
+> 微信支付JSAPI下单接口怎么调？
+> 支付宝当面付接口怎么用？
+> SHEIN商品发布接口怎么调？
+> 得物开放平台怎么查询订单？
+> 火山引擎ECS怎么创建实例？
+> 百炼千问API怎么调用？
+> 泛微 e-teams 怎么免登获取 accessToken？
+> 北森 iTalent 怎么查询组织单元？
+```
+
+**方式二：使用 `/specfusion` 命令**
+
+```
+> /specfusion 企业微信发送应用消息
+> /specfusion feishu 获取用户列表
+```
+
+## 已接入平台
+
+| 平台 | 文档数量 | 覆盖范围 |
+|------|---------|---------|
+| 企业微信 | ~2,790 | 服务端 API、客户端 API、应用开发 |
+| 飞书 | ~4,260 | 服务端 API、事件订阅、小程序 |
+| 钉钉 | ~2,760 | 企业内部应用、服务端 API、客户端 JSAPI |
+| 淘宝开放平台 | ~6,960 | 商品、交易、物流、店铺、用户等 API |
+| 小红书 | ~100 | 电商开放平台 API（订单、商品、售后、物流等） |
+| 抖音电商开放平台 | ~1,400 | 商品、订单、物流、售后、精选联盟、即时零售等 API |
+| 微信小程序 | ~470 | 服务端 API（登录、用户信息、小程序码、客服、数据分析、安全、物流等） |
+| 微信小店 | ~490 | 商品管理、订单管理、售后管理、物流发货、资金结算、营销优惠券等 API |
+| 拼多多开放平台 | ~290 | 订单、商品、物流、售后、营销、店铺、虚拟类目、多多进宝等 API |
+| 有赞开放平台 | ~1,250 | 用户、会员、商品、交易、物流、营销、店铺、分销、财务、美业等 API |
+| 微信支付 | ~550 | JSAPI/APP/H5/Native/小程序支付、退款、分账、合单支付、代金券、商家转账等 API |
+| 支付宝开放平台 | ~600 | 当面付、APP支付、手机网站支付、电脑网站支付、资金、会员、营销、安全等 API |
+| 京东商家开放平台 | ~6,280 | 商品、订单、物流、售后、促销、店铺、数据、发票、供应商等 API |
+| SHEIN开放平台 | ~250 | 密钥授权、商品、订单、退货退款、采购单、库存、财务、物流、Webhook 等 API |
+| 得物开放平台 | ~270 | 商品、订单、售后、出价、入仓、开票、文件、对账单等 API |
+| 火山引擎云服务器 | ~121 | 实例、镜像、密钥对、安全组、地域、部署集、专有宿主机、云助手等 API |
+| 火山引擎 | ~36,660 | 179 个云产品文档：计算、AI、网络、存储、数据库、容器、安全、CDN、视频云、大数据等 |
+| 阿里云百炼 | ~1,670 | 千问大模型、DashScope SDK、OpenAI兼容接口、语音合成/识别、图像/视频生成、应用开发等 |
+| 泛微 e-teams 开放平台 | ~560 | 认证免登、组织架构、人员、工作流程、业务表单、任务、考勤、CRM、订单、文档、日程等 API |
+| 北森 iTalent 开放平台 | ~1,090 | 招聘、组织员工、假勤、薪酬、绩效、目标、学习云、干部管理、360评估、PaaS 平台等 API |
+
+## 仅在当前项目安装
+
+如果只想在某个项目中使用，可以安装到项目目录（不加 `-g`）：
+
+```bash
+# 在项目根目录下运行
+npx skills add wxkingstar/SpecFusion -y
+```
+
+或手动安装（将 `~` 换成 `.`）：
+
+**Claude Code（macOS / Linux）：**
+```bash
+curl -fsSL --create-dirs -o .claude/skills/specfusion/SKILL.md \
+  https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md
+```
+
+**Claude Code（Windows PowerShell）：**
+```powershell
+New-Item -ItemType Directory -Force -Path ".claude\skills\specfusion" | Out-Null
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md" `
+  -OutFile ".claude\skills\specfusion\SKILL.md"
+```
+
+**Cursor：**
+```bash
+curl -fsSL --create-dirs -o .cursor/rules/specfusion.mdc \
+  https://raw.githubusercontent.com/wxkingstar/SpecFusion/main/specfusion/SKILL.md
+```
+
+---
+
+## 自部署
+
+默认使用公共云端服务，无需自部署。如果需要私有化部署或自定义数据源，可以自建。
+
+### Docker 部署
+
+```bash
+docker build -t specfusion .
+
+docker run -d \
+  -p 3456:3456 \
+  -v $(pwd)/data:/app/data \
+  -e ADMIN_TOKEN=your-secret-token \
+  --name specfusion \
+  specfusion
+```
+
+启动后将 Skill 中的 API 地址替换为你的实例：
+
+```bash
+# macOS
+sed -i '' 's|https://specfusion.inagora.org/api|http://your-host:3456/api|g' \
+  ~/.claude/skills/specfusion/SKILL.md
+
+# Linux
+sed -i 's|https://specfusion.inagora.org/api|http://your-host:3456/api|g' \
+  ~/.claude/skills/specfusion/SKILL.md
+```
+
+### 环境变量
+
+| 变量 | 默认值 | 说明 |
+|------|--------|------|
+| `PORT` | `3456` | 服务端口 |
+| `DB_PATH` | `./data/specfusion.db` | SQLite 数据库路径 |
+| `ADMIN_TOKEN` | `dev-token` | Admin API 认证令牌 |
+
+### 文档同步
+
+```bash
+npm install
+npm run sync -- --source feishu    # 同步飞书文档
+npm run sync -- --source wecom     # 同步企业微信文档（需要 ego lite 桥接）
+npm run sync -- --source dingtalk  # 同步钉钉文档（需要 ego lite 桥接）
+npm run sync -- --source taobao    # 同步淘宝开放平台文档
+npm run sync -- --source xiaohongshu  # 同步小红书文档（需要 ego lite 桥接）
+npm run sync -- --source douyin    # 同步抖音电商开放平台文档
+npm run sync -- --source wechat-miniprogram  # 同步微信小程序文档
+npm run sync -- --source wechat-shop  # 同步微信小店文档
+npm run sync -- --source pinduoduo   # 同步拼多多开放平台文档（需先跑 scripts/pdd-refresh.sh）
+npm run sync -- --source youzan      # 同步有赞开放平台文档
+npm run sync -- --source wechat-pay  # 同步微信支付文档
+npm run sync -- --source alipay      # 同步支付宝开放平台文档
+npm run sync -- --source jd          # 同步京东商家开放平台文档（需要 ego lite 桥接）
+npm run sync -- --source shein       # 同步SHEIN开放平台文档
+npm run sync -- --source dewu        # 同步得物开放平台文档（需要 ego lite 桥接）
+npm run sync -- --source volcengine-ecs  # 同步火山引擎云服务器文档
+npm run sync -- --source volcengine  # 同步火山引擎文档中心
+npm run sync -- --source bailian     # 同步阿里云百炼文档
+npm run sync -- --source weaver      # 同步泛微 e-teams 开放平台文档
+npm run sync -- --source beisen      # 同步北森 iTalent 开放平台文档
+```
+
+同步完成后数据库文件位于 `data/specfusion.db`。
+
+### 本地开发
+
+```bash
+npm install
+npm run dev     # 启动开发服务器（热重载）
+npm run build   # 构建
+```
+
+## API 参考
+
+所有 API 返回 Markdown 纯文本（`Content-Type: text/markdown`），可直接阅读。
+
+Base URL: `http://localhost:3456/api`（自部署）
+
+| 端点 | 说明 |
+|------|------|
+| `GET /api/search?q=关键词&source=wecom&limit=5` | 搜索文档 |
+| `GET /api/doc/{doc_id}` | 获取文档全文 |
+| `GET /api/doc/{doc_id}?summary=true` | 获取文档摘要 |
+| `GET /api/sources` | 查看已接入文档源 |
+| `GET /api/categories?source=wecom` | 浏览文档分类 |
+| `GET /api/recent?source=wecom&days=7` | 最近更新的文档 |
+| `GET /api/health` | 健康检查（返回 JSON） |
+
+### 搜索参数
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `q` | 是 | 搜索关键词（接口名、API 路径、错误码、功能概念） |
+| `source` | 否 | 文档来源：`wecom` / `feishu` / `dingtalk` / `taobao` / `xiaohongshu` / `douyin` / `wechat-miniprogram` / `wechat-shop` / `pinduoduo` / `youzan` / `wechat-pay` / `alipay` / `jd` / `shein` / `dewu` / `volcengine-ecs` / `volcengine` / `bailian` / `weaver` / `beisen` |
+| `mode` | 否 | 开发模式（仅企业微信）：`internal` / `third_party` / `service_provider` |
+| `limit` | 否 | 返回数量，默认 5，最大 20 |
+
+## 技术栈
+
+- **API**: Node.js + Fastify + better-sqlite3 + FTS5
+- **中文分词**: nodejieba
+- **Scraper**: cheerio + [ego lite](https://lite.ego.app/)（浏览器抓取）
+- **构建**: tsup + tsx
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request。
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/xxx`)
+3. 提交更改 (`git commit -m 'Add xxx'`)
+4. 推送分支 (`git push origin feature/xxx`)
+5. 创建 Pull Request
+
+## License
+
+[MIT](LICENSE)

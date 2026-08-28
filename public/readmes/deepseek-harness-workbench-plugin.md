@@ -1,5 +1,5 @@
 
-![preview](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/social-preview.jpg)
+![preview](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/social-preview.jpg)
 
 A workbench plugin for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI. After Workbench is opened in Conversation, chat stays on the left. Two columns appear on the right: the editor (**Agent Control Plane**, syntax highlighting, and **smart terminal**) and the side dock for files, Git, the **Usage** panel, and the **Ultra Slash** panel.
 
@@ -37,14 +37,14 @@ Look for these first:
 
 The workbench uses a three-column layout. Conversation stays on the left. The two columns on the right are the capability area: editor (**Agent Control Plane**, syntax highlighting, smart terminal) in the center; file tree, Git, Usage, and Ultra Slash on the far right. The right dock tabs are **Files**, **Source Control**, **Usage**, and **Ultra Slash**. The editor’s first tab is **Control Plane** by default.
 
-![screen_0](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_0.png)
-![screen_1](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_1.png)
-![screen_2](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_2.png)
-![screen_3](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_3.png)
-![screen_4](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_4.png)
-![screen_5](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_5.png)
-![screen_6](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_6.png)
-![screen_7](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/96e99da1dbb7b1653dcbbbf35043bad82aec079b/docs/img/screen_shot_7.png)
+![screen_0](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_0.png)
+![screen_1](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_1.png)
+![screen_2](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_2.png)
+![screen_3](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_3.png)
+![screen_4](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_4.png)
+![screen_5](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_5.png)
+![screen_6](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_6.png)
+![screen_7](https://raw.githubusercontent.com/loadingvx/deepseek-harness-workbench-plugin/960b9d4725a0b7174110426f75cce02ef05213ff/docs/img/screen_shot_7.png)
 
 
 ## Core capabilities
@@ -342,11 +342,11 @@ Compilation runs on the workbench host (TSX → JS); the browser mounts the resu
 | Item | Description |
 | --- | --- |
 | Package | [`dsh-workbench-plugin`](https://www.npmjs.com/package/dsh-workbench-plugin) |
-| Version | **0.1.31** (npm tag `latest`) |
+| Version | **0.1.32** (npm tag `latest`) |
 | Registry | https://registry.npmjs.org |
 
 ```
-+ dsh-workbench-plugin@0.1.31
++ dsh-workbench-plugin@0.1.32
 ```
 
 Maintainers publish npm with `bash devops/release.sh`. The script uses the existing `npm login` session on this machine. Credentials must not be stored in the repository.
@@ -361,13 +361,13 @@ The app market installs from GitHub (`github:loadingvx/deepseek-harness-workbenc
 
 ### Procedure
 
-1. Install the plugin (pin the version; do not omit `@0.1.31`):
+1. Install the plugin (pin the version; do not omit `@0.1.32`):
 
 ```bash
-dsh plugin --profile web add dsh-workbench-plugin@0.1.31
+dsh plugin --profile web add dsh-workbench-plugin@0.1.32
 ```
 
-`dsh plugin add` is implemented with pnpm. pnpm 11 waits **24 hours** after a version is published before it will pick it as `latest`. A bare `dsh-workbench-plugin` (no `@version`) can therefore install **0.1.0** and still exit 0. Pinning `@0.1.31` requests that release explicitly.
+`dsh plugin add` is implemented with pnpm. pnpm 11 waits **24 hours** after a version is published before it will pick it as `latest`. A bare `dsh-workbench-plugin` (no `@version`) can therefore install **0.1.0** and still exit 0. Pinning `@0.1.32` requests that release explicitly.
 
 If a pinned install is still refused as too new, add this to `~/.dsh/profiles/web/pnpm-workspace.yaml` and run the command again:
 
@@ -403,7 +403,7 @@ If the registry lookup fails, no notice is shown. Dismissing the notice skips on
 
 ### Upgrading from 0.1.1
 
-**Version 0.1.1 does not include the upgrade checker and will not display the notice.** Install 0.1.31 manually using the command above. Later releases will prompt in the UI.
+**Version 0.1.1 does not include the upgrade checker and will not display the notice.** Install 0.1.32 manually using the command above. Later releases will prompt in the UI.
 
 ## Workspace terminal
 

@@ -120,7 +120,7 @@ Agent one-glance guide: [mcp/AGENT_GUIDE.md](mcp/AGENT_GUIDE.md)
 
 ## 🖥️ UI Workbench (dsh-quant-ui)
 
-![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b5967d2699724ea1f2ba1d3501793b5d540b9440/demos/ui-demo-preview.png)
+![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/7309d6c810e5b34ddc7d07c84cb18b27c9dbf4bf/demos/ui-demo-preview.png)
 
 [dsh-quant-ui](https://github.com/pengpengyi92/dsh-quant-ui): candlesticks + MA
 overlays + trade markers, equity curves, fund NAV / management-fee / performance-fee
@@ -440,7 +440,7 @@ cd deepseek-harness && pnpm exec tsx ../quant-indicators/consumer-test/boot.ts
 
 If dsh-quant helps your research, a ⭐ makes the project visible to more dsh users.
 
-<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b5967d2699724ea1f2ba1d3501793b5d540b9440/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/7309d6c810e5b34ddc7d07c84cb18b27c9dbf4bf/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
 
 This whale stands for DeepSeek Harness (dsh) — trading on its holographic screen 🐋
 

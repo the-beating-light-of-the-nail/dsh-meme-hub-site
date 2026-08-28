@@ -6,7 +6,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@huanlin/dsh-plugin-ya-workspace-sidebar)](https://www.npmjs.com/package/@huanlin/dsh-plugin-ya-workspace-sidebar)
 
-![cover](https://raw.githubusercontent.com/HuanLinOTO/dsh-plugin-ya-workspace-sidebar/e5e97a5629cea614857918428af29ecac5528b88/assets/cover.webp)
+![cover](https://raw.githubusercontent.com/HuanLinOTO/dsh-plugin-ya-workspace-sidebar/9f5e1076157a513e6f778efa4864df1b74e05428/assets/cover.webp)
 
 DSH Web 工作区侧栏替代插件。顶部固定展示 5 条全局最近会话，下方使用 Workspace → Session 二级菜单和面包屑导航；选中工作区的会话按本地日历日期分组（今天/昨天/更早），搜索、添加工作区、重命名、删除、Fork 与归档继续使用 DSH 原生 Host 能力。
 

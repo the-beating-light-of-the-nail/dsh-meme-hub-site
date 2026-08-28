@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/f23c5989d2dabe3ccbc49ec97286bbc21060a95d/assets/patchouli-banner-en.png">
+  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/04a82a1adca7a37c1a934400a4586c01dced77dc/assets/patchouli-banner-en.png">
 
   <h1>Patchouli</h1>
   <p>

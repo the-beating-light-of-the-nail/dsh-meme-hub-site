@@ -12,7 +12,7 @@ Migrate your Claude Code setup into [DeepSeek Harness (DSH)](https://github.com/
 
 Preview instructions, skills, commands, agents, hooks, permission rules, and MCP servers before DSH writes anything. Existing destinations stay untouched.
 
-![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/c793f4f1827399a6a8ef0b817d1fb0f98db3ca62/docs/settings-demo.gif)
+![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/6ef32c78540f47a3b88a0c345553d66087052bd7/docs/settings-demo.gif)
 
 This GIF uses two screenshots from a live DSH `0.1.1-rc.2` run. The first shows the dry run and the second shows the applied result.
 

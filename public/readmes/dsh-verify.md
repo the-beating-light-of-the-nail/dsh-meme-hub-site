@@ -19,15 +19,15 @@
 
 `dsh-verify` opens a real browser and checks — so you never have to take the agent's word for it.
 
-![dsh-verify — Agents say done. The browser proves it.](https://raw.githubusercontent.com/263311487-ux/dsh-verify/a6948be3dc3fba213a4b21c944cc4775a8944743/assets/social-card.png)
+![dsh-verify — Agents say done. The browser proves it.](https://raw.githubusercontent.com/263311487-ux/dsh-verify/0f081011be7a4cc003f10838a7f3136252595856/assets/social-card.png)
 
-![dsh-verify in action](https://raw.githubusercontent.com/263311487-ux/dsh-verify/a6948be3dc3fba213a4b21c944cc4775a8944743/assets/hero.gif)
+![dsh-verify in action](https://raw.githubusercontent.com/263311487-ux/dsh-verify/0f081011be7a4cc003f10838a7f3136252595856/assets/hero.gif)
 
 The quality gate for **agent-built web apps**. Works with any agent — DeepSeek Harness (dsh), Claude Code, Cursor, Copilot, Codex — and with any CI. You write what a human would check in a browser; a real browser executes it and returns a `PASS`/`FAIL` verdict with receipts (screenshots + diff images).
 
 No LLM judges the outcome. **The browser is the judge.**
 
-![Same task, same AI, two builds — only a real browser tells the difference](https://raw.githubusercontent.com/263311487-ux/dsh-verify/a6948be3dc3fba213a4b21c944cc4775a8944743/assets/wow-compare.png)
+![Same task, same AI, two builds — only a real browser tells the difference](https://raw.githubusercontent.com/263311487-ux/dsh-verify/0f081011be7a4cc003f10838a7f3136252595856/assets/wow-compare.png)
 
 Same task. Same AI. Two builds. One missing CSS rule — the agent's self-review passed, a real browser caught it.
 
@@ -139,7 +139,7 @@ Top-level fields: `title`, `serve` (static dir) or `base` (target URL), `browser
 
 A self-contained HTML report — every step with a pass/fail badge, selector, and detail, plus screenshots:
 
-![dsh-verify report](https://raw.githubusercontent.com/263311487-ux/dsh-verify/a6948be3dc3fba213a4b21c944cc4775a8944743/assets/report-screenshot.png)
+![dsh-verify report](https://raw.githubusercontent.com/263311487-ux/dsh-verify/0f081011be7a4cc003f10838a7f3136252595856/assets/report-screenshot.png)
 
 ## Agent Arena — bring your agent
 
@@ -197,6 +197,7 @@ Add a spec, wire the GitHub Action, and the badge is earned, not claimed. See [d
 ## Related
 
 - [dsh-doublecheck](https://github.com/PerryLink/dsh-doublecheck) — delivery quality gate for DeepSeek Harness (/gate): requirements grill + evidence discipline. Complementary pair: /gate keeps the evidence honest, dsh-verify keeps the browser honest.
+- [falsify](https://github.com/263311487-ux/falsify) — the scientific thinking protocol for AI agents (hypothesis → falsify → evidence → calibrated conclusion). The pair: falsify catches the wrong conclusion, dsh-verify catches the broken output.
 - Featured in the DeepSeek Harness community — [Show Your Plugins: dsh-verify](https://github.com/deepseek-ai/deepseek-harness/discussions/2806) (48-run Agent Arena results in-thread)
 
 ## License

@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a65000625361633a5fe1517922778130e2ba9ef5/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -28,7 +28,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a65000625361633a5fe1517922778130e2ba9ef5/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a65000625361633a5fe1517922778130e2ba9ef5/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a65000625361633a5fe1517922778130e2ba9ef5/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/settings.png) |
 
 ## 安装
 
@@ -48,6 +48,16 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 
 ## 更新内容
 
+### v2.2.0
+
+**修复**
+
+- 修复 v2.1.5 版本安装后 node 报错问题，绷不住了（#31 by @Yurzi）
+- 手机上点抽屉历史会话仍可能「抽屉收起但对话不打开」（#32 by @chstd）
+- 上游子代理插件 0.1.0-rc.6 起芯片「点开一闪即退」（PR #33 by @EricJin2002）
+- 手机端点插件市场搜索框触发 iOS 强制放大且无法恢复：搜索框字号提到 16px（PR #35 by @BuvkB）
+- 刘海屏上界面能被上滑抬起、输入框下方露白、最新消息被压住
+
 ### v2.1.5
 
 **新功能**
@@ -60,10 +70,6 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 - 触摸点选会话后抽屉正常自动收起
 - 输入区右侧模型条、上下文圈、发送键固定贴近右侧，不再漂移
 - dsh-web-ui 设置页错误显示
-
-**修复**
-
-- 手机上点抽屉里的历史会话大概率「抽屉收起但对话不打开」：iOS Safari 等浏览器会整体抑制 tap 的合成 click（pointerup 即收抽屉使行在 click 派发前移出手指下方、轻扫漂移被判定为 pan 等场景）。抽屉导航关闭改为自愈式——pointerup 后下一宏任务检查真实 click 是否已处理，未处理则对该行补发一个冒泡 click，React 委托监听照常执行行 onClick 完成跳转，同一 click 冒泡经 document 捕获处理器收起抽屉；真实 click 正常到达时零干预，桌面端不受影响
 
 ### v2.1.1
 

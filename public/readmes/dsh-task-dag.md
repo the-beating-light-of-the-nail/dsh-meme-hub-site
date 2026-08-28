@@ -17,7 +17,7 @@
   English · <a href="README.zh.md">中文</a>
 </p>
 
-![dsh-task-dag visual overview](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/2d1598ac4b8bf44f36092ef391eacd772bef8e2c/docs/task-dag-preview.svg)
+![dsh-task-dag visual overview](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/3aeabd1c9e2ec86c4804c4581ee1b2531b2cea1f/docs/task-dag-preview.svg)
 
 ## At a glance
 
@@ -43,11 +43,11 @@ Additional behavior:
 
 Captured from a running DSH Web Session with labels anonymized. The panel, controls, layout, and graph presentation are the actual linked plugin UI.
 
-![dsh-task-dag running in DSH Web](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/2d1598ac4b8bf44f36092ef391eacd772bef8e2c/docs/screenshot.png)
+![dsh-task-dag running in DSH Web](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/3aeabd1c9e2ec86c4804c4581ee1b2531b2cea1f/docs/screenshot.png)
 
 Select a Workflow run to open the v1.4.0 definition inspector beside the live topology:
 
-![Workflow definition code preview in dsh-task-dag](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/2d1598ac4b8bf44f36092ef391eacd772bef8e2c/docs/workflow-definition.png)
+![Workflow definition code preview in dsh-task-dag](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/3aeabd1c9e2ec86c4804c4581ee1b2531b2cea1f/docs/workflow-definition.png)
 
 ## Verified live scenarios
 
@@ -97,7 +97,7 @@ The dialog does not trap focus and does not provide keyboard dragging for the pa
 
 ## Architecture
 
-![dsh-task-dag projection architecture](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/2d1598ac4b8bf44f36092ef391eacd772bef8e2c/docs/architecture.svg)
+![dsh-task-dag projection architecture](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/3aeabd1c9e2ec86c4804c4581ee1b2531b2cea1f/docs/architecture.svg)
 
 The browser plugin combines five Client-facing sources:
 

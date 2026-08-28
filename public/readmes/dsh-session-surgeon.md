@@ -53,7 +53,7 @@ Real crash families from official Discussions:
 - [#436](https://github.com/deepseek-ai/deepseek-harness/discussions/436) lone UTF-16 surrogate → permanent HTTP 400
 - [#674](https://github.com/deepseek-ai/deepseek-harness/discussions/674) leftover `.tmp` plaintext
 
-Default repair is dry-run. `--apply` writes `.bak.<utc>` first, never invents missing seqs, and fills missing message ids without dropping events.
+Default repair is dry-run. `--apply` writes `.bak.<utc>` first, never invents missing seqs, and fills missing message ids without dropping events. If a crash-recovery closer collided with a still-live writer (#1586), repair drops those synthetic closers and keeps the live tail instead of truncating at the first gap.
 
 ## CLI
 
@@ -99,7 +99,7 @@ DSH has **session id + optional same-session goal id**, not a Codex-style resuma
 
 ## Safety
 
-- Default is read-only. Write paths require `--apply` and write `.bak.<utc>` first.
+- Default is read-only. Write paths require `--apply` and write `.bak.<utc>` first. Windows: fsync on the read-only backup handle used to abort with `EPERM` after the copy already succeeded; `--apply` now treats that as best-effort.
 - Never commit raw files from `~/.dsh/sessions` (they contain user text and secrets).
 - Do **not** put `@deepseek-ai/dsh-tools` in `dependencies`.
 - Export redacts `sk-*`, PEM blocks, and home paths unless `--no-redact`.

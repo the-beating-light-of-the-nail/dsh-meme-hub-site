@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-DeepSeek%20Harness-111827)](https://github.com/dickpy/dsh-imagegen)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/f56c32c58f39356575186eedd2f1d15578177c60/docs/images/imagegen-overview.png" alt="dsh-imagegen AI image studio" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/imagegen-overview.png" alt="dsh-imagegen AI image studio" width="100%" />
 </p>
 
 > 让 DeepSeek Harness 中的 Agent 不只会回答，还能把想法变成图片，并围绕成图继续迭代。
@@ -45,7 +45,7 @@
 
 接着，你可以基于结果继续提出修改。Agent 会携带该图片的引用调用图生图，不必重新上传文件，也不必重新描述全部上下文。它适合快速探索视觉方向、反复打磨 UI 视觉稿、海报或产品素材。
 
-![Agent 在对话中提交海报生成任务，成图作为工具结果显示](https://raw.githubusercontent.com/dickpy/dsh-imagegen/f56c32c58f39356575186eedd2f1d15578177c60/docs/images/agent-chat-poster-workflow.png)
+![Agent 在对话中提交海报生成任务，成图作为工具结果显示](https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/agent-chat-poster-workflow.png)
 
 ### 可直接使用的案例提示词
 
@@ -79,14 +79,16 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 
 同一个提示词往往在不同模型上呈现出完全不同的构图、质感与文字处理。打开“多模型对比”，选择多个已配置模型后，插件会以相同参数提交任务，并在画布和全屏预览中将结果并列展示。这样能更快选出真正适合当前任务的模型，而不是凭感觉反复试错。
 
-![gpt-image-2 与 grok-imagine-image 的多模型并列结果对比](https://raw.githubusercontent.com/dickpy/dsh-imagegen/f56c32c58f39356575186eedd2f1d15578177c60/docs/images/multi-model-comparison.png)
+![gpt-image-2、grok-imagine-image 与 doubao-seedream 的三模型并列结果对比](https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/multi-model-comparison.png)
 
 <a id="studio"></a>
 ## 原生图像工作台
 
-侧边栏打开后，参数、生成结果、后台任务和历史记录处于同一工作区。文生图和图生图均支持尺寸、清晰度、数量与细节等级；结果可下载、全屏查看、缩放、前后切换、复制提示词或一键作为下一次图生图的参考。
+点击“新会话 / 生图”中的“生图” Tab 后，工作区按“历史记录 | 生图区 | AI 对话”排列。历史记录独立显示在左侧，生图参数和结果集中在中间，对话区独立显示在右侧；拖动两区之间的分隔线即可让对话区更宽或更窄。画廊模式仍保留左侧历史记录，点击历史记录会回到文生图并载入对应图片。文生图和图生图均支持尺寸、清晰度、数量与细节等级；结果可下载、全屏查看、缩放、前后切换、复制提示词、加入对话，或一键作为下一次图生图的参考。
 
-![AI 生图工作台四图结果布局](https://raw.githubusercontent.com/dickpy/dsh-imagegen/f56c32c58f39356575186eedd2f1d15578177c60/docs/images/image-generation-studio-four.png)
+![三栏工作台：左侧历史记录、中间生图区、右侧 AI 对话](https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/image-generation-studio-three-column.png)
+
+![AI 生图工作台四图结果布局](https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/image-generation-studio-four.png)
 
 **让首次生成更可控**
 
@@ -100,7 +102,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 
 满意的图片可从结果卡、全屏预览或历史记录一键加入画廊。画廊不是横向缩略图条，而是为持续积累作品设计的纵向工作区：左侧筛选，右侧瀑布流或整齐网格，点击任意图片即可打开大图预览。
 
-![画廊工作区：分类筛选、瀑布流和大图预览](https://raw.githubusercontent.com/dickpy/dsh-imagegen/f56c32c58f39356575186eedd2f1d15578177c60/docs/images/gallery-workspace.png)
+![画廊工作区：分类筛选、瀑布流和大图预览](https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/gallery-workspace.png)
 
 - 关键词搜索，按生成模式、模型、比例和自建标签过滤。
 - 标签可新建、编辑和删除；标签入口会同步出现在左侧筛选区。
@@ -110,7 +112,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 <a id="quick-start"></a>
 ## 快速开始
 
-前置条件：已安装 [DeepSeek Harness](https://github.com/deepseek-ai/DeepSeek-Harness) 和 Node.js 20+。安装完成后重启 `dsh web`，侧边栏会出现“AI 生图”。
+前置条件：已安装 [DeepSeek Harness](https://github.com/deepseek-ai/DeepSeek-Harness) 和 Node.js 20+。安装完成后重启 `dsh web`，侧边栏的“新会话”入口会显示“新会话 / 生图”双 Tab。
 
 ### 一条命令安装
 
@@ -118,23 +120,27 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 dsh plugin --profile web add @dickpy/dsh-imagegen
 ```
 
-Windows 如遇 PowerShell 脚本策略限制，请使用 `dsh.cmd`。安装后进入“设置 → 插件 → AI 生图”，填写 API 地址和密钥，检测并选中可用模型后保存。
+Windows 如遇 PowerShell 脚本策略限制，请使用 `dsh.cmd`。安装后点击“生图” Tab 进入工作区；配置仍在“设置 → 插件 → AI 生图”中，填写 API 地址和密钥，检测并选中可用模型后保存。
 
 ### 让 Agent 帮你安装
 
 将下面内容直接发给 DSH、Codex 或其他 coding agent：
 
 ```text
-用 dsh plugin --profile web add @dickpy/dsh-imagegen 安装 AI 生图插件。完成后重启 dsh web，并打开设置中的 AI 生图配置。
+用 dsh plugin --profile web add @dickpy/dsh-imagegen 安装 AI 生图插件。完成后重启 dsh web，点击“新会话 / 生图”中的“生图” Tab，并打开设置中的 AI 生图配置。
 ```
 
 ### 从 Release 安装
 
-从 [GitHub Releases](https://github.com/dickpy/dsh-imagegen/releases) 下载 tgz 后执行：
+从 [GitHub Releases](https://github.com/dickpy/dsh-imagegen/releases) 下载目标版本的 tgz 后执行：
 
 ```bash
-dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.3.0.tgz
+dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 ```
+
+### 升级与回滚
+
+已通过 npm 安装的用户，可以重复执行上面的 `add` 命令获取最新版；升级后请重启 `dsh web`。如果需要固定版本，可使用 `@dickpy/dsh-imagegen@<版本号>` 或指定 Release tgz。插件的渠道配置、历史记录和画廊数据由 DSH 宿主保存，正常升级不会清空；如需回滚，请安装目标版本并再次重启宿主。
 
 <a id="configuration"></a>
 ## 配置模型
@@ -146,19 +152,20 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.3.0.tgz
 | 提供方 | 预置提供方可直接选择；也可以添加自定义渠道。 |
 | API 地址 | OpenAI 兼容接口根地址，例如 `https://api.openai.com/v1`。插件会自动追加图像接口路径。 |
 | API 密钥 | 每个提供方单独配置，密钥仅保存在 DSH 宿主侧，浏览器与 Agent 都不会获得明文。 |
-| 模型目录 | 保存地址和密钥后点击“检测可用模型”；勾选实际支持生图的项目。没有 `/models` 的网关可手动添加，并可设置显示别名。 |
+| 模型目录 | 保存地址和密钥后点击“检测可用模型”；检测结果会优先过滤聊天、Embedding 等非图片模型，再勾选实际支持生图的项目。没有 `/models` 的网关可手动添加，并可设置显示别名。 |
 | 提示词增强模型 | 可选。点击“获取可用模型”，选择支持 `/chat/completions` 的模型；通常可复用生图 API 凭据。 |
 | 允许 Agent 调用生图 | 默认开启。关闭后，Agent 不能提交、查询和取消任务，侧边栏工作台不受影响。 |
 
-> `/models` 的标准响应通常不含“是否支持生图”的能力字段，因此它提供的是候选列表，不是兼容性认证。请只选择你的上游实际支持的生图模型。
+> `/models` 的标准响应通常不含“是否支持生图”的能力字段，因此插件会结合能力字段和模型 ID 做候选过滤，但仍不是兼容性认证。请只选择你的上游实际支持的生图模型。
 
 ### 已适配的接口
 
 - **OpenAI 兼容接口**：支持 `/images/generations`、`/images/edits` 和 `{ data: [{ b64_json | url }] }` 格式响应。
+- **智谱 GLM-Image**：内置 `glm-image`，官方地址使用 `https://open.bigmodel.cn/api/paas/v4`，文生图走 `/images/generations`，质量参数映射为 `hd`；当前不支持图生图。
 - **Grok Imagine**：原生支持 `grok-imagine-image` 与 `grok-imagine-image-2.0`。将地址设为 `https://api.x.ai/v1` 后，图生图会使用其 JSON `image_url` 协议，比例和清晰度映射为 `aspect_ratio` 与 `resolution`。
 - **Nano Banana（谷歌 Gemini 图像系列）**：内置 `nanobanana2` / `nanobanana2-lite` / `nanobanana-pro`（也识别官方 `gemini-3.x-image*` ID）。走 OpenAI 兼容接口时，比例和清晰度映射为 `aspect_ratio` 与 `image_size`（1K/2K/4K），输出请求 base64。
 - **Seedream（字节跳动生图系列）**：内置 `seedream-5.0-pro`（也识别 `seedream-4.x`、`doubao-seedream-…`）。无 `/images/edits`，文生图与图生图统一走 `/images/generations`，参考图以 JSON `image` 数组发送；官方 Ark 接口的 `size` 用于清晰度档位（1K/2K，5.0-pro 上限 2K），面板比例不会误传为 Ark 的 `size`。
-- **后续模型**：可将 `qwen-image`、Gemini 等 OpenAI 兼容网关模型加入清单；厂商专属鉴权或请求协议需要单独适配。
+- **后续模型**：没有被检测规则识别的 OpenAI 兼容图片模型仍可手动加入清单；厂商专属鉴权或请求协议需要单独适配。
 
 <a id="community"></a>
 ## 交流群
@@ -166,7 +173,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.3.0.tgz
 欢迎加入 QQ 群，一起交流 DSH、AI 生图和插件使用体验，也欢迎分享提示词、工作流与改进建议。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/f56c32c58f39356575186eedd2f1d15578177c60/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/fbca5b01fbda445a9a6d3bc645cac8450cac7f88/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
 </p>
 
 <a id="security"></a>
@@ -176,6 +183,9 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-1.3.0.tgz
 - 密钥保存于本机 DSH 设置中，设置页面仅展示“已配置”状态。
 - 历史、画廊和图片数据保存在宿主的 `~/.dsh/dsh-imagegen/`，由你控制；画廊图片按内容去重。
 - 模板库随插件发布提示词快照，展示图通过宿主同源代理按需拉取与缓存。
+- 图生图会把参考图发送到当前渠道配置的上游 API；请确认渠道服务商的数据处理政策，不要上传敏感图片。
+- 生图会消耗上游 API 额度。图片内容由上游模型生成，可能出现不准确、不适宜或不符合预期的结果，请在使用前进行人工检查。
+- API 密钥属于敏感信息，请不要提交到 GitHub Issue、日志、截图或 README；发现密钥泄露时应立即在上游服务商处轮换。
 
 <a id="development"></a>
 ## 开发与反馈

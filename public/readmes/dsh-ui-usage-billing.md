@@ -28,12 +28,12 @@
 > **峰谷计费规则更新（自 2026-08-23（周日）00:00 起）**：DeepSeek 模型按官方新规计费——**工作日（周一至周五）** 继续执行原峰谷分段计费（高峰 09:00–12:00 / 14:00–18:00，×2）；**周末（周六、周日）** 全天不再区分峰谷时段，统一按**低谷价**计费。插件计费引擎、费率表与每轮费用峰谷分带均已同步生效。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/demo.png" alt="dsh-ui-usage-billing — 计费仪表盘总览" width="80%">
+  <img src="https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/demo.png" alt="dsh-ui-usage-billing — 计费仪表盘总览" width="80%">
 </div>
 
 ### 演示动图
 
-![演示](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/demo.gif)
+![演示](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/demo.gif)
 
 ## ✨ 核心亮点
 
@@ -49,7 +49,7 @@
 - **侧边栏入口**：设置按钮上方的仪表盘式触发卡——本月费用主数字（等宽字体）+ 近 7 天 sparkline 迷你趋势，副行「今日 / 本周」；折叠栏自动切为图标钮；悬停浮现速览卡。
 - **计费仪表盘（分区 Tab）**：概览 / 趋势 / 明细 / 统计 / 费率 / 设置 六区——Hero 大数字 + 本年/今日环比 + 本月预计 + KPI×4 + 热力图；趋势图 7/30 天（可切费用 / Token）；厂商计费与订阅；导出 / 费用构成 / 工作区 / 会话明细；模型单价表；预算与峰谷提醒。克制冷调、`--dsw-*` 令牌、深浅主题自适应。
 
-  ![概览：本月费用 Hero、预算进度、KPI 与用量热力图](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/1.png)
+  ![概览：本月费用 Hero、预算进度、KPI 与用量热力图](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/1.png)
 - **即时代费用条**：输入框下方常驻「本轮 ¥x · 会话 ¥y」+ 峰谷档位与切换倒计时 + 订阅额度预警 chips（≤20% 浮现、≤10% 红）。
 - **峰/谷切换提醒**：切档前弹窗 + 可选系统通知（提前量 / 位置 / 模式 / 预览可配），区分「即将进峰时 ×2 可稍等」/「即将进平价 价格减半」。
 - **插件信息卡**：设置 Tab 常驻「关于」卡——插件名、描述、作者（可跳 GitHub）、源码仓库、npm、许可证 MIT、版本号（服务端读自包 `package.json`，单一来源，发布自动正确）。
@@ -58,7 +58,7 @@
 
 - **实时定价费率表**：models.dev 抓价 + 探活模型对标——系统实际配置模型全纳入；峰谷分时（工作日 9-12 / 14-18 高峰 ×2，周末全天低谷）+ 实时汇率（USD→CNY），每 6 小时刷新。
 
-  ![费率：模型单价表（峰谷分时与实时汇率）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/5.png)
+  ![费率：模型单价表（峰谷分时与实时汇率）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/5.png)
 - **官方 vs 三方分桶**：明细费用列按官方 DeepSeek 直连 / 第三方中转分解（混合时「官 x / 三 y」），统计 Tab 有「官方/三方」汇总卡。
 - **月度预算 + 分档提醒**：预算条（开关 / 金额 / 进度，≥80% 琥珀、超支红脉）；跨 50 / 80 / 100% 各提醒一次；余额折算 CNY 低于阈值每天提醒一次。
 - **成本突增归因**：每轮费用柱状图（最近 40 轮、金额贴柱顶、峰谷背景分带、超 2 倍红标归因）。
@@ -71,7 +71,7 @@
 - **声明端点 + 余额对账**：**声明端点**（`declaredEndpoints`）为内置表没有的供应商自声明余额/额度接口——只写「数字在哪里」的点路径、无表达式；请求由匹配到同源 provider 的 origin 构造，安全边界（单斜杠绝对路径、仅 GET、拒跨源重定向、响应体/超时上限、凭据只取匹配 provider 自有 `apiKeyEnv`）由 `src/declarative.ts` 强制执行，取错路径在界面标注 `declared` 与 reason。**余额差对账**（`reconcilePath`）用官方（仅 DeepSeek 官方方向）余额当日变动与本地账本当日的官方渠道费用交叉校验，偏差超阈值（0.3 元且 >15%）时提示核对价格表或近期账单；充值 / 授信 / 币种变化重置基准而非告警、余额未减少（走订阅扣费）静默。
 - **中转站归组与额度**：按 provider 的 `baseURL` 归一化 origin 归组——同一中转站的多把 key 合并成一行，站名即域名；对配了 `baseURL` 的路由自动识别 New API 系（`/api/status`）与 Sub2API（`/v1/usage`）的**余额与滚动额度窗口**，读不出标「未读出额度」，剩余 <20% 标红；识别结果有 5 分钟指纹缓存（同站多把 key 独立熔断），`relay-quotas` 端点附 `diagnostics` 供「我的中转站为什么不显示」自查。项目归属优先用工作区标题命名。**未计价的模型**（目录外/无价）费用按 0 计，Hero 下会提示「N 个模型未收录计价」。
 
-  ![明细：厂商计费与订阅（余额、套餐额度、模型用量）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/3.png)
+  ![明细：厂商计费与订阅（余额、套餐额度、模型用量）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/3.png)
 
 ## 📈 用量可视化
 
@@ -79,10 +79,10 @@
 - **性能指标**：每个模型首字延时（TTFT）均值 / P50 / P90、生成速度（tokens/s）、总延迟均值，另按北京时间小时聚合 TTFT 与速度曲线；统计 Tab 渲染为按模型性能表 + 按小时 TTFT/速度双折线。
 - **Token 统计洞察**：独立「Token」分区——每日 token 堆叠按「输入（缓存未命中）/ 输入（缓存命中）/ 输出」三桶分色（含 reasoning 思考），模型 token 总量与占比，结构 KPI（缓存命中率 / 思考占比 / 输入输出比 / 峰值日）；按日 token CSV 与 JSON 导出。
 
-  ![趋势：每日费用趋势、每轮费用与峰谷时段占比](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/2.png)
+  ![趋势：每日费用趋势、每轮费用与峰谷时段占比](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/2.png)
 - **数据导出 + 离线自包含**：统计 Tab 导出按日 / 按会话 / 按站点 CSV 与全量 JSON；费用构成 / 工作区 / 会话明细分区可下钻（点项目行展开该项目的会话）；无图表库、无外部 CDN、纯设计令牌。
 
-  ![统计：导出、费用构成、工作区与会话明细](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a044acb661f72b4c22810a3b4b6ed41514df0445/screenshots/4.png)
+  ![统计：导出、费用构成、工作区与会话明细](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/a73c2fc6bd57bfa2875d21a5ecaefc239b95ecde/screenshots/4.png)
 
 ## 🛡️ 健壮性与隐私
 
@@ -146,6 +146,10 @@ cost（CNY）= (missInput × p_input + cacheHit × p_cacheHit + output × p_outp
 
 统计中的 `input` 为总输入（cacheHit + cacheMiss），估算按命中 / 未命中分拆计价，避免重复计费。支持双档计费的模型按 `DEFAULT_PEAK_SHARE`（默认 0.5）混合高峰与低谷档；周末（北京时间周六 / 周日）全天按低谷价计费。
 
+**联网搜索请求按次估算**（issue #15）：DSH 的联网搜索绕过对话通道直连官方 `api.deepseek.com`，会话日志只记请求、无用量事件，而开放平台照常计费。插件对这类 `web/deepseek-search-llm-request` 事件按次估值计入费用（默认 0.02 元/次，配置 `searchCallEstimateCny` 可调整；设 0 关闭），并单独累计 `searchCalls` 供面板提示估算口径。
+
+**自定义单价（设置 Tab，issue #16）**：结构化条目表（模型 + 可选来源 + 输入/缓存命中/输出 + 币种），不再手编 JSON。来源（中转站域名）留空 = 该模型默认价；填入中转站域名（如 `https://api.my-relay.com`）= 仅该来源的同名模型用此价（同名模型可同时存在默认价与多个来源价，互不覆盖）。显示层按「模型 × 来源」精确匹配重算，命中不到来源时回落该模型默认价，再无则用内置目录价。
+
 ### 支持模型（2026-08 主流阵容，OpenAI 兼容系列，共 73 款）
 
 完整目录见费率 Tab 及源码 `src/client/pricing.ts` 的 `MODEL_CATALOG`，此处每厂商仅列代表型号。
@@ -199,6 +203,7 @@ cost（CNY）= (missInput × p_input + cacheHit × p_cacheHit + output × p_outp
 | `subscriptionPlans`     | 自动识别                                 | 订阅额度适配器白名单（`{ provider, baseUrl?, region? }`）；缺省时自动从 `llm-pi-ai` 设置识别所有订阅类 provider（有额度 API 的查额度，无 API 的仅标识） |
 | `declaredEndpoints`     | 未设置                                  | 声明端点（`{ displayName, origin, path, fields?, windows?, raw? }`）：为内置表没有的供应商自声明余额/额度接口，只写「数字在哪里」的点路径、无表达式；请求由匹配到同源 provider 的 origin 构造，安全边界（单斜杠绝对路径、仅 GET、拒绝跨源重定向、响应体/超时上限、凭据只取匹配 provider 自有的 apiKeyEnv）由 `src/declarative.ts` 强制执行 |
 | `reconcilePath`         | `~/.dsh/.dsh-usage-reconcile.json`     | 余额差对账基准的绝对路径；用官方（仅 DeepSeek 官方方向）余额当日变动与本地账本当日的官方渠道费用做交叉校验，偏差超阈值（0.3 元且 >15%）时提示核对；充值/授信/币种变化重置基准而非告警 |
+| `searchCallEstimateCny` | `0.02`                               | 联网搜索请求（`web/deepseek-search-llm-request`，日志无用量事件）的单次费用估算（人民币元）；设 0 关闭估算（调用仍计数、不计费）                            |
 
 ## 🛠 开发
 

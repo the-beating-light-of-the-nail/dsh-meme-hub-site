@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/60eac326b7c5788733ead7b0f7d9a3906332c70a/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
+<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/c99aafd6108227ce1cac9906889750633a0a0ebb/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
 
 # DSH Chat Import
 
@@ -55,6 +55,7 @@ Full tool / command usage (parameters, examples, edge cases) lives in **[docs/US
 | Capability | Entry points | Description |
 | --- | --- | --- |
 | Batch import | `import_chat` (18 formats) · `scan_discover` · sidebar panel | Import 17+ sources with one tool; each conversation becomes its own session |
+| Import history & purge | sidebar panel **History** tab | View `imports.json` records; remove plugin-created sessions (with confirmation) |
 | Full-fidelity resume | Imported sessions | Tool calls & results, reasoning, titles, models and timestamps carry over |
 | Export back | `export_chat` (`format: claude` / `codex` / `kimi`) | Serialize DSH sessions back to Claude / Codex / Kimi |
 | Bidirectional sync | panel "Sync" tab | Incremental sync in both directions (external ↔ DSH), off by default |

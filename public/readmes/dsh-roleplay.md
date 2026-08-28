@@ -7,7 +7,7 @@
 - DeepSeek Harness 角色扮演插件
 
 
-![screenshot1](https://raw.githubusercontent.com/chinosk6/dsh-roleplay/8ee0df9f60051caa3aaf26c4bae7e50e562b4a32/images/screenshot1.png)
+![screenshot1](https://raw.githubusercontent.com/chinosk6/dsh-roleplay/0c49c1b43f1ede45cdd838ceb93ab09e909f71f9/images/screenshot1.png)
 
 
 

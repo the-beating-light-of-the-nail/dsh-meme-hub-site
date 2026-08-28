@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://memorax-ai.github.io/dsh-harmony/">
-    <img width="132" alt="Harmony" src="https://raw.githubusercontent.com/CH4ACKO3/dsh-harmony/bbb5ec886db40b01e5b4bda7062272cb9a78acf6/assets/harmony-icon.png">
+    <img width="132" alt="Harmony" src="https://raw.githubusercontent.com/CH4ACKO3/dsh-harmony/70f17b169bb98194a6e5f647d58668c8205614ee/assets/harmony-icon.png">
   </a>
 
   <h1>dsh-harmony</h1>

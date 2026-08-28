@@ -17,11 +17,32 @@ dsh web
 
 The repository tracks release-ready lib artifacts, so GitHub installation needs no build-script allowlist. A source checkout can use a link installation after running `pnpm run build`.
 
+## Remote management
+
+By default the plugin's settings RPC is loopback-only. When you open DSH from a non-loopback host (e.g. https://dsh.noirbright.top or http://192.168.50.75:3080), the card shows “A remote browser cannot edit plugin settings”.
+
+To allow editing from a trusted host:
+
+1. Add to your profile patch (`~/.dsh/profiles/web/cordis.patch.yml` for production, `~/.dsh-lab/profiles/web/cordis.patch.yml` for lab):
+   ```yaml
+   - id: llm-codex
+     config:
+       remoteManagement: true
+   ```
+2. Restart DSH with the host allowlisted:
+   ```sh
+   dsh web --trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top
+   ```
+   The current production launch already uses `--trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top`; add any additional host you use.
+3. Refresh the browser. Settings saved on the host keep working for remote sessions.
+
+Without `remoteManagement: true`, use `ssh -L 3080:127.0.0.1:3080 user@host` and open `http://127.0.0.1:3080`.
+
 ## Web configuration
 
 Open Settings → LLM Providers → Codex. **Sign in with ChatGPT** starts the official ChatGPT OAuth flow, opens the system browser, and stores the session only on the Host at `$DSH_HOME/codex-oauth.json` (mode `0600`). The card then shows usage limits. Sign out deletes that file. The browser never receives tokens.
 
-![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/7e6ed3d837afb5091af153c0f58023fe203b9f8d/docs/images/plugin-card-catalog.png)
+![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/61f5e99c1176a4bacdd35011b1883a73d6a2b8d9/docs/images/plugin-card-catalog.png)
 
 ### Model catalog
 
@@ -55,9 +76,9 @@ Search, `view_image`, and `codex_generate_image` are implemented but default off
 
 `codex_generate_image` is a separate model-invoked tool. Any conversation model can call it; it uses this plugin's ChatGPT login and Codex usage (typically 3–5× a text turn) and draws with backend `gpt-image-2`. The routing-model dropdown lists official vision models and defaults to `gpt-5.6-luna`. The name is intentionally not `generate_image`, so it does not collide with other provider plugins. Generated files land under `generated-images/` unless `path` is set.
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/7e6ed3d837afb5091af153c0f58023fe203b9f8d/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/61f5e99c1176a4bacdd35011b1883a73d6a2b8d9/docs/images/plugin-card-capabilities.png)
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/7e6ed3d837afb5091af153c0f58023fe203b9f8d/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/61f5e99c1176a4bacdd35011b1883a73d6a2b8d9/docs/images/plugin-card-capabilities.png)
 
 ## Config
 

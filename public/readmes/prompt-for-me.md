@@ -6,7 +6,7 @@
 
 Prompt for Me (中文名：Prompt 嘴替) predicts the next message you may want to send from the DeepSeek Harness composer. After a completed agent turn, it quietly offers one suggestion as ghost text. Your draft stays empty until you accept it, and the plugin never submits on your behalf.
 
-![Prompt for Me interaction flow](https://raw.githubusercontent.com/ChuanTianML/prompt-for-me/d5edc38c8e0b7fd511a23dcc3c226461dde00804/assets/interaction-flow.svg)
+![Prompt for Me interaction flow](https://raw.githubusercontent.com/ChuanTianML/prompt-for-me/cb928e1217048d3f422cf2c6283258b48e936f8b/assets/interaction-flow.svg)
 
 ## What it does
 

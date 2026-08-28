@@ -1,0 +1,297 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DIAG5/dsh-better-input/51d56fe682a15316e6ae7b4bfe9b668107c101ec/assets/banner.png" width="100%" alt="dsh-better-input banner" />
+</p>
+
+<h1 align="center">🎤 dsh-better-input</h1>
+
+<p align="center"><b>给 DeepSeek Harness 更好的「输入」体验。</b></p>
+
+<p align="center">
+  开源输入体验增强插件 · BetterInput for your DeepSeek Harness agent
+</p>
+
+<p align="center">
+  <a href="./README.en.md">English</a> · <a href="./README.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/dsh-better-input"><img src="https://img.shields.io/npm/v/dsh-better-input?style=flat-square" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/dsh-better-input"><img src="https://img.shields.io/npm/dm/dsh-better-input?style=flat-square" alt="npm downloads"></a>
+  <a href="https://shields.io"><img src="https://img.shields.io/badge/dsh-%3E%3D%200.1.0--rc.8-blue?style=flat-square" alt="DSH"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT"></a>
+  <a href="https://github.com/DIAG5/dsh-better-input/blob/main/CHANGELOG.md"><img src="https://img.shields.io/badge/changelog-CHANGELOG.md-blue?style=flat-square" alt="Changelog"></a>
+</p>
+
+> 💡 **它解决什么？** 与智能体对话，输入不只靠键盘打字。BetterInput 是一套**输入增强套件**：语音识别、AI 润色、提示词一键优化、更多格式的本地文件输入与转 Markdown，再到交互细节都打磨的体验优化——**把每一种「喂给智能体的输入」都变得更好**。
+
+***
+
+## 🎬 功能演示
+
+https://github.com/user-attachments/assets/caae08fc-2d8e-43c6-8bab-ade2d278337f
+
+> V0.1.5 版本四大功能演示
+
+## ✨ 目前已实现
+
+<table>
+<tr><th align="center" width="120">模块</th><th align="left">说明</th></tr>
+<tr>
+<td align="center">🎙️<br/><b>语音输入</b></td>
+<td>点击麦克风，边说边转写，文字<strong>实时流式</strong>进入输入框。浏览器原生识别，<strong>无需 API Key</strong>。</td>
+</tr>
+<tr>
+<td align="center">🤖<br/><b>AI 润色</b></td>
+<td>识别后自动清理：去口头禅、修同音错字（根木鹿→根目录、脱肯→Token）、补标点、把口语列举转成编号列表。<strong>复用 dsh 已配置的模型，无需额外 Key</strong>。</td>
+</tr>
+<tr>
+<td align="center">✨<br/><b>提示词优化</b></td>
+<td>输入框右上角一个图标，AI 帮你把写好的提示词优化得更精准；点击后弹出<strong>原文 / 优化结果对比</strong>，确认满意再采用。复用 dsh 模型，无需额外 Key。</td>
+</tr>
+<tr>
+<td align="center">📎<br/><b>更多文件格式输入</b></td>
+<td>输入框右上角「添加文件」按钮（默认收起）。把本地文件带进输入：纯文本（<code>.txt / .json / .py / .md</code> 等）可<strong>直接发送</strong>；文档类先转换再以 <code>@<文件名></code> 引用芯片插入输入框。不带转换需求也能引入非工作区文件。</td>
+</tr>
+<tr>
+<td align="center">🔄<br/><b>文件转 Markdown</b></td>
+<td>把 PDF / DOCX / XLSX / PPTX / HTML / EPUB / CSV / JSON / XML 等转成结构清晰的 Markdown，发送时自动展开成正文；转换结果可二次编辑。</td>
+</tr>
+<tr>
+<td align="center">🐘<br/><b>防覆盖保护</b></td>
+<td>润色进行中你手动改了草稿，结果<strong>不会覆盖</strong>你的编辑；失败保留原文。</td>
+</tr>
+<tr>
+<td align="center">🔄<br/><b>更新检查</b></td>
+<td>设置页底部「<strong>关于与更新</strong>」一键检测 npm 最新版，发现新版会给出<strong>一键复制更新命令</strong>，让你及时跟进修复与新功能。</td>
+</tr>
+<tr>
+<td align="center">⏱️<br/><b>录音自动停止</b></td>
+<td>可自定义单次录音上限（1–600 秒），不占麦克风。</td>
+</tr>
+<tr>
+<td align="center">⚙️<br/><b>可视化设置页</b></td>
+<td>识别语言、录音时长、语音润色开关、以及润色 / 优化的<strong>模型、思考强度、自定义提示词</strong>，全部可在设置里配置；内置提示词可一键展开查看。默认已开启并自动选中主模型。</td>
+</tr>
+</table>
+
+## 🗺️ 下一步（输入增强的方向）
+
+BetterInput 是一套完整的**输入增强套件**：不只是某一类输入，而是让喂给智能体的每一种输入都更顺、更省心。语音已经就位，接下来围绕三个方向展开：
+
+### 文件 → 结构化（输入格式升级）
+
+> 📷 图片输入：**DSH** **`rc.8`** **起已原生支持**。DeepSeek API 已原生支持图片输入，**不再提供图片相关的插件功能**。
+
+把文稿、表格、演示文件一键转成结构清晰的 Markdown，让 AI 一看就懂。
+- [x] 🧾 **PDF 转结构化** — PDF → AI 友好的易读格式（Markdown / 纯文本）
+- [x] 📄 **Office 文档解析** — DOCX / PPT / XLSX 一键转成清晰的 Markdown 结构
+- [ ] 🎬 **音视频转写** — 粘贴本地音视频文件 → 转成文字（语音输入的进阶）
+
+### 文字 & 提示词
+
+- [x] ✨ **提示词优化** — 输入框旁点一个图标，AI 帮你润色/优化写好的提示词，让提问更能命中
+- [ ] 📝 **提示词模板库** — 一键插入常用模板（写代码 / 总结 / 翻译 / 角色扮演…）
+- [ ] 🧹 **文本清洗** — 粘贴乱码 / 带行号 / 时间戳的文本，自动整理成干净正文
+- [ ] 🔤 **即时翻译** — 写中文一键转英文给 AI（或反之）
+- [ ] 📋 **智能粘贴** — 粘贴自动识别是代码 / 表格 / URL / 引用，智能包裹成合适格式
+
+### 交互体验优化
+
+输入不只是功能，也讲究好用与美观——把交互细节打磨到位。
+- [x] 🎚️ **思考强度滑块** — 已移除；如需滑块式推理强度调节，可安装 <a href="https://github.com/HanaAyane/dsh-reasoning-effort">@HanaAyane/dsh-reasoning-effort</a>
+- [ ] ✍️ **半自动补全** — 输入时基于上下文给出续写建议，可一键采纳
+- [ ] 🧮 **变量填充** — 输入框里用 `{{日期}}`、`{{当前目录}}` 等变量自动替换
+
+> 以上按主题规划，会持续迭代。**有想法欢迎提** **[Issue](https://github.com/DIAG5/dsh-better-input/issues)** **/ PR**，一起把它做成更好的输入套件。
+
+> 💭 **关于设置里的开关**：对于**改动 DSH 核心自带插件**的功能，在设置界面里再加一个开关其实是**多此一举**——如果一个功能原则上可以**剥离出去作为一个独立插件**，那就应该通过**安装 / 卸载**来开关，而不是在 BetterInput 设置里多一个 toggle。所以本插件不再为核心功能的开关买单：**凡是可以剥离出去的功能，BetterInput 都已经剥离出去了**，需要时单独安装对应插件，不需要就卸载即可。
+
+## 🚀 安装
+
+前置：[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（`>= 0.1.0-rc.8`）+ Node.js `^22.19.0 || >=24.0.0` + Chrome/Edge 浏览器。
+
+> 💡 **两种方式，任选其一。** 装过 `dsh` CLI 的用短命令；没装或不想全局安装的，用下方 **npx 全称**——**不需要任何全局环境配置**。已发布到 [npm](https://www.npmjs.com/package/dsh-better-input)。
+
+### 方式 A：有全局 `dsh` CLI
+
+```sh
+# 从 npm 安装（推荐）
+dsh plugin --profile web add dsh-better-input
+
+# 或从 GitHub 仓库安装
+dsh plugin --profile web add github:DIAG5/dsh-better-input
+
+# 卸载
+dsh plugin --profile web remove dsh-better-input
+```
+
+### 方式 B：没有 `dsh`，或不想全局安装（npx 全称）
+
+下面的命令用 `npx` 直接运行 dsh CLI，**不写入全局环境**，临时拉取即可用：
+
+```sh
+# 从 npm 安装（推荐）
+npx -y @deepseek-ai/dsh plugin --profile web add dsh-better-input
+
+# 或从 GitHub 仓库安装
+npx -y @deepseek-ai/dsh plugin --profile web add github:DIAG5/dsh-better-input
+
+# 卸载
+npx -y @deepseek-ai/dsh plugin --profile web remove dsh-better-input
+```
+
+> `-y` 表示自动确认下载；首次运行会拉取 dsh CLI，之后有 npx 缓存。
+
+### 从源码安装（开发）
+
+```sh
+git clone https://github.com/DIAG5/dsh-better-input.git
+cd dsh-better-input
+npm install
+npm run build
+# 有全局 CLI：
+dsh plugin --profile web add "$PWD"
+# 没有全局 CLI：
+npx -y @deepseek-ai/dsh plugin --profile web add "$PWD"
+```
+
+### 备选：不装依赖，写进 preset 的 `cordis.yml`
+
+如果你已经在用某个 agent preset，只需要加一行（无需跑安装命令）：
+
+```yaml
+- insert:
+    - id: dsh-better-input
+      name: dsh-better-input
+```
+
+安装后刷新 Web UI，输入框右侧会出现**麦克风图标** 🎤。
+
+## 📖 使用
+
+### 1. 语音输入
+
+1. 打开任意对话，点击输入框右侧的**麦克风按钮**
+2. 开始说话，识别文字**实时流入**输入框
+3. 再点按钮（或识别条上的**停止**）结束
+4. 检查、修改、发送
+
+> 识别完全在浏览器本地完成（Web Speech API），无需 API Key、无服务器往返。Firefox/Safari 不支持时按钮自动禁用。
+
+### 2. AI 润色
+
+设置 → **BetterInput** → 打开 **AI 润色** → 选择一个 dsh 里已配置的模型。
+
+内置提示词会：去口头禅、修 ASR 同音错字、补标点、把口语列举转成编号列表（如「第一…第二…」→ `1.` `2.`）。留空用内置提示词，点「查看内置提示词」可展开原文；或粘贴自定义提示词（总会追加输出契约保护，保证只返回正文、不答非所问）。
+
+### 3. 提示词优化
+
+1. 在输入框里写好你的提示词
+2. 点击输入框右上角的 **✨ 优化** 图标
+3. 稍等，弹出**原文 / 优化结果对比**画面
+4. 点 **采用** 用优化结果替换草稿，或点 **取消** 保留原文
+
+> 默认关闭思考，追求快速、低成本的直出结果。从设置页可手动提高思考强度以获得更深层的优化。
+
+### 4. 添加文件 / 文件转 Markdown
+
+1. 点击输入框右上角的 **📎 添加文件** 按钮，展开文件面板（再点收起）
+2. 点击「**添加文件**」挑选文件（可多选），文件会以小标签列在面板里
+3. **纯文本文件**（`.txt / .md / .json / .py` 等）会直接标记 ✓，输入 `@` 即可选入发送，无需转换——这是「更多文件格式输入」的能力
+4. **文档文件**（`.pdf / .docx / .xlsx` 等）点击「**开始转换**」——这是「文件转 Markdown」的能力：
+   - 转换成功后标记 ✓
+   - 输入框里敲 `@`，从候选中选择该文件，插入成 `@<文件名>` 引用芯片
+   - 发送时该芯片自动展开成转换后的 Markdown 正文
+   - 面板里保留「**编辑**」按钮，可二次修改转换结果
+5. 不需要的文件点 `×` 移除
+
+> 转换在本地通过内置解析完成（PDF / Word / Excel / PPT / EPUB / HTML / CSV / JSON / XML 等），生成的 Markdown 随消息发送给 AI，方便它快速读懂文档内容。
+
+### 5. OCR 视觉识别（扫描 PDF / PPT）
+
+针对**没有文本层**的文档——如扫描件 PDF、图片型 PDF、只有图片没有文字的 PPT——普通转换只能抽出有限或空的文本。此时可用 OCR 让视觉模型直接「看图识字」：
+
+1. 先到 设置 → **BetterInput** → 选一个「**OCR 视觉模型**」（需支持图片输入的视觉模型，独立于润色模型）
+2. 添加 `.pdf` / `.pptx` 文件后点「**开始转换**」，会询问「是否使用 OCR」
+3. 选「**使用 OCR**」：PDF 逐页渲染成图片、PPT 抽取内嵌图片，逐张交给视觉模型转为 Markdown
+4. 选「普通转换」则仍走内置文本层提取
+
+> 未配置 OCR 模型时点「使用 OCR」只会弹出中性提示引导去设置页，不会报红错；若所选模型明确声明不支持图片输入，会提前提示更换，避免无效的空白结果。
+
+### 6. 检查更新
+
+1. 打开设置 → **BetterInput** → 拉到最底部「**关于与更新**」分节
+2. 点击「**检查更新**」
+3. 若发现新版本，会显示 `当前版本 → 最新版本`，并给出更新命令
+4. 在终端执行更新命令即可升级（按你的安装方式**二选一**）：
+   - 已全局安装 dsh CLI：
+     ```sh
+     dsh plugin --profile web update dsh-better-input
+     ```
+   - 未全局安装，改用 npx：
+     ```sh
+     npx -y @deepseek-ai/dsh plugin --profile web update dsh-better-input
+     ```
+
+> 说明：DSH 不会在你进入时自动更新第三方插件，需手动执行上面命令才会拉到新版。这个分节就是帮你及时发现并跟进更新。
+
+### 7. 设置
+
+| 设置项      | 说明                                   |
+| -------- | ------------------------------------ |
+| 界面语言     | 插件界面文案支持<strong>中文 / 英文</strong>，跟随 DSH 界面语言一键切换，即时生效 |
+| 识别语言     | 留空自动跟随浏览器语言（如 `zh-CN`、`en-US`）       |
+| 单次录音上限   | 1–600 秒，默认 120，到点自动停止                |
+| AI 润色    | 开/关；开启后每次语音识别结束自动润色进草稿               |
+| 润色模型     | 选择 dsh 已配置的模型路由                      |
+| 润色思考强度   | 默认关闭思考；可选模型支持的更高档位                   |
+| 自定义润色提示词 | 可选，替换内置提示词                           |
+| 提示词优化    | 开/关；开启后输入框右侧显示 ✨ 按钮                  |
+| 优化模型     | 选择 dsh 已配置的模型路由                      |
+| 优化思考强度   | 默认关闭思考；可选模型支持的更高档位                   |
+| 自定义优化提示词 | 可选，替换内置优化提示词                         |
+| OCR 视觉模型   | 选择用于识别扫描页 / 内嵌图片的视觉模型；独立于润色模型，未选择时无法使用 OCR |
+| 关于与更新    | 显示当前版本 / 许可证 / 仓库，一键「检查更新」获取最新版与更新命令 |
+
+> 润色与优化的模型、思考强度、提示词相互独立，可各自配置。
+
+## 🧩 兼容性
+
+- DeepSeek Harness `>= 0.1.0-rc.8`
+- Node.js `^22.19.0 || >=24.0.0`
+- Chromium 内核浏览器（Chrome / Edge）
+
+## 🛠️ 开发
+
+```sh
+npm install
+npm run check    # 类型检查
+npm run build    # 构建 lib/（Host ESM + 浏览器 bundle）
+```
+
+改 Client 端：`npm run dev:watch` 后刷新 UI；改 Host 端：重启 dsh web。
+
+## 🏗️ 架构
+
+- `src/index.ts` — Host 插件入口，挂载润色服务
+- `src/polish/service.ts` — `BetterInputPolishService`（Typert remote）：设置、dsh 模型路由发现、LLM 润色与提示词优化、文件转 Markdown（`convertFile`，复用 `ctx.llm`）
+- `src/converter/` — 纯 TypeScript 文件→Markdown 转换层（PDF / DOCX / XLSX / PPT / EPUB / HTML / CSV / JSON / XML / ZIP），仅在 Host 端打包
+- `src/about.ts` — 插件身份读取与 npm 版本检查（「关于与更新」）
+- `src/client/` — 浏览器端：麦克风/优化/选择文件按钮（`conversation.input.right`）、识别条/文件面板（`conversation.input.dock`）、设置页（`settings.section`）、`@` 引用芯片源（`conversion-source`）
+- `src/typert.ts` / `src/remote.ts` — Client↔Host 类型化通信契约
+
+## 📄 License
+
+[MIT](./LICENSE)
+
+***
+
+## ⭐ 支持
+
+这个插件正在从「语音」走向「完整的输入增强套件」——觉得它值得期待？
+
+- 点个 **Star ⭐**（你的收藏就是持续迭代的动力）
+- 提交 [Issue](https://github.com/DIAG5/dsh-better-input/issues) / [PR](https://github.com/DIAG5/dsh-better-input/pulls)
+- 分享给同样用 DSH 的朋友
+
+感谢你的支持 ❤️

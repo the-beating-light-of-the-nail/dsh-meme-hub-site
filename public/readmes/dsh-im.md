@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/d251bc280ddf60711f2efea5e42a2422756f1550/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/d251bc280ddf60711f2efea5e42a2422756f1550/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/092d2cbb9cbab12e49b7ad9f9c9a0a9a7d0ac20f/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/092d2cbb9cbab12e49b7ad9f9c9a0a9a7d0ac20f/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 ---
@@ -43,7 +43,7 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 ## 界面
 
-![IM机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/d251bc280ddf60711f2efea5e42a2422756f1550/docs/images/imbot.png)
+![IM机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/092d2cbb9cbab12e49b7ad9f9c9a0a9a7d0ac20f/docs/images/imbot.png)
 
 ## 当前内置渠道
 
@@ -101,6 +101,8 @@ dsh plugin --profile web add -w @xmanrui/dsh-im
 
 重启 `dsh web`、刷新浏览器，然后打开「设置 → IM机器人」。IM机器人使用 `order: 21`，尽量排在一级设置菜单的「Agent 预设」之后；插件页面不再保留旧入口。从旧版升级不会改变已有机器人、凭据、工作区、Agent Preset 或会话绑定。
 
+本机 `dsh web` 和 DSH Desktop 默认通过当前 Host 的内部 `apiProxy` 接口通信，不再绕行本机 HTTP 端口。Desktop 的兼容模式、扩展窗口和增强模式均无需开启“允许在浏览器中打开”或局域网访问。渠道配置中显式设置的 `harnessBaseUrl` 仍使用原有 HTTP/WebSocket 连接；内部调用失败不会自动改连其他 Host。
+
 如需试用尚未发布到 npm 的最新代码，可以改用 GitHub 源安装器：
 
 ```sh
@@ -134,6 +136,26 @@ dsh web
 
 每个 WhatsApp 机器人也有独立的访问模式。旧机器人升级后和新接入机器人都默认使用**仅自己模式**，只响应已绑定账号的自聊消息。**指定联系人模式**额外接受白名单电话号码的私聊并忽略群聊；号码需包含国家或地区代码，每行一个，可带开头的 `+`。**开放响应模式**响应所有私聊、已绑定账号自己发出的群聊消息，以及其他群成员对该账号的提及或回复；因此也可以把“仅自己”的群当作独立会话使用。切换模式会保留白名单；指定联系人模式的空白名单等同于仅自己模式。未授权消息会被静默忽略。
 
+## 检查与安装更新
+
+在「设置 → IM机器人」右上角点击 GitHub 左侧的「检查更新」。只有点击后才查询 npm 官方源；发现新版后，确认目标版本和当前 profile 再安装。更新只涉及 `@xmanrui/dsh-im`，不拉取 GitHub，不更新 Harness 或 Desktop 本体。
+
+安装完成后，后台仍需手动重启，页面根据 Host 状态显示「已安装，待手动重启」。更新功能不会主动重启、执行热更新或刷新页面。宿主自带的模块监视机制可能自行刷新插件界面，但界面变化不代表后台版本已生效，运行版本以 Host 报告为准。请在机器人任务空闲时更新，并自行重启当前 Harness / Desktop。关闭设置页不会取消已提交的安装任务。
+
+手动重启后，如果原页面仍显示待重启，点击窗口中的「刷新状态」，或重新打开「待手动重启」窗口。该操作只重新读取当前 Host 状态，不查询 npm，也不刷新页面。
+
+按钮复用 Desktop 内置包管理服务或标准 Harness 的 CLI，执行相当于以下命令的精确版本安装（将示例 profile、版本替换为确认值）：
+
+```sh
+dsh plugin --profile web add -w --save-exact @xmanrui/dsh-im@3.1.0 --registry=https://registry.npmjs.org/
+```
+
+更新窗口下方的「手工更新」会按当前 profile 生成精简命令，例如 `dsh plugin --profile web add -w @xmanrui/dsh-im@3.1.1`，点击命令最右侧的复制图标后可在终端执行。已知目标版本时指定该版本；尚未查到版本时使用 `@latest`，以执行时 npm 返回的版本为准。手工命令沿用本机 npm 源配置，不拉取 GitHub；按钮安装仍固定使用官方源并保存精确版本。浏览器无法复制时可选中文本手动复制。Desktop 请使用当前 Desktop 的内置终端；Web 请使用启动当前 Harness 的环境并保持相同 `DSH_HOME`。如果已经提示「待手动重启」，通常只需重启，无需再次安装。源码链接或无法安全确认的 profile 不生成可能覆盖安装的命令。
+
+源码 `link:`、`file:`、Git 来源或无法确认归属的安装只提供版本检查，不会替换开发链接；如需迁移为 npm 安装，请自行确认对应 profile。作用域 registry 冲突、Node 版本不满足要求或缺少当前 Host 的执行器时，按钮会说明原因。标准 Windows CLI 暂需手动更新；Desktop 使用其原有执行器。
+
+安装期间不要同时在终端或插件市场修改该 profile。失败可能已经改变部分依赖，不能视为自动回滚；先检查安装状态，必要时按上述命令重装原精确版本，再手动重启。更新器只在当前 `DSH_HOME/updates/dsh-im` 下保存该 profile 最近一次任务与清单备份，不复制机器人凭据；残留安装进程或锁状态不明确时，请先人工确认，不要盲目重试或删除锁。
+
 ## 机器人命令
 
 | 命令 | 作用 |
@@ -164,12 +186,13 @@ dsh web
 | `/workspacelist` | 列出当前 Harness Host 上仍然存在的工作区绝对路径。 |
 | `/sessionlist [工作区序号或绝对路径]` | 列出指定工作区登记的所有会话 ID 和标题；省略参数时使用当前工作区。 |
 | `/session <Session ID>` | 将当前聊天绑定到指定的已有 Harness 会话。 |
+| `/history [数量]` | 在私聊中查看当前绑定会话的最近历史消息，默认 3 条，最多 5 条。 |
 | 交互式提问 | 回复选项序号、选项文字或自定义文字；多选时用逗号分隔。 |
 | 远程审批 | 回复 `批准` / `拒绝` / `同意` / `不同意` / `yes` / `no`。 |
 
-示例：先发送 `/models`，再发送 `/model 2` 切换到列表中的第 2 个模型；先发送 `/reasoninglist`，再发送 `/reasoning 2` 切换到当前模型的第 2 个推理等级；先发送 `/presetlist`，再发送 `/preset 2` 为当前机器人选择第 2 个 Agent Preset。其他命令示例：`/help`、`/new`、`/status`、`/version`、`/model deepseek-official/deepseek-v4-pro max`、`/reasoning --default`、`/preset marketing-jeep`、`/preset --default`、`/steer 只检查配置文件`、`/stop`、`/compact`、`/workspace /Users/alice/projects/my-app`、`/sessionlist 2`、`/sessionlist /Users/alice/projects/my-app` 或 `/session session-id`
+示例：先发送 `/models`，再发送 `/model 2` 切换到列表中的第 2 个模型；先发送 `/reasoninglist`，再发送 `/reasoning 2` 切换到当前模型的第 2 个推理等级；先发送 `/presetlist`，再发送 `/preset 2` 为当前机器人选择第 2 个 Agent Preset。其他命令示例：`/help`、`/new`、`/status`、`/version`、`/model deepseek-official/deepseek-v4-pro max`、`/reasoning --default`、`/preset marketing-jeep`、`/preset --default`、`/steer 只检查配置文件`、`/stop`、`/compact`、`/workspace /Users/alice/projects/my-app`、`/sessionlist 2`、`/sessionlist /Users/alice/projects/my-app`、`/session session-id`、`/history` 或 `/history 5`
 
-Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/` 开头的消息。此时请加一个前导空格发送，例如 ` /presetlist` 或 ` /preset 2`；插件命令层会去除首尾空白，执行效果与无空格命令相同。
+Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/` 开头的消息。此时请加一个前导空格发送，例如 ` /presetlist`、` /preset 2`、` /history` 或 ` /history 10`；插件命令层会去除首尾空白，执行效果与无空格命令相同。
 
 ### 命令说明
 
@@ -195,6 +218,8 @@ Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/
 - `/sessionlist` 的数字参数按命令执行时与 `/workspacelist` 相同的最新顺序解析；也可使用绝对路径直接指定工作区。结果会回显最终选中的路径。
 - `/sessionlist` 会列出该工作区登记的所有会话。已归档会话会标记为“已归档”；空白会话和子代理会话在它们归属该工作区时也会列出；没有标题的会话显示为“暂无标题”。结果中的 ID 可直接用于 `/session Session ID`。
 - `/session` 只接受一个由 `/sessionlist` 获得的 Session ID。它不会新建会话或立即向模型发送消息；绑定成功后，当前聊天的后续消息会继续该会话。普通归档会话可以绑定但不会自动取消归档，子代理会话不能绑定。
+- `/history` 在九个渠道的私聊中统一可用，只读取当前聊天已经绑定的会话，不新建会话、不调用模型，也不影响正在运行的任务或待处理交互。默认返回最近 3 条；`/history N` 接受正整数，超过 5 自动按 5 条处理，数量不足时返回实际条数。零、负数、小数、非数字和多个参数会提示用法，附带图片或文件时会拒绝处理；批量输入收集中请先 `/send` 或 `/cancel`。
+- 历史预览中，一条用户消息或一条助手最终回复各算一条，不按轮次或天数计数。先取最新 N 条，再按从旧到新的顺序显示；不展示工具、推理、注入内容或尚未完成的助手片段，不下载或重发历史附件。长正文会截断并注明，全部结果最多发送 3 段文字，不自动翻页。绑定会话后可手动发送 `/history`，不会自动重发历史。正文仍可能包含会话原有的敏感信息，请只向可信用户开放机器人。
 - `/session` 会自动定位会话唯一所属的工作区。同工作区绑定只替换当前聊天的映射；跨工作区绑定会切换该机器人的工作区、清除该机器人所有聊天的旧会话映射，再绑定当前聊天，因此会影响该机器人的其他聊天。已经开始生成的回复仍可完成。
 - 工作区切换和会话绑定只会清除或替换 dsh-im 的聊天映射，不会删除、清空或归档任何旧 Session 内容；旧 Session 仍可再次列出和绑定。
 - 任何通过当前渠道访问策略的用户都可以执行这些命令，不另行区分管理员和普通用户。Telegram 兼容模式遵循原有私聊及群聊提及/回复规则；安全模式只允许当前机器人白名单中的私聊用户执行。WhatsApp 仅自己模式只接受自聊，指定联系人模式接受自聊和白名单私聊，开放响应模式接受所有私聊、已绑定账号自己发出的群聊消息，以及其他群成员的提及或回复。
@@ -274,13 +299,13 @@ IM 管理 RPC 默认仅接受回环浏览器。如果 Web profile 在受信任�
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/d251bc280ddf60711f2efea5e42a2422756f1550/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/092d2cbb9cbab12e49b7ad9f9c9a0a9a7d0ac20f/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/d251bc280ddf60711f2efea5e42a2422756f1550/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/092d2cbb9cbab12e49b7ad9f9c9a0a9a7d0ac20f/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/d251bc280ddf60711f2efea5e42a2422756f1550/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
+      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/092d2cbb9cbab12e49b7ad9f9c9a0a9a7d0ac20f/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
     </td>
   </tr>
 </table>

@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/16187e1c52d7a20a4ea4ba76f27d83cc427dafb3/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/d874112830b68b1025a779085b2384617124f410/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 A minimal terminal coding agent harness in Go — a sibling to Pi.
@@ -19,9 +19,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
   <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
 </p>
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/16187e1c52d7a20a4ea4ba76f27d83cc427dafb3/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/d874112830b68b1025a779085b2384617124f410/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/16187e1c52d7a20a4ea4ba76f27d83cc427dafb3/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/d874112830b68b1025a779085b2384617124f410/assets/image.png)
 
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
@@ -110,7 +110,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/16187e1c52d7a20a4ea4ba76f27d83cc427dafb3/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/d874112830b68b1025a779085b2384617124f410/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml

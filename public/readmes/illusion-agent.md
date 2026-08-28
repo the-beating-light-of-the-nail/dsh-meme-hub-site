@@ -48,14 +48,14 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
 <div align="center">
   <p>Welcome screen & rich text rendering</p>
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/76626312327e05bd29d8a60b832eba2ad5ec8a1a/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/76626312327e05bd29d8a60b832eba2ad5ec8a1a/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c528f7859a5126dede1d231881db9f78ef2dc191/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c528f7859a5126dede1d231881db9f78ef2dc191/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
 </div>
 
 <div align="center">
   <p>Demo video</p>
   <a href="https://www.youtube.com/watch?v=ExrzKVjWPls">
-    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/76626312327e05bd29d8a60b832eba2ad5ec8a1a/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
+    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c528f7859a5126dede1d231881db9f78ef2dc191/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
   </a>
   <p><a href="https://www.youtube.com/watch?v=ExrzKVjWPls">📺 Watch demo on YouTube</a></p>
 </div>
@@ -84,14 +84,14 @@ pip install .
 
 ### Desktop Edition
 
-Prefer a desktop app without installing Python or Node.js? Download the portable
-build for your platform — extract and run, zero environment setup:
+Prefer a desktop app without installing Python or Node.js? Download the installer
+for your platform — it bundles everything, zero environment setup:
 
 | Platform | Download |
 |----------|----------|
-| Windows | `IllusionAgent-<version>-win-x64.zip` |
+| Windows | `IllusionAgent-Setup-<version>.exe` (NSIS installer) |
 | macOS | `IllusionAgent-<version>-arm64.dmg` |
-| Linux | `IllusionAgent-<version>.AppImage` |
+| Linux | `IllusionAgent-<version>-amd64.deb` or `IllusionAgent-<version>-x86_64.AppImage` |
 
 👉 [Download from GitHub Release](https://github.com/YunTaiHua/illusion-agent/releases/latest)
 

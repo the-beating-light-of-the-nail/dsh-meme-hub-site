@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-atuin/72a43d92bb81be12dedabafddf7d9855286f448a/assets/readme/hero.svg" alt="dsh-atuin — record every dsh prompt into your atuin history" width="100%">
+  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-atuin/fb0e2d7b2bd46d84020eb18ac2e233ec3e790c6a/assets/readme/hero.svg" alt="dsh-atuin — record every dsh prompt into your atuin history" width="100%">
 </p>
 
 # dsh-atuin

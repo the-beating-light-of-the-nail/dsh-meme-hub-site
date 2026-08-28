@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/open-managed-agents/6692a30b21de059b2e5cbb8e56eb32907a8e7ead/logo.svg" alt="openma" height="80" />
+  <img src="https://raw.githubusercontent.com/openma-ai/open-managed-agents/895ed6b55a7a9f60ca82366ea9be7dc8bba75e07/logo.svg" alt="openma" height="80" />
 </p>
 
 <p align="center">

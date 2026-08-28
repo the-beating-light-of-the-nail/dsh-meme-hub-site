@@ -1,6 +1,6 @@
 # dsh-git-worktree
 
-![dsh-git-worktree in the Web UI](https://raw.githubusercontent.com/LaoYueHanNi/dsh-git-worktree/42c543b14c3edc2a2ce76cc9c701e19ab0da6efa/gitworktree.png)
+![dsh-git-worktree in the Web UI](https://raw.githubusercontent.com/LaoYueHanNi/dsh-git-worktree/7334d0f74aea5f86e0c7d7fc9b84deaa5177fb3e/gitworktree.png)
 
 [简体中文](./README.zh.md) | English
 

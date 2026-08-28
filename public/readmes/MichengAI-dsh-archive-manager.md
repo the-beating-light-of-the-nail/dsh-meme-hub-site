@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/090612b8beb45e3f6be496db1b4502e1140b5a27/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/0dee9a9e36de60a741ff8d94a228101c4e9ecaa5/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -35,11 +35,11 @@
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/090612b8beb45e3f6be496db1b4502e1140b5a27/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/0dee9a9e36de60a741ff8d94a228101c4e9ecaa5/assets/screenshots/archive-session-menu.png)
 
 Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/090612b8beb45e3f6be496db1b4502e1140b5a27/assets/screenshots/archived-sessions.png)
+![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/0dee9a9e36de60a741ff8d94a228101c4e9ecaa5/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 
@@ -49,7 +49,6 @@ This product can be installed independently or used through the desktop app or W
 | --- | --- |
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | The host runtime that provides models, sessions, tools, and the plugin system |
 | [DSH Codex Desktop](https://github.com/MichengAI/dsh-codex-desktop) | A ready-to-install desktop product with this product and the other five feature products built in |
-| [DSH Codex Suite](https://github.com/MichengAI/dsh-codex-ui/tree/main/packages/dsh-codex-suite) | A one-click suite for existing DSH Web environments that installs this product and the other five feature products |
 | Six feature products | [Codex UI](https://github.com/MichengAI/dsh-codex-ui) · [IM Connect](https://github.com/MichengAI/dsh-im-connect) · [Automation](https://github.com/MichengAI/dsh-automation) · [Skills Manager](https://github.com/MichengAI/dsh-skills-manager) · [Archive Manager](https://github.com/MichengAI/dsh-archive-manager) · [Agency Agents](https://github.com/MichengAI/dsh-agency-agents) |
 
 ## Prerequisites

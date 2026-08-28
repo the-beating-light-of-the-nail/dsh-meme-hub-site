@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/hero.svg" width="100%" alt="Argo 阿尔戈：给 Agent 用的统一搜索与证据核验">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/7e25a816e4a865a12d9b307a51aa5897eca7c146/assets/readme/hero.svg" width="100%" alt="Argo 阿尔戈：给 Agent 用的统一搜索与证据核验">
 </p>
 
 <p align="center">
@@ -29,6 +29,8 @@
   <img alt="mcp" src="https://img.shields.io/badge/MCP-12%20tools-purple">
 </p>
 
+> **这是踏雪寻仙 DeepSeek Harness 插件矩阵的一员**，同门还有：[dsh-files](https://github.com/taxueseek/dsh-files)（传文件读文档） · [dsh-snippets](https://github.com/taxueseek/dsh-snippets)（片段收藏夹） · [dsh-healthcheck](https://github.com/taxueseek/dsh-healthcheck)（只读体检） · [dsh-plugin-guard](https://github.com/taxueseek/dsh-plugin-guard)（插件安全审计） · [taxue-dsh-artisan](https://github.com/taxueseek/taxue-dsh-artisan)（提示词反推与多供应商生图）—— 完整插件栏目见[个人主页](https://github.com/taxueseek#deepseek-harness-%E6%8F%92%E4%BB%B6)
+
 ---
 
 ## v2.8.4 更新亮点（在 v2.8.3 基础上再进一步）
@@ -50,7 +52,7 @@
 > 简单来说：前三种方案解决「**人**找信息」，Argo 解决「**Agent 及搜索核查于一身，具备一条龙的搜索服务**」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/why-better.svg" width="100%" alt="左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/7e25a816e4a865a12d9b307a51aa5897eca7c146/assets/readme/why-better.svg" width="100%" alt="左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON">
 </p>
 
 | 维度 | 模型自带搜索 | AI 搜索（总结型） | 聚合搜索 / 搜索引擎 | **Argo** |
@@ -92,7 +94,7 @@
 ## 问啥像啥
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/proof-routes.svg" width="100%" alt="四类真实路由：金融、影视、多语言、地理">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/7e25a816e4a865a12d9b307a51aa5897eca7c146/assets/readme/proof-routes.svg" width="100%" alt="四类真实路由：金融、影视、多语言、地理">
 </p>
 
 | 你这样问 | 大致会怎样 |
@@ -114,7 +116,7 @@
 ## 它怎么工作
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/workflow.svg" width="100%" alt="查询 → 语言与域 → 多引擎召回 → RRF → 证据快评 → 统一 JSON">
+  <img src="https://raw.githubusercontent.com/taxueseek/argo/7e25a816e4a865a12d9b307a51aa5897eca7c146/assets/readme/workflow.svg" width="100%" alt="查询 → 语言与域 → 多引擎召回 → RRF → 证据快评 → 统一 JSON">
 </p>
 
 ```
@@ -633,7 +635,7 @@ python3 scripts/ab_eval_p0p1.py   # 可选，含在线实测
 MIT License © 2026 [taxueseek](https://github.com/taxueseek)
 
 <p align="center">
-  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="https://raw.githubusercontent.com/taxueseek/argo/dc943d43066f0cdece8ab2ddc867dbc0eef69109/assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
+  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="https://raw.githubusercontent.com/taxueseek/argo/7e25a816e4a865a12d9b307a51aa5897eca7c146/assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
 </p>
 
 ---

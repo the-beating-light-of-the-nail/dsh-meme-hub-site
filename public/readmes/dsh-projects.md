@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WenhongPan/dsh-projects/01033952e2ba30ff141371a133c368a8a80fe16d/docs/assets/social-preview.png" alt="dsh-projects：为 DeepSeek Harness 提供项目化工作流">
+  <img src="https://raw.githubusercontent.com/WenhongPan/dsh-projects/6bf5d0dc5b5cbb56d151d1ff27ac423de2f4dffa/docs/assets/social-preview.png" alt="dsh-projects：为 DeepSeek Harness 提供项目化工作流">
 </p>
 
 <h1 align="center">dsh-projects</h1>
@@ -20,7 +20,7 @@
   <a href="https://github.com/WenhongPan/dsh-projects/issues/new?template=bug.yml">报告问题</a>
 </p>
 
-![dsh-projects：选择项目、创建项目并打开 Windows 原生目录窗口](https://raw.githubusercontent.com/WenhongPan/dsh-projects/01033952e2ba30ff141371a133c368a8a80fe16d/docs/assets/demo.gif)
+![dsh-projects：选择项目、创建项目并打开 Windows 原生目录窗口](https://raw.githubusercontent.com/WenhongPan/dsh-projects/6bf5d0dc5b5cbb56d151d1ff27ac423de2f4dffa/docs/assets/demo.gif)
 
 <sub>全屏真实录制：目录窗口由 Windows 原生接口直接打开；画面仅做裁切、镜头缩放和 GIF 压缩，没有重绘系统界面。</sub>
 
@@ -49,24 +49,24 @@ DSH 原生界面擅长直接进入 Workspace，但项目多起来以后，目录
 | 外观与数据 | 跟随 DSH 浅色/深色主题；继续使用 DSH 自己的 Workspace 和 Session 数据 |
 
 <p>
-  <img src="https://raw.githubusercontent.com/WenhongPan/dsh-projects/01033952e2ba30ff141371a133c368a8a80fe16d/docs/assets/picker.webp" alt="可搜索的项目选择器" width="49%">
-  <img src="https://raw.githubusercontent.com/WenhongPan/dsh-projects/01033952e2ba30ff141371a133c368a8a80fe16d/docs/assets/create.webp" alt="创建项目" width="49%">
+  <img src="https://raw.githubusercontent.com/WenhongPan/dsh-projects/6bf5d0dc5b5cbb56d151d1ff27ac423de2f4dffa/docs/assets/picker.webp" alt="可搜索的项目选择器" width="49%">
+  <img src="https://raw.githubusercontent.com/WenhongPan/dsh-projects/6bf5d0dc5b5cbb56d151d1ff27ac423de2f4dffa/docs/assets/create.webp" alt="创建项目" width="49%">
 </p>
 
 ## 快速安装
 
-当前版本为 `0.3.0-alpha.1`，主要验证环境是 Windows x64、DSH Desktop 2.0.1 和 DeepSeek Harness 0.1.0-rc.6。
+当前版本为 `0.3.0-alpha.2`。插件兼容 DSH `0.1.0-rc.6` 和 `0.1.1-rc.2`；后者已通过隔离 Web UI 启动与核心界面检查，DSH Desktop 2.0.3 的 Windows 官方目录窗口也已完成实际界面验收。详细边界见[兼容性矩阵](docs/compatibility.md)。
 
 ### DSH Desktop
 
 ```powershell
-dsh plugin --profile desktop add https://github.com/WenhongPan/dsh-projects/releases/download/v0.3.0-alpha.1/dsh-projects-0.3.0-alpha.1.tgz
+dsh plugin --profile desktop add https://github.com/WenhongPan/dsh-projects/releases/download/v0.3.0-alpha.2/dsh-projects-0.3.0-alpha.2.tgz
 ```
 
 ### DSH Web UI
 
 ```bash
-dsh plugin --profile web add https://github.com/WenhongPan/dsh-projects/releases/download/v0.3.0-alpha.1/dsh-projects-0.3.0-alpha.1.tgz
+dsh plugin --profile web add https://github.com/WenhongPan/dsh-projects/releases/download/v0.3.0-alpha.2/dsh-projects-0.3.0-alpha.2.tgz
 ```
 
 安装或升级后，完整退出并重新启动对应的 DSH profile。Desktop 和 Web 是两个独立 profile，需要分别安装。
@@ -85,16 +85,17 @@ Windows PowerShell 示例路径可写为 `link:C:/path/to/dsh-projects`。
 
 ## 原生目录窗口
 
-`dsh-projects` 已经自带原生目录桥，普通用户不需要替换 Desktop：
+`dsh-projects` 会按当前环境选择最合适的目录窗口，普通用户不需要替换 Desktop：
 
-- DSH Desktop 调用 Electron 的操作系统目录窗口。
-- 首次从系统桌面打开，之后可记住上次项目的父目录；也可选择桌面、用户主目录或当前项目的父目录。
-- 同一台电脑上的本机 Web UI 调用 DSH 官方跨平台目录选择器。
-- 远程 Web UI 或调用失败时，自动回退到 DSH 应用内目录浏览器。
+- DSH Desktop 2.0.3 及以后优先使用 Desktop 官方 Windows 目录窗口。
+- 旧版 Desktop 和本机 Web UI 保留插件 Host 桥；首次可从系统桌面打开，之后可记住上次项目的父目录。
+- 官方窗口或兼容桥不可用时，再调用 DSH 自带 Workspace 选择器。
+- 远程 Web UI 使用 Host 端应用内目录浏览器，不会要求远程机器弹出系统窗口。
+- 用户取消选择时会直接结束，不会错误地连续弹出第二个窗口。
 
-如果希望让其他兼容插件也获得 Desktop 级原生目录窗口，可以选择安装仓库 Release 中的 **修复版 DSH Desktop**。它是可选方案，不是安装 `dsh-projects` 的前置条件。具体区别和校验方式见[原生目录选择方案](docs/native-picker-options.md)。
+早期 Release 中的修复版 Desktop 已被官方实现取代，只作为历史兼容材料保留，不再推荐新用户安装。具体调用顺序见[原生目录选择方案](docs/native-picker-options.md)。
 
-![Windows 原生目录窗口](https://raw.githubusercontent.com/WenhongPan/dsh-projects/01033952e2ba30ff141371a133c368a8a80fe16d/docs/assets/native.webp)
+![Windows 原生目录窗口](https://raw.githubusercontent.com/WenhongPan/dsh-projects/6bf5d0dc5b5cbb56d151d1ff27ac423de2f4dffa/docs/assets/native.webp)
 
 ## 不选择项目也能聊天
 
@@ -110,8 +111,9 @@ Windows PowerShell 示例路径可写为 `link:C:/path/to/dsh-projects`。
 
 | 场景 | 当前状态 |
 | --- | --- |
-| DSH Desktop 2.0.1 / Windows x64 | ✅ 已进行实际界面与原生目录窗口验证 |
-| 本机 DSH Web UI / Windows | 🟡 设计支持；仍需更多人工回归 |
+| DSH Desktop 2.0.1 / Windows x64 | ✅ 旧版兼容桥已进行实际界面与原生目录窗口验证 |
+| DSH Desktop 2.0.3 / Windows x64 | ✅ 已实测插件加载、官方目录窗口、取消行为及中文/空格路径回传 |
+| DSH 0.1.1-rc.2 本机 Web UI / Windows | ✅ 已完成隔离启动、插件加载与核心界面检查 |
 | DSH Desktop / macOS Apple Silicon | 🟡 CI 通过；原生目录窗口和文件管理器操作待人工验证 |
 | 本机 Web UI / macOS、Linux | 🟡 CI 通过；Host 路径和本地目录规则待人工验证 |
 | 远程 Web UI | ✅ 使用 Host 端应用内目录浏览器，不打开远程机器的系统窗口 |

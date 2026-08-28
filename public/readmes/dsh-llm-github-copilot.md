@@ -8,10 +8,17 @@ Sign in with your GitHub account and use every Copilot model — including GPT-4
 
 ## Requirements
 
-- **DeepSeek Harness `0.1.1-rc.2` or newer.** The vision path uses native image
-  APIs (`AttachmentStore.readImageRequest`, `offloadRequestImagesWithPolicy`,
-  `requestImageHandleText`) introduced in `0.1.1-rc.2`; earlier releases will
-  not run this adapter. Upgrade with `npm install -g @deepseek-ai/dsh@latest`.
+- **DeepSeek Harness `0.1.1-rc.2` or `0.1.2-alpha.1`.** Both are supported: the
+  adapter probes the loaded `@deepseek-ai/dsh-llm` and selects the matching
+  calling convention. Note that `0.1.2-alpha.1` renamed `CallId` to
+  `ToolCallId`, changed the `requestImageHandleText` signature, and made the
+  request-image offload placeholder caller-supplied — so **plugin versions
+  `≤ 0.4.2` do not load on `0.1.2-alpha.1`**. Upgrade this plugin together with
+  the harness.
+- The vision path uses native image APIs (`AttachmentStore.readImageRequest`,
+  `offloadRequestImagesWithPolicy`, `requestImageHandleText`) introduced in
+  `0.1.1-rc.2`; `0.1.0-rc.x` and earlier lack them and will not run this
+  adapter. Upgrade with `npm install -g @deepseek-ai/dsh@latest`.
 - Node.js ≥ 24.
 
 ## Install
@@ -105,15 +112,19 @@ export GITHUB_COPILOT_OAUTH_TOKEN=<your-github-oauth-token>
 
 ## Features
 
-**Model discovery** — available models are fetched live from `https://api.githubcopilot.com/models` on each login and cached for 5 minutes. No static list to maintain.
+**Model discovery** — available models are fetched live from `https://api.githubcopilot.com/models` on each login and cached for 5 minutes. No static list to maintain. On Harness `0.1.2-alpha.1` and newer a discovery started from the Settings page is cancellable, and cancelling leaves the cached catalog as it was rather than emptying the model picker.
 
 **Vision support** — models that declare `supports.vision: true` (e.g. `gpt-4.1`, `gpt-4o`) accept images from every source Harness produces: pasted or dragged images in the composer, `/goal` and `/plan` attachments, and tool-result images (`read_image`, MCP servers). Images are derived per model route through the Harness attachment service (`readImageRequest`), tagged with a stable handle, and sent over both wire protocols. When a request exceeds a model's image count or the local inline byte budget, older request images are offloaded first while the current user submission and the latest tool-result batch are protected; a stable placeholder marks any omitted image without altering the durable history. Set `imageOverflowPolicy: error` to reject over-limit requests instead.
+
+**Recoverable images** — on Harness `0.1.2-alpha.1` and newer, every image the model sees is annotated with a read-only path to its normalized copy in the tool execution world. The model receives a downscaled preview but can re-read the full file when it needs detail, and an image offloaded to fit a request limit stays recoverable instead of being simply gone. The path resolves through the Harness filesystem provider, so workspace and sandbox confinement still apply; when no mapping exists the annotation is omitted and nothing else changes.
 
 **Two wire protocols** — the adapter speaks both OpenAI Chat Completions (`/chat/completions`) and the newer Responses API (`/responses`). The correct endpoint is chosen automatically per model.
 
 **Reasoning control** — effort levels (`low / medium / high / max`) are forwarded to models that declare them (`gpt-5.x`, Claude thinking budget, Gemini reasoning).
 
 **Automatic token refresh** — the short-lived Copilot API token is renewed transparently before it expires; no action required.
+
+**Turn token usage** — every response reports the provider's exact token accounting, including its own total, so the Harness **Turn usage** panel (`0.1.2-alpha.1` and newer) shows uncached input, cached input, output, reasoning, and the cache hit rate for each turn.
 
 **Settings page** — the plugin adds a dedicated **GitHub Copilot** section to the Harness Web settings UI (open DSH in your browser → click the gear icon → **GitHub Copilot**). From there you can sign in, view authentication status and the available model list, and sign out — no slash commands required.
 

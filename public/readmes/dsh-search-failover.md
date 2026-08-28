@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/4b0bc86569196567152f005313c7dca5b97ac798/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池设置面板" width="720">
+  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/0327cf929e179998ba5469af7d38e66a15d37ffa/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池设置面板" width="720">
 </p>
 
 ---
@@ -96,9 +96,9 @@ DSH 默认通道 `deepseek-official` **不是专用搜索 API**：每次 `web_se
 ## 🎛️ 设置面板实机预览
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/4b0bc86569196567152f005313c7dca5b97ac798/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池控制台" width="48%">
+  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/0327cf929e179998ba5469af7d38e66a15d37ffa/docs/screenshots/settings-panel-overview.png" alt="DSH 搜索池控制台" width="48%">
   &nbsp;
-  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/4b0bc86569196567152f005313c7dca5b97ac798/docs/screenshots/settings-panel-scrolled.png" alt="DSH 搜索池引擎卡片列表" width="48%">
+  <img src="https://raw.githubusercontent.com/Walvez/dsh-search-failover/0327cf929e179998ba5469af7d38e66a15d37ffa/docs/screenshots/settings-panel-scrolled.png" alt="DSH 搜索池引擎卡片列表" width="48%">
 </div>
 
 - **实时密钥填写**：随时填写或更新各引擎 API Key（支持多行多 Key），点击保存立即热生效。行内「↗」直达各引擎申请页。
@@ -166,6 +166,15 @@ dsh plugin --profile web add link:$(pwd)/dsh-search-failover
         kind: searxng
         baseURL: http://127.0.0.1:8080
         priority: 7
+      # opencodex web-search sidecar (可选, 默认不启用):
+      # 本机 opencodex 代理的 Codex 登录额度执行真搜索, 结果带摘要质量最高,
+      # 但比纯检索端点慢 (~3-15s)。需要本机运行 opencodex (127.0.0.1:10100)。
+      # - id: opencodex
+      #   kind: opencodex
+      #   priority: 0              # 置顶 = 首选, 失败熔断自动下探
+      #   # baseURL: http://127.0.0.1:10100
+      #   # apiKey: ocx_data_dsh   # 默认免 token / 自定义 token 时填
+      #   # carrierModel: opencode-go/glm-5.3-flash
     circuit:
       threshold: 3              # 连续错误阈值
       burstWindowMs: 300000     # 统计时间窗口 (5 分钟)
@@ -196,6 +205,12 @@ dsh web
 | `searxng` | ✓ | ✗ | 自托管无限 | 无 | [docs.searxng.org](https://docs.searxng.org) |
 | `brave` | ✓ | ✗ | 需绑卡 | 必须 | [brave.com/search/api](https://brave.com/search/api/) |
 | `ddg` | ✓ | ✗ | 完全免费 | 无 | — |
+| `opencodex` | ✓ | ✗ | 走本机 opencodex 的 Codex 登录额度 | 无 (loopback 免 token) | [opencodex](https://github.com/bitkyc08/opencodex) |
+
+> `opencodex` 后端默认**不启用**：仅在用户 patch 的 `backends` 里显式声明时进入搜索链。
+> 它不是纯检索端点——搜索经 opencodex 的 web-search sidecar（Codex forward 登录额度）执行，
+> 结果带模型整合的摘要与 sources，质量最高但延迟更高（sidecar 整合约 3–15s）。
+> 适合置顶做首选，失败/额度耗尽由熔断器自动下探到 `exa` 等纯检索后端。
 
 同一后端可换行或逗号填多个 Key。Key A 额度耗尽先切 Key B，全部挂了才熔断下探下一个引擎。
 

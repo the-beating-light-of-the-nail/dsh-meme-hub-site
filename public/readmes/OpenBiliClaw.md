@@ -25,7 +25,7 @@
 >
 > 📱 想要原生 App？Flutter 移动端客户端（Android / iOS / Web / 桌面）在独立仓库 [`OpenBiliClaw-mobile`](https://github.com/whiteguo233/OpenBiliClaw-mobile)：推荐、对话、画像、收藏 / 稍后再看 / 30 天历史一应俱全，连接同一本地后端。
 
-> 🇨🇳 **国内下载（当前 v0.3.212）**：超过 Gitee 100 MB 附件上限的 macOS / Windows 大安装包已放到 [123 云盘国内下载](https://4001474255.share.123pan.cn/123pan/IxbZMh-rp6O3)，分享永久有效并支持免登录下载；插件、小安装包和源码可从 [Gitee v0.3.212 发行版](https://gitee.com/whiteguo233/openbiliclaw/releases/tag/openbiliclaw-v0.3.212) 获取。
+> 🇨🇳 **国内下载（当前 v0.3.213）**：7 个最新包（插件、macOS / Windows 普通版与含模型版）已放到 [123 云盘国内下载](https://4001474255.share.123pan.cn/123pan/IxbZMh-90KO3)，分享永久有效并可直接打开下载；Gitee 附件与源码见 [Gitee v0.3.213 发行版](https://gitee.com/whiteguo233/openbiliclaw/releases/tag/openbiliclaw-v0.3.213)。
 
 ## 10 秒看懂 OpenBiliClaw
 
@@ -46,7 +46,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
+  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
 </p>
 
 ## 快速开始
@@ -54,7 +54,7 @@
 普通用户只需四步；Firefox、Docker、脚本和手动部署等备用路径都在 [安装与部署详情](#安装与部署详情)。
 
 1. **装插件** —— [Chrome 应用商店一键安装](https://chromewebstore.google.com/detail/cdfjfkdjjhdaccbldipkjhpibnfbiamg)（自动更新），或从 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw/releases/latest) 下载 zip 手动安装（最新功能先到，商店版可能滞后几天）。
-2. **装后端** —— 从同一个 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw/releases/latest) 下载桌面安装包（macOS `.dmg` / Windows `.exe`，开箱即用、常驻菜单栏/托盘）。每个平台有两种安装包:**精简版**(默认,首启自动下载向量模型 bge-m3)与 **`-with-embedding` 完整版**(已内置 bge-m3 ~1.1GB,离线开箱即用)——网络差 / 想离线的选完整版,其余选精简版。**国内用户也可直接从 [123 云盘国内下载（v0.3.212）](https://4001474255.share.123pan.cn/123pan/IxbZMh-rp6O3) 获取 macOS / Windows 大包，免登录即可下载。** 想改源码或深度定制,就把下面这句话粘给 Claude Code / Codex CLI / Cursor 等 AI 编程助手：
+2. **装后端** —— 从同一个 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw/releases/latest) 下载桌面安装包（macOS `.dmg` / Windows `.exe`，开箱即用、常驻菜单栏/托盘）。每个平台有两种安装包:**精简版**(默认,首启自动下载向量模型 bge-m3)与 **`-with-embedding` 完整版**(已内置 bge-m3 ~1.1GB,离线开箱即用)——网络差 / 想离线的选完整版,其余选精简版。**国内用户也可直接从 [123 云盘国内下载（v0.3.213）](https://4001474255.share.123pan.cn/123pan/IxbZMh-90KO3) 获取 7 个最新包。** 想改源码或深度定制,就把下面这句话粘给 Claude Code / Codex CLI / Cursor 等 AI 编程助手：
 
    ```text
    请按照 https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/main/docs/agent-install.md 的说明帮我部署 OpenBiliClaw 后端(务必用 Bash 的 curl 下载这个文档,不要用 WebFetch — 会丢关键指令)
@@ -68,11 +68,11 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
       <b>QQ 用户群</b>
     </td>
     <td align="center" width="50%">
-      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
+      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
       <b>Discord 社区</b><br/>
       <sub>扫码或<a href="https://discord.gg/PU6Xgch8yg">点击加入</a>，链接长期有效</sub>
     </td>
@@ -119,22 +119,22 @@
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-recommend.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-recommend.png" width="200" /><br/>
       <b>智能推荐</b><br/>
       <sub>像朋友一样解释为什么你会喜欢</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
       <b>灵魂画像</b><br/>
       <sub>自然语言描述的深度人格分析</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-profile-traits.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-traits.png" width="200" /><br/>
       <b>结构化特质</b><br/>
       <sub>MBTI · 核心特质 · 深层需求</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-chat.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-chat.png" width="200" /><br/>
       <b>对话调教</b><br/>
       <sub>聊天告诉它你想看什么</sub>
     </td>
@@ -148,19 +148,19 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/desktop-home.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/desktop-home.png" width="480" /><br/>
       <b>桌面推荐首页</b><br/>
       <sub>惊喜推荐 Hero · 为你推荐网格 · 朋友式推荐理由</sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/desktop-cards.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/desktop-cards.png" width="480" /><br/>
       <b>推荐卡片网格</b><br/>
       <sub>封面 + 推荐理由 · 喜欢 / 不感兴趣 / 稍后 / 收藏 / 聊一聊</sub>
     </td>
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/desktop-profile.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/desktop-profile.png" width="480" /><br/>
       <b>画像 + 实时看板</b><br/>
       <sub>侧栏 Runtime 看板 + 后台动态 · 人格素描 · 核心特质 · MBTI 推断</sub>
     </td>
@@ -172,18 +172,18 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/mobile-recommend.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/mobile-recommend.png" width="210" /><br/>
       <b>手机推荐页</b><br/>
       <sub>惊喜推荐 + 池子状态 · 朋友式推荐原因</sub><br/>
       <sub>看看 / 喜欢 / 稍后 / 收藏 / 不感兴趣 / 聊一聊</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/mobile-profile.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/mobile-profile.png" width="210" /><br/>
       <b>手机画像页</b><br/>
       <sub>人格素描 · 核心特质 · 深层需求 · MBTI</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/mobile-chat.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/mobile-chat.png" width="210" /><br/>
       <b>手机对话页</b><br/>
       <sub>与插件共享主聊天历史</sub>
     </td>
@@ -198,17 +198,17 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
       <b>推荐反馈</b><br/>
       <sub>点赞 / 多来点 / 少来点 / 没兴趣</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-profile-values.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-values.png" width="200" /><br/>
       <b>价值偏好与兴趣</b><br/>
       <sub>内在驱动力 · 猜测兴趣方向</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/0634849508b5af718bf8b1d16a6baf256eb34fa1/docs/images/screenshot-profile-style.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-style.png" width="200" /><br/>
       <b>认知风格</b><br/>
       <sub>信息处理偏好 · 内容口味</sub>
     </td>
@@ -219,10 +219,11 @@
 
 ## 最近更新
 
-📌 最新版本：**v0.3.212（2026-08-26）**
+📌 最新版本：**v0.3.213（2026-08-27）**
 
-- **异常报警**：LLM / Embedding 请求失败（限流 / 鉴权 / 熔断）现在直接显示在桌面与插件设置的「日志」tab，实时推送不再翻日志猜原因。
-- **商汤日日新免费额度（issue #193）**：内置 `sensenova` 一键 preset，新用户可零成本体验完整推荐链路。
+- **推荐池供给更稳**：修复同质高分池被误判为不可服务的问题，补货和惊喜推荐不再轻易断供。
+- **时效判断更准确**：迭代中的软件、产品、模型和工具按更短周期复审，旧版 `versioned` 内容也有明确准入期限。
+- **待确认提示可隐藏**：桌面 Web 设置新增开关，可关闭待聊确认徽章，减少界面干扰。
 
 完整变更详见 [docs/changelog.md](docs/changelog.md)。
 
@@ -290,7 +291,7 @@ npm run package:firefox        # 额外打成未签名 openbiliclaw-extension-v*
 
 到 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw/releases/latest) 的 `openbiliclaw-v*` 聚合发布页下载对应系统的安装包。这个聚合页会同步展示：
 
-> 🇨🇳 国内网络下载大包时，可使用 [123 云盘国内下载（当前 v0.3.212）](https://4001474255.share.123pan.cn/123pan/IxbZMh-rp6O3)；分享永久有效、免登录，包含 macOS Apple silicon 普通版 / 内置 embedding 版和 Windows 内置 embedding 版。插件、普通 Windows 安装包与源码仍可从上面的 GitHub / [Gitee 发行版](https://gitee.com/whiteguo233/openbiliclaw/releases/tag/openbiliclaw-v0.3.212) 获取。
+> 🇨🇳 国内网络下载时，可使用 [123 云盘国内下载（当前 v0.3.213）](https://4001474255.share.123pan.cn/123pan/IxbZMh-90KO3)；分享永久有效，包含全部 7 个最新包。插件、普通 Windows 安装包与源码也可从上面的 GitHub / [Gitee v0.3.213 发行版](https://gitee.com/whiteguo233/openbiliclaw/releases/tag/openbiliclaw-v0.3.213) 获取。
 
 - 当前后端源码 tag：`backend-v*`
 - 当前插件 release：`extension-v*`，并附 `openbiliclaw-extension-v*.zip` / `openbiliclaw-extension-v*-firefox.zip`（Firefox 临时调试）；启用 AMO signing 时还会附 `openbiliclaw-extension-v*-firefox.xpi`（Firefox 正式安装）

@@ -5,7 +5,7 @@
 QQ2006 皮肤插件：注册珊瑚蓝主题、镜像 `body[data-ds-skin]`、全局皮肤表 + 完整组件级补丁，从登录窗到聊天窗口全链路还原 2006 年的那个蓝色小企鹅。可切换、可持久化、默认皮肤零污染。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LaplaceYoung/dsh-qq2006/aa2859a3c1ba78d34fd5d6a6677cd8a051fcf096/assets/screenshots/qq2006-window-view.webp" alt="QQ2006 聊天窗口" width="72%" />
+  <img src="https://raw.githubusercontent.com/LaplaceYoung/dsh-qq2006/ddde58e2cb8d1ff62543cc195f58a507605b7845/assets/screenshots/qq2006-window-view.webp" alt="QQ2006 聊天窗口" width="72%" />
   <br/>
   <em>聊天窗口：好友信息条 + 原版九宫格标题带 + 列表式消息 + QQ 秀右侧栏</em>
 </p>
@@ -33,8 +33,8 @@ QQ2006 皮肤插件：注册珊瑚蓝主题、镜像 `body[data-ds-skin]`、全�
 - **真实交互**：Alt+S 发送、右键复制、hover 操作行（复制/引用/转发）、提示音、QQ 黄色反馈 tip
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LaplaceYoung/dsh-qq2006/aa2859a3c1ba78d34fd5d6a6677cd8a051fcf096/assets/screenshots/qq2006-window-chrome.webp" alt="标题带与大工具栏" width="48%" />
-  <img src="https://raw.githubusercontent.com/LaplaceYoung/dsh-qq2006/aa2859a3c1ba78d34fd5d6a6677cd8a051fcf096/assets/screenshots/qq2006-message-flow.webp" alt="消息流" width="48%" />
+  <img src="https://raw.githubusercontent.com/LaplaceYoung/dsh-qq2006/ddde58e2cb8d1ff62543cc195f58a507605b7845/assets/screenshots/qq2006-window-chrome.webp" alt="标题带与大工具栏" width="48%" />
+  <img src="https://raw.githubusercontent.com/LaplaceYoung/dsh-qq2006/ddde58e2cb8d1ff62543cc195f58a507605b7845/assets/screenshots/qq2006-message-flow.webp" alt="消息流" width="48%" />
 </p>
 
 ## 🚀 快速开始
@@ -52,9 +52,9 @@ dsh plugin --profile web add https://github.com/LaplaceYoung/dsh-qq2006
 1. 打开 **设置 → 通用**
 2. 找到 **QQ2006 皮肤**，点 **开启**
 
-DSH 0.1.0-rc.7+ 还会在 **设置 → 插件 → 插件配置** 里出现同名卡片。当前上游外观行（到 `dsh-v0.1.1-rc.2`）仍然只渲染浅色 / 深色 / 跟随系统，**不会出现第 4 个色块**——这是上游硬编码，不是安装失败。
+DSH 0.1.0-rc.7+ 还会在 **设置 → 插件 → 插件配置** 里出现同名卡片。当前上游外观行（到 `dsh-v0.1.2-alpha.1`）仍然只渲染浅色 / 深色 / 跟随系统，**不会出现第 4 个色块**——这是上游硬编码，不是安装失败。0.1.2 起开关文案走第三方 UI 语言注册（中 / 英）。
 
-启用后获得：**珊瑚蓝 `--dsw-alias-*` token 叠加 + 插件自己注入的全局皮肤表**（复古字体、滚动条、九宫格工具类、`.qq-btn` 三态钮）。
+启用后获得：**可见的 QQ2006 壳层**（经典蓝标题栏、侧栏、输入区、设置窗）+ 珊瑚蓝 `--dsw-alias-*` / `--dsw-specific-*` token 叠加 + 插件注入的全局皮肤表（复古字体、滚动条、九宫格工具类、`.qq-btn` 三态钮）。
 
 > 能力边界：组件级皮肤（登录窗、面板栏、聊天窗 chrome、列表式消息、QQ 秀右栏）改的是宿主 UI 包的源码，npm 发行版是预构建产物，无法通过插件机制注入。这些效果需要方式二。
 

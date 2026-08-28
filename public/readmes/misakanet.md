@@ -9,9 +9,12 @@
 > **Stop debugging the same error twice.**
 >
 > MisakaNet searches 310+ failure lessons so your agent skips known bugs.
+>
+> **Using MisakaNet?** Give us a ⭐ — it helps other agents find verified failure lessons.
+> **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 6 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fa89ef873993bb74e3197c0cb5f4c17c565a1336/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/95300276a47c9410982db294eeb92fa28599d8b2/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 [![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
@@ -22,6 +25,9 @@
 [![License](https://img.shields.io/github/license/Ikalus1988/MisakaNet?style=flat&color=blueviolet)](https://github.com/Ikalus1988/MisakaNet/blob/main/LICENSE)
 [![Glama score](https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/badges/score.svg)](https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/score)
 [![MCP Quickstart](https://img.shields.io/badge/MCP-quickstart-green)](docs/mcp-quickstart.md)
+[![dsh.so risk](https://www.dsh.so/badge/misakanet.svg)](https://www.dsh.so/artifact/misakanet/)
+[![dsh.so install](https://www.dsh.so/badge/install/misakanet.svg)](https://www.dsh.so/artifact/misakanet/)
+[![Benchmark](https://img.shields.io/badge/Benchmark-Weekly%20Workers%20AI-blue)](https://github.com/Ikalus1988/MisakaNet/tree/main/docs/benchmarks)
 [![Stars](https://img.shields.io/github/stars/Ikalus1988/MisakaNet?style=social)](https://github.com/Ikalus1988/MisakaNet/stargazers)
 [![MCP Toplist](https://mcptoplist.com/badge/io.github.Ikalus1988%2Fmisakanet.svg)](https://mcptoplist.com/server/io.github.Ikalus1988%2Fmisakanet)
 [![smithery badge](https://smithery.ai/badge/misakanet/misakanet)](https://smithery.ai/servers/misakanet/misakanet)
@@ -211,7 +217,7 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fa89ef873993bb74e3197c0cb5f4c17c565a1336/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/95300276a47c9410982db294eeb92fa28599d8b2/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -488,7 +494,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fa89ef873993bb74e3197c0cb5f4c17c565a1336/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/95300276a47c9410982db294eeb92fa28599d8b2/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

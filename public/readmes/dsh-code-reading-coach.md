@@ -1,0 +1,80 @@
+# dsh-code-reading-coach · 代码研读教练
+
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![plugin](https://img.shields.io/badge/dsh-plugin-dsh--plugin-blue.svg)](https://github.com/topics/dsh-plugin)
+
+一个 DeepSeek Harness **Agent 预设**：交互式引导你研读论文对应的开源代码。
+
+读 AI/软件论文时，论文结构是固定的，开源仓库却各不相同、常常不知从何入手。代码研读教练用**五段研读法**带你一步步看懂：先明确告知代码用的是什么语言与框架架构（并确认你是否熟悉），再把「论文讲的东西」逐条映射到「代码里的实现」，最后跑起来验证——让你从「不知道从哪入手」到「讲得出整个系统的故事」。
+
+## 安装
+
+```bash
+# 默认 profile（web）可直接复制运行：
+dsh plugin --profile web add github:tobysunsun/dsh-code-reading-coach
+```
+
+安装后**重启 dsh**，然后新建会话，在预设选择器中选择「代码研读教练」。
+
+## 快速上手
+
+新建会话选好预设后，直接说：
+
+- 「我想读 FlashAttention 的代码」—— 它先告诉你这个项目的技术栈，再带你一步步读
+- 贴上一篇论文链接 / PDF —— 它把论文主张蒸馏成要点，再逐一对照代码验证
+- 只有仓库、没有论文：「帮我搞懂这个仓库」
+
+## 它帮你做什么
+
+**五段研读法**，每一段只问一个问题、只给一个下一步：
+
+| 阶段 | 做什么 | 产出物 |
+|---|---|---|
+| **0 锚定** | 把论文蒸馏成 3–5 条核心主张，变成代码要回答的问题 | 主张清单 |
+| **1 地形** | 先明确告知**语言 + 框架/架构**（并确认你熟不熟悉），再扫描依赖清单、目录树、测试布局 | 地形图（含技术栈） |
+| **2 入口** | 找「能跑起来的东西」，追踪顶层执行流 | 执行流图 |
+| **3 核心映射** | 完整阅读核心模块，逐条核对论文主张 | 论文↔代码映射表 |
+| **4 闭环** | 跑最小测试、手推一条数据流、改一行观察、费曼复述 | 研读笔记 |
+
+其他贴心设计：
+
+- **仓库类型自适应** —— 训练框架、内核库、模型仓库的阅读路径不同；
+- **深度三档**（概览 / 追踪 / 深潜），默认从追踪开始，不逼你一开始就深潜；
+- **费曼检查点** —— 深潜前先让你用自己的话讲一遍，讲不通就降档重讲；
+- **代码与论文矛盾时显式标记** —— 这是最有价值的时刻；
+- **产出物持续沉淀**到工作区 `<仓库名>-notes.md`，跨会话接着读。
+
+> 想先看一次完整产出的样子？见 [examples/note-example.md](examples/note-example.md)。
+
+## 常见问题
+
+**我没读论文，能直接用吗？**
+可以。没有论文时，它会把「帮我搞懂这个仓库」当成你的学习目标，走同样的引导流程。
+
+**我用的不是 `web` profile？**
+把安装命令里的 `web` 换成你的 profile 名即可（`ls ~/.dsh/profiles` 查看）。
+
+**想锁定某个版本？**
+用 `github:tobysunsun/dsh-code-reading-coach#<commit-sha>` 安装指定提交。
+
+**不放心第三方插件？**
+源码很小，只有 `lib/index.js` 和 `preset/` 三个文件，可先审阅；实现细节见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+## 卸载
+
+```bash
+dsh plugin --profile web remove dsh-code-reading-coach
+```
+
+卸载不会自动删除预设目录（避免误删你改过的文件）；如需移除：
+
+```bash
+rm -rf ~/.dsh/.agent-presets/code-reading-coach
+```
+
+## 许可
+
+MIT © TobySUN。预设本体改编自 DeepSeek Harness 内置 `standard` preset（MIT）。
+
+---
+
+想为它做贡献、了解实现或发布细节？见 [CONTRIBUTING.md](CONTRIBUTING.md)。

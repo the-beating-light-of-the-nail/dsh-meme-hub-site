@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
 </p>
 
 <div align="center">
@@ -34,25 +34,25 @@
 
 Scheduled tasks live in the workspace **Scheduled** tab, next to **Tasks** and **Channels**:
 
-![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/screenshots/workspace-scheduled.png)
+![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/screenshots/workspace-scheduled.png)
 
 Open **Settings → Scheduled Tasks** to search, create, pause, and inspect rules:
 
-![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/screenshots/settings-tasks.png)
+![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/screenshots/settings-tasks.png)
 
 Describe the job in chat. The agent calls `automation_create` and asks through the official approval card:
 
-![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/screenshots/chat-create.png)
+![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/screenshots/chat-create.png)
 
-![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/screenshots/chat-approval.png)
+![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/screenshots/chat-approval.png)
 
 After approval, the rule is saved and summarized in the conversation:
 
-![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/screenshots/chat-created.png)
+![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/screenshots/chat-created.png)
 
 Run history stays in Settings and can be filtered by day, week, month, task, or status:
 
-![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/4e5c08165e434765ec831a6b83f7265788f2cad7/assets/screenshots/settings-runs.png)
+![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/7aebfe12ec75695d843e0e86f0a1d87801a58e0e/assets/screenshots/settings-runs.png)
 
 ## DSH product ecosystem
 
@@ -62,7 +62,6 @@ This product can be installed independently or used through the desktop app or W
 | --- | --- |
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | The host runtime that provides models, sessions, tools, and the plugin system |
 | [DSH Codex Desktop](https://github.com/MichengAI/dsh-codex-desktop) | A ready-to-install desktop product with this product and the other five feature products built in |
-| [DSH Codex Suite](https://github.com/MichengAI/dsh-codex-ui/tree/main/packages/dsh-codex-suite) | A one-click suite for existing DSH Web environments that installs this product and the other five feature products |
 | Six feature products | [Codex UI](https://github.com/MichengAI/dsh-codex-ui) · [IM Connect](https://github.com/MichengAI/dsh-im-connect) · [Automation](https://github.com/MichengAI/dsh-automation) · [Skills Manager](https://github.com/MichengAI/dsh-skills-manager) · [Archive Manager](https://github.com/MichengAI/dsh-archive-manager) · [Agency Agents](https://github.com/MichengAI/dsh-agency-agents) |
 
 ## Prerequisites

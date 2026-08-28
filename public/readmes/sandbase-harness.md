@@ -12,10 +12,12 @@ A local-first runtime for AI agents. Sessions, sandboxed tools, memory,
 credentials, audit trails, and a built-in Console — all running on your
 machine or in your own infrastructure.
 
-![SandBase Harness architecture](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/964763189c25a1d3b17ed94aff9b45e5d633d0e2/docs/assets/sandbase-harness-architecture.svg)
+![SandBase Harness architecture](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/sandbase-harness-architecture.svg)
 
 > Looking for a lightweight bridge instead of a full runtime? [SandBase CLI](https://github.com/sandbaseai/cli)
-> connects 25 AI client targets to 2,000+ models through a local stdio MCP bridge.
+> connects 25 AI client targets to 2,000+ models and APIs through a local stdio MCP bridge.
+> If it fits your workflow, [star SandBase CLI](https://github.com/sandbaseai/cli/stargazers)
+> so other agent users can discover it.
 
 > Need hosted model and media APIs instead? SandBase provides one interface for
 > [LLM, image, and video generation APIs](https://blog.sandbase.ai/unified-ai-api-llm-image-video-2026/),
@@ -89,7 +91,7 @@ is that runtime layer — not a visual workflow builder and not another model SD
 
 | Console overview | Settings | API reference |
 | --- | --- | --- |
-| ![overview](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/964763189c25a1d3b17ed94aff9b45e5d633d0e2/docs/assets/dashboard-overview.png) | ![settings](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/964763189c25a1d3b17ed94aff9b45e5d633d0e2/docs/assets/dashboard-settings-models.png) | ![api-ref](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/964763189c25a1d3b17ed94aff9b45e5d633d0e2/docs/assets/dashboard-api-reference.png) |
+| ![overview](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/dashboard-overview.png) | ![settings](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/dashboard-settings-models.png) | ![api-ref](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/dashboard-api-reference.png) |
 
 ## Requirements
 
@@ -439,7 +441,7 @@ init smoke, and `examples/basic` startup smoke.
   workflows across Codex, Claude Code, Cursor, Gemini CLI, and other clients.
 - [SandBase CLI](https://github.com/sandbaseai/cli) — connect Cursor, Claude Code,
   Codex, Windsurf, Gemini CLI, OpenCode, and other MCP clients to 2,000+ AI
-  models with one onboarding command.
+  models and APIs with one onboarding command.
 - [DSH Plugin Store](https://github.com/sandbaseai/dsh-plugin-store) — discover,
   filter, install, and manage community DeepSeek Harness plugins from the native
   Settings experience.

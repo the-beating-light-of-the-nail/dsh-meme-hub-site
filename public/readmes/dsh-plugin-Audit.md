@@ -42,6 +42,10 @@ plugin-management enhancement: group the plugin list by source so you can tell
     remote HEAD via `git ls-remote`, tag refs list all tags to find a newer
     stable tag; updates re-run `pnpm add <original spec>` (or the new tag spec);
     refs pinned to a specific commit are marked not auto-updatable;
+  - **Rename detection (v0.9.1)**: when an update leaves the old package name
+    stale but a new package name now points to the same repository, the panel
+    reports "repository renamed (old → new)" with the command to remove the old
+    package, instead of a vague "actual version still not updated";
   - Updates are queued in a module-level store: clicks during a run merge into
     the next batch, two pnpm processes are never started concurrently, and the
     task keeps running (and stays observable) even if you close the panel;
@@ -64,7 +68,7 @@ The top bar shows the update area (`可更新: 1` = 1 update available, `重新�
 grouped cards. Every card carries the enable/disable toggle, version, GitHub
 button, update status and uninstall button:
 
-![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/288f4b3eed0f0156279a9a4ee103df555366e61f/docs/plugin-catalog-updates.png)
+![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/d69f75d9c10a8165df6851ba9494f9a27068e818/docs/plugin-catalog-updates.png)
 
 ## Quick start
 

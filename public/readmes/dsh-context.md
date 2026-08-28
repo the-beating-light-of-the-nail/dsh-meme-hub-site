@@ -1,4 +1,4 @@
-![Social preview](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/social-preview.png)
+![Social preview](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/social-preview.png)
 
 # dsh-context
 
@@ -34,15 +34,15 @@ Then start the web UI with `dsh web`. No build step, no restart.
 
 Open any session and click the **Context / 上下文** tab:
 
-![Context panel overview](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-overview.png)
+![Context panel overview](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-overview.png)
 
 ### ⌨️ `/context` command — In-session Context Insight modal
 
 Type `/context` (or pick it from the `/` menu) and press Enter: a centered dialog shows the **Current Composition** card and the **Context browser** — the same composition bar, legend, and per-step browsing as the tab, so you can inspect what any request was assembled from without leaving the chat.
 
-![Context command_entry](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-command-entry.png)
+![Context command_entry](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-command-entry.png)
 
-![Context command](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-command.png)
+![Context command](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-command.png)
 
 ### ⚙️ Settings — per-user preferences
 
@@ -64,7 +64,7 @@ The headline occupancy and the composition counts read the **same official token
 
 One stacked bar per model request — finer than per-message — so you watch the window grow turn by turn, and drop in one ✂ when compaction hits:
 
-![Context Trend card with the step brief](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-trend.png)
+![Context Trend card with the step brief](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-trend.png)
 
 - **✨ Step brief — what a step *was*, not just how big.** Three plain-language rows under the chart: **User** recalls the message that opened the turn (on any of its steps), **In** lists what newly entered the context — usually the previous tool calls' results, failures flagged, empty on a turn's opening step — and **Response** shows what the model returned: its reply text and/or the tools it called. Hover a row's tag to learn what the row means; click any row to open that exact message in the Context browser.
 - **Read it your way** — **Step** or **Turn** granularity, **Total** (cumulative makeup) or **Delta** (each request's signed change), and sideways scroll through the whole session.
@@ -76,34 +76,36 @@ Above: Turn 1 · Step 15 of a real session — the brief recalls the turn's open
 
 A longer session tells the dramatic version — ~563k tokens across 48 turns, then compaction (✂) recycled −535.5k in one step, and the conversation continued from a fresh, small window:
 
-![History chart with a pinned request](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/history-detail.png)
+![History chart with a pinned request](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/history-detail.png)
 
 Switch the chart from **Total** to **Delta** and each bar becomes the *change* that request made to the window instead of its cumulative size: diverging stacks pile up from the solid zero baseline when the window grew and hang below it when it shrank, tooltips read `Δ ±Nk`, and the pinned detail card re-prices every category as a signed delta — so you can tell exactly which part of a request added (or reclaimed) tokens. Below, Turn 5's first step grew the window by **+1.6k**: injected context **+803**, the user message **+649**, the assistant reply **+178** — and nothing else moved:
 
-![History chart in Delta mode](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/history-delta.png)
+![History chart in Delta mode](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/history-delta.png)
 
 ### ⚡ Context events — when and why the window changed
 
 Every compaction, tool-output prune, skill or plugin context injection, model switch, and plan-mode toggle — each labeled with its producer source (instruction file paths, plugin id, skill name), its token delta (compactions/prunes show the **net** reclaimed amount, matching the chart's drop), turn/step attribution, and timestamp. Filter by category (**Inject / Compact / Prune / Switch / Mode**) to see exactly when each kind of event happened and its impact — e.g. when a skill was injected, when instructions were added, or how much a compaction reclaimed:
 
-![Context events and messages](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-events.png)
+![Context events and messages](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-events.png)
 
 ### 📁 File Activity — what the agent *did* to your files
 
 Not what the context is made of, but what it was good for: one row per touched file — read, written, or searched — aggregated up to the step you pick on the trend chart (the card scrubs live as you hover the bars; the default is the whole session to date):
 
-![File Activity card sorted by most active](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/file-activity.png)
+![File Activity card sorted by most active](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/file-activity.png)
 
 - **Per-purpose counts** — how many times each file was read, written, and searched, with the header chips doubling as purpose filters (**Read / Written / Searched**), an **Images** chip for the multimodal view (`read_image` calls and image extensions), and a path search box.
 - **Line deltas** — every `edit`/`write` contributes its estimated footprint (`+added / −removed`, read off the call arguments), per file and summed in the header.
+- **Every mode counts** — native tool calls, the Minimal preset's `str_replace_editor`, and the nested `read`/`write`/`edit`/`grep`/`glob` calls a PTC (`run_code`) program makes are all folded: each nested call rows under its own tool, annotated with the program's description, and jumps to the parent `run_code` result.
+- **Searches land on real files** — when a search result carries its matched-file list, the ops row per matched file with the hit count (pattern as detail); only a capped or unknown result falls back to the searched path/pattern itself.
 - **Sorted your way** — **Most active**, **Latest**, or **By path**; each row carries per-purpose badges, its cumulative line delta, the last operation's time, and a red dot when an operation failed.
-- **Click to inspect** — a row expands into the file's own operation log — every operation, no cap (tool, time, per-op delta, failures flagged); each operation jumps straight to the exact tool result in the Context browser.
+- **Click to inspect** — a row expands into the file's own operation log — every operation, no cap (tool, time, per-op delta, search detail, failures flagged); each operation jumps straight to the exact tool result in the Context browser.
 
 ### 🕸 Agent Network — the whole agent family at the foot of the tab
 
 The current agent, its parents, and every subagent it spawned — one node per agent, colored edges for the parent→child lineage:
 
-![Agent network card](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/agent-network.png)
+![Agent network card](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/agent-network.png)
 
 - **Subagents and multi-level delegation, on one live map** — the card walks the `parentId` chain to the topmost ancestor and lays out the whole family at any depth: ancestors, siblings, grandchildren. Each level-1 subtree owns a hue, so a node's allegiance reads from its link color; running agents breathe with a green halo and a flowing pulse on their edge.
 - **Every node carries that agent's own context** — each ring is one session's composition (the same six categories and estimator as the overview card) scaled to its window occupancy, with the fill percentage at the center. Hover for the full story: name, one-shot / continuable mode, tokens and window, requests, billed, active time.
@@ -113,9 +115,17 @@ The current agent, its parents, and every subagent it spawned — one node per a
 
 Pick **Live (next request)** or any retained step from the picker, and browse what that request was actually assembled from:
 
-![Context browser](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-browser.png)
+![Context browser](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-browser.png)
 
 Six collapsible category sections (system prompt, tool schemas, user messages, injected context, assistant replies, tool results) expand into one row per element — each with its token price — and every element expands again into its **actual content**: the full system prompt, each tool's description and JSON schema, message text, reasoning, tool-call arguments, and tool outputs.
+
+- **Who provides each tool** — tool-schema rows carry a best-effort source tag when attribution is knowable: the pinned first-party package map (`@deepseek-ai/dsh-tool-*`) for shipped tools, `mcp:<server>` for MCP-proxied tools (their public names encode the server), or a harness-logged `plugin` field. Beyond those, the host also watches live `tools.register()` calls and tags each tool to the plugin that registered it — third-party, agent-scoped and dynamically named tools included, even plugins installed from a local path or npm/pnpm link (their package name is resolved from the registering code's directory). The session log itself records only each tool's name/description/parameters, so a tool that was **already registered when the context plugin mounted** (e.g. local-link plugins that load earlier in the bundle) shows an **Unknown plugin** tag instead: the registering plugin is gone from every observable surface by the time attribution starts. Tools not in the current registry at all (older sessions) stay untagged.
+
+![Context browser tool schemas with per-plugin source chips, a text filter, and the size/name sort](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-browser-tools.png)
+
+- **Filter every category, sort the tools** — every category body carries a text filter that scans exactly what its rows show: tool schemas match name/description/parameters/plugin; message rows match the preview and the tag chip (call breadcrumbs, call-argument summaries) — full bodies stay out of scope, they load on demand. Each filter box names its own searchable fields, and the tools category adds a **size / name** sort with size (token price) as the default, mirroring the overview's Top chips. The filter is a lens on the open category: switching categories resets it, picking steps keeps it.
+
+![Row filtering in the Context browser: tool results narrowed by "fileCard"](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-browser-search.png)
 
 - **Linked with the trend chart** — hover any bar in the Context trend card and the browser previews that step instantly; leave the chart and it returns to your own pick. Keep a category open while scrubbing to compare one category across steps. Clicking a step-brief row (**User** / **In** / **Response**) opens that exact message here, expanded and scrolled into view.
 - **Honest about coverage** — steps before a compaction are reconstructed from the removed-message archive, and the card says so when a step's makeup is only approximate. Elements older than the loaded chat window page older history in automatically when you expand them, and live injections (AGENTS.md, session-start context, …) are always listed — never a token sum without its items.
@@ -123,13 +133,13 @@ Six collapsible category sections (system prompt, tool schemas, user messages, i
 
 Tool results open into the full call and response: the tool's name and arguments with its **OK/error** status on top, the result body with its line count and a **Raw / Markdown** display toggle, and any image payload (e.g. `read_image` output) rendered as a thumbnail card with its name, dimensions, stored size, and estimated token cost — instead of a flattened blob of text:
 
-![Context browser showing a tool result with Raw/Markdown toggle and an image payload](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-browser-tool-result.png)
+![Context browser showing a tool result with Raw/Markdown toggle and an image payload](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-browser-tool-result.png)
 
 ### 🖼 Multimodal — image attachments in full view (DeepSeek Harness 0.1.1+)
 
 Fully adapted to DeepSeek Harness 0.1.1's multimodal pipeline and the vision capability of **DeepSeek-V4-Flash-Vision-Exp**. A user message carrying images expands into a card layout — prose in the text card (with the usual raw/Markdown toggle), each image attachment as a thumbnail card in an equal-width two-column grid with its name, normalized dimensions (plus the pre-normalization size when 0.1.1's image pipeline downscaled it), stored size, and **estimated token cost** — priced by DeepSeek's official image-size→token conversion (the docs' image token calculator; 117–384 tokens per image under the provider's per-image cap), the same estimate the message/token breakdowns carry — and anything unrecognized as raw content:
 
-![Context browser rendering image attachments](https://raw.githubusercontent.com/bowenliang123/dsh-context/e24dcdae87f0fb3a48e0773c9cc1e95b7c14aefb/docs/context-browser-images.png)
+![Context browser rendering image attachments](https://raw.githubusercontent.com/bowenliang123/dsh-context/201151793bc4fba1ecbcfb1aebd164f0f5935ffd/docs/context-browser-images.png)
 
 Images load through the harness's own session-authorized loader — the same one the chat history uses — and degrade to metadata-only cards when it is unavailable. Image blocks in assistant messages and tool results (e.g. `read_image` output) now render too, instead of being silently dropped.
 

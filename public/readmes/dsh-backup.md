@@ -26,7 +26,7 @@ sha256: 8f9ae6322ef782d21554981cf4547220d5bb3e64d7964a883317415ad54e3cbb
 
 Prefer clicking? There's a visual panel in `dsh web` → Settings → Plugins → Backup: list, verify, restore, delete, edit settings — no restart.
 
-![Backup panel](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/ed583272026274bf3a292feb9ade2cfea2b0dc9b/docs/assets/panel-backups.png)
+![Backup panel](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/5a1dc29f0e6b9b6bf0f47cbbab5ea60307cc9062/docs/assets/panel-backups.png)
 
 ## Why you want this
 
@@ -41,7 +41,7 @@ Prefer clicking? There's a visual panel in `dsh web` → Settings → Plugins �
 | "Backups rot silently" | Every archive ships a sha256; `/backup verify all` checks integrity; daily/weekly tiered retention keeps useful history longer |
 | "I'll forget to back up" | `/backup auto 12` — every 12 hours, survives restarts, rotates old copies (default keep 7) |
 
-![Backup settings](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/ed583272026274bf3a292feb9ade2cfea2b0dc9b/docs/assets/panel-settings.png)
+![Backup settings](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/5a1dc29f0e6b9b6bf0f47cbbab5ea60307cc9062/docs/assets/panel-settings.png)
 
 ## Install
 

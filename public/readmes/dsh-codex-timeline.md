@@ -3,7 +3,7 @@
 [English](README.en.md) | 中文
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/cover.png" width="960" alt="DSH Codex Timeline 封面：对话左侧的轮次轨道、预览和搜索" />
+  <img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/903f3a8be5680ce8aff165a387ff26d0e163f55b/docs/images/cover.png" width="960" alt="DSH Codex Timeline 封面：对话左侧的轮次轨道、预览和搜索" />
 </p>
 
 [![CI](https://github.com/Wine-Red/dsh-codex-timeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Wine-Red/dsh-codex-timeline/actions/workflows/ci.yml)
@@ -23,8 +23,8 @@
 <table>
   <thead><tr><th>DSH 原生浅色</th><th>DSH 原生深色</th></tr></thead>
   <tbody><tr>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-default-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-default-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/903f3a8be5680ce8aff165a387ff26d0e163f55b/docs/images/timeline-default-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/903f3a8be5680ce8aff165a387ff26d0e163f55b/docs/images/timeline-default-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 默认时间线：搜索、收藏和完整静态索引" /></td>
   </tr></tbody>
 </table>
 
@@ -35,8 +35,8 @@
 <table>
   <thead><tr><th>DSH 原生浅色</th><th>DSH 原生深色</th></tr></thead>
   <tbody><tr>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-hover-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
-    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/2689f8b1c298ec2b2df4b4c5dcf8b760cb2ad786/docs/images/timeline-hover-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/903f3a8be5680ce8aff165a387ff26d0e163f55b/docs/images/timeline-hover-dsh.png" width="470" alt="DSH 原生浅色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
+    <td><img src="https://raw.githubusercontent.com/Wine-Red/dsh-codex-timeline/903f3a8be5680ce8aff165a387ff26d0e163f55b/docs/images/timeline-hover-dsh-dark.png" width="470" alt="DSH 原生深色主题中的 0.5.0 悬停时间线：分级波动和顶层预览卡" /></td>
   </tr></tbody>
 </table>
 
@@ -151,7 +151,7 @@ pnpm pack --pack-destination artifacts
 安装本地 tarball做 profile 契约验证：
 
 ```powershell
-dsh plugin --profile web add ".\artifacts\dsh-codex-timeline-0.5.4.tgz"
+dsh plugin --profile web add ".\artifacts\dsh-codex-timeline-0.5.5.tgz"
 dsh --profile web --dump-config
 ```
 

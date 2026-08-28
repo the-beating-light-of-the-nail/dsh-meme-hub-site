@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
 </p>
 
 <div align="center">
@@ -75,27 +75,27 @@
 
 在「设置 → IM助理」连接渠道。未连接显示「配置」，已连接显示开关和状态：
 
-![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/settings-channels.png)
+![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/settings-channels.png)
 
 工作区左侧「任务 / 频道」分列。IM 会话只出现在「频道」：
 
-![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/workspace-channels.png)
+![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/workspace-channels.png)
 
 企业微信等渠道支持扫码快捷绑定：
 
-![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/wecom-qr.png)
+![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/wecom-qr.png)
 
 连上后，可在各 IM 里直接驱动本机助手：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/adca4195a34a7e63e0a5fdb1e44f3233694bba7d/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/e6b8760b7c32c32032dc37efff3cb0d44a6af5e7/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
 </p>
 
 ## DSH 产品生态
@@ -106,7 +106,6 @@
 | --- | --- |
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | 本产品的运行宿主，提供模型、会话、工具和插件系统 |
 | [DSH Codex Desktop](https://github.com/MichengAI/dsh-codex-desktop) | 下载安装即用的桌面产品，已内置本产品和其他 5 个功能产品 |
-| [DSH Codex Suite](https://github.com/MichengAI/dsh-codex-ui/tree/main/packages/dsh-codex-suite) | 面向已有 DSH Web 环境的一键套件，会安装本产品和其他 5 个功能产品 |
 | 6 个功能产品 | [Codex UI](https://github.com/MichengAI/dsh-codex-ui) · [IM Connect](https://github.com/MichengAI/dsh-im-connect) · [Automation](https://github.com/MichengAI/dsh-automation) · [Skills Manager](https://github.com/MichengAI/dsh-skills-manager) · [Archive Manager](https://github.com/MichengAI/dsh-archive-manager) · [Agency Agents](https://github.com/MichengAI/dsh-agency-agents) |
 
 ## 前置条件

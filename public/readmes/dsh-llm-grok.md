@@ -17,13 +17,34 @@ dsh web
 
 The repository tracks release-ready lib artifacts, so GitHub installation needs no build-script allowlist. A source checkout can use a link installation after running `pnpm run build`.
 
+## Remote management
+
+By default the plugin's settings RPC is loopback-only. When you open DSH from a non-loopback host (e.g. https://dsh.noirbright.top or http://192.168.50.75:3080), the card shows “A remote browser cannot edit plugin settings”.
+
+To allow editing from a trusted host:
+
+1. Add to your profile patch (`~/.dsh/profiles/web/cordis.patch.yml` for production, `~/.dsh-lab/profiles/web/cordis.patch.yml` for lab):
+   ```yaml
+   - id: llm-grok
+     config:
+       remoteManagement: true
+   ```
+2. Restart DSH with the host allowlisted:
+   ```sh
+   dsh web --trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top
+   ```
+   The current production launch already uses `--trusted-host 192.168.50.75 --trusted-host dsh.noirbright.top`; add any additional host you use.
+3. Refresh the browser. Settings saved on the host keep working for remote sessions.
+
+Without `remoteManagement: true`, use `ssh -L 3080:127.0.0.1:3080 user@host` and open `http://127.0.0.1:3080`.
+
 ## Web configuration
 
 Open Settings → LLM Providers → Grok. **Sign in with xAI** starts a Host-owned PKCE flow against `auth.x.ai` (the Grok CLI public client), opens the system browser, and stores the session only on the Host at `$DSH_HOME/grok-oauth.json` (mode `0600`). The card then shows the account email. Sign out deletes that file. The browser never receives tokens. This plugin does not read or write `~/.grok/auth.json`.
 
 ### Plugin configuration
 
-![Grok Plugin card: subscription login, usage, and model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-grok/2670e8743c3d4a6357c7a3fd3bc1a4193fdbe79f/docs/images/plugin-card.png)
+![Grok Plugin card: subscription login, usage, and model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-grok/45102ca50fddef3294d76f66ac8c87c7f5ab54ee/docs/images/plugin-card.png)
 
 The Plugin card keeps two catalogs: the signed-in account list from `GET /v1/models-v2`, and the displayed subset stored as `settings.models`. The conversation picker uses only the displayed subset. Each row can set Default thinking and a Context window used as the DSH compaction budget. Official `grok-4.6` / `grok-4.5` default to 500,000 tokens. The card catalog starts collapsed; it can be reordered, edited, deleted, or replaced from the account list. When the subset has never been saved, the frozen default is `grok-4.6` and `grok-4.5`. Chat goes to `POST https://cli-chat-proxy.grok.com/v1/responses`. Every request includes DSH function tools plus always-on server-side `{ type: "web_search" }` and `{ type: "x_search" }`. Search is not a `ctx.web` provider. Server search returns encrypted `tco_*` reasoning items with empty summaries; those stay in replay and no longer each paint an empty Think row. If Grok also echoes the same search as a client `custom_tool_call` (`xs_call-*` / `ws_call-*`, often named `x_keyword_search`), the plugin drops it so DSH does not report `unknown tool`. Reasoning is sent as official Responses `reasoning: { effort }`, with values `low` / `medium` / `high` (default) / `xhigh` (4.6 only). When signed in, the card also shows subscription usage from a Host billing read (`GET /v1/billing?format=credits`). Logged-out cards do not request billing; an unrecognized surface is shown as unsupported, not as an error.
 
@@ -56,3 +77,5 @@ The Models page, if it lists Grok at all, is hint-only. Because this package doe
 The bundle retries eligible model-request failures up to eight times by default. xAI capacity/high-demand failures are classified as `RATE_LIMIT`; temporary availability degradation is classified as `SERVER`.
 
 There is no `apiKeyEnv` and no user-editable base URL. `models` is the displayed conversation catalog, a subset of the account list.
+
+The composer picker groups sibling catalog rows that share a base id after peeling a Fast suffix (`-fast`) and a generic context suffix (`-<n>k` / `-<n>m`). Product names such as `kimi-k3-max` are not treated as a context tier. This package's catalog comes from discovery; add extra suffix rows yourself if you want DSH to compact against a smaller budget. This plugin does not peel those suffixes on the wire.

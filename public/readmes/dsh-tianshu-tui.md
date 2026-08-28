@@ -8,7 +8,7 @@
 
 中文 | [English](README.en.md)
 
-![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/8dbe21b1aac9cafeeb0cf13d0f78b0284d4cde1b/docs/promo.png)
+![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/eba894e068c66465fcb4d0ada1deb1fdbd64c833/docs/promo.png)
 
 **dsh-tianshu-tui**（`@huiliyi37/dsh-tianshu-tui`）是官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 上的交互式终端 UI 插件。渲染核心为自研的 ANSI 极简引擎（由作者自己的开源项目 [天枢 Tianshu-Tui](https://github.com/huiliyi37/Tianshu-Tui) 演进而来，Apache-2.0；逐文件来源见 [SOURCE-MAP.md](SOURCE-MAP.md)），渲染轻量不打断，使用体验流畅。UI 是纯展示层：所有 agent 状态都来自会话事件流。在此之上做了 harness 工程层的个性化改造，如图像与视觉桥接、代码智能检索、记忆与跨会话召回等。
 
@@ -122,7 +122,13 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 
 ## 更新说明
 
-当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.23`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.23)）。
+当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.26`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.26)）。
+
+**0.1.2-rc.26（2026-08-28）**：P1 交互打磨六连——Esc 分层收尾（打断 grace 期 + 布防提示行）、glance 拟人动词池、footer 显式分级降级、错误恢复指引（每个错误附下一步操作）、定高视口强化（chrome 开合输入轨不跳）、fish 式历史建议 ghost（`→` 接受）；`/scroll` 上限可配。
+
+**0.1.2-rc.25（2026-08-28）**：P0 交互三连——键位/命令/提示统一 action registry（app.ts 棘轮 4359→4140）、审批卡六档决策梯度（新增 `p` 命令前缀白名单、`f` 拒绝附反馈，bash 审批带命令预览与危险标注）、运行中消息排队（`↑` 收回、`Ctrl+Enter` 插队、打断保队列）；另含 `/scroll` 分页查看器、完成响铃、vim remap、主题对比度校验。
+
+**0.1.2-rc.24（2026-08-27）**：vi/vim 编辑模式完整落地（#51，`/vim` 开关、Claude Code 键位表对标）+ 内置 LSP 三件套依赖闭包补齐（#54：修复 pnpm 下启动即 `ERR_MODULE_NOT_FOUND` 整树失败）。
 
 **0.1.2-rc.23（2026-08-27）**：LSP 三件套对齐 tianshu-public 0.6.0 官方 seam 线（单 `lsp` 工具四操作 + 本地 provider 默认 tsserver），诊断源能力门控防 `/lsp` 面板退化；宿主 peer 对齐 `^0.1.1-rc.2`。
 
@@ -136,7 +142,7 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 
 - **终端内的完整会话工作区** — 实时渲染、只增滚动转录、启动时会话恢复、`/fork` 探索分支、`/rewind` 回退（会话截断 + 可选文件回退）、`/export` 导出 Markdown 转录、中轮转向（`/steer` / `Ctrl+T`）。
 - **图片端到端** — 剪贴板粘贴（`Ctrl+V` / 终端菜单粘贴）、以终端图形协议内联渲染（kitty / iTerm2）、经 harness 附件服务投递、让具备视觉能力的模型真正看见——主模型不识图时自动经独立视觉模型把图片转成描述（视觉桥）。
-- **完整输入面** — grok 风格 slash 下拉菜单（模糊前缀匹配、MRU 排序、ghost 预览）、`@`-路径 Tab 补全与 `@mention` 展开、bracketed paste、可选 vim 键位、外部编辑器（`Ctrl+E`）、历史搜索（`Ctrl+F`）——`Ctrl+.` 随时调出完整键位表。
+- **完整输入面** — grok 风格 slash 下拉菜单（模糊前缀匹配、MRU 排序、ghost 预览）、`@`-路径 Tab 补全与 `@mention` 展开、bracketed paste、可选 vim 键位、外部编辑器（`Ctrl+E`）、历史搜索（`Ctrl+F`/`Ctrl+R`）——`Ctrl+.` 随时调出完整键位表。
 - **终端内交互面** — 结构化提问面板（数字键选择、plan-review 反馈模式）、带内联 `diff` 预览的挂起审批卡片、模式循环（`Shift+Tab`：normal → plan → always-approve）、命令面板，以及 status / config / skills / tasks / 委派树 / workflow 实时面板。
 - **推理过程可视化** — think 通道以实时头行流动、在滚动区折叠为紧凑行（`✻ 思考 (3.2s) · 12 行`）、`Ctrl+O` 原位展开（对标竞品：默认折叠）。
 - **个性化 harness 集成** — `/doctor` 终端诊断、`/memory` 项目记忆浏览器、`/btw` 后台 agent 侧问、`/model` + `/effort` 热切换（当前会话立即生效）。
@@ -173,8 +179,9 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 - **Slash 命令菜单** — 输入 `/` 打开下拉菜单：模糊前缀匹配、`↑↓` / `PageUp` / `PageDown` 选择、`Tab` 接受、`Enter` 提交、MRU 排序、参数占位 ghost 与输入行 ghost 预览。
 - **剪贴板与图片粘贴** — `Ctrl+V` 读取剪贴板图片（回退到文本）；终端菜单粘贴检测图片；看起来像图片的粘贴路径按附件加载；`Alt+W` / vim yank 经 OSC52 把选区复制到系统剪贴板。
 - **图片提交** — 附件图片显示 `📎 N images` 标记，提交时在用户气泡下方以内联图形渲染，并经附件服务到达模型；气泡携带识图提示（已转发 / 经视觉模型桥接 / 未发送）。超大图发送前自适应压缩：长边 1568px 封顶（PNG 保留透明），逐级 JPEG 0.82 → 0.55 → 1024px + 0.55 直到低于 provider 上限，全程只缩不放。
-- **Vim 编辑键位（[#51](https://github.com/huiliyi37/dsh-tianshu-tui/issues/51)）** — `Esc` 进 NORMAL，键位表对标 Claude Code：`h j k l / w e b W B E / 0 $ ^ / gg G / f F t T ; ,` 导航与查找重放、`d c y × motion` + 数字前缀、文本对象 `iw aw iW aW`、行级 `dd cc yy Y` 与 `p P` 粘贴、`x X D C s S r o O J u .`；`v/V` visual 选区两端含光标下字符。多行草稿 `j/k` 保持列移动；中文连续段成词不逐字跳。运行时 `/vim` 开关，`/vim default` 设为启动默认。
+- **Vim 编辑键位（[#51](https://github.com/huiliyi37/dsh-tianshu-tui/issues/51)）** — `Esc` 进 NORMAL，键位表对标 Claude Code：`h j k l / w e b W B E / 0 $ ^ / gg G / f F t T ; ,` 导航与查找重放、`d c y × motion` + 数字前缀、文本对象 `iw aw iW aW`、行级 `dd cc yy Y` 与 `p P` 粘贴、`x X D C s S r o O J u .`；`v/V` visual 选区两端含光标下字符。多行草稿 `j/k` 保持列移动；中文连续段成词不逐字跳。运行时 `/vim` 开关，`/vim default` 设为启动默认。insert 两键序列→Esc（`vimInsertRemaps`，如 `{"jj":"esc"}` 写入 prefs；1 秒窗防误触）。
 - **编辑** — 外部编辑器（`Ctrl+E`）、Tab 文件补全、`@mention` 展开、输入历史、多行输入、bracketed paste（多行/长文本粘贴整段进输入行，不逐行提交）；输入行绘制为完整圆角框体。
+- **运行中排队（对标 Claude Code queue）** — agent 运行时提交的消息进入输入轨上方的本地队列（立即回显、不直发）；回合结束按序自动投递，中断不投递（留给你 ↑ 取回的余地）；空输入 `↑` 取回队首回输入行；切换会话丢弃并回显条数。中轮即时纠偏仍走 `/steer` / `Ctrl+T`。
 - **图片再询问** — 同仓伴生插件 `@deepseek-ai/dsh-vision-ask` 登记已发送图片，并经 `ask_image` 回答模型的定向问题（见 [vision-ask](vision-ask/README.md)）。
 
 ### 渲染与投影
@@ -186,15 +193,15 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 - **轮次状态** — braille spinner + 阶段文本状态行、workflow 运行汇总、委派树、任务窗格、config/skills 面板作为 live-region 面板；turn 结束（非中断）且有工具调用时落 dim 摘要行（`turn N · 读X 改Y · 耗时`）。
 - **Subagent 运行** — 每个运行一条 live spinner 行；终态以 `✓`/`✗`/`◌` 条目落入滚动区。
 - **窗口 chrome** — 欢迎页（品牌头、友好会话短 id、环境检查行）、顶部栏（cwd + git 分支 + 模型）、底部三行区：输入行（底边线随模式着色）→ footer（模式徽标 + 快捷键提示）→ metrics 行（模型 / token 用量 / 缓存命中率）。
-- **主题** — 内置调色板 + `custom:<name>`；自动终端检测与 16 色降级。
+- **主题** — 内置调色板 + `custom:<name>`；自动终端检测与 16 色降级；尊重 `NO_COLOR`；自定义主题加载时按声明背景做对比度警告（WCAG < 3.0，不阻断）。
 
 ### 交互面板
 
 - **结构化提问** — 数字键选择、`Esc` 取消、重叠保护；plan-review 反馈模式（`f` 进入、`Enter` 提交 Keep planning + 自定义反馈）。
 - **审批卡片** — `y`/`N`/`Ctrl+C` 结算挂起审批；工具可 diff 时内联差异预览；diff 不可见时盲批提示；非当前会话请求委托给下一个监听者。
 - **模式循环** — `Shift+Tab` 循环 normal → plan → always-approve；plan 状态驱动 footer 徽标，always-approve 为会话级本地态（切换/退出时复位）。
-- **实时面板** — `/status`（goal/todos/plan 投影快照；subagent 域见 `/subagents`）、`/config`（终端通知/紧凑渲染 + 宿主 settings / permission / credentials）、`/skills` 浏览（↑↓ 详情）、`/tasks` 窗格、`/subagents` 委派树、`/workflow` 运行。检查类面板互斥，`Esc` 关闭。宿主服务未装配时对应段折叠；`/config` 的终端段不依赖宿主。其它面板在 backing 服务缺失时回显 `⚠` 警告（不静默空白）。
-- **命令面板（`Ctrl+P`）/ 键位表（`Ctrl+.`）/ 历史搜索（`Ctrl+F`）overlay**。
+- **实时面板** — `/status`（goal/todos/plan 投影快照；subagent 域见 `/subagents`）、`/config`（终端通知（完成时系统通知 + BEL 响铃，响铃在 SSH 会话下同样可达）/紧凑渲染 + 宿主 settings / permission / credentials）、`/skills` 浏览（↑↓ 详情）、`/tasks` 窗格、`/subagents` 委派树、`/workflow` 运行。检查类面板互斥，`Esc` 关闭。宿主服务未装配时对应段折叠；`/config` 的终端段不依赖宿主。其它面板在 backing 服务缺失时回显 `⚠` 警告（不静默空白）。
+- **命令面板（`Ctrl+P`）/ 键位表（`Ctrl+.`）/ 历史搜索（`Ctrl+F`/`Ctrl+R`）overlay**。
 
 ### 模型与视觉
 
@@ -212,6 +219,7 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 | `/fork [directive]` · `/branch` | 分叉当前会话，可选带起始指令 |
 | `/rewind` | 两阶段回滚（消息列表 → 粒度） |
 | `/export [path]` | 导出转录为 Markdown |
+| `/scroll` | 分页查看器：全文浏览转录（滚动 / 实时搜索 / `n`·`N` 跳转 / `g`·`G` 首尾） |
 | `/clear` | 清空滚动区视图 |
 | `/compact` | 压缩会话上下文 |
 | `/steer <text>` | 中轮转向（不中断地纠正方向） |
@@ -244,16 +252,17 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 | `Ctrl+Q` | 退出（同 `/exit`） |
 | `Ctrl+P` | 命令面板 |
 | `Ctrl+.` | 键位表 overlay |
-| `Ctrl+F` | 历史搜索（`n`/`N` 下一个，`p`/`P` 上一个） |
+| `Ctrl+F` / `Ctrl+R` | 历史搜索（`n`/`N` 下一个，`p`/`P` 上一个） |
 | `Ctrl+O` | 展开/收起最近推理块 |
 | `Ctrl+E` | 用 `$EDITOR` 打开输入行（可经 `editorKey` 配置） |
 | `Ctrl+T` | 中轮转向 |
+| `Ctrl+Enter` | 插队：打断当前回合并立即发送草稿（需终端支持 kitty 键盘增强协议，`RIVET_KITTY_KEYBOARD=1` 可强制开启） |
 | `Ctrl+C` | 打断在途回合（空闲时空输入双击退出） |
 | `Ctrl+V` | 粘贴剪贴板图片（无图时回退剪贴板文本） |
 | `Alt+W` | 把选区复制到系统剪贴板（OSC52） |
 | `Shift+Tab` | 模式循环：normal → plan → always-approve |
 | `Tab` | `@`-路径补全；接受 slash 菜单选中项 |
-| `↑`/`↓` | 输入历史（slash 菜单打开时为选择） |
+| `↑`/`↓` | 输入历史（slash 菜单打开时为选择；有排队消息时空输入 ↑ 取回队首） |
 | `PageUp`/`PageDown` | slash 菜单翻页 |
 | `Esc` | 关闭菜单/overlay/检查面板；取消挂起提问；空闲双击 rewind |
 | `t` | 审批卡：记住此工具（本会话内该工具自动放行，其他工具仍逐卡审批） |

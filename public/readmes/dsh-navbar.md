@@ -10,11 +10,11 @@
   <a href="https://www.dsh.so/artifact/dsh-navbar"><img src="https://www.dsh.so/badge/dsh-navbar.svg" alt="dsh.so security" /></a>
 </p>
 
-An evenly spaced node strip along the right edge of the conversation area (one node per user message): the active pill follows your reading position, hovering shows a preview card (truncated at 6 lines), clicking smooth-scrolls with a brand-blue highlight ring, more than 11 nodes automatically switch to a sliding window, it stays invisible until hovered, and it auto-hides when there are fewer than 2 user messages. Implements the dsh-external/issues#144 spec. Form: an official **bundle plugin** (`dsh.bundle` + dshClient channel, **browser-only**, empty Node half), 0 patches.
+An evenly spaced node strip along the right edge of the conversation area (one node per user message): the active pill follows your reading position, hovering shows a preview card (truncated at 6 lines), clicking smooth-scrolls with a brand-blue highlight ring, more than 30 nodes switch to a fixed 30-node window with count badges (↑N/N↓) at the ends showing how many are hidden, it stays invisible until hovered, and it auto-hides only when no user message is loaded — in that case it automatically loads earlier history until at least one user message appears (or history runs out). Implements the dsh-external/issues#144 spec. Form: an official **bundle plugin** (`dsh.bundle` + dshClient channel, **browser-only**, empty Node half), 0 patches.
 
 ## Preview
 
-![navbar node navigation rail (real runtime screenshot: node strip on the right edge + active highlight)](https://raw.githubusercontent.com/vlln/dsh-navbar/4542a8e1fc94c153faee4f68ef03650b933fea94/docs/preview/navbar.png)
+![navbar node navigation rail (real runtime screenshot: node strip on the right edge + active highlight)](https://raw.githubusercontent.com/vlln/dsh-navbar/f41d446f843e575c3291e4926718f9dc6e0f3bea/docs/preview/navbar.png)
 
 ## Features
 
@@ -26,9 +26,9 @@ An evenly spaced node strip along the right edge of the conversation area (one n
 | Continuous hover | The entire rail (including the gaps between nodes) responds to hover continuously: the preview switches to the nearest node and the corresponding pill elongates (gray) to indicate the click target — no dead zones |
 | Scroll-wheel switching | With the cursor over the rail, scrolling the wheel moves up/down one message (blocking conversation-area scrolling) |
 | Click to jump | The whole rail is clickable (including gaps, jumping to the nearest node) plus an enlarged pill hit area — no need to precisely aim at tiny dots |
-| Sliding window | When there are more than 11 nodes, only the nodes inside the window are shown (avoids overflow) |
+| Fixed window + count badges | More than 30 nodes show a fixed 30-node window (the active node stays centered, clamped at the ends); count badges (↑N / N↓) at the window ends show how many are hidden — the visible node count stays constant. Pinned golden discs always stay visible (the window expands to include them) |
 | Load earlier history | An ↑ button pinned at the top of the rail (visible only while the conversation has older history): click to load earlier messages — it forwards to the official load-older control, so your reading position is preserved. Hovering it instantly shows a hint card in the same style as the node previews (the official HoverCard look) |
-| Auto-hide | Not shown with fewer than 2 user messages or on non-conversation pages |
+| Auto-hide | Not shown with no user message loaded (or on non-conversation pages). With zero user messages loaded, the rail **automatically loads earlier history** until at least one user message appears (or history is exhausted) — so the rail always has something to navigate |
 | Message pin | 📌 button on the assistant action bar (between copy and Good response); pinned turns render as a golden slim elliptical disc in the rail (always visible, the preview card carries a 📌 badge, clicking jumps straight to the pinned reply), persisted per session |
 
 Zero data-channel dependencies: driven only by official anchor attributes (`data-time-hover-root`, on user rows since 0806) — no polling, no routing, no tools.
