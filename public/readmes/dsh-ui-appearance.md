@@ -2,7 +2,7 @@
 
 [English](README.en.md) · 中文
 
-DeepSeek Harness 外观自定义插件 —— 自由调色的主题色板、壁纸/视频背景、毛玻璃与背景氛围,全部实时预览、自动持久化;WebUI 与 DSH Desktop 均可使用。
+DeepSeek Harness 生态中首个支持多维度 UI 参数深度自定义的外观插件 —— 不局限于固定预设，支持面板/输入框/代码块透明度微调、毛玻璃强度、壁纸/视频背景、Wallpaper Engine 原画材质实时同步及色板智能衍生；WebUI 与 DSH Desktop 均可使用。
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 [![npm](https://img.shields.io/npm/v/dsh-ui-appearance)](https://www.npmjs.com/package/dsh-ui-appearance)
@@ -16,13 +16,13 @@ DeepSeek Harness 外观自定义插件 —— 自由调色的主题色板、壁�
 
 | 设置面板 | 壁纸 + 毛玻璃效果 |
 |---|---|
-| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-wallpaper.png) |
+| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/d80e20308df7947beb4c078c5a2780a081a1b08d/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/d80e20308df7947beb4c078c5a2780a081a1b08d/docs/screenshot-wallpaper.png) |
 
 在 **[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)**(桌面客户端)中同样开箱即用,以下为实拍:
 
 | 高级模式(桌面原生布局与材质) | 兼容模式(上游默认 Web client) |
 |---|---|
-| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/c7e32694c1aa25a22697bde1d3bfeca5c33a746c/docs/screenshot-desktop-compat.webp) |
+| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/d80e20308df7947beb4c078c5a2780a081a1b08d/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/d80e20308df7947beb4c078c5a2780a081a1b08d/docs/screenshot-desktop-compat.webp) |
 
 > 效果图中的壁纸素材 © MadYY([原图](docs/wallpaper-madYY.png)),仅作演示;用户上传自己的图片即可。
 

@@ -3,7 +3,7 @@
 [English](README_en.md) | 简体中文
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/banner.jpg" alt="dsh-passwords" width="100%">
+  <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/banner.jpg" alt="dsh-passwords" width="100%">
 </p>
 
 <p align="center">
@@ -62,15 +62,15 @@ dsh 自带的网页界面没有登录与权限控制，公网部署后任何拿�
 
 | 登录页 · 浅色 | 登录页 · 深色 | 登录页 · English |
 |:---:|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/white-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/black-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/white-login-en.png" width="360"> |
+| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/white-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/black-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/white-login-en.png" width="360"> |
 
 | dsh 主界面 · 登录后 | 聊天 / 留言 | 设置页卡片 · 账号管理 |
 |:---:|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/main-ui.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/chat.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/card-front.png" width="360"> |
+| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/main-ui.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/chat.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/card-front.png" width="360"> |
 
 | | 设置页卡片 · 权限与配额 | |
 |:---:|:---:|:---:|
-| | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/b33e5af3a3584a957948fde23178b98370d8c7bb/docs/screenshots/card-back.png" width="360"> | |
+| | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/7b366e4b4f676b1b78048c4b24cff225a19d884b/docs/screenshots/card-back.png" width="360"> | |
 
 ## 快速开始
 
@@ -196,13 +196,15 @@ node scripts/start-http.mjs [端口]    # 默认 8080，需确认风险提示
 | `MCP_DB_ENC_KEY` | 空 | 字段加密密钥，启用后不可更换；备份数据库必须连同 `.env` |
 | `MCP_GATEWAY_HOST` / `MCP_GATEWAY_PORT` | `0.0.0.0` / `443` | 网关监听地址与端口 |
 | `MCP_GATEWAY_UPSTREAM` | `http://127.0.0.1:3080` | dsh 网页地址，插件自动指向 |
-| `MCP_GATEWAY_WS_ADMIN_ALLOWLIST` | 空 | 可授权给子用户的第三方 WebSocket 路径，支持精确路径与 `/*` 通配 |
+| `MCP_GATEWAY_WS_ADMIN_ALLOWLIST` | 空 | 仅主用户可用的第三方 WebSocket 路径；支持精确路径与 `/*` 通配，不会出现在子用户授权列表 |
+| `MCP_GATEWAY_WS_USER_ALLOWLIST` | 空 | 可由主用户逐项授权给子用户的第三方 WebSocket 路径；支持精确路径与 `/*` 通配 |
 | `MCP_GATEWAY_REDIRECT_PORT` | `80` | ACME 验证与 301 跳转端口 |
 | `MCP_GATEWAY_DOMAIN` | 空 | 自定义域名，留空用 `<公网IP>.sslip.io` |
 | `MCP_GATEWAY_AUTO_TLS` | 开 | `0` 关闭自动 HTTPS |
 | `MCP_GATEWAY_TLS_CERT` / `MCP_GATEWAY_TLS_KEY` | 空 | 自有证书，优先于自动 HTTPS |
 | `MCP_GATEWAY_PUBLIC_HOST` | 空 | 固定跳转地址，防 Host 伪造 |
 | `MCP_GATEWAY_ACME_EMAIL` / `MCP_GATEWAY_ACME_STAGING` | 空 / 关 | 证书提醒邮箱 / LE 测试环境 |
+
 | `MCP_DSH_ROOT` | 自动探测 | dsh 安装目录 |
 | `MCP_DSH_RESTART_SERVICE` | `dsh-web` | 重载补丁后重启的 systemd 服务名 |
 | `MCP_DSH_AUTO_UPDATE` | 开 | 部署级自动更新总开关 |

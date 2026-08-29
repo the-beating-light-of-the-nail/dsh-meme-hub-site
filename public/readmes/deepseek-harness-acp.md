@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-acp/414230284542d244c39e3afd5f4eeadc058ab2f4/assets/acp-x-deepseek.svg" width="520" alt="Agent Client Protocol × DeepSeek Harness" />
+  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-acp/dc230b97cbdc2c449cfa5a9a717be9e461856a5b/assets/acp-x-deepseek.svg" width="520" alt="Agent Client Protocol × DeepSeek Harness" />
 </p>
 
 <h1 align="center">deepseek-harness-acp</h1>
@@ -170,6 +170,15 @@ Optional wire behavior follows ACP's extension conventions:
 4. Keep the standard ACP path complete. A client that does not advertise an
    extension must still get normal sessions, prompts, updates, cancellation,
    auth, and config options.
+
+#### DSH tool result values
+
+The [ACP metadata registry][metadata-registry] is the authoritative list of
+every `_meta` field this adapter reads or emits. It records direction, carrier,
+shape, negotiation requirements, and replay behavior, including native DSH
+tool values at `_meta.dsh.toolResult.value`.
+
+[metadata-registry]: https://github.com/openma-ai/deepseek-harness-acp/blob/main/docs/metadata.md
 
 The current package applies this pattern to the built-in `_dsh/cordis/*`
 family used by the TUI for Client capability discovery, dynamic Package

@@ -2,6 +2,13 @@
 
 > 🌐 [English](./README.en.md)
 
+> **▼ DSH v0.1.2-alpha.1 适配说明**
+> - **支持范围不变**：插件适配 DSH ≥ 0.1.0-rc.7 ~ 0.1.1-rc.x。
+> - **alpha.1 暂不可直接升级**：目前只有源码 tag，npm 未发布。
+> - **功能重叠**：alpha.1 原生新增「折叠已完成回答前的过程 + System prompt」且默认开，与插件的 fold 功能重叠，同时开会双折叠。
+> - **建议**：在 alpha.1 上二选一（用原生折叠，或关掉插件 fold）；0.1.1-rc.x 无需改动。
+> - **适配中**：插件的折叠版尚未适配 alpha.1，待实机验证后发布。
+
 让 DSH 的长会话变成**可扫读、可跳转**的结论流。
 
 多任务、多轮次的会话里，思考、工具调用、中间文字和最终总结混在一起，回头找「上次那个任务的结论」很费劲。dsh-tidychat 把已完成的任务轮次自动折叠成一条结论，把思考与正文用分隔线切开，并在聊天区左缘提供一条 Codex 式全局导航定位条（Canvas minimap），任意长度的会话都能全局浏览、快速跳转。
@@ -25,20 +32,20 @@
 **自动折叠**：已完成轮次收成一条控制条，只留最终结论（上）；点击「展开」恢复思考、工具调用与中间文字（下）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/4bc374f56bece8be6efb3d5c4279233475867cb8/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/4bc374f56bece8be6efb3d5c4279233475867cb8/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/59bc78b2b536a8d96be188ed67a76d37d7c67049/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/59bc78b2b536a8d96be188ed67a76d37d7c67049/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
 </p>
 
 **左缘定位条（Canvas minimap）**：固定高度全局映射，任意长度会话可全局浏览；悬停鱼眼展开 + 摘要卡（含日期时间），拖动预览，点击跳转到阅读区顶部。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/4bc374f56bece8be6efb3d5c4279233475867cb8/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/59bc78b2b536a8d96be188ed67a76d37d7c67049/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要">
 </p>
 
 **设置面板**：四个功能独立开关 + 现象标签 + 一键「生成诊断报告并提交」，改动即时生效。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/4bc374f56bece8be6efb3d5c4279233475867cb8/assets/settings.png" width="92%" alt="设置面板四开关">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/59bc78b2b536a8d96be188ed67a76d37d7c67049/assets/settings.png" width="92%" alt="设置面板四开关">
 </p>
 
 ## 🚀 安装

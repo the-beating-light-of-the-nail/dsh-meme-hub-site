@@ -14,7 +14,7 @@
 > **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 6 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/95300276a47c9410982db294eeb92fa28599d8b2/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f9705c6ba246d0c2561275e75111a0858b31579f/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 [![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
@@ -126,13 +126,12 @@ Returns `node_id` + `token`. Use token for unlimited remote searches.
 
 ### WebMCP (Browser-based AI Agents)
 
-MisakaNet supports WebMCP for browser-based AI agents:
+MisakaNet's MCP server is exposed via [WebMCP](https://blog.cloudflare.com/webmcp/) — browser-based AI agents can use MisakaNet tools directly from the page, no install, no account:
 
-1. **Enable in Cloudflare** — Security > Bots > WebMCP
-2. **Select "Site MCP Server"** toolset
-3. **Configure endpoint** — `https://misakanet.org/mcp`
+1. **Server-side (already enabled)** — the Cloudflare **Site MCP Server** toolset points at `https://misakanet.org/mcp`.
+2. **Visitor-side (zero config)** — open misakanet.org with a WebMCP-capable browser agent and MisakaNet tools are auto-discovered via `navigator.modelContext`.
 
-Once enabled, AI agents visiting misakanet.org will automatically discover and can use MisakaNet tools without configuration.
+> ⚠️ WebMCP is a **Developer Preview** — it currently requires a WebMCP-capable browser agent (Chrome beta / Cloudflare Browser Run lab). Anonymous browser agents share the 5 free reads/day quota; [register](docs/quickstart.md) for unlimited access.
 
 → [WebMCP Configuration Guide](docs/cloudflare-worker.md)
 
@@ -217,7 +216,7 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/95300276a47c9410982db294eeb92fa28599d8b2/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f9705c6ba246d0c2561275e75111a0858b31579f/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -494,7 +493,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/95300276a47c9410982db294eeb92fa28599d8b2/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f9705c6ba246d0c2561275e75111a0858b31579f/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

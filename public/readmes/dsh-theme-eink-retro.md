@@ -9,7 +9,7 @@
 
 E-Ink Retro is a client-side theme for DeepSeek Harness. It uses neutral paper surfaces, near-black type, hard offset shadows, compact corners, and black-and-white selection states. The geometry takes cues from classic Macintosh interfaces while keeping the DSH layout and workflows recognizable.
 
-![Balanced mode on a fresh DSH 0.1.1-rc.2 profile, captured 2026-08-26](https://raw.githubusercontent.com/exoticknight/dsh-theme-eink-retro/8d63642172dcd15d1a67b84e49159e1a0257db6b/assets/screenshots/balanced-fresh-profile.png)
+![Balanced mode on a fresh DSH 0.1.1-rc.2 profile, captured 2026-08-26](https://raw.githubusercontent.com/exoticknight/dsh-theme-eink-retro/c65f58b7d83f1ebb8840a25a748ab0fc076f0597/assets/screenshots/balanced-fresh-profile.png)
 
 ## Highlights
 
@@ -28,7 +28,7 @@ E-Ink Retro is a client-side theme for DeepSeek Harness. It uses neutral paper s
 | **Immersive** | Maps supported DSH surfaces, status tokens, and verified compatibility layers to grayscale. User media remains unchanged. |
 | **Off** | Releases the theme token layer and removes the active root attribute. The plugin stays installed. |
 
-![Balanced and Immersive settings on a fresh DSH 0.1.1-rc.2 profile, captured 2026-08-26](https://raw.githubusercontent.com/exoticknight/dsh-theme-eink-retro/8d63642172dcd15d1a67b84e49159e1a0257db6b/assets/screenshots/theme-settings-fresh-profile.png)
+![Balanced and Immersive settings on a fresh DSH 0.1.1-rc.2 profile, captured 2026-08-26](https://raw.githubusercontent.com/exoticknight/dsh-theme-eink-retro/c65f58b7d83f1ebb8840a25a748ab0fc076f0597/assets/screenshots/theme-settings-fresh-profile.png)
 
 ## Install
 
@@ -41,7 +41,7 @@ Requirements:
 Install the tagged GitHub release:
 
 ```sh
-dsh plugin --profile web add github:exoticknight/dsh-theme-eink-retro#v0.2.0
+dsh plugin --profile web add github:exoticknight/dsh-theme-eink-retro#v0.2.1
 ```
 
 Restart DSH Web after installation, then open **Settings → E-Ink Retro**.
@@ -97,7 +97,7 @@ Selecting another third-party theme pauses E-Ink Retro. Enabling E-Ink Retro or 
 
 ## Compatibility
 
-The `v0.2.0` release was built and checked with:
+The `v0.2.1` release was built and checked with:
 
 | Component | Version or environment |
 | --- | --- |

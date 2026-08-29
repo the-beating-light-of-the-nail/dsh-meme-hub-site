@@ -18,11 +18,11 @@
 
 **设置面板**（`设置 → 插件配置 → 子代理默认模型`）：配置一个或多个模型路由，支持 `round-robin` / `random` 分配策略与每路由推理强度。
 
-![子代理默认模型设置面板](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/f2c87cce223e3516b78d994b923ad8da0270094e/assets/pic_01.png)
+![子代理默认模型设置面板](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/d2a2eaa8e56834a45f5b22247db0424e3804ffc0/assets/pic_01.png)
 
 **效果验证**：10 个子代理在 `deepseek-v4-flash` 与 `Kimi-k3` 之间 5/5 均衡分配（round-robin 实测）。
 
-![子代理默认模型分配统计](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/f2c87cce223e3516b78d994b923ad8da0270094e/assets/pic_02.png)
+![子代理默认模型分配统计](https://raw.githubusercontent.com/dingminhua/dsh-subagent-default-model/d2a2eaa8e56834a45f5b22247db0424e3804ffc0/assets/pic_02.png)
 
 ## 市场
 
@@ -129,4 +129,6 @@ subagent-default-model:
 
 ## 许可证
 
-[MIT](LICENSE)
+本项目采用 [MIT 许可证](LICENSE) 开源发布，版权归属：**Copyright (c) 2026 LaoDing**。
+
+MIT 许可证授予任何人免费处理本软件（包括使用、复制、修改、合并、发布、分发、再许可及出售副本）的权利，前提是所有副本或实质性部分均保留上述版权声明与本许可声明；软件按“原样”提供，不附带任何明示或暗示的担保。完整条款见 [LICENSE](LICENSE)。

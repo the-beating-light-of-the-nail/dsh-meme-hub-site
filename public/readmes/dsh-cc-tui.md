@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
 </p>
 <p align="center">
   <strong>简体中文</strong> | <a href="README_EN.md">English</a>
@@ -33,7 +33,7 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
         <br>
         <strong>DeepSeek Harness 官方公众号推文收录</strong>
       </td>
@@ -66,12 +66,12 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
         <br>
         <strong>首屏：像素鲸鱼顶栏</strong>
       </td>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/screenshots/working-line.png" alt="工作状态行 + 上下文进度条" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/screenshots/working-line.png" alt="工作状态行 + 上下文进度条" width="480">
         <br>
         <strong>工作状态行 + 上下文进度条</strong>
       </td>
@@ -154,9 +154,9 @@ sh install.sh
 - **生态组织**：[dsh-tui-ecosystem](https://github.com/dsh-tui-ecosystem) —— 社区插件、模板与收录列表的家。欢迎来发插件、提创意、互相取暖 🐋
 - **社区交流群**：使用问题、插件创意、功能许愿，都欢迎进来聊。
 
-| 微信群 | QQ 群（群号 572549239） | 微信三群 |
+| 微信群 | QQ 群（群号 572549239） | 微信四群 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/screenshots/wechat-group3.jpg" alt="dsh-TUI 社区交流群微信三群二维码" width="200"> |
+| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/screenshots/wechat-group4.jpg" alt="dsh-TUI 社区交流四群微信群二维码" width="200"> |
 
 > 微信群二维码约 7 天过期一次，如遇失效请走 QQ 群（572549239），或开个 issue 提醒我们更新。
 
@@ -173,7 +173,7 @@ sh install.sh
 ## Stars
 
 <!-- star-history:start -->
-[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f0d89ff68651c791a6b76ba1d650187cbbccb02e/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
+[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/002066722b5f0c12eca6fe605a06885a84096fb0/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
 <!-- star-history:end -->
 
 

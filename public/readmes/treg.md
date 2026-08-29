@@ -1,6 +1,6 @@
 # Treg (OpenRouter for Tools)
 
-![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/dc75f7ab8b416422557c1f6cebf2b1301ba56ee5/docs/assets/treg-hero.png)
+![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/e43f16bfa1e24c8193897c2f808e16ad55f323b2/docs/assets/treg-hero.png)
 
 **OpenRouter, but for agent tools instead of models.** Point an agent at one base URL with one token
 and it can do the job: **2,896 catalogued endpoints across 60 providers** — SEO and backlinks,
@@ -115,7 +115,9 @@ Your own credential always beats treg's, so connecting a key you already pay for
 free of the balance rather than duplicating them. An endpoint treg has no published price for is
 **refused**, not served free — you are told to connect your own key instead. Where several providers
 serve one capability, `treg catalog search` shows them side by side with prices; **choosing is
-yours** — treg does not silently pick or fail over for you.
+yours** — treg does not silently pick or fail over between providers for you. (When treg's own
+account for a provider is out it may serve the *same* endpoint through a treg-owned relay account,
+disclosed on the response; a team can opt out.) The exception you opt into: `treg.<capability>` routed endpoints, where treg picks the provider for you and names it.
 
 ```bash
 treg balance          # credit left, calls in flight, recent spend

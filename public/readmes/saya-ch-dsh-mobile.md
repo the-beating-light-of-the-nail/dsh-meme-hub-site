@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
 </p>
 
 <h1 align="center">DSH Mobile</h1>
@@ -24,13 +24,13 @@
   <a href="README.en.md">English</a>
 </p>
 
-> DSH Mobile 0.3.1 是 DeepSeek Harness 社区插件，原生 App 仅支持 Android。
+> DSH Mobile 0.3.2 是 DeepSeek Harness 社区插件，原生 App 仅支持 Android。
 >
-> **0.3 系列更新**：新增一键连接诊断、版本提示与更清晰的配对/网络报错；改进局域网和远程连接恢复、缓存与首次加载；适配 DSH 0.1.2 的工作区、模型、会话及社区插件同步；优化状态栏、键盘、窄屏布局和 App 图标。
+> **0.3.2 更新**：新增输入栏加号菜单中的图片选择与原图拍照，并限制文件类型、大小、并发和交互超时；扩展及 `/mobile` 修改会主动通知已认证手机刷新，Host、脚本、样式和资源按同一代次原子切换，失败时保留可用版本；同时收紧扩展请求路径与响应限制，完整清理 Android Bridge 的临时文件和授权，修正 Funnel 随 DSH 启停的生命周期，并让 App 原生页面跟随系统中/英/意语言、插件界面跟随 DSH 语言。
 >
-> **使用 DeepSeek Harness 0.1.2-alpha.1 时，请将插件与 App 同步升级至 0.3.1**；旧 App 的状态栏策略不适配新版 Web，0.1.3 及更早版本还需卸载重装并重新配对。
+> **使用 DeepSeek Harness 0.1.2-alpha.1 时，请将插件与 App 同步升级至 0.3.2**；旧 App 的状态栏策略不适配新版 Web，0.1.3 及更早版本还需卸载重装并重新配对。
 
-<p align="center"><a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.1/dsh-mobile-android-v0.3.1.apk"><strong>下载 Android App 0.3.1</strong></a> · <a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.1">版本说明与校验文件</a></p>
+<p align="center"><a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.2/dsh-mobile-android-v0.3.2.apk"><strong>下载 Android App 0.3.2</strong></a> · <a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.2">版本说明与校验文件</a></p>
 
 DSH Mobile 是一个 DeepSeek Harness 插件，让手机浏览器或 Android App 通过局域网，或可选的 Tailscale Funnel、cpolar 远程通道连接电脑，继续使用同一份会话、工作区、消息和工具。局域网与远程访问分别启停、分别管理设备，且都不修改 DeepSeek Harness 源码。
 
@@ -42,9 +42,10 @@ DSH Mobile 是一个 DeepSeek Harness 插件，让手机浏览器或 Android App
 
 - **在手机上继续电脑端的工作**：同一份会话、工作区、消息和工具，实时同步。
 - **用对话定制手机端**：直接在 DSH 对话里改手机页面的布局、交互和功能，几秒内刷新。
-- **专属触屏布局**：会话抽屉、工具详情、设置、提问卡片和输入栏都按手机重新组织。
+- **专属触屏布局**：会话抽屉、工具详情、设置、提问卡片和输入栏都按手机重新组织。App 原生页面跟随系统显示简体中文、英文或意大利文；插件界面跟随 DSH 的语言设置，意大利语资源已为 DSH 后续支持预留。
+- **图片附件**：在已打开会话的输入栏加号菜单顶部选择图片或拍照；支持 PNG、JPEG、WebP、GIF（不超过 8 MiB）和完整分辨率 JPEG。
 - **自动发现、无需重新配对**：切换 Wi-Fi、热点或 IP 后通常自动恢复。
-- **一键连接诊断**：检查版本、网关、网卡、防火墙和远程通道，并生成不含凭据与完整地址的脱敏报告。
+- **一键连接诊断**：检查版本、网关、网卡、防火墙和远程通道；稳定的原因码在界面中本地化，并生成不含凭据与完整地址的脱敏报告。
 - **更快恢复连接**：远程重开会并行恢复可信连接、复用版本化资源，并压缩移动端启动批次。
 - **三种配对方式**：扫码、配对链接、密钥。
 
@@ -90,7 +91,7 @@ dsh plugin --profile web add dshmarket
 适合同一 Wi-Fi、以太网或手机热点，是默认且最简单的连接方式。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
 </p>
 
 1. 让手机和电脑连接同一个局域网，在 DeepSeek Harness 左下角打开 **移动访问 → 局域网**。
@@ -107,7 +108,7 @@ dsh plugin --profile web add dshmarket
 远程服务可能受带宽和连接限额影响：[cpolar 免费方案](https://svip.cpolar.com/pricing) 当前为 1 Mbps，[Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel#requirements-and-limitations) 也存在不可配置的带宽限制。DSH Mobile 通过 10 条分页、顶部按需加载、gzip 和 WebSocket 长连接减少流量与等待，但无法突破服务商限额。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
 </p>
 
 1. 在 DeepSeek Harness 左下角打开 **移动访问 → 远程**，选择一种连接方式：
@@ -117,7 +118,7 @@ dsh plugin --profile web add dshmarket
 3. 在 Android App 中进入 **远程访问**，扫描二维码完成独立配对。
 4. 此后 App 会保存设备信任并自动重连；不使用时可以关闭远程访问，局域网连接不会受影响。
 
-Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。cpolar 更适合国内网络；插件会校验下载组件的固定版本，配置与程序均保存在 `$DSH_HOME/mobile-access/`，可随时在面板中彻底清除。
+Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。其运行组件把公开监听生命周期绑定到父进程和受限控制通道；父进程退出、控制通道关闭或显式停止时会结束当前代次并清理资源。cpolar 更适合国内网络；插件会校验下载组件的固定版本，配置与程序均保存在 `$DSH_HOME/mobile-access/`，可随时在面板中彻底清除。
 
 远程公开地址仍受 DSH 设备配对保护。当前托管的远程组件支持 Windows x64。
 
@@ -137,6 +138,8 @@ Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。
 
 `/mobile` 把需求交给 DSH 对话中的 agent，由它直接修改本机 `$DSH_HOME/mobile-access/` 下的文件，保存后手机端自动生效。改动分两类：界面和交互在 `mobile.css`/`mobile.js`；需要电脑能力时用 `extensions/` 下的扩展，其 `host.mjs` 以本机用户权限在电脑上运行。不修改 DeepSeek Harness 源码。
 
+扩展清单及其脚本、样式和资源按版本标识刷新。插件监听到 `/mobile` 或扩展文件变化后，会通过已认证连接通知手机立即更新；页面可见时每 45 秒、隐藏时每 5 分钟的检查只作为断线兜底。Host 暂存失败会继续使用现有版本；若 Host 已更新但新手机界面激活失败，则关闭该扩展并自动重试，避免混用新旧能力。
+
 <sub>你甚至可以通过扩展连接电脑上运行的酒馆（</sub>
 
 > `host.mjs` 与本机程序拥有相同权限；仅创建和运行你理解并信任的电脑端扩展。
@@ -144,10 +147,10 @@ Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。
 示例的实际效果：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/45786e2cf812bc33fc0e73a9e402e041ff45549f/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/685e80c976d6d2be27e2855670379ca4cf2b094a/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
 </p>
 
 ## App 与手机浏览器
@@ -172,7 +175,7 @@ flowchart LR
   DSH -->|"同一工作区、会话和事件流"| Phone
 ```
 
-插件包含三层：Host face 负责发现、配对、HTTPS、回环代理和扩展注册表；Client face 提供独立的移动布局与扩展 SDK；Android App 提供受限的原生 Bridge。DeepSeek Harness 的源码和 3080 桌面页面都不会被修改，安装和卸载完全通过插件机制完成。
+插件包含三层：Host face 负责发现、配对、HTTPS、回环代理和扩展注册表；Client face 提供独立的移动布局与扩展 SDK；Android App 提供受限的原生 Bridge。Bridge 使用 `androidx.webkit` WebMessage，每条消息都校验精确顶层 Origin 和主 Frame，并限制消息大小；不使用 `addJavascriptInterface`。DeepSeek Harness 的源码和 3080 桌面页面都不会被修改，安装和卸载完全通过插件机制完成。
 
 ## 安全
 
@@ -189,6 +192,7 @@ flowchart LR
 
 | DSH Mobile | 已验证的 DeepSeek Harness                                               |
 | ------------ | ------------------------------------------------------------------------- |
+| `0.3.2`    | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1` |
 | `0.3.1`    | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1` |
 | `0.3.0`    | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1` |
 | `0.2.2`    | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`                  |

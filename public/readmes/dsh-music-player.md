@@ -2,7 +2,7 @@
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-DeepSeek Harness 本地音乐/小说播放插件。
+DeepSeek Harness 音乐/小说播放插件。
 
 写代码写累了、想摸鱼又不想切窗口？这个插件就是你的**摸鱼神器**——直接在 DeepSeek Harness 的网页里塞进一个 **DSH音乐播放器**：扫一下你电脑上的音乐目录（默认 `~/Music`）就能在浏览器里听歌，带播放条和可拖拽的播放面板，还能自己建歌单。
 
@@ -26,13 +26,19 @@ DeepSeek Harness 本地音乐/小说播放插件。
 
 ## 截图
 
-![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/4eb448d1e840cfdf2c1a68a6e2367c9d7923bfd8/assets/screenshot-bar.png)
+![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-bar.png)
 
-![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/4eb448d1e840cfdf2c1a68a6e2367c9d7923bfd8/assets/screenshot-qq.png)
+![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-qq.png)
 
-![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/4eb448d1e840cfdf2c1a68a6e2367c9d7923bfd8/assets/screenshot-spectrum.png)
+![播放酷狗音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-kg.png)
 
-![播放面板](https://raw.githubusercontent.com/kendu76/dsh-music-player/4eb448d1e840cfdf2c1a68a6e2367c9d7923bfd8/assets/screenshot-panel.png)
+![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-spectrum.png)
+
+![播放面板1](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-panel-qq.png)
+
+![播放面板2](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-panel-kg.png)
+
+![播放面板3](https://raw.githubusercontent.com/kendu76/dsh-music-player/78b5ac1be53c5188e499f9a9ea90178b242b91e8/assets/screenshot-panel.png)
 
 ## 安装
 

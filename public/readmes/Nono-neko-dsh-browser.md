@@ -114,7 +114,7 @@ The plugin provides an interactive settings form out of the box (requires DSH v0
 
 | Web settings card | Desktop settings page |
 |---|---|
-| ![Web settings card](https://raw.githubusercontent.com/Nono-neko/dsh-browser/fb9c9b9579d8bb50a36c68e698fb4fd4f8054e5b/docs/images/settings-web.png) | ![Desktop settings page](https://raw.githubusercontent.com/Nono-neko/dsh-browser/fb9c9b9579d8bb50a36c68e698fb4fd4f8054e5b/docs/images/settings-desktop.png) |
+| ![Web settings card](https://raw.githubusercontent.com/Nono-neko/dsh-browser/9d631bab861d97a082dc68dcfa59c1151b5f6669/docs/images/settings-web.png) | ![Desktop settings page](https://raw.githubusercontent.com/Nono-neko/dsh-browser/9d631bab861d97a082dc68dcfa59c1151b5f6669/docs/images/settings-desktop.png) |
 
 ### Config file method (without the visual settings card)
 

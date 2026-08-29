@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
 </p>
 
 <h1 align="center">dsh-vision-router</h1>
@@ -44,7 +44,7 @@
 > **v2.0.0:** Capability-aware Auto routing + benchmarks, explicit 👁 Vision, and Settings 2.0. [What’s new →](docs/releases/v2.0.0.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
 </p>
 
 ## Contents
@@ -177,8 +177,8 @@ The built-in anonymous OVH vision fallback is already configured, so normal imag
 *Left: an image turn — the user sends a picture, the agent calls `vision_describe` through the free chain and answers. Right: the finished structured answer.*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
 </p>
 
 ## Free vision key channels
@@ -215,7 +215,7 @@ Any of these channels can join the vision chain as an `httpProviders` entry (key
 
 ### Pixel loop in practice
 
-[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
+[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
 
 <p align="center"><sub>Click the image to open the full-resolution original.</sub></p>
 
@@ -224,7 +224,7 @@ The agent rebuilt the UI from the reference image, then verified the final resul
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
 </p>
 
 The vision model is **only the eyes**; DeepSeek is **always the brain**. An image turn is never hijacked by a one-shot vision answer — the agent drives the tools itself and can keep operating on the image across as many steps as the task needs.
@@ -234,7 +234,7 @@ The vision model is **only the eyes**; DeepSeek is **always the brain**. An imag
 Default `progressiveTools: false`: all fourteen deep tools stay registered from plugin startup, so text and image turns can call them immediately. If you explicitly set `progressiveTools: true` in the profile/composition `cordis.patch.yml`, progressive mode is restored: only `vision_activate` is exposed initially, the full tool set mounts on first use, and the `vision-tools` skill is registered. This is a boot-time switch; restart DSH after changing it. Built on sharp / potrace / tesseract / system Chrome — no Python:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
 </p>
 
 The diagram covers the eleven image-processing tools. `vision_present` (durable image delivery) and `vision_bootstrap` (the optional 1+x structured first pass) bring the default deep-tool set to fourteen. Enabling the privacy-gated `vision_screenshot` at boot adds an optional fifteenth tool.
@@ -333,7 +333,7 @@ The Web profile registers a first-class **Settings → Vision Router** surface. 
 - **Advanced / Diagnostics**: timeout, wrapper scope, proxy/network, compatibility, version, runtime status and troubleshooting.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
 </p>
 
 ## Configuration
@@ -586,6 +586,6 @@ Manual fallback: in VS Code, use “Save with Encoding” → `UTF-8` (without B
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ysr666/dsh-vision-router/star-history/assets/star-history/star-history-dark.svg">
-    <img alt="Star history chart" src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/aba430ea2fbcc6e983185bbacb06f5d1815ae7e5/assets/star-history/star-history-light.svg" width="100%">
+    <img alt="Star history chart" src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/star-history/star-history-light.svg" width="100%">
   </picture>
 </p>

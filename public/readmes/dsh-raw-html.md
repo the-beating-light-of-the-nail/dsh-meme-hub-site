@@ -3,8 +3,12 @@
 在 DeepSeek Harness Web GUI 中实现 **VCP（Visual-Synesthesia，视觉通感）协议**：
 消息里的 HTML 从「一坨源码」变成真正渲染的界面，并让 agent 按一套**可维护的设计规范**输出。
 
-**即插即用**：任何电脑、任何 agent —— 安装本插件 + 打开浏览器「</>」开关（渲染/美学双开关）→
-浏览器开始渲染 HTML，agent 开始按规范输出（设计原则 / 中文排版 / 字体搭配）。
+**即插即用**：任何电脑、任何 agent —— 跑一次一键安装器补丁（`node patch/install-all.cjs`，渲染能力+可信模式全到位）
++ 安装本插件 + 打开浏览器「</>」开关（渲染/美学双开关）→
+浏览器开始渲染 HTML（含 SVG 卡片 / Mermaid 图表 / KaTeX 公式），agent 开始按规范输出（设计原则 / 中文排版 / 字体搭配）。
+
+> 渲染能力（HTML/SVG/图表/公式）由补丁注入前端 bundle，插件负责开关与协议注入——
+> 详细步骤见下方「安装」章节。
 
 **[English README](./README.en.md) · [更新记录](./CHANGELOG.md)**
 
@@ -12,11 +16,11 @@
 
 > 真实会话中的 VCP 卡片渲染效果（宣传图 5 张）：
 
-![效果图 1](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/56a89e4307f763245f826904cbc955361896174a/docs/images/banner-1.jpg)
-![效果图 2](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/56a89e4307f763245f826904cbc955361896174a/docs/images/banner-2.jpg)
-![效果图 3](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/56a89e4307f763245f826904cbc955361896174a/docs/images/banner-3.jpg)
-![效果图 4](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/56a89e4307f763245f826904cbc955361896174a/docs/images/banner-4.jpg)
-![效果图 5](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/56a89e4307f763245f826904cbc955361896174a/docs/images/banner-5.jpg)
+![效果图 1](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/ab1f1d56748e5a4f1a3b6c61bb648a812d260b12/docs/images/banner-1.jpg)
+![效果图 2](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/ab1f1d56748e5a4f1a3b6c61bb648a812d260b12/docs/images/banner-2.jpg)
+![效果图 3](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/ab1f1d56748e5a4f1a3b6c61bb648a812d260b12/docs/images/banner-3.jpg)
+![效果图 4](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/ab1f1d56748e5a4f1a3b6c61bb648a812d260b12/docs/images/banner-4.jpg)
+![效果图 5](https://raw.githubusercontent.com/plolpl789/dsh-raw-html/ab1f1d56748e5a4f1a3b6c61bb648a812d260b12/docs/images/banner-5.jpg)
 
 ## 📣 近期更新（v0.6.0 · 补丁 v6.38）
 
@@ -43,7 +47,8 @@
 
 | 部件 | 位置 | 作用 |
 |---|---|---|
-| 万能安装器 | `patch/install-v6.cjs` | **推荐**：自动探测 dist bundle，任意历史状态 → v6 全量补丁（幂等 + 备份回滚 + `node --check` 健康检查）；锚点不匹配时安全中止，不破坏环境 |
+| 一键安装器 | `patch/install-all.cjs` | **推荐**：一条命令 = `install-v6.cjs`（渲染能力）+ `trusted-patch.cjs`（可信模式 vc 放行）；幂等 + 备份回滚 + `node --check` 健康检查，锚点不匹配安全中止 |
+| 万能安装器 | `patch/install-v6.cjs` | 渲染能力 v6 全量补丁（install-all 的组件①）：自动探测 dist bundle，任意历史状态 → v6（幂等 + 备份回滚） |
 | 稳定区渲染模块 | `patch/v6-inject.js` | 注入 dist bundle 的增量渲染引擎：容器感知块级缓存、流式尾巴占位、KaTeX 公式、Mermaid 查看器；`onclick="input('...')"` 桥接为真实交互；安全过滤 script/iframe/object/embed、on* 事件与 javascript: 协议 |
 | **vcp-fast 加速引擎** | `patch/v6-inject.js` | 容器感知块级增量：已闭合块缓存（元素引用跨帧不变 → React 跳过 diff → 动画真循环），只重渲染尾巴；实测缓存命中 **1200~6800 倍**、增量 **12 倍** 提速 |
 | 插件（Host 半侧） | `lib/index.js` | 渲染/美学双开关状态（**落盘持久化**）+ 系统提示词分层注入（结构铁律必注入 + 美学工具包可选）+ `/fonts` 字体服务（**内置精选 + 外置大库双源**）+ 知识层共享（协议附带本机 DESIGN.md 路径，任何 agent 可读） |
@@ -70,27 +75,37 @@
 
 **铁律定位**：`vcp-root 禁止空行` 权威在 DESIGN.md §4；交互 / 安全白名单权威在 VCP-INTERACTIONS.md。新增规则先判断归属，只写进权威源，别处挂指针。
 
-## 安装（任意 DSH 环境）
+## 安装（任意 DSH 环境 · 人 & agent 通用）
 
-**推荐：万能安装器**（任意历史状态 → v6 全量补丁，幂等 + 备份回滚 + `node --check` 健康检查）：
+**推荐：一键安装器 `patch/install-all.cjs`**——一条命令把「渲染能力 + 可信模式」全部装好
+（内部依次执行 `install-v6.cjs` 全量渲染补丁 + `trusted-patch.cjs` 可信模式 vc 放行；
+幂等可重复运行，每一步自动备份 + `node --check` 健康检查，锚点不匹配安全中止不写坏文件）：
 
 ```powershell
-# 1. 打补丁（v6 稳定区模块 + HTML 渲染 + 安全过滤，一条命令全量到位）
-node "本插件路径\patch\install-v6.cjs"
+# 1. 一键打补丁（HTML 渲染 / SVG 卡片 / Mermaid 图表 / KaTeX 公式 / 可信模式，全部就位）
+node "本插件路径\patch\install-all.cjs"
 
-# 2. 安装插件（即插即用；卸载用 dsh plugin --profile web remove dsh-raw-html）
+# 2. 安装插件（卸载用 dsh plugin --profile web remove dsh-raw-html）
 dsh plugin --profile web add "本插件路径"
 
 # 3. 重启 dsh 服务，然后刷新浏览器页面（缓存较旧时 Ctrl+F5）
+# 4. 打开「</>」开关（渲染/美学）；需要脚本能力时点右下角「可信模式」徽章
 ```
+
+> **agent 安装指引**（其他用户让自家 agent 代为安装时，可把以上 4 步原样交给它执行）：
+> ① 确认本机有 Node.js（`node -v`）；② 运行一键安装器 `install-all.cjs`（自动探测 dist bundle，
+> 失败时把 `<bundle路径>` 作为参数传入）；③ 注册插件到 web profile；④ 提醒用户重启 dsh 并强刷。
+> 补丁全部幂等——重复安装、dsh 升级后重跑都不会产生副作用。
 
 探测失败时手动指定 bundle 路径：
 
 ```powershell
-node "...\patch\install-v6.cjs" "C:\...\dsh-web-frontend\dist\assets\index-*.js"
+node "...\patch\install-all.cjs" "C:\...\dsh-web-frontend\dist\assets\index-*.js"
 ```
 
-> 历史脚本（v1/v2 时代）`patch/install.cjs`、`patch/patch-frontend.cjs`、`patch/upgrade-patch.cjs` 仍保留在源仓库供参考，日常安装请使用 `install-v6.cjs`。
+> 单独执行亦可：`install-v6.cjs`（渲染能力）/ `trusted-patch.cjs`（可信模式 vc 放行）；
+> 历史脚本（v1/v2 时代）`patch/install.cjs`、`patch/patch-frontend.cjs`、`patch/upgrade-patch.cjs`
+> 仍保留在源仓库供参考，日常安装请使用 `install-all.cjs`。
 
 ## vcp-fast 加速引擎
 
@@ -134,7 +149,7 @@ node "...\patch\install-v6.cjs" "C:\...\dsh-web-frontend\dist\assets\index-*.js"
 
 - 每次修改后：`node --check lib/client.js && node --check lib/index.js` 验语法；
   client 改动刷新即生效；host 改动需重启 dsh 服务。
-- `dsh` 升级会覆盖被打补丁的 dist 文件 → 重跑 `patch/install-v6.cjs` 即可
+- `dsh` 升级会覆盖被打补丁的 dist 文件 → 重跑 `patch/install-all.cjs` 即可
   （幂等；锚点找不到会中止且不写坏文件；备份在 `*.bak-installv6-<时间戳>`）。
 - **依赖声明铁律**（2026-08-19 崩溃事件教训）：`import` 的每一个第三方包
   **必须显式声明**在 package.json（dependencies 或 peerDependencies）——
@@ -160,7 +175,7 @@ dsh plugin --profile web remove dsh-raw-html
 `script/iframe/object/embed` 与 `javascript:` 协议丢弃），但样式与外部图片仍然可达——
 请只对可信模型开启。
 
-## 可信模式（Trusted Mode · 补丁 v7.1）
+## 可信模式（Trusted Mode · v7.2 插件化）
 
 > 先生定调 2026-08-29：本会话为**双人私密会话**，内容由双方共同产出、双方可信——
 > 公共论坛的存储型 XSS 威胁模型不适用。因此为「正文可执行脚本」提供显式开关。
@@ -174,5 +189,16 @@ dsh plugin --profile web remove dsh-raw-html
   仍拒绝：`javascript:` 协议。
 - **机制**：闭合 `<script>` 在解析阶段被提取出 vdom（不依赖 React 对 script 元素的行为），
   消息渲染完成后统一执行一次；流式中未闭合的脚本不执行（等完整闭合）。
-- **测试**：`tests/trusted.test.mjs`（13 项断言，含默认关闭回归）。
+- **v7.2 插件化（先生定调）**：可信模式的**状态与开关 UI 全部迁入插件 client 层**
+  （`lib/client.js`）——`isTrusted()`、`window.__vcpTrusted` 定义、右下角徽章。
+  主 bundle 渲染层（v6-inject 的 `isTrusted` / vc 条件过滤）对 `window.__vcpTrusted`
+  **一律防御式调用**：插件未加载（停用）→ 自动 `false` → 行为与旧版一致（安全默认）。
+  因此：**安装插件 = 可信模式可用；停用插件 = 徽章消失、放行全部回收**。
+  其他用户安装本插件后同样即插即用（可信模式开关层不依赖手工补丁）。
+- **注意**：可信模式的**执行载体**（脚本提取 `extractTrustedScripts` / 执行 `flushTrustedScripts` /
+  vc 放行）位于主 bundle 的 v6 渲染模块中，仍由一次性 `install-all.cjs` 注入——
+  即「HTML 渲染能力」本身需要补丁安装；开关与状态层随插件。未跑补丁的用户
+  装插件只有开关 UI，渲染能力不生效（详见「安装」章节）。
+- **测试**：`tests/trusted.test.mjs`（21 项断言，覆盖默认关闭回归、插件层状态、
+  徽章切换、渲染层防御式调用与联动）。
 - **回退**：徽章再点一次即关闭；或 `localStorage.setItem('raw-html.trusted','0')`。

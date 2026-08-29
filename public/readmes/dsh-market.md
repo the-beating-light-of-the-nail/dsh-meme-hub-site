@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/a943765baaa3d2f5a679a1510b9fe0408c843849/assets/logo.svg" width="96" alt="dsh-market logo">
+  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/d5902420b1759f9620fe1042aedec7c3325d2ac5/assets/logo.svg" width="96" alt="dsh-market logo">
 </p>
 
 # dsh-market
@@ -11,7 +11,7 @@ English | [中文](README.zh.md)
 
 The plugin market inside DeepSeek Harness. Open Settings → **Plugin Market** → browse, search, one-click install.
 
-![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/a943765baaa3d2f5a679a1510b9fe0408c843849/assets/demo-en.png)
+![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/d5902420b1759f9620fe1042aedec7c3325d2ac5/assets/demo-en.png)
 
 One-click themes: install, switch live, no restart.
 
@@ -114,6 +114,10 @@ DSHM_REGISTRY_URL=https://your-mirror.example/plugins.json dsh web
 ### DSH App
 
 [dsh-app](https://github.com/RyensX/dsh-app) — a DeepSeek Harness desktop client built on Tauri 2 rather than Electron, so it ships a much smaller binary and uses the system webview. AGPL-3.0.
+
+### Local DSH
+
+[local-dsh](https://github.com/liangchen-harold/local-dsh) — a DeepSeek Harness desktop client that can run the model on your own machine: it bundles llama.cpp next to Node, pnpm and DSH, so a downloaded GGUF model answers without any external API. Built on Tauri; Apple Silicon Macs for now. [localdsh.com](https://localdsh.com)
 
 ### DSH Get
 

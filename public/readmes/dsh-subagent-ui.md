@@ -22,9 +22,9 @@ A Web client plugin that adds a **子代理管理** button to the conversation-h
 
 The screenshots demonstrate the compact manager and active-agent floating panel:
 
-![Subagent manager panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/63b449f1147869de7009b180c91b283c8694b6e8/docs/images/screenshot-1.png)
+![Subagent manager panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/646b193e4845917fa9d23439307e7d59b6cf6dff/docs/images/screenshot-1.png)
 
-![Active subagent floating panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/63b449f1147869de7009b180c91b283c8694b6e8/docs/images/screenshot-2.png)
+![Active subagent floating panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/646b193e4845917fa9d23439307e7d59b6cf6dff/docs/images/screenshot-2.png)
 
 1. **Header** — title, current-session/workspace counts, and close action.
 2. **Search and scope row** — ordinary name/title/workspace search, with `id: xxx` reserved for Session ID search; workspace, session, sorting, and grouping selectors stay on one compact row.
@@ -56,3 +56,8 @@ A full persistent workspace-wide archive view requires a host-side catalog RPC (
 ```bash
 pnpm run check
 ```
+
+## Acknowledgements
+
+- Subagent permanent deletion and session cleanup design inspired by and referencing [@heiheiha798/dsh-plugin-subagent-delete](https://github.com/heiheiha798/dsh-plugin-subagent-delete).
+

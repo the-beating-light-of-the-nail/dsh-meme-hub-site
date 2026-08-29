@@ -20,7 +20,7 @@ Archive manager · Conversation search · One-click restore · Safe permanent de
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/589fff0abcfabf6de950898d12b5b4e49441bae2/docs/assets/hero.en.png" alt="DeepSeek Harness chat history and archived session manager with search, restore, and safe permanent deletion">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/ceaab0bdefe59f7cec859b2353d58bd3ca5c0de7/docs/assets/hero.en.png" alt="DeepSeek Harness chat history and archived session manager with search, restore, and safe permanent deletion">
 </p>
 
 | Recover archives | Search conversations | Delete safely |
@@ -28,7 +28,7 @@ Archive manager · Conversation search · One-click restore · Safe permanent de
 | Open the archive manager from the sidebar and restore hidden sessions | Search archived names, workspaces, and user/assistant conversation content | Keep native second confirmation; running work is stopped safely before local records are removed |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/589fff0abcfabf6de950898d12b5b4e49441bae2/docs/assets/archive-manager.en.png" width="414" alt="Native DeepSeek Harness archived conversation manager with history search, restore, and permanent deletion">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/ceaab0bdefe59f7cec859b2353d58bd3ca5c0de7/docs/assets/archive-manager.en.png" width="414" alt="Native DeepSeek Harness archived conversation manager with history search, restore, and permanent deletion">
   <br><sub>Native interface on DeepSeek Harness 0.1.1-rc.2</sub>
 </p>
 
@@ -39,7 +39,7 @@ Archive manager · Conversation search · One-click restore · Safe permanent de
 Open PowerShell and paste one line:
 
 ```powershell
-irm 'https://github.com/WSL043/dsh-chat-manager/releases/download/v1.2.0/install.ps1' | iex
+irm 'https://github.com/WSL043/dsh-chat-manager/releases/download/v1.2.1/install.ps1' | iex
 ```
 
 The helper checks the current directory, PATH, `DSH_PORTABLE_ROOT`, Downloads/Desktop/Documents, and up to
@@ -54,7 +54,7 @@ If it still finds nothing, enter the actual DSH-Portable folder and rerun the sa
 ### Official CLI (macOS, Linux, or direct review)
 
 ```sh
-dsh plugin --profile web add dsh-chat-manager@1.2.0
+dsh plugin --profile web add dsh-chat-manager@1.2.1
 ```
 
 The helper and direct command use the same standard bundle mechanism. The helper is only a Windows entry
@@ -65,7 +65,7 @@ bundle configuration becomes active.
 
 ### Agent installation
 
-Use the fixed-version [AGENTS.md](https://raw.githubusercontent.com/WSL043/dsh-chat-manager/v1.2.0/AGENTS.md).
+Use the fixed-version [AGENTS.md](https://raw.githubusercontent.com/WSL043/dsh-chat-manager/v1.2.1/AGENTS.md).
 It defines installation, update, acceptance, uninstall, and safety boundaries. Do not use the `main`
 branch document as an installation contract.
 
@@ -89,7 +89,7 @@ is limited to current user and assistant messages inside archived sessions.
    **Cancel** to leave it unchanged.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/589fff0abcfabf6de950898d12b5b4e49441bae2/docs/assets/confirm-delete.en.png" width="414" alt="DeepSeek Harness safe permanent session deletion confirmation dialog">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/ceaab0bdefe59f7cec859b2353d58bd3ca5c0de7/docs/assets/confirm-delete.en.png" width="414" alt="DeepSeek Harness safe permanent session deletion confirmation dialog">
   <br><sub>Permanent deletion cannot be undone; the dialog identifies the target session.</sub>
 </p>
 
@@ -130,10 +130,10 @@ list with the session-management version; uninstalling restores DSH's original l
 
 ## Update and uninstall
 
-Update by rerunning the quick installer or installing the new npm version. For v1.2.0:
+Update by rerunning the quick installer or installing the new npm version. For v1.2.1:
 
 ```sh
-dsh plugin --profile web add dsh-chat-manager@1.2.0
+dsh plugin --profile web add dsh-chat-manager@1.2.1
 ```
 
 Uninstall removes only this plugin's bundle layer and never deletes sessions:

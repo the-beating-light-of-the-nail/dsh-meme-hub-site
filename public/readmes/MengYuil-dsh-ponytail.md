@@ -5,9 +5,25 @@
 [![npm](https://img.shields.io/npm/v/@mengyuly/dsh-ponytail)](https://www.npmjs.com/package/@mengyuly/dsh-ponytail)
 [![dsh.so security](https://www.dsh.so/badge/dsh-ponytail-4.svg)](https://www.dsh.so/artifact/dsh-ponytail-4/)
 
-把 [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)（「懒惰资深开发者」最少代码心智）适配成 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 原生插件：提供 7 级极简决策阶梯、Lite / Full / Ultra / Off 会话级模式，以及 `/ponytail-*` 系列技能与命令。
+将 [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) 的极简编码原则和相关 Skill 适配到 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)，提供 YAGNI 决策阶梯、Lite / Full / Ultra / Off 会话级模式，以及一组用于代码精简、审查、审计和技术债追踪的 Skill。
 
-本项目对齐上游的核心工程理念与主要功能，但 DSH 的模型循环、Prompt 组装和工具机制不同；**上游 Benchmark 仅作参考，不代表本适配版具有相同的 Token、成本或延迟收益**（详见「效率（条件性收益，非保证）」）。
+本项目对齐上游核心理念和主要工作流，但 DSH 的模型循环、Prompt 组装、Skill 机制和工具调用不同。**上游 Benchmark 仅作参考，不代表本适配版具有相同的 Token、成本或延迟收益**（详见「效率（条件性收益，非保证）」）。
+
+## GitHub Release 下载
+
+- **稳定 latest 下载**（资产名固定，每次 Release 不变）：
+  `https://github.com/MengYuil/dsh-ponytail/releases/latest/download/mengyuly-dsh-ponytail.tgz`
+- **固定版本下载**（按 Tag 不可变）：
+  `https://github.com/MengYuil/dsh-ponytail/releases/download/v0.3.1/mengyuly-dsh-ponytail-0.3.1.tgz`
+
+说明：
+
+- `latest` 指向最新 GitHub Release；固定资产名 `mengyuly-dsh-ponytail.tgz`
+  在每个 Release 中保持不变，因此该 URL 不会因版本号变化而失效。
+- 需要完全可复现的构建时，请使用**固定版本 Release 链接**（按 Tag 下载）。
+- npm 安装仍走 npm Registry 或 `dsh plugin` 命令；latest Tarball 适合快速
+  安装体验，**不适合作为不可变依赖**。
+- 固定资产名由 `scripts/release-assets.mjs` 生成并验证（`npm run release:assets`）。
 
 ## 安装
 
@@ -20,8 +36,9 @@ dsh plugin --profile web add link:$(pwd)
 # 方式二：GitHub 直接装
 dsh plugin --profile web add github:MengYuil/dsh-ponytail
 
-# 方式三：Release 打包件（先下 tgz）
-dsh plugin --profile web add file:./mengyuly-dsh-ponytail-0.1.3.tgz
+# 方式三：Release 打包件（先下 tgz——latest 固定资产名恒定）
+#   https://github.com/MengYuil/dsh-ponytail/releases/latest/download/mengyuly-dsh-ponytail.tgz
+dsh plugin --profile web add file:./mengyuly-dsh-ponytail.tgz
 
 # 方式四：npm
 dsh plugin --profile web add @mengyuly/dsh-ponytail
@@ -85,9 +102,9 @@ prompt 与推理开销变得更贵。
 
 | 档位 | 字符数 | UTF-8 字节 | 说明 |
 |------|--------|-----------|------|
-| lite | 1474 | 1476 | 实测生成 |
-| full | 1678 | 1682 | 实测生成 |
-| ultra | 1625 | 1629 | 实测生成 |
+| lite | 1744 | 1746 | 实测生成 |
+| full | 2975 | 2993 | 实测生成 |
+| ultra | 2818 | 2834 | 实测生成 |
 | off | 0 | 0 | 不注入 |
 
 这些是 **Prompt 体积测量，不是账单金额，也不是对所有模型成立的节省

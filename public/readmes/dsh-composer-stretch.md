@@ -3,37 +3,38 @@
 [![npm version](https://img.shields.io/npm/v/dsh-composer-stretch)](https://www.npmjs.com/package/dsh-composer-stretch)
 [![license](https://img.shields.io/npm/l/dsh-composer-stretch)](https://github.com/Pudge1996/dsh-composer-stretch/blob/main/LICENSE)
 
-English | [中文](README.zh.md)
+中文 | [English](README.en.md)
 
-A composer expand plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). When the composer text wraps to 3+ lines, an expand button appears in the top-right corner of the composer; click to stretch the composer to fullscreen height, click again to restore the default height.
+为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 打造的输入框扩展插件。当输入框内容行数 ≥ 3 行时，输入框右上角出现扩展按钮；点击后输入框高度扩展到全屏，再点击恢复默认高度。
 
-<img width="4114" height="2218" alt="image" src="https://github.com/user-attachments/assets/d2b6e6ce-33af-45ba-b95b-d3bf3206cbd7" />
+https://github.com/user-attachments/assets/3d15f435-284f-4cbe-87c1-e59e47c64667
 
-The interaction is inspired by Gemini, with additional DSH-specific height adaption and scroll-through prevention fixes.
+整体交互体验与 Gemini 相似，针对 DSH 再做了些高度适配、修复滚动穿透背景等问题。
 
-## Install
+## 安装
 
 ```sh
 dsh plugin --profile web add dsh-composer-stretch
 ```
 
-## Triggers
+## 触发方式
 
-- **Conditional button** — the expand button appears in the top-right when the composer reaches 3+ lines.
-- **Triple-newline auto-expand** — press `Shift+Enter` three times in a row to auto-expand.
+- **条件显示** — 输入框行数 ≥ 3 行时，右上角出现扩展按钮，点击可扩展输入框高度
+- **三连换行自动扩展** — 连续按 3 次 `Shift+Enter` 自动进入扩展模式
 
-## Expand behavior
+## 扩展后效果
 
-- **Fullscreen composer** — the composer stretches to near-fullscreen height (adapted to avoid occlusion by the session title, image attachments, etc.).
-- **Auto-collapse on send** — the composer restores its default height after sending a message.
-- **Enter inserts newline** — in expanded mode, `Enter` inserts a newline and `Cmd/Ctrl+Enter` sends.
-- **Scroll containment** — scrolling inside the expanded composer no longer chains through to the conversation background.
+- **全屏输入** — 扩展后，输入框达到接近全屏高度（已做适配，不会被会话标题、输入框图片等组件遮挡）。
+- **发送后自动折叠** — 发送消息后自动恢复默认高度，无需手动关闭
+- **扩展时 Enter 换行** — 展开模式下 `Enter` 键换行，`Cmd/Ctrl+Enter` 发送
+- **滚动不穿透** — 扩展后修复 DSH 输入框内滚动到边缘时会滚动背景对话区的问题
 
-## Notes
+## 其他说明
 
-- **Stable UI** — relies on stable `data-slot` anchors and DSH design tokens for high compatibility.
-- **No persistence** — state resets on page refresh; no localStorage residue.
-- **Frontend only** — no custom protocols, no host commands, no LLM calls, no session-log entries.
+- **已适配至 DSH v0.1.2-alpha.1**
+- **稳定 UI** - 依赖高稳定性的 `data-slot` 标识 + DSH 官方设计令牌，兼容性好，与原生系统适配度极高。
+- **不持久化** — 刷新页面恢复默认状态，无 localStorage 残留
+- **纯前端** — 无自定义协议、无 host 命令、无 LLM 调用、不进会话日志
 
 ## License
 

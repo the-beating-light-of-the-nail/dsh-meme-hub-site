@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Jackywxsz/DSH-Creator/c4fec1f947c0ba44aa6a1bb24ec8b1e3bdfd9bfa/assets/readme/hero.png" width="100%" alt="Jacky Creator：把对话、内容与运营放进同一块 DeepSeek Harness 创作工作台">
+  <img src="https://raw.githubusercontent.com/Jackywxsz/DSH-Creator/ccdf07e54c5b2949f1ac97db3c0118bfb3213f77/assets/readme/hero.png" width="100%" alt="Jacky Creator：把对话、内容与运营放进同一块 DeepSeek Harness 创作工作台">
 </p>
 
 <p align="center">
@@ -62,7 +62,7 @@ dsh plugin --profile web add dshmarket
 打开 DSH Desktop 的内置终端，复制下面一行并回车：
 
 ```bash
-dsh plugin --profile web add https://github.com/Jackywxsz/DSH-Creator/releases/download/v0.1.0-beta.5/jacky-creator-0.1.0-beta.5.tgz
+dsh plugin --profile web add https://github.com/Jackywxsz/DSH-Creator/releases/download/v0.1.0-beta.6/jacky-creator-0.1.0-beta.6.tgz
 ```
 
 无论使用哪种方式，安装完成后都要彻底退出并重新打开 DSH Desktop。侧边栏左上角出现 **Jacky Creator**，并能进入“内容 / 运营 / 灵感”，即表示安装成功。

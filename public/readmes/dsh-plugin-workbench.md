@@ -6,13 +6,28 @@
 ![Stars](https://img.shields.io/github/stars/Pasumao/dsh-plugin-workbench?style=social)
 ![AI Assisted](https://img.shields.io/badge/AI-Assisted-8A2BE2)
 
+[**中文**](./README.md) | [English](./README.en.md)
+
 **能直接改文件的 VS Code 风格工作台**——不是只读预览：文件树 + 可编辑代码预览
 （语法高亮、标签页、行号栏）+ 右键文件操作（新建 / 重命名 / 删除 / 复制 / 剪切 /
 粘贴 / 在系统中打开 / 在资源管理器打开）+ 图片内联预览，每个工作区独立保存状态。
 装上之后，DSH 网页就是一个轻量代码编辑器。
 
-> ⚠️ 安装后需打一个布局补丁（见下方安装节）；0.0.9 起插件启动时会自动检测并重打，
-> DSH 升级覆盖 bundle 后无需再手动跑。
+> ✅ **开箱即用**：0.0.9 起布局补丁全自动——装完重启即生效；DSH 升级覆盖 bundle
+> 后插件会自动补回，无需任何手动操作（仅锚点失效时才需手动，见「配置」节）。
+> 0.0.15 起自动识别 npm 与 DSH Desktop 两种构建产物，**DSH Desktop 开箱即用**。
+
+装完你会看到：
+
+- 左侧多出**文件树侧栏**（懒加载 + 2 秒自动刷新，每工作区独立展开状态）；
+- 消息里的 `@相对路径` 变成**可点击链接**，点开直接在工作台预览；
+- 把文件从左栏**拖进聊天区**，路径自动插入输入框。
+
+## 效果图
+
+![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/a86c61f19bd2f5d15e9d592dd036ffccf0185afa/docs/workbench-webgui.png)
+
+> 真实 Web GUI 截图。
 
 ## 功能
 
@@ -58,19 +73,18 @@
 
 ## 配置
 
-无需环境变量或配置文件，安装后打一次布局补丁即可：
-
-- **布局补丁**：插件 host 端启动时自动检测并重跑 `scripts/patch-layout.mjs`
-  （幂等、非阻塞；针对 `dsh-client-ui-layout@0.1.0-rc.6` 编写）。DSH 升级覆盖
-  bundle 后插件会自动补回；若自动重打失败（锚点失效），可手动运行
-  `node node_modules/dsh-plugin-workbench/scripts/patch-layout.mjs`；
+无需环境变量或配置文件；布局补丁全自动（插件启动时自动检测并重跑
+`scripts/patch-layout.mjs`，幂等、非阻塞；0.0.15 起自动识别同一版本的两种构建产物
+——npm 构建与 DSH Desktop 内置构建；锚点与编译产物字节级耦合，DSH 升级后如失配
+需更新锚点）：
 - **行为偏好**（自动换行、亮暗主题、标签布局、文件树展开状态）按工作区持久化，无需手动配置；
 - **文件操作通道**：经 loopback RPC `/dsh-plugin-files`，写操作显式以 `danger-full-access` 执行，无外部配置项。
 
 ## 安装
 
-> 布局补丁针对 `dsh-client-ui-layout@0.1.0-rc.6` 编写，其他版本需更新锚点。
-> 0.0.9 起插件启动时自动检测并重打补丁（详见「配置」节）。
+> 布局补丁锚点与 DSH 编译产物字节级耦合，DSH 升级后如失配需更新锚点；0.0.15 起
+> 自动识别 npm / DSH Desktop 两种构建产物，插件启动时自动检测并重打补丁
+> （详见「配置」节）。
 
 ```powershell
 # npm（推荐）
@@ -121,7 +135,9 @@ dsh plugin --profile web remove dsh-plugin-workbench
 - 图片预览走同源路由 `/dsh-plugin-files/raw/<path>`：仅响应图片扩展名，
   先经 `ctx.fs.resolve → stat`（沙箱一致的路径解析）再读取字节，20MB 上限
 - DSH 升级会覆盖布局 bundle；0.0.9 起插件启动时自动检测并重打补丁，
-  无需手动重跑；锚点失效时需更新 `scripts/patch-layout.mjs`
+  无需手动重跑；锚点失效时需更新 `scripts/patch-layout.mjs`（0.0.15 起锚点表分
+  npm / desktop-ci 两个构建变体自动探测，desktop-ci 变体存于
+  `scripts/layout-anchors.desktop-ci.json`）
 - 本仓库不包含 DSH 编译产物
 
 ## 参与贡献
@@ -140,7 +156,7 @@ dsh plugin --profile web remove dsh-plugin-workbench
 | [dsh-plugin-dev-kb](https://www.npmjs.com/package/dsh-plugin-dev-kb) | [GitHub 仓库](https://github.com/Pasumao/dsh-plugin-dev-kb) | 插件开发知识库（官方文档完整镜像 + 技能） |
 | [dsh-plugin-image-tools](https://www.npmjs.com/package/dsh-plugin-image-tools) | [GitHub 仓库](https://github.com/Pasumao/dsh-plugin-image-tools) | 图片选择卡 + 回复内嵌图片 + 盲模型收图 |
 | [dsh-plugin-table-zoom](https://www.npmjs.com/package/dsh-plugin-table-zoom) | [GitHub 仓库](https://github.com/Pasumao/dsh-plugin-table-zoom) | 聊天长表格浮窗查看 + 一键复制 Markdown |
-| [dsh-plugin-windows-guard](https://www.npmjs.com/package/dsh-plugin-windows-guard) | [GitHub 仓库](https://github.com/Pasumao/dsh-plugin-windows-guard) | Windows 环境防坑守则 skill（编码/转义/路径/进程/乱码预防） |
+| [dsh-plugin-windows-guard](https://www.npmjs.com/package/dsh-plugin-windows-guard) | [GitHub 仓库](https://github.com/Pasumao/dsh-plugin-windows-guard) | Windows 环境防坑：守则技能 + 乱码检测 / 危险写拦截 / 编码诊断修复 |
 
 > 本系列其余插件见 [Pasumao · dsh 插件](https://github.com/Pasumao)；觉得好用欢迎到 GitHub 点 ⭐。
 

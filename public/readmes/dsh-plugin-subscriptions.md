@@ -8,31 +8,31 @@ Use your **ChatGPT (Codex)**, **Claude**, and **Grok (X Premium)** subscriptions
 
 Settings → **Subscriptions**: per-provider login/logout, no API keys. Claude imports credentials from Claude Code when available and otherwise uses OAuth, as Codex and Grok always do (account address masked in the screenshot):
 
-![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/subscriptions.png)
+![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/subscriptions.png)
 
 Logged-in providers join the session model picker with their live model catalogs:
 
-![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/model-picker.png)
+![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/model-picker.png)
 
 Models that advertise reasoning levels get an **Effort** selector in the same menu — Codex models, Grok 4.6 / 4.5, and Copilot's reasoning models (levels and defaults come from each provider's live catalog, not a hardcoded list; Copilot's `capabilities.supports.reasoning_effort` array is sent as `reasoning_effort` on chat completions and `reasoning.effort` on the Responses wire). Models listing both Copilot endpoints (gpt-5.4, gpt-5-mini) normally speak chat completions but reroute to `/responses` when a request combines function tools with an effort — Copilot rejects that combination on the chat wire:
 
-![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/model-effort.png)
+![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/model-effort.png)
 
 Codex models whose catalog advertises the fast tier (the codex CLI's fast mode) get a **Speed** toggle in the composer's tool row, next to the model selector — Standard or Fast (`service_tier: priority`), per session. The `/fast` slash command offers the same choice as a popup; it errors with an explanation when the current model has no fast tier.
 
-![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/speed-toggle.png)
+![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/speed-toggle.png)
 
 The `image_generate` tool renders its result inline in the conversation:
 
-![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/image-generate-inline.png)
+![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/image-generate-inline.png)
 
 Its `provider` parameter picks the image backend — the same prompt through GPT (`gpt-image-2`, top) and Grok (`grok-imagine-image-2.0`, bottom):
 
-![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/image-generate-providers.png)
+![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/image-generate-providers.png)
 
 The `video_generate` tool plays the generated clip inline:
 
-![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/b281f12190f9a59f20dfa1c84108aceda6bd7e3b/docs/images/video-generate-inline.png)
+![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1aee4b7885567bdb11124117d2e0f7fb2efa01c5/docs/images/video-generate-inline.png)
 
 ## Providers
 
@@ -114,6 +114,12 @@ Not logged in? The provider stays out of the picker, and requests fail with `MIS
 ### Multiple accounts
 
 Every provider accepts several accounts: once one is connected, the card grows an **Add account** button (Claude offers **Browser authorization** and **Import Claude Code** separately). Accounts are keyed by their identity (email / login) — re-logging the same account updates it in place, a different account appends. Browser authorization signs in whichever account the browser currently uses, so switch accounts there first (or use an incognito window with the manual code) to add a different one. The ★ default account serves the direct provider routes; pool routes use every account. A Claude account imported from Claude Code stays synced with the CLI's credential store; OAuth-added Claude accounts refresh standalone so several accounts never fight over the Keychain entry.
+
+### Default reasoning effort per model
+
+Every logged-in provider card in Settings → Subscriptions carries a collapsible **Default reasoning effort** section. It starts collapsed — the header shows how many models advertise reasoning levels and how many you have overridden — and the model list (with its live catalog lookup) loads only once you expand it, so a provider with dozens of models does not stretch the page or make it pay for a lookup nobody asked for. Expanded, each model that advertises reasoning levels gets a row whose options are the levels that provider's live catalog advertises for that exact model; past 8 such models the section also offers a name filter, and models without reasoning levels collapse into a single count line instead of one dead row each. With several accounts connected, the model list is the union across that provider's accounts, so a model any account advertises gets a row; the levels offered for it come from the first account whose catalog lists it (the ★ default account first), matching what the session picker resolves.
+
+Pick a level to make the session model picker preselect it whenever you switch to the model — no more settling for the provider's own default (e.g. Claude shows `Default`, Codex models follow `default_reasoning_level`). Choose **Follow provider** to clear the override. The choice is stored in `~/.dsh/plugins/subscriptions/model-defaults.json` (mode 0600) and survives restarts.
 
 ## Config
 

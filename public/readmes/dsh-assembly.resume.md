@@ -1,7 +1,5 @@
 # dsh-assembly.resume
 
-Version: `v0.1.2`
-
 Bring an existing Codex or Claude Code conversation into DSH, then continue it
 with the DSH Agent.
 
@@ -13,6 +11,8 @@ with the DSH Agent.
 - Automatically registers and binds an existing source directory as a DSH Workspace.
 - If the historical path no longer exists or the original conversation had no workspace, a new workspace can be specified during handoff. Otherwise, the conversation imports unbound and the old directory is never recreated.
 - Continue the conversation in DSH after transfer.
+
+![Session Resume settings](https://raw.githubusercontent.com/kanchengw/dsh-assembly.resume/ebb82dd8f334114227388a31a5e0323a9dfcf604/assets/ScreenShot_config.png)
 
 ## Installation
 

@@ -21,24 +21,25 @@
 
 | Code:远端目录树 + 文件预览 | Issues 列表 |
 |---|---|
-| ![Code](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/01-code.png) | ![Issues](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/02-issues.png) |
+| ![Code](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/01-code.png) | ![Issues](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/02-issues.png) |
 
 | Issue 详情 + 评论/编辑/关闭 | Pull requests(checks 摘要 / 合并三法) |
 |---|---|
-| ![Issue Detail](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/03-issue-detail.png) | ![Pulls](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/04-pulls.png) |
+| ![Issue Detail](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/03-issue-detail.png) | ![Pulls](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/04-pulls.png) |
 
 | Actions(runs 列表,悬停 重跑/取消) | 仓库切换弹层(自动拉取 + 公开仓搜索) |
 |---|---|
-| ![Actions](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/05-actions.png) | ![Switcher](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/06-repo-switcher.png) |
+| ![Actions](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/05-actions.png) | ![Switcher](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/06-repo-switcher.png) |
 
 | ⚙ 设置(Token / 自动刷新 / 字号) |
 |---|
-| ![Settings](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/0a1b287aa71d65174513cac885e0e63b5eaa8b39/screenshots/07-settings.png) |
+| ![Settings](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/07-settings.png) |
 
 ## 🚀 核心能力
 
 - **双形态挂载**:已装 [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) → 注册为侧边栏页签;独立安装 → 自动降级为**对话区右侧可展开/收起的自绘面板**(同一套组件,运行时自动协商)
 - **Code**:目录树一次拉取(`git/trees?recursive=1`)+ 文本文件行号预览(<900KB);二进制/超大文件降级为 GitHub 外链;<600px 时树自动收进「目录」抽屉
+- **Issues / PR 全量列表**:Search API(`is:issue` / `is:pr`)不被 PR 占坑;默认按最新创建排序,可切最近更新;页签角标与工具条显示真实总数;底部「加载更多」翻页;PR 拆成开放 / 已关闭(未合并) / 已合并
 - **写操作全家桶**:新建 Issue / 新建 PR(head·base 可选)/ 评论 / 编辑标题正文 / 编辑删除评论 / 关闭重开 —— 关闭与删评有确认门
 - **合并三法强确认**:merge / squash / rebase 下拉选择,执行前弹窗展示方法与目标分支
 - **CI 控制**:runs 列表实时状态图标,行悬停 ⟳ 重跑、✕ 取消(取消需确认),点击直达原 run 页

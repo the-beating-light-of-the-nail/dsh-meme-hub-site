@@ -8,7 +8,7 @@
 
 中文 | [English](README.en.md)
 
-![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/eba894e068c66465fcb4d0ada1deb1fdbd64c833/docs/promo.png)
+![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/617f8638f7a1529f2e6f14f882808fc6a59665d3/docs/promo.png)
 
 **dsh-tianshu-tui**（`@huiliyi37/dsh-tianshu-tui`）是官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 上的交互式终端 UI 插件。渲染核心为自研的 ANSI 极简引擎（由作者自己的开源项目 [天枢 Tianshu-Tui](https://github.com/huiliyi37/Tianshu-Tui) 演进而来，Apache-2.0；逐文件来源见 [SOURCE-MAP.md](SOURCE-MAP.md)），渲染轻量不打断，使用体验流畅。UI 是纯展示层：所有 agent 状态都来自会话事件流。在此之上做了 harness 工程层的个性化改造，如图像与视觉桥接、代码智能检索、记忆与跨会话召回等。
 
@@ -122,7 +122,9 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 
 ## 更新说明
 
-当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.26`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.26)）。
+当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.27`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.27)）。
+
+**0.1.2-rc.27（2026-08-29）**：回流 Tianshu 两项——错误时刻可行动（错误落底 + 指引之外，最近一条已投递消息自动回填输入行，`↩` 告知「可能未被完整处理」，改一下即可重发；成功回合清底料、有草稿不抢写）；plan-review 决策卡视觉分层（dim 决策区分隔线 + approve `❯`/success 主操作高亮，主题不传时渲染不变）。
 
 **0.1.2-rc.26（2026-08-28）**：P1 交互打磨六连——Esc 分层收尾（打断 grace 期 + 布防提示行）、glance 拟人动词池、footer 显式分级降级、错误恢复指引（每个错误附下一步操作）、定高视口强化（chrome 开合输入轨不跳）、fish 式历史建议 ghost（`→` 接受）；`/scroll` 上限可配。
 

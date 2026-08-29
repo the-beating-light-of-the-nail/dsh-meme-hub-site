@@ -9,6 +9,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Release](https://img.shields.io/github/v/release/whiteguo233/OpenBiliClaw?filter=openbiliclaw-v*&style=flat-square&label=Release&color=success)](https://github.com/whiteguo233/OpenBiliClaw/releases/latest)
+[![下载数](https://img.shields.io/github/downloads/whiteguo233/OpenBiliClaw/total?style=flat-square&label=downloads&logo=github)](https://github.com/whiteguo233/OpenBiliClaw/releases)
+[![星标](https://img.shields.io/github/stars/whiteguo233/OpenBiliClaw?style=flat-square&label=stars&logo=github)](https://github.com/whiteguo233/OpenBiliClaw)
 [![CI](https://img.shields.io/github/actions/workflow/status/whiteguo233/OpenBiliClaw/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/whiteguo233/OpenBiliClaw/actions/workflows/ci.yml)
 [![讨论帖](https://img.shields.io/badge/LINUX_DO-讨论帖-orange?style=flat-square&logo=discourse)](https://linux.do/t/topic/1978894)
 [![Chrome 应用商店](https://img.shields.io/chrome-web-store/v/cdfjfkdjjhdaccbldipkjhpibnfbiamg?style=flat-square&label=Chrome%20应用商店&logo=googlechrome&logoColor=white&color=4285F4)](https://chromewebstore.google.com/detail/cdfjfkdjjhdaccbldipkjhpibnfbiamg)
@@ -46,7 +48,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
+  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
 </p>
 
 ## 快速开始
@@ -68,11 +70,11 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
       <b>QQ 用户群</b>
     </td>
     <td align="center" width="50%">
-      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
+      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
       <b>Discord 社区</b><br/>
       <sub>扫码或<a href="https://discord.gg/PU6Xgch8yg">点击加入</a>，链接长期有效</sub>
     </td>
@@ -119,22 +121,22 @@
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-recommend.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-recommend.png" width="200" /><br/>
       <b>智能推荐</b><br/>
       <sub>像朋友一样解释为什么你会喜欢</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
       <b>灵魂画像</b><br/>
       <sub>自然语言描述的深度人格分析</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-traits.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-traits.png" width="200" /><br/>
       <b>结构化特质</b><br/>
       <sub>MBTI · 核心特质 · 深层需求</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-chat.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-chat.png" width="200" /><br/>
       <b>对话调教</b><br/>
       <sub>聊天告诉它你想看什么</sub>
     </td>
@@ -148,19 +150,19 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/desktop-home.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/desktop-home.png" width="480" /><br/>
       <b>桌面推荐首页</b><br/>
       <sub>惊喜推荐 Hero · 为你推荐网格 · 朋友式推荐理由</sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/desktop-cards.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/desktop-cards.png" width="480" /><br/>
       <b>推荐卡片网格</b><br/>
       <sub>封面 + 推荐理由 · 喜欢 / 不感兴趣 / 稍后 / 收藏 / 聊一聊</sub>
     </td>
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/desktop-profile.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/desktop-profile.png" width="480" /><br/>
       <b>画像 + 实时看板</b><br/>
       <sub>侧栏 Runtime 看板 + 后台动态 · 人格素描 · 核心特质 · MBTI 推断</sub>
     </td>
@@ -172,18 +174,18 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/mobile-recommend.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/mobile-recommend.png" width="210" /><br/>
       <b>手机推荐页</b><br/>
       <sub>惊喜推荐 + 池子状态 · 朋友式推荐原因</sub><br/>
       <sub>看看 / 喜欢 / 稍后 / 收藏 / 不感兴趣 / 聊一聊</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/mobile-profile.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/mobile-profile.png" width="210" /><br/>
       <b>手机画像页</b><br/>
       <sub>人格素描 · 核心特质 · 深层需求 · MBTI</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/mobile-chat.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/mobile-chat.png" width="210" /><br/>
       <b>手机对话页</b><br/>
       <sub>与插件共享主聊天历史</sub>
     </td>
@@ -198,17 +200,17 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
       <b>推荐反馈</b><br/>
       <sub>点赞 / 多来点 / 少来点 / 没兴趣</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-values.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-values.png" width="200" /><br/>
       <b>价值偏好与兴趣</b><br/>
       <sub>内在驱动力 · 猜测兴趣方向</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bbb699932d278554387313afbde64f5edc4a3974/docs/images/screenshot-profile-style.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-style.png" width="200" /><br/>
       <b>认知风格</b><br/>
       <sub>信息处理偏好 · 内容口味</sub>
     </td>

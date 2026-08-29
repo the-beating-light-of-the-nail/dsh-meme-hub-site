@@ -21,12 +21,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/176ca11200ebf1ef0c6aa85ac67d1293514b63c8/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/176ca11200ebf1ef0c6aa85ac67d1293514b63c8/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/176ca11200ebf1ef0c6aa85ac67d1293514b63c8/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/176ca11200ebf1ef0c6aa85ac67d1293514b63c8/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -40,7 +40,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 ## 使用
 
-1. 在对话中找到要回退的那条用户消息，或输入 `/rewind` 打开候选列表选择。
+1. 在对话中找到要回退的那条用户消息，或输入 `/rewind`（或其别名 `/undo`）打开候选列表选择。
 2. **选中它。** 小浮层提供两种模式（「回退对话和代码」仅在目标之后有可还原的变更时显示）。
 3. 回退立即生效：对话回到目标消息当时的样子，被撤回消息的文本自动填入输入框——改完直接重发。
 
@@ -58,9 +58,9 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 ## 存储管理
 
-快照（写前备份）存储于 `~/.dsh/rewind-snapshots/`。插件对**同一会话**的快照做内容去重（内容未变则存为链接）并保留最近 100 组锚点；**手动删除该目录**仅清除文件备份（对话回退不受影响），插件会自动重建。
+快照（写前备份）存储于 `<dsh home>/rewind-snapshots/`（未设 `$DSH_HOME` 时即 `~/.dsh/rewind-snapshots/`）。插件对**同一会话**的快照做内容去重（内容未变则存为链接）并保留最近 100 组锚点；**手动删除该目录**仅清除文件备份（对话回退不受影响），插件会自动重建。
 
-另提供**全局自动清理**（默认关闭）：把**长期不活跃**的会话快照整目录移除，不影响活动会话与对话日志。用 `/snapshot-auto-cleanup` 命令**查看与设置**，配置写入 `~/.dsh/snapshot-cleanup.json`。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
+另提供**全局自动清理**（默认关闭）：把**长期不活跃**的会话快照整目录移除，不影响活动会话与对话日志。用 `/snapshot-auto-cleanup` 命令**查看与设置**，配置写入 `<dsh home>/snapshot-cleanup.json`；最近一次自动清扫的时间记录在 `<dsh home>/snapshot-cleanup-last-sweep.json`。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
 
 ## 本插件的优势
 

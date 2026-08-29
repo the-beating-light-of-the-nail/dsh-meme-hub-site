@@ -50,11 +50,11 @@
 
 | 页面 | 说明 |
 |------|------|
-| ![仪表盘](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/242d9e49f9fe814fb47b20f194c9136e8b9026c4/docs/screenshots/dashboard.png) | **仪表盘**：全部 / 已启用 / 已禁用分段（带计数）、引导式 3 步新建向导、状态色条卡片 |
-| ![编辑器](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/242d9e49f9fe814fb47b20f194c9136e8b9026c4/docs/screenshots/editor.png) | **编辑器**：概览（字段 + 就绪检查）/ 请求头 / 模型 / 测试 四个标签页 |
-| ![模型发现](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/242d9e49f9fe814fb47b20f194c9136e8b9026c4/docs/screenshots/models.png) | **模型发现**：拉取远端模型，支持全选 / 反选与批量写入 |
-| ![连通性测试](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/242d9e49f9fe814fb47b20f194c9136e8b9026c4/docs/screenshots/test.png) | **连通性测试**：对单个模型跑真实推理，显示延迟与回复 |
-| ![智能路由](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/242d9e49f9fe814fb47b20f194c9136e8b9026c4/docs/screenshots/routes.png) | **智能路由**：路由台 / 组合提供商 / 观测台 / 探活 四个子页 |
+| ![仪表盘](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/d36e2f0b928fc56b0ff2f00731bac424f48abc5c/docs/screenshots/dashboard.png) | **仪表盘**：全部 / 已启用 / 已禁用分段（带计数）、引导式 3 步新建向导、状态色条卡片 |
+| ![编辑器](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/d36e2f0b928fc56b0ff2f00731bac424f48abc5c/docs/screenshots/editor.png) | **编辑器**：概览（字段 + 就绪检查）/ 请求头 / 模型 / 测试 四个标签页 |
+| ![模型发现](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/d36e2f0b928fc56b0ff2f00731bac424f48abc5c/docs/screenshots/models.png) | **模型发现**：拉取远端模型，支持全选 / 反选与批量写入 |
+| ![连通性测试](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/d36e2f0b928fc56b0ff2f00731bac424f48abc5c/docs/screenshots/test.png) | **连通性测试**：对单个模型跑真实推理，显示延迟与回复 |
+| ![智能路由](https://raw.githubusercontent.com/wqy8593521/dsh-model-pro/d36e2f0b928fc56b0ff2f00731bac424f48abc5c/docs/screenshots/routes.png) | **智能路由**：路由台 / 组合提供商 / 观测台 / 探活 四个子页 |
 
 ---
 

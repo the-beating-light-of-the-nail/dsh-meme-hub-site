@@ -14,7 +14,7 @@ dsh plugin --profile pi-tui -- add @xmoon76/dsh-pi-tui
 dsh --profile pi-tui
 ```
 
-![dsh-pi-tui](https://raw.githubusercontent.com/XMoon/dsh-pi-tui/a270a4499c523ecfaa5531fad4a17d4717fdbee9/docs/dsh-pi-tui.png)
+![dsh-pi-tui](https://raw.githubusercontent.com/XMoon/dsh-pi-tui/fa4483ffbec5d091138ad7aa7495b055f4a6d158/docs/dsh-pi-tui.png)
 
 ## 功能
 

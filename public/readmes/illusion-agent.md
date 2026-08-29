@@ -48,14 +48,14 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
 <div align="center">
   <p>Welcome screen & rich text rendering</p>
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c528f7859a5126dede1d231881db9f78ef2dc191/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c528f7859a5126dede1d231881db9f78ef2dc191/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c5ad8439f9ed997924fa86f14639d64fac3854af/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c5ad8439f9ed997924fa86f14639d64fac3854af/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
 </div>
 
 <div align="center">
   <p>Demo video</p>
   <a href="https://www.youtube.com/watch?v=ExrzKVjWPls">
-    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c528f7859a5126dede1d231881db9f78ef2dc191/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
+    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/c5ad8439f9ed997924fa86f14639d64fac3854af/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
   </a>
   <p><a href="https://www.youtube.com/watch?v=ExrzKVjWPls">📺 Watch demo on YouTube</a></p>
 </div>
@@ -95,7 +95,7 @@ for your platform — it bundles everything, zero environment setup:
 
 👉 [Download from GitHub Release](https://github.com/YunTaiHua/illusion-agent/releases/latest)
 
-The desktop edition bundles Python 3.12 and Node.js 20 runtimes internally.
+The desktop edition bundles Python 3.12 and Node.js 24 runtimes internally.
 See [Desktop Edition docs](docs/en/desktop.md) for details.
 
 ### Basic Usage

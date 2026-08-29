@@ -3,7 +3,7 @@
 
 # dsh-hub-oauth-gateway
 
-**v1.10.0** · formerly `dsh-usage-stats`
+**v1.11.0** · formerly `dsh-usage-stats`
 
 **Local-first usage center for [DeepSeek Harness](https://github.com/deepseek-ai/dsh) Web.** Tokens, estimated cost, account balances, subscription quotas, trends, forecasts, alerts, and exports — plus coding-subscription OAuth (Grok Build, Codex, Kimi Code, Claude Code), an optional loopback API gateway, and opt-in local auth/usage monitoring. **No tokens in chat.**
 
@@ -17,7 +17,7 @@
 
 ---
 
-> **Upgrade / 升级：** Follow the versioned steps in [`docs/01-install.md`](docs/01-install.md). Hub `1.10.0` and Subscription `0.6.2` share the verified DSH `0.1.1-rc.2` contract. Keep profile, configuration, and credential files, update both plugins in the same Web profile, then restart the existing DSH Web process once. `dsh-coding-oauth-core@0.1.0` remains their shared npm dependency, not a separate DSH plugin.
+> **Upgrade / 升级：** Follow the versioned steps in [`docs/01-install.md`](docs/01-install.md). Hub `1.11.0` and Subscription `0.6.2` share the verified DSH `0.1.1-rc.2` contract. Keep profile, configuration, and credential files, update both plugins in the same Web profile, then restart the existing DSH Web process once. `dsh-coding-oauth-core@0.1.0` remains their shared npm dependency, not a separate DSH plugin.
 
 ---
 
@@ -47,7 +47,7 @@ Release history lives in [`CHANGELOG.md`](CHANGELOG.md).
 - **Trends and forecasts** — hour/day/week/month buckets; bounded linear extrapolation as a distinct series.
 - **Account and quota adapters** — balances, windows, reset times, stale/last-success, soft alerts (no hard blocks, no outbound notify).
 - **CSV / JSON export** — filtered, daily, or bundle layouts; optional session redaction; spreadsheet-injection defense.
-- **Coding-subscription OAuth** — Grok Build, Codex, Kimi Code, Claude Code via device code / browser / PKCE paste; models appear as `(OAuth)`; one-way CLI credential Pull.
+- **Coding-subscription OAuth** — Grok Build, Codex, Kimi Code, Claude Code via device code / browser / PKCE paste; optional GitHub Copilot LLM route when `oauthDevice.copilotClientId` is set; multi-account store (max 8) with optional `codingOAuth.pool` (`off` | `priority` | `quota_aware`); Claude Code import via **Import Claude Code** (macOS Keychain `Claude Code-credentials` or file fallback; preview → commit; overwrite still needs confirm); models appear as `(OAuth)`; one-way CLI credential Pull.
 - **Optional loopback API gateway** — default-off OpenAI/Anthropic-compatible server for your own tools.
 - **Optional capabilities** — Codex search / images / usage / Fast and Grok Imagine default off; apply live.
 - **Opt-in local monitor** — read-only CLI auth snapshots and cross-tool token scans (never conversation content).
@@ -60,25 +60,25 @@ Product research: [`docs/research/usage-analytics-landscape.md`](docs/research/u
 Captured against DeepSeek Harness Web with this plugin installed (empty local history is normal for a fresh profile).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/a34e07db9759866271ea3da32572ba60236d84c7/docs/images/en/usage-center-hud.png" alt="Floating usage HUD on the DSH shell" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/92ad634f709a40eee8b3f4a57a9ecca5a1d69a10/docs/images/en/usage-center-hud.png" alt="Floating usage HUD on the DSH shell" width="760" />
   <br />
   <em>Floating HUD — today’s metric plus multi-account quota chips</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/a34e07db9759866271ea3da32572ba60236d84c7/docs/images/en/usage-center-peek.png" alt="Usage Center quick peek overlay" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/92ad634f709a40eee8b3f4a57a9ecca5a1d69a10/docs/images/en/usage-center-peek.png" alt="Usage Center quick peek overlay" width="760" />
   <br />
   <em>Quick Peek — compact 2×2 KPIs with a one-click jump to the full dashboard</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/a34e07db9759866271ea3da32572ba60236d84c7/docs/images/en/usage-center-dashboard.png" alt="Usage Center full dashboard" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/92ad634f709a40eee8b3f4a57a9ecca5a1d69a10/docs/images/en/usage-center-dashboard.png" alt="Usage Center full dashboard" width="760" />
   <br />
   <em>Full dashboard — ranges, tabs, refresh, and CSV / JSON export</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/a34e07db9759866271ea3da32572ba60236d84c7/docs/images/en/usage-center-settings.png" alt="Settings → Usage Center" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/92ad634f709a40eee8b3f4a57a9ecca5a1d69a10/docs/images/en/usage-center-settings.png" alt="Settings → Usage Center" width="760" />
   <br />
   <em>Settings → Usage Center — Display / Accounts / Gateway / Capabilities / Providers / Fees</em>
 </p>
@@ -163,6 +163,14 @@ CLI: `dsh-coding-oauth login [--pkce] | import | status | logout` (`dsh-grok-bui
 
 On the **Accounts** tab, sign in to Grok Build, Codex, Kimi Code, or Claude Code (device code preferred on remote/headless hosts; browser/PKCE can paste a code or full redirect URL). Authenticated models appear in the selector with `(OAuth)`.
 
+Each provider file can hold multiple AuthDocument v2 accounts (max 8). Use Accounts controls to add accounts, set the default, or remove one. Signed-in cards can show Usage Center cached quota bars (GET-only; hidden when no snapshot exists).
+
+**Import Claude Code** runs preview → commit (`accountMode: add` when possible). On macOS it prefers Keychain `Claude Code-credentials`; elsewhere it uses the allowlisted file path. Overwrite still requires an explicit confirm.
+
+Optional sticky routing: set `codingOAuth.pool.mode` to `priority` or `quota_aware` when two or more accounts exist for a provider. Default is `off`. Details: [`docs/03-configuration.md`](docs/03-configuration.md).
+
+GitHub Copilot as an LLM route (`github-copilot-oauth`) stays fail-closed until you set `oauthDevice.copilotClientId`.
+
 Allowlisted official CLI OAuth files are discovered read-only. Sync is an explicit one-way **Pull** (discover → preview → confirm), never auto-import and never writes official CLI files.
 
 ## Local API gateway
@@ -171,7 +179,7 @@ Default **off**. When enabled, an isolated `node:http` listener (not the DSH web
 
 ## Optional capabilities
 
-Seven switches default **off** and apply **live**: `codexSearch`, `codexImages`, `codexImageEdits`, `codexUsage`, `codexFast`, `grokImagineImage`, `grokImagineVideo`. Codex Fast / private endpoints and Grok Imagine stay fail-closed until enabled. See [`docs/01-install.md`](docs/01-install.md) and [`docs/03-configuration.md`](docs/03-configuration.md).
+Seven switches default **off** and apply **live**: `codexSearch`, `codexImages`, `codexImageEdits`, `codexUsage`, `codexFast`, `grokImagineImage`, `grokImagineVideo`. Codex Fast / private endpoints and Grok Imagine stay fail-closed until enabled. With `codexFast` on, the session picker uses the existing `codex-oauth-fast` route (Standard/Fast hint in Capabilities). That route appears only after a live catalog lists a `priority`-eligible model. It is not a second Fast stack. See [`docs/01-install.md`](docs/01-install.md) and [`docs/03-configuration.md`](docs/03-configuration.md).
 
 ## Runtime configuration
 
@@ -200,6 +208,9 @@ Merge `config` under the existing Cordis entry — do not add a second entry:
           copilotClientId: YOUR_PUBLIC_OAUTH_CLIENT_ID
         codingOAuth:
           enabled: true
+          pool:
+            mode: off
+            # switchMargin: 2
         localMonitor:
           enabled: false
         localUsage:
@@ -214,7 +225,7 @@ Full field reference, monitors, proxy, and pricing import: [`docs/03-configurati
 - Stored through the DSH credential seam; the browser only receives `configured` / `source` / `writable` metadata — never values.
 - Local CLI import (Claude, Codex, Gemini, Grok, Amp) never logs absolute paths.
 - Copilot device flow keeps the device code server-side; the browser holds only a random flow ID. Configure your own public OAuth client ID before enabling.
-- Coding OAuth files: `$DSH_HOME/.grok-build-auth.json` and other `*-oauth-auth.json` (`0600`, atomic write). **No HTTP status, log, or UI may return a token.**
+- Coding OAuth files: `$DSH_HOME/.grok-build-auth.json`, `.codex-oauth-auth.json`, `.kimi-code-oauth-auth.json`, `.claude-code-oauth-auth.json`, and `.github-copilot-oauth-auth.json` when Copilot is configured (`0600`, atomic write). **No HTTP status, log, or UI may return a token.**
 
 ## Data and migration
 
@@ -247,7 +258,7 @@ flowchart LR
     OAuthUI --> CodingOAuth[coding-oauth routes]
     CodingOAuth --> Creds["$DSH_HOME/*-oauth-auth.json"]
     CodingOAuth --> LLM[LLM OAuth routes]
-    LLM --> Providers[Grok / Codex / Kimi / Claude]
+    LLM --> Providers[Grok / Codex / Kimi / Claude / Copilot]
 ```
 
 Details: [`docs/02-architecture.md`](docs/02-architecture.md) · [中文](docs/02-architecture.zh-CN.md). OAuth attribution: [`docs/oauth-provenance.md`](docs/oauth-provenance.md).
@@ -262,6 +273,7 @@ Details: [`docs/02-architecture.md`](docs/02-architecture.md) · [中文](docs/0
 | [`docs/02-architecture.md`](docs/02-architecture.md) | Internal architecture · [中文](docs/02-architecture.zh-CN.md) |
 | [`docs/03-configuration.md`](docs/03-configuration.md) | Runtime configuration reference |
 | [`docs/04-migration-v1.md`](docs/04-migration-v1.md) | 1.0 data migration |
+| [`catalog/`](catalog/) | Desktop Market Path A catalog source (`catalog-source.json`, `v1/plugins.json`); not shipped in the npm package `files` whitelist |
 | [`.github/CONTRIBUTING.md`](.github/CONTRIBUTING.md) | Contribution guide |
 | [`.github/SECURITY.md`](.github/SECURITY.md) | Security policy |
 

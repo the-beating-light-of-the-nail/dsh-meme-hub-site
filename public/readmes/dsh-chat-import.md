@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/c99aafd6108227ce1cac9906889750633a0a0ebb/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
+<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/e95a396821fbde9452e68b2dae35efee76cd7689/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
 
 # DSH Chat Import
 
@@ -23,7 +23,7 @@
 
 `DSH Chat Import` imports conversation history with full context from other agents, turning it into a seamlessly resumable DeepSeek Harness session.
 
-Now covers import from 18 agents: Claude Code, Codex, ChatGPT, Cursor, Gemini, Reasonix, opencode, MiMo Code, ZCode, Grok Build, OpenClaw, Pi Coding Agent, Hermes, Kimi CLI / Kimi Code, Qoder CLI, WorkBuddy and DSH session logs.
+Now covers import from 19 agents: Claude Code, Codex, ChatGPT, Cursor, Gemini, Reasonix, opencode, MiMo Code, ZCode, Grok Build, OpenClaw, Pi Coding Agent, Hermes, Kimi CLI / Kimi Code, Qoder CLI, WorkBuddy, Qwen Work CN (千问办公) and DSH session logs.
 
 Export back to: Claude Code, Codex, Kimi Code.
 
@@ -54,7 +54,7 @@ Full tool / command usage (parameters, examples, edge cases) lives in **[docs/US
 
 | Capability | Entry points | Description |
 | --- | --- | --- |
-| Batch import | `import_chat` (18 formats) · `scan_discover` · sidebar panel | Import 17+ sources with one tool; each conversation becomes its own session |
+| Batch import | `import_chat` (19 formats) · `scan_discover` · sidebar panel | Import 18+ sources with one tool; each conversation becomes its own session |
 | Import history & purge | sidebar panel **History** tab | View `imports.json` records; remove plugin-created sessions (with confirmation) |
 | Full-fidelity resume | Imported sessions | Tool calls & results, reasoning, titles, models and timestamps carry over |
 | Export back | `export_chat` (`format: claude` / `codex` / `kimi`) | Serialize DSH sessions back to Claude / Codex / Kimi |

@@ -12,7 +12,7 @@ Migrate your Claude Code setup into [DeepSeek Harness (DSH)](https://github.com/
 
 Preview instructions, skills, commands, agents, hooks, permission rules, and MCP servers before DSH writes anything. Existing destinations stay untouched.
 
-![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/6ef32c78540f47a3b88a0c345553d66087052bd7/docs/settings-demo.gif)
+![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/5eb363e00d10c15f6402b646a0af8db569bd74a2/docs/settings-demo.gif)
 
 This GIF uses two screenshots from a live DSH `0.1.1-rc.2` run. The first shows the dry run and the second shows the applied result.
 
@@ -57,6 +57,14 @@ Every command is a dry run until `--apply` is present. Use `--copy` if you want 
 After a successful CLI apply, a human TTY asks `Star dsh-movein? (Enter = Yes) [Y/n]`; Yes uses the GitHub account authenticated in `gh`. A detected agent or any non-TTY prints `USER_CONFIRMATION_REQUIRED` and must ask the user before running exactly `npx dsh-movein --confirm-star yes` or `npx dsh-movein --confirm-star no`. CI never prompts, writes a marker, or calls the Star API. DSH Settings and model tools show only a user-clicked link and never call that API.
 
 ## Compatibility
+
+The DSH plugin is tested in a fresh `web` profile against every currently supported Store release:
+
+| DSH release | Install | Web start | Uninstall |
+| --- | --- | --- | --- |
+| `0.1.0-rc.8` | Compatible | Compatible | Compatible |
+| `0.1.1-rc.1` | Compatible | Compatible | Compatible |
+| `0.1.1-rc.2` | Compatible | Compatible | Compatible |
 
 | Origin | What moves |
 | --- | --- |

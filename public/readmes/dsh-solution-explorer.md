@@ -12,7 +12,7 @@
 
 [English](README.md) · [简体中文](README.zh.md)
 
-![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5617600513a00c533f46f9934334a38eb978a968/demo.gif)
+![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/demo.gif)
 
 </div>
 
@@ -29,8 +29,9 @@
   branch info bar. **Diff view**: full-file side-by-side compare with an
   editable right column (Enter splits lines, backspace/delete merges, NBSP
   placeholders), Ctrl+S to save. **Commit Graph**: an SVG history view with
-  branch lanes, merge lines and per-commit details (author, date, parents,
-  changed files) plus checkout. **Sync**: fetch / pull / push / sync (pull +
+  branch lanes and merge lines; click a commit to expand its changed files
+  (with file-type icons and status letters M/A/D/R) below the row, hover for
+  a tooltip with the full message, stats, and a GitHub link; plus checkout. **Sync**: fetch / pull / push / sync (pull +
   push) with ahead/behind counts, each remote-write confirmed. **Branches**:
   switch / create / rename / delete / merge / publish. **Remotes**: add /
   remove / set URL. **Git Init**: initialize a repository from a plain
@@ -66,7 +67,7 @@
 
 | File Explorer | Source Control | Diff |
 | --- | --- | --- |
-| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5617600513a00c533f46f9934334a38eb978a968/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5617600513a00c533f46f9934334a38eb978a968/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5617600513a00c533f46f9934334a38eb978a968/assets/screenshot-3-diff.png) |
+| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/assets/screenshot-3-diff.png) |
 
 ## Installation
 

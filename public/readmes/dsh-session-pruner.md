@@ -19,7 +19,7 @@ Managing session lifecycle (this plugin) is the root fix: no session accumulatio
 
 | Session type | Trigger | Action | Default |
 |---|---|---|---|
-| **one-shot subagent** | log contains `session/end-seed` (finished) | archive/delete at next scan | 30min interval |
+| **one-shot subagent** | `subagent/end` / `agent/disposed` event (+ grace) | archive within seconds (event-driven) | event + 3min grace |
 | **continuable subagent** | idle over N days | archive (recoverable) | off (0 days) |
 | **main session** | idle over N days | archive (recoverable) | off (0 days) |
 | **any type** | total exceeds capacity cap | recycle by `one-shot → continuable → main` + oldest | 400 |
@@ -46,19 +46,31 @@ A "delete directly" mode (no archive, irreversible) is also available.
 ## How it works
 
 ```
-scan (scheduled, default 30min)
-  ├─ pruneArchive: physically delete expired archive sessions
-  ├─ iterate ~/.dsh/sessions/*/ decompress log (system zstd, multi-frame)
-  │     ├─ origin: main | subagent       (session header)
-  │     ├─ mode: one-shot | continuable  (subagent/descriptor event)
-  │     └─ ended: contains session/end-seed
-  ├─ one-shot + ended ──→ archive (archiveMode)
-  ├─ continuable/main idle N days ──→ archive
-  ├─ total > cap ──→ recycle by priority + oldest (skip running/live)
-  └─ each archive also: purge projcache row + workspace accounting
+Dual-track triggers (events = hot path, disk = source of truth)
+  ┌─ Event-driven (seconds): subagent/end + agent/disposed
+  │     ├─ 500ms batch window merges storms → oneShotMinAge grace re-check
+  │     └─ single-session check (memory-first, at most one zstd decompress) → archive
+  └─ Scheduled reconcile (fallback, default 60min)
+        ├─ pruneArchive: physically delete expired archive sessions
+        ├─ iterate ~/.dsh/sessions/*/ decompress log (system zstd, multi-frame)
+        │     ├─ origin: main | subagent       (session header)
+        │     ├─ mode: one-shot | continuable  (subagent/descriptor event)
+        │     └─ ended: contains session/end-seed
+        ├─ one-shot + ended ──→ archive (archiveMode)
+        ├─ continuable/main idle N days ──→ archive
+        ├─ total > cap ──→ recycle by priority + oldest (skip running/live)
+        └─ each archive also: purge projcache row + workspace accounting
 ```
 
-GUI sync: the client calls `sessions.refreshList()` every `uiRefreshSeconds` seconds, so cleaned sessions disappear from the sidebar automatically — no page reload needed.
+GUI sync — change-driven primary, full-refresh fallback:
+- **dirty-flag (primary)**: host keeps an in-memory monotonic archive log; the
+  client polls `/plugins/dsh-session-pruner/archived` every 3s and only issues
+  `refreshList()` + `refreshSubagents()` when a change is reported — sidebar and
+  task panel stay consistent within seconds, zero RPC when nothing changed.
+- **Full fallback**: every `uiRefreshSeconds` seconds the client refreshes both
+  data sources anyway (main list via `refreshList()`, each known parent's
+  subagent catalog via `refreshSubagents()`), covering dirty-flag failures
+  (older host / route unavailable). No page reload needed.
 
 ## Install
 
@@ -82,9 +94,9 @@ After install, open **Settings → Plugins → 会话生命周期管理** card. 
 
 | Field | Default | Description |
 |---|---|---|
-| Scan interval (min) | 30 | cleanup loop period |
+| Scan interval (min) | 60 | reconcile fallback (events are primary) |
 | Capacity cap (sessions) | 400 | recycle by priority + oldest when exceeded |
-| UI refresh interval (s) | 30 | GUI session list refresh period |
+| UI fallback refresh interval (s) | 30 | dirty-flag primary (3s change poll); full refresh fallback |
 | Archive retention (hours) | 24 | physical delete after retention |
 | Archive mode | archive | archive (recoverable) / delete directly (irreversible) |
 | Continuable idle archive (days) | 0 | archive after N idle days, 0 = off |
@@ -92,17 +104,17 @@ After install, open **Settings → Plugins → 会话生命周期管理** card. 
 | Clean main on overflow | off | main participates in capacity recycling |
 | One-shot min survival (min) | 3 | newly finished subagents are not cleaned within N minutes (protects finishing/references) |
 
-Env vars (fallback, panel wins): `DSH_SESSION_LIFECYCLE_INTERVAL_MS` / `_MAX` / `_CLEAN_MAIN` / `_ARCHIVE_HOURS` / `_ARCHIVE_MODE` / `_CONTINUABLE_IDLE_DAYS` / `_MAIN_IDLE_DAYS` / `_ONE_SHOT_MIN_AGE_MINUTES`.
+Env vars (fallback, panel wins): `DSH_SESSION_PRUNER_INTERVAL_MS` / `_MAX` / `_CLEAN_MAIN` / `_ARCHIVE_HOURS` / `_ARCHIVE_MODE` / `_CONTINUABLE_IDLE_DAYS` / `_MAIN_IDLE_DAYS` / `_ONE_SHOT_MIN_AGE_MINUTES`.
 
 ## Logs
 
 Output in guard `server-*.out.log`:
 
 ```
-[session-lifecycle] armed: interval=30min cap=100 cleanMain=false
-[session-lifecycle] hot-reloaded: interval=30min cap=100 ... contIdle=1d mainIdle=2d
-[session-lifecycle] archived a1b2c3d4 (subagent/one-shot) one-shot done cache=true
-[session-lifecycle] archive pruned: 2 expired
+[dsh-session-pruner] armed: interval=60min cap=400 cleanMain=false
+[dsh-session-pruner] hot-reloaded: interval=60min cap=400 ... contIdle=0d mainIdle=0d
+[dsh-session-pruner] archived a1b2c3d4 (subagent/one-shot) one-shot done cache=true
+[dsh-session-pruner] archive pruned: 2 expired
 ```
 
 `cache=true/false` tells whether the projection cache row was purged along with the session.

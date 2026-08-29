@@ -13,7 +13,7 @@ MCP / Tools 管理、缓存观察、消息锻造和 sessionlog 修复放进同�
 > 的正式继任者。消息锻造台已停止功能更新；它的完整能力、RPC 兼容层和原有
 > 数据目录均由本插件继续维护。迁移步骤见 [MIGRATION.md](./MIGRATION.md)。
 
-![上下文轨迹砖块墙](https://raw.githubusercontent.com/anweat/dsh-context-console/5286a168ae820fd9e642b1cc59a677df1d938441/docs/images/context-console-trajectory.png)
+![上下文轨迹砖块墙](https://raw.githubusercontent.com/anweat/dsh-context-console/4e87382b884e6ae1b33e0eccf38a732a9cc0fba1/docs/images/context-console-trajectory.png)
 
 ## 能力
 
@@ -27,9 +27,9 @@ MCP / Tools 管理、缓存观察、消息锻造和 sessionlog 修复放进同�
 | 会话修复 | 识别 JSONL/Zstandard sessionlog，采用“后写分支覆盖 + 官方 crash closer + Session.create 校验”创建修复子会话，绝不改写源日志 |
 | 子代理轨迹 | 识别 subagent tool call/result，并在可获得子会话 ID 时嵌套展示轨迹 |
 
-![Prompt、Skill、MCP 与 Tools 分类管理](https://raw.githubusercontent.com/anweat/dsh-context-console/5286a168ae820fd9e642b1cc59a677df1d938441/docs/images/context-console-inventory.png)
+![Prompt、Skill、MCP 与 Tools 分类管理](https://raw.githubusercontent.com/anweat/dsh-context-console/4e87382b884e6ae1b33e0eccf38a732a9cc0fba1/docs/images/context-console-inventory.png)
 
-![继承的消息锻造与 sessionlog 修复工作区](https://raw.githubusercontent.com/anweat/dsh-context-console/5286a168ae820fd9e642b1cc59a677df1d938441/docs/images/context-console-forge.png)
+![继承的消息锻造与 sessionlog 修复工作区](https://raw.githubusercontent.com/anweat/dsh-context-console/4e87382b884e6ae1b33e0eccf38a732a9cc0fba1/docs/images/context-console-forge.png)
 
 ## 兼容版本
 

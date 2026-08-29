@@ -23,7 +23,7 @@ Plugin center for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-har
 
 | Installed / 已安装 | Market / 市场 | Updates / 更新 |
 | :---: | :---: | :---: |
-| ![已安装插件](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/52e5214a7c0f78b43aa20ecab007c5017c270ed7/assets/screenshot-installed.png) | ![社区市场](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/52e5214a7c0f78b43aa20ecab007c5017c270ed7/assets/screenshot-market.png) | ![更新检测](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/52e5214a7c0f78b43aa20ecab007c5017c270ed7/assets/screenshot-updates.png) |
+| ![已安装插件](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/d64abfbc0a77bc803e380fd99c24d8ead877d1a9/assets/screenshot-installed.png) | ![社区市场](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/d64abfbc0a77bc803e380fd99c24d8ead877d1a9/assets/screenshot-market.png) | ![更新检测](https://raw.githubusercontent.com/Max-Null/dsh-plugin-center/d64abfbc0a77bc803e380fd99c24d8ead877d1a9/assets/screenshot-updates.png) |
 
 ## Install / 安装
 

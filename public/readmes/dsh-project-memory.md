@@ -18,6 +18,7 @@ Persistent project memory for [DeepSeek Harness](https://github.com/deepseek-ai/
 - **BM25 retrieval** — ranked search over documents, symbols, and experience notes, with optional LLM query expansion to handle vocabulary mismatch. **CJK-optimized**: precise phrase boost (3+ char phrases ×1.5 score on title/keywords match), synonym table (e.g. 数据库连接池 ↔ 连接池 ↔ DB pool), and CJK-aware word boundaries for doc↔symbol linking.
 - **Experience notes** — problems → solutions; similar problems supersede instead of duplicating, and notes are returned only when a search matches. The note store is bounded: capacity scales with project size (clamped to 100–2000), and the oldest notes are pruned when the limit is exceeded. **Supersede tightened to bidirectional 0.7 overlap** (was 0.6); **experience `problem` field now participates in CJK phrase boost** for long-tail query recall.
 - **Minimal dependencies** — pure JavaScript; the only runtime dependency is `pdfjs-dist` (PDF text extraction), no native builds required.
+- **Negligible overhead** — pure in-process operation; cold start <100 ms (5k files), typical project query median 2–3 ms (p99 < 7 ms); bottleneck is LLM summarization and PDF parsing, not the plugin.
 
 ## How it works
 
@@ -51,7 +52,7 @@ dsh plugin --profile web add @yolk_vat-y/dsh-project-memory -w
 A prebuilt tarball is published with each release, installable without a build step:
 
 ```bash
-dsh plugin --profile web add /path/to/dsh-project-memory-0.2.0.tgz
+dsh plugin --profile web add /path/to/dsh-project-memory-0.3.0.tgz
 ```
 
 Each indexed project has its own store at `<root>/.dsh-project-memory/`. Add it to `.gitignore` if it should not be committed.
@@ -95,7 +96,6 @@ These are deliberate scope choices.
 - **In-process locking** — store writes are serialized per memory directory within one dsh process; two dsh instances sharing a project store is last-writer-wins. A cross-process lock would need a resident daemon, which conflicts with the pure-JS, no-background-service positioning, so multi-instance writes are explicitly unsupported.
 - **Watch poll holds the lock** — while the watcher re-indexes changed docs (LLM summarization), `remember`/`forget` queue behind it. Polling (mtime + content hash) instead of `fs.watch` events keeps behavior consistent across platforms; overlapping polls serialize on the same lock: safe, but they can pile up on very large diffs. Tune via `watchInterval`.
 - **Corrupt files are quarantined** — a store JSON that fails to parse falls back to empty for that file and is rebuilt on the next write; the broken file is renamed to `*.corrupt` with an error logged, but its data cannot be recovered. Auto-repairing partial writes would need a write-ahead journal or an embedded database — out of proportion when quarantining one bad file costs nothing.
-- **Absolute source paths** — entries cite absolute paths; moving a project invalidates citations until the next re-index.
 - **`forget` by query is eager** — keyword deletion matches at ≥0.5 token overlap and may remove several notes at once; prefer deleting by id for precision.
 - **Cross-language recall depends on index time** — with `llmQueryExpansion` off, a Chinese-only query reaches English content through bilingual keywords captured when docs are indexed, plus doc↔symbol links; queries stay LLM-free. Stores indexed before v0.1.1 gain bilingual keywords as files change, or immediately via `index_repo` with `reindex: true`.
 - **CJK retrieval** — phrase boost and synonym expansion are purely query-side; they do not increase index size or LLM usage. Link boundaries use CJK-aware regex only; English symbols keep the original word-boundary behavior. The experience supersede threshold (0.7 bidirectional) is a conservative default; adjust via config if false positives/negatives appear in practice.

@@ -1,14 +1,12 @@
 # MindsEye
 
-![MindsEye header](https://raw.githubusercontent.com/kanchengw/dsh-mindseye/ad356c067ec51d37e338cf9c8e5c8a2eea6613f2/assets/MindsEye-header.png)
+![MindsEye header](https://raw.githubusercontent.com/kanchengw/dsh-mindseye/d06881dbaf58ae808f9e71d3e63a9af62d1547da/assets/MindsEye-header.png)
 
 [![dsh.so security](https://www.dsh.so/badges/dsh-mindseye.svg)](https://www.dsh.so/artifact/dsh-mindseye/)
 
 > Intent-driven vision, image generation, and visible browser automation for DeepSeek Harness.
 
 [English](README.md) | [中文](README.zh-CN.md)
-
-Current version: 0.2.7
 
 MindsEye is a plugin for [DeepSeek Harness](https://github.com/haiziyao/dsh). It gives text-only models access to image understanding, image generation, and optional browser automation while keeping the DSH conversation as the main user experience.
 

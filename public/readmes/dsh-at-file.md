@@ -5,9 +5,9 @@
 
 Workspace path references for the DeepSeek Harness web interface. Type `@` in the composer to search the current workspace and insert a file or directory path.
 
-![@ path picker](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/c37b0ed9e8bf3585bf9f272462dcf01886efe2a3/assets/screenshots/workspace-path-picker.png)
+![@ path picker](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/75a9accbe2c58b26149e515248db2ce4670510eb/assets/screenshots/workspace-path-picker.png)
 
-![File reference in the composer](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/c37b0ed9e8bf3585bf9f272462dcf01886efe2a3/assets/screenshots/file-mention-composer.png)
+![File reference in the composer](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/75a9accbe2c58b26149e515248db2ce4670510eb/assets/screenshots/file-mention-composer.png)
 
 ## Usage
 
@@ -48,16 +48,16 @@ The default index skips common version-control directories, IDE metadata, depend
 ## Install or Update
 
 ```sh
-dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/refs/tags/v0.6.8.tar.gz
+dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/refs/tags/v0.6.9.tar.gz
 ```
 
-Use the same command to update an existing installation. Restart `dsh web` after installation so the Host and browser client load version `0.6.8`.
+Use the same command to update an existing installation. Restart `dsh web` after installation so the Host and browser client load version `0.6.9`.
 
 ## File Filters
 
 Open **Settings -> File mentions** to manage file-name filters.
 
-![File mention settings with Exact and Regex rules](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/c37b0ed9e8bf3585bf9f272462dcf01886efe2a3/assets/screenshots/file-mention-settings.png)
+![File mention settings with Exact and Regex rules](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/75a9accbe2c58b26149e515248db2ce4670510eb/assets/screenshots/file-mention-settings.png)
 
 - **Global** contains rules shared by every workspace.
 - **Workspace** contains additional rules for the selected workspace path. Each workspace keeps its own list, and the panel shows the global rules it inherits.
@@ -97,6 +97,7 @@ Omitting `ignoreDirs` keeps the built-in list. When you provide it, include ever
 - Reference markers are created from typed text and picker selections. Pasted `@` tokens are ignored when the default setting is enabled.
 - Clicking a referenced path uses the Harness `host.openPath` endpoint.
 - The picker index is cached per session for 30 seconds.
+- The reference dock only renders tokens that exist in the current session's settled workspace index. Unknown `@text` remains ordinary text.
 - An `@path` token cannot contain whitespace or another `@` character.
 - `maxIndexedFiles` limits picker results. A manually entered path can still be referenced when it exists inside the workspace.
 

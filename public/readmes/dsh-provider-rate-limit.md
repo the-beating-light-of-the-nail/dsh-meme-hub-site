@@ -52,7 +52,7 @@ Open **Settings → 插件 → Provider Rate Limit**. All options hot-reload —
 | `maxWaitMs` | `30000` | Longest queue time in `wait` mode before falling back to `reject` behavior |
 | `upstream429Backoff` | `true` | On an upstream HTTP 429 (e.g. quota exhausted), pause the route until the window passes |
 | `backoffMs` | `30000` | Initial cooldown (ms) when the upstream 429 carries no `Retry-After`; doubles on consecutive 429s up to `maxBackoffMs` |
-| `maxBackoffMs` | `0` | Maximum cooldown ceiling (ms) for exponential backoff; `0` = fixed cooldown (same as `backoffMs`) |
+| `maxBackoffMs` | `60000` | Maximum cooldown ceiling (ms) for exponential backoff; `0` = fixed cooldown (same as `backoffMs`) |
 | `backoffJitter` | `0` | Symmetric jitter ratio (0–1) applied to the cooldown to prevent thundering herd; `0` = deterministic |
 | `maxConcurrentRequests` | `0` | Maximum in-flight requests per route; `0` = unlimited concurrency |
 | `models` | `[]` | Per-route overrides: match by provider/model substring, each with its own RPM/burst |
@@ -165,17 +165,17 @@ npm test   # 19 tests: bucket behavior, FIFO, abort/reject, identity patch,
 
 ### Settings Card
 
-![Settings Card](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/f8ba9019565d8183081e007da9fb7623b74d5dd4/assets/screenshots/settings-card.png)
+![Settings Card](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/d31fd0144ba24b741880af70b71d0bf3c47c8062/assets/screenshots/settings-card.png)
 
 ### Settings Configuration
 
 | | |
 |---|---|
-| ![Settings Config 1](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/f8ba9019565d8183081e007da9fb7623b74d5dd4/assets/screenshots/settings-config-1.png) | ![Settings Config 2](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/f8ba9019565d8183081e007da9fb7623b74d5dd4/assets/screenshots/settings-config-2.png) |
+| ![Settings Config 1](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/d31fd0144ba24b741880af70b71d0bf3c47c8062/assets/screenshots/settings-config-1.png) | ![Settings Config 2](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/d31fd0144ba24b741880af70b71d0bf3c47c8062/assets/screenshots/settings-config-2.png) |
 
 ### Composer Dock Live Stats
 
-![Composer Dock Stats](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/f8ba9019565d8183081e007da9fb7623b74d5dd4/assets/screenshots/composer-dock-stats.png)
+![Composer Dock Stats](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/d31fd0144ba24b741880af70b71d0bf3c47c8062/assets/screenshots/composer-dock-stats.png)
 
 ## License
 

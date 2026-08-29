@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
- <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/1cba352758058cdf8563b73be12f915ed4819284/assets/banner.jpg" alt="Awesome DeepSeek Harness">
+ <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/6a0907e71803b32a8ff0eb4b9ccb4cd0a157c321/assets/banner.jpg" alt="Awesome DeepSeek Harness">
 </div>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -470,6 +470,7 @@ Management panel: Settings → Plugins.
 - [dsh-github](https://github.com/PerryLink/dsh-github) - Official-grade GitHub CI integration: composite action.yml, polling PR review bot with idempotent inline comments and a status-check gate, plus PR/issues tools with every write gated by human approval.
 - [dsh-local-ai](https://github.com/PerryLink/dsh-local-ai) - Ollama local-model adapter: ollama_list/pull/remove/show plus health checks, registers an Ollama route via the official LlmAdapter with model_route rules (offline-first / long-text / privacy) and cloud fallback; /ollama command for a one-shot overview.
 - [rapid-mlx-dsh-provider](https://github.com/raullenchai/rapid-mlx-dsh-provider) - Native provider for Rapid-MLX, an Apple-silicon local inference server: registers a `rapid-mlx` LlmAdapter route that reads model facts (context window, reasoning parser, capabilities) from the server's `/v1/models` instead of a hand-written settings.yaml, so switching served models needs no re-setup and compaction is timed to the real context window.
+- [dsh-llm-gate](https://github.com/d3vmeh/dsh-llm-gate) - Per-provider concurrency gate on the llm/stream waterfall: holds surplus model requests in a FIFO queue inside DSH so main agent, subagents and compaction take turns on a single-slot local server (llama.cpp --parallel 1) instead of timing out; maxConcurrent / maxQueued / queueTimeoutMs.
 - [JohnXu22786/github-mcp](https://github.com/JohnXu22786/github-mcp) - RepoGate: GitHub developer workbench MCP server for dsh — repositories, issues, PRs, code review, search, zero runtime dependencies.
 - [JohnXu22786/worktree-mgr](https://github.com/JohnXu22786/worktree-mgr) - Task-isolated Git worktrees for dsh: auto-create, sync and tear down isolated workspaces per task.
 - [JohnXu22786/spec-driven](https://github.com/JohnXu22786/spec-driven) - Keel (龙骨): spec-driven development discipline skill pack — spec-first, verify assumptions, prevent over-engineering and scope creep; skills+tools+templates for dsh.
@@ -477,6 +478,7 @@ Management panel: Settings → Plugins.
 - [dsh-plugin-cloud](https://github.com/AgentsDanceAI/deepseek-harness-cloud/tree/main/packages/dsh-plugin-cloud) - DSH Cloud gateway provider: device-authorized login writes a multi-model provider row (DeepSeek, GPT, Claude, Gemini and more) into the user config layer; works against the hosted service or a self-hosted deployment.
 - [dsh-plugin-rollout-scout](https://github.com/SpookySandwich/dsh-plugin-rollout-scout) - Detects which conversation model your account is being served: launches concurrent throwaway probe conversations, scores each streaming chain-of-thought by how its paragraphs open, and cancels probes that read as the older model within seconds.
 - [openllmsh/dsh](https://github.com/openllmsh/dsh) - Routes the harness through the OpenLLM gateway: a pure-config Cordis patch that adds an `openllm` provider to the in-box pi-ai adapter pointed at the local daemon (`127.0.0.1:8787/v1`, no API key held by dsh) and registers the `openllm mcp` stdio server (openllm, claude-context, supermemory tool groups).
+- [lynkr-dsh-plugin](https://github.com/veerareddyvishal144/lynkr-dsh-plugin) - Registers Lynkr, a self-hosted tier-routing LLM gateway, as a custom OpenAI-compatible provider: classifies each request's difficulty and routes it to the cheapest model that can handle it, across 15+ providers (Anthropic, OpenAI, Azure, Bedrock, Vertex, OpenRouter, Ollama, DeepSeek, and more).
 
 ## Git & Engineering
 
@@ -612,6 +614,7 @@ Management panel: Settings → Plugins.
 ## Fun & Lifestyle
 
 - [dsh-whale-companion](https://github.com/LeemanCheung/dsh-whale-companion) - Draggable whale companion with local progression, achievements, skins, and privacy-safe activity tracking.
+- [dsh-whale-musume](https://github.com/Sutera-Diffusus/dsh-whale-musume) - Whale-girl desktop pet for the DSH Web UI: pat-to-raise growth, work-state poses, 494 dialogue lines and 30 achievements with a built-in settings panel; local-first, zero telemetry.
 - [dsh-clippy](https://github.com/sjh9714/clippy-harness) - Clippy revived as an office assistant pet that reacts to real agent state, with a classic "illegal operation" dialog on failed turns.
 - [dsh-agent-rp](https://github.com/dsh-external/dsh-agent-rp) - SillyTavern migration and next-generation agent roleplay for DSH.
 - [dsh-emoji](https://github.com/dsh-external/dsh-emoji) - Emoji plugin (cordis).
@@ -771,6 +774,7 @@ Management panel: Settings → Plugins.
 - [dsh-data-quality](https://github.com/PerryLink/dsh-data-quality) - Deterministic data profiling, cleaning, and verification: data_profile / data_clean / data_verify tools plus a frozen cross-plugin verifyCitations citation-checking contract, with durable reports in a storage domain.
 - [maxmilian/dsh-odoo](https://github.com/maxmilian/dsh-odoo) - Read-only Odoo tools over JSON-RPC: server info, model field introspection, and a restricted search_read on an allow list of models. A draft-create tool is registered only when allowWrite is enabled.
 ## Tools & Utilities
+- [dsh-tray](https://github.com/liulifu/dsh-tray) - Windows system-tray guardian for DeepSeek Harness: launch/stop/restart the dsh service, multi-profile port bindings, snapshot-based quick recovery, plugin enable/disable, SQLite version ledger, and a client sentinel that detects a plugin failing to load, disables it and restores DSH.
 
 - [zilliztech/dsh-milvus](https://github.com/zilliztech/dsh-milvus) - Read-only DSH Web plugin for inspecting and searching Milvus or Zilliz Cloud collections from chat, including scalar, BM25, dense, and hybrid queries.
 
@@ -798,7 +802,7 @@ Management panel: Settings → Plugins.
 
 - [dsh-external/issues](https://github.com/dsh-external/issues) - Issue aggregation hub.
 - [dsh-meme-hub](https://github.com/the-beating-light-of-the-nail/dsh-meme-hub) - Curated navigation of community meme plugins (skins, desktop pets, mini-games), bilingual.
-- [DeepSeek Harness Handbook](https://github.com/sandbaseai/deepseek-harness-handbook) - 157 English-canonical, source-backed guides with 166 localized documents for running, extending, and troubleshooting DSH, plus a local-browser [Install Doctor](https://sandbaseai.github.io/deepseek-harness-handbook/install-doctor.html) and [Failure Router](https://sandbaseai.github.io/deepseek-harness-handbook/diagnose.html).
+- [DeepSeek Harness Handbook](https://github.com/sandbaseai/deepseek-harness-handbook) - 173 English-canonical, source-backed guides with 202 localized documents, an 82-resource Agent-first [Awesome resource map](https://sandbaseai.github.io/deepseek-harness-handbook/awesome-deepseek-harness-resources.html), local-browser [Install Doctor](https://sandbaseai.github.io/deepseek-harness-handbook/install-doctor.html), and [Failure Router](https://sandbaseai.github.io/deepseek-harness-handbook/diagnose.html).
 - [TeamoRouter](https://teamorouter.com/docs/install-deepseek-harness) - OpenAI-compatible endpoint with free DeepSeek V4 Pro/Flash daily quotas; point DEEPSEEK_BASE_URL at it, no payment info required.
 - [DeepSeek](https://deepseek.com) - Official site.
 

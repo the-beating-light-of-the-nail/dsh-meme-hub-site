@@ -1,7 +1,7 @@
 # dsh-plugin-bridge
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/0b15a2e49a64e2322e0cd5ad8f6cd5ac770462af/assets/cover/cover-en.png" width="100%" alt="dsh-plugin-bridge moves a locked session to a new preset through a previewable five-part handoff">
+  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/09d701e1c66fdf32058beecf28f59dbbc3746625/assets/cover/cover-en.png" width="100%" alt="dsh-plugin-bridge moves a locked session to a new preset through a previewable five-part handoff">
 </p>
 
 [![dsh-plugin](https://img.shields.io/badge/dsh-plugin-blue)](https://github.com/deepseek-ai/deepseek-harness)
@@ -18,7 +18,7 @@ English | [中文](README.zh.md)
 Halfway through a task and need another tool preset? Switching the produced session in place would leave tool history that belongs to the old assembly. Bridge previews a bounded five-part handoff, opens a clean target, and leaves the original session untouched.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/0b15a2e49a64e2322e0cd5ad8f6cd5ac770462af/assets/bridge-demo.en.gif" width="880" alt="A real Bridge migration in the official DeepSeek Harness WebUI">
+  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/09d701e1c66fdf32058beecf28f59dbbc3746625/assets/bridge-demo.en.gif" width="880" alt="A real Bridge migration in the official DeepSeek Harness WebUI">
 </p>
 
 [Quick start](#quick-start) · [Why Bridge](#why-bridge) · [Evidence](#evidence-at-a-glance) · [Decisions](#migration-decisions) · [Compatibility](#compatibility)
@@ -55,6 +55,8 @@ UIs that implement the official `conversation.chat.commandview` slot receive the
 ```text
 /bridge code --go --file <path>
 ```
+
+Preview edits are temporary until migration is confirmed. Restarting the client or system may discard them; the source session remains untouched, and you can regenerate the preview.
 
 Uninstall with `dsh plugin --profile web remove dsh-plugin-bridge`, then restart `dsh web`.
 

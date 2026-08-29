@@ -1,6 +1,6 @@
 <div align="center">
 
-![Banner](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/93f30441ceda5b1c2fbd7a205d5544f3024c6329/docs/banner.png)
+![Banner](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/1f83918c2b2f2e6a8e46edab328e7b577277c189/docs/banner.png)
 
 # dsh-auxiliary
 
@@ -163,7 +163,7 @@ The harness LLM seam only speaks text, so image generation talks to the provider
 
 1. The `generate_image` tool is registered and a system-prompt section tells the main model to call it when the user asks to generate, draw, or create a picture.
 2. The tool reads the provider's `baseURL` from the resolved `llm-pi-ai` settings and resolves `apiKeyEnv` through the harness **credential seam** (`ctx.credentials.resolve` — env/file/user-env layers), then calls `POST {baseURL}/images/generations` with `{model, prompt, size, n}`.
-3. The returned images (base64 or URL) are written under the working directory (`generated/`) and the file paths are returned; the main model can verify them with `inspect_image`.
+3. The returned images (base64 or URL) are written under the working directory (`.dsh/generated/`) and the file paths are returned; the main model can verify them with `inspect_image`.
 
 **Model capability mark**: the picker only lists models marked **Allow image generation** — check that box in the model's settings (it writes `imageGeneration: true` into the raw user section of the `llm-pi-ai` namespace). Mark exactly the models whose upstream endpoint actually generates images.
 
@@ -213,7 +213,7 @@ Tools are registered with `ctx.tools.register(defineTool(...))` and announced to
 
 - `inspect_image` — vision understanding: file path + optional question → attachment seam → vision route → text answer.
 - `describe_image` — handoff: reads the JSON from a chat `[image: …]` reference and answers via the vision route.
-- `generate_image` — image generation: prompt (+size/n) → provider images API (credential seam) → PNG files under `generated/` → paths.
+- `generate_image` — image generation: prompt (+size/n) → provider images API (credential seam) → PNG files under `.dsh/generated/` → paths.
 
 Each tool is registered only while its feature is enabled with a complete route (reconcile pattern), so the model never sees a tool it cannot use.
 
@@ -279,7 +279,7 @@ All fields are optional; defaults are shown.
 
 ### Settings page: Auxiliary Models
 
-![Auxiliary Models settings page](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/93f30441ceda5b1c2fbd7a205d5544f3024c6329/docs/image.png)
+![Auxiliary Models settings page](https://raw.githubusercontent.com/dsh-plugins/dsh-auxiliary/1f83918c2b2f2e6a8e46edab328e7b577277c189/docs/image.png)
 
 The plugin ships a web settings section (**Settings → Auxiliary Models**).
 Configure providers and models in the **Models** page first, then use the

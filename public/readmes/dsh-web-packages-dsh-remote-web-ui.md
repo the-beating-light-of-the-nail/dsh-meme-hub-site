@@ -137,19 +137,19 @@ The phone surface on a 390pt viewport. Light is the default theme; a
 sun/moon toggle in every header flips to the dark palette at any time.
 
 - **Workspaces** — the roster, each row a workspace with its own sessions:
-  ![Workspaces](https://raw.githubusercontent.com/zhu1090093659/dsh-web/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/packages/dsh-remote-web-ui/docs/screenshots/mobile-workspaces.png)
+  ![Workspaces](https://raw.githubusercontent.com/zhu1090093659/dsh-web/89829ef2173eceab6e6950e46eeea5c87d4b9a29/packages/dsh-remote-web-ui/docs/screenshots/mobile-workspaces.png)
 - **Sessions** — one workspace's sessions, headed by the 新建会话 button
   (creates a blank session attached to the workspace and opens it
   immediately):
-  ![Sessions](https://raw.githubusercontent.com/zhu1090093659/dsh-web/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/packages/dsh-remote-web-ui/docs/screenshots/mobile-sessions.png)
+  ![Sessions](https://raw.githubusercontent.com/zhu1090093659/dsh-web/89829ef2173eceab6e6950e46eeea5c87d4b9a29/packages/dsh-remote-web-ui/docs/screenshots/mobile-sessions.png)
 - **Chat** — messages with the desktop fold discipline (collapsed
   深度思考 reasoning and 工具 tool-call rows), a pinned composer with
   模型 / 权限 chips, and a live stream while the agent works:
-  ![Chat](https://raw.githubusercontent.com/zhu1090093659/dsh-web/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/packages/dsh-remote-web-ui/docs/screenshots/mobile-chat.png)
+  ![Chat](https://raw.githubusercontent.com/zhu1090093659/dsh-web/89829ef2173eceab6e6950e46eeea5c87d4b9a29/packages/dsh-remote-web-ui/docs/screenshots/mobile-chat.png)
 - **Model picker** — the bottom sheet with a provider-grouped catalog and a
   思考强度 section per model (the same `session.models` directory the
   desktop uses):
-  ![Model sheet](https://raw.githubusercontent.com/zhu1090093659/dsh-web/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/packages/dsh-remote-web-ui/docs/screenshots/mobile-model-sheet.png)
+  ![Model sheet](https://raw.githubusercontent.com/zhu1090093659/dsh-web/89829ef2173eceab6e6950e46eeea5c87d4b9a29/packages/dsh-remote-web-ui/docs/screenshots/mobile-model-sheet.png)
 
 ## Requirements
 

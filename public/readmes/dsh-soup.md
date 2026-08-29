@@ -15,7 +15,7 @@ DSH（DeepSeek Harness）功能很强：会话、工具、轨迹、Goal 一应�
 
 四样调料，一个插件，三平台通用（macOS / Linux / Windows）。装上之后——DSH 还是那锅汤，只是变得美味了。
 
-![dsh-soup 界面预览：右侧文件树 + 会话内预览 tab + 速率徽标](https://raw.githubusercontent.com/lyhue1991/dsh-soup/ae8ab512264d93417152800c6498ef63ecedd271/view.jpg)
+![dsh-soup 界面预览：右侧文件树 + 会话内预览 tab + 速率徽标](https://raw.githubusercontent.com/lyhue1991/dsh-soup/e8511103997aa866d7b1035997bba6b401be1c00/view.jpg)
 
 ## 速览
 
@@ -102,7 +102,7 @@ dsh plugin add @lyhue1991/dsh-soup
   - **语言适配（i18n）**：dsh-soup 全部文案（资源管理器、预览页、右键菜单、上传/下载、速度徽标、GoalBar）跟随 DSH 通用设置的语言切换（zh/en），切换即时生效。
   - **预览 tab 纯阅读模式**：激活预览时隐藏底部输入框、「N 轮 · M 步」统计行、GoalBar 与速度徽标——整屏干净内容区，切回对话/轨迹恢复。
 - **0.3.0** —
-  - **Markdown 预览渲染相对路径图片**：`![x](https://raw.githubusercontent.com/lyhue1991/dsh-soup/ae8ab512264d93417152800c6498ef63ecedd271/view.jpg)` 经同源 `/api/dsh-soup/img` 端点内联加载（confine 围栏 + 仅图片类型 + 拒跨站）。
+  - **Markdown 预览渲染相对路径图片**：`![x](https://raw.githubusercontent.com/lyhue1991/dsh-soup/e8511103997aa866d7b1035997bba6b401be1c00/view.jpg)` 经同源 `/api/dsh-soup/img` 端点内联加载（confine 围栏 + 仅图片类型 + 拒跨站）。
   - **自动刷新**：资源管理器与预览页每 3 秒轻量探测目录/文件签名（mtime），变了才重拉；面板关闭且无预览时零开销；宿主不可达时指数退避（封顶 60s）。
   - **顶部 ⟳ 刷新按钮**：重拉整棵树并保持已展开子目录不收起；空白右键「刷新」项同步升级为同一枚图标。
   - **工具栏按钮升级**：头部 ⟳/⬆/✕ 与预览「重载」对齐 JupyterLab 设计（26px 触达区 + SVG 图标，BSD-3 引用）；修复关闭按钮渲染异常。

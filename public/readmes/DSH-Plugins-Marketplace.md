@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/73c4274cedc9894d879520d4258fd9acf276bcf3/assets/social-preview.png" alt="DSH 插件市场 — 社交预览封面" width="90%">
+  <img src="https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/7fdbaf59ecfc1ca8181de380f2492f7a7b89b780/assets/social-preview.png" alt="DSH 插件市场 — 社交预览封面" width="90%">
 </p>
 
 ---

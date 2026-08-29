@@ -3,7 +3,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.png">
-    <img src="https://raw.githubusercontent.com/fishzjp/qa-skills/d6a889a0f9efd95ebce069b35104b06d2798c7b0/assets/hero.png" alt="QA Skills —— 知识 × 工具 × 决策的测试工程 Skill 框架：十轴类型决策矩阵与完整测试流水线" width="800">
+    <img src="https://raw.githubusercontent.com/fishzjp/qa-skills/997cf6afd70dde5f34223347f762dd1aab0f042a/assets/hero.png" alt="QA Skills —— 知识 × 工具 × 决策的测试工程 Skill 框架：十轴类型决策矩阵与完整测试流水线" width="800">
   </picture>
 </p>
 
@@ -186,7 +186,7 @@ PRD / 代码
 > **决策层首轮（2026-08-23，类别性判读，未进正式增益表）**：类型域决策任务（5 个任务，参考答案经双人独立标注复核）在最弱模型 deepseek-v4-flash 上（n=3，注入式上界口径）：
 >
 > - 无 skill 组**零显式类型决策**——宽容口径亦为 0：输出里"提到"了正确类型，但没有逐轴的纳入/排除决策。盲区在决策纪律，而非类型知识。
-> - 有 skill 组类型查全率 **0 → 0.88**（格式锤复验轮）；其中需求未提、只存在于代码的可靠性/契约轴，从 0 提升到 8/9。
+> - 有 skill 组类型查全率 **0 → 0.88**（格式硬约束复验轮）；其中需求未提、只存在于代码的可靠性/契约轴，从 0 提升到 8/9。
 >
 > 两个数字均待任务扩容与跨模型梯度轮后进正式增益表。
 
@@ -234,6 +234,7 @@ skills/                  产品本体（10 个 skill + core 共享知识库）
   test-case-review/      automated-e2e-testing/  api-testing/
   exploratory-testing/   bug-analysis/  regression-testing/
 .dsh/                    dsh 插件三件套（cordis.patch.yml + plugins/qa-skills.js，清单见 package.json 的 dsh.bundle）
+assets/                  视觉资产（README hero 图、官网落地页配图 landing/、社交预览图）
 docs/                    设计文档（DESIGN / 决策层设计 / v2 规划）
 examples/                Skill On / Off 产出对照
 ```

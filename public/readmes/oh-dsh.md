@@ -4,7 +4,7 @@
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/c15265ca0bb9ffd2d485d655ea6707d97549690d/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/eb72791a8a1e8059ba08b99508d18c847fcfa1f3/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
   <h1>Oh-DSH</h1>
   <p><strong>一套 DSH runtime，Desktop、Web 与 TUI 三种开发体验。</strong></p>
   <p>把 AI Agent、Workspace、本地工具与插件生态带到你习惯的界面。</p>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/c15265ca0bb9ffd2d485d655ea6707d97549690d/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/eb72791a8a1e8059ba08b99508d18c847fcfa1f3/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
 </p>
 
 Oh-DSH 将 DeepSeek Harness、Node.js、本地开发工具和内置插件打包为可安装的
@@ -133,9 +133,9 @@ ohdsh desktop
 | Web-only | **Oh-DSH Web**、Node runtime 和内置 Web 插件，不含 Electron | 浏览器、服务器或轻量安装 |
 | TUI-only | **Oh-DSH TUI**、Node runtime 和终端插件，不含 Electron | SSH 与纯终端环境 |
 
-- **macOS：**打开 DMG，将 **Oh-DSH Desktop** 拖入 Applications。
-- **Windows：**运行安装包，或解压便携版后启动。
-- **Linux：**直接运行 AppImage，或使用 `apt` 安装 deb。
+- **macOS**：打开 DMG，将 **Oh-DSH Desktop** 拖入 Applications。
+- **Windows**：运行安装包，或解压便携版后启动。
+- **Linux**：直接运行 AppImage，或使用 `apt` 安装 deb。
 
 安装脚本是推荐入口；Release 资产适合需要手动选择包或离线分发的场景。
 
@@ -208,11 +208,11 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ### 插件市场
 
-![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/c15265ca0bb9ffd2d485d655ea6707d97549690d/assets/oh-dsh-plugin-marketplace.png)
+![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/eb72791a8a1e8059ba08b99508d18c847fcfa1f3/assets/oh-dsh-plugin-marketplace.png)
 
 ### Oh-DSH 皮肤
 
-![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/c15265ca0bb9ffd2d485d655ea6707d97549690d/assets/oh-dsh-desktop-skins.png)
+![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/eb72791a8a1e8059ba08b99508d18c847fcfa1f3/assets/oh-dsh-desktop-skins.png)
 
 </details>
 

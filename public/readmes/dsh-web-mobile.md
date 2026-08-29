@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -14,7 +14,7 @@
 
 **dsh-web-mobile** 是 DeepSeek Harness Web UI 的移动端适配插件——让 DSH 在手机竖屏下也能好好用：
 
-- **侧栏变抽屉**：手机竖屏下侧栏收进 overlay 抽屉，会话区全宽，点会话行自动收起
+- **侧栏变抽屉**：手机竖屏下侧栏收进 overlay 抽屉，会话区全宽，点会话行自动收起；屏幕左缘右滑呼出、抽屉内右滑收起
 - **弹窗变浮层**：设置、文件树、预览改成底部 sheet，触屏好点
 - **状态栏避让**：刘海安全区、深/浅主题、双击缩放都处理
 - **输入区不打架**：权限胶囊、模型名、切换菜单在窄屏下不重叠
@@ -28,7 +28,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4d2f884c19ec041cbf7e2df1f493a1223949f775/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/settings.png) |
 
 ## 安装
 
@@ -47,6 +47,29 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 ```
 
 ## 更新内容
+
+### 未发布（v2.2.0 之后）
+
+**新功能**
+
+- 侧边栏抽屉手势（#16，PR #37 by @wingsky-1）：屏幕左缘右滑呼出抽屉、抽屉内容区右滑收起。
+
+**修复**
+
+- 手势打开抽屉后点背板要点两次才关
+- 手势后短时间内真实点按（如点会话行）偶尔无响应
+- 滑动开抽屉偶尔没反应或开了又弹回
+- `?mobile-nav-debug=1` 诊断条在代码重组后没有接线，访问调试参数无任何显示
+- 系统开启「减弱动态效果」时抽屉仍播放滑入滑出动画，现与设置面板一致直接禁用
+
+**重构**
+
+- 抽屉手势的左缘识别区改为纯几何判定（48px），移除注入宿主 DOM 的隐形热区元素
+
+**兼容**
+
+- 适配 dsh 0.1.2-alpha.1
+- peer 依赖范围放宽到 0.1.2 预发布版
 
 ### v2.2.0
 
@@ -93,33 +116,6 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 
 - 完成 phase 2-4 代码重组，优化 !important 使用
 - 哈希类选择器全量改为子串匹配并补 `:not` 守卫，救活一批静默失效的规则（PR #27/#28 系列）
-
-### v2.0.0
-
-**修复**
-
-- iOS Safari 输入 `ask_user_question` 时不再自动放大
-- 移动端会话头部稳定：文件按钮不跑出头部，模式徽标/按钮布局不乱
-- 输入区在窄屏下一行排列，权限/模型下拉不被裁剪、不互相遮挡
-- 点文件行打开预览不再被误判为关闭，预览能正常弹出
-- `?mobile-nav-debug=1` 不再因自身写入触发页面冻结
-- dshmarket 搜索框、已安装插件列表在移动端布局正常
-
-**移除**
-
-- 移除触觉反馈（HapticRow / haptic 设置项）
-
-**兼容**
-
-- 放宽 `@deepseek-ai/*` peer 依赖范围，支持 0.1.1 rc 版本
-
-### v1.5.0
-
-- 修复抽屉关闭回归：背板点击、Escape、导航点击收起、悬浮按钮恢复
-- preview/explorer 互斥对称，预览浮层不再误开或残留
-- dispose 还原完整，退出移动端布局后桌面无残留
-- reconciler 重构：统一全树观察，减少无效刷新
-- 新增 CDP 回归门禁 `smoke:cdp`
 
 ## 兼容插件
 

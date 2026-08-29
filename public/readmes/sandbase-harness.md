@@ -12,7 +12,9 @@ A local-first runtime for AI agents. Sessions, sandboxed tools, memory,
 credentials, audit trails, and a built-in Console — all running on your
 machine or in your own infrastructure.
 
-![SandBase Harness architecture](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/sandbase-harness-architecture.svg)
+> Building with DeepSeek Harness? The independent [DeepSeek Harness Handbook](https://github.com/sandbaseai/deepseek-harness-handbook) provides source-backed runtime guides, multilingual troubleshooting, and a [31-resource Agent-first map](https://sandbaseai.github.io/deepseek-harness-handbook/awesome-deepseek-harness-resources.html).
+
+![SandBase Harness architecture](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/37a95c3d3e2d888809c10905c0b2da54bc49873a/docs/assets/sandbase-harness-architecture.svg)
 
 > Looking for a lightweight bridge instead of a full runtime? [SandBase CLI](https://github.com/sandbaseai/cli)
 > connects 25 AI client targets to 2,000+ models and APIs through a local stdio MCP bridge.
@@ -91,7 +93,7 @@ is that runtime layer — not a visual workflow builder and not another model SD
 
 | Console overview | Settings | API reference |
 | --- | --- | --- |
-| ![overview](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/dashboard-overview.png) | ![settings](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/dashboard-settings-models.png) | ![api-ref](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/0fc114ab1dc00a0e36dfcc0714ffd90340d47310/docs/assets/dashboard-api-reference.png) |
+| ![overview](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/37a95c3d3e2d888809c10905c0b2da54bc49873a/docs/assets/dashboard-overview.png) | ![settings](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/37a95c3d3e2d888809c10905c0b2da54bc49873a/docs/assets/dashboard-settings-models.png) | ![api-ref](https://raw.githubusercontent.com/sandbaseai/sandbase-harness/37a95c3d3e2d888809c10905c0b2da54bc49873a/docs/assets/dashboard-api-reference.png) |
 
 ## Requirements
 

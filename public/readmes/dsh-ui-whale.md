@@ -2,6 +2,41 @@
 
 DSH Web UI 的常驻像素鲸鱼伙伴插件：会话标题栏（标题行右侧）常驻一只小鲸鱼，随会话快照实时反应——**零核心改动**。
 
+## 安装
+
+```sh
+# 方式一：git 依赖固定 tag（公开镜像，推荐；也可用 github:lhh010/dsh-ui-whale）
+dsh plugin --profile web add '@dsh-external/dsh-ui-whale@github:lhh010/dsh-ui-whale#v0.3.6'
+
+# 方式二：本地 link（开发）
+git clone https://github.com/lhh010/dsh-ui-whale.git
+cd dsh-ui-whale && pnpm install && pnpm run build
+dsh plugin --profile web add link:/path/to/dsh-ui-whale
+```
+
+配置行（`$DSH_HOME/profiles/web/cordis.patch.yml`，热重载，无需重启）：
+
+```yaml
+- insert:
+    - id: dsh-ui-whale
+      name: '@dsh-external/dsh-ui-whale'
+```
+
+> **安装提示**：pnpm 11 首次安装可能拦截 node-pty 等构建脚本——在 `~/.dsh/profiles/web` 下执行 `pnpm approve-builds --all` 放行后重跑安装命令；装完**硬刷新浏览器**（Ctrl/Cmd+Shift+R）。
+
+### 提示词安装（让 DSH 自己装）
+
+把下面这段提示词发给任意一个 DSH 会话，模型会替你完成安装：
+
+> 帮我安装 dsh-ui-whale 插件（DSH 会话标题栏像素鲸鱼伙伴），步骤：
+> 1. 执行 `dsh plugin --profile web add '@dsh-external/dsh-ui-whale@github:lhh010/dsh-ui-whale#v0.3.6'`（首次可能被 pnpm 11 拦截 node-pty 构建脚本而失败）
+> 2. 在 `~/.dsh/profiles/web` 下执行 `pnpm approve-builds --all`（放行构建脚本）
+> 3. 再执行一次第 1 步的安装命令
+> 4. 完成后提醒我硬刷新浏览器（Ctrl/Cmd+Shift+R）
+> 遇到报错先查 https://github.com/lhh010/dsh-ui-whale README 的常见问题/已知限制。
+
+## 版本对应 / Version compatibility
+
 ## 版本对应 / Version compatibility
 
 构建产物随 DSH 快照版本更新，安装时按快照选择对应版本：
@@ -14,16 +49,18 @@ DSH Web UI 的常驻像素鲸鱼伙伴插件：会话标题栏（标题行右侧
 | `v0.3.1` | `snapshots/20260806T160212Z`（snapshot0806） | 睡觉 Z 改 5 帧循环 `0-1-2-3-4-5-1-…`；尾巴加一帧改 `0-1-2-3-4-3-2-1-0` |
 | `v0.3.2` | `snapshots/20260806T160212Z`（snapshot0806） | 修正睡觉 Z 浮动轨迹（重新定位 睡觉2~5 的 Z 位置） |
 | `v0.3.3` | `snapshots/20260810T155924Z`（snapshot0810） | 兼容性构建：客户端插件元数据从顶层 `dshClient` 迁移为嵌套 `dsh.client`（0810 的 ClientModuleHostService 只读该字段；顶层 `dshClient` 被静默忽略），inject/platform 原样保留 |
-| `v0.3.4`（默认） | npm `@deepseek-ai/dsh@0.1.1-rc.1` | 0.1.1-rc.1 实机 boot 验证通过（boot 清单 + client.js 200），依赖的槽位/服务不变 |
+| `v0.3.6`（默认） | `dsh-v0.1.2-alpha.1`（GitHub tag，源码构建安装） | 当前版本：迁移到 0.1.2-alpha.1 客户端 API（views/legacy 投影 + ctx.slots.inject），带兼容自诊断横幅 |
+| `v0.3.5` | `dsh-v0.1.2-alpha.1` | 兼容性自诊断横幅引入 |
+| `v0.3.4` | npm `@deepseek-ai/dsh@0.1.1-rc.1` | 0.1.1-rc.1 实机 boot 验证通过（boot 清单 + client.js 200），依赖的槽位/服务不变 |
 
-> **兼容性说明**：上表构建均基于 snapshot0806 开发，同时兼容 snapshot0807（`snapshots/20260807T130646Z`）、snapshot0808（`snapshots/20260808T121140Z`）、snapshot0809（`snapshots/20260809T140917Z`）、snapshot0810（`snapshots/20260810T155924Z`）、snapshot0811（`snapshots/20260811T152241Z`）与最终快照 snapshot0812（`snapshots/20260812T172954Z-final`）——0807~0812 用户直接安装默认版本（`v0.3.3`）即可（0811 与 0812 实机 boot 验证通过，见下）。
+> **兼容性说明**：上表构建均基于 snapshot0806 开发，同时兼容 snapshot0807（`snapshots/20260807T130646Z`）、snapshot0808（`snapshots/20260808T121140Z`）、snapshot0809（`snapshots/20260809T140917Z`）、snapshot0810（`snapshots/20260810T155924Z`）、snapshot0811（`snapshots/20260811T152241Z`）与最终快照 snapshot0812（`snapshots/20260812T172954Z-final`）——0807~0812 用户直接安装默认版本（`v0.3.6`）即可（0811 与 0812 实机 boot 验证通过，见下）。
 
 > **npm 发版兼容**：兼容 DSH npm 发版 `@deepseek-ai/dsh@0.1.1-rc.1`（v0.3.4 实机 boot 验证通过：`dsh --profile web` 启动后 boot 清单包含 `@dsh-external/dsh-ui-whale`，`/plugins/@dsh-external/dsh-ui-whale/client.js` 返回 200；`conversation.session.header.actions` 槽位与 `locale`/`invariants` 服务在 0.1.1-rc.1 上保持不变），同时兼容 `@deepseek-ai/dsh@0.0.1-rc.5`（dist-tag `next`，即最终快照 snapshot0812 的 npm 发版；`npm exec -p @deepseek-ai/dsh@0.0.1-rc.5 -- dsh --profile web --port <port>` 可访问指定版本并启动，lib 生产模式），同时保持兼容 `@deepseek-ai/dsh@0.0.1-rc.2`（snapshot0811 的 npm 发版）。实测（npm rc.5 基线）：`dsh web` 启动后 `window.__DSH_BOOT__` 清单包含 `@dsh-external/dsh-ui-whale`（inject: `dsh-client-locale`/`dsh-client-runtime`/`dsh-client-ui-conversation`），`/plugins/@dsh-external/dsh-ui-whale/client.js` 返回 200；src 对 rc.5 基线构建产物 typecheck 全绿（本插件已把 cordis 类型导入与 peer 迁移至 `@deepseek-ai/cordis`，见下）。注意：0811 起 vendored cordis 更名为 `@deepseek-ai/cordis`（npm 发版不再发布 `cordis` 名义的 vendored 包），本插件已迁移（peer 声明 `@deepseek-ai/cordis: ^4.0.1-rc.1`，npm rc.5 基线上为 `4.0.1-rc.4`），纯 `npm install` 不再报 ERESOLVE。
 
 > **alpha 发版兼容**：兼容 `dsh-v0.1.2-alpha.1`（GitHub tag `dsh-v0.1.2-alpha.1`，源码构建安装，不发布 npm；v0.3.5 迁移并验证：0.1.2-alpha.1 移除了 `@deepseek-ai/dsh-client-runtime` 客户端包，`ClientContext` 改从 `@deepseek-ai/cordis` 导入、`ConversationSnapshot` 重构为 views 架构（旧 `nodes`/`partial`/`runningCalls` 等字段移到 `ChatSnapshot.legacy` 兼容投影）。本插件已在 0.1.2-alpha.1 源码基线上重写数据来源（`useSession` 读 Session 生命周期、`useConversation` 经 `views.get('chat').legacy` 读流式/工具状态），typecheck、34 个单测与构建全绿，注册改用 `ctx.slots.inject('conversation.session.header.actions', …)` 新范式）。
 本插件 v0.3.6 起内置**兼容性自诊断**：apply 时探测所需客户端 API,不满足时不再崩溃,而是在页面右下角渲染修复指引横幅(点击可关闭),提示升级 DSH 或更新插件。
 
-> git 依赖方式固定 tag：`pnpm add '@dsh-external/dsh-ui-whale@github:dsh-external/dsh-ui-whale#v0.3.3'`（0810/0811 用户；0806~0809 用户用 `#v0.3.2`，0805 用户用 `#v0.1.0`）。
+> git 依赖方式固定 tag（公开镜像，推荐）：`pnpm add '@dsh-external/dsh-ui-whale@github:lhh010/dsh-ui-whale#v0.3.6'`（或 `github:lhh010/dsh-ui-whale`；历史版本：0810/0811 用户用 `#v0.3.3`，0806~0809 用户用 `#v0.3.2`，0805 用户用 `#v0.1.0`）。
 
 ## 0809 兼容要点（snapshot0809，实机验证）
 
@@ -50,13 +87,13 @@ DSH Web UI 的常驻像素鲸鱼伙伴插件：会话标题栏（标题行右侧
 
 ## 演示 Demo
 
-![dsh-ui-whale 完整演示](https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/dsh-ui-whale-demo.gif)
+![dsh-ui-whale 完整演示](https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/dsh-ui-whale-demo.gif)
 
 各动作 GIF：
 
-<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/%E7%9C%A8%E7%9C%BC.gif" alt="眨眼" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/%E6%91%86%E5%B0%BE%E5%B7%B4.gif" alt="摆尾巴" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/%E6%91%86%E8%85%B9%E9%B3%8D.gif" alt="摆腹鳍" width="200">
+<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E7%9C%A8%E7%9C%BC.gif" alt="眨眼" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E6%91%86%E5%B0%BE%E5%B7%B4.gif" alt="摆尾巴" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E6%91%86%E8%85%B9%E9%B3%8D.gif" alt="摆腹鳍" width="200">
 
-<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/%E5%96%B7%E6%B0%B4%E8%8A%B1.gif" alt="喷水花" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/%E5%86%92%E7%88%B1%E5%BF%83.gif" alt="冒爱心" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/92aa25dc78f557b5cd0eb67fe7a5b4c89e74f842/docs/%E7%9D%A1%E8%A7%89.gif" alt="睡觉" width="200">
+<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E5%96%B7%E6%B0%B4%E8%8A%B1.gif" alt="喷水花" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E5%86%92%E7%88%B1%E5%BF%83.gif" alt="冒爱心" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E7%9D%A1%E8%A7%89.gif" alt="睡觉" width="200">
 
 > 完整视频：[docs/dsh-ui-whale-demo.mp4](docs/dsh-ui-whale-demo.mp4)
 
@@ -82,7 +119,7 @@ DSH Web UI 的常驻像素鲸鱼伙伴插件：会话标题栏（标题行右侧
 **官方 profile 通道**（0806 默认，配置行热重载，无需重启）：
 
 ```sh
-git clone https://github.com/dsh-external/dsh-ui-whale.git
+git clone https://github.com/lhh010/dsh-ui-whale.git
 cd dsh-ui-whale && pnpm install
 dsh plugin --profile web add link:/path/to/dsh-ui-whale
 ```

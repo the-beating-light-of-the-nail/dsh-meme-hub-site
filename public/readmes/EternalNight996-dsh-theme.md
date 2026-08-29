@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-theme/21b27d75a4239bd910019c5b7fc87457d964d8c8/assets/screen/dsh-theme.gif" width="720" alt="dsh-theme 主题皮肤演示" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-theme/d01383f8d82d3020607f16b62a8f6445df9f4978/assets/screen/dsh-theme.gif" width="720" alt="dsh-theme 主题皮肤演示" />
 </p>
 
 <div align="center">
@@ -15,7 +15,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-theme/21b27d75a4239bd910019c5b7fc87457d964d8c8/assets/screen/dsh-desktop.png" width="720" alt="桌面效果截图" />
+  <img src="https://raw.githubusercontent.com/EternalNight996/dsh-theme/d01383f8d82d3020607f16b62a8f6445df9f4978/assets/screen/dsh-desktop.png" width="720" alt="桌面效果截图" />
   <br/>
   <em>桌面实拍：背景透出 + 主题面板 + 明暗适配</em>
 </p>

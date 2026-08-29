@@ -3,17 +3,17 @@
 
 <p align="center">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0B7285?style=flat-square" alt="MIT"></a>
-<img src="https://img.shields.io/badge/release-v1.1.9-5B4CF0?style=flat-square" alt="v1.1.9">
+<img src="https://img.shields.io/badge/release-v1.1.10-5B4CF0?style=flat-square" alt="v1.1.10">
 <img src="https://img.shields.io/badge/DSH-Web%20Profile-5B4CF0?style=flat-square" alt="DSH Web Profile">
 </p>
 
 | 会话列表主屏 | 会话页 | 会话信息卡 |
 | --- | --- | --- |
-| ![会话列表主屏](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/398d14603a6d582739dac2f3521fbdf011e1acb8/assets/home.png) | ![会话页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/398d14603a6d582739dac2f3521fbdf011e1acb8/assets/session.png) | ![会话信息卡](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/398d14603a6d582739dac2f3521fbdf011e1acb8/assets/info.png) |
+| ![会话列表主屏](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/1f39d0da67a8e83cc7effc3a13f466ce9cc540d8/assets/home.png) | ![会话页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/1f39d0da67a8e83cc7effc3a13f466ce9cc540d8/assets/session.png) | ![会话信息卡](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/1f39d0da67a8e83cc7effc3a13f466ce9cc540d8/assets/info.png) |
 
 | composer 权限 sheet | 公网设备看到的配对页 |
 | --- | --- |
-| ![composer 权限 sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/398d14603a6d582739dac2f3521fbdf011e1acb8/assets/sheet.png) | ![配对页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/398d14603a6d582739dac2f3521fbdf011e1acb8/assets/pairing.png) |
+| ![composer 权限 sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/1f39d0da67a8e83cc7effc3a13f466ce9cc540d8/assets/sheet.png) | ![配对页](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/1f39d0da67a8e83cc7effc3a13f466ce9cc540d8/assets/pairing.png) |
 
 > 截图为 390×844 手机视口、浅色主题；深浅主题均适配。配对页是网关自绘页面，固定深色设计。
 
@@ -39,7 +39,7 @@ dsh plugin add dsh-zen-remote
 ```jsonc
 {
   "dependencies": {
-    "dsh-zen-remote": "^1.1.9"        // 本地开发换成 "link:/path/to/dsh-zen-remote"
+    "dsh-zen-remote": "^1.1.10"        // 本地开发换成 "link:/path/to/dsh-zen-remote"
   },
   "dsh": { "profile": { "bundles": [
     "@deepseek-ai/dsh-base",
@@ -188,6 +188,7 @@ open http://127.0.0.1:3088/lan-gate/admin
 | `DSH_PUSH_DEBOUNCE_MS` | `15000` | 两条自动推送的最小间隔；等授权/等回答的通知不受压制 |
 | `DSH_PUSH_SUMMARY` | 关 | 设 `1` 让通知带上本回合的最终回复（只取正文，不含思考过程；截 120 字）和提问原文 |
 | `DSH_PUSH_TOOL` | 开 | 设 `0` 关掉模型可调用的 `push_notify` 工具 |
+| `DSH_PUSH_APPROVAL_GRACE_MS` | `5000` | 「等授权」推送前的等待窗口。装了会自动答复审批的插件时（如 dsh-auto-approve），要等它答完再决定推不推——答完了就不推。判定器比这个慢就还是会推，那时把它调大 |
 
 上传大小上限（默认 20MB）在插件行的 `config.maxUploadBytes` 里改。
 
@@ -233,6 +234,13 @@ open http://127.0.0.1:3088/lan-gate/admin
 
 这两类不看会话层级——子代理自己卡在授权上，照样喊你，因为等的还是你。也**不受
 `DSH_PUSH_DEBOUNCE_MS` 压制**：「有操作等你点头」是最不能被吞掉的一条。
+
+**有机器答复者时的时机**：审批事件的顺序是「先记 asked → 问答复者 → 记 decided」，
+所以推送并不是一见到 asked 就发，而是等 `DSH_PUSH_APPROVAL_GRACE_MS`（默认 5 秒）
+——这段时间内被答复掉的就不推。这个窗口原来是 1.5 秒，按「答复者都在同一个 tick
+内结算」设计的；那对同步答复者成立，但对模型答复者不成立（实测平均 2.4 秒），
+结果是自动通过的请求照样推了一条「等你授权」，通知到了、框却从来没出现。
+换了更慢的判定模型就把这个值调大。
 
 策略自动放行的授权不会打扰你：请求发起后先等 1.5 秒，配对的「已决定」到了就取消，
 只有真正悬着没人管的才推。

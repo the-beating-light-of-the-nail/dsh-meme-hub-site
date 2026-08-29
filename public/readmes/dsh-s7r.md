@@ -3,20 +3,20 @@
 [![CI](https://github.com/hunter118/dsh-s7r/actions/workflows/ci.yml/badge.svg)](https://github.com/hunter118/dsh-s7r/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/hunter118/dsh-s7r)](https://github.com/hunter118/dsh-s7r/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](./LICENSE)
-[![DSH: 0.1.0-rc.7](https://img.shields.io/badge/DSH-0.1.0--rc.7-666.svg)](./COMPATIBILITY.md)
+[![DSH: 0.1.1-rc.2](https://img.shields.io/badge/DSH-0.1.1--rc.2-666.svg)](./COMPATIBILITY.md)
 
 S7R is an original System 7-era workstation shell for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI. It turns real DSH Agents, Workspaces, files, terminals, tools, and persisted history into a coherent multi-window desktop instead of placing a retro skin over a chat page.
 
 **S7R** is the desktop environment. **Knowledge Desk** is its Workspace, Agent, and conversation application.
 
-![An Expanded S7R desktop with Knowledge Desk naturally overlapping an Agent, Finder, Monitor, and Clock](https://raw.githubusercontent.com/hunter118/dsh-s7r/5ce0d3b1d4f3ca76f6b2d90f1effcaa785bf0b2d/docs/screenshots/s7r-desktop.png)
+![An Expanded S7R desktop with Knowledge Desk naturally overlapping an Agent, Finder, Monitor, and Clock](https://raw.githubusercontent.com/hunter118/dsh-s7r/ce042a5ce65dc13a50ce314dda57f1caff8c864f/docs/screenshots/s7r-desktop.png)
 
 *Expanded 1024 × 768 at native 1× magnification. Knowledge Desk remains the center of the workflow while the active Agent, Finder, Monitor, Clock, desktop aliases, and Trash coexist on one persistent desktop.*
 
 DSH remains the source of truth. S7R does not copy conversations into its own chat database, start an unrelated shell server, or expose arbitrary host paths. It presents the capabilities already owned by DSH and keeps only desktop preferences—window positions, aliases, display choices, Scrapbook cards, and similar UI state—in the browser.
 
 > [!IMPORTANT]
-> S7R's published-package runtime baseline is DSH `0.1.0-rc.7`. The adapter has also been built, installed, and browser-tested from the official `0.1.0-rc.8` source merge. At the verification date, rc.8 packages were not yet available from npm, so ordinary installs still resolve rc.7. DSH is in developer preview and later releases may require adapter updates. See [Compatibility](#compatibility-and-known-limitations).
+> S7R's published-package runtime baseline is the current npm release, DSH `0.1.1-rc.2`. S7R `0.9.4` was typechecked against the rc.2 package graph, installed through its official CLI, and browser-tested in a clean Web profile. Compatibility with `0.1.0-rc.7` and `0.1.0-rc.8` is retained. The separate `0.1.2-alpha.1` preview removes the client-runtime/APIProxy generation used by this adapter and is not yet supported. See [Compatibility](#compatibility-and-known-limitations).
 
 ## Feature map
 
@@ -41,7 +41,7 @@ DSH remains the source of truth. S7R does not copy conversations into its own ch
 ## Requirements
 
 - Node.js `22.19+` or `24+`
-- DeepSeek Harness `0.1.0-rc.7`
+- DeepSeek Harness `0.1.1-rc.2` (current npm `latest`)
 - pnpm for DSH profile plugin management and source development
 - A modern Chromium-based DSH Web UI browser is the primary tested target
 
@@ -49,10 +49,10 @@ DSH remains the source of truth. S7R does not copy conversations into its own ch
 
 ### Prebuilt release
 
-Download `dsh-s7r-0.9.3.tgz` from the [latest GitHub Release](https://github.com/hunter118/dsh-s7r/releases/latest), then install it into the DSH Web profile:
+Download `dsh-s7r-0.9.4.tgz` from the [latest GitHub Release](https://github.com/hunter118/dsh-s7r/releases/latest), then install it into the DSH Web profile:
 
 ```sh
-dsh plugin --profile web add ./dsh-s7r-0.9.3.tgz
+dsh plugin --profile web add ./dsh-s7r-0.9.4.tgz
 dsh --profile web --dump-config
 dsh web
 ```
@@ -102,7 +102,7 @@ Browser-owned shortcuts such as Command-N and Command-W are intentionally not ad
 
 Knowledge Desk is both a Workspace launcher and an Agent browser. Its header and highlighted Workspace row make the current folder explicit, and **New Agent Here** always uses that selection. The Agent side defaults to the current Workspace, can broaden to all Workspaces, filter by run state, sort by recency/name/status, and group results under their Workspace. Opening an existing result reconnects a window to the real DSH `SessionRuntime` rather than creating a second chat record.
 
-![An Expanded Agent workspace with rendered conversation, Context Inspector, Finder, Monitor, and Clock](https://raw.githubusercontent.com/hunter118/dsh-s7r/5ce0d3b1d4f3ca76f6b2d90f1effcaa785bf0b2d/docs/screenshots/s7r-agent.png)
+![An Expanded Agent workspace with rendered conversation, Context Inspector, Finder, Monitor, and Clock](https://raw.githubusercontent.com/hunter118/dsh-s7r/ce042a5ce65dc13a50ce314dda57f1caff8c864f/docs/screenshots/s7r-agent.png)
 
 *The Agent stays in context: its Markdown conversation and Context Inspector share the foreground while Finder, live system pressure, Clock, Knowledge Desk, and desktop objects remain available behind it.*
 
@@ -127,11 +127,11 @@ Streaming follows the newest output only while the reader is already near the bo
 
 ## Native DSH controls and Agent Preset Stationery
 
-**S7R → DSH Control Center…** is an adapter over the selected Agent's public DSH services, not a second configuration database. It shows and applies real provider model/reasoning routes, allows DSH's Preset to change only while an Agent is still blank, lists Agent-scoped slash commands (including modes registered by its Preset), exposes project Skills through the same invocation path as the composer, and reports the loader's complete plugin inventory. DSH rc.7 publishes plugin inventory as read-only, so S7R intentionally does not draw switches that cannot be committed safely.
+**S7R → DSH Control Center…** is an adapter over the selected Agent's public DSH services, not a second configuration database. It shows and applies real provider model/reasoning routes, allows DSH's Preset to change only while an Agent is still blank, lists Agent-scoped slash commands (including modes registered by its Preset), exposes project Skills through the same invocation path as the composer, and reports the loader's complete plugin inventory. DSH rc.2 publishes plugin inventory as read-only, so S7R intentionally does not draw switches that cannot be committed safely.
 
 **File → New from Stationery…** is a deliberately small Stationery Pad built on DSH Agent Presets. Choose a Workspace and installed Preset, optionally supply a display name and opening prompt, and S7R asks DSH to create the Agent with that composition. Preset descriptions and broken/local status come from DSH; S7R creates no competing template format.
 
-![A real zsh Terminal overlapping native DSH Commands and Modes, Find, Knowledge Desk, and Monitor](https://raw.githubusercontent.com/hunter118/dsh-s7r/5ce0d3b1d4f3ca76f6b2d90f1effcaa785bf0b2d/docs/screenshots/s7r-workflows.png)
+![A real zsh Terminal overlapping native DSH Commands and Modes, Find, Knowledge Desk, and Monitor](https://raw.githubusercontent.com/hunter118/dsh-s7r/ce042a5ce65dc13a50ce314dda57f1caff8c864f/docs/screenshots/s7r-workflows.png)
 
 *The same Expanded desktop can run a real Workspace-scoped zsh terminal over DSH's native command surface while Find, Knowledge Desk, and Monitor continue operating underneath.*
 
@@ -152,7 +152,7 @@ Terminal uses the official DSH terminal service and shell backend with `/bin/zsh
 
 **File → New Terminal** works independently of visible Agent and Finder windows. When no live owner exists, S7R creates a fresh blank owner in the current/recent Workspace, so the terminal does not fail with a missing Knowledge Desk session. **Open in Terminal** from Finder starts at the displayed directory.
 
-DSH rc.7 is line-oriented: it does not expose a raw browser keystroke stream or post-spawn PTY resizing. Terminal therefore behaves like a responsive real line console, not an xterm-style raw attachment.
+DSH rc.2 is line-oriented: it does not expose a raw browser keystroke stream or post-spawn PTY resizing. Terminal therefore behaves like a responsive real line console, not an xterm-style raw attachment.
 
 ## Find, Timeline, and Monitor
 
@@ -204,7 +204,7 @@ System applications and preferences live in their workflow menus. Clock and Puzz
 
 ## Display and wallpaper
 
-![Expanded Display controls with Cat wallpaper, Puzzle, Scrapbook, Knowledge Desk, Finder, Monitor, and Clock](https://raw.githubusercontent.com/hunter118/dsh-s7r/5ce0d3b1d4f3ca76f6b2d90f1effcaa785bf0b2d/docs/screenshots/s7r-display.png)
+![Expanded Display controls with Cat wallpaper, Puzzle, Scrapbook, Knowledge Desk, Finder, Monitor, and Clock](https://raw.githubusercontent.com/hunter118/dsh-s7r/ce042a5ce65dc13a50ce314dda57f1caff8c864f/docs/screenshots/s7r-display.png)
 
 *Display is scrolled directly to wallpaper treatment while the seamless Cat tile, solvable Puzzle, Scrapbook toolbar, Knowledge Desk, Finder, Monitor, and Clock demonstrate that display changes do not suspend the rest of the desktop.*
 
@@ -240,9 +240,9 @@ Please report credential exposure, path traversal, unsafe writes, terminal owner
 
 ## Compatibility and known limitations
 
-This release is runtime-tested against official DeepSeek Harness commit `99f6f02fecdb7dff40c3fbc9470f5907c29f74ca` (`0.1.0-rc.7`) and was also built, installed into a clean Web profile, and browser-tested from commit `141eb6fef83422698aef7a981029e843e8161534` (the `0.1.0-rc.8` release merge, verified 2026-08-20). Exact adapter seams and the rc.8 validation are documented in [COMPATIBILITY.md](./COMPATIBILITY.md).
+This release is runtime-tested against official DeepSeek Harness commit `b150a551b8d465e31e418e1b2eaf5e79bbb7d28e` (`0.1.1-rc.2`, verified 2026-08-29). The plugin retains its explicit rc.7/rc.8 peer branch, while the unpublished-by-default `0.1.2-alpha.1` client architecture is documented as unsupported rather than silently accepted. Exact adapter seams and validation results are documented in [COMPATIBILITY.md](./COMPATIBILITY.md).
 
-- DSH rc.7 has fixed backend PTY dimensions and no supported resize method or raw browser byte stream.
+- DSH rc.2 has fixed backend PTY dimensions and no supported resize method or raw browser byte stream.
 - TextEdit is a robust plain text/code editor, not a language server or syntax-highlighting IDE.
 - Preview renders raster PDF pages but has no selectable PDF text layer.
 - DSH exposes archive but no public unarchive API. S7R therefore uses a reversible local hide/archive layer for new actions; older DSH-native archived IDs cannot be restored through a supported seam.

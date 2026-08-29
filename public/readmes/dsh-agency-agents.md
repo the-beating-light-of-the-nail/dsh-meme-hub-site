@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/979c3d5220130c79eaae8d013f6a0f1f72d2efca/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/0308e1db6e4888edaf178d70e12330fce51fdd03/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
 </div>
 
 <div align="center">
@@ -34,15 +34,15 @@ The parent session keeps task context, judgment, and the final answer. Expert ch
 
 Filter by category or search in **Settings → Experts**, then enable the experts you need:
 
-![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/979c3d5220130c79eaae8d013f6a0f1f72d2efca/assets/screenshots/agent-roster-en.png)
+![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/0308e1db6e4888edaf178d70e12330fce51fdd03/assets/screenshots/agent-roster-en.png)
 
 Use `@` or the composer's **Experts** picker to choose an enabled expert:
 
-![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/979c3d5220130c79eaae8d013f6a0f1f72d2efca/assets/screenshots/expert-picker.png)
+![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/0308e1db6e4888edaf178d70e12330fce51fdd03/assets/screenshots/expert-picker.png)
 
 The name and slug are filled in; write the complete task next:
 
-![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/979c3d5220130c79eaae8d013f6a0f1f72d2efca/assets/screenshots/summon-prompt.png)
+![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/0308e1db6e4888edaf178d70e12330fce51fdd03/assets/screenshots/summon-prompt.png)
 
 ## DSH product ecosystem
 

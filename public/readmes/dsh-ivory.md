@@ -21,7 +21,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/main/assets/hero-dark.png">
-  <img alt="Ivory for DSH home screen" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/88e3cdca0b9eb0f328974dd55359aa63e064948d/assets/hero-light.png" width="1440">
+  <img alt="Ivory for DSH home screen" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/6da0020d145213ce10433f28983e69cc598508c7/assets/hero-light.png" width="1440">
 </picture>
 
 Ivory gives the DSH web interface a quieter reading rhythm without changing how
@@ -47,7 +47,7 @@ focus mode stays off until you choose it.
 Install the exact GitHub release without using npm.
 
 ```sh
-dsh plugin --profile web add github:ZJUZhiyuCai/dsh-ivory#v0.2.6
+dsh plugin --profile web add github:ZJUZhiyuCai/dsh-ivory#v0.2.7
 ```
 
 Remove Ivory and return to the native DSH interface.
@@ -73,8 +73,8 @@ dsh plugin --profile web remove dsh-ivory
 
 <table>
   <tr>
-    <td width="72%"><img alt="Ivory conversation view on desktop" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/88e3cdca0b9eb0f328974dd55359aa63e064948d/assets/conversation-light.png"></td>
-    <td width="28%"><img alt="Ivory conversation view on mobile" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/88e3cdca0b9eb0f328974dd55359aa63e064948d/assets/mobile-light.png"></td>
+    <td width="72%"><img alt="Ivory conversation view on desktop" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/6da0020d145213ce10433f28983e69cc598508c7/assets/conversation-light.png"></td>
+    <td width="28%"><img alt="Ivory conversation view on mobile" src="https://raw.githubusercontent.com/ZJUZhiyuCai/dsh-ivory/6da0020d145213ce10433f28983e69cc598508c7/assets/mobile-light.png"></td>
   </tr>
   <tr>
     <td align="center"><sub>Focused desktop conversation</sub></td>
@@ -103,7 +103,7 @@ and [third-party notices](https://github.com/ZJUZhiyuCai/dsh-ivory/blob/main/THI
 
 > [!NOTE]
 > DeepSeek Harness is in developer preview and may make breaking UI changes.
-> Ivory 0.2.x is verified against DSH 0.1.1-rc.2 and its current web client
+> Ivory 0.2.x is verified against DSH 0.1.2-alpha.1 and its current web client
 > modules. When Ivory cannot prove the current structural contract,
 > it keeps token-level theming and releases the host layout back to DSH.
 

@@ -3,7 +3,7 @@
 中文 | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/dsh-web-banner.png" alt="dsh-web" width="100%">
+  <img src="https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/dsh-web-banner.png" alt="dsh-web" width="100%">
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
   &nbsp;
   <a href="https://dsh-market.com"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdsh-market.com%2Fapi%2Ftelemetry%2Fbadge%2Fusers&style=flat-square&label=users" alt="users"></a>
   &nbsp;
-  <a href="https://www.npmjs.com/package/@deepseek-ai/dsh"><img src="https://img.shields.io/badge/DSH-0.1.1--rc.2-4c6ef5?style=flat-square&amp;labelColor=454a54" alt="DSH"></a>
+  <a href="https://www.npmjs.com/package/@deepseek-ai/dsh"><img src="https://img.shields.io/badge/DSH-0.1.2--alpha.1-4c6ef5?style=flat-square&amp;labelColor=454a54" alt="DSH"></a>
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="License">
 </p>
@@ -41,7 +41,7 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 皮肤同样长在插件体系里：v2 皮肤不是独立产品，而是「皮肤」插件的纯资产包（skin.json 清单 + 样式、贴图与可选特效脚本），由该插件这一唯一加载器即时加载，与官方彻底解耦——官方升级不再牵动皮肤，新增皮肤也只需落一个目录，无需发布、无需安装。插件负责逻辑，皮肤资产负责外观；Blue Fantasy 随插件内置，其他皮肤与宠物资产统一走 [创意工坊](#创意工坊dsh-marketcom)（dsh-market.com）。
 
-![DSH Web UI 主界面](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/13-hero-main.png)
+![DSH Web UI 主界面](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/13-hero-main.png)
 
 | 能力 | 原生 dsh web | dsh-web 全家桶 |
 | --- | --- | --- |
@@ -59,7 +59,7 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 [创意工坊](https://dsh-market.com)（dsh-market.com）是 DSH 的一站式创作空间，统一分发皮肤、宠物与插件：每类按设备点赞热度排序、前三名登上首页颁奖台；皮肤支持实时试穿预览，插件提供一键复制的安装命令。经典的 Blue Fantasy 蓝色幻想随皮肤插件内置，鲸鱼娘宠物与其他皮肤可在工坊浏览预览、查看源码并按需安装。Web GUI 里的「创意工坊」设置卡直接浏览工坊清单——皮肤与宠物一键装进 DSH 主目录，插件经插件管理器安装，装完即可在皮肤与宠物面板中使用。
 
-![创意工坊首页](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/31-market-home.png)
+![创意工坊首页](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/31-market-home.png)
 
 站点也是本仓库的产物：纯静态构建，由 `scripts/market-build` 从三类真值源（`skin.json` / `pet.json` / `community.json`）确定性生成；点赞等动态能力由 Cloudflare Workers 边缘 API 承载（D1 持久化、按设备一票），push 到 `main` 即自动部署。
 
@@ -81,7 +81,7 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 | 多列看板 | 定时执行 |
 | --- | --- |
-| ![任务看板](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/09-task-board.png) | ![任务定时执行](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/10-task-board-detail-cron.png) |
+| ![任务看板](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/09-task-board.png) | ![任务定时执行](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/10-task-board-detail-cron.png) |
 
 ### 移动端远程控制（Mobile Remote）
 
@@ -91,9 +91,9 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 | 工作区列表 | 会话列表与新建会话 |
 | --- | --- |
-| ![移动端工作区](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/20-mobile-workspaces.png) | ![移动端会话列表](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/21-mobile-sessions.png) |
+| ![移动端工作区](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/20-mobile-workspaces.png) | ![移动端会话列表](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/21-mobile-sessions.png) |
 | 聊天（折叠的深度思考与工具调用） | 模型与思考强度选择 |
-| ![移动端聊天](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/22-mobile-chat.png) | ![模型选择](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/23-mobile-model-sheet.png) |
+| ![移动端聊天](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/22-mobile-chat.png) | ![模型选择](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/23-mobile-model-sheet.png) |
 
 ### 远程连接（SSH Ops）
 
@@ -113,7 +113,7 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 右侧面板由外部插件 [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) 提供（聚合包已集成并默认启用），支持其内置功能与第三方插件注册，详见其 [README](https://github.com/omdsh-dev/DSH-better-sidebar)。
 
-![右侧面板](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/19-right-panel.png)
+![右侧面板](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/19-right-panel.png)
 
 > 旧 aionui-panel 右侧面板已**彻底移除**（2026-08-28）：包与全家桶聚合行已删除，右侧面板由 [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) 提供，其偏好在该插件自身的设置区管理。
 
@@ -123,9 +123,9 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 还支持 git worktree 并行会话：弹层里「在 worktree 中开始新会话」会在 `$DSH_HOME/worktrees/` 下建一个隔离检出（携带新分支 `wt/<名称>`，基线分支可选），注册为工作区后直接在其中开新会话，主检出全程不动；「管理 worktree」面板列出全部托管检出并可删除（有未提交改动先拦一次再强制，`wt/` 分支默认保留）。设置里还有两个默认关闭的开关：「自动隔离」让 git 工作区的每个新会话自动落进独立 worktree（基线可选当前分支或远程默认分支），「Agent 工具」把 `git_worktree` 交给智能体自己创建隔离环境。
 
-![Git 图谱](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/04-git-graph.png)
+![Git 图谱](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/04-git-graph.png)
 
-![Git worktree 并行会话](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/34-git-worktree.png)
+![Git worktree 并行会话](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/34-git-worktree.png)
 
 ### 梁神模式（LiangShen Anchored Preset）
 
@@ -147,7 +147,7 @@ dsh-web 是 DeepSeek Harness（DSH）Web GUI 的插件聚合生态包（DSH Web 
 
 经典的 Blue Fantasy 蓝色幻想是随皮肤插件提供的默认皮肤：鲸鱼插画垫在半透明面板下面，靛蓝色调贯穿全局，暗色主题下更明显。其他皮肤与 Wallpaper Engine 壁纸由皮肤插件管理，并统一在[创意工坊](https://dsh-market.com)浏览、试穿与按需安装。
 
-![Blue Fantasy 暗色](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/screenshots/17-skin-blue-fantasy-dark.png)
+![Blue Fantasy 暗色](https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/screenshots/17-skin-blue-fantasy-dark.png)
 
 ## 快速上手
 
@@ -324,7 +324,7 @@ A: 可以。聚合包的行 id 统一带 `web-ui-` 前缀（如 `web-ui-describe
 
 社区交流群在这里，和开发者、其他用户一起聊用法、报问题、提想法。QQ 扫码加入「DSH Web UI 交流群」：
 
-<img src="https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/community-center.jpg" alt="DSH Web UI 交流群" width="240">
+<img src="https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/community-center.jpg" alt="DSH Web UI 交流群" width="240">
 
 也可以加 [Discord 社区](https://discord.gg/6v4gm9u4S)，或直接到 [GitHub Issues](https://github.com/zhu1090093659/dsh-web/issues) 报 Bug / 提需求。
 
@@ -438,10 +438,11 @@ A: 可以。聚合包的行 id 统一带 `web-ui-` 前缀（如 `web-ui-describe
   <a href="https://github.com/xohmai"><img src="https://github.com/xohmai.png?size=64" width="48" height="48" alt="xohmai" title="xohmai" /></a>
   <a href="https://github.com/Zacklinkk"><img src="https://github.com/Zacklinkk.png?size=64" width="48" height="48" alt="Zacklinkk" title="Zacklinkk" /></a>
   <a href="https://github.com/BlessedWithLuck1105"><img src="https://github.com/BlessedWithLuck1105.png?size=64" width="48" height="48" alt="BlessedWithLuck1105" title="BlessedWithLuck1105" /></a>
-  <a href="https://github.com/weike-zhang"><img src="https://github.com/weike-zhang.png?size=64" width="48" height="48" alt="weike-zhang" title="weike-zhang" /></a>
   <a href="https://github.com/RevolutionLA"><img src="https://github.com/RevolutionLA.png?size=64" width="48" height="48" alt="RevolutionLA" title="RevolutionLA" /></a>
+  <a href="https://github.com/weike-zhang"><img src="https://github.com/weike-zhang.png?size=64" width="48" height="48" alt="weike-zhang" title="weike-zhang" /></a>
   <a href="https://github.com/Richard-Peng402"><img src="https://github.com/Richard-Peng402.png?size=64" width="48" height="48" alt="Richard-Peng402" title="Richard-Peng402" /></a>
   <a href="https://github.com/Noob-stupid"><img src="https://github.com/Noob-stupid.png?size=64" width="48" height="48" alt="Noob-stupid" title="Noob-stupid" /></a>
+  <a href="https://github.com/qzhqzh"><img src="https://github.com/qzhqzh.png?size=64" width="48" height="48" alt="qzhqzh" title="qzhqzh" /></a>
   <a href="https://github.com/neystan"><img src="https://github.com/neystan.png?size=64" width="48" height="48" alt="neystan" title="neystan" /></a>
   <a href="https://github.com/lpreterite"><img src="https://github.com/lpreterite.png?size=64" width="48" height="48" alt="lpreterite" title="lpreterite" /></a>
   <a href="https://github.com/nicecx"><img src="https://github.com/nicecx.png?size=64" width="48" height="48" alt="nicecx" title="nicecx" /></a>
@@ -456,7 +457,6 @@ A: 可以。聚合包的行 id 统一带 `web-ui-` 前缀（如 `web-ui-describe
   <a href="https://github.com/viplocco"><img src="https://github.com/viplocco.png?size=64" width="48" height="48" alt="viplocco" title="viplocco" /></a>
   <a href="https://github.com/Zhiyi-Zhao"><img src="https://github.com/Zhiyi-Zhao.png?size=64" width="48" height="48" alt="Zhiyi-Zhao" title="Zhiyi-Zhao" /></a>
   <a href="https://github.com/liaoyonghong"><img src="https://github.com/liaoyonghong.png?size=64" width="48" height="48" alt="liaoyonghong" title="liaoyonghong" /></a>
-  <a href="https://github.com/Moeblack"><img src="https://github.com/Moeblack.png?size=64" width="48" height="48" alt="Moeblack" title="Moeblack" /></a>
   <a href="https://github.com/JAVA-LW"><img src="https://github.com/JAVA-LW.png?size=64" width="48" height="48" alt="JAVA-LW" title="JAVA-LW" /></a>
   <a href="https://github.com/AngleNaris"><img src="https://github.com/AngleNaris.png?size=64" width="48" height="48" alt="AngleNaris" title="AngleNaris" /></a>
   <a href="https://github.com/ShiroEirin"><img src="https://github.com/ShiroEirin.png?size=64" width="48" height="48" alt="ShiroEirin" title="ShiroEirin" /></a>
@@ -471,9 +471,10 @@ A: 可以。聚合包的行 id 统一带 `web-ui-` 前缀（如 `web-ui-describe
   <a href="https://github.com/user-A100"><img src="https://github.com/user-A100.png?size=64" width="48" height="48" alt="user-A100" title="user-A100" /></a>
   <a href="https://github.com/starryrbs"><img src="https://github.com/starryrbs.png?size=64" width="48" height="48" alt="starryrbs" title="starryrbs" /></a>
   <a href="https://github.com/SnowCrescenter-tech"><img src="https://github.com/SnowCrescenter-tech.png?size=64" width="48" height="48" alt="SnowCrescenter-tech" title="SnowCrescenter-tech" /></a>
+  <a href="https://github.com/slywalker2006"><img src="https://github.com/slywalker2006.png?size=64" width="48" height="48" alt="slywalker2006" title="slywalker2006" /></a>
   <a href="https://github.com/sclass53"><img src="https://github.com/sclass53.png?size=64" width="48" height="48" alt="sclass53" title="sclass53" /></a>
   <a href="https://github.com/rainow"><img src="https://github.com/rainow.png?size=64" width="48" height="48" alt="rainow" title="rainow" /></a>
-  <a href="https://github.com/qzhqzh"><img src="https://github.com/qzhqzh.png?size=64" width="48" height="48" alt="qzhqzh" title="qzhqzh" /></a>
+  <a href="https://github.com/Moeblack"><img src="https://github.com/Moeblack.png?size=64" width="48" height="48" alt="Moeblack" title="Moeblack" /></a>
   <a href="https://github.com/Lem0nTea2002"><img src="https://github.com/Lem0nTea2002.png?size=64" width="48" height="48" alt="Lem0nTea2002" title="Lem0nTea2002" /></a>
   <a href="https://github.com/LHMQ878"><img src="https://github.com/LHMQ878.png?size=64" width="48" height="48" alt="LHMQ878" title="LHMQ878" /></a>
   <a href="https://github.com/JUANWANG-BUAA"><img src="https://github.com/JUANWANG-BUAA.png?size=64" width="48" height="48" alt="JUANWANG-BUAA" title="JUANWANG-BUAA" /></a>
@@ -527,5 +528,5 @@ A: 可以。聚合包的行 id 统一带 `web-ui-` 前缀（如 `web-ui-describe
 感谢每一位使用、反馈和贡献 dsh-web 的朋友。如果这个项目对你有帮助，欢迎扫码赞助，支持项目持续维护与发展：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/af2bcd6e0d4e8bf37aa5f234a8625f143e9587cb/docs/zanzhu-wechat.jpg" alt="微信赞助二维码" width="360">
+  <img src="https://raw.githubusercontent.com/zhu1090093659/dsh-web-ui/89829ef2173eceab6e6950e46eeea5c87d4b9a29/docs/zanzhu-wechat.jpg" alt="微信赞助二维码" width="360">
 </p>

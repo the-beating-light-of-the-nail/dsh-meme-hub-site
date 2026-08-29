@@ -21,11 +21,11 @@ This plugin runs inside DSH Web, adds predictable keyboard control for question 
 
 Question and approval interaction shortcuts:
 
-![Question and approval shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/2df1fc7f9d644cf1de7b676f1df2832acbc7efe4/docs/ScreenShot_2026-08-24_011032_061.png)
+![Question and approval shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/2602fd4b255e037166f0ae462e97ca82d2d18673/docs/ScreenShot_2026-08-24_011032_061.png)
 
 Global Session and Workspace shortcuts with platform keycaps:
 
-![Global Session and Workspace shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/2df1fc7f9d644cf1de7b676f1df2832acbc7efe4/docs/ScreenShot_2026-08-24_011111_040.png)
+![Global Session and Workspace shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/2602fd4b255e037166f0ae462e97ca82d2d18673/docs/ScreenShot_2026-08-24_011111_040.png)
 
 ## Install in 60 seconds
 
