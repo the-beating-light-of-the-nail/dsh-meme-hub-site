@@ -3,7 +3,7 @@
 **English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
 
 </p>
 <p align="center"><sub>
@@ -56,47 +56,89 @@ Six roles, each a separate tool with its own powers and limits. The separation i
 enforced by the composition, so **the producer never checks its own work** — an idea
 dies only on a concrete counterexample, never on style or vibes.
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
 
 **Orchestrator** · `root persona` — fans out the work, synthesizes, and writes the state. Bound by four rules: producer ≠ checker, counterexample-only elimination, seeds always recorded, no handwaved load-bearing claims.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
 
 **Explorer** · `subagent` — blank-context and divergent. Proposes lemmas, equations, constructions, and candidate methods with exact statements. Status reports are rejected.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-oracle.png" align="left" width="200" alt="Oracle">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-oracle.png" align="left" width="200" alt="Oracle">
 
 **Oracle** · `subagent_ground_truth` — blind (no web, no skills, no delegation, no drafts). Re-derives the load-bearing claims from first principles, twice by different means.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
 
 **Adversary** · `subagent_adversary` — runs the check group and hunts counterexamples. Ends in a verdict: `PASS` or `NEEDS-EDITS`.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
 
 **Literature** · `subagent_lit_line` · `_adversary` — a walled citation-graph sweep, then an independent adversary re-retrieves each claim and certifies it's real **and** current.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/a420c944b73368232efb67a367fac1ab014f1586/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
 
 **Validator** · `rq_check.py` + schemas — refuses a `PASS` with missing evidence. Reads the audit record, never the study's own claims — a study cannot vouch for itself.
 
 <br clear="left">
 
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
+
+**Document adversary** · `subagent_document_adversary` — an independent agent that audits each finished deliverable for **self-completeness** (the thing 90% of AI-generated writing drops): every jargon term, symbol, and abbreviation the document uses must be defined in the artifact itself or the audience spec's symbol registry. Returns `VERDICT: PASS` / `VERDICT: NEEDS-EDITS`; a `NEEDS-EDITS` is a blocking gap the validator refuses a `PASS` without.
+
+<br clear="left">
+
+### The team, live — the activity view
+
+The plugin ships a **live activity panel** (the `rq-activity` host half, the
+`shell.overlay` floater in the browser half): while a RigorQuant session runs,
+a pill appears vertically centered on the main window's right edge (it follows
+the conversation column, so the workspace rail and right-docked panels stay
+clear), expanding into a panel that shows, for the **current session's lab
+only** (never other sessions, and only while the current session is a
+RigorQuant one), the
+**five-move stage** the run is on, a compact role-pipeline graph, a
+working/idle roster of the six roles with
+their `docs/figs/` portraits, each role's last action, and a newest-first
+activity feed. It is pure observation — it reads the events the core already
+publishes and serves a JSON snapshot + portraits over
+`/plugins/dsh-rigorquant/...`, and it changes no tool, route, or model. Colors
+are `--dsw-alias` tokens, so it follows the shell's own light/dark theme.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
+</p>
+
+The picture above is the reader-safe rendering of the same design (the live
+panel is only visible in a running web session) — adapted from the live
+activity panel of [dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams)
+— the picture in
+[its README](https://github.com/NanmiCoder/dsh-agent-teams/blob/main/assets/ui.png)
+— showing RigorQuant's own six roles at a fan-out moment. The panel SVG is
+generated from [`docs/figs/agent-team-activity.js`](docs/figs/agent-team-activity.js).
+
+> **Attribution.** The activity-panel design is adapted from
+> [dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) by
+> [NanmiCoder](https://github.com/NanmiCoder) (程序员阿江 / Relakkes) —
+> Copyright (c) 2026, MIT License. The role portraits are this repo's own
+> `docs/figs/` assets. The header banner is likewise reworked from the
+> upstream hero graphic.
 
 **The loop, in five moves.** Each round is fan-out → ground truth → adversary → synthesize.
 
@@ -194,9 +236,10 @@ record: [docs/architecture.md](docs/architecture.md) Decision 16.
 ```
 package.json                dsh.bundle manifest (dsh plugin add support)
 cordis.patch.yml            bundle patch: skills layer + rq-model-router +
-                            rq-preset-sync rows
-dsh/                        host halves (rq-model-router router + rq-preset-sync
-                            boot-sync) and the Plugins-tab card
+                            rq-activity + rq-preset-sync rows
+dsh/                        host halves (rq-model-router router, rq-activity
+                            monitor, rq-preset-sync boot-sync) and the web
+                            client bundle (settings card + activity floater)
 agent-presets/rigorquant/   preset composition + persona + bundled skills
   skills/rigorquant/        SKILL.md + references/ + scripts/ + schemas/
   .../scripts/rq_check.py   the meta-validator (single canonical copy)
@@ -205,6 +248,10 @@ agent-presets/rigorquant/   preset composition + persona + bundled skills
 env/                        pinned uv compute lane (sympy/cvxpy/hypothesis/…)
 mcp/jacobian.md             escalation lane wiring
 docs/architecture.md        grilled decision record + sources
+docs/figs/agent-team-activity.svg  reader-safe activity-view picture
+docs/figs/agent-team-activity.js   its generator (freshness-pinned in tests)
+docs/figs/agent-team-hero.svg       team-graph banner, reworked from the
+                             dsh-agent-teams hero graphic (see credit below)
 tests/                      the validator's test suite (see Testing below)
 studies/                    one study folder per task (Mode B; a checkout's own
                             live studies — not shipped in the npm bundle)

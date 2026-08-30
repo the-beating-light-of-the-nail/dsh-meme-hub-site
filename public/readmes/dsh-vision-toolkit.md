@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/hero-v2.png" alt="DSH Vision Toolkit helps text-only DeepSeek Harness agents understand images and complete visual tasks" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/hero-v2.png" alt="DSH Vision Toolkit helps text-only DeepSeek Harness agents understand images and complete visual tasks" />
 </p>
 
 <div align="center">
@@ -61,11 +61,11 @@ dsh plugin --profile web add @anionex/dsh-vision-toolkit
 
 <table>
 <tr>
-<td width="220" align="center" valign="middle"><a href="https://aihubmix.com/?aff=sinZ"><img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/logo_aihubmix.png" alt="AIHubMix" height="48"></a></td>
+<td width="220" align="center" valign="middle"><a href="https://aihubmix.com/?aff=sinZ"><img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/logo_aihubmix.png" alt="AIHubMix" height="48"></a></td>
 <td valign="middle">Thanks to <a href="https://aihubmix.com/?aff=sinZ">AIHubMix</a> for sponsoring this project! AIHubMix is a stable, high-concurrency AI model API gateway that connects Claude, GPT, Gemini, DeepSeek, and other mainstream models through a single API key, compatible with multiple protocols, with <b>free model options</b> available. To sign up, use the <a href="https://aihubmix.com/?aff=sinZ">AIHubMix entry</a> outside mainland China or the <a href="https://inferera.com/?aff=sinZ">Inferera entry</a> within mainland China.</td>
 </tr>
 <tr>
-<td width="220" align="center" valign="middle"><a href="https://api.ewo.so/register?aff=U6PT7J"><img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/logo_eapi_dark.png" alt="E-API" height="48"></a></td>
+<td width="220" align="center" valign="middle"><a href="https://api.ewo.so/register?aff=U6PT7J"><img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/logo_eapi_dark.png" alt="E-API" height="48"></a></td>
 <td valign="middle">Thanks to <a href="https://api.ewo.so/register?aff=U6PT7J">E-API</a> for sponsoring this project! E-API aggregates mainstream AI models behind OpenAI-, Anthropic-, and Codex-compatible APIs, with selected Claude models up to <b>98% below official prices</b> and DeepSeek V4 models about <b>25% below official prices</b>.</td>
 </tr>
 </table>
@@ -115,7 +115,7 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Paste an image directly into DSH
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/dsh-view-example.png" width="82%" alt="A text-only DeepSeek model answering a question about a pasted image through Vision Toolkit in DSH Web" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/dsh-view-example.png" width="82%" alt="A text-only DeepSeek model answering a question about a pasted image through Vision Toolkit in DSH Web" />
 </p>
 
 *Paste an image into the conversation. A text-only model can switch to its `Vision Toolkit` variant and inspect the image in the context of the user's question.*
@@ -123,8 +123,8 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Screenshot to editable page
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/infographic-reference.webp" width="49%" alt="Reference infographic screenshot used for restoration" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/infographic-result.webp" width="49%" alt="Editable HTML and CSS reconstruction created from the reference screenshot" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/infographic-reference.webp" width="49%" alt="Reference infographic screenshot used for restoration" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/infographic-result.webp" width="49%" alt="Editable HTML and CSS reconstruction created from the reference screenshot" />
 </p>
 
 > Prompt example: “(Use vision-skills) Rebuild this image into HTML.”
@@ -134,8 +134,8 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Sketch to working interface
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/ui-sketch.webp" width="49%" alt="Hand-drawn JupyterLab interface used as the restoration reference" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/ui-result.webp" width="49%" alt="Working JupyterLab-style interface reconstructed from the sketch" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/ui-sketch.webp" width="49%" alt="Hand-drawn JupyterLab interface used as the restoration reference" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/ui-result.webp" width="49%" alt="Working JupyterLab-style interface reconstructed from the sketch" />
 </p>
 
 *Left: a hand-drawn reference. Right: the working interface reconstructed from it.*
@@ -145,8 +145,8 @@ The bundled `vision-skills` Skill carries the complete upstream playbooks, expla
 ### Fast UI restoration: an approximate first pass
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/ui-fast-restore-reference.webp" width="49%" alt="Original YouMind homepage used as the fast UI restoration reference" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/ui-fast-restore-result.webp" width="49%" alt="Approximate YouMind homepage produced with fast UI restoration mode" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/ui-fast-restore-reference.webp" width="49%" alt="Original YouMind homepage used as the fast UI restoration reference" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/ui-fast-restore-result.webp" width="49%" alt="Approximate YouMind homepage produced with fast UI restoration mode" />
 </p>
 
 > Prompt example: “(Use vision-skills) Quickly rebuild this image into HTML.”
@@ -224,8 +224,8 @@ The plugin keeps image understanding and deterministic local image processing in
 Most vision bridges for text-only models ask a multimodal model for a generic description and hand it to the text model, adding a semantic layer where information is lost. Vision Toolkit instead recovers **why the agent wants to look at the image**: the user message or the model's stated reason becomes a focus hint passed to the vision model. The result is a task-aware description that emphasizes what matters for the current step — with fewer tokens, higher accuracy, and faster responses.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/focus-hint-comparison-1.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 1" />
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/upstream/focus-hint-comparison-2.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 2" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/focus-hint-comparison-1.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 1" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/upstream/focus-hint-comparison-2.webp" width="49%" alt="Generic image descriptions compared with task-aware vision using a focus hint - part 2" />
 </p>
 
 **Architecture and image-input behavior**
@@ -276,6 +276,10 @@ You can also configure a Profile patch:
 
 OpenAI Chat Completions-compatible endpoints and Anthropic Messages are supported. The Web Settings panel exposes the full provider, runtime, timeout, image-limit, and image-input-variant configuration.
 
+The advanced **Default save directory** setting can place artifacts, pasted images, and caches below an absolute POSIX shared root such as `/tmp/dsh-vision-toolkit`; the plugin creates a private mode-0700 child for the current user and workspace. Leaving it blank keeps the existing workspace-local `.dsh-vision-toolkit` directory. Configured shared roots are currently rejected on Windows because their ownership and access-control lists cannot yet be verified safely.
+
+When the configured save directory changes, the plugin retains earlier validated roots as read-only input locations. Web Profiles persist that history in the plugin-owned `vision_toolkit_storage` storage-domain sidecar, including when the active Settings provider is read-only, so existing pasted-image paths remain usable after a Profile restart. Custom Profiles should compose `@deepseek-ai/dsh-storage-domain` when they use configured shared storage.
+
 For a trusted internal endpoint that uses a self-signed certificate or MITM proxy, start the DSH process with `VISION_SSL_VERIFY=0`. The plugin forwards that value to the isolated Python runtime; certificate verification remains enabled when the variable is unset or has any other value. The false values `false`, `off`, `no`, `none`, and `disabled` are also accepted, case-insensitively.
 
 ### Configure the Python runtime
@@ -308,7 +312,7 @@ No. Each inspection sends only the necessary intent and the image to the multimo
 
 If this project is valuable to you, you are welcome to buy the developer a coffee ☕️
 
-<img width="240" alt="WeChat reward code" src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/wechat-reward.png" />
+<img width="240" alt="WeChat reward code" src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/wechat-reward.png" />
 
 ## Development and community
 
@@ -319,7 +323,7 @@ If this project is valuable to you, you are welcome to buy the developer a coffe
 - Visit upstream [agent-vision-toolkit](https://github.com/Anionex/agent-vision-toolkit) for the general toolkit, cross-agent integrations, and visual-task playbooks.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/097a7f78290737e0a4676d5ef1a7d98324c3ee06/assets/community-group-qr.png" alt="QR code for the agent-vision-toolkit community group" width="240" />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-vision-toolkit/5cab6ee47c343032ca6d1739204f51eb361f5b14/assets/community-group-qr.png" alt="QR code for the agent-vision-toolkit community group" width="240" />
 </p>
 
 I'm [anionex](https://anionex.me/), an AI-native developer who once ranked **No. 3** on GitHub's global developer trending list, with more than 16k stars across my projects. If you would like to follow my future work, [follow me on GitHub](https://github.com/Anionex).

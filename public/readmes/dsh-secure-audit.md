@@ -28,10 +28,10 @@ Four tools and one skill:
 
 | Capability | Tool | What it does |
 | --- | --- | --- |
-| Prompt-injection detection | `security_scan_text` | Rule engine (English + Chinese) with LRU cache, fail-open timeout (configurable fail-closed), and a pluggable model classifier. Returns `allow` / `review` / `block`, a `riskLevel`, and an `inputSha256` for replayable decisions. |
+| Prompt-injection detection | `security_scan_text` | Rule engine (English + Chinese) with LRU cache, fail-open timeout (configurable fail-closed), a pluggable model classifier, and an obfuscation-resistance layer (zero-width/full-width/homoglyph normalization + bounded base64 decoding, ruleset v4). Returns `allow` / `review` / `block`, a `riskLevel`, and an `inputSha256` for replayable decisions. |
 | PII redaction | `security_redact_text` | Masks CN mobile numbers, CN ID cards, CN bank cards, emails, IPv4, API keys, and URL credentials. Output is safe to log or display. |
 | Structured JSON redaction | `security_redact_json` | Recursively redacts sensitive values inside JSON by key name (`api_key`, `token`, `secret`, `password`, `authorization`, ...) plus a PII fallback on other values. The structure is preserved — safe to hand tool-call arguments or session context to a third-party model. |
-| Local security audit | `security_audit` | Read-only audit of config secrets, file permissions, session-file PII, plugin sources, network bindings, and env vars. Deterministic, redacted report with a self-checksum (`reportSha256`). |
+| Local security audit | `security_audit` | 11 read-only checks across config / sessions / plugins / paths / network / env / host, mapped to OWASP LLM + Agentic Top 10, with `quick|full` profile tiers, Linux `/proc/net` wildcard-bind ground truth, an offline plugin supply-chain inventory (opt-in live registry check), and a deterministic, redacted report with a self-checksum (`reportSha256`). |
 | Security review skill | `security-review` | Registered at runtime via the optional `skills` service; teaches the agent how to use the tools and explain verdicts. |
 
 The plugin never writes, deletes, or executes anything on the audited system. That is a hard constraint of the codebase, not a convention: the audit/redaction/scan code paths perform reads only; the single write path in `lib/` is the opt-in `logFile` audit log in `lib/logger.js` (append-only JSONL, disabled by default).
@@ -57,6 +57,32 @@ Notes for git installs:
 - This is a security plugin; the maintainers' stance is that install-time code execution is an attack surface, so the package deliberately avoids it.
 
 Dependency: `@deepseek-ai/dsh-tools` is a peer dependency supplied by the DSH runtime. `lib/` itself imports only Node builtins.
+
+## Release artifacts & integrity
+
+Every GitHub release attaches the exact tarball its workflow built (`npm pack`,
+see [release.yml](.github/workflows/release.yml)); nothing is assembled by hand.
+Verify the file you install against the published hash before trusting it:
+
+```bash
+sha256sum dsh-secure-audit-<version>.tgz        # POSIX
+Get-FileHash dsh-secure-audit-<version>.tgz -Algorithm SHA256   # Windows
+```
+
+| Release | Artifact | Size | SHA-256 |
+| --- | --- | --- | --- |
+| v0.2.7 | `dsh-secure-audit-0.2.7.tgz` | 73 881 B | `f344a541b634a59a2b73d8da3848d4e3d1c859215fc8193a6864635f1f742958` |
+| v0.2.6 | `dsh-secure-audit-0.2.6.tgz` | 67 994 B | `0a53743a7d6af952c759966ddbe92a5f2ba1b782949b669c54cf76bc1e513579` |
+| v0.2.5 | `dsh-secure-audit-0.2.5.tgz` | 53 070 B | `787db977d36cd895299eb486f54ce2a51be52160cea9226ca8dc2bba7ffcf95a` |
+| v0.2.4 | `dsh-secure-audit-0.2.4.tgz` | 50 332 B | `da7a3637a4cd176470be8e6148a919da8d3a523e081a8f983ec85172f521c3f4` |
+| v0.2.3 | `dsh-secure-audit-0.2.3.tgz` | 49 715 B | `87ae207a6b603f04738644199732f22030f7540e6d1967f8a29d725bcadfb90a` |
+| v0.2.0 | `dsh-secure-audit-0.2.0.tgz` | 48 580 B | `ecc187574dd079fe2aa51c0841a6732e8bade1006a1ff172acbb2f6b2eb25342` |
+| v0.1.1 | `dsh-secure-audit-0.1.1.tgz` | 34 780 B | `6f1d935a6ab3e528e2daaa4adbceb839c1977c0ecada67ee83f2bf4e2c9eb20d` |
+| v0.1.0 | `dsh-secure-audit-0.1.0.tgz` | 33 473 B | `63180d0ad7f126f68cfa4bbbf0ae19ccfea416fb81fed9d902dc1eaaf3ac70d5` |
+
+Hashes are computed from the published GitHub release assets and updated with
+each release (see the release checklist). Git installs should pin a commit
+(`#<commit>`) instead of a branch so the source cannot silently change.
 
 ## Usage
 
@@ -101,10 +127,17 @@ Decisions:
 - `review` — ambiguous; the pluggable classifier is consulted if configured.
 - `allow` — nothing above `reviewThreshold`. If `warnings` mention a budget timeout or truncation, that means "not fully scanned", not "safe".
 
+Since ruleset v4 the scanner also runs over a normalized copy of the input
+(zero-width characters stripped; full-width and Cyrillic lookalikes mapped to
+ASCII) and up to four bounded base64-decoded candidates, so obfuscated
+spellings (`Ig\u200bn\u200bo\u200br\u200be …`, `Ｉｇｎｏｒｅ …`, `previоus …`,
+base64 payloads) still match. Each reason carries `via` — `plain`,
+`normalized`, or `base64` — telling you which derived text produced the hit.
+
 Each result also carries:
 
 - `riskLevel` — `low` / `medium` / `high` derived from the hit severities and the decision band; policies and auto-approvers can route on it.
-- `inputSha256` — SHA-256 of the scanned text, so any decision can be locally replayed from the exact bytes scanned (pair it with `ruleset`).
+- `inputSha256` — SHA-256 of the raw scanned text (not the derived variants), so any decision can be locally replayed from the exact bytes scanned (pair it with `ruleset`).
 
 On a budget timeout the decision follows the configured `onTimeout` policy (default `allow`, i.e. fail-open; set `review` or `block` for fail-closed sensitive flows), `confidence` is 0, and `warnings` explains why — reasons are dropped because the scan was incomplete.
 
@@ -115,6 +148,11 @@ On a budget timeout the decision follows the configured `onTimeout` policy (defa
 { "text": "我的手机 13812345678，邮箱 zhangsan@example.com" }
 // redacted: "我的手机 138****5678，邮箱 zh***@example.com"
 ```
+
+A `high_entropy` mode is available for random secret-like tokens (length ≥ 24,
+Shannon entropy ≥ 4.5 bits/char, ≥ 2 character classes). It is **opt-in**
+(`modes: ["high_entropy"]`) so ordinary prose with long mixed tokens is not
+over-redacted; UUIDs and hex hashes are deliberately not masked.
 
 False-positive guards, all covered by tests:
 
@@ -143,12 +181,36 @@ Since 0.2.5 the key channel replaces the whole value regardless of its type (num
 ```jsonc
 // security_audit
 {
-  "scope": ["config", "sessions", "plugins", "paths", "network", "env"],
-  "sampleLimit": 10 // max session files scanned for stored PII; raise for large session dirs
+  "scope": ["config", "sessions", "plugins", "paths", "network", "env", "host"],
+  "sampleLimit": 10, // max session files scanned for stored PII; raise for large session dirs
+  "profile": "full"  // "quick" uses reduced file/session budgets for large trees
 }
 ```
 
-Returns `checks[]` plus a `summary` of `pass`/`warn`/`fail`/`error`/`info`. Evidence is redacted and path-normalized (`<base>` replaces the audited root, `<workspace>` the workspace), so reports can be shared. Two runs against the same tree produce identical `checks` and the same `reportSha256` (the self-checksum covers the report body, excluding `generatedAt`, so consumers can verify a report was not altered in transit or diff runs byte-for-byte).
+Returns `checks[]` plus a `summary` of `pass`/`warn`/`fail`/`error`/`info`, the
+`profile` that produced it, and per-check `owasp` (OWASP Top 10 for LLM
+Applications 2025) / `agentic` (OWASP Agentic Top 10) mappings. Evidence is
+redacted and path-normalized (`<base>` replaces the audited root,
+`<workspace>` the workspace), so reports can be shared. Two runs against the
+same tree produce identical `checks` and the same `reportSha256` (the
+self-checksum covers the report body, excluding `generatedAt`, so consumers
+can verify a report was not altered in transit or diff runs byte-for-byte).
+
+Eleven checks across seven scopes:
+
+| Check | Scope | Finds |
+| --- | --- | --- |
+| `config-secrets` | config | secret-like keys (+ info-level high-entropy auxiliary signal) |
+| `config-permissions` | config | group/other-writable config files |
+| `sessions-structure` | sessions | session directory inventory |
+| `sessions-sensitive-content` | sessions | redactable PII in a sample of session files |
+| `plugins-inventory` | plugins | local plugin packages |
+| `plugins-patch-sources` | plugins | `cordis.yml` lines referencing remote sources |
+| `deps-supply-chain` | plugins | plugin version inventory (offline) / registry advisories (opt-in live) |
+| `paths-permissions` | paths | world-writable key paths; workspace inside temp |
+| `network-bindings` | network | all-interface binds from env/config **and, on Linux, `/proc/net` LISTEN sockets** |
+| `env-secrets` | env | secret-like environment variables (names only) |
+| `host-capabilities` | host | dsh-tools / dsh-session versions, skills availability, ruleset |
 
 ## Configuration
 
@@ -167,6 +229,8 @@ All keys optional (see `cordis.patch.yml`).
 | `maskChar` | `*` | Masking character |
 | `logEnabled` | `true` | Emit the structured JSONL event log; `false` silences it |
 | `logFile` | `""` | Append JSONL audit log; empty = `ctx.logger` only |
+| `supplyChainLive` | `false` | **Opt-in**: `security_audit` sends installed plugin names+versions to registry.npmjs.org for advisory checks (offline inventory is the default; live mode adds a `limitations` note and is skipped in `profile: quick`) |
+| `supplyChainTimeoutMs` | `3000` | Timeout for the live supply-chain registry call |
 
 ### Pluggable model classifier
 
@@ -237,8 +301,13 @@ before relying on it.
   that run does not cover.
 - File-permission checks use POSIX mode bits; **Windows ACLs are not
   inspected** (Node has no native ACL API).
+- Live listening-port ground truth runs on **Linux only** (`/proc/net`);
+  other platforms rely on env/config evidence.
 - Session-file PII sampling covers up to 10 files by default; raise
   `sampleLimit` for large session directories.
+- The live `deps-supply-chain` registry lookup is **opt-in**
+  (`supplyChainLive: true`) and sends installed plugin names+versions to
+  registry.npmjs.org; offline inventory is the default.
 - Absence of findings does not imply the machine is secure.
 
 **Compatibility.**
@@ -261,6 +330,7 @@ before relying on it.
 ```bash
 npm install          # installs the peer dep for tests
 npm test             # node --test (auto-discovers tests/*.test.js)
+npm run eval         # detection-quality metrics over the adversarial suite (CI)
 ```
 
 Test coverage:
@@ -271,6 +341,16 @@ Test coverage:
 - `logger` — JSONL shape, requestId, auto-redaction of sensitive fields.
 - `redactJson` — sensitive-key replacement (nested objects/arrays, JSONPath labels, non-string values), PII fallback on other values and inside arrays, invalid-JSON and invalid-`keyModes` handling, custom key patterns, fail-safe depth guard.
 - `index` — smoke test that `apply()` exports the Cordis plugin contract and registers 4 tools + 1 skill against the real `@deepseek-ai/dsh-tools`, with load-time output-schema validation.
+
+Verification docs:
+
+- [docs/verification-matrix.md](docs/verification-matrix.md) — maps every
+  claim (and the community-review points from discussion #5077) to the test
+  file or manual step that proves it, across the four phases: install, host
+  activation, tool invocation, and the optional JSONL write path.
+- [docs/uninstall-rollback-checklist.md](docs/uninstall-rollback-checklist.md)
+  — the backup-first manual procedure for uninstall / upgrade / rollback of
+  this plugin without disturbing the host profile.
 
 Local `--patch` development: when the patch references this plugin by absolute path, bare imports (`@deepseek-ai/dsh-tools`) resolve from the plugin directory upward, so `node_modules/@deepseek-ai/dsh-tools` must exist there. Create a symlink (POSIX) or junction (Windows, `New-Item -ItemType Junction`) to a local `dsh-tools` checkout instead of installing from the registry if you want to test against unreleased changes.
 
@@ -293,7 +373,7 @@ Release checklist for this repo:
 4. `npm pack --dry-run` to confirm `files` ships `index.js`, `lib/`, `skills/`, `examples/`, and the patch file.
 5. Tag and push (`git tag v0.1.0 && git push origin v0.1.0`). The release workflow runs tests, builds the tarball, and opens a draft release. For 0.x iterations, mark the release as pre-release when it contains breaking changes, and state whether rollback is possible.
 6. Tags are immutable: a regression ships as a new patch release, never as an edit to an existing tag.
-7. Attach the tarball (the workflow does this) so `dsh plugin add ./xxx.tgz` users get the exact artifact.
+7. Attach the tarball (the workflow does this) so `dsh plugin add ./xxx.tgz` users get the exact artifact. Compute the new tarball's SHA-256 (`sha256sum` / `Get-FileHash`) and add the row to the *Release artifacts & integrity* table above.
 8. Optionally `npm publish` (build-less: source is the artifact).
 
 ## FAQ
@@ -324,6 +404,9 @@ Yes — the latest release is published on the npm registry. `dsh plugin add dsh
 - Prometheus metrics (interception rate, false-positive rate, P99 latency)
 - Rule grayscale rollout (per-traffic percentage) and a per-tenant whitelist hot path
 - NER-assisted redaction for names and addresses; encrypted audit-log retention policy presets
+- Live supply-chain advisories on by default (per-tenant opt-out instead of opt-in)
+- Output-side scanning (`security_scan_output`) against LLM05 (Improper Output Handling) / data leakage
+- Decision-replay invariant: an exported `invariant` that re-scans logged `inputSha256` values and asserts the logged decision matches
 
 ## License
 

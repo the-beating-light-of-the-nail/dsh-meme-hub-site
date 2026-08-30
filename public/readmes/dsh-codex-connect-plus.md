@@ -6,7 +6,7 @@
 English | [中文](docs/README.zh.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/stoneface10/dsh-codex-connect-plus/44f1c686bf4ddd715c395992a3cd8bcb9f83c7aa/docs/assets/hero.jpg" alt="Codex Connect Plus — ChatGPT subscription to Codex models and gpt-image-2 without an OpenAI Platform API key" width="100%">
+  <img src="https://raw.githubusercontent.com/stoneface10/dsh-codex-connect-plus/bc8c137a85dbbef7801e4999814643410a384853/docs/assets/hero.jpg" alt="Codex Connect Plus — ChatGPT subscription to Codex models and gpt-image-2 without an OpenAI Platform API key" width="100%">
 </p>
 
 > **Use your ChatGPT/Codex subscription inside DeepSeek Harness for Codex models and `gpt-image-2` generation/editing—without an OpenAI Platform API key.**
@@ -21,7 +21,7 @@ Sign in once with ChatGPT OAuth. Codex model requests use the signed-in account'
 - **Quota-conscious defaults** — automatic model retries default to `0`, and image requests are never silently retried.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/stoneface10/dsh-codex-connect-plus/44f1c686bf4ddd715c395992a3cd8bcb9f83c7aa/docs/assets/demo-codex-image-and-models.png" alt="Real DeepSeek Harness UI showing Codex model selection and gpt-image-2 image generation" width="920">
+  <img src="https://raw.githubusercontent.com/stoneface10/dsh-codex-connect-plus/bc8c137a85dbbef7801e4999814643410a384853/docs/assets/demo-codex-image-and-models.png" alt="Real DeepSeek Harness UI showing Codex model selection and gpt-image-2 image generation" width="920">
 </p>
 <p align="center"><sub>Real DSH UI: select a Codex model and generate an attached image with <code>gpt-image-2</code> in the same conversation.</sub></p>
 
@@ -40,7 +40,7 @@ Sign in once with ChatGPT OAuth. Codex model requests use the signed-in account'
 
 ## Requirements
 
-- **DeepSeek Harness `0.1.0-rc.7` or newer.** This release is adapted to the rc.7 keyed-slot settings-card API. On older Harness versions the package still installs (the plugin system does not enforce peer ranges), but the Plugin configuration card may not render, so upgrade Harness first or stay on `0.1.0-beta.2` for `0.1.0-rc.5`/`rc.6`-era Harness.
+- **DeepSeek Harness `0.1.2-alpha.1` or newer.** This release supplies the current pi-ai auth injection and image-request preprocessing budgets. Use `0.1.0-beta.4` only with the older `0.1.0-rc.7` Harness line.
 - Node.js `^22.19.0 || >=24.0.0`.
 
 ## Install
@@ -54,7 +54,7 @@ dsh plugin --profile web add dsh-codex-connect-plus@beta
 Immutable GitHub fallback:
 
 ```sh
-dsh plugin --profile web add 'github:stoneface10/dsh-codex-connect-plus#v0.1.0-beta.4'
+dsh plugin --profile web add 'github:stoneface10/dsh-codex-connect-plus#v0.1.0-beta.6'
 ```
 
 A matching `.tgz` is also attached to the GitHub prerelease.
@@ -64,6 +64,8 @@ For local development:
 ```sh
 dsh plugin --profile web add link:/absolute/path/to/dsh-codex-connect-plus
 ```
+
+Source development for this prerelease expects the DeepSeek Harness `0.1.2-alpha.1` checkout in the sibling `../DSH` directory because its workspace packages are not yet published individually on npm.
 
 Do not install `dsh-codex-connect`, `dsh-codex-image-connect`, and this combined package in the same profile: they own the same provider and tool names.
 
@@ -84,7 +86,7 @@ enableImageTool: false
 enableImageGeneration: true
 ```
 
-The package does not take over the profile's default model or global search route. `modelMaxRetries: 0` avoids silently repeating a full subscription-backed request after a transient failure; users may deliberately select one or two retries in Plugin configuration when reliability matters more than quota conservation. Image generation/editing remains non-retrying because the provider may already have processed a timed-out request.
+The package does not take over the profile's default model or global search route. `modelMaxRetries: 0` avoids silently repeating a full subscription-backed request after a transient failure; users may deliberately select any bounded value from 1 through 10 retries when reliability matters more than quota conservation. Enabled retries use 1–30 second exponential backoff and temporarily include `PI_AI_ERROR` because current pi-ai flattens some Codex WebSocket and server-overload failures into that unclassified code. Image generation/editing remains non-retrying because the provider may already have processed a timed-out request. Leave `enableImageTool` disabled when direct multimodal uploads and DSH's native `read_image` cover the workflow; enable it only when the model must open credential-free public HTTP(S) image URLs directly.
 
 ## Image tools
 

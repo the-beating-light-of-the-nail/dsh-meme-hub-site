@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/3d70b65bed161b1dba0916333a75b34ca687850b/assets/logo.svg" alt="dsh-better-edit" width="200">
+  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/30591f37cde3de6542ccf403b71a95ecb4d98b24/assets/logo.svg" alt="dsh-better-edit" width="200">
 </p>
 
 <h1 align="center">dsh-better-edit</h1>
@@ -38,7 +38,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/3d70b65bed161b1dba0916333a75b34ca687850b/assets/banner.svg" alt="file.ts → read → hashed lines → edit by hash → diff" width="900">
+  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/30591f37cde3de6542ccf403b71a95ecb4d98b24/assets/banner.svg" alt="file.ts → read → hashed lines → edit by hash → diff" width="900">
 </p>
 
 ---
@@ -124,7 +124,7 @@ Chained edits stay cheap — anchors for untouched lines remain valid, diff/echo
 { "path": "src/main.ts", "edits": [["a1b", "a1b", "new line 1\n"], ["c3d", "c3d", "new line 2"]] }
 ```
 
-One fails, none write (`[E_BATCH_ABORT]`).
+One fails, none write (`[E_BATCH_ABORT]`). Encoding errors `[E_BAD_ENCODING]`/`[E_DECODE_FAILED]` are also emitted.
 
 > [!TIP]
 > **Want proof before you install?** The upstream [23/23 tool battery](https://github.com/Rianico/pi-better-edit/blob/main/benchmarks/README.md) runs with no LLM — stale edits are rejected before they corrupt a file, on every run. Same hashline algorithm, same verification.
@@ -272,6 +272,7 @@ atomically to that one file — one item per call is the norm, several same-file
 | `[E_AMBIGUOUS_ANCHOR]` | An anchor matches multiple lines; call `read` for fresh anchors. |
 | `[E_INVALID_PATCH]` | A `replacement_text` line is a diff-preview row (`+HASH│`, `-HASH│`, `-   │`). The marker is stripped automatically with a warning. |
 | `[E_BARE_HASH_PREFIX]` | A `replacement_text` line starts with a hash-like `HASH│` prefix. The prefix is stripped automatically with a warning. |
+| `[E_EDIT_HASH_ECHO]` | A `replacement_text` line begins with the exact `HASH│` anchor served for the same session, path, and range-relative line (`E1`). The edit is refused; remove the copied anchors and retry. Nothing was written. |
 | `[E_BAD_OP]` | Range start line is after range end line. The pair is swapped automatically with a warning. |
 | `[E_WOULD_EMPTY]` | An edit would empty a non-empty file; use `write` instead. |
 | `[E_NOT_FOUND]` | The path does not exist. |

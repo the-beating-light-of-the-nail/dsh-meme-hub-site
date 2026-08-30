@@ -21,7 +21,7 @@
 dsh-zotero 是面向 Agent 研究工作流的 [Zotero](https://www.zotero.org) 插件。Agent 可以直接从你的文献库中搜索文献、查看元数据和笔记、提取与问题相关的证据段落、打开原文 PDF，并生成引用和参考文献表。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Vncntvx/dsh-zotero/3ea506ddaaf349dce362851bac52bcf273758bae/docs/images/header-collage.png" width="70%" alt="dsh-zotero 界面：来源面板、证据提取、导出视图">
+  <img src="https://raw.githubusercontent.com/Vncntvx/dsh-zotero/ae33e5b5332620a8307a789d75224c34577a0782/docs/images/header-collage.png" width="70%" alt="dsh-zotero 界面：来源面板、证据提取、导出视图">
 </p>
 
 ## 工具
@@ -68,7 +68,7 @@ dsh plugin --profile <name> add ./dsh-zotero-*.tgz
 
 - Zotero ≥ 7 桌面版，启用本地 API：**设置 → 高级 → "允许其他应用程序与 Zotero 通信"**
 - Node.js ≥ 22.19（或 ≥ 24）
-- 宿主 dsh 0.1.1-rc.2 系列（`@deepseek-ai/dsh-*` peer 依赖均为 `^0.1.1-rc.2`）
+- 宿主 dsh 0.1.2-alpha.1 系列（`@deepseek-ai/dsh-*` peer 依赖均为 `^0.1.2-alpha.1`）
 - 本地 API 地址 `http://127.0.0.1:23119/api`，无认证，只读
 
 ## 使用示例

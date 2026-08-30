@@ -8,7 +8,7 @@
 
 中文 | [English](README.en.md)
 
-![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/617f8638f7a1529f2e6f14f882808fc6a59665d3/docs/promo.png)
+![dsh-tianshu-tui](https://raw.githubusercontent.com/huiliyi37/dsh-tianshu-tui/da5833e3b5ed5e6c94dfe092e898c53ee41014ee/docs/promo.png)
 
 **dsh-tianshu-tui**（`@huiliyi37/dsh-tianshu-tui`）是官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 上的交互式终端 UI 插件。渲染核心为自研的 ANSI 极简引擎（由作者自己的开源项目 [天枢 Tianshu-Tui](https://github.com/huiliyi37/Tianshu-Tui) 演进而来，Apache-2.0；逐文件来源见 [SOURCE-MAP.md](SOURCE-MAP.md)），渲染轻量不打断，使用体验流畅。UI 是纯展示层：所有 agent 状态都来自会话事件流。在此之上做了 harness 工程层的个性化改造，如图像与视觉桥接、代码智能检索、记忆与跨会话召回等。
 
@@ -122,7 +122,9 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 
 ## 更新说明
 
-当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.27`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.27)）。
+当前 npm `latest`：[`@huiliyi37/dsh-tianshu-tui@0.1.2-rc.28`](https://www.npmjs.com/package/@huiliyi37/dsh-tianshu-tui)（[GitHub Release](https://github.com/huiliyi37/dsh-tianshu-tui/releases/tag/v0.1.2-rc.28)）。
+
+**0.1.2-rc.28（2026-08-29）**：回应 #55 的 vim 优化——光标形态分模式（NORMAL 反色块 / insert 竖线）、历史搜索两阶段输入（编辑段可输 n/N，`Enter` 后跳转、搜索对象显式标注）、搜索命中子串高亮（含 `/scroll`）；另投递失败自动回填输入行 + README 键位表一致性守卫。
 
 **0.1.2-rc.27（2026-08-29）**：回流 Tianshu 两项——错误时刻可行动（错误落底 + 指引之外，最近一条已投递消息自动回填输入行，`↩` 告知「可能未被完整处理」，改一下即可重发；成功回合清底料、有草稿不抢写）；plan-review 决策卡视觉分层（dim 决策区分隔线 + approve `❯`/success 主操作高亮，主题不传时渲染不变）。
 
@@ -181,7 +183,7 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 - **Slash 命令菜单** — 输入 `/` 打开下拉菜单：模糊前缀匹配、`↑↓` / `PageUp` / `PageDown` 选择、`Tab` 接受、`Enter` 提交、MRU 排序、参数占位 ghost 与输入行 ghost 预览。
 - **剪贴板与图片粘贴** — `Ctrl+V` 读取剪贴板图片（回退到文本）；终端菜单粘贴检测图片；看起来像图片的粘贴路径按附件加载；`Alt+W` / vim yank 经 OSC52 把选区复制到系统剪贴板。
 - **图片提交** — 附件图片显示 `📎 N images` 标记，提交时在用户气泡下方以内联图形渲染，并经附件服务到达模型；气泡携带识图提示（已转发 / 经视觉模型桥接 / 未发送）。超大图发送前自适应压缩：长边 1568px 封顶（PNG 保留透明），逐级 JPEG 0.82 → 0.55 → 1024px + 0.55 直到低于 provider 上限，全程只缩不放。
-- **Vim 编辑键位（[#51](https://github.com/huiliyi37/dsh-tianshu-tui/issues/51)）** — `Esc` 进 NORMAL，键位表对标 Claude Code：`h j k l / w e b W B E / 0 $ ^ / gg G / f F t T ; ,` 导航与查找重放、`d c y × motion` + 数字前缀、文本对象 `iw aw iW aW`、行级 `dd cc yy Y` 与 `p P` 粘贴、`x X D C s S r o O J u .`；`v/V` visual 选区两端含光标下字符。多行草稿 `j/k` 保持列移动；中文连续段成词不逐字跳。运行时 `/vim` 开关，`/vim default` 设为启动默认。insert 两键序列→Esc（`vimInsertRemaps`，如 `{"jj":"esc"}` 写入 prefs；1 秒窗防误触）。
+- **Vim 编辑键位（[#51](https://github.com/huiliyi37/dsh-tianshu-tui/issues/51)）** — `Esc` 进 NORMAL，键位表对标 Claude Code：`h j k l / w e b W B E / 0 $ ^ / gg G / f F t T ; ,` 导航与查找重放、`d c y × motion` + 数字前缀、文本对象 `iw aw iW aW`、行级 `dd cc yy Y` 与 `p P` 粘贴、`x X D C s S r o O J u .`；`v/V` visual 选区两端含光标下字符。多行草稿 `j/k` 保持列移动；中文连续段成词不逐字跳。运行时 `/vim` 开关，`/vim default` 设为启动默认。insert 两键序列→Esc（`vimInsertRemaps`，如 `{"jj":"esc"}` 写入 prefs；1 秒窗防误触）。光标形态随模式区分：NORMAL 反色块、insert 竖线（#55）。NORMAL `/` 打开会话历史搜索（两阶段：输入即过滤，`Enter` 确认后 `n`/`N` 跳转——搜索词可含 n/N）。
 - **编辑** — 外部编辑器（`Ctrl+E`）、Tab 文件补全、`@mention` 展开、输入历史、多行输入、bracketed paste（多行/长文本粘贴整段进输入行，不逐行提交）；输入行绘制为完整圆角框体。
 - **运行中排队（对标 Claude Code queue）** — agent 运行时提交的消息进入输入轨上方的本地队列（立即回显、不直发）；回合结束按序自动投递，中断不投递（留给你 ↑ 取回的余地）；空输入 `↑` 取回队首回输入行；切换会话丢弃并回显条数。中轮即时纠偏仍走 `/steer` / `Ctrl+T`。
 - **图片再询问** — 同仓伴生插件 `@deepseek-ai/dsh-vision-ask` 登记已发送图片，并经 `ask_image` 回答模型的定向问题（见 [vision-ask](vision-ask/README.md)）。
@@ -249,12 +251,14 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 
 | 按键 | 作用 |
 |---|---|
+| `Enter` | 发送 |
+| `Shift+Enter` | 换行（或 `\`+Enter 续行） |
 | `Ctrl+N` | 新会话 |
 | `Ctrl+S` | 恢复最近会话 |
 | `Ctrl+Q` | 退出（同 `/exit`） |
 | `Ctrl+P` | 命令面板 |
 | `Ctrl+.` | 键位表 overlay |
-| `Ctrl+F` / `Ctrl+R` | 历史搜索（`n`/`N` 下一个，`p`/`P` 上一个） |
+| `Ctrl+F` / `Ctrl+R` | 历史搜索（输入即过滤；`Enter` 确认后 `n`/`N` 下一个、`p`/`P` 上一个） |
 | `Ctrl+O` | 展开/收起最近推理块 |
 | `Ctrl+E` | 用 `$EDITOR` 打开输入行（可经 `editorKey` 配置） |
 | `Ctrl+T` | 中轮转向 |
@@ -264,6 +268,7 @@ settings 各自独立）。共存时 tianshu 侧设 `export DSH_HOME=~/.dsh-tian
 | `Alt+W` | 把选区复制到系统剪贴板（OSC52） |
 | `Shift+Tab` | 模式循环：normal → plan → always-approve |
 | `Tab` | `@`-路径补全；接受 slash 菜单选中项 |
+| `Ctrl+U` | 删除到行首 |
 | `↑`/`↓` | 输入历史（slash 菜单打开时为选择；有排队消息时空输入 ↑ 取回队首） |
 | `PageUp`/`PageDown` | slash 菜单翻页 |
 | `Esc` | 关闭菜单/overlay/检查面板；取消挂起提问；空闲双击 rewind |

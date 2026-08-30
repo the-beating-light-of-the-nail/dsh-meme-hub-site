@@ -11,7 +11,7 @@ This is a guardrail plugin. It intercepts agent tool calls before execution and 
 
 It is not a sandbox. The plugin runs in the DSH process, and a determined malicious plugin can do anything your user account can do. Use this to reduce unsafe autonomous tool use, not as an OS security boundary.
 
-![Auto mode in the permission picker](https://raw.githubusercontent.com/log-li/dsh-automode/148650e9a43d30087b5764e34a4b59699d78938e/docs/auto-mode-icon.png)
+![Auto mode in the permission picker](https://raw.githubusercontent.com/log-li/dsh-automode/e2babec613537045760f577713edb4df950da2a9/docs/auto-mode-icon.png)
 
 ## Install
 
@@ -56,7 +56,7 @@ Tool call arrives
        ⑥ Failure → fail-closed
 ```
 
-![Auto mode tool-call guard pipeline](https://raw.githubusercontent.com/log-li/dsh-automode/148650e9a43d30087b5764e34a4b59699d78938e/docs/auto-mode-flow.png)
+![Auto mode tool-call guard pipeline](https://raw.githubusercontent.com/log-li/dsh-automode/e2babec613537045760f577713edb4df950da2a9/docs/auto-mode-flow.png)
 
 > 🖱️ **Interactive version**: [docs/auto-mode-flow.html](docs/auto-mode-flow.html) — pan/zoom, relationship tracing, dark mode. Diagram source: [`docs/auto-mode-flow.workflow.json`](docs/auto-mode-flow.workflow.json).
 
@@ -147,7 +147,7 @@ Configuration goes in your profile's `cordis.patch.yml`. Everything has defaults
 | `deny` | built-in list | Regex patterns that hard-reject. First match wins. |
 | `allow` | built-in list | Prefix-glob patterns that approve without LLM. |
 | `readOnlyTools` | read, glob, grep, list, search | Tools that default-allow (unless deny matched). |
-| `allowPaths` | `[]` | Curated full-trust external directories. |
+| `allowPaths` | `[]` | Curated full-trust external directories. File-tool ops targeting these paths skip the classifier; bash write-commands (cp/mv/rsync/ditto/install/tar -x -C/unzip -d/curl -o/wget -O/git clone) whose destination resolves inside one also skip it. Real symlink-resolved prefix match. Shipped default stays universal — add personal dirs in your profile (see below). |
 | `allowInsideWorkingDirectory` | `true` | Allow in-tree file ops without classifier. |
 | `classifier.provider` / `classifier.model` | `''` (follow session) | Override the classifier's LLM route. Resolution order: `classifier.{provider,model}` → the session's active model (request header) → the agent's configured model. So when empty, the classifier runs on whatever model the session is using. |
 | `classifier.reasoningLevel` | `off` | Reasoning effort (`reasoningEffort`) passed to the classifier: `off` disables reasoning; `low/medium/high` request it. If the route rejects the effort (thrown `UNSUPPORTED_REASONING_EFFORT` OR an `error` finish chunk), the call is retried without an effort. `off` is the default: verified ~1–1.7 s on the opencode-go route with no reasoning blocks and no timeouts. |
@@ -161,6 +161,23 @@ Configuration goes in your profile's `cordis.patch.yml`. Everything has defaults
 | `maxArgsChars` | `4000` | Char budget of the command signature used for the verdict cache key. |
 | `breakerConsecutive` | `3` | Consecutive classifier DENY to trip the breaker. |
 | `breakerTotal` | `20` | Total classifier DENY to trip the breaker. |
+
+### Trusting extra directories (`allowPaths`)
+
+`allowPaths` is a curated **full-trust** list: file ops and bash write-commands whose target resolves inside one of these directories skip the safety classifier entirely (logged as `pre-execute-allow` / `curated allowPath`). The shipped default keeps only the universal `/tmp/` — **personal directories are configured per profile** in your profile's `cordis.patch.yml`. Loader patches replace the targeted row's whole `config`, so the minimal override below sets only `allowPaths` (every other field falls back to the plugin's code defaults):
+
+```yaml
+# ~/.dsh/profiles/<profile>/cordis.patch.yml
+- id: auto-mode
+  config:
+    allowPaths:
+      - /tmp/
+      - /Users/<you>/Library/CloudStorage/OneDrive-<tenant>/Projects/<proj>/Proposal/
+```
+
+Only recognized write-commands are trusted (deletion such as `rm`/`trash` is never allowlisted), and paths are matched after symlink resolution — both a `/Users/<you>/OneDrive - …` symlink and the real `Library/CloudStorage/…` path work. The verdict-cache fix below still matters: even without an `allowPath`, once you explicitly authorize an action the classifier re-runs with your intent instead of replaying a cached denial.
+
+Every **auto-mode** session also receives this knowledge as a system-prompt section (`auto-mode:allowlist`): the model knows where the per-profile `allowPaths` lives and how to edit it, so when an action is blocked it can propose the exact config change — and only applies it after you explicitly confirm.
 
 ### Permission preset icon
 
@@ -217,14 +234,14 @@ Every classifier stream failure (thrown error **or** an `error` finish chunk) is
 
 ### Verdict cache
 
-Classifier verdicts are cached per session by tool + command signature. If the same action is requested again (e.g., from the approval waterfall after a pre-execute classify), the cached verdict is reused without a second LLM call. Cache entries expire after 5 minutes.
+Classifier verdicts are cached per session by **tool + command + user-intent** signature. The user's recent direct instructions are hashed into the key, so a new explicit authorization (a fresh human message) invalidates a previously cached verdict and the classifier re-runs with the new intent — a user grant is never swallowed by a cached `DENY`. Within the same intent window a repeated action still reuses the cached verdict without a second LLM call. Cache entries expire after 5 minutes.
 
 ## Logging
 
 All decisions are logged to `~/.dsh/auto-mode/decisions.jsonl` (JSONL format, append-only, survives restarts). Each entry includes:
 
 - `at` — ISO timestamp
-- `event` — decision / pre-execute-deny / pre-execute-allow / pre-execute-fileop / pre-execute-fail-open / classifier-fail / breaker / resume / boot
+- `event` — decision / pre-execute-deny / pre-execute-allow / pre-execute-fileop / pre-execute-bashop / pre-execute-fail-open / classifier-fail / breaker / resume / boot
 - `outcome` — allowed-once / rejected / cancelled
 - `tool` — tool name
 - `tier` — deny / allow / classify:monitor / classify:cache / classify:fail / ...
@@ -256,6 +273,11 @@ src/
   breaker.ts       Circuit breaker (3 consecutive / 20 total)
   log.ts           Shared appendDecision JSONL logger
 ```
+
+## Compatibility & contributions
+
+- **Verified on macOS only.** Tested against the macOS filesystem, the DeepSeek Harness (DSH) runtime, and the DSH version in use at development time. Path semantics — including the macOS `/tmp` → `/private/tmp` symlink (handled by realpath-nearest-ancestor resolution) and workspace-path trust — have **not** been verified on Linux or Windows, and deny-pattern/path matching may differ there.
+- **Found a bug, or an issue on another platform?** Bug reports and pull requests are welcome — open an issue or PR at [github.com/log-li/dsh-automode](https://github.com/log-li/dsh-automode).
 
 ## License
 

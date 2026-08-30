@@ -230,32 +230,28 @@ pinned to dsh master — if upstream changes a contract, the build tells you bef
 backfill the change record. For an integration that only needs message visibility, prefer
 the `chronicleEndpoint` hook over modifying the pipeline — see `src/chronicle.ts`.
 
-## 📦 Release & Upgrade Policy
+## 📦 Version & Release Policy
 
-Two tracks, deliberately:
+Two tracks, written down so nobody guesses:
 
-| Track | Follows | Used for |
-|---|---|---|
-| **preview** | the latest upstream — incl. prereleases (`alpha` / `rc`) from GitHub releases or `master` | development, experiments, validating new capabilities |
-| **stable** | the pinned stable line (npm dist-tag `latest`, final `rc`s) | production deployments facing real users |
+- **preview track** — development/experimentation. Pull the latest upstream (GitHub releases including alpha/rc, or `master`) and the newest bridge features; breakage is expected here.
+- **stable track** — production deployments. Pin the npm `latest` / release-candidate line. **Production never runs an `alpha`.**
 
-**Rules**
+Promoting preview → stable requires the full quality gate to pass:
+`pnpm test` → `node plugin-contract-test.mjs` → `node scripts/verify-dsh-contract.mjs` → `pnpm typecheck && pnpm run build` → live smoke.
 
-1. New upstream capability is assessed on the **preview** track first: bring it
-   into the development copy, run `node scripts/verify-dsh-contract.mjs` against
-   the target version, exercise the feature, and only promote to **stable** after
-   the quality gates below are green.
-2. A production deployment never rides an `alpha` release. Stable deployments pin
-   the stable line and upgrade deliberately, by the runbook, each time.
-3. This repo follows the same policy: `main` tracks upstream `master` for contract
-   compatibility (CI pins the drift check to upstream master); tagged releases
-   (`@moyu-good/dsh-lark-bridge@<version>`) are the stable artifacts.
-4. Upstream changed a host contract → the drift check turns red **before** users
-   see it. Treat that red build as the upgrade signal, not as noise.
+## 🧱 Development & MR Flow
 
-**Quality gates before promotion**: `pnpm test` → `node plugin-contract-test.mjs` →
-`node scripts/verify-dsh-contract.mjs` → `pnpm typecheck && pnpm run build` →
-real-loop smoke on the target deployment.
+`main` is the stable baseline and only receives **reviewed merge requests**. All development happens on feature branches (`feat/<name>`), never directly on `main`.
+
+Per-MR checklist:
+1. Branch from `main`; keep the change small and single-purpose.
+2. Full quality gate green (tests, contract, drift, build).
+3. Repo hygiene scan — `scripts/check_repo_leak.py <repo> --lib` — must exit 0.
+4. Reviewer approves → merge to `main` → deploy from `main`.
+5. Production incidents revert on the spot (history stays in git); the reverted branch is rebased and re-MR'd with a fix.
+
+This is enforced because past direct-to-`main` experiments had to be rolled back as a multi-commit revert in one batch — feature branches keep `main` shippable at all times.
 
 ## ❓ FAQ
 

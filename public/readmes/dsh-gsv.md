@@ -16,8 +16,8 @@ English README: [README_EN.md](README_EN.md) · 变更记录: [CHANGELOG.md](CHA
 
 - 🎙️ **音色克隆**：按参考音频克隆目标音色，`tts_speak` 按名称选用
 - ⚡ **真流式合成**：SSE 逐块合成，首块到达即推送，低首包延迟
-- 🔊 **一键朗读**：每条助手消息旁的 🔊 按钮直接朗读（自动排除思考内容）
-- 🔁 **自动朗读**：开启后自动为助手回复合成语音
+- 🔊 **一键朗读**：每条助手消息旁的 🔊 按钮直接朗读（自动排除思考内容）；长回复**按句分段渐进播放**，带 暂停/继续/停止 与进度显示，正在朗读的消息会高亮
+- 🔁 **自动朗读**：开启后自动朗读助手回复；新回复默认打断当前朗读（barge-in），可在设置中关闭
 - 🎛️ **声音设置面板**：设置 → 声音设置，可视化配置，**保存即热生效**（无需重启）
 - 🚀 **引擎一键启停**：一键启动/停止本地 GSV-TTS-Lite 引擎，模型加载约 15~90 秒
 - 🛠️ **一键安装引擎**：`tts_setup_engine` 自动检测 Python、安装依赖、克隆仓库并启动服务
@@ -50,7 +50,7 @@ dsh plugin --profile web add "github:TaoruiLiu19/dsh-gsv"
 
 ## 🏗️ 系统架构
 
-![dsh-gsv-tts 系统构成与数据流](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/0a390097593f6736dc200bde8492210bc3227fc2/docs/images/architecture.png)
+![dsh-gsv-tts 系统构成与数据流](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/e87ad9be02fcdb70aa83cc4fa803e0f0d7ee1941/docs/images/architecture.png)
 
 > 📖 交互式架构图：[打开 dsh-gsv-tts.architecture.html](docs/architecture/dsh-gsv-tts.architecture.html)（支持缩放、聚焦、主题切换）
 
@@ -67,15 +67,15 @@ dsh plugin --profile web add "github:TaoruiLiu19/dsh-gsv"
 
 ## 📸 截图
 
-![声音设置面板](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/0a390097593f6736dc200bde8492210bc3227fc2/docs/images/settings-voice.png)
+![声音设置面板](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/e87ad9be02fcdb70aa83cc4fa803e0f0d7ee1941/docs/images/settings-voice.png)
 
 *设置 → 声音设置：引擎开关、TTS 配置、帮助文档*
 
-![朗读按钮](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/0a390097593f6736dc200bde8492210bc3227fc2/docs/images/read-button.png)
+![朗读按钮](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/e87ad9be02fcdb70aa83cc4fa803e0f0d7ee1941/docs/images/read-button.png)
 
 *消息操作区的 🔊 朗读按钮（悬停显示"朗读结果"）*
 
-![引擎运行中](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/0a390097593f6736dc200bde8492210bc3227fc2/docs/images/engine-running.png)
+![引擎运行中](https://raw.githubusercontent.com/TaoruiLiu19/dsh-gsv/e87ad9be02fcdb70aa83cc4fa803e0f0d7ee1941/docs/images/engine-running.png)
 
 *引擎启动后的"运行中"状态*
 
@@ -126,6 +126,7 @@ dsh plugin --profile web add "github:TaoruiLiu19/dsh-gsv"
 | `timeout` | 请求超时（毫秒） | `30000` |
 | `installDir` | 引擎安装目录 | `./GSV-TTS-Lite` |
 | `autoPlay` | 自动朗读助手回复 | `false` |
+| `interruptOnNew` | 自动朗读时新回复是否打断当前朗读（关闭则朗读中跳过，避免叠音） | `true` |
 | `voices` | 音色预设列表 | 空 |
 
 配置保存在 DSH 的 settings（`~/.dsh/settings.yaml` 的 `dsh-gsv-tts:` 段），修改后插件热生效。

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
 </p>
 
 <h1 align="center">dsh-vision-router</h1>
@@ -44,7 +44,7 @@
 > **v2.0.0:** Capability-aware Auto routing + benchmarks, explicit 👁 Vision, and Settings 2.0. [What’s new →](docs/releases/v2.0.0.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
 </p>
 
 ## Contents
@@ -64,7 +64,7 @@
 
 ## Why this exists
 
-Most DSH vision plugins bridge images to DeepSeek as *text descriptions* — lossy, one-shot, and blind to pixels. This plugin keeps the **original pixels on the vision model's side** and DeepSeek on the reasoning side, and makes looking at an image an **ordinary tool call**:
+Most DSH vision plugins bridge images to DeepSeek as *text descriptions* — lossy, one-shot, and blind to pixels. This plugin keeps the **Host-canonical image pixels on the vision model's side** and DeepSeek on the reasoning side, and makes looking at an image an **ordinary tool call**:
 
 - **One command install.** The package ships its own composition patch (`dsh.bundle.patch`): `dsh plugin add` wires the row, the admission wrapper and the attachment limits automatically — zero manual file edits. Taking over the official DeepSeek route is an optional setting (stealth mode, off by default).
 - **Free by default.** Vision tools end with a five-model OVHcloud anonymous fallback: no account, no key, 2 requests/minute per IP per model, roughly 10 RPM in theory across independent buckets. User-provided vision models run first.
@@ -77,11 +77,14 @@ Most DSH vision plugins bridge images to DeepSeek as *text descriptions* — los
 
 **One-line take**: most dsh vision plugins turn images into *text descriptions* for DeepSeek
 (description bridge — lossy); this plugin hands the image turn *straight to a vision model*
-(routing bridge — pixel-faithful), with a built-in keyless free fallback.
+(routing bridge — pixel-level), with a built-in keyless free fallback.
+
+> [!NOTE]
+> On DSH 0.1.2-alpha.1+, attachments remain Host-owned. Vision Router consumes the Host-persisted canonical image: clean single-frame 8-bit sRGB/sRGBA images inside the configured normalization limits can pass through byte-identically, while images that need orientation, color-space, metadata, animation, or size normalization may be re-encoded. Pixel tools therefore promise the Host-canonical raster, not preservation of the uploader's original encoded bytes.
 
 | | Manual model switching | MCP vision bridge | dsh-vision-router |
 |---|---|---|---|
-| Pixel fidelity | ✅ full (when switched) | ❌ text description only | ✅ full, on the image turn |
+| Image pixels | ✅ available (when switched) | ❌ text description only | ✅ Host-canonical raster, on the image turn |
 | Automatic | ❌ | ✅ | ✅ |
 | Daily model untouched | ❌ (whole session swapped) | ✅ | ✅ |
 | Provider failure recovery | ❌ | ❌ | ✅ fallback chains |
@@ -93,7 +96,7 @@ Most DSH vision plugins bridge images to DeepSeek as *text descriptions* — los
 
 | Project | Approach | What this plugin adds |
 |---|---|---|
-| [dsh-vision-sidecar](https://github.com/121103qwq/dsh-vision-sidecar) | Pre-describes images with an external VLM; the description joins the session as a message to DeepSeek; LLM7.io anonymous endpoint by default (OVHcloud listed as a no-key alternative) | Description bridge; this plugin adds raw-image routing, with `vision_describe` covering descriptions on demand |
+| [dsh-vision-sidecar](https://github.com/121103qwq/dsh-vision-sidecar) | Pre-describes images with an external VLM; the description joins the session as a message to DeepSeek; LLM7.io anonymous endpoint by default (OVHcloud listed as a no-key alternative) | Description bridge; this plugin adds image routing, with `vision_describe` covering descriptions on demand |
 | [dsh-vision-proxy](https://github.com/Flyvhidbwo/dsh-vision-proxy) | Wraps a provider route and transcribes images into text in the request stream | Transcription bridge; this plugin wraps no provider — it rewrites routing through `agent/request` waterfalls |
 | [dsh-vision-provider](https://github.com/libinyam/dsh-vision-provider) | Registers `DeepSeek + Vision` combined routes: images are described by the chosen vision model before reaching DeepSeek | Two-model bridge idea; this plugin adds automatic routing, fallback chains and tools on top |
 | [modlens](https://github.com/liustack/modlens) | The first dsh vision plugin; reuses local Claude Code/Codex/OpenCode/Pi logins as vision engines | Engine-reuse idea; this plugin ships its own provider chain and depends on no other local CLI |
@@ -177,8 +180,8 @@ The built-in anonymous OVH vision fallback is already configured, so normal imag
 *Left: an image turn — the user sends a picture, the agent calls `vision_describe` through the free chain and answers. Right: the finished structured answer.*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
 </p>
 
 ## Free vision key channels
@@ -215,7 +218,7 @@ Any of these channels can join the vision chain as an `httpProviders` entry (key
 
 ### Pixel loop in practice
 
-[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
+[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
 
 <p align="center"><sub>Click the image to open the full-resolution original.</sub></p>
 
@@ -224,7 +227,7 @@ The agent rebuilt the UI from the reference image, then verified the final resul
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
 </p>
 
 The vision model is **only the eyes**; DeepSeek is **always the brain**. An image turn is never hijacked by a one-shot vision answer — the agent drives the tools itself and can keep operating on the image across as many steps as the task needs.
@@ -234,7 +237,7 @@ The vision model is **only the eyes**; DeepSeek is **always the brain**. An imag
 Default `progressiveTools: false`: all fourteen deep tools stay registered from plugin startup, so text and image turns can call them immediately. If you explicitly set `progressiveTools: true` in the profile/composition `cordis.patch.yml`, progressive mode is restored: only `vision_activate` is exposed initially, the full tool set mounts on first use, and the `vision-tools` skill is registered. This is a boot-time switch; restart DSH after changing it. Built on sharp / potrace / tesseract / system Chrome — no Python:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
 </p>
 
 The diagram covers the eleven image-processing tools. `vision_present` (durable image delivery) and `vision_bootstrap` (the optional 1+x structured first pass) bring the default deep-tool set to fourteen. Enabling the privacy-gated `vision_screenshot` at boot adds an optional fifteenth tool.
@@ -333,7 +336,7 @@ The Web profile registers a first-class **Settings → Vision Router** surface. 
 - **Advanced / Diagnostics**: timeout, wrapper scope, proxy/network, compatibility, version, runtime status and troubleshooting.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/a4dbbd1bc04f42d306bb8291b06bdf4a501e6285/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
 </p>
 
 ## Configuration
@@ -584,8 +587,11 @@ Manual fallback: in VS Code, use “Save with Encoding” → `UTF-8` (without B
 ## Star History
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ysr666/dsh-vision-router/star-history/assets/star-history/star-history-dark.svg">
-    <img alt="Star history chart" src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/88dd24a323cf7f04f8207a3b99989d471c49f516/assets/star-history/star-history-light.svg" width="100%">
-  </picture>
+  <a href="https://www.star-history.com/?repos=ysr666%2Fdsh-vision-router&type=date&legend=top-left">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ysr666/dsh-vision-router&type=date&theme=dark&legend=top-left&sealed_token=bl3whaniTB54-d4wMda4a454thk48mT71wkNh8VrSD8OhCKWdBOOQpVKGUXzoEq4kx0_0jhQzEimHIqKAaGftFVV48sqgJ1niBfGy51AX5k_soGw_e7-5Nea6ZY5To0iz7jY9ORc5a_P5N6Qlfm32G2pdHf8_5dZeuHMn5NOZCyTgFcmq2eK1Jwg8ILe" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ysr666/dsh-vision-router&type=date&legend=top-left&sealed_token=bl3whaniTB54-d4wMda4a454thk48mT71wkNh8VrSD8OhCKWdBOOQpVKGUXzoEq4kx0_0jhQzEimHIqKAaGftFVV48sqgJ1niBfGy51AX5k_soGw_e7-5Nea6ZY5To0iz7jY9ORc5a_P5N6Qlfm32G2pdHf8_5dZeuHMn5NOZCyTgFcmq2eK1Jwg8ILe" />
+      <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ysr666/dsh-vision-router&type=date&legend=top-left&sealed_token=bl3whaniTB54-d4wMda4a454thk48mT71wkNh8VrSD8OhCKWdBOOQpVKGUXzoEq4kx0_0jhQzEimHIqKAaGftFVV48sqgJ1niBfGy51AX5k_soGw_e7-5Nea6ZY5To0iz7jY9ORc5a_P5N6Qlfm32G2pdHf8_5dZeuHMn5NOZCyTgFcmq2eK1Jwg8ILe" width="100%" />
+    </picture>
+  </a>
 </p>

@@ -139,7 +139,7 @@ Deep Seeking...            ← 点击状态行（悬停有提示、光标变手�
 pwsh install.ps1            # 或 powershell -ExecutionPolicy Bypass -File install.ps1
 ```
 
-脚本会自动：优先选择 `~/.dsh/profiles/desktop`（桌面版），否则 `profiles/web`；把本目录 Junction 链接进 `profiles/node_modules/dsh-deep-verbs`；在 profile 的 `cordis.patch.yml` 注册 insert。
+脚本会自动：优先选择 `~/.dsh/profiles/desktop`（桌面版），否则 `profiles/web`；把本目录 Junction 链接进 `profiles/node_modules/dsh-deep-verbs`；在 profile 的 `cordis.patch.yml` 注册 insert。Junction 不可用时（权限/文件系统限制）退化为按 package.json `files` 白名单复制一份（不含 `.git` 等开发产物；插件更新后需重跑安装脚本刷新副本）。
 
 然后**完全退出 DSH 进程**再重启（不是关窗口），自带窗口重启即可，浏览器访问则刷新页面。
 

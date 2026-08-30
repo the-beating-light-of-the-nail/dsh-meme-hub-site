@@ -1,21 +1,42 @@
-# 📖 DeepRead — Evidence-first reading for AI agents
+# 📖 DeepRead — Make AI reading traceable
 
-[中文官网](https://xiehuan123.github.io/dsh-deepread/) | English | [中文](README.zh.md)
+[Website](https://xiehuan123.github.io/dsh-deepread/) · [Real outputs](examples/README.md) · English · [中文](README.zh.md)
 
-> Turn long articles, books, PDFs, and document sets into traceable claims, evidence, confidence levels, knowledge maps, and review questions.
+> Turn articles, books, PDFs, and document sets into claims you can trace back to evidence and source locations.
 
 [![npm version](https://img.shields.io/npm/v/dsh-deepread)](https://www.npmjs.com/package/dsh-deepread)
 [![GitHub release](https://img.shields.io/github/v/release/xiehuan123/dsh-deepread?display_name=tag)](https://github.com/xiehuan123/dsh-deepread/releases/latest)
+[![GitHub stars](https://img.shields.io/github/stars/xiehuan123/dsh-deepread?style=flat&label=stars)](https://github.com/xiehuan123/dsh-deepread/stargazers)
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-Codex%20%7C%20Claude%20Code-6366f1)](./skills/dsh-deepread/SKILL.md)
 [![Awesome DSH Plugin](https://beancookie.github.io/awesome-dsh-plugin/badge.svg)](https://beancookie.github.io/awesome-dsh-plugin)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-![DeepRead evidence-first reading workflow](https://raw.githubusercontent.com/xiehuan123/dsh-deepread/9ae3fc13e7ef3eec4f657b206f8b2a9673a04139/assets/deepread-demo.svg)
+![DeepRead evidence-first reading workflow](https://raw.githubusercontent.com/xiehuan123/dsh-deepread/36b89114be847e39ed1820fd91e65dc812a6f522/assets/deepread-demo.svg)
 
 DeepRead is available in two compatible forms:
 
 - **Portable Agent Skill** for Codex, Claude Code, and other Agent Skills-compatible tools. Zero runtime dependencies; the agent follows the evidence-first reading workflow with its own file and web tools.
 - **Host plugin package** for DeepSeek Harness Web/headless and dsh-TUI, with a `deepread` tool, PDF extraction, optional persistence/jobs/Web route, batch comparison, cost preview, and HTML/XMind-compatible export. Its browser client is an optional Web-only entry.
+
+## Why it is different
+
+| A typical summary | DeepRead |
+| --- | --- |
+| Compresses the topic | Extracts complete claims and the reasoning behind them |
+| Blends source facts with model inference | Labels author intent, source facts, reasoned inference, and unverified content |
+| Makes conclusions hard to check | Pairs important claims with evidence and page/paragraph locations |
+| Stops at an answer | Adds knowledge maps, conflicts, limitations, and active-recall questions |
+
+If the source does not support a claim, DeepRead says **“source does not provide evidence”** instead of filling the gap.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/main/.github/assets/deepread-panel-dark.jpg">
+    <img src="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/36b89114be847e39ed1820fd91e65dc812a6f522/.github/assets/deepread-panel-light.jpg" width="470" alt="DeepRead reading panel with input, reading mode, export, focus, and budget controls">
+  </picture>
+  <br>
+  <sub>The real DeepSeek Harness Web reading panel. The portable Agent Skill uses the same evidence-first workflow without this runtime UI.</sub>
+</p>
 
 ## Quick start
 
@@ -40,15 +61,17 @@ dsh plugin --profile web add dsh-deepread
 
 Restart `dsh web`, then use the 📖 reading panel or call the `deepread` tool in chat.
 
-## See it in action
+## See real outputs
 
-The repository includes real, reproducible output rather than placeholder screenshots:
+These are complete reports generated from public articles, not hand-written mockups:
 
-- [`deep` mode: Claude Code token optimization](examples/claude-code-token-optimization.md) — claims, evidence, argument flow, concepts, and critical questions.
-- [`map` mode: fact-check knowledge map](examples/ad-fact-check-knowledge-map.md) — confidence levels, evidence pairing, data table, relation labels, Mermaid map, and recall questions.
-- [`deep` mode: vivo Tauri architecture](examples/vivo-tauri-architecture.md) — architecture decisions, supporting data, and limitations.
+| Report | What DeepRead made visible |
+| --- | --- |
+| [`deep` · Claude Code token optimization](examples/claude-code-token-optimization.md) | Reconstructed the engineering chain from visibility to input, output, and retrieval-path compression; separated recommendations from project-authored benchmarks. |
+| [`map` · Marketing-claim fact check](examples/ad-fact-check-knowledge-map.md) | Found that the article's “90%”, “¥1.28M salary”, and “¥2,000/day” claims had no source, sample, or baseline; marked each one unverified. |
+| [`deep` · vivo Tauri architecture](examples/vivo-tauri-architecture.md) | Connected architecture choices to reported size/performance evidence while preserving the article's untested assumptions and deployment limits. |
 
-DeepRead never silently upgrades a theme into a claim or fills missing support with invented evidence. If the source does not support a claim, the report says so.
+[Browse all reproducible examples →](examples/README.md)
 
 ## Features
 
@@ -230,6 +253,19 @@ npm run build               # build lib/types and lib/client.js
 npm test                    # full repository contract suite
 npm pack --dry-run --json   # inspect the publishable file list and public entries
 ```
+
+## Community
+
+- Ask usage questions or share a reading workflow in [GitHub Discussions](https://github.com/xiehuan123/dsh-deepread/discussions).
+- Report a reproducible problem with the [bug form](https://github.com/xiehuan123/dsh-deepread/issues/new?template=bug_report.yml).
+- Propose a focused improvement with the [feature form](https://github.com/xiehuan123/dsh-deepread/issues/new?template=feature_request.yml).
+- Read [CONTRIBUTING.md](https://github.com/xiehuan123/dsh-deepread/blob/main/CONTRIBUTING.md) before opening a pull request.
+
+For Chinese-language notes about AI tools, open-source projects, and practical workflows, follow **Appoint 实验室** on WeChat:
+
+<img src="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/36b89114be847e39ed1820fd91e65dc812a6f522/.github/assets/appoint-lab-wechat.png" width="360" alt="Appoint 实验室 WeChat public account poster and QR code">
+
+If traceable AI reading is useful to you, [star the repository](https://github.com/xiehuan123/dsh-deepread) to make it easier for the next reader to find and to follow future releases.
 
 ## License
 

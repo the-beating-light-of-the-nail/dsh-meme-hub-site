@@ -25,10 +25,19 @@ A DSH client plugin that floats an ordered, collapsible list of the user's asked
 - Collapse state preserved across session switches
 - Empty state: "No questions yet" when the session has no user questions
 - Localized (English / Simplified Chinese)
+- **Auto-indexes full history**: opening a session automatically pages through
+  its complete history, so old or never-visited sessions get every question in
+  the index with no manual scrolling.
+- **Durable local memory**: the index is persisted to localStorage, so it
+  survives page reloads and reopens.
 
 ## Install
 
 ```bash
+# from npm (recommended: prebuilt, no build-approval step)
+dsh plugin --profile web add dsh-question-index
+
+# or from GitHub source
 dsh plugin --profile web add github:lijinhao315/dsh-question-index
 ```
 
@@ -44,8 +53,6 @@ Outputs `lib/index.js` (node half), `lib/invariant.js`, `lib/client.js`
 
 ## Known limitations
 
-- Older paginated messages (`hasMore` / `loadOlder`) that are not in the
-  loaded `chat` snapshot won't appear in the index.
 - Click-to-jump requires the target row to be rendered
   (`data-chat-anchor-key` present in the DOM); unrendered rows are skipped.
 - Long entries render as a single truncated line; the full text is always

@@ -10,7 +10,7 @@
 
 | 整体效果 | 悬停预览 | 点击跳转 |
 | --- | --- | --- |
-| ![整体效果](https://raw.githubusercontent.com/kiligzzz/dsh-session-nav/57d42eafae0f6e0db235eb930208e1d8aa084604/assets/overview.png) | ![悬停预览](https://raw.githubusercontent.com/kiligzzz/dsh-session-nav/57d42eafae0f6e0db235eb930208e1d8aa084604/assets/hover-tooltip.png) | ![点击跳转](https://raw.githubusercontent.com/kiligzzz/dsh-session-nav/57d42eafae0f6e0db235eb930208e1d8aa084604/assets/click-jump.png) |
+| ![整体效果](https://raw.githubusercontent.com/kiligzzz/dsh-session-nav/15d65ff0758c5d72bab225ee39e08bbb2a62b2bb/assets/overview.png) | ![悬停预览](https://raw.githubusercontent.com/kiligzzz/dsh-session-nav/15d65ff0758c5d72bab225ee39e08bbb2a62b2bb/assets/hover-tooltip.png) | ![点击跳转](https://raw.githubusercontent.com/kiligzzz/dsh-session-nav/15d65ff0758c5d72bab225ee39e08bbb2a62b2bb/assets/click-jump.png) |
 | 一个 43 轮的会话 —— 每根键对应一个用户问题，紧凑簇在消息区垂直居中。 | 悬停某键显示用户消息（单行）+ 该轮模型回复（最多 3 行）。 | 点击任意键自动翻页历史（与官方「加载更早」同一通道）并精确定位到视口顶部。 |
 
 截图取自一个真实的 43 轮会话（`DSH记忆注入验证优化`，浅色主题）。
@@ -30,12 +30,25 @@
 - **悬停阶梯**：悬停键变长变色，上下相邻 3 级阶梯（20 / 14 / 10px，≈77% / 54% / 38%），
   第 4 邻恢复最短，首/尾键悬停时阶梯自然单侧裁剪。
 - **悬停气泡**：用户消息单行省略 + 对应模型回复最多 3 行（宽度模型 JS 截断 +
-  `-webkit-line-clamp` 双保险，超出以 … 省略）；气泡与键垂直居中对齐。
+  `-webkit-line-clamp` 双保险，超出以 … 省略）；气泡与键垂直居中对齐；
+  顶部带「第 N 轮」轮次徽标（v0.1.8+），长会话定位更直观。
 - **当前位高亮**：非悬停时当前查看内容对应的键**仅变色**（长度不变），随滚动实时联动。
 - **点击跳转**：目标消息已在加载窗口内时平滑滚动直达；在窗口外（虚拟列表未加载）时
   自动循环调用官方分页接口（与「加载更早」按钮同一通道）拉取历史，直到目标行渲染后
   精确定位到视口顶部。
 - **深浅色主题自适应**（`data-ds-dark-theme` + prefers-color-scheme 兜底）。
+- **自动隐藏官方回合导航**（v0.1.5+）：安装本插件即自动隐藏 DSH 官方「紧凑回合导航」
+  （右侧竖排「跳转到第 N 轮」按钮），钢琴键导航是它的同位替代，避免双导航并存。
+- **仅对话视图显示**（v0.1.5+）：钢琴键只在「对话」Tab 渲染，切到轨迹 / Agent 调度 /
+  记忆系统等视图时自动隐藏，不干扰其他面板。
+
+## 兼容性
+
+- **适配 DSH 0.1.2+**（v0.1.11+）：0.1.2 重构了会话快照结构（`session.getSnapshot()`
+  不再包含 `navigation` 投影），本插件已改用官方 `uiConversation` 服务的 chat 完整
+  快照（`viewStore.get('chat')`）取回复文本，与官方「紧凑回合导航」同源；
+  历史轮次回复由 host 端从磁盘日志提取，全量轮次均可预览。
+- 0.1.2 之前版本：同样可用（自动回退旧快照路径）。
 
 ## 安装
 
@@ -64,8 +77,10 @@ dsh plugin --profile web add link:<本目录>
 | `package.json` | `dsh.bundle.patch` + `dsh.client`（platform web）声明 |
 
 数据来源（全部官方 API）：
+- `ctx.uiConversation.binding(currentId).viewStore.get('chat')` → chat 完整快照
+  （含 `navigation`，0.1.2+；`useSyncExternalStore` 实时订阅）
 - `ctx.sessions.binding(currentId).session` → `ConversationSnapshot`
-  （`useSyncExternalStore` 实时订阅）
+  （0.1.2 前 / 无 uiConversation 时回退）
 - `ctx.sessionPersistence.readFrom(sessionId, 0)` → 全量会话日志（host 端）
 - DOM 锚点：滚动容器 `[data-conversation-scroll]`，消息行 `[data-chat-anchor-key]`
 - 分页：`session.loadOlder()`（与官方「加载更早」按钮同一通道）

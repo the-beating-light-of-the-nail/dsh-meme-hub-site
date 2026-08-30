@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e865b0b179331769cdce4a1e407a488056c1633d/docs/banner.svg" alt="dsh-auto-continue" width="720">
+    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/5076d01e1b6db92fc7f2651c576f9070b8cbb5a2/docs/banner.svg" alt="dsh-auto-continue" width="720">
   </picture>
 </p>
 
@@ -33,7 +33,7 @@
 
 For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh web`): whenever a request in the web GUI gets interrupted by a **non-human cause**, the plugin simulates the user typing **「继续」** and sends it, so the agent keeps working without manual intervention. The message enters the session log exactly like a manual prompt — the model sees it, and the interrupted work resumes. Since 0.8.0 the engine runs **inside the host process** (single instance), so it keeps watching even with every browser tab closed, and multiple open tabs can never double-send.
 
-![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e865b0b179331769cdce4a1e407a488056c1633d/docs/demo.svg)
+![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/5076d01e1b6db92fc7f2651c576f9070b8cbb5a2/docs/demo.svg)
 
 **Smart recovery** (all configurable):
 
@@ -72,7 +72,7 @@ The browser half is a thin shell: the settings card, plus a status bridge that s
 
 DSH plugins install into a **profile** (`dsh web` → `web` profile). Install, restart `dsh web`, done.
 
-> **Requires DSH ≥ 0.1.0-rc.7** — newer versions register the settings card through the keyed `settings.plugin.item` slot; on rc.6 and earlier the plugin fails to load (`list slot ... requires options.id`). Upgrade dsh first.
+> **Use the latest DSH (recommended: 0.1.2-alpha.1 or newer).** Run `dsh --version` before installing. Plugin v0.8.2 supports the new 0.1.2 client-store module layout and retains a fallback for DSH 0.1.0-rc.7 through 0.1.1; rc.6 and earlier remain unsupported (`list slot ... requires options.id`). Preview releases may appear on the [official DSH releases page](https://github.com/deepseek-ai/deepseek-harness/releases) before the public npm tag catches up.
 
 ### From npm (recommended)
 
@@ -178,7 +178,7 @@ auto-continue:
 
 **How the card works:**
 
-![Stats & paused sessions](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e865b0b179331769cdce4a1e407a488056c1633d/docs/screenshots/07-card-panels.png)
+![Stats & paused sessions](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/5076d01e1b6db92fc7f2651c576f9070b8cbb5a2/docs/screenshots/07-card-panels.png)
 
 - Edits are **staged** — nothing reaches the disk until you hit **Save**; an unsaved badge marks the card while drafts are pending, and **Discard** drops them
 - A field you changed shows an **Overridden** badge with a per-field **Reset to default** button that restores the built-in value
@@ -240,7 +240,7 @@ npm run test        # node tests/simulate-host.mjs — 15 host-side behavioral s
 
 While `npm run watch` runs, the profile's client-hmr row polls `lib/client.js` every 500 ms and hot-reloads the plugin in the browser — no server restart needed for code changes.
 
-CI runs [dsh-plugin-check](https://github.com/omdsh-dev/dsh-plugin-check) on every push to `main` and every pull request, and gates releases — the tag workflow refuses to publish while the check fails.
+CI installs from the lockfile, typechecks, rebuilds and verifies committed artifacts, runs the host and dual-layout client simulations, then runs [dsh-plugin-check](https://github.com/omdsh-dev/dsh-plugin-check). The same health check gates releases.
 
 ---
 

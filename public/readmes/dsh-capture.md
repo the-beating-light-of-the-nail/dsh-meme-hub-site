@@ -2,7 +2,7 @@
 
 > 源码仓库：https://github.com/Max-Null/dsh-capture（npm: `@max-null/dsh-capture`）
 
-本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`。
+本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-quick-toolbar` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui` · `dsh-achievements`。
 This plugin belongs to the **`@max-null/*` family** — a set of plugins that together form the **[SSID (思灵 · Seek Soul in Darkness)](https://github.com/Max-Null/seek-soul-in-darkness)** desktop experience.
 
 DSH 双引擎快捷截图引用：框选屏幕任意区域 → 标注（矩形/椭圆/**箭头**/**文字**，
@@ -19,19 +19,19 @@ DSH 双引擎快捷截图引用：框选屏幕任意区域 → 标注（矩形/�
 
 | 截图时（框选选区） | 编辑模式（进入时，尚未标注） | 画箭头 / 文字（标注后） |
 | --- | --- | --- |
-| ![截图时](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E6%88%AA%E5%9B%BE%E6%97%B6.png) | ![编辑截图时](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E7%BC%96%E8%BE%91%E6%88%AA%E5%9B%BE%E6%97%B6.png) | ![使用截图工具](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E4%BD%BF%E7%94%A8%E6%88%AA%E5%9B%BE%E5%B7%A5%E5%85%B7.png) |
+| ![截图时](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E6%88%AA%E5%9B%BE%E6%97%B6.png) | ![编辑截图时](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E7%BC%96%E8%BE%91%E6%88%AA%E5%9B%BE%E6%97%B6.png) | ![使用截图工具](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E4%BD%BF%E7%94%A8%E6%88%AA%E5%9B%BE%E5%B7%A5%E5%85%B7.png) |
 
 ### 投递结果与原图预览编辑
 
 | 确认后插入原图和编辑图 | 图片预览时编辑按钮位置 | 图片预览时编辑页 |
 | --- | --- | --- |
-| ![确认后插入原图和编辑图的截图](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E7%A1%AE%E8%AE%A4%E5%90%8E%E6%8F%92%E5%85%A5%E5%8E%9F%E5%9B%BE%E5%92%8C%E7%BC%96%E8%BE%91%E5%9B%BE%E7%9A%84%E6%88%AA%E5%9B%BE.png) | ![图片预览时编辑按钮位置截图](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E6%97%B6%E7%BC%96%E8%BE%91%E6%8C%89%E9%92%AE%E4%BD%8D%E7%BD%AE%E6%88%AA%E5%9B%BE.png) | ![图片预览时编辑页](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E6%97%B6%E7%BC%96%E8%BE%91%E9%A1%B5.png) |
+| ![确认后插入原图和编辑图的截图](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E7%A1%AE%E8%AE%A4%E5%90%8E%E6%8F%92%E5%85%A5%E5%8E%9F%E5%9B%BE%E5%92%8C%E7%BC%96%E8%BE%91%E5%9B%BE%E7%9A%84%E6%88%AA%E5%9B%BE.png) | ![图片预览时编辑按钮位置截图](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E6%97%B6%E7%BC%96%E8%BE%91%E6%8C%89%E9%92%AE%E4%BD%8D%E7%BD%AE%E6%88%AA%E5%9B%BE.png) | ![图片预览时编辑页](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E6%97%B6%E7%BC%96%E8%BE%91%E9%A1%B5.png) |
 
 ### 设置
 
 | 设置页 |
 | --- |
-| ![设置页截图](https://raw.githubusercontent.com/Max-Null/dsh-capture/13053b669db4eea394e4682087024e435f64b63d/shot/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E6%88%AA%E5%9B%BE.png) |
+| ![设置页截图](https://raw.githubusercontent.com/Max-Null/dsh-capture/afc803e92cce0242e10735aa07d2efaa9769ad28/shot/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E6%88%AA%E5%9B%BE.png) |
 
 ## 双引擎
 

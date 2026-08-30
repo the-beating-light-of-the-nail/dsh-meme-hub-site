@@ -43,9 +43,9 @@
 > 真机效果，非概念图。左：应用皮肤后的 DSH 界面；右：设置里的「外观 / Theme」分节。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/screenshots/preview.png" alt="DSH 皮肤实机预览" width="46%"/>
+  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/screenshots/preview.png" alt="DSH 皮肤实机预览" width="46%"/>
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/screenshots/settings.png" alt="设置中的外观分节" width="46%"/>
+  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/screenshots/settings.png" alt="设置中的外观分节" width="46%"/>
 </p>
 
 ---
@@ -56,16 +56,16 @@
 
 <table>
   <tr>
-    <td align="center"><a href="docs/previews/abyss.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/abyss.png" width="230" alt="abyss"/></a><br/><b>abyss</b> · 沉静蓝</td>
-    <td align="center"><a href="docs/previews/aurora.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/aurora.png" width="230" alt="aurora"/></a><br/><b>aurora</b> · 极光青</td>
-    <td align="center"><a href="docs/previews/nebula.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/nebula.png" width="230" alt="nebula"/></a><br/><b>nebula</b> · 星云紫</td>
-    <td align="center"><a href="docs/previews/ember.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/ember.png" width="230" alt="ember"/></a><br/><b>ember</b> · 余烬橙</td>
+    <td align="center"><a href="docs/previews/abyss.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/abyss.png" width="230" alt="abyss"/></a><br/><b>abyss</b> · 沉静蓝</td>
+    <td align="center"><a href="docs/previews/aurora.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/aurora.png" width="230" alt="aurora"/></a><br/><b>aurora</b> · 极光青</td>
+    <td align="center"><a href="docs/previews/nebula.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/nebula.png" width="230" alt="nebula"/></a><br/><b>nebula</b> · 星云紫</td>
+    <td align="center"><a href="docs/previews/ember.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/ember.png" width="230" alt="ember"/></a><br/><b>ember</b> · 余烬橙</td>
   </tr>
   <tr>
-    <td align="center"><a href="docs/previews/midnight.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/midnight.png" width="230" alt="midnight"/></a><br/><b>midnight</b> · 午夜黑</td>
-    <td align="center"><a href="docs/previews/ivory.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/ivory.png" width="230" alt="ivory"/></a><br/><b>ivory</b> · iOS 扁平</td>
-    <td align="center"><a href="docs/previews/mist.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/mist.png" width="230" alt="mist"/></a><br/><b>mist</b> · 液态玻璃</td>
-    <td align="center"><a href="docs/previews/rose.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/previews/rose.png" width="230" alt="rose"/></a><br/><b>rose</b> · 蔷薇粉</td>
+    <td align="center"><a href="docs/previews/midnight.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/midnight.png" width="230" alt="midnight"/></a><br/><b>midnight</b> · 午夜黑</td>
+    <td align="center"><a href="docs/previews/ivory.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/ivory.png" width="230" alt="ivory"/></a><br/><b>ivory</b> · iOS 扁平</td>
+    <td align="center"><a href="docs/previews/mist.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/mist.png" width="230" alt="mist"/></a><br/><b>mist</b> · 液态玻璃</td>
+    <td align="center"><a href="docs/previews/rose.png"><img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/previews/rose.png" width="230" alt="rose"/></a><br/><b>rose</b> · 蔷薇粉</td>
   </tr>
 </table>
 
@@ -264,11 +264,14 @@ dsh web   # 重启后恢复官方外观
 
 | 项 | 值 |
 |------|-----|
-| DeepSeek Harness (`dsh`) | `0.1.0-rc.6`（peerDependencies 以 `^0.1.0-rc.6` 对齐） |
+| DeepSeek Harness (`dsh`) | **同一构建兼容两代宿主**：稳定版 `0.1.0-rc.6` / `0.1.1-rc.x`（peer 以 `^0.1.0-rc.6` 对齐）与 DSH master（`dsh-client-runtime` 拆分后的新模块表） |
 | Node.js | `>=18` |
 | 浏览器 | 现代 Chromium / WebKit（依赖原生 CSS 变量与 `matchMedia`） |
 
-> 升级 DSH 到新版本时，请同步更新 `package.json` 里的 peerDependencies。
+> **兼容机制**：客户端 bundle 对设置 store 的宿主模块做运行时双目标解析——先试 master 的
+> `@deepseek-ai/dsh-client-store`，查表落空（`missed the module table`）才回落稳定版的
+> `@deepseek-ai/dsh-client-runtime/client`，其余错误原样抛出。所有 peer 平台包均声明为
+> `optional`（由宿主运行时供给，npm 上无需安装）。
 
 ---
 
@@ -377,7 +380,7 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
 > 每天自动更新（GitHub Actions）。左轴：**累计下载量**（青色）；右轴：**Star 数**（紫色）——两个量级不同，因此使用独立的双纵轴。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d51d809114305420d016be7ba2732d46b419951d/docs/stats.png%3Fv%3D2" alt="dsh-dream-skin 每日 Star × 累计下载量成长曲线" width="900"/>
+  <img src="https://raw.githubusercontent.com/RevolutionLA/dsh-dream-skin/d068abecc6cf79b0ed8f1df43953c46d2fabf5fa/docs/stats.png%3Fv%3D3" alt="dsh-dream-skin 每日 Star × 累计下载量成长曲线" width="900"/>
 </p>
 
 *数据每 24 小时自动采集一次：下载量来自 [npm 官方 API](https://api.npmjs.org/downloads/range/2026-08-15:2026-12-31/dsh-dream-skin)，Star 来自 [GitHub API](https://github.com/RevolutionLA/dsh-dream-skin/stargazers)。*

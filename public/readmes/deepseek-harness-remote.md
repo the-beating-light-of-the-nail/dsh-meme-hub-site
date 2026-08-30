@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/2dab8f3cd0e66c17470ce30306c772eb1d0a912a/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -80,21 +80,17 @@ option is not available yet.
 Enable **Allow control of this device** in Remote settings to make the current computer
 available as a Host.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/images/setting.png" alt="Remote settings showing an authorized and online Host" width="520">
-</p>
-
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/2dab8f3cd0e66c17470ce30306c772eb1d0a912a/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/2dab8f3cd0e66c17470ce30306c772eb1d0a912a/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -105,9 +101,9 @@ Sign in to the Android client with your existing account, select an available co
 open a workspace, and continue the conversation with text or image prompts.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/94c7b72b84e230b8bf8b7da6f42de895352d55b0/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/2dab8f3cd0e66c17470ce30306c772eb1d0a912a/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/2dab8f3cd0e66c17470ce30306c772eb1d0a912a/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/2dab8f3cd0e66c17470ce30306c772eb1d0a912a/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -126,6 +122,24 @@ It switches the client to the selected Host's native Harness API, so the origina
 tools, and permission flow remain on that computer. Every settings namespace currently
 registered by the Host can also be configured remotely through the official Harness settings
 API. Credential values remain write-only, and Host-local document/open actions are never exposed.
+
+## End-to-end encryption
+
+Harness business traffic is encrypted on the Client and decrypted only by the selected Host using
+the fixed `Noise_IK_25519_ChaChaPoly_SHA256` suite. Account membership and locally pinned device
+identity keys must both authorize a connection. The service can route connections and observe
+network metadata, but it cannot read session messages, prompts, tool output, workspace paths, or
+File Viewer content. See [End-to-end encryption](docs/end-to-end-encryption.md) for the handshake,
+key lifecycle, visible metadata, replay protection, and security limits.
+
+## Network and transport
+
+The Host opens outbound connections only; it does not listen on a public port or require router
+port forwarding. Remote negotiates `LAN -> P2P -> TURN -> Relay`, falling back to the encrypted
+WebSocket Relay when WebRTC is unavailable or cannot connect. Every path carries the same Noise
+ciphertext and keeps the same Host/Client identity boundary. See [Network and transport](docs/network.md)
+for the topology, control and data planes, NAT behavior, fallback, reconnect semantics, and current
+validation status.
 
 ## Security
 
@@ -159,13 +173,15 @@ connections are rejected before switching the native UI or mutating a Workspace.
 
 - [Plugin guide](packages/plugin/README.md)
 - [Documentation index](docs/README.md)
+- [End-to-end encryption](docs/end-to-end-encryption.md)
+- [Network and transport](docs/network.md)
 - [Remote Protocol](docs/protocol.md)
 - [Development status and roadmap](TODO.md)
 
 ## Links
 
-- Community acknowledgement: this project recognizes and supports the [LINUX DO](https://linux.do/) community.
-- Related project by the author: [Cyber Liu Kanshan](https://kanshan.r2049.cn/)
+- Friendly link: [LINUX DO](https://linux.do/)
+- Friendly link: [Cyber Liu Kanshan](https://kanshan.r2049.cn/)
 
 ## Project status and trademarks
 

@@ -5,7 +5,7 @@
 > 进化永不停歇。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/9968de7de81e2aaccb78fa4ec7a42a81415d1c96/docs/assets/kanban.png" alt="AutoEvo" width="420">
+  <img src="https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/0c25f03923a2e4a140afbbdd7ff9307e831f24ec/docs/assets/kanban.png" alt="AutoEvo" width="420">
 </p>
 
 `dsh-plugin-autoevo` 是 DeepSeek Harness（DSH）的能力复用工作流插件。在 **能力进化** preset 中，任何能力需求都先走 Search-first：先查本地与远程候选，能复用就不新建；候选只差一点时，可在托管源码中修改、重审后再安装。每个被采用的能力都有可检查的结果回执。
@@ -28,7 +28,7 @@
 ## 安装
 
 ```powershell
-npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-plugin-autoevo#v1.0.0
+npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-plugin-autoevo#v1.2.0
 ```
 
 - `--profile web` 换成你实际使用的 profile；命令必须带 `@deepseek-ai/` 前缀（npm 上无 scoped 的 `dsh` 是无关项目）。
@@ -47,7 +47,7 @@ npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-pl
 
 完整流程见[使用指南 §3](docs/user-guide.md#3-第一次完整使用)，真实运行的逐步截图见 [`example/README.md`](example/README.md)。
 
-[![AutoEvo 主工作流：Search-first 与两道确认门](https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/9968de7de81e2aaccb78fa4ec7a42a81415d1c96/docs/assets/flowcharts/autoevo-main-workflow.svg)](docs/assets/flowcharts/autoevo-main-workflow.html)
+[![AutoEvo 主工作流：Search-first 与两道确认门](https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/0c25f03923a2e4a140afbbdd7ff9307e831f24ec/docs/assets/flowcharts/autoevo-main-workflow.svg)](docs/assets/flowcharts/autoevo-main-workflow.html)
 
 ## 怎样理解结果
 
@@ -62,9 +62,11 @@ npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-pl
 
 版本链工具：`capability_versions` 列出版本，`capability_rollback` 回滚到历史版本，`capability_adopt` 登记手工安装的插件，`capability_updates` 只读检查上游更新。详见[使用指南 §4.6](docs/user-guide.md#46-版本领养与上游更新)。
 
+普通工作流、项目权限、插件/Profile 或 DSH 宿主故障仍然阻止任务完成时，AutoEvo 还可以提出一次完整权限故障修理。用户在新的消息中明确确认后，Host 会启动临时 `standard` Agent，应用官方 `danger-full-access` 预设并取消逐条命令审批；它可以跨项目、插件、Profile 和宿主环境自主施工，不受预定义修复动作限制。详见[使用指南](docs/user-guide.md#完整权限故障修理模式)。
+
 ## 安全边界
 
-AutoEvo 负责工作流、警告和证据记录；权限、sandbox 与 approval 的强制执行属于 DSH Core，AutoEvo 不能绕过。发现、审查和诊断默认只读；安装的第三方代码最终以当前用户权限运行。完整信任边界见[安全模型](docs/security.md)。
+AutoEvo 负责工作流、警告和证据记录；权限、sandbox 与 approval 的强制执行属于 DSH Core。默认流程保持只读或受管边界；完整权限故障修理也通过 DSH Core 的官方权限预设实施，并要求新的用户确认。安装或修理的代码最终以当前用户权限运行。完整信任边界见[安全模型](docs/security.md)。
 
 ## 开发
 

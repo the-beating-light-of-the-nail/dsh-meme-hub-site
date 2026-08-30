@@ -1,6 +1,6 @@
 # dsh-node-appearance
 
-本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`。
+本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-quick-toolbar` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui` · `dsh-achievements`。
 
 This plugin belongs to the **`@max-null/*` family** — a set of plugins that together form the **[SSID (思灵 · Seek Soul in Darkness)](https://github.com/Max-Null/seek-soul-in-darkness)** desktop experience.
 
@@ -17,7 +17,7 @@ This plugin belongs to the **`@max-null/*` family** — a set of plugins that to
 
 | 会话节点着色 | 设置卡片 |
 |---|---|
-| ![会话节点着色](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/0e6e803e6f27886aded5a6bda00f6fe65500e0da/docs/shots/%E4%BC%9A%E8%AF%9D%E9%9D%A2%E6%9D%BF%E6%88%AA%E5%9B%BE.png) | ![设置卡片](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/0e6e803e6f27886aded5a6bda00f6fe65500e0da/docs/shots/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E6%88%AA%E5%9B%BE.png) |
+| ![会话节点着色](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/fdbd90b55e83b47480067f52a23b95f26021dcfb/docs/shots/%E4%BC%9A%E8%AF%9D%E9%9D%A2%E6%9D%BF%E6%88%AA%E5%9B%BE.png) | ![设置卡片](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/fdbd90b55e83b47480067f52a23b95f26021dcfb/docs/shots/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E6%88%AA%E5%9B%BE.png) |
 
 ## 安装
 

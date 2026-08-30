@@ -16,7 +16,7 @@ A collaborative kanban board where you and your AI agent plan, organize, and shi
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/alpacachen/dsh-kanban/a807dd645ceec3119e1ebc4c6d4947d28535b3b0/image.png" alt="dsh-kanban board inside DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/alpacachen/dsh-kanban/7cf1588b7b96ab58b0486dc4726795d2969cb4d8/image.png" alt="dsh-kanban board inside DeepSeek Harness" width="100%">
 </p>
 
 ## ✨ From conversation to action

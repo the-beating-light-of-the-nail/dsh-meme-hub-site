@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/cf898cdca0dfc94325ae84ed1c2b8764cedad34b/docs/banner.jpg" alt="DSH Pocket" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/fb2282e1987d830392b55cebf95df7d392352e7b/docs/banner.jpg" alt="DSH Pocket" width="100%">
 </p>
 
 <h1 align="center">DSH Pocket</h1>
@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/dsh-pocket"><img alt="npm" src="https://img.shields.io/npm/v/dsh-pocket?color=4d6bfe&label=npm"></a>
   <a href="https://www.npmjs.com/package/dsh-pocket"><img alt="downloads" src="https://img.shields.io/npm/dm/dsh-pocket?color=4d6bfe"></a>
-  <a href="https://github.com/shaobeichen/dsh-pocket/actions"><img alt="CI" src="https://github.com/shaobeichen/dsh-pocket/actions/workflows/npm-publish.yml/badge.svg"></a>
+  <a href="https://github.com/shaobeichen/dsh-pocket/actions"><img alt="CI" src="https://github.com/shaobeichen/dsh-pocket/actions/workflows/release.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-GPL--2.0-red.svg"></a>
   <a href="https://github.com/shaobeichen/dsh-pocket/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/shaobeichen/dsh-pocket"></a>
   <a href="https://awesome-dsh-plugin.com/zh/"><img alt="Awesome DSH Plugin" src="https://awesome-dsh-plugin.com/badge.svg"></a>
@@ -34,7 +34,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 实际效果——手机上的界面就是电脑上的界面，实时同步：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/cf898cdca0dfc94325ae84ed1c2b8764cedad34b/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/fb2282e1987d830392b55cebf95df7d392352e7b/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
 </p>
 
 ## ✨ 特性
@@ -60,7 +60,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 **入口在哪**：安装完成并重启 `dsh web` 后，打开 **设置**，左侧边栏就能看到 **「手机访问」** 入口（和「通用设置」「模型」同级）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/cf898cdca0dfc94325ae84ed1c2b8764cedad34b/docs/entry.jpg" alt="手机访问入口" width="70%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/fb2282e1987d830392b55cebf95df7d392352e7b/docs/entry.jpg" alt="手机访问入口" width="70%">
 </p>
 
 **前提**：电脑上已装好 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。如果终端提示 `dsh: command not found`（找不到 dsh 命令），先安装：
@@ -132,6 +132,9 @@ npx @deepseek-ai/dsh web
 | `ERR_PNPM_ADDING_TO_ROOT` | pnpm 9 对 workspace 根的限制：安装/更新命令**末尾加 `-w`**（`--workspace-root`） |
 | 装完/更新了但界面没变化 | **必须重启 `dsh web`** 才生效；运行中的进程仍加载旧代码 |
 | `listen EADDRINUSE ... :3081` | 旧 dsh-pocket 进程还占着端口：macOS/Linux `lsof -ti :3081 \| xargs kill -9`；Windows `netstat -ano \| findstr :3081`（找 LISTENING 的 PID）→ `taskkill /PID <PID> /F`，后重试 |
+| 想换端口（issue #70） | 插件模式：在 `$DSH_HOME/dsh-pocket/settings.json` 写 `"proxyPort": 3082` 后重启 `dsh web`。CLI 模式：`dsh-pocket --port 3082`。端口被占会报 `EADDRINUSE`，杀掉旧进程或换一个端口 |
+| 给访客一个临时 PIN（issue #69） | 设置页「临时访问 PIN」区块 → 选公网/局域网 + 时长（1h/24h/7d） + 备注 → 生成。把 8 位 PIN + 入口 URL 一起发给对方；过期自动作废，也能手动撤销。临时 PIN 与主 PIN 共用速率限制 |
+| Linux 服务器装不上 cloudflared（issue #45） | 远程 Linux 国内/企业网下所有 CDN 源（GitHub/ghproxy/gh.ddlc/gh-proxy）都连不上时：在服务器上手动装 `cloudflared`（如 `apt install cloudflared`、`dnf install cloudflared`、或下载 tgz 解压到任意目录），然后在 `$DSH_HOME/dsh-pocket/settings.json` 加 `"cloudflaredPath": "/path/to/cloudflared"`，重启 `dsh web` 后插件直接调用它，**不再走自动下载** |
 | 版本停在 0.x 升不上去 | `^0.x` 范围不允许升到 1.x：更新用 `--latest`（`dsh plugin --profile web update dsh-pocket --latest -w`） |
 | 公网 `error 1033` | 见下方「公网隧道常见问题」——多半是本机代理/VPN（Clash 等 TUN 模式）掐断了隧道 |
 | 点「重启 dsh web」后页面提示进程在后台运行 | 自重启的新进程是 detached 后台进程（不挂终端），是页内更新的标准做法；停止它：macOS/Linux `lsof -ti :3080 \| xargs kill -9`；Windows `netstat -ano \| findstr :3080` → `taskkill /PID <PID> /F`（日志在 `$DSH_HOME` 下 `dsh-pocket-restart-*.log`） |
@@ -192,7 +195,7 @@ npx @deepseek-ai/dsh web
 ```sh
 npm install
 node client/build.mjs   # 改 client/ 后重新打包
-npm test                # 代理 / 认证 / 压缩 / 隧道 / 服务 / RPC / 设置（91 测试）
+npm test                # 代理 / 认证 / 压缩 / 隧道 / 服务 / RPC / 设置（109 测试）
 ```
 
 **改完想在本机先试？** 不用发版：把插件换成指向本地仓库的软链，重启 dsh web 就是本地代码。完整步骤（含怎么换回 npm 官方版本）见 [LOCAL-DEV.md](./LOCAL-DEV.md)。

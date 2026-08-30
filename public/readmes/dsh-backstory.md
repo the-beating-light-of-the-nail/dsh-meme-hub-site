@@ -8,6 +8,8 @@
 
 > Ask any line of code its **backstory** — *what it does*, and *why it's here*.
 
+![dsh-backstory demo — each line traced to the commit that explains why it's here](https://raw.githubusercontent.com/MeghanBao/dsh-backstory/280c0d758c0294f53f2c156c26978dc0a47d126c/demo.gif)
+
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`) plugin.
 `git blame` tells you *who* wrote a line and *when*. `dsh-backstory` adds the part
 that actually matters when you're staring at unfamiliar code: **what it does and
@@ -59,24 +61,56 @@ source lines back.
 
 ## Install
 
+Two ways to run the same engine.
+
+### As an MCP server — any MCP client (Claude Code, Cursor, …)
+
+No DeepSeek Harness required. Point your client at the `backstory-mcp` binary,
+which speaks the Model Context Protocol over stdio and exposes the `backstory`
+and `backstory_remember` tools. For Claude Code:
+
 ```sh
-dsh plugin add dsh-backstory      # once published to npm
+claude mcp add backstory -- npx -y dsh-backstory
 ```
 
-When installed, the dsh host applies the bundle patch declared in
-`package.json` (`dsh.bundle.patch` → [`cordis.patch.yml`](cordis.patch.yml)),
-which inserts the plugin into the running composition. No extra wiring needed.
+Or wire it into any client's MCP config directly:
 
-Or run from source for local development:
+```json
+{
+  "mcpServers": {
+    "backstory": { "command": "npx", "args": ["-y", "dsh-backstory"] }
+  }
+}
+```
+
+Run it from the repo whose history you want to query — the server reads git and
+the `.dsh/` ledger relative to its working directory. The standalone server uses
+the git-native provenance (commit trailers + the committed ledger); the live
+per-turn session origin is exclusive to the dsh plugin below.
+
+### As a DeepSeek Harness plugin
+
+```sh
+dsh plugin add dsh-backstory
+```
+
+The dsh host applies the bundle patch declared in `package.json`
+(`dsh.bundle.patch` → [`cordis.patch.yml`](cordis.patch.yml)), which inserts the
+plugin into the running composition. No extra wiring needed.
+
+### From source (local development)
 
 ```sh
 git clone https://github.com/MeghanBao/dsh-backstory.git
 cd dsh-backstory
+npm install
 npm run typecheck   # tsc --noEmit
 npm test            # blame parser, provenance engine, git-blame e2e
+npm run build       # emit the MCP server to dist/ (backstory-mcp bin)
+npm run mcp         # run the MCP server over stdio from source
 ```
 
-The standalone [`cordis.yml`](cordis.yml) loads just this plugin for local
+The standalone [`cordis.yml`](cordis.yml) loads just the dsh plugin for local
 iteration.
 
 ## Usage
@@ -181,6 +215,10 @@ Or disable it everywhere with an env var: `DSH_BACKSTORY_DISABLE=1`.
 - **v0.7** — **incremental explanations**: cache per-line explanations by content
   hash (`backstory_remember` → `.dsh/backstory-notes.jsonl`); only re-explain
   lines that changed. ✅
+- **v0.8** — **standalone MCP server** (`backstory-mcp`): the same engine over the
+  Model Context Protocol, so any MCP client (Claude Code, Cursor, …) gets the
+  `backstory` / `backstory_remember` tools with no dsh required. Reuses the
+  git-native core; compiled to `dist/` and published to npm. ✅
 
 ## Status
 

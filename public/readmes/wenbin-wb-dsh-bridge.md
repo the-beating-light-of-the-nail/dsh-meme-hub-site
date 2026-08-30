@@ -1,7 +1,7 @@
 # dsh-bridge
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/banner.jpg" alt="dsh-bridge banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/banner.jpg" alt="dsh-bridge banner" width="100%" />
 </p>
 
 <p align="center">
@@ -187,7 +187,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   <summary>📱 点击展开外部访问安全认证登录页截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/remote-auth-login.jpg" width="600" alt="外部访问安全认证登录页" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/remote-auth-login.jpg" width="600" alt="外部访问安全认证登录页" />
   </p>
 </details>
 
@@ -202,7 +202,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   <summary>🖥️ 点击展开远程设备管理控制台防篡改锁定截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/admin-lock-screen.jpg" width="600" alt="管理控制台防篡改锁定" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/admin-lock-screen.jpg" width="600" alt="管理控制台防篡改锁定" />
   </p>
 </details>
 
@@ -215,7 +215,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   插件将在毫秒级自动清空密码与策略并删除标记，瞬间恢复初始免密状态；
 - **全界面忘记密码指引**：访客登录页与锁屏页均提供 `❓ 忘记密码？` 救助展开卡片。
 
-![安全认证配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/security-auth-config.jpg)
+![安全认证配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/security-auth-config.jpg)
 
 ---
 
@@ -232,25 +232,25 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 #### 对话与会话管理体验
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/remote-web-mobile.jpg" width="22%" alt="移动端新会话主页" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/remote-web-mobile.jpg" width="22%" alt="移动端新会话主页" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-chat.jpg" width="22%" alt="移动端已有对话交互" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-chat.jpg" width="22%" alt="移动端已有对话交互" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-drawer.jpg" width="22%" alt="移动端原生抽屉侧边栏" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-drawer.jpg" width="22%" alt="移动端原生抽屉侧边栏" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-workspace-picker.jpg" width="22%" alt="移动端远程工作区选择器" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-workspace-picker.jpg" width="22%" alt="移动端远程工作区选择器" />
 </p>
 
 #### 远程访问与插件设置中心
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-settings-lan.jpg" width="22%" alt="局域网访问控制台" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-lan.jpg" width="22%" alt="局域网访问控制台" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-settings-tunnel.jpg" width="22%" alt="公网隧道配置" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-tunnel.jpg" width="22%" alt="公网隧道配置" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-settings-im.jpg" width="22%" alt="IM 机器人矩阵" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-im.jpg" width="22%" alt="IM 机器人矩阵" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/mobile-settings-security.jpg" width="22%" alt="全局访问安全认证" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-security.jpg" width="22%" alt="全局访问安全认证" />
 </p>
 
 ---
@@ -259,7 +259,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 
 插件启动后自动开启，无需任何配置。打开设置页「远程访问」，用手机扫描二维码即可访问。
 
-![局域网扫码访问](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/lan-access.jpg)
+![局域网扫码访问](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/lan-access.jpg)
 
 ### Cloudflare 隧道
 
@@ -275,7 +275,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   2. 展开卡片底部的 **「⚙️ 高级配置：固定域名 (Cloudflare Token)」**，填入自定义域名与 Tunnel Token 并保存；
   3. 勾选 **「随 DSH 启动自动开启」**，每次 DSH 重启即可自动恢复隧道，**URL 永久固定不变**！
 
-![公网隧道配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/tunnel-access.jpg)
+![公网隧道配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/tunnel-access.jpg)
 
 ### 自建隧道
 
@@ -291,13 +291,13 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 
 基于腾讯官方开放的微信 ClawBot 插件功能（底层 iLink Bot API），扫码登录微信个人号后，即可在微信里直接与你的 DeepSeek Harness agent 对话、控制和审批，全程走腾讯官方服务器，无需公网与隧道。
 
-![微信 Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/wechat-bot-config.jpg)
+![微信 Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/wechat-bot-config.jpg)
 
 <details>
   <summary>📱 点击展开手机微信对话与交互截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/wechat-chat.jpg" width="380" alt="微信对话示例" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/wechat-chat.jpg" width="380" alt="微信对话示例" />
   </p>
 </details>
 
@@ -351,14 +351,14 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 
 接入 QQ 官方机器人，支持单聊/群聊（群聊需 @机器人）、流式输出、Markdown 渲染、消息按钮、富媒体消息（图片/文件）。走腾讯官方 QQ Bot OpenAPI v2，WebSocket 实时推送，Token 自动刷新，断线自动重连。
 
-![QQ Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/qq-bot-config.jpg)
+![QQ Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/qq-bot-config.jpg)
 
 <details>
   <summary>📱 点击展开手机 QQ 单聊与群聊对话截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/qq-chat.jpg" width="48%" alt="QQ 单聊对话" />
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/qq-group.jpg" width="48%" alt="QQ 群聊对话" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/qq-chat.jpg" width="48%" alt="QQ 单聊对话" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/qq-group.jpg" width="48%" alt="QQ 群聊对话" />
   </p>
 </details>
 
@@ -407,13 +407,13 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 
 接入飞书开放平台企业自建应用，支持单聊与群聊（群聊需 @机器人）。走飞书官方最新 WebSocket 长连接协议，无需公网 IP、无需域名、免配置 Webhook。
 
-![飞书 Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/feishu-bot-config.jpg)
+![飞书 Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/feishu-bot-config.jpg)
 
 <details>
   <summary>📱 点击展开手机飞书对话与卡片审批截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/feishu-chat.jpg" width="380" alt="飞书对话与卡片审批示例" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/feishu-chat.jpg" width="380" alt="飞书对话与卡片审批示例" />
   </p>
 </details>
 
@@ -456,7 +456,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 
 接入 Telegram 官方 Bot API，单聊与群聊实时交互。采用官方 Long Polling（长轮询）机制，**无需公网 IP / 免 Webhook**，内置**零依赖 HTTP/HTTPS CONNECT 代理隧道**，国内网络即开即连。
 
-![Telegram Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/0c53efec724b51232b839413e124bf84f0a40b12/docs/screenshots/telegram-bot-config.jpg)
+![Telegram Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/telegram-bot-config.jpg)
 
 **功能亮点**
 

@@ -13,6 +13,8 @@ This plugin does not provide proxy functionality. It does not create a proxy ser
 - Routes foreground and background Bash/PowerShell subprocesses, including nested `git`, `curl`, `npm`, and `pnpm` commands.
 - Applies provider-specific routes to LLM streams while isolating concurrent direct and proxied requests.
 - Persists configuration through the official `proxy-routing` settings namespace in `$DSH_HOME/settings.yaml` and applies changes without restarting DSH.
+- Adds a compact `Settings → General → Network Proxy` row when the Web client is available; it edits the official namespace, tests a supplied endpoint, and shows discovered candidates without enabling them.
+- In Full Access sessions, `net_proxy_discover` can proactively test proxy environment variables and a bounded set of loopback ports; restricted sessions fail closed and ask the user for `protocol`/`host`/`port`.
 - Requires human approval for enabling or disabling a proxy route (except under the Full Access permission tier).
 
 ## Pain Points and Use Cases
@@ -35,7 +37,31 @@ This plugin does not provide proxy functionality. It does not create a proxy ser
 
 ## Install
 
-For development or local use, add the plugin directory to the profile's `cordis.patch.yml` using an absolute path:
+Version `0.4.2` is published to npm and is also available as a prebuilt tarball in the [GitHub Release](https://github.com/chenjiyan2001/dsh-proxy-routing/releases/tag/v0.4.2). Choose the installation path that matches how you run the plugin.
+
+### Install through DSH (recommended)
+
+Install the plugin into the `web` profile:
+
+```bash
+dsh plugin --profile web add dsh-proxy-routing@0.4.2
+```
+
+Replace `web` with another profile name when needed. This command updates the profile's package manifest and bundle list so DSH can load the plugin. Restart a running DSH process once after installation so it composes the new entry and registers the `net_proxy_*` tools. The DSH plugin command requires `pnpm` to be available on `PATH`.
+
+### Install with npm
+
+Install the published package into an npm-managed project:
+
+```bash
+npm install dsh-proxy-routing@0.4.2
+```
+
+This makes the package available as a Node dependency. Installing it with npm alone does not add the plugin to a DSH profile or its bundle list; for a normal DSH installation, use the DSH command above. The npm path is for a host application or custom profile that manages the package itself.
+
+### Install from a local checkout (development only)
+
+Add the plugin directory to the profile's `cordis.patch.yml` using an absolute path:
 
 ```yaml
 - insert:
@@ -43,13 +69,26 @@ For development or local use, add the plugin directory to the profile's `cordis.
       name: '/path/to/dsh-proxy-routing'
 ```
 
-After release:
+### First-use setup
 
-```bash
-dsh plugin --profile web add github:<owner>/dsh-proxy-routing
-```
+Installation intentionally does not enable a proxy. The plugin only connects to an HTTP or SOCKS5 proxy that is already running; it never starts one or silently guesses an endpoint.
 
-Restart DSH after installation so the plugin can load and register the `net_proxy_*` tools.
+- In a Full Access Agent session, call `net_proxy_discover`. It checks proxy environment variables and a bounded set of common loopback ports. Successful candidates are reported only; confirm the candidate's purpose before enabling it.
+- In a restricted Agent session, discovery is refused by design. Ask the user for an existing proxy's `protocol`, `host`, and `port`, then call `net_proxy_probe`.
+- In Web, use `Settings → General → Network Proxy`. `Discover local proxy` and `Test connection` are read-only diagnostics; selecting or saving a candidate does not enable routing.
+- After a successful probe, request `net_proxy_enable` with the endpoint. Full Access applies it without a prompt; lower permission tiers require human approval.
+- Use `net_proxy_status` to verify the effective route and `net_proxy_disable` to return the Agent to direct mode.
+
+For a manual setup, add the endpoint and a profile route to the `proxy-routing` YAML shown below. The Web diagnostics use the official loopback Connection RPC and never expose proxy credentials.
+
+### Restart and hot reload
+
+There are four separate mechanisms:
+
+- **Install or remove a plugin:** `dsh plugin ... add/remove` edits the profile files. The already-running process does not rescan those files or rebuild its Cordis loader tree, so a restart is required for the first registration or removal.
+- **Plugin host code:** official Cordis module HMR supports unloading and re-applying plugin code when the HMR service is enabled, its `root` includes the source, `timer` and loader internals are available, and the development host is started with the required Node internals. The normal Web profile currently overrides the shared HMR row with `disabled: true` because that Web reload lifecycle is still marked untested; this is a Web composition decision, not a general plugin limitation.
+- **Plugin client code:** the Web profile keeps `@deepseek-ai/dsh-client-hmr` mounted. With `pnpm run dev:web` running from the same DSH checkout, changes to this package's `lib/client.js` can be delivered to the browser module graph without a page refresh. A normal installed package without the watcher still requires rebuilding the client artifact and refreshing.
+- **Settings YAML:** the official settings-file provider watches `$DSH_HOME/settings.yaml`. Once the plugin is loaded, changes to the `proxy-routing` section are applied at runtime without restarting DSH.
 
 ## Configuration
 
@@ -100,13 +139,13 @@ proxy-routing:
 
 Fixed guidance for an unconfigured endpoint:
 
-> 代理端点未配置：请运行 `net_proxy_enable` 并提供 `protocol`/`host`/`port`，或在 Web 设置（Settings → Network Proxy）中配置代理地址。
+> Proxy endpoint is not configured: in Full Access call `net_proxy_discover`; in a restricted session ask the user for `protocol`/`host`/`port`, call `net_proxy_probe`, then request `net_proxy_enable`.
 
 ## Agent Installation Guide
 
 The Agent only discovers and requests use of an existing proxy; it does not start a proxy service. Recommended flow:
 
-1. Confirm that an accessible HTTP or SOCKS5 proxy already exists and obtain its `protocol`, `host`, and `port`.
+1. In Full Access, call `net_proxy_discover`; it checks proxy environment variables and a bounded set of loopback candidates. In a restricted session, do not scan; ask the user for `protocol`, `host`, and `port`.
 2. When an external request, fetch, or download fails, call `net_proxy_status` and check whether `default` is configured.
 3. Call `net_proxy_probe` to test the current or temporary endpoint. Do not invent an address when no endpoint is configured.
 4. Request `net_proxy_enable` with the endpoint details. Under Full Access it takes effect immediately; under lower tiers, wait for human approval before retrying.
@@ -119,7 +158,7 @@ The Agent only discovers and requests use of an existing proxy; it does not star
 | Full Access (`danger-full-access`) | No user prompt; takes effect immediately |
 | Lower tiers (`read-only` / `workspace-write`, etc.) | Requires human approval before taking effect |
 
-The read-only tools `net_proxy_status` / `net_proxy_probe` never require approval at any tier.
+The read-only tools `net_proxy_status` / `net_proxy_probe` / `net_proxy_discover` never require approval at any tier.
 
 Available tools:
 
@@ -127,6 +166,7 @@ Available tools:
 |---|---|---|
 | `net_proxy_status` | Read-only | Inspect revision, endpoint configuration, effective Agent route, provider overrides, fetch ownership, and persistent-shell generation. `verify` optionally probes connectivity. |
 | `net_proxy_probe` | Read-only | Test the current or supplied endpoint without changing configuration. |
+| `net_proxy_discover` | Full Access only | Probe environment proxy variables and a bounded set of loopback candidates; reports successful candidates only and never enables or persists a route. |
 | `net_proxy_enable` | Required (except Full Access) | Point the Agent route at `default`; may update endpoint fields and persist the change. |
 | `net_proxy_disable` | Required (except Full Access) | Restore the Agent route to direct; provider overrides and endpoint configuration remain. |
 
@@ -135,10 +175,13 @@ Available tools:
 ```bash
 pnpm install
 pnpm test
+pnpm run build:client
 pnpm run probe
 ```
 
-Tests cover HTTP/CONNECT/SOCKS5 transport, timeouts, backpressure, `NO_PROXY`, redirects, probing, approval gates, settings-schema validation and YAML hot reload, compensating settings transactions, fetch/LLM/shell isolation, HMR/dispose idempotency, and real subprocess inheritance.
+`pnpm run build:client` emits `lib/client.js`, the Web module-loader artifact. For client HMR, run `pnpm run dev:web` from the same DSH checkout while developing; otherwise rebuild the client artifact and refresh the injected DSH Web page.
+
+Tests cover HTTP/CONNECT/SOCKS5 transport, timeouts, backpressure, `NO_PROXY`, redirects, probing and bounded discovery, approval gates, settings-schema validation and YAML hot reload, loopback RPC validation, compensating settings transactions, fetch/LLM/shell isolation, HMR/dispose idempotency, and real subprocess inheritance.
 
 ## References
 

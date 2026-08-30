@@ -9,6 +9,8 @@ Declutter the DeepSeek Harness settings panel: with more plugins installed, the 
 ## Features
 
 - **One group row, right under the system settings** — `通用设置 / Models / Plugins / Agent presets` stay flat at the top; everything else (plugins, extensions, extra pages) folds under `Plugin entries (N) ▾`.
+- **Instant search** — a search box pinned at the top of the settings nav filters every entry by name (and plugin id) as you type; matches are highlighted and their groups are auto-expanded, and clearing the search restores the previous fold/group layout.
+
 - **Scrollable nav** — when there are many entries, the settings sidebar scrolls instead of clipping entries with no scrollbar.
 - **Fold toggle** — a switch at the top of the **Groups** page (`折叠第三方插件入口`) turns the whole folding behavior on/off: off restores the plain native nav with every entry flat.
 - **Bookmark-style custom groups** — create named groups (like bookmark folders), move any settings entry into a group, and expand/collapse each group in the nav independently. A **Groups** page in the Settings panel manages everything: create, rename, delete groups, and move entries in/out.
@@ -18,6 +20,7 @@ Declutter the DeepSeek Harness settings panel: with more plugins installed, the 
 - **Current section never disappears** — the active plugin page stays visible even while folded.
 - **Auto classification** — a mode switch (AI auto / manual): with AI mode on, newly installed plugins are grouped automatically through three fallback layers — **third-party market categories → local name-based heuristic rules → your AI model** — so plugins are grouped even when the market misses them and no AI is configured.
 - **AI model config made easy** — model dropdown with presets (DeepSeek / OpenAI / Qwen / GLM / Kimi / Doubao): picking a preset model auto-fills its provider API URL, the URL+key auto-fetch the models available on your account, a **Test config** button verifies the whole setup with one request, and everything is **saved automatically on input** (no save button required).
+- **Idle plugin auto-pruner** — a new switch on the **Groups** page scans each plugin's tool-call history, flags plugins unused beyond an idle threshold (default 30 days), and lets you **preview and one-click clean** them (with a confirmation step). Core DSH, this plugin and the core UI bundle are auto-protected and never listed; plugins without detectable tools can still be checked manually.
 - **Localized** — follows the UI locale (中文 / English).
 
 ## Install

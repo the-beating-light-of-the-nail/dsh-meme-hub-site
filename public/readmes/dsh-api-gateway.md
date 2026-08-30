@@ -11,7 +11,7 @@ dsh plugin --profile web add github:litestartup-com/dsh-api-gateway
 ## Features
 
 - **REST + SSE**: 9 endpoints; token-level streaming (`assistant/chunk`), server closes the stream at `turn_end`
-- **GUI settings card**: Settings → Plugins → Configurable → **dsh-api-gw** (collapsed by default, discloses via the chevron; status, soft on/off, key rotation)
+- **GUI settings card**: Settings → Plugins → Configurable → **dsh-api-gw** (collapsed by default, discloses via the chevron; status, soft on/off, key rotation). English by default, Chinese when the page or browser asks for it
 - **Workspace membership**: API sessions land in real workspaces and show grouped in the sidebar, never under "ungrouped"
 - **Session discovery & adoption**: list all sessions, read any session's full history (read-only), and adopt a GUI session to keep driving it over the API — live co-driving or cold resume with full context
 - **Reasoning split**: replies separate `text` (visible answer) from `reasoning` (thinking), never concatenated
@@ -213,8 +213,8 @@ Choose the SDK for disposable Python tasks; choose this gateway for everything t
 The gateway publishes three events on the Cordis event bus; other host plugins subscribe with `ctx.on(...)` (listeners are fiber-owned and can never break the gateway):
 
 - `gateway/session-created` → `{ sessionId, mode: 'created' | 'live' | 'resumed', workspace, cwd }`
-- `gateway/message` → `{ sessionId, messageId, text }` (on each committed assistant reply)
-- `gateway/turn-end` → `{ sessionId, turn, reason, detail }`
+- `gateway/message` → `{ sessionId, messageId, text, usage }` (on each committed assistant reply; `usage` is the step's token accounting or `null`)
+- `gateway/turn-end` → `{ sessionId, turn, reason, detail, usage, provider, model }` (`usage` is the turn total summed over its steps, `null` when no step reported accounting)
 
 Typical uses: audit persistence, external alerting, forwarding to IM/webhooks, custom rate-limit sidecars.
 

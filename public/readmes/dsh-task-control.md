@@ -5,10 +5,12 @@
 [English](README.en.md) | 中文
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/p2coder/dsh-task-control/7369ba718550299cc98834664318c830de81db80/fig/dsh-task-control-hero-v2.png" alt="dsh-task-control 鲸鱼娘宣传图" width="720">
+  <img src="https://raw.githubusercontent.com/p2coder/dsh-task-control/c9caf481d907fd2e41f2c4ddb4ab68386eee3843/fig/dsh-task-control-hero-v2.png" alt="dsh-task-control 鲸鱼娘宣传图" width="720">
 </p>
 
 为 DSH Web 增加任务**暂停、恢复和取消**能力。支持安全暂停与强制暂停，恢复时从暂停点继续，不重复已完成的工作。
+
+当前适配 DSH v0.1.1-rc.2（最新版本）。
 
 ## 安装
 
@@ -30,7 +32,7 @@ dsh plugin --profile web add github:p2coder/dsh-task-control
 
 灰色按钮表示当前不可用，黑色按钮表示可点击。
 
-![暂停、恢复、取消按钮的位置与状态](https://raw.githubusercontent.com/p2coder/dsh-task-control/7369ba718550299cc98834664318c830de81db80/fig/button%20illustrate.png)
+![暂停、恢复、取消按钮的位置与状态](https://raw.githubusercontent.com/p2coder/dsh-task-control/c9caf481d907fd2e41f2c4ddb4ab68386eee3843/fig/button%20illustrate.png)
 
 ## 暂停模式
 
@@ -42,7 +44,7 @@ dsh plugin --profile web add github:p2coder/dsh-task-control
 
 在「设置 → 任务控制」中修改默认模式，保存后立即生效：
 
-![任务暂停粒度配置步骤](https://raw.githubusercontent.com/p2coder/dsh-task-control/7369ba718550299cc98834664318c830de81db80/fig/Task%20pause%20granularity%20configuration.png)
+![任务暂停粒度配置步骤](https://raw.githubusercontent.com/p2coder/dsh-task-control/c9caf481d907fd2e41f2c4ddb4ab68386eee3843/fig/Task%20pause%20granularity%20configuration.png)
 
 ## 命令
 
@@ -57,7 +59,7 @@ dsh plugin --profile web add github:p2coder/dsh-task-control
 | `/resume confirm skip` | 跳过该工具后恢复 |
 | `/cancel` | 取消当前回合 |
 
-![通过斜杠命令调用任务控制](https://raw.githubusercontent.com/p2coder/dsh-task-control/7369ba718550299cc98834664318c830de81db80/fig/commond%20illustrate.png)
+![通过斜杠命令调用任务控制](https://raw.githubusercontent.com/p2coder/dsh-task-control/c9caf481d907fd2e41f2c4ddb4ab68386eee3843/fig/commond%20illustrate.png)
 
 ## 供其他插件调用
 

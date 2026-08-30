@@ -18,34 +18,37 @@
   <img src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-4d6bfe?style=flat-square" alt="DSH plugin">
 </p>
 
-A model capability radar plugin for the [DeepSeek Harness](https://github.com/deepseek-ai/DeepSeek-Harness) Web GUI. It reads public benchmark data from [deng.codexradar.com](https://deng.codexradar.com), adds a **Model Radar** page to Settings, and shows the selected session model's live DeepSWE score below the composer.
+A model capability radar plugin for the [DeepSeek Harness](https://github.com/deepseek-ai/DeepSeek-Harness) Web GUI. It reads public benchmark data from [deng.codexradar.com](https://deng.codexradar.com), adds a **Model Radar** page to Settings, and shows the selected session model's live DeepSWE score in the composer tool row, left of the model selector.
 
 ## Screenshots
 
-**Settings · capability overview** — best-effort-per-base ranking with per-row Harness attribution (Codex / DSH / ZCode / Grok / Kimi Code); click any row to switch the charts below to that tier.
+**Settings · capability overview** — best-effort-per-base ranking with per-row Harness attribution (Codex / DSH / ZCode / Grok / Kimi Code / Antigravity / CodeBuddy); click any row to switch the charts below to that tier.
 
-![Settings · capability overview](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/b1fde2ee7f4a5cddcbd0922a8b8eac63d9fc43ed/docs/screenshots/settings-overview.png)
+![Settings · capability overview](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/07190649826b278d02640ae002bfacd31df77c46/docs/screenshots/settings-overview.png)
 
 **Capability popover** — opened from the composer readout: cross-base comparison plus the current tier's details, with a live "current" mark following the session model.
 
-![Capability popover](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/b1fde2ee7f4a5cddcbd0922a8b8eac63d9fc43ed/docs/screenshots/capability-popover.png)
+![Capability popover](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/07190649826b278d02640ae002bfacd31df77c46/docs/screenshots/capability-popover.png)
 
 ## Highlights
 
-- **Score attribution at a glance.** Every base-model row carries a Harness badge (Codex / DSH / ZCode / Grok / Kimi Code, site palette), and the tier selector options read `model · effort · harness`; unmatchable bases get no badge — never a guess.
+- **Score attribution at a glance.** Every base-model row carries a Harness badge (Codex / DSH / ZCode / Grok / Kimi Code / Antigravity / CodeBuddy, site palette), and the tier selector options read `model · effort · harness`; unmatchable bases get no badge — never a guess.
 - **Best-effort-per-base ranking.** The capability overview groups by base model with a fixed `0–110` absolute-scale magnitude bar and a 24h trend signal per row; expand a row for the base's full reasoning-effort ladder.
 - **24h / 7d dual-window IQ trend.** Tab between two time windows, each independently scaled with its own full stats (net change, low, average, high); the curve is colored by capability band.
-- **Cost × IQ from three angles.** Tabs for composite cost (the site's own 2.5×-price-for-1.35×-speed trade-off, normalized per chart), time cost, and price cost; color = base, shape = reasoning effort, same-base tiers joined by ladder lines. Upper-left = more efficient.
-- **Live readout beside the composer.** Exact `model@reasoningEffort` matching through DSH's official per-session model directory, updating immediately on model switches; click it to open the capability popover for cross-base comparison.
+- **Cost × IQ from three angles.** Tabs for composite cost (the site's own 2.5×-price-for-1.35×-speed trade-off, normalized per chart), time cost, and price cost; color = base, shape = reasoning effort, same-base tiers joined by ladder lines. Upper-left = more efficient. Hovering surfaces the site's three-line reading: attribution (display name · billing · harness · effort), IQ with its pass/total, and the active metric with sample counts.
+- **Community ratings.** The codexradar.com main-site community's 0–10 experience scores over rolling 7-day / 24-hour windows as a bar chart: grouped by base model with efforts ordered within each group, color = base, the selected tier highlighted (≈ marks an approximate match), and unrated slots kept as explicit placeholders. Each window carries its own freshness window; the data is global and independent of the benchmark channels.
+- **Live readout beside the model selector.** Exact `model@reasoningEffort` matching through DSH's official per-session model directory, updating immediately on model switches; click it to open the capability popover for cross-base comparison.
 - **Lightweight, credential-free, offline-tolerant.** The browser never hits upstream directly (same-origin host proxy), freshness windows mean zero upstream requests inside a window, the latest local snapshot serves as fallback, and no credentials are requested or submitted.
 
 ## Features
 
 - **Settings → Model Radar** page through the additive `settings.section` slot
+- A **Model Radar** card under Settings → Plugins → Configurable plugins through `settings.plugin.item` (the live-readout display switch, persisted in Host settings)
 - **Capability overview** grouped by base model with expandable reasoning-effort tiers and per-row Harness attribution badges
 - Fixed `0–110` IQ scale with consistent capability-band semantics across channels
 - **Trend tabs**: last 24 hours / last 7 days, each independently y-scaled with full stats; the choice persists
 - **Cost × IQ card**: composite / time / price tabs on a log x-axis, model filter chips synced across tabs, codex-run DSV4 bases hidden by default (site parity)
+- **Community ratings card**: 7-day / 24-hour tabs (choice remembered), identical slot layout across windows, an independent 15-minute freshness window each; settings page only, never the popover
 - Two benchmark channels:
   - `deep-swe`: code-repair tasks, binary-majority scoring
   - `pompeii-adjacency`: visual reconstruction tasks, continuous Adjacency F1
@@ -53,9 +56,10 @@ A model capability radar plugin for the [DeepSeek Harness](https://github.com/de
   - DeepSWE: passed / split vote / failed
   - Pompeii: low / general / good / excellent F1 bands
   - attention-first sorting and local filters
+  - task titles link to their source repo (GitHub for DeepSWE), with the site's language badge after the title (Py/JS/TS/Go/Rust)
 - Efficiency metric badges: IQ, average cost, average duration, cache hit rate, 24-hour run count
 - **Capability popover**: opened from the composer readout; cross-base comparison plus the viewed tier's full details (badges, dual-window trend, task composition)
-- Refresh within freshness windows: overview & per-task composition 15 min, channel list & IQ trend 60 min; only expired datasets are refetched, everything else is served from cache (single-flight, zero upstream hits inside a window)
+- Refresh within freshness windows: overview & per-task composition 15 min, channel list / IQ trend / task source info 60 min; only expired datasets are refetched, everything else is served from cache (single-flight, zero upstream hits inside a window)
 - Manual refresh button in the footer (skips the windows) next to the last-fetch timestamp
 - Offline fallback to the latest persisted snapshot when the upstream API is unavailable
 - Chinese and English UI copy
@@ -183,16 +187,18 @@ Three tabs (composite / time / price) plot every tier on a log cost axis × line
 
 DeepSWE uses the upstream's real majority-vote verdicts; Pompeii keeps continuous F1 semantics. Filtering, counting, and sorting all happen locally in the browser — switching filters adds no API requests.
 
+Task titles and language badges come from the site's task catalog (the `/table` endpoint, 60-minute window, proxied through the Host which keeps only the tasks array): a title with a source repo is an outbound link (GitHub for DeepSWE, dataset page for Pompeii), and the badge follows the site's vocabulary — Py/JS/TS/Go/Rust, unknown languages shown verbatim. A failed catalog fetch only drops the badges and links; the channel view is unaffected.
+
 ### Capability popover
 
-Click the capability capsule below the composer to open the popover: a full base overview (for comparison) on top and the viewed tier's details below (efficiency badges, dual-window trend, task composition). The viewed tier follows the session model by default; clicking an overview row or using the trend card's tier selector views another tier temporarily until the session model changes or the popover closes.
+Click the readout in the composer tool row (left of the model selector) to open the popover: a full base overview (for comparison) on top and the viewed tier's details below (efficiency badges, dual-window trend, task composition). The viewed tier follows the session model by default; clicking an overview row or using the trend card's tier selector views another tier temporarily until the session model changes or the popover closes.
 
 ### The composer capability capsule
 
 The compact capsule reads the model selected for the session's **next request**, not a guess from the last completed reply. Display:
 
 ```text
-SWE IQ 90.2   ↑ +1.4
+SWE IQ 90.2
 ```
 
 Match order:
@@ -202,6 +208,8 @@ Match order:
 3. Hidden entirely when the base is absent from the DeepSWE leaderboard
 
 Switching models in the composer updates the capsule immediately. The readout polls the host every 15 minutes (the shortest freshness window) — one local request per tick and at most one upstream fetch per channel per window; on failure the last successful value is kept.
+
+Prefer no capsule by the composer? The「Show live capability readout」switch on the **Model Radar** card under **Settings → Plugins → Configurable plugins** hides it entirely; while hidden the capsule renders nothing and stops background polling. The preference persists in Host settings (shared across browsers, immune to clearing browser storage; a legacy localStorage choice is migrated once on upgrade).
 
 ## Update
 
@@ -266,14 +274,17 @@ Snapshot directory:
 ```text
 Browser
   ├── settings.section → Model Radar page
+  ├── settings.plugin.item → plugin-configuration card (live-readout display switch)
   ├── conversation.composer.dock → session capability capsule + popover
-  └── GET /model-radar/api/data
+  ├── GET /model-radar/api/data
+  └── GET/POST /model-radar/api/pref
             │
             ▼
 Host plugin
   ├── per-dataset freshness windows (efficiency/tasks 15 min, channels/trend 60 min)
   ├── single-flight upstream requests + channel-global benchmarks cache
   ├── normalization into RadarView
+  ├── settings namespace dsh-models-radar (live-readout preference, persisted in Host settings)
   └── local snapshot persistence (served within its window across restarts)
 ```
 
@@ -331,7 +342,7 @@ Main sources:
 2. Use `dev_plugin_status` to confirm the plugin is active.
 3. Refresh the Web GUI once to load the latest client dependency graph.
 
-### No capability capsule below the composer
+### No readout in the composer
 
 - Make sure the current model exists on the DeepSWE leaderboard.
 - Same-base fallback shows `≈`; a fully unknown base is hidden by design.

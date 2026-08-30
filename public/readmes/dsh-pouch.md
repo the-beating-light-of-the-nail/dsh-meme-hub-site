@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/moon16u/dsh-pouch/2ce5691a2cd752a35eda394391e7ebf8662bae1f/assets/logo.png" width="96" height="96" alt="dsh-pouch logo" />
+  <img src="https://raw.githubusercontent.com/moon16u/dsh-pouch/cd06147e7780a496f80f144311ef6c1c666cd89e/assets/logo.png" width="96" height="96" alt="dsh-pouch logo" />
 </p>
 
 # dsh-pouch

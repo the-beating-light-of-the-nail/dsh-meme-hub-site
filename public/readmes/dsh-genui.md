@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/f5db33ec-7471-4d4a-a85b-79c9962ab4ef
 </div>
 
 <p align="center">
-  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/4cffdba2b4a5b90817481f3bd5cd53a2333ebf9c/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
+  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/6298f8caaf45e8fc512cac7a295868743bc1a26f/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
   <br><em>Click the preview to download the original MP4 if the GitHub player is unavailable.</em>
 </p>
 
@@ -49,21 +49,21 @@ The walkthrough moves from an answer-embedded panel through forms, plotting, Mer
 #### 1. A monitoring panel is an answer, not a separate dashboard
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/4cffdba2b4a5b90817481f3bd5cd53a2333ebf9c/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/6298f8caaf45e8fc512cac7a295868743bc1a26f/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
   <br><em>Real output: refresh/reset controls, time-range selection, statistics, charts, and a service table live inside the assistant reply.</em>
 </p>
 
 #### 2. A function plot redraws locally as its parameters change
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/4cffdba2b4a5b90817481f3bd5cd53a2333ebf9c/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/6298f8caaf45e8fc512cac7a295868743bc1a26f/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
   <br><em>Real output: `plot` renders curves while sliders, reset, and animation controls update the graph locally.</em>
 </p>
 
 #### 3. Layout primitives compose into structured work surfaces
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/4cffdba2b4a5b90817481f3bd5cd53a2333ebf9c/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/6298f8caaf45e8fc512cac7a295868743bc1a26f/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
   <br><em>Real output: typography, grid, card, and row/column primitives combine into a hierarchy the model can describe declaratively.</em>
 </p>
 

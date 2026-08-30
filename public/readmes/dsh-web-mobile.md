@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -9,6 +9,8 @@
   <a href="https://github.com/topics/dsh-plugin"><img src="https://img.shields.io/badge/topic-dsh--plugin-amber?style=flat-square" alt="dsh-plugin" /></a>
   <a href="https://awesome-dsh-plugin.com/p/mexiaosqwq/dsh-web-mobile/"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="awesome · DSH plugin" /></a>
 </p>
+
+> 📦 **已内置于 [DSHA](https://github.com/qiannianhuanxiang/DSHA)** —— DeepSeek Harness 安卓启动器把本插件作为内置移动端适配，装 APK 开箱即用。感谢作者 [@qiannianhuanxiang](https://github.com/qiannianhuanxiang) 的集成与推广 🙏
 
 ---
 
@@ -28,17 +30,28 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/b5e1e6099833541bc21510c15b6bd8f19d0eebbd/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/settings.png) |
 
 ## 安装
 
-从 GitHub 一行装：
+> [DSHA](https://github.com/qiannianhuanxiang/DSHA) 用户无需单独安装：DSHA 已内置本插件，装 APK 即用。
+
+从 npm 一行装：
 
 ```sh
-dsh plugin --profile web add github:mexiaosqwq/dsh-web-mobile
+dsh plugin --profile web add dsh-web-mobile
 ```
 
 仓库自带构建产物，无 `allowBuilds` 拦截。装完重启 `dsh web`。
+
+> 包名说明：2026-08-30 起 npm 包名由 `dsh-mobile-nav` 更名为 `dsh-web-mobile`（与 GitHub 仓库名统一，旧 npm 名已整包撤下）；更早的 `@dsh-external/dsh-mobile-nav` 亦不复存在。装过旧版的用户请**先移除再装新名**（patch 行 id 随包名一起换了，新旧并存会把同一插件注册两份）：
+>
+> ```sh
+> dsh plugin --profile web rm dsh-mobile-nav      # 2.1.x 及更早的装法键名是 @dsh-external/dsh-mobile-nav，同样先 rm
+> dsh plugin --profile web add dsh-web-mobile     # GitHub 直装：dsh plugin --profile web add github:mexiaosqwq/dsh-web-mobile
+> ```
+>
+> 不迁移的后果分路线：npm 装法留下死依赖，profile 里后续任何插件安装/更新都会 404；GitHub 直装拉到新代码后，旧键名与包内新名失配，重启 `dsh web` 时该插件加载失败。两种路线都是 `rm` 旧键名即解。
 
 本地开发：
 
@@ -48,28 +61,35 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 
 ## 更新内容
 
-### 未发布（v2.2.0 之后）
+### v2.3.0
 
 **新功能**
 
-- 侧边栏抽屉手势（#16，PR #37 by @wingsky-1）：屏幕左缘右滑呼出抽屉、抽屉内容区右滑收起。
+- 侧边栏手势（#16，PR #37 by @wingsky-1）：屏幕左侧 45% 区域右滑呼出侧边栏,同样的可以左滑关闭,该PR功能本人做了一些“微调”
+
+**优化**
+
+- 流式输出时的每帧开销：状态栏 TPS 读出走锚点快路径、市场已安装列表按帧合并且市场未打开时直接跳过，不再全树扫描
+- 抽屉会话树屏外部分跳过渲染，会话数多了以后抽屉依旧轻快
 
 **修复**
 
-- 手势打开抽屉后点背板要点两次才关
+- 手势打开侧边栏后点背板要点两次才关
 - 手势后短时间内真实点按（如点会话行）偶尔无响应
-- 滑动开抽屉偶尔没反应或开了又弹回
+- 滑动开侧边栏偶尔没反应或开了又弹回
+- 真机（Android Chrome）贴左缘右滑呼出侧边栏会触发浏览器「返回上一页」：根元素 `overscroll-behavior-x: none` 抑制 Chrome 边缘历史导航手势
+- 起指落在横向滚动容器（状态栏读出条、消息代码块）内时让位给原生滚动，不再误开侧边栏
+- 系统开启「减弱动态效果」时侧边栏仍播放滑入滑出动画，现与设置面板一致直接禁用
 - `?mobile-nav-debug=1` 诊断条在代码重组后没有接线，访问调试参数无任何显示
-- 系统开启「减弱动态效果」时抽屉仍播放滑入滑出动画，现与设置面板一致直接禁用
 
 **重构**
 
-- 抽屉手势的左缘识别区改为纯几何判定（48px），移除注入宿主 DOM 的隐形热区元素
+- 侧边栏手势的左缘识别区改为纯几何判定：按视口宽度 45% 现算（390px 手机约 176px），横竖屏与平板自动跟随，不再注入宿主 DOM 的隐形热区元素
 
 **兼容**
 
-- 适配 dsh 0.1.2-alpha.1
-- peer 依赖范围放宽到 0.1.2 预发布版
+- 适配 dsh 0.1.2-alpha.1（会话日志下载接口两代类型并存）
+- peer 依赖范围放宽到 0.1.2 预发布版，缺失的 UI peer 改为可选
 
 ### v2.2.0
 

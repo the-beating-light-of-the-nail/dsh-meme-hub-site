@@ -15,7 +15,7 @@
 - **窄容器自适应**：工作台横向分屏半宽或浮动独立窗口下，轮次头部自动换行、次要信息（行数统计、「在编辑器中打开」）让位，撤销操作与文件名始终完整。
 - **样式隔离**：全部 CSS Module + 宿主 `--dsw-alias-*` 主题令牌，不与对话区或其他插件冲突。
 
-![对话尾部的审查行：已编辑 N 个文件、撤销与审查按钮、文件名列表](https://raw.githubusercontent.com/Lzh3070/dsh-file-review-tab/d281c34246575ca04ba1f1977eca9cfdc7640629/docs/screenshot.png)
+![对话尾部的审查行：已编辑 N 个文件、撤销与审查按钮、文件名列表](https://raw.githubusercontent.com/Lzh3070/dsh-file-review-tab/e6ffc880f90a05b0ae3fcfb630076b697cdb55c2/docs/screenshot.png)
 
 ## 安装
 

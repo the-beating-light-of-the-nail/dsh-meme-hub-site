@@ -12,14 +12,14 @@
 
 ## Screenshot
 
-![dsh-file-mentions in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/21d8da94b174e37eda13274e74c4ed2459be612e/assets/screenshot.png)
+![dsh-file-mentions in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/011668c65b6169ac05aa4fe270626ef9282b602d/assets/screenshot.png)
 
 Inline paths wrapped in backticks (`` `~/...` ``, absolute, relative, or Chinese paths) become
 **click-to-open**; each clickable path carries a small folder-icon button that reveals the file in your
 file manager; a "📎 mentioned files" chip list at the turn tail covers the rest. URLs are
 already auto-linked by the official renderer, so this plugin leaves them alone.
 
-![External-drive whitelist settings](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/21d8da94b174e37eda13274e74c4ed2459be612e/assets/screenshot-settings.png)
+![External-drive whitelist settings](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/011668c65b6169ac05aa4fe270626ef9282b602d/assets/screenshot-settings.png)
 
 The external-drive whitelist (Settings → Plugins → file-mentions): **local files in your home
 directory are clickable by default**; only external drives / network volumes (e.g.
@@ -103,7 +103,12 @@ externally can never be whitelisted by mistake.
   entry is occupied by the official "deliverables" plugin, so DOM delegation is the only
   viable path); inline folder-icon buttons are inserted by a MutationObserver and restored
   automatically after React re-renders; a settings card (sidebar section + plugin page)
-  edits the whitelist.
+  edits the whitelist. Scanning/decoration is **incremental**: the observer callback only
+  handles newly-added nodes inside the official message area (`[data-conversation-scroll]`),
+  each new text is cheap-screened for path-like characters (no `/`, `~` or `\` → skipped
+  with zero regex work and zero requests), and existence checks hit only the current
+  session — conversations without paths trigger no scanning at all; sidebars, hover cards,
+  menus and settings are never touched (v1.0.13).
 
 See [docs/architecture.md](docs/architecture.md).
 
@@ -116,7 +121,9 @@ See [docs/architecture.md](docs/architecture.md).
 ## Compatibility notes
 
 - Inline clicks rely on backtick-wrapped paths (the agent-output convention, same as
-  Codex); bare paths in prose are intentionally not clickable.
+  Codex); **bare paths inside message text are clickable too** (decoration is
+  CSS-Highlight only, zero DOM mutation; message area only — sidebars, hover cards,
+  menus and settings are never touched, v1.0.13).
 - The official "produced files" list and this plugin coexist: official wins when it has
   output, otherwise this plugin shows.
 - Windows / Linux validation via issue or PR is welcome.

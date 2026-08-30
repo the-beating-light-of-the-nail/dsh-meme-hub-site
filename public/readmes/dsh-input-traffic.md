@@ -2,7 +2,7 @@
   <strong>给 DeepSeek Harness Web GUI 一个三档输入交通管制</strong>
 </p>
 <p align="center">
-  <strong>中文</strong> · <a href="README.en.md">English</a>
+  <a href="README.en.md">English</a> · <strong>中文</strong> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a>
 </p>
 <p align="center">
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-263146?style=flat-square"></a>
@@ -13,6 +13,20 @@
 
 # dsh-input-traffic
 
+- [English README](./README.en.md)
+- [中文 README](./README.md)
+- [日本語 README](./README.ja.md)
+- [한국어 README](./README.ko.md)
+- [Installation guide](./INSTALL.md)
+- [中文安装指南](./INSTALL.zh.md)
+- [日本語インストールガイド](./INSTALL.ja.md)
+- [한국어 설치 안내](./INSTALL.ko.md)
+- [Changelog](./CHANGELOG.md)
+- [日本語 changelog](./CHANGELOG.ja.md)
+- [한국어 changelog](./CHANGELOG.ko.md)
+
+> **兼容性说明：** v0.2.9 已包含日语（`ja`）和韩语（`ko`）字典，但当前官方 DSH 只通过 `LocaleRuntime` 提供 `zh` 和 `en`。在原版 DSH 中选择 `ja` 或 `ko` 会失败，并提示 `locale "<id>" is not registered`。需要等待官方 DSH 增加对应 locale ID 后才能正常使用。高级用户可以维护 DSH fork，在 `packages/client/locale/src/locale-settings.ts` 更新 `LOCALE_IDS`，在 `packages/client/locale/src/client/index.ts` 更新 `LOCALES` 标签，并补齐核心字典和测试，然后重新构建并运行 fork 版本。仅修改本插件无法扩展 DSH 的全局 locale 列表。
+
 > 智能体忙碌时不再只有"打断"或"排队"二选一：红色打断立即输入、黄色下一轮插入、绿色排队到最后，三档并存；邻近 DeepSeek 高峰收费时段可一键冻结会话，错峰再恢复继续。
 
 无需修改 dsh 源码、无需提 PR：`dsh plugin` 命令组装 + bundle patch 装配的 cordis client 插件。
@@ -22,8 +36,18 @@
 > **目前建议搭配**：配合**一般提醒**插件（如 [dsh-notify](https://github.com/zhengjy01/dsh-notify)，到点桌面提醒「该冻结/该恢复」）与**计费统计**插件（如 [dsh-deepseek-usage](https://github.com/yyb16yyb-hub/dsh-deepseek-usage)、[dsh-cost-tracker](https://github.com/yflmq001/dsh-cost-tracker)、[dsh-billing-balance](https://github.com/YZz-S/dsh-billing-balance)，核对冻结前后的实际花费），形成「提醒 → 冻结 → 错峰恢复 → 对账」的省钱闭环。
 
 ## 它能做什么
-<img width="1809" height="547" alt="image" src="https://github.com/user-attachments/assets/4a89687b-5444-4538-b1b2-f0fd093cdd10" />
-<img width="1051" height="302" alt="image" src="https://github.com/user-attachments/assets/710a101e-9ba1-41f0-b74d-bb0ccca77928" />
+
+> 实际运行截屏（Windows，dsh web）：
+
+<figure>
+  <img width="1600" alt="深色模式下的会话页：上方排队等待区显示『1 条排队消息』（🟢 排队 test1）与『取消并清空』；中央为花边样式输入框，提示 Cmd/Ctrl+Enter 插话发送全部排队消息；输入行右侧为『冻结会话』按钮、DeepSeek-V4-Flash 模型选择与发送控件" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/3d4bac6b92998f2504f67b3beff578cd20d120ca/assets/dark-mode.png" />
+  <figcaption>深色模式（自动跟随系统 / dsh 暗色主题）：排队等待区 + 输入行右侧「冻结会话」按钮。</figcaption>
+</figure>
+
+<figure>
+  <img width="1400" alt="浅色模式且会话已冻结的会话页：排队等待区出现『已冻结：当前轮次完成后暂停，排队消息将在恢复后继续』横幅及『取消并清空』；队列含测试1（🟢 排队）、测试2/测试3（🟡 插话中）；输入行按钮切换为『恢复会话』" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/3d4bac6b92998f2504f67b3beff578cd20d120ca/assets/light-mode.png" />
+  <figcaption>浅色模式 + 已冻结状态：高峰时段冻结后队列被冻结保存，输入行按钮切换为「恢复会话」，错峰再行处理。</figcaption>
+</figure>
 
 - **三档插入并存**：智能体忙碌时，每一条输入都先进入等待区，再按需选择何时进入对话——不再只有一个"打断"或只有一个"排队"：
   - 🔴 **红色（now）**：打断当前轮次并立即输入——当前生成停止，消息作为新输入被 agent 立刻处理并回复；

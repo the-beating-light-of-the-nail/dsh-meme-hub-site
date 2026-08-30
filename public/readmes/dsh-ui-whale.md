@@ -87,13 +87,13 @@ dsh plugin --profile web add link:/path/to/dsh-ui-whale
 
 ## 演示 Demo
 
-![dsh-ui-whale 完整演示](https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/dsh-ui-whale-demo.gif)
+![dsh-ui-whale 完整演示](https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/dsh-ui-whale-demo.gif)
 
 各动作 GIF：
 
-<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E7%9C%A8%E7%9C%BC.gif" alt="眨眼" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E6%91%86%E5%B0%BE%E5%B7%B4.gif" alt="摆尾巴" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E6%91%86%E8%85%B9%E9%B3%8D.gif" alt="摆腹鳍" width="200">
+<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/%E7%9C%A8%E7%9C%BC.gif" alt="眨眼" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/%E6%91%86%E5%B0%BE%E5%B7%B4.gif" alt="摆尾巴" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/%E6%91%86%E8%85%B9%E9%B3%8D.gif" alt="摆腹鳍" width="200">
 
-<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E5%96%B7%E6%B0%B4%E8%8A%B1.gif" alt="喷水花" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E5%86%92%E7%88%B1%E5%BF%83.gif" alt="冒爱心" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/23461b91cad791ce52488c8258e31837c6a3c075/docs/%E7%9D%A1%E8%A7%89.gif" alt="睡觉" width="200">
+<img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/%E5%96%B7%E6%B0%B4%E8%8A%B1.gif" alt="喷水花" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/%E5%86%92%E7%88%B1%E5%BF%83.gif" alt="冒爱心" width="200"> <img src="https://raw.githubusercontent.com/lhh010/dsh-ui-whale/1d3b19fbfe73348c4443274fff552bfa240b9a6a/docs/%E7%9D%A1%E8%A7%89.gif" alt="睡觉" width="200">
 
 > 完整视频：[docs/dsh-ui-whale-demo.mp4](docs/dsh-ui-whale-demo.mp4)
 

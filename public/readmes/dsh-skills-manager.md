@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/54c3ac8cbcf65e8c036ffdf4bca38f00c471b79f/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
@@ -23,25 +23,26 @@
 ## Features
 
 - Discover and load user-level skills from `.agents`, Codex, Claude, Gemini, and OpenCode into DSH.
+- Discover project-level `.dsh/skills` and `.agents/skills` from active Session workspaces, grouped by project; project DSH skills can be enabled, disabled, created, moved to Trash, and restored while project Agent skills stay read-only.
 - Persist external source and skill toggles under `$DSH_HOME/skills-manager/state.json` without rewriting shared source files.
 - Inspect Markdown bodies, frontmatter, load state, duplicate shadowing, and format diagnostics in a source-first UI.
-- Create a local DSH skill from Settings or conversation; conversational writes require user approval.
-- Move DSH-local skills to recoverable Trash, then restore or permanently delete them.
+- Create a user- or project-level DSH skill from Settings; conversational creation remains user-level and requires approval.
+- Move user- and project-level DSH skills to recoverable Trash, then restore them to the original source or permanently delete them.
 - Import `.zip` archives, skill folders, or a single `SKILL.md` safely into `$DSH_HOME/skills`.
 
 ## Screenshots
 
 Browse by source or search in **Settings → Skills**. External Agent sources are loaded through a manager-owned provider while their files stay read-only:
 
-![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/screenshots/skills-manager-v2-preview.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/54c3ac8cbcf65e8c036ffdf4bca38f00c471b79f/assets/screenshots/skills-manager-v2-preview.png)
 
 Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/screenshots/skill-detail.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/54c3ac8cbcf65e8c036ffdf4bca38f00c471b79f/assets/screenshots/skill-detail.png)
 
 Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/4d2951b2e8c15dde99421fb988c43015a90830d4/assets/screenshots/delete-plugin.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/54c3ac8cbcf65e8c036ffdf4bca38f00c471b79f/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 
@@ -136,12 +137,12 @@ Open **Settings → Skills**, then use the panel as follows:
 | --- | --- | --- |
 | Search or filter | Narrow by source, name, or description. | All sources |
 | Inspect details | Review body, frontmatter, path, format diagnostics, and duplicate shadowing. | All sources |
-| Enable or disable | DSH skills update their own invocation policy; external skills update manager-local state only. | All sources |
-| Create or import | Create in Settings, or import `.zip`, a folder containing `SKILL.md`, or one `SKILL.md`. | `$DSH_HOME/skills` |
+| Enable or disable | User and project DSH skills update their own invocation policy; external user skills update manager-local state only. | User-level sources and active project DSH skills |
+| Create or import | Choose a user or active project DSH destination when creating in Settings; imports remain user-level. | `$DSH_HOME/skills`, active `<project>/.dsh/skills` for creation |
 | Create from conversation | Let an Agent call `create_skill`; DSH asks for approval before writing. | `$DSH_HOME/skills` |
-| Delete and recover | Move to Trash, restore, or permanently delete in a second step. | DSH-local skills |
+| Delete and recover | Move to Trash, restore to the original source, or permanently delete in a second step. | User and active-project DSH skills |
 
-> Toggling a shared source never changes its files; only DSH-local skills can move to Trash.
+> Toggling a shared source never changes its files; only user or project DSH skills can move to Trash.
 
 Escape closes only the frontmost upload or confirmation dialog and leaves Settings open.
 
@@ -152,8 +153,17 @@ Escape closes only the frontmost upload or confirmation dialog and leaves Settin
 | `$DSH_HOME\skills` | Yes | Updates local invocation policy | Yes | Moves to Trash |
 | `$DSH_AGENTS_HOME\skills` | Yes | Manager state only | No | No |
 | `~/.codex/skills`, `~/.claude/skills`, `~/.gemini/skills`, `~/.config/opencode/skills` | Yes | Manager state only | No | No |
+| `<project>/.dsh/skills` | Yes, for active Session workspaces | Updates the Skill's invocation policy; DSH's scoped provider remains responsible for loading | Create in Settings | Moves to Trash and restores to the original project |
+| `<project>/.agents/skills` | Yes, for active Session workspaces | No; managed by DSH's scoped filesystem provider | No | No |
 
 - Enable, disable, and delete accept only one ordinary skill-name path segment.
+- Project roots are derived only from active Session `cwd` values; client requests carry an opaque source key and cannot nominate an arbitrary workspace path.
+- Project sources follow DSH's nearest-`.git` root convention and rank order (`project-dsh` 100 before `project-agents` 200). The manager re-scans for each state/detail request and does not register a duplicate project provider; writes are limited to invocation-policy toggles and create/Trash/restore under the active project's `.dsh/skills` root.
+- Trash falls back to copy-then-hide when a project and `$DSH_HOME` are on different volumes; restore uses the same guarded cross-volume path in reverse.
+- Project Trash entries retain their original opaque source identity. Restore is allowed only while that original project is still represented by an active Session workspace; the client cannot nominate a replacement path.
+- Project writes reject linked `.dsh` or `.dsh/skills` directories so a repository cannot redirect creation, deletion, or restore outside its own project root.
+- Project rows say **Discovered**, not **Loaded**: only DSH's Session-scoped catalog can establish model visibility. Use Refresh after IDE, Git, or shell changes; the official provider remains responsible for model-catalog watching and invalidation.
+- Empty project roots stay out of the main source list to reduce noise, but remain selectable in Create Skill so the first project Skill can still be created. Project DSH supports per-Skill toggles only, not a source-wide switch.
 - Replacements copy to a temporary sibling path first and keep the original until that succeeds.
 - Every endpoint, including GET `/state`, accepts only a loopback `Host` or a canonical `host[:port]` that the DSH Web runtime already trusts through its LAN bind and `--trusted-host`; unknown hosts still receive 403.
 - Browser requests must also carry a same-origin `Origin` when present and must not be marked cross-site; write endpoints continue to require JSON and the DSH client request marker.

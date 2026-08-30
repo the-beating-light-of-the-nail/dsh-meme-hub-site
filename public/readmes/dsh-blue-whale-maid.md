@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yuxino/dsh-blue-whale-maid/279634fef017d379c93f173b33a7d94033108243/assets/logo.gif" width="180" alt="蓝鲸女仆桌宠挥挥尾巴">
+  <img src="https://raw.githubusercontent.com/yuxino/dsh-blue-whale-maid/e6f640d70cac830a5ecb82b2229142eb2a70bed7/assets/logo.gif" width="180" alt="蓝鲸女仆桌宠挥挥尾巴">
 </p>
 
 <h1 align="center">蓝鲸女仆桌宠</h1>

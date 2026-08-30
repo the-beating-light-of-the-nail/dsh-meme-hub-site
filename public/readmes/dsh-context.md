@@ -1,4 +1,4 @@
-![Social preview](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/social-preview.png)
+![Social preview](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/social-preview.png)
 
 # dsh-context
 
@@ -42,7 +42,7 @@ Three surfaces, one story — what your agent is carrying, how it got there, and
 
 Open any session and click the **Context / 上下文** tab:
 
-![Context panel overview](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-overview.png)
+![Context panel overview](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-overview.png)
 
 | Card | The question it answers |
 | --- | --- |
@@ -60,13 +60,13 @@ The headline occupancy and composition read the **same official token-meter proj
 
 ### 🧱 Current Context — who ate the budget
 
-![Current Context card](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/current-context.png)
+![Current Context card](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/current-context.png)
 
 A six-color stacked bar against the model's full window (hatching = free headroom): system prompt, tool schemas, user messages, injected context, assistant replies, tool results — each with its ≈token figure and share. When a conversation starts degrading, this is where you see *which part* is responsible.
 
 ### 📈 Context Trend — every request, sized and explained
 
-![Context Trend with the step brief](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-trend.png)
+![Context Trend with the step brief](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-trend.png)
 
 One stacked bar per model request — finer than per-message — so you watch the window grow turn by turn:
 
@@ -74,7 +74,7 @@ One stacked bar per model request — finer than per-message — so you watch th
 - **✂ marks the events** — compactions and prunes are pinned to the bar where they happened, so the drops explain themselves.
 - **Read it your way** — **Step / Turn** granularity, **Total** (cumulative makeup) or **Delta** (each request's signed change), and sideways scrolling through the whole session. In Delta mode, growth piles up above the baseline and a compaction dives below it:
 
-![Context Trend in Delta mode](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/history-delta.png)
+![Context Trend in Delta mode](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/history-delta.png)
 
 - **Hover & pin** — scrub for an instant tooltip; click to pin the full breakdown, with provider-reported **Actual Prompt / Output / Cache** next to the estimates.
 - **Live linkage** — hovering a bar previews that step's assembled context in the Context browser beside the chart; leaving the chart returns to your own pick.
@@ -85,27 +85,27 @@ Pick **Live (next request)** or any retained step, and browse what that request 
 
 - **Who provides each tool** — every tool-schema row carries a best-effort source chip: `tool-*` first-party packages, `dsh-*` capability packages, `mcp:<server>` proxies, or the exact plugin watched live from `tools.register()`. Sort by **size / name**, and filter every category by its own searchable fields:
 
-![Tool schemas with source chips, filter, and sort](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-browser-tools.png)
+![Tool schemas with source chips, filter, and sort](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-browser-tools.png)
 
 - **Tool results open into the full call** — the tool name and arguments with its **OK/error** status, the result body with line count and a **Raw / Markdown** toggle:
 
-![A tool result expanded with Raw/Markdown toggle](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-browser-tool-result.png)
+![A tool result expanded with Raw/Markdown toggle](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-browser-tool-result.png)
 
 - **Image payloads render as cards** — thumbnails with name, dimensions, stored size, and the official DeepSeek image-token estimate (dsh 0.1.1+ multimodal pipeline, e.g. `read_image` results and image attachments):
 
-![An image payload rendered as a thumbnail card](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-browser-images.png)
+![An image payload rendered as a thumbnail card](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-browser-images.png)
 
 - **Diff against the previous turn** — signed delta badges per category (`+N` items, `±Nk` tokens) tell you what a turn added or reclaimed at one glance. Steps older than a compaction are reconstructed from the removed-message archive — and the card says so when a step's makeup is only approximate.
 
 ### ⚡ Context Events — when and why the window changed
 
-![Context Events with a compaction](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-events.png)
+![Context Events with a compaction](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-events.png)
 
 Every injection, compaction, prune, model switch, and plan-mode toggle — labeled with its producer (instruction file, plugin id, skill name), its net token delta (compactions show what they reclaimed), turn/step, and time. The **Inject / Compact / Prune / Switch / Mode** chips filter the log by kind.
 
 ### 📁 File Activity — what the agent did to your files
 
-![File Activity](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/file-activity.png)
+![File Activity](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/file-activity.png)
 
 One row per touched file — read, written, or searched — aggregated up to whichever step you pick on the trend chart:
 
@@ -117,7 +117,7 @@ One row per touched file — read, written, or searched — aggregated up to whi
 
 ### 🕸 Agent Network — the family portrait
 
-![Agent Network with two subagents](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/agent-network.png)
+![Agent Network with two subagents](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/agent-network.png)
 
 The current agent, its parents, and every subagent — one node per agent, colored edges for the lineage, multi-level delegation on one map. Each ring is that session's composition scaled to its window occupancy; hover for tokens, requests, billing, and active time; click to jump into that session's own Context tab. Running agents breathe with a green pulse.
 
@@ -125,17 +125,17 @@ The current agent, its parents, and every subagent — one node per agent, color
 
 Type `/context` (or pick it from the `/` menu) and press Enter:
 
-![Slash menu with the context command](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-command-entry.png)
+![Slash menu with the context command](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-command-entry.png)
 
 A centered dialog opens with the **Current Composition** card and the **Context browser** — the same composition bar, per-step picker, and `vs previous turn` diff badges as the tab:
 
-![The /context modal](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/context-command.png)
+![The /context modal](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/context-command.png)
 
 ## ⚙️ Settings
 
 In **Settings → Plugins → Plugin configuration**, the **Context** card holds this plugin's per-user preferences — default trend granularity (Step/Turn), default trend mode (Total/Delta), and the File Activity default sort. In-chart and in-card toggles stay per-view and never overwrite the stored preference.
 
-![The Context settings card](https://raw.githubusercontent.com/bowenliang123/dsh-context/4f89f9ebc012a251bb7146336da26c0faa23b018/docs/settings.png)
+![The Context settings card](https://raw.githubusercontent.com/bowenliang123/dsh-context/10acac3e4aef761f284864c8fa37ed0b4f1f0b65/docs/settings.png)
 
 ## Good to know
 

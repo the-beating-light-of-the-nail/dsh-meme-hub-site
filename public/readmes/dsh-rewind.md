@@ -11,7 +11,7 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 刻意聚焦、保持极简，只做一件事：**就地回退到任意远的用户消息**，还能**顺手还原改过的文件**。
 
 - **回退 = 时间回溯**——目标消息及其之后的全部内容（agent 回复、工具调用）同时从**模型上下文**和**渲染对话**中撤回，不新建会话、不切换窗口；目标消息文本会回填输入框，改完可重发。**在原理上就真正无感、便捷**。
-- **轻量工作区备份**——行为对齐 Claude Code：只跟踪写文件的工具，写前做轻量备份并**落盘持久化**，不依赖、也不触碰 git 仓库。一个轻型插件，即拥有**完备的智能体回退能力**。
+- **轻量工作区备份**——对齐 Claude Code：追踪写类工具编辑过的文件，**已跟踪文件的外部变更也能还原**。局部追踪、写前备份、不变不存。一个轻型插件，即拥有**完备的智能体回退能力**。
 - **信息安全优先**——插件从不删改会话日志（append-only），从不真正删除你的任何对话；文件还原限定在插件自己的备份目录。完整安全模型：[SECURITY.md](SECURITY.md)。
 - **完备测试系统**——单元、探针、端到端主机验证，覆盖兼容性探测、日志重放、续接、跨重启等场景；随 harness 升级持续维护，确保功能稳定。
 
@@ -21,12 +21,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/653fbda1437cf73b2a6830650bd6441744460def/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -60,7 +60,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 快照（写前备份）存储于 `<dsh home>/rewind-snapshots/`（未设 `$DSH_HOME` 时即 `~/.dsh/rewind-snapshots/`）。插件对**同一会话**的快照做内容去重（内容未变则存为链接）并保留最近 100 组锚点；**手动删除该目录**仅清除文件备份（对话回退不受影响），插件会自动重建。
 
-另提供**全局自动清理**（默认关闭）：把**长期不活跃**的会话快照整目录移除，不影响活动会话与对话日志。用 `/snapshot-auto-cleanup` 命令**查看与设置**，配置写入 `<dsh home>/snapshot-cleanup.json`；最近一次自动清扫的时间记录在 `<dsh home>/snapshot-cleanup-last-sweep.json`。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
+另提供**全局自动清理**（默认关闭）：把**长期不活跃**的会话快照整目录移除，不影响活动会话与对话日志。用 `/snapshot-auto-cleanup` 命令**查看、设置和运行**，配置写入 `<dsh home>/snapshot-cleanup.json`；最近一次自动清扫的时间记录在 `<dsh home>/snapshot-cleanup-last-sweep.json`。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
 
 ## 本插件的优势
 
@@ -140,6 +140,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 2. **轻量文件回退存在代价**——特定情况可能无法回退所有修改。行为与 Claude Code 一致。详见：[文件回退的追踪边界](docs/compat/tracking-boundary.zh.md)。
 3. **v0.2.4 及更早版本**回退过的会话，继续对话后可能加载历史失败。可安装 v0.3.3 及之前版本的随附修复工具处理（[完整步骤](docs/compat/troubleshooting.zh.md)）。
 4. **v0.3.3 及更早版本**回退过的会话，压缩对话（compact）不可用。新版本已兼容；受影响的旧会话建议新建会话。
+5. **导轨显示已回退轮次**——DSH `v0.1.2-alpha.1` 新增的右侧导轨，会为已撤回消息保留刻度：点击不跳转、悬浮显示已撤回正文。仅显示差异，无功能影响。
 
 ## 安全
 

@@ -66,14 +66,15 @@ dsh plugin --profile web add C:\Users\User\Desktop\dsh-code-server-app\dsh-code-
 
 - **code-server 不在 `dependencies`**(pnpm 不触碰它、无脚本许可问题);
 - 插件的 `postinstall`(`scripts/setup-code-server.mjs`)在 **profile 专用目录**用 **npm** 自装
-  `code-server@4.134.0`:
+  **最新版** `code-server`(不锁版本,安装时取 npm latest):
   - 安装根:`<profile>\.code-server-app`(如 `C:\Users\User\.dsh\profiles\web\.code-server-app`),
     独立项目,与 profile 依赖树隔离(避开 ERESOLVE);
   - 安装根自带 `package.json`(allowScripts:`code-server: false` 跳过官方 `sh ./postinstall.sh`
-    ——Windows 无 sh 会失败、`argon2/unrs-resolver: true` native 构建);
+    ——Windows 无 sh 会失败、`argon2/unrs-resolver: true` native 构建,均不带版本号);
   - 装完补装 VS Code 内部依赖(144 包)+ `bin\code-server.cmd`;
 - **code-server 落在** `<profile>\.code-server-app\node_modules\code-server\`;
-  幂等自愈(pnpm 重装插件 → postinstall 重跑 → 检测已实例化则跳过)。
+  幂等自愈(pnpm 重装插件 → postinstall 重跑 → 检测已实例化则跳过;**若已装版本与最新不一致则自动升级到最新**)。
+- **锁版本**:设置环境变量 `DSHCS_CODE_SERVER_VERSION`(如在 dsh web 环境)可钉住某个版本(如 `4.134.0`);缺省跟随 npm latest。
 
 > **卸载**:code-server 目录独立于插件包——先手动删除
 > `Remove-Item -Recurse -Force <profile>\.code-server-app`,再 `dsh plugin --profile web remove dsh-code-server-app`。
@@ -94,6 +95,33 @@ dsh plugin --profile web add C:\Users\User\Desktop\dsh-code-server-app
 > 重新生成 `lib/client.js`(仓库不跟踪该产物;浏览器刷新即生效,host 无需重启)。
 > 窗口动画由内嵌 `motion` 驱动,手感参数在 `src/factory.js` 的 `winPhysics`(一处)。
 
+### 安装环境要求(需要编译的包与工具链)
+
+安装过程(`postinstall` → `scripts/setup-code-server.mjs` → npm 自装 code-server + VS Code 内部依赖)中,**真正需要本地编译的只有一个包**:
+
+| 包 | 构建方式 | ARM64 本地编译 | x64 本地编译 |
+|---|---|---|---|
+| **code-server**(主包) | 官方 `sh ./postinstall.sh` 已被 `allowScripts: code-server: false` 跳过(Windows 无 sh) | ❌ | ❌ |
+| **argon2** | `node-gyp-build`(binding.gyp + node-addon-api) | ✅ **必须** | ✅ **也必须**——prebuilds 目录里只有 Linux 的 `*.glibc.node`,**Windows 无任何预编译** |
+| **unrs-resolver** | `napi-postinstall check`,加载 `@unrs/resolver-binding-win32-{x64,arm64}-msvc` 预编译绑定 | ❌ 纯预编译 | ❌ 纯预编译 |
+| **VS Code 内部依赖**(`lib/vscode/node_modules`,144 包) | `ensureNpmDeps` 逐一 `npm install`,自带 postinstall(node-pty/koffi/kerberos 等) | ⚠️ 多数预编译 | ⚠️ 多数预编译 |
+
+**基础环境清单(Windows 实测)**:
+
+| 环境 | 版本/要求 | ARM64 | x64 |
+|---|---|---|---|
+| Node.js | **v24.x**(code-server 最新要求;本机 v24.13.1) | 必需 | 必需 |
+| npm | 跟随 Node | 必需 | 必需 |
+| **MSVC 构建工具** | **VS Community 2026(18.9)+ C++ 桌面负载** | ✅ **必需**(argon2 编译) | ✅ **必需**(argon2 编译) |
+| **VS Spectre 缓解库** | "适用于 ARM64 的 MSVC v18x Spectre-mitigated 库"(x64 用对应位数库) | ✅ 必需(否则 MSB8040) | ✅ 必需(否则 MSB8040) |
+| Python | **3.13.x**(如 `Python313-arm64\python.exe`;x64 用 x64 版) | ✅ 必需(node-gyp 脚本) | ✅ 必需 |
+| node-gyp | **13.x**(9.x 不识别 VS 2026) | ✅ 必需 | ✅ 必需 |
+
+> **结论(实测更正)**:
+> - **Windows(x64 与 ARM64 相同)**:argon2 的 prebuilds 目录里**只有 Linux 的 `*.glibc.node`,没有 Windows 预编译**——`node-gyp-build` 找不到 → **一律回退本地 node-gyp 编译**。因此 **x64 同样必须配齐 C++ 工具链**(MSVC + Spectre + Python + node-gyp 13),不存在"x64 零编译";
+> - 其余(unrs-resolver、VS Code 内部依赖)走预编译,无需额外工具;
+> - 若开发机没有工具链,可将安装根 `package.json` 的 `allowScripts.argon2` 设为 `false` 跳过(但 argon2 缺失会导致 code-server 启动报 `node-gyp-build` 错误——仅适合不依赖 argon2 的场景,通常不建议)。
+
 ### Windows 原生构建要点(本机实测,ARM64)
 
 - **VS 需 Spectre 缓解库组件**(MSB8040):Visual Studio Installer → 单个组件 →
@@ -105,10 +133,9 @@ dsh plugin --profile web add C:\Users\User\Desktop\dsh-code-server-app
 
 ### 升级 code-server 版本
 
-1. 改 `scripts/setup-code-server.mjs` 的 `CODE_SERVER_VERSION`;
-2. 同步 `package.json` 的 `allowScripts` 表(若 native 依赖版本变更导致条目失配,
-   按 `npm install-scripts ls` 的结果更新;code-server 保持 `false`);
-3. 重新 `pnpm pack` + `dsh plugin --profile web add <tgz>`(包内旧版本由 postinstall 覆盖)。
+- **默认自动**:postinstall 不锁版本——已装版本与 npm latest 不一致时自动重装到最新(无需手动改)。
+- **想钉住版本**:设环境变量 `DSHCS_CODE_SERVER_VERSION`(如 `4.134.0`);去掉它回到跟随 latest。
+- 重新 `pnpm pack` + `dsh plugin --profile web add <tgz>` 即触发 postinstall 检查(或直接删 `.code-server-app` 重装)。
 
 ### 兼容旧的 runtime 目录安装
 

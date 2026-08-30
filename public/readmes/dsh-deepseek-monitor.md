@@ -11,7 +11,7 @@
 
 DeepSeek Harness（dsh）Web 插件：把 [DeepSeekMonitorWindows](https://github.com/HaoyueQin/DeepSeekMonitorWindows) 的**余额与用量监控**能力移植进 dsh —— 集成到「设置 → 模型 → DeepSeek」供应商卡片内，并在输入框工具行（模型名称左侧）显示实时余额。
 
-![账户明细面板预览](https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/6799ab7ce14aae098300df73035932b8f40b7bec/docs/images/account-details-panel.png)
+![账户明细面板预览](https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/17a5cb50f7b23e0e5f3039c4c6889e5e1d50ee6e/docs/images/account-details-panel.png)
 
 > 截图：设置 → 模型 → DeepSeek 卡片展开的「账户明细」面板（余额卡 / 模型用量行 / 每日堆叠柱状图），以及名称旁的余额 chip 与「账户明细」按钮。
 

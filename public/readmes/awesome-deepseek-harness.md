@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
- <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/6a0907e71803b32a8ff0eb4b9ccb4cd0a157c321/assets/banner.jpg" alt="Awesome DeepSeek Harness">
+ <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/660942a3c90412f18a070f57df00fe6d15728d39/assets/banner.jpg" alt="Awesome DeepSeek Harness">
 </div>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -92,6 +92,7 @@ Management panel: Settings → Plugins.
 - [dsh-skill-mover](https://github.com/mjylfz/dsh-skill-mover) - One-click skill migration into DSH: scans 14 agent platforms (Cursor, Claude Code, Codex, Hermes, Trae, Qoder...) plus the shared ~/.agents layer, merges same-name skills, dedupes symlinks and rolls back safely.
 - [gewu-tools](https://github.com/nyantused-cpun/gewu-tools) - Model-agnostic visual-inspection pipeline for text-only agents: page-by-page HTML screenshots plus a ready-made vision-subagent briefing contract (gewu_prep), then source-code truth verification of every finding (gewu_locate); validated on mimo-v2.5 & qwen3.7-plus.
 - [dsh-plugin-hub](https://github.com/Noob-stupid/dsh-plugin-hub) - DSH plugin manager & marketplace: one-click enable/disable, multi-source market, static index (500+ plugins / 300 skills), skill install/disable, suite one-click assembly, one-click framework upgrade (online install + auto-rollback).
+- [dsh-gsd-bundle](https://github.com/jaaty/dsh-gsd-bundle) - Git Ship Done (opengsd-core) reimplemented as host-plane Cordis plugins: replaces the default agent loop with a spec/discuss/plan/execute/verify/ship phase loop.
 
 ## Agents & Orchestration
 
@@ -115,6 +116,8 @@ Management panel: Settings → Plugins.
 - [bpc-oss/dsh-routed-subagent](https://github.com/bpc-oss/dsh-routed-subagent) - Run a one-shot subagent fully mounted on any agent preset from any session, with per-call model/provider override, model pre-check, and external CLI engines (codex / claude / codebuddy) with background jobs, live progress, kill, and continuable sessions.
 - [bpc-oss/dsh-fork-to-preset](https://github.com/bpc-oss/dsh-fork-to-preset) - Fork any session into a different agent preset from the conversation header: a preset picker creates a new child session mounted on the chosen preset, inheriting the source session's completed turns.
 - [qwert702/dsh-commander](https://github.com/qwert702/dsh-commander) - Commander mode for DSH Web: inject protocol briefs into the session title bar, parse task blocks from model replies and auto-execute them, separating strategy from execution; activated via a badge button.
+
+- [dsh-product-subagent-console](https://github.com/Jokasa7/dsh-product-subagent-console) - Conversation-level multi-agent workbench for editable task planning, real child-session observation, plan-versus-runtime comparison, and evidence-backed recovery previews; tested with DSH 0.1.1-rc.2.
 
 ## Context & Search
 
@@ -146,6 +149,7 @@ Management panel: Settings → Plugins.
 - [dsh-session-sync](https://github.com/PerryLink/dsh-session-sync) - Cross-device session sync: a dedicated git mirror with append-only keep-both conflict resolution, a /sync command and sync_status/sync_pull/sync_push tools.
 - [JohnXu22786/context-pruner](https://github.com/JohnXu22786/context-pruner) - Session context triage for dsh: prunes stale, repeated, failed and oversized context to save token budget.
 - [Kaixxrua/dsh-aigc-radar](https://github.com/Kaixxrua/dsh-aigc-radar) - Search AIGC Radar's curated GitHub AI project library (500-star admission, bilingual tags, star-growth snapshots) over its MCP endpoint with native result cards; a pre-step listener nudges a reuse check before the agent writes code.
+- [dsh-context-budget](https://github.com/d3vmeh/dsh-context-budget) - Keeps a local model's context at a size the GPU handles well: measures prefill speed on every request and, before each step, warns or compacts early on a hard token ceiling, an observed time-to-first-token budget, or a predicted cold-prefill budget; /context-budget shows the numbers and the cost of compacting now.
 
 ## Memory & Knowledge
 

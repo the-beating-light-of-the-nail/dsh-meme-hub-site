@@ -29,7 +29,7 @@ flowchart LR
 - 没有 Provider 层：MCP Tool、本地受控命令、DMS、HTTP、数据库和消息能力都由 Host Gateway 适配。
 - 权限只会收窄：模板先声明 `requires`，节点再声明固定依赖；最终能力是模板声明、节点声明、Authority 和 Host policy 的交集。
 - Agent Access 默认只允许同一 `authorityRef` 读取、追踪、重放或恢复持久化 Run；多租户管理员访问必须通过显式 `authorize` policy 授权。
-- Host 通过 `WorkflowDeploymentLimits` 持有不可提升的并发、时长、节点次数、输出大小和子流程深度 ceiling。
+- Host 通过 `WorkflowDeploymentLimits` 持有不可提升的并发、时长、节点次数、单次输出、累计 Checkpoint 和子流程深度 ceiling。
 - 编译器执行分支路径支配检查，拒绝发布在某条激活路径上必然缺少数据的 Workflow。
 - 外部动态结果只有通过 lossless JSON、schema、`expects`、端口和大小检查后，才会进入 Artifact、Journal 和 Checkpoint。
 - Script 只做纯 JSON：`core.script@1` 没有网络、文件、环境变量、密钥或 `eval`。含外部副作用的循环必须使用 `core.foreach@1`。
@@ -228,11 +228,22 @@ agent-workflow migrate-template old.json --output workflow-v1.json
 
 所有非流式命令都返回单个 `agent-workflow.cli/v1` JSON Envelope；`--input -` 从 stdin 读取 JSON，不需要把大型输入塞进 shell 参数。CLI 对每个命令使用严格参数契约，未知、重复或多余参数会在打开数据库前 fail closed。包含 Tool/Agent 节点时，必须显式传入 `--host ./host.mjs`。该模块导出 Gateway、Authority 和可选自定义 Node；CLI 不会隐式读取环境变量来猜测能力或凭据。
 
+Host 不需要 Provider 层。最小 Tool Adapter、加载时契约校验、Authority 边界和错误排查方式见 [Host Adapter 接入](docs/host-adapter.md)。
+
 后台调用使用 `run ... --detach`，并由 `agent-workflow worker --once` claim/resume。Host 必须提供可恢复的 Authority Resolver，否则 Runtime 会拒绝后台启动。
 
 ## Codex、Skill 与 MCP
 
 具备终端能力的 Codex 类 Agent 默认使用仓库内的 `workflow-builder` Skill 和 CLI。Skill 只在 Workflow 任务命中时加载，不包含执行逻辑。Codex Plugin 位于 `integrations/codex/agent-dag-workflow`，已按官方 manifest 结构打包同一 Skill。
+
+从源码安装 Codex Plugin 时，把该目录作为一个本地 marketplace；安装后新建会话即可按需发现 Skill，且不会常驻启动 MCP：
+
+```bash
+codex plugin marketplace add "$PWD/integrations/codex"
+codex plugin add agent-dag-workflow@agent-dag-workflow-local
+```
+
+Plugin 的 wrapper 只发现并调用同一个 `agent-workflow` CLI。卸载 Plugin 不会删除 Workflow SQLite 数据；数据路径仍由 CLI/Host 配置决定。
 
 没有本地命令能力的 Agent 可以启动一个固定 Tool 数量的 MCP Gateway：
 
@@ -274,6 +285,40 @@ Trigger 通过不可变 Binding 把可信入口映射到固定发布修订：
 
 外部 payload 不能指定最终 Authority、幂等键或 Workflow revision。Cron、Webhook 和钉钉只提供 reference adapter；生产部署仍需按平台协议实现可靠 HTTP/消息接收、加密凭据、持久队列和运维告警。
 
+Trigger Adapter 只需注册自己的 `uses` 与配置 Schema；通用 Binding Catalog 负责目标、映射和 CAS，不需要 Provider 层：
+
+```ts
+import {
+  SqliteWorkflowBindingRepository,
+  WorkflowBindingCatalog,
+  WorkflowTriggerDefinitionRegistry,
+} from '@gm-hz/agent-dag-workflow'
+
+const triggers = new WorkflowTriggerDefinitionRegistry()
+triggers.register({
+  uses: 'acme.message@1',
+  configSchema: { type: 'object', additionalProperties: false },
+})
+
+const bindings = new WorkflowBindingCatalog(
+  new SqliteWorkflowBindingRepository({ path: 'workflows.db' }),
+  catalog,
+  triggers,
+)
+
+await bindings.publish({
+  apiVersion: 'workflow.gm-hz.dev/v1alpha1',
+  kind: 'WorkflowBinding',
+  metadata: { id: 'weekly-from-acme' },
+  spec: {
+    workflow: { id: 'weekly-ai-model-news', revision: 1 },
+    trigger: { uses: 'acme.message@1', with: {} },
+    inputMapping: { from: { payload: { path: ['from'] } }, to: { payload: { path: ['to'] } } },
+    authorityRef: 'service:acme-channel',
+  },
+}, 0)
+```
+
 CLI、固定 MCP Gateway、DSH Plugin、SDK 和 Trigger 最终都调用同一个 Runtime。入口不会改变固定 revision、输入输出 Schema、Authority、Journal、Checkpoint 或 Replay 语义。
 
 ## 示例与验证
@@ -291,7 +336,11 @@ CLI、固定 MCP Gateway、DSH Plugin、SDK 和 Trigger 最终都调用同一个
 ```bash
 pnpm install
 pnpm check
+pnpm verify:pack
 pnpm demo
+pnpm example:weekly
 ```
+
+`pnpm example:weekly` 会在本地持久化数据库中真实执行 21 节点的“AI 模型周报”模板：13 路 Tool 调用、4 次 Agent 结构化处理、确定性合并排序、Top 10 输出和完整 Journal Trace。默认使用离线确定性 Host；替换为真实 Host 的方式见 [Showcase 说明](docs/showcase-workflows.md#运行-ai-模型周报)。
 
 项目使用 MIT License。发布、兼容性和实现门禁以 [重构方案](docs/core-generalization-refactor.md) 的完成定义为准。

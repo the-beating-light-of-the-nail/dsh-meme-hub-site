@@ -116,7 +116,7 @@ config:
 lands in the tool registry. Run:
 
 ```powershell
-set DSH_CHECKOUT=<your dsh install root, containing node_modules/@deepseek-ai>
+$env:DSH_CHECKOUT="<your dsh install root, containing node_modules/@deepseek-ai>"
 node test/mount-test.mjs
 ```
 
@@ -140,6 +140,7 @@ Beyond the `see_image` tool (which reads an image *by path*), this repo ships a
 have them auto-converted to text:
 
 ```powershell
+$env:DSH_CHECKOUT="<your dsh install root, containing node_modules/@deepseek-ai>"
 node scripts/patch-dsh-image-relay.mjs          # apply (idempotent, auto-backup)
 node scripts/patch-dsh-image-relay.mjs --check  # status
 node scripts/patch-dsh-image-relay.mjs --revert # rollback
@@ -152,7 +153,9 @@ It patches three DSH packages (host-apiproxy, llm-deepseek, client-ui) so that:
 - repeated images hit a local cache (`~/.dsh/cache/image-relay/`), and failures
   degrade gracefully within 8s.
 
-Requires `ZHIPU_API_KEY`. **Re-run the script after any `npx` dsh upgrade** —
+Requires `ZHIPU_API_KEY`. The image cache itself is portable and stays under
+`~/.dsh/cache/image-relay/`; only the DSH checkout must be supplied explicitly.
+**Re-run the script after any `npx` dsh upgrade** —
 the patch is lost when the npm cache is refreshed.
 
 ## License

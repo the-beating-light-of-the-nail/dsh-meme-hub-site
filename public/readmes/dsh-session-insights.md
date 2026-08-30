@@ -17,7 +17,7 @@ It helps answer questions such as:
 
 This is **behavioral review, not telemetry**. It is not a live monitor, a billing calculator, or a claim that it can judge the quality of your work.
 
-![Scattered session trails pass through an analysis lens and resolve into structured evidence cards and a clear report](https://raw.githubusercontent.com/GreenLv/dsh-session-insights/c6f1d0b9df3ab065b10eebed33622bd19247353a/assets/social/hero.jpg)
+![Scattered session trails pass through an analysis lens and resolve into structured evidence cards and a clear report](https://raw.githubusercontent.com/GreenLv/dsh-session-insights/06fe15b07f1dace151bbf37eb152a7e1e217da1e/assets/social/hero.jpg)
 
 ## What you get
 
@@ -31,7 +31,7 @@ The dashboard brings several views of the same evidence together:
 | Wins and friction | Evidence-backed strengths plus failures, retries, and other signals worth investigating |
 | Recommendations | DSH workflow suggestions tied to measured evidence, with prompts you can copy |
 
-<p align="center"><img src="https://raw.githubusercontent.com/GreenLv/dsh-session-insights/c6f1d0b9df3ab065b10eebed33622bd19247353a/assets/screenshots/dashboard-overview-en.png" alt="Deterministic retrospective dashboard overview (synthetic data)" width="640"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/GreenLv/dsh-session-insights/06fe15b07f1dace151bbf37eb152a7e1e217da1e/assets/screenshots/dashboard-overview-en.png" alt="Deterministic retrospective dashboard overview (synthetic data)" width="640"></p>
 
 The HTML file contains its own styles and data, so you can keep it locally and open it without a server. A machine-readable JSON report is written beside it.
 

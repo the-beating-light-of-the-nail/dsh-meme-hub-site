@@ -34,10 +34,13 @@ Designed for mainland China legal practice (default jurisdiction: the People's R
 ## Install
 
 ```bash
-cp -R preset ~/.dsh/.agent-presets/dsh-contract-drafting-agent
+dsh plugin --profile <profile-name> add songoao25/dsh-contract-drafting-agent
 ```
 
-Then **start a new session** in DeepSeek Harness and select **「合同起草模式」(Contract Drafting Mode)** in the preset picker.
+Restart DeepSeek Harness once, then start a new session. The bundle makes the
+contract-workflow skills available in the selected profile. To use the full
+named preset (including its persona and tool composition), install `preset/`
+separately as documented in the repository.
 
 ## Usage
 

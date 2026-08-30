@@ -63,16 +63,16 @@ Do **not** `dsh plugin add dsh-mobile-remote` — that installs the unrelated We
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/eb90eb0b293cc9db804e91b9412dcec36d45d48f/docs/assets/en/settings-pairing.png" alt="Desktop settings — pairing offer with QR and PIN" width="48%" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/c5b62b548795f74bd0d309bbdb529269dcfdacb9/docs/assets/en/settings-pairing.png" alt="Desktop settings — pairing offer with QR and PIN" width="48%" />
   &nbsp;
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/eb90eb0b293cc9db804e91b9412dcec36d45d48f/docs/assets/en/settings-overview.png" alt="Desktop settings — channel status and paired devices" width="48%" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/c5b62b548795f74bd0d309bbdb529269dcfdacb9/docs/assets/en/settings-overview.png" alt="Desktop settings — channel status and paired devices" width="48%" />
 </p>
 <p align="center"><em>Desktop Settings → Mobile Remote: create a pairing offer (left) · channel status &amp; devices (right)</em></p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/eb90eb0b293cc9db804e91b9412dcec36d45d48f/docs/assets/en/mobile-pair.png" alt="Phone pairing screen" width="28%" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/c5b62b548795f74bd0d309bbdb529269dcfdacb9/docs/assets/en/mobile-pair.png" alt="Phone pairing screen" width="28%" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/eb90eb0b293cc9db804e91b9412dcec36d45d48f/docs/assets/en/mobile-sessions.png" alt="Phone session list" width="28%" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-remote-kit/c5b62b548795f74bd0d309bbdb529269dcfdacb9/docs/assets/en/mobile-sessions.png" alt="Phone session list" width="28%" />
 </p>
 <p align="center"><em>Phone companion: enter PIN / scan (left) · session list after pairing (right)</em></p>
 

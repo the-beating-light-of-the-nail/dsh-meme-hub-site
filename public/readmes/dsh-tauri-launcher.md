@@ -42,7 +42,7 @@ Web 插件本体（host/client JS）跨平台；目前 Windows 专属的实现�
 
 **Web 设置面板（插件分区）**
 
-![Harness 设置中的桌面启动分区](https://raw.githubusercontent.com/cilis/dsh-tauri-launcher/3ebe1bde5330e5ab5f1944c5a445ff2bc2bacb2c/docs/screenshots/harness-settings.png)
+![Harness 设置中的桌面启动分区](https://raw.githubusercontent.com/cilis/dsh-tauri-launcher/8bfa43547ae3bc023ce975d03173d8f573362889/docs/screenshots/harness-settings.png)
 
 安装后，DSH 设置 → 桌面启动 即可看到启动开关、运行状态、快捷方式联动提示。
 
@@ -51,7 +51,7 @@ Web 插件本体（host/client JS）跨平台；目前 Windows 专属的实现�
 
 **桌面应用设置面板**
 
-![Tauri 桌面应用设置](https://raw.githubusercontent.com/cilis/dsh-tauri-launcher/3ebe1bde5330e5ab5f1944c5a445ff2bc2bacb2c/docs/screenshots/launcher-settings.png)
+![Tauri 桌面应用设置](https://raw.githubusercontent.com/cilis/dsh-tauri-launcher/8bfa43547ae3bc023ce975d03173d8f573362889/docs/screenshots/launcher-settings.png)
 
 Tauri 桌面应用自身设置：开机启动、全局快捷键、桌面快捷方式、退出策略。
 

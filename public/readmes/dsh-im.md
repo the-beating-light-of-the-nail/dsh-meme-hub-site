@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/72ffd7115cb377ac2c48a350d87221b3a033d061/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/72ffd7115cb377ac2c48a350d87221b3a033d061/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e08c3e95765e33e5d37e5f63d35d96f9f6b13de0/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e08c3e95765e33e5d37e5f63d35d96f9f6b13de0/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 ---
@@ -43,7 +43,7 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 ## 界面
 
-![IM机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/72ffd7115cb377ac2c48a350d87221b3a033d061/docs/images/imbot.png)
+![IM机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/e08c3e95765e33e5d37e5f63d35d96f9f6b13de0/docs/images/imbot.png)
 
 ## 当前内置渠道
 
@@ -101,7 +101,7 @@ dsh plugin --profile web add -w @xmanrui/dsh-im
 
 重启 `dsh web`、刷新浏览器，然后打开「设置 → IM机器人」。IM机器人使用 `order: 21`，尽量排在一级设置菜单的「Agent 预设」之后；插件页面不再保留旧入口。从旧版升级不会改变已有机器人、凭据、工作区、Agent Preset 或会话绑定。
 
-本机 `dsh web` 和 DSH Desktop 默认通过当前 Host 的内部 `apiProxy` 接口通信，不再绕行本机 HTTP 端口。Desktop 的兼容模式、扩展窗口和增强模式均无需开启“允许在浏览器中打开”或局域网访问。渠道配置中显式设置的 `harnessBaseUrl` 仍使用原有 HTTP/WebSocket 连接；内部调用失败不会自动改连其他 Host。
+本机 `dsh web` 和 DSH Desktop 默认直接复用当前 Host 的内部服务：旧版 Harness 使用 `apiProxy`，新版 Harness 自动使用 Typert Gateway、Session Controller 和 Workspace Controller，不需要配置 Harness 地址，也不绕行本机 HTTP 端口。Desktop 的兼容模式、扩展窗口和增强模式均无需开启“允许在浏览器中打开”或局域网访问。渠道配置中显式设置的 `harnessBaseUrl` 仅保留给旧版远程 HTTP/WebSocket Harness；内部调用失败不会自动改连其他 Host。
 
 如需试用尚未发布到 npm 的最新代码，可以改用 GitHub 源安装器：
 
@@ -132,6 +132,12 @@ dsh web
 | 机器人工作区 | 每个机器人独立保存工作区。新机器人默认使用 Host 当时的工作目录；之后可在机器人卡片中修改。 |
 | Agent Preset | 每个机器人可在设置页卡片中选择 Agent Preset。未选择时跟随 Host 的 `agent-presets.default`；渠道级 `config.agentPreset` 只作为该渠道之后新接入机器人的默认值。切换不会修改或清空已有会话；若当前聊天已有会话，需先发送 `/new`，再发送一条普通消息，才会按新选择创建会话。 |
 | 上下文增强 | 从机器人卡片打开设置，分别决定群聊、私聊是否增强；两个开关默认均关闭，旧机器人升级后也不会自动开启。 |
+
+### 主动投递
+
+九个 IM 渠道都可以使用稳定的 `botId + targetId` 主动发送文字消息。机器人设置页支持从已聊会话选择或手工填写目标、保存前测试当前路由，以及复制调用参数；HTTP POST、同 Host 插件和 Connection RPC 共用同一目标配置与投递核心。
+
+设置步骤、九渠道字段、完整调用示例、管理端点、错误码与排错说明请查看[《主动投递使用指南》](PROACTIVE_DELIVERY.md)（[English](PROACTIVE_DELIVERY.en.md)）。
 
 ### 上下文增强
 
@@ -184,7 +190,7 @@ dsh plugin --profile web add -w --save-exact @xmanrui/dsh-im@3.1.0 --registry=ht
 | `/reasoning` | 查看当前会话的模型和推理等级。 |
 | `/reasoning <序号或等级ID>` | 切换当前模型的推理等级。 |
 | `/reasoning --default` | 恢复当前模型的默认推理等级。 |
-| `/presetlist` | 按序号列出 Host 当前可用的 Agent Preset，并标记 Host 默认项和当前机器人的选择。 |
+| `/presetlist`、`/presets` | 两个等价命令；按序号列出 Host 当前可用的 Agent Preset，并标记 Host 默认项和当前机器人的选择。 |
 | `/preset` | 查看当前机器人的新会话 Agent Preset 设置。 |
 | `/preset <序号或 Preset ID>` | 设置当前机器人的 Agent Preset；纯数字 ID 使用 `/preset id:<ID>`。 |
 | `/preset --default` | 清除当前机器人的显式选择，让后续新 Session 跟随 Host 默认。 |
@@ -197,7 +203,7 @@ dsh plugin --profile web add -w --save-exact @xmanrui/dsh-im@3.1.0 --registry=ht
 | `/compact` | 立即压缩当前聊天绑定会话的较早上下文。 |
 | `/workspace <工作区绝对路径>` | 切换当前机器人的 Harness 工作区。 |
 | `/workspacelist` | 列出当前 Harness Host 上仍然存在的工作区绝对路径。 |
-| `/sessionlist [工作区序号或绝对路径]` | 列出指定工作区登记的所有会话 ID 和标题；省略参数时使用当前工作区。 |
+| `/sessionlist [工作区序号或绝对路径]`、`/sessions [...]` | 两个等价命令；列出指定工作区登记的所有会话 ID 和标题，省略参数时使用当前工作区。 |
 | `/session <Session ID>` | 将当前聊天绑定到指定的已有 Harness 会话。 |
 | `/history [数量]` | 在私聊中查看当前绑定会话的最近历史消息，默认 3 条，最多 5 条。 |
 | 交互式提问 | 回复选项序号、选项文字或自定义文字；多选时用逗号分隔。 |
@@ -217,7 +223,7 @@ Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/
 - `/model` 不带参数时查看当前会话的模型和推理等级；带参数时接受 `/models` 列出的序号或精确完整模型 ID，并可追加目标模型元数据公布的精确推理等级 ID，例如 `/model 2 max`。省略推理等级时，由 Harness 解析目标模型的当前默认值。聊天尚无会话时，有效的切换命令会创建并绑定一个空白会话，但不会触发模型回复。
 - `/reasoninglist` 和 `/reasonings` 完全等价，按当前模型的元数据列出可选推理等级并标记当前值和默认值。`/reasoning` 查看当前值；`/reasoning <序号或等级ID>` 接受列表序号或元数据中的精确 ID；`/reasoning --default` 让 Harness 重新采用当前模型的默认推理等级。所有 `/reasoning...` 命令都要求当前聊天已有 Session，不会自行创建 Session 或触发模型回复。
 - 正在运行任务或等待审批、问题回答时不能修改模型或推理等级；请等待完成，或先使用 `/stop`。修改从下一次模型请求起生效，并沿用 Harness 的默认保存语义：Harness 会尝试把已接受的模型和推理等级保存为以后新会话的默认选择，已有其他会话不受影响。含图片的会话无法切换到不支持图片输入的模型。
-- `/presetlist` 不需要参数，也不会创建会话。它每次都读取 Host 当前可用的 Agent Preset，显示名称、稳定 ID、Host 默认项和当前机器人的选择；已删除或损坏的当前选择会保留并标记为“已不可用”，不会被自动清除。列表只公开安全的名称和 ID，不公开 Preset 路径、错误或其他 Host 内部字段。
+- `/presetlist` 和 `/presets` 完全等价，不需要参数，也不会创建会话。它们每次都读取 Host 当前可用的 Agent Preset，显示名称、稳定 ID、Host 默认项和当前机器人的选择；已删除或损坏的当前选择会保留并标记为“已不可用”，不会被自动清除。列表只公开安全的名称和 ID，不公开 Preset 路径、错误或其他 Host 内部字段。
 - `/preset` 不带参数时查看当前机器人的“新会话设置”，不是查看或修改当前 Session。带参数时接受最近一次 `/presetlist` 在当前聊天中显示的序号或完整 ID；纯数字 ID 使用 `/preset id:<ID>`。选择序号时会先按该次列表解析 ID，再用 Host 最新目录复验，目录已经变化时会要求重新列出。
 - `/preset --default` 清除当前机器人的显式覆盖值，让以后新建的 Session 在创建时跟随 Host 当前默认；显式选择一个恰好等于 Host 默认的 ID 则会固定该 ID。目录暂时不可读时仍可恢复为跟随 Host 默认。
 - Agent Preset 修改是机器人级配置，会影响该机器人所有聊天以后创建的新 Session，但不会修改、停止、解绑或重建已有 Session，也不会自动执行 `/new`。若当前聊天已有会话，继续发送消息仍使用原 Session；发送 `/new` 后的下一条普通消息才会按新设置创建 Session。任务正在运行或等待交互时也可查询或修改 Preset，因为命令不会触碰当前 Session。
@@ -228,8 +234,8 @@ Slack 桌面端若未注册同名的原生 Slash Command，会拦截直接以 `/
 - `/compact` 只作用于当前聊天已经绑定的 Harness 会话，不会把命令发送给模型。当前聊天尚未创建会话、会话正在生成回复或没有可压缩历史时，机器人会直接返回对应状态。
 - 只接受已经存在的绝对目录；路径无效时机器人会返回具体提示和正确用法。
 - `/workspacelist` 不需要参数。它合并 Harness 全局登记项与当前机器人的路径；当前路径仍存在且可安全显示时会排在首位并标记为“当前”。结果可直接复制到 `/workspace` 命令。
-- `/sessionlist` 的数字参数按命令执行时与 `/workspacelist` 相同的最新顺序解析；也可使用绝对路径直接指定工作区。结果会回显最终选中的路径。
-- `/sessionlist` 会列出该工作区登记的所有会话。已归档会话会标记为“已归档”；空白会话和子代理会话在它们归属该工作区时也会列出；没有标题的会话显示为“暂无标题”。结果中的 ID 可直接用于 `/session Session ID`。
+- `/sessionlist` 和 `/sessions` 完全等价。数字参数按命令执行时与 `/workspacelist` 相同的最新顺序解析；也可使用绝对路径直接指定工作区。结果会回显最终选中的路径。
+- 两个会话列表命令都会列出该工作区登记的所有会话。已归档会话会标记为“已归档”；空白会话和子代理会话在它们归属该工作区时也会列出；没有标题的会话显示为“暂无标题”。结果中的 ID 可直接用于 `/session Session ID`。
 - `/session` 只接受一个由 `/sessionlist` 获得的 Session ID。它不会新建会话或立即向模型发送消息；绑定成功后，当前聊天的后续消息会继续该会话。普通归档会话可以绑定但不会自动取消归档，子代理会话不能绑定。
 - `/history` 在九个渠道的私聊中统一可用，只读取当前聊天已经绑定的会话，不新建会话、不调用模型，也不影响正在运行的任务或待处理交互。默认返回最近 3 条；`/history N` 接受正整数，超过 5 自动按 5 条处理，数量不足时返回实际条数。零、负数、小数、非数字和多个参数会提示用法，附带图片或文件时会拒绝处理；批量输入收集中请先 `/send` 或 `/cancel`。
 - 历史预览中，一条用户消息或一条助手最终回复各算一条，不按轮次或天数计数。先取最新 N 条，再按从旧到新的顺序显示；不展示工具、推理、注入内容或尚未完成的助手片段，不下载或重发历史附件。长正文会截断并注明，全部结果最多发送 3 段文字，不自动翻页。绑定会话后可手动发送 `/history`，不会自动重发历史。正文仍可能包含会话原有的敏感信息，请只向可信用户开放机器人。
@@ -312,13 +318,13 @@ IM 管理 RPC 默认仅接受回环浏览器。如果 Web profile 在受信任�
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/72ffd7115cb377ac2c48a350d87221b3a033d061/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e08c3e95765e33e5d37e5f63d35d96f9f6b13de0/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/72ffd7115cb377ac2c48a350d87221b3a033d061/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e08c3e95765e33e5d37e5f63d35d96f9f6b13de0/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/72ffd7115cb377ac2c48a350d87221b3a033d061/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
+      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/e08c3e95765e33e5d37e5f63d35d96f9f6b13de0/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
     </td>
   </tr>
 </table>

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-29T09:40:54.018Z",
+  "generatedAt": "2026-08-30T08:50:14.281Z",
   "candidates": [
     {
       "repo": "yjh051108/dsh-routing-suite",
       "url": "https://github.com/yjh051108/dsh-routing-suite",
       "name": "dsh-routing-suite",
-      "stars": 6937,
+      "stars": 6959,
       "description": "dsh-routing-suite — injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23).",
       "hasManifest": true,
       "dshType": "bundle",
@@ -22,7 +22,7 @@
       "repo": "Minglink/dsh-infinite-gen-2",
       "url": "https://github.com/Minglink/dsh-infinite-gen-2",
       "name": "dsh-infinite-gen-2",
-      "stars": 608,
+      "stars": 640,
       "description": "DeepSeek 专用破甲插件「无限二代」dsh-infinite-gen-2 — armor-breaking plugin for DeepSeek稳定化破甲提示词，求 Star 收藏 ⭐",
       "hasManifest": true,
       "dshType": "bundle",
@@ -38,7 +38,7 @@
       "repo": "FSMargoo/dsh-at-file",
       "url": "https://github.com/FSMargoo/dsh-at-file",
       "name": "dsh-at-file",
-      "stars": 491,
+      "stars": 497,
       "description": "Codex-style @file mentions for DeepSeek Harness: search workspace files in the composer and attach their path to prompts.",
       "hasManifest": true,
       "dshType": "bundle",
@@ -52,7 +52,7 @@
       "repo": "zhoushoujianwork/easyeda-agent",
       "url": "https://github.com/zhoushoujianwork/easyeda-agent",
       "name": "easyeda-agent",
-      "stars": 316,
+      "stars": 321,
       "description": "嘉立创EDA专业版(EasyEDA Pro)自动化：给 AI harness 装上画板的「手」—— 一套 typed 原理图/PCB 动作，CLI / Agent Skill / stdio MCP 三形态融合接入。承接嘉立创「不以卖板赚钱，以培养中国工程师为己任」 | EasyEDA Pro automation: the hands of your AI harness — typed schematic/PCB actions via CLI, Agent Skill and stdio MCP.",
       "hasManifest": true,
       "dshType": "bundle",
@@ -72,7 +72,7 @@
       "repo": "ericshang98/Perfect-Web-Clone",
       "url": "https://github.com/ericshang98/Perfect-Web-Clone",
       "name": "Perfect-Web-Clone",
-      "stars": 260,
+      "stars": 261,
       "description": "Pixel-perfect clones of any webpage. Paste a URL, get a measured Vite + React replica.",
       "hasManifest": true,
       "dshType": "bundle",
@@ -92,7 +92,7 @@
       "repo": "weijiafu14/pi2dsh",
       "url": "https://github.com/weijiafu14/pi2dsh",
       "name": "pi2dsh",
-      "stars": 174,
+      "stars": 175,
       "description": "Bridge the Pi and DeepSeek Harness ecosystems: one Pi Host ABI runs unmodified Pi extensions as native DSH plugins. 打通 Pi 与 DSH 生态。",
       "hasManifest": true,
       "dshType": "bundle",
@@ -112,7 +112,7 @@
       "repo": "GraySilver/dsh-evolve-modes",
       "url": "https://github.com/GraySilver/dsh-evolve-modes",
       "name": "dsh-evolve-modes",
-      "stars": 165,
+      "stars": 174,
       "description": "让 Agent 的工作方式可组合、可审查、可持续改进，最终实现 Agent Self Evoling。 DeepSeek Harness Web plugin with composable task controls and isolated, human-reviewed self-evolution.",
       "hasManifest": true,
       "dshType": "bundle",
@@ -132,7 +132,7 @@
       "repo": "oil-oil/dsh-oil-creator",
       "url": "https://github.com/oil-oil/dsh-oil-creator",
       "name": "dsh-oil-creator",
-      "stars": 164,
+      "stars": 167,
       "description": "AI-assisted local creator workbench for DeepSeek Harness",
       "hasManifest": true,
       "dshType": "bundle",
@@ -162,7 +162,7 @@
       "repo": "NanmiCoder/dsh-auto-mode",
       "url": "https://github.com/NanmiCoder/dsh-auto-mode",
       "name": "dsh-auto-mode",
-      "stars": 135,
+      "stars": 137,
       "description": "Safe automatic permissions for DeepSeek Harness.",
       "hasManifest": true,
       "dshType": "bundle",
@@ -192,19 +192,19 @@
       "repo": "Hilbert-beinghappy/seektty",
       "url": "https://github.com/Hilbert-beinghappy/seektty",
       "name": "seektty",
-      "stars": 116,
-      "description": "Pluggable DeepSeek-colored TUI for DeepSeek Harness",
+      "stars": 121,
+      "description": "面向 DeepSeek Harness 的 Claude Code 风格终端界面，支持 Windows、macOS 与 Linux，兼容透明终端、VS Code 主题和自定义配色。",
       "hasManifest": true,
       "dshType": "bundle",
       "topics": [
         "agentic-ai",
         "ai-agent",
+        "claude-code-style",
         "cli",
         "coding-agent",
-        "command-line",
+        "cross-platform",
         "deepseek",
-        "deepseek-harness",
-        "developer-tools"
+        "deepseek-harness"
       ],
       "discoveredAt": "2026-08-19T03:18:39.539Z"
     },
@@ -212,7 +212,7 @@
       "repo": "omdsh-dev/dsh_workflow",
       "url": "https://github.com/omdsh-dev/dsh_workflow",
       "name": "dsh_workflow",
-      "stars": 109,
+      "stars": 110,
       "description": "把Claude Code的UltraCode模式带给DSH，把 DSH 的一次性多 Agent 调度，升级为可生成、可保存、可治理、可观察、可恢复的 Workflow 层",
       "hasManifest": true,
       "dshType": "bundle",
@@ -251,7 +251,7 @@
       "repo": "hanshenmesen/dsh-turn-delete",
       "url": "https://github.com/hanshenmesen/dsh-turn-delete",
       "name": "dsh-turn-delete",
-      "stars": 105,
+      "stars": 106,
       "description": "Delete one complete turn from a DeepSeek Harness session without deleting the session",
       "hasManifest": true,
       "dshType": "bundle",
@@ -296,6 +296,37 @@
       "discoveredAt": "2026-08-17T01:16:00.697Z"
     },
     {
+      "repo": "dundunhan/dsh-video-lens",
+      "url": "https://github.com/dundunhan/dsh-video-lens",
+      "name": "dsh-video-lens",
+      "stars": 83,
+      "description": "",
+      "hasManifest": true,
+      "dshType": "bundle",
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin"
+      ],
+      "discoveredAt": "2026-08-28T15:02:06.627Z"
+    },
+    {
+      "repo": "AITabby/dockyard-dsh",
+      "url": "https://github.com/AITabby/dockyard-dsh",
+      "name": "dockyard-dsh",
+      "stars": 80,
+      "description": "A macOS-only native account-pool and provider plugin for DeepSeek Harness.",
+      "hasManifest": true,
+      "dshType": "bundle",
+      "topics": [
+        "account-pool",
+        "deepseek-harness",
+        "dsh-plugin",
+        "macos",
+        "oauth"
+      ],
+      "discoveredAt": "2026-08-17T01:16:00.697Z"
+    },
+    {
       "repo": "mishibeikejie/zat-dsh-engine",
       "url": "https://github.com/mishibeikejie/zat-dsh-engine",
       "name": "zat-dsh-engine",
@@ -311,35 +342,24 @@
       "discoveredAt": "2026-08-17T01:16:00.697Z"
     },
     {
-      "repo": "AITabby/dockyard-dsh",
-      "url": "https://github.com/AITabby/dockyard-dsh",
-      "name": "dockyard-dsh",
-      "stars": 79,
-      "description": "A macOS-only native account-pool and provider plugin for DeepSeek Harness.",
+      "repo": "dshplugin/dsh-plugin-hub",
+      "url": "https://github.com/dshplugin/dsh-plugin-hub",
+      "name": "dsh-plugin-hub",
+      "stars": 71,
+      "description": "DeepSeek Harness 社区内置插件市场（dsh-plugin）— 搜索插件、下载并安装 4000+ 人工精选社区插件，每日更新、完全免费。内置在 Harness「设置 → 插件中心」，无需离开应用即可浏览、搜索、安装各类 AI 插件。",
       "hasManifest": true,
       "dshType": "bundle",
       "topics": [
-        "account-pool",
+        "agent",
+        "ai",
+        "cli",
+        "community-plugins",
+        "deepseek",
         "deepseek-harness",
         "dsh-plugin",
-        "macos",
-        "oauth"
+        "dsh-plugin-org"
       ],
-      "discoveredAt": "2026-08-17T01:16:00.697Z"
-    },
-    {
-      "repo": "dundunhan/dsh-video-lens",
-      "url": "https://github.com/dundunhan/dsh-video-lens",
-      "name": "dsh-video-lens",
-      "stars": 71,
-      "description": "",
-      "hasManifest": true,
-      "dshType": "bundle",
-      "topics": [
-        "deepseek-harness",
-        "dsh-plugin"
-      ],
-      "discoveredAt": "2026-08-28T15:02:06.627Z"
+      "discoveredAt": "2026-08-27T13:18:13.770Z"
     },
     {
       "repo": "raullenchai/rapid-mlx-dsh-provider",
@@ -362,30 +382,10 @@
       "discoveredAt": "2026-08-29T09:40:54.018Z"
     },
     {
-      "repo": "dshplugin/dsh-plugin-hub",
-      "url": "https://github.com/dshplugin/dsh-plugin-hub",
-      "name": "dsh-plugin-hub",
-      "stars": 70,
-      "description": "DeepSeek Harness 社区内置插件市场（dsh-plugin）— 搜索插件、下载并安装 4000+ 人工精选社区插件，每日更新、完全免费。内置在 Harness「设置 → 插件中心」，无需离开应用即可浏览、搜索、安装各类 AI 插件。",
-      "hasManifest": true,
-      "dshType": "bundle",
-      "topics": [
-        "agent",
-        "ai",
-        "cli",
-        "community-plugins",
-        "deepseek",
-        "deepseek-harness",
-        "dsh-plugin",
-        "dsh-plugin-org"
-      ],
-      "discoveredAt": "2026-08-27T13:18:13.770Z"
-    },
-    {
       "repo": "Aisland-SJL/dsh-usage",
       "url": "https://github.com/Aisland-SJL/dsh-usage",
       "name": "dsh-usage",
-      "stars": 64,
+      "stars": 67,
       "description": "🌊 Persistent dock & fully-customizable balance/usage panel for DeepSeek Harness — activity heatmap, dual-channel comparison, local-only & privacy-first",
       "hasManifest": true,
       "dshType": "bundle",
@@ -400,6 +400,40 @@
         "token-usage"
       ],
       "discoveredAt": "2026-08-28T15:02:06.627Z"
+    },
+    {
+      "repo": "PKUfudawei/dsh-capability-menu",
+      "url": "https://github.com/PKUfudawei/dsh-capability-menu",
+      "name": "dsh-capability-menu",
+      "stars": 66,
+      "description": "Unified capability menu for DeepSeek Harness: manage exposure level (context footprint) and execution mode of MCP tools & skills via Exposed/Progressive/Blocked tiers.",
+      "hasManifest": true,
+      "dshType": "bundle",
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin"
+      ],
+      "discoveredAt": "2026-08-30T08:50:14.281Z"
+    },
+    {
+      "repo": "Fisfzy/dsh-ego-browser",
+      "url": "https://github.com/Fisfzy/dsh-ego-browser",
+      "name": "dsh-ego-browser",
+      "stars": 66,
+      "description": "DSH（DeepSeek Harness）插件：把 ego-lite 浏览器（给 AI Agent 用的 Chromium）接入 HARNESS——13 个结构化 ego_* 工具（文本语义快照、语义定位点击、表单填充、截图、CDP 控制、任务空间隔离），内置 ego 运行时，Linux + Chrome 开箱即用，无需克隆官方仓库或手动构建。",
+      "hasManifest": true,
+      "dshType": "bundle",
+      "topics": [
+        "agent-browser",
+        "browser-automation",
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-better-sidebar",
+        "dsh-plugin",
+        "dshfind"
+      ],
+      "discoveredAt": "2026-08-30T08:50:14.281Z"
     }
   ]
 }

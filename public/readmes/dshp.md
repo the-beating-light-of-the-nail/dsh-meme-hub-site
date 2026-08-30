@@ -1,22 +1,39 @@
 # dshp
 
-**Share a whole [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) setup as one file.**
+**Hand your whole dsh setup to someone as one file — and they get the exact same tree.**
 
 English | [中文](README.zh.md)
 
 ```sh
-npx dshp ls
+npx github:asdf17128/dshp ls
 ```
+
+Shows every profile on your machine in one line each. Read-only, zero dependencies.
+
+<img src="https://raw.githubusercontent.com/asdf17128/dshp/0c78215b493a398e4a1d14c48dae0bc14a60db7f/assets/demo.svg" alt="dshp in use" width="760">
 
 ---
 
-## Why
+## What it gives you
 
-dsh boots profiles and forwards installs to pnpm. It cannot create an empty profile, list the ones you have, copy a working setup before you experiment on it, or hand a setup to someone else — that is all manual work under `~/.dsh/profiles` today.
+**See what you actually have.** `dshp ls` and `dshp show` answer "what is
+installed, in what order, and did I patch it" without opening a single file.
 
-Which matters, because "everything is a plugin" means your setup *is* a stack of layers, and the useful unit to share is the whole stack, not one plugin at a time.
+**Copy before you break it.** `dshp clone web web-test` duplicates a working
+setup in under a second, `node_modules` and all. Experiment on the copy; `rm`
+it when done.
+
+**Share a setup that reproduces exactly.** `dshp export` writes bundle order,
+plugin versions and your patch into one short file. `dshp import` rebuilds it —
+verified: a 132-entry profile reproduced into a fresh `$DSH_HOME` composes an
+identical tree, patch included.
+
+dsh itself can boot a profile and forward installs to pnpm, but it cannot create
+an empty one, list what you have, or copy a working setup before you experiment
+on it. That is all manual work under `~/.dsh/profiles` today.
 
 ## Share a setup
+
 
 ```sh
 dshp export web -o my-setup.dshp

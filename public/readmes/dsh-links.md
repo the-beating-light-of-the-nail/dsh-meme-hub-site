@@ -8,7 +8,7 @@
 <p align="center"><strong>Beta</strong> · <strong>Android only</strong> · <strong>Trusted LAN</strong> · <strong>Relay 内测（需接入码）</strong> · <strong>Unofficial</strong></p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lunaship/dsh-links/9f8bbbc003102324e65afa5b96920cae3cade31b/docs/images/dsh-workbench-latest.png" width="900" alt="当前 DSH Web 工作台，展示会话、思考事件、消息和模型选择。">
+  <img src="https://raw.githubusercontent.com/lunaship/dsh-links/ad0c186148b16993800d2365eb671330490dcd1e/docs/images/dsh-workbench-latest.png" width="900" alt="当前 DSH Web 工作台，展示会话、思考事件、消息和模型选择。">
 </p>
 
 <p align="center"><sub>电脑继续运行 DSH、工具和工作区；手机负责查看会话、发送消息、接收实时事件和处理审批。</sub></p>
@@ -49,8 +49,8 @@ Android App 当前最低支持 Android 8.0（API 26）。源码不在本仓库�
 
 <table>
   <tr>
-    <td width="60%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/9f8bbbc003102324e65afa5b96920cae3cade31b/docs/images/phone-connection-latest-sanitized.png" alt="当前 DSH Links 电脑端手机连接设置，展示局域网配对入口和已配对设备。"><br><sub><b>电脑端手机连接</b>：从当前 DSH Web 设置发起局域网配对。</sub></td>
-    <td width="40%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/9f8bbbc003102324e65afa5b96920cae3cade31b/docs/images/android-devices-latest-sanitized.png" alt="当前 DSH Links Android App 设备列表，展示局域网和云端设备入口。"><br><sub><b>Android 设备</b>：查看多个已配对设备及其连接状态。</sub></td>
+    <td width="60%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/ad0c186148b16993800d2365eb671330490dcd1e/docs/images/phone-connection-latest-sanitized.png" alt="当前 DSH Links 电脑端手机连接设置，展示局域网配对入口和已配对设备。"><br><sub><b>电脑端手机连接</b>：从当前 DSH Web 设置发起局域网配对。</sub></td>
+    <td width="40%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/ad0c186148b16993800d2365eb671330490dcd1e/docs/images/android-devices-latest-sanitized.png" alt="当前 DSH Links Android App 设备列表，展示局域网和云端设备入口。"><br><sub><b>Android 设备</b>：查看多个已配对设备及其连接状态。</sub></td>
   </tr>
 </table>
 
@@ -58,14 +58,14 @@ Android App 当前最低支持 Android 8.0（API 26）。源码不在本仓库�
 
 <table>
   <tr>
-    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/9f8bbbc003102324e65afa5b96920cae3cade31b/docs/images/android-workspace-latest.png" alt="当前 Android App 原生会话工作台，展示对话、思考事件、模型选择和消息输入。"><br><sub><b>原生工作台</b>：在手机上继续会话、查看思考事件并发送消息。</sub></td>
-    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/9f8bbbc003102324e65afa5b96920cae3cade31b/docs/images/android-navigation-latest.png" alt="当前 Android App 工作区导航抽屉，展示工作区、会话和设置入口。"><br><sub><b>工作区导航</b>：切换设备、工作区、会话与设置。</sub></td>
+    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/ad0c186148b16993800d2365eb671330490dcd1e/docs/images/android-workspace-latest.png" alt="当前 Android App 原生会话工作台，展示对话、思考事件、模型选择和消息输入。"><br><sub><b>原生工作台</b>：在手机上继续会话、查看思考事件并发送消息。</sub></td>
+    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/ad0c186148b16993800d2365eb671330490dcd1e/docs/images/android-navigation-latest.png" alt="当前 Android App 工作区导航抽屉，展示工作区、会话和设置入口。"><br><sub><b>工作区导航</b>：切换设备、工作区、会话与设置。</sub></td>
   </tr>
 </table>
 
 ### Android App 设置
 
-<img src="https://raw.githubusercontent.com/lunaship/dsh-links/9f8bbbc003102324e65afa5b96920cae3cade31b/docs/images/android-settings-latest.png" width="60%" alt="当前 Android App 设置页，展示通用设置、模型、会话、插件和外观选项。">
+<img src="https://raw.githubusercontent.com/lunaship/dsh-links/ad0c186148b16993800d2365eb671330490dcd1e/docs/images/android-settings-latest.png" width="60%" alt="当前 Android App 设置页，展示通用设置、模型、会话、插件和外观选项。">
 
 ## Beta support boundary
 

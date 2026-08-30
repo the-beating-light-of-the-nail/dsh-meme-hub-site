@@ -2,48 +2,44 @@
 
 [![ci](https://github.com/asdf17128/dsh-doctor/actions/workflows/ci.yml/badge.svg)](https://github.com/asdf17128/dsh-doctor/actions/workflows/ci.yml)
 
-**Find what your [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) patches silently broke.**
+**Your dsh config has settings that silently stopped applying. This tells you which ones.**
 
 English | [中文](README.zh.md)
 
 ```sh
-npx dsh-doctor
-# or straight from source, no npm release needed:
 npx github:asdf17128/dsh-doctor
 ```
 
-Read-only. No config, no signup, no dependencies.
+One command, ten seconds, read-only. No config, no signup, no dependencies.
+
+<img src="https://raw.githubusercontent.com/asdf17128/dsh-doctor/32d2bba1dc90d60be90a4e42fe0de788c74f980f/assets/demo.svg" alt="dsh-doctor output" width="760">
 
 ---
 
-## The problem
+## Why your setting isn't taking effect
 
-You patch one field in `cordis.patch.yml`:
+Two dsh behaviours boot cleanly with exit code 0, so nothing tells you:
 
-```yaml
-- id: session-title
-  config:
-    fallbackMaxWords: 12
-```
-
-dsh boots fine. Exit code 0. Nothing warns you.
-
-But dsh applies an id-targeted patch by **replacing the entry's whole `config`**, not by merging into it. The two fields you did not restate are now gone from the tree that actually boots:
+**A patch replaces an entry's whole `config`.** You change one field; every
+sibling field you did not restate disappears from the tree that boots. The
+plugin then runs on defaults you never chose.
 
 ```diff
   config:
     fallbackMaxWords: 12
--   fallbackMaxBytes: 40
--   maxTitleBytes: 80
+-   fallbackMaxBytes: 40      ← gone, silently
+-   maxTitleBytes: 80         ← gone, silently
 ```
 
-That plugin now runs without them. You will not find out until behaviour drifts weeks later.
+**A typo in an entry id is inert.** Write `agent-defualt-model` and dsh prints
+one stderr line, then boots without your change. Launching the Web UI, you never
+see it — you just wonder why nothing happened.
 
-The same silence covers a typo. Patch `agent-defualt-model` instead of `agent-default-model` and dsh prints one line to stderr, then boots without your change — with exit code 0. In a Web UI launch you never see it.
-
-`dsh-doctor` finds both.
+Both get worse after an upgrade renames an entry id, and neither surfaces until
+behaviour drifts weeks later.
 
 ## What it looks like
+
 
 ```
 dsh-doctor · profile web · 130 entries (25 disabled)

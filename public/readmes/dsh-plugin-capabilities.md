@@ -3,11 +3,11 @@
 [![npm version](https://img.shields.io/npm/v/dsh-plugin-capabilities)](https://www.npmjs.com/package/dsh-plugin-capabilities)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-在 dsh 设置页管理技能与 MCP 服务器。本插件在设置里新增一级分区「技能与 MCP」（与「通用设置」「模型」并列），内含「技能」「MCP」「市场」三个标签页：技能目录、自定义技能仓库和 profile 的 MCP 服务器行都能直接在页面上查看与维护，不必手工编辑文件；来自 Claude Code、Codex 等其他 agent 的技能与 MCP 配置也能一并纳入，市场里还有一份精选列表可一键安装。`dsh web` 与 [DSH Desktop](https://github.com/qinyre/dsh-Desktop) 均可使用。
+在 dsh 设置页管理技能与 MCP 服务器。本插件在设置里新增一级分区「技能与 MCP」（与「通用设置」「模型」并列），内含「技能」「MCP」「市场」三个标签页：技能目录、自定义技能仓库和 MCP 服务器行（profile 层与全局层）都能直接在页面上查看与维护，不必手工编辑文件；来自 Claude Code、Codex、Cursor、Gemini CLI 等其他 agent 的技能与 MCP 配置也能一并纳入，市场里还有一份精选列表可一键安装。`dsh web` 与 [DSH Desktop](https://github.com/qinyre/dsh-Desktop) 均可使用。
 
 ## 技能
 
-![「技能」标签页](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/a37bb0394082d048494a18d24c9dc01f8d57d15d/docs/images/screenshot-skills.png)
+![「技能」标签页](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/e5e3596aff8fe9317a29ea96aa63449e1656ad35/docs/images/screenshot-skills.png)
 
 「技能」页列出 dsh 当前发现的全部技能，包括名称、描述、来源（项目、用户、内置、运行时、自定义）和调用策略。用户级技能存放在 `$DSH_HOME/skills`，可以在这里新建、编辑、删除：frontmatter 与正文分开填写，保存后写入对应的 `SKILL.md`。0.3.4 起从市场或本地仓库安装的技能也能就地编辑：写回只替换名称、描述、whenToUse 与调用策略这些编辑器掌握的键，文件里其余 frontmatter（license、allowed-tools 等）原样保留。技能目录处于文件系统监听之下，保存后数秒内条目就会出现在列表里，无需重启。项目目录和内置包等来源的技能以只读方式展示，可以查看全文。
 
@@ -23,23 +23,25 @@
 
 ## MCP
 
-![「MCP」标签页](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/a37bb0394082d048494a18d24c9dc01f8d57d15d/docs/images/screenshot-mcp.png)
+![「MCP」标签页](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/e5e3596aff8fe9317a29ea96aa63449e1656ad35/docs/images/screenshot-mcp.png)
 
 「MCP」页管理 profile patch 中的 MCP 服务器行，每行对应一个 `@deepseek-ai/dsh-mcp-client` 实例。stdio 服务器填写命令与参数，streamable-http 服务器填写 URL，编辑、停用、移除都在页面上完成。YAML 读写采用文档级 API，文件中的其他行与注释不受影响。新行写在一个 `- insert:` 块里——加载器只会挂载 insert 形式的行，裸的 `- id:` 条目是对已有行的覆盖，目标不存在时会被跳过；0.1.3 之前写入的裸行会在下一次保存时自动迁入 insert 块。0.3.7 起，若 `cordis.patch.yml` 本身存在语法错误（多见于手工编辑失误），页面会直接报出文件完整路径与出错行列，并且不写入任何内容；此前这种文件会在保存时抛出内部的 "Document with errors cannot be stringified"，让人无从下手。
 
+服务器行不只存在于 profile 里。dsh 还有一层全局补丁（`DSH_HOME/cordis.patch.yml`），对这台机器上的所有 profile 生效，组合时排在 profile 层之后、同名 id 以全局为准。0.3.8 起，「MCP」页把两层合在一起展示：每行带「全局」或「当前 profile」标记，两层出现同名 id 时 profile 行会注明自己不生效。添加服务器时可以选择写入哪一层，编辑、停用、移除也都落在该行所在的层。每行还有「检查」和「复制到另一层」两个动作：检查不启动服务器——stdio 行在 PATH 里确认命令真实存在（带 Windows 可执行扩展名），http 行发一个短超时的 GET，任何 HTTP 状态都算可达（MCP 端点对普通 GET 回 405 是正常的）；复制把整行配置搬去另一层，不用删了重配。全局文件损坏不会连累整个页面：profile 行照常列出，顶部横幅单独报出全局文件的路径与出错行列。
+
 添加或编辑服务器时，表单下方有「完整格式与快速填充」区：一边是随表单实时更新的完整 YAML 行（和保存后落进 `cordis.patch.yml` 的一模一样），另一边是等价的 `mcpServers` JSON 写法，可以直接抄去别的工具。反过来也行——把 Claude Code 配置、官方文档或任意 JSON 粘进输入框，点「解析并填充」，服务器名、命令、参数、环境变量、URL、请求头都会自动填好，`{"mcpServers": {...}}` 包装、裸条目、dsh 行三种形状都认。
 
-也可以从其他 agent 导入：一键扫描 Claude Code（`~/.claude.json`、`~/.claude/settings.json`）与 Codex（`~/.codex/config.toml`）的 MCP 配置，勾选所需条目后转为本 profile 的服务器行。弹窗按来源分成 Claude Code 和 Codex 两组，各自带数量与「全选」；stdio 与 http 两种传输都会处理，已存在的同名服务器置灰跳过。需要注意的是，Claude 配置里的 `${VAR}` 环境变量引用按字面值导入，如有需要请在导入后手动改回。
+也可以从其他 agent 导入：一键扫描 Claude Code（`~/.claude.json`、`~/.claude/settings.json`）、Codex（`~/.codex/config.toml`）、Cursor（`~/.cursor/mcp.json`）与 Gemini CLI（`~/.gemini/settings.json`）的 MCP 配置，弹窗里先选写入当前 profile 还是全局层，勾选所需条目后转成服务器行。弹窗按来源分组，各自带数量与「全选」；stdio 与 http 两种传输都会处理（Gemini 的 SSE 条目除外，dsh 的客户端不支持），已存在的同名服务器置灰跳过。需要注意的是，Claude 配置里的 `${VAR}` 环境变量引用按字面值导入，如有需要请在导入后手动改回。
 
 MCP 行的变更需要重启 dsh 才会进入组合。MCP 页头部有常驻的「重启」按钮，变更后无需离开界面：在 [DSH Desktop](https://github.com/qinyre/dsh-Desktop) 中由桌面壳层重启受监督的 sidecar，完成后窗口自动重载；直接运行 `dsh web` 时插件会拉起一个替代进程再退出自身，页面在恢复后自动刷新——若启动时端口是随机的，按横幅提示在终端查看新地址。重启会中断正在进行的回合，点击后会先弹出确认。
 
 ## 市场
 
-![「技能市场」](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/a37bb0394082d048494a18d24c9dc01f8d57d15d/docs/images/screenshot-market-skills.png)
+![「技能市场」](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/e5e3596aff8fe9317a29ea96aa63449e1656ad35/docs/images/screenshot-market-skills.png)
 
-![「MCP 市场」](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/a37bb0394082d048494a18d24c9dc01f8d57d15d/docs/images/screenshot-market-mcp.png)
+![「MCP 市场」](https://raw.githubusercontent.com/qinyre/dsh-plugin-capabilities/e5e3596aff8fe9317a29ea96aa63449e1656ad35/docs/images/screenshot-market-mcp.png)
 
-「市场」页分两栏：「技能市场」是精选的技能仓库（Anthropic 官方技能集、Superpowers 工作流集等），点「安装」走的就是上文 GitHub 仓库的下载解包流程，装完立即出现在「技能」页；「MCP 市场」是一份精选服务器列表（官方 filesystem/memory/git 等，加上 context7 这类常用第三方），点「添加」直接写入一条 profile 服务器行，和手工添加完全等价。0.3.0 起点开条目可以看详情：技能仓库列出里面具体有哪些技能，MCP 服务器列出启动命令、需要的环境变量和提供的工具，不必再去 GitHub 主页。列表数据来自[本插件仓库](https://github.com/qinyre/dsh-plugin-capabilities)的在线索引（`market/*.json`），离线时自动回退到包内快照；需要 API 密钥的服务器会在卡片上标出环境变量名，装好后到 MCP 列表里补填即可。已安装的条目可以直接卸载：技能仓库走仓库移除，MCP 行走服务器删除。
+「市场」页分两栏：「技能市场」是精选的技能仓库（Anthropic 官方技能集、Superpowers 工作流集等），点「安装」走的就是上文 GitHub 仓库的下载解包流程，装完立即出现在「技能」页；「MCP 市场」是一份精选服务器列表（官方 filesystem/memory/git 等，加上 context7 这类常用第三方），点「添加」直接写入一条服务器行，和手工添加完全等价，写入哪一层（当前 profile 还是全局）跟随列表上方的生效范围选择。0.3.0 起点开条目可以看详情：技能仓库列出里面具体有哪些技能，MCP 服务器列出启动命令、需要的环境变量和提供的工具，不必再去 GitHub 主页。列表数据来自[本插件仓库](https://github.com/qinyre/dsh-plugin-capabilities)的在线索引（`market/*.json`），离线时自动回退到包内快照；需要 API 密钥的服务器会在卡片上标出环境变量名，装好后到 MCP 列表里补填即可。已安装的条目可以直接卸载：技能仓库走仓库移除，MCP 行走服务器删除（该行在全局层就删全局层的）。
 
 ## 安装
 

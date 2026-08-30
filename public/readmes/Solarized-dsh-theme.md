@@ -1,5 +1,5 @@
 <h3 align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/solarized-logo.svg" width="100" alt="Logo"/><br/>
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/solarized-logo.svg" width="100" alt="Logo"/><br/>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 	Solarized + Selenized for <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
@@ -17,26 +17,26 @@
 </p>
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/preview.webp"/>
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/preview.webp"/>
 </p>
 
 ## Previews
 
 <details>
 <summary>☀️ Solarized Dark</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/solarized-dark.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/solarized-dark.webp"/>
 </details>
 <details>
 <summary>🌞 Solarized Light</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/solarized-light.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/solarized-light.webp"/>
 </details>
 <details>
 <summary>🌗 Selenized Dark</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/selenized-dark.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/selenized-dark.webp"/>
 </details>
 <details>
 <summary>🌕 Selenized Light</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/selenized-light.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/selenized-light.webp"/>
 </details>
 
 ## Usage
@@ -111,7 +111,7 @@ node scripts/gen-client.mjs
 &nbsp;
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/b29b689f707e87746912a622789dfd326d0c2de5/assets/solarized-footer.svg" />
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1e6be502a30ad7d11a3c0936be275c332da81743/assets/solarized-footer.svg" />
 </p>
 
 <p align="center">

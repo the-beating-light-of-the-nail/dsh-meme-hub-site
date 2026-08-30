@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/modusensus/dsh-mneme/cd22c0bc5d754492d4332f6819de5ec71134e418/%E6%A8%AA%E5%B9%85.png" alt="dsh-mneme banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/modusensus/dsh-mneme/282877bd393640f29ece7af3f03be13162d02c4f/%E6%A8%AA%E5%B9%85.png" alt="dsh-mneme banner" width="100%" />
 </p>
 
 <h1 align="center">dsh-mneme</h1>

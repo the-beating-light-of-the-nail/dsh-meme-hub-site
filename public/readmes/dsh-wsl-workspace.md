@@ -4,7 +4,7 @@
 [![dsh.so install](https://www.dsh.so/badge/install/dsh-wsl-workspace.svg)](https://www.dsh.so/artifact/dsh-wsl-workspace)
 
 [English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Português](README.pt.md) · [Русский](README.ru.md)
-![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/1e6ffeb6cf942c5855ee8d4fbbf66b7e86b8d64e/image-3.png)
+![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/5856e5901c6b60e3965409c50c849b0bc0cc4443/image-3.png)
 Add a WSL workspace from the DeepSeek Harness web GUI and run the whole agent session — bash commands and file reads/writes — inside a local WSL distribution with Linux paths. Nothing needs to be installed inside WSL. The session can reach both WSL and Windows at the same time: bash commands run inside the WSL distribution, while Windows files stay accessible via `/mnt/<drive>` (for example `/mnt/c/Users/...`).
 
 ## Install
@@ -29,14 +29,26 @@ After restarting `dsh web`, a W button appears beside Settings at the sidebar fo
 Click the W button beside Settings at the sidebar foot to open the "Add WSL workspace" dialog. Pick a distribution from the list, then browse the directory tree or type an absolute Linux path (for example `/home/me/proj`) — use the Check button to verify the path exists before creating the workspace. The dialog follows the DeepSeek Harness UI language. The username field is optional: leave it empty to run commands as the distribution's default user, or name a Linux user of that distribution to run the session as that user instead (equivalent to `wsl.exe -u <username>`). The username only changes the bash tool's run identity — the file tools go through the Windows-side WSL share and are unaffected. Each workspace's username is kept in `<dshHome>/wsl-workspaces.json`; delete the entry (or recreate the workspace from the dialog) to return to the default user.
 
 Click "Create & open" to start a new session in the workspace. In the new session the bash tool executes commands inside the chosen distribution and `read`/`write`/`edit` operate on WSL files, so every path the model sees is a Linux path. The mode picker keeps working as usual: Standard, PTC, Minimal and Creative each land on their WSL variant automatically (the WSL variant entries in the picker are bilingual, e.g. `WSL · Standard mode（标准模式）`), and Windows files stay reachable from inside the session under `/mnt/<drive>` (for example `/mnt/c/Users/...`).
-![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/1e6ffeb6cf942c5855ee8d4fbbf66b7e86b8d64e/image-2.png)
+![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/5856e5901c6b60e3965409c50c849b0bc0cc4443/image-2.png)
 ## Behavior notes
 
 - **bash tool**: runs inside the WSL distribution as the configured username (empty = the distro default user, often `root`), so it can read and write anywhere in the distro. The Windows ACL sandbox cannot wrap `wsl.exe` — its children run on the Linux kernel side — so WSL itself is the isolation boundary and the DSH file policy does not apply to bash.
 - **File tools (`read`/`write`/`edit`)**: go through the Windows-side WSL 9P share and run under the DSH file policy. Under `workspace-write`, reads work anywhere but writes are restricted to the session workspace; switch the file policy to `danger-full-access` to also allow writes outside it. The username field does not affect the file tools.
+- **Skill catalog**: the session's skill catalog is discovered starting at the session cwd's nearest `.git` ancestor (falling back to the cwd itself), then scanning downward for `.dsh/skills` / `.agents/skills` — including nested projects — bounded to 4 directory levels, 64 skill directories and 4096 visited directories. Register the workspace at the project root you work in; if the registered workspace itself sits inside a larger git repository, the scan starts at that repository's root (matching the host's own rule) and sibling projects may surface. Results are cached per scan root and served stale-while-revalidate: a fresh scan (the first lookup, and a background refresh every 10 seconds) may take a moment on very large trees — a workspace registered at the distro root `/` scans the whole filesystem — but repeated lookups always answer instantly and never block on a refresh. Skill bodies always load live. One substrate limit to know: the Windows-side `\\wsl.localhost` share cannot resolve Linux symlinks (they read back as unresolvable entries), so a project linked into the workspace via `ln -s` is not discoverable — the scan walks past it without failing; register the workspace at a level that contains the real project directories instead.
 - The garbled `localhost` port-forwarding banner `wsl.exe` prints to stderr when the distro was not running yet is harmless.
 
 ## Changelog
+
+### 0.4.0 — 2026-08-29
+
+Follow-ups from the [#12](https://github.com/6Mikao9/dsh-wsl-workspace/issues/12) limitation list and the [#13](https://github.com/6Mikao9/dsh-wsl-workspace/issues/13) compatibility work:
+
+- **Lookup cache**: completed skill-catalog lookups are cached per scan root and served **stale-while-revalidate** — the first scan of a workspace is real (seconds on large trees), every later lookup answers instantly, an expired entry never blocks (it is served immediately while a background refresh runs, so even a workspace registered at the distro root stays responsive), and `get()` keeps reading skill bodies live.
+- **Boundary hardening**: UNC spellings with double separators, trailing slashes, uppercase hosts, the legacy `\\wsl$` form and distro-root cwds all parse and scan correctly; skill files saved as UTF-8 with a BOM or with CRLF line endings (including CRLF block scalars) now parse; unreadable directories prune without failing the scan; a name+description+body fingerprint guarantees aliased skill files never publish twice.
+- **Symlinked projects — investigated, substrate-limited**: the discovery walk now recognizes directory symlinks explicitly and prunes them safely (no crashes, no loops). Following them is not possible over the `\\wsl.localhost` 9P share — the Windows side cannot resolve Linux symlink targets (probed: `readlink` → `EISDIR`, `stat`/`readdir` → `ENOENT`) — so a project linked into the workspace via `ln -s` stays undiscoverable; a name+body fingerprint dedupe also guarantees aliased skill files can never publish twice on substrates that do resolve links.
+- **Block-scalar frontmatter**: `description:` / `whenToUse:` written as YAML block scalars (`|` literal, `>` folded) now parse — such skills were silently dropped before.
+- **Compatibility manifest**: `dsh.compatibility.dshReleases` declares per-release compatibility with the official DSH versions, backed by reproducible disposable-Profile install/start/uninstall evidence (`scripts/verify-dsh-compat.sh`), and `engines` declares the Node.js floor.
+- **Guard scripts**: `scripts/check-rank-parity.mjs` fails the release when the copied project-rank constants drift from the host's `dsh-skill-filesystem`.
 
 ### 0.3.2 — 2026-08-29
 

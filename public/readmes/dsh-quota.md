@@ -2,12 +2,12 @@
 
 DeepSeek Harness 插件：右下角「会员额度」悬浮球 + 面板，一眼看清各 AI 平台的套餐额度与余额。
 
-![面板特写](https://raw.githubusercontent.com/Minokun/dsh-quota/6979fd784f2677ac84da89e73fc65c6fe7b89a5e/docs/screenshot-panel.png)
+![面板特写](https://raw.githubusercontent.com/Minokun/dsh-quota/ab533ed5dbd6207fc247a9ac9de6a195e2663f96/docs/screenshot-panel.png)
 
 <details>
 <summary>📸 整页效果（悬浮球在右下角）</summary>
 
-![整页效果](https://raw.githubusercontent.com/Minokun/dsh-quota/6979fd784f2677ac84da89e73fc65c6fe7b89a5e/docs/screenshot-full.png)
+![整页效果](https://raw.githubusercontent.com/Minokun/dsh-quota/ab533ed5dbd6207fc247a9ac9de6a195e2663f96/docs/screenshot-full.png)
 
 </details>
 
@@ -43,6 +43,10 @@ dsh plugin --profile web add dsh-quota
 ```
 
 或打开 **设置 → 插件市场**，搜索 `dsh-quota` 一键安装。
+
+> **版本要求**：`0.8.0+` 需要 dsh `0.1.2-alpha.1` 及以上（浏览器端模块表改用
+> `@deepseek-ai/dsh-client-store` platform seed）。仍在用旧版 dsh（`0.1.0-rc` 系列）
+> 请锁定 `dsh-quota@0.7.x`。
 
 ## 配置（可选）
 

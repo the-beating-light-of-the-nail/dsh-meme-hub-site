@@ -27,15 +27,22 @@ DeepSeek Harness runs one `compaction-basic` instance per **agent preset** (per 
 ## Installation
 
 ```bash
-cd dsh-auto-compact
-./install.sh
+dsh plugin --profile <profile-name> add songoao25/dsh-auto-compact
 ```
 
-Restart DeepSeek Harness afterward. Roll back with:
+Restart DeepSeek Harness once afterward. On bundle load, the plugin runs the
+same safe injector described below: it changes only user-installed presets,
+creates a timestamped backup before every change, skips a preset that already
+has its own `compaction-basic` configuration, and is idempotent on later
+starts. Roll back with:
 
 ```bash
 ./uninstall.sh
 ```
+
+The uninstaller restores the latest backup for each affected preset. Run it
+from a checkout of this repository; removing the DSH bundle alone does not
+discard the preserved preset configuration.
 
 ### Important: Factory Presets
 

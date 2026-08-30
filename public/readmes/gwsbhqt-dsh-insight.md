@@ -17,7 +17,7 @@ Every plugin, service, tool and model — where it came from, which config layer
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e58e324232e66da00949421fca9254a22c7563cf/docs/assets/hero.png" width="900" alt="洞察 — five axes over one DeepSeek Harness profile">
+  <img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/hero.png" width="900" alt="洞察 — five axes over one DeepSeek Harness profile">
 </p>
 
 ## Install
@@ -47,13 +47,13 @@ Which of it survives is decided by patch semantics (insert / update / disable, b
 
 洞察 does that derivation for you, live, and shows its work.
 
-## The five axes
+## The six axes
 
-One dataset, five ways to sort it. The order is causal: **config produces plugins, plugins provide services, services register tools and models.** Switching axes never clears your selection.
+One dataset, six ways to sort it. The first five are causal: **config produces plugins, plugins provide services, services register tools and models.** By preset comes last — it is not about what already runs in this process but about a second configuration: the agent-plane one, mounted only when a session starts. Switching axes never clears your selection.
 
 ### 按配置 · By config — which layer wins
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e58e324232e66da00949421fca9254a22c7563cf/docs/assets/config.png" width="900" alt="By config: every patch layer in application order, with what it did">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/config.png" width="900" alt="By config: every patch layer in application order, with what it did">
 
 Every config layer in application order, with what it did to the tree — `inserted 78`, `overrode 2`, `disabled 24`. The first and last layers are marked, because a number alone never says which direction wins. Config files that take no part in the merge (the profile's `cordis.yml`, `settings.yaml`, `.credentials.yaml`) are listed in the same table, marked as such — you usually want them for their paths.
 
@@ -61,7 +61,7 @@ Pick a layer and the right pane names every entry it touched, each one a link in
 
 ### 按插件 · By plugin — the dossier
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e58e324232e66da00949421fca9254a22c7563cf/docs/assets/plugins.png" width="900" alt="By plugin: the runtime tree with per-plugin provenance, wiring and settings">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/plugins.png" width="900" alt="By plugin: the runtime tree with per-plugin provenance, wiring and settings">
 
 The live loader tree — containers, nested realms, disabled entries folded away at the end of the level they belong to. Select one and get its whole dossier:
 
@@ -75,13 +75,13 @@ Filter chips narrow the same list: needs attention, you changed it, disabled, ru
 
 ### 按服务 · By service — what actually connects plugins
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e58e324232e66da00949421fca9254a22c7563cf/docs/assets/services.png" width="900" alt="By service: providers, consumers and blast radius">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/services.png" width="900" alt="By service: providers, consumers and blast radius">
 
 Services are the real edges between plugins, so they get their own axis: who provides each one, how many consume it, and — for a hub — the full impact list. This is a table and not a canvas on purpose: the dependency graph of a real profile is star-shaped, and a hub's edges cross the whole canvas no matter which layout you pick.
 
 ### 按工具 · By tool — what the agent can actually call
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e58e324232e66da00949421fca9254a22c7563cf/docs/assets/tools.png" width="900" alt="By tool: tool names, the package that registered each one, and what goes with it">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/tools.png" width="900" alt="By tool: tool names, the package that registered each one, and what goes with it">
 
 One row per **tool name** — `bash`, `read`, `exit_plan_mode` — not per plugin. Each one carries the package that registered it, its description, and how many sibling tools would disappear with it, because turning a tool off means disabling the plugin that registers it.
 
@@ -89,11 +89,24 @@ Upstream records no registrant on a tool definition, and tools are not registere
 
 ### 按模型 · By model — every model and how it got here
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e58e324232e66da00949421fca9254a22c7563cf/docs/assets/models.png" width="900" alt="By model: models, providers, activation method and the plugin behind each route">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/models.png" width="900" alt="By model: models, providers, activation method and the plugin behind each route">
 
 One row per model, with the provider route it belongs to and the plugin that brought that route in. The detail pane names the exact settings path its configuration lives at, and how the route is activated — **an API key from an environment variable, a stored API key, or an OAuth grant**. Provider routes that upstream declares as configurable but you have not set up are folded away at the end.
 
 Nothing here touches the network: the panel reads the llm service's own read-only faces, never the model-discovery endpoint that would call your providers.
+
+### 按预设 · By preset — who handed the session its toolkit
+
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/presets.png" width="900" alt="By preset: the roster, where each came from, what it composes, and who is on it">
+
+A preset is one agent-plane plugin composition. A session picks one when it starts, and that decides which tools it holds and which prompt sections it sees. One row per preset, answering four things:
+
+- **How many, which is the default, and how many sessions are on it right now.** Usage follows upstream's `resolveSessionPreset` rule: the creation header names the starting preset, every later switch is a logged event, and **the last one wins** — reading the header alone would count a switched session under the preset it was created with. When live session data is unavailable the panel says so rather than reporting "nobody".
+- **Shipped / third-party / local.** Upstream records only `system` (shipped with the deployment) and `user` (authored locally), which cannot separate "brought in by a third-party plugin". This axis classifies again by where the root directory sits on disk — the same rule every other axis uses — and names **which package** supplied it. A locally authored preset carries the same trust as shell access: it decides what tools the model holds.
+- **What the configuration actually is.** The composition (`agent.cordis.yml`) is listed row by row: private realms on container rows, explicitly disabled rows, and rows whose switch is a `!!js` expression are all marked. **Expressions are never evaluated**: the panel knows an expression exists and refuses to claim the row is on or off. Both files open for reading.
+- **They are not the plugins in the host tree.** A preset is mounted only when a session starts, so its rows never appear on the By plugin axis — the detail pane says so, rather than letting you assume something went missing.
+
+A broken preset stays on the roster with its reason: hiding it would leave its directory occupying the id with nothing to see or delete.
 
 ## Why it refuses to guess
 
@@ -108,10 +121,17 @@ Most of the work in this plugin is in the cases where the honest answer is "I do
 
 ## Read-only by design
 
-- The panel **never writes configuration**. There is no edit surface and no write path in the host half.
+- The panel has **exactly one write path**: the Disable / Enable action on the By plugin axis. There is no other edit surface, and that one path is fenced:
+  - **It writes one file only** — your profile patch layer (`$DSH_HOME/profiles/<name>/cordis.patch.yml`) — and the target must resolve inside `$DSH_HOME` and outside `node_modules`. Bundle layers belong to the package manager and the home layer is shared across profiles; neither is touched.
+  - **It edits text line by line and never re-serializes the YAML.** Round-tripping through a YAML library produces valid syntax and erases every comment you wrote — and those comments are the only record of *why* something was turned off. Only the one line that must change is touched; a newly appended entry carries a comment saying which tool added it.
+  - **It takes two clicks**, with the confirm state in red, reverting on its own after 2 seconds.
+  - **An ambiguous short id is refused**: a patch targets by id, and when the same short id exists twice at runtime the write would hit both — the panel does not guess. An id that does not exist at runtime is refused too, rather than leaving a patch that can never match.
+  - **The write is atomic**: a temp file in the same directory, then a rename.
 - **Credential bodies are never read.** `.credentials.yaml` is listed for its path and size and is excluded from the preview allowlist. Activation methods are read through the credential service's enumeration face, whose contract is "every stored record, values excluded" — the panel learns *that* a record is an API key or an OAuth grant, never what it contains.
 - **File preview is allowlisted.** `files/read` and `files/open` accept only paths the host itself discovered, validated after resolution.
-- The one action that leaves the browser is **open in editor**, on an allowlisted config file or plugin directory, at your click.
+- Only two actions leave the browser, and both take your click:
+  - **Open in editor**, on an allowlisted config file or plugin directory.
+  - **Restart now** — stop this dsh and start it again exactly the way it was launched (no file is touched; only the process changes). It takes two clicks; it is **disabled while any session is running**; and it defaults to off when systemd is detected, because restarts belong to the supervisor there. `DSH_INSIGHT_ALLOW_RESTART=0` turns it off for good, `=1` forces it on. The button depends on no other plugin.
 - The tool observer wraps `tools.register` **in memory only**. It writes no files, and touches neither `node_modules` nor the harness installation.
 
 ## Development

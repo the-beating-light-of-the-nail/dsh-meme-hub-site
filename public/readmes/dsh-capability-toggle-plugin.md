@@ -11,7 +11,7 @@
 
 **English** · [简体中文](./README.zh-CN.md)
 
-<img alt="Capability controls for Skills, MCP, Tools, Prompt, and Security" src="https://raw.githubusercontent.com/lifeopsgo/dsh-capability-toggle-plugin/a95863ee2354043428afe2f599f3d8ad8b3003ee/docs/screenshot.jpeg" width="900">
+<img alt="Capability controls for Skills, MCP, Tools, Prompt, and Security" src="https://raw.githubusercontent.com/lifeopsgo/dsh-capability-toggle-plugin/42801b84279143d779dbb548687e440e17f41118/docs/screenshot.jpeg" width="900">
 
 <sub>Session · Project · Global — blue check = on, red cross = off, dashed dash = unset.</sub>
 
@@ -101,6 +101,14 @@ Safety guards are opt-in:
 | Outbound network | Confirm network tools and outbound shell actions |
 
 Additional behavior: switches lock while the agent runs, state survives popup close and turn boundaries, and the UI follows the WebUI language.
+
+## Roadmap
+
+Planned, not yet implemented:
+
+- **Cross-project config sync** — copy or link project-level settings from another project instead of configuring each project from scratch.
+- **Filter and select-all** — filter rows within a tab and select all matching rows at once.
+- **Bulk actions on a filtered selection** — apply enable/disable/unset to every row selected via filter + select-all in one action.
 
 ---
 

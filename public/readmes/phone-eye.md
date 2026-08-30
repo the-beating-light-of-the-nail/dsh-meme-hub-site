@@ -1,5 +1,8 @@
 # Phone-Eye 📱👁️
 
+**English | [简体中文](README.zh.md)**
+
+
 **Your AI agent can finally *see* and *operate* a real Android phone.**
 
 ```
@@ -19,6 +22,7 @@ Works with any MCP client — Claude Code, Codex, Cursor, dsh, and friends.
 |---|---|---|
 | **An Android phone with USB debugging on** | **one-time, ~60 seconds** (tap "Build number" 7× → enable USB debugging) | easy, [step-by-step below](#1-enable-usb-debugging-once-per-phone) |
 | **Plug the USB cable once** | **one-time** — after that the tool switches the phone to Wi-Fi and you never need the cable again (unless the phone factory-resets) | trivial |
+| **A computer with Python 3.10+ and git** (or just Docker — see step 3) | — | n/a |
 | **A vision model** | one-time setup — **bring any one of these**:<br>• an OpenAI API key (or any OpenAI-compatible: GLM, DeepSeek, local llama.cpp/Ollama…)<br>• an existing MCP vision server | one env var, most people already have a key |
 
 That's everything. **No app to install on the phone. No root. No extra server.**
@@ -31,7 +35,7 @@ That's everything. **No app to install on the phone. No root. No extra server.**
 | Tap / swipe / type | Typing is ASCII (Chinese input needs a clipboard trick — known adb limit) | The very first "allow USB debugging?" popup on a *new* computer key — that one tap is yours |
 | Survive Wi-Fi adb drops (auto-reconnect) | Some vendor ROMs restrict input on lock screens (e.g. MIUI) | iOS — different universe |
 | Run 24/7 unattended; unexpected popups get read & handled by your agent | Vision quality depends on the model you bring | |
-| Multiple phones (point `ANDROID_SERIAL` at each) | | |
+| Multiple phones (one phone-eye process per phone, set `ANDROID_SERIAL` for each) | | |
 
 **The 60-second rule:** every Android requires one human moment — enable debugging + authorize once. After that, the phone belongs to your agent, even over Wi-Fi, even after reboots of the *computer*.
 
@@ -42,13 +46,21 @@ That's everything. **No app to install on the phone. No root. No extra server.**
 Settings → About phone → tap **Build number** 7× (unlocks Developer options) → Developer options → **USB debugging ON**.
 (Got stuck? Tell us your phone model in Discussions — we'll walk you through it. MIUI/HyperOS may also ask you to sign into a Xiaomi account first.)
 
-### 2. Plug USB once, then go wireless
+### 2. Install adb (if you don't have it), plug USB once, then go wireless
 
 ```bash
+# macOS: brew install android-platform-tools · Ubuntu/Debian: sudo apt install adb
+# Windows: scoop install adb  (or download Android platform-tools)
 adb devices          # phone shows up? tap "Allow" on its popup — check "always allow"
-adb tcpip 5555       # switch to Wi-Fi mode
-adb connect <phone-ip>:5555   # now unplug the cable, forever
+adb shell ip route   # ← note the phone's Wi-Fi IP (e.g. 192.168.1.23) while still plugged
+adb tcpip 5555       # switch to Wi-Fi mode (adb restarts; the USB entry disappears — normal)
+adb connect 192.168.1.23:5555   # use the IP from above; then unplug the cable, forever
 ```
+
+<details><summary>Phone IP alternatives if <code>ip route</code> prints nothing</summary>
+
+Settings → Wi-Fi → your network → details shows the IP; or `adb shell ip addr show wlan0 | grep inet`.
+</details>
 
 ### 3. Start phone-eye
 
@@ -64,9 +76,36 @@ export PHONE_EYE_VISION_API_KEY=<key>                    # OpenAI / GLM / any co
 python server.py       # stdio MCP server — wire into your client:
 ```
 
+Wire it into your client — pick yours:
+
+```bash
+# Claude Code (easiest):
+claude mcp add phone-eye -- python /path/to/phone-eye/server.py
+# Codex:
+codex mcp add phone-eye --url stdio://python /path/to/phone-eye/server.py  # or see codex docs
+```
+
 ```jsonc
-// client config (Claude Code / dsh / any MCP client)
+// any MCP client (generic stdio shape):
 { "mcpServers": { "phone-eye": { "command": "python", "args": ["/path/to/phone-eye/server.py"] } } }
+```
+
+### Docker (optional — no Python needed on the host)
+
+The repo ships a `Dockerfile` (Python 3.12 + adb):
+
+```bash
+podman build -t phone-eye .        # or: docker build -t phone-eye .
+# smoke: a JSON-RPC initialize reply on stdout means it boots:
+printf '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"smoke","version":"0"}}}\n' \
+  | podman run --rm -i phone-eye
+```
+
+Use `--network host` so adb reaches a Wi-Fi phone and your vision endpoint:
+
+```jsonc
+"phone-eye": { "command": "podman", "args": ["run","--rm","-i","--network","host",
+  "-e","ANDROID_SERIAL=192.168.1.23:5555","-e","PHONE_EYE_VISION_API_KEY=<key>","phone-eye"] }
 ```
 
 **Recommended vision models** (any vision-capable chat model works): `gpt-4o-mini` (default),
@@ -88,6 +127,8 @@ screenshots then never leave your LAN.
 | `phone_tap(x, y)` | Tap |
 | `phone_swipe(x1, y1, x2, y2, ms?)` | Swipe |
 | `phone_type(text)` | Type ASCII text |
+| `phone_key(key)` | Press a hardware key — `wake` revives a sleeping phone (the unattended essential), back/home/recents navigate |
+| `phone_intent(action, uri?, component?)` | Open any screen by Android intent (deep settings pages, app pages) without coordinates |
 | `phone_screenshot()` | Save screenshot to disk, return path |
 
 ## Examples
@@ -95,7 +136,10 @@ screenshots then never leave your LAN.
 - [Mobile web QA loop](examples/loop-mobile-web-qa.md) — the agent verifies its own work on a real screen
 - [Surviving an OEM setup wizard](examples/device-setup-wizard.md) — vision handles whatever pops up
 - [Form regression check](examples/form-regression.md)
+- [Unattended sentinel](examples/unattended-sentinel.md) — your agent on night watch: wake → unlock → intent → look → screenshot
 
+Curious how it works — or want to modify it? Read the [whitepaper](docs/how-it-works.md)
+(architecture, failure-classification decision tree, security model, how to add a verb).
 Running it as an always-on HTTP service behind your own fleet? [docs/fleet.md](docs/fleet.md).
 
 ## Why "see", isn't this just adb?

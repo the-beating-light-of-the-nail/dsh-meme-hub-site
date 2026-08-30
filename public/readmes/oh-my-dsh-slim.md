@@ -132,6 +132,42 @@ reports which changes apply immediately (effort/temperature) and which start wit
 **Conversational configuration** (no JSON editing needed): just say e.g. "change fixer's model to
 kimi-k3" or "disable the oracle role" — the orchestrator edits the JSON per the schema.
 
+## Advanced configuration: enabling web_fetch (optional, at your own risk)
+
+Public presets ship with `web_fetch` **off** (stock DSH bundles no fetch provider — only
+`web_search`). Enabling takes two steps: **① install the provider (host level, once) and ② flip
+the toggle in the settings card**.
+
+**① Install the provider** (`@deepseek-ai/dsh-web-fetch-http`, host profile layer — the preset
+itself is not modified):
+
+1. Add `"@deepseek-ai/dsh-web-fetch-http": "^0.1.1-rc.2"` to the `dependencies` of
+   `$DSH_HOME/profiles/web/package.json` (align the version with your host DSH), then run
+   `pnpm install` in `$DSH_HOME/profiles/web`.
+2. Append to `$DSH_HOME/profiles/web/cordis.patch.yml` (**do not** enable the host's own
+   `tool-web` row):
+   ```yaml
+   - insert:
+       - id: web-fetch-http
+         name: '@deepseek-ai/dsh-web-fetch-http'
+   ```
+3. Restart the GUI — the provider is ready and the `web_fetch` toggle in the settings card
+   becomes switchable.
+
+**② Flip the toggle**: Settings → Plugins → Plugin configuration → expand the oh-my-dsh-slim
+card → enable "web_fetch tool" → **Save** → **restart DSH** (webFetch is a composition-level
+setting, like role toggles: it takes effect after a process restart; role model/effort changes
+apply immediately).
+
+**Payoff**: after a search locates a URL, `web_fetch` retrieves the target page directly
+(official docs / source / registry), avoiding repeated search-and-patch rounds.
+
+**Risk**: `dsh-web-fetch-http` is an **SSRF primitive** — no private/loopback/link-local
+blocking and no domain allowlist (upstream README: "must not be enabled near sensitive internal
+network targets"). Only for single-user controlled machines; do not enable in deployments that
+can reach sensitive internal targets. Rollback = remove the patch block, drop the dependency,
+and restart.
+
 ## Roadmap
 
 - ~~**GUI configuration**~~ — **Done**: role toggles, per-role model selection (from your imported
@@ -169,7 +205,9 @@ expected behavior) for verifying a fresh deployment. T3 uses the baseline projec
 - **Non-vision main models cannot receive pasted images**: DSH rc.2 hard-blocks image attachments
   at send time based on the main model's capability (`MODEL_DOES_NOT_SUPPORT_IMAGES`). For image
   analysis, use a vision-capable main model (e.g. deepseek-v4-flash-vision-exp) directly — or wait
-  for upstream attachment forwarding
+  for upstream attachment forwarding. If your model actually supports images but is still blocked,
+  check whether its provider configuration declares the image input modality
+  (`input: ["text", "image"]`) — a common gap for third-party GPT-class models
 - **web_search is billed separately**: librarian prefers MCP (free). `web_search` runs through the
   host search service, which issues an independent auxiliary model request per query. For open-ended
   research, give the task a search budget in the prompt
@@ -180,9 +218,13 @@ expected behavior) for verifying a fresh deployment. T3 uses the baseline projec
   cannot escalate anyway, so the extra arguments only trigger parameter-validation errors
   (`invalid justification`, `not strictly wider`). The bundled `sandbox-strip` plugin removes the two
   fields from role-subagent child tool calls at the `tools/pre-execute` waterfall and appends a
-  `[sandbox: stripped ...]` note to the result so the model sees the correction. Top-level sessions
-  are untouched and may still request escalation normally. This is a preset-level workaround, not a
-  fix: the real fix is upstream — DSH should stop exposing escalation fields to children whose
+  `[sandbox: stripped ...]` note to the result so the model sees the correction. In this preset's
+  own top-level sessions it additionally strips only the shapes DSH would always reject before any
+  approval prompt (empty justification, single-field pairs, non-widening modes — judged with the
+  host's own WIDER_MODES table); **legitimate escalation requests (strictly wider mode +
+  non-empty justification) are kept and still prompt for approval**. Sessions that do not use this
+  preset never load the plugin, so their behavior is unchanged. This is a preset-level workaround,
+  not a fix: the real fix is upstream — DSH should stop exposing escalation fields to children whose
   permission scope is fixed
 
 ## FAQ

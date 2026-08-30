@@ -71,13 +71,13 @@
 
 ## 截图
 
-![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/54e3e89f03ff1331c4bd8ccadddf186ae2756837/assets/screenshot-session-submenu.png)
+![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-submenu.png)
 
-![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/54e3e89f03ff1331c4bd8ccadddf186ae2756837/assets/screenshot-session-settingsmenu.png)
+![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-settingsmenu.png)
 
-![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/54e3e89f03ff1331c4bd8ccadddf186ae2756837/assets/screenshot-session-trash.png)
+![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-trash.png)
 
-![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/54e3e89f03ff1331c4bd8ccadddf186ae2756837/assets/screenshot-session-details.png)
+![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-details.png)
 
 ## 安装
 

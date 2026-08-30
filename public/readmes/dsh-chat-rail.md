@@ -1,6 +1,6 @@
 # @max-null/dsh-chat-rail
 
-本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-header-unify` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui`。
+本插件属于 **`@max-null/*` 插件系列**——这一系列共同构成 **[SSID（思灵 · Seek Soul in Darkness）](https://github.com/Max-Null/seek-soul-in-darkness)** 桌面体验。SSID 是整合它们的盒：`dsh-capture` · `dsh-chat-rail` · `dsh-chinese-thinking` · `dsh-draft-polish` · `dsh-guardian` · `dsh-habit` · `dsh-memory` · `dsh-node-appearance` · `dsh-plugin-center` · `dsh-quick-toolbar` · `dsh-skill-mcp-center` · `dsh-ssid-panels` · `dsh-ssid-zh-ui` · `dsh-achievements`。
 
 This plugin belongs to the **`@max-null/*` family** — a set of plugins that together form the **[SSID (思灵 · Seek Soul in Darkness)](https://github.com/Max-Null/seek-soul-in-darkness)** desktop experience.
 
@@ -12,7 +12,7 @@ This plugin belongs to the **`@max-null/*` family** — a set of plugins that to
 
 | 画卷展开（收藏过滤 + 收藏导航条） | 消息操作按钮（收藏 ★ / 填充 ➕ / 复制） |
 |---|---|
-| ![rail-fav-1](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/e3c2df63fd6cb892fd48fd95e73a14a4fd14bbc2/docs/shots/rail-fav-1.png) | ![rail-fav-2](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/e3c2df63fd6cb892fd48fd95e73a14a4fd14bbc2/docs/shots/rail-fav-2.png) |
+| ![rail-fav-1](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/667bf3fcd7ff926e3ad5b38b415b973e147c48f9/docs/shots/rail-fav-1.png) | ![rail-fav-2](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/667bf3fcd7ff926e3ad5b38b415b973e147c48f9/docs/shots/rail-fav-2.png) |
 
 ## 为什么比市面上的导航栏优秀
 
@@ -35,6 +35,7 @@ This plugin belongs to the **`@max-null/*` family** — a set of plugins that to
 
 - **与 dsh-better-sidebar 深度兼容**：导航栏的右缘和垂直位置跟随 better-sidebar 的 `--dsh-sidebar-width` / `--dsh-sidebar-height` CSS 变量，右栏和底栏展开/收起时导航与面板**共享同一段 transition 动画同步移动**，永不错位、永不遮挡（包括底栏右上角的收起按钮）。
 - **无 better-sidebar 也能用**：变量缺失时走 CSS fallback（右缘 12px + 垂直居中），纯 DSH 环境开箱即用。
+- **与 DSH 自带轮次导航协同**：DSH `0.1.2-alpha.1+` 自带 TurnNavigator（轮次导航竖轨）。安装本插件后自动隐藏官方竖轨（aria-label 双文案锚点，不依赖构建 hash），由本插件统一承担会话导航；未安装本插件时官方导航照常显示。
 - 需要 DSH ≥ `0.1.0-rc.6`。
 
 ## 安装

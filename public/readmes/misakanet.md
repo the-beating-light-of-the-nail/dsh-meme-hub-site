@@ -11,10 +11,10 @@
 > MisakaNet searches 310+ failure lessons so your agent skips known bugs.
 >
 > **Using MisakaNet?** Give us a ⭐ — it helps other agents find verified failure lessons.
-> **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 6 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
+> **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 7 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`, `misakanet_me_events`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f9705c6ba246d0c2561275e75111a0858b31579f/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/c5591bb5444eda9daff84494f3f9c55777b4851a/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 [![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
@@ -39,7 +39,7 @@
 
 MisakaNet is optimized for AI agents:
 
-- ✅ **MCP Server** — 6 tools for search, lessons, intake
+- ✅ **MCP Server** — 7 tools for search, lessons, intake, reuse evidence
 - ✅ **Smithery Deployed** — One-click install for AI agents
 - ✅ **robots.txt** — AI crawlers allowed on public content
 - ✅ **JSON-LD Schema** — Structured data for search engines
@@ -216,7 +216,7 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f9705c6ba246d0c2561275e75111a0858b31579f/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/c5591bb5444eda9daff84494f3f9c55777b4851a/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -399,7 +399,7 @@ Use skills when you want an agent to do something. Use MisakaNet when you want a
 | [SwarmClaw](https://github.com/swarmclawai/swarmclaw) | ![stars](https://img.shields.io/github/stars/swarmclawai/swarmclaw?style=social) | 🟡 Warm | Runtime federation | Python | `pip install` |
 | [Agent-KB](https://github.com/OPPO-PersonalAI/Agent-KB) | ![stars](https://img.shields.io/github/stars/OPPO-PersonalAI/Agent-KB?style=social) | 🔬 Research | Shared experience pool / research prototype | Docker + PostgreSQL | Docker (~15min) |
 | [MemoryCustodian](https://github.com/waittim/MemoryCustodian) | ![stars](https://img.shields.io/github/stars/waittim/MemoryCustodian?style=social) | 🟡 Warm | Personal memory | Python | `pip install` |
-| [GoodMemory](https://github.com/hjqcan/GoodMemory) | ![stars](https://img.shields.io/github/stars/hjqcan/GoodMemory?style=social) | ✅ Active | Personal memory | Python | `pip install` |
+| [GoodMemory](https://github.com/hjqcan/GoodMemory) | ![stars](https://img.shields.io/github/stars/hjqcan/GoodMemory?style=social) | ✅ Active | Local / app-level memory | TypeScript + Bun/SQLite | `npm install` |
 
 > **MisakaNet is not the only shared memory system.** Its edge is:
 > - **Git-backed** — every lesson is a Markdown file, fully auditable, version-controlled
@@ -493,7 +493,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f9705c6ba246d0c2561275e75111a0858b31579f/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/c5591bb5444eda9daff84494f3f9c55777b4851a/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

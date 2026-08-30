@@ -1,4 +1,4 @@
-# DSH 皮肤插件 · dsh-client-ui-skins v0.1.13
+# DSH 皮肤插件 · dsh-client-ui-skins v0.1.16
 
 给 DeepSeek Harness (DSH) Web 界面换肤：4 套内置皮肤 + 自定义图片/视频皮肤。
 自定义皮肤把整张图片（PNG / JPG / WebP）或视频（MP4 / WebM）作为界面背景，
@@ -16,11 +16,11 @@
 
 自定义图片皮肤支持任意 PNG / JPG / WebP：导入自己的图片后，背景、强调色与交互高亮会自动跟随图片主色调。以下仅为界面效果示例。
 
-![DSH 自定义皮肤效果示例 1](https://raw.githubusercontent.com/caoyiwei850/dsh-client-ui-skins/2151d83dc5b20639fae3b78502be2fbabf4c2135/assets/screenshots/mint-forest-dsh.jpg)
+![DSH 自定义皮肤效果示例 1](https://raw.githubusercontent.com/caoyiwei850/dsh-client-ui-skins/f4bc4ef36a04751aca7404d7c0e3275dea31764f/assets/screenshots/mint-forest-dsh.jpg)
 
-![DSH 自定义皮肤效果示例 2](https://raw.githubusercontent.com/caoyiwei850/dsh-client-ui-skins/2151d83dc5b20639fae3b78502be2fbabf4c2135/assets/screenshots/ocean-guardian-dsh.jpg)
+![DSH 自定义皮肤效果示例 2](https://raw.githubusercontent.com/caoyiwei850/dsh-client-ui-skins/f4bc4ef36a04751aca7404d7c0e3275dea31764f/assets/screenshots/ocean-guardian-dsh.jpg)
 
-![DSH 自定义皮肤效果示例 3](https://raw.githubusercontent.com/caoyiwei850/dsh-client-ui-skins/2151d83dc5b20639fae3b78502be2fbabf4c2135/assets/screenshots/crimson-moon-dsh.jpg)
+![DSH 自定义皮肤效果示例 3](https://raw.githubusercontent.com/caoyiwei850/dsh-client-ui-skins/f4bc4ef36a04751aca7404d7c0e3275dea31764f/assets/screenshots/crimson-moon-dsh.jpg)
 
 ## 文件
 
