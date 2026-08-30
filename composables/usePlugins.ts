@@ -49,6 +49,18 @@ interface PluginData {
 
 const pluginData = data as unknown as PluginData
 
+// 数据管道对 GitHub API 抓取失败的条目会写 null（stars/forks/pushed_at 等）。
+// 在加载层归一化为安全值：模板里的 stars.toLocaleString()、fresh() 的 pushed_at
+// 排序等才不会在 SSR 抛错（null.toLocaleString() 曾致 84 插件 × 4 语言共 336 条
+// 路由 prerender 500，nitro "Exiting due to prerender errors" 构建中断）。
+const normalizedPlugins: DshPlugin[] = pluginData.plugins.map((p) => ({
+  ...p,
+  stars: p.stars ?? 0,
+  forks: p.forks ?? 0,
+  pushed_at: p.pushed_at ?? '',
+  topics: p.topics ?? [],
+}))
+
 /** 分类 emoji 映射（首页分类网格 & 卡片 chip 用）。'文字选手' 为 meme_section 预留键，勿删 */
 const CATEGORY_EMOJI: Record<string, string> = {
   '抽象整活': '🤯', '换皮肤色': '🎨', '赛博宠物': '🐳', '摸鱼游戏': '🎮',
@@ -60,7 +72,7 @@ const CATEGORY_EMOJI: Record<string, string> = {
 }
 
 export function usePlugins() {
-  const plugins: DshPlugin[] = pluginData.plugins
+  const plugins: DshPlugin[] = normalizedPlugins
 
   /**
    * 当前 locale 下分类字段选择器。
