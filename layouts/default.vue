@@ -117,6 +117,13 @@ const toast = useState<string | null>('toast', () => null)
               <li><a href="https://github.com/the-beating-light-of-the-nail/dsh-meme-hub" target="_blank" rel="noopener">dsh-meme-hub</a></li>
             </ul>
           </div>
+          <div class="col">
+            <h4>{{ t('footer.sisters') }}</h4>
+            <ul>
+              <li><a href="https://ai-meme.cdqyfdbymn.me/" target="_blank" rel="noopener">{{ t('footer.sisterMeme') }}</a></li>
+              <li><a href="https://github.com/the-beating-light-of-the-nail/deepseek-chan-meme-pack" target="_blank" rel="noopener">{{ t('footer.sisterPack') }}</a></li>
+            </ul>
+          </div>
         </div>
         <p class="legal">{{ t('footer.legal') }}</p>
       </div>
