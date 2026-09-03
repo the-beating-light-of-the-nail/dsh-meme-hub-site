@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/ceb417870679c4b40201c2001661ccb01c4d0305/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/026a20d2a5ac1545afcd8e0e6d12e4b6a1f73ea5/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -22,6 +22,7 @@
 ## Features
 
 - Archive a session from the sidebar session menu.
+- Archive every active chat in a workspace from its sidebar action menu.
 - Search archived chats, sort them by update time, creation time, or title, and filter them by workspace in **Settings → Archived**.
 - Restore a session to its original workspace with **Unarchive**.
 - Restore or permanently delete every archived chat in a project group.
@@ -35,11 +36,11 @@
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/ceb417870679c4b40201c2001661ccb01c4d0305/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/026a20d2a5ac1545afcd8e0e6d12e4b6a1f73ea5/assets/screenshots/archive-session-menu.png)
 
 Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/ceb417870679c4b40201c2001661ccb01c4d0305/assets/screenshots/archived-sessions.png)
+![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/026a20d2a5ac1545afcd8e0e6d12e4b6a1f73ea5/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 
@@ -147,38 +148,35 @@ If the entry is missing after installation or upgrade, restart DSH Web and hard-
 
 ## Secondary development
 
-This repository has no `src` directory. `lib` is directly maintained runtime source, which is its current layout rather than the recommended layout for new plugins. New plugins should prefer `src` built to `lib`.
+`src` is the sole maintained source directory. `pnpm build` uses esbuild to compile it into publishable `lib` output. Do not edit `lib` directly because the next build overwrites it.
 
-- [lib\index.js](lib/index.js): host service entry point.
-- [lib\workspace.js](lib/workspace.js): archived-session and workspace service.
-- [lib\projcache.js](lib/projcache.js): session projection cache.
-- [lib\client.js](lib/client.js): Settings page and archive UI.
+- [src\index.js](src/index.js): host service entry point.
+- [src\workspace.js](src/workspace.js): archived-session and workspace service.
+- [src\projcache.js](src/projcache.js): session projection cache.
+- [src\client.js](src/client.js): Settings page and archive UI.
 - `test\*.test.mjs`: host, client, Remote, and styling coverage.
 
-After changing the runtime source, validate, test, and install from the local directory:
+After changing `src`, run the tests, confirm that generated `lib` output is committed with the source, then install from the local directory:
 
 ```powershell
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
-pnpm build
 pnpm test
 pnpm pack:check
 dsh plugin --profile web add .
 ```
 
-`pnpm build` validates package integrity; it does not compile `lib` into another directory.
+`pnpm test` runs `pnpm build` first. The build generates all `lib` output from `src` in a temporary directory, then atomically replaces the previous output only after a successful build. A failed build preserves the existing `lib`.
 
 ## Validation
 
 ```powershell
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
-pnpm build
-pnpm test
-pnpm pack:check
+pnpm verify
 ```
 
-`prepublishOnly` runs the build check and tests before publishing.
+`prepublishOnly` runs the full verification suite before publishing and verifies that committed `lib` output matches the current `src` build.
 
 ## License
 

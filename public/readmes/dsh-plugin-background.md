@@ -2,6 +2,8 @@
 
 DeepSeek Harness Web 界面的背景插件：为对话区、轨迹区、侧边栏、设置页等界面区域设置独立背景，支持图片轮播与静音视频。灵感来自 VSCode 的 [`background`](https://marketplace.visualstudio.com/items?itemName=shalldie.background) 扩展。
 
+> 兼容性：v0.4.0 起要求 **DSH ≥ 0.1.2-alpha.5**（客户端继续使用平台基线模块 `@deepseek-ai/dsh-client-store` 与 `@deepseek-ai/dsh-client-ui-primitives`，这些基线在 alpha.5 仍然存在）。
+
 ## 它能做什么
 
 - 每个区域一套独立背景：图片组像 PPT 一样轮播切换，视频组静音循环播放（每组只含一种媒体）
@@ -47,7 +49,7 @@ allowBuilds:
 ## 更新与开发
 
 ```bash
-pnpm install        # 安装依赖（esbuild 为构建依赖，typescript 仅开发用）
+pnpm install        # 安装依赖（esbuild 为构建依赖；typescript、React 18/@types、alpha.5 client 类型仅开发/typecheck 用）
 pnpm build          # 打包 → lib/client.js
 pnpm typecheck      # 类型检查
 ```

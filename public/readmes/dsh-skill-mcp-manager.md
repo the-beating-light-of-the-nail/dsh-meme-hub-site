@@ -7,10 +7,10 @@ One-stop SKILL & MCP manager — a **host-level plugin** for [DeepSeek Harness](
 ## Screenshots
 
 MCP management
-![MCP 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/3ff2809912f0242993d5ed30300aaf77bb396cfb/docs/screenshot-mcp.png)
+![MCP 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/f66c756edbcd8e175b842b1e68931ce2785a1e52/docs/screenshot-mcp.png)
 
 SKILL management
-![SKILL 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/3ff2809912f0242993d5ed30300aaf77bb396cfb/docs/screenshot-skills.png)
+![SKILL 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/f66c756edbcd8e175b842b1e68931ce2785a1e52/docs/screenshot-skills.png)
 
 ## Core features
 

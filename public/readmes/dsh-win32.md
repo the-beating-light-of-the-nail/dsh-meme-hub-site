@@ -28,7 +28,7 @@ Using a coding agent? [Copy the setup and verification request](https://github.c
 
 **Reproduced setup flow. This is not a screen recording.**
 
-![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/9187d3b81492922f8391cd41ad9efdc1abae6147/assets/demo.gif)
+![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/efa8364628850416096be7acd47f39a1a3e0ea86/assets/demo.gif)
 
 The command checks the official persistent PowerShell and Workspace Write packages, creates the shortcut, and leaves the profile on the stock Minimal preset.
 
@@ -41,8 +41,6 @@ The command checks the official persistent PowerShell and Workspace Write packag
 - Shows the exact next steps for a first session
 
 After setup, open DSH, add a workspace, choose the stock **Minimal** preset, and keep **Workspace Write** enabled.
-
-After a successful setup in a human-operated terminal, the CLI asks once whether to Star the repository. The prompt is `[Y/n]`, states that Enter means Yes, and explains that Yes adds a public Star using the account authenticated in GitHub CLI. In any non-TTY run, and in detected Codex, Claude Code, Cursor, and other agent sessions, setup never answers for the user: it emits `USER_CONFIRMATION_REQUIRED` and instructs the agent to ask `Star dsh-win32? Yes / No`. Only after the user's explicit answer may the agent run `npx dsh-win32 star --yes` or `npx dsh-win32 star --no`. CI performs no prompt, marker write, or GitHub action.
 
 Use another profile without creating a shortcut.
 

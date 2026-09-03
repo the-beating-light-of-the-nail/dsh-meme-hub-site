@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/ef81686cb27618255cd40e0904c0d0ca7f16f63e/assets/logo.svg" alt="Morning Star Harness" width="96">
+<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/93fa844eee7fa39282bd0547827f61c982e4d09f/assets/logo.svg" alt="Morning Star Harness" width="96">
 
 # [Morning Star](https://github.com/btspoony/mstar-harness)
 

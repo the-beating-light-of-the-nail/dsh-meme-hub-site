@@ -1,7 +1,7 @@
 # dsh-damage-pulse
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/3b311a66fa4c8192d77911dca46ace6857740213/docs/assets/dsh-damage-pulse-peak-valley-whale-poster.png" alt="dsh-damage-pulse 实时用量、鲸鱼娘、提醒规则、微信通知与安全更新功能总览" width="100%">
+  <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/a568da5008045d9e34619b1b2c6b5627188372c5/docs/assets/dsh-damage-pulse-peak-valley-whale-poster.png" alt="dsh-damage-pulse 实时用量、鲸鱼娘、提醒规则、微信通知与安全更新功能总览" width="100%">
 </p>
 
 <p align="center">
@@ -56,11 +56,11 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/3b311a66fa4c8192d77911dca46ace6857740213/docs/assets/readme/whale-girl-idle-bite-finger.png" alt="鲸鱼娘啃手指待机原画" width="260"><br>
+      <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/a568da5008045d9e34619b1b2c6b5627188372c5/docs/assets/readme/whale-girl-idle-bite-finger.png" alt="鲸鱼娘啃手指待机原画" width="260"><br>
       <sub><b>等待任务时：啃手指待机</b></sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/3b311a66fa4c8192d77911dca46ace6857740213/docs/assets/readme/whale-girl-critical-damage.png" alt="鲸鱼娘严重扣费原画" width="260"><br>
+      <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/a568da5008045d9e34619b1b2c6b5627188372c5/docs/assets/readme/whale-girl-critical-damage.png" alt="鲸鱼娘严重扣费原画" width="260"><br>
       <sub><b>缓存未命中时：严重扣费反应</b></sub>
     </td>
   </tr>
@@ -77,7 +77,7 @@
 - 所有业务通知开关默认关闭；旧配置从 v0、v1、v2、v3 迁移且缺少通知字段时，也会保守补为关闭。发送测试消息是独立的通道验证，不受业务微信通知总开关限制。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/3b311a66fa4c8192d77911dca46ace6857740213/docs/assets/readme/dsh-damage-pulse-wechat-live.jpg" alt="dsh-damage-pulse 通过 ClawBot 发送的微信通知实机截图" width="520">
+  <img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/a568da5008045d9e34619b1b2c6b5627188372c5/docs/assets/readme/dsh-damage-pulse-wechat-live.jpg" alt="dsh-damage-pulse 通过 ClawBot 发送的微信通知实机截图" width="520">
 </p>
 
 ## 详细设置与安全更新
@@ -203,4 +203,4 @@ MIT
 
 本项目由 <a href="https://www.fastaitoken.com/register?aff=BF9KNKFHX725" target="_blank" rel="noopener noreferrer">fastaitoken</a> 提供的 GPT 5.6sol 开发。<a href="https://www.fastaitoken.com/register?aff=BF9KNKFHX725" target="_blank" rel="noopener noreferrer">fastaitoken</a> 是低价实惠的 AI Token 中转站，覆盖 `GPT / Claude` 全模型，提供主流生图、视频模型。包纯度，实用耐蹬。<strong>注册后点击右上角用户头像前往 QQ 客服群 @群主可领 3 刀试用金（需提供用户 ID，暗号：GitHub 来的）。</strong> <a href="https://www.fastaitoken.com/register?aff=BF9KNKFHX725" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/FastAI-%E7%82%B9%E5%87%BB%E6%B3%A8%E5%86%8C-4F7CFF.svg?logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAABmUlEQVRYw%2B2Vv0tbURTHP%2BfmvcS8lx%2BYKrZ16modFbQiKrgWuujQpZtgqV3s0rGT4N9Q6NJBM0nWUoe6uSj4BxQKUnBSSPISk3tPB1%2BhS42JFqHcD1wuXM79fs89HM4Fj8fjuWdk4Jubl9PEUiEC4nSV0r0cQATkgBIHjEvzbzLBIN7mrd11JVkBoJgeZgSMghGw%2Bjv0kHEzc61W3%2B7r3Zcuk5oDNP8oogKamlvp0O6u95LrrwKvtYDRbQRoiSWrX7DawoniABVQFVTbtOwn5rJHd5uA7c6SMd8QA44aH8zO%2FTThG30sea1qzCMKQCFtwBJIkZ8ayxJT0rmJ1EBNSKAf1fCMDCAComn5QRP7noWgc2OpnhFrGrKM45in1NsJJtxgSBYIFIQGqidYFIslcXs8D6p9vaVnxESjwlk8ghAR5baARbKaJycK3Re8C7%2FepgeuT6CaPMENhZzbScZkngszSaB5ALLuM5u3M%2B89B1bz36%2FMkn0i84BRflDGMkyN0Gz8%2B1FcrT%2Fkst3EVoq8klP%2Fc3k8Hs9%2FyS8IrHi9DaVvuAAAAABJRU5ErkJggg%3D%3D" alt="fastai 点击注册"></a>
 
-<p><img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/3b311a66fa4c8192d77911dca46ace6857740213/docs/assets/fastaitoken-channel-models.png" alt="FastAiToken 支持的渠道与模型" width="100%"></p>
+<p><img src="https://raw.githubusercontent.com/wssfk12138/dsh-damage-pulse/a568da5008045d9e34619b1b2c6b5627188372c5/docs/assets/fastaitoken-channel-models.png" alt="FastAiToken 支持的渠道与模型" width="100%"></p>

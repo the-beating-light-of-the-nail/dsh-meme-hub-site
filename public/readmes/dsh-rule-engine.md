@@ -1,11 +1,11 @@
 # dsh-rule-engine
 
 ![npm](https://img.shields.io/npm/v/dsh-rule-engine)
-![version](https://img.shields.io/badge/version-0.5.15-blue)
+![version](https://img.shields.io/badge/version-0.5.17-blue)
 
 DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯一真相源，自动解析规则四要素与执行等级，再通过「工具守卫 + 文本检测 + 时序检查 + 审计台账」执行用户规则，而不是内置一套与用户无关的安全清单。
 
-> 当前版本 **0.5.14**（2026-09-01 已发布三通道：npm=0.5.14 / git 8105d3e / Release v0.5.14 带 tgz；上一版 0.5.13 = 2026-08-31，git 4c52982）。内容：分点三柱（条件句零授权/显式命名对象锚定/clauseId 隔离）+ skill 词收紧 + 规则 5 引证检测扩展（内部引用无依据提醒）+ 规则 31 查证纪律（B+D）+ README 版本四性对齐。本插件面向"规则机器化执行"：规则写在 AGENTS.md 里，引擎负责让它们真的被遵守；所有规则动态解析，规则增删改后无需重写插件。
+> 当前版本 **0.5.16**（2026-09-02 已发布三通道；0.5.15 = 2026-09-02 判例登记批次（npm 0.5.15 / git tag / Release 带 tgz）；0.5.14 = 2026-09-01 三通道，git 8105d3e）。本插件面向"规则机器化执行"：规则写在 AGENTS.md 里，引擎负责让它们真的被遵守；所有规则动态解析，规则增删改后无需重写插件。
 
 ## 项目背景
 
@@ -67,6 +67,8 @@ DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯�
 | 版本 | 日期 | 要点 |
 |---|---|---|
 | **0.5.14** | 2026-09-01 | 分点三柱（条件句零授权/显式命名对象锚定/clauseId 隔离）+ skill 词收紧 + 规则 5 引证检测扩展（内部引用无依据→审计注入）+ 规则 31 查证纪律（B+D）+ README 版本四性对齐 |
+| **0.5.17** | 2026-09-03 | A1 规则 2 时间词拆组（当下词=Get-Date① / 历史日期=证据锚②，消除"引用历史日期必判未核对"误报）+ EVIDENCE_MARK_RE 增证据锚（commit hash/版本行/踩坑 N/版本记录） |
+| **0.5.16** | 2026-09-02 | 批评≠授权检测双层重构（STRONG 直接提醒 / WEAK 嫌疑交 judge 裁决——实弹漏判"你怎么还在做！"修复；词表只产嫌疑+模型定论）+ 0.5.15 后批次（Remote 签名一致性回归/调试产物清理/PERSONAL_RE git 门禁/CRITICISM_RE 初版/LICENSE 豁免）+ DSH-STORE 权限披露 |
 | **0.5.15** | 2026-09-02 | 回合末裁决卡片（host 侧 turn/end 裁决摘要 + client 包 dsh-rule-engine-client：可交互 ✅/❌ 卡片；判例登记一次性（per-block）；多次裁决一卡逐条分组；卡片/判例落盘 rule-engine-turn-cards.json 重启不丢） |
 | **0.5.13** | 2026-08-31 | 通用化（声明式绑定/禁用语义/会话寻址/验证通道/发布适用性门禁）+ 阶段二·三（委派豁免/中文顿号路径/ask 节流区分/D1-D3 注入/F1 规则 2/F2 verify-gap） |
 | **0.5.12** | 2026-08-30 | 意图优先级修正（动作词先于方案词）、LLM 意图兜底同步等待、@文件引用信号、只读判定三档（写特征/白名单/保守拒）、规则 22 粒度并入会话授权、ERR 码打标链路、F2 打标指纹、F5 契约类别白名单 |
@@ -76,6 +78,10 @@ DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯�
 | **0.5.8** | 2026-08-26 | 白名单持久化（rule-engine-tools.json）、只读命令词表补全（Select-Object 等）、`npm run verify` 注册 |
 | **0.5.7** | 2026-08-26 | 注入噪音治理（词表只产嫌疑 + LLM 裁决 + fail-closed + 投递资格闸 + 审计完整性）、注入通道重入修复（宏任务投递）、语义层（awaitingJudge/judge-pass/false/unavailable） |
 | **0.5.6** | 2026-08-26 | 同回复聚合注入、已自证规则不重复触发、C2 规则统计（detected/suppressed/injected） |
+
+## 发行固定源
+
+- **0.5.16（当前）** 固定于 main Commit `4d6673a5d8e4ed329e2b923d294a3743c643deb5`（40 位完整；`git checkout 4d6673a` 可复现 npm `dsh-rule-engine@0.5.16` 与 GitHub Release v0.5.16 同源代码——0.5.16 发布后 `96a3318`/`4d6673a` 为发布收尾提交：README 版本表与 B1/B2 修复，均属 0.5.16 源码）。
 
 ## 任务契约与反过度工程（可选）
 
@@ -156,6 +162,20 @@ dsh plugin --profile web add dsh-rule-engine
 - 守卫使用 `ctx.tools.guard()` 单调拒绝，模型无法自行绕过
 - **自由区域（Free Zone）**：AGENTS.md 中 `<!-- free-zone:start -->` / `<!-- free-zone:end -->` 标记框住的区段**整区跳过**（不解析、不产生规则、不硬拦、不审计）——适合放“想生效但不想被机器强制”的软约束（如法律守则）。区内的 `### [规则 F<n>]` 条目由配套插件 dsh-rules-manager 在设置页/`/rules` 中可见可管理。新增自由规则请手动在标记内编写（`/rules add` 只会插入到 free-zone 之前），详见 dsh-rules-manager 的 README「📝 新增一条自由规则（零基础三步）」
 - **禁用规则联动**：dsh-rules-manager 的「禁用规则」存储（`~/.dsh/disabled-rules.json`）会被引擎读取，被禁用的规则标记为 disabled，不参与硬拦/纠察；恢复启用后自动重新生效
+
+## 权限、依赖、外部服务与失败边界（DSH STORE 披露）
+
+> 面向插件商城（DSH STORE）自动审核与安装者；普通用户可跳过。
+> 声明原则：只陈述实际能力，不因申请自动上架而省略或弱化；本插件因权限信号被商城保守标记，符合"高权限防护工具需 user-reviewed"的商城契约。
+
+- **文件访问**：读写 `~/.dsh/rule-engine.log.jsonl`（审计台账）、`rule-engine-tools.json`（工具白名单）、`rule-engine-verify.json`（验证通过记录）、`rule-engine-turn-cards.json`（回合末判例卡片）、`disabled-rules.json`（读）、`rule-engine.json`（配置，读）、`AGENTS.md`（读 + watch 重载）。**写入仅限插件私有状态文件**；对用户业务文件的写动作只在用户规则触发的守卫流程内执行（如版本守卫的备份/回滚）。
+- **网络**：仅 `lib/service.js` 两处**只读 GET**（`api.github.com` release 检查、`raw.githubusercontent.com` upgrade-impact），8 秒超时、无凭据、无请求体，URL 由 package.json 解析（不访问任意地址）。
+- **命令执行**：无 `child_process`/子进程调用；"命令检测"= 对用户命令文本做正则分析（词表），不运行任何被检测的命令。
+- **凭据**：读取环境变量 `DSH_LLM_PROVIDER` / `DSH_LLM_MODEL` / `DSH_WORKSPACE` 作为运行配置（非密钥）；不读取 API Key、令牌；审计与注入消息不含凭据。
+- **依赖**：无运行时 `dependencies`；peer 依赖 `@deepseek-ai/dsh-home-paths`、`@deepseek-ai/dsh-typert-protocol`（官方接口）；`package.json` 无安装期生命周期脚本（无 preinstall/install/postinstall/prepare）。
+- **外部服务**：同网络项；失败时静默降级（release 检查失败只影响升级提示展示，不阻断守卫）。
+- **失败边界**：LLM 裁决/意图兜底不可用时 fail-closed（不投递、不误放）；审计写入失败不阻断拦截（拦截先于落盘）；词表/LLM 双通道判定，低置信不参与硬拦；守卫拒绝仅针对变更类动作，只读操作无条件放行。
+- **权限等级**（保守自评）：**高**（可写审计/白名单等持久状态、访问网络只读端点、读取环境变量配置）——建议安装前阅读上文「安全设计」并按需二次审查。
 
 ## 当前局限与后续优化路线
 

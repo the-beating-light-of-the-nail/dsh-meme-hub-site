@@ -3,7 +3,7 @@
 [中文](./README.md) | [English](./README.en.md)
 
 > **⚠️ 测试版声明——请勿用于生产环境**
-> 本项目（**v0.2.17**）仍处于开发中的测试版。[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 本身也处于**公开测试版**阶段。**请勿将两者用于工程化 / 生产环境**——预期会有破坏性变更与粗糙之处。
+> 本项目（**v0.2.19**）仍处于开发中的测试版。[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 本身也处于**公开测试版**阶段。**请勿将两者用于工程化 / 生产环境**——预期会有破坏性变更与粗糙之处。
 
 <p align="center">
 <strong>衷心感谢以下项目——请给它们一个 ⭐：</strong>
@@ -71,14 +71,20 @@ dsh plugin --profile web add billion-context-dsh
 
 装完**重启 `dsh`**（bundle 层在启动时组合），新开会话即可用——让模型调用 `acp_status` 或执行 `/acp status` 自证。shipped 预设（standard / code / cordis）内部的 realm 级 `compaction-basic` 自动压缩兜底仍然保留（这些模式里"自动摘要"照旧，ACP 工具与 nudge 并存）；minimal 等不带 compaction realm 的预设直接使用本引擎。
 
-> **与 DSH 版本的兼容性。** 包声明 peer 依赖 `@deepseek-ai/dsh-compaction` 为
-> `^0.1.0-rc.6 || ^0.1.1-rc.1`，同时覆盖 `0.1.0-rc.x` 与 `0.1.1-rc.x` 两条 rc 线
-> （含当前最新 DSH release；从 `0.1.0-rc.6` 到 `0.1.1-rc.2`，seam 的 `src/` 源码
-> 零改动，公开 API 完全一致）。范围写成两个并集子句是**有意为之**：npm
-> （node-semver）的预发布匹配规则要求 range 里存在与候选版本**相同
+> **与 DSH 版本的兼容性。** 包把四个运行期 seam 包（`dsh-compaction` /
+> `dsh-session` / `dsh-llm` / `dsh-tools`）都声明为 peer 依赖，共享同一个
+> 范围 `^0.1.0-rc.6 || ^0.1.1-rc.1 || ^0.1.2-alpha.4`，同时覆盖 `0.1.0-rc.x`、
+> `0.1.1-rc.x` 两条 rc 线与 `0.1.2-alpha.x` 线（从 `0.1.0-rc.6` 到 `0.1.1-rc.2`，
+> seam 的 `src/` 源码零改动，公开 API 完全一致；`0.1.2-alpha` 移除了
+> `Session.events` getter，改为 `snapshotEvents()` / `eventAt()`，本引擎对两种
+> 形态做了特性探测，单一构建两端通用）。范围写成多个并集子句是**有意为之**：
+> npm （node-semver）的预发布匹配规则要求 range 里存在与候选版本**相同
 > `[major, minor, patch]` 元组**的比较器，单一 `^0.1.0-rc.6` 永远匹配不了
-> `0.1.1-rc.x`（issue #68）——因此旧发布的包在 DSH 0.1.1-rc.x 上装不上，
-> 升级到含本次修复的新版本即可。
+> `0.1.1-rc.x`（issue #68），也匹配不了 `0.1.2-alpha.x`——因此旧发布的包在
+> DSH 0.1.1-rc.x / 0.1.2-alpha.x 上装不上，升级到含本次修复的新版本即可。
+> 把这四个 seam 包一并声明为 peer（而不只是 `dsh-compaction`），是为了让
+> 安装在 pnpm 的集成/封存布局下仍能把它们解析到**宿主自己的副本**，而不是
+> 某个与宿主不一致的陈旧嵌套副本。
 
 **方式二：纯 `npm install`（只装包，需要手写组合行）。**
 
@@ -91,7 +97,7 @@ npm install billion-context-dsh
 **git 源安装（`github:` 规格，插件商店展示的形态）。** 预构建产物 `dist/` 已提交到仓库，从 git 源安装同样开箱即用——**无需任何构建步骤**，pnpm 11 默认拦截构建脚本（`allowBuilds`）的机制对这个包不构成障碍：
 
 ```bash
-dsh plugin --profile web add github:Tyan66666/billion-context-dsh#v0.2.17
+dsh plugin --profile web add github:Tyan66666/billion-context-dsh#v0.2.19
 ```
 
 建议带 `#<tag>` 安装，拿到与对应 npm 版本完全一致的产物；不带 ref 则装默认分支的最新构建。只有 clone 仓库自行从源码构建（`npm run build`）才需要放行构建。背景与方案取舍见 [docs/git-source-install-design.md](docs/git-source-install-design.md)（issue #92）。

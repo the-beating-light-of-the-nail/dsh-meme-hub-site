@@ -88,7 +88,7 @@ AGENTS.md 支持一个**自由区域**：被 `<!-- free-zone:start -->` / `<!-- 
 `/rules add` **不能**把规则加进自由区域（这是刻意设计，防止普通规则掉进"引擎不强制"的区域）。请按下面三步操作：
 
 1. 若装有 dsh-rule-engine：先在聊天框输入 **`/guard unlock`**（AGENTS.md 受写保护，unlock 默认放行 10 分钟，钥匙只在用户手里）；
-2. 用记事本打开 `$DSH_HOME/AGENTS.md`（本机通常是 `D:\DeepSeek harness\.dsh\AGENTS.md`），拉到文件**末尾**，找到 `<!-- free-zone:start -->` 和 `<!-- free-zone:end -->` 两行标记，在**两行之间**按下面格式粘贴（编号从 F2 开始顺延，F1 已被示例占用，不能与已有编号重复）：
+2. 用记事本打开 `$DSH_HOME/AGENTS.md`（`$DSH_HOME` 即本机 DSH 数据目录，Windows 默认 `%USERPROFILE%\.dsh`），拉到文件**末尾**，找到 `<!-- free-zone:start -->` 和 `<!-- free-zone:end -->` 两行标记，在**两行之间**按下面格式粘贴（编号从 F2 开始顺延，F1 已被示例占用，不能与已有编号重复）：
 
    ```markdown
    ### [规则 F2] 你的守则标题
@@ -110,6 +110,21 @@ AGENTS.md 支持一个**自由区域**：被 `<!-- free-zone:start -->` / `<!-- 
 - **参数拼装**：预设内容里的 `{input}` 占位符会被命令后输入的内容替换（可多处使用）；没写 `{input}` 时参数自动追加到预设末尾（换行分隔）；含 `{input}` 的命令不带参数会提示用法（不发送残缺内容），不含 `{input}` 的命令不带参数则只发预设内容（兼容旧行为）。
 - **技能管理防乱序**：技能以目录名为唯一标识，无编号无分区——禁用=整目录移走、启用=原样搬回、删除=整目录进回收站，不存在"插回排序"逻辑，天然不会乱序；启用时目标已存在会被拒绝（绝不覆盖）；技能名仅限字母/数字/连字符/下划线（防路径穿越）。
 - **命令禁用防乱序**：禁用/启用只改 `commands.json` 条目上的 `disabled` 字段，不搬移、不改列表顺序。
+
+## 🔐 权限、依赖、外部服务与失败边界（DSH STORE 披露）
+
+> 面向插件商城（DSH STORE）自动审核与安装者；普通用户可跳过。
+> 声明原则：只陈述实际能力，不因申请自动上架而省略或弱化。
+
+- **文件访问**：读写 `$DSH_HOME/AGENTS.md`（规则文件）与 `$DSH_HOME/commands.json`、`$DSH_HOME/disabled-rules.json`（自定义命令与禁用状态）；技能管理对 `$DSH_HOME/skills/` 下的技能目录做重命名/移动（禁用=移出、启用=移回、删除=移入 `.backups/trash-<时间戳>/`，可恢复）；规则修改前自动备份到 `$DSH_HOME/.backups/AGENTS.md-<时间戳>.bak`。与规则引擎联动展示时只读 `rule-engine-tools.json` / `rule-engine.log.jsonl`（服务面板）。
+- **网络**：**无**。本插件不发起任何网络请求。
+- **命令执行**：**无**。本插件不执行系统命令或子进程；"命令"指 DSH 生态的斜杠命令（如 `/rules`）数据操作。
+- **凭据**：**无**。不读取环境变量、API Key、令牌等凭据。
+- **依赖**：`dsh-rules-manager-client`（配套设置面板 UI，与主包同仓库、同发布）；peer 依赖 `@deepseek-ai/cordis`、`@deepseek-ai/dsh-home-paths`、`@deepseek-ai/dsh-typert-protocol`（DSH 官方运行时接口）。`package.json` 无安装期生命周期脚本（无 preinstall/install/postinstall/prepare）。
+- **外部服务**：无。
+- **失败边界**：规则修改**先备份后写入**，写失败保持原文件；技能移动采用"整目录改名"，目标已存在时**拒绝**（绝不覆盖）；恢复备份前会把当前文件再备份一次（双保险）；所有操作失败均不静默——详见上文「🛡️ 安全设计」与下文「⚠️ 已知问题与踩坑」。
+- **权限等级**（保守自评）：**高**（可写用户规则/命令/技能数据并移动技能目录）——建议安装前阅读「安全设计」章节并按需二次审查。
+- **发行固定源**：1.5.4（当前）固定于 main Commit `e28cac0a4f4856b09210d656bda0dbbc31b9f748`（40 位完整；`git checkout e28cac0` 可复现 npm `dsh-rules-manager@1.5.4` 与 GitHub Release v1.5.4 同源代码）。
 
 ## ⚠️ 已知问题与踩坑
 

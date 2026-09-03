@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
 </p>
 
 <h1 align="center">DSH Mobile</h1>
@@ -26,14 +26,14 @@
 
 > DSH Mobile 是 DeepSeek Harness 社区插件，原生 App 仅支持 Android。
 >
-> **0.3.6 更新**：取消 DSH 精确版本白名单，已验证兼容 0.1.2-alpha.3/alpha.4；今后接口兼容的新版本不会再仅因版本号而阻止插件启动。[详细记录](CHANGELOG.md)。
+> **0.3.8 更新**：感谢 @StrawberryAO 贡献微信小程序兼容修复，支持微信自动附加的 `Sec-Fetch-Site` 和逗号合并 Origin；同时让网关跟随 DSH WebServer 实际端口，并拒绝混合不受信任的 Origin。[详细记录](CHANGELOG.md)。
 >
-> **升级提醒**：DSH 0.1.2-alpha.3/alpha.4 请使用 Mobile 插件 0.3.6 或更高版本；现有 0.3.3-0.3.5 App 与配对无需重建。[兼容说明](#兼容性)。
+> **升级提醒**：Windows DSH Desktop 用户请更新至插件 0.3.8；现有 0.3.3-0.3.7 App 可继续使用，无需重新配对。[兼容说明](#兼容性)。
 
 <p align="center">
-  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.6/dsh-mobile-android-v0.3.6.apk"><img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/brand/app-icon-rounded.svg" alt="DSH Mobile 安卓应用图标" width="72" height="72"></a><br>
-  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.6/dsh-mobile-android-v0.3.6.apk"><strong>下载 Android App 0.3.6</strong></a><br>
-  <sub><a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.6">版本说明与校验文件</a></sub>
+  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.8/dsh-mobile-android-v0.3.8.apk"><img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/brand/app-icon-rounded.svg" alt="DSH Mobile 安卓应用图标" width="72" height="72"></a><br>
+  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.8/dsh-mobile-android-v0.3.8.apk"><strong>下载 Android App 0.3.8</strong></a><br>
+  <sub><a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.8">版本说明与校验文件</a></sub>
 </p>
 
 DSH Mobile 是一个 DeepSeek Harness 插件，让手机浏览器或 Android App 通过局域网，或可选的 Tailscale Funnel、cpolar、自建 FRP 远程通道连接电脑，继续使用同一份会话、工作区、消息和工具。局域网与远程访问分别启停、分别管理设备，且都不修改 DeepSeek Harness 源码。
@@ -97,7 +97,7 @@ dsh plugin --profile web add dshmarket
 适合同一 Wi-Fi、以太网或手机热点，是默认且最简单的连接方式。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
 </p>
 
 1. 让手机和电脑连接同一个局域网，在 DeepSeek Harness 左下角打开 **移动访问 → 局域网**。
@@ -114,7 +114,7 @@ dsh plugin --profile web add dshmarket
 远程服务可能受带宽和连接限额影响：[cpolar 免费方案](https://svip.cpolar.com/pricing) 当前为 1 Mbps，[Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel#requirements-and-limitations) 也存在不可配置的带宽限制。DSH Mobile 通过 10 条分页、顶部按需加载、gzip 和 WebSocket 长连接减少流量与等待，但无法突破服务商限额。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
 </p>
 
 1. 在 DeepSeek Harness 左下角打开 **移动访问 → 远程**，选择一种连接方式：
@@ -156,10 +156,10 @@ Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。
 示例的实际效果：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/dfc6ef49db9d3e627c83c45168edc4830ba6500f/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/c41bc836461c817b1d64dacec37ab025e4ab30bb/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
 </p>
 
 ## App 与手机浏览器
@@ -199,10 +199,12 @@ flowchart LR
 
 ## 兼容性
 
-DSH Mobile 0.3.6 不再按 DSH 精确版本号阻止启动，并已验证 DSH 0.1.2-alpha.3/alpha.4 的移动前端与连接接口。现有 0.3.3-0.3.5 App 无需重新配对；0.3.6 Android App 仅同步版本信息，功能行为不变。更早的 App 使用不同的状态栏策略，建议同步升级；App 0.1.3 及更早版本需卸载重装并重新配对。
+DSH Mobile 0.3.8 在 0.3.6 开放版本兼容策略的基础上，修复微信小程序请求头兼容和 Desktop upstream 端口跟随，并已验证 DSH 0.1.2-alpha.3/alpha.4 的移动前端与连接接口。现有 0.3.3-0.3.7 App 无需重新配对；更早的 App 使用不同的状态栏策略，建议同步升级；App 0.1.3 及更早版本需卸载重装并重新配对。
 
 | DSH Mobile | 已验证的 DeepSeek Harness                                               |
 | ------------ | ------------------------------------------------------------------------- |
+| `0.3.8` | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1` 至 `alpha.4`；未列版本不再仅因版本号被拒绝 |
+| `0.3.7` | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1` 至 `alpha.4`；未列版本不再仅因版本号被拒绝 |
 | `0.3.6` | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1` 至 `alpha.4`；未列版本不再仅因版本号被拒绝 |
 | `0.3.5` | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1`、`0.1.2-alpha.2` |
 | `0.3.4` | `0.1.0-rc.5`、`0.1.0-rc.6`、`0.1.0-rc.7`、`0.1.1-rc.2`、`0.1.2-alpha.1`、`0.1.2-alpha.2` |
@@ -217,7 +219,7 @@ DSH Mobile 0.3.6 不再按 DSH 精确版本号阻止启动，并已验证 DSH 0.
 
 插件不再使用运行时版本白名单；CI 会持续检查 DSH 主分支真实使用的前端、连接与信任接口，只有接口变化才需要适配。未来 DSH 更新若出现实际显示或连接异常，请升级 DSH Mobile 并提交诊断信息。
 
-0.3.4 修复 Windows [DSH Desktop](https://github.com/anywhere-labs/dsh-desktop) 的目录选择器重复注册问题：复用桌面宿主的页面内目录浏览器，普通 Web 启动仍保留手机选择电脑工作区的能力。Desktop 连接手机时需使用兼容模式并启用浏览器访问，Mobile 的上游地址应与 Desktop 的监听端口一致。
+0.3.4 修复 Windows [DSH Desktop](https://github.com/anywhere-labs/dsh-desktop) 的目录选择器重复注册问题：复用桌面宿主的页面内目录浏览器，普通 Web 启动仍保留手机选择电脑工作区的能力。Desktop 连接手机时需使用兼容模式并启用浏览器访问。未在 setup 文件中指定 upstream 时，网关会跟随当前 DSH WebServer 的实际端口；managed setup 则继续使用 `dsh-mobile setup` 写入的 `--dsh-port`。
 
 ## 卸载
 

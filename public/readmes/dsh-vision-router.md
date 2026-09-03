@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
 </p>
 
 <h1 align="center">dsh-vision-router</h1>
@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ysr666/dsh-vision-router/releases/tag/v2.0.1"><img src="https://img.shields.io/badge/release-v2.0.1-5B4CF0?style=flat-square" alt="Release v2.0.1" /></a>
+  <a href="https://github.com/ysr666/dsh-vision-router/releases/tag/v2.1.0"><img src="https://img.shields.io/badge/release-v2.1.0-5B4CF0?style=flat-square" alt="Release v2.1.0" /></a>
   <a href="tests"><img src="https://img.shields.io/badge/verified-Node%2022%20%2B%2024-2EA44F?style=flat-square" alt="Verified: Node 22 + 24" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square" alt="License: MIT" /></a>
   <a href="package.json"><img src="https://img.shields.io/badge/Node.js-%3E%3D22-339933?style=flat-square&amp;logo=nodedotjs&amp;logoColor=white" alt="Node.js >=22" /></a>
@@ -39,12 +39,12 @@
 <p align="center">💬 <strong>QQ community group: 1105463028</strong></p>
 
 > [!WARNING]
-> 📌 **Announcement (v2.0.0)**
+> 📌 **Announcement (v2.1.0)**
 >
-> **v2.0.0:** Capability-aware Auto routing + benchmarks, explicit 👁 Vision, and Settings 2.0. [What’s new →](docs/releases/v2.0.0.md)
+> **v2.1.0:** Native five-card Settings, explicit Vision mode, runtime i18n, hardened capability routing/benchmarks, and the DSH rc.8 support floor. [What’s new →](docs/releases/v2.1.0.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
 </p>
 
 ## Contents
@@ -180,8 +180,8 @@ The built-in anonymous OVH vision fallback is already configured, so normal imag
 *Left: an image turn — the user sends a picture, the agent calls `vision_describe` through the free chain and answers. Right: the finished structured answer.*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
 </p>
 
 ## Free vision key channels
@@ -218,7 +218,7 @@ Any of these channels can join the vision chain as an `httpProviders` entry (key
 
 ### Pixel loop in practice
 
-[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
+[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
 
 <p align="center"><sub>Click the image to open the full-resolution original.</sub></p>
 
@@ -227,7 +227,7 @@ The agent rebuilt the UI from the reference image, then verified the final resul
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
 </p>
 
 The vision model is **only the eyes**; DeepSeek is **always the brain**. An image turn is never hijacked by a one-shot vision answer — the agent drives the tools itself and can keep operating on the image across as many steps as the task needs.
@@ -237,7 +237,7 @@ The vision model is **only the eyes**; DeepSeek is **always the brain**. An imag
 Default `progressiveTools: false`: all fourteen deep tools stay registered from plugin startup, so text and image turns can call them immediately. If you explicitly set `progressiveTools: true` in the profile/composition `cordis.patch.yml`, progressive mode is restored: only `vision_activate` is exposed initially, the full tool set mounts on first use, and the `vision-tools` skill is registered. This is a boot-time switch; restart DSH after changing it. Built on sharp / potrace / tesseract / system Chrome — no Python:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
 </p>
 
 The diagram covers the eleven image-processing tools. `vision_present` (durable image delivery) and `vision_bootstrap` (the optional 1+x structured first pass) bring the default deep-tool set to fourteen. Enabling the privacy-gated `vision_screenshot` at boot adds an optional fifteenth tool.
@@ -336,7 +336,7 @@ The Web profile registers a first-class **Settings → Vision Router** surface. 
 - **Advanced / Diagnostics**: timeout, wrapper scope, proxy/network, compatibility, version, runtime status and troubleshooting.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/7bdf6790c9c52a27315bdd1691075316603468fc/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/82f93eeeddabbc94b2a03d955da3fb375148acf4/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
 </p>
 
 ## Configuration
@@ -413,7 +413,7 @@ ollama pull qwen2.5vl
 ## Requirements
 
 - DeepSeek Harness Web profile. Normal installs can use `npx @deepseek-ai/dsh ...`; source checkouts use `pnpm dsh ...`. A bare `dsh ...` command only works when the CLI is already on your shell `PATH`.
-- **DSH Host support window:** DVR 2.0.x supports DSH `0.1.0-rc.6` (minimum), `0.1.0-rc.8` (previous train), and current `0.1.1-rc.2`. DVR 2.1.0 is the announced boundary that may raise the minimum to `0.1.0-rc.8`; a 2.0.x patch will not silently raise the Host floor. See [DSH Host support window](docs/architecture/dsh-support-window.md).
+- **DSH Host support window:** DVR 2.1.x supports DSH `0.1.0-rc.8` (minimum), `0.1.1-rc.1` (previous released train), and current `0.1.1-rc.2`; DSH `0.1.2-alpha.4` is canary-only evidence. DVR 2.0.x was the final train with public support for rc.6/rc.7. See [DSH Host support window](docs/architecture/dsh-support-window.md).
 - Node ≥ 22 (host side).
 - No API key for the default free chain; a credential reference (`apiKeyEnv`) only for paid `httpProviders`.
 - Chrome / Chromium / Edge is needed only for `vision_html_screenshot`; every other tool works without a browser.

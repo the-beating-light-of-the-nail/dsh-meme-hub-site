@@ -1,7 +1,7 @@
 # dsh-plugin-bridge
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/b282bd88446281482fc027785a60d79ed32c0f48/assets/cover/cover-en.png" width="100%" alt="dsh-plugin-bridge moves a locked session to a new preset through a previewable five-part handoff">
+  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/d2b9be2ecd92c5e462f0b7a6fd68836c22673dcd/assets/cover/cover-en.png" width="100%" alt="dsh-plugin-bridge moves a locked session to a new preset through a previewable five-part handoff">
 </p>
 
 [![dsh-plugin](https://img.shields.io/badge/dsh-plugin-blue)](https://github.com/deepseek-ai/deepseek-harness)
@@ -9,7 +9,7 @@
 [![ci](https://github.com/Totoro-qaq/dsh-plugin-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/Totoro-qaq/dsh-plugin-bridge/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![node ≥22](https://img.shields.io/badge/node-%E2%89%A522-339933)](package.json)
-[![dsh rc.6 → 0.1.2-alpha.3](https://img.shields.io/badge/dsh-rc.6%20%E2%86%92%200.1.2--alpha.3-4c8dff)](https://github.com/deepseek-ai/deepseek-harness)
+[![dsh rc.6 → 0.1.2-alpha.5](https://img.shields.io/badge/dsh-rc.6%20%E2%86%92%200.1.2--alpha.5-4c8dff)](https://github.com/deepseek-ai/deepseek-harness)
 [![Listed in Awesome DSH Plugin](https://img.shields.io/badge/listed_in-Awesome_DSH_Plugin-2ea44f)](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
 [![dshfind](https://dshfind.com/api/badge/Totoro-qaq/dsh-plugin-bridge?lang=en)](https://dshfind.com/en/plugins/Totoro-qaq/dsh-plugin-bridge?ref=badge)
 
@@ -18,7 +18,7 @@ English | [中文](README.zh.md)
 Halfway through a task and need another tool preset? Switching the produced session in place would leave tool history that belongs to the old assembly. Bridge previews a bounded five-part handoff, opens a clean target, and leaves the original session untouched.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/b282bd88446281482fc027785a60d79ed32c0f48/assets/bridge-demo.en.gif" width="880" alt="A real Bridge migration in the official DeepSeek Harness WebUI">
+  <img src="https://raw.githubusercontent.com/Totoro-qaq/dsh-plugin-bridge/d2b9be2ecd92c5e462f0b7a6fd68836c22673dcd/assets/bridge-demo.en.gif" width="880" alt="A real Bridge migration in the official DeepSeek Harness WebUI">
 </p>
 
 [Quick start](#quick-start) · [Why Bridge](#why-bridge) · [Evidence](#evidence-at-a-glance) · [Decisions](#migration-decisions) · [Compatibility](#compatibility)
@@ -35,7 +35,7 @@ dsh plugin --profile web add dsh-plugin-bridge
 Pinned GitHub fallback:
 
 ```bash
-dsh plugin --profile web add github:Totoro-qaq/dsh-plugin-bridge#v0.3.1
+dsh plugin --profile web add github:Totoro-qaq/dsh-plugin-bridge#v0.3.2
 ```
 
 Then type in the official WebUI:
@@ -48,7 +48,7 @@ Then type in the official WebUI:
 /bridge code --go --continue  restate and start work in the same target request
 ```
 
-On DSH rc.7 and later, the official WebUI renders `/bridge` as a native card. **Text** exposes the fixed five sections as ordinary fields and list rows; **Markdown** preserves full source freedom; **Preview** renders Markdown or a complete JSON tree. Long content scrolls inside the card while the action bar stays reachable. **Confirm migration** opens the created target session.
+On DSH rc.7 and later, the official WebUI renders `/bridge` as a native card. **Text** exposes the fixed five sections as ordinary fields and flat bullet or ordered-list rows while preserving their Markdown markers; **Markdown** preserves full source freedom; **Preview** renders Markdown or a complete JSON tree. Long content scrolls inside the card while the action bar stays reachable. **Confirm migration** opens the created target session.
 
 UIs that implement the official `conversation.chat.commandview` slot receive the same card automatically. Other custom UIs retain the complete server result, summary-file workflow, and target title/session-ID fallback; UI authors can reuse the framework-free `dsh-plugin-bridge/client-contract` export instead of reimplementing the wire. On an older or non-slot client, correct the printed summary file and run:
 
@@ -84,7 +84,7 @@ The release gate is intentionally small and reproducible; these are regression r
 | Confirm extra, paired nominal median | **+8.1%** vs `--continue` |
 | Summary worker share of clean acceptance components | **20.74% nominal** |
 | Native WebUI repeat gate (preview / target facts) | **3/3 · 3/3**, five facts each |
-| DSH 0.1.2 alpha.2 / alpha.3 installed WebUI | **13/13 · PTC paused · image → text fallback** |
+| DSH 0.1.2 alpha.2 / alpha.3 / alpha.5 installed WebUI | **13/13 · ordered-list edit · PTC paused · image → text fallback** |
 
 The token percentage varies widely with preset, response length, and cache state. The worker share is composition, not causal overhead versus no Bridge; the stable product claim is one additional confirmation request. Read the [design and evidence boundaries](docs/design.md), [full release report](reports/v0.2.3-e2e-report.md), and [vision report](reports/v0.2.6-rc11-vision-report.md).
 
@@ -117,7 +117,7 @@ The five sections are Goal, Current state, Key decisions and conventions, Key fi
 | 0.1.0-rc.6 | Yes | No | Narrow RPC contract and text compatibility tests |
 | 0.1.0-rc.7 / rc.8 | Yes | Contract-checked | Client-module/command-slot contract plus server fallback |
 | 0.1.1-rc.2 | Yes | Yes | Installed official WebUI: doctor 13/13, edit/confirm/auto-open, three-run repeat gate |
-| 0.1.2-alpha.2 / alpha.3 | Yes | Yes | Official npm install: typed controllers 13/13, edit/confirm/PTC auto-open; alpha.3 unresolved-image text fallback and clean removal |
+| 0.1.2-alpha.2 / alpha.3 / alpha.5 | Yes | Yes | Official DSH npm hosts: typed controllers 13/13 and PTC auto-open; the alpha.5 gate installed the branch tarball, retained alpha.3 titles, edited ordered lists, fell back from unresolved image to text, and removed cleanly |
 
 CI covers Node.js 22 and 24. Run `/bridge --doctor` after every Harness upgrade; it names missing required gateway methods instead of failing vaguely.
 
@@ -148,7 +148,7 @@ npm ci
 npm run verify
 ```
 
-`verify` builds and type-checks both plugin halves, runs 167 tests, checks generated `lib/` and datasets, then packs, installs, and imports the actual npm tarball. Tests spend no model tokens. `prepublishOnly` runs the same gate; GitHub releases also require the tag to match `package.json` before trusted npm publishing.
+`verify` builds and type-checks both plugin halves, runs 170 tests, checks generated `lib/` and datasets, then packs, installs, and imports the actual npm tarball. Tests spend no model tokens. `prepublishOnly` runs the same gate; GitHub releases also require the tag to match `package.json` before trusted npm publishing.
 
 Community listings: [Awesome DSH Plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) · [Awesome DeepSeek Harness](https://github.com/Dominic789654/awesome-deepseek-harness)
 

@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/banner.svg" alt="dsh-auto-continue" width="720">
+    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/38e8654ad7646a745e5ad429040c0a8d201bf234/docs/banner.svg" alt="dsh-auto-continue" width="720">
   </picture>
 </p>
 
@@ -34,7 +34,7 @@
 
 For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh web`): whenever a request in the web GUI gets interrupted by a **non-human cause**, the plugin simulates the user typing **“Continue”** and sends it, so the agent keeps working without manual intervention. The message enters the session log exactly like a manual prompt — the model sees it, and the interrupted work resumes. Since 0.8.0 the engine runs **inside the host process** (single instance), so it keeps watching even with every browser tab closed, and multiple open tabs can never double-send.
 
-![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/demo.svg)
+![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/38e8654ad7646a745e5ad429040c0a8d201bf234/docs/demo.svg)
 
 **Smart recovery** (all configurable):
 
@@ -74,7 +74,7 @@ The browser half is a thin shell: the settings card, plus a status bridge that s
 
 The diagram summarizes the automatic recovery path, the loop-guard restart path, and the exit to human intervention. Click it to open the full-size version.
 
-[![dsh-auto-continue recovery workflow](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/auto-continue-workflow.en.svg)](docs/auto-continue-workflow.en.svg)
+[![dsh-auto-continue recovery workflow](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/38e8654ad7646a745e5ad429040c0a8d201bf234/docs/auto-continue-workflow.en.svg)](docs/auto-continue-workflow.en.svg)
 
 ## Quick Start
 
@@ -192,7 +192,7 @@ auto-continue:
 
 **How the card works:**
 
-![The collapsed Auto Continue card in the plugin configuration list](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/screenshots/02-settings-card.png)
+![The collapsed Auto Continue card in the plugin configuration list](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/38e8654ad7646a745e5ad429040c0a8d201bf234/docs/screenshots/02-settings-card.png)
 
 - Edits are **staged** — nothing reaches the disk until you hit **Save**; an unsaved badge marks the card while drafts are pending, and **Discard** drops them
 - A field you changed shows an **Overridden** badge with a per-field **Reset to default** button that restores the built-in value

@@ -103,6 +103,10 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions:
+  contents: read
+  issues: write   # required when comment_mode != never (post/update PR comment)
+
 jobs:
   pr-genius:
     runs-on: ubuntu-latest
@@ -114,20 +118,19 @@ jobs:
           title: ${{ github.event.pull_request.title }}
           repo: ${{ github.repository }}
           body: ${{ github.event.pull_request.body }}
-      - name: Comment on PR
-        if: always()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const tier = '${{ steps.pr-genius.outputs.tier }}';
-            const emoji = tier === 'high_risk' ? '🔴' : tier === 'medium_risk' ? '🟡' : '🟢';
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `## ${emoji} PR Genius: ${tier}`
-            });
+          pr_number: ${{ github.event.pull_request.number }}
+          comment_mode: always   # never | high_risk | always — post full analysis as a PR comment
 ```
+
+`comment_mode` controls whether the full analysis is posted as a visible PR
+comment (mirrors pr-agent's `/review`):
+
+- `never` — do not post (default when unset and `comment_on_high_risk` is false)
+- `high_risk` — post only when the risk tier is `high_risk`
+- `always` — post on every run; existing comments are updated in place (no spam)
+
+> **Legacy**: `comment_on_high_risk: true` is still supported and behaves like
+> `comment_mode: high_risk`.
 
 ### Version Auto-Update
 

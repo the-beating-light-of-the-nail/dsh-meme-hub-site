@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/dsh-xueqiu?style=flat-square&label=npm)](https://www.npmjs.com/package/dsh-xueqiu)
 [![npm downloads](https://img.shields.io/npm/dm/dsh-xueqiu?style=flat-square)](https://www.npmjs.com/package/dsh-xueqiu)
-[![GitHub stars](https://img.shields.io/github/stars/kangjinghang/dsh-xueqiu?style=flat-square)](https://github.com/kangjinghang/dsh-xueqiu/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/wanderer-yk/dsh-xueqiu?style=flat-square)](https://github.com/wanderer-yk/dsh-xueqiu/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](./LICENSE)
 [![dsh-plugin](https://img.shields.io/badge/dsh--plugin-xueqiu-1DA1F2?style=flat-square)](#-安装)
 
@@ -55,25 +55,25 @@
 
 **嵌入式主面板**：停靠在输入框上方，指数卡 + 自选股行情 + 四个功能页签：
 
-![主面板](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/panel.png)
+![主面板](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/panel.png)
 
 **个股详情**：16 项行情数据 + K线蜡烛图（成交量柱 / MA5-10-20 均线 / 十字光标）+ 财务指标 + 热议用户：
 
-![个股详情](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/detail.png)
+![个股详情](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/detail.png)
 
 **迷你行情区域**：四大指数 + 自选 12 只两列平铺，⤡ 手柄调宽度，点击开合面板，可拖动：
 
-![迷你行情区域](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/badge.png)
+![迷你行情区域](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/badge.png)
 
 **Agent 工具调用卡片**（对话内直接问行情，结果渲染为专属卡片而非 JSON）：
 
 | `xueqiu_quote` 行情表 | `xueqiu_kline` 蜡烛图 |
 | --- | --- |
-| ![quote](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/kline.png) |
+| ![quote](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/toolcards/quote.png) | ![kline](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/toolcards/kline.png) |
 
 | `xueqiu_hot` 热榜 | `xueqiu_news` 快讯时间线 |
 | --- | --- |
-| ![hot](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/kangjinghang/dsh-xueqiu/da57cb7f6dcc2bcb21f762fa0d3b96c5c2ea4c18/assets/toolcards/news.png) |
+| ![hot](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/toolcards/hot.png) | ![news](https://raw.githubusercontent.com/wanderer-yk/dsh-xueqiu/main/assets/toolcards/news.png) |
 
 ## 📦 安装
 
@@ -84,7 +84,7 @@
 dsh plugin --profile web add dsh-xueqiu
 
 # 或 GitHub 源（git 安装会直接从源码构建）
-dsh plugin --profile web add github:kangjinghang/dsh-xueqiu
+dsh plugin --profile web add github:wanderer-yk/dsh-xueqiu
 
 # 或本地目录
 dsh plugin --profile web add ./dsh-xueqiu
@@ -186,10 +186,16 @@ dsh-xueqiu/
 
 - 本项目**非雪球官方**产品，与雪球网/雪球公司无关；"雪球"为雪球公司商标，此处仅作数据来源描述。
 - 数据来自雪球公开 Web 接口，仅供**学习与研究**，**不构成任何投资建议**；请勿高频请求，遵守目标网站条款。
-- 接口可能随时变更导致功能失效，欢迎提 [Issue](https://github.com/kangjinghang/dsh-xueqiu/issues) / PR。
+- 接口可能随时变更导致功能失效，欢迎提 [Issue](https://github.com/wanderer-yk/dsh-xueqiu/issues) / PR。
 
 ## 📋 更新日志
 
+- **1.22.15**（2026-09-03）
+  - 变更：元数据脱敏补丁。更新日志措辞去除旧账号字样；npm 维护者信息刷新。功能零变更。
+- **1.22.14**（2026-09-03）
+  - 变更：**仓库迁移至 `wanderer-yk`**。GitHub 账号更名后全量同步：README / README.en / package.json / LICENSE 中的仓库链接、徽章、图片外链、安装命令全部更新为 `wanderer-yk/dsh-xueqiu`；git 全部历史提交与标签署名经 `git filter-repo` 重写为 noreply 身份，历史文件内容同步清洗。
+  - 修复：`static-smoke.sh` 查找 dsh 二进制时硬编码机器特定绝对路径，改为 `$HOME` 展开（可移植性 + 去隐私泄露）。
+  - 功能零变更；发布本版主要目的为刷新 npm 侧 homepage / 仓库地址 / readme 元数据。
 - **1.22.13**（2026-08-26）
   - 修复：**A 股成交量显示虚高 100 倍 + 港/美单位错**。雪球 `volume` 字段全市场均为**股**（实证 `amount/volume ≈ price`，quote/kline/minute 三接口、A/港/美/ETF/指数一致），而 `fmtVol` 一律按"手"格式化：茅台 145 万股显示成"145.05万手"（实为 1.45 万手）。现按市场感知：A 股（SH/SZ/BJ 前缀，含 ETF/指数/北交所）÷100 换算成手，港/美维持股。`qa/vol-units.mjs` 26 例（从 client 源码提取 fmtVol 独立求值 + host 周期白名单）。
   - 修复：**自选"死条目"凭空消失**。批量行情会整只丢弃无效/退市代码——添加 SH999999 提示成功，但列表里永远看不到，无任何反馈。现在补占位行（现价/涨跌全 `--`，名称回退显示代码，仍可删除/查详情），价格闪烁逻辑对 null 现价免疫。

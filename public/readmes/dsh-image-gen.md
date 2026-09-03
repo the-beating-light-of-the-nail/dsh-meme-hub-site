@@ -9,9 +9,9 @@ Generate images in DeepSeek Harness with OpenAI `gpt-image-2`, using a signed-in
 
 [中文说明](./README.zh.md)
 
-<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/d45e3ac6218bb73e980ada59bc6b5afd5dfb691a/assets/demo.svg" width="760" alt="Animated dsh-image-gen progressive preview" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/6f8277c69e9ac681dc8c633125b701bbe415ba0b/assets/demo.svg" width="760" alt="Animated dsh-image-gen progressive preview" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/d45e3ac6218bb73e980ada59bc6b5afd5dfb691a/assets/final-card.png" width="760" alt="dsh-image-gen completed durable image card" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/LeemanCheung/dsh-image-gen/6f8277c69e9ac681dc8c633125b701bbe415ba0b/assets/final-card.png" width="760" alt="dsh-image-gen completed durable image card" /></p>
 
 These illustrations mirror the shipped developing and completed card states. API-key mode can replace the light field with real streamed drafts; Codex subscription mode animates until its non-streaming response arrives. The completed state remains available as a durable DSH attachment with preview and download controls.
 
@@ -62,15 +62,15 @@ Primary references:
 
 ## Compatibility
 
-Verified against:
+Verified environment:
 
-- DeepSeek Harness `0.1.0-rc.6`
+- DeepSeek Harness `0.1.2-alpha.5` (disposable Web profile install, startup, HTTP readiness, and uninstall)
 - `dsh-codex-connect` `0.1.0-alpha.4.4`
 - Node.js `24.15.0` (package support: `^22.19.0` or `>=24.0.0`)
 - DSH Web profile on Windows 11
 - Real Codex subscription generation, durable replay, Blob preview, and download controls
 
-Verification date: 2026-08-15.
+Compatibility for `0.1.2-alpha.3` and `0.1.2-alpha.4` remains `unknown`; the manifest does not infer runtime evidence from the declared range. The real Codex subscription generation check above was performed on `0.1.0-rc.6` on 2026-08-15. Disposable lifecycle verification for `0.1.2-alpha.5` was performed on 2026-09-03 without sending a provider request.
 
 ## Install
 
@@ -79,7 +79,7 @@ Review third-party source before installation and pin release tags or commits. F
 ```powershell
 dsh plugin --profile web add dsh-codex-connect
 dsh openai-codex login
-dsh plugin --profile web add github:LeemanCheung/dsh-image-gen#v0.3.0
+dsh plugin --profile web add github:LeemanCheung/dsh-image-gen#v0.3.1
 ```
 
 For local development:

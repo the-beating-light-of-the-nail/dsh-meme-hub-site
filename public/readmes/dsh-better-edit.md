@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/dc468c5ce9799ddf9578d92e715905701b2a95a1/assets/logo.svg" alt="dsh-better-edit" width="200">
+  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/c968b1e05c3d315e02bf6629022644670d23b0ad/assets/logo.svg" alt="dsh-better-edit" width="200">
 </p>
 
 <h1 align="center">dsh-better-edit</h1>
@@ -37,7 +37,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/dc468c5ce9799ddf9578d92e715905701b2a95a1/assets/banner.svg" alt="file.ts → read → hashed lines → edit by hash → diff" width="900">
+  <img src="https://raw.githubusercontent.com/Rianico/dsh-better-edit/c968b1e05c3d315e02bf6629022644670d23b0ad/assets/banner.svg" alt="file.ts → read → hashed lines → edit by hash → diff" width="900">
 </p>
 
 ---

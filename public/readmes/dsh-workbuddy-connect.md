@@ -12,20 +12,29 @@
 - **开箱即用**：安装和启用插件后，在 DSH 中直接使用，无需额外配置。
 
 
-![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/7c2eba26afaf50cd8b21439fe589dcec8f563039/assets/1.png)
+![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/fab6bf646aa3243a788bb2cfcd3948dd5451ce6e/assets/1.png)
 
 
 - **图片输入**：按上游逐模型声明的能力放行图片——绝大多数模型（含 GLM-5.3-Flash、GLM-5.2、DeepSeek-V4 系列等）可直接粘贴或拖入图片；个别纯文本模型（如 GLM-5.1）按上游声明仍会明确提示不支持。
 
 
+- **思考强度**：按上游每个模型声明的 `supportedEfforts` 提供思考等级选项（如 GLM-5.3 支持 low / high / xhigh，GLM-5.3-Flash 支持 low / high / max），在 DSH 模型选择器里即可切换，请求以 `reasoning_effort` 转发。
+
+
+- **限时免费一目了然**：状态卡片会标注当前免费 / 限时免费 / 夜间折扣的模型（跟随上游 `credits` 与 `tags` 实时更新）。
+
+
+- **费率比例直接可见**：模型选择列表里每个模型名后直接显示积分倍率（如 `GLM-5.2 · x0.79`、`Hy3 · x0.00`），`/model` 弹窗与 composer 下拉都能看到；设置卡片里也补充了倍率说明。倍率只影响显示，发送请求仍使用模型 id。
+
+
 - **信息查看**：设置 → 插件 → DSH WorkBuddy Connect 卡片
 
 
-![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/7c2eba26afaf50cd8b21439fe589dcec8f563039/assets/2.png)
+![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/fab6bf646aa3243a788bb2cfcd3948dd5451ce6e/assets/2.png)
 
 卡片展开后，可查看账号信息、令牌有效期与剩余积分。
 
-![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/7c2eba26afaf50cd8b21439fe589dcec8f563039/assets/3.png)
+![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/fab6bf646aa3243a788bb2cfcd3948dd5451ce6e/assets/3.png)
 
 ## 安装
 

@@ -3,7 +3,7 @@
 **[中文](#中文) | [En](#english)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RAFOLIE/dsh-desktop-windowos/2cd94d4e468b316dd1ae3eab2e286ac43e844f0a/docs/screenshot-v2.png" alt="DSH Desktop — native webchat in the shell window" width="860">
+  <img src="https://raw.githubusercontent.com/RAFOLIE/dsh-desktop-windowos/a3c5b5a9eeda98c7ef6c390b8b966e11f2645931/docs/screenshot-v2.png" alt="DSH Desktop — native webchat in the shell window" width="860">
 </p>
 
 ---

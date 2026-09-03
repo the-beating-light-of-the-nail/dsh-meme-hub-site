@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/2c013c55d52a570cebf8e599c1a9e4685d84a2b2/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
+  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/d1c467c5fcb63d3982e303627bb982c307658b39/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
 </p>
 
 In-GUI skill hub for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — browse the full `ctx.skills` catalog, toggle skills, inspect bodies, diagnose missing skills, install from the market, and scaffold new ones.

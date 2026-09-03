@@ -12,13 +12,13 @@
 
 </div>
 
-![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/dsh-bigfish-running.png)
+![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/dsh-bigfish-running.png)
 
 DSH 大肥鱼不是一个需要单独启动的桌宠应用。它由 DSH 插件启用，跟随 DSH
 一起启动和退出，并以透明、无边框、始终置顶的原生窗口显示在桌面上。即使切换到
 VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修改、测试、等待还是已经完成。
 
-> 当前版本：`0.1.6` · Windows / WSL2 / Linux x64 · macOS 实验性支持
+> 当前版本：`0.1.7` · Windows / WSL2 / Linux x64 · macOS 实验性支持
 
 ## 关注最新进展
 
@@ -48,15 +48,15 @@ VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修�
 
 | 思考 | 工作 |
 | --- | --- |
-| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/status-working.png) |
+| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-working.png) |
 
 | 等待确认 | 完成 |
 | --- | --- |
-| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/status-success.png) |
+| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-success.png) |
 
 | 遇到问题 |
 | --- |
-| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/status-error.png) |
+| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-error.png) |
 
 状态大致按照下面的流程变化：
 
@@ -172,8 +172,8 @@ pnpm dsh plugin --profile web add ~/Downloads/dsh-dafeiyu-<version>.tgz
 
 > `0.1.4` 首次提供实验性的原生 macOS Helper。CI 已验证 Universal 架构、
 > AppKit 渲染和进程生命周期；Apple Silicon 实机体验将继续通过用户反馈验证。
-> 当前应用只有 ad-hoc 签名，尚未 Developer ID 签名或公证，浏览器下载的包可能
-> 被 Gatekeeper 拦截。
+> 当前应用只有 ad-hoc 签名，尚未 Developer ID 签名或公证。Gatekeeper 只在
+> 个别场景触发，放行方式见下方「关于 macOS Gatekeeper」。
 
 macOS 的安装方式与 Windows 相同，只是换成「终端」和 macOS 路径。发布包
 内置原生 Helper，**不需要安装 Python、PySide6 或 Xcode**。
@@ -205,6 +205,30 @@ pnpm dsh plugin --profile web add ~/Downloads/dsh-dafeiyu-<version>.tgz
 
 装完照常启动 DSH WebUI，大肥鱼会由 DSH 自动拉起；不要手动打开 Helper。
 
+#### 关于 macOS Gatekeeper
+
+实测结论（见 issue [#24](https://github.com/QCYTSN/dsh-dafeiyu/issues/24)）：
+从 npm 安装、用终端下载、以及浏览器下载 `.tgz` 后**直接安装**，都不会触发
+Gatekeeper 拦截。只有用 Finder 解压出来的 `.app` 才会携带隔离标记，双击时
+被拦截。
+
+- 推荐做法：浏览器下载 `.tgz` 后**不要用 Finder 解压**，直接执行上面的安装
+  命令（npm/tar 解包不传播隔离标记）。
+- 用终端下载从一开始就不会产生隔离标记：
+
+  ```bash
+  gh release download --repo QCYTSN/dsh-dafeiyu
+  # 或者
+  curl -LO https://github.com/QCYTSN/dsh-dafeiyu/releases/download/v<版本>/dsh-dafeiyu-<版本>.tgz
+  ```
+
+- 如果已经用 Finder 解压并被拦截：右键该 Helper →「打开」放行一次，或者
+  清除隔离标记后运行：
+
+  ```bash
+  xattr -dr com.apple.quarantine <解压出的 dsh-dafeiyu-helper.app 路径>
+  ```
+
 ### 3. GitHub Release 备用安装方式
 
 进入 [GitHub Releases](https://github.com/QCYTSN/dsh-dafeiyu/releases)，下载最新的：
@@ -233,7 +257,7 @@ pnpm dsh plugin --profile web add "C:\Users\you\Downloads\dsh-dafeiyu-<version>.
 设置 → 插件 → 插件配置 → 大肥鱼桌面伴侣
 ```
 
-![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/8567da6e21caa34b8d2e4f49483a0e1c8e6ebc98/docs/images/dsh-bigfish-settings.png)
+![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/dsh-bigfish-settings.png)
 
 ## 怎么使用？
 

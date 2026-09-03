@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/d1ab907866e52f844e80ff47f8082864f5b5b816/docs/images/dsh-crew-logo.png" alt="DSH Crew" width="120" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/10be55597909bb6a64ecbcb009d276a503a337e2/docs/images/dsh-crew-logo.png" alt="DSH Crew" width="120" />
 </p>
 
 <h1 align="center">DSH Crew</h1>
@@ -24,7 +24,7 @@
 <br />
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/d1ab907866e52f844e80ff47f8082864f5b5b816/docs/images/dsh-crew-overview.png" alt="DSH Crew — settings page" width="100%" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/10be55597909bb6a64ecbcb009d276a503a337e2/docs/images/dsh-crew-overview.png" alt="DSH Crew — settings page" width="100%" />
 </p>
 <p align="center"><sub>The DSH Crew settings page — host integrations, dispatch policy, execution and the multimodal bridge</sub></p>
 
@@ -118,12 +118,12 @@ Claude Code / Codex / Antigravity / Grok (orchestrator, keeps its own model)
 Dispatch fans out. Below, eighteen workers translate this README in parallel: the host counts them as its own subagents, while the harness runs them as real sessions.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/d1ab907866e52f844e80ff47f8082864f5b5b816/docs/images/dsh-crew-host.png" alt="Claude Code" width="100%" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/10be55597909bb6a64ecbcb009d276a503a337e2/docs/images/dsh-crew-host.png" alt="Claude Code" width="100%" />
 </p>
 <p align="center"><sub>Claude Code sees dsh-crew workers as native subagents, with a statusline segment tracking running tiers, elapsed time and tokens.</sub></p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/d1ab907866e52f844e80ff47f8082864f5b5b816/docs/images/dsh-crew-jobs.png" alt="DSH Crew" width="100%" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-crew/10be55597909bb6a64ecbcb009d276a503a337e2/docs/images/dsh-crew-jobs.png" alt="DSH Crew" width="100%" />
 </p>
 <p align="center"><sub>The DSH Crew panel sees the same run from the harness side: which host dispatched each job, its tier and effort, live progress and token usage.</sub></p>
 

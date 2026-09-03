@@ -12,7 +12,7 @@ Migrate your Claude Code setup into [DeepSeek Harness (DSH)](https://github.com/
 
 Preview instructions, skills, commands, agents, hooks, permission rules, and MCP servers before DSH writes anything. Existing destinations stay untouched.
 
-![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/28472559cd233c795a47eca888c785a898525a09/docs/settings-demo.gif)
+![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/4e730483cb76880999d2665477e6a8d5eaecda07/docs/settings-demo.gif)
 
 This GIF uses two screenshots from a live DSH `0.1.1-rc.2` run. The first shows the dry run and the second shows the applied result.
 
@@ -67,6 +67,9 @@ The DSH plugin is tested in a fresh `web` profile against every currently suppor
 | `0.1.0-rc.8` | Compatible | Compatible | Compatible |
 | `0.1.1-rc.1` | Compatible | Compatible | Compatible |
 | `0.1.1-rc.2` | Compatible | Compatible | Compatible |
+| `0.1.2-alpha.3` | Compatible | Compatible | Compatible |
+| `0.1.2-alpha.4` | Compatible | Compatible | Compatible |
+| `0.1.2-alpha.5` | Compatible | Compatible | Compatible |
 
 | Origin | What moves |
 | --- | --- |
@@ -178,7 +181,7 @@ If DSH cannot start PowerShell on Windows, [dsh-win32](https://github.com/sjh971
 
 ## Project status
 
-The CLI migration paths retain their rc.6 and rc.7 regression coverage. CI also boots a packed release inside current DSH and verifies the browser client registration and settings route against DSH `0.1.1-rc.2`.
+The CLI migration paths retain their rc.6 and rc.7 regression coverage. CI also installs, boots, and removes a packed release against every exact DSH version listed above.
 
 Listed in [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) and [awesome-deepseek-harness](https://github.com/0xsline/awesome-deepseek-harness). The measured migration notes also appear in [dsh-handbook](https://github.com/Electricitysheep/dsh-handbook).
 

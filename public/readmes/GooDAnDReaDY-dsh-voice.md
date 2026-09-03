@@ -68,8 +68,15 @@ graph LR
   * **Keyboard**: Hold <kbd>Ctrl</kbd> (or custom hotkey) for hands-free speaking; press <kbd>Esc</kbd> to cancel.
 * ⚡ **Zero-Latency In-Browser Captions (`browser`)**: Chrome Web Speech API recognition runs 100% locally with live floating captions as you speak.
 * 🛡️ **Ironclad Multi-Provider Fallbacks**: If your primary cloud provider runs out of credits or hits a 429 rate limit, requests seamlessly fail over down the chain.
+* 🧠 **Context Glossary Injection**: Automatically extracts code variables and identifiers from your composer draft to steer STT model accuracy on technical jargon.
+* 🎵 **Embedded Audio Player**: Preview, scrubber, and playback of your recorded voice message directly in chat and the composer dock.
+* 🔇 **Hardware Noise Suppression Toggle**: Configurable in settings to toggle browser-level noise suppression, echo cancellation, and auto gain control.
+* 📊 **Provider Latency & Health Dashboard**: Live visual telemetry of provider latency (ms), success rates, and errors directly within the settings UI.
 * 🔒 **Zero API Key Leakage**: Keys are resolved on the host via `ctx.credentials` (`credentialRef`) and never transmitted to browser clients.
 * 🖥️ **Offline Local Whisper Server**: Automatically boots and manages [whisper.cpp](https://github.com/ggerganov/whisper.cpp) (`whisper-server`) with on-the-fly `ffmpeg` transcode.
+* ⚡ **SenseVoice-ONNX / Sherpa-ONNX** *(0.8.11)*: Ultra-fast (~50–100ms) non-autoregressive local STT engine with automatic emotion/event tag stripping. Supports both Sherpa-ONNX HTTP and OpenAI-compatible endpoints.
+* 🌐 **Realtime Audio Streaming** *(0.8.11)*: Low-latency WebSocket bridge (`/dsh-voice/realtime`) for OpenAI Realtime API or local Sherpa-ONNX streaming. API keys stay securely on the host.
+* 🌊 **Liquid Wave & Dynamic Orb Visualizer** *(0.8.12)*: Smooth animated audio visualization in the recording pill with real-time mic volume reactivity. Switch between organic multi-layer liquid waves, pulsating radiant orb, classic bars, or off.
 
 ---
 
@@ -96,6 +103,7 @@ graph LR
 | `groq` | Groq Whisper | `whisper-large-v3-turbo` | `GROQ_API_KEY` | Near-instant inference speed |
 | `hf` | HuggingFace Inference | `openai/whisper-large-v3` | `HF_TOKEN` | High-accuracy open Whisper |
 | `local-whisper` | Local whisper.cpp | Server defined | *None* | 100% private, offline, no internet needed |
+| `sensevoice` | SenseVoice-ONNX / Sherpa-ONNX | `SenseVoiceSmall` | *None* | Ultra-fast (~50ms) local non-autoregressive STT |
 
 ### 🚀 Ready-Made Presets (Plug & Play)
 
@@ -154,7 +162,9 @@ Registers `transcribe_audio(file_path, language?)` in `ctx.tools`, allowing agen
 
 ### Internal HTTP Endpoints
 * `POST /dsh-voice/transcribe` — `{ dataBase64, mimeType, mode }` → `{ ok, text, provider, tookMs }`
-* `GET /dsh-voice/status` — Returns whisper daemon status and active fallback chains.
+* `POST /dsh-voice/polish` — `{ text }` → `{ ok, text }`
+* `GET /dsh-voice/status` — Returns daemon status, active chains, SenseVoice and realtime config.
+* `GET /dsh-voice/realtime` — **WebSocket upgrade** for low-latency audio streaming (OpenAI Realtime API / Sherpa-ONNX). Accepts binary audio chunks, returns JSON text deltas.
 
 ---
 

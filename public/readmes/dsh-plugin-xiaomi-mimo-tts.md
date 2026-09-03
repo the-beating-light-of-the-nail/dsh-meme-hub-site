@@ -1,4 +1,4 @@
-![social](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/7e80a692c05cdfc90ef7581ba30d04cfcc14fed3/assets/social.png)
+![social](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/9821777936438dd1cc82618aebf40a01113902e6/assets/social.png)
 
 # dsh-xiaomi-tts
 
@@ -14,9 +14,9 @@
 ## 预览
 | 预置音色 | 自定义音色 |
 |:---:|:---:|
-| ![Xiaomi MiMo 设置菜单](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/7e80a692c05cdfc90ef7581ba30d04cfcc14fed3/assets/menu.png) | ![自定义音色](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/7e80a692c05cdfc90ef7581ba30d04cfcc14fed3/assets/preset.png) |
+| ![Xiaomi MiMo 设置菜单](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/9821777936438dd1cc82618aebf40a01113902e6/assets/menu.png) | ![自定义音色](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/9821777936438dd1cc82618aebf40a01113902e6/assets/preset.png) |
 | 设置界面 | UI示例 |
-| ![UI](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/7e80a692c05cdfc90ef7581ba30d04cfcc14fed3/assets/setting.png) | ![UI](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/7e80a692c05cdfc90ef7581ba30d04cfcc14fed3/assets/image.png) |
+| ![UI](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/9821777936438dd1cc82618aebf40a01113902e6/assets/setting.png) | ![UI](https://raw.githubusercontent.com/ppy-web/dsh-plugin-xiaomi-mimo-tts/9821777936438dd1cc82618aebf40a01113902e6/assets/image.png) |
 
 ## 功能
 

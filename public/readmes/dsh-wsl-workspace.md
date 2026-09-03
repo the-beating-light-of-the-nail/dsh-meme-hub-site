@@ -4,7 +4,7 @@
 [![dsh.so install](https://www.dsh.so/badge/install/dsh-wsl-workspace.svg)](https://www.dsh.so/artifact/dsh-wsl-workspace)
 
 [English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Português](README.pt.md) · [Русский](README.ru.md)
-![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/63b4d41805c22819a9cf17ad2ea51f4718ddf147/image-3.png)
+![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/55648f0c27c142be1090ef495acdf5e4b5c1ab4e/image-3.png)
 Add a WSL workspace from the DeepSeek Harness web GUI and run the whole agent session — bash commands and file reads/writes — inside a local WSL distribution with Linux paths. Nothing needs to be installed inside WSL. The session can reach both WSL and Windows at the same time: bash commands run inside the WSL distribution, while Windows files stay accessible via `/mnt/<drive>` (for example `/mnt/c/Users/...`).
 
 ## Install
@@ -29,7 +29,7 @@ After restarting `dsh web`, a W button appears beside Settings at the sidebar fo
 Click the W button beside Settings at the sidebar foot to open the "Add WSL workspace" dialog. Pick a distribution from the list, then browse the directory tree or type an absolute Linux path (for example `/home/me/proj`) — use the Check button to verify the path exists before creating the workspace. The dialog follows the DeepSeek Harness UI language. The username field is optional: leave it empty to run commands as the distribution's default user, or name a Linux user of that distribution to run the session as that user instead (equivalent to `wsl.exe -u <username>`). The username only changes the bash tool's run identity — the file tools go through the Windows-side WSL share and are unaffected. Each workspace's username is kept in `<dshHome>/wsl-workspaces.json`; delete the entry (or recreate the workspace from the dialog) to return to the default user.
 
 Click "Create & open" to start a new session in the workspace. In the new session the bash tool executes commands inside the chosen distribution and `read`/`write`/`edit` operate on WSL files, so every path the model sees is a Linux path. The mode picker keeps working as usual: Standard, PTC, Minimal and Creative each land on their WSL variant automatically (the WSL variant entries in the picker are bilingual, e.g. `WSL · Standard mode（标准模式）`), and Windows files stay reachable from inside the session under `/mnt/<drive>` (for example `/mnt/c/Users/...`).
-![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/63b4d41805c22819a9cf17ad2ea51f4718ddf147/image-2.png)
+![alt text](https://raw.githubusercontent.com/6Mikao9/dsh-wsl-workspace/55648f0c27c142be1090ef495acdf5e4b5c1ab4e/image-2.png)
 ## Behavior notes
 
 - **bash tool**: runs inside the WSL distribution as the configured username (empty = the distro default user, often `root`), so it can read and write anywhere in the distro. The Windows ACL sandbox cannot wrap `wsl.exe` — its children run on the Linux kernel side — so WSL itself is the isolation boundary and the DSH file policy does not apply to bash.
@@ -38,6 +38,16 @@ Click "Create & open" to start a new session in the workspace. In the new sessio
 - The garbled `localhost` port-forwarding banner `wsl.exe` prints to stderr when the distro was not running yet is harmless.
 
 ## Changelog
+
+### 0.4.2 — 2026-09-02
+
+- **Alpha session-preset sync**: blank WSL sessions now read the selected preset from both the legacy top-level field and the `0.1.2-alpha` projection, tolerate the alpha session store's removal of `noteAgentPreset`, and retry binding after asynchronous workspace/roster refreshes.
+- **Creator-mode switching**: WSL Creator variants use a namespaced, reference-counted Cordis inspection adapter, avoiding duplicate global-provider registration while the host atomically replaces the base Creator preset.
+- **Compatibility proof**: expanded client/materialization tests and recorded isolated install/start/uninstall plus visible browser-click acceptance for every declared DSH release from `0.1.0-rc.7` through `0.1.2-alpha.4`; the final alpha.4 run also verified all four base modes automatically map to their WSL variants with no browser warnings or errors.
+
+### 0.4.1 — 2026-09-02
+
+- **Cross-release client APIs** ([#17](https://github.com/6Mikao9/dsh-wsl-workspace/pull/17)): prefer the legacy namespaced API when it exists, use the alpha Typert RPC channel and named arguments otherwise, and fall back from the legacy workspace session service to `uiWorkspace` on newer releases.
 
 ### 0.4.0 — 2026-08-29
 

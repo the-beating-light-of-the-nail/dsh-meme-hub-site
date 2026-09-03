@@ -4,6 +4,8 @@
 
 Silent vision enhancement for [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness): keep your real text-only main model (e.g. `deepseek-v4-flash`), and let chat images "just work" — every image you drop, paste, or reference in the chat box is automatically sent to a fixed vision model, converted into a factual text observation, and handed to your main model as hidden context. The UI keeps showing your original image; no model groups, no model switching, no extra tools.
 
+Compatible with the current DSH Store window: `0.1.2-alpha.3`, `0.1.2-alpha.4`, and `0.1.2-alpha.5`. Durable MCP / ACP image attachments and nested images forwarded by PTC Mode use the same vision bridge. When enabled, the plugin intentionally keeps advertising image input; otherwise the chat composer rejects the image before it can reach the bridge.
+
 ## Why
 
 - DeepSeek V4 Flash / Pro and other strong coding models are **text-only**: dropping an image into the chat box fails with "model does not support image input".
@@ -31,13 +33,28 @@ agent/pre-step ──► image + current question + recent context
 4. A **model-only surface replacement** swaps the image for the vision observation before the request reaches the main model.
 5. Switching the main model (DeepSeek, Kimi, MiniMax, ...) never changes the fixed vision model.
 
-### Complete call paths
+### MCP / ACP / PTC images
 
-- **Normal conversations**: `agent/pre-step` processes images before the main-model request and projects observations into the model view.
-- **Context compaction**: the `llm/stream` path with `purpose: "compaction"` reuses existing observations first and only describes genuinely unseen images.
-- **Tool-result images**: images inside `tool/result` events are projected for the model while the original tool result remains visible and traceable in the UI.
-- **Reloads and restarts**: observations are persisted to `observations.json`, so the same session/message position does not trigger another vision call after restart.
-- **Model capability detection**: in `auto` mode the plugin reads the main model's real `inputModalities`; it stays out of the way for image-capable models and bridges only text-only routes.
+DSH `0.1.0-rc.7` persists images produced by MCP, ACP, and PTC as durable attachments, then exposes them as core `image` content blocks. This plugin recursively handles images in ordinary messages, `tool-result`, and nested `tool-result` content while preserving the original text/image order:
+
+- MCP / ACP durable attachments are read by `attachmentId`, not temporary file paths;
+- nested PTC subtool images are converted into vision observations;
+- multiple images are sent to the vision model in their original order;
+- only the model-visible surface is replaced, so the original UI image remains intact.
+
+The image-capability override is an intentional entry-point compatibility layer. It does not claim that the main model has native visual reasoning; it lets the image reach DSH so the bridge can convert it into text context.
+
+### DSH compatibility evidence
+
+Verified on 2026-09-03 with Node.js `24.16.0` and a separate disposable `DSH_HOME` for each release:
+
+| DSH release | Local-path install | `--dump-config` | Authenticated cold start | Uninstall |
+| --- | --- | --- | --- | --- |
+| `0.1.2-alpha.3` | passed | passed | HTTP 200 | passed |
+| `0.1.2-alpha.4` | passed | passed | HTTP 200 | passed |
+| `0.1.2-alpha.5` | passed | passed | HTTP 200 | passed |
+
+The Profile operations use the official CLI with `plugin --profile web add -w <local-path>` and `remove -w dsh-vision-fallback`. The runtime fix does not mutate the deep-frozen `llm/stream` request introduced by current DSH builds; compaction creates a copied request and performs one guarded nested dispatch.
 
 ## Install
 
@@ -54,8 +71,8 @@ dsh plugin --profile web add dsh-vision-fallback
 ```sh
 git clone https://github.com/1HelloMan1/dsh-vision-fallback.git
 cd dsh-vision-fallback
-pnpm install --config.minimumReleaseAge=0   # rc.6 peers need the release-age flag bypassed
-pnpm test                                    # 22 unit tests
+pnpm install --config.minimumReleaseAge=0   # pre-release peers may need the release-age flag bypassed
+pnpm test                                    # node --test test/*.test.mjs
 dsh plugin --profile web add "$PWD"
 ```
 
@@ -82,7 +99,7 @@ Open **Settings → 视觉增强 / Vision Enhancement** in the DSH web UI. It ex
 | Vision model | `mimo-v2.5` | OpenAI-compatible `model` |
 | Base URL | `https://opencode.ai/zen/go/v1` | The plugin appends `/chat/completions` |
 | Credential ref | `OPENCODE_GO_API_KEY` | Key resolved from the DSH credential store (never written to env files) |
-| Max tokens / Timeout / Max bytes | `1536` / `60000` / `15MB` | Vision request limits |
+| Max tokens / Timeout / Max bytes | `1536` / `60000` / `15MB` | Vision request limits; oversized images fail |
 | Recent context | `includeRecentContext: true`, `contextMessages: 6`, `contextMaxChars: 6000` | How much recent chat to attach for the vision model |
 | Prompt | (Chinese detailed-analysis prompt) | Analysis instruction; the user's question is appended automatically |
 | Tag result | `true` | Prepend `【视觉观察：<model>】` to the observation |
@@ -145,12 +162,9 @@ Observations are keyed by **the image's occurrence in a session** (session id + 
 
 The cache is capped at 256 entries (LRU eviction); failed results are never cached.
 
-Cache location: when `usageLogPath` is set, `observations.json` is written beside that log; otherwise it is stored at
-`<dshHome>/vision-fallback/observations.json`. This lets compaction, event replay, and service restarts reuse successful observations.
+### About image compression
 
-### Compaction, tool results, and restarts
-
-When the main model can already see images, the bridge does not call the vision model. If a later text-only compaction model encounters the original image event, the plugin first reuses the main model's projected observation and the persistent cache, then handles only images that truly have no observation. This prevents every compaction from re-describing the entire image history while still allowing the same image at a new message position to be re-read with fresh context.
+In the current version, “compression” means **reusing an existing vision observation during conversation-context compaction**; it does not re-run vision analysis. The plugin does not yet resize, transcode, or quality-compress image files. Images above `maxBytes` fail explicitly instead of being silently changed. A future real image-compression feature should report the before/after byte counts and media type.
 
 ## Default vision route
 
@@ -165,7 +179,7 @@ The OpenCode community `opencode-see-image` hands a `filePath` + task `question`
 ## Development
 
 ```sh
-pnpm test    # node --test test/*.test.mjs — 22 tests
+pnpm test    # node --test test/*.test.mjs
 ```
 
 Structure:

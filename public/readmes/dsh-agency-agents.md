@@ -1,17 +1,17 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/9a50fd32aa397e2f16bc751cd67a423f4343a7a4/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/b457d441d438dd6d06a31dcbc4ed430a3531a43c/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
 </div>
 
 <div align="center">
 
   # DSH Agency Agents
 
-  **271 summonable specialist agents for DeepSeek Harness**
+  **273 summonable specialist agents for DeepSeek Harness**
 
   [简体中文](README.zh-CN.md) · [Changelog](CHANGELOG.md) · [Apache-2.0](LICENSE)
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
-  [![Bundled agents](https://img.shields.io/badge/Bundled%20agents-271-0f766e.svg)](#features)
+  [![Bundled agents](https://img.shields.io/badge/Bundled%20agents-273-0f766e.svg)](#features)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-agency-agents.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-agency-agents)
   [![npm downloads](https://img.shields.io/npm/dt/%40michengai%2Fdsh-agency-agents.svg?label=npm%20downloads)](https://www.npmjs.com/package/@michengai/dsh-agency-agents)
   [![DSH Web Plugin](https://img.shields.io/badge/DSH%20Web-Plugin-0f766e.svg)](https://github.com/MichengAI/dsh-agency-agents)
@@ -23,9 +23,9 @@
 ## Features
 
 - Filter by category or search, then enable or disable bundled experts in **Settings → Experts**.
-- Summon enabled experts by name or slug from the composer's **Experts** picker.
+- Summon enabled experts by their localized name from the composer's **Experts** picker.
 - Use `list_experts` to discover experts and `summon_expert` to start a one-shot specialist subagent.
-- Use 271 bundled personas immediately, or connect a separately synchronized expert directory.
+- Use 273 bundled personas immediately, or connect a separately synchronized expert directory.
 - Paste one sentence into DSH, Codex, or WorkBuddy and let that agent install the plugin locally.
 
 The parent session keeps task context, judgment, and the final answer. Expert children provide a specialist perspective only and cannot summon further experts.
@@ -34,15 +34,15 @@ The parent session keeps task context, judgment, and the final answer. Expert ch
 
 Filter by category or search in **Settings → Experts**, then enable the experts you need:
 
-![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/9a50fd32aa397e2f16bc751cd67a423f4343a7a4/assets/screenshots/agent-roster-en.png)
+![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/b457d441d438dd6d06a31dcbc4ed430a3531a43c/assets/screenshots/agent-roster-en.png)
 
 Use `@` or the composer's **Experts** picker to choose an enabled expert:
 
-![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/9a50fd32aa397e2f16bc751cd67a423f4343a7a4/assets/screenshots/expert-picker.png)
+![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/b457d441d438dd6d06a31dcbc4ed430a3531a43c/assets/screenshots/expert-picker.png)
 
-The name and slug are filled in; write the complete task next:
+The localized expert name is inserted as a short tag; write the complete task next:
 
-![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/9a50fd32aa397e2f16bc751cd67a423f4343a7a4/assets/screenshots/summon-prompt.png)
+![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/b457d441d438dd6d06a31dcbc4ed430a3531a43c/assets/screenshots/summon-prompt.png)
 
 ## DSH product ecosystem
 
@@ -133,21 +133,22 @@ Restart DSH Web and hard-refresh the browser. `dsh plugin ... add .` reads the p
 
 1. Open **Settings → Experts** and enable the needed experts.
 2. Use `@` or the composer **Experts** picker to choose an enabled expert.
-3. Name the expert and slug, then provide the complete task.
+3. The localized expert name is inserted as a short tag. Continue with the complete task.
 
 ```text
-Summon the "Code Review Engineer" expert (engineering-code-reviewer) for this task:
+Code Reviewer
+
 Review the changes in the current workspace and list reproducible issues by severity.
 ```
 
-The parent session can also call `list_experts(division?)`, then delegate with `summon_expert(expert, task)`. Use a slug when a name is ambiguous.
+The parent session can also call `list_experts(division?)`, then delegate with `summon_expert(expert, task)` using the expert name. The bundled roster validates localized and upstream names for uniqueness.
 ## Configuration and limits
 
 | Key | Default | Purpose |
 | --- | --- | --- |
 | `root` | Bundled expert assets | External expert root; an explicit value takes priority. |
 | `provider` | `spawn` | DSH subagent provider; `fork` also works when it supports persona and tool filtering. |
-| `divisions` | 17 standard divisions | Top-level divisions to scan. |
+| `divisions` | 18 standard divisions | Top-level divisions to scan. |
 | `maxDepth` | Unset | Positive absolute subagent-depth limit. |
 
 Set `AGENCY_AGENTS_ROOT` to use an external expert directory. Persona bodies from that directory are injected as the child system prompt, so load them only from a trusted source. The provider must support persona and tool filtering. `summon_experts` accepts at most 8 experts with a concurrency of 4 and still returns successful answers when some experts fail.

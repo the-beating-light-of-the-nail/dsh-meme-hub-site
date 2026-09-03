@@ -5,7 +5,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-zh-dark.svg">
-    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/banner-zh.svg" alt="DSH Usage Statistics Panel" width="720">
+    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/e54356d876f3f09e414c7903b5ea229848f311d4/docs/banner-zh.svg" alt="DSH Usage Statistics Panel" width="720">
   </picture>
 </p>
 
@@ -23,17 +23,17 @@ DSH web 插件的用量统计面板：按天 Token 趋势、GitHub 风格活跃�
 所有图表均为手绘 SVG，不依赖图表库；配色使用 GitHub Primer 的 data-viz 双套色板（前 5 名模型各取一个等级色，其余归入灰色 "Other" 桶），并随 DSH 主题自适应。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/demo-zh.svg" alt="demo：安装后设置页出现「使用统计」入口，进入面板后卡片、热力图、趋势与环形图依次点亮" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/e54356d876f3f09e414c7903b5ea229848f311d4/docs/demo-zh.svg" alt="demo：安装后设置页出现「使用统计」入口，进入面板后卡片、热力图、趋势与环形图依次点亮" width="720">
 </p>
 
 ## 预览
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/images/panel-overview.png" alt="面板概览：汇总卡片、活跃热力图与按天 Token 趋势" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/e54356d876f3f09e414c7903b5ea229848f311d4/docs/images/panel-overview.png" alt="面板概览：汇总卡片、活跃热力图与按天 Token 趋势" width="720">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/images/model-usage.png" alt="模型用量：环形图、列表与趋势图" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/e54356d876f3f09e414c7903b5ea229848f311d4/docs/images/model-usage.png" alt="模型用量：环形图、列表与趋势图" width="720">
 </p>
 
 ## 功能
@@ -57,7 +57,9 @@ dsh plugin --profile <name> add dsh-usage-statistics-panel@latest
 
 插件挂载后，在 Web UI 的设置页左侧导航会出现"使用统计"页面。
 
-**兼容性**：已验证 DeepSeek Harness `0.1.1-rc.2` ~ `0.1.2-alpha.4`（peer 声明 `^0.1.1-rc.2 || ^0.1.2-alpha.1`），CI 对 `0.1.2-alpha.3` / `0.1.2-alpha.4` 双版本回归（`.github/workflows/test.yml`）；更高版本通常可用，属未验证范围。
+**兼容性**：本插件支持 DeepSeek Harness `>= 0.1.2-rc.1`（peer 声明 `>=0.1.2-rc.1`），CI 对 `0.1.2-rc.1` 基线全量构建与测试回归（`.github/workflows/test.yml`）；更高版本通常可用，属未验证范围。
+
+> **旧版本用户**：使用 DeepSeek Harness `0.1.1-rc.2` 或 `0.1.2-alpha.*` 的用户，请安装本插件的旧版本（`0.1.9` 及之前）。本插件自后续版本起仅对 `>= 0.1.2-rc.1` 的 DeepSeek Harness 提供支持与验证。
 
 ## 数据来源
 

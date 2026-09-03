@@ -6,6 +6,8 @@
 
 `Auto 档` = `sandbox: danger-full-access` + `approval: ask`。本插件在 Auto 会话里充当 `approval/request` 的**唯一终结裁决者**：常规操作放行、危险/模糊操作交给「静态规则 → LLM 分类 → LLM/人工裁决 → 倒计时兜底 → 熔断」的自动管线，把「自动但安全」的吞吐做高，同时保证有人工与审计兜底。
 
+> 🖥️ **平台支持**：主要在 **Windows + Git Bash** 环境开发与测试；macOS / Linux / WSL 欢迎反馈（见 [平台支持](#平台支持)）。**Android 浏览器访问仅收集 UI 反馈、不承诺支持；Auto 权限档不支持 Android 原生环境**（Termux / root / adb / shizuku 等）。
+
 ---
 
 📖 **工作原理详解文档站**：<https://cuddly-guacamole.github.io/dsh-auto-approval-llm/>
@@ -28,9 +30,9 @@
 - **声明式规则**：`rulesText` 用 Claude 风格 `工具(正则) | allow|deny|human [| 字段]` 一眼看懂、实时校验。支持维度限定：行首 `[agent:main]` / `[agent:!subagent]` / `[workspace:D:/proj]`（逗号组合=AND）——规则只在指定代理身份/工作区内求值。注意：规则仅作用于进入审批链的工具调用，工作区内常规写读等静态放行路径不经规则层（见下）；解析出错时**整段 rulesText 失效**（fail-open 方向，设置卡有警示）。
 - **上下文增强复审（可选开启，默认关）**：`reviewerContextFacts` 开启后，LLM 复审输入附加结构化工作区事实——目标路径存在性/类型/大小（只读元数据，绝不读内容）＋本会话最近创建的文件相对路径（最多 8 条，经脱敏与工作区过滤）。边界：工作区外目标只报存在性与类型、大小恒为 null；工作区 symlink/联接逃逸到外部时整个事实块省略；临时目录（tempRoots）文件不进 recent_creates；探测失败→事实块整体省略（fail-closed），默认关闭时复审载荷与既往逐字节一致。
 - **编辑操作 diff 预览（editDiffPreview）**：开启后，进入人工审批的编辑类工具（write/edit/str_replace_editor/apply_patch）在审批面板展示目标文件的行级红绿 diff（目标仅限工作区内非受保护路径，≤1MiB/≤200 行/约 32KiB，失败自动省略）。纯展示：不参与任何裁决，不进 LLM 复审输入；默认关闭。边界：可读的工作区内非受保护目标对比现有内容出 diff；全量写类操作（`write` / `str_replace_editor` `create`）目标不可读（工作区外/受保护/新文件等）时预览「仅新内容」的全量新增 diff——素材全部来自工具参数、零读取目标文件，外部/受保护旧内容绝不因此上屏；对比类（`edit` / `str_replace` / `insert` / `apply_patch`）目标不可读时整体省略。LCS 输入 ≤1024 行/侧，单行 >200 字符省略号，输出 ≤200 行且总字节 ≤32KiB，截断带 `…truncated` 标记；语义镜像官方工具（edit/str_replace 多匹配省略、insert 按官方 0 基 splice、create 已存在省略、apply_patch 全目标顺序应用且任一失败整体省略）；diff 块内倒计时字面量被剥离，无法伪造/劫持客户端自动应答。
-- **确认制学习（可选开启，默认关）**：`learningEnabled` 开启后，同一操作（以确定性签名称呼：命令模板 / 工具参数形状，不含任何原始值）在 Auto 档被人工反复确认达到阈值（`learningThreshold` 默认 3，钳制 2–10）起自动放行；**每次学习放行前仍对本次调用执行一次标准在线评审**——非干净 ALLOW 或 CRITICAL 矛盾一律回退原有人工分支。边界：仅低/中风险可学；高风险、锁定四类（delete/protected/privilege/disk）、unknown 类别与敏感路径永不参与；含变量/glob/引号或危险头命令（tee/dd/sed/truncate/install）的命令既不学也不中；同签名被人工拒绝立即清零计数；每根会话学习放行上限 50 次（恰达上限的那一次落审计告警）；条目保留 30 天、至多 100 条、按工作区隔离；任何一环失效都视同未命中回人工；设置卡「已学习条目」区块可查看（仅展示键哈希与条目骨架，不泄签名/原始值）与吊销已学条目（即时生效并落审计）。
+- **确认制学习（可选开启，默认关）**：`learningEnabled` 开启后，同一操作（以确定性签名称呼：命令模板 / 工具参数形状，不含任何原始值）在 Auto 档被人工反复确认达到阈值（`learningThreshold` 默认 3，钳制 2–10）起自动放行；**每次学习放行前仍对本次调用执行一次标准在线评审**——非干净 ALLOW 或 CRITICAL 矛盾一律回退原有人工分支。边界：仅低/中风险可学；高风险、锁定四类（delete/protected/privilege/disk）与敏感路径永不参与（unknown 类别自 0.0.15 起可学，命中仍须过一次标准在线评审）；含变量/glob/引号或危险头命令（tee/dd/sed/truncate/install）的命令既不学也不中；同签名被人工拒绝立即清零计数；每根会话学习放行上限 50 次（恰达上限的那一次落审计告警）；条目保留 30 天、至多 100 条、按工作区隔离；任何一环失效都视同未命中回人工；设置卡「已学习条目」区块可查看（仅展示键哈希与条目骨架，不泄签名/原始值）与吊销已学条目（即时生效并落审计）。
 - **DSH 原生观感的设置卡**：6 张可折叠子卡（计时器与熔断 / 在线评审模型 / 安全规则列表 / 分类开关与信任模式 / 确认制学习 / 最近审批记录），顶部「评审与接管预设」单选（标准 / 稳健 / 严格 / 自定义）一键写回 LLM 参与门槛组合，三个名单合并为「精确名单」页签编辑器，倒计时三档与熔断双阈值各并为一行；顶层开关即时保存、每卡独立 保存/放弃；非法配置值有红色横幅 +「尝试修复」。
-- **DSH 双协议兼容（0.0.12）**：客户端自动应答同时支持 DSH 0.1.1-rc.2（`snapshot.pending` + `wait.respond`）与 0.1.2-alpha.1（`uiSession.pendingInteractions` + `PendingApproval.answer`）两代审批投递协议，按运行环境能力自动选用（feature-detect）；0.0.15 起仅保留新协议。
+- **DSH 应答协议（0.0.16 起单协议）**：客户端自动应答走 DSH 0.1.2+（rc.1/alpha.4 同代际）的 `uiSession.pendingInteractions` + `PendingApproval.answer` 投递协议；0.1.1-rc.2 的 `snapshot.pending` 兼容适配器已移除。
 
 ---
 
@@ -55,6 +57,19 @@
 
 ---
 
+## 平台支持
+
+| 平台 | 状态 | 说明 |
+|---|---|---|
+| Windows（Git Bash） | ✅ 主开发/测试环境 | 路径判定与 shell 解析以此基线开发并测试 |
+| macOS / Linux / WSL | 🟡 未真实用户验证 | 代码已跨平台适配：路径按语法自动分派 posix/win32、bash 为主解析器（pwsh 分支仅 Windows 启用）、macOS `/tmp→/private/tmp` 别名与 POSIX 关键路径保护已由契约测试锚定（`tests/posix-platform.test.mjs`）。欢迎反馈实际表现 |
+| Android 浏览器访问 dsh web | ⚠️ 仅收集反馈 | 设置卡 / 审批面板在窄视口与触屏上的体验可反馈，**不承诺支持**（不按手机宽度改造官方 UI） |
+| Android 原生环境（Auto 档） | ❌ 明确不支持 | Termux / root / adb / shizuku 等环境差异过大（国产安卓定制路径繁多），Auto 档在此类环境视为玩家实验场景 |
+
+**反馈**：请在 [GitHub Issues](https://github.com/cuddly-guacamole/dsh-auto-approval-llm/issues) 报告，注明平台、dsh 版本、插件版本、复现命令与预期行为。
+
+---
+
 ## 安装
 
 已发布 npm（`@quill507/dsh-auto-approval-llm`），直接安装：
@@ -63,7 +78,14 @@
 dsh plugin --profile web add @quill507/dsh-auto-approval-llm
 ```
 
-本地开发构建 / 注入（dsh-super-injector 环境）：
+本地开发构建 / 注入：
+
+```bash
+npx tsc -p tsconfig.json   # 编译 host → lib/
+npx tsdown                 # 构建 client bundle → lib/client.js
+```
+
+以 `link:` 依赖在 web profile 加载本仓库后：host 改动重新编译并重启 dsh 生效；client 改动重建后浏览器自动热载。
 
 > 提示：本插件依赖 DSH 的 `auto` 权限预设（`danger-full-access` + `approval: ask`），并作为 `approval/request` 的唯一终结者——**不要与其他审批类插件（如 dsh-approval-llm / dsh-auto-review）同时启用**。
 
@@ -84,39 +106,39 @@ dsh plugin --profile web add @quill507/dsh-auto-approval-llm
 
 在 Auto 权限预设下使用（`设置 → 通用设置 → 权限 → Auto`；Read Only / Workspace Write / Auto / Full access）：
 
-![Auto 权限预设](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/permission-auto-preset.png)
+![Auto 权限预设](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/permission-auto-preset.png)
 
 设置卡总览——顶层开关即时保存，右侧为可折叠子卡：
 
-![设置卡总览](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-overview.png)
+![设置卡总览](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/settings-overview.png)
 
 计时器与熔断——三档倒计时、熔断防劫持与双熔断阈值：
 
-![计时器与熔断](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-timers-breaker.png)
+![计时器与熔断](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/settings-timers-breaker.png)
 
 在线评审模型——API 协议 / 地址 / 模型 / 密钥（密钥前端不可见）：
 
-![在线评审模型](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-online-reviewer.png)
+![在线评审模型](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/settings-online-reviewer.png)
 
 安全规则列表——安全 Prompt / 白黑名单 / 声明规则 / 规则干跑：
 
-![安全规则列表](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-safety-rules.png)
+![安全规则列表](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/settings-safety-rules.png)
 
 分类开关与信任模式——标准/激进两种位置模式、特权命令允许 LLM 审查开关与各类别独立三态覆盖：
 
-![分类开关与信任模式](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-categories-trust.png)
+![分类开关与信任模式](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/settings-categories-trust.png)
 
 确认制学习——同一签名累计 N 次真实人工确认后自动放行（每次放行前仍经一次在线评审），支持查看与吊销已学习条目：
 
-![确认制学习](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-learning.png)
+![确认制学习](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/settings-learning.png)
 
 审批面板——倒计时贴在超时自动执行的动作上（此处 `超时动作=低风险自动同意` → 中风险超时自动**拒绝**，「拒绝」按钮带倒计时、「允许一次」保持干净）：
 
-![审批面板 · 拒绝倒计时](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/approval-panel-countdown-reject.png)
+![审批面板 · 拒绝倒计时](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/approval-panel-countdown-reject.png)
 
 会话审批统计——会话标题栏「自动审批」按钮弹层：总计/通过/拒绝/超时/熔断 + 最近记录：
 
-![会话审批统计](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/session-stats.png)
+![会话审批统计](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/13e62fee8a15c73a2b648f6b995141e19f1ad45a/assets/session-stats.png)
 
 ---
 
@@ -136,7 +158,7 @@ dsh plugin --profile web add @quill507/dsh-auto-approval-llm
 | `maxTotalDenials` | 20 | 累计拒绝熔断阈值，0 关闭 |
 | `reviewerProtocol` | `openai` | 在线评审协议：`openai`(chat/completions) / `anthropic`(messages) |
 | `reviewerBaseUrl` | '' | 在线评审 API 地址；非空才走在线评审，空则跟随会话模型。三件齐备（地址＋模型名＋已配置密钥）才启用直连；缺任一自动跟随会话模型 |
-| `reviewerModel` | '' | 在线评审模型名；连同 `reviewerBaseUrl` 与已配置密钥三件齐备才启用直连（`reviewerProvider` 已于 2026-08-26 退役：classifier 恒跟随会话模型） |
+| `reviewerModel` | '' | 在线评审模型名；连同 `reviewerBaseUrl` 与已配置密钥三件齐备才启用直连（`reviewerProvider` 已退役：classifier 恒跟随会话模型） |
 | `safetyPrompt` | '' | 附加给评审模型的额外策略（保存即热生效） |
 | `allowlist` / `denyList` / `humanOnlyList` | [] | 工具名精确匹配 |
 | `rulesText` | '' | 声明式规则（优先于内置列表执行；支持 `[agent:main|subagent|名]`、`[workspace:路径]` 维度前缀，逗号组合=AND；解析错误=整段失效） |
@@ -150,15 +172,19 @@ dsh plugin --profile web add @quill507/dsh-auto-approval-llm
 | `reviewMaxRetries` | 1 | LLM 复审失败后的额外重试次数（0 单次 / 1 默认 / 2 上限；仅瞬时故障重试——限流·5xx·传输·空响应，LOW 同步含超时——重试窗口受审批倒计时剩余约束，认证/配置错误不重试） |
 | `autoModeNoticeEnabled` | true | 自动审批模式进入/退出时向 agent 注入英文上下文声明（独立开关） |
 | `onboardingMessageEnabled` | true | 首次 Auto 会话向 agent 注入一次性英文引导消息（上下文声明，非用户横幅）；关掉后不再注入 |
-| `reviewWaitSeconds` | 5 | 每次 LLM 评审尝试的等待时间（秒，1–10）；官方通道 TTFB 慢时调大（直连 DeepSeek 实测 266ms–4.9s），建议不超过低风险倒计时 |
+| `reviewWaitSeconds` | 5 | 每次 LLM 评审尝试的等待时间（秒，1–10）；官方通道 TTFB 慢时调大，建议不超过低风险倒计时 |
 | `debug` | false | 调试模式：写 `approval-debug.jsonl` 与 `[debug]` 日志 |
 | `reviewerContextFacts` | false | 仅 YAML 可配（设置卡无此控件）。上下文增强复审：给 LLM 复审输入附加结构化工作区事实（目标存在性/类型/大小 + 本会话最近创建文件，最多 8 条）；默认关（载荷与既往一致）。边界：工作区外只报存在性/类型不报大小；tempRoots 文件不入 recent_creates；探测失败整体省略 |
 | `editDiffPreview` | false | 编辑类工具（write/edit/str_replace_editor 非 view/apply_patch）进入人工审批时，面板展示目标文件行级红绿 diff。纯展示：不参与裁决、不进 LLM 复审输入；失败自动省略。边界：可读的工作区内非受保护目标对比现有内容；全量写类（write/create）目标不可读（外部/受保护/新文件）预览仅新内容全量新增（零读目标文件）；对比类（edit/str_replace/insert/apply_patch）目标不可读整体省略；≤1MiB（lstat 不跟随 + 读后字节复核，防 junction 逃逸）；LCS ≤1024 行/侧、单行 ≤200 字符省略、输出 ≤200 行且 ≤32KiB（截断带 `…truncated`）；语义镜像官方（多匹配/已存在/越界 → 省略）；diff 块内倒计时字面量剥离防伪造 |
+| `rejectGuidance` | false | 拒绝引导：工具调用被拒时向 agent 注入一句白名单式短说明（来源/类别枚举，不含工具名与自由文本），减少盲目重试与反复探索；默认关 = 零行为变化。触发面：规则/denyList/类别拒绝与官方「user rejected tool」形态（面板人工拒绝转译）；限流（同调用去重 + 每 60s 至多 5 条）；fail-closed，注入失败不影响审批路径 |
+| `maintenanceDshPaths` | [] | host-only 键：DSH_HOME 中供运维维护的子目录（绝对路径数组）。其内 guard 的 DSH_HOME 硬拒只对**非运行态文件**放宽（技能/配置/文档）；插件运行态文件（history/audit/learning…）在其内仍恒拒，shell 写向量仍恒拒，fenced 子树（sessions/plugins/credentials*）不可指名。仅 patch/YAML 可配 |
+| `rejectGuidance` | false | 拒绝引导：工具调用被拒时向 agent 注入一句白名单式短说明（来源/类别枚举，不含工具名与自由文本），减少盲目重试与反复探索；默认关 = 零行为变化。触发面：规则/denyList/类别拒绝与官方「user rejected tool」形态（面板人工拒绝转译）；限流（同调用去重 + 每 60s 至多 5 条）；fail-closed，注入失败不影响审批路径 |
 | `categoryPolicy` | `{}` | 11 类三态开关：`{类别: auto\|ask\|deny}`，缺省 `inherit` = 保持既往行为；delete/protected/disk（及未开启 `privilegeAutoReview` 时的 privilege）LOCKED 仅可 `ask`（其余值 warn+丢弃）；harnessInternal/unknown 无键不可配 |
 | `privilegeAutoReview` | false | 特权类别解锁开关（默认关=fail-closed）：开启后 privilege 可设 auto/ask/deny 并走分类器 + LLM 评审 + 倒计时管线；delete/protected/disk 不受影响仍锁 ask |
 | `categoryMode` | `standard` | 信任目录模式：`standard` 常规位置=workspace ∪ `trustedDirs`；`aggressive` 取消位置白名单，任意位置视为常规（敏感名 fuse、运行态硬拒、symlink 复检等危险度门不动；切换时 UI 明示放开范围） |
 | `trustedDirs` | [] | host-only 键：额外信任目录根（绝对路径数组），作为 standard 档位置白名单成员与两档共用的 symlink 复检区成员；凭据段/home/dshHome/critical 路径排除；仅 patch/YAML 可配，设置卡保存不会抹掉 |
-| `learningEnabled` | false | 确认制学习：同一操作被人工反复确认达阈值后自动放行（命中仍须过一次标准在线评审）；默认关 = 零行为差异。高风险/锁定四类/unknown/敏感路径永不参与；每根会话学习放行上限 50 次 |
+| `trustedDshSubpaths` | [] | host-only 键：允许 Auto 会话写入的 DSH_HOME 子目录（绝对路径数组）。默认空 = DSH_HOME 整树恒拒（`edit`/`write`/`apply_patch`/`str_replace_editor` 四路一致）；列出子树后该树获得与插件开发区同级放行，仅 patch/YAML 可配。清洗规则：非绝对路径、DSH_HOME 之外、等于 DSH_HOME 本身、覆盖 `sessions`/`plugins`/`credentials*`、归一化后落入 critical 树的条目全部 warn+丢弃。**开口只服务结构化工具**：shell 写向量（cp/tee/sed -i/dd/重定向/嵌套解释器写）对 DSH_HOME 一律恒拒、不随开口放开。**开启前请知情**：技能文件会作为指令注入 agent 上下文，放开 `skills` = 允许 agent 持久改写自身行为约束；插件运行态文件（history/audit/learning…）恒拒与本键正交，不受影响 |
+| `learningEnabled` | false | 确认制学习：同一操作被人工反复确认达阈值后自动放行（命中仍须过一次标准在线评审）；默认关 = 零行为差异。高风险/锁定四类/敏感路径永不参与（unknown 自 0.0.15 起可学）；每根会话学习放行上限 50 次 |
 | `learningThreshold` | 3 | 触发学习放行所需的人工确认次数（保存时钳入 2–10）；同签名操作被人工拒绝即清零计数 |
 
 > 顶层开关（启用/超时动作/评审·接管范围/默认模式/按钮显示与位置）改动即保存；每张子卡有独立的 保存/放弃修改 按钮（安全规则列表另有 恢复默认）。host-only 键（workspaceRoot 等）用 patch/YAML 配置，设置卡保存不会抹掉它们。

@@ -1,20 +1,44 @@
 # dsh-prompt-optimizer
 
-**中文** | [English](README.en.md)
+**中文** | [English](README.en.md) | [🐣 小白版](README.simple.md)
 
 [![CI](https://github.com/Y1X1n/dsh-prompt-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Y1X1n/dsh-prompt-optimizer/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@y1x1n/dsh-prompt-optimizer?label=npm&color=cb3837)](https://www.npmjs.com/package/@y1x1n/dsh-prompt-optimizer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/Y1X1n/dsh-prompt-optimizer?label=release)](https://github.com/Y1X1n/dsh-prompt-optimizer/releases/latest)
+[![Stars](https://img.shields.io/github/stars/Y1X1n/dsh-prompt-optimizer?logo=github)](https://github.com/Y1X1n/dsh-prompt-optimizer/stargazers)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 DeepSeek Harness 插件:在会话输入框(发送栏)旁提供一个「优化」按钮(✨ 图标),一键分析并优化当前输入的提示词草稿,**结果经 SSE 流式逐段上屏**。优化调用默认复用当前会话的模型路由(每次点击实时读取,会话里切换模型立即生效)。
 
 - **Host 半侧**:注册 `POST /dsh-prompt-optimizer/optimize`(SSE 流式)与 `POST /dsh-prompt-optimizer/test-model`(连通性探活)两条路由,调用 `ctx.llm` 完成「分析 + 改写」。
 - **Client 半侧**:向 `conversation.input.right` 槽位注入按钮,向 `conversation.input.dock` 注入结果面板(输入卡上方整行、与 TodoDock 同族,新会话界面也渲染,且不遮挡输入框),向 `settings.plugin.item` 注入可折叠的设置卡片(设置页自动获得配置界面,无需单独开发页面)。界面文案跟随 DSH 界面语言(中文 / English)。
 
-![结果面板:五维诊断与优化稿流式上屏,可替换/撤回/复制;徽章显示实际路由与用时](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/optimize-panel.png)
+## 目录
+
+- [功能](#功能)
+- [安装](#安装)
+  - [从 Release 安装(推荐,免构建)](#从-release-安装推荐免构建)
+  - [本地源码安装(tarball)](#本地源码安装tarball)
+  - [从 GitHub 安装](#从-github-安装)
+  - [卸载](#卸载)
+- [兼容性](#兼容性)
+- [常见问题](#常见问题)
+- [验证状态](#验证状态)
+- [工作原理](#工作原理)
+- [开发](#开发)
+- [安全说明](#安全说明)
+- [贡献者](#贡献者)
+- [License](#license)
+
+> 🐣 **第一次用 dsh 插件?** 直接看[小白版指南](README.simple.md):三步装好、点按钮就用,全程大白话。
+
+![结果面板:五维诊断与优化稿流式上屏,可替换/撤回/复制;徽章显示实际路由与用时](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/optimize-panel.png)
 
 | | |
 |---|---|
-| ![发送栏空闲态:✨ 优化按钮位于模型选择旁,空输入时禁用](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/composer-idle.png) | ![面板错误态:上游模型错误完整透传,可一键重试](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/panel-error.png) |
-| ![设置卡折叠态:标题栏显示「模型 · 模式」关键摘要](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/settings-collapsed.png) | ![设置卡展开态:模型 / 调用参数 / 上下文 三组配置](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/settings-expanded.png) |
+| ![发送栏空闲态:✨ 优化按钮位于模型选择旁,空输入时禁用](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/composer-idle.png) | ![面板错误态:上游模型错误完整透传,可一键重试](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/panel-error.png) |
+| ![设置卡折叠态:标题栏显示「模型 · 模式」关键摘要](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/settings-collapsed.png) | ![设置卡展开态:模型 / 调用参数 / 上下文 三组配置](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/settings-expanded.png) |
 
 ## 功能
 
@@ -44,19 +68,19 @@ DeepSeek Harness 插件:在会话输入框(发送栏)旁提供一个「优化」
 ### 从 Release 安装(推荐,免构建)
 
 ```sh
-# 下载 dsh-prompt-optimizer.tgz(始终指向最新版),再安装本地文件
-dsh plugin --profile web add ./dsh-prompt-optimizer.tgz
+# 下载 y1x1n-dsh-prompt-optimizer.tgz(始终指向最新版),再安装本地文件
+dsh plugin --profile web add ./y1x1n-dsh-prompt-optimizer.tgz
 ```
 
-下载地址:https://github.com/Y1X1n/dsh-prompt-optimizer/releases/latest/download/dsh-prompt-optimizer.tgz
+下载地址:https://github.com/Y1X1n/dsh-prompt-optimizer/releases/latest/download/y1x1n-dsh-prompt-optimizer.tgz
 
 ### 本地源码安装(tarball)
 
 ```sh
 cd dsh-prompt-optimizer
 npm install --legacy-peer-deps   # prepare 钩子会自动构建 lib/
-npm pack                          # 产出 dsh-prompt-optimizer-<version>.tgz
-dsh plugin --profile web add ./dsh-prompt-optimizer-<version>.tgz
+npm pack                          # 产出 y1x1n-dsh-prompt-optimizer-<version>.tgz
+dsh plugin --profile web add ./y1x1n-dsh-prompt-optimizer-<version>.tgz
 ```
 
 然后(重新)启动 `dsh web`,打开 Web UI 即可在发送栏旁看到按钮。
@@ -74,7 +98,7 @@ Git 安装拉取的是源码,本包通过 `prepare` 脚本在安装时自包含�
 ### 卸载
 
 ```sh
-dsh plugin --profile web remove dsh-prompt-optimizer
+dsh plugin --profile web remove @y1x1n/dsh-prompt-optimizer
 ```
 
 ## 兼容性
@@ -174,6 +198,12 @@ dsh-prompt-optimizer/
 - HTTP 路由注册在 dsh 自带的 Web 服务器上。默认监听 `127.0.0.1`;若把 dsh 暴露到局域网(`0.0.0.0`),本插件的优化接口同样可被局域网调用——它会消耗你配置的模型额度,请知悉。
 - 两条路由均带**来源围栏**:带 `Origin` 头的请求(浏览器 POST 必带)必须与 `Host` 同源,且 `Host` 必须是回环地址或本机实际地址——网页侧的跨站伪造请求(CSRF)与 DNS rebinding 会被 403 拒绝;不带 `Origin` 的命令行调用不受影响。
 - 插件不持有任何 API Key:模型调用全部经由 Harness 已配置的 `ctx.llm` 路由。
+
+## 贡献者
+
+感谢以下贡献者为本项目提交改进(见 [贡献指南](CONTRIBUTING.md)):
+
+- [@ruijiaang-lab](https://github.com/ruijiaang-lab) — 贡献指南([#2](https://github.com/Y1X1n/dsh-prompt-optimizer/pull/2))
 
 ## License
 

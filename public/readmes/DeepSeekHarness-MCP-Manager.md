@@ -17,11 +17,12 @@
 [![GitHub](https://img.shields.io/badge/GitHub-xxxyz%2FDeepSeekHarness--MCP--Manager-181717?logo=github)](https://github.com/xxxyz/DeepSeekHarness-MCP-Manager)
 [![dsh.market](https://img.shields.io/badge/dsh.market-%E2%9C%93-3fb950)](https://dsh.market)
 [![awesome-dsh-plugin](https://img.shields.io/badge/awesome--dsh--plugin-%E5%B7%B2%E6%94%B6%E5%BD%95-3fb950)](https://awesome-dsh-plugin.com)
+[![dsh-suite](https://img.shields.io/badge/featured%20on-dsh--suite-4d6bfe)](https://whyihaveyou.github.io/dsh-suite/)
 
 </div>
 
 <div align="center">
-  🛒 已收录于 <a href="https://dsh.market"><b>dsh.market</b></a> 与 <a href="https://awesome-dsh-plugin.com"><b>awesome-dsh-plugin.com</b></a> 官方插件列表（<a href="https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/2078"><b>PR #2078</b></a> 已合并）
+  🛒 已收录于 <a href="https://dsh.market"><b>dsh.market</b></a> · <a href="https://awesome-dsh-plugin.com"><b>awesome-dsh-plugin.com</b></a> · <a href="https://whyihaveyou.github.io/dsh-suite/"><b>dsh-suite</b></a>
 </div>
 
 <div align="center">
@@ -30,7 +31,7 @@
 
 <br />
 
-<p align="center"><img src="https://raw.githubusercontent.com/xxxyz/DeepSeekHarness-MCP-Manager/493a8480394b1e4626e0fc6b5fe71cb8b364e33b/show.png" alt="dsh-mcp-manager 设置 → MCP 管理 页面图例" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/xxxyz/DeepSeekHarness-MCP-Manager/c903a77974b58d5adf08aaa75024bf70be72d923/show.png" alt="dsh-mcp-manager 设置 → MCP 管理 页面图例" /></p>
 
 ## ✨ 功能一览
 

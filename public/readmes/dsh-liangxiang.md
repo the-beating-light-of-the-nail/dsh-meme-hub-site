@@ -8,11 +8,11 @@
 
 官网：[liang.today](https://liang.today/) · 部署指南：[liang.today/guide](https://liang.today/guide/)
 
-![插件主界面](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/df6451f083d1fcc562b356d31eedad6f5fa753ad/assets/main-frame.jpg)
+![插件主界面](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/578329aae0380f440f8326ca1f6954802b8e1531/assets/main-frame.jpg)
 
-![插件主面板](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/df6451f083d1fcc562b356d31eedad6f5fa753ad/assets/plugin-panel.jpg)
+![插件主面板](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/578329aae0380f440f8326ca1f6954802b8e1531/assets/plugin-panel.jpg)
 
-![梁祠](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/df6451f083d1fcc562b356d31eedad6f5fa753ad/assets/liangci.jpg)
+![梁祠](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/578329aae0380f440f8326ca1f6954802b8e1531/assets/liangci.jpg)
 
 ## 安装
 
@@ -42,4 +42,4 @@ DSH Desktop 必须先把 `DSH_HOME` 指到桌面自己的 harness 目录，再�
 
 > 梁位是社区软信任玩法，不代表实名人数、真实民意或任何个人、机构立场。
 
-源码本点是 **v1.0.7**（第四区两列居中、梁祠日档不再横滑、悬浮即走）。请安装 `dsh-liangxiang`（npm `latest`）；GitHub Release 已附本号 tarball。开发、排障与实现说明在 [`docs/INSTALL.md`](docs/INSTALL.md)。
+公开稳定版是 **v1.1.6**。用户请安装 `dsh-liangxiang`（npm `latest`）；开发、排障与实现说明在 [`docs/INSTALL.md`](docs/INSTALL.md)。

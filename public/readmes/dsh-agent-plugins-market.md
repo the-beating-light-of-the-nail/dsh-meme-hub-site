@@ -8,9 +8,9 @@ English | [简体中文](README.zh.md) | [Docs website](https://sivan757.github.
 
 ![npm](https://img.shields.io/npm/v/dsh-agent-plugins-market) ![npm downloads](https://img.shields.io/npm/dm/dsh-agent-plugins-market) ![License](https://img.shields.io/github/license/Sivan757/dsh-agent-plugins-market) ![GitHub stars](https://img.shields.io/github/stars/Sivan757/dsh-agent-plugins-market)
 
-![Agent Plugins Market screenshot](https://raw.githubusercontent.com/Sivan757/dsh-agent-plugins-market/a842c55a8372e9da7b4b1a59188aa1d7c237f7ca/docs/screenshot.png)
+![Agent Plugins Market screenshot](https://raw.githubusercontent.com/Sivan757/dsh-agent-plugins-market/9d92d251b60ee5d6b40f5fba69af188b544958e6/docs/screenshot.png)
 
-![Suite detail (skills / MCP / commands preview)](https://raw.githubusercontent.com/Sivan757/dsh-agent-plugins-market/a842c55a8372e9da7b4b1a59188aa1d7c237f7ca/docs/screenshot-detail.png)
+![Suite detail (skills / MCP / commands preview)](https://raw.githubusercontent.com/Sivan757/dsh-agent-plugins-market/9d92d251b60ee5d6b40f5fba69af188b544958e6/docs/screenshot-detail.png)
 
 ## Why?
 

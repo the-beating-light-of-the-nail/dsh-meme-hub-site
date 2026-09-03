@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 <p align="center">
@@ -14,6 +14,8 @@
 
 A minimal terminal coding agent harness in Go — a sibling to Pi.
 
+**Docs:** [pulseaiclub.github.io](https://pulseaiclub.github.io/)
+
 - **Sub-agents** — spawn isolated jobs and watch the full run unfold in the TUI / job logs, without stuffing every turn into the parent context
 - **Hashline edits** — edit by whole-file `@file path#TAG` plus line `LINE#HASH` anchors (same idea as [oh-my-pi](https://github.com/can1357/oh-my-pi)): the model points at anchors instead of rewriting whole files; stale tags/hashes are rejected so over-edits and silent corruption stop here
 - **Permission gate** — Gate / Ask before destructive tools fire; safety is not optional when an agent can touch your tree
@@ -21,10 +23,11 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
 - **Extensions (Go or Rust)** — native binaries speak the **PXB** binary protocol over stdin/stdout; official author SDKs for Go ([`ext/go`](ext/go)) and a zero-dependency Rust port ([`ext/rust`](ext/rust)): LLM tools, slash commands, event intercepts, confirm dialogs — no JSON, no reflection. See [Extensions](#extensions)
 - **Any model** — OpenAI-compatible or Anthropic, no vendor lock-in
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/image.png)
 
+- [Docs](https://pulseaiclub.github.io/docs/getting-started/)
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
 - [Configuration](#configuration)
@@ -112,7 +115,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -341,20 +344,20 @@ palette's settings → permissions entry toggles session-wide bypass.
 ## Extensions
 
 Extensions are native binaries speaking the **PXB** binary protocol over
-stdin/stdout (author SDKs: Go `github.com/pulseaiclub/phi/ext/phi` and Rust
+stdin/stdout (author SDKs: Go `github.com/pulseaiclub/phi/ext/go/phi` and Rust
 [`ext/rust`](ext/rust), `phi-ext`). They
 subscribe to tool/session events, register LLM tools, and add slash commands.
 
 ```bash
-go get github.com/pulseaiclub/phi/ext@v0.19.0
+go get github.com/pulseaiclub/phi/ext/go@v0.21.0
 ```
 
 ```go
 package main
 
 import (
-	"github.com/pulseaiclub/phi/ext"
-	"github.com/pulseaiclub/phi/ext/phi"
+	"github.com/pulseaiclub/phi/ext/go"
+	"github.com/pulseaiclub/phi/ext/go/phi"
 )
 
 func main() {

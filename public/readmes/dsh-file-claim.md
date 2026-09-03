@@ -81,6 +81,7 @@ parallel-sessions, guardex, agent-orchestrator, blackboard-mcp, mclaude, ruah-or
 | Conflict handling | **async pending area + git 3-way merge** — write now, merge cleanly once the owner releases | wait / deny only ("lock → write → release") |
 | Target platform | **DSH-native** — identity, tools, events, guard and slash commands all integrated | Claude Code / Codex hooks; none target DSH |
 | Platform support | zero-dependency Node, **Windows-friendly** | Bash/jq/flock solutions lean macOS/Linux; guardex has no native Windows |
+| Storage | **workspace sidecars** — `<file>.dshclaim` next to each protected file (the `.agentlock` idiom) | central state dir (`.coord/`, `~/.claude/…`) or worktree isolation |
 | Enforcement | cooperative tool-layer guardrail (fail-open, matching the category's de-facto standard) | hook interception / declarative locks; top tools fall back to worktree isolation |
 
 ## Install
@@ -195,7 +196,6 @@ Passed as plugin config in the bundle (`cordis.patch.yml`):
 | Key | Default | Meaning |
 | --- | --- | --- |
 | `staleMs` | `7200000` (2h) | Heartbeat expiry before a session is considered stale |
-| `stateDirName` | `.dsh-file-claim` | Registry + pending area directory under the workspace root |
 | `guard` | `true` | Set `false` to disable the pre-execute write guard |
 | `guardCommit` | `false` | Opt-in: also deny `git commit` that explicitly stages paths actively claimed by another session |
 | `heartbeatMs` | `600000` (10min) | Fallback heartbeat interval |
@@ -209,13 +209,36 @@ Passed as plugin config in the bundle (`cordis.patch.yml`):
         guardCommit: true       # also guard explicit git commits
 ```
 
-The claim registry and pending area live in `<workspaceRoot>/<stateDirName>/` — recommend adding it
-to `.gitignore`. State survives restarts; nothing ever touches `.git/`.
+Since 0.2.0, state is stored as **workspace sidecar files** — the lock travels with the protected file
+(the claude-code-file-locks `.agentlock` idiom, adopted because DSH reserves no in-workspace directory
+convention):
+
+```text
+README.md.dshclaim                 claim sidecar (JSON: version, path, tag, note, startedAt, lastSeenAt, pid)
+README.md.dshpending/              pending-merge sidecar (content / base / meta.json), next to the target
+.dsh-file-claim.audit.jsonl        workspace-global audit log (append-only, at the root)
+.dsh-file-claim.lock               transient cross-process mutex (exists only during a mutation)
+```
+
+Recommend adding these to `.gitignore`:
+
+```gitignore
+*.dshclaim
+*.dshpending/
+.dsh-file-claim.audit.jsonl
+.dsh-file-claim.lock
+```
+
+When a workspace still carries the ≤0.1.7 flat `.dsh-file-claim/` directory (or an unpublished 0.2.0
+`.dsh/dsh-file-claim/`), the first tool/command call **migrates** it to sidecars (the old directory is kept —
+delete it manually once verified; its `registry.json` is renamed `registry.json.migrated` as the idempotency
+marker). The write guard also reads the old registry until that first call, so protection is seamless across the
+upgrade. State survives restarts; nothing ever touches `.git/`.
 
 ## Audit Log
 
 Every business mutation — claim, takeover, release, pending write / apply / drop, prune, drop — is
-appended as one JSON line to `<stateDir>/audit.jsonl` (`{ at, tag, type, paths/path, detail }`),
+appended as one JSON line to `.dsh-file-claim.audit.jsonl` (`{ at, tag, type, paths/path, detail }`),
 for traceability and post-crash reconciliation. Heartbeats are intentionally **not** logged (noise).
 `node claim.mjs audit [n]` prints the latest `n` entries (default 10); `claim_status` always shows
 the three most recent. Audit writes are append-only and never block or alter claim semantics; a
@@ -224,12 +247,12 @@ at 1 MB (keeping the most recent half plus the new entry), so it never grows wit
 
 ## Pending Merge Area
 
-Storage layout (under `<workspaceRoot>/<stateDirName>/pending/`):
+Storage layout (a sidecar directory next to the protected file):
 
 ```text
-pending/<relpath>/content     new file content to merge
-pending/<relpath>/base        git HEAD version at write time (merge base)
-pending/<relpath>/meta.json   { pender, claimedBy, at, baseSha }
+<relpath>.dshpending/content     new file content to merge
+<relpath>.dshpending/base        git HEAD version at write time (merge base)
+<relpath>.dshpending/meta.json   { pender, claimedBy, at, baseSha }
 ```
 
 Write conditions: `pending_write` requires the target to be actively claimed by another session —
@@ -271,8 +294,11 @@ slow fallback for records without a pid (e.g. written by older versions).
 **Does this work across multiple repos?** Yes. The claim root is the workspace resolved from the
 session's cwd (`workspaceRegistry`), falling back to cwd — parallel repos are isolated by design.
 
-**Where is state stored?** `<workspaceRoot>/.dsh-file-claim/` (registry, pending area, audit).
-Add it to `.gitignore`; it survives restarts and never touches `.git/`.
+**Where is state stored?** As workspace sidecar files: `<target>.dshclaim` next to each claimed file,
+`<target>.dshpending/` next to each pending-merge target, and `.dsh-file-claim.audit.jsonl` at the workspace
+root. Add the gitignore patterns above; state survives restarts and never touches `.git/`. Workspaces upgraded
+from ≤0.1.7 have their old `.dsh-file-claim/` state migrated to sidecars on the first tool/command call (the old
+directory is kept; delete it manually once verified).
 
 **Why can't the model see the claim tools?** Model-visible tools depend on the deployment's tool
 presentation/restrictions (like every plugin tool). The plugin registers globally via
@@ -282,14 +308,14 @@ presentation/restrictions (like every plugin tool). The plugin registers globall
 missing base, conflicts, missing file). Use `pending_show` to inspect and `pending_apply` /
 `pending_drop` to resolve — nothing is ever blindly merged.
 
-**Do the registry and audit files grow forever?** No. Stale sessions are pruned automatically on
-the heartbeat interval (so departed sessions' records don't accumulate), and `audit.jsonl`
+**Do claim sidecars and the audit file grow forever?** No. Stale sessions' sidecars are pruned automatically
+on the heartbeat interval (so departed sessions' records don't accumulate), and `.dsh-file-claim.audit.jsonl`
 self-rotates at 1 MB. Both stay bounded in normal use.
 
 ## Development
 
 ```sh
-npm test        # node --test: claim.mjs unit tests (17) + index.mjs mock-ctx integration (11)
+npm test        # node --test: claim.mjs unit tests (20) + index.mjs mock-ctx integration (13)
 npm pack --dry-run
 ```
 

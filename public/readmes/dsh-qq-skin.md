@@ -14,11 +14,11 @@ A **QQ NT messenger skin** for [DeepSeek Harness](https://github.com/deepseek-ai
 
 The chat view in the Classic Blue palette: centered, narrowed chat flow, light-blue user bubbles with a "tail", and the penguin avatar disc on assistant rows:
 
-![Chat view](https://raw.githubusercontent.com/lispking/dsh-qq-skin/676d1706b77d193872682ff8a558313692351bdb/assets/chat.png)
+![Chat view](https://raw.githubusercontent.com/lispking/dsh-qq-skin/9ff2cdde01e117e9dab267f0bb5bd05df0568409/assets/chat.png)
 
 The **QQ Skin** settings row in the App settings General section, with the palette / bubble tail / assistant avatar / chat width toggles:
 
-![Settings panel](https://raw.githubusercontent.com/lispking/dsh-qq-skin/676d1706b77d193872682ff8a558313692351bdb/assets/settings.png)
+![Settings panel](https://raw.githubusercontent.com/lispking/dsh-qq-skin/9ff2cdde01e117e9dab267f0bb5bd05df0568409/assets/settings.png)
 
 ## Settings panel
 
@@ -62,6 +62,10 @@ Example (set in the profile's plugin config):
 | Markdown, scrollbar (QQ blue), menus, tooltips | `--dsw-alias-markdown-*`, `--dsw-alias-scrollbar-*`, `--dsw-specific-menu`, `--dsw-alias-tooltip-bg` |
 
 Tokens that are **not** overridden keep the product default, so a QQ-skin run stays readable and consistent everywhere else.
+
+## Requirements (dsh version)
+
+Built and run against **deepseek-harness (`dsh`) 0.1.2-alpha.5 or later**. That line removed the client `@deepseek-ai/dsh-client-runtime` package (client "Runtime" split refactor, 2026-08): the store engine now comes from `@deepseek-ai/dsh-client-store`, the client context is cordis `Context` plus the `/client` type merges of the UI packages, and host-side settings registration takes the namespace string straight in `ctx.settings.register`. Earlier dsh versions are not compatible — the dependency no longer exists and `pnpm i` fails with `ERR_PNPM_WORKSPACE_PKG_NOT_FOUND`.
 
 ## Install
 

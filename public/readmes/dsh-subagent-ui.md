@@ -22,9 +22,9 @@ A Web client plugin that adds a **子代理管理** button to the conversation-h
 
 The screenshots demonstrate the compact manager and active-agent floating panel:
 
-![Subagent manager panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/0e1f1b1369b043d8f93cbc298769e61af617ed58/docs/images/screenshot-1.png)
+![Subagent manager panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/7683533105a471afef47d0a6e2b15448cbf14d39/docs/images/screenshot-1.png)
 
-![Active subagent floating panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/0e1f1b1369b043d8f93cbc298769e61af617ed58/docs/images/screenshot-2.png)
+![Active subagent floating panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/7683533105a471afef47d0a6e2b15448cbf14d39/docs/images/screenshot-2.png)
 
 1. **Header** — title, current-session/workspace counts, and close action.
 2. **Search and scope row** — ordinary name/title/workspace search, with `id: xxx` reserved for Session ID search; workspace, session, sorting, and grouping selectors stay on one compact row.
@@ -49,12 +49,36 @@ If you previously disabled `ui-subagent` manually in `$DSH_HOME/profiles/web/cor
 
 The public DSH Web session store exposes subagent summaries that have been discovered in the current browser runtime. It deliberately does not expose a global historical subagent index or a mode for every unvisited child. Therefore this first plugin version manages the discovered catalog; rows whose type is not yet loaded remain visible and searchable and fall back to DSH's retained session navigation. Exact catalog navigation is used automatically as soon as DSH supplies the address and mode.
 
-A full persistent workspace-wide archive view requires a host-side catalog RPC (or an upstream DSH API) that enumerates every child address and its mode. The public `SessionSummary` does not expose the original prompt or provider/model route, so those are intentionally not queried or displayed. Live output and tool/context activity use the documented bound-session conversation snapshot when the session can be opened; if the host does not publish that snapshot, the panel falls back to the durable summary. The UI is isolated in [`lib/client.js`](lib/client.js), so it can switch to a richer source without changing the panel interaction model.
+A full persistent workspace-wide archive view requires a host-side catalog RPC (or an upstream DSH API) that enumerates every child address and its mode. The public `SessionSummary` does not expose the original prompt or provider/model route, so those are intentionally not queried or displayed. Live output and tool/context activity are read from the bound session automatically: on dsh **0.1.2-alpha.2** they are derived from the raw `binding.eventSource` event stream (showing the tool description or target filename), while older hosts (e.g. **0.1.1-rc.2**) fall back to `session.getSnapshot().chat.legacy`. Capability detection selects the path, so the plugin stays forward compatible. If the host publishes neither, the panel falls back to the durable summary. The UI is isolated in [`lib/client.js`](lib/client.js), so it can switch to a richer source without changing the panel interaction model.
+
+## Compatibility
+
+v1.3.1 is compatible with dsh **0.1.2-alpha.2** (new `binding.eventSource` live-output path) and **0.1.1-rc.2** (legacy `chat.legacy` snapshot path). Live output is selected by capability detection, so older hosts behave as before.
+
+## v1.3.3
+
+- **Fix**: batch delete no longer errors on large selections (host request-body limit raised to 8 MiB).
+- **Feature**: with details hidden, hovering a row/name shows the stats (`输入/输出 · 缓存命中 · 轮数 · 步数`) via the title tooltip.
+- **Fix**: live output now shows context injection (`上下文注入 · <form>`) and the thinking state.
+- **Feature**: while thinking, a rotating "思考中…" spinner indicates the state instead of the low-priority reasoning text.
+
+## v1.3.2
+
+- **Performance**: the manager now does one base scan (`subagentRows`) and derives `allRows`/`activeRows`/`tabCounts` from it (no repeated full scans or `modeMap` merges), `tabCounts` is computed from a deferred value and is skipped while the panel is closed, and `useSessions` subscribes only the fields the manager reads. Live output is capped to a few simultaneous subagents (`liveCap`, default 3, `0` = unlimited) and fully releases its subscriptions when live display is off or the float/panel is closed.
+- **UX**: opening a subagent now auto-switches the session to the Chat tab.
+- **Fix**: the batch "select N hours ago" now selects the truly-old subagents in the current view (accurate count) and no longer overwrites or re-selects your manual changes.
 
 ## Validation
 
 ```bash
 pnpm run check
+```
+
+Smoke-test a specific dsh version:
+
+```bash
+./test.sh                                      # local dsh, port 8084
+DSH_VERSION=0.1.1-rc.2 ./test.sh               # pnpx @deepseek-ai/dsh@0.1.1-rc.2 (via proxychains4 -q)
 ```
 
 ## Acknowledgements

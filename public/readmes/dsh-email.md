@@ -9,7 +9,7 @@
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
 
-![dsh-email banner](https://raw.githubusercontent.com/STARDUSTLC666/dsh-email/3bf58aabe38cc891185b576928e23ee0c0c8aff4/assets/banner.png)
+![dsh-email banner](https://raw.githubusercontent.com/STARDUSTLC666/dsh-email/7d8ed0280792d8ab24ff5802da95651c889f5fb2/assets/banner.png)
 
 
 DeepSeek Harness 邮件工具插件：让 agent 能**查收件箱、读邮件、搜邮件、代发邮件、收发附件**。纯插件实现，零核心改动，安装即可用。
@@ -55,7 +55,7 @@ Email tools for DeepSeek Harness: list, read, search and send mail through stand
 
 ## 兼容性
 
-在 `@deepseek-ai/dsh@0.1.2-alpha.3` 上实测通过（2026-09-01，设置页/素材路由/email_watch 全回归）。遵循 cordis 组合包补丁模型（`cordis.patch.yml` + `dsh.bundle.patch`），运行时不 import 任何 `@deepseek-ai/*` 内部模块。
+在 `@deepseek-ai/dsh@0.1.2-alpha.4` 源码模式下实测通过（2026-09-02，69 项测试及 Web profile 启动冒烟）。遵循 cordis 组合包补丁模型（`cordis.patch.yml` + `dsh.bundle.patch`），运行时不 import 任何 `@deepseek-ai/*` 内部模块。
 
 ## 安装
 

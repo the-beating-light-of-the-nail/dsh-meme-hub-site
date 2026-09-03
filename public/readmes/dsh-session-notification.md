@@ -10,12 +10,12 @@ A notification plugin for the dsh web GUI. When a session finishes, hits an erro
 
 | The settings panel with the **Notifications** entry in the sidebar and the section content | The sound picker for each kind (the official dropdown) |
 | --- | --- |
-| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/ae2a70812062d18f2fa2732aadb640c30ce546eb/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/ae2a70812062d18f2fa2732aadb640c30ce546eb/screenshots/02-sound-menu-open.png) |
+| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/93fb8dcd288bebd5d6e896886009daa5197b76f3/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/93fb8dcd288bebd5d6e896886009daa5197b76f3/screenshots/02-sound-menu-open.png) |
 
 ## Install
 
 ```sh
-# Install from npm (requires dsh >= 0.1.2-alpha.2)
+# Install from npm (requires dsh >= 0.1.2-alpha.5)
 dsh plugin --profile web add @dingyi222666/dsh-session-notification
 # Restart dsh web for it to take effect
 dsh web
@@ -46,12 +46,15 @@ Beyond the four built-in sounds, each kind accepts **your own audio file** (mp3/
 
 Browser (system-level) notifications are **off by default**; turning the switch on asks for the browser's permission first (a user gesture). Once granted, a notification is shown when the event's session is not the one you are reading, or when the tab is in the background. Notifications carry the **page's own icon** (the favicon the harness serves). A completed session's notification carries its **final reply text** (the last assistant message). The Test notification button in the section sends one immediately to verify the channel once permission is granted. The session you are reading stays **quiet by default** — its own events don't interrupt you; flip the Alert for the current session toggle if you want it to alert too.
 
+**Main session only** is on by default: notifications come from the main session only, so a fan-out of parallel subagents never rings once per subagent. Turn it off if you want to hear from every subagent as well.
+
 ## The Notifications settings section
 
 The plugin registers a **Notifications** section in the settings panel (Settings ⚙ → Notifications):
 
 - **Browser notifications** master switch (+ permission state and an enable button),
 - **Alert for the current session** toggle (opt in to being alerted while reading that session),
+- **Main session only** toggle (default on: subagent sessions stay silent),
 - **Sound** master switch,
 - **Volume** slider (0–100%),
 - one row per notification kind: enable switch, custom-audio upload, sound picker (the official dropdown menu), and a Preview button,

@@ -42,12 +42,12 @@
 
 | 贴纸 | 展示 | 触发场景 |
 |---|---|---|
-| 01 绘制中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/2f96e01c1cf2db0f5795c2a81c42314175672237/assets/pets/remielle/01.gif" width="56" alt="01 绘制中"/> | THINKING + streaming：流式输出（正在写回复）、双击画画 |
-| 02 摸鱼中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/2f96e01c1cf2db0f5795c2a81c42314175672237/assets/pets/remielle/02.gif" width="56" alt="02 摸鱼中"/> | WORKING / ERROR：调用工具（查找/编辑/测试/命令） |
-| 03 得意中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/2f96e01c1cf2db0f5795c2a81c42314175672237/assets/pets/remielle/03.gif" width="56" alt="03 得意中"/> | PULSE SUCCESS：回合完成、绘制完成、点击互动 |
-| 04 思考中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/2f96e01c1cf2db0f5795c2a81c42314175672237/assets/pets/remielle/04.gif" width="56" alt="04 思考中"/> | THINKING：回合/步骤开始、推理、结果整理 |
-| 05 等待中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/2f96e01c1cf2db0f5795c2a81c42314175672237/assets/pets/remielle/05.gif" width="56" alt="05 等待中"/> | WAITING：提问回答、审批等待、回合挂起（blocked） |
-| 06 待机中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/2f96e01c1cf2db0f5795c2a81c42314175672237/assets/pets/remielle/06.gif" width="56" alt="06 待机中"/> | IDLE / DISCONNECTED：空闲、回合结束之后 |
+| 01 绘制中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/85752f5fad66b59cf82962b2b50b5c0d30c7ec71/assets/pets/remielle/01.gif" width="56" alt="01 绘制中"/> | THINKING + streaming：流式输出（正在写回复）、双击画画 |
+| 02 摸鱼中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/85752f5fad66b59cf82962b2b50b5c0d30c7ec71/assets/pets/remielle/02.gif" width="56" alt="02 摸鱼中"/> | WORKING / ERROR：调用工具（查找/编辑/测试/命令） |
+| 03 得意中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/85752f5fad66b59cf82962b2b50b5c0d30c7ec71/assets/pets/remielle/03.gif" width="56" alt="03 得意中"/> | PULSE SUCCESS：回合完成、绘制完成、点击互动 |
+| 04 思考中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/85752f5fad66b59cf82962b2b50b5c0d30c7ec71/assets/pets/remielle/04.gif" width="56" alt="04 思考中"/> | THINKING：回合/步骤开始、推理、结果整理 |
+| 05 等待中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/85752f5fad66b59cf82962b2b50b5c0d30c7ec71/assets/pets/remielle/05.gif" width="56" alt="05 等待中"/> | WAITING：提问回答、审批等待、回合挂起（blocked） |
+| 06 待机中 | <img src="https://raw.githubusercontent.com/Gin-7/dsh-pet-remielle/85752f5fad66b59cf82962b2b50b5c0d30c7ec71/assets/pets/remielle/06.gif" width="56" alt="06 待机中"/> | IDLE / DISCONNECTED：空闲、回合结束之后 |
 
 多 Session 同时运行时按 `审批 > 等待回答 > 完成提醒 > 等待/错误 > 当前会话 > 状态优先级 > 更新时间` 选择顶层任务；其余会话由可点击的 `+N` 汇总背板表示。子 Agent 默认忽略（可在设置开启）。
 
@@ -133,16 +133,17 @@ dsh plugin --profile web add dsh-pet-remielle
 - 右键菜单：切换网页模式、锁定、气泡开关、角色大小、画画等。
 - 关闭/切换后自动回到页面内；随 DSH host 退出自动关闭。
 
-**Electron 运行时来源（按顺序探测）**：`DSH_PET_ELECTRON` 环境变量 → `vendor/electron-win32-x64/`（本目录不进 Git）→ 系统已安装的 Electron → 均无则仅页面内展示。
+**Electron 运行时来源（按顺序探测）**：`DSH_PET_ELECTRON` 环境变量 → `vendor/electron-<platform>-<arch>/`（本目录不进 Git，按当前系统自动下载对应平台包）→ 系统已安装的 Electron → 均无则仅页面内展示。
 
-> **首次运行**：若开启桌面悬浮模式但本机找不到 Electron 运行时，会**提示下载并安装**（需你确认，因 Electron 运行时约 200MB）；下载失败则自动回落页面内展示，不会影响其他功能。也可手动把任一 Electron win32-x64 发行包解压到 `vendor/electron-win32-x64/`，或设置 `DSH_PET_ELECTRON` 指向现有 `electron.exe`。
+> **首次运行**：若开启桌面悬浮模式但本机找不到 Electron 运行时，会**提示下载并安装**（需你确认，因 Electron 运行时约 100–220MB，Windows 最大）；下载失败则自动回落页面内展示，不会影响其他功能。也可手动把任一对应平台的 Electron 发行包解压到 `vendor/electron-<platform>-<arch>/`，或设置 `DSH_PET_ELECTRON` 指向现有 electron 可执行文件（Windows：`electron.exe`；macOS：`Electron.app/Contents/MacOS/Electron`；Linux：`electron`）。
 
 ### 平台能力
 
 | 平台 | 桌面悬浮窗 | 页面内桌宠 |
 |---|---|---|
-| Windows x64（Fairy 桌面版 / 纯 DSH） | ✓（Electron 透明置顶窗口） | 桌面模式下自动隐藏 |
-| macOS / Linux | ✗ | ✓（自动回落页面内） |
+| Windows x64 | ✓（Electron 透明置顶窗口） | 桌面模式下自动隐藏 |
+| macOS（arm64 / x64） | ✓（自动下载对应 darwin Electron） | 桌面模式下自动隐藏 |
+| Linux x64 | ✓（自动下载对应 linux Electron） | 桌面模式下自动隐藏 |
 
 ---
 

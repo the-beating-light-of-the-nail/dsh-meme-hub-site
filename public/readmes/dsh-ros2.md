@@ -31,7 +31,7 @@ All tools run plain `ros2` / `colcon` / `rosdep` CLI commands on the host; L1 ne
 
 | RViz2 offscreen render (latest `lite_urdf`, real material colors) | Head camera | Wrist-left camera | Wrist-right camera |
 | --- | --- | --- | --- |
-| ![mesh render](https://raw.githubusercontent.com/StvLi/dsh-ros2/cea3f804538eb7b0bc16e5871410d4cacb12de8c/docs/images/robot_mesh_full.jpg) | ![head cam](https://raw.githubusercontent.com/StvLi/dsh-ros2/cea3f804538eb7b0bc16e5871410d4cacb12de8c/docs/images/camera_head.jpg) | ![wrist left](https://raw.githubusercontent.com/StvLi/dsh-ros2/cea3f804538eb7b0bc16e5871410d4cacb12de8c/docs/images/camera_wrist_left.jpg) | ![wrist right](https://raw.githubusercontent.com/StvLi/dsh-ros2/cea3f804538eb7b0bc16e5871410d4cacb12de8c/docs/images/camera_wrist_right.jpg) |
+| ![mesh render](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/robot_mesh_full.jpg) | ![head cam](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/camera_head.jpg) | ![wrist left](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/camera_wrist_left.jpg) | ![wrist right](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/camera_wrist_right.jpg) |
 
 > Left: `rviz_offscreen_node` renders with the real rviz stack (OGRE) and publishes to the `/rviz/scene` image topic. Right: three frames grabbed from live camera topics by `ros2_image_snapshot` (1280×720). Full test record: [`docs/test-robot-state-vision.md`](docs/test-robot-state-vision.md).
 
@@ -443,7 +443,7 @@ dsh-ros2/                      # pnpm monorepo (workspace root, private)
 │   ├── profile/               # dsh-ros2-profile (4 tools): robot_register/load/topology + zero-pose calibration + registration/retrieval skills
 │   ├── moveit/                # dsh-ros2-moveit (4 tools): discover/status/motion_validate/moveit_move + moveit_*.py + motion_validator.py
 │   ├── safety/                # dsh-ros2-safety (5 tools): robot_safety_* + safety/ ROS2 pkg + safetyStrict config
-│   ├── vision/                # dsh-ros2-vision (5 tools): vision tools + vlm/ + offscreen/ ROS2 pkgs + vision provider service + state-vision skill
+│   ├── vision/                # dsh-ros2-vision (7 tools): vision tools + vlm/ + offscreen/ ROS2 pkgs + vision provider service + state-vision skill
 │   └── dsh-ros2/              # aggregate bundle (empty apply, backward compat)
 ├── docs/                      # architecture.md · safety.md / safety-handover.md / safety-todo.md / safety-gpt-review.md · test-*.md · plugin-split-plan.md
 ├── .github/workflows/         # CI: Node 22/24 → workspace typecheck/test/build + per-package tarball validation
@@ -455,7 +455,7 @@ dsh-ros2/                      # pnpm monorepo (workspace root, private)
 ## Plugin split (9 packages)
 
 Since v0.15.0 the plugin is a **pnpm monorepo** of 9 npm packages (per
-[`docs/plugin-split-plan.md`](docs/plugin-split-plan.md), ISP-tightened): 75 tools +
+[`docs/plugin-split-plan.md`](docs/plugin-split-plan.md), ISP-tightened): 79 tools +
 4 skills preserved with **unchanged names and behavior**. Install the domain
 bundles you need (or the `dsh-ros2` aggregate for the full set):
 
@@ -487,7 +487,7 @@ bundles you need (or the `dsh-ros2` aggregate for the full set):
 ```bash
 pnpm install
 pnpm run typecheck   # tsc --noEmit
-pnpm run test        # vitest (166 cases; plus 10 sidecar Python scenarios)
+pnpm run test        # vitest (182 cases; plus 10 sidecar Python scenarios)
 pnpm run build       # tsc -> lib/ + lib/types/
 ```
 

@@ -1,7 +1,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/64dcb3272d211467ece6e88ac6d1464f91676e5b/assets/logo.png" alt="dsh-web-tools" width="160" />
+  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/9b45045ac8a011429d494399a49846ae907c07d3/assets/logo.png" alt="dsh-web-tools" width="160" />
 </p>
 
 # dsh-web-tools
@@ -69,7 +69,7 @@ While keeping the tool interface unified, dsh-web-tools normalizes search intent
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/64dcb3272d211467ece6e88ac6d1464f91676e5b/assets/searchOrderAndRouting.png" width="900" alt="dsh-web-tools search strategy and multi-provider routing" />
+  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/9b45045ac8a011429d494399a49846ae907c07d3/assets/searchOrderAndRouting.png" width="900" alt="dsh-web-tools search strategy and multi-provider routing" />
 </p>
 
 ## Native-Capability Adaptation Across 8 Web Providers
@@ -96,7 +96,7 @@ All adaptations run through deterministic code without invoking an extra LLM cal
 * **You.com**: Native **`boost_domains`** soft-weighting, freshness presets, and geo/language targeting.
 * **Jina**: Query noise reduction and ReaderLM-v2 high-precision markdown extraction.
 * **SearXNG**: Self-hosted metasearch with `categories` (it/science/news) and `time_range`.
-* **Native Page Extraction (`web_fetch`)**: Transparently routes to provider-native scraping backends (Exa `/contents`, Tavily `/extract`, Firecrawl `/scrape`, Parallel `/v1/extract`, You.com `/v1/contents`, Jina Reader).
+* **Native & Generic Page Extraction (`web_fetch`)**: Automatically routes to provider-native scraping backends (Exa `/contents`, Tavily `/extract`, Firecrawl `/scrape`, Parallel `/v1/extract`, You.com `/v1/contents`, Jina Reader) when available; seamlessly falls back to the **built-in generic HTTP fetcher** (powered by local Defuddle Markdown parsing with SSRF/DNS protection) for SearXNG-only / Brave-only setups or when native extractors fail.
 
 ---
 
@@ -125,7 +125,7 @@ Agents use `小红书:` or `X:` as a platform-routing prefix. The prefix selects
 * **Automated Session Verification**: Cookies are only the first gate. Xiaohongshu requires both `a1` and `web_session`, then performs a stabilized live `/explore` check in the interactive browser. A visible login wall invalidates the old session and restores the sign-in action; a wall appearing only after search submission is reported directly as `search-restricted` rather than being hidden behind indexed web results.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/64dcb3272d211467ece6e88ac6d1464f91676e5b/assets/platformSessions.png" width="900" alt="Xiaohongshu and Twitter X signed-in sessions verified automatically" />
+  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/9b45045ac8a011429d494399a49846ae907c07d3/assets/platformSessions.png" width="900" alt="Xiaohongshu and Twitter X signed-in sessions verified automatically" />
 </p>
 
 ---

@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/fdab1027be37e2953c256c7d85cc3b8df1feda84/docs/banner.svg" alt="DeepSeek Harness Background" width="720">
+    <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/b284bbc4743fcdc37208743074341a9265f04f09/docs/banner.svg" alt="DeepSeek Harness Background" width="720">
   </picture>
 </p>
 
@@ -27,16 +27,16 @@ A custom **background image plugin** for the DeepSeek Harness Web GUI (`dsh web`
 The look (fixed wallpaper layer + theme-aware scrim + translucent glass panels driven by `--dsw-*` design tokens) is modeled on the community `dsh-wallpaper-engine` implementation.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/fdab1027be37e2953c256c7d85cc3b8df1feda84/docs/demo.svg" alt="demo: upload a wallpaper, the whole app turns to frosted glass, then jump between turns on the timeline">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/b284bbc4743fcdc37208743074341a9265f04f09/docs/demo.svg" alt="demo: upload a wallpaper, the whole app turns to frosted glass, then jump between turns on the timeline">
 </p>
 
 ## Screenshots
 
 |  |  |
 | --- | --- |
-| **Home** | <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/fdab1027be37e2953c256c7d85cc3b8df1feda84/docs/images/home.jpg" alt="Custom background on the home screen" width="640"> |
-| **Conversation** | <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/fdab1027be37e2953c256c7d85cc3b8df1feda84/docs/images/conversation.jpg" alt="Custom background behind the conversation" width="640"> |
-| **Settings** | <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/fdab1027be37e2953c256c7d85cc3b8df1feda84/docs/images/settings.jpg" alt="Background settings row with live preview" width="640"> |
+| **Home** | <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/b284bbc4743fcdc37208743074341a9265f04f09/docs/images/home.jpg" alt="Custom background on the home screen" width="640"> |
+| **Conversation** | <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/b284bbc4743fcdc37208743074341a9265f04f09/docs/images/conversation.jpg" alt="Custom background behind the conversation" width="640"> |
+| **Settings** | <img src="https://raw.githubusercontent.com/HaoyueQin/deepseek-harness-background/b284bbc4743fcdc37208743074341a9265f04f09/docs/images/settings.jpg" alt="Background settings row with live preview" width="640"> |
 
 ## Features
 

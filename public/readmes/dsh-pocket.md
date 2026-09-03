@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/8fc6bce32cdbfe26e574cff46d93f93dc1e39470/docs/banner.jpg" alt="DSH Pocket" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/eb255032991949d95c896f762e681c19e622cbdc/docs/banner.jpg" alt="DSH Pocket" width="100%">
 </p>
 
 <h1 align="center">DSH Pocket</h1>
@@ -34,7 +34,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 实际效果——手机上的界面就是电脑上的界面，实时同步：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/8fc6bce32cdbfe26e574cff46d93f93dc1e39470/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/eb255032991949d95c896f762e681c19e622cbdc/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
 </p>
 
 ## ✨ 特性
@@ -60,7 +60,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 **入口在哪**：安装完成并重启 `dsh web` 后，打开 **设置**，左侧边栏就能看到 **「手机访问」** 入口（和「通用设置」「模型」同级）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/8fc6bce32cdbfe26e574cff46d93f93dc1e39470/docs/entry.jpg" alt="手机访问入口" width="70%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/eb255032991949d95c896f762e681c19e622cbdc/docs/entry.jpg" alt="手机访问入口" width="70%">
 </p>
 
 **前提**：电脑上已装好 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。如果终端提示 `dsh: command not found`（找不到 dsh 命令），先安装：
@@ -118,6 +118,7 @@ npx @deepseek-ai/dsh web
 - **公网判定是 fail closed**（issue #66）：除本机（loopback）和局域网私网地址外，**一切陌生域名（包括你自建隧道/反向代理指向本机端口的固定域名）一律按公网处理、强制公网密码**——不存在「换域名绕过密码」的口子
 - 局域网模式不暴露公网，只有同一网络内的设备能访问
 - 适合个人自用；公网密码存本机 `$DSH_HOME/dsh-pocket/token`（默认每次开启公网自动换新，**自定义后不换**），局域网密码存 `$DSH_HOME/dsh-pocket/token-lan`（设置页手动刷新），开关/自定义标记存 `$DSH_HOME/dsh-pocket/settings.json`
+- **CLI 模式（命令行直跑 `dsh-pocket`）也有密码**（issue #90 修复前这条路是无认证的）：默认随机生成 8 位密码，打印在终端、并已内嵌进二维码（**扫码体验不变**），手动敲地址时需要填写，本机访问免密。`--pin <值>` 或 `DSH_POCKET_PIN=<值>` 自定义（至少 6 位）；`--no-auth` 可关闭，**不推荐**——那等于把能执行代码的 DSH 裸暴露给任何能连上该端口的人
 
 ## 💻 DSH Desktop（桌面版）
 

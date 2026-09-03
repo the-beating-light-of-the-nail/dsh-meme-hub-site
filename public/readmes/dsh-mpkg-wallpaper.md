@@ -205,15 +205,15 @@ git clone https://github.com/XHR666/dsh-mpkg-wallpaper.git $DSH_HOME/profiles/no
 
 <!-- ## 截图演示
 
-<!-- ![侧边栏收起 · 新会话界面](https://raw.githubusercontent.com/XHR666/dsh-mpkg-wallpaper/287dc65bf3729cc27b601e644120fca0fd56a66b/screenshots/dhsw1.jpg) -->
+<!-- ![侧边栏收起 · 新会话界面](https://raw.githubusercontent.com/XHR666/dsh-mpkg-wallpaper/09c32864107b27bb35381bffc90730fb61819328/screenshots/dhsw1.jpg) -->
 
 <!-- *动态壁纸铺满整个界面。此状态下侧边栏收起，聊天框位于屏幕中央并带有磨砂模糊效果；侧边栏呈全透明状态，壁纸完整透出，画面干净通透。* -->
 
-<!-- ![侧边栏展开](https://raw.githubusercontent.com/XHR666/dsh-mpkg-wallpaper/287dc65bf3729cc27b601e644120fca0fd56a66b/screenshots/dshw2.jpg) -->
+<!-- ![侧边栏展开](https://raw.githubusercontent.com/XHR666/dsh-mpkg-wallpaper/09c32864107b27bb35381bffc90730fb61819328/screenshots/dshw2.jpg) -->
 
 <!-- *通过「面板不透明度」与「统一虚化」滑条调节后的效果（图为调节后）：大部分界面区域的不透明度均可调节，侧边栏半透明，壁纸在后方隐约透出。* -->
 
-<!-- ![设置页](https://raw.githubusercontent.com/XHR666/dsh-mpkg-wallpaper/287dc65bf3729cc27b601e644120fca0fd56a66b/screenshots/dshw3.jpg) -->
+<!-- ![设置页](https://raw.githubusercontent.com/XHR666/dsh-mpkg-wallpaper/09c32864107b27bb35381bffc90730fb61819328/screenshots/dshw3.jpg) -->
 
 <!-- *壁纸引擎背景的设置界面。截图之外，外观几乎全部可调：统一虚化（独立分组）、界面虚化（对话框/设置面板/弹窗/弹层/遮罩/侧边栏磨砂）、镜头缩放与平移、壁纸翻转、主题颜色、侧边栏/标题栏透出壁纸、标题栏磨砂程度、轻度锐化，以及场景壁纸的图层合成与时间帧切换。* -->
 

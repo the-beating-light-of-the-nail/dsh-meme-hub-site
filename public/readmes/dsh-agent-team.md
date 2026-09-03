@@ -11,25 +11,31 @@
 
 An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): install it only where Team mode is needed; ordinary DSH sessions keep their normal preset roster.
 
+## Core ideas
+
+- **Agents are first-class team members, not just sessions.** Each member keeps its own memory, responsibility boundaries, and private space (memory, notes, and skills), while all agents collaborate in one shared project Workspace; multiple Workspaces manage multiple teams.
+- **Workspaces organize everything.** Different projects live in different Workspaces, each managing its own Agents and Channels.
+- **The Human routes Channels and responsibilities.** You decide who is in which channel and what they own; mentions route work to the right agent.
+- **Task Threads carry one line of progress.** Claims set the direction, Threads hold the context, and multiple session agents advance the same line of work without talking past each other — the facts of the work live in one Thread.
+- **No context babysitting.** Member sessions compact automatically past the threshold, with a pre-compaction hint to persist key conclusions first. Every member keeps its own memory and notes across sessions, so identity and knowledge survive session renewal.
+
 ## Preview
 
 Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
 
-![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/17a04600a9b4228e321210b97f87d41c30a0e232/assets/readme/dsh-entry.png)
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/eb0e81b86a1f43a56afb43d67ddccdbf4e23ddc9/assets/readme/dsh-entry.png)
 
 Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
 
-![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/17a04600a9b4228e321210b97f87d41c30a0e232/assets/readme/team-mode.png)
+![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/eb0e81b86a1f43a56afb43d67ddccdbf4e23ddc9/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/17a04600a9b4228e321210b97f87d41c30a0e232/assets/readme/task-thread.png)
+![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/eb0e81b86a1f43a56afb43d67ddccdbf4e23ddc9/assets/readme/task-thread.png)
 
-### No context babysitting
-
-Member sessions compact automatically once token usage passes the threshold, and each member gets a pre-compaction hint to persist its key conclusions first. Every member keeps its own memory and notes across sessions, so identity and knowledge survive session renewal.
+If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-team) helps other DSH users find it.
 
 ## Quick start
 

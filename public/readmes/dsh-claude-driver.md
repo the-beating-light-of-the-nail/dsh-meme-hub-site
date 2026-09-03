@@ -10,7 +10,8 @@ DSH（DeepSeek Harness）宿主插件：让 DSH 会话把**本地 Claude Code �
 | 能力 | 说明 |
 |---|---|
 | 主模型接管（B1） | `llm/stream` 短路路由 `claude-code`，每步驱动 Claude Code |
-| 模型选择器集成 | 注册目录 adapter，UI 里出现 "Claude Code" 分组（fable/sonnet/opus/haiku） |
+| 模型选择器集成 | 注册目录 adapter，UI 里出现 "Claude Code" 分组；默认**自动发现** SDK 的真实模型（懒加载 + 缓存） |
+| 模型目录自动发现 | `autoDiscoverModels`（默认开）：新模型升 SDK + 重启即自动进入 picker，零插件/配置改动 |
 | resume 续接链 | 同一 DSH 会话复用同一个 Claude Code 会话，第 2 轮起免冷启动 |
 | token 级流式 | `includePartialMessages`，文字逐 token 实时呈现 |
 | DSH 工具桥接（B2） | DSH 工具经 MCP 桥进 Claude Code，走 DSH 沙箱/审批 |
@@ -19,7 +20,49 @@ DSH（DeepSeek Harness）宿主插件：让 DSH 会话把**本地 Claude Code �
 | subagent provider | 填上官方预留的 `claude-code` subagent 占位缝（`subagent_claude_code` 工具） |
 | 跨模型历史兼容 | 补写配对 assistant tool-call 事件，切回 deepseek 不报 400 |
 | resume 链治理 | 模型带 contextWindow（启用 DSH 自动压缩）+ 压缩后清链 + `/claude-fresh` 命令 |
+| 后台任务保活 | `waitForBackgroundTasks`：持有本步直到 Claude Code 自己的后台任务跑完，否则它们会在回合结束后被杀 |
 | 可执行文件回退 | SDK 原生二进制缺失时回退到全局 `claude.exe` |
+
+## 后台任务（waitForBackgroundTasks）
+
+Claude Code 用 `run_in_background` 起的任务，活在本驱动为这一步拉起的 CLI 进程里。
+一次性 run（`prompt` 传字符串）下，CLI 在放出 `result` 之后约 3–5 秒**就会把它们杀掉**，
+输出再也回收不到——用户看到的现象是「模型说在后台跑，但其实没跑完 / 没执行」。
+
+实测（SDK 0.3.252，15 秒的后台任务）表明豁免需要**同时**满足三条，缺一不可：
+
+1. 流式输入（stdin 保持打开，不能用字符串 prompt 的一次性形态）；
+2. 声明 `perTaskStopAffordance`；
+3. 后台任务还活着时**不要拆掉会话**。
+
+因此驱动默认（`waitForBackgroundTasks: true`）会持有本步，直到
+`background_tasks_changed` 电平信号显示存活集合为空，然后在本轮追加一行旁白说明结果。
+
+```yaml
+# profile 的 cordis.patch.yml 里，claude-driver 行的 config
+waitForBackgroundTasks: true      # 默认；false 可逐字回到旧的一次性行为
+backgroundTaskTimeoutMs: 300000   # 持有上限（默认 5 分钟），超时则结束本轮并点名仍在运行的任务
+```
+
+代价与边界：**一个长后台任务会让这一轮聊天一直等到它结束**（上限由
+`backgroundTaskTimeoutMs` 兜住），调用方 abort 也能立即释放。`ambient`（CLI 自己的
+维护型任务）不计入等待。
+
+## 模型适配（新模型如何处理）
+
+模型目录默认由 Claude 的 `query.supportedModels()` **自动发现**（`autoDiscoverModels: true`）。
+Claude 的模型别名（`fable`/`sonnet`/`opus`/`haiku`）指向各自家族**最新版**，因此：
+
+- **版本升级（如 Fable 5.1）**：`fable` 别名自动跟随，**无需任何改动**。
+- **全新模型家族**：升级 SDK 并重启 DSH 即自动出现在选择器——
+  ```powershell
+  dsh plugin --profile desktop up @anthropic-ai/claude-agent-sdk
+  # 然后重启 DSH
+  ```
+
+可选配置：在插件的 profile 补丁里给 claude-driver 行加 `autoDiscoverModels: false`（改用
+手动 `models` 清单），或用 `models` 显式给出你想要的目录/标签。`contextWindow` 解析自
+`resolvedModel` 的 `[…]` 后缀（如 `claude-opus-5[1m]`），否则回退到内置已知模型表。
 
 ## 依赖要求
 

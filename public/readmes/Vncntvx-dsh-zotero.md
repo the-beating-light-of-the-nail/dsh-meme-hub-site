@@ -21,7 +21,7 @@
 dsh-zotero 是面向 Agent 研究工作流的 [Zotero](https://www.zotero.org) 插件。Agent 可以直接从你的文献库中搜索文献、查看元数据和笔记、提取与问题相关的证据段落、打开原文 PDF，并生成引用和参考文献表。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Vncntvx/dsh-zotero/ae33e5b5332620a8307a789d75224c34577a0782/docs/images/header-collage.png" width="70%" alt="dsh-zotero 界面：来源面板、证据提取、导出视图">
+  <img src="https://raw.githubusercontent.com/Vncntvx/dsh-zotero/00b1b309cda6e0ccb050b17a64ad92c25715b310/docs/images/header-collage.png" width="70%" alt="dsh-zotero 界面：来源面板、证据提取、导出视图">
 </p>
 
 ## 工具

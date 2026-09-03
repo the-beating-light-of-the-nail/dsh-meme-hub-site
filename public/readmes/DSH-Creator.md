@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Jackywxsz/DSH-Creator/ba063cdef68878ae6a18ec122dfbe7d85f5445ff/assets/readme/hero.png" width="100%" alt="Jacky Creator：把对话、内容与运营放进同一块 DeepSeek Harness 创作工作台">
+  <img src="https://raw.githubusercontent.com/Jackywxsz/DSH-Creator/8963a804c46b961c09d92734236aa081e10d72ab/assets/readme/hero.png" width="100%" alt="Jacky Creator：把对话、内容与运营放进同一块 DeepSeek Harness 创作工作台">
 </p>
 
 <p align="center">
@@ -68,7 +68,7 @@ dsh plugin --profile web add jacky-creator
 如果 npm 通道暂时不可用，可以改装同版本的 GitHub Release 成品包：
 
 ```bash
-dsh plugin --profile web add https://github.com/Jackywxsz/DSH-Creator/releases/download/v0.1.0-beta.7/jacky-creator-0.1.0-beta.7.tgz
+dsh plugin --profile web add https://github.com/Jackywxsz/DSH-Creator/releases/download/v0.1.0-beta.8/jacky-creator-0.1.0-beta.8.tgz
 ```
 
 无论使用哪种方式，安装完成后都要彻底退出并重新打开 DSH Desktop。侧边栏左上角出现 **Jacky Creator**，并能进入“内容 / 运营 / 灵感”，即表示安装成功。

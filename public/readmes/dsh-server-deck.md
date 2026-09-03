@@ -8,7 +8,7 @@
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/ef60bf080965ac343eeb870e7381827e581d2151/docs/screenshots/dashboard.png" width="420" alt="服务器卡片仪表盘">
+  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/2674cb363a1b817d2871ce443aba25cdf096291b/docs/screenshots/dashboard.png" width="420" alt="服务器卡片仪表盘">
 </p>
 
 ## ✨ 功能一览
@@ -29,7 +29,7 @@
 xterm.js 全功能终端:5000 行回滚、256 色、窗口尺寸实时同步、光标闪烁。Node 半区做 WebSocket ↔ ssh2 shell 双向桥。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/ef60bf080965ac343eeb870e7381827e581d2151/docs/screenshots/terminal.png" width="420" alt="交互终端">
+  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/2674cb363a1b817d2871ce443aba25cdf096291b/docs/screenshots/terminal.png" width="420" alt="交互终端">
 </p>
 
 ### ⤓ 一键导入 `~/.ssh/config`
@@ -42,7 +42,7 @@ xterm.js 全功能终端:5000 行回滚、256 色、窗口尺寸实时同步、�
 密码 / 私钥文件(+口令)/ SSH Agent 三种认证;连接测试按钮即时反馈延迟。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/ef60bf080965ac343eeb870e7381827e581d2151/docs/screenshots/add-host.png" width="420" alt="添加服务器表单">
+  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/2674cb363a1b817d2871ce443aba25cdf096291b/docs/screenshots/add-host.png" width="420" alt="添加服务器表单">
 </p>
 
 ## 🔀 双形态挂载
@@ -99,8 +99,9 @@ pnpm test        # ssh config 解析 / 探针输出解析(Linux+Darwin) / 台账
 
 ## 📋 兼容性
 
-- DeepSeek Harness `0.1.0-rc.x`(web profile)
-- dsh-better-sidebar **可选**(未装时走独立抽屉形态)
+- DeepSeek Harness `0.1.1-rc.2` 与 `0.1.2-alpha.4`(web profile)
+- DSH `0.1.2-alpha.1` 起已删除 `@deepseek-ai/dsh-client-runtime`;本包从 0.1.1 起不再把它写进 `dsh.client.inject`
+- dsh-better-sidebar **可选**(未装时走独立抽屉形态);升 alpha.4 时侧栏请用 `dsh-better-sidebar@alpha`
 - Node ≥ 20;被管理服务器只需开放 SSH(无需预装任何东西)
 
 ## License

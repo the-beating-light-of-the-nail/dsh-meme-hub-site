@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/492c39f00e98fcf9bb6a5f78bc42b71450050590/assets/logo.svg" width="96" alt="dsh-market logo">
+  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/5926873cd3e9d7de30718f9dcab95ecc48d0a19b/assets/logo.svg" width="96" alt="dsh-market logo">
 </p>
 
 # dsh-market
@@ -11,7 +11,7 @@ English | [中文](README.zh.md)
 
 The plugin market inside DeepSeek Harness. Open Settings → **Plugin Market** → browse, search, one-click install.
 
-![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/492c39f00e98fcf9bb6a5f78bc42b71450050590/assets/demo-en.png)
+![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/5926873cd3e9d7de30718f9dcab95ecc48d0a19b/assets/demo-en.png)
 
 One-click themes: install, switch live, no restart.
 

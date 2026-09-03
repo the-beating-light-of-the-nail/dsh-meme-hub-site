@@ -2,7 +2,7 @@
 
 **English** · [中文](README.zh-CN.md)
 
-![鲸鱼娘大喇叭](https://raw.githubusercontent.com/Alan2Z/dsh-speak/68ea8c05e9f1de2a7bd143943b1111bbbb599a4a/%E9%B2%B8%E9%B1%BC%E5%A8%98%E5%A4%A7%E5%96%87%E5%8F%AD.png)
+![鲸鱼娘大喇叭](https://raw.githubusercontent.com/Alan2Z/dsh-speak/fa79c759d624dfed88b234ffb2c47d6e4c33aa26/%E9%B2%B8%E9%B1%BC%E5%A8%98%E5%A4%A7%E5%96%87%E5%8F%AD.png)
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
@@ -71,9 +71,14 @@ Windows:
 
 - Windows 10 or 11, PowerShell (any recent version).
 - Natural voices:
-  - **Windows 11**: natural voice packs are built into the system — no extra
-    installation. Enable/switch them in *Settings → Accessibility → Narrator* or
-    *Settings → Time & Language → Speech*.
+  - **Windows 11 (21H2–23H2)**: natural voice packs are built into the system —
+    no extra installation. Enable/switch them in *Settings → Accessibility →
+    Narrator* or *Settings → Time & Language → Speech*.
+  - **Windows 11 24H2/25H2**: natural voices moved to MSIX app packages, which
+    `System.Speech` may not enumerate (falls back to a robotic stock voice). As
+    on Windows 10, install
+    [NaturalVoiceSAPIAdapter](https://github.com/gexgd0419/NaturalVoiceSAPIAdapter)
+    to bridge them.
   - **Windows 10**: install
     [NaturalVoiceSAPIAdapter](https://github.com/gexgd0419/NaturalVoiceSAPIAdapter)
     and use its VoiceDownloader to download the natural voice pack(s) you want

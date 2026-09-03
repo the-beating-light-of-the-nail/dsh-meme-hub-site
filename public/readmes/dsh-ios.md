@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/9e3b600ba556baf64bbe74ebf39fa1b2ce30545c/docs/images/dsh-ios-logo.png" alt="DSH iOS" width="120" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/55bf5166170310833fbe1d7301c734cf6a060dcb/docs/images/dsh-ios-logo.png" alt="DSH iOS" width="120" />
 </p>
 
 <h1 align="center">DSH iOS Simulator</h1>
@@ -24,7 +24,7 @@
 <br />
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/9e3b600ba556baf64bbe74ebf39fa1b2ce30545c/docs/images/dsh-ios-overview.png" alt="DSH iOS Simulator — a real iPhone inside the conversation" width="100%" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/55bf5166170310833fbe1d7301c734cf6a060dcb/docs/images/dsh-ios-overview.png" alt="DSH iOS Simulator — a real iPhone inside the conversation" width="100%" />
 </p>
 <p align="center"><sub>A real iPhone driven from inside a DSH conversation — the agent's tool calls on the left, the live device panel on the right</sub></p>
 
@@ -133,7 +133,7 @@ List/feed apps aggregate each item into one accessibility cell whose label carri
 - **AXe** (optional — only the AXe-backed tools need it: `ios_sim_ui_tree` / `ios_sim_tap_element`, plus `ios_sim_ui_rows` / `ios_sim_tap_row` on a simulator): `brew install cameroncooke/axe/axe`, or let the plugin auto-download the pinned release (v1.8.0, SHA-256 verified) into `~/Library/Caches/dsh-ios/bin`. `DSH_IOS_AXE_BIN` overrides resolution; `DSH_IOS_AXE_OFFLINE=1` disables the download.
 - **Vision OCR** (optional — only `ios_sim_find_text` / `ios_sim_tap_text` need it): the plugin compiles its bundled `assets/ocr.swift` with `swiftc` on first use into `~/Library/Caches/dsh-ios/bin/ocr` (zh-Hans + en-US recognition).
 - **lldb attach** needs macOS Developer Mode: run `sudo DevToolsSecurity -enable` once. Until then `ios_sim_backtrace` uses Xcode's `sample` engine (non-suspending) and `ios_sim_leaks` degrades with the enable hint.
-- **Real iPhone** — a USB-connected iPhone with the screen unlocked (WebDriverAgent cannot start on a locked screen; consider Auto-Lock: Never), a data-capable USB cable (a Wi-Fi-only pairing cannot carry the port forward), Developer Mode enabled on the device, a WebDriverAgent checkout at `~/Library/Caches/dsh-ios/wda/src` (the plugin builds its `WebDriverAgentRunner` scheme from there — it never downloads or clones anything). The first WDA build installs a signed WebDriverAgentRunner: trust its certificate on the device when prompted, and re-run `ios_real_start_wda` when the free-team signing profile expires (7-day lifetime).
+- **Real iPhone** — a USB-connected iPhone with the screen unlocked (WebDriverAgent cannot start on a locked screen; consider Auto-Lock: Never), a data-capable USB cable (a Wi-Fi-only pairing cannot carry the port forward), Developer Mode enabled on the device, a WebDriverAgent checkout at `~/Library/Caches/dsh-ios/wda/src` (the plugin builds its `WebDriverAgentRunner` scheme from there — it never downloads or clones anything). The first WDA build installs a signed WebDriverAgentRunner: trust its certificate on the device when prompted, and re-run `ios_real_start_wda` when the free-team signing profile expires (7-day lifetime). Set `DSH_IOS_TEAM_ID` to override the signing team; otherwise the first `Apple Development` identity in the login keychain is used before the legacy default. Set `DSH_IOS_WDA_BUNDLE_ID` to override the runner bundle identifier when `WdaOptions.bundleId` is not supplied.
 
 ## Install into DSH
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/35938cac8aedac724759ece525c0f84cdec63c29/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
+  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/a68523c96f9e1ab422d3149f2fb31aa4891ef321/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
 </p>
 
 <h1 align="center">dsh-md-notes</h1>
@@ -41,14 +41,14 @@ dsh iterates fast and provides **no backward compatibility**, so a fixed dsh ver
 matches fixed plugin versions. Verified combinations are listed below (full adaptation
 history in [docs/compatibility.md](docs/compatibility.md)):
 
-| Plugin version | dsh version | Verified on | Notes |
-|---|---|---|---|
-| 0.10.0 | `0.1.2-alpha.3` | 2026-09-01 | Current latest |
-| 0.10.0 | `0.1.2-alpha.2` | 2026-09-01 | 0.10.0 adapted alpha.2 (`settingsNamespace` migration) |
-| 0.9.0 | `0.1.2-alpha.1` | 2026-08-29 | — |
+| Plugin version | dsh version | Verified on |
+|---|---|---|
+| 0.10.1 | `0.1.2-alpha.5` | 2026-09-03 |
+| 0.10.0 | `0.1.2-alpha.5` | 2026-09-02 |
+| 0.10.0 | `0.1.2-alpha.4` | 2026-09-02 |
 
 The plugin is not pinned to a specific mainline commit; pin the plugin version at install
-time if you need a fixed combination (e.g. `dsh plugin --profile web add dsh-md-notes@0.10.0`).
+time if you need a fixed combination (e.g. `dsh plugin --profile web add dsh-md-notes@0.10.1`).
 Runtime dependencies (`@deepseek-ai/*`, `react`) are declared as optional peer dependencies
 and resolve from the dsh installation.
 
@@ -139,7 +139,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 |---|---|
 | `src/` | Source code (host half + client half) |
 | `src/host/` | Notes domain (`notes.ts`) + Git (`git.ts`) + HTTP layer (`http.ts`) + context injection (`context-inject.ts`) + write mutex (`keyed-lock.ts`) |
-| `src/client/` | Browser half: entry (`index.ts`) + feature modules under `features/` |
+| `src/client/` | Browser half: entry (`index.ts`) + feature modules under `features/` (one directory per feature; when one outgrows a single file it splits out feature-private `components/` and `hooks/` subdirectories — see `NotesManager/` for the pattern, `docs/architecture.md`) |
 | `src/client/features/locales/` | zh/en UI dictionaries (dsh locale namespace `md-notes`) |
 | `assets/` | Plugin icon (SVG source + PNG) |
 | `docs/` | Docs: `usage.md`/`usage.zh.md` (user guide), `features.md` (functional), `architecture.md`, `context.md` (@ references), `git.md` (Git sync), `state.md` / `write-lock.md` (state & write-mutex design), `manager-redesign.md` (manager redesign), `compatibility.md` / `compatibility.zh.md` (dsh ↔ plugin version compatibility matrix, en/zh), `TODO.md` |

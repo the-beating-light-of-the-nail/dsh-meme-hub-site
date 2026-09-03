@@ -3,7 +3,7 @@
 **English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
 
 </p>
 <p align="center"><sub>
@@ -19,13 +19,14 @@ computational econ/finance.
 RigorQuant is an agent preset + bundled skills that turns one DSH session into a
 context-isolated multi-agent research lab:
 
-- **J-Space** is used integrally across the root persona, every subagent role,
-  and plan mode as the inference-time cognitive-control layer (workspace gate,
-  ledger, seam refresh, dense inner / clean outer registers).
-- **Parallel explorers** propose candidate methods (`subagent`, blank context).
+- **Parallel explorers** propose candidate methods (`subagent_explorer`, blank
+  context).
+- An **OffGridThinker** (`subagent_offgrid`) works off the grid when a route
+  must be isolated: raw model intelligence plus compute tools (sympy, numpy,
+  mpmath, Lean checkers) — no web, no literature, no other agents' results.
 - A **ground-truth track** re-derives the analytic closed forms, invariants, and
   bounds for simplified cases — twice, by different means (two independent
-  `subagent_ground_truth` calls).
+  `subagent_double_checker` calls).
 - An **adversary** eliminates routes by counterexample only.
 - A **four-part check battery** (closed-form equality, exact invariants,
   analytic bounds, statistical hardening) runs BEFORE numerical implementation.
@@ -52,53 +53,61 @@ session. Crossing a session boundary disarms the goal; one human turn
 
 ## The research team — and how it works
 
-Six roles, each a separate tool with its own powers and limits. The separation is
-enforced by the composition, so **the producer never checks its own work** — an idea
-dies only on a concrete counterexample, never on style or vibes.
+Eight roles around one hub, each a separate tool with its own powers and limits.
+The Orchestrator is the only role that sees every report; the separation is
+enforced by the composition, so **the producer never checks its own work** — an
+idea dies only on a concrete counterexample, never on style or vibes.
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
 
 **Orchestrator** · `root persona` — fans out the work, synthesizes, and writes the state. Bound by four rules: producer ≠ checker, counterexample-only elimination, seeds always recorded, no handwaved load-bearing claims.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
 
-**Explorer** · `subagent` — blank-context and divergent. Proposes lemmas, equations, constructions, and candidate methods with exact statements. Status reports are rejected.
-
-<br clear="left">
-
-
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-oracle.png" align="left" width="200" alt="Oracle">
-
-**Oracle** · `subagent_ground_truth` — blind (no web, no skills, no delegation, no drafts). Re-derives the load-bearing claims from first principles, twice by different means.
+**Explorer** · `subagent_explorer` — blank-context and divergent. Proposes lemmas, equations, constructions, and candidate methods with exact statements. Status reports are rejected.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-offgrid.png" align="left" width="200" alt="OffGridThinker">
+
+**OffGridThinker** · `subagent_offgrid` — the off-grid lane. Raw model intelligence plus the pinned compute lane (sympy, numpy, mpmath, cvxpy, hypothesis, jax; Lean checkers when provisioned) — and nothing else: no web, no skills, no delegation, no other agents' results. Its own agent, not an Explorer variant: isolation is the identity.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-doublechecker.png" align="left" width="200" alt="DoubleChecker">
+
+**DoubleChecker** · `subagent_double_checker` — blind (no web, no skills, no delegation, no drafts). Re-derives the load-bearing claims from first principles, twice by different means.
+
+<br clear="left">
+
+
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
 
 **Adversary** · `subagent_adversary` — runs the check group and hunts counterexamples. Ends in a verdict: `PASS` or `NEEDS-EDITS`.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
 
 **Literature** · `subagent_lit_line` · `_adversary` — a walled citation-graph sweep, then an independent adversary re-retrieves each claim and certifies it's real **and** current.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
 
 **Validator** · `rq_check.py` + schemas — refuses a `PASS` with missing evidence. Reads the audit record, never the study's own claims — a study cannot vouch for itself.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
 
 **Document adversary** · `subagent_document_adversary` — an independent agent that audits each finished deliverable for **self-completeness** (the thing 90% of AI-generated writing drops): every jargon term, symbol, and abbreviation the document uses must be defined in the artifact itself or the audience spec's symbol registry. Returns `VERDICT: PASS` / `VERDICT: NEEDS-EDITS`; a `NEEDS-EDITS` is a blocking gap the validator refuses a `PASS` without.
 
@@ -113,8 +122,9 @@ the conversation column, so the workspace rail and right-docked panels stay
 clear), expanding into a panel that shows, for the **current session's lab
 only** (never other sessions, and only while the current session is a
 RigorQuant one), the
-**five-move stage** the run is on, a compact role-pipeline graph, a
-working/idle roster of the six roles with
+**five-move stage** the run is on, a hub-and-spoke role map (the Orchestrator
+at the hub, every role it can delegate to as a spoke), a
+working/idle roster with
 their `docs/figs/` portraits, each role's last action, and a newest-first
 activity feed. It is pure observation — it reads the events the core already
 publishes and serves a JSON snapshot + portraits over
@@ -122,7 +132,7 @@ publishes and serves a JSON snapshot + portraits over
 are `--dsw-alias` tokens, so it follows the shell's own light/dark theme.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
 </p>
 
 The picture above is the reader-safe rendering of the same design (the live
@@ -130,7 +140,7 @@ panel is only visible in a running web session) — adapted from the live
 activity panel of [dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams)
 — the picture in
 [its README](https://github.com/NanmiCoder/dsh-agent-teams/blob/main/assets/ui.png)
-— showing RigorQuant's own six roles at a fan-out moment. The panel SVG is
+— showing RigorQuant's own eight roles at a fan-out moment. The panel SVG is
 generated from [`docs/figs/agent-team-activity.js`](docs/figs/agent-team-activity.js).
 
 > **Attribution.** The activity-panel design is adapted from
@@ -144,7 +154,7 @@ generated from [`docs/figs/agent-team-activity.js`](docs/figs/agent-team-activit
 
 1. **Promise** — record the original question verbatim, split it into sub-problems with crisp criteria, pick hand-checkable simplified cases, and pin seeds, tolerances and the schema/validator digests.
 2. **Fan out** — blank-context explorers and literature lines run in parallel; most are never told the favored approach.
-3. **Ground-truth it** — blind oracles re-derive the load-bearing claims without seeing anyone's draft; two independent derivations for anything the study rests on.
+3. **Ground-truth it** — the blind DoubleChecker re-derives the load-bearing claims without seeing anyone's draft; two independent derivations for anything the study rests on.
 4. **Attack it** — the adversary runs the four-gate battery, then hunts counterexamples; divergent tracks are lined up as an adjudication docket.
 5. **Certify & ship** — the validator checks nothing is missing; the paper and slides are assembled from validated records, never written fresh.
 
@@ -181,7 +191,7 @@ package declares a `dsh.bundle` manifest whose rows include a boot-sync half
 (`rq-preset-sync`): on the profile's next start it lands the agent preset into
 `$DSH_HOME/.agent-presets/rigorquant` and the compute lane into
 `$DSH_HOME/share/rigorquant/`, so `dsh plugin add` alone yields a working
-distribution (docs/architecture.md Decision 23):
+distribution (docs/architecture.md Decision 22):
 
 ```sh
 dsh --version                 # must be >= 0.1.2-alpha.1
@@ -216,18 +226,18 @@ via the skill's `scripts/provision-lean.sh`). See [mcp/jacobian.md](mcp/jacobian
 ## Role-routed models (rq-model-router)
 
 The bundled plugin gives each RigorQuant role a model + reasoning-effort
-policy, with one fallback per role. The oracle and adversary tool rows use DSH
-0.1.2's native `agentOptions` for their shipped primary (`deepseek-v4-pro` @
-`high`); the router only overlays explicit Settings choices and fallback
-retries. Configure overrides in **Settings → Plugins → RigorQuant model
+policy, with one fallback per role. The DoubleChecker and adversary tool rows
+use DSH 0.1.2's native `agentOptions` for their shipped primary
+(`deepseek-v4-pro` @ `high`); the router only overlays explicit Settings
+choices and fallback retries. Configure overrides in **Settings → Plugins → RigorQuant model
 routing**: the last saved selection persists (settings user layer). Shipped
 defaults:
 
 | Role | Primary | Fallback |
 | --- | --- | --- |
-| Ground-truth oracle | `deepseek-v4-pro` @ high | `deepseek-v4-flash` @ low |
+| DoubleChecker | `deepseek-v4-pro` @ high | `deepseek-v4-flash` @ low |
 | Adversary | `deepseek-v4-pro` @ high | `deepseek-v4-flash` @ low |
-| Root, explorers, literature/document roles | inherit (root follows the chatbox picker) | — |
+| Root, explorers, OffGridThinker, literature/document roles | inherit (root follows the chatbox picker) | — |
 
 On a terminal primary failure (no adapter / HTTP 4xx, including the official
 quota response `1308` / “Usage limit reached”) the role degrades to its
@@ -274,6 +284,24 @@ gate is not itself tested is a framework that certifies whatever it is handed.
 uv sync --frozen --project env
 uv run --frozen --project env python -m pytest tests/ -q
 ```
+
+### Pre-commit coverage gate (validator ≥95%)
+
+The checked-in hook at [`.githooks/pre-commit`](.githooks/pre-commit) runs the
+same full suite under coverage and refuses a commit when the shipped validator
+(`rq_check.py`) drops below **95% line coverage**. `./install.sh` enables it in
+a git checkout; in an existing checkout, enable it explicitly:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+The validator is a subprocess, so coverage is deliberately explicit rather
+than plugin magic: `RQ_COVERAGE=1` makes `tests/conftest.py::run_check` invoke
+`coverage run --parallel`; the hook combines those child data files and applies
+`coverage report --fail-under=95`. CI runs the identical gate. Bypass one
+commit only with Git's standard `git commit --no-verify`.
+
 
 `tests/test_repo_consistency.py` covers the other half: one validator, one
 schema, documented commands that resolve, and layout blocks that match the

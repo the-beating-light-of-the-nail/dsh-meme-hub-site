@@ -4,9 +4,9 @@
 
 [DSH（DeepSeek Harness）](https://github.com/deepseek-ai/deepseek-harness)远程 Web 启动 + 用户名/密码认证插件。
 
-> **⚠️ 版本跟进声明**：本项目**不跟进官方 dsh 的 `alpha` 版本**，只关注 `latest` / `next` dist-tag。
+> **⚠️ 版本跟进声明**：本项目只跟进官方 dsh 的正式发布通道（`next` dist-tag），不跟进 `alpha` 预览通道。
 
-![登录页](https://raw.githubusercontent.com/GDWhisper/dsh-web-startup-auth/1018a6429fa1a10f6afd7435201aaf038c771b66/docs/login-page.png)
+![登录页](https://raw.githubusercontent.com/GDWhisper/dsh-web-startup-auth/16940597f95c3aec5d573679b35b373c50b3eb33/docs/login-page.png)
 
 原版 `@deepseek-ai/dsh-web-app/startup` 出于安全考虑**硬拒绝 `--host 0.0.0.0`**；本插件替换它，并配一个带登录/注册页的认证插件，让 `dsh web` 可以在局域网（或任何非回环接口）上安全暴露浏览器界面。
 

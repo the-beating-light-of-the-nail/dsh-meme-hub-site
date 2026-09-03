@@ -17,7 +17,11 @@ A [DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) plug
 - [日本語 changelog](./docs/CHANGELOG.ja.md)
 - [한국어 changelog](./docs/CHANGELOG.ko.md)
 
-> **Compatibility note:** DSH `0.1.2-alpha.1` and later accept language-pack locale IDs through `LocaleRuntime`. This plugin registers `ja` and `ko` dynamically, so no DSH core fork is required. Older DSH builds that only expose built-in locale IDs support `zh` and `en` only.
+> **Compatibility boundaries:** DSH Runtime compatibility covers the Settings transport only: modern DSH exposes `remote.settings`, while legacy DSH exposes `connection.api.settings`. The plugin detects the available runtime capability and keeps the legacy fallback optional, so the settings page does not require a Remote provider on older DSH builds.
+>
+> Gateway Protocol compatibility is a separate layer. It reads the official `llm-pi-ai.compat` fields `supportsDeveloperRole` and `maxTokensField` when the DSH schema exposes them. DSH `0.1.0-rc.7` does not provide these fields; DSH `0.1.0-rc.8` and later supported ranges do. The optional `dsh-llm-openai-completions` transport can take over eligible custom OpenAI-compatible thinking providers when it is installed and enabled. For either gateway field, `Auto` unsets the user override and restores the official protocol default.
+>
+> DSH `0.1.2-alpha.1` and later accept language-pack locale IDs through `LocaleRuntime`. This plugin registers `ja` and `ko` dynamically, so no DSH core fork is required. Older DSH builds that only expose built-in locale IDs support `zh` and `en` only.
 >
 > The published runtime entries are `lib/index.js` (Host) and `lib/client.js` (Client). After changing TypeScript or locale sources, run `npm run build` before running DSH or packing the plugin. Current DSH does not expose a public semver metadata contract, so runtime capability detection is authoritative. An optional version is used only when explicit metadata or test input supplies it; unknown valid versions still use the detected capabilities. The plugin supports both modern `remote.settings` and legacy `connection.api.settings`.
 
@@ -49,7 +53,8 @@ These identifiers have different responsibilities:
 | Feature | Description |
 | --- | --- |
 | Default levels | Adds `off`, `high`, and `max` without overwriting custom values |
-| Per-model editor | Select levels and configure their gateway values from Settings |
+| Per-model editor | Select levels and configure gateway values for both catalog/modelOverrides and `models[]` entries in Settings |
+| Gateway compatibility | Configure `supportsDeveloperRole` and `maxTokensField` globally per provider or separately per model |
 | Gateway mapping | Send `ultra` when the user selects DSH `high` |
 | Subagent default | Apply a default effort only when a subagent request has no explicit value |
 | Multilingual settings | Includes Chinese, English, Japanese, and Korean dictionaries; Japanese/Korean switching uses DSH language-pack support |
@@ -64,7 +69,7 @@ Use the official DSH CLI to manage the plugin profile. A plain `npm install` doe
 dsh plugin --profile <profile> add @hytime/dsh-thinking-effort
 
 # Install a specific version
-dsh plugin --profile <profile> add @hytime/dsh-thinking-effort@0.1.13
+dsh plugin --profile <profile> add @hytime/dsh-thinking-effort@0.1.14
 
 # Upgrade
 dsh plugin --profile <profile> update @hytime/dsh-thinking-effort
@@ -93,13 +98,36 @@ See [INSTALL.md](./docs/INSTALL.md) for profile discovery, migration, validation
 
 7. Return to Composer and select the model to use its reasoning selector.
 
-The settings page shows the installed version as a small watermark such as `v0.1.13` in the bottom-right corner.
+The settings page shows the installed version as a small watermark such as `v0.1.14` in the bottom-right corner.
+
+### Gateway compatibility configuration
+
+The provider `compat` block is the global default for every model under that provider. Configure provider defaults with the official DSH YAML shape:
+
+```yaml
+providers:
+  qwen-gateway:
+    compat:
+      supportsDeveloperRole: false
+      maxTokensField: max_tokens
+    models:
+      - id: qwen-plus
+      - id: qwen-thinking
+        compat:
+          maxTokensField: max_completion_tokens
+```
+
+A model-level `compat` overrides the provider default field-by-field. Fields not written at the model layer continue to inherit from the provider. `Auto` deletes the current-layer field and restores provider inheritance. For a given route/provider, any non-empty `models[]` together with any non-empty `modelOverrides` is invalid; the official schema rejects this invalid configuration, and the plugin fails closed for malformed data.
+
+The provider area in Settings edits defaults for all models. Both catalog models and custom YAML `models[]` entries expose a single-model compat editor: catalog models write `modelOverrides.<model>.compat`, while `models[]` models write `models[].compat`. Because the Settings API does not support array-index path operations, a `models[]` edit writes one complete `providers.<route>.models` array set while preserving other models, unknown fields, and compat fields.
+
+These compat values are control plane configuration. They do not implement or replace the gateway transport; an external transport remains responsible for network requests.
 
 ### Settings page layout
 
-The page header contains the language selector. Below it, the Subagent default effort card controls the default for requests without an explicit effort. The Quick settings controls apply a preset across models. Provider sections can be expanded or collapsed; each model row exposes input capabilities, context length, and a settings control for reasoning levels and gateway values.
+The page header contains the language selector. Below it, the Subagent default effort card controls the default for requests without an explicit effort. The Quick settings controls apply a preset across models. Provider sections can be expanded or collapsed; each model row exposes input capabilities, context length, and gateway compatibility controls in its settings area. `models[]` saves use one complete array set rather than an array-index path operation.
 
-![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/f4ad3bef3d2a6a25e972e61bb36b717352d43888/docs/assets/settings-model-capabilities-en.png)
+![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/5a9a3dcc0578c4d1c585aa0a60ba38cee0056868/docs/assets/settings-model-capabilities-en.png)
 
 
 ## How it works
@@ -124,7 +152,7 @@ The page header contains the language selector. Below it, the Subagent default e
 - The ordinary CI workflow does not publish to npm. Publishing is triggered only by a `v<version>` tag through `publish.yml`.
 - Before creating a release tag, update `package.json` version and `CHANGELOG.md` files, commit those changes, and create the matching `v<version>` tag. The tag must point to a commit in the `main` history.
 - npm Trusted Publishing must be configured for repository `hytime/dsh-thinking-effort` and workflow `publish.yml`. The workflow publishes provenance through GitHub OIDC and does not require `NPM_TOKEN`.
-- Before publishing, the workflow builds and tests one representative from each supported DSH compatibility range: `dsh-v0.1.2-alpha.3` (`0.1.2-alpha.3`) for modern and `dsh-v0.1.1-rc.2` (`0.1.1-rc.2`) for legacy, using the official `dsh plugin` command and real compatibility checks.
+- Before publishing, the workflow builds and tests three official DSH capability representatives in this order: `dsh-v0.1.0-rc.7` (`0.1.0-rc.7`), `dsh-v0.1.1-rc.2` (`0.1.1-rc.2`), and `dsh-v0.1.2-alpha.3` (`0.1.2-alpha.3`), using the official `dsh plugin` command and real compatibility checks.
 - The workflow never changes the package version or any `CHANGELOG` file automatically; an existing npm version also blocks publishing.
 
 ## License

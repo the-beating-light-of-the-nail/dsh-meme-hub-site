@@ -14,21 +14,21 @@ A Feishu (Lark) channel bridge for [DeepSeek Harness](https://github.com/deepsee
 ## What this is
 
 - A production-grade Feishu bot bridge: fail-closed allowlist, one-time card nonces, per-chat verbosity, sticky sessions, both `ws` and `webhook` transports.
-- The thin adapter that talks to `deepseek-harness-sdk` lives in one file, `src/dsh_feishu_bridge/dsh_adapter.py`, and the SDK version is pinned exactly — the harness is a v0.1 developer preview that documents breaking changes between releases.
+- The thin adapter that talks to `deepseek-harness-sdk` lives in one file, `src/dsh_feishu_bridge/dsh_adapter.py`, and the SDK version is pinned exactly — the harness is a v0.1 developer preview that documents breaking changes between releases. That same adapter also carries a small capability-detection shim (probes the installed SDK's actual `DeepSeekHarnessConfig` fields via `inspect.signature`, never a hardcoded version check) so the nightly SDK canary — which installs the latest pre-release unpinned — keeps passing across a breaking field rename instead of just going red; see `docs/architecture.md` "SDK compat".
 
 ## Screenshots
 
-![Remote tool approval: bash wants to run, Allow / Deny right in Feishu](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/7cb392ee508ecd5e74d3a57c60fc06e9ca6cdb01/docs/screenshots/chat-approval-card.png)
+![Remote tool approval: bash wants to run, Allow / Deny right in Feishu](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/f1760f08c4b481a3eeb54148bcdddee3d293ea76/docs/screenshots/chat-approval-card.png)
 
-![Approved — the command runs and the reply comes back](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/7cb392ee508ecd5e74d3a57c60fc06e9ca6cdb01/docs/screenshots/chat-approval-done.png)
+![Approved — the command runs and the reply comes back](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/f1760f08c4b481a3eeb54148bcdddee3d293ea76/docs/screenshots/chat-approval-done.png)
 
-![A real turn in Feishu: the agent reads the workspace and summarizes a file](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/7cb392ee508ecd5e74d3a57c60fc06e9ca6cdb01/docs/screenshots/chat-agent-turn.png)
+![A real turn in Feishu: the agent reads the workspace and summarizes a file](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/f1760f08c4b481a3eeb54148bcdddee3d293ea76/docs/screenshots/chat-agent-turn.png)
 
-![Fail-closed by default: boot, reject, allowlist, reply](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/7cb392ee508ecd5e74d3a57c60fc06e9ca6cdb01/docs/screenshots/fail-closed-boot.png)
+![Fail-closed by default: boot, reject, allowlist, reply](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/f1760f08c4b481a3eeb54148bcdddee3d293ea76/docs/screenshots/fail-closed-boot.png)
 
-![Install as a dsh plugin](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/7cb392ee508ecd5e74d3a57c60fc06e9ca6cdb01/docs/screenshots/dsh-plugin-add.png)
+![Install as a dsh plugin](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/f1760f08c4b481a3eeb54148bcdddee3d293ea76/docs/screenshots/dsh-plugin-add.png)
 
-![Architecture: Feishu → fail-closed boundary → DeepSeek Harness](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/7cb392ee508ecd5e74d3a57c60fc06e9ca6cdb01/docs/screenshots/architecture.png)
+![Architecture: Feishu → fail-closed boundary → DeepSeek Harness](https://raw.githubusercontent.com/wz-heng/dsh-feishu-bridge/f1760f08c4b481a3eeb54148bcdddee3d293ea76/docs/screenshots/architecture.png)
 
 ## Quickstart (5 minutes)
 

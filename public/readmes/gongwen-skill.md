@@ -7,7 +7,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 # 公文全流程处理工具
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linhut/gongwen-skill/2e8076b355dd1d1ace5daec5bc11f537d85c2b0d/logo/2026-08-19_11-17-43.png" alt="公文全流程处理工具" width="760">
+  <img src="https://raw.githubusercontent.com/linhut/gongwen-skill/c17b8ab48e11935ade8417b02613aca07fa46955/logo/2026-08-19_11-17-43.png" alt="公文全流程处理工具" width="760">
 </p>
 
 > 中文公文全流程处理工具——基于 **GB/T 9704《党政机关公文格式》** 国家标准，支持 **格式检查与修复、内容优化（Word 原生修订+批注/差异对比版）、模板生成、Markdown 转公文、版头版记页码注入、事实核验、风格增强** 等完整能力。原生支持 **DeepSeek Harness (DSH)** 技能系统，打包为可被 AI Agent 直接调用的 Skill，完全自包含，克隆即用。
@@ -50,6 +50,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 | 🕵️ 文档审计 | `audit` | 检查删除线/加粗/AI 声明等痕迹 |
 | 🤝 会话交接 | `handoff` | 跨会话上下文传递（`--list` / `--latest` / Agent 长任务收尾必写） |
 | ⚙️ 规则管理 | `rule-export/import/list` | YAML 规则三层定制（官方/单位/用户） |
+| 🧭 向导式交互 | `wizard` | 交互式路径引导（A/B/C/D）+ 一键执行；Agent 用 `--answers` 非交互 / `--dry-run` 只打印命令 |
 
 ## 使用示例
 
@@ -259,6 +260,24 @@ python -m gongwen optimize-content 新闻稿.docx --changes changes.json \
 --show-confirmed             已确认实体也生成批注
 ```
 
+### 🧭 向导式交互（wizard）
+
+交互式引导选择处理路径并一键执行，适合不熟悉命令行的用户；Agent 可走非交互模式：
+
+```bash
+python -m gongwen wizard                        # 终端交互：菜单选 A/B/C/D → 逐项填参 → 预览确认 → 执行
+python -m gongwen wizard --answers 答案.json     # Agent 非交互：跳过提问直接执行
+python -m gongwen wizard --answers 答案.json --dry-run  # 只打印将执行的命令
+```
+
+`--answers` 扁平 JSON（顶层带 `path`）：
+
+```json
+{"path": "A", "input": "原文.docx", "doc_type": "notice", "output": "成品.docx", "apply": true}
+```
+
+路径：A 格式优化（`optimize`）｜B 内容优化（`optimize-content`）｜C 生成模板（`template`）｜D 一键格式修复（`fix-common`）。A/B/D 默认先预览再 y/n 确认；不写 `apply` 时非交互模式仅预览不执行（安全默认）。
+
 ## 📐 GB/T 9704 标准格式
 
 | 元素 | 字体 | 字号 | 对齐 |
@@ -337,7 +356,7 @@ DSH 采用 **Cordis 模块化微内核架构**：技能体系基于本地文件�
 git clone https://github.com/linhut/gongwen-skill.git
 cd gongwen-skill
 pip install -r requirements.txt   # 或 pip install gongwen-skill（已上 PyPI）
-python -m gongwen --version       # 检验：gongwen-skill v2.6.1
+python -m gongwen --version       # 检验：gongwen-skill v2.7.0
 ```
 
 ### 方式一：作为 DSH Skill 注册（基于本地文件系统）
@@ -393,7 +412,7 @@ pnpm add -w gongwen-skill
   "dependencies": {
     "@deepseek-ai/dsh-base": "...",
     "@deepseek-ai/dsh-web-app": "...",
-    "gongwen-skill": "^2.6.1"
+    "gongwen-skill": "^2.7.0"
   },
   "dsh": {
     "profile": {
@@ -574,7 +593,7 @@ pip install -r requirements.txt
 用户：帮我优化这份会议通知的第二章节措辞
 
 Agent：📋 合规自检报告
-Skill 版本: v2.6.1（版本自检已确认最新）
+Skill 版本: v2.7.0（版本自检已确认最新）
 路径判定: B（内容优化）
 依据: 用户指定了已有文档，且要求"优化措辞"
 命令调用: 1. python -m gongwen optimize-content 会议通知.docx --changes changes.json --apply --paragraphs "5-8"

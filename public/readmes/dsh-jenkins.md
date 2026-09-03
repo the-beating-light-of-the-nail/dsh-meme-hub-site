@@ -1,7 +1,7 @@
 # dsh-jenkins
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jsoncode/dsh-jenkins/13ed5f13c753a4bbc648c577b256b60a439ed924/assets/preview/1.png" alt="dsh-jenkins preview" width="800" />
+  <img src="https://raw.githubusercontent.com/jsoncode/dsh-jenkins/7656a2243d63e662f9ce9811dbcfea6d5ccdf112/assets/preview/1.png" alt="dsh-jenkins preview" width="800" />
 </p>
 
 **dsh-jenkins** is a Jenkins management plugin built on the DeepSeek Harness (DSH)

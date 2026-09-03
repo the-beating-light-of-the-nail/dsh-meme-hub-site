@@ -1,10 +1,23 @@
 # dsh-skill-picker
 
+[![npm version](https://img.shields.io/npm/v/dsh-skill-picker.svg)](https://www.npmjs.com/package/dsh-skill-picker)
+[![license](https://img.shields.io/npm/l/dsh-skill-picker.svg)](https://github.com/a735624258/dsh-skill-picker/blob/main/LICENSE)
+
 > **技能记不住名字？官方 `/` 补全靠前缀记忆，装了几十个技能谁记得住？** 本插件让技能**看得见、翻得到、选得快**——点一下 ⚡，全部技能带描述排在你面前，搜索、点选、插入，随消息发出自动加载。
+
+## ⚡ 快速安装（npm）
+
+```sh
+dsh plugin --profile web add dsh-skill-picker
+```
+
+一条命令从 npm 装好并注入 DSH web profile，重启 `dsh web`（或刷新页面）即生效。源码方式见下文 [安装](#安装)。
 
 DSH Web GUI 的技能选择器：在输入框（composer）工具行右侧加一个按钮，点开可以**搜索并点选已安装的技能**，选中后把官方 `/技能名` 手势插入发送框——随消息一起发出，DSH 原生机制就会自动加载该技能并执行。WorkBuddy 式"把技能写进发送框"的交互，DeepSeek Harness 复刻版。
 
 English: A skill picker for the DSH Web GUI — a button in the composer's right tool row opens a searchable list of installed skills; picking one inserts the official `/skill-name` gesture into the draft, so DSH's native user-invocation path loads the skill with your message.
+
+当前版本：**v0.3.2**（`/` 补全 + ⚡ 面板均支持**拼音搜索**）
 
 ## 为什么用它（vs 官方 `/` 补全）
 
@@ -14,6 +27,7 @@ English: A skill picker for the DSH Web GUI — a button in the composer's right
 |---|---|---|
 | 触发 | 输入框打 `/` | 输入框旁 ⚡ 按钮 |
 | 查找方式 | 前缀记忆驱动，**忘了名字就找不到** | 全列表浏览 + 关键字搜索，**忘了名字也能翻到** |
+| 中文技能 | 只能打名字/前缀 | **拼音直搜**：`ji yi` / `jiyi` / `jy` 都能搜到「备份记忆」类中文技能（v0.3.0） |
 | 排序 | 固定 | **最近使用置顶、常用靠前** |
 | 描述可见 | 精简 | 完整描述一眼看全 |
 
@@ -23,12 +37,14 @@ English: A skill picker for the DSH Web GUI — a button in the composer's right
 
 - ⚡ 一键弹出全部技能（闪电图标，人人看得懂）
 - **`/` 直接补全**：输入斜杠即列出全部技能，**模糊搜索**（技能名+描述任意匹配）+ **常用排序**（v0.2.0）
-- 🔍 实时搜索（技能名 / 描述都搜）
+- 🔤 **拼音搜索**：技能名和描述都生成拼音索引（全拼带空格 `ji yi` / 连打 `jiyi` / 首字母 `jy`），中文技能不用记字就能搜（v0.3.0）
+- 🔍 实时搜索（技能名 / 描述 / 拼音都搜）
+- ⌨️ **键盘导航**：弹层内 ↑↓ 选择、Enter 插入、Esc 关闭，全程不碰鼠标（v0.2.2）
 - 🧠 **最近使用置顶、常用靠前**的智能排序（WorkBuddy 同款）
 - 📋 走官方宿主 skills API（与 DSH 内置 `/` 补全同一数据源，自动覆盖用户级+项目级技能）
 - 🧩 插入官方 `/技能名` 手势，加载/执行走 DSH 原生机制，**零 agent 侧改动**
 - 🎨 跟随 Web UI 主题（CSS 变量），浅色/深色自适应
-- 📦 纯 client + host 双半插件，无第三方运行时依赖
+- 📦 纯 client + host 双半插件（拼音库已打包进 client bundle，无额外运行时安装）
 
 ## 安装
 
@@ -44,20 +60,27 @@ dsh plugin --profile web add "github:a735624258/dsh-skill-picker"
 dsh plugin --profile web add dsh-skill-picker
 ```
 
-> 注：目前**尚未发布 npm**（`npm view dsh-skill-picker` 会 404），请用方式一或方式二。
+> 注：已发布 npm（`npm view dsh-skill-picker` 可见 0.3.2），方式三可直接安装；未发布时请用方式一或方式二。
 > 若 `dsh` 命令因 PowerShell 执行策略被拒（`File ... cannot be loaded`），用：
 > `powershell -ExecutionPolicy Bypass -Command "dsh plugin --profile web add link:C:\path\to\dsh-skill-picker"`
+
+**网络特例（国内/HTTPS 受限时）**：
+- 方式一的 `git clone` 走 HTTPS 慢或不通时，改用 SSH：`git clone git@github.com:a735624258/dsh-skill-picker.git`
+- 方式二的 `github:` 简写强制 HTTPS clone；仅 SSH 可用时改用：
+  `dsh plugin --profile web add "git+ssh://git@github.com:a735624258/dsh-skill-picker.git"`
+  （或先执行 `git config --global url."git@github.com:".insteadOf "https://github.com/"` 让 pnpm 走 SSH）
+- 方式三新版本发布后 **24 小时内**裸名会被 pnpm 的 minimumReleaseAge 门禁挡到旧版（如装到 0.2.0）；急用最新请指定版本：`dsh plugin --profile web add dsh-skill-picker@0.3.1`
 
 重启 `dsh web`（或刷新页面加载新 bundle）后生效。
 
 ## 用法
 
 1. 打开任一会话，在输入框工具行右侧找到**⚡ 按钮**
-2. 点击弹出技能列表（可输入关键字过滤）
-3. 点选技能 → 发送框自动出现 `/技能名 `
+2. 点击弹出技能列表（可输入关键字或**拼音**过滤，如 `ji yi` 搜「记忆」）
+3. **↑↓** 选择、**Enter** 插入（或直接鼠标点选）→ 发送框自动出现 `/技能名 `
 4. 继续输入你的话并发送——DSH 会识别 `/技能名` 手势，自动加载该技能并按其指令执行
 
-示例：点选 `duo-xuan-pi-gai` 后发送框变为 `/duo-xuan-pi-gai 帮我批改多选`，发送后技能自动加载。
+示例：点选 `duo-xuan-pi-gai` 后发送框变为 `/duo-xuan-pi-gai 帮我批改多选`，发送后技能自动加载。也可以在输入框直接打 `/duo xuan`、`/duoxuan` 靠拼音补全选到它。
 
 ## 原理
 
@@ -75,32 +98,48 @@ DSH 的 [dsh-tool-skill](https://github.com/deepseek-ai/deepseek-harness) 在 `a
 [DSH]     agent/pre-step 识别手势 → 自动加载技能 → 执行
 ```
 
-- client 半：注册到官方 `conversation.input.right` 插槽（composer 工具行、发送按钮左侧的控件位），**技能列表优先走官方宿主 skills API**（`connection.api.skills.list`——与 DSH 内置 `/` 补全同源，会话作用域，自动含用户级/项目级技能），失败时回退到 host 扫描路由；插入文本走框架输入机的 `inputActions.setDraft`（单一路径，撤销/草稿持久化自动处理）；最近/常用排序存 localStorage
+- client 半：注册到官方 `conversation.input.right` 插槽（composer 工具行、发送按钮左侧的控件位），**技能列表优先走官方宿主 skills API**（`remote.skills.list`——与 DSH 内置 `/` 补全同源，会话作用域，自动含用户级/项目级技能），失败时回退到 host 扫描路由；插入文本走框架输入机的 `inputActions.setDraft`（单一路径，撤销/草稿持久化自动处理）；最近/常用排序 + 拼音索引（`pinyin-pro`）在 client 侧生成，按技能缓存
 
-## 与官方 `/` 补全的关系
+## 与官方 `/` 补全的关系（v0.4.0 起：增强，而非并列）
 
-DSH 官方已内置技能补全：在输入框输入 `/` 会弹出技能菜单，按前缀过滤（如输入 `/sk` 列出 skill 开头的技能）。本插件不替代它，而是补上官方方案的盲区：
+**v0.2.0–0.3.4**：插件注册了一个独立的 `/` 候选源（`skill-fuzzy`），与官方 ui-skill 源**并列**——菜单里出现两个技能分组，搜索行为相互独立（冲突风险、视觉重复）。
 
-| | 官方 `/` 补全 | dsh-skill-picker |
-|---|---|---|
-| 触发 | 输入框打 `/` | 输入框旁 ⚡ 按钮 |
-| 查找方式 | **前缀记忆驱动**——需要先记得技能名才能打出来 | **全列表浏览 + 关键字搜索**——忘了名字也能翻到 |
-| 排序 | 固定顺序 | 最近使用置顶、常用靠前（localStorage） |
-| 适合场景 | 记得名字的老手 | 技能多、记不全名字、想翻着选的人 |
+**v0.4.0 起**：**不再注册平行源**。改为给官方 `@deepseek-ai/dsh-client-ui-skill` 包的 candidates **打补丁**——其候选逻辑从 `skill.name.startsWith(query)`（前缀匹配）换成调用插件注入的全局函数 `window.__dshSkillPickerFuzzy`（fuzzysort 模糊 + pinyin-pro 拼音 + 最近/常用排行，与 ⚡ 面板同一套规则）。
 
-一句话：**记得名字用官方，忘了名字用本插件**。两者互补，可同时使用。
+**效果**：官方「技能」分组**仍是唯一一个 `/` 技能列表**（官方规则全部保留：`userInvocable` 区分、菜单文案、排序基础），只是匹配行为被升级；插件不再产生第二列表。
+
+**Patch 部署姿势**（本机 `profiles/web/local/`，与其它 patch 插件同款）：
+1. 把官方包拷到 `profiles/web/local/dsh-client-ui-skill/`（`lib/client.js` 改 candidates 为 `window.__dshSkillPickerFuzzy` 优先，`startsWith` 兜底）
+2. profile package.json 加依赖 `"@deepseek-ai/dsh-client-ui-skill": "link:C:/Users/<user>/.dsh/profiles/web/local/dsh-client-ui-skill"`
+3. `pnpm install` 后重启 DSH
+
+> 官方 DSH 升级后（如 alpha.6），若 ui-skill 包变动：重拷新包覆盖 local 副本、重打补丁即可；插件本身逻辑不变。
+
+## 更新日志
+
+- **v0.4.0**：**单列表模糊搜索**——不再注册独立 `/` 候选源，改为 patch 官方 ui-skill 的 candidates（模糊+拼音注入，官方列表是唯一来源，无并列列表、无搜索冲突）；实测 `/jiyi` → 官方「技能」组 backup-memory 排第一
+- **v0.3.4**：适配 DSH 0.1.2-alpha.5 —— 技能列表改用官方 `remote.skills` RPC（alpha.5 将 rc.x 的 `connection.api.skills` 改名），`/` 补全与 ⚡ 面板统一「官方 RPC → host 扫描兜底」；`dsh.client.inject` 声明 `dsh-client-ui-input-trigger`（alpha.5 装载器只给声明了提供者的插件暴露 `inputTriggers` 服务）。修复 alpha.5 下 `/` 模糊/拼音搜索失效（实测 `/jiyi` → backup-memory）
+- **v0.3.3**：兜底扫描对齐官方全部技能根——补扫 user-agents 层（`~/.agents/skills`，含 `DSH_AGENTS_HOME`），扫描顺序与官方 rank 一致（项目级优先于用户级）；走兜底时 ⚡ 面板显示「本地扫描」来源徽标便于排障（对应 issue #5）
+- **v0.3.2**：安装文档修正——实测三种安装方式并补网络特例（HTTPS 受限改 SSH、npm 新版本 24h 内被 minimumReleaseAge 门禁挡旧版的规避方法）
+- **v0.3.1**：README 顶部新增一键快速安装命令（`dsh plugin --profile web add dsh-skill-picker`）与 npm 版本/许可徽章
+- **v0.3.0**：拼音搜索——`/` 补全与 ⚡ 面板的搜索目标加入技能名/描述的拼音全拼（带空格+连打）与首字母索引，中文技能可拼音直搜（如 `ji yi` →「备份记忆」）
+- **v0.2.2**：⚡ 弹层键盘导航（↑↓ 选择、Enter 插入、Esc 关闭）；按钮盒 28×28 → 24×24，闪电图标 16px（对应 issue #1、#4）
+- **v0.2.1**：声明兼容 DSH 0.1.2-alpha 系列
+- **v0.2.0**：注册为 `/` 补全候选源（fuzzysort 模糊匹配 + 最近/常用排序，排序规则与 ⚡ 面板统一）
+- **v0.1.0**：初版——⚡ 按钮弹窗搜索点选技能
 
 ## 兼容性与注意事项
 
-- **技能来源**：**优先走官方宿主 skills API**（`connection.api.skills.list`——与 DSH 内置 `/` 补全**完全同一个数据源**，会话作用域，自动覆盖用户级 `~/.dsh/skills`、项目级 `<workspace>/.dsh/skills`、`<workspace>/.agents/skills` 等全部官方目录）；官方 API 不可用时**自动回退**到内置扫描（用户级 + 项目级目录）。两条路都支持 `DSH_HOME` 环境变量。
-- **暂不扫描**：`~/.agents/skills` 与自定义技能目录（`customSkillDirs` 配置）——需要的话欢迎 PR。
+- **技能来源**：**优先走官方宿主 skills API**（`connection.api.skills.list`——与 DSH 内置 `/` 补全**完全同一个数据源**，会话作用域，自动覆盖全部官方目录）；官方 API 不可用时**自动回退**到内置扫描。两条路都支持 `DSH_HOME` 环境变量。
+- **兜底扫描范围**：与官方 `dsh-skill-filesystem` provider 的默认根完全同源——项目级 `<workspace>/.dsh/skills`、`<workspace>/.agents/skills`，用户级 `~/.dsh/skills`、`~/.agents/skills`（`$DSH_AGENTS_HOME` 可覆盖），同名时按官方 rank 项目级优先。走兜底时 ⚡ 面板底部显示「本地扫描」徽标。
+- **暂不支持**：自定义技能目录（官方 `customSkillDirs` 配置）——需要的话欢迎 PR。
 - **失败保护**：client 端用 `ctx.slots.inject`（等 `conversation.input.right` 插槽声明存在才注册，插槽缺失时静默跳过，不会拖垮启动）；host 端路由 try/catch，扫描目录不存在时返回空列表而非报错。
 - **依赖版本**：按 DSH `0.1.0-rc.6` API 编写（cordis 4 / web profile 标准装配）。如遇 DSH 大版本更新导致 API 变化，插件会以启动日志的插件错误提示为准，卸载 `dsh plugin --profile web remove dsh-skill-picker` 即可回退。
 
 ## 开发
 
 ```sh
-# 安装依赖（提供 esbuild）
+# 安装依赖（提供 esbuild / fuzzysort / pinyin-pro）
 npm install
 
 # 构建（源码 src/ → 产物 lib/；client 半自动包 __ModuleLoader__ 握手）
@@ -140,7 +179,7 @@ dsh-skill-picker/
 ## 依赖
 
 - host：`@deepseek-ai/cordis`、`@deepseek-ai/dsh-host-webserver`、`@deepseek-ai/dsh-skill`、`@deepseek-ai/dsh-system-prompt`
-- client：`@deepseek-ai/dsh-client-runtime`、`@deepseek-ai/dsh-client-ui-slots`、`react`
+- client：`@deepseek-ai/dsh-client-runtime`、`@deepseek-ai/dsh-client-ui-slots`、`react`、`pinyin-pro`（拼音索引，打包进 client bundle）
 
 ## License
 

@@ -4,7 +4,7 @@
 >
 > A live session flowgraph for DeepSeek Harness. MIT License.
 
-![实时流镜 · 三列泳道 · 子代理分支 · 并行分组](https://raw.githubusercontent.com/Iwctwbh/dsh-flowglass/8bad41f1adafaa8878cfb1105883b7f489dd786c/docs/screenshot.png)
+![实时流镜 · 三列泳道 · 子代理分支 · 并行分组](https://raw.githubusercontent.com/Iwctwbh/dsh-flowglass/1ea3a3c0089b18bec2546a551255e1ddad2a513b/docs/screenshot.png)
 
 ## 流镜能做什么
 

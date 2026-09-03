@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
 </p>
 
 <div align="center">
@@ -77,27 +77,27 @@
 
 在「设置 → IM助理」按渠道添加账号。展开渠道后选择账号，在右侧独立配置工作区、模型、权限、私聊准入和接收状态：
 
-![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/settings-channels.png)
+![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/settings-channels.png)
 
 工作区左侧「任务 / 频道」分列。IM 会话只出现在「频道」：
 
-![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/workspace-channels.png)
+![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/workspace-channels.png)
 
 企业微信等渠道支持扫码快捷绑定：
 
-![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/wecom-qr.png)
+![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/wecom-qr.png)
 
 连上后，可在各 IM 里直接驱动本机助手：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/c90979c41aa3a46d142f909f41ad5d7cb8f0c77f/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/8d5309e968ec93a68dc0c3e9c973ad8832517e44/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
 </p>
 
 ## DSH 产品生态

@@ -21,19 +21,19 @@
 
 | Code:远端目录树 + 文件预览 | Issues 列表 |
 |---|---|
-| ![Code](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/01-code.png) | ![Issues](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/02-issues.png) |
+| ![Code](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/01-code.png) | ![Issues](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/02-issues.png) |
 
 | Issue 详情 + 评论/编辑/关闭 | Pull requests(checks 摘要 / 合并三法) |
 |---|---|
-| ![Issue Detail](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/03-issue-detail.png) | ![Pulls](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/04-pulls.png) |
+| ![Issue Detail](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/03-issue-detail.png) | ![Pulls](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/04-pulls.png) |
 
 | Actions(runs 列表,悬停 重跑/取消) | 仓库切换弹层(自动拉取 + 公开仓搜索) |
 |---|---|
-| ![Actions](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/05-actions.png) | ![Switcher](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/06-repo-switcher.png) |
+| ![Actions](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/05-actions.png) | ![Switcher](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/06-repo-switcher.png) |
 
 | ⚙ 设置(Token / 自动刷新 / 字号) |
 |---|
-| ![Settings](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/07b6d4f7861a3e7249dfbceb043a0eefc25dc71e/screenshots/07-settings.png) |
+| ![Settings](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/07-settings.png) |
 
 ## 🚀 核心能力
 
@@ -89,6 +89,12 @@ dsh plugin --profile web add .
 - 消费 [`ctx.betterSidebar`](https://github.com/omdsh-dev/DSH-better-sidebar/blob/main/docs/external-plugin-guide.md):`inject=['betterSidebar']`(cordis 访问授权)+ `package.json dsh.client.inject` 声明 bundle 依赖 `dsh-better-sidebar`(loader 加载顺序)——**两层缺一不可**,否则服务访问被代理拒绝或模块被跳过(踩坑实录见源码注释)
 - 根节点流式撑满 TabContent(不用 absolute inset:0,避免逃逸覆盖侧边栏框架)
 - 容器查询三档自适应(<600 抽屉态 / ≥720 / ≥1000);`visible=false` 时暂停轮询省配额
+
+## 📋 兼容性
+
+- DeepSeek Harness `0.1.1-rc.2` 与 `0.1.2-alpha.4`(web profile)
+- DSH `0.1.2-alpha.1` 起已删除 `@deepseek-ai/dsh-client-runtime`;本包从 0.2.4 起不再把它写进 `dsh.client.inject`
+- 升 alpha.4 时侧栏请用 `dsh-better-sidebar@alpha`(0.18.0-alpha.0);0.16.x 不兼容 alpha 线
 
 ## 🛠 开发
 

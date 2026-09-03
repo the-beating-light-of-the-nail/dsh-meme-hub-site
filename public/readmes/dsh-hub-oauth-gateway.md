@@ -3,7 +3,7 @@
 
 # dsh-hub-oauth-gateway
 
-**v1.11.1** · formerly `dsh-usage-stats`
+**v1.11.2** · formerly `dsh-usage-stats`
 
 **Local-first usage center for [DeepSeek Harness](https://github.com/deepseek-ai/dsh) Web.** Tokens, estimated cost, account balances, subscription quotas, trends, forecasts, alerts, and exports — plus coding-subscription OAuth (Grok Build, Codex, Kimi Code, Claude Code), an optional loopback API gateway, and opt-in local auth/usage monitoring. **No tokens in chat.**
 
@@ -17,7 +17,11 @@
 
 ---
 
-> **Upgrade / 升级：** Follow the versioned steps in [`docs/01-install.md`](docs/01-install.md). Hub `1.11.1` and Subscription `0.6.4` share the verified DSH `0.1.1-rc.2` contract and pin `dsh-coding-oauth-core@0.1.1` with `undici@7.29.0`. Keep profile, configuration, and credential files, update both plugins in the same Web profile, then restart the existing DSH Web process once. Core remains a shared npm dependency, not a separate DSH plugin.
+> **Upgrade / 升级：** Follow the versioned steps in [`docs/01-install.md`](docs/01-install.md). Hub `1.11.2` and Subscription `0.6.4` share the verified DSH `0.1.1-rc.2` contract and pin `dsh-coding-oauth-core@0.1.2` with `undici@7.29.0`. Keep profile, configuration, and credential files, update both plugins in the same Web profile, then restart the existing DSH Web process once. Core remains a shared npm dependency, not a separate DSH plugin. Published `dsh-coding-oauth-core@0.1.2` (helpers + subpath exports) is consumed from npm; Hub still keeps `vendor/dsh-coding-oauth-core` as the editable publish source.
+
+### Shared core `dsh-coding-oauth-core@0.1.2`
+
+Published on npm (`latest` = `0.1.2`). Hub and Subscription consume the registry package. `vendor/dsh-coding-oauth-core` remains the editable source for the **next** core release; operators publish future versions from that tree (agents must not run `npm login` / `npm publish`). See the [vendor core README](https://github.com/lninghaha/dsh-hub-oauth-gateway/blob/main/vendor/dsh-coding-oauth-core/README.md).
 
 ---
 
@@ -31,7 +35,7 @@ First published as **`dsh-usage-stats`**. The package and repository are now **`
 | GitHub / development | [`dsh-hub-oauth-gateway`](https://github.com/lninghaha/dsh-hub-oauth-gateway) | — |
 | Cordis plugin id | `usage-stats` | unchanged |
 | SQLite database | `${DSH_HOME}/storages/usage-stats-v1.sqlite` | unchanged |
-| CLI | `dsh-coding-oauth` | `dsh-grok-build` (alias) |
+| CLI | `dsh-hub-oauth` | `dsh-hub-grok-build` (alias). Subscription-owned `dsh-coding-oauth` / `dsh-grok-build` are not this package |
 
 Release history lives in [`CHANGELOG.md`](CHANGELOG.md).
 
@@ -51,34 +55,35 @@ Release history lives in [`CHANGELOG.md`](CHANGELOG.md).
 - **Optional loopback API gateway** — default-off OpenAI/Anthropic-compatible server for your own tools.
 - **Optional capabilities** — Codex search / images / usage / Fast and Grok Imagine default off; apply live.
 - **Opt-in local monitor** — read-only CLI auth snapshots and cross-tool token scans (never conversation content).
+- **Opt-in vendor status probes** — allowlisted public Statuspage GETs (default off; no credentials; isolated from Usage).
 - **Bilingual UI** — Chinese and English through DSH locale services.
 
-Product research: [`docs/research/usage-analytics-landscape.md`](docs/research/usage-analytics-landscape.md). Architecture: [`docs/02-architecture.md`](docs/02-architecture.md).
+Product research: [`docs/research/usage-analytics-landscape.md`](https://github.com/lninghaha/dsh-hub-oauth-gateway/blob/main/docs/research/usage-analytics-landscape.md). Architecture: [`docs/02-architecture.md`](docs/02-architecture.md).
 
 ## Screenshots
 
 Captured against DeepSeek Harness Web with this plugin installed (empty local history is normal for a fresh profile).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-hud.png" alt="Floating usage HUD on the DSH shell" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/5fa304df79c2e6ec96c6fed2d4e142cb23476080/docs/images/en/usage-center-hud.png" alt="Floating usage HUD on the DSH shell" width="760" />
   <br />
   <em>Floating HUD — today’s metric plus multi-account quota chips</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-peek.png" alt="Usage Center quick peek overlay" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/5fa304df79c2e6ec96c6fed2d4e142cb23476080/docs/images/en/usage-center-peek.png" alt="Usage Center quick peek overlay" width="760" />
   <br />
   <em>Quick Peek — compact 2×2 KPIs with a one-click jump to the full dashboard</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-dashboard.png" alt="Usage Center full dashboard" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/5fa304df79c2e6ec96c6fed2d4e142cb23476080/docs/images/en/usage-center-dashboard.png" alt="Usage Center full dashboard" width="760" />
   <br />
   <em>Full dashboard — ranges, tabs, refresh, and CSV / JSON export</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-settings.png" alt="Settings → Usage Center" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/5fa304df79c2e6ec96c6fed2d4e142cb23476080/docs/images/en/usage-center-settings.png" alt="Settings → Usage Center" width="760" />
   <br />
   <em>Settings → Usage Center — Display / Accounts / Gateway / Capabilities / Providers / Fees</em>
 </p>
@@ -153,7 +158,7 @@ Compatible installer when the plugin manager is missing: `npx --yes dsh-hub-oaut
 4. Configure Display / Accounts / Gateway / Capabilities / Providers / Fees under **Settings → Usage Center**.
 5. Costs are always estimates — watch the coverage percentage; unpriced tokens are not free.
 
-CLI: `dsh-coding-oauth login [--pkce] | import | status | logout` (`dsh-grok-build` is an alias).
+CLI: `dsh-hub-oauth login [--pkce] | import | status | logout` (`dsh-hub-grok-build` is an alias).
 
 ## Settings
 
@@ -216,6 +221,8 @@ Merge `config` under the existing Cordis entry — do not add a second entry:
         localUsage:
           enabled: false
           intervalMinutes: 30
+        statusProbes:
+          enabled: false
 ```
 
 Full field reference, monitors, proxy, and pricing import: [`docs/03-configuration.md`](docs/03-configuration.md) and [`docs/01-install.md`](docs/01-install.md). Legacy root `config.monitors` maps to `config.accounts.monitors` (do not set both).

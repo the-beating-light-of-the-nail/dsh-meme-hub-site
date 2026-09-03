@@ -1,7 +1,7 @@
 # DSH Browser Control
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/93fc107d9e62c5def4e2b42254549fe36cac0c22/extension/icons/icon128.png" width="100" alt="DSH Browser Control">
+  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/d7bcfdf79f554a623fad5fe01628224d891c6c4a/extension/icons/icon128.png" width="100" alt="DSH Browser Control">
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 Chrome 浏览器扩展 + DeepSeek Harness 插件，让 AI Agent 像人一样操控你的真实浏览器。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/93fc107d9e62c5def4e2b42254549fe36cac0c22/assets/banner.png" width="480" alt="DSH Browser Control — a whale searching Google with a mouse">
+  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/d7bcfdf79f554a623fad5fe01628224d891c6c4a/assets/banner.png" width="480" alt="DSH Browser Control — a whale searching Google with a mouse">
 </p>
 
 ## 这是什么
@@ -64,8 +64,8 @@ Chrome 扩展（CDP 驱动）
 
 | 文件 | 说明 |
 |---|---|
-| [DSH-Browser-Control-1.0.3.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.3/DSH-Browser-Control-1.0.3.zip) | Chrome 扩展（解压后加载） |
-| [dsh-browser-control-plugin-v1.0.3.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.3/dsh-browser-control-plugin-v1.0.3.zip) | dsh 插件（离线兜底，在线装直接用方式 A/B） |
+| [DSH-Browser-Control-1.0.5.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.5/DSH-Browser-Control-1.0.5.zip) | Chrome 扩展（解压后加载） |
+| [dsh-browser-control-plugin-v1.0.5.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.5/dsh-browser-control-plugin-v1.0.5.zip) | dsh 插件（离线兜底，在线装直接用方式 A/B） |
 
 ## 安装 Chrome 扩展（30 秒）
 
@@ -96,7 +96,7 @@ npm install @caob23/dsh-browser-control
 
 ```bash
 # 直接从 GitHub 安装
-dsh plugin --profile web add "github:caob23/dsh-browser-control#v1.0.3"
+dsh plugin --profile web add "github:caob23/dsh-browser-control#v1.0.5"
 
 # 本地目录调试（注意：必须显式 file: 前缀）
 dsh plugin --profile web add "file:D:\path\to\dsh-browser-control"

@@ -21,8 +21,8 @@
 ## ⚡ 三步快启（30 秒上手）
 
 ```bash
-# ① 装灵枢大脑（一条命令，零外部依赖；v0.4.0 完整自包含：核心+白箱+知识库随包）
-pip install aeis-0.4.0-py3-none-any.whl          # 或 git+ 在线安装
+# ① 装灵枢大脑（一条命令，零外部依赖；v0.5.0 完整自包含：核心+白箱+知识库随包）
+pip install aeis-0.5.0-py3-none-any.whl          # wheel 从 Releases 页下载，或 git+ 在线安装
 
 # ② 装进 DSH 的 web profile（pnpm 协调入口，不要用裸 npm install 装进 profile）
 dsh plugin --profile web add @furongjun1999/dsh-memory
@@ -57,9 +57,9 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 
 ## 🗺️ 功能使用教学 · 条件路由图
 
-**想做什么 → 找对应泳道 → 走条件边到功能**（流程图 = 认知图 = 条件路由图，**81 工具**全收录，[工具总表 → docs/灵枢MCP工具总表_v3.4.md](docs/灵枢MCP工具总表_v3.4.md)）：
+**想做什么 → 找对应泳道 → 走条件边到功能**（流程图 = 认知图 = 条件路由图，**82 工具**全收录，[工具总表 → docs/灵枢MCP工具总表_v3.4.md](docs/灵枢MCP工具总表_v3.4.md)）：
 
-[![灵枢使用教学认知图](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/2cbf1219f3f10c93f2e5b0afa42571733a291d3a/docs/lingshu_tutorial.html)](docs/lingshu_tutorial.html)
+[![灵枢使用教学认知图](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/a7921a0ff78e353f8d58819627e46cb1737c640e/docs/lingshu_tutorial.html)](docs/lingshu_tutorial.html)
 
 > 图中每条边 = 一个使用条件：比如「问知识」走 `wisdom_chat`（白箱优先），「验证说法」走 `wisdom_verify`（互维双通道），「记住信息」走 `remember`。找不到路径时用 `service_info` 看协议实例身份。
 
@@ -87,7 +87,7 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 
 - **Agent Plugins 1.0.0 兼容包**（主仓库 `CommonTrustProtocol/aeis/skills/`）：**688 个 Agent Skills**（六域条件单元：compiler 116 / pylang 122 / graph 117 / os 112 / browser 104 / net 117）
 - **比标准 Agent Skills 多 KCCS 四要素**：生效条件/子功能/执行/**不适用条件**（三通道：description「Not for」+ metadata.kccs.not_applicable + 正文克制条款）
-- **三层关系**：知识真源（条件单元库）→ 说明书（技能包——何时用/怎么用/克制什么）→ 执行（**本插件挂载的灵枢 MCP 81 工具**·物理基底裁决）
+- **三层关系**：知识真源（条件单元库）→ 说明书（技能包——何时用/怎么用/克制什么）→ 执行（**本插件挂载的灵枢 MCP 82 工具**·物理基底裁决）
 - 使用：任意符合 agentskills.io / agent-plugins.org 规范的 agent 可加载本技能包；Verification 由灵枢 MCP 执行
 
 ---
@@ -133,7 +133,7 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 - **零运行时依赖**：手写 stdio MCP 桥，与灵枢 D-005「核心零外部依赖」哲学一致——你拿到的是一个干净、可信、可审的大脑。
 - **动态 schema + 进程自愈**：工具清单运行时拉取（灵枢升级 DSH 零改动），Python 子进程崩溃自动指数退避重启。
 - **工具注册竞态补注册**：启动时 python 未就绪（竞态）→ 桥重连成功后自动补注册工具（2s 轮询），不再"工具永久缺失"。
-- **白箱 wisdom_* 全工具**（`tools: all`）：81 个 MCP 工具含 wisdom_verify/analyze/predict/trust_judge/compose/respond/chat 白箱族，Agent 可直接调用。
+- **白箱 wisdom_* 全工具**（`tools: all`）：82 个 MCP 工具含 wisdom_verify/analyze/predict/trust_judge/compose/respond/chat 白箱族，Agent 可直接调用。
 - **内容分级门控**：**拒绝一切涉及未成年人的性内容**（服务端关键词组合硬拦截——未成年人特征词 + 性内容词同时命中即拒绝，`route=refused`）；成人内容由前端本地弹窗提示（满 18 周岁 + 个人对话场景自述）。注：开源项目不实现身份认证/年龄核验（那是绑定身份系统的商业 App 范畴）；内容过滤保护的是"未成年人 + 性内容"组合的明文请求。
 
 ## 🧭 认知图使用方法 & 工作纪律（v1.1）
@@ -267,7 +267,7 @@ python -m aeis.mcp.server
 > 视角：**使用性**（普通用户/开发者体感）——「存、找、想、准、安」五维。
 > 评估基准：公开能力 + 设计者校准（2026-08-17）。灵枢分数经设计者核对（不虚高）。
 
-![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/2cbf1219f3f10c93f2e5b0afa42571733a291d3a/docs/memory_score.png)
+![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/a7921a0ff78e353f8d58819627e46cb1737c640e/docs/memory_score.png)
 
 （插图源文件：[memory_score.html](docs/memory_score.html)，可浏览器打开重新截图）
 
@@ -323,9 +323,9 @@ python -m aeis.mcp.server
 
 （B 站宣传素材：[封面](docs/promo/bilibili-cover.jpg) · [视觉图 ×5](docs/promo/)）
 
-## 🧰 工具清单（81 个 MCP 工具 · 全量）
+## 🧰 工具清单（82 个 MCP 工具 · 全量）
 
-灵枢 MCP server 注册 **81 个工具**，按心智功能分 11 大模块（智能论 v3.4：端口架构/锚定验证/认知图与条件路由/原生神经网络）。工具清单运行时动态拉取（灵枢升级 DSH 零改动），**完整总表（每个工具一条说明，不重复不遗漏）见 [docs/灵枢MCP工具总表_v3.4.md](docs/灵枢MCP工具总表_v3.4.md)**。下方为分类概览：
+灵枢 MCP server 注册 **82 个工具**，按心智功能分 11 大模块（智能论 v3.4：端口架构/锚定验证/认知图与条件路由/原生神经网络）。工具清单运行时动态拉取（灵枢升级 DSH 零改动），**完整总表（每个工具一条说明，不重复不遗漏）见 [docs/灵枢MCP工具总表_v3.4.md](docs/灵枢MCP工具总表_v3.4.md)**。下方为分类概览：
 
 ### 记忆（12）
 
@@ -371,6 +371,10 @@ insight_record / insight_verify / insight_report / insight_window
 
 web_search / web_ingest_search / export / service_info / designer_decide
 
+### 维护（1）
+
+nightly_cleanup（知识层夜间整理：分拣迁移无边孤岛→情境层+联想补边+情境层随机联想）
+
 > 每个工具的功能说明见工具总表（不重复、不遗漏）。
 
 > **引擎内部能力（按安全边界未挂载 MCP）**：condition_space_operate（条件空间 7 操作）、add_context（情境层写入）、code_test / compile_exec（代码执行）、lingshu_sensor_report / lingshu_vitality_report / lingshu_auto_snapshot / lingshu_rollback（自修改安全闭环）——存在于引擎中，但刻意不暴露给外部 Agent 调用。
@@ -378,14 +382,14 @@ web_search / web_ingest_search / export / service_info / designer_decide
 
 | 模式 | 暴露数 | 说明 |
 |---|---|---|
-| `'all'` | **68** | 81 个全量中排除 13 个**宿主级风险工具**（见下），含全部身体/视觉/白箱/角色/智慧之书能力 |
+| `'all'` | **68** | 82 个全量中排除 13 个**宿主级风险工具**（见下），含全部身体/视觉/白箱/角色/智慧之书能力 |
 | `'brain'`（默认） | **36** | 去掉身体的完整大脑：记忆/推理/认知/学习/飞轮/反思/摄取/生命周期/长期记忆门/服务，**不含**身体视觉与风险工具 |
 | `'core'` | **12** | 精选核心：remember/recall/search/timeline/think/relate/predict_routes/ingest_text/ingest_url/session_note/self_check/service_info |
 | 字符串数组 | 自定义 | 显式列出的工具名（不受风险名单限制，配置者已明确选择） |
 
 **`'all'` 也排除的宿主级风险工具（13 个）**——`run_command`（宿主命令执行）/ `designer_decide`（设计者裁决·fail-closed）/ `device_call`（外部设备）/ `see`·`world3d`·`vprim`·`visual_check`（身体视觉）/ `start_lifecycle`·`stop_lifecycle`（自主生命周期控制）/ `web_ingest_search`（网络写知识层）/ `role_create`·`role_import`·`role_block`（角色卡写入）。
 
-> 数字说明：MCP server 共注册 **81 个工具**（上面全量清单，运行时 tools/list 实测）；`'all'` 实际暴露 68 个（81-13 风险），`'brain'` 实际暴露 36 个，`'core'` 实际暴露 12 个。
+> 数字说明：MCP server 共注册 **82 个工具**（上面全量清单，运行时 tools/list 实测）；`'all'` 实际暴露 69 个（82-13 风险），`'brain'` 实际暴露 36 个，`'core'` 实际暴露 12 个。
 
 ## 架构
 
@@ -417,17 +421,17 @@ web_search / web_ingest_search / export / service_info / designer_decide
 
 ### 安装灵枢大脑（aeis 库）
 
-**方式 A：本地 wheel 离线安装 ★ 最稳（不依赖网络）**
+**方式 A：Release 下载 wheel 离线安装 ★ 最稳（不依赖网络）**
 
-在 `CommonTrustProtocol/aeis/dist/` 找到 `aeis-0.4.0-py3-none-any.whl`（**完整自包含发布版**）：
+从 [GitHub Releases](https://github.com/FuRongJun-1999/CommonTrustProtocol/releases) 下载 `aeis-0.5.0-py3-none-any.whl`（**完整自包含发布版**）：
 
 ```bash
-pip install aeis-0.4.0-py3-none-any.whl
+pip install aeis-0.5.0-py3-none-any.whl
 ```
 
-> **v0.4.0 起为完整自包含单包**（10.2MB / 343 条目）：灵枢核心（aeis）+ 白箱智慧模块（wisdom，含 **2846 个 KCCS 注释知识点 + 学科知识库**）+ 三入口（harness）+ 种子知识（seed_knowledge，智能论 3.3 + 116 学科卡）。单文件、离线可用、装一次管用——知识库随包分发，无需另装。
+> **v0.5.0 为完整自包含单包**：灵枢核心（aeis）+ 白箱智慧模块（wisdom，含 **2800+ 个 KCCS 注释知识点 + 学科知识库**）+ 三入口（harness）+ 种子知识（seed_knowledge，智能论 3.4 + 学科卡）。单文件、离线可用、装一次管用——知识库随包分发，无需另装。
 >
-> 遇到网络不稳（GitHub clone 失败）时首选本地 wheel。
+> 遇到网络不稳（GitHub clone 失败）时首选 wheel 离线安装。
 
 **方式 B：git 安装（需网络）**
 

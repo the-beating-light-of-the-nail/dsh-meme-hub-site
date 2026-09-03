@@ -10,7 +10,13 @@
   **可选依赖**：未安装 dsh-better-sidebar 时自动回退旧「中央文件编辑页签」形态（插件零新依赖仍完整可用），
   并在编辑器顶部与设置页「兼容性」子 Tab 引导安装（`dsh plugin --profile web add dsh-better-sidebar`）。
   文件页签（脏点/关闭/「+」打开）+ `Ctrl+P` 快速打开（QuickOpen）+ **Monaco Editor**
-  （语法高亮/行号/`Ctrl+F`/`Ctrl+G`/`Ctrl+S`/700ms 防抖自动保存）+ 顶部工具栏（路径/语言/Ln,Col/保存状态/差异/侧边栏/刷新）。
+  （语法高亮/行号/`Ctrl+F`/`Ctrl+G`/`Ctrl+S`/700ms 防抖自动保存）+ 顶部工具栏（路径/语言/Ln,Col/保存状态/差异/侧边栏/刷新）
+  + **导航历史**（后退/前进：跨文件恢复焦点位置，工具栏 `←`/`→` 按钮、键盘 `Alt+←/→` 与 `Ctrl+Alt+-`/`Ctrl+Shift+-`、
+  鼠标侧键 XButton 均可触发；后退后新导航自动清空前进栈）。
+- **LSP 智能（编辑器内）**：`F12`/右键「转到定义」+ `Shift+F12`「查找所有引用」+ `Ctrl+点击` 引用导航
+  （0 条→定义兜底、1 条→直接跳转、多条→原生 References Peek）+ `Ctrl+hover` 可导航标识符下划线提示；
+  定义查找带降级链（definition → declaration → 引用推导），参数/局部变量（`this`、`pTarget` 这类）
+  同样能跳到声明，不再只有方法可用。
 - **差异审查**：Host 捕获 agent 的 `edit`/`write`（`tools/result`），客户端统一使用**唯一一个挂在 DSH `conversation.input.dock` 的 DiffBox 实例**：
   编辑器未打开时显示紧凑「差异 N 个文件 · 查看下一个」按钮（点击自动打开侧栏编辑器并聚焦差异）；编辑器打开后 dock 切换为
   完整操作条（Keep / Undo / 跳转 / 回滚 / 归档对比），不会再出现第二个差异栏。header 差异角标 +
@@ -32,15 +38,15 @@
 
 ## 界面截图
 
-![侧边栏编辑形态：AI 对话与文件编辑同屏](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/8d8c1a72ffb3417a0187f7051d287e495d98b994/docs/screenshots/img1.png)
+![侧边栏编辑形态：AI 对话与文件编辑同屏](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/0f5f29d18afb9eb09f3ee1f66c271d9e1497ae75/docs/screenshots/img1.png)
 
 > dsh-vscode-mode 侧边栏编辑形态：betterSidebar 右侧栏内的 Monaco 文件编辑器与中央 AI 对话同屏，
 > 差异条统一挂在对话输入框上方的原生 dock（编辑器未打开=「差异 N 个文件 · 查看下一个」，
 > 打开后=完整 Keep / Undo 操作条）。
 
-![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/8d8c1a72ffb3417a0187f7051d287e495d98b994/docs/screenshots/img2.png)
+![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/0f5f29d18afb9eb09f3ee1f66c271d9e1497ae75/docs/screenshots/img2.png)
 
-![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/8d8c1a72ffb3417a0187f7051d287e495d98b994/docs/screenshots/img3.png)
+![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/0f5f29d18afb9eb09f3ee1f66c271d9e1497ae75/docs/screenshots/img3.png)
 
 ## 安装（官方 `dsh plugin` 方式，三选一）
 

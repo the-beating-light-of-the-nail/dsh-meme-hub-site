@@ -5,7 +5,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-zh-dark.svg">
-    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/168dafd8f3bdc6520e50569c80d8c7b633ac7e50/docs/banner-zh.svg" alt="DSH DeepSeek Monitor" width="720">
+    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/f184efbf2b6ceea5b5d88c2609ac4340caa33f39/docs/banner-zh.svg" alt="DSH DeepSeek Monitor" width="720">
   </picture>
 </p>
 
@@ -21,11 +21,11 @@
 DeepSeek Harness（dsh）Web 插件：把 [DeepSeekMonitorWindows](https://github.com/HaoyueQin/DeepSeekMonitorWindows) 的**余额与用量监控**能力移植进 dsh —— 集成到「设置 → 模型 → DeepSeek」供应商卡片内，并在输入框工具行（模型名称左侧）显示实时余额。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/168dafd8f3bdc6520e50569c80d8c7b633ac7e50/docs/demo-zh.svg" alt="demo" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/f184efbf2b6ceea5b5d88c2609ac4340caa33f39/docs/demo-zh.svg" alt="demo" width="720">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/168dafd8f3bdc6520e50569c80d8c7b633ac7e50/docs/images/account-details-panel.png" alt="账户明细面板预览" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-deepseek-monitor/f184efbf2b6ceea5b5d88c2609ac4340caa33f39/docs/images/account-details-panel.png" alt="账户明细面板预览" width="720">
 </p>
 
 > 截图：设置 → 模型 → DeepSeek 卡片展开的「账户明细」面板（余额卡 / 模型用量行 / 每日堆叠柱状图），以及名称旁的余额 chip 与「账户明细」按钮。
@@ -66,6 +66,11 @@ dsh plugin --profile <name> add dsh-deepseek-monitor@latest
 ```
 
 > 已在 npm 发布：[dsh-deepseek-monitor](https://www.npmjs.com/package/dsh-deepseek-monitor)。也可以从 [GitHub Releases](https://github.com/HaoyueQin/dsh-deepseek-monitor/releases) 下载 `dsh-deepseek-monitor-<version>.tgz`，通过本地 profile / 注入器方式装载。
+
+## 版本兼容
+
+- **支持 DeepSeek Harness ≥ 0.1.2-rc.1**（`dsh.plugin.json` 的 `engines.dsh` 与此声明一致，peer 范围为 `^0.1.2-rc.1`）。
+- **旧版 DeepSeek Harness 用户**（0.1.1-rc.x / 0.1.2-alpha.x 及更早）：请安装本插件的**旧版本**（例如 [v0.1.4](https://github.com/HaoyueQin/dsh-deepseek-monitor/releases/tag/v0.1.4)），旧版插件仅适配这些内核。
 
 ## 开发
 

@@ -4,7 +4,7 @@
 
 > Every session type has a defined destination: finished one-shot subagents are archived automatically, idle continuable subagents / main sessions are archived, and overflow is recycled by priority. **Archive first (recoverable), delete after expiry** — the GUI syncs within 30s, fully panel-configured with hot reload.
 
-[简体中文](README.zh-CN.md) · [Apache-2.0](LICENSE) · [npm](https://www.npmjs.com/package/dsh-session-pruner)
+[简体中文](README.zh-CN.md) · [Apache-2.0](LICENSE) · [npm](https://www.npmjs.com/package/dsh-session-pruner) · [![npm version](https://img.shields.io/npm/v/dsh-session-pruner.svg)](https://www.npmjs.com/package/dsh-session-pruner) · [Changelog](CHANGELOG.md)
 
 ## Why
 
@@ -25,7 +25,7 @@ Managing session lifecycle (this plugin) is the root fix: no session accumulatio
 | **any type** | total exceeds capacity cap | recycle by `one-shot → continuable → main` + oldest | 400 |
 | **archive directory** | kept over N hours | physically deleted | 24 hours |
 
-> **行为说明（v0.3+）**：one-shot 子代理统一按 `oneShotMinAgeMinutes`（默认 3 分钟）闲置阈值归档，有/无 end-seed 阈值一致。早期版本中「未写 end-seed 的 one-shot 需闲置满 1 小时才归档」的兜底已移除。
+> **Behavior note (v0.2.3+)**: one-shot subagents are archived uniformly by the `oneShotMinAgeMinutes` idle threshold (default 3 minutes), with or without end-seed. The earlier fallback — "one-shot sessions without end-seed must stay idle a full hour before archiving" — has been removed.
 
 ### Archive mechanism (recoverable)
 
@@ -34,6 +34,11 @@ Cleaned sessions are **moved to `~/.dsh/sessions-archive/`** first (workspace/se
 ```sh
 # Restore: mv back into the sessions directory
 mv ~/.dsh/sessions-archive/<workspace>/<session-id> ~/.dsh/sessions/<workspace>/
+
+# ⚠️ After restoring, pin it (or open it) immediately — until the session is
+# opened it is not live-protected, and an idle hit (e.g. one-shot over the
+# threshold, main over mainIdleDays) within one scan cycle may archive it again.
+# Add its session ID to the "Pin whitelist" field in the settings card.
 ```
 
 A "delete directly" mode (no archive, irreversible) is also available.
@@ -59,7 +64,7 @@ Dual-track triggers (events = hot path, disk = source of truth)
         │     ├─ origin: main | subagent       (session header)
         │     ├─ mode: one-shot | continuable  (subagent/descriptor event)
         │     └─ ended: contains session/end-seed
-        ├─ one-shot + ended ──→ archive (archiveMode)
+        ├─ one-shot idle over threshold ──→ archive (archiveMode)
         ├─ continuable/main idle N days ──→ archive
         ├─ total > cap ──→ recycle by priority + oldest (skip running/live)
         └─ each archive also: purge projcache row + workspace accounting
@@ -89,11 +94,15 @@ dsh plugin --profile web add dsh-session-pruner
 dsh plugin --profile web add /path/to/dsh-session-pruner
 ```
 
-Restart dsh web after install (`launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh-web`).
+After installing (or upgrading), restart the dsh web daemon to load the new
+version (`launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh-web`) — config
+changes alone hot-reload without restart.
 
 ## Configuration (settings panel, hot reload)
 
-After install, open **Settings → Plugins → 会话生命周期管理** card. All 9 options save with hot reload (no restart):
+![settings panel](https://raw.githubusercontent.com/mrzhangkris/dsh-session-pruner/f14186ed25909cb21fbb15c910ed8575243696e1/docs/screenshot-settings.png)
+
+After install, open **Settings → Plugins → 会话生命周期管理** card. All 10 options save with hot reload (no restart). Six everyday options are visible by default; the four low-frequency fallbacks are tucked into an "Advanced" collapsible section (its title shows an unsaved-changes badge when applicable):
 
 | Field | Default | Description |
 |---|---|---|
@@ -106,8 +115,12 @@ After install, open **Settings → Plugins → 会话生命周期管理** card. 
 | Main idle archive (days) | 0 | archive after N idle days, 0 = off |
 | Clean main on overflow | off | main participates in capacity recycling |
 | One-shot min survival (min) | 3 | newly finished subagents are not cleaned within N minutes (protects finishing/references) |
+| Pin whitelist (session IDs, one per line) | empty | pinned sessions are never auto-cleaned (pin restored sessions immediately) |
 
-Env vars (fallback, panel wins): `DSH_SESSION_PRUNER_INTERVAL_MS` / `_MAX` / `_CLEAN_MAIN` / `_ARCHIVE_HOURS` / `_ARCHIVE_MODE` / `_CONTINUABLE_IDLE_DAYS` / `_MAIN_IDLE_DAYS` / `_ONE_SHOT_MIN_AGE_MINUTES`.
+The card also shows a live **status line** (30s poll): archive count + earliest
+expiry, session total (+ overflow), last cleanup (count + time), pinned count.
+
+Env vars (fallback, panel wins): `DSH_SESSION_PRUNER_INTERVAL_MS` / `_MAX` / `_CLEAN_MAIN` / `_ARCHIVE_HOURS` / `_ARCHIVE_MODE` / `_CONTINUABLE_IDLE_DAYS` / `_MAIN_IDLE_DAYS` / `_ONE_SHOT_MIN_AGE_MINUTES` / `_PINNED_IDS` (comma-separated).
 
 ## Logs
 
@@ -115,7 +128,7 @@ Output in guard `server-*.out.log`:
 
 ```
 [dsh-session-pruner] armed: interval=60min cap=400 cleanMain=false
-[dsh-session-pruner] hot-reloaded: interval=60min cap=400 ... contIdle=0d mainIdle=0d
+[dsh-session-pruner] hot-reloaded: interval=60min cap=400 ... contIdle=0d mainIdle=0d pinned=0
 [dsh-session-pruner] archived a1b2c3d4 (subagent/one-shot) one-shot idle cache=true
 [dsh-session-pruner] archive pruned: 2 expired
 ```
@@ -125,8 +138,10 @@ Output in guard `server-*.out.log`:
 ## Tests
 
 ```sh
+npm test               # regression suite: audit PoC checks + full e2e (isolated tmp DSH_HOME)
 node test/dry-run.js   # read-only full-library scan, verify classification (no deletion)
 node test/e2e.js       # create a fake one-shot session, verify the real cleanup path
+node test/poc-audit.js # audit regression: ended misjudgment / dual-source drift / archive orphans / pin
 ```
 
 ## Implementation notes
@@ -134,16 +149,20 @@ node test/e2e.js       # create a fake one-shot session, verify the real cleanup
 - **Multi-frame zstd**: DSH session logs are concatenated zstd frames (append writes); Node `zlib` decodes a single frame only, so the plugin shells out to the system `zstd` CLI (`brew install zstd` on macOS)
 - **Cache row purge**: `storageDomain.get('session_projcache').table('sessions').delete(id)` — the official write chain (atomic persistence + in-memory sync)
 - **Workspace accounting**: the session id is removed from the workspace domain on archive, keeping the data source consistent with disk
-- **Zero npm deps**: plain Node built-ins + cordis runtime injection
+- **Zero bundled deps**: runtime modules (`@deepseek-ai/dsh-settings`, `schemastery`) are provided by the DSH host; the plugin ships no dependencies of its own
 - **Panel + hot reload**: `installSettingsSection` + hand-written client card (`__ModuleLoader__` bundle), `onChange` re-schedules the timer instantly
 
 ## Developer guide
 
-[`docs/DEVELOPMENT-GUIDE.md`](docs/DEVELOPMENT-GUIDE.md) — DSH plugin development practice guide (architecture, Host/Client, settings panel, deployment ops, 10 pitfalls with fixes), the foundation for future plugin work.
+- [`docs/DEVELOPMENT-GUIDE.md`](docs/DEVELOPMENT-GUIDE.md) — DSH plugin development practice guide (architecture, Host/Client, settings panel, deployment ops, pitfalls with fixes), the foundation for future plugin work
+- [`docs/DESIGN.md`](docs/DESIGN.md) — design decisions and rationale (three-tier strategy, dual-track triggers, fail-closed safety, invariants)
+- [`docs/TESTING.md`](docs/TESTING.md) — test matrix, verification pyramid (V0/V2/V3), release checklist
+- [`docs/PROJECT-STATUS.md`](docs/PROJECT-STATUS.md) — current status snapshot and backlog, for new contributors/sessions
 
 ## Known limits
 
-- A finished one-shot subagent survives at most one scan interval
+- If completion events are lost (host restart mid-run), a finished one-shot subagent is only picked up by the next reconcile scan — worst case one `intervalMinutes` (default 60min)
+- Restored (mv-back) sessions are not live-protected until opened — pin them to survive the window (see Archive mechanism)
 - Requires the system `zstd` CLI
 - The root fix lives upstream: projcache stale-session eviction / incremental storage writes, see [deepseek-harness Discussion #1550](https://github.com/deepseek-ai/deepseek-harness/discussions/1550)
 

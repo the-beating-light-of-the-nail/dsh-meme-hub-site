@@ -29,11 +29,11 @@ DeepSeek Harness 音乐/小说播放插件。
 
 | 播放本地音乐 | 播放QQ音乐 |
 |:---:|:---:|
-| ![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/ba8cde673726e0adae140bc2debc044b9d763317/assets/screenshot-bar.png) | ![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/ba8cde673726e0adae140bc2debc044b9d763317/assets/screenshot-qq.png) |
+| ![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-bar.png) | ![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-qq.png) |
 | 播放酷狗音乐 | AI讲书 |
-| ![播放酷狗音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/ba8cde673726e0adae140bc2debc044b9d763317/assets/screenshot-kg.png) | ![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/ba8cde673726e0adae140bc2debc044b9d763317/assets/screenshot-spectrum.png) |
+| ![播放酷狗音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-kg.png) | ![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-spectrum.png) |
 | QQ音乐面板 | 酷狗音乐面板 |
-| ![播放面板1](https://raw.githubusercontent.com/kendu76/dsh-music-player/ba8cde673726e0adae140bc2debc044b9d763317/assets/screenshot-panel-qq.png) | ![播放面板2](https://raw.githubusercontent.com/kendu76/dsh-music-player/ba8cde673726e0adae140bc2debc044b9d763317/assets/screenshot-panel-kg.png) |
+| ![播放面板1](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-panel-qq.png) | ![播放面板2](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-panel-kg.png) |
 
 ## 安装
 
