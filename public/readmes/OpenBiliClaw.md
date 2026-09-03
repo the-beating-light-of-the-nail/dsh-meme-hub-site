@@ -48,7 +48,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
+  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
 </p>
 
 ## 快速开始
@@ -65,16 +65,28 @@
 3. **连接来源** —— 在装了插件的浏览器登录 [B 站](https://www.bilibili.com)（默认初始化来源），或改选小红书 / 抖音 / YouTube / X / 知乎 / Reddit / Linux.do / V2EX / 微博；Linux.do、Bangumi、V2EX 与微博均可做公开发现，登录 Linux.do、V2EX 或微博后还能在初始化时只读导入个人信号，Bangumi 可用公开用户名初始化画像。微博公开发现无需登录，个人收藏 / 关注 / 互动初始化需要已登录微博浏览器态。
 4. **打开界面** —— 浏览器访问 `http://127.0.0.1:8420/web`；手机扫插件二维码打开 `http://<电脑局域网 IP>:8420/m/`，保存到主屏幕即可当 App 用；想要原生 App 体验，可安装独立仓库的 [Flutter 客户端](https://github.com/whiteguo233/OpenBiliClaw-mobile)（Android / iOS / Web / 桌面，安装包见 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw-mobile/releases/latest)），在设置里填后端地址即可连接同一后端。
 
+不在同一局域网时，`OpenBiliClaw-mobile` 的 **Android / iOS 原生 App** 已内嵌 `tsnet`，电脑端
+也可让 OpenBiliClaw 自己加入同一 tailnet；Web / Linux / macOS / Windows Flutter 客户端不在
+该能力范围。桌面安装包内置 helper；在电脑本机打开桌面 Web 或浏览器插件的
+「设置 → 通用 → 应用内 Tailnet 远程访问」，开启后可选择留空走网页登录、填写
+`tskey-auth-…` Auth Key，或填写带授权设备 tag 的 `tskey-client-…` OAuth Client Secret，
+然后完整重启应用。凭据只在本机私有暂存到下一次启动，不进入 `config.toml`、API 回显或日志。
+源码 / 一句话安装则先运行
+`openbiliclaw tailnet build-helper`（需要 Go 1.26.6），再运行 `openbiliclaw tailnet enable`
+并重启。电脑无需安装或全局开启系统 Tailscale；入口默认关闭、只在 tailnet 私网可见，
+不启用 Funnel/Serve，建议同时在本机 Web 设置中开启应用密码（源码安装也可执行
+`openbiliclaw set-password`）。详见[应用内 Tailnet](docs/modules/tailnet.md)。
+
 ## 用户交流群
 
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
       <b>QQ 用户群</b>
     </td>
     <td align="center" width="50%">
-      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
+      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
       <b>Discord 社区</b><br/>
       <sub>扫码或<a href="https://discord.gg/PU6Xgch8yg">点击加入</a>，链接长期有效</sub>
     </td>
@@ -121,22 +133,22 @@
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-recommend.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-recommend.png" width="200" /><br/>
       <b>智能推荐</b><br/>
       <sub>像朋友一样解释为什么你会喜欢</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
       <b>灵魂画像</b><br/>
       <sub>自然语言描述的深度人格分析</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-traits.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-profile-traits.png" width="200" /><br/>
       <b>结构化特质</b><br/>
       <sub>MBTI · 核心特质 · 深层需求</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-chat.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-chat.png" width="200" /><br/>
       <b>对话调教</b><br/>
       <sub>聊天告诉它你想看什么</sub>
     </td>
@@ -150,19 +162,19 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/desktop-home.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/desktop-home.png" width="480" /><br/>
       <b>桌面推荐首页</b><br/>
       <sub>惊喜推荐 Hero · 为你推荐网格 · 朋友式推荐理由</sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/desktop-cards.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/desktop-cards.png" width="480" /><br/>
       <b>推荐卡片网格</b><br/>
       <sub>封面 + 推荐理由 · 喜欢 / 不感兴趣 / 稍后 / 收藏 / 聊一聊</sub>
     </td>
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/desktop-profile.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/desktop-profile.png" width="480" /><br/>
       <b>画像 + 实时看板</b><br/>
       <sub>侧栏 Runtime 看板 + 后台动态 · 人格素描 · 核心特质 · MBTI 推断</sub>
     </td>
@@ -174,18 +186,18 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/mobile-recommend.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/mobile-recommend.png" width="210" /><br/>
       <b>手机推荐页</b><br/>
       <sub>惊喜推荐 + 池子状态 · 朋友式推荐原因</sub><br/>
       <sub>看看 / 喜欢 / 稍后 / 收藏 / 不感兴趣 / 聊一聊</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/mobile-profile.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/mobile-profile.png" width="210" /><br/>
       <b>手机画像页</b><br/>
       <sub>人格素描 · 核心特质 · 深层需求 · MBTI</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/mobile-chat.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/mobile-chat.png" width="210" /><br/>
       <b>手机对话页</b><br/>
       <sub>与插件共享主聊天历史</sub>
     </td>
@@ -200,17 +212,17 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
       <b>推荐反馈</b><br/>
       <sub>点赞 / 多来点 / 少来点 / 没兴趣</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-values.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-profile-values.png" width="200" /><br/>
       <b>价值偏好与兴趣</b><br/>
       <sub>内在驱动力 · 猜测兴趣方向</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/a54719020d7796a7364163569ec37fe4c79296e8/docs/images/screenshot-profile-style.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/bc5c2ea5399bda4eb7244c4f472b0b57d45239b9/docs/images/screenshot-profile-style.png" width="200" /><br/>
       <b>认知风格</b><br/>
       <sub>信息处理偏好 · 内容口味</sub>
     </td>
@@ -302,7 +314,10 @@ npm run package:firefox        # 额外打成未签名 openbiliclaw-extension-v*
 - **macOS**：从发布页下载与你的 Mac 匹配的 DMG：Apple 芯片用 `OpenBiliClaw-macos-v*-arm64.dmg`；Intel 用 `OpenBiliClaw-macos-v*-x64.dmg`（如发布页提供）。打开后推荐双击 `安装并启动 Install OpenBiliClaw.command`：它会校验新包、退出旧实例、原子替换「应用程序」中的 app，再启动刚安装的版本；传统拖拽仍可用，但升级时需先退出旧版并在替换后手动重开。
 - **Windows**：下载 `OpenBiliClaw-windows-*-Setup.exe`，双击安装。安装或升级成功后，安装器会结束旧实例并从安装目录自动启动刚安装的新版本（静默安装也一样）。
 
-安装包自带本地 Ollama + `bge-m3` embedding，开箱即用；也内置默认内容源依赖，包括 X 的 `twitter-cli` 和 Reddit 的 `rdt-cli`（Reddit rdt 命令后端会优先使用已连接插件同步的 `reddit_session`，插件不可用时可手动运行 `rdt login`，未登录会 fallback 插件）。启动后常驻 **macOS 菜单栏 / Windows 系统托盘**，右键可「打开 Web 界面 / 查看运行日志 / 退出」。数据与 AI / 脚本安装复用同一个目录：`~/OpenBiliClaw`（macOS / Linux）/ `%USERPROFILE%\OpenBiliClaw`（Windows），升级或卸载不会动它；旧安装包曾写入的 `~/Library/Application Support/OpenBiliClaw` / `%LOCALAPPDATA%\OpenBiliClaw` 会在新版本首次启动时非覆盖拷贝回来。若 `config.toml` / `config.local.toml` 损坏导致启动失败，桌面包会把坏文件备份为 `*.invalid` 并重新生成默认配置，随后打开 `/setup/` 重新初始化；`data/` 不会被删除。
+macOS 主应用继续以 10.15+ 为兼容目标；只有 Go 1.26.6 构建的可选 Tailnet helper 实测要求
+macOS 12+。10.15 / 11 会只降级远程 Tailnet，本机应用功能仍照常。
+
+安装包自带本地 Ollama + `bge-m3` embedding，开箱即用；也内置默认内容源依赖，包括 X 的 `twitter-cli`、Reddit 的 `rdt-cli`，以及默认关闭的应用内 Tailnet helper。后者让电脑端应用自己加入用户的 tailnet，不安装系统 Tailscale。请在电脑本机的桌面 Web 或浏览器插件「设置 → 通用」中开启 Tailnet，选择网页登录、Auth Key 或 OAuth Client Secret 入网并完整重启；OAuth 方式还需填写该 OAuth Client 已获准使用的设备 tag。Reddit rdt 命令后端会优先使用已连接插件同步的 `reddit_session`，插件不可用时可手动运行 `rdt login`，未登录会 fallback 插件。启动后常驻 **macOS 菜单栏 / Windows 系统托盘**，右键可「打开 Web 界面 / 查看运行日志 / 退出」。数据与 AI / 脚本安装复用同一个目录：`~/OpenBiliClaw`（macOS / Linux）/ `%USERPROFILE%\OpenBiliClaw`（Windows），升级或卸载不会动它；旧安装包曾写入的 `~/Library/Application Support/OpenBiliClaw` / `%LOCALAPPDATA%\OpenBiliClaw` 会在新版本首次启动时非覆盖拷贝回来。若 `config.toml` / `config.local.toml` 损坏导致启动失败，桌面包会把坏文件备份为 `*.invalid` 并重新生成默认配置，随后打开 `/setup/` 重新初始化；`data/` 不会被删除。
 
 > ⚠️ **macOS 安全阻挡（应用尚未签名 / 公证）**：
 > - 当前 Release 是 ad-hoc signed、未 notarized。首次打开安装助手或应用时如果提示“无法验证开发者”或“未经安全验证”，请右键 / Control-click 对应项目 →「打开」→ 在弹窗里再点「打开」；也可以到「系统设置 → 隐私与安全性」点击「仍要打开」。
@@ -328,6 +343,10 @@ npm run package:firefox        # 额外打成未签名 openbiliclaw-extension-v*
 
 AI 助手会克隆仓库、安装依赖、用局域网可访问的默认绑定启动后端（`0.0.0.0:8420`）、做健康检查，并问几个有默认值的问题。自动初始化前会真实验证全局 LLM 实例链和独立 embedding 服务；有一个不通就先停下让你修配置。小红书、抖音、YouTube、X、知乎、Reddit、Linux.do、V2EX 与微博数据只有你明确同意才会进入初始画像；微博个人事件需要已登录微博浏览器和扩展，公开发现仍可匿名进行。
 
+源码安装默认不编译 Tailnet helper。只有用户明确需要 Android / iOS 原生 App 跨网络访问时，安装 Go 1.26.6
+并在 checkout 中运行 `openbiliclaw tailnet build-helper`、`openbiliclaw tailnet enable`，然后
+完整重启；只在局域网使用不需要这一步。Docker 首版镜像不内置该 helper。
+
 Chrome Web Store / AMO 发布包默认只声明本机后端权限。让插件连接局域网另一台机器或远程域名时，在设置里选择协议并填写地址，浏览器会请求该 `scheme://host/*` 的可选权限；WebExtension host permission 无法跨浏览器限定端口，但实际请求仍固定到配置端口。公网地址强制 HTTPS。后端需先用 `ext-key generate` 和 `ext-key enable` 开启默认关闭的设备认证。
 
 有公网域名时，最短路径是叠加 [`docker-compose.https.yml`](docker-compose.https.yml)，由 Caddy 自动申请和续期证书；PC、手机和插件共用 `https://<域名>`。命令与安全门禁见 [HTTPS 部署指南](docs/https-deployment.md)。
@@ -346,7 +365,7 @@ openbiliclaw start
 
 - **桌面端**：浏览器直接访问 `http://127.0.0.1:8420/web`（或 `http://127.0.0.1:8420/`，自动跳转）。大屏两栏布局，推荐流、30 天历史、画像、聊天、消息和设置全在一页。
 - **移动端**：点击插件顶部的手机图标扫二维码，或手动输入 `http://<电脑局域网 IP>:8420/m/`。适合手机上刷推荐、回看 30 天历史、看画像和与阿B聊天。
-- **Flutter 原生客户端**：从 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw-mobile/releases/latest) 下载 Android APK（新机型选 `arm64-v8a`，老设备选 `armeabi-v7a`）直接安装，或下载 iOS 未签名 IPA 用个人 Apple 账号重签；装好后右上角设置里填后端 IP / 端口即可连接同一后端（Web / iOS / macOS 默认 `127.0.0.1:8420`，Android 模拟器默认 `10.0.2.2:8420`，真机填电脑局域网 IP，远程部署填服务器 IP 并建议开启密码门禁）。
+- **Flutter 原生客户端**：从 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw-mobile/releases/latest) 下载 Android APK（新机型选 `arm64-v8a`，老设备选 `armeabi-v7a`）直接安装，或下载 iOS 未签名 IPA 用个人 Apple 账号重签；装好后右上角设置里填后端 IP / 端口即可连接同一后端。局域网仍填电脑 IP；跨网络时 Android / iOS App 已内嵌 tsnet，可配合电脑端默认关闭的应用内 Tailnet 使用，两端加入同一 tailnet 后走 MagicDNS / Tailnet IP，无需电脑全局开 Tailscale，并建议开启应用密码。这里不包括该仓库的 Web / Linux / macOS / Windows Flutter 构建。
 
 > 首次运行 `openbiliclaw init` 时会询问是否允许局域网访问（默认 Y）。如果选了 N 或想改回来，编辑 `config.toml` 的 `[api].host`（`0.0.0.0` = 通过可用的 IPv4 / IPv6 局域网访问，`127.0.0.1` = 仅本机）。二维码优先使用 IPv4；仅有 IPv6 时会自动生成带方括号的 IPv6 地址。
 
@@ -413,7 +432,7 @@ OpenBiliClaw 不保存你的平台密码，也不替你绕过登录。需登录�
 | **Bangumi** | 无需登录；可选填公开用户名读取公开收藏，或填个人令牌读取私密收藏；插件在 bgm.tv / bangumi.tv 仅做账号身份自动识别（不读 Cookie、不采集浏览行为） | 未填用户名时不能把 Bangumi 作为唯一画像初始化来源，但匿名 search / ranked / 按日期 discovery 仍可用 |
 | **V2EX** | 无需登录；可选填 PAT；guided init / 增量任务在扩展中读取本人主题、本人回复、收藏主题和收藏 Node 的公开渲染字段 | 未连接扩展时仍可匿名 search / node / tab / hot / latest discovery；收藏 scope 需要实际登录态 |
 
-小红书、抖音、YouTube、知乎和 Linux.do 走 Chrome 插件任务链路，Reddit 日常 discovery 默认走随后端安装的 rdt-cli、初始化信号仍走插件，X 的 discovery 走服务端 cookie 重放；这些读取链路都不需要你额外启动 CDP 调试 Chrome。Linux.do 上游请求全部在真实站点 tab 内以同源 GET 执行，`_t` 只作登录布尔，Cookie 值和原始响应不会上传。Reddit/X、YouTube、小红书、抖音与知乎原生保存 executor 已 6/6 接入并通过 fixture 测试；2026-07-14 的真实账号回归中，六平台 favorite 与 watch-later/fallback 均得到 `synced/already_synced`。Linux.do 不提供任何站内写回。`[sources.browser].cdp_url` 只保留给通用 Web / 自定义网页源的浏览器抓取场景。
+小红书、抖音、YouTube、知乎和 Linux.do 走 Chrome 插件任务链路，Reddit 日常 discovery 默认走随后端安装的 rdt-cli、初始化信号仍走插件，X 的 discovery 走服务端 cookie 重放；这些读取链路都不需要你额外启动 CDP 调试 Chrome。Linux.do 上游请求全部在真实站点 tab 内以同源 GET 执行，`_t` 只作登录布尔，Cookie 值和原始响应不会上传。Reddit/X、YouTube、小红书、抖音与知乎原生保存 executor 已 6/6 接入并通过 fixture 测试。YouTube 使用命名播放列表；当前知乎使用全局 `收藏 / 已收藏` 开关，目标显示为 `知乎收藏`，初始“已收藏”和新文档确认都严格只读，扩展不会盲目再次点击收藏。Linux.do 不提供任何站内写回。`[sources.browser].cdp_url` 只保留给通用 Web / 自定义网页源的浏览器抓取场景。
 
 </details>
 
@@ -607,6 +626,7 @@ OpenClaw 收到 `interest.probe` 事件（或主动拉取 `next-probe`），发�
 - 🕘 **30 天内容历史** — 插件、桌面与移动端统一显示点开过、出现未点和最近移除；按页懒加载封面，移除的本地收藏 / 稍后看可一键恢复
 - 🧩 **浏览器插件** — Chrome / Edge / Brave / Arc / Firefox / Safari，侧边栏推荐 + 跨站行为采集，装上就能用
 - 📱 **Flutter 原生客户端** — 独立仓库 [OpenBiliClaw-mobile](https://github.com/whiteguo233/OpenBiliClaw-mobile)，Android / iOS / Web / Linux / macOS / Windows 连接同一本地后端；B 站封面 CDN 直连省两跳
+- 🛜 **应用内 Tailnet 远程访问** — `OpenBiliClaw-mobile` Android / iOS 原生 App 与电脑端各自内嵌 tsnet，非局域网也能走用户自己的 tailnet 连接；不支持其 Web / 桌面 Flutter 构建，电脑无需系统 Tailscale，入口默认关闭且无公网 Funnel
 - 🚀 **图形化引导初始化** — 安装包 `/setup/`、桌面 Web 和插件都能点一下完成初始化，不碰命令行
 - 📦 **跨机器迁移** — 桌面配置页一键导出 / 导入可移植配置、SQLite、画像、Cookie 与图片缓存；导入先校验暂存，可查询 / 取消，重启后带回滚副本应用。`.obcbackup` 含明文敏感信息，但不含源机 API 登录密码 / 会话签名密钥或扩展设备 key
 - 🔬 **自动化评测优化** — 5 个模块各带 LLM-as-judge 自优化循环，prompt 质量随轮次自动提升
@@ -619,6 +639,8 @@ OpenClaw 收到 `interest.probe` 事件（或主动拉取 `next-probe`），发�
 完整的架构总览 ASCII 图（runtime 并发闸门、Agent 编排层、多源适配、发现 / 推荐 / 保存链路）已拆分到单独文档，避免 README 过长：
 
 发布日期偏好：`[sources.<name>].recommendation_date_*` 按来源配置 → 发现阶段 LLM 评估前硬过滤范围外候选 → 有效库存 → PoolCurator → 范围外软降分 / 严格 serving 忽略（候选保留）；严格模式下推 B 站搜索边界
+
+远程 Android / iOS App：`App（内嵌 tsnet）→ 用户 tailnet → 电脑端 Go tsnet helper → 127.0.0.1:<有效 server port> → FastAPI`；入网控制流为 `本机设置页 → PUT /api/config（凭据只写）→ 私有单次暂存 → stdin → helper`。有效端口通常为 `[api].port`，也跟随启动参数 / 桌面 `OPENBILICLAW_PORT` 覆盖；入口默认关闭，电脑无需系统 Tailscale，无 Funnel/Serve，节点身份和暂存凭据都不进入迁移包。
 
 > 📖 [架构总览图](docs/architecture-overview.md)
 

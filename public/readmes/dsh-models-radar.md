@@ -22,17 +22,17 @@ A model capability radar plugin for the [DeepSeek Harness](https://github.com/de
 
 ## Screenshots
 
-**Settings · capability overview** — best-effort-per-base ranking with per-row Harness attribution (Codex / DSH / ZCode / Grok / Kimi Code / Antigravity / CodeBuddy); click any row to switch the charts below to that tier.
+**Settings · capability overview** — best-effort-per-base ranking with per-row Harness attribution (Codex / Claude Code / DSH / ZCode / Grok / Kimi Code / Antigravity / CodeBuddy); click any row to switch the charts below to that tier.
 
-![Settings · capability overview](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/07190649826b278d02640ae002bfacd31df77c46/docs/screenshots/settings-overview.png)
+![Settings · capability overview](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/617b1481310d9aaba90adafa1aa94d3884e446d0/docs/screenshots/settings-overview.png)
 
 **Capability popover** — opened from the composer readout: cross-base comparison plus the current tier's details, with a live "current" mark following the session model.
 
-![Capability popover](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/07190649826b278d02640ae002bfacd31df77c46/docs/screenshots/capability-popover.png)
+![Capability popover](https://raw.githubusercontent.com/hi-fangj/dsh-models-radar/617b1481310d9aaba90adafa1aa94d3884e446d0/docs/screenshots/capability-popover.png)
 
 ## Highlights
 
-- **Score attribution at a glance.** Every base-model row carries a Harness badge (Codex / DSH / ZCode / Grok / Kimi Code / Antigravity / CodeBuddy, site palette), and the tier selector options read `model · effort · harness`; unmatchable bases get no badge — never a guess.
+- **Score attribution at a glance.** Every base-model row carries a Harness badge (Codex / Claude Code / DSH / ZCode / Grok / Kimi Code / Antigravity / CodeBuddy, site palette), and the tier selector options read `model · effort · harness`; unmatchable bases get no badge — never a guess.
 - **Best-effort-per-base ranking.** The capability overview groups by base model with a fixed `0–110` absolute-scale magnitude bar and a 24h trend signal per row; expand a row for the base's full reasoning-effort ladder.
 - **24h / 7d dual-window IQ trend.** Tab between two time windows, each independently scaled with its own full stats (net change, low, average, high); the curve is colored by capability band.
 - **Cost × IQ from three angles.** Tabs for composite cost (the site's own 2.5×-price-for-1.35×-speed trade-off, normalized per chart), time cost, and price cost; color = base, shape = reasoning effort, same-base tiers joined by ladder lines. Upper-left = more efficient. Hovering surfaces the site's three-line reading: attribution (display name · billing · harness · effort), IQ with its pass/total, and the active metric with sample counts.
@@ -45,6 +45,7 @@ A model capability radar plugin for the [DeepSeek Harness](https://github.com/de
 - **Settings → Model Radar** page through the additive `settings.section` slot
 - A **Model Radar** card under Settings → Plugins → Configurable plugins through `settings.plugin.item` (the live-readout display switch, persisted in Host settings)
 - **Capability overview** grouped by base model with expandable reasoning-effort tiers and per-row Harness attribution badges
+- **Entry default = the current conversation's model**: every visit resolves the session's selected model through the tier-match rule (the deployment default only stands in when no session selection is resolvable), the overview marks the in-use row, and a manual pick lasts for the visit only
 - Fixed `0–110` IQ scale with consistent capability-band semantics across channels
 - **Trend tabs**: last 24 hours / last 7 days, each independently y-scaled with full stats; the choice persists
 - **Cost × IQ card**: composite / time / price tabs on a log x-axis, model filter chips synced across tabs, codex-run DSV4 bases hidden by default (site parity)

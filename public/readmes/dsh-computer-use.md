@@ -50,7 +50,7 @@ observe exact bundle id + pid
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-computer-use/387eae931b1852e3c3433e0e004fa460d3da2883/assets/computer-use-fixture.png" width="760" alt="The never-active deterministic native fixture before target-process pointer input, showing the dedicated pointer probe and ready status." />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-computer-use/3d930e6509b3a01f1dbb63723e585e48e27933c1/assets/computer-use-fixture.png" width="760" alt="The never-active deterministic native fixture before target-process pointer input, showing the dedicated pointer probe and ready status." />
 </p>
 
 The fixture records every `applicationDidBecomeActive` callback. An independent native monitor also samples the system cursor and frontmost pid every millisecond throughout click, scroll, and drag. The default release path must not increase `activationCount`; it also requires unchanged cursor coordinates, an unchanged frontmost pid, exact click/scroll counts, and one complete down/up drag gesture.
@@ -158,7 +158,15 @@ resolution?: {
   candidateCount: number
   targetChanged: boolean
 }
+agentCursor?: { visible: false; reason?: string }
+effect: {
+  observedStateChanged: boolean
+  observedForMs: number
+  note?: string
+}
 ```
+
+`effect.observedStateChanged` compares the window title, id and frame plus the Accessibility element tree. It does not prove causation and cannot see pixel-only, transient, remote, or otherwise external effects. `agentCursor` appears only when the separate Agent cursor was expected but could not be shown or validated.
 
 The model cannot override these host policies through Tool arguments.
 
@@ -244,7 +252,7 @@ Settings updates replace the active provider generation only after validation an
 
 ## Status and limitations
 
-- Status: early `0.1.0`; model-facing and provider behavior may change before a stable release.
+- Status: early `0.2.1`; model-facing and provider behavior may change before a stable release.
 - The current provider is macOS-only. Windows UI Automation and Linux providers are not implemented.
 - On non-macOS hosts the plugin degrades gracefully: the DSH profile starts normally, Computer Use Tools and the Skill are not registered, and Web Settings reports `COMPUTER_UNSUPPORTED_PLATFORM` instead of failing startup.
 - Target-process pointer delivery uses dynamically resolved SkyLight SPI. If it is unavailable, pointer fallback fails closed rather than switching to global input.

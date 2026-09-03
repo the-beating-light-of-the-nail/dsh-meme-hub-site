@@ -5,7 +5,7 @@
 
 在 dsh 设置页里安装任意第三方插件的「安装」标签页。输入包名——npm spec、`github:user/repo` 或本地路径——即可安装，不必开终端，也不必经过插件市场；市场没收录的插件同样能装。
 
-![「安装」标签页](https://raw.githubusercontent.com/qinyre/dsh-plugin-install/f629782d199e9f0394b29727dfc963984ae2f184/docs/images/screenshot-install.png)
+![「安装」标签页](https://raw.githubusercontent.com/qinyre/dsh-plugin-install/29638a7ede84d8f0d877aad961831af5f6877de2/docs/images/screenshot-install.png)
 
 安装、卸载与更新走的都是 `dsh plugin add / remove` 这条 CLI 路径，与命令行完全一致，`dsh.profile.bundles` 的同步由 CLI 负责，不存在第二套状态。已安装列表可以一键检查更新：npm 安装的对照 registry 的 latest 版本号，github 安装的对照仓库 HEAD 提交，本地链接则如实标注、不做检查；发现新版后单插件就地更新，更新前还会核对方向——registry 的 latest 不高于已装版本时拒绝执行，绝不把更新变成降级。每次 add 与 remove 都附带 `--config.minimum-release-age=0`：pnpm 11 默认开启 24 小时发布冷静期，`@latest` 会被静默解析到窗口外的旧版本，发布当天点更新等于原地不动；它还会在每次操作前对整个 lockfile 做策略校验，只要里面有窗口内发布的条目（例如显式钉版安装带进来的传递依赖），安装与卸载会一并被 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` 拦死——界面上点名操作的包不受这层默认限制（旧版 pnpm 不认识该参数时自动去掉重试）。失败横幅现在也会带出 pnpm 打印在标准输出里的真实诊断，而不是只剩转发器的一句总结。更新完成后还会核对实际落地的版本号，与 registry latest 不一致时如实提示，而不是谎报成功。装好之后，纯客户端插件刷新页面即可生效；组合较复杂的插件会明确提示需要重启，页面上的「重启服务」按钮两种宿主都能用——在 DSH Desktop 里交由壳层重启受监督的 sidecar，独立运行 `dsh web` 时则由插件自行接力：分离的中转进程等旧进程让出端口后按原启动命令拉起新实例，终端场景下再交接回原终端。
 

@@ -7,14 +7,8 @@
 需要 pnpm（`npm i -g pnpm`）与 dsh（`npm i -g @deepseek-ai/dsh`）。
 
 ```sh
-# 从 npm 安装（推荐，快且稳）
 dsh plugin --profile web add reasoning-slider
-
-# 或从 GitHub 安装
-dsh plugin --profile web add github:qjcnmd/dsh-reasoning-slider
 ```
-
-安装完成后**重启 dsh web**
 
 ## 功能
 
@@ -24,13 +18,17 @@ dsh plugin --profile web add github:qjcnmd/dsh-reasoning-slider
 - 单档位模型显示"支持档位: xxx"，无档位模型显示提示
 - 键盘：←/→ 或 ↑/↓ 切换，滚动滚轮也可切换
 
-## 禁用 / 卸载
+## 卸载
 
 ```sh
 dsh plugin --profile web remove reasoning-slider
 ```
 
-或编辑 `~/.dsh/profiles/web/cordis.patch.yml`，给 insert 行加 `disabled: true`。
+## 兼容性
+
+`reasoning-slider@0.0.5` 支持 DSH `0.1.2-alpha.2`，要求 Node.js `22.13.0` 或更高版本。DSH `0.1.2-alpha.3` 与 `0.1.2-alpha.4` 尚未验证。
+
+一次性 `web` Profile 已在 Windows、Node.js `24.19.0`、DSH `0.1.2-alpha.2` 环境完成本地插件安装、配置合成、服务冷启动、HTTP 页面响应及卸载复核。
 
 ## 开发
 

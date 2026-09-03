@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> 本项目已于 2026 年 8 月 31 日停止主动开发并进入只读归档。现有 Release、交互演示和源码继续保留，但不会再适配未来的 DSH 版本。当前 DSH 已在模型菜单中原生提供模型声明的推理档位；可运行 `dsh plugin --profile web remove dsh-reasoning-slider` 返回官方控件。
+
 <div align="center">
 
 # DSH 推理滑杆
@@ -15,7 +18,7 @@
 </div>
 
 <p align="center">
-  <a href="https://wsl043.github.io/dsh-reasoning-slider/"><img src="https://raw.githubusercontent.com/WSL043/dsh-reasoning-slider/2e82c0ac69aeffcaa732251f8320c8de952e4d62/docs/assets/reasoning-slider-hero-dark-en.png" width="900" alt="暗色 DeepSeek Harness 输入区与局部放大的能量推理滑杆"></a>
+  <a href="https://wsl043.github.io/dsh-reasoning-slider/"><img src="https://raw.githubusercontent.com/WSL043/dsh-reasoning-slider/58da84abc7795d487239757ca1193348b906ab37/docs/assets/reasoning-slider-hero-dark-en.png" width="900" alt="暗色 DeepSeek Harness 输入区与局部放大的能量推理滑杆"></a>
 </p>
 
 ## 为什么做这个插件
@@ -57,13 +60,13 @@ Beta 更新会兼容已有偏好，先通过真实使用反馈稳定视觉接口
 与模型接口均保持供应商中立。
 
 <p align="center">
-  <a href="https://wsl043.github.io/dsh-reasoning-slider/"><img src="https://raw.githubusercontent.com/WSL043/dsh-reasoning-slider/2e82c0ac69aeffcaa732251f8320c8de952e4d62/docs/assets/reasoning-slider-energy-dark.gif" width="612" alt="从 Off 拖动到 Max 的高清推理滑杆动图"></a>
+  <a href="https://wsl043.github.io/dsh-reasoning-slider/"><img src="https://raw.githubusercontent.com/WSL043/dsh-reasoning-slider/58da84abc7795d487239757ca1193348b906ab37/docs/assets/reasoning-slider-energy-dark.gif" width="612" alt="从 Off 拖动到 Max 的高清推理滑杆动图"></a>
 </p>
 
 可在[交互体验页](https://wsl043.github.io/dsh-reasoning-slider/)直接操作同一套正式渲染器，体验拖动、键盘、浅色/深色界面和实时配色；页面不连接任何账号。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-reasoning-slider/2e82c0ac69aeffcaa732251f8320c8de952e4d62/docs/assets/mode-settings-zh.png" width="820" alt="DSH 推理强度控制设置中的能量模式与浅色、深色独立配色">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-reasoning-slider/58da84abc7795d487239757ca1193348b906ab37/docs/assets/mode-settings-zh.png" width="820" alt="DSH 推理强度控制设置中的能量模式与浅色、深色独立配色">
 </p>
 
 ## 安装

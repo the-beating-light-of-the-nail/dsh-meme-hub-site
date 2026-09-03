@@ -12,7 +12,7 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 - **回退 = 时间回溯**——目标消息及其之后的全部内容（agent 回复、工具调用）同时从**模型上下文**和**渲染对话**中撤回，不新建会话、不切换窗口；目标消息文本会回填输入框，改完可重发。**在原理上就真正无感、便捷**。
 - **轻量工作区备份**——对齐 Claude Code：追踪写类工具编辑过的文件，**已跟踪文件的外部变更也能还原**。局部追踪、写前备份、不变不存。一个轻型插件，即拥有**完备的智能体回退能力**。
-- **信息安全优先**——插件从不删改会话日志（append-only），从不真正删除你的任何对话；文件还原限定在插件自己的备份目录。完整安全模型：[SECURITY.md](SECURITY.md)。
+- **信息安全优先**——插件从不删改会话日志（append-only），从不真正删除你的任何对话；备份存于自己的快照目录；还原只用这些备份。完整安全模型：[SECURITY.md](SECURITY.md)。
 - **完备测试系统**——单元、探针、端到端主机验证，覆盖兼容性探测、日志重放、续接、跨重启等场景；随 harness 升级持续维护，确保功能稳定。
 
 ## 效果预览
@@ -21,12 +21,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/7aa8bdc1f426cd1a74c6fbcf4b7eba48a20b1751/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/7aa8bdc1f426cd1a74c6fbcf4b7eba48a20b1751/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/64738545cdf9b8c4f432fec9dd6c1540b432e4a2/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/7aa8bdc1f426cd1a74c6fbcf4b7eba48a20b1751/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/7aa8bdc1f426cd1a74c6fbcf4b7eba48a20b1751/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -60,7 +60,9 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 快照（写前备份）存储于 `<dsh home>/rewind-snapshots/`（未设 `$DSH_HOME` 时即 `~/.dsh/rewind-snapshots/`）。插件对**同一会话**的快照做内容去重（内容未变则存为链接）并保留最近 100 组锚点；**手动删除该目录**仅清除文件备份（对话回退不受影响），插件会自动重建。
 
-另提供**全局自动清理**（默认关闭）：把**长期不活跃**的会话快照整目录移除，不影响活动会话与对话日志。用 `/snapshot-auto-cleanup` 命令**查看、设置和运行**，配置写入 `<dsh home>/snapshot-cleanup.json`；最近一次自动清扫的时间记录在 `<dsh home>/snapshot-cleanup-last-sweep.json`。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
+另提供**全局自动清理**（默认关闭）：把长期不活跃的会话快照整目录移除，不影响活动会话与对话日志。可在 `设置→插件→插件配置→快照清理` 面板查看与配置（自动清理开关、失活天数），也可用 `/snapshot-auto-cleanup` 命令查看、设置和运行。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
+
+<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/7aa8bdc1f426cd1a74c6fbcf4b7eba48a20b1751/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
 
 ## 本插件的优势
 
@@ -89,14 +91,15 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 ### 2. 文件还原：轻量检查点，「改前备份」
 
-文件部分对齐 Claude Code 的检查点语义——**逐文件、写前备份 + 每条消息重扫已跟踪文件**，而不是整树快照。这项取舍既省空间，又更完整：
+文件部分对齐 Claude Code 的检查点语义——**局部追踪、写前备份 + 每条消息重扫已跟踪文件**，而不是整树快照。这项取舍既省空间，又更完整：
 
-- **改前备份**：追踪写类工具（`write`、`edit`、`str_replace_editor`），在**每次写文件之前**先把原内容存下来。关键在时机——在审批门放行之后捕获：审批短路不会漏备份，被拒绝的调用也不会留下记录；读取失败只警告、从不阻塞写操作。备份按对话轮次分组锚定，**落盘持久化**，重启也还在。
-- **外部变更也追**：每条用户消息边界，插件重新检查所有已跟踪文件——那些从没经过写工具、被外部改过或删掉的文件，同样被记录，回退时一并还原。这让「轻量」却不「残缺」。
-- **还原前对照真实磁盘**：这是最值得说的一点。回退时插件实时读取文件当前内容，与目标状态逐一比对——**只操作真正不一致的文件**：改过的写回最早备份、目标之后新建的删除、已经一致的跳过。重复回退因此**零副作用、幂等**，绝不会出现「幽灵影响」。
+- **写前备份**：只追踪写类工具（`write`、`edit`、`str_replace_editor`），写前**备份原内容**，并**记录、追踪**被处理的文件——从不备份整个工作区，因此轻量。
+- **外部变更也追**：每条用户消息边界，插件重新检查所有已跟踪文件——命令执行、手动修改等外部变更同样被记录，回退时一并还原。这让「轻量」却不「残缺」。
+- **不变不存、同内容存链接**：记录只在有变化时发生——消息边界重扫时无变更的不备份（不留记录）；写前备份时若与前一条记录一致，只存**指向它的链接**（`ref`）而非复制内容。重复写入几乎不占空间，链接也先落地、绝不悬空。
+- **还原时对照真实磁盘**：先取每条路径的**最早**记录，再实时读取文件当前内容与之比对——**只操作真正不一致的文件**：改过的写回最早期内容、目标之后新建的删除、已经一致的跳过。重复回退因此**零副作用、幂等**，不会出现「幽灵影响」。
 - **安全边界**：符号/硬链接跳过，避免透过一个还原误伤另一个名字；路径经安全化处理，**绝不越出备份根目录**；单个文件失败绝不中止整轮还原。
 
-> **设计点睛**：**「对照真实磁盘再动手」** 是这套检查点里最有洞察力的决定——它从不盲目假设，而是以磁盘为准，该做的做、不该做的跳过。
+> **设计点睛**：这套检查点的「轻」，来自**只记录被工具动过、且确实变化的文件**——写前备份保证可还原，不变不存与存链接压掉重复；还原时再对照真实磁盘，只动不一致的文件。
 
 ### 设计亮点一览
 
@@ -123,7 +126,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 ## 兼容性
 
 - Node.js `^22.19.0 || >=24.0.0`。
-- DeepSeek Harness web 配置档（`dsh --profile web`）；peer `@deepseek-ai/*` 包由 harness 运行时解析。
+- 兼容性定义、验证方法与版本对齐详见 [docs/compat/audit.md](docs/compat/audit.md)；支持的 DSH 版本由 `package.json` 的 `peerDependencies` 声明。
 
 > [!WARNING]
 > 本项目与 DeepSeek Harness 均处于开发者预览阶段。可复现环境请 pin 精确版本，
@@ -142,9 +145,13 @@ dsh plugin --profile web add dsh-rewind-plugin
 4. **v0.3.3 及更早版本**回退过的会话，压缩对话（compact）不可用。新版本已兼容；受影响的旧会话建议新建会话。
 5. **导轨显示已回退轮次**——DSH `v0.1.2-alpha.1` 新增的右侧导轨，会为已撤回消息保留刻度：点击不跳转、悬浮显示已撤回正文。仅显示差异，无功能影响。
 
+> [!NOTE]
+> 若使用中遇到问题，可开启详细诊断输出，复现后附上控制台 `[dsh-rewind]` 输出便于定位。详见
+> [浏览器诊断与详细输出开关](docs/compat/diagnostics.zh.md)。
+
 ## 安全
 
-本插件只向会话日志追加回退标记事件，从不删除或改写已记录的历史。工作区文件仅在「回退对话和代码」时被改写，备份与还原都限定在 `~/.dsh/rewind-snapshots/` 内。不触碰你的 git 仓库，无网络请求，不访问任何凭据。对**长期不活跃**的会话，另有默认关闭的全局自动清理可整目录移除其快照，不影响活动会话与对话日志。完整安全模型：[SECURITY.md](SECURITY.md)。
+本插件只向会话日志追加回退标记事件，从不删除或改写已记录的历史。工作区文件仅在「回退对话和代码」时被改写，备份存储于 `~/.dsh/rewind-snapshots/`；还原以备份为唯一来源。不触碰你的 git 仓库，无网络请求，不访问任何凭据。对**长期不活跃**的会话，另有默认关闭的全局自动清理可整目录移除其快照，不影响活动会话与对话日志。完整安全模型：[SECURITY.md](SECURITY.md)。
 
 ## 开发
 

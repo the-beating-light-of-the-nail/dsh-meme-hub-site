@@ -24,27 +24,27 @@ It needs **no npm dependencies** and asks for **no `allowBuilds` authorization**
 
 Collapsed capsule, light theme:
 
-![capsule (light)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/8f916973ab06eee7498de4e4fff56e5556ffe61b/docs/screenshot-light.png)
+![capsule (light)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/09d32a3f75fc0bbb2983dc4006866356f47afc99/docs/screenshot-light.png)
 
 Expanded card, light theme:
 
-![expanded (light)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/8f916973ab06eee7498de4e4fff56e5556ffe61b/docs/screenshot-light-expanded.png)
+![expanded (light)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/09d32a3f75fc0bbb2983dc4006866356f47afc99/docs/screenshot-light-expanded.png)
 
 Settings panel (⚙), light theme:
 
-![settings (light)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/8f916973ab06eee7498de4e4fff56e5556ffe61b/docs/screenshot-light-settings.png)
+![settings (light)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/09d32a3f75fc0bbb2983dc4006866356f47afc99/docs/screenshot-light-settings.png)
 
 Collapsed capsule, dark theme:
 
-![capsule (dark)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/8f916973ab06eee7498de4e4fff56e5556ffe61b/docs/screenshot-dark.png)
+![capsule (dark)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/09d32a3f75fc0bbb2983dc4006866356f47afc99/docs/screenshot-dark.png)
 
 Expanded card, dark theme:
 
-![expanded (dark)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/8f916973ab06eee7498de4e4fff56e5556ffe61b/docs/screenshot-dark-expanded.png)
+![expanded (dark)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/09d32a3f75fc0bbb2983dc4006866356f47afc99/docs/screenshot-dark-expanded.png)
 
 Settings panel (⚙), dark theme:
 
-![settings (dark)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/8f916973ab06eee7498de4e4fff56e5556ffe61b/docs/screenshot-dark-settings.png)
+![settings (dark)](https://raw.githubusercontent.com/wenzetan/dsh-quota-panel/09d32a3f75fc0bbb2983dc4006866356f47afc99/docs/screenshot-dark-settings.png)
 
 ## Supported features
 
@@ -404,7 +404,7 @@ recover.
 | `openai-billing` | $ balance | aggregator `dashboard/billing` endpoints |
 | `zhipu-quota` | text | `{ code: 200, data: { limits: [{ remaining, number }] } }` (limits without `remaining` fall back to `percentage`) |
 | `opencode-usage` | usage % | `{ usage: { rolling|weekly|monthly: { percent, resetsAt } } }` |
-| `zai-coding-quota` | usage % | `{ code: 200, data: { limits: [{ type: TOKENS_LIMIT \| TIME_LIMIT, unit, number, percentage, currentValue, usage, nextResetTime }] } }` — semantic mapping (glm-plan-usage2, issue #2): TOKENS_LIMIT `unit=3` → 5h window, `unit=6` → weekly, TIME_LIMIT → MCP monthly lane; unknown units fall back to `nextResetTime` ordering; every window prefers the `percentage` field |
+| `zai-coding-quota` | usage % | `{ code: 200, data: { limits: [{ type: TOKENS_LIMIT \| TIME_LIMIT \| CREDIT_LIMIT, unit, number, percentage, currentValue, usage, remaining, nextResetTime }] } }` — semantic mapping (glm-plan-usage2, issue #2): TOKENS_LIMIT `unit=3` → 5h window, `unit=6` → weekly, TIME_LIMIT → MCP monthly lane; unknown units fall back to `nextResetTime` ordering; every window prefers the `percentage` field. Credit/resource-package plans (issue #7) return CREDIT_LIMIT rows instead of token windows: they map onto rolling/weekly by `nextResetTime` order, and the hover title tags them `[CREDIT_LIMIT left remaining/number]` |
 | `kimi-coding-usage` | usage % | `{ usage: { limit, used, remaining, resetTime }, limits: [{ window: { duration, timeUnit }, detail: { limit, used, remaining, resetTime } }] }` — 5h = the `duration=300` window, weekly = `duration=10080` (fallback: top-level usage); used = limit − remaining |
 | `volcengine-usage` | usage % | Dispatched inline in `fetchRow` (not through `adaptRow`): signs and calls the Volcengine Ark OpenAPI `GetAFPUsage`, then falls back to `GetCodingPlanUsage`. Agent Plan parses `Result.AFPFiveHour / AFPWeekly / AFPMonthly` (AFPDaily skipped per the console). Coding Plan parses `Result.QuotaUsage[].Level ∈ {session,weekly,monthly}` (percentages only). |
 | `chatgpt-subscription` | usage % | `{ plan_type, rate_limit: { primary_window: { used_percent, reset_at, limit_window_seconds }, secondary_window? } }` — read via the OAuth token in `~/.codex/auth.json` against Codex's internal usage endpoint; windows are classified by `limit_window_seconds` (18000s ≈ 5h → rolling, 604800s ≈ 7d → weekly), falling back to the typical positional layout (primary = 5h session, secondary = weekly pool). Experimental |

@@ -59,7 +59,7 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 
 **想做什么 → 找对应泳道 → 走条件边到功能**（流程图 = 认知图 = 条件路由图，**81 工具**全收录，[工具总表 → docs/灵枢MCP工具总表_v3.4.md](docs/灵枢MCP工具总表_v3.4.md)）：
 
-[![灵枢使用教学认知图](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/dbe1ef823f3e935de741fc8650f657a597dd6971/docs/lingshu_tutorial.html)](docs/lingshu_tutorial.html)
+[![灵枢使用教学认知图](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/2cbf1219f3f10c93f2e5b0afa42571733a291d3a/docs/lingshu_tutorial.html)](docs/lingshu_tutorial.html)
 
 > 图中每条边 = 一个使用条件：比如「问知识」走 `wisdom_chat`（白箱优先），「验证说法」走 `wisdom_verify`（互维双通道），「记住信息」走 `remember`。找不到路径时用 `service_info` 看协议实例身份。
 
@@ -136,6 +136,29 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 - **白箱 wisdom_* 全工具**（`tools: all`）：81 个 MCP 工具含 wisdom_verify/analyze/predict/trust_judge/compose/respond/chat 白箱族，Agent 可直接调用。
 - **内容分级门控**：**拒绝一切涉及未成年人的性内容**（服务端关键词组合硬拦截——未成年人特征词 + 性内容词同时命中即拒绝，`route=refused`）；成人内容由前端本地弹窗提示（满 18 周岁 + 个人对话场景自述）。注：开源项目不实现身份认证/年龄核验（那是绑定身份系统的商业 App 范畴）；内容过滤保护的是"未成年人 + 性内容"组合的明文请求。
 
+## 🧭 认知图使用方法 & 工作纪律（v1.1）
+
+> 认知图 = 时空记忆图/条件注释图。节点**四要素**：conditions(生效) / subgraph(子内容·嵌套) / negative(不适用) / execution(如何执行)。
+
+### 认知图使用方法
+- **图像语义 → 认知图**：image_semantics_cg（可嵌套，person→head→face→eyes→iris…）→ flatten（§4.4 平铺 spatiotemporal_nodes + spatial_relation_edges）。
+- **写入纪律**：数据完整四要素 + 先验证后写入 + 冲突先证后改 → docs/认知图写入纪律_v1.0.md。
+- **索引**：语义→节点；层级边 part_of(child→parent) + parent_of(parent→child) 双向（out 写死 API 也能查）。
+- **加载**：启动加载 SELF 层（身份/价值观/认知图接口）→ 按 session 从认知图读 目标/感觉/工作记忆/知识。
+
+### 工作纪律（7 条 · docs/工作纪律_认知图条目_v1.1.json）
+| # | 纪律 | 触发/适用 | 不适用 |
+|---|---|---|---|
+| 1 | 理论先行 | 重要项目/长期任务 | 情感交互/闲聊 |
+| 2 | 全面处理 | 有相关记忆/认知图/权限 | 情感交互/闲聊 |
+| 3 | 白箱方法 | 已读4篇入门文档 | 快速短期事项/情感交互/闲聊 |
+| 4 | 根因纪律 | 结果与预期不符/出现偏差 | 情感交互/闲聊 |
+| 5 | 验证纪律 | 入库前/提交前 | 情感交互/闲聊 |
+| 6 | 双副本纪律 | 多副本部署 | 单副本/情感交互/闲聊 |
+| 7 | 兜底纪律 | 主路径不可用/MCP不可用 | 情感交互/闲聊 |
+
+### 使用认知图流程
+识别任务条件 → 按条件路由到对应纪律/知识 → 精准执行 → 正确记录(未记录→记录)/错误找条件 → 验证 → 固化；不猜测、未验证不写入。
 ## 🧠 白箱智能管线（知识查询零 LLM）
 
 灵枢处理知识查询走**白箱确定性格局**（不依赖 LLM 生成/校验），完整管线：
@@ -244,7 +267,7 @@ python -m aeis.mcp.server
 > 视角：**使用性**（普通用户/开发者体感）——「存、找、想、准、安」五维。
 > 评估基准：公开能力 + 设计者校准（2026-08-17）。灵枢分数经设计者核对（不虚高）。
 
-![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/dbe1ef823f3e935de741fc8650f657a597dd6971/docs/memory_score.png)
+![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/2cbf1219f3f10c93f2e5b0afa42571733a291d3a/docs/memory_score.png)
 
 （插图源文件：[memory_score.html](docs/memory_score.html)，可浏览器打开重新截图）
 
@@ -520,3 +543,7 @@ npm test         # 真实集成测试（spawn 本机灵枢，验证握手/往返
 MIT © 荣（FuRongJun-1999）· 灵枢 AEIS 工程实现
 
 DeepSeek Harness 为 DeepSeek 官方开源项目（MIT），本插件与之无隶属关系。
+
+
+---
+

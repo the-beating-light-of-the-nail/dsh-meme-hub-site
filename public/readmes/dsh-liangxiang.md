@@ -8,11 +8,11 @@
 
 官网：[liang.today](https://liang.today/) · 部署指南：[liang.today/guide](https://liang.today/guide/)
 
-![插件主界面](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/8516d5ee50a6cba27e2afe0e35b8c3fa8284fc50/assets/main-frame.jpg)
+![插件主界面](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/df6451f083d1fcc562b356d31eedad6f5fa753ad/assets/main-frame.jpg)
 
-![插件主面板](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/8516d5ee50a6cba27e2afe0e35b8c3fa8284fc50/assets/plugin-panel.jpg)
+![插件主面板](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/df6451f083d1fcc562b356d31eedad6f5fa753ad/assets/plugin-panel.jpg)
 
-![梁祠](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/8516d5ee50a6cba27e2afe0e35b8c3fa8284fc50/assets/liangci.jpg)
+![梁祠](https://raw.githubusercontent.com/liang-today/dsh-liangxiang/df6451f083d1fcc562b356d31eedad6f5fa753ad/assets/liangci.jpg)
 
 ## 安装
 
@@ -34,11 +34,12 @@ DSH Desktop 必须先把 `DSH_HOME` 指到桌面自己的 harness 目录，再�
 
 ## 玩法
 
+- 新香客备 10 炷，对话还能继续攒；同一台机器当天重装不会再领一份
 - 按 DeepSeek Harness 的 **Input + Output Token** 折算，默认 50,000 Pro 当量凝成一炷
-- 一炷一票，只能夯或拉
+- 一炷一票，只能夯或拉；点一下一炷，长按 1.5 秒倾炉
 - **梁位**是社区夯率；梁子按门槛显相：待开梁 / 梁工 / 梁总 / 梁神 / 梁圣 / 梁祖
 - 日终结果收入梁祠
 
 > 梁位是社区软信任玩法，不代表实名人数、真实民意或任何个人、机构立场。
 
-当前正式版是 **v1.0.0**，请安装 `dsh-liangxiang`（npm `latest`）。开发、排障与实现说明在 [`docs/INSTALL.md`](docs/INSTALL.md)。
+源码本点是 **v1.0.7**（第四区两列居中、梁祠日档不再横滑、悬浮即走）。请安装 `dsh-liangxiang`（npm `latest`）；GitHub Release 已附本号 tarball。开发、排障与实现说明在 [`docs/INSTALL.md`](docs/INSTALL.md)。

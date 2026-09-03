@@ -18,8 +18,8 @@ Also listed in [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesom
 
 ## Compatibility
 
-- Peer dependency: `@deepseek-ai/dsh-tools >= 0.1.0-rc.7`, provided by the DSH runtime.
-- Tested against `@deepseek-ai/dsh-tools` 0.1.0-rc.7. DSH itself is pre-1.0;
+- Peer dependency: `@deepseek-ai/dsh-tools >= 0.1.2-alpha.2`, provided by the DSH runtime.
+- Tested against `@deepseek-ai/dsh-tools` 0.1.2-alpha.2. DSH itself is pre-1.0;
   pin your DSH version and re-run `security_audit` after upgrading either
   side. Release notes state the DSH snapshot each version was tested against.
 - No install-time scripts and no build step; the shipped source is the artifact.
@@ -71,6 +71,7 @@ Get-FileHash dsh-secure-audit-<version>.tgz -Algorithm SHA256   # Windows
 
 | Release | Artifact | Size | SHA-256 |
 | --- | --- | --- | --- |
+| v0.2.8 | `dsh-secure-audit-0.2.8.tgz` | 74 338 B | `d6ec92af2365175c474840faf1e26a17cc3039acce7b4780469ddc60264ae06d` |
 | v0.2.7 | `dsh-secure-audit-0.2.7.tgz` | 73 881 B | `f344a541b634a59a2b73d8da3848d4e3d1c859215fc8193a6864635f1f742958` |
 | v0.2.6 | `dsh-secure-audit-0.2.6.tgz` | 67 994 B | `0a53743a7d6af952c759966ddbe92a5f2ba1b782949b669c54cf76bc1e513579` |
 | v0.2.5 | `dsh-secure-audit-0.2.5.tgz` | 53 070 B | `787db977d36cd895299eb486f54ce2a51be52160cea9226ca8dc2bba7ffcf95a` |
@@ -312,7 +313,7 @@ before relying on it.
 
 **Compatibility.**
 
-- Tested against `@deepseek-ai/dsh-tools` 0.1.0-rc.7 only. DSH is pre-1.0;
+- Tested against `@deepseek-ai/dsh-tools` 0.1.2-alpha.2 only. DSH is pre-1.0;
   verify against your pinned version. Live loading in a Cordis host was
   validated at the dsh-tools registration/execution contract level, not in a
   fully running host — install, run `security_audit`, and re-verify after

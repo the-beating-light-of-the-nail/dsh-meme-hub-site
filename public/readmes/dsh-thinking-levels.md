@@ -23,17 +23,17 @@ In a multi-step tool chain, the model re-thinks before **every** tool call — a
 Screenshots of the live UI (dsh web):
 
 <figure>
-  <img width="460" alt="Model selector Auto dropdown injected by the plugin: levels Off / Low / High / Max / Auto, High currently selected, Auto highlighted — Auto is a mask, the plugin schedules low/high/max per step from the tool history." src="https://raw.githubusercontent.com/drscrewdriver/dsh-thinking-levels/35088f66ac638dc798e0b9e56016099f62cafe23/assets/%E5%AE%98%E6%96%B9%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E7%BA%A7%E5%88%AB%E8%B0%83%E6%95%B4.png" />
+  <img width="460" alt="Model selector Auto dropdown injected by the plugin: levels Off / Low / High / Max / Auto, High currently selected, Auto highlighted — Auto is a mask, the plugin schedules low/high/max per step from the tool history." src="https://raw.githubusercontent.com/drscrewdriver/dsh-thinking-levels/b8d1247d84debf52ae97020205873ef4d313cc5b/assets/%E5%AE%98%E6%96%B9%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E7%BA%A7%E5%88%AB%E8%B0%83%E6%95%B4.png" />
   <figcaption>Native model selector gains <strong>Auto</strong> — pick it and the plugin schedules low/high/max per step instead of a fixed wire level.</figcaption>
 </figure>
 
 <figure>
-  <img style="max-width:100%" alt="思考档位 settings card: default level (auto scheduling), enable / allow-downgrade / allow-upgrade toggles, llm-pi-ai custom-provider model-capability table with per-model short-circuit takeover, and apply-to-all presets (Off/High/Max official DeepSeek style, Off/Low/Medium/High generic)." src="https://raw.githubusercontent.com/drscrewdriver/dsh-thinking-levels/35088f66ac638dc798e0b9e56016099f62cafe23/assets/%E8%87%AA%E5%8A%A8%E6%80%9D%E8%80%83%E7%BA%A7%E5%88%AB%E9%85%8D%E7%BD%AE.png" />
+  <img style="max-width:100%" alt="思考档位 settings card: default level (auto scheduling), enable / allow-downgrade / allow-upgrade toggles, llm-pi-ai custom-provider model-capability table with per-model short-circuit takeover, and apply-to-all presets (Off/High/Max official DeepSeek style, Off/Low/Medium/High generic)." src="https://raw.githubusercontent.com/drscrewdriver/dsh-thinking-levels/b8d1247d84debf52ae97020205873ef4d313cc5b/assets/%E8%87%AA%E5%8A%A8%E6%80%9D%E8%80%83%E7%BA%A7%E5%88%AB%E9%85%8D%E7%BD%AE.png" />
   <figcaption>Thinking-level settings card: the auto scheduler plus its boundaries, and llm-pi-ai model-capability mapping (gear → gateway wire values).</figcaption>
 </figure>
 
 <figure>
-  <img style="max-width:100%" alt="Per-model capability editor for a custom openai-completions model (local-35b / Qwen3.6-35B-A3B): short-circuit takeover checked; thinking model and vision enabled, support think effort off; thinking format qwen; context-window limit presets 64K/128K/256K/400K/512K/1M with a custom input." src="https://raw.githubusercontent.com/drscrewdriver/dsh-thinking-levels/35088f66ac638dc798e0b9e56016099f62cafe23/assets/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%9D%E8%80%83%E6%8E%A5%E7%AE%A1-%E7%9F%AD%E8%B7%AF-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AA%97%E5%8F%A3%E9%99%90%E5%88%B6.png" />
+  <img style="max-width:100%" alt="Per-model capability editor for a custom openai-completions model (local-35b / Qwen3.6-35B-A3B): short-circuit takeover checked; thinking model and vision enabled, support think effort off; thinking format qwen; context-window limit presets 64K/128K/256K/400K/512K/1M with a custom input." src="https://raw.githubusercontent.com/drscrewdriver/dsh-thinking-levels/b8d1247d84debf52ae97020205873ef4d313cc5b/assets/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%9D%E8%80%83%E6%8E%A5%E7%AE%A1-%E7%9F%AD%E8%B7%AF-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AA%97%E5%8F%A3%E9%99%90%E5%88%B6.png" />
   <figcaption>Per-model capability card — pairs with <a href="https://github.com/drscrewdriver/dsh-llm-openai-completions">dsh-llm-openai-completions</a>: this card detects &amp; writes capabilities, that adapter takes over the wire (compat.thinkingFormat).</figcaption>
 </figure>
 

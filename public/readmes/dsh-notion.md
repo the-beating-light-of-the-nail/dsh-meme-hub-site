@@ -2,7 +2,7 @@
 
 通过官方 Notion MCP 服务器，用 OAuth 2.0（授权码 + PKCE）把 [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（`dsh`）连接到 [Notion](https://www.notion.com)。完成一次性浏览器授权后，你的 `dsh` agent 就能通过标准的 `mcp__notion__*` 工具搜索、读取和写入 Notion 的页面、数据库与评论。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Node: >=22.12.0](https://img.shields.io/badge/Node-%3E%3D22.12.0-339933.svg)](https://nodejs.org) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Node: 22.19%2B%20or%2024%2B](https://img.shields.io/badge/Node-22.19%2B%20or%2024%2B-339933.svg)](https://nodejs.org) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
 中文 | [English](README.en.md)
 
@@ -22,11 +22,11 @@
 
 让 `dsh` agent 总结一段技术架构并写入 Notion：
 
-![dsh 里请求写入 Notion](https://raw.githubusercontent.com/mingzeng21/dsh-notion/07122b8e89273f2bcaaf765f11609afedc5b065f/docs/screenshots/dsh-notion-sc1.png)
+![dsh 里请求写入 Notion](https://raw.githubusercontent.com/mingzeng21/dsh-notion/5d5a3225180fff2d2eb3b7b319a9b2c5ce4e5a8f/docs/screenshots/dsh-notion-sc1.png)
 
 写好的 Notion 页面：
 
-![写入后的 Notion 页面](https://raw.githubusercontent.com/mingzeng21/dsh-notion/07122b8e89273f2bcaaf765f11609afedc5b065f/docs/screenshots/dsh-notion-sc2.png)
+![写入后的 Notion 页面](https://raw.githubusercontent.com/mingzeng21/dsh-notion/5d5a3225180fff2d2eb3b7b319a9b2c5ce4e5a8f/docs/screenshots/dsh-notion-sc2.png)
 
 ## 工作原理
 
@@ -86,8 +86,8 @@ dsh plugin --profile web remove dsh-notion-mcp
 
 ## 环境要求
 
-- [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（`dsh`）—— 已验证兼容 `v0.1.0-rc.8`、`v0.1.1-rc.1`、`v0.1.1-rc.2`
-- Node.js ≥ 22.12.0
+- [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（`dsh`）—— 已验证兼容 `v0.1.0-rc.8`、`v0.1.1-rc.1`、`v0.1.1-rc.2`、`v0.1.2-alpha.1`
+- Node.js `^22.19.0` 或 `>=24.0.0`（与 dsh `v0.1.2-alpha.1` 一致；Node 23 不在支持范围内）
 
 ## 开发
 

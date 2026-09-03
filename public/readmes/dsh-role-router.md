@@ -12,9 +12,9 @@
 
 ## 预览
 
-![主界面与 composer 模型摘要](https://raw.githubusercontent.com/SnowAmberX/dsh-role-router/a4b67633e314dd9a1975c9c5272946930cfd39fd/img/main.png)
+![主界面与 composer 模型摘要](https://raw.githubusercontent.com/SnowAmberX/dsh-role-router/7254d3296b0d0f57b0bfcd0ef4ef9a5eeb579663/img/main.png)
 
-![设置页中的多角色模型路由卡片](https://raw.githubusercontent.com/SnowAmberX/dsh-role-router/a4b67633e314dd9a1975c9c5272946930cfd39fd/img/setting.png)
+![设置页中的多角色模型路由卡片](https://raw.githubusercontent.com/SnowAmberX/dsh-role-router/7254d3296b0d0f57b0bfcd0ef4ef9a5eeb579663/img/setting.png)
 
 ## 路由语义
 
@@ -30,7 +30,7 @@
 
 切换模型时，若角色未配置显式 `reasoningEffort`，则**剥离**继承的 adapter-owned effort（目标模型可能不支持原模型的推理档位；`prepareCall` 会拒绝未受支持的显式 effort）；配置了显式强度则写入并由 `prepareCall` 校验。透传的请求保留官方层装配的一切，包括推理强度。
 
-计划模式状态从会话日志的 `plan/mode` 事件折叠（`foldPlanMode`）；`ctx.planMode` 可见时优先读取（含 pending 意图）。
+计划模式状态由插件从会话日志的 `plan/mode` 事件本地折叠；`ctx.planMode` 可见时优先读取（含 pending 意图）。
 
 辅助模型调用（compaction、session-title）不经 `agent/request` 派发，不受影响；进程外子代理 provider（acp、codex 等）的请求不经过本进程，同样不受影响。
 

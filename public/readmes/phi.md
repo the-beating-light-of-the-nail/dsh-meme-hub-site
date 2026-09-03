@@ -1,7 +1,15 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/13ca3d0b8c5d3f2a0724f2363fd82c749106da66/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+</p>
+
+<p align="center">
+  <a href="https://github.com/pulseaiclub/phi/blob/main/LICENSE"><img src="https://img.shields.io/github/license/pulseaiclub/phi?style=flat&colorA=222222&colorB=58A6FF" alt="License"></a>
+  <a href="https://github.com/pulseaiclub/phi/actions"><img src="https://img.shields.io/github/actions/workflow/status/pulseaiclub/phi/ci.yml?style=flat&colorA=222222&colorB=3FB950" alt="CI"></a>
+  <a href="https://go.dev"><img src="https://img.shields.io/badge/Go-1.26-00ADD8?style=flat&colorA=222222&logo=go&logoColor=white" alt="Go"></a>
+  <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
+  <a href="https://getmerged.abhishekco.de/pulseaiclub/phi"><img src="https://getmerged.abhishekco.de/api/badge/pulseaiclub/phi" alt="GetMerged Scorecard"></a>
 </p>
 
 A minimal terminal coding agent harness in Go — a sibling to Pi.
@@ -10,18 +18,12 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
 - **Hashline edits** — edit by whole-file `@file path#TAG` plus line `LINE#HASH` anchors (same idea as [oh-my-pi](https://github.com/can1357/oh-my-pi)): the model points at anchors instead of rewriting whole files; stale tags/hashes are rejected so over-edits and silent corruption stop here
 - **Permission gate** — Gate / Ask before destructive tools fire; safety is not optional when an agent can touch your tree
 - **MCP without context death** — configure as many MCP servers as you want; their tool schemas **never** enter the model prompt. The system prompt lists **server names** only (like the Skills catalog); the agent uses three meta-tools (`mcp_list` / `mcp_inspect` / `mcp_call`) to discover and call on demand. Same Gate / Ask / Hooks path as built-in tools. See [MCP](#mcp)
+- **Extensions (Go or Rust)** — native binaries speak the **PXB** binary protocol over stdin/stdout; official author SDKs for Go ([`ext/go`](ext/go)) and a zero-dependency Rust port ([`ext/rust`](ext/rust)): LLM tools, slash commands, event intercepts, confirm dialogs — no JSON, no reflection. See [Extensions](#extensions)
 - **Any model** — OpenAI-compatible or Anthropic, no vendor lock-in
 
-<p align="center">
-  <a href="https://github.com/pulseaiclub/phi/blob/main/LICENSE"><img src="https://img.shields.io/github/license/pulseaiclub/phi?style=flat&colorA=222222&colorB=58A6FF" alt="License"></a>
-  <a href="https://github.com/pulseaiclub/phi/actions"><img src="https://img.shields.io/github/actions/workflow/status/pulseaiclub/phi/ci.yml?style=flat&colorA=222222&colorB=3FB950" alt="CI"></a>
-  <a href="https://go.dev"><img src="https://img.shields.io/badge/Go-1.26-00ADD8?style=flat&colorA=222222&logo=go&logoColor=white" alt="Go"></a>
-  <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
-</p>
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/phi.png)
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/13ca3d0b8c5d3f2a0724f2363fd82c749106da66/assets/phi.png)
-
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/13ca3d0b8c5d3f2a0724f2363fd82c749106da66/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/image.png)
 
 - [Quick start](#quick-start)
 - [Footprint](#footprint)
@@ -110,7 +112,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/13ca3d0b8c5d3f2a0724f2363fd82c749106da66/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/3b86c7f6bb373ce0f7bec3e5dcbb328652abaef6/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -184,7 +186,7 @@ OpenAI-compatible `/chat/completions` path.
 ├── config.yaml   # global configuration
 ├── bin/          # downloaded search tools (fd, ripgrep)
 ├── skills/       # SKILL.md skill directories
-├── hooks/        # plugin.json + hook scripts
+├── extensions/   # PXB binaries + phi.yaml
 ├── jobs/         # sub-agent job artifacts (meta, logs, result.md)
 └── session/      # persisted sessions, one dir per working directory
     └── <encoded-cwd>/
@@ -336,39 +338,51 @@ In the TUI, an approval dialog replaces the editor with options to approve,
 deny with feedback, or allow all for the session / for every session. The
 palette's settings → permissions entry toggles session-wide bypass.
 
-## Hooks
+## Extensions
 
-Hooks run custom logic around each tool call — before the permission gate and
-after execution. Use them for organization policy, audit trails, or rewriting
-tool input, without changing phi's binary or `config.yaml`.
+Extensions are native binaries speaking the **PXB** binary protocol over
+stdin/stdout (author SDKs: Go `github.com/pulseaiclub/phi/ext/phi` and Rust
+[`ext/rust`](ext/rust), `phi-ext`). They
+subscribe to tool/session events, register LLM tools, and add slash commands.
 
-Each plugin is a directory under `hooks/` with `plugin.json` next to its
-scripts (event map):
+```bash
+go get github.com/pulseaiclub/phi/ext@v0.19.0
+```
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "bash",
-        "hooks": [
-          { "type": "command", "command": "./guard.sh", "timeout": 5 }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "hooks": [{ "type": "command", "command": "./stamp.sh" }]
-      }
-    ]
-  }
+```go
+package main
+
+import (
+	"github.com/pulseaiclub/phi/ext"
+	"github.com/pulseaiclub/phi/ext/phi"
+)
+
+func main() {
+	m := phi.New("hello", "0.1.0")
+	m.OnToolCall(func(ev ext.ToolCallEvent) *ext.ToolCallResult {
+		// return &ext.ToolCallResult{Block: true, Reason: "..."}
+		return nil
+	})
+	_ = m.Run()
 }
 ```
 
-Hooks load from `~/.phi/hooks/` and `<cwd>/.phi/hooks/`; a project plugin with
-the same id (directory name) replaces the user plugin. Commands run through the
-shell with CC-shaped stdin/stdout JSON. In the TUI, list or reload via
-`Ctrl+K` → hooks. Full guide: [doc/hooks.md](doc/hooks.md).
+Install under `~/.phi/extensions/<name>/` with a `phi.yaml` pointing at the
+binary. In the TUI: `Ctrl+K` → **extensions**. Disable with
+`PHI_EXTENSIONS=off`. Full guide: [doc/extensions.md](doc/extensions.md).
+
+Codec throughput on Apple Silicon (release, single-threaded):
+
+| Implementation | Hello encode+decode | Frame write+read (in-memory) | Allocs |
+|---|---|---|---|
+| Rust PXB (`phi-ext`) | ~0.12 µs | ~0.06 µs | — |
+| Go PXB (`ext/go/pxb`) | ~0.11 µs | ~0.05 µs | 3 / op |
+| Go JSON lines | ~1.2 µs | — | 15 / op |
+
+The ~10× gap over JSON lines is the protocol (fixed header + tagged fields), not
+the language — Rust and Go are within noise on the same codec work. Real
+extension latency is dominated by process spawn and pipe RTT anyway. Re-probe:
+`cargo run --release --example bench` in [`ext/rust`](ext/rust).
 
 ## MCP
 

@@ -18,11 +18,11 @@
 **[在线试玩（免安装）](https://whitefirer.org/niulai-pet/)** —— 同一套代码的
 standalone 页面，模拟任务驱动庆祝；想真养在 dsh 里再往下看安装。
 
-![九个皮肤](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/679b9b2b39fd7f72a05cc08ae4504410a0ed546a/docs/family.png)
+![九个皮肤](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/34fa8f1537702bb43e6278a63e98a676260772fe/docs/family.png)
 
-![层次合影](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/679b9b2b39fd7f72a05cc08ae4504410a0ed546a/docs/assets/family-layered.png)
+![层次合影](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/34fa8f1537702bb43e6278a63e98a676260772fe/docs/assets/family-layered.png)
 
-![演示](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/679b9b2b39fd7f72a05cc08ae4504410a0ed546a/docs/demo.gif)
+![演示](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/34fa8f1537702bb43e6278a63e98a676260772fe/docs/demo.gif)
 
 ## 皮肤
 
@@ -96,6 +96,24 @@ localStorage，不进设置。
 `imageDrive` 开车图、`lampIdle` 警灯分场景、`splitCount` 分裂克隆、
 `hueCycle` 流光变色、`doneVoice` 完成专属声等；包级 `minEngine` 最低引擎版本提示）。
 同 id 重复导入会提示版本差异，确认后覆盖更新。
+
+## 免费角色包合集（30 个）
+
+![全角色总览](https://raw.githubusercontent.com/whitefirer/dsh-niulai-pet/34fa8f1537702bb43e6278a63e98a676260772fe/docs/assets/packs-overview.jpg)
+
+不想自己做包？现成的一整柜直接领：**7 大系列 30 个角色**——史莱姆系 ×8
+（标准/岩浆/水银/冰霜/黄金/月饼/史莱姆王等）、剧场版 ×5（牛来·剧场/牛妈/二妈/
+豹拉/黑狼）、动物系 ×5（犰狳/龙龟/西瓜虫/南极企鹅/Tux）、精怪系 ×4
+（小幽灵三款 + 水母）、桌面小景 ×4（莲花/灵树/含羞草/台灯）、车系 ×3
+（警车/摩托赛车/恶灵骑士）、演示包 ×1（机器人）。每只都有专属叫声/动作/语录，
+分裂、滚动、开车横穿、流光变色、完成光环等引擎特性全覆盖。
+
+- **下载（夸克网盘）**：https://pan.quark.cn/s/438a8966a23c 提取码：`2eFE`
+- **导入**：设置卡片「自定义」tab 导入 zip，或试玩页直接拖入即时预览；
+  每个系列目录附安装说明。
+
+> 部分角色为粉丝二创素材（剧场版/奶龙/恶灵骑士/Tux 等），仅供个人娱乐，
+> 版权归原作者与出品方所有；Tux 形象作者 Larry Ewing。
 
 ## 语音停喊（双引擎）
 

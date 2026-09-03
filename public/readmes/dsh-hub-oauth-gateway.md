@@ -60,25 +60,25 @@ Product research: [`docs/research/usage-analytics-landscape.md`](docs/research/u
 Captured against DeepSeek Harness Web with this plugin installed (empty local history is normal for a fresh profile).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/d8d3e3dc550db07a36917008b901bfc9bdf307f2/docs/images/en/usage-center-hud.png" alt="Floating usage HUD on the DSH shell" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-hud.png" alt="Floating usage HUD on the DSH shell" width="760" />
   <br />
   <em>Floating HUD — today’s metric plus multi-account quota chips</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/d8d3e3dc550db07a36917008b901bfc9bdf307f2/docs/images/en/usage-center-peek.png" alt="Usage Center quick peek overlay" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-peek.png" alt="Usage Center quick peek overlay" width="760" />
   <br />
   <em>Quick Peek — compact 2×2 KPIs with a one-click jump to the full dashboard</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/d8d3e3dc550db07a36917008b901bfc9bdf307f2/docs/images/en/usage-center-dashboard.png" alt="Usage Center full dashboard" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-dashboard.png" alt="Usage Center full dashboard" width="760" />
   <br />
   <em>Full dashboard — ranges, tabs, refresh, and CSV / JSON export</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/d8d3e3dc550db07a36917008b901bfc9bdf307f2/docs/images/en/usage-center-settings.png" alt="Settings → Usage Center" width="760" />
+  <img src="https://raw.githubusercontent.com/lninghaha/dsh-hub-oauth-gateway/bbb6ce8da679651b6422d91cc8c954376861c3d9/docs/images/en/usage-center-settings.png" alt="Settings → Usage Center" width="760" />
   <br />
   <em>Settings → Usage Center — Display / Accounts / Gateway / Capabilities / Providers / Fees</em>
 </p>

@@ -8,7 +8,7 @@
 [![license](https://img.shields.io/npm/l/dsh-team)](./LICENSE)
 ![dsh](https://img.shields.io/badge/dsh-0.1.1--rc.2-blue)
 
-![团队协作室运行截图](https://raw.githubusercontent.com/huxint/dsh-team/9c6b5af1f93f56b6a3c5f4c40636b64deb6aaaa8/screenshots/image.png)
+![团队协作室运行截图](https://raw.githubusercontent.com/huxint/dsh-team/062959d8f953cba0063cbbc6e71d8db283ec866e/screenshots/image.png)
 
 </div>
 

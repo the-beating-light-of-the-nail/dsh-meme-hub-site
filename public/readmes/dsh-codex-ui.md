@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/944915a969143160a3ee7ea7d9b2329654746ffd/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a698c819216e84d20a0498aafccb5b5bfc7a00f3/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
 </p>
 
 <div align="center">
@@ -33,19 +33,19 @@
 
 Light theme: Codex-style sidebar, workspace tree, and conversation column.
 
-![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/944915a969143160a3ee7ea7d9b2329654746ffd/assets/screenshots/conversation-light.png)
+![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a698c819216e84d20a0498aafccb5b5bfc7a00f3/assets/screenshots/conversation-light.png)
 
 Dark theme: the same layout with Codex dark tokens.
 
-![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/944915a969143160a3ee7ea7d9b2329654746ffd/assets/screenshots/conversation.png)
+![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a698c819216e84d20a0498aafccb5b5bfc7a00f3/assets/screenshots/conversation.png)
 
 Conversation menu: rename, pin, unread, archive, fork, copy, and delete.
 
-![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/944915a969143160a3ee7ea7d9b2329654746ffd/assets/screenshots/session-menu.png)
+![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a698c819216e84d20a0498aafccb5b5bfc7a00f3/assets/screenshots/session-menu.png)
 
 **Settings → About** lists the companion plugins and their install state.
 
-![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/944915a969143160a3ee7ea7d9b2329654746ffd/assets/screenshots/settings-about.png)
+![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/a698c819216e84d20a0498aafccb5b5bfc7a00f3/assets/screenshots/settings-about.png)
 
 ## Prerequisites
 

@@ -14,27 +14,18 @@
 
 一个 DSH 持久化插件（host + browser 双半）。v3.0.0 起同时覆盖「设置面板」与「主页侧边栏」两个入口，无需打开设置即可完成高频会话操作。
 
-## v3.2 亮点
-
-- **侧栏跨工作区拖拽**：把会话拖到目标工作区标题即可完成迁移；与 DSH 原生同组排序兼容，提供目标高亮、同工作区拦截、失败反馈，并保留键盘可达的菜单入口。
-- **完整会话管理工作台**：全部 / 活动 / 已归档 / 回收站统一入口，加入全文搜索、工作区筛选、创建时间与标题排序、批量操作和结果计数。
-- **可靠回收站生命周期**：软删除、原位恢复、单条彻底删除、批量清空、7 / 30 / 90 天自动清理和日志完整性校验；索引采用 schema v2、串行变更和原子写入。
-- **删除后不再“复活”**：永久删除先持久化墓碑，再等待 live Session 与持久化控制器退役、物理删除日志并重建工作区索引，避免会话或空的「未分组」重新出现。
-- **归档状态往返一致**：活动或归档会话进入回收站后，恢复时回到删除前状态；并发归档 / 恢复串行执行，避免重复 ID、覆盖和竞态。
-- **冷启动标题权威同步**：从日志折叠最新 `session/title`，改名后的会话无需先打开即可在侧栏显示最新名称。
-- **打开会话也能安全迁移**：移动过程同步日志 header、持久化状态、live Session 与 WorkspaceRegistry，配合备份、校验和失败回滚。
-- **界面一致性与可访问性**：标签统一采用 DSH 官方 4px R 角；危险操作二次确认、忙碌 / 空 / 错误状态清晰，拖拽之外保留键盘操作路径。
-
 ## 功能
 
 ### 设置面板：会话管理
 
-- **统一面板**：顶部提供「全部 / 活动 / 已归档 / 回收站」四个视图，支持按标题、会话 ID、工作区搜索，按工作区筛选，并按创建时间或标题排序。
+- **统一面板**：顶部提供「全部 / 活动 / 已归档 / 已收藏 / 回收站」五个视图，支持按标题、会话 ID、工作区搜索，按工作区筛选，并按创建时间或标题排序。
+- **收藏（星标）**：会话行左侧常驻星标按钮，单击即收藏 / 取消（乐观更新、失败回滚）；「已收藏」视图与 DSH 的活动 / 归档状态正交、可叠加；收藏索引为插件自有 schema v3，不触碰 DSH 日志，会话被彻底删除时自动清理。
 - **冷态标题同步**：侧栏使用日志中最新的 `session/title` 修正冷启动缓存，改名后的会话无需先打开即可显示新名称。
 - **侧栏跨工作区拖拽**：直接把会话拖到目标工作区标题即可切换工作区；目标高亮、同工作区拦截、失败反馈，并保留“更多 → 移动会话”作为键盘操作入口。
 - **归档 / 恢复**：归档把会话从侧栏隐藏；恢复取消归档并放回原工作区分组。
 - **移动到工作区**：任选**已有工作区**或**新建目录路径**（自动创建），新建目录支持点击 **「浏览…」** 调用系统目录选择窗口。会话的工作目录与日志一起迁移；即使会话处于打开状态也可安全移动。
 - **会话详情**：展开单条会话查看**磁盘占用**、**轮次 / 步骤 / 用户·助手消息 / 工具调用 / 图片附件**统计、**工具使用分布**、**搜索·抓取记录**、**write/edit 写过的文件列表**（已过滤磁盘上已不存在的路径），以及**血统**（父会话 / 子会话 / 子代理）。
+- **导出**：详情面板底部提供两个入口——「**下载原始日志 (ZIP)**」直接走 DSH 官方 `session.export` 端点（含子会话与附件，持久化后端不支持时自动隐藏）；「**导出 Markdown**」由本插件把会话渲染为人类可读对话记录（front matter + 按轮分节 + 用户 / 助手 / 工具调用摘要，流式增量不重复）。
 - **批量多选**：全选 / 批量归档 / 恢复所选 / 删除所选（批量删除一次二次确认）。
 
 ### 主页侧边栏：会话 ⋯ 菜单增强
@@ -71,13 +62,20 @@
 
 ## 截图
 
-![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-submenu.png)
+<details>
+<summary>展开查看截图（设置面板 / 已收藏 / 回收站 / 会话详情 / 侧边栏菜单）</summary>
 
-![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-settingsmenu.png)
+![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/1b23bbda9ebc54faf136e90bd153ced5c7a0516a/assets/screenshot-session-submenu.png)
 
-![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-trash.png)
+![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/1b23bbda9ebc54faf136e90bd153ced5c7a0516a/assets/screenshot-session-settings.png)
 
-![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/e127791245ff158612dd1332a52f5ca63a0d32c3/assets/screenshot-session-details.png)
+![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/1b23bbda9ebc54faf136e90bd153ced5c7a0516a/assets/screenshot-session-starred.png)
+
+![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/1b23bbda9ebc54faf136e90bd153ced5c7a0516a/assets/screenshot-session-trash.png)
+
+![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/1b23bbda9ebc54faf136e90bd153ced5c7a0516a/assets/screenshot-session-details.png)
+
+</details>
 
 ## 安装
 
@@ -138,6 +136,8 @@ lib/client.js      预构建 client（ModuleLoader CJS handshake）
 | POST | `/archived-sessions/move` | 把会话移动到目标工作区 `{ sessionId, targetPath }` |
 | POST | `/archived-sessions/details` | 会话详情（磁盘/统计/工具/fetch/文件/血统）`{ sessionId }` |
 | POST | `/archived-sessions/sidebar-state` | 返回侧栏权威标题、回收站 ID 与永久删除墓碑 |
+| POST | `/archived-sessions/star/set` | 收藏 / 取消收藏 `{ sessionId 或 sessionIds, starred }` |
+| GET | `/archived-sessions/export-md?sessionId=` | 单会话 Markdown 导出（人类可读对话记录） |
 
 > 删除会话默认进入回收站，只有回收站内的「彻底删除」才会物理移除日志。被彻底删除的会话由前端永久隐藏，避免 DSH 运行时缓存使其重新出现在侧栏或「未分组」中。
 

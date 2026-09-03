@@ -30,16 +30,16 @@
 
 | 浅色 | 深色 |
 |---|---|
-| ![浅色截图](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/ecb34b5addc55c432d3f44c4517b7be61c681d53/docs/screenshot-light.png) | ![深色截图](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/ecb34b5addc55c432d3f44c4517b7be61c681d53/docs/screenshot-dark.png) |
+| ![浅色截图](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/d420f02bdc990991876ff06625dd67288d84a05d/docs/screenshot-light.png) | ![深色截图](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/d420f02bdc990991876ff06625dd67288d84a05d/docs/screenshot-dark.png) |
 
 | 浅色完整链路 | 深色完整链路 |
 |---|---|
-| ![浅色](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/ecb34b5addc55c432d3f44c4517b7be61c681d53/docs/light.gif) | ![深色](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/ecb34b5addc55c432d3f44c4517b7be61c681d53/docs/dark.gif) |
+| ![浅色](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/d420f02bdc990991876ff06625dd67288d84a05d/docs/light.gif) | ![深色](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/d420f02bdc990991876ff06625dd67288d84a05d/docs/dark.gif) |
 | 悬停漏斗放大 → 气泡 240px 预览 → 点击跳转 → 拖拽 Scrub HUD | 同左，深色墨玉玻璃 |
 
 | 设置开关与左右切换 |
 |---|
-| ![设置](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/ecb34b5addc55c432d3f44c4517b7be61c681d53/docs/settings.gif) |
+| ![设置](https://raw.githubusercontent.com/huang-chunc/dsh-user-message-timeline/d420f02bdc990991876ff06625dd67288d84a05d/docs/settings.gif) |
 | 开关关闭隐藏 · 左右贴边（右侧仅适配 dsh-better-sidebar） |
 
 > 动图为 15fps / 128 色压缩预览，完整演示：[浅色](https://www.bilibili.com/video/BV1FR896cEwY?t=9.0) · [深色](https://www.bilibili.com/video/BV1zR896FEY8?t=2.1)（或直接看 `docs/` 下原片）。

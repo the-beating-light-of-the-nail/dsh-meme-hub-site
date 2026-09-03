@@ -154,15 +154,15 @@ DSH Web remains loopback-only. Remote Settings must travel through an SSH tunnel
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <a href="media/en/settings_accounts.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/56e5ec4383650f8e4d62256e2f0e49e625a9c6f7/media/en/settings_accounts.png" alt="Coding OAuth Accounts tab" width="280" /></a><br />
+      <a href="media/en/settings_accounts.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/b1481c1e097d587c382b1df76fb79f857e3e8df1/media/en/settings_accounts.png" alt="Coding OAuth Accounts tab" width="280" /></a><br />
       <sub>Accounts</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <a href="media/en/settings_gateway.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/56e5ec4383650f8e4d62256e2f0e49e625a9c6f7/media/en/settings_gateway.png" alt="Coding OAuth Gateway tab" width="280" /></a><br />
+      <a href="media/en/settings_gateway.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/b1481c1e097d587c382b1df76fb79f857e3e8df1/media/en/settings_gateway.png" alt="Coding OAuth Gateway tab" width="280" /></a><br />
       <sub>Gateway</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <a href="media/en/settings_capabilities.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/56e5ec4383650f8e4d62256e2f0e49e625a9c6f7/media/en/settings_capabilities.png" alt="Coding OAuth Capabilities tab" width="280" /></a><br />
+      <a href="media/en/settings_capabilities.png"><img src="https://raw.githubusercontent.com/lninghaha/dsh-coding-subscription-oauth/b1481c1e097d587c382b1df76fb79f857e3e8df1/media/en/settings_capabilities.png" alt="Coding OAuth Capabilities tab" width="280" /></a><br />
       <sub>Capabilities</sub>
     </td>
   </tr>

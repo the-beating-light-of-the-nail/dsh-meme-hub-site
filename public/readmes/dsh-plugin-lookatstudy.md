@@ -6,11 +6,10 @@ Turn any markdown document, local folder, or GitHub learning repository into a g
 
 | | |
 |---|---|
-| ![Three-column study tab: course rail, tutor, blackboard](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/cdb26dd45257e03e4c515ac683169c779d2b4f42/docs/media/overview.png) | **The 学习 tab** — course rail (progress, mastery bars, due box), the live tutor conversation, and the focus lesson's blackboard, all inside one dsh conversation view. |
-| ![Lesson page with rendered math, code and diagrams](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/cdb26dd45257e03e4c515ac683169c779d2b4f42/docs/media/blackboard-lesson.png) | **讲解** — server-sanitized markdown rendered rich on demand: KaTeX formulas, syntax-highlighted code, mermaid diagrams (CDN loaders, silent degrade offline). |
-| ![Mindmap view of the lesson](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/cdb26dd45257e03e4c515ac683169c779d2b4f42/docs/media/mindmap.png) | **🧠 脑图** — the lesson as an interactive markmap mindmap. |
-| ![Concept map view](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/cdb26dd45257e03e4c515ac683169c779d2b4f42/docs/media/concept-map.png) | **🕸 概念图** — the lesson's knowledge components laid out as a draw.io-style concept graph (bundled ELK layout, no external service). |
-| ![Course rail with lesson tree](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/cdb26dd45257e03e4c515ac683169c779d2b4f42/docs/media/course-rail.png) | **课程栏** — sections, gating, mastery bars, ⚡ weak spots, exam stars, XP & streak. |
+| ![Three-column study tab: course rail, tutor, blackboard](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/c82a5f371499d0a9fa4621e2b4bae63c31a9b1ec/docs/media/overview.png) | **The 学习 tab** — course rail (progress, mastery bars, due box), the live tutor conversation, and the focus lesson's blackboard, all inside one dsh conversation view. |
+| ![Lesson page with rendered math, code and diagrams](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/c82a5f371499d0a9fa4621e2b4bae63c31a9b1ec/docs/media/blackboard-lesson.png) | **讲解** — server-sanitized markdown rendered rich on demand: KaTeX formulas, syntax-highlighted code, mermaid diagrams (CDN loaders, silent degrade offline). |
+| ![Concept map view](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/c82a5f371499d0a9fa4621e2b4bae63c31a9b1ec/docs/media/concept-map.png) | **🕸 概念图** — the lesson's knowledge components laid out as a draw.io-style concept graph (bundled ELK layout, no external service). |
+| ![Course rail with lesson tree](https://raw.githubusercontent.com/Kaiji-Z/dsh-plugin-lookatstudy/c82a5f371499d0a9fa4621e2b4bae63c31a9b1ec/docs/media/course-rail.png) | **课程栏** — sections, gating, mastery bars, ⚡ weak spots, exam stars, XP & streak. |
 
 ## Install
 

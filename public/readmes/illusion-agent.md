@@ -48,14 +48,14 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
 <div align="center">
   <p>Welcome screen & rich text rendering</p>
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/06bb4ad82bbbc45ba0d40d4e31d95c433e0503b7/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
-  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/06bb4ad82bbbc45ba0d40d4e31d95c433e0503b7/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/97e4dbe7f547a098506104d0b0496a35082478de/docs/images/image1.png" alt="IllusionAgent welcome screen" width="48%" />
+  <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/97e4dbe7f547a098506104d0b0496a35082478de/docs/images/image2.png" alt="IllusionAgent rich text rendering" width="48%" />
 </div>
 
 <div align="center">
   <p>Demo video</p>
   <a href="https://www.youtube.com/watch?v=ExrzKVjWPls">
-    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/06bb4ad82bbbc45ba0d40d4e31d95c433e0503b7/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
+    <img src="https://raw.githubusercontent.com/YunTaiHua/illusion-agent/97e4dbe7f547a098506104d0b0496a35082478de/docs/images/illusion-agent-en.png" alt="Click to watch demo video" width="720" />
   </a>
   <p><a href="https://www.youtube.com/watch?v=ExrzKVjWPls">📺 Watch demo on YouTube</a></p>
 </div>

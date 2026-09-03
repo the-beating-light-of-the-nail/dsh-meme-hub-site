@@ -1,6 +1,6 @@
 # Treg (OpenRouter for Tools)
 
-![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/579adb509e11b6513b7ac1a900b5965c88c10eb3/docs/assets/treg-hero.png)
+![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/d4c0363f163e0cbca734bd84f17b3fcab15c7fc0/docs/assets/treg-hero.png)
 
 **OpenRouter, but for agent tools instead of models.** Point an agent at one base URL with one token
 and it can do the job: **2,896 catalogued endpoints across 60 providers** — SEO and backlinks,
@@ -294,6 +294,8 @@ Environment variables (prefix `TREG_`, read from `.env`):
 | `TREG_SESSION_SECRET`                     | *(empty)*                       | signs the dashboard session cookie; falls back to `TREG_SECRET_KEY`. Set a real value in prod                                                                              |
 | `TREG_GITHUB_CLIENT_ID` / `_SECRET`       | *(empty)*                       | GitHub OAuth sign-in (callback `<public_url>/auth/github/callback`); empty hides the button                                                                                |
 | `TREG_GOOGLE_CLIENT_ID` / `_SECRET`       | *(empty)*                       | Google OAuth sign-in (redirect `<public_url>/auth/google/callback`); empty hides the button                                                                                |
+| `TREG_INSTAGRAM_CLIENT_ID` / `_SECRET`    | *(empty)*                       | Instagram App ID and secret for direct Instagram Login (redirect `<public_url>/oauth/callback`)                                                                           |
+| `TREG_META_CLIENT_ID` / `_SECRET`         | *(empty)*                       | Meta app credentials for Facebook Pages, Meta Ads, and optional Instagram `page-tools`                                                                                     |
 | `TREG_RESEND_API_KEY` / `TREG_EMAIL_FROM` | *(empty)*                       | transactional email via Resend (OTP codes + invites); From must be a Resend-verified sender                                                                                |
 | `TREG_ADMIN_TOKEN`                        | *(empty)*                       | cross-tenant **super-admin** bearer; authorizes every `/admin/*` endpoint. Empty disables the env path (only `is_superadmin` users reach `/admin`). Keep it long + secret. |
 | `TREG_EMAIL_DEV_MODE`                     | `false`                         | when true, `/auth/email/start` returns the OTP in its response (no mail sender needed) — **dev/local only**, never in prod.                                                |

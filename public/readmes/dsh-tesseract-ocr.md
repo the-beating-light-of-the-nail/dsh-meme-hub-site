@@ -6,7 +6,7 @@
 
 **Privacy default:** image bytes are OCR'd locally and not sent to the provider. Set `passthrough: true` only if you intentionally want genuine vision models to receive original image bytes.
 
-Tested on Ubuntu (primary target); works anywhere the `tesseract` CLI is installed (Linux, macOS, Windows). Verified against dsh `0.1.2-alpha.1` (master).
+Tested on Ubuntu (primary target); works anywhere the `tesseract` CLI is installed (Linux, macOS, Windows). Verified against dsh `0.1.2-alpha.2` (master).
 
 - No configuration changes to your models — no `input: [text, image]` hacks in `settings.yaml`.
 - Works with any provider/model in dsh; by default every attached image is OCR'd before the request leaves the machine.
@@ -18,15 +18,27 @@ Tested on Ubuntu (primary target); works anywhere the `tesseract` CLI is install
 ## Install from npm
 
 ```bash
-dsh plugin --profile web add @maxwell-feng/dsh-tesseract-ocr
+dsh plugin --profile web add dsh-tesseract-ocr
 ```
 
 (Replace `web` with your profile, e.g. `tui`.) Prebuilt and published with Sigstore provenance — no source build or `allowBuilds` approval needed. Installing from source (this repo) still works via the agent guide or the manual steps below.
 
+or from the repository / a tarball:
+
+```bash
+dsh plugin --profile web add ./dsh-tesseract-ocr        # source checkout
+dsh plugin --profile web add ./dsh-tesseract-ocr-0.3.2.tgz
+dsh plugin --profile web add github:maxwell-feng/dsh-tesseract-ocr
+```
+
+> Git installs fetch sources, not built artifacts: the package's `prepare`
+> script runs `tsc` to rebuild `lib/` from source, and pnpm ≥ 10 requires you
+> to allow the build once (it prints the exact `pnpm-workspace.yaml` snippet).
+
 > **npm install registers the `tesseract-ocr` row by itself.** The package
 > ships a bundle patch (`dsh.bundle` + its own `cordis.patch.yml`) that
 > inserts the `tesseract-ocr` loader entry. Do **not** also add a manual
-> `- insert:` row with the same id to your profile — dsh `0.1.2-alpha.1`
+> `- insert:` row with the same id to your profile — dsh `0.1.2-alpha.2`
 > rejects duplicate loader entry ids and
 > `dsh web` fails to boot with `duplicate loader entry id: tesseract-ocr`.
 
@@ -113,7 +125,7 @@ Then restart `dsh web`. Remove the rows to uninstall — the plugin restores the
 
 > Choose **one** way to load the plugin: the npm bundle (above) **or** this
 > manual insert — never both. Both register the same `tesseract-ocr` entry id,
-> and dsh `0.1.2-alpha.1` fails the boot with `duplicate loader entry id:
+> and dsh `0.1.2-alpha.2` fails the boot with `duplicate loader entry id:
 > tesseract-ocr` when the row exists twice. If the row is already present (for
 > example after an npm bundle install), configure it with an id-targeted
 > override row instead of inserting a second one.
@@ -133,7 +145,9 @@ dsh --profile web --patch /home/you/tesseract-ocr/dev.patch.yml
 
 ## Configuration
 
-All settings live in the patch row `tesseract-ocr`:
+All settings live in the patch row `tesseract-ocr`. Configuration is
+validated at load time (Schemastery `Config` schema) — an invalid value fails
+the boot with an actionable error instead of being silently ignored:
 
 | Key | Default | Meaning |
 |---|---|---|
@@ -143,6 +157,10 @@ All settings live in the patch row `tesseract-ocr`:
 | `psm` | `3` | Page segmentation mode (`tesseract --psm`) |
 | `timeoutMs` | `60000` | Per-image OCR timeout |
 | `maxCacheEntries` | `200` | Bound on the per-run OCR cache (keyed by attachment id) |
+
+## Usage
+
+Attach any image to a text-model session and send a message — the plugin intercepts `agent/pre-step`, OCRs the image locally via the `tesseract` CLI, and replaces the `image` block with a text block before the request is built. No code or model-config changes needed; every provider/model in dsh benefits.
 
 ## How the model sees the image
 
@@ -183,6 +201,14 @@ Exit 0 with the recognized text means Tesseract is ready.
 1. Attach an image to a text-model session and send a message — the model should answer using the recognized text.
 2. Confirm the image never goes out: open DevTools → Network in the web UI, inspect the request to your provider base URL, and verify the payload contains only `text` content parts (no `image_url` / data URI).
 
+## Uninstall
+
+```bash
+dsh plugin --profile web remove dsh-tesseract-ocr
+```
+
+For manual installs, delete the `tesseract-ocr` row from your profile's `cordis.patch.yml` and restart `dsh --profile web`. The plugin restores the original `llm` shims on unload; a full restart is safest after removal. After uninstall, text-model image attachments are refused again (fail-closed).
+
 ## Limitations
 
 - Recognition quality depends on the installed language packs and `psm`; tune `language`/`psm` per use case.
@@ -190,7 +216,7 @@ Exit 0 with the recognized text means Tesseract is ready.
 - Cache is per process; a long-lived session keeps OCR text cached, bounded by `maxCacheEntries`.
 - The plugin registers one fiber-scoped `agent/pre-step` listener and restores the `llm` capability shims on unload. A full restart is still the safest path after any dsh update.
 - If the plugin is removed, image attachments to text models are refused again (fail-closed), not uploaded.
-- Package name on npm is `@maxwell-feng/dsh-tesseract-ocr` (scoped) to avoid colliding with the unrelated `tesseract-ocr` package.
+- Package name on npm is `dsh-tesseract-ocr` (unscoped) to avoid colliding with the unrelated `tesseract-ocr` package.
 
 ## License
 

@@ -26,7 +26,7 @@ sha256: 8f9ae6322ef782d21554981cf4547220d5bb3e64d7964a883317415ad54e3cbb
 
 Prefer clicking? There's a visual panel in `dsh web` → Settings → Plugins → Backup: list, verify, restore, delete, edit settings — no restart.
 
-![Backup panel](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/85953f7fd4a477b8a0c2e89c70f8cb90164b55ca/docs/assets/panel-backups.png)
+![Backup panel](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/b519db26edf33281a111e381089cc41b61628a48/docs/assets/panel-backups.png)
 
 ## Why you want this
 
@@ -41,7 +41,7 @@ Prefer clicking? There's a visual panel in `dsh web` → Settings → Plugins �
 | "Backups rot silently" | Every archive ships a sha256; `/backup verify all` checks integrity; daily/weekly tiered retention keeps useful history longer |
 | "I'll forget to back up" | `/backup auto 12` — every 12 hours, survives restarts, rotates old copies (default keep 7) |
 
-![Backup settings](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/85953f7fd4a477b8a0c2e89c70f8cb90164b55ca/docs/assets/panel-settings.png)
+![Backup settings](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/b519db26edf33281a111e381089cc41b61628a48/docs/assets/panel-settings.png)
 
 ## Install
 
@@ -53,7 +53,11 @@ dsh plugin --profile web add @xiaoyuyu6420/dsh-backup
 dsh plugin --profile web add github:xiaoyuyu6420/dsh-backup
 ```
 
-Restart `dsh web` afterwards.
+Restart `dsh web` afterwards — the plugin only takes effect after a restart.
+
+> The installer may print `✕ missing peer @deepseek-ai/...` warnings. These are
+> expected: the peer packages are provided by the DSH host at runtime. As long
+> as the command ends with `Done`, the plugin is installed.
 
 ## Quickstart
 
@@ -68,14 +72,26 @@ Want it on a schedule? `/backup auto 12` (every 12 hours; `off` stops it, `statu
 | Task | Command |
 |---|---|
 | Back up now | `/backup` |
+| Typed backup (selected types only) | `/backup --types skills,sessions` (types: `credentials`·`mcp`·`skills`·`sessions`·`settings`·`profiles`; `--only` works too) |
 | Schedule (survives restarts) | `/backup auto 12` · `off` · `status` |
 | Restore (preview first) | `/backup restore latest --dry-run` |
 | Restore for real | `/backup restore latest` |
+| Typed restore (merge, other types untouched) | `/backup restore <archive> --types skills` |
 | List backups | `/backup list` |
 | Verify integrity | `/backup verify [prefix\|all]` |
 | Check & repair session logs | `/backup doctor` · `--repair [prefix\|latest]` |
 | **Rescue when DSH won't boot** | double-click「点我恢复」in the backup dir, or `dsh-rescue` / `node rescue.mjs` |
 | Delete / retention | `/backup delete <prefix\|latest>` · `/backup --keep N` (default 7) |
+
+## Typed backup
+
+Only need certain kinds of data? Use `--types` (or `--only`) to operate on a subset. Available types: `credentials` (API keys), `mcp` (MCP config), `skills`, `sessions`, `settings`, `profiles`.
+
+- **Back up**: `/backup --types skills,sessions` creates a `dsh-t-` subset archive; rotation is tracked separately from full backups
+- **Restore**: `/backup restore <archive> --types skills` merges only skills back into your existing `~/.dsh` (preview with `--dry-run`; overwritten files are kept aside as `.pre-merge-*`). Everything else stays untouched.
+- **Credentials caveat**: `--types credentials` puts API keys into the archive **in plaintext** (full backups redact them). Such archives never go to GitHub sync — keep them local or copy them to a new machine yourself.
+- **Guardrail**: restoring a typed archive without `--types` is rejected (prevents accidental data loss); the rescue channel likewise won't list or fully restore them.
+- The Settings panel supports this too: check types under the backup button; typed archives get their own section.
 
 ## New machine
 
@@ -115,6 +131,9 @@ Tried it? Tell us what broke, what's missing, what you liked — it directly sha
 <details>
 <summary>Recent releases</summary>
 
+- **0.11.0** — doctor container-contract check: the first zstd frame must decode to exactly one header line, byte-precise (non-empty, first newline at the last byte — aligned with the host reader). Single-frame rewrites, stray blank lines in the first frame, a missing trailing newline and skippable frames are now flagged corrupt (previously reported healthy while the host refused to load them); the rescue console checks in sync. Found via a community audit on deepseek-harness #1047.
+- **0.10.0** — typed backups: back up just what you need (`/backup --types skills,sessions`) and merge-restore a subset (`/backup restore <archive> --types skills`); per-type archives rotate in their own bucket. Credential-type archives stay out of GitHub sync; cross-machine guardrails unchanged.
+- **0.9.1** — feedback entry point in the panel; README overhaul. UX hardening from a six-agent review: restore-confirm button made visible again (missing theme fallback), snapshot self-deletion during snapshot-restore fixed, node discovery for the double-click rescue launcher, friendlier error messages with concrete next steps.
 - **0.9.0** — `/backup doctor` session-log health check with targeted repair; out-of-process rescue channel (`dsh-rescue` / launcher in the backup dir) that works even when the host won't boot; restore auto-rollback with a result-oriented receipt; smart backup: pre-upgrade snapshots on host train changes, quarantine of corrupt session logs before they rotate away, tiered daily/weekly retention.
 - **0.8.0** — edit backup settings right in the panel (destination, retention, exclude patterns), saved instantly to `settings.yaml`, no restart; stale edits get a conflict warning instead of silent overwrite.
 - **0.7.x** — credential redaction with a local vault; cross-machine restore.

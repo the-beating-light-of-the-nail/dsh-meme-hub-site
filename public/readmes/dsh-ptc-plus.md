@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/muyuanjin/dsh-ptc-plus/2a6413a920b8aaa086d29981f17ced9af1793c36/assets/dsh-ptc-plus-banner.webp" width="100%" alt="dsh-ptc-plus banner">
+  <img src="https://raw.githubusercontent.com/muyuanjin/dsh-ptc-plus/8b96abc67d7a74c10300cf63e10d060c3f4ab5c4/assets/dsh-ptc-plus-banner-en.webp" width="100%" alt="dsh-ptc-plus banner">
 </p>
 
 <p align="center">
@@ -37,7 +37,7 @@
 > [!IMPORTANT]
 > Built for `danger-full-access`: direct Node.js and OS access with no extra sandbox. Use it only where that permission scope is acceptable.
 
-![PTC Plus settings card](https://raw.githubusercontent.com/muyuanjin/dsh-ptc-plus/2a6413a920b8aaa086d29981f17ced9af1793c36/assets/ptc-plus-settings.png)
+![PTC Plus settings card](https://raw.githubusercontent.com/muyuanjin/dsh-ptc-plus/8b96abc67d7a74c10300cf63e10d060c3f4ab5c4/assets/ptc-plus-settings-en.png)
 
 *The settings card exposes live configuration and the `enabled` kill switch.*
 
@@ -119,13 +119,13 @@ The module-syntax task separated the two arms most clearly. PTC Plus finished bo
 
 This is one stochastic paired observation, not a performance guarantee. Machine budgets were exceeded in 2 of the 18 PTC Plus sessions and 5 of the 18 sessions without PTC Plus, so the matrix as a whole did not pass machine acceptance. Token traffic includes input, cache-read, cache-write, and output tokens. The fixture, pairing rules, metrics, and blind-review protocol are documented in [Evaluation](docs/evaluation.md).
 
-![Rejected run_code and the follow-up edit_run_code repair](https://raw.githubusercontent.com/muyuanjin/dsh-ptc-plus/2a6413a920b8aaa086d29981f17ced9af1793c36/assets/ptc-plus-repair.png)
+![Rejected run_code and the follow-up edit_run_code repair](https://raw.githubusercontent.com/muyuanjin/dsh-ptc-plus/8b96abc67d7a74c10300cf63e10d060c3f4ab5c4/assets/ptc-plus-repair.png)
 
 *A real session: the long code and the truthful `edit_run_code` repair call. The repair never resends the source.*
 
 ## Settings
 
-Open **Settings → Plugin configuration** to use the card shown above. The `enabled` switch is live: turning it off leaves only the card and that switch, while turning it on restores the session runtime and `run_code`/`edit_run_code`.
+Open **Settings → Plugin configuration** to use the card shown above. The card follows the DSH UI language: it renders in English when the harness is set to English, and in 中文 when set to Chinese. The `enabled` switch is live: turning it off leaves only the card and that switch, while turning it on restores the session runtime and `run_code`/`edit_run_code`.
 
 Every setting applies live and keeps existing bindings. A submitted cell uses one configuration for its complete execution; changes made while it runs apply to cells submitted afterward. A failed change rolls back. Node fixes a worker's V8 old-generation limit when the worker starts, so that one setting is rejected while a session worker is active and can be changed after the session is disposed. A failed enable is rolled back and persisted as disabled.
 

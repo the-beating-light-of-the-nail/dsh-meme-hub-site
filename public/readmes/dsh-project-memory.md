@@ -11,15 +11,45 @@ Persistent project memory for [DeepSeek Harness](https://github.com/deepseek-ai/
 ## Features
 
 - **Document memorization** — PDF, Markdown, and plain text files are chunked and summarized by the LLM; each entry carries a `path:line` citation back to the source.
-- **Code symbol memory** — function, class, and method names are extracted by a dependency-free source scanner (string/comment masking, multi-line signature joining, indentation-aware Python, class-method context), without LLM token usage.
+- **Code symbol memory** — function, class, and method names with full type signatures (generics, parameters, return types, overloads) are extracted by a dependency-free source scanner (string/comment masking, multi-line signature joining, indentation-aware Python, class-method context), without LLM token usage.
+- **L1 Enhanced Regex** — zero-dep regex scanner now extracts generics, parameter/return types, overloads, interfaces, and type aliases for all supported languages, producing one-line identity signatures `fn(a: A, b: B): R — file.ts:42`.
+- **Optional TypeScript semantic enhancement (L2/L3)** — when `typescript` is installed in the user project (`npm i -D typescript`), the plugin automatically activates a second layer (L2) that uses the TS Compiler API to infer return types, resolve generics, extract interfaces and type aliases, and enrich arrow functions — all asynchronously in a priority queue (P0 on `fs/observed`, P1 on `watch`, P2 on `index_repo`). Results are cached on disk keyed by file content hash (L3) for instant cold-start reuse. Zero config: just install TS and restart dsh. Fully optional; if TS is absent or disabled via `enableTypeScript: false`, the plugin falls back to L1 regex-only extraction.
 - **Automatic refresh** — a background poll (`watch_repo`) detects new or changed files by content hash and re-memorizes only those.
 - **Read-time memorization** — files are memorized the moment the model actually reads them (`fs/observed`), so the memory is a byproduct of normal work, not a separate upfront scan. Files that are never read are never indexed. The project root is detected by markers (`.git`, `package.json`, …), a README plus source directories, or the file's own directory as a last resort.
 - **Doc ↔ code cross-linking** — when a document mentions a symbol, the match is recorded as a `reference`; querying a symbol also surfaces the documents that describe it.
 - **BM25 memory recall** — ranked search over documents, symbols, and experience notes, with optional LLM query expansion to handle vocabulary mismatch. **CJK-optimized**: precise phrase boost (3+ char phrases ×1.5 score on title/keywords match), synonym table (e.g. 数据库连接池 ↔ 连接池 ↔ DB pool), and CJK-aware word boundaries for doc↔symbol linking.
+- **blindSpots-aware recall** — document summaries carry a `blindSpots` field (what the summary explicitly does NOT cover). When a query hits a blind spot, `query_memory` appends a warning pointing the model to read the source file, preventing hallucination from partial summaries.
 - **Experience notes** — problems → solutions; similar problems supersede instead of duplicating, and notes are returned only when a search matches. The note store is bounded: capacity scales with project size (clamped to 100–2000), and the oldest notes are pruned when the limit is exceeded. **Supersede tightened to bidirectional 0.7 overlap** (was 0.6); **experience `problem` field now participates in CJK phrase boost** for long-tail query recall.
+- **Streaming TF + IDF caching** — query path caches IDF (term inverse frequency) per store version; on cache hit, single-pass streaming scores 20k entries in ~8 ms (5k files) / ~1 ms (1k files) with zero intermediate objects; write path is O(1) version bump.
 - **Lock-free sync transactions** — all writes (index / watch / remember / forget / watch_repo) go through synchronous transactions `store.commit(fn)`; fn succeeds then atomic write; JS single-threaded event loop guarantees no interleaving; `remember`/`forget` never blocked by watch re-indexing.
 - **Minimal dependencies** — pure JavaScript; the only runtime dependency is `pdfjs-dist` (PDF text extraction), no native builds required.
 - **Negligible overhead** — pure in-process operation; cold start <100 ms (5k files), typical project query median 2–3 ms (p99 < 7 ms); bottleneck is LLM summarization and PDF parsing, not the plugin.
+
+## Performance
+
+### Synthetic Benchmark (isolated environment, Node 24, Linux)
+
+| Scenario | Scale | Measured |
+|----------|-------|----------|
+| Full cold index | 5,000 files / 20k entries | 353 ms |
+| Cold load | 5,000 files | 82 ms |
+| Hot lazy re-index (single file) | 5k files | median 2.3 ms / max 4.0 ms |
+| query_memory (cached) | 5k files / 20k entries | median 9.3 ms / p95 12.6 ms |
+| query_memory (cached) | 1k files / 4k entries | median 1.0 ms / p95 2.0 ms |
+| Full cold index | 10,000 files / 40k entries | 637 ms |
+| Cold load | 10,000 files | 144 ms |
+| Hot lazy re-index (single file) | 10k files | median 4.5 ms / max 10.2 ms |
+
+> Synthetic benchmark: generated code (~8 symbols/file), Node 24, Linux native FS, SSD. Measures pure indexing overhead without LLM calls. query_memory benchmark uses IDF cache + precomputed searchText; first query after write rebuilds IDF (~150 ms), subsequent queries hit cache.
+
+### Real Project Storage
+
+| Project | Files | Entries | Store Size | Per Entry |
+|---------|-------|---------|------------|-----------|
+| Java Spring Boot backend | 1,254 | 7,335 | 6.7 MB | ~0.9 KB |
+| Vue 3 + Vite frontend | 289 | 2,141 | 1.0 MB | ~0.5 KB |
+
+> Real projects (Java + Vue), tested on Linux file system (Node 24). Real project entries are smaller than synthetic benchmarks due to lower symbol density and shorter declarations.
 
 ## How it works
 
@@ -36,7 +66,7 @@ The store is per-project and follows the codebase: changed files are re-extracte
 
 ## Installation
 
-Tested against dsh **0.1.0-rc.7 through 0.1.2-alpha.1**. The plugin relies exclusively on stable public APIs (`defineTool`, `llm.stream`, `Schema`) declared via peerDependencies, ensuring compatibility with future rc releases without changes.
+Tested against dsh **0.1.0-rc.7 through 0.1.2-alpha.3**. The plugin relies exclusively on stable public APIs (`defineTool`, `llm.stream`, `Schema`) declared via peerDependencies, ensuring compatibility with future rc/alpha releases without changes.
 
 ```bash
 cd dsh-project-memory && dsh plugin --profile web add . -w
@@ -94,12 +124,85 @@ Stores created before v0.2.0 (single `entries.json` / `index.json`) migrate auto
 
 These are deliberate scope choices.
 
-- **Lock-free sync transactions** — all writes (index / watch / remember / forget / watch_repo) go through synchronous transactions `store.commit(fn)`; fn succeeds then atomic write; JS single-threaded event loop guarantees no interleaving; `remember`/`forget` never blocked by watch re-indexing. Multi-instance concurrent writes to the same project store are naturally idempotent via CAS + atomic commits. We don't fear multi-process DSH because DSH is built on Cordis, and Cordis's single-process architecture is foundational — changing it would be a breaking change for the entire ecosystem.
-- **Watch compute and commit separated** — watcher does heavy work (mtime/hash/symbol scan/LLM summary) outside transaction, then single `commit` applies atomically; `applyFileUpdate` uses CAS verification (unified null handling, delete skips hash compare) to prevent concurrent modification; failures rollback snapshot for next retry; indexing failures delete snapshot for auto-retry. Polling (mtime + content hash) instead of `fs.watch` events keeps behavior consistent across platforms.
-- **Corrupt files are quarantined** — a store JSON that fails to parse falls back to empty for that file and is rebuilt on the next write; the broken file is renamed to `*.corrupt` with an error logged, but its data cannot be recovered. Auto-repairing partial writes would need a write-ahead journal or an embedded database — out of proportion when quarantining one bad file costs nothing.
-- **`forget` by query is eager** — keyword deletion matches at ≥0.5 token overlap and may remove several notes at once; prefer deleting by id for precision.
-- **Cross-language recall depends on index time** — with `llmQueryExpansion` off, a Chinese-only query reaches English content through bilingual keywords captured when docs are indexed, plus doc↔symbol links; queries stay LLM-free. Stores indexed before v0.1.1 gain bilingual keywords as files change, or immediately via `index_repo` with `reindex: true`.
-- **CJK retrieval** — phrase boost and synonym expansion are purely query-side; they do not increase index size or LLM usage. Link boundaries use CJK-aware regex only; English symbols keep the original word-boundary behavior. The experience supersede threshold (0.7 bidirectional) is a conservative default; adjust via config if false positives/negatives appear in practice.
+### 1. Synchronous lock-free transactions over async locks
+
+**We do:** All writes go through `store.commit(fn)` — a synchronous in-process transaction. The callback `fn` performs all validation and mutations; only on success is the result atomically written to disk. The JS event loop guarantees no interleaving. CAS (`applyFileUpdate`) makes concurrent writes idempotent.
+
+**We don't:** Async mutexes, file locks, or multi-process coordination.
+
+**Why:** DSH runs on Cordis, which is single-process by design. Adding locks would complicate the hot path (every `remember`/`forget`/`index_doc` call) for a scenario (multi-process DSH) that would require a breaking ecosystem change. Synchronous transactions keep the hot path at ~2 ms median with zero contention overhead in practice.
+
+### 2. Watch: compute outside, commit inside
+
+**We do:** Heavy work (mtime/hash/scan/LLM summary) runs outside the transaction; a single `commit` applies all changes atomically. On failure, the snapshot rolls back so the next poll retries automatically.
+
+**We don't:** Hold a lock during LLM calls, or use `fs.watch` events.
+
+**Why:** LLM summarization takes seconds — holding a lock would block `remember`/`forget`/`query_memory`. Polling with mtime+content-hash is platform-agnostic (works on network drives, Docker volumes, WSL) and avoids the "double fire / missed events" nightmare of `fs.watch`.
+
+### 3. Corrupt files are quarantined, not auto-repaired
+
+**We do:** On JSON parse failure, the bad file is renamed to `*.corrupt`, an error is logged, and that file's store starts fresh. The rest of the store remains intact.
+
+**We don't:** Write-ahead logs, embedded databases (SQLite/LMDB), or automatic partial recovery.
+
+**Why:** A corrupted shard means *one source file* has a bad index — quarantining it costs near zero. A WAL or embedded DB adds a heavy dependency, increases binary size, and introduces new failure modes (lock contention, corruption of the WAL itself). The tradeoff: lose one file's index vs. add 500 KB+ of native code.
+
+### 4. No vector embeddings, no semantic search at query time
+
+**We do:** BM25 with CJK phrase boost (3+ chars ×1.5 on title/keywords), synonym expansion (bidirectional table), field weighting (title ×5), and experience-layer phrase boost. All at query time, zero LLM calls.
+
+**We don't:** Vector embeddings, dense retrieval, rerankers, or hybrid search.
+
+**Why:** Vectors require an embedding model (local = heavy, remote = latency + cost + privacy), a vector index (HNSW/IVF = memory + build time), and reranking (another LLM call). For code + docs + experience notes, lexical BM25 with our enhancements already achieves >90% recall on real queries. The marginal gain from semantic search doesn't justify the 10x complexity/cost increase.
+
+### 5. Cross-language recall at index time, not query time
+
+**We do:** Doc keywords *must* cover both the document's language AND English. Doc↔symbol links surface English symbol names from Chinese queries. With `llmQueryExpansion: false`, queries never touch the LLM.
+
+**We don't:** Translate queries at search time, or use multilingual embeddings.
+
+**Why:** Query-time translation adds latency, token cost, and failure modes (bad translation = zero recall). Index-time bilingual keywords are a one-time cost per document; the LLM already summarizes the doc, so extracting English keywords is free. This also works offline and deterministically.
+
+### 6. Explicit `remember` over implicit learning
+
+**We do:** Users (or the agent) explicitly call `remember(problem, solution)`. Supersede uses bidirectional token overlap ≥0.7 to deduplicate.
+
+**We don't:** Automatically extract "lessons" from user corrections, or infer rules from conversation history.
+
+**Why:** Implicit learning is unpredictable — it hallucinates, captures noise, and pollutes the memory with unverifiable entries. Explicit `remember` creates an auditable, user-controlled knowledge base. The cost (one tool call) is negligible; the benefit (trust, verifiability, no silent corruption) is decisive.
+
+### 7. Full entries returned directly
+
+**We do:** `query_memory` returns complete entries with `path:line` citations. Every hit can be verified against source.
+
+**We don't:** Return a minimal index first, then require a second tool call for details.
+
+**Why:** Returning full entries preserves **verifiability** — the agent sees the exact source line for every claim. It also avoids a round-trip per useful hit. Our entries are already compact (~300 chars summary + citation); the token cost is lower than a second tool call + context switch.
+
+### 8. Symbol extraction focused on what developers search for
+
+**We do:** Regex-based symbol extraction (functions, classes, methods, interfaces, type aliases) with string/comment masking, multi-line signatures, and cross-file linking by symbol name. For TypeScript/JavaScript projects, an optional L2 enhancement layer uses the TS Compiler API to infer return types, resolve generics, and extract interfaces — all cached by content hash for instant reuse.
+
+**We don't:** Tree-sitter AST parsing, import graphs, call graphs, or full-program type resolution across files.
+
+**Why:** Our regex scanner handles 8 languages with zero dependencies, runs in <1 ms/file, and captures the declarations developers actually search for (names, signatures, generics). The optional TS layer adds semantic depth for TS/JS without native deps. Cross-file linking by name covers the most common "find related code" use case. Full-program analysis would add native binaries, 10x install size, and version fragility — for marginal gain on the remaining 5% of edge cases.
+
+### 9. `forget` by query is aggressive; prefer ID deletion
+
+**We do:** `forget query` deletes all experience notes with ≥0.5 token overlap.
+
+**We don't:** Interactive confirmation, soft-delete/trash, or exact-match-only.
+
+**Why:** Experience notes are low-stakes, high-volume, and retrieval-only. Aggressive deletion prevents stale noise from polluting search. For precision, delete by ID (shown in `query_memory` output).
+
+### 11. TypeScript enhancement is optional, lazy, and cached
+
+**We do:** L2 TS Compiler API enhancement runs async in a priority queue (P0 on `fs/observed`, P1 on `watch`, P2 on `index_repo`), results cached by content hash in `type-cache/`. Zero config — just `npm i -D typescript`. Falls back to L1 regex if TS absent or disabled.
+
+**We don't:** Mandatory TS, blocking enhancement, or full-program type checking.
+
+**Why:** Mandatory TS would break installs for non-TS projects. Blocking enhancement would stall `index_repo` on large codebases. Full-program checking is 10x slower and memory-heavy. Our design: enhance what's read, cache it, never block the hot path.
 
 ## Configuration
 
@@ -117,6 +220,8 @@ These are deliberate scope choices.
 | `autoIndexOnFirstUse` | false | full scan of the current working directory on plugin load (opt-in) |
 | `watch` | true | enable the background refresh |
 | `watchInterval` | 15 | poll interval (seconds) |
+| `tsPath` | (auto) | optional absolute path to a specific `typescript` install; if omitted, resolves from project cwd → plugin node_modules |
+| `enableTypeScript` | true | set `false` to disable L2 TS enhancement entirely (L1 regex only) |
 
 ### Toggling features
 
@@ -132,6 +237,8 @@ Settings live in the plugin's config object. To change them, add an override ent
     llmQueryExpansion: false    # off: do not spend tokens on LLM query expansion (default)
     watch: true                 # on: background refresh for watched roots (default)
     watchInterval: 15           # poll interval in seconds
+    enableTypeScript: true      # on: L2 TS enhancement when TS is installed (default)
+    # tsPath: /custom/path/to/typescript  # optional: force specific TS install
 ```
 
 Only list the keys you want to change; the rest fall back to the plugin defaults. Verify the result with `dsh --profile web --dump-config`.
@@ -150,7 +257,7 @@ These commands are for **maintaining the plugin code** — regular users do not 
 
 ```bash
 npm install
-npm test          # chunker / symbols / store / tools / BM25 / links / watch / lazy / config / dump / concurrency / restore / size limit
+npm test          # 157 tests (v0.3.3): chunker / symbols / store / tools / BM25 / links / watch / lazy / config / dump / concurrency / restore / size limit
 ```
 
 ## License

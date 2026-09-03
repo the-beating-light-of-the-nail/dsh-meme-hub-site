@@ -11,12 +11,12 @@ Your DSH session already understands the article. Turn that understanding into a
 
 The Agent creates the first structure; you refine it in DSH, autosave it, and export it. The result stays editable instead of becoming disposable Mermaid output.
 
-![From a DSH article session to an editable, saved Excalidraw canvas](https://raw.githubusercontent.com/hanzhangzzz/dsh-diagram/4128f2b4c3d6d100a66d57eb57946e402db81141/dsh-diagram-workflow-v1.gif)
+![From a DSH article session to an editable, saved Excalidraw canvas](https://raw.githubusercontent.com/hanzhangzzz/dsh-diagram/6d7534b20ccaac268bbd4949cbfebfea5ae63c67/dsh-diagram-workflow-v1.gif)
 
 Install it in one command, then type `/` and pick **canvas-diagram** in any DSH session:
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add dsh-diagram@latest
+npx -y @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add dsh-diagram@latest
 ```
 
 > Useful for your DSH toolbox? Star the repo so you can find it when the next long article needs a diagram.
@@ -33,7 +33,7 @@ Full requirements and verification: [Quick install](#quick-install).
 
 Requirements:
 
-- DeepSeek Harness `0.1.0-rc.6`
+- DeepSeek Harness `0.1.1-rc.2` (latest); also verified on `0.1.1-rc.1`, `0.1.0-rc.8` and `0.1.0-rc.6`
 - Node.js `^22.19.0` or `>=24.0.0`
 - pnpm `>=10` on `PATH` (the DSH plugin command delegates package management to pnpm)
 - DSH Web bound to `127.0.0.1`
@@ -41,9 +41,9 @@ Requirements:
 DeepSeek Harness does not install a global `dsh` command by default; the official way to launch it is through `npx`. The commands below work on any machine that meets the requirements:
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add dsh-diagram@latest
-npx -y @deepseek-ai/dsh@0.1.0-rc.6 --profile web --dump-config
-npx -y @deepseek-ai/dsh@0.1.0-rc.6 web
+npx -y @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add dsh-diagram@latest
+npx -y @deepseek-ai/dsh@0.1.1-rc.2 --profile web --dump-config
+npx -y @deepseek-ai/dsh@0.1.1-rc.2 web
 ```
 
 The config dump should contain this block:
@@ -58,7 +58,7 @@ If DSH Web was already running, restart it after adding or updating the plugin. 
 
 ### Running DSH from source
 
-Run the same commands from a DeepSeek Harness checkout that matches the supported `0.1.0-rc.6` APIs, using `pnpm dsh` as the prefix:
+Run the same commands from a DeepSeek Harness checkout that matches a supported release, using `pnpm dsh` as the prefix:
 
 ```sh
 pnpm dsh plugin --profile web add dsh-diagram@latest
@@ -76,7 +76,7 @@ dsh --profile web --dump-config
 dsh web
 ```
 
-Later sections use this short `dsh` form; substitute the `npx -y @deepseek-ai/dsh@0.1.0-rc.6` or `pnpm dsh` prefix that matches how you run DSH.
+Later sections use this short `dsh` form; substitute the `npx -y @deepseek-ai/dsh@0.1.1-rc.2` or `pnpm dsh` prefix that matches how you run DSH.
 
 ## Create your first diagram
 
@@ -110,9 +110,9 @@ The plugin does not fetch articles and does not inject UI into arbitrary website
 
 ## Compatibility
 
-| Item | Supported in `0.3.4` |
+| Item | Supported in `0.4.0` |
 | --- | --- |
-| DeepSeek Harness | `0.1.0-rc.6` |
+| DeepSeek Harness | `0.1.1-rc.2`, `0.1.1-rc.1`, `0.1.0-rc.8`, `0.1.0-rc.6` |
 | Profile | `web` |
 | Web bind address | `127.0.0.1` only |
 | Node.js | `^22.19.0` or `>=24.0.0` |
@@ -138,10 +138,10 @@ The release page publishes the same prebuilt tarball with a SHA-256 checksum:
 
 ```sh
 dsh plugin --profile web add \
-  https://github.com/hanzhangzzz/dsh-diagram/releases/download/v0.3.4/dsh-diagram-0.3.4.tgz
+  https://github.com/hanzhangzzz/dsh-diagram/releases/download/v0.4.0/dsh-diagram-0.4.0.tgz
 ```
 
-See [v0.3.4](https://github.com/hanzhangzzz/dsh-diagram/releases/tag/v0.3.4) for the checksum and release notes.
+See [v0.4.0](https://github.com/hanzhangzzz/dsh-diagram/releases/tag/v0.4.0) for the checksum and release notes.
 
 ### Remove
 

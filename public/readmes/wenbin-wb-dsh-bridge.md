@@ -1,7 +1,7 @@
 # dsh-bridge
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/banner.jpg" alt="dsh-bridge banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/banner.jpg" alt="dsh-bridge banner" width="100%" />
 </p>
 
 <p align="center">
@@ -28,71 +28,48 @@
 
 > **DeepSeek Harness 多通道远程访问与全域安全门禁插件**
 > 
-> 手机扫个码，人不在电脑前也能继续用 DeepSeek Harness。躺在沙发上、出差在外、跨网访问——都不用守着电脑，也不用自己搭公网服务器，扫码就能在手机/平板或任意设备上接着干。
+> 手机扫个码，人不在电脑前也能继续用 DeepSeek Harness。无论躺在沙发上、出差通勤、还是跨网协作——都不用守着电脑，也不用自己搭公网服务器，扫码即可在手机、平板或任意设备上接着干。
 > 
-> 把你本地的 DeepSeek Harness 无缝延伸到手机、平板、公网、甚至微信 / QQ / 飞书 / Telegram。无论你在哪，都能通过扫码、网页或 IM 机器人，随时调用你的 AI 助手。
+> 将您本地运行的 DeepSeek Harness 无缝延伸至手机网页、PWA 原生全屏应用、公网安全隧道、以及 **微信 / QQ / 飞书 / Telegram** 机器人矩阵。随时随地调度 AI 编写代码、执行任务、审批操作与管理工作区。
 
 ---
 
-## 功能特性
+## 目录
 
-- **🗂️ 远程工作区网页选择器与全平台管理（v2.8.0 重磅）**：
-  - **网页端树形目录选择器**：彻底解决手机/远程设备点击「添加工作区」在电脑端静默弹窗、移动端无感知的痛点；自动唤出响应式底部抽屉/弹窗树形目录浏览器，支持 Windows 盘符（C/D 盘）与常用快捷目录（Desktop / Projects 等）直达、搜索过滤与手动路径跳转；
-  - **本机电脑无感智能分流**：电脑本机（`localhost` / `127.0.0.1` / Electron 桌面客户端）点击添加工作区直接调用系统原生文件夹选择对话框，仅在移动端/远程访问时呼出网页选择器；
-  - **IM 机器人 `/addworkspace` 指令**：微信 / QQ / 飞书 / Telegram 全面支持 `/addworkspace <电脑绝对路径>`，随时随地在聊天框注册并切换工作区。
-- **📱 移动端原生级视觉与布局体验（v2.8.0 重构）**：
-  - **顶部固定导航栏动态居中标题**：顶部导航栏正中加粗单行居中显示当前会话标题，彻底消除顶部留白；
-  - **第二行会话工具栏开阔呼吸感**：智能路由模式徽标与 28px 圆形纯图标 Session Log 下载按钮两端规整排列；
-  - **底部工具栏防重叠弹性自适应**：彻底解决移动端与窄屏下权限预设与模型选择器重叠碰撞问题。
-- **🔐 全方位安全审计与深度防护（v2.8.0）**：
-  - **第一道防线（外部访问门禁）**：二维码自带专属 Token 扫码一秒免密直入；手动输入 IP 或公网域名强制验证密码；支持「全部防护 / 仅公网 / 仅局域网」精准通道分流；
-  - **第二道防线（管理控制台防篡改）**：独立管理员密码，远程设备进入控制台全局锁定网络配置与 IM 机器人密钥，支持「需密码解锁 / 仅电脑本机管理 / 宽松直管」；
-  - **文件系统与 RPC 深度加固**：文件树、驱动器与工作区注册 RPC 端点强制管理员鉴权；核心系统目录黑名单拦截（`C:\Windows\System32`、`/etc/shadow`、`/root/.ssh` 等）；软链接逃逸检测；滑动窗口请求限流；
-  - **三重容灾保命体系**：电脑本机（`127.0.0.1`）永久最高物理特权（永不自锁） + 终端 `touch ~/.dsh/dsh-bridge/reset-auth` 一秒救急重置 + 全界面忘记密码求助引导；
-  - **金融级安全引擎**：PBKDF2 + SHA-256 加盐哈希安全存储、30 天 HttpOnly SameSite 会话、单 IP 连续 5 次错误封禁 60 秒防暴力破解。
-- **📱 PWA 独立全屏 App 与移动端深度适配**：手机浏览器「添加到主屏幕」即可作为 100% 独立原生全屏 App 运行（无浏览器地址栏与底栏）；极简顶栏、手势抽屉、防误触与全自适应设置中心
-- **🔍 网络连通性一键实时诊断**：一键排查本地反向代理端口、局域网 IPv4、Cloudflare Anycast 边缘延迟与国内 npmmirror 连通性
-- **🗄️ 全局配置一键备份与恢复**：在安全面板支持一键导出/导入包含 Token、白名单与隧道参数的 `.json` 备份包，换电脑迁移一键还原
-- **📊 宿主系统运行监控看板**：实时掌控 CPU 核心与型号、系统总内存与实时占用率、Node 进程堆内存与 DSH 服务连续运行时间（Uptime）
-- **🏷️ 会话重命名指令 `/rename <新标题>`**：在微信、QQ、飞书、Telegram 中随时修改当前会话名称并同步 Web 抽屉
-- **局域网访问**：手机/平板扫码，同一 Wi-Fi 直接访问，躺着也能在手机上接着聊
-- **Cloudflare 隧道**：一键暴露公网地址，随时随地连接；支持固定域名（Token 模式）重启 URL 永不变更与随 DSH 开机自启
-- **自建隧道**：连接自己的隧道服务器，获得固定域名（[搭建教程](docs/custom-tunnel.md)）
-- **微信 Bot（ClawBot / iLink）**：扫码登录微信个人号后，直接在微信里对话、控制 DeepSeek Harness 的 agent。**支持多工作区选择、会话跨重启持久化、按工作区分组查看、媒体（图片/文件/语音）收发、权限审批**——走腾讯官方 iLink Bot API，无需公网（[使用说明](docs/wechat-usage.md)）
-- **QQ Bot（OpenAPI v2）**：接入 QQ 机器人，私聊/群聊接收消息，发送 Markdown、按钮键盘和富媒体。**完整事件覆盖（C2C / GROUP_AT_MESSAGE_CREATE）、Token 自动刷新、断线重连、消息去重**——走腾讯官方 QQ Bot OpenAPI v2（[使用说明](docs/qq-usage.md)）
-- **飞书 Bot（官方 WebSocket 长连接）**：接入飞书开放平台企业自建应用，私聊/群聊实时交互。**无需公网 IP / 无需 Webhook、支持飞书 Markdown 表格排版、原生交互卡片权限审批一键点击确认**——走飞书官方最新 WebSocket 长连接协议（[使用说明](docs/feishu-usage.md)）
-- **Telegram Bot（官方 Bot API + 代理支持）**：接入官方 Telegram 机器人，单聊/群聊实时交互。**无需公网 IP（长轮询 getUpdates）、内置零依赖 HTTP/HTTPS 代理隧道、打字机平滑流式输出、原生快捷指令菜单（Menu 按钮）与 Inline 交互卡片审批**（[使用说明](docs/telegram-usage.md)）
-- **IM 官方品牌矢量图标**：微信、QQ、飞书、Telegram 官方矢量图标与状态展示，直接在聊天软件里呼唤你的 Agent
-- **极速版本检查、一键升级与一键重启**：国内高速镜像（npmmirror）优先 + 官方源毫秒级双通道检查，检测到新版本支持**界面一键直接升级并一键重启 DSH 服务**，前端自动重连刷新
-- **深色模式原生深度适配**：完美适配 DeepSeek Harness 设计系统明暗主题切换，二维码自带白底安全垫，暗光下手机扫码 100% 极速识别
+- [✨ 功能特性](#-功能特性)
+- [📦 环境要求与安装](#-环境要求与安装)
+- [🚀 核心功能与使用指南](#-核心功能与使用指南)
+  - [1. 🛜 局域网访问与多网卡智能切换](#1-🛜-局域网访问与多网卡智能切换)
+  - [2. 🌐 公网隧道（Cloudflare 临时/固定域名 & 自建隧道）](#2-🌐-公网隧道cloudflare-临时固定域名--自建隧道)
+  - [3. 📱 移动端交互与 PWA 独立全屏 App](#3-📱-移动端交互与-pwa-独立全屏-app)
+  - [4. 🗂️ 远程工作区网页选择器](#4-🗂️-远程工作区网页选择器)
+  - [5. 🔐 全域安全认证与防篡改门禁](#5-🔐-全域安全认证与防篡改门禁)
+  - [6. 🤖 全能 IM 机器人矩阵（微信 / QQ / 飞书 / Telegram）](#6-🤖-全能-im-机器人矩阵微信--qq--飞书--telegram)
+  - [7. 📊 运维监控看板与一键平滑重启](#7-📊-运维监控看板与一键平滑重启)
+- [💬 常见问题 (FAQ)](#-常见问题-faq)
+- [🛠️ 开发与贡献](#️-开发与贡献)
+- [📄 开源协议](#-开源协议)
 
 ---
 
-## 开发路线图
+## ✨ 功能特性
 
-| 目标 | 说明 | 状态 |
-|------|------|------|
-| **远程工作区网页选择器 & 本机分流** | 网页端树形目录选择器 + 本机原生对话框分流 + IM `/addworkspace` | ✅ **已完成**（v2.8.0） |
-| **移动端视觉重构 & 防重叠** | 居中动态标题 + 28px 下载图标 + 底部工具栏弹性自适应 | ✅ **已完成**（v2.8.0） |
-| **全方位安全加固** | RPC 鉴权 + 敏感路径黑名单 + 软链接防逃逸 + 滑动窗口限流 | ✅ **已完成**（v2.8.0） |
-| **移动端体验 & 运维监控** | PWA 独立全屏 App + 网络实时诊断 + 配置备份恢复 + 系统监控看板 | ✅ **已完成** |
-| **会话重命名** | 微信/QQ/飞书/Telegram 支持 `/rename <新标题>` 实时重命名 | ✅ **已完成** |
-| **公网隧道开机自启 & Token 固定域名** | Cloudflare Named Tunnel Token 模式固定域名 + 隧道状态记忆与开机自启 | ✅ **已完成** |
-| **访问安全认证** | 外部访问门禁拦截 + 管理后台防篡改锁 + 三重容灾保命体系 | ✅ **已完成**（v2.5.0） |
-| **Telegram** | 适合自托管与海外的 IM 渠道（免公网长轮询 / 代理支持 / 原生菜单 / Inline 卡片 / 流式打字机） | ✅ **已完成**（v2.4.0） |
-| **飞书** | 飞书开放平台长连接机器人，办公场景直接调用（免公网 WS / 卡片审批） | ✅ **已完成**（v2.3.0） |
-| **QQ Bot** | 接入 QQ 机器人，群聊/私聊唤起 Agent（Markdown / 按钮 / 富媒体） | ✅ **已完成**（v2.1.0） |
-| **微信** | 在微信里直接与你的 Agent 对话（多工作区 / 会话持久化 / 媒体 / 审批） | ✅ **已完成**（v1.0.0） |
-| **平台抽象层** | 平台无关的核心（会话/审批/命令/digest）跨 IM 渠道复用 | ✅ **已完成**（v2.0.0） |
+- **🛜 局域网多网卡智能识别与切换**：自动探测物理 Wi-Fi、以太网与虚拟网卡（WSL/VMware/Docker），支持在控制台可视化一键切换并记忆持久化，彻底解决多网卡 IP 不互通问题；
+- **🌐 双模 Cloudflare 公网隧道**：免登录一键获取随机临时域名，或填入 Cloudflare Token 绑定固定域名并随 DSH 开机自启；支持 macOS 下 Gatekeeper 隔离自愈与全局探测；
+- **📱 原生级移动端交互与 PWA 全屏应用**：动态居中会话标题、复用 DSH 原生侧边栏抽屉与 `[|` 收起图标、防重叠自适应工具栏，支持手机浏览器「添加到主屏幕」作为独立原生 App 运行；
+- **🗂️ 远程工作区网页选择器**：手机端点击添加工作区唤出树形目录抽屉浏览器，电脑本机点击自动分流调用系统原生选择窗口；支持 IM 指令 `/addworkspace` 远程注册；
+- **🔐 全域安全认证与双防线门禁**：专属二维码 256-bit Token 免密直通、外部访问密码门禁、独立后台管理员防篡改锁；内置物理机（`127.0.0.1`）最高特权与终端一秒救急重置（`reset-auth`）；
+- **🤖 全能 IM 机器人矩阵（微信 / QQ / 飞书 / Telegram）**：支持多工作区会话调度、跨重启会话持久化、Markdown 打字机流式输出、Card 2.0 原生一键点击审批与文件双向直传；
+- **📊 运维看板与平滑升级**：系统 CPU / 内存 / Uptime 实时看板、网络连通性一键诊断、全局配置 JSON 导出恢复、npmmirror 极速版本检查与平滑重启。
 
 ---
 
-## 环境要求
+## 📦 环境要求与安装
 
-安装插件前，请先确保：
+### 环境要求
 
-1. **Node.js ≥ 22** (DSH 要求 `^22.19.0` 或 `≥ 24.0.0`)
-2. **dsh CLI 可用** — 能在终端直接运行 `dsh` 命令
+1. **Node.js ≥ 22**（DSH 要求 `^22.19.0` 或 `≥ 24.0.0`）
+2. **dsh CLI 可用**（能在终端直接运行 `dsh` 命令）
 
 ```bash
 # 检查 Node 版本
@@ -102,75 +79,130 @@ node -v   # 应显示 v22.19+ 或 v24+
 dsh --version
 ```
 
-如果 `dsh` 命令提示"无法识别/找不到"，先安装 DSH：
+### 安装插件
 
 ```bash
-npm install -g @deepseek-ai/dsh
-```
-
-> 若没有全局安装的权限，也可以用 `npx` 方式：
-> ```bash
-> npx --yes @deepseek-ai/dsh plugin --profile web add @wenbin_wb/dsh-bridge
-> ```
-
----
-
-## 安装
-
-### 从 npm 安装（推荐）
-
-```bash
-# 安装最新版
+# 方式一：从 npm 安装最新版（推荐）
 dsh plugin --profile web add @wenbin_wb/dsh-bridge
 
-# 或指定版本（如 2.6.1）
-dsh plugin --profile web add @wenbin_wb/dsh-bridge@2.6.1
-```
+# 方式二：免全局权限的 npx 方式
+npx --yes @deepseek-ai/dsh plugin --profile web add @wenbin_wb/dsh-bridge
 
-> 💡 **没有全局安装权限？** 使用 `npx` 方式：
-> ```bash
-> npx --yes @deepseek-ai/dsh plugin --profile web add @wenbin_wb/dsh-bridge
-> ```
-
-### 从源码安装
-
-```bash
+# 方式三：从源码安装
 git clone https://github.com/wenbin-wb/dsh-bridge.git
 dsh plugin --profile web add ./dsh-bridge
 ```
 
-安装完成后重启 DSH，在设置页找到「远程访问」即可使用。
-
-### 升级到最新版
+### 升级至最新版
 
 ```bash
-# 方式一：在设置页「远程访问」中点击「🚀 一键升级到 vX.X.X」（推荐，全自动）
+# 方式一：在设置页「远程访问」底部点击「🚀 一键升级到最新版并重启」（推荐，全自动）
 
-# 方式二：终端强制安装最新版
+# 方式二：终端强制覆盖安装最新版
 dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
 ```
 
-> **注意**：`update --latest` 可能因已安装依赖的版本约束而无法升级到最新版。用上面的 `add @latest` 命令即可强制安装最新版（无需知道具体版本号）。
-
-#### 升级后仍是旧版本？（pnpm 11 新版本过滤）
-
-如果你刚发布后立即升级，`add @latest` 可能仍然装到旧版本。这是 **pnpm 11 的供应链安全机制 `minimumReleaseAge`**（默认过滤发布不足 24 小时的新版本）导致的，不是插件问题。
-
-**解决方法**（任选其一）：
-
-1. **直接在 DSH Web 设置页的「远程访问」点击「一键升级」**（自动带具体版本号安装，即刻生效）
-2. **在 profile 的 `pnpm-workspace.yaml` 添加 `minimumReleaseAge: 0`**，然后重新 `pnpm install`（一劳永逸）
-3. **等待 24 小时**：发布满 1 天后保护自动解除
-
-升级完成后重启 DSH，并在浏览器**硬刷新**（Windows: `Ctrl+Shift+R`，macOS: `Cmd+Shift+R`）清除缓存，然后确认设置页显示最新版本号。
+> 💡 **提示（pnpm 11 用户）**：如果升级后仍显示旧版，是由于 pnpm 11 的 `minimumReleaseAge` 机制限制。在 Web 控制台点击「一键升级」即可自动跳过限制安装最新版。
 
 ---
 
-## 使用
+## 🚀 核心功能与使用指南
 
-### 🔐 访问安全认证与后台防篡改（v2.5.0 重磅）
+启动 DeepSeek Harness 后，在设置面板找到 **「远程访问」** 即可开启全部功能：
 
-打开设置页「远程访问」→「**安全认证**」Tab 即可一键启用全方位安全守护。
+---
+
+### 1. 🛜 局域网访问与多网卡智能切换
+
+插件启动后**自动随服务开启**局域网代理，无需手动配置。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/lan-access.jpg" width="600" alt="局域网扫码访问控制台" />
+</p>
+
+* **零配置极速扫码**：同一 Wi-Fi 下打开手机相机扫码即可直达移动端 Web 界面；
+* **多网卡智能切换**：当主机存在多张网卡（如物理 Wi-Fi、以太网、WSL 虚拟网卡、VMware、Docker 等）时，控制台自动展示 **「🛜 局域网网卡 / IP 选择」** 下拉框；智能评分高亮推荐物理网卡，点选后二维码与访问 URL 秒级重新生成并**自动持久化保存**。
+
+---
+
+### 2. 🌐 公网隧道（Cloudflare 临时/固定域名 & 自建隧道）
+
+无需公网 IP 与路由器端口映射，随时随地从外网访问电脑上的 DeepSeek Harness：
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/tunnel-access.jpg" width="600" alt="公网隧道配置控制台" />
+</p>
+
+- **模式 1：极速免登录临时隧道（默认）**
+  1. 直接点击「Cloudflare 隧道」卡片中的「开启」按钮；
+  2. 系统全自动准备 `cloudflared` 二进制（macOS 自动剥离 Gatekeeper 隔离属性与自愈校验）；
+  3. 几秒内自动生成公网 URL 和二维码，点「重置链接」可随时换新。
+
+- **模式 2：Cloudflare Token 固定域名（永久不变 · 免费）**
+  1. 在 [Cloudflare Zero Trust 控制台](https://one.dash.cloudflare.com/) 免费创建 Tunnel 并绑定域名（如 `dsh.yourdomain.com`）；
+  2. 展开卡片底部的 **「⚙️ 高级配置：固定域名 (Cloudflare Token)」**，填入自定义域名与 Tunnel Token 并保存；
+  3. 勾选 **「随 DSH 启动自动开启」**，每次 DSH 重启即可自动恢复隧道，**URL 永久固定不变**！
+
+- **模式 3：自建 WebSocket 隧道**
+  * 支持连接个人 VPS 隧道中转服务器（[查看自建隧道部署教程](docs/custom-tunnel.md)），具备数据端到端 gzip 压缩与 SSE 响应优化。
+
+---
+
+### 3. 📱 移动端交互与 PWA 独立全屏 App
+
+针对手机屏幕与触控操作进行深度优化，无需额外配置即可获得原生 App 级流畅体验：
+
+- **极简顶栏布局**：保留左侧菜单抽屉与右侧快速新建会话，顶部动态居中显示当前会话标题；
+- **原生侧边栏抽屉**：完整复用 DSH 原生历史记录与工作区分类，顶部集成原生 `[|` 收起图标，支持边缘滑动与手势开合；
+- **PWA 原生全屏支持**：在手机浏览器菜单点击「添加到主屏幕」即可作为 100% 独立原生全屏 App 运行（无浏览器地址栏与底栏）；
+- **自适应防重叠排版**：底部工具栏根据屏幕宽度弹性自适应，彻底消除权限预设与模型选择器重叠碰撞。
+
+#### 移动端对话与工作区管理体验
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/remote-web-mobile.jpg" width="23%" alt="移动端新会话主页" />
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-chat.jpg" width="23%" alt="移动端已有对话交互" />
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-drawer.jpg" width="23%" alt="移动端原生抽屉侧边栏" />
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-workspace-picker.jpg" width="23%" alt="移动端远程工作区选择器" />
+</p>
+
+#### 远程访问与移动端设置中心
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-settings-lan.jpg" width="23%" alt="局域网访问控制台" />
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-settings-tunnel.jpg" width="23%" alt="公网隧道配置" />
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-settings-im.jpg" width="23%" alt="IM 机器人矩阵" />
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-settings-security.jpg" width="23%" alt="全局访问安全认证" />
+</p>
+
+---
+
+### 4. 🗂️ 远程工作区网页选择器
+
+针对手机端或远程浏览器无法唤起本地电脑文件弹窗的痛点，内置响应式网页树形目录浏览器：
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-workspace-picker.jpg" width="380" alt="移动端远程工作区网页选择器" />
+</p>
+
+* **智能分流**：电脑本机访问（`127.0.0.1`）点击添加工作区直接呼出系统原生文件弹窗；手机或远程访问时自动弹出响应式底部目录抽屉；
+* **极速直达**：支持 Windows 驱动器盘符（C盘、D盘）以及系统常用目录（桌面、文稿、下载、Projects）一键直达，支持层级深入浏览与手动输入校验。
+
+---
+
+### 5. 🔐 全域安全认证与防篡改门禁
+
+打开设置页「远程访问」→「**安全认证**」Tab 即可一键启用全方位安全守护：
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/security-auth-config.jpg" width="600" alt="安全认证配置面板" />
+</p>
 
 #### 1. 🛡️ 第一道防线：外部访问门禁（保护谁能进 Web 界面）
 - **多通道分流生效**：
@@ -187,7 +219,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   <summary>📱 点击展开外部访问安全认证登录页截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/remote-auth-login.jpg" width="600" alt="外部访问安全认证登录页" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/remote-auth-login.jpg" width="500" alt="外部访问安全认证登录页" />
   </p>
 </details>
 
@@ -202,7 +234,7 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   <summary>🖥️ 点击展开远程设备管理控制台防篡改锁定截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/admin-lock-screen.jpg" width="600" alt="管理控制台防篡改锁定" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/admin-lock-screen.jpg" width="500" alt="管理控制台防篡改锁定" />
   </p>
 </details>
 
@@ -215,356 +247,184 @@ dsh plugin --profile web add @wenbin_wb/dsh-bridge@latest
   插件将在毫秒级自动清空密码与策略并删除标记，瞬间恢复初始免密状态；
 - **全界面忘记密码指引**：访客登录页与锁屏页均提供 `❓ 忘记密码？` 救助展开卡片。
 
-![安全认证配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/security-auth-config.jpg)
+---
+
+### 6. 🤖 全能 IM 机器人矩阵（微信 / QQ / 飞书 / Telegram）
+
+无需打开浏览器，直接在常用聊天软件中与本地 Agent 对话、下达任务、接收进度与审批操作：
 
 ---
 
-### 📱 移动端与触控交互深度适配
+#### 🟢 微信 Bot（ClawBot / iLink）
 
-针对手机端屏幕与触控操作进行深度优化，手机扫码或公网访问时，无需额外配置即可获得流畅自然的交互体验：
-
-- **极简顶栏布局**：保留左侧菜单抽屉与右侧快速新建会话，顶部无冗余元素干扰，视野开阔通透；
-- **原生侧边栏抽屉**：完整复用 DSH 原生历史记录与工作区分类，支持搜索、视图选项切换及会话管理，点击会话即刻平滑切换；
-- **远程工作区网页选择器**：在移动端或远程网页点击「添加工作区」自动弹出底部抽屉选择器，支持磁盘盘符、常用目录快捷切换与文件夹层级深入，彻底告别电脑桌面静默弹窗；
-- **流式自适应设置面板**：重构手机端设置排版，选项与下拉框自适应纵向流式展开，药丸徽标与二维码自适应缩放，彻底解决文字挤压折行；
-- **手势与触屏友好**：支持屏幕左侧边缘向右滑动唤出抽屉、向左滑动收起，支持**长按任意会话项呼出操作菜单**（重命名/分叉/归档），大圆角输入区完美贴合移动端虚拟键盘。
-
-#### 对话与会话管理体验
+基于腾讯官方开放的微信 ClawBot 插件功能（底层 iLink Bot API），扫码登录微信个人号后即可对话与审批，全程走腾讯官方服务器，无需公网与隧道。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/remote-web-mobile.jpg" width="22%" alt="移动端新会话主页" />
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-chat.jpg" width="22%" alt="移动端已有对话交互" />
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-drawer.jpg" width="22%" alt="移动端原生抽屉侧边栏" />
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-workspace-picker.jpg" width="22%" alt="移动端远程工作区选择器" />
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/wechat-bot-config.jpg" width="600" alt="微信 Bot 配置" />
 </p>
-
-#### 远程访问与插件设置中心
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-lan.jpg" width="22%" alt="局域网访问控制台" />
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-tunnel.jpg" width="22%" alt="公网隧道配置" />
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-im.jpg" width="22%" alt="IM 机器人矩阵" />
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/mobile-settings-security.jpg" width="22%" alt="全局访问安全认证" />
-</p>
-
----
-
-### 局域网访问
-
-插件启动后自动开启，无需任何配置。打开设置页「远程访问」，用手机扫描二维码即可访问。
-
-![局域网扫码访问](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/lan-access.jpg)
-
-### Cloudflare 隧道
-
-支持**免登录临时隧道**与**专属 Token 固定域名隧道**双模式，支持随 DSH 启动自动开启：
-
-- **模式 1：极速免登录临时隧道（默认）**
-  1. 直接点击「Cloudflare 隧道」卡片中的「开启」按钮；
-  2. 首次使用会自动从 GitHub 下载 cloudflared（约 30MB）；
-  3. 几秒内自动生成公网 URL 和二维码，点「重置链接」可随时换新。
-
-- **模式 2：Cloudflare Token 固定域名（永久不变，完全免费）**
-  1. 在 [Cloudflare Zero Trust 控制台](https://one.dash.cloudflare.com/) 免费创建 Tunnel 并绑定域名（如 `dsh.yourdomain.com`）；
-  2. 展开卡片底部的 **「⚙️ 高级配置：固定域名 (Cloudflare Token)」**，填入自定义域名与 Tunnel Token 并保存；
-  3. 勾选 **「随 DSH 启动自动开启」**，每次 DSH 重启即可自动恢复隧道，**URL 永久固定不变**！
-
-![公网隧道配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/tunnel-access.jpg)
-
-### 自建隧道
-
-需要一台有公网 IP 的服务器（服务端环境要求 Node.js >= 18，推荐 Node.js 22 LTS）。详细搭建步骤见 [自建隧道教程](docs/custom-tunnel.md)。
-
-1. 按教程在服务器上部署隧道服务端
-2. 在「自建隧道」卡片中填写 WebSocket 地址（`wss://...`）和访问令牌
-3. 点「保存配置」后点「开启」
-
-配置自动持久化，重启后无需重新填写。
-
-### 微信 Bot（ClawBot / iLink）
-
-基于腾讯官方开放的微信 ClawBot 插件功能（底层 iLink Bot API），扫码登录微信个人号后，即可在微信里直接与你的 DeepSeek Harness agent 对话、控制和审批，全程走腾讯官方服务器，无需公网与隧道。
-
-![微信 Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/wechat-bot-config.jpg)
 
 <details>
-  <summary>📱 点击展开手机微信对话与交互截图</summary>
+  <summary>📱 点击展开手机微信对话与审批截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/wechat-chat.jpg" width="380" alt="微信对话示例" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/wechat-chat.jpg" width="380" alt="微信对话示例" />
   </p>
 </details>
 
-**功能亮点**
-
-- 🗂️ **多工作区**：`/workspaces` 查看工作区，`@N` 或 `@路径` 指定项目目录新建会话
-- 💾 **会话持久化**：重启 DSH 后会话不丢失，直接续聊
-- 🏷️ **会话标题**：`/sessions` 按工作区分组、显示每个会话的标题，一眼可辨
-- 🖼️ **媒体收发**：支持图片/文件/语音（自动转文字）双向传输
-- 📝 **审批问答**：敏感操作在微信里审批，超时自动拒绝
-- 🔔 **状态推送**：任务进行中心跳进度 + "正在输入"指示，长回复自动分条
-
-**使用步骤**
-
-1. 打开设置页「远程访问」→「IM 机器人」→ 选中「微信」
-2. 点「扫码登录」，用微信扫二维码并按提示确认
-3. 登录成功后，**向该微信 Bot 发送第一条消息即自动完成白名单授权**（一步到位）
-4. 之后就可以在微信里下命令了
-
-**微信里的命令**（完整说明见 [微信 Bot 使用说明](docs/wechat-usage.md)）
-
-| 命令 | 说明 |
-|------|------|
-| *(普通文本)* | 发给当前活动 agent |
-| `/sessions`（或 `/list`） | 列出会话（按工作区分组，带标题） |
-| `/use N`（或 `/resume N`） | 切换到会话 N |
-| `/rename <新标题>` | 重命名当前活动会话 |
-| `/workspaces` | 列出可用工作区 |
-| `/addworkspace <路径>` | 注册添加新的电脑工作区目录 |
-| `/new <提示词>` | 新建会话并开始（当前工作区） |
-| `/new <提示词> @N`（或 `@路径`） | 在指定工作区新建会话 |
-| `/stop` | 停止当前任务 |
-| `/end` | 结束当前会话 |
-| `/status` | 查看 agent 状态与会话摘要 |
-| `/yes` `/no`（或 `1`/`2`） | 回应权限审批请求 |
-| `/start` | 首次扫码后自动开始一个会话 |
-| `/help` | 查看全部命令 |
-
-**安全说明**
-
-- 强制白名单：仅白名单内的微信用户能驱动 agent，其他人发的消息会被忽略、绝不喂给模型
-- 审批默认拒绝：权限请求在规定时间（默认 10 分钟）内未回复 `/yes` 则自动拒绝
-- 凭证存于 DSH 凭证服务，不落配置明文
-- 同一微信账号同一时间只允许一个 Bot 轮询（iLink 独占锁）；若同时使用 hermes-agent / OpenClaw 会互相 403。**请使用专用微信账号**承载 Bot
-
-> 声明：iLink 为腾讯官方开放通道，仍需遵守《微信 ClawBot 功能使用条款》，腾讯保留内容过滤和限速的权利。不建议用于核心业务。
+* **使用步骤**：设置页「远程访问」→「IM 机器人」→ 选中「微信」→ 点「扫码登录」并扫码确认 → 向该微信 Bot 发送第一条消息即**自动完成白名单授权**。完整文档见 [微信使用说明](docs/wechat-usage.md)。
 
 ---
 
-### QQ Bot（OpenAPI v2）
+#### 🐧 QQ Bot（OpenAPI v2）
 
-接入 QQ 官方机器人，支持单聊/群聊（群聊需 @机器人）、流式输出、Markdown 渲染、消息按钮、富媒体消息（图片/文件）。走腾讯官方 QQ Bot OpenAPI v2，WebSocket 实时推送，Token 自动刷新，断线自动重连。
+接入 QQ 官方机器人，支持单聊与群聊（群聊需 @机器人），支持 Markdown 渲染、快捷按钮键盘与富媒体文件直传。
 
-![QQ Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/qq-bot-config.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/qq-bot-config.jpg" width="600" alt="QQ Bot 配置" />
+</p>
 
 <details>
   <summary>📱 点击展开手机 QQ 单聊与群聊对话截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/qq-chat.jpg" width="48%" alt="QQ 单聊对话" />
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/qq-group.jpg" width="48%" alt="QQ 群聊对话" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/qq-chat.jpg" width="48%" alt="QQ 单聊对话" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/qq-group.jpg" width="48%" alt="QQ 群聊对话" />
   </p>
 </details>
 
-**功能亮点**
-
-- 💬 **单聊 + 群聊**：私聊直接对话，群聊 @机器人 触发（首次 @自动授权该群）
-- 📝 **流式 Markdown**：实时流式输出，代码高亮、表格、列表完整渲染
-- 🎯 **消息按钮**：/end 等命令触发快捷按钮（新建会话/列表/帮助），需最新版 QQ 客户端
-- 🖼️ **富媒体**：图片/文件双向传输
-- 🔄 **会话管理**：多会话切换、持久化、按工作区分组
-- ✅ **自动授权**：单聊首次发消息、群聊首次 @机器人 自动加白名单
-
-**使用步骤**
-
-1. 前往 [QQ 开放平台](https://q.qq.com) 创建机器人应用，获取 AppID 和 ClientSecret
-2. 打开设置页「远程访问」→「IM 机器人」→ 选中「QQ」
-3. 填入 AppID 和 ClientSecret，点「保存配置」后自动连接
-4. **单聊**：添加机器人好友，发送第一条消息自动完成授权
-5. **群聊**：将机器人拉入群，@机器人 发送消息（首次 @自动授权该群）
-
-**QQ 里的命令**（完整说明见 [QQ Bot 使用说明](docs/qq-usage.md)）
-
-| 命令 | 说明 |
-|------|------|
-| *(普通文本)* | 发给当前活动 agent |
-| `/new <提示词>` | 新建会话并开始 |
-| `/sessions`（或 `/list`） | 列出会话（按工作区分组） |
-| `/use N`（或 `/resume N`） | 切换到/恢复会话 N |
-| `/rename <新标题>` | 重命名当前活动会话 |
-| `/end` | 结束当前会话（触发快捷按钮） |
-| `/stop` | 停止当前任务 |
-| `/status` | 查看 agent 状态 |
-| `/workspaces` | 列出可用工作区 |
-| `/addworkspace <路径>` | 注册添加新的电脑工作区目录 |
-| `/help` | 查看全部命令 |
-
-**重要提示**
-
-- **自定义菜单 / 指令面板 / 消息按钮需要最新版 QQ 客户端**（2026-08-12 新功能，手机版优先支持）
-- API 配置成功但客户端不显示是正常现象——更新 QQ 到最新版再试，或等官方灰度全量开放
-- 纯文字命令（如 `/new` `/sessions` `/help`）在任何版本都完全可用
+* **使用步骤**：在 [QQ 开放平台](https://q.qq.com) 创建机器人获取 AppID 和 ClientSecret → 填入并保存连接 → 添加机器人好友发送首条消息（或群聊首次 @机器人）自动加白名单。完整文档见 [QQ Bot 使用说明](docs/qq-usage.md)。
 
 ---
 
-### 飞书 Bot（官方 WebSocket 长连接）
+#### 🐦 飞书 Bot（官方 WebSocket 2.0）
 
-接入飞书开放平台企业自建应用，支持单聊与群聊（群聊需 @机器人）。走飞书官方最新 WebSocket 长连接协议，无需公网 IP、无需域名、免配置 Webhook。
+接入飞书开放平台企业自建应用，采用官方 WebSocket 全双工长连接，**100% 免公网 IP / 免域名 / 免配置 Webhook**。
 
-![飞书 Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/feishu-bot-config.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/feishu-bot-config.jpg" width="600" alt="飞书 Bot 配置" />
+</p>
 
 <details>
   <summary>📱 点击展开手机飞书对话与卡片审批截图</summary>
   <br/>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/feishu-chat.jpg" width="380" alt="飞书对话与卡片审批示例" />
+    <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/feishu-chat.jpg" width="380" alt="飞书对话与卡片审批示例" />
   </p>
 </details>
 
-**功能亮点**
+* **使用步骤**：在 [飞书开放平台](https://open.feishu.cn/app) 创建企业自建应用并开启长连接接收事件 → 填入 App ID 与 App Secret 并连接。完整文档见 [飞书接入指南](docs/feishu-usage.md)。
 
-- ⚡ **100% 免公网 IP**：官方 WebSocket 全双工长连接，本地电脑即可直连飞书开放平台
-- 📜 **Card JSON 2.0 原生流式打字机**：单条卡片原地增量打字机更新，彻底告别气泡拆分碎片化
-- 🛡️ **Card 2.0 交互卡片审批**：敏感操作触发审批时下发橙色告警卡片，手机/电脑端点击 `[✓ 批准执行]` / `[✕ 拒绝执行]` 按钮一键处理
-- 📝 **全量 Markdown 渲染**：支持多级标题、表格、代码高亮、引用块与列表
-- 🔄 **会话与工作区管理**：支持 `/sessions` 表格化查看、`/use N` 切换、`/rename` 重命名、`/workspaces` 与 `/addworkspace` 调度工作区
+---
 
-**使用步骤**
+#### ✈️ Telegram Bot（官方 Bot API + 代理支持）
 
-1. 前往 [飞书开放平台](https://open.feishu.cn/app) 创建企业自建应用，开启「机器人」能力并发布版本（详见 [飞书接入指南](docs/feishu-usage.md)）
-2. 在「事件与回调」中开启「使用长连接接收事件」，添加 `im.message.receive_v1` 和 `card.action.trigger` 事件
-3. 打开 DSH 设置页「远程访问」→「IM 机器人」→ 选中「飞书」
-4. 填入 App ID 和 App Secret，点击「保存并连接」即可
+接入 Telegram 官方 Bot API，单聊/群聊实时交互。采用官方 Long Polling（长轮询）机制，内置**零依赖 HTTP/HTTPS CONNECT 代理隧道**。
 
-**飞书里的命令**（完整说明见 [飞书 Bot 使用说明](docs/feishu-usage.md)）
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/telegram-bot-config.jpg" width="600" alt="Telegram Bot 配置" />
+</p>
 
-| 命令 | 说明 |
-|------|------|
-| *(普通文本)* | 发给当前活动 agent |
-| `/new <提示词>` | 在当前工作区新建会话并开始 |
-| `/new <提示词> @N` | 在指定工作区新建会话 |
-| `/sessions`（或 `/list`） | 查看所有历史会话（结构化表格排版） |
-| `/use N`（或 `/resume N`） | 切换到会话 N |
+* **使用步骤**：向 [@BotFather](https://t.me/BotFather) 发送 `/newbot` 创建机器人获取 **Bot Token** → 填入 Token（国内可填代理如 `http://127.0.0.1:7890`）并保存 → 发送第一条消息自动完成授权。完整文档见 [Telegram 使用说明](docs/telegram-usage.md)。
+
+---
+
+#### 统一 IM 交互指令表
+
+| 指令 | 说明 |
+| :--- | :--- |
+| *(普通文本)* | 驱动当前活动 Agent 思考与编码 |
+| `/sessions`（或 `/list`） | 列出所有历史会话（按工作区分组排版） |
+| `/use N`（或 `/resume N`） | 切换到指定序号的会话 |
 | `/rename <新标题>` | 重命名当前活动会话 |
-| `/workspaces` | 列出可用工作区 |
-| `/addworkspace <路径>` | 注册添加新的电脑工作区目录 |
-| `/end` | 结束当前会话 |
-| `/stop` | 停止当前任务 |
-| `/status` | 查看 agent 状态看板 |
-| `/yes` `/no`（或 `1`/`2`） | 响应权限审批请求（或直接点击卡片按钮） |
-| `/help` | 查看全部命令 |
+| `/workspaces` | 列出已在 DSH 注册的所有工作区目录 |
+| `/addworkspace <路径>` | 远程向电脑注册添加新的项目文件夹 |
+| `/new <提示词>` | 在当前工作区创建并开始新会话 |
+| `/new <提示词> @N` | 在指定工作区序号下直接新建会话 |
+| `/stop` | 立即中断当前正在运行的任务 |
+| `/end` | 结束并挂起当前会话上下文 |
+| `/yes` / `/no` (或 `1`/`2`) | 响应敏感操作权限审批（或直接点击卡片按钮） |
+| `/status` | 查看 Agent 状态与系统摘要看板 |
+| `/help` | 查看完整的指令与快捷帮助 |
 
 ---
 
-### Telegram Bot（官方 Bot API + 代理支持）
+### 7. 📊 运维监控看板与一键平滑重启
 
-接入 Telegram 官方 Bot API，单聊与群聊实时交互。采用官方 Long Polling（长轮询）机制，**无需公网 IP / 免 Webhook**，内置**零依赖 HTTP/HTTPS CONNECT 代理隧道**，国内网络即开即连。
+打开控制台 **「运维监控」** Tab，实时掌控系统状态与一键维护：
 
-![Telegram Bot 配置](https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/dbbe6c6dd644cb5dc26af71ac4af87f0eb605d06/docs/screenshots/telegram-bot-config.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/wenbin-wb/dsh-bridge/f96a93c84ae31115bef13a07960ee5a6204cec31/docs/screenshots/mobile-remote-settings.jpg" width="380" alt="运维监控看板与系统状态" />
+</p>
 
-**功能亮点**
-
-- ⚡ **100% 免公网 IP**：官方 Long Polling 长轮询，本地电脑或内网服务器即可直连通信
-- 🌐 **内置 HTTP/HTTPS 代理支持**：支持填写本地 Clash / v2ray 代理（如 `http://127.0.0.1:7890`），零外部依赖
-- 📜 **实时打字机流式输出**：接入轮次生命周期，单条气泡原地 `editMessageText` 增量刷新，告别频繁发碎消息
-- 🎯 **原生快捷指令菜单（Menu 按钮）**：自动注册全范围指令，输入 `/` 或点击左下角 `[Menu]` 按钮一键直达常用命令
-- 🛡️ **Inline Keyboard 交互卡片**：权限审批下发 `[✓ 批准执行]` / `[✕ 拒绝执行]` 按键，一秒点击即时放行
-- 🖼️ **多模态与文件传输**：支持入站图片/文档自动转存交付 Agent，出站产物文件自动推回 Telegram
-- 🔄 **会话与工作区管理**：支持 `/sessions` 列出历史会话、`/use N` 切换、`/rename` 重命名、`/workspaces` 与 `/addworkspace` 调度工作区
-
-**使用步骤**
-
-1. 在 Telegram 中向 [@BotFather](https://t.me/BotFather) 发送 `/newbot` 创建机器人并获取 **Bot Token**
-2. 打开 DSH 设置页「远程访问」→「IM 机器人」→ 选中「**Telegram**」
-3. 填入 **Bot Token**（国内网络可按需填入代理地址如 `http://127.0.0.1:7890`），点击「保存并连接」
-4. 手机 Telegram 扫码打开机器人，发送第一条消息（如 `/help`）即**自动完成白名单授权**
-
-**Telegram 里的命令**（完整说明见 [Telegram Bot 使用说明](docs/telegram-usage.md)）
-
-| 命令 | 说明 | 交互卡片 |
-|------|------|------|
-| *(普通文本)* | 发给当前活动 agent | 实时打字机流式输出 |
-| `/new <提示词>` | 在当前工作区新建会话并开始 | 立即启动新轮次 |
-| `/new <提示词> @N` | 在指定工作区新建会话 | 多工作区调度 |
-| `/sessions`（或 `/list`） | 查看所有会话列表 | 挂载一键切换按键 |
-| `/use N`（或 `/resume N`） | 切换到会话 N | 快速切换上下文 |
-| `/rename <新标题>` | 重命名当前活动会话 | 实时更新会话标题 |
-| `/workspaces` | 列出可用工作区 | 查看工作区路径 |
-| `/addworkspace <路径>` | 注册添加新的电脑工作区目录 | 自动绑定并生成快捷序号 |
-| `/status` | 查看 agent 状态看板 | 挂载刷新/停止/结束按键 |
-| `/stop` | 停止当前正在运行的任务 | 即刻中断执行 |
-| `/end` | 结束当前活动会话 | 挂载快捷开始按键 |
-| `/yes` `/no`（或 `1`/`2`） | 响应权限审批请求 | 支持直接点击卡片按钮 |
-| `/help` | 显示快捷按键与完整帮助 | 挂载全套功能导航按键 |
+* **📊 宿主系统运行监控看板**：实时展示 CPU 核心型号、系统总内存与实时占用率、Node 进程堆内存与 DSH 服务连续运行时间（Uptime）；
+* **🔍 网络连通性一键诊断**：一键排查反向代理本地端口、局域网 IPv4、Cloudflare Anycast 边缘网络及国内 npm 镜像源延迟；
+* **🗄️ 全局配置一键备份与迁移**：支持导出/导入包含 Token、白名单与隧道参数的 `.json` 备份包，重装系统一键还原；
+* **🔄 平滑优雅重启**：支持在界面点击一键重启 DSH 服务，自动断线重连并自动刷新前端。
 
 ---
 
-## 可选配置
-
-插件开箱即用，无需配置。如需修改代理端口，在 cordis.yml 中添加：
-
-```yaml
-- name: '@wenbin_wb/dsh-bridge'
-  config:
-    port: 3082  # 默认 3082
-```
-
----
-
-## 开发
-
-```bash
-git clone https://github.com/wenbin-wb/dsh-bridge.git
-cd dsh-bridge
-# 修改 client/index.js 后重新构建
-npm run build:client
-
-# 安装到 web profile 并重启 DSH
-dsh plugin --profile web add .
-```
-
----
-
-## 常见问题 (FAQ)
+## 💬 常见问题 (FAQ)
 
 <details>
-  <summary><b>Q1: 手机扫码或公网连接后，如何确保外部人员无法随意访问我的 DSH 控制台？</b></summary>
+  <summary><b>Q1: 手机扫码后提示无法连接或打不开页面？</b></summary>
   <br/>
 
-  - **回答**：
-    1. 在控制台「**安全认证**」Tab 中开启全局访问密码或安全 Token 门禁；
-    2. 开启后，无论是局域网 IP 访问还是公网隧道访问，访客必须先输入密码或携带合法认证 Token，彻底杜绝未授权访问；
-    3. 宿主电脑本机（`127.0.0.1`）享有物理特权，自动免密直通，不影响本地桌面端开发体验。
+  1. **检查 Wi-Fi 连接**：确保手机和电脑连接在同一个局域网（Wi-Fi）下，且路由器未开启「AP 隔离」；
+  2. **多网卡切换**：如果电脑安装了 WSL、VMware、Hyper-V 或开启了 VPN，默认 IP 可能会匹配到虚拟网段。在控制台的 **「🛜 局域网网卡 / IP 选择」** 下拉框中切换为物理 Wi-Fi / 以太网 IP 即可；
+  3. **防火墙放行**：确认操作系统防火墙允许 Node.js 监听 `3082` 端口；
+  4. **使用公网隧道**：若跨网段或在公司内网，建议直接开启「Cloudflare 隧道」进行外网扫码访问。
 </details>
 
 <details>
-  <summary><b>Q2: 微信 / QQ / 飞书 / Telegram 机器人的消息安全如何保障？其他人给机器人发消息会被执行吗？</b></summary>
+  <summary><b>Q2: 微信 / QQ / 飞书 / Telegram 机器人的消息安全如何保障？其他人发消息会被执行吗？</b></summary>
   <br/>
 
-  - **回答**：
-    1. **严格白名单机制**：插件内置自动与手动发件人白名单（Allowlist）。只有处于授权白名单内的用户消息才会驱动 Agent 执行；
-    2. **初次自动授权**：扫码或配置完成后，管理员向 Bot 发送第一条消息即自动完成白名单绑定；
-    3. **陌生消息静默忽略**：所有非白名单人员或群聊内非授权成员的消息均会被底层静默丢弃（Never fed to LLM），绝不消耗 Token 也不会触发任何指令执行。
+  1. **严格白名单机制（Allowlist）**：插件内置基于发件人 ID 的严格白名单。只有白名单内的授权用户消息才会驱动 Agent 执行；
+  2. **初次自动授权**：扫码或配置完成后，管理员向 Bot 发送第一条消息即自动完成白名单绑定；
+  3. **陌生消息静默阻断**：所有非白名单人员或群聊内非授权成员的消息均会被底层直接丢弃（Never fed to LLM），绝不消耗 Token 也不会触发任何本地指令。
 </details>
 
 <details>
   <summary><b>Q3: Cloudflare 隧道临时域名与固定域名（Token 模式）有什么区别？</b></summary>
   <br/>
 
-  - **回答**：
-    1. **临时免登录模式（默认）**：无需注册 Cloudflare 账号，一键开启即刻生成 `https://*.trycloudflare.com` 随机临时网址，适合临时外出时快速扫码连接；
-    2. **固定域名模式（Token 模式）**：在 Cloudflare Zero Trust 控制台创建 Named Tunnel 并填入 Tunnel Token，可绑定您自己的专属域名（如 `dsh.yourdomain.com`）。开启「随 DSH 启动自动开启」后，重启电脑或服务域名永久固定不变。
+  1. **临时免登录模式（默认）**：无需 Cloudflare 账号，一键开启即刻生成 `https://*.trycloudflare.com` 随机临时网址，适合外出时临时连接；
+  2. **固定域名模式（Token 模式）**：在 Cloudflare Zero Trust 控制台创建 Named Tunnel 并填入 Token，可绑定您自己的专属固定域名（如 `dsh.yourdomain.com`）。开启「随 DSH 启动自动开启」后，重启电脑或服务域名永久固定不变。
 </details>
 
 <details>
-  <summary><b>Q4: DSH 升级插件或重启服务后，之前的聊天会话和机器人配置会丢失吗？</b></summary>
+  <summary><b>Q4: 插件升级或重启 DSH 服务后，已有配置和聊天会话会丢失吗？</b></summary>
   <br/>
 
-  - **回答**：
-    1. **配置永久持久化**：所有 IM 平台凭证、授权白名单、公网隧道自启选项与安全认证规则均保存在本地系统目录（`~/.dsh/dsh-bridge/`），插件升级与 DSH 重启均不会影响已有配置；
-    2. **会话无感恢复**：会话历史由 DSH 核心引擎持久化管理，重启后在聊天软件中发送消息或使用 `/resume` 命令即可自动恢复上下文并继续执行；
-    3. **一键备份迁移**：在「**运维监控**」Tab 内支持一键导出全局配置 `.json` 备份文件，方便在重装系统或跨机器迁移时一键秒级恢复。
+  1. **配置永久持久化**：所有 IM 凭证、授权白名单、公网隧道选项与安全密码均保存在系统主目录（`~/.dsh-bridge/`），升级与重启完全无损；
+  2. **会话无感恢复**：会话历史由 DSH 核心引擎持久化管理，重启后在聊天软件中发送消息或使用 `/resume` 命令即可自动恢复上下文；
+  3. **一键备份迁移**：支持在「运维监控」Tab 内一键导出全局配置 `.json` 文件，方便跨设备迁移。
 </details>
 
 ---
 
-## 许可证
+## 🛠️ 开发与贡献
 
-MIT © [wenbin-wb](https://github.com/wenbin-wb)
+欢迎提交 Issue 与 Pull Request 共同完善插件！
 
+```bash
+# 1. 克隆代码仓库
+git clone https://github.com/wenbin-wb/dsh-bridge.git
+cd dsh-bridge
+
+# 2. 安装依赖并启动构建
+npm install
+npm run build:client
+
+# 3. 运行全量单元测试
+npm test
+
+# 4. 安装到本地 DSH Web Profile 进行联调
+dsh plugin --profile web add .
+```
+
+---
+
+## 📄 开源协议
+
+本项目基于 [MIT 许可证](LICENSE) 开源发布。

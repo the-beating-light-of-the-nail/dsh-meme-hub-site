@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/cce3fdc5877aa63318aefe41c8287a23a5186965/docs/hero.jpg?v=3" alt="dsh-meme — 找得到、发得出" width="100%" />
+  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/1c3b1a731a50bd647c4466833e905b521d96b790/docs/hero.jpg?v=3" alt="dsh-meme — 找得到、发得出" width="100%" />
 </p>
 
 <p align="center">
@@ -51,6 +51,8 @@ pnpm add file:/path/to/dsh-meme
 
 > 注意：pnpm 有「新包安全期」（默认 24h），刚发布的版本会被静默回落到旧版；急用可在 `pnpm-workspace.yaml` 的 `minimumReleaseAgeExclude` 里加上 `dsh-meme`。
 
+> 运行时要求：**Node ≥ 22.13.0**（依赖内置 `node:sqlite` 模块；22.5–22.12 需 `--experimental-sqlite` 标志，Node 20 不支持）。
+
 ## 配置
 
 默认内置两套图库：`official-001`（官方表情包 1 号，92 张）和 `dafeiyu-001`（大肥鱼，49 张），开箱用官方包，**无需任何配置**。
@@ -68,7 +70,7 @@ pnpm add file:/path/to/dsh-meme
 输入框左侧点 **😊**（微信同款笑脸）直接选图一键发出，无需让模型代劳。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/cce3fdc5877aa63318aefe41c8287a23a5186965/docs/chat-example.png" alt="模型根据情绪主动发表情包" width="80%" />
+  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/1c3b1a731a50bd647c4466833e905b521d96b790/docs/chat-example.png" alt="模型根据情绪主动发表情包" width="80%" />
 </p>
 
 ## 工具
@@ -85,6 +87,7 @@ pnpm add file:/path/to/dsh-meme
 - 模型和悬浮窗都发 `[表情: 描述]`（不要带网址）
 - 前端只在**对话气泡**里按 caption 配图（Think / 轨迹 / 工具卡保持纯文字）
 - 引号差异（`“”` / `""`）会折叠后再匹配
+- 描述没抄中候选时：先按分词在图库 caption/关键词里兜底匹配；仍无命中就显示描述原文，不裸露 `[表情: ...]` 标记
 - 直接上传的图片仍是附件，原样进会话；学图走 `learn_meme`
 
 ## 界面
@@ -100,13 +103,13 @@ pnpm add file:/path/to/dsh-meme
 - 分类筛选即时生效
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/cce3fdc5877aa63318aefe41c8287a23a5186965/docs/settings-panel.png" alt="设置页表情包管理面板" width="80%" />
+  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/1c3b1a731a50bd647c4466833e905b521d96b790/docs/settings-panel.png" alt="设置页表情包管理面板" width="80%" />
 </p>
 
 输入框 😊 一键发表情包：点开面板 → 搜索 / 浏览缩略图 → 点一张直接发出。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/cce3fdc5877aa63318aefe41c8287a23a5186965/docs/quick-picker.png" alt="输入框一键发表情包" width="80%" />
+  <img src="https://raw.githubusercontent.com/yyh-001/dsh-meme/1c3b1a731a50bd647c4466833e905b521d96b790/docs/quick-picker.png" alt="输入框一键发表情包" width="80%" />
 </p>
 
 ## 分享自己的表情包
@@ -130,6 +133,14 @@ pnpm add file:/path/to/dsh-meme
 
 可选：把插件导出的那个 ZIP 挂到 GitHub Release，别人就能直接下载再导入。也可以 `git clone` 之后，把仓库放进扫描目录（或设置页「打开其他目录」指过去）。
 
+## 订阅远程图库
+
+设置页「图库市场」里粘贴一个**清单 JSON 地址**(或从图库目录点「下载」),插件自动下载全部图片、建索引、出现在「当前图库」下拉并切换——不用碰 ZIP,不用碰命令行。
+
+- 清单格式与收录方式见 **[docs/remote-pack-spec.md](./docs/remote-pack-spec.md)**(URL + 分类 + 描述 + 关键词,一张 JSON 管一个包)
+- 已订阅的包再点「更新」走增量:只下载新增图片,已有图片仅刷新描述/关键词
+- 图库目录:[`docs/remote-packs.json`](./docs/remote-packs.json)(jsDelivr/raw 双源,PR 收录)
+
 ## 它做什么
 
 | 能力 | 说明 |
@@ -142,6 +153,7 @@ pnpm add file:/path/to/dsh-meme
 | **管理 API** | 上传 / 编辑 / 删除 / 删除分类，全部在设置页完成，数据持久 |
 | **图库切换** | 设置页下拉切换已扫描图库；扫描目录默认 `~/.dsh/meme-packs` |
 | **导出 / 导入** | 图库一键打包 ZIP 分享，导入别人的包自动切换（零依赖实现） |
+| **订阅远程图库** | 设置页粘贴清单 JSON 即按需下载建包，支持增量更新（`remoteDirUrl` 可配目录源） |
 
 ## 日常命令（模型视角）
 

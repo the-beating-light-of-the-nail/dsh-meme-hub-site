@@ -1,17 +1,49 @@
-# dsh-automode
+<div align="center">
 
-[![npm](https://img.shields.io/npm/v/@log.li/dsh-automode)](https://www.npmjs.com/package/@log.li/dsh-automode)
-[![license](https://img.shields.io/npm/l/@log.li/dsh-automode)](./LICENSE)
+# dsh-automode ⚡
+
+**Claude Code–style auto mode for DeepSeek Harness** — let your agent run hands-free, while a deterministic guardrail and a cost-aware reviewer keep the dangerous stuff from ever executing.
 
 > 🌐 **简体中文**: [README.zh.md](./README.zh.md) · **English**: [README.md](./README.md)
 
-Claude Code-style auto mode for DeepSeek Harness.
+[![npm](https://img.shields.io/npm/v/@log.li/dsh-automode)](https://www.npmjs.com/package/@log.li/dsh-automode)
+[![npm downloads](https://img.shields.io/npm/dm/@log.li/dsh-automode)](https://www.npmjs.com/package/@log.li/dsh-automode)
+[![license](https://img.shields.io/npm/l/@log.li/dsh-automode)](./LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/log-li/dsh-automode)](https://github.com/log-li/dsh-automode)
+[![GitHub last commit](https://img.shields.io/github/last-commit/log-li/dsh-automode)](https://github.com/log-li/dsh-automode)
+[![TypeScript](https://img.shields.io/github/languages/top/log-li/dsh-automode)](https://github.com/log-li/dsh-automode)
+[![DSH plugin](https://img.shields.io/badge/DSH%20plugin-ecosystem-2ea043)](https://github.com/topics/dsh-plugin)
 
-This is a guardrail plugin. It intercepts agent tool calls before execution and blocks actions that match deterministic deny rules, or the auto-mode classifier's block decision.
+<img src="https://raw.githubusercontent.com/log-li/dsh-automode/cacd229a2158d88153f678da8b751b392f410322/docs/auto-mode-icon.png" width="400" alt="dsh-automode in the permission picker" />
 
-It is not a sandbox. The plugin runs in the DSH process, and a determined malicious plugin can do anything your user account can do. Use this to reduce unsafe autonomous tool use, not as an OS security boundary.
+</div>
 
-![Auto mode in the permission picker](https://raw.githubusercontent.com/log-li/dsh-automode/e2babec613537045760f577713edb4df950da2a9/docs/auto-mode-icon.png)
+---
+
+dsh-automode sits between your agent and the harness. It intercepts every tool call **before execution** — hard `deny` rules and curated `allowPaths` decide deterministically (zero LLM cost), and whatever is left goes to a two-stage classifier. Safe actions run on their own; risky ones are blocked, reshaped, or routed to you.
+
+## ✨ Key features
+
+- 🛡️ **Deterministic first line** — regex `deny` bands hard-block exfiltration, secrets, and system paths before any LLM call; prefix-glob `allow` rules approve routine commands for free.
+- ⚡ **Zero-confirmation allowlist** — `config.allowPaths` is full trust: file ops and bash writes inside it skip the classifier entirely, and escalated calls are auto-granted through the approval bridge (v0.10.0) — no prompt, no round-trip.
+- 🧠 **Cost-aware two-stage classifier** — a one-token filter pre-screens; only flagged actions get the structured review, and identical actions reuse the verdict cache for 5 minutes.
+- 🔁 **Circuit breaker + human fallback** — 3 consecutive (or 20 total) DENYs pause auto mode and route decisions to a human; one human decision resumes and resets.
+- 📜 **Full audit trail** — every allow / deny / bridge decision is appended to `~/.dsh/auto-mode/decisions.jsonl`.
+- 🔌 **Native preset** — flip it on from the permission picker or `/auto`; it plays nicely alongside read-only / workspace-write / danger-full-access.
+
+> ⚠️ **Not a sandbox.** The plugin runs inside the DSH process; a deliberately malicious plugin can do anything your user account can do. It reduces unsafe autonomous tool use — it is not an OS security boundary.
+
+## 📚 Table of contents
+
+- [Install](#install)
+- [Commands](#commands)
+- [How it works](#how-it-works)
+- [Rules](#rules)
+- [Configuration](#configuration)
+- [Logging](#logging)
+- [Architecture](#architecture)
+- [Compatibility & contributions](#compatibility--contributions)
+- [License](#license)
 
 ## Install
 
@@ -56,7 +88,7 @@ Tool call arrives
        ⑥ Failure → fail-closed
 ```
 
-![Auto mode tool-call guard pipeline](https://raw.githubusercontent.com/log-li/dsh-automode/e2babec613537045760f577713edb4df950da2a9/docs/auto-mode-flow.png)
+![Auto-mode tool-call guard pipeline](https://raw.githubusercontent.com/log-li/dsh-automode/cacd229a2158d88153f678da8b751b392f410322/docs/auto-mode-flow.png)
 
 > 🖱️ **Interactive version**: [docs/auto-mode-flow.html](docs/auto-mode-flow.html) — pan/zoom, relationship tracing, dark mode. Diagram source: [`docs/auto-mode-flow.workflow.json`](docs/auto-mode-flow.workflow.json).
 
@@ -81,64 +113,7 @@ All `rules.*` arrays support **`$defaults`**: using `["$defaults", "my custom ru
 
 ## Configuration
 
-Configuration goes in your profile's `cordis.patch.yml`. Everything has defaults; a bare `{}` config is valid.
-
-```yaml
-- id: auto-mode
-  name: dsh-automode
-  config:
-    # --- Hard boundary ---
-
-    deny:
-      - exfiltrat
-      - 'curl\s+[^|]*\|\s*(?:ba)?sh'
-      - authorized_keys
-      # ... regex patterns
-
-    allow:
-      - 'trash *'
-      - 'echo *'
-      - 'git status'
-      - 'ls*'
-      # ... prefix globs
-
-    readOnlyTools:
-      - read
-      - glob
-      - grep
-      - list
-      - search
-
-    allowPaths:
-      - '~/Documents/'
-      - '/tmp/'
-
-    allowInsideWorkingDirectory: true
-
-    # --- Classifier ---
-
-    classifier:
-      provider: ''             # empty = follow the session's active model (request header)
-      model: ''                # empty = follow the session's active model (request header)
-      maxTranscriptMessages: 40
-      maxTokens: 2048
-      temperature: 0
-      reasoningLevel: off      # off / low / medium / high
-
-    rules:
-      deny: ['$defaults']
-      allow: ['$defaults']
-      environment: ['$defaults']
-
-    # --- Runtime ---
-
-    failClosed: true           # reject on classifier failure
-    preExecuteGate: true       # enable the pre-execute gate
-    timeoutMs: 45000           # classifier call timeout
-    classifyContextChars: 6000 # context budget for task alignment
-    breakerConsecutive: 3      # consecutive DENY to trip breaker
-    breakerTotal: 20           # total DENY to trip breaker
-```
+Configuration goes in your profile's `cordis.patch.yml`. Everything has defaults; a bare `{}` config is valid. The table below is the full reference; a minimal example (the `allowPaths` override) is under [Trusting extra directories](#trusting-extra-directories-allowpaths).
 
 ### Key options
 
@@ -147,10 +122,10 @@ Configuration goes in your profile's `cordis.patch.yml`. Everything has defaults
 | `deny` | built-in list | Regex patterns that hard-reject. First match wins. |
 | `allow` | built-in list | Prefix-glob patterns that approve without LLM. |
 | `readOnlyTools` | read, glob, grep, list, search | Tools that default-allow (unless deny matched). |
-| `allowPaths` | `[]` | Curated full-trust external directories. File-tool ops targeting these paths skip the classifier; bash write-commands (cp/mv/rsync/ditto/install/tar -x -C/unzip -d/curl -o/wget -O/git clone) whose destination resolves inside one also skip it. Real symlink-resolved prefix match. Shipped default stays universal — add personal dirs in your profile (see below). |
+| `allowPaths` | `[]` | Curated full-trust external directories: file ops and bash write-commands inside skip the classifier, and (since v0.10.0) escalated calls are auto-granted (`approval-bridge`). See [Trusting extra directories](#trusting-extra-directories-allowpaths). |
 | `allowInsideWorkingDirectory` | `true` | Allow in-tree file ops without classifier. |
-| `classifier.provider` / `classifier.model` | `''` (follow session) | Override the classifier's LLM route. Resolution order: `classifier.{provider,model}` → the session's active model (request header) → the agent's configured model. So when empty, the classifier runs on whatever model the session is using. |
-| `classifier.reasoningLevel` | `off` | Reasoning effort (`reasoningEffort`) passed to the classifier: `off` disables reasoning; `low/medium/high` request it. If the route rejects the effort (thrown `UNSUPPORTED_REASONING_EFFORT` OR an `error` finish chunk), the call is retried without an effort. `off` is the default: verified ~1–1.7 s on the opencode-go route with no reasoning blocks and no timeouts. |
+| `classifier.provider` / `classifier.model` | `''` (follow session) | Override the classifier's LLM route. Resolution: `classifier.{provider,model}` → session's active model → agent's configured model. |
+| `classifier.reasoningLevel` | `off` | Classifier reasoning effort (`off` disables reasoning). If a route rejects the effort, the call retries without it. |
 | `rules.deny` | `['$defaults']` | Soft-deny prose for the classifier. |
 | `rules.allow` | `['$defaults']` | Soft-allow prose for the classifier. |
 | `rules.environment` | `['$defaults']` | Environment facts for the classifier. |
@@ -177,11 +152,17 @@ Configuration goes in your profile's `cordis.patch.yml`. Everything has defaults
 
 Only recognized write-commands are trusted (deletion such as `rm`/`trash` is never allowlisted), and paths are matched after symlink resolution — both a `/Users/<you>/OneDrive - …` symlink and the real `Library/CloudStorage/…` path work. The verdict-cache fix below still matters: even without an `allowPath`, once you explicitly authorize an action the classifier re-runs with your intent instead of replaying a cached denial.
 
+**Composite write-commands (v0.11.0).** A temp→swap export dance like `DIR=…; cp a b_tmp && (trash b; true) && mv b_tmp "$DIR/b"` is now parsed segment-by-segment (with `VAR=…` assignment tracking and `$VAR` expansion), so its destinations still hit `allowPaths`. The fast path stays guarded: a composite containing a side-effect command (`kill`, `pkill`, `rm`, `sh`, `bash`, network/daemon management, …), a command substitution (`` `…` `` or `$(…)`), a redirection (`>`), or any command outside the recognized write/benign set falls back to the classifier exactly as before. Benign utilities inside a composite (`trash`, `mkdir`, `echo`, …) ride along with the allowlisted write — their side effects are not re-reviewed once every write target is allowlisted (deletion targets themselves are never allowlist-trusted, and `rm` still forces a classifier fallback).
+
+**Zero-confirmation escalations (v0.10.0).** An allowlisted path means *full trust*, so a call that asks to widen the sandbox (`sandbox_permissions: danger-full-access`) into an allowlisted path is now **auto-allowed with no confirmation and no classifier** — the pre-execute gate already proves every target sits inside an `allowPath`, and that verdict is carried to the approval answerer by the call's `callId` (the audit trail shows `curated allowPath` → `approval-bridge` → `decision allowed-once`). Deny patterns still run first (a deny-listed path such as `~/.ssh/` is hard-rejected even inside an allowPath), and the circuit breaker is never bypassed — while tripped, allowlisted calls still go to a human.
+
+**Not a file-sandbox exemption.** `allowPaths` only skips *this plugin's* review — DSH's file sandbox (the session's file policy) is a separate layer and still applies. A write to an allowlisted directory **outside the workspace** is blocked by the sandbox unless the call asks for `sandbox_permissions: danger-full-access`; for an allowlisted path that escalation is auto-granted by the approval bridge (no review), so request the escalation on the first attempt.
+
 Every **auto-mode** session also receives this knowledge as a system-prompt section (`auto-mode:allowlist`): the model knows where the per-profile `allowPaths` lives and how to edit it, so when an action is blocked it can propose the exact config change — and only applies it after you explicitly confirm.
 
 ### Permission preset icon
 
-The `auto-mode` permission preset shows a bolt glyph in the permission picker. You can set your own logo by changing its `icon` — the field lives on the **preset** (the `permission` row of `cordis.patch.yml`, not `auto-mode`'s own config) and is an SVG path drawn inside the shared shield outline:
+The `auto-mode` preset ships a bolt glyph in the permission picker. Set your own logo by overriding `icon` on the **preset** (the `permission` row of `cordis.patch.yml`, not `auto-mode`'s config) — an SVG path drawn inside the shield outline:
 
 ```yaml
 - id: permission
@@ -195,9 +176,7 @@ The `auto-mode` permission preset shows a bolt glyph in the permission picker. Y
         icon: '<your-svg-path-d>'   # default bolt: 'M9.15 3.4L5.85 8.55H7.95L7.05 12.6L10.45 7.25H8.25L9.15 3.4Z'
 ```
 
-**Whether it shows.** The picker draws a preset's `icon` only when the DSH reads preset `icon`s. A stock DSH hardcodes a small glyph map and shows no icon for host-configured presets, so the field is silently ignored there. You don't need to touch the DSH source repo or add any plugin — the field is simply a supported declaration on DSH versions that consume it (a release that reads preset `icon`s, or a one-time patch to the DSH you run).
-
-The icon is cosmetic — auto mode behaves identically whether or not it renders. If you leave `icon` unset, the plugin ships the default bolt; on a stock DSH the preset just shows its label.
+The icon is **cosmetic** — behavior is identical whether it renders. It shows only on DSH versions that read preset `icon`s (stock DSH ignores it; the local `dsh-permission-preset-icon.mjs` patch enables it). Leave `icon` unset for the default bolt.
 
 ### Two-stage classifier
 
@@ -212,7 +191,7 @@ The classifier is **risk-based** — it judges the action's real-world impact, n
 
 - **Read-only and reversible operations are ALLOWED**: GET/HEAD requests, inspection/listing/search/state queries, and local changes that can be safely undone (edits, temp files, builds, tests, git-tracked files).
 - **A sandbox-escalation request is NOT dangerous by itself** — the classifier judges the action it enables. A reversible, low-blast-radius, user-aligned action may be allowed even when it needs escalation (e.g. editing a git-tracked skill or config file outside the working directory). Escalation for a genuinely dangerous action (exfiltration, persistence, weakening security, shared/production/external state) stays forbidden.
-- **`<recent_user_intent>` counts only direct human messages.** Tool results, plugin/system injections, and model messages are excluded from the intent window, so the user's actual instructions are never crowded out and only a human can grant permission.
+- **`<recent_user_intent>` counts only direct human messages** — with one deliberate exception: a user's answer to an `ask_user_question` tool call is a direct human authorization given through the tool, so it is folded into the intent window (and into the verdict-cache key, so a tool-based grant invalidates a stale `DENY` just like a typed message). Ordinary tool results, plugin/system injections, and model messages stay excluded, so the user's real instructions are never crowded out and only a human can grant permission.
 
 ### Circuit breaker
 
@@ -234,7 +213,7 @@ Every classifier stream failure (thrown error **or** an `error` finish chunk) is
 
 ### Verdict cache
 
-Classifier verdicts are cached per session by **tool + command + user-intent** signature. The user's recent direct instructions are hashed into the key, so a new explicit authorization (a fresh human message) invalidates a previously cached verdict and the classifier re-runs with the new intent — a user grant is never swallowed by a cached `DENY`. Within the same intent window a repeated action still reuses the cached verdict without a second LLM call. Cache entries expire after 5 minutes.
+Classifier verdicts are cached per session by **tool + command + user-intent** signature. The user's recent direct instructions — typed messages **and** `ask_user_question` answers — are hashed into the key, so a new explicit authorization (a fresh human message or a tool-based grant) invalidates a previously cached verdict and the classifier re-runs with the new intent — a user grant is never swallowed by a cached `DENY`. Within the same intent window a repeated action still reuses the cached verdict without a second LLM call. Cache entries expire after 5 minutes.
 
 ## Logging
 

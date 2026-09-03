@@ -1,8 +1,13 @@
-# @maxwell-feng/dsh-searxng-web
+# dsh-searxng-web
 
 English | [简体中文](README.zh-CN.md)
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+[![npm version](https://img.shields.io/npm/v/dsh-searxng-web)](https://www.npmjs.com/package/dsh-searxng-web)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-searxng-web)](https://www.npmjs.com/package/dsh-searxng-web)
+[![CI](https://github.com/maxwell-feng/dsh-searxng-web/actions/workflows/ci.yml/badge.svg)](https://github.com/maxwell-feng/dsh-searxng-web/actions/workflows/ci.yml)
+[![Publish](https://github.com/maxwell-feng/dsh-searxng-web/actions/workflows/publish.yml/badge.svg)](https://github.com/maxwell-feng/dsh-searxng-web/actions/workflows/publish.yml)
+[![License](https://img.shields.io/github/license/maxwell-feng/dsh-searxng-web)](LICENSE)
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin
 that backs the **native `web_search` / `web_fetch` tools** with your own
@@ -26,7 +31,7 @@ model ── web_fetch ──▶ ctx.web ──▶ searxng-web-fetch ──▶ t
 ## Requirements
 
 - Node.js ≥ 20
-- DeepSeek Harness `dsh` installed (verified on `0.1.1-rc.2`)
+- DeepSeek Harness `dsh` installed (verified on `0.1.2-alpha.3`)
 - A reachable SearXNG instance with JSON output enabled
   (`settings.yml` → `search.formats: [html, json]`), verified by:
 
@@ -39,28 +44,31 @@ model ── web_fetch ──▶ ctx.web ──▶ searxng-web-fetch ──▶ t
 ### From npm (recommended)
 
 ```sh
-dsh plugin --profile web add @maxwell-feng/dsh-searxng-web
+dsh plugin --profile web add dsh-searxng-web
 ```
 
 (Replace `web` with your profile, e.g. `tui`.) Published from CI with
 Sigstore provenance; the package ships a prebuilt `lib/`, so nothing needs
 to be compiled or allowlisted on install.
 
-### From GitHub
+or from the repository / a tarball:
 
 ```sh
+dsh plugin --profile web add ./dsh-searxng-web        # source checkout
+dsh plugin --profile web add ./dsh-searxng-web-0.5.2.tgz
 dsh plugin --profile web add github:maxwell-feng/dsh-searxng-web
 # or pin a commit:
 dsh plugin --profile web add github:maxwell-feng/dsh-searxng-web#<sha>
 ```
 
-The repository commits the compiled `lib/` output, so git installs also load
-without any build step or pnpm `allowBuilds` allowlist.
+> Git installs fetch sources: the repository commits the compiled `lib/`
+> output, so git installs load without any build step — there is no `prepare`
+> script, so pnpm `allowBuilds` is never needed either.
 
 ### Upgrading
 
 ```sh
-dsh plugin --profile web add @maxwell-feng/dsh-searxng-web@latest
+dsh plugin --profile web add dsh-searxng-web@latest
 # or from git, to pick up changes before they reach npm:
 dsh plugin --profile web add github:maxwell-feng/dsh-searxng-web
 ```
@@ -69,7 +77,13 @@ dsh plugin --profile web add github:maxwell-feng/dsh-searxng-web
 optional with identical defaults. Since 0.3.0 configuration is validated at
 load time (Schemastery schema), a mistyped key fails the boot with an
 actionable error instead of being silently ignored. 0.4.0 adds the optional
-`baseUrls` failover list; single-`baseUrl` setups are unaffected.
+`baseUrls` failover list; single-`baseUrl` setups are unaffected. 0.5.0
+adapts to deepseek-harness `0.1.2-alpha.1` (fiber-scoped provider
+disposers, post-redirect `url` reporting) — no config changes required.
+0.5.3 adapts to deepseek-harness `0.1.2-alpha.2` — the seam and config
+rows are unchanged, only the dependency pins move.
+0.5.4 adapts to deepseek-harness `0.1.2-alpha.3` — `packages/web` moved
+only its version pins in that release, so again no config changes required.
 
 Installing does three things (via the bundled patch layer):
 
@@ -240,7 +254,7 @@ reading again, re-adding the MCP row takes minutes.
 ## Uninstall
 
 ```sh
-dsh plugin --profile web remove @maxwell-feng/dsh-searxng-web
+dsh plugin --profile web remove dsh-searxng-web
 ```
 
 Removes both the dependency and the bundle layer. `ctx.web` falls back to
@@ -269,7 +283,7 @@ git push --follow-tags
 
 GitHub Actions runs the standalone test suite and publishes to npm via OIDC
 trusted publishing (Sigstore provenance) — the same pipeline as
-[`@maxwell-feng/dsh-windows-ocr`](https://github.com/maxwell-feng/dsh-windows-ocr).
+[`dsh-windows-ocr`](https://github.com/maxwell-feng/dsh-windows-ocr).
 
 ## License
 

@@ -21,30 +21,20 @@
 
 ---
 
-> **自定义单价可靠性 + 峰谷价 + 腾讯云 TokenHub（v1.0.13，2026-08-29）**：修复带「来源（中转站）」的自定义价静默失效——来源现按规范化 origin（补协议 / 去路径 / 忽略大小写）宽松比对，三维站点数据缺失时回落为该价重估；模型输入新增下拉候选（目录键 + 探活模型 id）。自定义价新增可选「低谷价」三栏（峰/谷 50% 比例混合估算）。余额表接入腾讯云 TokenHub Token Plan 余量（云 API 管控面 TC3 签名，凭据填 `<SecretId>:<SecretKey>`）。
-
-> **兼容底线提升至 DSH `0.1.2-alpha.1`（v1.0.12，2026-08-29）**：宿主在该版本移除了 `dsh-client-runtime` 等客户端半区依赖，插件已完整迁移（`dsh-client-store` / `dsh-api-session-controller` / 新 LLM Remote 面）；旧宿主（`0.1.0-rc.8` ~ `0.1.1-rc.2`）请停留在 v1.0.11。
-
-> **费率表展示规则更新（2026-08-27）**：models.dev 聚合的补充价目**不再整表渲染**——此前费率表会把 158 个网关厂商的全部约 5900 个模型一并铺出，淹没实际在用的条目；现在表格只包含内置目录与系统探活命中的模型。计费能力不受影响：目录外但 models.dev 有价的模型命中时仍按其官方 USD 价正常估算，只是不再出现在表格里。
-
-> **千问（Qwen）系列价格更新（2026-08-27）**：对齐阿里云百炼最新官方刊例——**Qwen3.7-Max** 更正为官方原价（输入 ¥12 / 显式缓存命中 ¥1.2 / 输出 ¥36，此前误录活动折后价），当前官方限时 5 折且**未公布截止时间**，费率表按折后价显示并挂红色促销徽章（悬停提示活动性质），公告截止后补填日期即自动恢复原价展示；Qwen 全系补充**附加计价参考行**（Batch File 长期半价档、Batch Chat、显式缓存创建/命中，纯展示不参与估算计费）；Qwen3-Coder Plus 官方明确不支持批量推理，仅列显式缓存两行。
-
-> **峰谷计费规则更新（自 2026-08-23（周日）00:00 起）**：DeepSeek 模型按官方新规计费——**工作日（周一至周五）** 继续执行原峰谷分段计费（高峰 09:00–12:00 / 14:00–18:00，×2）；**周末（周六、周日）** 全天不再区分峰谷时段，统一按**低谷价**计费。插件计费引擎、费率表与每轮费用峰谷分带均已同步生效。
-
 <div align="center">
-  <img src="https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/demo.png" alt="dsh-ui-usage-billing — 计费仪表盘总览" width="80%">
+  <img src="https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/demo.png" alt="dsh-ui-usage-billing — 计费仪表盘总览" width="80%">
 </div>
 
 ### 演示动图
 
-![演示](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/demo.gif)
+![演示](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/demo.gif)
 
 ## ✨ 核心亮点
 
 - **真实用量，不伪造样本** — 服务端从持久化会话日志实时聚合，按实时多厂商官方价估算；数据到达前显示空快照，绝不展示假数据。
-- **一屏看懂一切** — 侧边栏触发卡 + 全屏仪表盘（概览 / 趋势 / 明细 / 统计 / 费率 / 设置）六区，本月/今日/预计/热力图/趋势全在。
+- **一屏看懂一切** — 侧边栏触发卡 + 全屏仪表盘（概览 / Token / 用量 / 趋势 / 费率 / 设置）六区，本月/今日/预计/热力图/趋势全在。
 - **订阅 · 余额 · 额度 · 对账** — 订阅套餐额度、多厂商余额、中转站额度、声明端点、余额差对账，形成可交叉验证的计费闭环。
-- **峰谷计价 + 切换提醒** — 工作日峰谷分时、周末全天低谷，切档前弹窗/系统通知，提前量可配。
+- **峰谷计价 + 切换提醒** — 工作日峰谷分时、周末全天低谷，**按官方变更节点分段计价**（8-17 前基础价、8-17~8-23 周末计峰、8-23 起周末全谷），切档前弹窗/系统通知，提前量可配。
 - **离线自包含** — 无图表库、无外部 CDN、纯设计令牌；依赖极轻，随装随用。
 - **多语种 + 双币种** — 中文/English、¥/≈$ 切换，只对本插件生效。
 
@@ -53,17 +43,17 @@
 - **侧边栏入口**：设置按钮上方的仪表盘式触发卡——本月费用主数字（等宽字体）+ 近 7 天 sparkline 迷你趋势，副行「今日 / 本周」；折叠栏自动切为图标钮；悬停浮现速览卡。
 - **计费仪表盘（分区 Tab）**：概览 / 趋势 / 明细 / 统计 / 费率 / 设置 六区——Hero 大数字 + 本年/今日环比 + 本月预计 + KPI×4 + 热力图；趋势图 7/30 天（可切费用 / Token）；厂商计费与订阅；导出 / 费用构成 / 工作区 / 会话明细；模型单价表；预算与峰谷提醒。克制冷调、`--dsw-*` 令牌、深浅主题自适应。
 
-  ![概览：本月费用 Hero、预算进度、KPI 与用量热力图](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/1.png)
+  ![概览：本月费用 Hero、预算进度、KPI 与用量热力图](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/1.png)
 - **即时代费用条**：输入框下方常驻「本轮 ¥x · 会话 ¥y」+ 峰谷档位与切换倒计时 + 订阅额度预警 chips（≤20% 浮现、≤10% 红）；可在设置 Tab 以「平价消耗胶囊」开关整条隐藏（显示偏好本地持久化，统计与提醒不受影响）。
 - **峰/谷切换提醒**：切档前弹窗 + 可选系统通知（提前量 / 位置 / 模式 / 预览可配），区分「即将进峰时 ×2 可稍等」/「即将进平价 价格减半」。
 - **插件信息卡**：设置 Tab 常驻「关于」卡——插件名、描述、作者（可跳 GitHub）、源码仓库、npm、许可证 MIT、版本号（服务端读自包 `package.json`，单一来源，发布自动正确）。
 
 ## 💰 计费引擎
 
-- **实时定价费率表**：models.dev 抓价 + 探活模型对标——系统实际配置模型全纳入；峰谷分时（工作日 9-12 / 14-18 高峰 ×2，周末全天低谷）+ 实时汇率（USD→CNY），每 6 小时刷新。
+- **实时定价费率表**：models.dev 抓价 + 探活模型对标——系统实际配置模型全纳入；峰谷分时（工作日 9-12 / 14-18 高峰 ×2，周末全天低谷；历史费用按官方变更节点分段计价，见下方「计费细节」）+ 实时汇率（USD→CNY），每 6 小时刷新。
 - **自定义单价**：设置面板为未收录或变价模型填入实付价（未命中 / 缓存命中 / 输出，可选 USD 与低谷价三栏），总览与日趋势按用户价重估显示；支持按中转站来源绑定同模型不同价（origin 规范化宽松匹配），目录外模型填价即生效。
 
-  ![费率：模型单价表（峰谷分时与实时汇率）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/5.png)
+  ![费率：模型单价表（峰谷分时与实时汇率）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/5.png)
 - **官方 vs 三方分桶**：明细费用列按官方 DeepSeek 直连 / 第三方中转分解（混合时「官 x / 三 y」），统计 Tab 有「官方/三方」汇总卡。
 - **月度预算 + 分档提醒**：预算条（开关 / 金额 / 进度，≥80% 琥珀、超支红脉）；跨 50 / 80 / 100% 各提醒一次；余额折算 CNY 低于阈值每天提醒一次。
 - **成本突增归因**：每轮费用柱状图（最近 40 轮、金额贴柱顶、峰谷背景分带、超 2 倍红标归因）。
@@ -76,18 +66,18 @@
 - **声明端点 + 余额对账**：**声明端点**（`declaredEndpoints`）为内置表没有的供应商自声明余额/额度接口——只写「数字在哪里」的点路径、无表达式；请求由匹配到同源 provider 的 origin 构造，安全边界（单斜杠绝对路径、仅 GET、拒跨源重定向、响应体/超时上限、凭据只取匹配 provider 自有 `apiKeyEnv`）由 `src/declarative.ts` 强制执行，取错路径在界面标注 `declared` 与 reason。**余额差对账**（`reconcilePath`）用官方（仅 DeepSeek 官方方向）余额当日变动与本地账本当日的官方渠道费用交叉校验，偏差超阈值（0.3 元且 >15%）时提示核对价格表或近期账单；充值 / 授信 / 币种变化重置基准而非告警、余额未减少（走订阅扣费）静默。
 - **中转站归组与额度**：按 provider 的 `baseURL` 归一化 origin 归组——同一中转站的多把 key 合并成一行，站名即域名；对配了 `baseURL` 的路由自动识别 New API 系（`/api/status`）与 Sub2API（`/v1/usage`）的**余额与滚动额度窗口**，读不出标「未读出额度」，剩余 <20% 标红；识别结果有 5 分钟指纹缓存（同站多把 key 独立熔断），`relay-quotas` 端点附 `diagnostics` 供「我的中转站为什么不显示」自查。项目归属优先用工作区标题命名。**未计价的模型**（目录外/无价）费用按 0 计，Hero 下会提示「N 个模型未收录计价」。
 
-  ![明细：厂商计费与订阅（余额、套餐额度、模型用量）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/3.png)
+  ![明细：厂商计费与订阅（余额、套餐额度、模型用量）](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/3.png)
 
 ## 📈 用量可视化
 
 - **会话明细 + 成本突增 + 热力图**：按会话费用倒序（标题 / 项目 / 调用 / 费用 / 最后活跃）；每轮费用柱状图（峰谷背景分带、超 2 倍红标归因）；月 / 年日历热力图（5 档色阶、悬停明细；年视图近 52 周、GitHub 风格），头部显示活跃天数 / 连续使用天数。
-- **性能指标**：每个模型首字延时（TTFT）均值 / P50 / P90、生成速度（tokens/s）、总延迟均值，另按北京时间小时聚合 TTFT 与速度曲线；统计 Tab 渲染为按模型性能表 + 按小时 TTFT/速度双折线。
+- **性能指标**：每个模型首字延时（TTFT）均值 / P50 / P90、生成速度（tokens/s）、总延迟均值；按小时×模型对比曲线——指标 tab 切换（首字延时 / 生成速度），模型 chip 点击开/关曲线（默认点亮样本数前 5，全选一键），悬停吸附最近小时显示十字线与逐模型数值，缺失样本小时断线不造假；视图偏好本地持久化。
 - **Token 统计洞察**：独立「Token」分区——每日 token 堆叠双视角切换：「按结构」按「输入（缓存未命中）/ 输入（缓存命中）/ 输出」三桶分色（含 reasoning 思考），「按模型」每天按模型堆叠（分色与趋势页一致，旧快照缺按日×模型明细时自动隐藏切换）；悬停柱状图显示当日精确明细（结构视角给三桶逐项，模型视角给逐模型「命中/未命中/输出」，千分位不缩写）；点击图例色块或模型 Token 表行可聚焦单个模型（其余段弱化、y 轴不变，再点解除），模型 token 总量与占比，结构 KPI（缓存命中率 / 思考占比 / 输入输出比 / 峰值日）；按日 token CSV 与 JSON 导出（JSON 含按日×模型明细）。
 
-  ![趋势：每日费用趋势、每轮费用与峰谷时段占比](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/2.png)
+  ![趋势：每日费用趋势、每轮费用与峰谷时段占比](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/2.png)
 - **数据导出 + 离线自包含**：统计 Tab 导出按日 / 按会话 / 按站点 CSV 与全量 JSON；费用构成 / 工作区 / 会话明细分区可下钻（点项目行展开该项目的会话）；无图表库、无外部 CDN、纯设计令牌。
 
-  ![统计：导出、费用构成、工作区与会话明细](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/511c64aba9b5e6f0db0e68cfef8d18f7146c8962/screenshots/4.png)
+  ![统计：导出、费用构成、工作区与会话明细](https://raw.githubusercontent.com/kenz1117/dsh-ui-usage-billing/84fb501430e87cd322bad914f4a61c833f9167e0/screenshots/4.png)
 
 ## 🛡️ 健壮性与隐私
 
@@ -161,7 +151,7 @@ cost（CNY）= (missInput × p_input + cacheHit × p_cacheHit + output × p_outp
 
 | 厂商       | 代表模型                                        |
 | -------- | -------------------------------------------- |
-| DeepSeek | V4 Flash、V4 Pro（等 3 款；峰谷计费：工作日高峰 ×2、周末全天低谷） |
+| DeepSeek | V4 Flash、V4 Pro（等 3 款；按官方变更节点分段计价：基础价 → 峰谷 v1 → 周末全谷） |
 | 智谱 AI    | GLM-5.3、GLM-5.2（等 10 款）                     |
 | 阿里通义     | Qwen3.8 Max、Qwen3-Coder 480B（等 7 款）         |
 | 字节豆包     | Doubao Seed-2.1 Pro、Doubao-Seed-Evolving（等 8 款） |
@@ -255,9 +245,9 @@ npm publish --access public
 
 ## ❤️ Contributors
 
-- [@ciphoo](https://github.com/ciphoo) — MiniMax 国内域 Token Plan 订阅额度支持（PR #5）
+- [@ciphoo](https://github.com/ciphoo) — MiniMax 国内域 Token Plan 订阅额度支持（PR #5）、`minimax-cn` 订阅凭据接线（PR #12）、Windows 下账本并发写入 `MoveFileExW EPERM` 修复（PR #11）
 - [@fabulousyuann-tech](https://github.com/fabulousyuann-tech) — 会话删除后用量保留的持久 ledger 功能（PR #8）
-- [@hi-fangj](https://github.com/hi-fangj) — 每日 Token 柱状图悬停精确明细 tooltip（PR #21）
+- [@hi-fangj](https://github.com/hi-fangj) — Token 每日图悬停精确明细（PR #21）、平价消耗胶囊开关（PR #22）、Token 每日图按模型视角与图例聚焦（PR #23）、性能面板按模型对比曲线（PR #24）
 
 ## 📄 许可证
 

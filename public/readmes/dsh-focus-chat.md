@@ -10,20 +10,22 @@ A plugin for the dsh web GUI that adds a **focus chat** tab — a condensed, Cla
 
 | Off — the normal chat view | On — the focus chat view |
 | --- | --- |
-| ![Off: the normal chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/98cb98323d75b815307f26eb6e730215fc87952e/screenshots/before.png) | ![On: the focus chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/98cb98323d75b815307f26eb6e730215fc87952e/screenshots/after.png) |
+| ![Off: the normal chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/ef7cc61a7aed38509b7e284cf2b74c71bb681550/screenshots/before.png) | ![On: the focus chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/ef7cc61a7aed38509b7e284cf2b74c71bb681550/screenshots/after.png) |
+| Settings |
+| ![Focus chat settings](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/ef7cc61a7aed38509b7e284cf2b74c71bb681550/screenshots/settings.png) |
 
 Instead of watching every step live, one assistant turn collapses into a single summary line:
 
-> Thought for 36s, loaded 3 context items, ran 2 shell commands, edited 8 files, read 17 files, listed 18 directories
+> Thought for 36s, edited 8 files, read 17 files, listed 18 directories, ran 2 shell commands, loaded 3 context items
 
-…and the whole turn can fold into one `Worked for Xm Ys` line. Click any line to expand the full detail — tool cards, thinking, context injections, produced files, copy/fork actions — all drawn the same way as the normal chat rows. Your mid-turn interjections split the fold into per-stretch lines, each carrying its own duration, and a stopped turn reads `Stopped after X` instead of "worked". A background-task settlement — a tool-jobs `notice` injection like `bash pnpm install [status: completed]` — classifies into the summary line's `N background jobs` segment instead of riding it as a verbatim `injected …` account; expanding the line still shows the full notice body. File operations (edits / reads) never carry a failure tally on the summary line — `edited N files` reads the outcome — only command execution and other tools annotate failures.
+A whole turn can fold further into one `Worked for Xm Ys` line — expanding it draws the full detail (tool cards, thinking, context, produced files, copy/fork) exactly like the chat rows; mid-turn interjections split the fold into per-stretch lines, and a stopped turn reads `Stopped after X`. **After a refresh the whole conversation shows up folded**: every turn beyond the ~50-message window renders from a Host-side index as "user message + worked-for line + the assistant's actual closing reply", and its process detail loads only when that fold expands. Very long histories page the fold stack via "Load earlier turns"; a missing index silently degrades to the in-window folds.
 
 Switch to it whenever you want the "what happened?" view, and flip back for the full transcript.
 
 ## Install
 
 ```sh
-# Install from npm (requires dsh >= 0.1.2-alpha.1)
+# Install from npm (requires dsh >= 0.1.2-alpha.2)
 dsh plugin --profile web add @dingyi222666/dsh-focus-chat
 # Restart dsh web; the tab mounts automatically
 dsh web
@@ -54,13 +56,14 @@ Focus chat is a faithful reading surface, not a second chat view:
 - **Third-party tool-card extensions don't render here.** Cards that other plugins add to the chat view won't appear in the focus view; the built-in card renderers are used instead.
 - **Folding is per consecutive tool-run.** Any visible content between two runs (a reply, a command, your interjection) keeps them separate.
 - **Inline file links need the optional file-mentions service** — the same off switch the chat view uses.
+- **Remote fold lines lack a few window-only readings.** The turn navigator rail lists window turns only; remote turns render no produced-file list (the ui-deliverables turn data), no inline file mentions, and their closing reply cannot fork (branching stays available on window turns). Per-message feedback (like/dislike) is unaffected.
 
 ## Development
 
-> This build targets the dsh v0.1.2-alpha.1 client surface. The new `@deepseek-ai/*` packages it needs are not on npm yet: after `yarn install`, junction/symlink each `@deepseek-ai/dsh-*` entry in `node_modules` to the matching `packages/<group>/<pkg>` directory of a built dsh checkout — that supplies both the types and the runtime for `yarn typecheck` / `yarn test`.
+> This build targets the dsh v0.1.2-alpha.2 client surface, and every `@deepseek-ai/*` runtime dependency installs from the npm registry (see `package.json`). The `/client` entries those packages ship are `window.__ModuleLoader__` browser closures, and the dsh test runtime is built against the source tree, so `yarn test` resolves the `@deepseek-ai` client surface from the dsh mainline source checkout at the same 0.1.2-alpha.2 line: `vitest.config.ts` derives its aliases from that checkout's own tsconfig path map (the `MAINLINE` constant in the config) — keep the checkout on the alpha.2 release and everything else stays npm-installed.
 
 - `yarn run build` — builds the browser bundle and the Node half.
-- `src/client/focus-model.ts` — the pure logic (folding, merging, row models); `src/client/FocusView.tsx` — the view.
+- `src/client/model/` — the pure logic (folding, merging, row models, the remote turn-slice projection); `src/client/view/FocusView.tsx` — the view; `src/host/` — the host half's turn index and RPC channel; `src/protocol.ts` — the wire contract shared by both halves.
 - `yarn test` — behavior tests; `yarn run typecheck` — type gate.
 - A `--dev` `dsh web` server hot-reloads rebuilt bundles — `yarn run build` alone is usually enough to see changes.
 

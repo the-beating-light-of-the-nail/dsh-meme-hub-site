@@ -7,19 +7,29 @@
 [![Release](https://img.shields.io/github/v/release/wowyuarm/dsh-agent-team?include_prereleases&style=flat-square)](https://github.com/wowyuarm/dsh-agent-team/releases)
 [![Listed on Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/wowyuarm/dsh-agent-team/)
 
-**dsh-agent-team** helps a human manage tasks in an orderly way and use agents as true collaborators: agents are persistent identities for their sessions; Workspaces organize agents and sessions per project; Channels carry responsibilities; Task Threads chain session agents into one line of progress.
+**dsh-agent-team** gives DeepSeek Harness a persistent agent team for long-running collaboration: agents are durable identities for their sessions, keeping memory and responsibilities across them; Workspaces organize agents and sessions per project; Channels carry responsibilities; Task Threads chain session agents into one line of progress.
 
 An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): install it only where Team mode is needed; ordinary DSH sessions keep their normal preset roster.
 
 ## Preview
 
-![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/c6872196c368154bffc241fe602be8f413567142/assets/readme/team-mode.png)
+Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
+
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/17a04600a9b4228e321210b97f87d41c30a0e232/assets/readme/dsh-entry.png)
+
+Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
+
+![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/17a04600a9b4228e321210b97f87d41c30a0e232/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/c6872196c368154bffc241fe602be8f413567142/assets/readme/task-thread.png)
+![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/17a04600a9b4228e321210b97f87d41c30a0e232/assets/readme/task-thread.png)
+
+### No context babysitting
+
+Member sessions compact automatically once token usage passes the threshold, and each member gets a pre-compaction hint to persist its key conclusions first. Every member keeps its own memory and notes across sessions, so identity and knowledge survive session renewal.
 
 ## Quick start
 
@@ -116,6 +126,10 @@ npm pack --dry-run
 `npm run test:browser` uses the adjacent `../deepseek-harness` checkout, an isolated temporary profile, and `/usr/bin/google-chrome` (override with `CHROME_PATH`). It does not need provider credentials. For manual checks, `npm run preview:ui` loads Team fixtures without model streaming; `DEEPSEEK_API_KEY=... npm run preview` starts the real provider preview. Both preview commands clean up their temporary state on `Ctrl+C`.
 
 Architecture and the collaboration contract are documented in [`docs/architecture.md`](docs/architecture.md) and [`docs/team-collaboration.md`](docs/team-collaboration.md).
+
+## Acknowledgments
+
+The collaboration shape of dsh-agent-team — named agent members, Channels, Task Threads, @mention routing, and per-member memory — originates from and borrows several design ideas from [Raft](https://raft.build/). Thank you for the work.
 
 ## License
 

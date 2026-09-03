@@ -5,13 +5,13 @@
 **Control agent capabilities from the DSH WebUI — with real runtime enforcement.**
 
 [![platform](https://img.shields.io/badge/platform-DSH%20WebUI-2b7cd3?style=flat-square)](#quick-start)
-![tests](https://img.shields.io/badge/tests-94%20passing-3fb950?style=flat-square)
+![tests](https://img.shields.io/badge/tests-97%20passing-3fb950?style=flat-square)
 [![release](https://img.shields.io/github/v/release/lifeopsgo/dsh-capability-toggle-plugin?style=flat-square)](https://github.com/lifeopsgo/dsh-capability-toggle-plugin/releases)
 [![license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
 
 **English** · [简体中文](./README.zh-CN.md)
 
-<img alt="Capability controls for Skills, MCP, Tools, Prompt, and Security" src="https://raw.githubusercontent.com/lifeopsgo/dsh-capability-toggle-plugin/42801b84279143d779dbb548687e440e17f41118/docs/screenshot.jpeg" width="900">
+<img alt="Capability controls for Skills, MCP, Tools, Prompt, and Security" src="https://raw.githubusercontent.com/lifeopsgo/dsh-capability-toggle-plugin/a04b25974e11b5b561085528b846e988d69b3dbe/docs/screenshot.jpeg" width="900">
 
 <sub>Session · Project · Global — blue check = on, red cross = off, dashed dash = unset.</sub>
 
@@ -26,7 +26,7 @@ A **DeepSeek Harness (DSH) WebUI** plugin for controlling **skills, MCP servers,
 Requires **Node.js ≥ 22.6**.
 
 ```bash
-dsh plugin --profile web add github:lifeopsgo/dsh-capability-toggle-plugin#v1.0.2
+dsh plugin --profile web add github:lifeopsgo/dsh-capability-toggle-plugin#v1.0.3
 ```
 
 Restart the existing DSH Web GUI process, then refresh the page. Start it with the command below when it is stopped:
@@ -42,7 +42,7 @@ Open the control beside the ➕ button while the agent is idle. Replace `web` wi
 
 ```bash
 # Upgrade or downgrade: use any tag listed on the releases page
-dsh plugin --profile web add github:lifeopsgo/dsh-capability-toggle-plugin#v1.0.2
+dsh plugin --profile web add github:lifeopsgo/dsh-capability-toggle-plugin#v1.0.3
 
 # Remove
 dsh plugin --profile web remove dsh-capability-toggle-plugin
@@ -68,7 +68,7 @@ The button displays only its current state: click to toggle **on ↔ off**, or u
 
 | Tab | Controls |
 | :-- | :-- |
-| **Skills** | Individual model-invocable skills |
+| **Skills** | Individual model-invocable skills, including project-level skills discovered from the session's workspace (`.dsh/skills`, `.agents/skills`) |
 | **MCP** | MCP servers; expand a row to inspect member tools |
 | **Tools** | Individual model-visible tools and their guidance sections |
 | **Prompt** | A safe, presence-checked allowlist of prompt injections |

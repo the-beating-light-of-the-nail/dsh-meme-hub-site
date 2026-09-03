@@ -18,6 +18,24 @@
 [![GitHub Release](https://img.shields.io/github/v/release/Noob-stupid/dsh-plugin-hub?style=flat-square)](https://github.com/Noob-stupid/dsh-plugin-hub/releases)[![dsh.so security](https://www.dsh.so/badge/dsh-plugin-hub.svg)](https://www.dsh.so/artifact/dsh-plugin-hub)
 [![dsh.so install](https://www.dsh.so/badge/install/dsh-plugin-hub.svg)](https://www.dsh.so/artifact/dsh-plugin-hub)
 
+
+
+> ## 🎉 v0.3.24 — AI Empower released (2026-08-31)
+>
+> Give the Plugin Console a package name or GitHub repo: the local AI reads its docs,
+> drafts a **deployment plan** (install / write config / start service / health check),
+> and — after your confirmation — executes it safely. Server-type components get an
+> automatic control card (start/stop/status/open + dropdown). An OpenViking template
+> deploys a local memory server in one flow.
+>
+> **Install:**
+> ```bash
+> npm i -g @noob-stupid/dsh-plugin-console
+> # or in DSH: dsh plugin --profile web add @noob-stupid/dsh-plugin-console
+> ```
+> **Try it:** Plugin Console → **AI 赋能** button → enter e.g. `OpenViking` → confirm the plan.
+>
+> Feedback: [GitHub Issues](https://github.com/Noob-stupid/dsh-plugin-hub/issues).
 A **plugin management panel** for the DeepSeek Harness (DSH) Web GUI: one-click
 enable/disable of installed plugins, a **multi-source plugin marketplace**
 (GitHub / Gitee / custom sources) with one-click install, an **auto-collected

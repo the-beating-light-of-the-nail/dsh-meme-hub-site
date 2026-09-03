@@ -14,24 +14,37 @@
 > **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 7 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`, `misakanet_me_events`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/c5591bb5444eda9daff84494f3f9c55777b4851a/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/24d2077a386076fed723a12bd510829cd47692d1/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
-[![Lessons](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json)](https://github.com/Ikalus1988/MisakaNet/tree/main/lessons)
-[![MCP Tools](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/tools.json)](https://github.com/Ikalus1988/MisakaNet/blob/main/scripts/mcp_server.py)
-[![CI](https://github.com/Ikalus1988/MisakaNet/actions/workflows/pr-quality-gate.yml/badge.svg)](https://github.com/Ikalus1988/MisakaNet/actions/workflows/pr-quality-gate.yml)
-[![PyPI](https://img.shields.io/pypi/v/misakanet)](https://pypi.org/project/misakanet/)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/github/license/Ikalus1988/MisakaNet?style=flat&color=blueviolet)](https://github.com/Ikalus1988/MisakaNet/blob/main/LICENSE)
-[![Glama score](https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/badges/score.svg)](https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/score)
-[![MCP Quickstart](https://img.shields.io/badge/MCP-quickstart-green)](docs/mcp-quickstart.md)
-[![dsh.so risk](https://www.dsh.so/badge/misakanet.svg)](https://www.dsh.so/artifact/misakanet/)
-[![dsh.so install](https://www.dsh.so/badge/install/misakanet.svg)](https://www.dsh.so/artifact/misakanet/)
-[![Benchmark](https://img.shields.io/badge/Benchmark-Weekly%20Workers%20AI-blue)](https://github.com/Ikalus1988/MisakaNet/tree/main/docs/benchmarks)
-[![Stars](https://img.shields.io/github/stars/Ikalus1988/MisakaNet?style=social)](https://github.com/Ikalus1988/MisakaNet/stargazers)
-[![MCP Toplist](https://mcptoplist.com/badge/io.github.Ikalus1988%2Fmisakanet.svg)](https://mcptoplist.com/server/io.github.Ikalus1988%2Fmisakanet)
-[![smithery badge](https://smithery.ai/badge/misakanet/misakanet)](https://smithery.ai/servers/misakanet/misakanet)
-[![smithery](https://img.shields.io/badge/Smithery-install-blue)](https://smithery.ai/servers/misakanet/misakanet)
+<p align="center">
+  <em>Core</em>
+  &nbsp;&nbsp;
+  <a href="https://github.com/Ikalus1988/MisakaNet/actions/workflows/pr-quality-gate.yml"><img src="https://github.com/Ikalus1988/MisakaNet/actions/workflows/pr-quality-gate.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/Ikalus1988/MisakaNet/tree/main/lessons"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/lessons.json" alt="Lessons"></a>
+  <a href="https://github.com/Ikalus1988/MisakaNet/blob/main/scripts/mcp_server.py"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Ikalus1988/MisakaNet/data/badges/tools.json" alt="MCP Tools"></a>
+  <a href="https://github.com/Ikalus1988/MisakaNet/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Ikalus1988/MisakaNet?color=blueviolet" alt="License"></a>
+  <a href="https://github.com/Ikalus1988/MisakaNet/stargazers"><img src="https://img.shields.io/github/stars/Ikalus1988/MisakaNet?style=social" alt="Stars"></a>
+</p>
+
+<p align="center">
+  <em>Install</em>
+  &nbsp;&nbsp;
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue" alt="Python"></a>
+  <a href="https://pypi.org/project/misakanet/"><img src="https://img.shields.io/pypi/v/misakanet" alt="PyPI"></a>
+  <a href="https://www.npmjs.com/package/misakanet"><img src="https://img.shields.io/npm/v/misakanet" alt="npm"></a>
+  <a href="https://dsh-plugin.org/plugins/ikalus1988/misakanet"><img src="https://dsh-plugin.org/badges/listed.svg" alt="Listed on dsh-plugin.org"></a>
+  <a href="https://www.dsh.so/artifact/misakanet/"><img src="https://www.dsh.so/badge/install/misakanet.svg" alt="dsh.so install"></a>
+</p>
+
+<p align="center">
+  <em>Ecosystem</em>
+  &nbsp;&nbsp;
+  <a href="https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/score"><img src="https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/badges/score.svg" alt="Glama score"></a>
+  <a href="https://mcptoplist.com/server/io.github.Ikalus1988%2Fmisakanet"><img src="https://mcptoplist.com/badge/io.github.Ikalus1988%2Fmisakanet.svg" alt="MCP Toplist"></a>
+  <a href="https://smithery.ai/servers/misakanet/misakanet"><img src="https://smithery.ai/badge/misakanet/misakanet" alt="Smithery"></a>
+  <a href="https://github.com/Ikalus1988/MisakaNet/tree/main/docs/benchmarks"><img src="https://img.shields.io/badge/Benchmark-Weekly%20Workers%20AI-blue" alt="Benchmark"></a>
+</p>
 
 ---
 
@@ -91,8 +104,16 @@ for r in results:
 
 **Option 5 — DeepSeek Harness (DSH plugin):**
 ```bash
-# Install as DSH plugin
-dsh plugin add git+https://github.com/Ikalus1988/MisakaNet.git
+# Install from npm (recommended — published as misakanet@2.23.0)
+dsh plugin add misakanet
+
+# Or install directly from git (same bundle)
+# dsh plugin add git+https://github.com/Ikalus1988/MisakaNet.git
+
+# Make the failure-memory SKILL discoverable by agents
+# (DSH scans ~/.dsh/skills and project .dsh/skills)
+mkdir -p ~/.dsh/skills
+cp -r skills/misakanet ~/.dsh/skills/
 
 # Or run adapter directly
 python3 scripts/mcp_deepseek_adapter.py
@@ -196,6 +217,35 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 | SKILL.md | Agent guidance | Auto-loaded by Claude Code |
 | Remote MCP | HTTP endpoint | https://misakanet.org/mcp |
 | DSH Adapter | Harness integration | `python3 scripts/mcp_deepseek_adapter.py` |
+| Glama Connector | MCP via Glama gateway (no self-hosting) | https://glama.ai/mcp/connectors/org.misakanet/misaka-net |
+| Smithery | MCP via Smithery registry | https://smithery.ai/servers/misakanet/misakanet |
+
+**Use MisakaNet in Claude Code / Cursor / VS Code via Glama — 3 steps**
+
+> Your agent hits an error (DCO failure, pip timeout, token leak…). MisakaNet
+> gives it 385+ **verified failure-recovery lessons** so it finds the fix
+> instead of re-debugging. No self-hosting — the Glama gateway proxies to
+> our hosted endpoint.
+
+1. Open the [Glama connector page](https://glama.ai/mcp/connectors/org.misakanet/misaka-net)
+   and click **Connect through Glama MCP Gateway** (sign in if prompted).
+2. Glama generates your personal gateway URL:
+   `https://glama.ai/endpoints/<your-connection-profile>/mcp`.
+3. Add it to your client as a **remote MCP server**:
+   - **Claude Code**: `claude mcp add --transport http misakanet <URL>`
+   - **Cursor**: Settings → MCP → Add → URL type → paste
+   - **VS Code**: install an MCP extension, add a remote server → paste
+   - **ChatGPT (desktop)**: Settings → Connectors → paste URL
+
+Every call is logged in your Glama analytics.
+
+**Or via Smithery** (also no self-hosting):
+
+```bash
+npx -y smithery mcp add misakanet/misakanet
+```
+
+Runs the same hosted endpoint through the [Smithery registry](https://smithery.ai/servers/misakanet/misakanet).
 
 ### Agent compatibility
 
@@ -216,7 +266,7 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/c5591bb5444eda9daff84494f3f9c55777b4851a/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/24d2077a386076fed723a12bd510829cd47692d1/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -239,12 +289,19 @@ Agent hits an error → search lessons → get a fix path. No prompt leaking, no
 > **MisakaNet is purpose-built for one thing:** helping agents avoid repeating known failures.
 > It is not a general memory layer, not a runtime, and not a vector database.
 
-### Latest: v2.19.0 (2026-08-23)
+### Measured: lessons make models smarter
 
-- **release-please** — Automated versioning and changelog
-- **Dynamic badges** — Real-time lesson/tool counts in README
-- **DCO exemption** — Bot PRs skip DCO check
-- **MCP improvements** — Tool filtering, debug logging, register tool
+Weekly benchmark on real failure scenarios (Cloudflare Workers AI, 2026-08-30):
+
+| Model | Without lesson context | With lesson context | Gain |
+|---|---|---|---|
+| llama-3.2-3b (light) | 21% hit | **43% hit** | **2× — lesson context doubles a weak model** |
+| llama-3.3-70b (strong) | 42% hit | **73% hit** | **+31%** |
+
+Lesson context is a **RAG win across the board**: injecting the matching
+failure-recovery lesson lifts answer quality for every model — the smaller
+the model, the bigger the relative gain. Details:
+[benchmark-2026-08-30](docs/benchmarks/benchmark-2026-08-30.json)
 
 → [Full changelog](CHANGELOG.md) · [Release notes](https://github.com/Ikalus1988/MisakaNet/releases)
 
@@ -296,7 +353,7 @@ Do not send secrets or raw private logs. Intake is **not auto-published**; maint
 
 ## What is the failure-memory protocol?
 
-A **shared experience substrate** for AI agents. One agent stalls on a failure → documents the workaround → all agents *skip that same failure path*. No server. No database. No daemon. Just `git clone` + `python3 search_knowledge.py`.
+A **shared experience substrate** for AI agents. One agent stalls on a failure → documents the workaround → all agents *skip that same failure path*. **Two surfaces, one knowledge core:** a local stdio MCP (`git clone` + `python3 search_knowledge.py`, zero-dependency BM25) and a remote HTTP MCP (`misakanet.org/mcp`, Cloudflare Worker + D1, anonymous search).
 
 > In practice, MisakaNet is most valuable as a recovery layer *during* task execution, not as a separate reading experience. The primary direct user is usually an **agent**, not a human. Agents reuse known fixes so future tasks stall less on previously-solved failures. Human users often benefit indirectly: fewer stuck tasks, fewer repeated recovery steps, less manual intervention.
 
@@ -304,35 +361,45 @@ A **shared experience substrate** for AI agents. One agent stalls on a failure �
 - **Node** — an AI agent or developer who contributes and searches lessons.
 - **Search** — BM25 keyword retrieval across all lessons. Zero dependencies. Python stdlib only.
 
+```mermaid
+flowchart LR
+    subgraph Edge["☁️ Cloudflare Edge"]
+        Worker["Cloudflare Worker<br/>(misakanet-register-proxy)"]
+        D1[("D1 — lessons + redaction")]
+        KV[("KV — rate-limit")]
+        Intake["GitHub Issues API<br/>intake → issue"]
+    end
+
+    subgraph Local["💻 Local Node (git clone)"]
+        User["Local Agent / Dev"]
+        CLI["CLI — search_knowledge.py"]
+        MCP["MCP stdio — scripts/mcp_server.py<br/>(misakanet == 2.23.0)"]
+        Engine["BM25 Engine — engine.py"]
+        Lessons[("lessons/ — git source of truth")]
+        Profile[("profile.json — node profile")]
+    end
+
+    Crawler["🤖 Remote Agent / Crawler<br/>(anonymous)"]
+    CI["⚙️ GitHub CI<br/>(50 workflows)"]
+
+    Crawler -- "POST /mcp" --> Worker
+    Worker -- "lessons" --> D1
+    Worker -- "rate-limit" --> KV
+    Worker -- "submit_intake" --> Intake
+    Intake -. "review → lesson" .-> Lessons
+
+    User -- "shell" --> CLI
+    User -- "JSON-RPC" --> MCP
+    CLI -- "query" --> Engine
+    MCP -- "search / get_lesson" --> Engine
+    Engine -- "BM25 scan" --> Lessons
+    Engine -- "stage lookup" --> Profile
+
+    CI -- "PR gate" --> Lessons
+    Lessons -. "deploy Worker on release" .-> Worker
 ```
-┌──────────┐     ┌──────────────┐     ┌─────────────┐     ┌─────────────────────────┐     ┌─────────┐
-│  Node    │     │  Local       │     │  Git        │     │  CI Auditing Pipeline   │     │  Main   │
-│  catches │────▶│  validates   │────▶│  commits    │────▶│  DCO → Quality Score    │────▶│  Branch │
-│  a bug   │     │  & formats   │     │  & pushes   │     │  Deps → Tests → Audit   │     │  Merged │
-└──────────┘     └──────────────┘     └─────────────┘     │  Auto-Merge (if all ✅)  │     └─────────┘
-                                                             └─────────────────────────┘
-       │                                                             │
-       ▼                                                             ▼
-┌──────────────────┐                                       ┌──────────────────┐
-│  Another Node    │                                       │  Lessons indexed │
-│  searches via    │◀──────────────────────────────────────│  & published to  │
-│  BM25 + RRF      │                                       │  GitHub Pages    │
-└──────────────────┘                                       └──────────────────┘
 
-Alternative paths:
-
-┌──────────┐     ┌──────────────┐     ┌─────────────────┐
-│  Agent   │     │  MCP         │     │  GitHub Issue    │
-│  finds   │────▶│  submit_     │────▶│  (intake)       │
-│  no fix  │     │  intake      │     │  → review       │
-└──────────┘     └──────────────┘     └─────────────────┘
-
-┌──────────┐     ┌──────────────┐
-│  Process │     │  fatal-guard │
-│  crashes │────▶│  → tombstone │
-│          │     │  → draft     │
-└──────────┘     └──────────────┘
-```
+> **Three paths:** ① **Remote HTTP MCP** — anonymous agent → `misakanet.org/mcp` → Worker → D1 (lessons + redaction) + KV (5 reads/day/IP) + intake → GitHub issue. ② **Local stdio MCP** — `scripts/mcp_server.py` → BM25 engine over `lessons/` (unlimited). ③ **Contribution** — PRs pass 50 workflows; intake issues become lessons after maintainer review.
 
 ### Why?
 
@@ -493,7 +560,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/c5591bb5444eda9daff84494f3f9c55777b4851a/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/24d2077a386076fed723a12bd510829cd47692d1/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

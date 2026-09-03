@@ -37,14 +37,14 @@ This plugin does not provide proxy functionality. It does not create a proxy ser
 
 ## Install
 
-Version `0.4.2` is published to npm and is also available as a prebuilt tarball in the [GitHub Release](https://github.com/chenjiyan2001/dsh-proxy-routing/releases/tag/v0.4.2). Choose the installation path that matches how you run the plugin.
+The latest release is published to npm and is also available as a prebuilt tarball in the [latest GitHub Release](https://github.com/chenjiyan2001/dsh-proxy-routing/releases/latest). Choose the installation path that matches how you run the plugin.
 
 ### Install through DSH (recommended)
 
 Install the plugin into the `web` profile:
 
 ```bash
-dsh plugin --profile web add dsh-proxy-routing@0.4.2
+dsh plugin --profile web add dsh-proxy-routing@latest
 ```
 
 Replace `web` with another profile name when needed. This command updates the profile's package manifest and bundle list so DSH can load the plugin. Restart a running DSH process once after installation so it composes the new entry and registers the `net_proxy_*` tools. The DSH plugin command requires `pnpm` to be available on `PATH`.
@@ -54,7 +54,7 @@ Replace `web` with another profile name when needed. This command updates the pr
 Install the published package into an npm-managed project:
 
 ```bash
-npm install dsh-proxy-routing@0.4.2
+npm install dsh-proxy-routing@latest
 ```
 
 This makes the package available as a Node dependency. Installing it with npm alone does not add the plugin to a DSH profile or its bundle list; for a normal DSH installation, use the DSH command above. The npm path is for a host application or custom profile that manages the package itself.

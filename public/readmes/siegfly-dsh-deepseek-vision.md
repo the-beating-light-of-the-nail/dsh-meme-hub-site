@@ -122,7 +122,7 @@ headless profile、其他 spec 形式（git / 目录 / tarball）、无 CLI 的�
 
 聊天窗里选中 **DeepSeek + Vision** provider 之后：
 
-| ![模型选择器里的 DeepSeek + Vision provider](https://raw.githubusercontent.com/siegfly/dsh-deepseek-vision/7ea4620ed3f1d25f5d0949d65938637a5c59a726/docs/images/provider-picker.png) | ![聊天窗贴图，图片被描述后发送给 DeepSeek](https://raw.githubusercontent.com/siegfly/dsh-deepseek-vision/7ea4620ed3f1d25f5d0949d65938637a5c59a726/docs/images/chat.png) |
+| ![模型选择器里的 DeepSeek + Vision provider](https://raw.githubusercontent.com/siegfly/dsh-deepseek-vision/106e2aeb327a89f726fb381e4128697f9624315d/docs/images/provider-picker.png) | ![聊天窗贴图，图片被描述后发送给 DeepSeek](https://raw.githubusercontent.com/siegfly/dsh-deepseek-vision/106e2aeb327a89f726fb381e4128697f9624315d/docs/images/chat.png) |
 | :---: | :---: |
 
 - **粘贴 / 拖入图片** → 按所选模型分流：目录声明支持 image 的模型（官方默认目录里的
@@ -182,7 +182,7 @@ retry policy 全部从父类继承。
 的"DeepSeek + Vision（视觉语言桥接）"卡片（`vl.*` 全字段 + VL 密钥）、Web Models 页
 （`deepseek.*` 子段由可配置 provider 目录接管）、`settings.yaml`（两个子段都可写）。
 
-![插件设置卡片](https://raw.githubusercontent.com/siegfly/dsh-deepseek-vision/7ea4620ed3f1d25f5d0949d65938637a5c59a726/docs/images/plugin-settings.png)
+![插件设置卡片](https://raw.githubusercontent.com/siegfly/dsh-deepseek-vision/106e2aeb327a89f726fb381e4128697f9624315d/docs/images/plugin-settings.png)
 
 `provider` / `displayName` 是注册期事实，修改即时生效（adapter 路由 + 可配置 provider
 目录原子重注册，不需重启）；改成已被占用的路由 id 时两个注册表保留旧值并记日志。

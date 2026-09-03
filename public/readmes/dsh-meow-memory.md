@@ -106,22 +106,23 @@
 
 ## 📦 安装
 
-### 通过 npm（已发布包）
+### 一键安装（推荐）
 
 ```sh
-# 1. 安装到 profile 的 node_modules（loader 在那里解析插件）
-cd $DSH_HOME/profiles/web          # 默认 home: ~/.dsh/profiles/web
-npm install meow-memory
-
-# 2. 在 profile 的 package.json 中把包加进装配 bundles（推荐，v0.9.0 起）：
-#    "dsh": { "profile": { "bundles": ["@deepseek-ai/dsh-base", "@deepseek-ai/dsh-web-app", "meow-memory"] } }
-#    （插件自带 dsh.bundle.patch，bundle 机制自动装配；profile patch 的 insert
-#     按 id 寻址、找不到已有条目会报 not found——新增插件请走 bundles 数组。）
-
-# 3. 重启 dsh web。新会话自动加载插件。
+dsh plugin --profile web add github:Phant0Meow/dsh-meow-memory
 ```
 
-### 手动安装（任意 DSH 安装，无需 npm）
+一条命令装完即生效：安装时自动编译（包内含 `prepare` 脚本），自动挂载，重启 `dsh web` 后新会话自动加载插件。
+
+> pnpm ≥10 默认会阻止安装期的构建脚本：首次 `add` 可能失败并提示 `allowBuilds`，按提示把输出的键加进 profile 的 `pnpm-workspace.yaml` 后重跑即可。
+
+### 卸载
+
+```sh
+dsh plugin --profile web remove meow-memory
+```
+
+### 手动安装（开发者，任意 DSH 安装，无需 npm）
 
 1. 把本包复制（或软链）到 profile 的 `node_modules`：
    ```sh
@@ -162,9 +163,11 @@ npm install meow-memory
 
 ### promptLang：prompt 与检索语言（重要）
 
-`promptLang` 决定三件事：①注入/反思/dream 文案的语言；②工具描述的语言；③**BM25 分词器的语言**。它同时影响模型写记忆条目用的语言——而检索命中依赖"查询与记忆条目被同一种方式分词"。
+`promptLang` 决定两件事：①注入/反思/dream 文案的语言；②工具描述的语言。它同时影响模型写记忆条目用的语言——关键词按条目语言提取，**以你说话的语言为准**。
 
-**因此首次使用时请显式配置它**：`promptLang: 'zh'`（默认，中文 bigram 分词）或 `'en'`（英文整词分词）。如果你的对话语言和界面语言不一致（比如界面英文、说话中文），**以你说话的语言为准**——语言不一致会显著拉低关键词命中率。
+**因此首次使用时请显式配置它**：`promptLang: 'zh'`（默认）或 `'en'`（内置英文语言包）。如果你的对话语言和界面语言不一致（比如界面英文、说话中文），**以你说话的语言为准**。
+
+检索侧说明：BM25 分词自 v0.20.0 起语言无关（类别路由），条目与查询语言不一致不再"杀检索"；`en` 模式额外启用英语归一化（停用词过滤 + Porter 词干还原），屈折变化不影响命中（`tokenizers` 能命中存为 `tokenizer` 的条目）。
 
 自定义 / 社区语言包：prompt 文案是数据文件（`src/prompts/`），一门语言一个子目录，改文件即生效、无需改代码——详见 [`src/prompts/README.md`](src/prompts/README.md)（含贡献指南与 `npm run check-lang` 自查）。实例级自定义：`<home>/.dsh-meow/prompts/<lang>/` 下放同名槽位文件即可覆盖（可只覆盖部分）。
 

@@ -8,9 +8,9 @@ Bookmark assistant replies in [DeepSeek Harness](https://github.com/deepseek-ai/
 
 ## Screenshots
 
-![Bookmark action on an assistant reply](https://raw.githubusercontent.com/penguin-oo/dsh-bookmarks/881e2e6425898ed8fe2d4b6df48515d72b73a6ca/docs/screenshot-actions.png)
+![Bookmark action on an assistant reply](https://raw.githubusercontent.com/penguin-oo/dsh-bookmarks/6db86b38174652a431c25f8f0ca41a3578c1b923/docs/screenshot-actions.png)
 
-![The standalone bookmark center](https://raw.githubusercontent.com/penguin-oo/dsh-bookmarks/881e2e6425898ed8fe2d4b6df48515d72b73a6ca/docs/screenshot-center.png)
+![The standalone bookmark center](https://raw.githubusercontent.com/penguin-oo/dsh-bookmarks/6db86b38174652a431c25f8f0ca41a3578c1b923/docs/screenshot-center.png)
 
 ## Features
 

@@ -1,5 +1,7 @@
 # dsh-ui-auth — DSH Web UI 认证网关插件
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
 在 DSH Web UI 前套一层用户名/密码登录校验，未登录用户无法访问任何页面、API
 或 WebSocket 通道。
 
@@ -13,10 +15,26 @@
   - 登录后：原请求原样透传，功能零影响。
 - **登录页**：`/auth/login` 提供自带样式的登录页（中文），登录成功写 `dsh_auth`
   Cookie（HttpOnly + SameSite=Strict，12 小时滑动续期）。
+- **注册（0.5.0）**：`/auth/register` 注册页——新用户凭**邮箱 + 用户名 + 密码 +
+  有效邀请码**注册（邮箱暂不校验真实性，注册后可在「用户管理」中自行修改；
+  邮箱验证将在后续版本提供）。邀请码由管理员在【用户管理】→【邀请码管理】中
+  生成，可查看每个码的已用/可注册次数与剩余数，可撤销。注册成功即**自动登录**
+  并进入 **TOTP 引导页**（推荐立即添加两步验证令牌，也可跳过稍后添加）。
+- **TOTP 两步验证（0.5.0）**：每个用户可在【用户管理】→「两步验证（TOTP）」
+  中生成密钥并绑定 Google Authenticator / Microsoft Authenticator 等应用
+  （RFC 6238，30 秒步进）。生成后显示**二维码**（扫码添加，由 `qrcode` 库生成
+  SVG）与密钥/otpauth 链接（手动输入）。
+  - **登录（0.5.0）**：启用 TOTP 后登录需两步验证——密码正确后要求输入验证器
+    动态码；也支持**免密 TOTP 登录**（登录页密码留空、只填动态码）。动态码
+    错误计入登录失败锁定（防爆破）。
+  - 注册后未绑定 TOTP 的用户，每次登录页面加载会弹出提醒（可"永久忽略"取消，
+    也可在设置中恢复提醒）。移除令牌需验证当前动态码；管理员可移除任意用户的令牌。
 - **用户管理**（设置面板「用户管理」，需登录后可见）：
-  - 所有用户：修改自己的昵称、邮箱与密码；
-  - 管理员：新增/删除用户、重置他人密码、切换角色；**任何人无法查看他人当前密码**。
+  - 所有用户：修改自己的昵称、邮箱与密码；管理自己的 TOTP 令牌；
+  - 管理员：新增/删除用户、重置他人密码、切换角色、**管理邀请码**（生成/撤销、
+    查看使用与剩余数）、移除任意用户的 TOTP；**任何人无法查看他人当前密码**。
   - 保护规则：不能删除/降级最后一个管理员、不能删除自己、改密/删除后其他会话立即失效。
+  - 角色列显示为简短徽章（「管理」/「用户」），避免长文本换行。
 - **模型配置页仅管理员**（【设置】→【模型】，含模型与 API Key 配置）：
   - 服务端强制（安全边界）：非管理员会话对 `settings.*`（`llm-*` / `settings.models`
     命名空间）、`credentials.set/unset`、`llm.discoverModels` 一律 403，绕过 UI
@@ -39,13 +57,33 @@
     事件流隔离（依赖 DSH 的 `ctx.apiProxy` 服务，缺失时该通道 fail-closed）。
   - 管理员不受限（可见全部数据）；本功能启用前的旧数据默认归管理员。
 - **安全细节**：密码 PBKDF2-HMAC-SHA256（每用户随机盐，60000 轮，常量时间比较）；
+  密码策略：**至少 8 位且包含两种及以上字符类型**（大写/小写字母、数字、符号）；
   令牌/盐使用 Web Crypto 强熵；单 IP 连续 5 次登录失败锁定 30 秒（阈值与时长可用
   环境变量调整，见「配置」）；所有认证响应 `Cache-Control: no-store`。
+- **Cookie Secure（0.5.1）**：TLS 直连或（仅当 `DSH_AUTH_TRUST_PROXY=1` 时）
+  `X-Forwarded-Proto: https` 的安全通道下，`dsh_auth` Cookie 自动追加 `Secure`
+  标志；HTTP 内网调试不受影响。
+- **会话哈希落盘（0.5.1）**：`dsh-ui-auth-sessions.json` 只保存会话 Token 的
+  SHA-256 哈希（64 位 hex），磁盘不再出现明文 Token；**升级到 0.5.1 后旧版明文
+  会话记录不再恢复，所有用户需重新登录一次**。
+- **引导文件自毁（0.5.1）**：首次登录后任意用户改密成功即自动删除
+  `dsh-ui-auth-bootstrap.txt`（明文初始密码不再长期残留）。
+
+## 界面预览
+
+| 登录页 | 注册页 |
+|---|---|
+| ![登录页](https://raw.githubusercontent.com/0QwQ0/dsh-ui-auth/6754d1113422b5df17bdf87e9ac223660cf9b977/assets/screenshot-login.png) | ![注册页](https://raw.githubusercontent.com/0QwQ0/dsh-ui-auth/6754d1113422b5df17bdf87e9ac223660cf9b977/assets/screenshot-register.png) |
+
+| 注册成功引导页（TOTP） | 用户管理页 |
+|---|---|
+| ![注册引导页](https://raw.githubusercontent.com/0QwQ0/dsh-ui-auth/6754d1113422b5df17bdf87e9ac223660cf9b977/assets/screenshot-guide.png) | ![用户管理页](https://raw.githubusercontent.com/0QwQ0/dsh-ui-auth/6754d1113422b5df17bdf87e9ac223660cf9b977/assets/screenshot-users.png) |
 
 ## 持久化
 
 - 用户数据存于 DSH 的 credentials 服务（`~/.dsh/.credentials.yaml`，每用户一条
-  `dsh-auth/<用户名>` 记录），重启后用户、角色、资料、密码全部保留。
+  `dsh-auth/<用户名>` 记录），重启后用户、角色、资料、密码、TOTP 绑定全部保留；
+  邀请码存于 `dsh-auth/invites` 记录，TOTP 密钥（base32）随用户记录持久化。
 - **会话（0.4.0）**：登录会话定期落盘到 fs 服务工作目录的
   `dsh-ui-auth-sessions.json`，**重启面板后未过期会话免登录恢复**（token 明文
   落盘等价于"记住登录态"，文件仅属主可读写；过期/登出/改密后即失效）。
@@ -75,6 +113,9 @@ dsh plugin --profile web add "link:F:/aura/pluginDev/dsh-ui-auth"
 dsh plugin --profile web add dsh-ui-auth
 ```
 
+运行时依赖：`qrcode`（生成 TOTP 绑定二维码，纯 JS 无原生依赖；`dsh plugin add`
+会自动安装；本地 link 安装后如提示缺少依赖，在插件目录执行一次 `npm install`）。
+
 bundle 层在**启动时**应用（挂载 Host 网关 + 发现客户端模块），因此首次安装需
 重启一次面板生效。
 
@@ -101,7 +142,7 @@ dsh plugin --profile web remove dsh-ui-auth
 |---|---|---|
 | `DSH_AUTH_MAX_FAILS` | `5` | 单来源连续登录失败锁定阈值（正整数；非法值回退默认） |
 | `DSH_AUTH_LOCK_MS` | `30000` | 锁定持续时间毫秒 |
-| `DSH_AUTH_TRUST_PROXY` | 关 | 设为 `1`/`true`/`yes` 时信任 `X-Forwarded-For`（取最左，按真实客户端 IP 计数）。**仅在 HTTPS 反向代理后开启**——默认不信任，防止未配置反代时伪造 XFF 绕过/污染限流 |
+| `DSH_AUTH_TRUST_PROXY` | 关 | 设为 `1`/`true`/`yes` 时信任 `X-Forwarded-For`（**取最右**——最近受信反代追加的地址，客户端无法伪造；同时信任 `X-Forwarded-Proto` 用于 Secure Cookie）。**仅在 HTTPS 反向代理后开启**——默认不信任，防止未配置反代时伪造 XFF 绕过/污染限流 |
 
 面板进程启动时读取，改环境变量后重启面板生效。示例（PowerShell）：
 

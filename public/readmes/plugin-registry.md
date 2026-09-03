@@ -45,7 +45,7 @@ Plugin forms and install paths: [plugin type comparison](docs/plugin-types.md); 
 
 ## Thin console
 
-![Plugin management panel](https://raw.githubusercontent.com/vlln/plugin-registry/e35b86783b9dc932a8e9a7199d0799a2e76a8011/screenshots/console-panel.png)
+![Plugin management panel](https://raw.githubusercontent.com/vlln/plugin-registry/d581b3df4054e39fdd1fd259007709824effd15a/screenshots/console-panel.png)
 
 The settings page's "Plugin Management" panel manages a profile's plugin install state: **install area** (single entry — npm package name or GitHub project (`https://github.com/o/r` / `github.com/o/r` / `github:o/r`, URL auto-normalized) — automatic pnpm add; bundles enter the layer stack, non-bundles get insert rows) + **loaded area** (version check/update, `disabled` toggle, bundle uninstall).
 

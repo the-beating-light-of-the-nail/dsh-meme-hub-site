@@ -83,9 +83,9 @@ node <monorepo>/node_modules/typescript/bin/tsc -p tsconfig.json
 node <monorepo>/node_modules/vitest/vitest.mjs run tests
 ```
 
-## DSH 0.1.2-alpha.1 兼容（已验证）
+## DSH 0.1.2-alpha.4 兼容（已验证）
 
-本插件已迁移到 DSH 0.1.2-alpha.1 依赖线，并在 `local harness 0.1.2-alpha.1` 的隔离 consumer 中完成全链路验证：
+本插件已迁移到 DSH 0.1.2-alpha.4 依赖线，并在 `local harness 0.1.2-alpha.4` 的隔离 consumer 中完成全链路验证：
 
 - **类型/运行时**：`@deepseek-ai/cordis@^4.0.1` + `@deepseek-ai/dsh-tools@>=0.0.1-rc.1 <0.2.0` + `@deepseek-ai/dsh-invariants@>=0.0.1-rc.1 <0.2.0`（peer）；不再依赖 unscoped `cordis`
 - **独立构建**：`npm install`（devDependencies 自包含 typescript/vitest/@types/node）→ `npm run typecheck` → `npm test` → `npm run build` → `npm pack`
@@ -95,7 +95,7 @@ node <monorepo>/node_modules/vitest/vitest.mjs run tests
 
 ## 安装
 
-DSH 0.1.2-alpha.1（npm）下，插件通过 `dsh plugin --profile <profile> add <source>` 安装，source 支持 GitHub 仓库或 npm pack tarball。
+DSH 0.1.2-alpha.4（npm）下，插件通过 `dsh plugin --profile <profile> add <source>` 安装，source 支持 GitHub 仓库或 npm pack tarball。
 
 ### 从 GitHub 安装（推荐）
 

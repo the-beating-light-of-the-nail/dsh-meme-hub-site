@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/2ccd7b41c5562a194c666173db598509a528f033/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/aab97af8002bf0c8ac18d88da64293e41c9eb121/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
 </p>
 
 # Mnemon
@@ -40,7 +40,7 @@ Most memory tools embed their own LLM inside the pipeline. Mnemon takes a differ
 Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs discover and invoke tools. ODBC/JDBC standardizes how applications access databases. But how LLMs interact with databases using memory semantics — this layer has no protocol. Mnemon's three primitives — `remember`, `link`, `recall` — form an intent-native protocol: command names map to the LLM's cognitive vocabulary (`remember` not INSERT, `recall` not SELECT), and output is structured JSON with signal transparency rather than raw database rows.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/2ccd7b41c5562a194c666173db598509a528f033/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/aab97af8002bf0c8ac18d88da64293e41c9eb121/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
   <br />
   <sub>The LLM-Supervised pattern: hooks drive the lifecycle, the host LLM makes judgment calls, the binary handles deterministic computation.</sub>
 </p>
@@ -48,7 +48,7 @@ Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs dis
 Memory has a **compound interest effect** — the longer it accumulates, the greater its value. LLM engines iterate constantly, skill files cost nearly nothing to write, but memory is a private asset that grows with the user. It is the only component in the agent ecosystem worth deep investment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/2ccd7b41c5562a194c666173db598509a528f033/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/aab97af8002bf0c8ac18d88da64293e41c9eb121/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
   <br />
   <sub>A real knowledge graph built by Mnemon — 87 insights, 2150 edges across four graph types.</sub>
 </p>
@@ -446,6 +446,16 @@ Mnemon architecture.
 | `MNEMON_DATA_DIR` | `~/.mnemon` | Base data directory |
 | `MNEMON_STORE` | *(active file or `default`)* | Named memory store for data isolation |
 
+**Retention**:
+
+| Environment Variable | Default | Description |
+|---|---|---|
+| `MNEMON_MAX_INSIGHTS` | `1000` | Active-insight ceiling; `0` disables automatic pruning |
+| `MNEMON_AUTO_PRUNE_MIN_AGE` | `24h` | Grace period before an insight can be auto-pruned; accepts `24h`, `7d`, or `0` |
+
+Each automatic deletion is soft, appears in the oplog as a `prune` operation, and is
+reported by ID in the triggering command's `auto_pruned_ids` field.
+
 **Embedding** (only relevant if using embeddings):
 
 | Environment Variable | Default | Description |
@@ -493,6 +503,16 @@ See [Development and Deployment](docs/DEPLOYMENT.md) for Docker, Compose, Ollama
 - [Memory Import Guide](docs/IMPORT.md) — schema and LLM prompt for importing historical chats
 - [Architecture Diagrams](docs/diagrams/) — system architecture, pipelines, lifecycle management
 
+## Star History
+
+<a href="https://star-history.dera.page/#mnemon-dev/mnemon">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=mnemon-dev/mnemon&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=mnemon-dev/mnemon" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=mnemon-dev/mnemon" />
+ </picture>
+</a>
+
 ## References
 
 Mnemon combines the paradigm of one paper with the methodology of another, grounded in the structural insight that graph memory is isomorphic to LLM attention. See [Theoretical Foundations](docs/DESIGN.md#25-theoretical-foundations) for details.
@@ -506,3 +526,7 @@ Mnemon combines the paradigm of one paper with the methodology of another, groun
 Copyright 2026 Grivn and Mnemon contributors.
 
 [Apache-2.0](LICENSE)
+
+The bracketed copyright example near the end of `LICENSE` is part of Apache
+2.0's standard application appendix; this section carries the project's actual
+copyright notice.

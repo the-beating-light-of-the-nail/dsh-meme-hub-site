@@ -6,7 +6,7 @@ Agent apps manage conversations as sessions: chats are silos, and memory doesn't
 
 This is a plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh); it cannot run standalone.
 
-![branch tab](https://raw.githubusercontent.com/Jason-skd/dsh-session-fork/495cb9019231aa39d0c9e8be5b9af9440b06943c/docs/media/branch_tab.png)
+![branch tab](https://raw.githubusercontent.com/Jason-skd/dsh-session-fork/30054ef443510cd989005aae5c33e60ac7574cad/docs/media/branch_tab.png)
 
 ## Why branches
 

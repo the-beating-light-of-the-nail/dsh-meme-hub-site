@@ -13,43 +13,43 @@ A **DeepSeek Harness** appearance plugin that lets you fully customize the Web U
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image.png" alt="Custom homepage" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image.png" alt="Custom homepage" width="720">
   <br/>
   <em>Custom homepage · wallpaper + theme color applied</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-2.png" alt="Theme color picker" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image-2.png" alt="Theme color picker" width="720">
   <br/>
   <em>Theme color picker · PS-style wheel + precise HSL/RGB inputs</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-3.png" alt="Per-part opacity and blur" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image-3.png" alt="Per-part opacity and blur" width="720">
   <br/>
   <em>Per-part opacity and blur · main background, sidebar, cards, settings</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-4.png" alt="Background editor" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image-4.png" alt="Background editor" width="720">
   <br/>
   <em>Background editor · image/video wallpapers support drag-to-pan and scroll-to-zoom</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-6.png" alt="Generated dynamic background" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image-6.png" alt="Generated dynamic background" width="720">
   <br/>
   <em>Generated dynamic background · mesh gradient / Shader / geometric presets</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-9.png" alt="Geometric background, low-poly mode" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image-9.png" alt="Geometric background, low-poly mode" width="720">
   <br/>
   <em>Generated dynamic background · geometric low-poly mode preview</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/e68455ab004cf15c803a0a3b826ddbc7e9c2cc97/example_img/image-10.png" alt="Config export and import" width="720">
+  <img src="https://raw.githubusercontent.com/Tkingxiao/dsh-any-background/d70e55fea26597d9bbf4c555f2c9824e1bfd3f12/example_img/image-10.png" alt="Config export and import" width="720">
   <br/>
   <em>Export and import configs to share</em>
 </p>
@@ -75,21 +75,17 @@ A **DeepSeek Harness** appearance plugin that lets you fully customize the Web U
 
 ## Recent Optimizations
 
-- **Video wallpaper end-to-end** — Videos are stored under MIME-derived names (`wallpaper.mp4/webm/...`) and streamed over the plugin's own HTTP route; they restore automatically after refresh or restart and travel inside exported configs.
-- **Binary upload for large videos** — Uploads stream raw bytes over an HTTP POST straight to disk instead of a base64 detour through RPC (no channel body limit, any size works); aborted transfers clean up after themselves.
-- **Video position editing** — The placement editor works on a captured frame reference with zoom/pan, adapted to all five layout modes; image and video framings persist independently.
-- **Conversation view cards** — The message column gains an automatic card (border/radius/padding) and the trajectory page gets whole-page opacity & blur; switching views restores the previous host.
-- **Boot flicker eliminated** — Theme tokens are injected through a dedicated `!important` stylesheet instead of inline `body` styles, surviving host theme service resets.
-- **Color wheel overlap fixed** — The hue ring is drawn on top of the saturation/lightness square so the square corners no longer cover the ring.
-- **Inspiration palette selection cleared** — Picking a theme color from the wheel deselects any previously selected inspiration swatch.
-- **Debug telemetry removed** — Temporary boot-time logging and `MutationObserver` instrumentation have been cleaned out.
-- **Per-part blur isolated** — Blur is applied on `::before` underlays so it never traps the host's fixed-position settings dialog.
-- **New "Input & controls" part** — The composer box, slash menu, and Cordis plugin panel own a dedicated opacity slider; their translucent surfaces get real frosted-glass backdrop blur attached through stable host data attributes (`[data-composer-card]`, `[data-cordis-panel]`).
-- **Native control contrast fixed** — Solid surface tokens (composer, menus, Cordis panel) now carry per-part alpha, and a forced `color-scheme` keeps native `<select>` popups legible — no more white-on-white when the wallpaper brightness verdict flips labels to white.
-- **Translucency without self-damage** — The "Input & controls" opacity slider is deliberately decoupled from the settings panel's own controls (which share the same button tokens), so adjusting it can never bleach the plugin's own sliders and buttons.
-- **Drag-time performance** — Opacity tokens are written as CSS variables on `<html>` instead of rebuilding the whole token stylesheet per tick; slider updates are coalesced to one rAF per frame; the main-background columns are only retinted when their own slider changes.
-- **Drag-time wallpaper downscaling** — While any slider is being dragged the wallpaper swaps to a (~720px) low-res copy for cheap rasterization over large images, then restores full resolution on release.
-- **Instant video playback on import** — A picked video starts playing immediately from a local object URL while its raw bytes stream to disk in the background; the persisted serve URL takes over on the next reload — no more upload + first-buffer wait after import.
+### v0.2.2
+
+- **Dark host surfaces fully themed** — Message bubbles, setting-box inputs/cards, selectors, ghost/toolbar buttons, and module-platform surfaces now carry explicit dark tokens, eliminating white-on-white and white-icon-on-bright bugs across the conversation view, settings page, and interactive controls.
+- **Refresh white-flash eliminated** — A theme-reset watcher re-asserts the plugin's forced scheme within the same frame the host re-applies its light `:root/body` rules; the `!important` token stylesheet survives host theme resets, so entering, refreshing, and set-changes no longer paint a white frame.
+- **Brand badge & code banner contrast** — The sidebar brand badge and the code-block info banner now use dark surfaces with legible labels and icons.
+- **Placeholder reads as a hint** — The composer placeholder is rendered with the weak caption token and italic styling, clearly distinct from real input text.
+- **Dual harness compatibility** — `defineStore` is resolved through a runtime adapter that prefers the new `@deepseek-ai/dsh-client-store` and falls back to the legacy `@deepseek-ai/dsh-client-runtime/client`. A single bundle loads on both the npm release and the new deepseek-harness source, with no "missed the module table" boot failure.
+
+### v0.2.1
+
+- **Instant video playback on import** — A picked video starts playing immediately from a local object URL while its raw bytes stream to disk in the background; the persisted serve URL takes over on the next reload — no upload + first-buffer wait after import.
 - **Option boxes follow the card slider** — The dropdowns, slash-trigger menu, model selector, and popovers around the dialog now follow the "Cards & panels" opacity slider instead of "Input & controls"; the Cordis panel keeps its own input-slider binding.
 
 ## Installation
@@ -132,7 +128,7 @@ pnpm dsh web
 
 ## Compatibility
 
-- **[`dsh web`](https://github.com/deepseek-ai/deepseek-harness)** — Full support.
+- **[`dsh web`](https://github.com/deepseek-ai/deepseek-harness)** — Full support on both the npm release and the new source build. The plugin auto-detects which client-module table the host ships (the new `@deepseek-ai/dsh-client-store` or the legacy `@deepseek-ai/dsh-client-runtime`) and resolves `defineStore` accordingly at runtime.
 - **[deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)** — Supported; a known Electron packaging issue makes the left sidebar and center area opacity appear inverted — awaiting a desktop-client update to fix it.
 
 ## Star History

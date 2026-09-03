@@ -15,7 +15,7 @@ DeepSeek Harness ships automatic context compaction (`dsh-compaction-basic`), bu
 
 ## How it works
 
-DeepSeek Harness runs one `compaction-basic` instance per **agent preset** (per session). Profile-level patches cannot reach that subtree, so this tool directly injects configuration into the `compaction-basic` entry of every user-installed preset under `~/.dsh/.agent-presets/`.
+DeepSeek Harness runs one `compaction-basic` instance per **agent preset** (per session). Profile-level patches cannot reach that subtree, so this tool directly injects configuration into the `compaction-basic` entry of every user-installed preset under `$DSH_HOME/.agent-presets/` (default: `~/.dsh/.agent-presets/`).
 
 - Default: trigger at **75%** of the context window, keep the most recent **20%** verbatim.
 - Per-route policies:
@@ -46,20 +46,20 @@ discard the preserved preset configuration.
 
 ### Important: Factory Presets
 
-This tool **only injects into user-installed presets** under `~/.dsh/.agent-presets/`. The factory presets (`standard`, `code`, `cordis`, `minimal`) ship with their own default compaction settings (80% trigger, 16% retain) and are read-only — this tool will not modify them.
+This tool **only injects into user-installed presets** under `$DSH_HOME/.agent-presets/`. The alpha.4 factory presets (`standard`, `cordis`, `minimal`, `ptc`) ship with their own default compaction settings and are read-only — this tool will not modify them.
 
 If you want enhanced compaction for a factory preset:
 
 1. Copy it to your user presets directory:
    ```bash
-   cp -r /opt/homebrew/lib/node_modules/@deepseek-ai/dsh/presets/<preset-name> ~/.dsh/.agent-presets/
+   cp -r "$(npm root -g)/@deepseek-ai/dsh/node_modules/@deepseek-ai/dsh-agent-presets/presets/<preset-name>" "$DSH_HOME/.agent-presets/"
    ```
 2. Run `./install.sh` again to inject the enhanced configuration.
 3. Select the copied preset in DSH's session setup.
 
 ## What the installer does
 
-- Finds every `agent.cordis.yml` under `~/.dsh/.agent-presets/`.
+- Finds every `agent.cordis.yml` under `$DSH_HOME/.agent-presets/`.
 - Injects the policy block into the `compaction-basic` entry of each preset.
 - Backs up each modified file as `agent.cordis.yml.bak-auto-compact`.
 - Idempotent: a marker comment prevents double injection.
@@ -68,7 +68,7 @@ If you want enhanced compaction for a factory preset:
 
 ## Configuration
 
-All values live in `scripts/inject.mjs` (the `CONFIG_BLOCK`). Edit them before running `./install.sh` if you want different thresholds. Preview with:
+All values live in `config.json`. The generated block uses the alpha.4 `compaction-basic` fields; edit the JSON before running `./install.sh` if you want different thresholds. Preview with:
 
 ```bash
 node scripts/inject.mjs --dry-run

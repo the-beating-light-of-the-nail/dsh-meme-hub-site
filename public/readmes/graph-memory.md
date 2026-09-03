@@ -1,6 +1,6 @@
 # Graph Memory
 
-![DeepSeek Harness + OpenClaw → Graph Memory](https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/brand/graph-memory-hosts-banner.png)
+![DeepSeek Harness + OpenClaw → Graph Memory](https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/brand/graph-memory-hosts-banner.png)
 
 <p align="center">
   <strong>Traceable, searchable, cross-session memory for AI agents.</strong><br>
@@ -77,7 +77,7 @@ Typed edges such as `USED_SKILL`, `SOLVED_BY`, `REQUIRES`, `PATCHES`, and `CONFL
 The original OpenClaw adapter was measured in a seven-turn workflow that installed, authenticated, and queried `bilibili-mcp`:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/token-comparison.png" alt="Seven-turn token comparison" width="82%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/token-comparison.png" alt="Seven-turn token comparison" width="82%">
 </p>
 
 | Turn | Without Graph Memory | With Graph Memory |
@@ -102,8 +102,8 @@ The DSH integration does not discard the original project. Graph Memory is evolv
 On March 15, 2026, the project owner presented Graph Memory's architecture at the CLAW program event held in Tsinghua Science Park. The following owner-supplied materials and the [Sina Finance event report](https://cj.sina.com.cn/articles/view/7984421895/1dbe89c0700101nnpq) document that development.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/history/tsinghua-sharing.jpg" alt="Graph Memory technical sharing" width="47%">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/history/sina-report.jpg" alt="Sina Finance event coverage" width="28%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/history/tsinghua-sharing.jpg" alt="Graph Memory technical sharing" width="47%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/history/sina-report.jpg" alt="Sina Finance event coverage" width="28%">
 </p>
 
 - [Community cross-session memory demo](https://www.bilibili.com/video/BV1xUcZzfEaB/)
@@ -112,7 +112,7 @@ On March 15, 2026, the project owner presented Graph Memory's architecture at th
 The image below is the existing OpenClaw / ClawX-era Pro graph prototype. It demonstrates a previously explored interaction direction; it is not a shipped DSH frontend.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/graph-ui.png" alt="Existing Graph Memory Pro prototype" width="92%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/graph-ui.png" alt="Existing Graph Memory Pro prototype" width="92%">
 </p>
 
 Names and venue information document project history only and do not imply endorsement by Tsinghua University, Sina Finance, DeepSeek, or OpenClaw.
@@ -196,16 +196,16 @@ graph-memory/
 | Visible plugin state | **Done** | Active in Plugin Inventory |
 | Pro visual workbench | **Experimental** | Separate DSH Client Plugin with a read-only card snapshot |
 
-Current beta: `1.6.0-beta.9`. Functional acceptance used DeepSeek Harness `0.1.0-rc.8`; script-free Git installation and profile config composition were subsequently reverified against `0.1.1-rc.2`. Testing covered script-free Git and tarball installation, Web profile loading, configurable five-turn rolling compaction through the public agent-preset compaction service, exact source provenance, token-budget enforcement, high-precision automatic recall, FTS5 fallback, and the Pro Lite Host, Typed Remote, and Client bundle boundaries. All 130 automated tests passed. Real model-backed acceptance also verified rolling checkpoint replacement, 1024-dimensional `text-embedding-v4` vectors, and automatic cross-project recall without an explicit memory tool call.
+Current beta: `1.6.0-beta.11`. Functional acceptance used DeepSeek Harness `0.1.0-rc.8`; script-free Git installation and profile config composition were subsequently reverified against `0.1.1-rc.2`. Testing covered script-free Git and tarball installation, Web and Headless profile loading, configurable five-turn rolling compaction through the public agent-preset compaction service, exact source provenance, a lossless bounded extraction queue, failure quarantine and recovery, bounded raw-message retention, token-budget enforcement, high-precision automatic recall, FTS5 fallback, and the Pro Lite Host, Typed Remote, and Client bundle boundaries. All 149 automated tests passed. Real model-backed acceptance also verified rolling checkpoint replacement, 1024-dimensional `text-embedding-v4` vectors, and automatic cross-project recall without an explicit memory tool call.
 
 <p align="center">
   <strong>Plugin enabled: graph-memory/dsh is active in the DSH plugin list</strong><br>
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in the DSH plugin list" width="88%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in the DSH plugin list" width="88%">
 </p>
 
 <p align="center">
   <strong>Cross-session semantic recall in a fresh Session</strong><br>
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session vector recall in DSH" width="88%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session vector recall in DSH" width="88%">
 </p>
 
 ## Install on DeepSeek Harness
@@ -226,7 +226,7 @@ cd graph-memory
 npm install
 npm test
 npm pack
-npx @deepseek-ai/dsh plugin --profile web add /absolute/path/to/graph-memory-1.6.0-beta.9.tgz
+npx @deepseek-ai/dsh plugin --profile web add /absolute/path/to/graph-memory-1.6.0-beta.10.tgz
 ```
 
 After installation, verify that `graph-memory/dsh` is enabled under **Settings → Plugins → Plugin list**.
@@ -255,16 +255,43 @@ dsh web
 
 Without embeddings, Graph Memory continues with FTS5 and does not block conversation.
 
-![Vector status](https://raw.githubusercontent.com/adoresever/graph-memory/443e6ccb9d1d37169404977199398f4b4935c4fc/docs/images/dsh/vector-status.png)
+![Vector status](https://raw.githubusercontent.com/adoresever/graph-memory/1dadb34c0db7a204847f209e9290ae115f8e046b/docs/images/dsh/vector-status.png)
+
+## Durable message retention (opt-in)
+
+DSH context compaction and SQLite retention are intentionally separate. Compaction bounds the model surface; it does not delete provenance from `gm_messages`. The default policy is `keep: all`, so upgrading never removes existing data.
+
+For large stores, configure `messageRetention` on `graph-memory/dsh` and roll it out in dry-run mode first:
+
+```yaml
+messageRetention:
+  keep: referenced
+  recentTurns: 20
+  retentionDays: 30
+  batchSize: 500
+  dryRun: true
+```
+
+- `all`: preserve every durable event; this is the default.
+- `referenced`: prune extracted, unreferenced rows; optional turn/day windows remain protected.
+- `recent`: requires `recentTurns` or `retentionDays`, and also always preserves referenced or pending rows.
+
+`recentTurns` counts real user turns per session and keeps their following assistant/tool events. When both windows are set, a row is eligible only after it falls outside both. Invalid timestamps are retained. Each maintenance tick uses one bounded transaction, re-checks `gm_node_sources`, and never runs `VACUUM` automatically.
+
+Before enabling deletion, back up `$DSH_HOME/graph-memory/graph-memory.db`, keep `dryRun: true`, run `gm_maintain`, and inspect `gm_stats`. Change `dryRun` to `false` only after the candidate receipt matches the intended policy.
 
 ## DSH tools
 
 | Tool | Purpose |
 |---|---|
-| `gm_status` | Plugin, store, extraction, recall, and vector state |
+| `gm_status` | Plugin, store, extraction, recall, vector, and retention state |
 | `gm_search` | Explicit long-term graph search |
 | `gm_record` | Persist a TASK, SKILL, or EVENT |
-| `gm_stats` | Node, edge, type, and community statistics |
+| `gm_stats` | Graph, durable-message, and retention receipts/statistics |
+| `gm_maintain` | Run one bounded graph + configured retention maintenance tick |
+| `gm_retry_extraction` | Requeue quarantined extraction failures without deleting or truncating source messages |
+
+The extraction queue bounds each temporary projection to 8,000 characters and 15 messages by default. One oversized message is extracted in semantic chunks while its durable SQLite event remains complete. Repeated failures become `quarantined`: they are never mislabeled as learned and retention cannot delete them. `gm_status` and `gm_stats` expose pending, succeeded, and quarantined counts. All bounds live under `extractionDrain`; see `cordis.patch.yml` for defaults.
 
 Automatic recall does not require an explicit `gm_search` tool call. The plugin retrieves relevant memory during Prompt Assembly.
 
@@ -384,7 +411,7 @@ Release checks:
 ## Current limitations
 
 - Automatic extraction depends on auxiliary-model output stability. Use `gm_record` for critical beta knowledge.
-- DSH does not yet expose `gm_update` and `gm_maintain`; those remain OpenClaw-entry tools.
+- DSH does not yet expose `gm_update`; `gm_maintain` and `gm_retry_extraction` are native tools.
 - Pro Lite currently has a read-only card client; 2D/3D, split view, and controlled drag-to-context are not implemented.
 - npm registry publication is pending; install the current beta from a GitHub-built tarball.
 

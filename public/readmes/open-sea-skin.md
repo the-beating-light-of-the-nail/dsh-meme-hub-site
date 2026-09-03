@@ -2,12 +2,26 @@
 
 [Interactive website](https://d-dev0101.github.io/open-sea-skin/) · [中文](README.zh.md) · [Architecture](docs/architecture.md) · [Release guide](docs/releasing.md)
 
+<div align="center">
+  <h2>Before installing, preview the official website first</h2>
+  <p><strong>Open the live demo, tune the waves, sunset, and glass transparency, then install only after you like the result.</strong></p>
+  <p>
+    <a href="https://d-dev0101.github.io/open-sea-skin/">Official website</a> ·
+    <a href="https://github.com/d-dev0101/open-sea-skin/blob/main/docs/dsh-plugin.md">Install guide</a> ·
+    <a href="https://github.com/d-dev0101/open-sea-skin/releases">Releases</a> ·
+    <a href="https://github.com/d-dev0101/open-sea-skin">Source code</a> ·
+    <a href="https://github.com/topics/dsh-plugin">DSH plugin directory</a> ·
+    <a href="https://github.com/d-dev0101/open-sea-skin/issues">Support / Issues</a>
+  </p>
+  <p>Need login or installation help? Leave a message in <a href="https://github.com/d-dev0101/open-sea-skin/issues">Issues</a> and mention <a href="https://github.com/d-dev0101">@d-dev0101</a>.</p>
+</div>
+
 A self-contained WebGPU ocean skin for DeepSeek Harness. It keeps the original
 five-wave Gerstner/TSL look, adds a translucent Harness theme, and is available
 as a one-line DSH plugin, Harness-only Chrome/Edge extension, one-command static
 installer, or native Harness source integration.
 
-![Open Sea for DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/2437d80a96de4124c54fbe89872fa7090103f025/docs/marketplace/open-sea-harness-cover.png)
+![Open Sea for DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/marketplace/open-sea-harness-cover.png)
 
 ## Recommended — install as a DSH plugin
 
@@ -15,7 +29,7 @@ Install the complete local-only ocean runtime and lower-left quick controls
 directly from GitHub:
 
 ```sh
-dsh plugin --profile web add 'github:d-dev0101/open-sea-skin#v1.2.1'
+dsh plugin --profile web add 'github:d-dev0101/open-sea-skin#v1.2.2'
 ```
 
 Restart `dsh web`, then use **Skin settings** at the lower left to adjust wave
@@ -26,7 +40,7 @@ with:
 dsh plugin --profile web remove open-sea-skin
 ```
 
-This package is tested with DeepSeek Harness `0.1.0-rc.6`. Use the source
+This package is tested with DeepSeek Harness `0.1.2-alpha.3`. Use the source
 integration below only when you also want the controls embedded inside the
 native General settings page. See the [DSH installation and troubleshooting
 guide](docs/dsh-plugin.md) for verification and recovery details.
@@ -39,24 +53,24 @@ at **40% glass opacity**. The overview baseline is wave size **56** and daylight
 
 ### 1 — Dark Harness overview
 
-![Open Sea inside DeepSeek Harness in dark mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/2437d80a96de4124c54fbe89872fa7090103f025/docs/screenshots/harness-dark-overview-40.gif)
+![Open Sea inside DeepSeek Harness in dark mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-dark-overview-40.gif)
 
 ### 2 — Light Harness overview
 
-![Open Sea inside DeepSeek Harness in light mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/2437d80a96de4124c54fbe89872fa7090103f025/docs/screenshots/harness-light-overview-40.gif)
+![Open Sea inside DeepSeek Harness in light mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-light-overview-40.gif)
 
 ### 3 — Adjusting wave size
 
 Daylight stays at Afternoon (55) while the wave control moves from moderate to
 calm, through high sea, and back to the baseline of 56.
 
-![Adjusting wave size in DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/2437d80a96de4124c54fbe89872fa7090103f025/docs/screenshots/harness-wave-control-40.gif)
+![Adjusting wave size in DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-wave-control-40.gif)
 
 ### 4 — Daylight to sunset
 
 Wave size stays at 56 while daylight moves smoothly from Midday to Dusk.
 
-![Adjusting daylight from midday to sunset](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/2437d80a96de4124c54fbe89872fa7090103f025/docs/screenshots/harness-daylight-sunset-40.gif)
+![Adjusting daylight from midday to sunset](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-daylight-sunset-40.gif)
 
 ## Install option 1 — Chrome or Edge extension
 
@@ -77,7 +91,7 @@ daylight, and glass-opacity controls. Values are saved with
 
 ## Install option 2 — Harness static build (no source compilation)
 
-Run this from **any directory**. It downloads the pinned `v1.2.1` source archive
+Run this from **any directory**. It downloads the pinned `v1.2.2` source archive
 to a temporary directory, runs the installer, and removes the download when it
 finishes. **Stop Harness before running it**, then start `dsh web` again, keep
 that terminal process running, and reload the browser:
@@ -125,7 +139,7 @@ into a Harness source checkout:
 git clone https://github.com/deepseek-ai/deepseek-harness.git
 bash harness-plugin/install-into-harness.sh /absolute/path/to/deepseek-harness
 cd /absolute/path/to/deepseek-harness
-corepack pnpm install
+corepack pnpm install --no-frozen-lockfile
 corepack pnpm run build
 corepack pnpm dsh web
 ```
@@ -133,9 +147,10 @@ corepack pnpm dsh web
 Use the native **Skin settings** action at the lower left for fast adjustments,
 or open **Settings → General → Open Sea Skin** for every option. Both surfaces
 use Harness settings, locale, slots, and reversible theme-token APIs; neither
-depends on CSS-module hashes. The integration is tested against Harness commit
-`47f943859bef` (2026-08-13) and deliberately stops if upstream anchors have
-changed. More details are in [harness-plugin/README.md](harness-plugin/README.md).
+depends on CSS-module hashes. The integration is tested against Harness
+`0.1.2-alpha.3`, commit `dd6322d60` (2026-08-31), and deliberately stops if
+upstream anchors have changed. More details are in
+[harness-plugin/README.md](harness-plugin/README.md).
 
 ## What is included
 

@@ -21,7 +21,7 @@
 
 > Lujo-MCP 是 AI coding assistant 的「眼睛」与 Debug Context Infrastructure —— **不是另一个 Agent**，不替代 LLM 推理，而是把真实运行现场喂给宿主 AI。
 
-![Lujo-MCP Runtime Context Architecture](https://raw.githubusercontent.com/lujoai/Lujo-MCP/a37c08e120eade64c471bfa505f4689eb4fe0c1b/docs/public/images/lujo-runtime-context-architecture.svg)
+![Lujo-MCP Runtime Context Architecture](https://raw.githubusercontent.com/lujoai/Lujo-MCP/73d2dc4ab239e3ccb3f30f5d3e64c6310f6345e1/docs/public/images/lujo-runtime-context-architecture.svg)
 
 > Lujo-MCP = **Context Provider**，不是 Agent：为 AI coding agent 提供 Runtime Debug Context，推理与修复决策由宿主 AI（Claude / Cursor / Trae 等）完成。
 

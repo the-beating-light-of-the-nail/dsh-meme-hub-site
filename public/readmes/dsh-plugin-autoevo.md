@@ -5,7 +5,7 @@
 > 进化永不停歇。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/0c25f03923a2e4a140afbbdd7ff9307e831f24ec/docs/assets/kanban.png" alt="AutoEvo" width="420">
+  <img src="https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/fedf04e5ae6687a2320124c9edf485a3035ecd3e/docs/assets/kanban.png" alt="AutoEvo" width="420">
 </p>
 
 `dsh-plugin-autoevo` 是 DeepSeek Harness（DSH）的能力复用工作流插件。在 **能力进化** preset 中，任何能力需求都先走 Search-first：先查本地与远程候选，能复用就不新建；候选只差一点时，可在托管源码中修改、重审后再安装。每个被采用的能力都有可检查的结果回执。
@@ -23,12 +23,12 @@
 | 状态机、数据布局和运行时接缝 | [架构说明](docs/architecture.md) |
 | 信任边界、安装门槛和验证证据 | [安全模型](docs/security.md) |
 
-每类内容只有一个权威出处。交互流程图（独立 HTML，可缩放、搜索与导出）：[主工作流](docs/assets/flowcharts/autoevo-main-workflow.html) · [安装结果状态机](docs/assets/flowcharts/autoevo-install-outcomes.html) · [托管施工](docs/assets/flowcharts/autoevo-managed-work.html)。
+每类内容只有一个权威出处。交互流程图（独立 HTML，可缩放、搜索与导出）：[主工作流](docs/assets/flowcharts/autoevo-main-workflow.html) · [安装结果状态机](docs/assets/flowcharts/autoevo-install-outcomes.html) · [托管施工](docs/assets/flowcharts/autoevo-managed-work.html)。在线浏览（GitHub Pages）：<https://klarkxy.github.io/dsh-plugin-autoevo/>。
 
 ## 安装
 
 ```powershell
-npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-plugin-autoevo#v1.2.0
+npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-plugin-autoevo#v1.2.1
 ```
 
 - `--profile web` 换成你实际使用的 profile；命令必须带 `@deepseek-ai/` 前缀（npm 上无 scoped 的 `dsh` 是无关项目）。
@@ -47,7 +47,7 @@ npx @deepseek-ai/dsh plugin --profile web add --save-exact github:klarkxy/dsh-pl
 
 完整流程见[使用指南 §3](docs/user-guide.md#3-第一次完整使用)，真实运行的逐步截图见 [`example/README.md`](example/README.md)。
 
-[![AutoEvo 主工作流：Search-first 与两道确认门](https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/0c25f03923a2e4a140afbbdd7ff9307e831f24ec/docs/assets/flowcharts/autoevo-main-workflow.svg)](docs/assets/flowcharts/autoevo-main-workflow.html)
+[![AutoEvo 主工作流：Search-first 与两道确认门](https://raw.githubusercontent.com/klarkxy/dsh-plugin-autoevo/fedf04e5ae6687a2320124c9edf485a3035ecd3e/docs/assets/flowcharts/autoevo-main-workflow.svg)](docs/assets/flowcharts/autoevo-main-workflow.html)
 
 ## 怎样理解结果
 
@@ -72,7 +72,7 @@ AutoEvo 负责工作流、警告和证据记录；权限、sandbox 与 approval 
 
 ```powershell
 pnpm install --frozen-lockfile
-pnpm check
+pnpm check:fast
 ```
 
 详见[开发者指南](docs/developer-guide.md)。

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/14b3748d9bd70959c3c1161051db2590d14fd99e/assets/whale.svg" width="96" alt="dsh-elf logo">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/5b035fd0718f6508cb80c825ec81adafe9783d33/assets/whale.svg" width="96" alt="dsh-elf logo">
 </p>
 
 # dsh-elf
@@ -15,8 +15,8 @@ A DeepSeek whale elf that lives on your DSH page. A translucent, slowly drifting
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/14b3748d9bd70959c3c1161051db2590d14fd99e/assets/screenshot-elf.png" width="46%" alt="The whale elf hovering at the corner of the page">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/14b3748d9bd70959c3c1161051db2590d14fd99e/assets/screenshot-chat.png" width="46%" alt="The temporary chat window opened by clicking the elf">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/5b035fd0718f6508cb80c825ec81adafe9783d33/assets/screenshot-elf.png" width="46%" alt="The whale elf hovering at the corner of the page">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/5b035fd0718f6508cb80c825ec81adafe9783d33/assets/screenshot-chat.png" width="46%" alt="The temporary chat window opened by clicking the elf">
 </p>
 
 ## Features
@@ -47,6 +47,14 @@ dsh plugin --profile desktop add dsh-elf
 ```
 
 Restart DSH (quit fully and reopen), then a fresh page shows the elf at the bottom-right.
+
+### From git
+
+Installing the plugin directly from the repository (e.g. `"dsh-elf": "github:winditer/dsh-elf"` in a
+profile's `package.json`) also works out of the box: the built client bundle is **committed**, so the
+codeload tarball a git install downloads already contains `dist/client.js` and no build step is needed
+on the consuming side. (This was not always true — the bundle used to be gitignored, which made the
+plugin tree fail to load with `client bundles not found; run pnpm run build before launch`.)
 
 ### From source (development)
 

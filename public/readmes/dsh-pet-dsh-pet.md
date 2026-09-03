@@ -56,7 +56,7 @@ dsh plugin --profile web add dsh-pet
 
 ### 桌面模式怎么装 / 关
 
-- **依赖 Electron**：首次拉起时自动探测（`DSH_PET_ELECTRON_PATH` 环境变量 → 全局 npm → 常见安装位置），找不到会尝试自动下载到 `~/.dsh/electron/`（`npm run ensure:electron` 可手动触发）；Electron 不可用时仅日志告警，**不影响浏览器形态**
+- **依赖 Electron**：首次拉起时自动探测（`DSH_PET_ELECTRON_PATH` 环境变量 → 本机 electron 包 → `~/.dsh/electron/` 落地路径），找不到会通过官方 @electron/get 自动下载到 `~/.dsh/electron/`（`npm run ensure:electron` 可手动触发）；Electron 不可用时仅日志告警，**不影响浏览器形态**
 - **开关 = 每只宠物的 `display` 字段（pets 必填，四个值）**：
   - `web` = 仅浏览器 overlay / `desktop` = 仅桌面模式 / `both` = 两者都显示 / `none` = 都不显示
   - 桌面模式渲染 `display` 含 `desktop` 的**全部**宠物（多开同屏，与浏览器一致）；大小/位置各自读自己的配置
@@ -162,10 +162,10 @@ dsh plugin --profile web remove dsh-pet
 宠物实际运行在 DSH Web 界面中的样子：
 
 <p>
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/assets/screenshots/dsh-pet-running-1.png" width="380" alt="dsh-pet running in DSH Web UI 1" title="dsh-pet running in DSH Web UI 1">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/assets/screenshots/dsh-pet-running-2.png" width="380" alt="dsh-pet running in DSH Web UI 2" title="dsh-pet running in DSH Web UI 2">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/assets/screenshots/dsh-pet-running-7.png" width="380" alt="dsh-pet running in DSH Web UI 7" title="dsh-pet running in DSH Web UI 7">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/assets/screenshots/dsh-pet-running-8.png" width="380" alt="dsh-pet running in DSH Web UI 8" title="dsh-pet running in DSH Web UI 8">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/assets/screenshots/dsh-pet-running-1.png" width="380" alt="dsh-pet running in DSH Web UI 1" title="dsh-pet running in DSH Web UI 1">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/assets/screenshots/dsh-pet-running-2.png" width="380" alt="dsh-pet running in DSH Web UI 2" title="dsh-pet running in DSH Web UI 2">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/assets/screenshots/dsh-pet-running-7.png" width="380" alt="dsh-pet running in DSH Web UI 7" title="dsh-pet running in DSH Web UI 7">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/assets/screenshots/dsh-pet-running-8.png" width="380" alt="dsh-pet running in DSH Web UI 8" title="dsh-pet running in DSH Web UI 8">
 </p>
 
 ## 🎬 效果预览
@@ -173,12 +173,12 @@ dsh plugin --profile web remove dsh-pet
 > 动画为透明背景；GIF 预览中透明部分显示为页面底色，实际播放为透明。
 
 <p>
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="160" alt="待机呼吸休闲" title="待机呼吸休闲">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dongzhangxiwang.gif" width="160" alt="东张西望" title="东张西望">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-piaofu-tabu.gif" width="160" alt="原地漂浮踏步" title="原地漂浮踏步">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-xiaoqi-chenmian.gif" width="160" alt="原地小憩沉眠" title="原地小憩沉眠">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dianji-huiying-kaixin-yuedong.gif" width="160" alt="点击回应 - 开心跃动" title="点击回应 - 开心跃动">
-  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/1684514b0f17dde5f2559cfd3298b291ae015a3b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/beishubiao-tuozhuai-xuankong-fankui.gif" width="160" alt="被鼠标拖拽悬空反馈" title="被鼠标拖拽悬空反馈">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="160" alt="待机呼吸休闲" title="待机呼吸休闲">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dongzhangxiwang.gif" width="160" alt="东张西望" title="东张西望">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-piaofu-tabu.gif" width="160" alt="原地漂浮踏步" title="原地漂浮踏步">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/yuandi-xiaoqi-chenmian.gif" width="160" alt="原地小憩沉眠" title="原地小憩沉眠">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/dianji-huiying-kaixin-yuedong.gif" width="160" alt="点击回应 - 开心跃动" title="点击回应 - 开心跃动">
+  <img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a10e17b01fd970fbd0c2441f180a8bdb1b89b72b/https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/main/dsh-pet/assets/preview/beishubiao-tuozhuai-xuankong-fankui.gif" width="160" alt="被鼠标拖拽悬空反馈" title="被鼠标拖拽悬空反馈">
 </p>
 
 全部动画见仓库：`dsh-pet/assets/webm/`（VP9-alpha，唯一发布格式）。

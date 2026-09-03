@@ -5,9 +5,9 @@
 
 Workspace path references for the DeepSeek Harness web interface. Type `@` in the composer to search the current workspace and insert a file or directory path.
 
-![@ path picker](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/75a9accbe2c58b26149e515248db2ce4670510eb/assets/screenshots/workspace-path-picker.png)
+![@ path picker](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/da602d1a8f1b417b8a1d8d4059e0f4cb1c353524/assets/screenshots/workspace-path-picker.png)
 
-![File reference in the composer](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/75a9accbe2c58b26149e515248db2ce4670510eb/assets/screenshots/file-mention-composer.png)
+![File reference in the composer](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/da602d1a8f1b417b8a1d8d4059e0f4cb1c353524/assets/screenshots/file-mention-composer.png)
 
 ## Usage
 
@@ -48,16 +48,18 @@ The default index skips common version-control directories, IDE metadata, depend
 ## Install or Update
 
 ```sh
-dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/refs/tags/v0.6.9.tar.gz
+dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/refs/tags/v0.7.0.tar.gz
 ```
 
-Use the same command to update an existing installation. Restart `dsh web` after installation so the Host and browser client load version `0.6.9`.
+Use the same command to update an existing installation. Restart `dsh web` after installation so the Host and browser client load version `0.7.0`.
+
+Version `0.7.0` supports both the 0.1.1 and 0.1.2 Harness client package layouts. It also restores the default file ignores for installations that persisted an empty legacy list; clearing the list again in 0.7.0 remains an explicit choice.
 
 ## File Filters
 
 Open **Settings -> File mentions** to manage file-name filters.
 
-![File mention settings with Exact and Regex rules](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/75a9accbe2c58b26149e515248db2ce4670510eb/assets/screenshots/file-mention-settings.png)
+![File mention settings with Exact and Regex rules](https://raw.githubusercontent.com/omdsh-dev/dsh-at-file/da602d1a8f1b417b8a1d8d4059e0f4cb1c353524/assets/screenshots/file-mention-settings.png)
 
 - **Global** contains rules shared by every workspace.
 - **Workspace** contains additional rules for the selected workspace path. Each workspace keeps its own list, and the panel shows the global rules it inherits.

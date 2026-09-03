@@ -17,7 +17,7 @@ This plugin belongs to the **`@max-null/*` family** — a set of plugins that to
 
 | 会话节点着色 | 设置卡片 |
 |---|---|
-| ![会话节点着色](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/fdbd90b55e83b47480067f52a23b95f26021dcfb/docs/shots/%E4%BC%9A%E8%AF%9D%E9%9D%A2%E6%9D%BF%E6%88%AA%E5%9B%BE.png) | ![设置卡片](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/fdbd90b55e83b47480067f52a23b95f26021dcfb/docs/shots/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E6%88%AA%E5%9B%BE.png) |
+| ![会话节点着色](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/ae0235f92422ab7d9e56d338888c3cb84df81aa3/docs/shots/%E4%BC%9A%E8%AF%9D%E9%9D%A2%E6%9D%BF%E6%88%AA%E5%9B%BE.png) | ![设置卡片](https://raw.githubusercontent.com/Max-Null/dsh-node-appearance/ae0235f92422ab7d9e56d338888c3cb84df81aa3/docs/shots/%E8%AE%BE%E7%BD%AE%E9%A1%B5%E6%88%AA%E5%9B%BE.png) |
 
 ## 安装
 

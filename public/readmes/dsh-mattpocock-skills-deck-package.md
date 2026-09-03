@@ -7,7 +7,7 @@
 > 唯一打开形式）+ GitHub issue 动作注入（诊断 / 修复 / 讨论 / 执行，均带 `/wayfinder` `/triage` 技能命令）
 > + 交接开新会话。
 
-- **插件包名**: `dsh-mattpocock-skills-deck`（可分发 npm 包，见 `package/`，当前 **v1.7.7**（`latest`，品牌迁移自 dsh-waystation v1.5.0，`npm view` 已验）：v1.4 详情页（#441）+ v1.5 升级 map 全量落地 —— 状态栏 BUG/诊断过滤 + 设置直达 + 删 panelHeight + Matt 引导 + 新增 wayfinder + 仓库身份 + 双语 + 仓库级缓存架构（git 根检测 → 磁盘缓存秒开 → 自动探测刷新）+ 进度契约与阶段闸门 + 正文格式容错 + markdown 白名单渲染 + 3 项 bug 修复 + T10 自动刷新机制（变化行高亮/即时转圈反馈））
+- **插件包名**: `dsh-mattpocock-skills-deck`（可分发 npm 包，见 `package/`，当前 **v1.7.12**（`latest`，品牌迁移自 dsh-waystation v1.5.0，`npm view` 已验）：v1.4 详情页（#441）+ v1.5 升级 map 全量落地 —— 状态栏 BUG/诊断过滤 + 设置直达 + 删 panelHeight + Matt 引导 + 新增 wayfinder + 仓库身份 + 双语 + 仓库级缓存架构（git 根检测 → 磁盘缓存秒开 → 自动探测刷新）+ 进度契约与阶段闸门 + 正文格式容错 + markdown 白名单渲染 + 3 项 bug 修复 + T10 自动刷新机制（变化行高亮/即时转圈反馈））
 - **动态版 pluginId**: `wfst-1`（v9–v24 迭代产物）
 - **平台**: Client（浏览器页面）+ Host（Node 进程，gh CLI 数据层）
 - **配套**: [mattpocock/skills](https://github.com/mattpocock/skills)（wayfinder / triage / grilling / handoff / ask-matt 等）
@@ -22,7 +22,7 @@
 | 进度显示 | map 行右侧 18px 迷你圆环 + n/total（等宽数字右缘对齐，圆环零间隙） |
 | 面板 · 技能 | 技能雷达（推荐 / 列表 / 圆环），点击注入 /skill |
 | 面板 · 环境检查 | 8 项前置检查（仓库定位 / setup / tracker / gh CLI / 登录 / API / 技能探测），红黄绿分组 + 一键处理 |
-| tabs 行 | 列表 / 技能 / 环境检查 + 右侧刷新按钮 + 最右侧版本号（如 v1.7.7），便于核对已更新 |
+| tabs 行 | 列表 / 技能 / 环境检查 + 右侧刷新按钮 + 最右侧版本号（如 v1.7.12），便于核对已更新 |
 | 行级动作 | 按 label 四选一：诊断(/triage) / 修复(/wayfinder) / 讨论(/wayfinder) / 执行(/wayfinder)，按钮色 = GitHub label 配置色，点击预填输入框；执行/新会话按钮常显（复制/外链也常显） |
 | map 详情 | 顶部「执行」+ 任务按状态动作、可接/已认领/被阻塞/已关闭垂直走廊、Decision/Fog/Out-of-scope 折叠 |
 | 交接 | 第一击注入 /handoff 时间戳模板；第二击预填 /read + 复述确认 prompt 并开新会话 |
@@ -68,19 +68,21 @@ npx --yes @deepseek-ai/dsh --version
 **前置推荐（可选但强烈建议 · 已装可跳过）——[dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar)**：VSCode 风右侧边栏，面板在侧边栏并排打开效果最好；不装则回退到右侧 details 列打开。
 
 ```bash
-dsh plugin --profile web add dsh-better-sidebar
+dsh plugin --profile desktop add dsh-better-sidebar   # 与插件同一个 profile（web 服务用户换 --profile web）
 ```
 
-**安装（已装过 DSH CLI）**：
+**安装（已装过 DSH CLI）**——`--profile` 必填：装进你实际使用的 DSH 入口对应的 profile，**装错 profile 等于没装**（重启也不会加载）：
 
 ```bash
-dsh plugin --profile web add dsh-mattpocock-skills-deck
+dsh plugin --profile desktop add dsh-mattpocock-skills-deck   # DSH Desktop 桌面应用（对应 desktop profile，绝大多数人）
+# dsh plugin --profile web add dsh-mattpocock-skills-deck     # 自启 web 服务（dsh web）用户
 ```
 
 **安装（未装 DSH CLI，用 npx）**：
 
 ```bash
-npx --yes @deepseek-ai/dsh plugin --profile web add dsh-mattpocock-skills-deck
+npx --yes @deepseek-ai/dsh plugin --profile desktop add dsh-mattpocock-skills-deck   # DSH Desktop 桌面应用
+# npx --yes @deepseek-ai/dsh plugin --profile web add dsh-mattpocock-skills-deck     # 自启 web 服务用户
 ```
 
 **或者：把安装交给你的 AI**（复制下面提示词发给 AI，它会读仓库、检查环境、按需安装，已装步骤自动跳过）：
@@ -88,11 +90,16 @@ npx --yes @deepseek-ai/dsh plugin --profile web add dsh-mattpocock-skills-deck
 ```text
 请帮我安装 DeepSeek Harness 插件 dsh-mattpocock-skills-deck（MattSkills）。
 先读仓库 README：https://github.com/FeatherHunter/dsh-mattpocock-skills-deck
+先确认我实际使用的 DSH 入口对应哪个 profile（DSH Desktop 桌面应用 → desktop；自启 web 服务 → web），把插件装进正确的 profile；
 然后自行检查环境并按需安装（已装的跳过），完成后简要汇报结果。
 ```
 
-- 命令把插件装进 **web profile**（`~/.dsh/profiles/web/node_modules`），同步 `web/package.json`
-  并自动 reconcile 注册（bundle 装配）。装完**刷新浏览器页面**（http://127.0.0.1:3080）即生效，之后每次 DSH 启动自动加载。
+- 命令把插件装进 **指定的 profile**（`~/.dsh/profiles/<profile>/node_modules`），同步该 profile 的 `package.json`
+  并自动 reconcile 注册（bundle 装配）。**各 profile 互相独立、互不同步**——两个入口都想用就各装一次。
+  装完**重启对应的 DSH 入口**生效（桌面应用：完全退出并重开 DSH Desktop；web：重启 `dsh web` 后刷新页面），之后每次 DSH 启动自动加载。
+- 🩺 **装了重启还是没面板？九成是 profile 没对上**：核对 `~/.dsh/profiles/<你的profile>/package.json`——
+  `dependencies` 里应有 `dsh-mattpocock-skills-deck`，且 `dsh.profile.bundles` 数组里应有同名条目。
+  桌面应用当前选中的 profile 见 `%APPDATA%\DSH Desktop\profile-selection\state.json` 的 `"active"` 字段。
 - ✅ **一键装完即用（bundle 装配）**：本包声明 `dsh.bundle.patch`（包根 `cordis.patch.yml`），
   `dsh plugin add` 自动把包加入 profile 的 `dsh.profile.bundles`，启动时 loadProfile 自动应用——
   **无构建脚本**（pnpm v10 不再拦截），无需手动编辑任何文件；`dsh plugin remove` 自动移除。
@@ -107,7 +114,7 @@ npx --yes @deepseek-ai/dsh plugin --profile web add dsh-mattpocock-skills-deck
   独立 CLI 应用（如 `dsh-feishu-bot`）靠 bin 快捷方式运行所以能 `-g`；**插件必须被 DSH 进程
   解析**，所以装 Harness 自己的 profile。
 
-**升级**：
+**升级**（desktop profile 用户把 `--profile web` 换成 `--profile desktop`）：
 
 ```bash
 dsh plugin --profile web update dsh-mattpocock-skills-deck
@@ -121,7 +128,7 @@ dsh plugin --profile web update dsh-mattpocock-skills-deck
 > ```
 > 或等待数小时后重试。此为 DSH 平台行为，已实测复现（`pnpm update` → `Packages: -2` 仍 `1.0.0`；`pnpm add @1.6.14` → `Added 1` 才成功）。
 
-**卸载**：
+**卸载**（同样注意 profile 对应）：
 
 ```bash
 dsh plugin --profile web remove dsh-mattpocock-skills-deck

@@ -17,7 +17,7 @@ Every plugin, service, tool and model — where it came from, which config layer
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/hero.png" width="900" alt="洞察 — five axes over one DeepSeek Harness profile">
+  <img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/hero.png" width="900" alt="洞察 — five axes over one DeepSeek Harness profile">
 </p>
 
 ## Install
@@ -53,7 +53,7 @@ One dataset, six ways to sort it. The first five are causal: **config produces p
 
 ### 按配置 · By config — which layer wins
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/config.png" width="900" alt="By config: every patch layer in application order, with what it did">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/config.png" width="900" alt="By config: every patch layer in application order, with what it did">
 
 Every config layer in application order, with what it did to the tree — `inserted 78`, `overrode 2`, `disabled 24`. The first and last layers are marked, because a number alone never says which direction wins. Config files that take no part in the merge (the profile's `cordis.yml`, `settings.yaml`, `.credentials.yaml`) are listed in the same table, marked as such — you usually want them for their paths.
 
@@ -61,7 +61,7 @@ Pick a layer and the right pane names every entry it touched, each one a link in
 
 ### 按插件 · By plugin — the dossier
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/plugins.png" width="900" alt="By plugin: the runtime tree with per-plugin provenance, wiring and settings">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/plugins.png" width="900" alt="By plugin: the runtime tree with per-plugin provenance, wiring and settings">
 
 The live loader tree — containers, nested realms, disabled entries folded away at the end of the level they belong to. Select one and get its whole dossier:
 
@@ -75,13 +75,13 @@ Filter chips narrow the same list: needs attention, you changed it, disabled, ru
 
 ### 按服务 · By service — what actually connects plugins
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/services.png" width="900" alt="By service: providers, consumers and blast radius">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/services.png" width="900" alt="By service: providers, consumers and blast radius">
 
 Services are the real edges between plugins, so they get their own axis: who provides each one, how many consume it, and — for a hub — the full impact list. This is a table and not a canvas on purpose: the dependency graph of a real profile is star-shaped, and a hub's edges cross the whole canvas no matter which layout you pick.
 
 ### 按工具 · By tool — what the agent can actually call
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/tools.png" width="900" alt="By tool: tool names, the package that registered each one, and what goes with it">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/tools.png" width="900" alt="By tool: tool names, the package that registered each one, and what goes with it">
 
 One row per **tool name** — `bash`, `read`, `exit_plan_mode` — not per plugin. Each one carries the package that registered it, its description, and how many sibling tools would disappear with it, because turning a tool off means disabling the plugin that registers it.
 
@@ -89,7 +89,7 @@ Upstream records no registrant on a tool definition, and tools are not registere
 
 ### 按模型 · By model — every model and how it got here
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/models.png" width="900" alt="By model: models, providers, activation method and the plugin behind each route">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/models.png" width="900" alt="By model: models, providers, activation method and the plugin behind each route">
 
 One row per model, with the provider route it belongs to and the plugin that brought that route in. The detail pane names the exact settings path its configuration lives at, and how the route is activated — **an API key from an environment variable, a stored API key, or an OAuth grant**. Provider routes that upstream declares as configurable but you have not set up are folded away at the end.
 
@@ -97,7 +97,7 @@ Nothing here touches the network: the panel reads the llm service's own read-onl
 
 ### 按预设 · By preset — who handed the session its toolkit
 
-<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/413703055c34574c3e9277079aba51dfb10da47e/docs/assets/presets.png" width="900" alt="By preset: the roster, where each came from, what it composes, and who is on it">
+<img src="https://raw.githubusercontent.com/gwsbhqt/dsh-insight/e1cc4a540e0a5e4aa462b7da906b8f8a50ba44af/docs/assets/presets.png" width="900" alt="By preset: the roster, where each came from, what it composes, and who is on it">
 
 A preset is one agent-plane plugin composition. A session picks one when it starts, and that decides which tools it holds and which prompt sections it sees. One row per preset, answering four things:
 

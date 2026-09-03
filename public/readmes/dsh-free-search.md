@@ -10,7 +10,7 @@
 
 <div align="center">
   <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free1.png">
-    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/e446559c3bf768ae71ada446850004d8e6644f72/assets/settings-free1.png" alt="免费引擎设置 (Bing)" width="820" />
+    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/eafa38207fa482e65f4a7e9ae0fc69242981be48/assets/settings-free1.png" alt="免费引擎设置 (Bing)" width="820" />
   </a>
   <br>
   <sub>▲ 免费引擎（以Bing为例）</sub>
@@ -109,14 +109,14 @@ dsh web
   <tr style="border: none;">
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/e446559c3bf768ae71ada446850004d8e6644f72/assets/settings-free.png" alt="免费引擎设置" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/eafa38207fa482e65f4a7e9ae0fc69242981be48/assets/settings-free.png" alt="免费引擎设置" width="100%" />
       </a>
       <br>
       <sub>▲ <b>免费引擎</b>（显示绿色 FREE 徽章与官网链接）</sub>
     </td>
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-apikey.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/e446559c3bf768ae71ada446850004d8e6644f72/assets/settings-apikey.png" alt="付费引擎设置" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/eafa38207fa482e65f4a7e9ae0fc69242981be48/assets/settings-apikey.png" alt="付费引擎设置" width="100%" />
       </a>
       <br>
       <sub>▲ <b>付费/API Key 引擎</b>（显示橙色 API KEY 徽章与获取链接）</sub>
@@ -251,7 +251,7 @@ Windows 用户：桌面快捷方式已内置此配置（`set NODE_USE_ENV_PROXY=
 
 <div align="center">
   <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free1.png">
-    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/e446559c3bf768ae71ada446850004d8e6644f72/assets/settings-free1.png" alt="Free Engine Settings (Bing)" width="820" />
+    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/eafa38207fa482e65f4a7e9ae0fc69242981be48/assets/settings-free1.png" alt="Free Engine Settings (Bing)" width="820" />
   </a>
   <br>
   <sub>▲ Free engine (using Bing as an example)</sub>
@@ -350,14 +350,14 @@ After installation, navigate to **Settings → Plugins → Configurable** tab �
   <tr style="border: none;">
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/e446559c3bf768ae71ada446850004d8e6644f72/assets/settings-free.png" alt="Free Engine Settings" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/eafa38207fa482e65f4a7e9ae0fc69242981be48/assets/settings-free.png" alt="Free Engine Settings" width="100%" />
       </a>
       <br>
       <sub>▲ <b>Free Engine</b> (shows green FREE badge and official website link)</sub>
     </td>
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-apikey.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/e446559c3bf768ae71ada446850004d8e6644f72/assets/settings-apikey.png" alt="Paid/API Key Engine Settings" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/eafa38207fa482e65f4a7e9ae0fc69242981be48/assets/settings-apikey.png" alt="Paid/API Key Engine Settings" width="100%" />
       </a>
       <br>
       <sub>▲ <b>Paid / API Key Engine</b> (shows orange API KEY badge and link to get an API key)</sub>
@@ -489,3 +489,9 @@ Windows users: The desktop shortcut already includes this configuration (`set NO
 ### License
 
 MIT
+
+## safeSearch 安全搜索过滤
+
+- 全新配置项 `safeSearch`：`off`（引擎默认，不加参数）/ `moderate` / `strict`
+- 作用于 Bing（adlt）、DuckDuckGo HTML（adlt）、DuckDuckGo Lite（adlt）
+- 默认 `off`：不额外过滤，保持引擎自身默认行为；需要时在「设置 > 插件 > Free Search」切换

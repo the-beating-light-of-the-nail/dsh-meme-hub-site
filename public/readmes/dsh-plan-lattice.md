@@ -19,7 +19,7 @@ or guard.
 A recursive graph and one-use action bases remain available only as explicit
 full-Lattice control.
 
-![First-drift mechanism results](https://raw.githubusercontent.com/1052326311/dsh-plan-lattice/4939b1733f3ce4ac69da0748686203e619e51491/demo/results/first-drift-summary.svg)
+![First-drift mechanism results](https://raw.githubusercontent.com/1052326311/dsh-plan-lattice/ea4d4f7d726681466e86d11f93e4cc38a6c0d3f3/demo/results/first-drift-summary.svg)
 
 **Hand-designed mechanism stress test using real Harness runtime services:**
 

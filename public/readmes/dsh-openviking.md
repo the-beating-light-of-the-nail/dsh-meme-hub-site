@@ -38,7 +38,7 @@
 | --- | --- |
 | `/memlearn <lesson>` | 人工触发记忆沉淀：与 `memlearn` 模型工具完全同源的脱敏 / 查重 / 持久化，不开启模型回合，原始输入不进会话日志 |
 
-![记忆检索调用示例](https://raw.githubusercontent.com/Rxiain/dsh-openviking/e7d47c53487b15ee4091ca6a8e0e094a2f8d250f/docs/screenshot-memory-recall.png)
+![记忆检索调用示例](https://raw.githubusercontent.com/Rxiain/dsh-openviking/ef79f3b0c3762d4a16257b9d6c8223d495e6da73/docs/screenshot-memory-recall.png)
 
 ## 为什么选择 OpenViking？
 

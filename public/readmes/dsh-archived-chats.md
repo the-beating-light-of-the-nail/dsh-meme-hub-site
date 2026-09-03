@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/brand/session-archive-banner.png" alt="Session Archive: local-first archived-chat center for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/brand/session-archive-banner.png" alt="Session Archive: local-first archived-chat center for DeepSeek Harness" width="100%">
 </p>
 
 <div align="center">
@@ -45,8 +45,8 @@ dsh plugin --profile web update dsh-archived-chats
 ```
 
 <p align="center">
-  <a href="assets/screenshots/preview-03.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-03.png" width="49%" alt="Native read-only History preview with snapshot time and a synthetic stored image"></a>
-  <a href="assets/screenshots/preview-07.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-07.png" width="49%" alt="Storage and Retention with session directories, protection snapshots, and policy controls"></a>
+  <a href="assets/screenshots/preview-03.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-03.png" width="49%" alt="Native read-only History preview with snapshot time and a synthetic stored image"></a>
+  <a href="assets/screenshots/preview-07.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-07.png" width="49%" alt="Storage and Retention with session directories, protection snapshots, and policy controls"></a>
 </p>
 
 ## Core capabilities
@@ -90,20 +90,20 @@ The eight fixed screenshots below come from an isolated Simplified Chinese light
 <br>
 <table>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-01.png" alt="Session Archive overview with five management views"><br><sub>Archive overview</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-02.png" alt="Full-text search, filters, tags, and readable hit excerpts"><br><sub>Full-text search</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-01.png" alt="Session Archive overview with five management views"><br><sub>Archive overview</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-02.png" alt="Full-text search, filters, tags, and readable hit excerpts"><br><sub>Full-text search</sub></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-03.png" alt="Native read-only History preview with a stored image"><br><sub>Read-only preview</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-04.png" alt="History timeline with restore-as-copy and deletion actions"><br><sub>History timeline</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-03.png" alt="Native read-only History preview with a stored image"><br><sub>Read-only preview</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-04.png" alt="History timeline with restore-as-copy and deletion actions"><br><sub>History timeline</sub></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-05.png" alt="Irreversible confirmation before clearing ordinary History"><br><sub>Clear History confirmation</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-06.png" alt="Recycle Bin protection snapshot, restore, and permanent deletion"><br><sub>Recycle Bin</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-05.png" alt="Irreversible confirmation before clearing ordinary History"><br><sub>Clear History confirmation</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-06.png" alt="Recycle Bin protection snapshot, restore, and permanent deletion"><br><sub>Recycle Bin</sub></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-07.png" alt="Storage accounting and retention policy controls"><br><sub>Storage and retention</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/0cb2cbf8f51d88b82844cc841f65b44ea837435c/assets/screenshots/preview-08.png" alt="Origins and Branches with forks, subagents, and recycled state"><br><sub>Origins and Branches</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-07.png" alt="Storage accounting and retention policy controls"><br><sub>Storage and retention</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/390e0fda7b3cb6e914647b9dab3bec69c2658148/assets/screenshots/preview-08.png" alt="Origins and Branches with forks, subagents, and recycled state"><br><sub>Origins and Branches</sub></td>
   </tr>
 </table>
 </details>
@@ -116,7 +116,11 @@ The eight fixed screenshots below come from an isolated Simplified Chinese light
 | Architecture | [Maintainer architecture](docs/ARCHITECTURE.en.md) | [维护者架构](docs/ARCHITECTURE.md) |
 | Release history | [GitHub Releases](https://github.com/Ultronen/dsh-archived-chats/releases) | [GitHub Releases](https://github.com/Ultronen/dsh-archived-chats/releases) |
 
-See also [Security](SECURITY.md), [Contributing](CONTRIBUTING.md), and [Discussions](https://github.com/Ultronen/dsh-archived-chats/discussions).
+See also [Support](SUPPORT.md), [Security](SECURITY.md), [Contributing](CONTRIBUTING.md), [Code of Conduct](CODE_OF_CONDUCT.md), and [Discussions](https://github.com/Ultronen/dsh-archived-chats/discussions).
+
+## Project status
+
+Session Archive is actively maintained. The latest stable npm release receives fixes and security updates; older releases should be upgraded before reporting a problem. Reproducible bug reports and focused pull requests are welcome. Accepted community tasks are marked [`help wanted`](https://github.com/Ultronen/dsh-archived-chats/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22); read the [claim workflow](CONTRIBUTING.md#community-proposals-and-claims) before starting substantial work. Maintenance is performed as availability permits, so no fixed response or release schedule is promised.
 
 ## Development
 

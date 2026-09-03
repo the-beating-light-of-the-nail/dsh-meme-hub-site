@@ -4,7 +4,9 @@
 
 English: A DeepSeek Harness (DSH) web plugin that surfaces a draggable download-progress panel in the bottom-right corner of the web GUI. It tracks panel-started URL downloads, agent shell/SSH transfers, and any "black-box" file growth inside registered workspaces — with live bytes, speed, percentage and ETA.
 
-> **兼容性**：本版本对齐 DSH `0.1.1-rc.2` —— 工具注册改用官方 `defineTool`（参数自校验 + 规范输出）、阈值通过 Schemastery `Config` 暴露、下载子进程尊重 `exec.signal`（工具被取消时进程树随任务中止并标记 `canceled`）。`ssh_download`/`ssh_upload` 追踪保留为向后兼容（官方包已不含 ssh 工具，无匹配即零开销）。
+> **兼容性**：支持 DSH **`0.1.1-rc.2`（stable / npm latest）至 `0.1.2-alpha.3`（alpha 最新）**——工具注册走官方 `defineTool`（参数自校验 + 规范输出）、阈值通过 Schemastery `Config` 暴露、下载子进程尊重 `exec.signal`（工具被取消时进程树随任务中止并标记 `canceled`）。插件依赖的全部官方 API（defineTool / tools 事件 / webServer.register / subprocess spawn signal / fs.listDir / workspaceRegistry / shell.overlay slot / react seed）已在 `0.1.2-alpha.3` 逐项核对无断点；peerDependencies 范围 `>=0.1.1-rc.2 <0.2.0-0` 同时覆盖两条发布通道。`ssh_download`/`ssh_upload` 追踪保留为向后兼容（官方包已不含 ssh 工具，无匹配即零开销）。
+>
+> **0.1.2 起**：面板 HTTP API 自带请求来源防护（loopback Host + 写操作 Origin 校验，见下方「安全模型」），并修复了完成字节数被 HEAD 大小覆盖、取消后半成品残留、并发写同一目标等九项问题。
 
 ## ⚠️ AI 产物声明
 
@@ -16,17 +18,17 @@ English: A DeepSeek Harness (DSH) web plugin that surfaces a draggable download-
 
 ## 功能特性
 
-| 来源 | 图标 | 说明 |
-|---|---|---|
-| 面板下载器 | 🌐 | 面板输入 URL 下载，或让 agent 调用 `download_url` 工具。curl 后台执行，HEAD 预取 `Content-Length` 得到真实百分比；可在面板单独取消 |
-| shell 下载追踪 | 💻 | 自动解析 `pwsh`/`bash` 工具命令中的 `curl -o` / `Invoke-WebRequest -OutFile` / `wget -O`，提取目标路径与 URL（含 HEAD 总大小）。小于 64 KB 的响应静默忽略 |
-| 安装/下载命令兜底 | 🛠 | 无法解析出目标文件的 `wsl`/`apt`/`pip`/`npm`/`git clone`/`docker pull` 等命令，也会显示为“安装/下载任务”，至少展示已用时间 |
-| SSH 传输追踪 | ⇩ / ⇧ | 自动追踪 `ssh_download`（字节/速度实时增长）与 `ssh_upload`（不定进度 + 源文件大小） |
-| 黑箱下载监控 | 📥 | 每 1.5s 扫描 `workspaceRegistry` 中全部工作区的顶层：任何增长 ≥64 KB 的文件或新目录（git clone、BITS、变量路径下载等）都会被捕捉，最多并发追踪 3 个 |
-| 拖拽面板 | — | 胶囊按钮与面板均可拖动（视口内自动夹取）、`↺` 一键复位；拖动与点击严格分离，不会误触 |
-| 折叠进度摘要 | ⏳ | 有活动任务时，右下角胶囊直接显示实时百分比、速度与已用时间（如 `⏳ 下载中 45% · 2.1MB/s · 2m 10s`）；任务行也会显示「已进行 xxm xxs」 |
+| 来源 | 说明 |
+|---|---|
+| 面板下载器 | 面板输入 URL 下载，或让 agent 调用 `download_url` 工具。curl 后台执行，HEAD 预取 `Content-Length` 得到真实百分比；可在面板单独取消 |
+| shell 下载追踪 | 自动解析 `pwsh`/`bash` 工具命令中的 `curl -o` / `Invoke-WebRequest -OutFile` / `wget -O`，提取目标路径与 URL（含 HEAD 总大小）。小于 64 KB 的响应静默忽略 |
+| 安装/下载命令兜底 | 无法解析出目标文件的 `wsl`/`apt`/`pip`/`npm`/`git clone`/`docker pull` 等命令，也会显示为“安装/下载任务”，至少展示已用时间 |
+| SSH 传输追踪 | 自动追踪 `ssh_download`（字节/速度实时增长）与 `ssh_upload`（不定进度 + 源文件大小）；兼容旧版/第三方 ssh 工具，无匹配即零开销 |
+| 黑箱下载监控 | 每 1.5s 扫描 `workspaceRegistry` 中全部工作区的顶层：任何增长 ≥64 KB 的文件或新目录（git clone、BITS、变量路径下载等）都会被捕捉，最多并发追踪 3 个 |
+| 拖拽面板 | 胶囊按钮与面板均可拖动（视口内自动夹取）、`↺` 一键复位；拖动与点击严格分离，不会误触 |
+| 折叠进度摘要 | 有活动任务时，右下角胶囊直接显示实时百分比、速度与已用时间（如 `⏳ 下载中 45% · 2.1MB/s · 2m 10s`）；任务行也会显示「已进行 xxm xxs」 |
 
-模型工具：
+## 模型工具
 
 - `download_url` — 后台下载 URL 到工作区（`dest` 省略时按 URL 文件名存到工作区根目录，目标目录需已存在）；`execute` 尊重 `exec.signal`，工具被取消时终止 curl 进程树
 - `download_status` — 查询所有任务实时进度
@@ -69,9 +71,20 @@ git clone https://github.com/Fro2en12/dsh-download-progress
         pruneAfterMs: 600000         # 已完成任务保留时长 ms（默认 10 分钟）
         maxTransfers: 40             # 面板最多保留记录条数
         hiddenThresholdBytes: 65536  # shell/黑箱任务最小展示字节数
+        allowNonLoopbackHost: false  # 面板 API 是否放行非 loopback Host（局域网面板需开启）
 ```
 
 配置经插件内嵌的 Schemastery `Config` 校验，非法值会在加载期响亮失败。
+
+`allowNonLoopbackHost` 默认 `false`——面板 API 只接受 loopback Host；仅在需要从局域网访问面板时才开启，风险见「安全模型」。
+
+## 安全模型（面板 HTTP API）
+
+DSH 的页面 token 鉴权只保护网页入口，不覆盖插件注册的自定义路由，因此本插件在路由层自带请求来源防护：
+
+- **Host 校验**：请求 Host 必须是 loopback 字面（`127.0.0.1` / `localhost` / `[::1]`），除非开启 `allowNonLoopbackHost`；
+- **写操作 Origin 校验**：`POST /download`、`/cancel`、`/dismiss`、`/clear-finished` 必须携带与 Host 一致的浏览器 `Origin` 头——跨站页面（CSRF）的 Origin 是攻击者站点，会被直接拒绝；不带 Origin 的非浏览器请求同样拒绝写操作（agent 通道走模型工具，不需要 HTTP 写接口）；
+- **面板下载路径受限**：面板发起的下载，`dest` 必须落在已注册工作区目录内，且目标文件已存在时拒绝（不允许覆盖）。模型工具 `download_url` 不受此限，由 DSH 沙箱策略管理。
 
 ## 使用说明
 
@@ -115,7 +128,9 @@ lib/client.js  Client 半部分（AMD bundle，注入 slots，注入包声明见
 - 命令中的变量路径（`$env:...`、拼接变量）无法解析时由黑箱监控兜底，不提供百分比；
 - 上传任务无法观测远端写入量，仅显示不定进度；
 - 黑箱监控只扫描工作区顶层与新建目录（深度遍历按需进行，每个目录最多统计 500 个文件），嵌套在既有深层目录中的下载可能不被捕捉；
-- DSH `0.1.1` 官方包已不含 ssh 工具，`ssh_download`/`ssh_upload` 追踪仅在第三方/旧版工具存在时生效。
+- DSH `0.1.1-rc.2` 及 `0.1.2-alpha.x` 官方包已不含 ssh 工具，`ssh_download`/`ssh_upload` 追踪仅在第三方/旧版工具存在时生效；
+- 面板 HTTP API 只接受 loopback Host（除非开启 `allowNonLoopbackHost`），写操作要求浏览器 Origin 与 Host 一致——从非本机进程直接 curl 面板 API 的写接口会被拒绝，请改用模型工具 `download_url`；
+- 取消/中止下载后的半成品文件清理在进程终止后立即执行并 1.5s 重试一次；极端情况下（文件句柄仍被占用）可能残留空壳文件，可手动删除。
 
 ## 开发
 

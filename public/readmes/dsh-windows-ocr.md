@@ -14,15 +14,27 @@
 ## Install from npm
 
 ```bash
-dsh plugin --profile web add @maxwell-feng/dsh-windows-ocr
+dsh plugin --profile web add dsh-windows-ocr
 ```
 
 (Replace `web` with your profile, e.g. `tui`.) Prebuilt and published with Sigstore provenance — no source build or `allowBuilds` approval needed. Installing from source (this repo) still works via the agent guide or the manual steps below.
 
+or from the repository / a tarball:
+
+```bash
+dsh plugin --profile web add ./dsh-windows-ocr        # source checkout
+dsh plugin --profile web add ./dsh-windows-ocr-0.3.2.tgz
+dsh plugin --profile web add github:maxwell-feng/dsh-windows-ocr
+```
+
+> Git installs fetch sources, not built artifacts: the package's `prepare`
+> script runs `tsc` to rebuild `lib/` from source, and pnpm ≥ 10 requires you
+> to allow the build once (it prints the exact `pnpm-workspace.yaml` snippet).
+
 > **npm install registers the `windows-ocr` row by itself.** The package ships
 > a bundle patch (`dsh.bundle` + its own `cordis.patch.yml`) that inserts the
 > `windows-ocr` loader entry. Do **not** also add a manual `- insert:` row with
-> the same id to your profile — dsh `0.1.2-alpha.1` (cordis-plugin-loader
+> the same id to your profile — dsh `0.1.2-alpha.2` (cordis-plugin-loader
 > `1.0.2`) rejects duplicate loader entry ids and `dsh web` fails to boot with
 > `duplicate loader entry id: windows-ocr`.
 
@@ -64,7 +76,7 @@ you attach an image
 
 - Windows 10/11 (Windows PowerShell 5.1+ ships with the OS; no install needed)
 - A Windows OCR-capable language pack for your language (Settings → Time & language → Language). English is usually present; Chinese requires the Chinese language pack (OCR-capable).
-- `dsh` with a profile (tested against dsh `0.1.2-alpha.1` (master))
+- `dsh` with a profile (tested against dsh `0.1.2-alpha.2` (master))
 
 ## Install
 
@@ -103,7 +115,7 @@ Then restart `dsh web`. Remove the rows to uninstall — the plugin restores the
 
 > Choose **one** way to load the plugin: the npm bundle (above) **or** this
 > manual insert — never both. Both register the same `windows-ocr` entry id,
-> and dsh `0.1.2-alpha.1` fails the boot with `duplicate loader entry id:
+> and dsh `0.1.2-alpha.2` fails the boot with `duplicate loader entry id:
 > windows-ocr` when the row exists twice. If the row is already present (for
 > example after an npm bundle install), configure it with an id-targeted
 > override (see Configuration below) instead of inserting a second row.
@@ -130,7 +142,7 @@ To verify the plugin loaded, look for `windows-ocr` in the boot logs, or check t
 
 ## Configuration
 
-All settings live in the patch row `windows-ocr` (`cordis.patch.yml` here) and can be overridden from your profile's `cordis.patch.yml`:
+All settings live in the patch row `windows-ocr` (`cordis.patch.yml` here) and can be overridden from your profile's `cordis.patch.yml`. Configuration is validated at load time (Schemastery `Config` schema) — an invalid value fails the boot with an actionable error instead of being silently ignored:
 
 | Key | Default | Meaning |
 |---|---|---|
@@ -148,6 +160,10 @@ row (not `insert:`) replaces the existing `windows-ocr` row's config:
   config:
     language: zh-Hans
 ```
+
+## Usage
+
+Attach any image to a text-model session and send a message — the plugin intercepts `agent/pre-step`, OCRs the image locally via `Windows.Media.Ocr`, and replaces the `image` block with a text block before the request is built. No code or model-config changes needed; every provider/model in dsh benefits.
 
 ## How the model sees the image
 
@@ -185,6 +201,14 @@ Exit code 0 with an empty/whitespace `out.txt` means the OCR engine works (a 1×
 
 1. Attach an image to a text-model session and send a message — the model should answer using the recognized text.
 2. Confirm the image never goes out: open DevTools → Network in the web UI, inspect the request to your provider base URL, and verify the payload contains only `text` content parts (no `image_url` / data URI).
+
+## Uninstall
+
+```bash
+dsh plugin --profile web remove dsh-windows-ocr
+```
+
+For manual installs, delete the `windows-ocr` row from your profile's `cordis.patch.yml` and restart `dsh --profile web`. The plugin restores the original `llm` shims on unload; a full restart is safest after removal. After uninstall, text-model image attachments are refused again (fail-closed).
 
 ## Limitations
 

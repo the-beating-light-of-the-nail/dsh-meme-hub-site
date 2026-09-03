@@ -5,8 +5,8 @@
 A DSH Web plugin for session diagnosis, trusted checkpoints, pre-repair backups, and safe repair.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Zn-Dk/dsh-session-repair/e50d589663fbc9044d6100fe3e50b9da5a0a79ae/assets/session-health-check-repairable.png" width="430" alt="Repairable: backup & repair" />
-  <img src="https://raw.githubusercontent.com/Zn-Dk/dsh-session-repair/e50d589663fbc9044d6100fe3e50b9da5a0a79ae/assets/session-health-check-repaired.png" width="430" alt="Repaired session" />
+  <img src="https://raw.githubusercontent.com/Zn-Dk/dsh-session-repair/8b5d4ab23d568ea6e201ac27461f6936878bf452/assets/session-health-check-repairable.png" width="430" alt="Repairable: backup & repair" />
+  <img src="https://raw.githubusercontent.com/Zn-Dk/dsh-session-repair/8b5d4ab23d568ea6e201ac27461f6936878bf452/assets/session-health-check-repaired.png" width="430" alt="Repaired session" />
 </p>
 
 ## Installation

@@ -12,14 +12,14 @@
 
 ## Screenshot
 
-![dsh-file-mentions in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/011668c65b6169ac05aa4fe270626ef9282b602d/assets/screenshot.png)
+![dsh-file-mentions in action](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/661e233451ff96cb142857ab93e4f7153f180216/assets/screenshot.png)
 
 Inline paths wrapped in backticks (`` `~/...` ``, absolute, relative, or Chinese paths) become
 **click-to-open**; each clickable path carries a small folder-icon button that reveals the file in your
 file manager; a "📎 mentioned files" chip list at the turn tail covers the rest. URLs are
 already auto-linked by the official renderer, so this plugin leaves them alone.
 
-![External-drive whitelist settings](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/011668c65b6169ac05aa4fe270626ef9282b602d/assets/screenshot-settings.png)
+![External-drive whitelist settings](https://raw.githubusercontent.com/a903067276-rgb/dsh-file-mentions/661e233451ff96cb142857ab93e4f7153f180216/assets/screenshot-settings.png)
 
 The external-drive whitelist (Settings → Plugins → file-mentions): **local files in your home
 directory are clickable by default**; only external drives / network volumes (e.g.
@@ -80,8 +80,8 @@ externally can never be whitelisted by mistake.
 ## Requirements
 
 - DSH web >= 0.1.0-rc.6 (run with `npx @deepseek-ai/dsh web`)
-- **Version compatibility** (best effort — the settings card uses dual-field `key`+`id` registration to satisfy both rc.6 (`id`) and rc.7+ (`key`); verified locally on rc.6/rc.8/0.1.1-rc.2, **not guaranteed on every DSH version**):
-  - DSH 0.1.0-rc.6 and newer (incl. 0.1.1-rc.1/rc.2): try `main` (default).
+- **Version compatibility** (best effort — the settings card uses dual-field `key`+`id` registration to satisfy both rc.6 (`id`) and rc.7+ (`key`); verified locally on rc.6/rc.8/0.1.1-rc.2 and 0.1.2-alpha.2 (clickable paths + "mentioned files" panel), **not guaranteed on every DSH version**):
+  - DSH 0.1.0-rc.6 and newer (incl. 0.1.1-rc.1/rc.2 and 0.1.2): try `main` (default).
   - Conservative fallbacks (the last pre-0.1.1 build): DSH 0.1.0-rc.7/rc.8 → `v1.0.8` (`dsh plugin add github:a903067276-rgb/dsh-file-mentions#v1.0.8`); DSH 0.1.0-rc.6 → frozen `rc6-compat` tag (no maintenance).
 - Pure Node stdlib implementation — peer dependencies (`@deepseek-ai/dsh-settings`,
   `@deepseek-ai/schemastery`) are provided by the host

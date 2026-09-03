@@ -22,7 +22,7 @@ DSH 的远程 Web 界面会把本轮生成或修改的文件显示为可点击�
 ## 界面效果
 
 下面是插件在 DSH 远程 Web 界面中的实际效果：
-![文件路径复制插件界面](https://raw.githubusercontent.com/flyhigao/dsh-produced-file-paths/ab469f82c0a7d8a38c6b9af178db0d4327654b1b/assets/filepath.png)
+![文件路径复制插件界面](https://raw.githubusercontent.com/flyhigao/dsh-produced-file-paths/122480889b3fe6c84486dfc3f18861efe4c0df34/assets/filepath.png)
 
 ## 功能
 
@@ -33,6 +33,12 @@ DSH 的远程 Web 界面会把本轮生成或修改的文件显示为可点击�
 - 只读取 DSH 已经识别出的 produced-file 列表，不修改文件；
 - 不增加文件下载接口；
 - 不修改 `dsh-sticky-notes`。
+
+## 兼容性
+
+- 支持 DSH `0.1.0-rc.6`、`0.1.0-rc.8`、`0.1.1-rc.2`、`0.1.2-alpha.2` 及更高版本。
+- 零外部运行时依赖，不依赖已被废弃的 `dsh-client-runtime`。
+- 使用 DSH 标准插槽 `conversation.chat.turnTail` 注入，与内置产物行共存。
 
 ## 安装
 

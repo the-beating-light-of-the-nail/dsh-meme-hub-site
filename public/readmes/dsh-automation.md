@@ -38,13 +38,13 @@ auditable record.
 
 <br>
 
-![dsh-automation — Schedule. Run. Remember.](https://raw.githubusercontent.com/titanwings/dsh-automation/5ae28f209c0253461131613fc1b2ea27920bec67/docs/social-preview.png)
+![dsh-automation — Schedule. Run. Remember.](https://raw.githubusercontent.com/titanwings/dsh-automation/17bfe356d71e9b7455663b294afa43315a1ffc37/docs/social-preview.png)
 
 </div>
 
 ---
 
-![Automation dashboard showing workspace rules, next runs, and recent outcomes](https://raw.githubusercontent.com/titanwings/dsh-automation/5ae28f209c0253461131613fc1b2ea27920bec67/docs/01-dashboard-en.png)
+![Automation dashboard showing workspace rules, next runs, and recent outcomes](https://raw.githubusercontent.com/titanwings/dsh-automation/17bfe356d71e9b7455663b294afa43315a1ffc37/docs/01-dashboard-en.png)
 
 <a id="why-automation"></a>
 
@@ -79,7 +79,7 @@ There is no separate bot, daemon UI, or third-party scheduler to operate.
 
 Create a one-shot, fixed-interval, daily, or weekly rule. Daily and weekly schedules use an IANA time zone; the friendly form is normalized into a validated RFC 5545 RRULE for persistence and inspection.
 
-![Create form with schedule, time zone, and permission boundary](https://raw.githubusercontent.com/titanwings/dsh-automation/5ae28f209c0253461131613fc1b2ea27920bec67/docs/02-create-en.png)
+![Create form with schedule, time zone, and permission boundary](https://raw.githubusercontent.com/titanwings/dsh-automation/17bfe356d71e9b7455663b294afa43315a1ffc37/docs/02-create-en.png)
 
 ### 🧠 A model target for each automation
 
@@ -101,7 +101,7 @@ Each dispatched occurrence receives:
 
 Runs progress through `queued`, `running`, and a terminal state such as `succeeded`, `failed`, `skipped`, or `cancelled`. Each record keeps its definition revision, prompt and target snapshot, scheduled time, result Session ID, bounded summary, and structured error.
 
-![Run history with a completed run, an interrupted failure, summaries, and result Session links](https://raw.githubusercontent.com/titanwings/dsh-automation/5ae28f209c0253461131613fc1b2ea27920bec67/docs/03-run-history-en.png)
+![Run history with a completed run, an interrupted failure, summaries, and result Session links](https://raw.githubusercontent.com/titanwings/dsh-automation/17bfe356d71e9b7455663b294afa43315a1ffc37/docs/03-run-history-en.png)
 
 Updating a definition increments its revision, so each retained run still identifies what it executed. Deleting the definition does not immediately erase those run records. Retention removes only the oldest terminal records; queued and running records are never pruned.
 

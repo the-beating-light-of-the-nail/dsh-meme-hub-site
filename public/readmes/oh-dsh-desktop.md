@@ -4,7 +4,7 @@
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/effbc051049c7f7cf332ee05b5fc764d7997aded/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/f5fb5a10da6f28445b07df561a1952320902cc19/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
   <h1>Oh-DSH</h1>
   <p><strong>一套 DSH runtime，Desktop、Web 与 TUI 三种开发体验。</strong></p>
   <p>把 AI Agent、Workspace、本地工具与插件生态带到你习惯的界面。</p>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/effbc051049c7f7cf332ee05b5fc764d7997aded/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/f5fb5a10da6f28445b07df561a1952320902cc19/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
 </p>
 
 Oh-DSH 将 DeepSeek Harness、Node.js、本地开发工具和内置插件打包为可安装的
@@ -208,11 +208,11 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ### 插件市场
 
-![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/effbc051049c7f7cf332ee05b5fc764d7997aded/assets/oh-dsh-plugin-marketplace.png)
+![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/f5fb5a10da6f28445b07df561a1952320902cc19/assets/oh-dsh-plugin-marketplace.png)
 
 ### Oh-DSH 皮肤
 
-![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/effbc051049c7f7cf332ee05b5fc764d7997aded/assets/oh-dsh-desktop-skins.png)
+![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/f5fb5a10da6f28445b07df561a1952320902cc19/assets/oh-dsh-desktop-skins.png)
 
 </details>
 
@@ -225,7 +225,7 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 | 推荐项目 | 说明 |
 | --- | --- |
-| [DeepSeek Harness](https://github.com/deepseek-harness/deepseek-harness) | DSH runtime、会话与插件加载器 |
+| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | DSH runtime、会话与插件加载器 |
 | [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | **Oh-DSH TUI 的直接上游插件**，提供终端渲染、交互和命令体系 |
 | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | Git Review、文件与 PTY Host 能力 |
 | [dsh-vision](https://github.com/william-jin-cmu/dsh-vision) | 跨 Desktop、Web 与 TUI 的 `view_image` 视觉工具参考实现 |

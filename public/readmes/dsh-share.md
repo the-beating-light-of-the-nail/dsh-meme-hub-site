@@ -6,11 +6,11 @@ DSH 对话分享插件，分享单轮或多轮对话，可导出为图片或 Mar
 
 和 DeepSeek 网页端一致的多选交互，操作体验完全一致。
 
-![dsh-share 多轮问答选择](https://raw.githubusercontent.com/hellodigua/dsh-share/c109330b755c793cbc701a4e6a972d620a6667da/assets/readme/share-selection.webp)
+![dsh-share 多轮问答选择](https://raw.githubusercontent.com/hellodigua/dsh-share/4cca10110cc3cde7b58febfd2c1ffdbdc66c630d/assets/readme/share-selection.webp)
 
 生成图片前可调整宽度、字号和过程显示，完成后可下载或复制图片。
 
-![dsh-share 生成图片](https://raw.githubusercontent.com/hellodigua/dsh-share/c109330b755c793cbc701a4e6a972d620a6667da/assets/readme/share-dialog.webp)
+![dsh-share 生成图片](https://raw.githubusercontent.com/hellodigua/dsh-share/4cca10110cc3cde7b58febfd2c1ffdbdc66c630d/assets/readme/share-dialog.webp)
 
 ## 功能
 

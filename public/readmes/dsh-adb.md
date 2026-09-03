@@ -44,7 +44,7 @@ Topics: `dsh-plugin` `dsh` `adb` `android` `automotive` `bench`
 | `adb_operation_ledger` | Append-only device operation ledger (record/list/rollback): record installs/pushes/etc., list history, or roll an app back to its last known-good APK (`adb install -r`); persisted as `operations.json` — the trust base for agent-driven device modification |
 | `adb_screenshot` | Capture the device screen into a local PNG (screencap → pull), returning the saved path, byte size, and pixel dimensions — durable evidence for crash scenes / UI states / test frames |
 | `adb_watch_crash` | Watch the crash buffer for NEW real crashes (foreground poll or background job; boot markers ignored; `matched:false` on timeout) — the first link of the monitor→capture→attribute chain |
-| `adb_patrol_check` | One-click patrol: crash scan (real vs. boot markers) + perf vs. the latest stored baseline (regressions beyond a threshold) + battery/temperature/storage → compact verdict (`ok`/`attention`) with concrete issues; report persisted under `<reportDir>/patrol`. Fail-closed: a section that cannot be collected is itself an issue. No baseline → comparison skipped with a note; omit `package` → the perf section is skipped |
+| `adb_patrol_check` | One-click patrol: crash scan (real vs. boot markers) + perf vs. the latest stored baseline (regressions beyond a threshold) + battery/temperature/storage → compact verdict (`ok`/`attention`) with concrete issues; report persisted under `<reportDir>/patrol`. `compareToLast:true` attaches a delta vs. the previous stored patrol (new/gone crashes, worsening regressions, verdict transition). Fail-closed: a section that cannot be collected is itself an issue. No baseline → comparison skipped with a note; omit `package` → the perf section is skipped. Schedule it unattended with dsh-automation — see [docs/SCHEDULED-PATROL.md](docs/SCHEDULED-PATROL.md) |
 
 Errors are structured `AdbError` with stable codes: `ADB_NOT_FOUND`, `ADB_UNAVAILABLE`, `DEVICE_NOT_FOUND`, `NO_DEVICES`, `CONNECT_FAILED`, `INSTALL_FAILED`, `ADB_EXIT_<code>`, etc.
 
@@ -138,6 +138,7 @@ npm pack --dry-run     # verify publish contents (lib/ + cordis.patch.yml)
 - [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) / [docs/REQUIREMENTS.zh-CN.md](docs/REQUIREMENTS.zh-CN.md) — purpose / scope / non-goals / acceptance criteria
 - [docs/TESTING.md](docs/TESTING.md) / [docs/TESTING.zh-CN.md](docs/TESTING.zh-CN.md) — testing philosophy, three test layers, E2E steps, regression checklist
 - [docs/ROADMAP.md](docs/ROADMAP.md) / [docs/ROADMAP.zh-CN.md](docs/ROADMAP.zh-CN.md) — harness×adb synergy feature roadmap (diagnosis report, crash attribution, screenshot vision, bench automation tests, wait primitives, approvals, multi-device compare, scheduled monitoring, rollback ledger)
+- [docs/SCHEDULED-PATROL.md](docs/SCHEDULED-PATROL.md) / [docs/SCHEDULED-PATROL.zh-CN.md](docs/SCHEDULED-PATROL.zh-CN.md) — run the patrol unattended on a schedule (dsh-automation prompt template + gotchas)
 - [PLAN.md](PLAN.md) / [PLAN.zh-CN.md](PLAN.zh-CN.md) — milestones & backlog
 
 ## License

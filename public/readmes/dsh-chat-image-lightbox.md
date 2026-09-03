@@ -10,7 +10,7 @@ A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin tha
 
 ### Features
 
-- **Inline display**: Images in AI responses render directly in the chat (via markdown `![alt](https://raw.githubusercontent.com/loyalchiiina/dsh-chat-image-lightbox/5daa01275d5e1466f85b5b2b23ed4649c9fc7a01/url)`)
+- **Inline display**: Images in AI responses render directly in the chat (via markdown `![alt](https://raw.githubusercontent.com/loyalchiiina/dsh-chat-image-lightbox/b95fcc48e09c8f228d929ba939305ca9735443fc/url)`)
 - **Click to zoom**: Click any image to open a full-screen lightbox; click again to zoom back out
 - **Scroll to zoom & pan**: When zoomed in, use the mouse wheel to zoom further and drag to pan around the image
 - **Download**: Click the download button ⬇ to save the image (triggers browser save-as dialog for same-origin images; filename is sanitized and the extension is derived from the image type)
@@ -19,6 +19,9 @@ A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin tha
 - **Accessible**: The lightbox is a proper `role="dialog"` with `aria-modal`, button `aria-label`s, and focus management (focus returns to the trigger on close)
 - **Smooth**: Adjacent images are prefetched so navigation feels instant
 - **Close**: Click backdrop, press Escape, or click ✕ to close
+- **Thumbnail grid**: When one AI message contains **multiple images**, they automatically collapse into a tidy **fixed 3-column grid** (9 images = 3×3, 6 = 3×2, even rows); the grid shows light, fast thumbnails (auto `?w=` resized, so large originals are not downloaded into small tiles)
+- **HD original on open**: Clicking any thumbnail opens the lightbox with the **full-resolution original image** (the `?w=` thumbnail param is stripped) — zooming in shows the real high-resolution file
+- **Clean UI**: The lightbox toolbar (download / close), prev/next arrows, counter and caption are **hidden whenever the lightbox is closed** — they only appear while you are actually viewing an image, so they never clutter the chat layout
 - **Auto-enhance**: MutationObserver automatically enhances new images added to the chat
 
 ### Installation
@@ -146,7 +149,7 @@ MIT
 
 ### 功能
 
-- **内联显示**：AI 回复中的图片直接在对话框渲染（通过 markdown `![描述](https://raw.githubusercontent.com/loyalchiiina/dsh-chat-image-lightbox/5daa01275d5e1466f85b5b2b23ed4649c9fc7a01/url)`）
+- **内联显示**：AI 回复中的图片直接在对话框渲染（通过 markdown `![描述](https://raw.githubusercontent.com/loyalchiiina/dsh-chat-image-lightbox/b95fcc48e09c8f228d929ba939305ca9735443fc/url)`）
 - **点击放大**：点击任意图片打开全屏 lightbox，再点一次缩回
 - **滚轮缩放 + 拖拽平移**：放大后可用鼠标滚轮继续缩放，按住拖拽平移查看细节
 - **下载**：点击下载按钮 ⬇ 保存图片（同源图片弹出"另存为"对话框；文件名会清洗，扩展名按图片类型自动补全）
@@ -155,6 +158,9 @@ MIT
 - **无障碍**：lightbox 是标准的 `role="dialog"`（含 `aria-modal`、按钮 `aria-label` 与焦点管理，关闭后焦点回到触发元素）
 - **预取**：自动预取相邻图片，切换更顺滑
 - **关闭**：点击遮罩层、按 Esc 或点 ✕ 关闭
+- **缩略图网格**：当一条 AI 消息里包含**多张图片**时，自动折叠成整齐的**固定 3 列网格**（9 张=3×3、6 张=3×2，行数整齐）；网格显示轻量快速缩略图（自动 `?w=` 缩放，不会把大原图下载进小格子）
+- **点开即高清原图**：点击任意缩略图打开 lightbox 时，直接加载**全分辨率原图**（去掉 `?w=` 缩略参数），放大看到的是真正的原图清晰度
+- **界面干净**：lightbox 的工具按钮（下载/关闭）、左右切换箭头、计数、标题在 lightbox **关闭时全部隐藏**，仅在实际看图时才显示，不会在对话界面留下按钮干扰布局
 - **自动增强**：MutationObserver 自动增强新加入对话的图片
 
 ### 安装

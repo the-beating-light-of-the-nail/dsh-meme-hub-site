@@ -59,7 +59,7 @@ dsh plugin --profile web remove @wenaixi/dsh-superpower
 | `superpower-dispatching-parallel-agents` | 并行分发 |
 | `superpower-test-driven-development` | RED-GREEN-REFACTOR |
 | `superpower-systematic-debugging` / `superpower-verification-before-completion` | 调试闭环 |
-| `superpower-requesting` / `superpower-receiving-code-review` | 评审 |
+| `superpower-requesting-code-review` / `superpower-receiving-code-review` | 评审 |
 | `superpower-finishing-a-development-branch` | 集成 |
 | `superpower-writing-skills` | 写新技能 |
 
@@ -90,7 +90,7 @@ skills/             # 14 技能（中文化）
 lib/                # 已提交，GitHub 直装零构建
 ```
 
-版本：基线与上游 `obra/superpowers` 严格同步，本包以 `-dsh.N` 在基线上演进；`tag v*` 触发发布，`push` 仅跑 CI。详见 `CHANGELOG.md`。
+版本：`v6.3.1` 起本仓库脱离上游独立演进（上游基准锁定 `obra/superpowers v6.3.0`），后续变更以正式版本线发布；`tag v*` 触发发布，`push` 仅跑 CI。详见 `CHANGELOG.md`。
 
 ## 常见问题
 

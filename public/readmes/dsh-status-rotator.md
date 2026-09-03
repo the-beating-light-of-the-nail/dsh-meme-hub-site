@@ -13,7 +13,7 @@
 dsh plugin --profile web add dsh-status-rotator
 ```
 
-**v0.9.0 — stable release**
+**v0.10.0 — stable release**
 
 > ⭐ **If this made you smile, give it a star** — it keeps the memes flowing.
 
@@ -224,6 +224,7 @@ Phrases are fully separated from the source code and live in JSON config files. 
 | `reloadIntervalMs` | 15000 | Interval for auto re-reading `config.json` while the page is open (ms), 0 disables |
 | `liveTickMs` | 1000 | Refresh interval for live placeholders (`{elapsed}` / `{date}` / `{time}` / `{tps}`…) in phrases, titles and the pill (ms), 0 disables |
 | `debug` | false | Console diagnostic logs |
+| `fontWeight` | `"inherit"` | Font weight of the status text, the live pill and the danmaku: a number (1–1000; typical 100–900) or a CSS keyword (`normal`/`bold`/`bolder`/`lighter`); `"inherit"` follows the UI (default; danmaku keeps its built-in 600) |
 | `gradient` | see above | Rainbow gradient: `false` / `true` / `{enabled, colors, speed}` |
 | `title` | see above | Tab title rotation: `false` / `{enabled, templates, idleTemplate, intervalMs}` |
 | `pill` | see above | Live status pill: `false` / `{enabled, template, position, opacity}` |
@@ -252,7 +253,7 @@ Open Settings in the bottom-left of DSH and a new **Status Texts** page appears 
 
 - **中文 / English** tabs, each with three text boxes for `thinking` / `running` / `long`, **one phrase per line**, blank lines are ignored;
 - Each phase shows the current phrase count in real time;
-- Basic settings (rotation interval, typewriter speed, long-task threshold, auto-reload interval, placeholder refresh interval) live on the same page;
+- Basic settings (rotation interval, typewriter speed, long-task threshold, auto-reload interval, placeholder refresh interval, font weight) live on the same page;
 - **Live pill settings**: enable toggle, display template, position — the pill and the live-engine placeholders are configured in the same page;
 - **Rainbow gradient settings**: enable toggle, color sequence, speed — no more manual `config.json` editing to turn the gradient off;
 - **Danmaku settings**: enable toggle, spawn interval, cross duration, random font-size range, rainbow mode + palette, opacity, max concurrent bullets, layer z-index and phrase scope — everything editable without touching `config.json`;
@@ -285,13 +286,13 @@ node scripts/fetch-qq-group.cjs --input members.txt
 | `-g, --group` | `684306814` | QQ group ID (also reads the `QQ_GROUP_ID` env var) |
 | `-u, --url` | `http://localhost:3000` | OneBot HTTP URL (also reads `ONEBOT_HTTP_URL`) |
 | `-t, --token` | empty | Access token (also reads `ONEBOT_ACCESS_TOKEN`) |
-| `-a, --action` | `get_group_member_list` | Action path; frameworks with a prefix use `/api/...` |
+| `-a, --action` | `get_group_member_list` | Action path (also reads `ONEBOT_ACTION`); frameworks with a prefix use `/api/...` |
 | `-i, --input` | none | Local member list: txt (one per line) / json (array) / csv (first column) |
 | `-o, --output` | `config.qq684306814.json` | Output file |
 | `--activate` | off | Write back to `config.json` directly and back up the old file |
 | `--dry-run` | off | Preview only, writes nothing |
 
-The display name prefers the group card name, falling back to the nickname. The generated file contains only the `zh.thinking` group: per this plugin's fallback rules, the thinking phase uses it directly and the other phases fall back to the same group. Template: `config.qq684306814.example.json`; the generated `config.qq684306814.json` is gitignored.
+The display name prefers the group card name, falling back to the nickname. The generated file contains only the `zh.thinking` group: per this plugin's fallback rules, the thinking phase uses it directly and the other phases fall back to the same group. The generated `config.qq684306814.json` is gitignored.
 
 ## Project Structure
 
@@ -308,7 +309,6 @@ dsh-status-rotator/
 │   ├── index.js            # node half: registers the HTTP route for config.json (GET/PUT, validated)
 │   └── client.js           # client half: status text replacement / placeholders / gradient / title / presets
 ├── config.example.json     # complete template (default config + all phrases, committed)
-├── config.qq684306814.example.json  # QQ group member phrase template (scripts/fetch-qq-group.cjs generates the real file)
 ├── config.json             # local personalized config (gitignored)
 ├── gen-config.cjs          # script that initializes config.json
 ├── scripts/

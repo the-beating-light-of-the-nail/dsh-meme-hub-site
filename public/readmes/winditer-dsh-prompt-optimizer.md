@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/6e73478416af00cc158bbc2e70522e62379cafac/assets/screenshot.png" width="70%" alt="dsh-prompt-optimizer preview card">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/2c41d9bd23d8154a40422c2ad3cef8f7e82d279c/assets/screenshot.png" width="70%" alt="dsh-prompt-optimizer preview card">
 </p>
 
 # dsh-prompt-optimizer
@@ -27,7 +27,7 @@ One-click prompt polishing for the DSH composer: select nothing, just type a dra
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/6e73478416af00cc158bbc2e70522e62379cafac/assets/screenshot.png" width="90%" alt="Optimization preview card with reasoning and streaming result">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/2c41d9bd23d8154a40422c2ad3cef8f7e82d279c/assets/screenshot.png" width="90%" alt="Optimization preview card with reasoning and streaming result">
 </p>
 
 ## Requirements

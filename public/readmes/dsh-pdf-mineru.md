@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/5343aa6a5593d2b3637a9557ca81b50f598492b2/docs/assets/deepseek-mineru-banner.png" width="100%" alt="DeepSeek 娘与 MinerU 文档解析插件横幅">
+<img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/9a1e191a452ad05583eb9d1b372eecea8d07d59b/docs/assets/deepseek-mineru-banner.png" width="100%" alt="DeepSeek 娘与 MinerU 文档解析插件横幅">
 
 # dsh-pdf-mineru
 
@@ -49,7 +49,7 @@ dsh plugin --profile web add dsh-pdf-mineru
 打开 DSH 界面中的 **Settings → Plugins → MinerU**，根据您的使用场景选择 Provider：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/5343aa6a5593d2b3637a9557ca81b50f598492b2/docs/assets/mineru-settings-preview.png" width="780" alt="dsh-pdf-mineru 在 DSH Settings 中的设置界面">
+  <img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/9a1e191a452ad05583eb9d1b372eecea8d07d59b/docs/assets/mineru-settings-preview.png" width="780" alt="dsh-pdf-mineru 在 DSH Settings 中的设置界面">
 </p>
 
 #### 方案 A：使用 MinerU 官方云（推荐，免部署）

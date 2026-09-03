@@ -40,12 +40,12 @@
 > 实际运行截屏（Windows，dsh web）：
 
 <figure>
-  <img width="1600" alt="深色模式下的会话页：上方排队等待区显示『1 条排队消息』（🟢 排队 test1）与『取消并清空』；中央为花边样式输入框，提示 Cmd/Ctrl+Enter 插话发送全部排队消息；输入行右侧为『冻结会话』按钮、DeepSeek-V4-Flash 模型选择与发送控件" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/3d4bac6b92998f2504f67b3beff578cd20d120ca/assets/dark-mode.png" />
+  <img width="1600" alt="深色模式下的会话页：上方排队等待区显示『1 条排队消息』（🟢 排队 test1）与『取消并清空』；中央为花边样式输入框，提示 Cmd/Ctrl+Enter 插话发送全部排队消息；输入行右侧为『冻结会话』按钮、DeepSeek-V4-Flash 模型选择与发送控件" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/190c9405aba33b5d03a8628320fb23ba85a1f83a/assets/dark-mode.png" />
   <figcaption>深色模式（自动跟随系统 / dsh 暗色主题）：排队等待区 + 输入行右侧「冻结会话」按钮。</figcaption>
 </figure>
 
 <figure>
-  <img width="1400" alt="浅色模式且会话已冻结的会话页：排队等待区出现『已冻结：当前轮次完成后暂停，排队消息将在恢复后继续』横幅及『取消并清空』；队列含测试1（🟢 排队）、测试2/测试3（🟡 插话中）；输入行按钮切换为『恢复会话』" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/3d4bac6b92998f2504f67b3beff578cd20d120ca/assets/light-mode.png" />
+  <img width="1400" alt="浅色模式且会话已冻结的会话页：排队等待区出现『已冻结：当前轮次完成后暂停，排队消息将在恢复后继续』横幅及『取消并清空』；队列含测试1（🟢 排队）、测试2/测试3（🟡 插话中）；输入行按钮切换为『恢复会话』" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/190c9405aba33b5d03a8628320fb23ba85a1f83a/assets/light-mode.png" />
   <figcaption>浅色模式 + 已冻结状态：高峰时段冻结后队列被冻结保存，输入行按钮切换为「恢复会话」，错峰再行处理。</figcaption>
 </figure>
 

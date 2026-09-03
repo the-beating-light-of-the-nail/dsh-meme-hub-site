@@ -21,9 +21,9 @@
 ## 截图 Screenshots
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/kongdexu/dsh-nav-pointer/17b3e7a6abb8b5f2432e9fce16975f3ff342ac65/screenshots/screenshot-20260824-172246.png" alt="使用 DSH 发布 v0.2.0 到插件商店的总结" width="640" />
+  <img src="https://raw.githubusercontent.com/kongdexu/dsh-nav-pointer/eb8d40a6b9ee58f859aa458fdca8372f2b792c8d/screenshots/screenshot-20260824-172246.png" alt="使用 DSH 发布 v0.2.0 到插件商店的总结" width="640" />
 
-  <img src="https://raw.githubusercontent.com/kongdexu/dsh-nav-pointer/17b3e7a6abb8b5f2432e9fce16975f3ff342ac65/screenshots/screenshot-20260824-172301.png" alt="发布后重新安装并测试新版本" width="640" />
+  <img src="https://raw.githubusercontent.com/kongdexu/dsh-nav-pointer/eb8d40a6b9ee58f859aa458fdca8372f2b792c8d/screenshots/screenshot-20260824-172301.png" alt="发布后重新安装并测试新版本" width="640" />
 </div>
 
 ## 安装 Install
@@ -65,7 +65,7 @@ src/
   core.ts             # 纯逻辑：CSS/常量/几何压缩/高亮推导/预览裁剪/行收集（无 React，可单测）
   config.ts           # 共享配置类型与默认值（host schema 与 client scope 共用）
   client.ts           # Client 端入口，挂载 shell.overlay + settings.section 槽位
-  index.ts            # Host 端入口，注册 schemastery 设置命名空间（installSettingsSection）
+  index.ts            # Host 端入口，注册 schemastery 设置命名空间（ctx.settings.installSection）
   types/…             # 声明文件，构建时拷入 lib/types
 lib/                  # esbuild 构建产物（client.js / index.js / types），发布与加载用
 build.mjs             # esbuild 构建（client→iife+模块加载包装，host→esm，设置包 external）

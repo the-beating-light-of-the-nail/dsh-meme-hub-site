@@ -4,21 +4,21 @@
 
 为 DeepSeek Harness 的回复加入可切换、自定义的行内表情。
 
-![dsh-emoji 蓝鲸表情包](https://raw.githubusercontent.com/hellodigua/dsh-emoji/96b653a473c978a474dd7d42e86e5b2c79e6dc7c/assets/readme/banner.png)
+![dsh-emoji 蓝鲸表情包](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/banner.png)
 
 ## 效果预览
 
 默认的大肥鱼表情：
 
-![蓝鲸表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/96b653a473c978a474dd7d42e86e5b2c79e6dc7c/assets/readme/chat-preview.png)
+![蓝鲸表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/chat-preview.png)
 
 切换到贴吧表情包后，也能使用同一套语义协议展示贴吧表情：
 
-![贴吧表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/96b653a473c978a474dd7d42e86e5b2c79e6dc7c/assets/readme/chat-preview.tieba.png)
+![贴吧表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/chat-preview.tieba.png)
 
 上传并切换到 B 站表情包后，也能保留熟悉的社区表达风格：
 
-![B 站表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/96b653a473c978a474dd7d42e86e5b2c79e6dc7c/assets/readme/chat-preview.bilibili.png)
+![B 站表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/chat-preview.bilibili.png)
 
 同一套语义协议也可用于小红书、抖音、微博等自定义表情包。
 

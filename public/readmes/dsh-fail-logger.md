@@ -20,7 +20,7 @@ The observation point is the **session log** (`session/event`) — the exact sam
 
 | Session failures (captured automatically) | Skill auto-log section |
 |:---:|:---:|
-| ![Session failure example](https://raw.githubusercontent.com/Areium/dsh-fail-logger/ab09e90f35d74cabf5af510e4c8bcf4bd6f2ddc5/assets/demo-session.png) | ![Skill auto-log section](https://raw.githubusercontent.com/Areium/dsh-fail-logger/ab09e90f35d74cabf5af510e4c8bcf4bd6f2ddc5/assets/demo-skill.png) |
+| ![Session failure example](https://raw.githubusercontent.com/Areium/dsh-fail-logger/3da2e2a48a82cf272a72db0a5870ea7a8bbb564e/assets/demo-session.png) | ![Skill auto-log section](https://raw.githubusercontent.com/Areium/dsh-fail-logger/3da2e2a48a82cf272a72db0a5870ea7a8bbb564e/assets/demo-skill.png) |
 
 *Legend — left: tool failures in a session are captured automatically; right: the causes accumulate in the skill's auto-log section (deduplicated, counted, ranked by frequency).*
 

@@ -57,8 +57,8 @@ DeepSeek Harness 的 Web 服务器出于安全设计只绑定 `127.0.0.1`，且�
 # 本地目录安装（开发）
 dsh plugin --profile web add dsh-mobile-access
 
-# 或从 GitHub 安装（锁定发布版本 v1.0.4）
-dsh plugin --profile web add dsh-mobile-access@github:TongaiLinC/dsh-mobile-access#v1.0.4
+# 或从 GitHub 安装（锁定发布版本 v1.0.5）
+dsh plugin --profile web add dsh-mobile-access@github:TongaiLinC/dsh-mobile-access#v1.0.5
 ```
 
 ### 方式二：手动编辑 profile（与现有插件一致）
@@ -175,6 +175,35 @@ dsh-mobile-access/                  # 本仓库即一个可安装的 DSH 插件�
 - `webServer.register` 提供 `/dsh-mobile/api/*` 接口与 `/dsh-mobile/gate.html` 门禁页；
 - `subprocess` 派生 node 网关代理进程，转发 HTTP 与 WebSocket（含 101 升级握手）；
 - 设备审批、策略、模式选择通过 `fs` 持久化。
+
+---
+
+## 安全模型（v1.0.5 加固）
+
+管理权限与设备类型**彻底解耦**——设备判定只影响界面展示，**权限由 token 决定**。
+
+### 管理身份：token 认证（PC 本机唯一）
+- 首次运行生成 128 位随机 `adminToken`（存 `state.json`）；
+- `adminToken` **仅在「本机回环直连 + 非代理转发 + Host 指向 127.0.0.1/localhost」** 的 `/state` 响应中返回——**只有 PC 本机浏览器拿得到**；
+- 管理接口（批准/撤销/策略/网关）校验 `x-dshm-admin-token` + Host 回环；
+- 旧版公开 `x-dshm-admin: 1` 头已废弃（任何局域网设备都能伪造它，曾使审批门禁形同虚设）。
+
+### 边界防护
+- **DNS rebinding**：管理接口/Token 返回均校验 Host 必须为回环，恶意域名解析到 `127.0.0.1` 的请求直接 403；autoApprove 同步加「非代理转发 + Host 回环」条件，封堵恶意网页自注册自批准；
+- **代理来源标记**：网关给所有转发请求打 `x-dshm-proxied: 1`（仅回环对端可信），据此区分「本机直连（管理资格）」与「经代理（只读）」；
+- **平板「电脑模式」降级只读**：即使经代理显示管理面板，也拿不到 token，只能查看（管理按钮隐藏）。
+
+### 防刷与策略
+- `register` 按来源 IP 限速（5 次/分钟）+ 设备总数上限 200；
+- 「禁止公网直连」开启时为**服务端强制**（公网来源注册直接 403），客户端「仍然继续」仅影响本机页面展示。
+
+### rc.6 浏览器认证适配
+- DSH `0.1.0-rc.6` 起对 index 请求做 `?token` 换 cookie 认证。网关代理自动用 `connection.authenticatedUrl()` 取当前进程 token、预取认证 cookie 并在转发时携带——**手机扫码（无 token）可直接进入 GUI**，无需知道 token。
+
+### 已知风险与建议
+- **HTTP 明文**：网关链路无 TLS，cookie（`dshm_dev`）与对话内容可被局域网嗅探——**强烈建议通过 Tailscale / ZeroTier（WireGuard 层加密）访问**；
+- **产品回环信任泛化**：代理把所有经门禁的请求伪装成回环，产品 `/api` 对回环的任何信任被泛化到已批准设备——这是架构固有属性，新增敏感接口时需评估；
+- 设备审批记录 `state.json` 为明文 JSON，请勿放入敏感信息。
 
 ---
 

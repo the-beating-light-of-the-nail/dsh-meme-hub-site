@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/fb2282e1987d830392b55cebf95df7d392352e7b/docs/banner.jpg" alt="DSH Pocket" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/8fc6bce32cdbfe26e574cff46d93f93dc1e39470/docs/banner.jpg" alt="DSH Pocket" width="100%">
 </p>
 
 <h1 align="center">DSH Pocket</h1>
@@ -34,7 +34,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 实际效果——手机上的界面就是电脑上的界面，实时同步：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/fb2282e1987d830392b55cebf95df7d392352e7b/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/8fc6bce32cdbfe26e574cff46d93f93dc1e39470/docs/interface.jpg" alt="手机上的 DSH 界面" width="100%">
 </p>
 
 ## ✨ 特性
@@ -60,7 +60,7 @@ DSH Pocket 就是干这个的：**装上它，手机扫个码，就能实时看�
 **入口在哪**：安装完成并重启 `dsh web` 后，打开 **设置**，左侧边栏就能看到 **「手机访问」** 入口（和「通用设置」「模型」同级）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/fb2282e1987d830392b55cebf95df7d392352e7b/docs/entry.jpg" alt="手机访问入口" width="70%">
+  <img src="https://raw.githubusercontent.com/shaobeichen/dsh-pocket/8fc6bce32cdbfe26e574cff46d93f93dc1e39470/docs/entry.jpg" alt="手机访问入口" width="70%">
 </p>
 
 **前提**：电脑上已装好 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。如果终端提示 `dsh: command not found`（找不到 dsh 命令），先安装：

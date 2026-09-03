@@ -9,7 +9,7 @@
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
 
-![dsh-email banner](https://raw.githubusercontent.com/STARDUSTLC666/dsh-email/93e6fcebaaa3bf7468e40bb645a39b50a11deff3/assets/banner.png)
+![dsh-email banner](https://raw.githubusercontent.com/STARDUSTLC666/dsh-email/3bf58aabe38cc891185b576928e23ee0c0c8aff4/assets/banner.png)
 
 
 DeepSeek Harness 邮件工具插件：让 agent 能**查收件箱、读邮件、搜邮件、代发邮件、收发附件**。纯插件实现，零核心改动，安装即可用。
@@ -28,22 +28,34 @@ Email tools for DeepSeek Harness: list, read, search and send mail through stand
 | `email_send` | 代发邮件（支持带附件）。**默认发信前会弹确认**，显示收件人、主题和附件数，由你批准后才发出 |
 | `email_folders` | 列出邮箱的文件夹（INBOX/已发送/垃圾邮件/自定义…），拿 path 喂给其他工具 |
 | `email_attachment` | 按序号下载邮件附件（默认存到会话工作区，模型可直接读取；大小受 maxAttachmentBytes 限制） |
+| `email_watch` | 增量检查新邮件：首次调用建立基线，之后每次只报告比上次多出来的未读邮件，适合定时任务做新邮件提醒 |
+| `email_mark` | 修改邮件状态：标记已读/未读、加/取消星标，或移动到别的文件夹（归档、丢回收站），收发闭环的「收完之后」那一半 |
+| `email_reply` | 回复/回复全部/转发已有邮件：自动带上 In-Reply-To/References 线程头与原文引文，收件人自动排除自己，主题不重复叠 Re:/Fwd:；同样走发信审批门 |
+
+### 新邮件提醒（Web 端）
+
+配置好账号后，主界面右下角会出现「鲸鱼娘递信」小弹窗：每 30 秒检查一次新邮件，有新邮件时弹出卡片（发件人 + 主题），12 秒自动消失。弹窗与 `email_watch` 工具共用同一套游标逻辑但各自独立计数，互不抢占。
+
+弹窗形象优先使用本地安装的 [dsh-deep-whale](https://github.com/Small-tailqwq/dsh-deep-whale) 鲸鱼娘皮肤素材（**不打包分发**，运行时从你自己的安装目录读取）：该素材为一创 [上善](https://www.pixiv.net/users/62155430) 鲸鱼娘形象的衍生创作（二创 Small-tailqwq），以 CC BY-NC-SA 4.0（署名-非商业性使用-相同方式共享）发布，弹窗内附完整署名链。未安装皮肤时使用内置的社区鲸鱼娘形象（版权归原作者，仅供个人非商业使用；如有异议请提 Issue，会立即移除）。
 
 示例对话：
 
 > 帮我看下 QQ 邮箱最新的 10 封未读，把要回复的列出来。
 
-### v0.6.2 优化
+### 版本记录
 
-- 服务器端搜索补齐 `cc`，搜索范围真正覆盖主题 / 发件人 / 收件人 / 抄送。
-- 正文回退扫描的匹配范围也加入 `to` / `cc`；单封邮件解析失败不会中断整批扫描。
-- 邮件列表结果强制按 UID 降序，保证「最新在前」。
-- `email_send` 的附件参数严格校验为路径字符串数组，并做 trim。
+- **0.10.1**：补发制品——已发布的 0.10.0 打包时只含 `email_mark`，本版同时包含 `email_mark` 与 `email_reply`，代码与 0.10.0 的 main 一致。
+- **0.10.0**：新增 `email_mark`（已读/未读/星标/移动文件夹，补齐收发闭环的整理侧）与 `email_reply`（回复/回复全部/转发，自动线程头+引文，走发信审批门）；连接池按读/写模式分别管理邮箱打开状态。
+- **0.9.1**：修复设置页空主机遮蔽 provider 预设（#3/#6）；IMAP 连接超时不再杀死整个 DSH 进程（#4）；暗色模式输入控件可见（#2）；密码栏提示环境变量 `DSH_EMAIL_PASSWORD` 免明文方案（#5）。
+- **0.9.0**：新增 `email_watch` 增量新邮件检查工具（游标式，适合定时提醒）；Web 端新增「鲸鱼娘递信」新邮件弹窗（本地皮肤素材运行时读取 + 内置回退图）。
+- **0.8.2**：`since` / `until` 参数描述与其余参数统一为英文，方便多语言 agent 理解。
+- **0.8.0/0.8.1**：`email_list` / `email_search` 新增 `since` / `until` 日期范围过滤；新增 `email_health` 自检（账号/连接/配置一键体检）；适配 harness 0.1.2（清理已删除的客户端注入声明）。
+- **0.6.2**：服务器端搜索补齐 `cc`，搜索范围真正覆盖主题 / 发件人 / 收件人 / 抄送；正文回退扫描也匹配 `to` / `cc`，单封解析失败不中断整批；列表强制 UID 降序「最新在前」；`email_send` 附件参数严格校验。
 
 
 ## 兼容性
 
-在 `@deepseek-ai/dsh@0.1.1-rc.2` 上验证（2026-08-26）。遵循 cordis 组合包补丁模型（`cordis.patch.yml` + `dsh.bundle.patch`），运行时不 import 任何 `@deepseek-ai/*` 内部模块。
+在 `@deepseek-ai/dsh@0.1.2-alpha.3` 上实测通过（2026-09-01，设置页/素材路由/email_watch 全回归）。遵循 cordis 组合包补丁模型（`cordis.patch.yml` + `dsh.bundle.patch`），运行时不 import 任何 `@deepseek-ai/*` 内部模块。
 
 ## 安装
 
@@ -182,4 +194,4 @@ MIT。这是一个社区插件，与 DeepSeek 官方无关；`@deepseek-ai/*` �
 
 - [dsh-slack](https://github.com/STARDUSTLC666/dsh-slack) — Slack 通知/收件箱
 - [dsh-dingtalk](https://github.com/STARDUSTLC666/dsh-dingtalk) — 钉钉群通知（零依赖）
-- [dsh-email](https://github.com/STARDUSTLC666/dsh-email) — 邮件六件套 + Web 设置页
+- [dsh-email](https://github.com/STARDUSTLC666/dsh-email) — 邮件八件套 + Web 设置页 + 新邮件弹窗

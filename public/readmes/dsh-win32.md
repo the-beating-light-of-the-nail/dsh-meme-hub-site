@@ -14,6 +14,8 @@ It does not install Git, PowerShell, busybox, WSL, or another DSH bundle on the 
 
 [中文](./docs/README.zh.md) · [Windows evidence and legacy details](./docs/windows-details.md)
 
+Using a coding agent? [Copy the setup and verification request](https://github.com/sjh9714/dsh-win32/blob/master/docs/agent-setup.md). For a guided walkthrough, see [Windows troubleshooting in Chinese](https://github.com/sjh9714/dsh-win32/blob/master/docs/windows-first-run.zh.md).
+
 <p>
 <a href="https://www.npmjs.com/package/dsh-win32"><img src="https://img.shields.io/npm/v/dsh-win32?style=flat-square&label=npm&color=cb3837" alt="npm"></a>
 <a href="https://github.com/sjh9714/dsh-win32/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/sjh9714/dsh-win32/ci.yml?style=flat-square&label=CI" alt="CI"></a>
@@ -26,7 +28,7 @@ It does not install Git, PowerShell, busybox, WSL, or another DSH bundle on the 
 
 **Reproduced setup flow. This is not a screen recording.**
 
-![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/12a39770ff300cafbc1408a23a998291761ae23e/assets/demo.gif)
+![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/9187d3b81492922f8391cd41ad9efdc1abae6147/assets/demo.gif)
 
 The command checks the official persistent PowerShell and Workspace Write packages, creates the shortcut, and leaves the profile on the stock Minimal preset.
 
@@ -72,6 +74,8 @@ No user DSH profile, config, workspace, or PowerShell profile is loaded or chang
 
 If a timeout or output limit leaves worker or descendant containment unconfirmed, verification fails and preserves the isolated snapshot instead of deleting files under a potentially live process.
 
+`verify` creates its own Workspace Write policy and Windows ACL-confined PowerShell child. If you run it from an agent that is already inside another Workspace Write or Windows ACL sandbox, approve one unsandboxed/full-access execution for **this verify command only**; otherwise the nested restricted-token/ConPTY layers can stall before PowerShell launches. This does not bypass the acceptance boundary: the inner child under test remains confined, and the outside-write denial is still required to pass. Worker timeouts report only a fixed, path-free progress checkpoint so nested-launch stalls can be distinguished without exposing terminal output or environment values.
+
 The boundary is deliberate: this composes the installed official components and invokes the real persistent tool, but it does not start the complete stock Minimal host/preset, run the plugin installer, execute hook bridges, or make a model request. A pass must therefore be read as component-chain acceptance, not as an end-to-end stock-session or hook-enforcement claim.
 
 The repository CI installs `@deepseek-ai/dsh@latest` from scratch and runs this acceptance on real Windows. Pushes, pull requests, and manual runs cover npm and strict pnpm layouts on Node 22.19 and 24. A weekly upstream watch retains both installers on Node 22.19, so a new DSH publication is checked even when dsh-win32 itself has not changed.
@@ -96,6 +100,18 @@ Two current DSH control paths sit outside repairs that dsh-win32 can safely appl
 - Hook logs are not proof that enforcement happened. An interpreter-backed Claude Code hook can lose its blocking exit code through PowerShell on Windows ([upstream #2485](https://github.com/deepseek-ai/deepseek-harness/discussions/2485)), while a `{"continue": false}` result can be recorded as `decision: stop` without halting the run ([upstream #1514](https://github.com/deepseek-ai/deepseek-harness/discussions/1514)). After changing hooks or upgrading DSH, run a harmless unconditional deny canary and confirm the target action is actually blocked.
 
 `doctor` cannot prove either behavior from package metadata, and `verify` deliberately avoids user profiles, hook configuration, model requests, and plugin installation. They therefore do not report these upstream paths as passing. The canary remains a user-controlled end-to-end check until DSH exposes a safe, isolated hook acceptance interface.
+
+## Bring an existing setup
+
+Once the Windows checks pass, [dsh-movein](https://github.com/sjh9714/dsh-movein) can preview importing an existing Claude Code, Codex, or OpenCode setup. It is optional and separate from Windows setup: dsh-win32 does not install it for you.
+
+Start with a preview in the project you want to move. Do not add `--apply` until you have reviewed the destinations, conflicts, and unsupported settings.
+
+```powershell
+npx dsh-movein
+```
+
+Moving configuration does not prove hook enforcement or a complete stock Minimal session. Keep the verification boundaries above.
 
 ## Legacy DSH
 

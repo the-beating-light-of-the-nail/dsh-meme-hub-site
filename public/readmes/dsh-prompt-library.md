@@ -81,7 +81,7 @@ npm run deploy   # type check + build + sync to DSH (restart dsh web to take eff
 
 ## Screenshots
 
-![1787652137511](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/3a14e600762cc963331b5a153c0e3149b1d0c056/images/README/1787652137511.png)![1787652192115](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/3a14e600762cc963331b5a153c0e3149b1d0c056/images/README/1787652192115.png)![1787652201302](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/3a14e600762cc963331b5a153c0e3149b1d0c056/images/README/1787652201302.png)![1787652209555](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/3a14e600762cc963331b5a153c0e3149b1d0c056/images/README/1787652209555.png)
+![1787652137511](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/705d229fa2095c6bc4b56671fa1abfad4bc6dab5/images/README/1787652137511.png)![1787652192115](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/705d229fa2095c6bc4b56671fa1abfad4bc6dab5/images/README/1787652192115.png)![1787652201302](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/705d229fa2095c6bc4b56671fa1abfad4bc6dab5/images/README/1787652201302.png)![1787652209555](https://raw.githubusercontent.com/master1Sun/dsh-prompt-library/705d229fa2095c6bc4b56671fa1abfad4bc6dab5/images/README/1787652209555.png)
 
 ## Author
 

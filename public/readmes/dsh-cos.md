@@ -4,7 +4,7 @@
 
 ## 界面预览
 
-![COS 云存储面板](https://raw.githubusercontent.com/annexwu/dsh-cos/6eb84409e8a1bfeaa7781f24ca4a12c1542538ce/assets/screenshots/cos-storage-panel.png)
+![COS 云存储面板](https://raw.githubusercontent.com/annexwu/dsh-cos/72329749cd720f97e8a5f220eb1294ae2303651b/assets/screenshots/cos-storage-panel.png)
 
 ## 当前能力
 
@@ -63,7 +63,7 @@ pnpm dsh web
 
 #### 插件配置
 
-![COS 云存储配置](https://raw.githubusercontent.com/annexwu/dsh-cos/6eb84409e8a1bfeaa7781f24ca4a12c1542538ce/assets/screenshots/cos-settings.png)
+![COS 云存储配置](https://raw.githubusercontent.com/annexwu/dsh-cos/72329749cd720f97e8a5f220eb1294ae2303651b/assets/screenshots/cos-settings.png)
 
 ### 在会话中添加 COS 附件
 

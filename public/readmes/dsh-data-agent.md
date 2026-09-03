@@ -3,7 +3,7 @@
 **中文** | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/bdc4380e2cb49639dfb09260db0d88d89272323e/assets/banner.webp" alt="DSH Data Agent Banner" width="100%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/d1bd4381ed771d505db69f2a9065379f7d3165a0/assets/banner.webp" alt="DSH Data Agent Banner" width="100%">
 </p>
 
 <p align="center">
@@ -45,7 +45,7 @@
 - 🖥️ **现代 Web 与高效终端双体验**：既可在直观的可视化 Web 界面中点击配置与浏览图表，也可在极客高效的命令行终端（dsh-tui）中一键唤起。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/bdc4380e2cb49639dfb09260db0d88d89272323e/assets/features.webp" alt="DSH Data Agent 核心特性" width="100%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/d1bd4381ed771d505db69f2a9065379f7d3165a0/assets/features.webp" alt="DSH Data Agent 核心特性" width="100%">
 </p>
 
 ## 快速上手
@@ -74,7 +74,7 @@ dsh plugin --profile dsh-tui add @yejiming/dsh-data-agent
 ```bash
 dsh --profile web
 ```
-1. 点击输入框右上角的 **数据库图标**，在弹出的工作台中填写连接信息（支持测试连接）；
+1. 在新会话页点击 **「数据模式」** 旁的 **「连接配置」**，或进入会话后点击输入框右上角的 **数据库图标**，在弹出的工作台中填写连接信息（支持测试连接）；
 2. 连接成功后，直接在对话框中用自然语言提出你的业务分析问题；
 3. 根据初步结论继续追问，AI 会沿着上下文层层下钻深挖。
 
@@ -101,21 +101,21 @@ dsh --profile dsh-tui
 Web 界面内置一站式数据库工作台，包含 **连接配置**、**库表浏览**、**数据治理** 与 **SQL 执行** 四大功能模块，方便在对话之余随时查验数据资产。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/bdc4380e2cb49639dfb09260db0d88d89272323e/assets/tables.webp" alt="数据库工作台" width="90%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/d1bd4381ed771d505db69f2a9065379f7d3165a0/assets/tables.webp" alt="数据库工作台" width="90%">
 </p>
 
 ### 2. AI 辅助数据治理
 在工作台中打开“数据治理”，AI 会自动扫描库表结构并生成直观的中文业务释义，支持逐项确认、删除与补充业务指标，告别“字段对齐全靠问同事”的尴尬。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/bdc4380e2cb49639dfb09260db0d88d89272323e/assets/data-governance.webp" alt="AI 数据治理" width="90%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/d1bd4381ed771d505db69f2a9065379f7d3165a0/assets/data-governance.webp" alt="AI 数据治理" width="90%">
 </p>
 
 ### 3. 交互式离线分析报告
 当分析需要可视化呈现时，Agent 会自动生成单图或多维 Dashboard，并自动在工作目录的 `analysis-reports/` 目录下保存独立的离线 HTML 报告。包含丰富的指标卡、动态图表与明细数据表，无需网络即可随时双击打开或发送给同事。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/bdc4380e2cb49639dfb09260db0d88d89272323e/assets/charts.webp" alt="分析报告图表" width="90%">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-data-agent/d1bd4381ed771d505db69f2a9065379f7d3165a0/assets/charts.webp" alt="分析报告图表" width="90%">
 </p>
 
 ## 支持数据源

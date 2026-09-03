@@ -6,7 +6,7 @@ Per-model capability editing for DeepSeek Harness: reasoning-effort levels (with
 
 [中文](README.zh.md)
 
-![Editing one model row](https://raw.githubusercontent.com/sanshanya/better-model-provider/73a647425b1e5dc106ade408e770af9cb50f1bad/docs/screenshot.png)
+![Editing one model row](https://raw.githubusercontent.com/sanshanya/better-model-provider/1a0e1993e63a2e76f5f18de450fd7fc59d3f4c42/docs/screenshot.png)
 
 ## Why
 
@@ -34,7 +34,7 @@ Dedicated-adapter apps (built-in DeepSeek / OpenAI Codex) declare their capabili
 
 ## Compatibility
 
-We declare compatibility with the whole **dsh 0.1.x line**: contract `@deepseek-ai/dsh-api-remotes >=0.1.0-rc.7 <0.2.0`, real-harness lanes verified on rc.7, rc.8, 0.1.1-rc.2, and the 0.1.2-alpha.1 source master. Surfaces outside the contract degrade silently. Development gates, live lanes, and invariants: see [CONTRIBUTING.md](CONTRIBUTING.md).
+We declare compatibility with the whole **dsh 0.1.x line**: contract `@deepseek-ai/dsh-api-remotes >=0.1.0-rc.7 <0.2.0`, real-harness lanes verified on rc.7, rc.8, 0.1.1-rc.2, and 0.1.2-alpha.1/alpha.2 — a daily CI canary re-proves both published channels (rc and alpha) against their current npm dist-tags. Surfaces outside the contract degrade silently. Development gates, live lanes, and invariants: see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

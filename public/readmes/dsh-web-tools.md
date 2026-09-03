@@ -1,7 +1,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/976a6a1e0a4ce6efd977a51276cca6e1c1ed0bea/assets/logo.png" alt="dsh-web-tools" width="160" />
+  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/64dcb3272d211467ece6e88ac6d1464f91676e5b/assets/logo.png" alt="dsh-web-tools" width="160" />
 </p>
 
 # dsh-web-tools
@@ -69,7 +69,7 @@ While keeping the tool interface unified, dsh-web-tools normalizes search intent
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/976a6a1e0a4ce6efd977a51276cca6e1c1ed0bea/assets/searchOrderAndRouting.png" width="900" alt="dsh-web-tools search strategy and multi-provider routing" />
+  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/64dcb3272d211467ece6e88ac6d1464f91676e5b/assets/searchOrderAndRouting.png" width="900" alt="dsh-web-tools search strategy and multi-provider routing" />
 </p>
 
 ## Native-Capability Adaptation Across 8 Web Providers
@@ -125,7 +125,7 @@ Agents use `小红书:` or `X:` as a platform-routing prefix. The prefix selects
 * **Automated Session Verification**: Cookies are only the first gate. Xiaohongshu requires both `a1` and `web_session`, then performs a stabilized live `/explore` check in the interactive browser. A visible login wall invalidates the old session and restores the sign-in action; a wall appearing only after search submission is reported directly as `search-restricted` rather than being hidden behind indexed web results.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/976a6a1e0a4ce6efd977a51276cca6e1c1ed0bea/assets/platformSessions.png" width="900" alt="Xiaohongshu and Twitter X signed-in sessions verified automatically" />
+  <img src="https://raw.githubusercontent.com/A3Boy/dsh-web-tools/64dcb3272d211467ece6e88ac6d1464f91676e5b/assets/platformSessions.png" width="900" alt="Xiaohongshu and Twitter X signed-in sessions verified automatically" />
 </p>
 
 ---
@@ -201,6 +201,22 @@ pnpm run build        # Build bundle into lib/
 ---
 
 ## Frequently Asked Questions
+
+### Self-Hosted SearXNG Configuration & Troubleshooting
+
+When using Docker or self-hosted SearXNG, if you encounter `no usable provider` or HTTP 403 Forbidden errors, check the following:
+
+1. **Enable JSON Output Format**: SearXNG defaults to HTML-only output for privacy. Edit your SearXNG `settings.yml` and add `- json` under `search.formats`:
+   ```yaml
+   search:
+     formats:
+       - html
+       - json # Required for API queries
+   ```
+   Restart your SearXNG container (`docker restart searxng`) to apply changes.
+2. **Keyless Setup**: SearXNG is keyless by default — leave the API Key field empty in the settings card. Enter your instance URL in the `Base URL` field (e.g. `http://127.0.0.1:8080`) and click "Test Search" to verify connectivity.
+
+### Cache & Reinstallation
 
 If cache issues occur after upgrading via local path or symlinks, reinstall from the profile directory:
 

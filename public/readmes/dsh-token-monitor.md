@@ -14,7 +14,7 @@
 DeepSeek Harness（DSH）Web 界面的大模型**余量与用量监控**插件：会话头部实时余量徽标 + 主区"用量"页签，本地 SQLite 记录每次调用的 token 与费用。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/usage-overview.png" alt="用量页签总览" width="100%">
+  <img src="https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-overview.png" alt="用量页签总览" width="100%">
 </p>
 
 ## 安装
@@ -56,7 +56,7 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 
 点击徽标弹出详情层：当前提供方指标、本会话 token 用量（可切换会话）、全部提供方折叠区、cc-switch 数据同步提示条、更新时间与刷新。
 
-![余量徽标与详情弹层](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/quota-popover.png)
+![余量徽标与详情弹层](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/quota-popover.png)
 
 ### 用量页签
 
@@ -64,27 +64,27 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 
 - **使用趋势**：渐变面积图，左轴 token 构成，右轴切换预估费用 / 请求次数；当天为分钟级刻度（2~60 分钟自适应 ≥12 桶，补桶不跨天），悬浮提示显示桶区间（如 `15:00~15:30`）
 
-![使用趋势](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/usage-trend.png)
+![使用趋势](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-trend.png)
 
 - **供应商消耗统计**：X 轴供应商、柱内按模型堆叠，右柱费用 / 次数可切换
 
-![供应商消耗统计](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/provider-bars.png)
+![供应商消耗统计](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/provider-bars.png)
 
 - **年度消耗热力图**：GitHub 日历风，近 12 个整月，色深 = 当日 token，首尾按周补齐
 
-![年度消耗热力图](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/heatmap.png)
+![年度消耗热力图](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/heatmap.png)
 
 - **使用排行**：模型 / 供应商 / 客户端三维度聚合，默认按总消耗降序
 
-![使用排行](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/usage-rank.png)
+![使用排行](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-rank.png)
 
 - **请求记录**：分页明细表（时间倒序），页码跳转、每页条数可调（10/20/50/100）
 
-![请求记录](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/usage-records.png)
+![请求记录](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-records.png)
 
 - **跨设备同步**：底部"数据来源"提供导出 / 导入按钮，把不同设备的使用记录合并到一台设备，重复导入无副作用）
 
-![跨设备同步](https://raw.githubusercontent.com/licyer/dsh-token-monitor/2f1e265f37b67a75930bffe968ec391b9ce87b83/docs/images/usage-sync.png)
+![跨设备同步](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-sync.png)
 
 ## 插件配置
 

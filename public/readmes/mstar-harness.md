@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/bde437075aeefd4cdb4e87060c6c44149968c3b0/assets/logo.svg" alt="Morning Star Harness" width="96">
+<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/ef81686cb27618255cd40e0904c0d0ca7f16f63e/assets/logo.svg" alt="Morning Star Harness" width="96">
 
 # [Morning Star](https://github.com/btspoony/mstar-harness)
 
@@ -53,7 +53,7 @@ Release notes: [CHANGELOG.md](CHANGELOG.md) / [CHANGELOG_CN.md](CHANGELOG_CN.md)
 | Cursor | `npx @mstar-harness/cli init --target cursor` |
 | Kimi | Kimi TUI: `/plugins install https://github.com/btspoony/mstar-harness`<br>→ `/plugins reload` |
 | ZCode | `npx @mstar-harness/cli init --target zcode`<br>then install **morning-star-harness** in ZCode → Settings → Plugin Management |
-| Codex | `npx @mstar-harness/cli init --target codex`<br>then `codex plugin add morning-star-harness --marketplace personal` |
+| Codex | `npx @mstar-harness/cli init --target codex`<br>then `codex plugin add morning-star-harness@mstar-repo` (repo-bundled marketplace) |
 | Generic (Agent Plugins v1) | point any Agent Plugins v1.0.0 conformant client at this repo root<br>(`plugin.json` + `skills/` are the portable package) |
 
 ### Engine gate checks (Recommended)

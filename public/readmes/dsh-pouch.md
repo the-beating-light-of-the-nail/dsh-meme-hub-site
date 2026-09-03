@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/moon16u/dsh-pouch/cd06147e7780a496f80f144311ef6c1c666cd89e/assets/logo.png" width="96" height="96" alt="dsh-pouch logo" />
+  <img src="https://raw.githubusercontent.com/moon16u/dsh-pouch/b32d03cfc0a380af10dfabf6770407980f9f902d/assets/logo.png" width="96" height="96" alt="dsh-pouch logo" />
 </p>
 
 # dsh-pouch
@@ -8,7 +8,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/v/@moon16u/dsh-pouch.svg?color=cb3837)](https://www.npmjs.com/package/@moon16u/dsh-pouch)
-[![DeepSeek Harness](https://img.shields.io/badge/DSH-0.1.0--rc-purple.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![DeepSeek Harness](https://img.shields.io/badge/DSH-0.1.1--rc.2%20%7C%200.1.2--alpha.1-purple.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![pnpm workspace](https://img.shields.io/badge/pnpm-workspace-orange.svg)](https://pnpm.io/workspaces)
 
 > **dsh-pouch** is a pocket toolkit of practical, lightweight, and beautiful plugins designed for [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness).  
@@ -81,6 +81,7 @@ dsh plugin --profile web add https://github.com/moon16u/dsh-pouch.git
 ### 5. `@moon16u/dsh-plugin-llm-headers`
 * **Problem**: DSH merges its own attribution `User-Agent` into every provider request last, and a `headers` map written into `llm-pi-ai` cannot override that reserved name. Gateways that authenticate by client identity — Tencent CodeBuddy returns `500 {"code":11128,"msg":"request illegal"}` — are unreachable with configuration alone.
 * **Solution**: Declare routes in your own `llm-headers` settings section, still served by the official `PiAiAdapter`; only the pi-ai provider is wrapped, so the configured headers get the final word before the socket. Ships with a **Request Headers** settings page (independent sidebar entry) — the stock provider cards expose no slot, and headers written into `llm-pi-ai` are stripped anyway. Wrapping the provider rather than the protocol object keeps pi-ai's own route implementations, so such routes wire up in a couple of lines. Routes without configured headers keep sending the DSH attribution unchanged, and deleting it is refused.
+* **Version span**: the settings page reads the provider directory and writes settings over a dual-generation wire — DSH 0.1.1's `connection.api` (APIProxy) or 0.1.2's `remote.llm` / `remote.settings` namespaces — preferring whichever the host serves.
 
 ### 6. `@moon16u/dsh-plugin-mcp-console`
 * **Problem**: The official way to attach MCP servers is a static `cordis.patch.yml` entry — no GUI, no runtime changes, and every restart to apply an edit. Declared servers show up as untouchable read-only instances.

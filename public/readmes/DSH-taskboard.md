@@ -9,9 +9,9 @@ This README is written so a human **or another coding agent** can install the pl
 **Package:** `@shengsheng/dsh-taskboard`  
 **Repository:** https://github.com/shengsheng90/DSH-taskboard  
 **License:** Apache-2.0  
-**Compatible Host:** DeepSeek Harness `0.1.0-rc.8` and `0.1.1-rc.2`
+**Compatible Host:** DeepSeek Harness `0.1.2-alpha.2`
 
-![Native Taskboard board, task detail, and workflow views](https://raw.githubusercontent.com/shengsheng90/DSH-taskboard/dd5455bdeec3a86eaf84482ef2dd42d86c7b88aa/docs/assets/taskboard-demo.gif)
+![Native Taskboard board, task detail, and workflow views](https://raw.githubusercontent.com/shengsheng90/DSH-taskboard/3528286122bbb3081b3e5ed64669957f6249f2cf/docs/assets/taskboard-demo.gif)
 
 If you are an installing agent, jump to [Install into DeepSeek Harness](#install-into-deepseek-harness) and follow every step in order. Do **not** add this Git repository as a raw plugin source: `lib/` is gitignored, so a git install has no compiled Host/Client bundle.
 
@@ -37,7 +37,7 @@ Further design docs: [Architecture](docs/architecture.md), [Security and recover
 |---|---|
 | Node.js | `^22.19.0` or `>=24.0.0` (24 recommended; built-in `node:sqlite`) |
 | pnpm | `11` (`packageManager` is `pnpm@11.15.1`) |
-| DeepSeek Harness | `0.1.0-rc.8` or `0.1.1-rc.2` checkout or installation, **web** profile |
+| DeepSeek Harness | `0.1.2-alpha.2` checkout or installation, **web** profile |
 | Network | only needed to clone this repo and install Node dependencies |
 | Permissions | write access to `$DSH_HOME` (default `~/.dsh`) and the ability to restart the Harness process |
 

@@ -25,6 +25,8 @@ Managing session lifecycle (this plugin) is the root fix: no session accumulatio
 | **any type** | total exceeds capacity cap | recycle by `one-shot → continuable → main` + oldest | 400 |
 | **archive directory** | kept over N hours | physically deleted | 24 hours |
 
+> **行为说明（v0.3+）**：one-shot 子代理统一按 `oneShotMinAgeMinutes`（默认 3 分钟）闲置阈值归档，有/无 end-seed 阈值一致。早期版本中「未写 end-seed 的 one-shot 需闲置满 1 小时才归档」的兜底已移除。
+
 ### Archive mechanism (recoverable)
 
 Cleaned sessions are **moved to `~/.dsh/sessions-archive/`** first (workspace/session-id structure preserved) — they disappear from the GUI immediately (the list only reads the sessions directory), but the files remain and can be restored manually:
@@ -38,8 +40,9 @@ A "delete directly" mode (no archive, irreversible) is also available.
 
 ### Safety (double protection)
 
-- **Running sessions are never touched**: logs without `session/end-seed` are never cleaned (checked in both the one-shot path and the capacity cap)
-- **live protection**: sessions still held in the in-memory session store (open/loading) are skipped
+- **Running sessions are never touched**: live sessions (still held in the in-memory session store, open/loading) are skipped — and the live check is **fail-closed**: a store query error treats the session as live, never deleting on uncertainty
+- **Idle = last log write**: idle is judged by the session log file mtime (last write time), not the directory mtime — DSH appends to `session.jsonl.zstd`, so active sessions keep refreshing their mtime and are never misjudged idle
+- **one-shot**: finished one-shot subagents are archived uniformly by the `oneShotMinAgeMinutes` idle threshold (with or without end-seed, same threshold); the capacity cap additionally skips sessions lacking `session/end-seed`
 - Main sessions do not participate in capacity recycling by default (configurable)
 - Per-action failure isolation: every action is try/catch wrapped
 
@@ -113,7 +116,7 @@ Output in guard `server-*.out.log`:
 ```
 [dsh-session-pruner] armed: interval=60min cap=400 cleanMain=false
 [dsh-session-pruner] hot-reloaded: interval=60min cap=400 ... contIdle=0d mainIdle=0d
-[dsh-session-pruner] archived a1b2c3d4 (subagent/one-shot) one-shot done cache=true
+[dsh-session-pruner] archived a1b2c3d4 (subagent/one-shot) one-shot idle cache=true
 [dsh-session-pruner] archive pruned: 2 expired
 ```
 

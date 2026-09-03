@@ -9,15 +9,17 @@ A [DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) plug
 - [中文 README](./README.zh.md)
 - [日本語 README](./README.ja.md)
 - [한국어 README](./README.ko.md)
-- [Installation guide](./INSTALL.md)
-- [中文安装指南](./INSTALL.zh.md)
-- [日本語インストールガイド](./INSTALL.ja.md)
-- [한국어 설치 안내](./INSTALL.ko.md)
-- [Changelog](./CHANGELOG.md)
-- [日本語 changelog](./CHANGELOG.ja.md)
-- [한국어 changelog](./CHANGELOG.ko.md)
+- [Installation guide](./docs/INSTALL.md)
+- [中文安装指南](./docs/INSTALL.zh.md)
+- [日本語インストールガイド](./docs/INSTALL.ja.md)
+- [한국어 설치 안내](./docs/INSTALL.ko.md)
+- [Changelog](./docs/CHANGELOG.md)
+- [日本語 changelog](./docs/CHANGELOG.ja.md)
+- [한국어 changelog](./docs/CHANGELOG.ko.md)
 
 > **Compatibility note:** DSH `0.1.2-alpha.1` and later accept language-pack locale IDs through `LocaleRuntime`. This plugin registers `ja` and `ko` dynamically, so no DSH core fork is required. Older DSH builds that only expose built-in locale IDs support `zh` and `en` only.
+>
+> The published runtime entries are `lib/index.js` (Host) and `lib/client.js` (Client). After changing TypeScript or locale sources, run `npm run build` before running DSH or packing the plugin. Current DSH does not expose a public semver metadata contract, so runtime capability detection is authoritative. An optional version is used only when explicit metadata or test input supplies it; unknown valid versions still use the detected capabilities. The plugin supports both modern `remote.settings` and legacy `connection.api.settings`.
 
 ## Why use it?
 
@@ -62,7 +64,7 @@ Use the official DSH CLI to manage the plugin profile. A plain `npm install` doe
 dsh plugin --profile <profile> add @hytime/dsh-thinking-effort
 
 # Install a specific version
-dsh plugin --profile <profile> add @hytime/dsh-thinking-effort@0.1.9
+dsh plugin --profile <profile> add @hytime/dsh-thinking-effort@0.1.13
 
 # Upgrade
 dsh plugin --profile <profile> update @hytime/dsh-thinking-effort
@@ -72,7 +74,7 @@ dsh plugin --profile <profile> remove @hytime/dsh-thinking-effort
 rm -f "${DSH_HOME:-$HOME/.dsh}/thinking-effort-loaded.json"
 ```
 
-See [INSTALL.md](./INSTALL.md) for profile discovery, migration, validation, and troubleshooting.
+See [INSTALL.md](./docs/INSTALL.md) for profile discovery, migration, validation, and troubleshooting.
 
 ## Quick use
 
@@ -91,13 +93,13 @@ See [INSTALL.md](./INSTALL.md) for profile discovery, migration, validation, and
 
 7. Return to Composer and select the model to use its reasoning selector.
 
-The settings page shows the installed version as a small watermark such as `v0.1.9` in the bottom-right corner.
+The settings page shows the installed version as a small watermark such as `v0.1.13` in the bottom-right corner.
 
 ### Settings page layout
 
 The page header contains the language selector. Below it, the Subagent default effort card controls the default for requests without an explicit effort. The Quick settings controls apply a preset across models. Provider sections can be expanded or collapsed; each model row exposes input capabilities, context length, and a settings control for reasoning levels and gateway values.
 
-![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/333c296a9a1e3fd462a2bb1075a1de388ea929b7/docs/assets/settings-model-capabilities-en.png)
+![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/f4ad3bef3d2a6a25e972e61bb36b717352d43888/docs/assets/settings-model-capabilities-en.png)
 
 
 ## How it works
@@ -114,6 +116,16 @@ The page header contains the language selector. Below it, the Subagent default e
 - The selected subagent level must be supported by the target model, or the gateway may return `UNSUPPORTED_REASONING_EFFORT`.
 - `off` and an unset effort may both omit `reasoning`; whether this disables thinking depends on the gateway protocol.
 - Host changes require a DSH restart. Settings and locale changes are applied in the browser, with a refresh available when needed.
+
+## CI and release maintenance
+
+- Pull requests and pushes to `main` run the quality matrix on Node `22.19.0` and `24.x`.
+- The workflow uses `npm ci`; maintainers must commit `package-lock.json` when dependencies change.
+- The ordinary CI workflow does not publish to npm. Publishing is triggered only by a `v<version>` tag through `publish.yml`.
+- Before creating a release tag, update `package.json` version and `CHANGELOG.md` files, commit those changes, and create the matching `v<version>` tag. The tag must point to a commit in the `main` history.
+- npm Trusted Publishing must be configured for repository `hytime/dsh-thinking-effort` and workflow `publish.yml`. The workflow publishes provenance through GitHub OIDC and does not require `NPM_TOKEN`.
+- Before publishing, the workflow builds and tests one representative from each supported DSH compatibility range: `dsh-v0.1.2-alpha.3` (`0.1.2-alpha.3`) for modern and `dsh-v0.1.1-rc.2` (`0.1.1-rc.2`) for legacy, using the official `dsh plugin` command and real compatibility checks.
+- The workflow never changes the package version or any `CHANGELOG` file automatically; an existing npm version also blocks publishing.
 
 ## License
 

@@ -22,27 +22,27 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的**执行迷宫**：把 Agent 真实的干活过程完整画出来、并分析给你看。
 
-![执行迷宫：迷宫 + 数据轨道 + 执行分析，一屏读懂一场 8.6 小时的真实会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/66abee3bbcdd9fab45c003609e2eae3f00551ea3/assets/maze-hero.png)
+![执行迷宫：迷宫 + 数据轨道 + 执行分析，一屏读懂一场 8.6 小时的真实会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-hero.png)
 
 - **迷宫**——主干路径、失败支路、折返点落在同一根时间轴上；空闲自动折叠、密集段自动聚合成「×N」徽标（点击放大、标签逐级补齐）、进度条自带失败热力，8 小时的会话照样字字可辨：
 
-![密集会话：整图态聚合徽标 → 点击放大 → 标签补齐 → 点开失败详情](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/66abee3bbcdd9fab45c003609e2eae3f00551ea3/assets/maze-zoom.gif)
+![密集会话：整图态聚合徽标 → 点击放大 → 标签补齐 → 点开失败详情](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-zoom.gif)
 
 - **数据轨道**——每一步的工具调用密度、Token 脉冲（缓存背景 + 未缓存输入/推理/输出增量柱）、上下文压力曲线（70%/90% 阈值线、压缩事件「⌄−N%」标注，悬停看压缩前后真值）：
 
-![轨道悬停：Token 分层数字 → 上下文占用 → 压缩事件前后对比](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/66abee3bbcdd9fab45c003609e2eae3f00551ea3/assets/maze-tracks.gif)
+![轨道悬停：Token 分层数字 → 上下文占用 → 压缩事件前后对比](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-tracks.gif)
 
 - **执行分析**——失败恢复链（原样重试 / 换参数 / 换工具 / 未恢复）、工具结果矩阵、耗时分位散点。**每个结论一键点回原始命令与返回内容**：
 
-![点失败链任意一条：缩放定位到那次失败，弹出完整命令、报错返回与判定依据](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/66abee3bbcdd9fab45c003609e2eae3f00551ea3/assets/maze-drilldown.gif)
+![点失败链任意一条：缩放定位到那次失败，弹出完整命令、报错返回与判定依据](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-drilldown.gif)
 
 - **多会话对比**——同一任务在不同模型上的 2~5 次跑同轴对比：轮次对齐、手动锚点、支路盘点。
 
-![对比：同一任务的两次真实跑 → 支路盘点按轮次列差额 → 点行缩放到该轮](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/66abee3bbcdd9fab45c003609e2eae3f00551ea3/assets/maze-compare.gif)
+![对比：同一任务的两次真实跑 → 支路盘点按轮次列差额 → 点行缩放到该轮](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-compare.gif)
 
 - **回放**——最高 300× 重放整场执行，看它是怎么一步步走到结果的：
 
-![回放：300× 重放一场 8.6 小时的会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/66abee3bbcdd9fab45c003609e2eae3f00551ea3/assets/maze-replay.gif)
+![回放：300× 重放一场 8.6 小时的会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-replay.gif)
 
 **铁律**：所有数字都是对判定数据的确定性聚合，不调 LLM；每个判定带依据、每个结论可回溯到证据；数据缺失时如实标注（不画没有数据的轨道、不猜未知模型的窗口），绝不编。
 

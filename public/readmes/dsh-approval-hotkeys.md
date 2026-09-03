@@ -30,7 +30,7 @@ Every approval — edits, permission escalations, anything routed through the
 ApprovalPanel. **Enter** presses *Allow once*, **Esc** presses *Reject*.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/29fb7de42f9ff6bdbf3138574b451fad1034df29/assets/screenshots/approval-panel.png" width="680" alt="Approval panel — Enter: Allow once, Esc: Reject"/>
+  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/afb58f45e33ebe93e218b8daf49876ac7f27da9d/assets/screenshots/approval-panel.png" width="680" alt="Approval panel — Enter: Allow once, Esc: Reject"/>
 </p>
 
 ### Question / choice panel
@@ -39,7 +39,7 @@ Tool questions (`ask_user_question`). **Enter** presses *Submit / Next*,
 **Esc** presses *Discard the group*.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/29fb7de42f9ff6bdbf3138574b451fad1034df29/assets/screenshots/question-panel.png" width="680" alt="Question panel — Enter: Submit, Esc: Discard the group"/>
+  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/afb58f45e33ebe93e218b8daf49876ac7f27da9d/assets/screenshots/question-panel.png" width="680" alt="Question panel — Enter: Submit, Esc: Discard the group"/>
 </p>
 
 ### Plan review panel
@@ -48,7 +48,7 @@ Tool questions (`ask_user_question`). **Enter** presses *Submit / Next*,
 the panel has no decline action).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/29fb7de42f9ff6bdbf3138574b451fad1034df29/assets/screenshots/plan-review-panel.png" width="680" alt="Plan review panel — Enter: Approve, Esc: Decline"/>
+  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/afb58f45e33ebe93e218b8daf49876ac7f27da9d/assets/screenshots/plan-review-panel.png" width="680" alt="Plan review panel — Enter: Approve, Esc: Decline"/>
 </p>
 
 ## Install

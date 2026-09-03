@@ -3,13 +3,16 @@
 一个常驻的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Cordis 插件，用于在侧边栏底部、Settings 按钮正上方展示你的 DeepSeek 账户余额。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Choi-Peng/dsh-deepseek-balance/4920d1cf5cc9ab3d4b4b86b60bacfa34d89aba49/docs/imgs/example.png" alt="账户余额示例" width="240">
+  <img src="https://raw.githubusercontent.com/Choi-Peng/dsh-deepseek-balance/9fc3ecd68616bbb890834256d969dbcad030b881/docs/imgs/example.png" alt="账户余额示例" width="240">
 </p>
 
 ![balance-display](https://img.shields.io/badge/platform-web-blue)
 
 > [!NOTE] 
 > **AI 生成声明**:本插件由 AI 生成，可能存在错误、安全隐患或不符合预期之处，使用前请自行 review 代码并实测；发现任何问题欢迎提交 issue 或 PR 修正。
+
+> [!IMPORTANT]
+> **兼容性**：本版本面向 **dsh ≥ 0.1.2-alpha.3**（0.1.2 移除了 `@deepseek-ai/dsh-client-runtime`，客户端半身改为按包注入；settings 命名空间改为裸字符串注册）。仍在使用 0.1.1 世代宿主的请安装 `@choi-p/dsh-deepseek-balance@0.4.0`。
 
 ## 特性
 
@@ -56,7 +59,7 @@ bundle 挂载随插件移除自动消失；若曾在 profile 层手动写过该�
 
 ## 配置
 
-插件设置遵循 dsh 官方双缝配置模型，**均实时生效，无需重启 `dsh web`**（要求宿主安装 `@deepseek-ai/dsh-settings` ≥ 0.1.0-rc.7，标准 dsh web 发行版内置）：
+插件设置遵循 dsh 官方双缝配置模型，**均实时生效，无需重启 `dsh web`**（要求宿主为 dsh ≥ 0.1.2-alpha.3，内置 `@deepseek-ai/dsh-settings`）：
 
 | 层 | 来源 | 生效方式 |
 | --- | --- | --- |

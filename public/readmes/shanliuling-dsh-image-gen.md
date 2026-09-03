@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/b69d54dcb61206f3fbddbd1d40dd0d84172e8311/docs/assets/hero-poster.webp" alt="dsh-image-gen 宣传海报" width="100%" style="max-width: 860px; border-radius: 12px;" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/c6a3128119a210ba6f94f9f40e12ee1d69e323b9/docs/assets/hero-poster.webp" alt="dsh-image-gen 宣传海报" width="100%" style="max-width: 860px; border-radius: 12px;" />
 
 <br /><br />
 
@@ -39,8 +39,8 @@
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/b69d54dcb61206f3fbddbd1d40dd0d84172e8311/docs/assets/generate-example.png" alt="首次生成图片的对话截图" width="48%" style="vertical-align: top;" />
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/b69d54dcb61206f3fbddbd1d40dd0d84172e8311/docs/assets/edit-example.png" alt="基于上一张图片继续编辑的对话截图" width="48%" style="vertical-align: top;" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/c6a3128119a210ba6f94f9f40e12ee1d69e323b9/docs/assets/generate-example.png" alt="首次生成图片的对话截图" width="48%" style="vertical-align: top;" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/c6a3128119a210ba6f94f9f40e12ee1d69e323b9/docs/assets/edit-example.png" alt="基于上一张图片继续编辑的对话截图" width="48%" style="vertical-align: top;" />
 </div>
 
 </div>
@@ -97,11 +97,11 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 打开 DSH Web 页面（默认 `http://localhost:3080`）：
 
 1. 进入 **Settings → Plugins → Image generation**。
-2. 选择 Provider；云端 Provider 填写 API Key，本地 ComfyUI 填写地址并导入 API Format Workflow JSON（提示词位置使用 `{{prompt}}`，种子可选用 `{{seed}}`）。
+2. 选择 Provider；云端 Provider 填写 API Key，本地 ComfyUI 填写地址并导入 API Format Workflow JSON（提示词位置使用 `{{prompt}}`，种子可选用 `{{seed}}`；图生图工作流在 LoadImage 的 `image` 输入中使用 `{{image}}`，调用时插件会自动上传源图并回填文件名，仅允许出现一次）。ComfyUI 支持导入多个命名工作流并选择当前使用的一个，Agent 也可以在调用时通过 `workflow` 参数按名称指定。
 3. 可按需开启 **保存到工作区**（默认开启）并自定义子目录，点击 **保存** 即可。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/b69d54dcb61206f3fbddbd1d40dd0d84172e8311/docs/assets/settings-preview.png%3Fv%3D0.1.7" alt="设置面板预览" width="720" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/c6a3128119a210ba6f94f9f40e12ee1d69e323b9/docs/assets/settings-preview.png%3Fv%3D0.1.7" alt="设置面板预览" width="720" />
 </div>
 
 ### 3. 开始对话生图
@@ -127,7 +127,7 @@ Agent 会调用 `edit_image`，复用当前会话中的图片继续修改。
 点击会话顶栏的 **`[画廊]`** Tab，即可集中查看和搜索所有对话生成的历史图片：
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/b69d54dcb61206f3fbddbd1d40dd0d84172e8311/docs/assets/gallery-preview.png" alt="原生生图画廊预览" width="820" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/c6a3128119a210ba6f94f9f40e12ee1d69e323b9/docs/assets/gallery-preview.png" alt="原生生图画廊预览" width="820" />
 </div>
 
 ---
@@ -152,7 +152,7 @@ Agent 会调用 `edit_image`，复用当前会话中的图片继续修改。
 | **OpenAI Compatible** | 自定义 | 自定义 Base URL |
 | **ByteDance Seedream / 火山方舟** | `doubao-seedream-5-0-260128` | `https://ark.cn-beijing.volces.com/api/v3` |
 | **Aliyun DashScope / Qwen Image** | `qwen-image-3.0` | `https://dashscope.aliyuncs.com/api/v1` |
-| **Local ComfyUI（仅文生图）** | 用户导入的 API Format Workflow | `http://127.0.0.1:8188` |
+| **Local ComfyUI（文生图 + 图生图）** | 用户导入的 API Format Workflow | `http://127.0.0.1:8188` |
 
 ---
 

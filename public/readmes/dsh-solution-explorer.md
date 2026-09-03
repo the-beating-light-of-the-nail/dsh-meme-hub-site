@@ -12,7 +12,7 @@
 
 [English](README.md) · [简体中文](README.zh.md)
 
-![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/demo.gif)
+![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/demo.gif)
 
 </div>
 
@@ -28,7 +28,8 @@
   stage / unstage / discard (per-file or all), commit with a message, and a
   branch info bar. **Diff view**: full-file side-by-side compare with an
   editable right column (Enter splits lines, backspace/delete merges, NBSP
-  placeholders), Ctrl+S to save. **Commit Graph**: an SVG history view with
+  placeholders), a middle gutter to stage (⤒) or revert (↩) individual hunks,
+  Ctrl+S to save. **Commit Graph**: an SVG history view with
   branch lanes and merge lines; click a commit to expand its changed files
   (with file-type icons and status letters M/A/D/R) below the row, hover for
   a tooltip with the full message, stats, and a GitHub link; plus checkout. **Sync**: fetch / pull / push / sync (pull +
@@ -67,7 +68,7 @@
 
 | File Explorer | Source Control | Diff |
 | --- | --- | --- |
-| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/75e77fb2c439f7dd37f274da30381beb2fb1036d/assets/screenshot-3-diff.png) |
+| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/assets/screenshot-3-diff.png) |
 
 ## Installation
 

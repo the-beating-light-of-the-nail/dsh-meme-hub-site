@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -21,7 +21,7 @@
 - **状态栏避让**：刘海安全区、深/浅主题、双击缩放都处理
 - **输入区不打架**：权限胶囊、模型名、切换菜单在窄屏下不重叠
 - **长会话不卡流量**：宿主返回的大 JSON（会话历史等）自动 gzip/brotli 压缩，手机端加载明显提速
-- **平板也管**：768–1023px 限宽居中；桌面 ≥1024px 完全 no-op
+- **平板也管**：768–1023px 触屏设备限宽居中；桌面端（鼠标指针）任何宽度都是完全 no-op，窄窗口/系统缩放也不会误启移动 UI
 - **诊断方便**：`?mobile-nav-debug=1` 显示悬浮诊断条（视口 / 浮层状态 / JS 错误）
 
 ---
@@ -30,7 +30,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/81b687179a6f4ef2c0aa24f4048edf632a2696c9/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/settings.png) |
 
 ## 安装
 

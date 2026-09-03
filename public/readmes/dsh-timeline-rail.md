@@ -4,11 +4,11 @@
 
 A **message timeline rail** for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) web chat.
 
-Along the right edge of the conversation, above the composer, it draws a **low-contrast, evenly spaced column of thin tick marks** — one tick per durable user message, styled after a meeting-notes / editor timeline. Hover a tick to preview that message; click it to jump the conversation straight to it.
+Along the left edge of the conversation, above the composer, it draws a **low-contrast, evenly spaced column of thin tick marks** — one tick per durable user message, styled after a meeting-notes / editor timeline. Hover a tick to preview that message; click it to jump the conversation straight to it.
 
 > **Desktop & Web both supported.** The DeepSeek Harness **desktop** app is an Electron shell that embeds the same browser client served over a localhost web server, so a "web" plugin renders identically on both. This package targets the browser-side conversation slot and works wherever that client runs — Desktop **and** Web. Only headless / TUI profiles have no composer slot and render nothing.
 
-![Timeline Rail Screenshot](https://raw.githubusercontent.com/lcthe/dsh-timeline-rail/661d4a859f80d8c6f445d844ee0fb081c30cbc66/assets/images1.png)
+![Timeline Rail Screenshot](https://raw.githubusercontent.com/lcthe/dsh-timeline-rail/7ecb048f571492a3a902eb7052eb8757b23518d6/assets/images1.png)
 
 ## Features
 
@@ -22,7 +22,7 @@ Along the right edge of the conversation, above the composer, it draws a **low-c
 
 ## How it works
 
-DSH's web GUI is a Cordis composition. This package is a **client plugin** that registers a single entry into the `conversation.input.dock` slot (the additive band above the composer card). It reads the live `ConversationSnapshot` through the slot's `useSession` hook, maps each durable `kind: 'user'` node to a tick, and measures the scrollport (`[data-conversation-scroll]`, `[data-composer-seat]`) to lay the rail out on the right edge. On mount it uses the scoped conversation service's `loadOlder()` action to fetch earlier pages automatically until the session history is complete; each returned page adds ticks immediately. It defines no new service.
+DSH's web GUI is a Cordis composition. This package is a **client plugin** that registers a single entry into the `conversation.input.dock` slot (the additive band above the composer card). It reads the live `ConversationSnapshot` through the slot's `useSession` hook, maps each durable `kind: 'user'` node to a tick, and measures the scrollport (`[data-conversation-scroll]`, `[data-composer-seat]`) to lay the rail out on the left edge. On mount it uses the scoped conversation service's `loadOlder()` action to fetch earlier pages automatically until the session history is complete; each returned page adds ticks immediately. It defines no new service.
 
 Positioning is computed against the same stable data attributes the product itself uses (`[data-conversation-scroll]`, `[data-chat-flow]`, `[data-chat-anchor-key]`, `[data-composer-seat]`). The rail is constrained to the visible conversation area, and its empty gutter is pointer-transparent so it does not block conversation or Session Log scrolling. Long histories use an independent rail scrollport; scrolling the rail does not scroll the conversation.
 

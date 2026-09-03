@@ -1,6 +1,6 @@
 # @lanbaolu/dsh-fail-soft
 
-> ✅ **当前状态：核心稳定候选（v0.1.15）**
+> ✅ **当前状态：核心稳定候选（v0.1.17）**
 >
 > 仍依赖 DSH 内核补丁：升级 DSH 后请通过 `fail_soft_status` 的 `patch` 字段
 > 确认补丁健康状态，若显示 `needs-adaptation` 请先更新 `backup/` 模板再继续使用。
@@ -24,6 +24,7 @@ DSH 的插件装配是 fail-loud：bundle 里**任何一个**插件加载/激活
 | 运行期服务 | `lib/index.js` | `failSoft` 服务 + `fail_soft_*` 工具 + `/api/fail-soft/*` HTTP API |
 | 上下文工具 | `lib/context-utils.js` | `profileDirOf` / 持久化开关读写（零 DSH 依赖） |
 | UI 面板 | `lib/client.js` | 设置面板「Fail-soft 隔离」区域：状态 + 一键开关 |
+| 第 2 层进程兜底 | `scripts/failsoft-web.mjs`（bin：`dsh-failsoft-web`） | 进程外启动包装器：内核补丁失效/未装配时仍能自己解析崩溃、自己写隔离、退避重拉 |
 
 ## 前置条件（一次性）
 
@@ -43,7 +44,9 @@ DSH 的插件装配是 fail-loud：bundle 里**任何一个**插件加载/激活
 DSH 官方升级 = npx 重新拉包到新的 `~/.npm/_npx/<hash>/` 目录，内核补丁
 会被覆盖丢失。本插件每次启动时自动运行 **内核补丁自愈**（`lib/heal.js`）：
 
-- **动态定位**实际运行的 DSH 安装（不硬编码 npx hash，可从当前进程 argv 推断）；
+- **动态定位**实际运行的 DSH 安装（不硬编码 npx hash：从当前进程 argv 推断；
+  **0.1.17 起**支持 Desktop App——dsh 内核跑在 Electron 主进程、argv 无内核
+  路径时改从 `process.resourcesPath` → `app.asar.unpacked` 定位）；
 - **检测**补丁状态：`ok`（已打）/ `needs-apply`（丢失，npx 重装同版本）/ `needs-adaptation`（官方改了代码结构）；
 - **自动重打**：仅当目标与"已知原始版"一致时安全重打（含 `profile-boot-*.js` 文件名 hash 变化的情况）；
 - **官方改动结构**时报告 `needs-adaptation` 并提示更新 backup/ 模板，**绝不破坏新版代码**。
@@ -66,7 +69,7 @@ UI 面板（🧩 行）查看。命令行重打：`node patch-apply.mjs`（与�
 >
 > 推荐使用 DSH 官方安装（自动按包名注册）：
 > ```bash
-> dsh plugin --profile web add @lanbaolu/dsh-fail-soft@0.1.15
+> dsh plugin --profile web add @lanbaolu/dsh-fail-soft@0.1.17
 > ```
 > ⚠️ **请带上版本号**：pnpm 11 有供应链冷却期（`minimumReleaseAge`）与元数据
 > 缓存，**刚发布的版本**用不带版本号的 `add` 可能解析到旧版；显式
@@ -140,6 +143,27 @@ echo 'export DSH_FAIL_SOFT=1' >> ~/.zshrc          # 永久（仅终端启动生
   同时去重 profile patch 里重复的 entry id（集成 dsh-fix / dev_fix_patch 能力）。
 - **UI 面板**：web 会话侧栏 conversation.view 显示隔离列表与恢复按钮。
 - **恢复**：修复插件后删除 patch 文件里对应条目（或用 restore 工具/UI）。
+
+## 第 2 层：进程级兜底（v0.1.16+）
+
+> 场景：内核补丁被官方大改回滚、或 fail-soft 插件自身没起来（Desktop App 内嵌
+> 内核不在 heal 扫描范围）时，挂载兜底（第 1 层）兜不住。第 2 层把兜底搬到
+> **进程外**：外层进程与一切插件解耦，捕获 dsh 崩溃输出 → 解析坏插件 →
+> **自己写隔离** → 带退避重拉。不依赖内核补丁，也不依赖插件被装配。
+
+```bash
+# 拉起 dsh web（进程外兜底，退出码透传）
+dsh-failsoft-web
+# 透传参数给 dsh web / 指定 profile / 指定 dsh 入口
+dsh-failsoft-web -- --port 3080
+dsh-failsoft-web --dsh /Applications/DSH\ Desktop.app/.../dsh/lib/bin.js
+DSH_PROFILE=desktop dsh-failsoft-web --dsh <desktop bin>   # Desktop 场景
+# 调参
+dsh-failsoft-web --max-restarts 3 --backoff-ms 2000
+```
+
+行为：dsh 正常退出(0) 透传退出；崩溃 + 解析出可隔离插件 → 写 disabled patch
+后自动重拉；崩溃 + 无可隔离对象 → 跑 doctor 诊断，最多再给一次机会。
 
 ## 已知边界
 

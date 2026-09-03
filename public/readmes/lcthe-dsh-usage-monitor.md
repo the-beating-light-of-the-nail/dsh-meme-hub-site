@@ -24,19 +24,19 @@ A DSH plugin that adds a **Usage** page to the settings UI. It automatically rea
 
 #### 1. Balance capsule in the composer
 
-![Balance capsule](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/54022c6525cd25210a285c6ec5e3f428fc33ed00/1.png)
+![Balance capsule](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/e8f9933a2d33f320947dda369fb59c7d00c6b650/1.png)
 
 #### 2. Usage overview
 
-![Usage overview](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/54022c6525cd25210a285c6ec5e3f428fc33ed00/2.png)
+![Usage overview](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/e8f9933a2d33f320947dda369fb59c7d00c6b650/2.png)
 
 #### 3. Query configuration editor
 
-![Query configuration editor](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/54022c6525cd25210a285c6ec5e3f428fc33ed00/3.png)
+![Query configuration editor](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/e8f9933a2d33f320947dda369fb59c7d00c6b650/3.png)
 
 #### 4. Custom provider form
 
-![Custom provider form](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/54022c6525cd25210a285c6ec5e3f428fc33ed00/4.png)
+![Custom provider form](https://raw.githubusercontent.com/lcthe/dsh-usage-monitor/e8f9933a2d33f320947dda369fb59c7d00c6b650/4.png)
 
 ## 📐 Requirements
 

@@ -18,9 +18,9 @@ DeepSeek Harness 的**任务看板插件**：人建卡、agent 认领执行、�
 
 ## 界面
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/dd4baa85a46747f0c78b76985bb5a38b914b080a/img/board.png" alt="任务看板" width="880"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/5c2a22cd141f910fec2096ad385e90d1e5bcfacc/img/board.png" alt="任务看板" width="880"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/dd4baa85a46747f0c78b76985bb5a38b914b080a/img/modal.png" alt="新建任务" width="440"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/5c2a22cd141f910fec2096ad385e90d1e5bcfacc/img/modal.png" alt="新建任务" width="440"></p>
 
 ## 目录
 
@@ -133,6 +133,10 @@ agent：
 - 新建/编辑弹窗：项目、模型（含思考强度）、紧急度、执行方式、cron 实时校验与下次运行预览、执行隔离开关、验收清单编辑
 - 详情面板：状态流转（done 仅限人工；清单未全勾时完成需二次确认并显示未勾数）、agent/用户评论流、执行记录（倒序，最新在最上；会话 ID 点击跳转打开该执行会话；已删除/已归档分开提示）、停止执行、Worktree 隔离块（分支 / 提交 / 改动统计 / 合并与清理）、执行报告块、验收清单块
 - 待验收列卡片快捷操作：「✓ 完成」一键验收、「✗ 退回」退回待办并可附退回原因（agent 开工前会读）
+- **双栏宽屏任务弹窗 + Slash 补全（0.6.0）**：新建/编辑弹窗左右双栏（左栏核心字段与执行配置，右栏描述与 Prompt）；描述/Prompt 输入 `/` 即弹出命令与技能补全（↑↓/Enter/Tab/Esc 键盘导航，宿主动态发现与内置清单合并）；描述与 Prompt 中的 Markdown 图片渲染为缩略图，点击灯箱放大
+- **执行权限（0.6.0）**：任务级三档执行权限（📁 可写入工作区 / 🔒 仅可查看 / ⚡ 完全权限），表单选择 + 看板设置默认执行权限；卡片、详情、模板列表显示权限徽章
+- **界面中英双语（0.6.0）**：看板全部界面文案跟随 DSH「设置 → 通用设置 → 语言」（zh/en）实时切换，无需刷新；语言偏好由 DSH 统一存储（settings.yaml 的 locale.preference），插件自身不新增任何配置；无 locale 服务的环境自动按浏览器语言降级
+- **外部会话自动同步（0.5.5）**：看板设置开启「🔄 自动纳入会话」后，工作区直接新建的会话自动在看板生成任务卡片（按会话工作目录映射项目，取首条消息作标题/描述）——运行中进「进行中」并绑定会话（可一键跳转）、成功结算自动流转「待验收」、异常退回「待办」；自动过滤看板内部执行会话（0.6.0 起连同子代理会话一并过滤），多轮续跑延续同一张卡片；出厂默认关闭
 - **一键跳转执行会话（0.5.4）**：任务卡片新增「🤖 会话ID ↗」按钮、详情页顶部新增「🤖 跳转会话 ↗」按钮，持有者 Chip 同样可点——进行中优先、其次最近一次执行对应的会话一键直达（看板自动收起）；已归档 / 已删除 / 会话服务不可用分别精准提示
 - **记住上次模型（0.5.4）**：新建任务自动带出上次选用的模型与思考强度（模板预填与编辑不受影响）
 - **验收清单 DoD（0.4.0）**：建卡时定验收条件（≤30 项）；agent 用 `taskboard_checklist` 增补/勾选（附证据 note）；用户在详情页直接勾选；待验收时未完成项红色高亮 + 卡片「☑ n/m」角标（未全勾显红）；清单编辑在表单中整组管理（勾选状态与证据保留）
@@ -211,12 +215,37 @@ pnpm 的构建授权——按报错把 key 加进 profile 的 `pnpm-workspace.ya
 git clone https://github.com/cloader/dsh-taskboard.git
 cd dsh-taskboard
 npm install && npm run build    # host ESM + client CJS 双构建
-npm test                        # vitest 全量（150 项）
+npm test                        # vitest 全量（233 项）
 node tests/manual-git-e2e.mjs   # 真 git 端到端手测（worktree 全链路 + 续跑 + diff 查看器）
 node scripts/screenshot.mjs     # 重新生成 img/ 截图（需本机 Edge）
 ```
 
 ## 升级日志
+
+### 0.6.1
+
+- **修复：`/` 快捷补全弹层被任务弹窗滚动容器裁剪**：弹层 portal 到 document.body 并 fixed 锚定输入框，不再被表单滚动容器裁剪；上方空间不足自动下翻、贴边收拢，并随滚动/缩放实时跟随
+- **修复：键盘 ↑/↓ 选择补全项时列表不滚动**：高亮项自动滚入视野（含 wrap-around），直调列表 scrollTop 避免连带滚动模态表体
+### 0.6.0
+
+- **任务弹窗左右双栏宽屏布局、输入框 / 快捷补全与执行权限选择： [@jw5555555555](https://github.com/jw5555555555)（[#14](https://github.com/cloader/dsh-taskboard/pull/14)）**
+  - 新建/编辑弹窗升级为左右双栏宽屏布局（左栏核心字段与执行配置、右栏描述与执行 Prompt）
+  - 描述与 Prompt 输入框支持输入 `/` 快捷补全 Slash 命令与 Agent 技能（↑↓ 选择、Enter/Tab 确认、Esc 关闭，宿主动态发现的命令技能与内置清单合并）
+  - 新增任务级「执行权限」三档选择（📁 可写入工作区 / 🔒 仅可查看 / ⚡ 完全权限），看板设置同步新增默认执行权限，卡片与详情页显示权限徽章
+  - 描述与 Prompt 中的 Markdown 图片渲染为可点击缩略图并支持灯箱放大
+  - 修复模型列表发现（运行时缺失时回落宿主 API）
+  - 会话自动同步过滤子代理会话，避免子会话误建卡
+- **界面中英双语，跟随 DSH 语言设置**
+  - 看板全部界面文案（列头 / 卡片 / 详情 / 表单 / 模板 / 导入导出 / 设置 / 诊断 / 侧边栏入口）接入 DSH locale 服务，「设置 → 通用设置 → 语言」切换 zh/en 即时生效（无需刷新）
+  - 语言偏好由 DSH 统一存储（settings.yaml 的 locale.preference），插件自身不新增任何配置
+  - 无 locale 服务的部署按浏览器语言自动降级（中文环境 zh，其余 en）
+  - 新增 src/client/i18n/（zh/en 双语字典 + 轻量适配器 + useT hook），labels 枚举文案改为键映射
+  - 字典键集中英强制一致（编译期类型 + 单测 + 源码扫描三重校验）
+  - 顺带修正 PLUGIN_VERSION 与 package.json 的版本漂移（0.5.4 → 0.5.5）
+
+### 0.5.5
+
+- **外部工作区会话自动同步看板： [@jw5555555555](https://github.com/jw5555555555)（[#13](https://github.com/cloader/dsh-taskboard/pull/13)）**：看板「设置」新增「自动同步工作区会话」开关（出厂默认关闭）——开启后，工作区直接新建的会话自动在看板生成任务卡片：按会话工作目录（cwd）映射到对应项目，取首条用户消息与会话标题作为任务的描述与标题；运行中自动进入「进行中」并绑定会话 ID（卡片可一键跳转），执行成功自动流转「待验收」并生成系统评论，异常退回「待办」；自动过滤看板自身创建的内部执行会话防止重复建卡；多轮续跑延续同一张卡片
 
 ### 0.5.4
 
@@ -225,12 +254,6 @@ node scripts/screenshot.mjs     # 重新生成 img/ 截图（需本机 Edge）
 - **新建任务记住上次选用的模型，支持设置思考强度： [@jw5555555555](https://github.com/jw5555555555)（[#11](https://github.com/cloader/dsh-taskboard/pull/11)）**：create 模式自动带出上次的模型与思考强度（模板预填与编辑不受影响）；模型可固定思考强度（reasoningEffort，如 low/medium/high），随执行会话下发；支持思考强度的模型从 DSH 模型目录读取可用档位
 - **列内排序新增「按标题」： [@Amoss-1](https://github.com/Amoss-1)（[#4](https://github.com/cloader/dsh-taskboard/pull/4)）**：数字感知比较，数字前缀按真实数值排序（`01 < 02 < 10 < 90`，字符串比较会把 `10` 排到 `02` 前）；排序选择随视图状态持久化
 - 界面细节：下拉 / 输入框适配明暗主题（DSH 主题变量 + color-scheme）；模板管理弹窗布局优化
-
-### 0.5.3
-
-- **执行 Prompt 改为追加式**：自定义 Prompt 不再整体替换开场指令——实际发给执行会话的是「标题+任务描述+Prompt」，写在描述里的背景不再被漏掉；新建/编辑表单文案与 `taskboard_create` 工具描述同步更新
-- **新增内置「新增功能」模板**：排在「Bug 修复」之前——标题前缀「新增：」，按「明确需求要点 → 实现 → 补测试 → 跑套件」四步走，自带三项验收清单
-- **「Bug 修复」模板首行改为「修复以上问题并按序交接」**：描述现在先于 Prompt 送达，「以上」才指得住
 
 > 📜 更早版本的完整更新日志见 [changelog.md](changelog.md)。
 

@@ -15,7 +15,7 @@ DSH（DeepSeek Harness）功能很强：会话、工具、轨迹、Goal 一应�
 
 四样调料，一个插件，三平台通用（macOS / Linux / Windows）。装上之后——DSH 还是那锅汤，只是变得美味了。
 
-![dsh-soup 界面预览：右侧文件树 + 会话内预览 tab + 速率徽标](https://raw.githubusercontent.com/lyhue1991/dsh-soup/d03d3128a187db9e9d1a0069f9e0be9a27c8efa6/view.jpg)
+![dsh-soup 界面预览：右侧文件树 + 会话内预览 tab + 速率徽标](https://raw.githubusercontent.com/lyhue1991/dsh-soup/41c5726345211343cfde7bddb55d59aaa33b52b9/view.jpg)
 
 ## 速览
 

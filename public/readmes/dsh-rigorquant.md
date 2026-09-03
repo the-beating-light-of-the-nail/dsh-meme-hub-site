@@ -3,7 +3,7 @@
 **English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
 
 </p>
 <p align="center"><sub>
@@ -56,49 +56,49 @@ Six roles, each a separate tool with its own powers and limits. The separation i
 enforced by the composition, so **the producer never checks its own work** — an idea
 dies only on a concrete counterexample, never on style or vibes.
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
 
 **Orchestrator** · `root persona` — fans out the work, synthesizes, and writes the state. Bound by four rules: producer ≠ checker, counterexample-only elimination, seeds always recorded, no handwaved load-bearing claims.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
 
 **Explorer** · `subagent` — blank-context and divergent. Proposes lemmas, equations, constructions, and candidate methods with exact statements. Status reports are rejected.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-oracle.png" align="left" width="200" alt="Oracle">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-oracle.png" align="left" width="200" alt="Oracle">
 
 **Oracle** · `subagent_ground_truth` — blind (no web, no skills, no delegation, no drafts). Re-derives the load-bearing claims from first principles, twice by different means.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
 
 **Adversary** · `subagent_adversary` — runs the check group and hunts counterexamples. Ends in a verdict: `PASS` or `NEEDS-EDITS`.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
 
 **Literature** · `subagent_lit_line` · `_adversary` — a walled citation-graph sweep, then an independent adversary re-retrieves each claim and certifies it's real **and** current.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
 
 **Validator** · `rq_check.py` + schemas — refuses a `PASS` with missing evidence. Reads the audit record, never the study's own claims — a study cannot vouch for itself.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
 
 **Document adversary** · `subagent_document_adversary` — an independent agent that audits each finished deliverable for **self-completeness** (the thing 90% of AI-generated writing drops): every jargon term, symbol, and abbreviation the document uses must be defined in the artifact itself or the audience spec's symbol registry. Returns `VERDICT: PASS` / `VERDICT: NEEDS-EDITS`; a `NEEDS-EDITS` is a blocking gap the validator refuses a `PASS` without.
 
@@ -122,7 +122,7 @@ publishes and serves a JSON snapshot + portraits over
 are `--dsw-alias` tokens, so it follows the shell's own light/dark theme.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/3c685966e69b127f5a6ca2849c5579f1d64cba65/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/457ae8e15d8edfca635f99e8556078afca31f4fa/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
 </p>
 
 The picture above is the reader-safe rendering of the same design (the live
@@ -154,7 +154,7 @@ generated from [`docs/figs/agent-team-activity.js`](docs/figs/agent-team-activit
 
 ## Install
 
-Requires DSH ≥ 0.1.0-rc.7.
+Requires DSH ≥ 0.1.2-alpha.1 (the preset uses native child `agentOptions.reasoningEffort`).
 
 **One line, everything** — the preset, the compute lane, and the plugin (role
 model router + its Settings card):
@@ -184,6 +184,7 @@ package declares a `dsh.bundle` manifest whose rows include a boot-sync half
 distribution (docs/architecture.md Decision 23):
 
 ```sh
+dsh --version                 # must be >= 0.1.2-alpha.1
 dsh plugin --profile web add dsh-rigorquant
 ```
 
@@ -214,22 +215,27 @@ via the skill's `scripts/provision-lean.sh`). See [mcp/jacobian.md](mcp/jacobian
 
 ## Role-routed models (rq-model-router)
 
-The bundled plugin routes each RigorQuant role to its own model + reasoning
-effort, with one fallback per role. Configure it in **Settings → Plugins →
-RigorQuant model routing**: the last saved selection persists (settings user
-layer). Shipped defaults:
+The bundled plugin gives each RigorQuant role a model + reasoning-effort
+policy, with one fallback per role. The oracle and adversary tool rows use DSH
+0.1.2's native `agentOptions` for their shipped primary (`deepseek-v4-pro` @
+`high`); the router only overlays explicit Settings choices and fallback
+retries. Configure overrides in **Settings → Plugins → RigorQuant model
+routing**: the last saved selection persists (settings user layer). Shipped
+defaults:
 
 | Role | Primary | Fallback |
 | --- | --- | --- |
 | Ground-truth oracle | `deepseek-v4-pro` @ high | `deepseek-v4-flash` @ low |
 | Adversary | `deepseek-v4-pro` @ high | `deepseek-v4-flash` @ low |
-| Root, explorers, literature roles | inherit (root follows the chatbox picker) | — |
+| Root, explorers, literature/document roles | inherit (root follows the chatbox picker) | — |
 
-On a terminal primary failure (no adapter / HTTP 4xx) the role degrades to its
+On a terminal primary failure (no adapter / HTTP 4xx, including the official
+quota response `1308` / “Usage limit reached”) the role degrades to its
 fallback for one forced retry, and recovers on the next success or after 10
 minutes. Untagged agents (other presets, workflow workers, forks) are never
-touched. Requires DSH ≥ 0.1.0-rc.7 (self-registered plugin settings). Design
-record: [docs/architecture.md](docs/architecture.md) Decision 16.
+touched. Requires DSH ≥ 0.1.2-alpha.1 for native `agentOptions.reasoningEffort`
+on the fixed-tier child rows. Design record:
+[docs/architecture.md](docs/architecture.md) Decision 16.
 
 ## Repository layout
 

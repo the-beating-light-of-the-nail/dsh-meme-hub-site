@@ -75,12 +75,14 @@ Every hook field:
 | Event | When it fires | Useful context |
 | --- | --- | --- |
 | `turn/start` | A turn begins | session id, turn |
-| `turn/end` | A turn ends (`completed` / `error` / `aborted` / `blocked` / `max-tokens` / `interrupted`) | reason, turn, duration, content, turn token usage |
+| `turn/end` | A turn ends (`completed` / `error` / `aborted` / `blocked` / `max-tokens` / `interrupted`) | reason, turn, duration, content, turn token usage, running subagents |
+| `tree/settled` | A watched session's whole subagent tree settles (no live child still running) after a turn ended with work handed off | total subagents, handoff→settle duration |
 | `step/end` | One step of a turn ends (one model call plus its tool executions) | turn, step |
 | `tool/call` | The model requests one tool invocation | tool name, call id, raw arguments JSON |
 | `tool/result` | A tool call completes | tool name (resolved), result text, failure identity |
 | `user/message` | A user-role message appears on the surface | source kind (`user` / `plugin` / …), message text |
-| `approval/asked` | A tool call requests user approval | tool name, call id, reason |
+| `approval/asked` | A tool call requests user approval | tool name, call id, approval id, reason |
+| `approval/decided` | A pending approval gets its outcome (paired with `approval/asked` by id) | outcome, tool name (resolved), call id, approval id |
 | `session/title` | The session title updates (explicit rename / LLM title / fallback) | new title, source kind |
 | `session/created` | A session is published | session id, cwd |
 | `session/disposed` | A session leaves the registry | session id, cwd |
@@ -88,6 +90,7 @@ Every hook field:
 | `agent/disposed` | An agent leaves the registry | session id |
 | `agent/error` | The agent loop reports an error | error text |
 | `agent/status` | Agent status transition | status |
+| `hook/failed` | A hook fails consecutively past `failedAlertThreshold` (default 3; synthetic, emitted from the outcome stream) | failing hook summary, consecutive failure count |
 
 The `when` filter for `turn/end` matches the `reason.kind` value (`completed`, `error`, …). Hooks for other events run unconditionally.
 
@@ -119,9 +122,50 @@ The `when` filter for `turn/end` matches the `reason.kind` value (`completed`, `
 | `DSH_HOOK_USAGE_CACHE_READ_TOKENS` | aggregated cache-read tokens, when reported |
 | `DSH_HOOK_USAGE_CACHE_WRITE_TOKENS` | aggregated cache-write tokens, when reported |
 | `DSH_HOOK_USAGE_REASONING_TOKENS` | aggregated reasoning tokens, when reported |
+| `DSH_HOOK_RUNNING_SUBAGENTS` | live subagents still running under this session (turn/end; `0` = none — lets a hook tell "work handed off to background subagents" apart from "the turn finished for real") |
+| `DSH_HOOK_PARENT_SESSION_ID` | parent session id (subagent lineage; absent for top-level sessions) |
+| `DSH_HOOK_SUBAGENT` | `1` when the session is a subagent child, `0` otherwise |
+| `DSH_HOOK_DELEGATION_DEPTH` | delegation depth from the session header (`0` = top-level session) |
+| `DSH_HOOK_SESSION_CREATED_AT` | session creation time, epoch ms |
+| `DSH_HOOK_AGENT_PRESET` | agent preset id composing the session's agent, when known |
+| `DSH_HOOK_APPROVAL_ID` | approval audit id (`approval/asked` + `approval/decided`) |
+| `DSH_HOOK_APPROVAL_OUTCOME` | approval decision outcome (`approval/decided`) |
+| `DSH_HOOK_TOTAL_SUBAGENTS` | total subagents in the settled tree (`tree/settled`) |
+| `DSH_HOOK_TREE_DURATION_MS` | parent turn/end → tree settle duration, ms (`tree/settled`) |
+| `DSH_HOOK_FAILED_HOOK` | identity summary of the hook that failed consecutively (`hook/failed`) |
+| `DSH_HOOK_FAILURES` | consecutive failure count when the alert fired (`hook/failed`) |
 | `DSH_HOOK_TIMESTAMP` | ISO timestamp |
 
 - `{{var}}` placeholders inside `run` are substituted from the same context, e.g. `run: 'echo {{DSH_HOOK_SESSION_ID}} >> log.txt'`.
+- Failure alerts: fire-and-forget hooks fail silently by design, so the plugin also watches the outcome stream. When one hook fails `failedAlertThreshold` consecutive times (`spawn-failed` / `exit-nonzero` / `timeout` / `send-failed`; one logical run's final outcome counts once, internal retries don't add extra counts), the synthetic `hook/failed` event fires once per streak — a success resets both the counter and the dedup. Alert with a normal hook:
+
+```yaml
+config:
+  failedAlertThreshold: 3   # optional, default 3
+  hooks:
+    - on: 'hook/failed'
+      notify: { channel: 'desktop' }
+    - on: 'turn/end'
+      run: 'node my-hook.mjs'
+```
+- `turn/end` hooks are dispatched after the running-subagent count resolves, i.e. one async hop later than other events — an immediately following event from the same session (e.g. the next `turn/start`) may dispatch first.
+
+A common use for `DSH_HOOK_RUNNING_SUBAGENTS` is suppressing the end-of-turn notification while background subagents are still working and only notifying once a turn settles with nothing left running. Note the parent session emits `turn/end` exactly once (with the count > 0); the "everything settled" signal arrives as `turn/end` on the last child session, whose count is `0`:
+
+```yaml
+- on: 'turn/end'
+  match: { runningSubagents: '^0$' }  # anchor the regex: bare '0' also matches '10'
+  run: 'node examples/notify-webhook.mjs'
+```
+
+For the simpler "notify only once the whole tree settles" pattern, the synthetic `tree/settled` event does the watching for you — the plugin tracks sessions whose turn ended with running subagents and fires `tree/settled` on that session when the tree reaches zero:
+
+```yaml
+- on: 'tree/settled'
+  notify: { channel: 'webhook', url: 'https://hooks.slack.com/services/…' }
+```
+
+Settled-but-idle continuable children do not count as running, so they don't keep suppressing the notification. The settle watch is event-driven and best-effort: it survives until the plugin restarts, and a failed re-check drops the watch silently (no late notification).
 
 ## Generic webhook example
 
@@ -310,7 +354,7 @@ Both options write the same files:
 
 Restart `dsh web` afterwards — you will get cards when turns finish, approvals are asked, or the agent errors.
 
-![Feishu card example](https://raw.githubusercontent.com/PeterBon/dsh-hooks/6897e2283496e8237911c2c8fccdb4cef4b15254/assets/screenshot-1.jpg)
+![Feishu card example](https://raw.githubusercontent.com/PeterBon/dsh-hooks/9e7b624547f0182915ac1d319ead86f129583d44/assets/screenshot-1.jpg)
 
 ### Option 3: manual configuration
 

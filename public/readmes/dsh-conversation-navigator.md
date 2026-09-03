@@ -4,6 +4,7 @@
 
 [![npm](https://img.shields.io/npm/v/dsh-conversation-navigator?style=flat-square&color=blue)](https://www.npmjs.com/package/dsh-conversation-navigator)
 [![downloads](https://img.shields.io/npm/dm/dsh-conversation-navigator?style=flat-square&color=blue)](https://www.npmjs.com/package/dsh-conversation-navigator)
+[![downloads-total](https://img.shields.io/npm/dt/dsh-conversation-navigator?style=flat-square&color=blue)](https://www.npmjs.com/package/dsh-conversation-navigator)
 [![stars](https://img.shields.io/github/stars/gjj-star/dsh-conversation-navigator?style=flat-square&color=green)](https://github.com/gjj-star/dsh-conversation-navigator)
 [![license](https://img.shields.io/github/license/gjj-star/dsh-conversation-navigator?style=flat-square&color=teal)](https://github.com/gjj-star/dsh-conversation-navigator)
 [![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?style=flat-square)](https://www.npmjs.com/package/dsh-conversation-navigator)
@@ -16,10 +17,10 @@
 
 纯浏览器插件(无宿主行为)、纯 JavaScript、零构建、零 npm 依赖(按钮/Tooltip 复用 DSH 内核 seed 的官方 primitives)。
 
-![显示轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/9682972130d81512b6e21579ef23db6acd53ff00/assets/modes/mode-main.png)
-![隐藏轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/9682972130d81512b6e21579ef23db6acd53ff00/assets/modes/mode-no-round.png)
-![极简模式·收起](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/9682972130d81512b6e21579ef23db6acd53ff00/assets/modes/mode-minimal-hide.png)
-![极简模式·展开](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/9682972130d81512b6e21579ef23db6acd53ff00/assets/modes/mode-minimal-expand.png)
+![显示轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/76499d6df9a082299a7deed3cb39407aad5d8d43/assets/modes/mode-main.png)
+![隐藏轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/76499d6df9a082299a7deed3cb39407aad5d8d43/assets/modes/mode-no-round.png)
+![极简模式·收起](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/76499d6df9a082299a7deed3cb39407aad5d8d43/assets/modes/mode-minimal-hide.png)
+![极简模式·展开](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/76499d6df9a082299a7deed3cb39407aad5d8d43/assets/modes/mode-minimal-expand.png)
 
 > 四种形态:显示轮次、隐藏轮次、极简·右、极简·左(极简收起仅露行内指示条,悬停展开定位面板)。完整截图见 [assets/screenshots](./assets/screenshots)。其中「社区皮肤适配」两张为第三方皮肤下的效果(鲸鱼娘女仆主题与君の名は主题),非插件自带。
 

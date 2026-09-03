@@ -13,29 +13,29 @@
 
 > **交互来源说明：**本插件独立、非官方地复刻了 ChatGPT 的正文注解功能，并将这套体验带到 DeepSeek Harness。复制的是使用流程，不是 OpenAI 的源码、素材、API 或品牌；本项目与 OpenAI 无隶属或官方合作关系。
 
-> **兼容性提示：**当前源码仅适配 DeepSeek Harness `0.1.2-alpha.1`。DSH 仍处于预发布阶段。当前没有助手正文内部 Slot，本插件会原地装饰已有助手渲染器，不占用 `assistant-step`；用户与 steering 消息仍使用优先级覆盖。升级 DSH 前请阅读[兼容性说明](docs/compatibility.md)。
+> **兼容性提示：**当前源码仅适配 DeepSeek Harness `0.1.2-alpha.3`。DSH 仍处于预发布阶段。当前没有助手正文内部 Slot，本插件会原地装饰已有助手渲染器，不占用 `assistant-step`；用户与 steering 消息仍使用优先级覆盖。升级 DSH 前请阅读[兼容性说明](docs/compatibility.md)。
 
 ## 界面预览
 
 整个流程都留在对话里：选中原文、添加一条或多条编号注解、检查草稿，再从熟悉的 DSH 输入框发送。
 
-![dsh-annotation 的编号注解、就地编辑器和输入框草稿列表总览](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/25f652e8b13c8f12e2fa2c528591debe35b23650/docs/assets/inline-comments-overview.png)
+![dsh-annotation 的编号注解、就地编辑器和输入框草稿列表总览](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/5bc93f0c7e4180c1b04990ae2cc497e0efa9085e/docs/assets/inline-comments-overview.png)
 
 选中真正想讨论的文字，浏览器原生选区仍然保留，随时可以复制。
 
-![选中的助手回复原文及添加注解、复制操作](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/25f652e8b13c8f12e2fa2c528591debe35b23650/docs/assets/inline-comments-selection.png)
+![选中的助手回复原文及添加注解、复制操作](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/5bc93f0c7e4180c1b04990ae2cc497e0efa9085e/docs/assets/inline-comments-selection.png)
 
 趁上下文还在眼前，直接在原文旁写下意见。
 
-![助手回复旁的正文注解编辑器](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/25f652e8b13c8f12e2fa2c528591debe35b23650/docs/assets/inline-comments-editor.png)
+![助手回复旁的正文注解编辑器](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/5bc93f0c7e4180c1b04990ae2cc497e0efa9085e/docs/assets/inline-comments-editor.png)
 
 发送前可以集中检查和调整所有本地草稿。
 
-![带原文引用的正文注解草稿列表](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/25f652e8b13c8f12e2fa2c528591debe35b23650/docs/assets/inline-comments-drafts.png)
+![带原文引用的正文注解草稿列表](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/5bc93f0c7e4180c1b04990ae2cc497e0efa9085e/docs/assets/inline-comments-drafts.png)
 
 暂时不想使用注解时，可在 **设置 → 插件 → 插件配置** 中关闭功能，已有草稿不会丢失。
 
-![DSH 插件配置中的正文注解开关](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/25f652e8b13c8f12e2fa2c528591debe35b23650/docs/assets/inline-comments-settings.png)
+![DSH 插件配置中的正文注解开关](https://raw.githubusercontent.com/ruisenbai/dsh-inline-comments/5bc93f0c7e4180c1b04990ae2cc497e0efa9085e/docs/assets/inline-comments-settings.png)
 
 ## 功能
 
@@ -77,7 +77,7 @@
 
 ### 从源码构建
 
-如果 `0.1.2-alpha.1` 依赖尚未发布到 npm，本地验证可按[兼容性说明](docs/compatibility.md)使用对应 DSH 标签的临时源码覆盖；正式发布前仍须改用完整的 Tarball 覆盖验证。不要把本机 `file:` 路径写入清单或锁文件。
+`0.1.2-alpha.3` 依赖已发布到 npm，`pnpm install` 会直接从 registry 解析完整依赖图。不要把本机 `file:` 路径写入清单或锁文件。
 
 ```bash
 git clone https://github.com/ruisenbai/dsh-annotation.git
@@ -98,7 +98,7 @@ dsh web --profile web
 
 ### 安装 GitHub Release
 
-`v0.3.0` 是首个适配 DSH `0.1.2-alpha.1` 的 GitHub Release；`v0.2.4` 仍适配 DSH `0.1.1-rc.2`。
+`v0.4.0` 适配 DSH `0.1.2-alpha.3`；`v0.3.0` 适配 DSH `0.1.2-alpha.1`；`v0.2.4` 仍适配 DSH `0.1.1-rc.2`。
 
 每个 `v*.*.*` GitHub Release 都提供可安装 Tarball。下载后可以直接安装预构建包，无需执行仓库构建脚本：
 

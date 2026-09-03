@@ -4,7 +4,7 @@
 
 Claude 风格的 DSH Web 界面皮肤：暖黑画布、陶橙点缀，内置 Anthropic 字体切换，跟随原生亮/暗主题。
 
-![暗色](https://raw.githubusercontent.com/PAKIKNOWLEDGE/dsh-client-ui-skin-claude/4d8fe6cfbff245b44bb8e0effc296ad2b513c9c5/docs/dark.png) · ![亮色](https://raw.githubusercontent.com/PAKIKNOWLEDGE/dsh-client-ui-skin-claude/4d8fe6cfbff245b44bb8e0effc296ad2b513c9c5/docs/light.png)
+![暗色](https://raw.githubusercontent.com/PAKIKNOWLEDGE/dsh-client-ui-skin-claude/a240ab43bd15fd4b2cc853d20bee2c749299134a/docs/dark.png) · ![亮色](https://raw.githubusercontent.com/PAKIKNOWLEDGE/dsh-client-ui-skin-claude/a240ab43bd15fd4b2cc853d20bee2c749299134a/docs/light.png)
 
 ## 特性
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/modusensus/dsh-mneme/282877bd393640f29ece7af3f03be13162d02c4f/%E6%A8%AA%E5%B9%85.png" alt="dsh-mneme banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/modusensus/dsh-mneme/a3edc3e4914b9042179c028f6e6e1b6f299a2ca1/%E6%A8%AA%E5%B9%85.png" alt="dsh-mneme banner" width="100%" />
 </p>
 
 <h1 align="center">dsh-mneme</h1>
@@ -10,7 +10,7 @@
   <a href="https://github.com/awesome-dsh-plugin/awesome-dsh-plugin"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="Awesome"></a>
   <a href="https://github.com/modusensus/dsh-mneme/actions"><img src="https://img.shields.io/github/actions/workflow/status/modusensus/dsh-mneme/test.yml" alt="CI"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-24%2B-blue" alt="node"></a>
-  <a href="https://github.com/modusensus/dsh-mneme"><img src="https://img.shields.io/badge/tests-770%20passed-success" alt="tests"></a>
+  <a href="https://github.com/modusensus/dsh-mneme"><img src="https://img.shields.io/badge/tests-790%20passed-success" alt="tests"></a>
   <a href="https://www.npmjs.com/package/@modusensus/dsh-mneme"><img src="https://img.shields.io/npm/dm/@modusensus/dsh-mneme?color=blue&label=downloads" alt="npm downloads"></a>
   <a href="https://codecov.io/gh/modusensus/dsh-mneme"><img src="https://img.shields.io/codecov/c/github/modusensus/dsh-mneme/main" alt="coverage"></a>
 </p>
@@ -87,7 +87,7 @@ dsh web
 | 语义架构 | [dsh-mneme/docs/SEMANTIC.md](dsh-mneme/docs/SEMANTIC.md) |
 | 本地模型部署指南 | [dsh-mneme/docs/LOCAL_MODEL.md](dsh-mneme/docs/LOCAL_MODEL.md) |
 | v0.1 迁移说明 | [dsh-mneme/docs/MIGRATION.md](dsh-mneme/docs/MIGRATION.md) |
-| 版本历史 | [CHANGELOG.md](CHANGELOG.md) |
+| 版本历史 | [dsh-mneme/CHANGELOG.md](dsh-mneme/CHANGELOG.md) |
 | 安全策略 | [SECURITY.md](SECURITY.md) |
 
 ## 🗺️ 路线图
@@ -105,14 +105,17 @@ dsh web
 | **v0.7.0** | 自进化记忆：heat 幂律衰减 + sleep 双保护 + 实体热投影 | ✅ |
 | **v0.7.1** | issue #31 修复：tags 桥接 entity_attrs + autoTag 面板开关生效 | ✅ |
 | **v0.7.2** | issue #35 删除按钮内联确认修复 + issue #34 对话开始注入当前时间（opt-in） | ✅ |
-| **v0.8.0** | 图谱增强：兴趣漂移 + 跨 workspace 共享 | 🚧 计划中（9 月末） |
+| **v0.7.3** | issue #38 左下角入口按钮可选开关 `showSidebarTrigger` | ✅ |
+| **v0.7.4** | issue #40 记忆花括号转义 + issue #41 记忆窗口关闭按钮重叠修复 | ✅ |
+| **v0.7.5** | 分层记忆类型 user/fact + Web 总览视图 + stats 端点 | ✅ |
+| **v0.8.0** | 图谱增强：兴趣漂移可视化 + scope 隔离（issue #17）+ 跨 workspace 共享 | 🚧 计划中（9 月末） |
 
 ## 🧪 本地开发
 
 ```bash
 cd dsh-mneme
 npm install
-npm test          # 770 个测试
+npm test          # 790 个测试
 npm run stress    # 三轴线压测
 npm run sync      # src → lib 同步
 ```
@@ -190,7 +193,7 @@ Works out of the box. Enable these as needed:
 | Semantic architecture | [dsh-mneme/docs/SEMANTIC.md](dsh-mneme/docs/SEMANTIC.md) |
 | Local model guide | [dsh-mneme/docs/LOCAL_MODEL.md](dsh-mneme/docs/LOCAL_MODEL.md) |
 | v0.1 migration | [dsh-mneme/docs/MIGRATION.md](dsh-mneme/docs/MIGRATION.md) |
-| Changelog | [CHANGELOG.md](CHANGELOG.md) |
+| Changelog | [dsh-mneme/CHANGELOG.md](dsh-mneme/CHANGELOG.md) |
 | Security | [SECURITY.md](SECURITY.md) |
 
 ## 🗺️ Roadmap
@@ -208,14 +211,17 @@ Works out of the box. Enable these as needed:
 | **v0.7.0** | Self-evolving memory: heat decay + sleep dual-protection + entity heat projection | ✅ |
 | **v0.7.1** | Issue #31 fix: tags bridged to entity_attrs + autoTag panel toggle takes effect | ✅ |
 | **v0.7.2** | Issue #35 delete button inline-confirm fix + Issue #34 inject current time at conversation start (opt-in) | ✅ |
-| **v0.8.0** | Graph enhancement: interest drift + cross-workspace sharing | 🚧 Planned (late Sep) |
+| **v0.7.3** | Issue #38 optional sidebar trigger `showSidebarTrigger` | ✅ |
+| **v0.7.4** | Issue #40 prompt-brace escaping + Issue #41 overlay close-button overlap fix | ✅ |
+| **v0.7.5** | Layered memory types (user/fact) + Overview view + stats endpoint | ✅ |
+| **v0.8.0** | Graph enhancement: interest-drift visualization + scope isolation (issue #17) + cross-workspace sharing | 🚧 Planned (late Sep) |
 
 ## 🧪 Local Development
 
 ```bash
 cd dsh-mneme
 npm install
-npm test          # 770 tests
+npm test          # 790 tests
 npm run stress    # three-axis stress test
 npm run sync      # src → lib sync
 ```

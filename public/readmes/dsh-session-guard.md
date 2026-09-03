@@ -47,7 +47,7 @@
 实际运行截屏（Windows，dsh web）——周末模式激活状态：
 
 <figure>
-  <img style="max-width:100%" alt="输入区状态控制条：处于激活态的「周末」按钮高亮（周末模式开启时无视峰谷畅快跑），相邻「冻结会话」按钮（配 input-traffic）、DeepSeek-V4-Flash 思维档位与发送控件，底部为轮次/步数、LLM 耗时、缓存命中率等状态条" src="https://raw.githubusercontent.com/drscrewdriver/dsh-session-guard/60e7c4c75dfedd28f6c289d6913d2999885f5855/assets/%E9%AB%98%E5%B3%B0%E4%BD%8E%E5%B3%B0%E5%91%A8%E6%9C%AB%E6%8F%90%E9%86%92-%E5%91%A8%E6%9C%AB%E7%8A%B6%E6%80%81.png" />
+  <img style="max-width:100%" alt="输入区状态控制条：处于激活态的「周末」按钮高亮（周末模式开启时无视峰谷畅快跑），相邻「冻结会话」按钮（配 input-traffic）、DeepSeek-V4-Flash 思维档位与发送控件，底部为轮次/步数、LLM 耗时、缓存命中率等状态条" src="https://raw.githubusercontent.com/drscrewdriver/dsh-session-guard/5330496ab4e369a1efbf2f5e21267f31509cdf7d/assets/%E9%AB%98%E5%B3%B0%E4%BD%8E%E5%B3%B0%E5%91%A8%E6%9C%AB%E6%8F%90%E9%86%92-%E5%91%A8%E6%9C%AB%E7%8A%B6%E6%80%81.png" />
   <figcaption>周末模式激活：输入区「周末」徽标高亮，与「冻结会话」并列；周末无视峰谷、会话自动畅跑。</figcaption>
 </figure>
 

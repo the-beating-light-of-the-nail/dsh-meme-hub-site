@@ -9,7 +9,7 @@ An open-source terminal front door for [DeepSeek Harness](https://github.com/dee
 
 `@tomowang/dsh-tui` is an **out-of-tree mode bundle**: it stacks on `@deepseek-ai/dsh-base` exactly like the shipped `dsh-web-app` and `dsh-headless` bundles do, but drives the agent from your terminal instead of a browser. The package is both a Cordis plugin (terminal input and presentation) and a dsh bundle (`dsh.bundle.patch` in `package.json` points at [`cordis.patch.yml`](cordis.patch.yml)); everything else — model adapters, tools, session persistence, sandbox and approval policy — stays in `dsh-base` and remains patchable underneath.
 
-![dsh-tui screencast](https://raw.githubusercontent.com/tomowang/dsh-tui/f7663341f604c3ad96e9b2b838a7ca2de8e84fd1/assets/screencast.gif)
+![dsh-tui screencast](https://raw.githubusercontent.com/tomowang/dsh-tui/792de5ac50fe331ca49d73585364a0ee9def919f/assets/screencast.gif)
 
 ## How it works
 
@@ -34,7 +34,10 @@ An open-source terminal front door for [DeepSeek Harness](https://github.com/dee
 - **In-terminal approvals and questions** — a tool call parked on an `ask` permission decision is answered right in the terminal (allow once / reject), and `ask_user_question`/plan-mode's plan review present as an option list with multi-select and free-text "Other…", `esc` to skip. A desktop notification (OSC 9 — the same mechanism Claude Code's own CLI uses) fires once whenever such a wait starts, so terminals that support it (Ghostty, Kitty, iTerm2 with escape-sequence alerts enabled) can flag it while you're looking elsewhere; terminals without OSC 9 support just ignore it.
 - **Plan mode** — `/plan [message]` enters plan mode (optionally steering a first message under it), `/plan off` leaves it; a model-proposed plan lands in the existing question flow as an Approve/Keep-planning review.
 - **Goal mode** — `/goal <objective>` sets a long-running goal shown as a live dock strip (phase + objective, hiding on completion like the web portal); `/goal clear|edit <objective>|pause|resume` manages it, and automatic continuation rounds keep running in this same session while the goal is active and armed.
+- **Docked subagent switcher** — whenever at least one subagent in the current batch is running, a solid/hollow-circle strip docks directly below the composer (Claude Code CLI-style): `←`/`→`, while the prompt is empty, switch which transcript the main scroll region shows — main, or any subagent child, latest-spawned first — without hiding the composer or the strip itself, and `Esc` returns to main. A running child additionally carries a live spinner beside its circle, independent of which one is currently selected — solid/hollow marks navigation (what you're looking at), the spinner marks activity (what's still working), so the two never get confused with each other. With more than 4 children, a dim `‹N`/`N›` count marks whatever the visible window doesn't fit, sliding to keep whichever one is open inside it as you cycle. The strip is a live indicator of the current batch of active work, not a permanent log — it disappears once everything settles and nothing is being viewed.
 - **Manual compaction** — `/compact` summarizes and compacts session history on demand.
+- **Session rename** — `/rename <title>` sets an explicit title; bare `/rename` generates one from the conversation so far via one on-demand model call, as a kebab-case slug (Claude Code CLI's own convention, e.g. `fix-auth-bug`) rather than the harness's own natural-language default. The accepted title also shows right-aligned in the prompt box's own top border, alongside the terminal window/tab title.
+- **Session resume** — `/resume <sessionId>` switches to a persisted session in a fresh screen (falling back to a brand-new session with a notice on an unknown id); bare `/resume` opens a picker of this working directory's past sessions instead — newest first, each with its folded title where one landed.
 - **Persisted prompt history** — submitted lines are saved across processes and `/clear`, recalled with `↑`/`↓`.
 - **Readline-style input** — word/line motion, kill/yank-style deletes, multi-line drafts, and shell-like double-press `Ctrl+C`/`Ctrl+D` to exit.
 - **Shell mode** — a leading `!` on an empty prompt (Claude Code's convention) switches Enter to run the line as a local shell command instead of sending it to the agent; the prompt border turns yellow for the duration, and output streams into the transcript without touching the session log.
@@ -61,11 +64,12 @@ dsh plugin --profile tui add @tomowang/dsh-tui
 # 3. Run
 dsh --profile tui
 dsh --profile tui --resume <sessionId>           # reopen a persisted session
+dsh --profile tui --resume                       # pick a past session from a list, newest first
 dsh --profile tui --agent-preset <presetId>      # start a fresh session on a given preset
 dsh --profile tui --dump-config                  # inspect the composed plugin tree
 ```
 
-Any row `--dump-config` prints — the model adapter, tool set, sandbox policy, this TUI's own config — can be overridden from the profile's `cordis.patch.yml` without touching this package. `--agent-preset` is a `dsh`-launcher flag (parsed by `tui-startup`, not `--dump-config` above) that only applies to a fresh session; it's ignored together with `--resume`, and is a no-op with a startup notice on profiles that don't mount `dsh-agent-presets`.
+Any row `--dump-config` prints — the model adapter, tool set, sandbox policy, this TUI's own config — can be overridden from the profile's `cordis.patch.yml` without touching this package. `--agent-preset` is a `dsh`-launcher flag (parsed by `tui-startup`, not `--dump-config` above) that only applies to a fresh session; it's ignored together with `--resume`, and is a no-op with a startup notice on profiles that don't mount `dsh-agent-presets`. `--resume` with no id opens the same session picker as bare `/resume` below.
 
 ## Terminal commands
 
@@ -84,6 +88,8 @@ Any row `--dump-config` prints — the model adapter, tool set, sandbox policy, 
 | `/goal [objective]` | set a long-running goal (or, with no argument, show the current goal) |
 | `/goal clear` / `/goal edit <objective>` / `/goal pause` / `/goal resume` | clear, reword, pause, or resume the current goal |
 | `/compact` | summarize and compact session history |
+| `/rename [title]` | set an explicit session title; with no argument, generates one from the conversation so far |
+| `/resume [sessionId]` | switch to a persisted session by id; with no argument, opens a picker of this directory's past sessions |
 | `/clear` | flush the current session and start a new one |
 | `/exit`, `/quit` | cancel, wait for idle, flush the session, exit |
 
@@ -98,6 +104,9 @@ Any row `--dump-config` prints — the model adapter, tool set, sandbox policy, 
 | `Ctrl+O` | open the Tool Cards overlay; `↑`/`↓` select a card, `Enter`/`Space` expand or collapse, `PgUp`/`PgDn`/`Home`/`End` scroll an expanded card, `Esc`/`q`/`Ctrl+O` close |
 | `!` (on an empty prompt) | enter shell mode: Enter runs the line as a local shell command; `Esc`/backspace-on-empty exits back to normal mode |
 | `@` | open the file-mention dropdown; `↑`/`↓` to move, `Tab`/`Enter` to insert the path, `Esc` to dismiss |
+| `←`/`→` (empty prompt) | with the docked subagent switcher showing, move to the previous/next session (main, then each subagent child) |
+| `Esc` (viewing a subagent, empty prompt) | return to the main transcript |
+| `/resume` (bare) | open the session picker; `↑`/`↓` select, `Enter` resumes the selected session, `Esc`/`q` closes without resuming |
 | `Tab` | in `/command` mode, autocomplete the highlighted command |
 | `↑` / `↓`, `Ctrl+P` / `Ctrl+N` | recall prompt history, or move within a multi-line draft |
 | `Shift+Enter`, `Alt+Enter`, trailing `\` + `Enter` | insert a newline instead of submitting |

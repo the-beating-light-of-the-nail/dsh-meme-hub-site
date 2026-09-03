@@ -75,7 +75,7 @@ pnpm install
 模型只看到随附的文本信封         客户端 keyed toolview 卡片
 （"已生成 1 张图片…"）            │
                                  ▼
-                   <img src="https://raw.githubusercontent.com/Github-CJX/dsh-tool-imagegen/8544125fc0a69c399802b3c8c49eb10ed27976aa/api/dsh-tool-imagegen/attachment%3Fsession%3D%E2%80%A6%26id%3D%E2%80%A6">
+                   <img src="https://raw.githubusercontent.com/Github-CJX/dsh-tool-imagegen/6027ca1cee48a54b5934e610713aa70298364e7e/api/dsh-tool-imagegen/attachment%3Fsession%3D%E2%80%A6%26id%3D%E2%80%A6">
                    附件桥做会话引用检查后返回图片字节 → 内联显示
 ```
 
@@ -152,7 +152,7 @@ pnpm install
 | 清理后历史会话里的图还在 | 被任何会话（含已关闭但持久化的会话）引用的文件**永不删除** | 设计如此：清理只删孤儿文件，正在被引用的图安全保留 |
 | 清理后刚生成的图没了（重启后变破图） | 旧版的两个 bug：c7 的会话日志是**多帧 zstd 容器**，整包解压只读到第一帧（引用全漏）；且附件对象文件名是纯 sha256 而事件里带 `sha256:` 前缀，判定永远匹配不上 | 升级插件到最新版（已修复：逐帧解码 + 双拼写匹配，并加回归测试）。被误删的历史图无法找回，新版本清理只删真孤儿 |
 | 升级 DSH 到 rc.7 后设置里的两张卡（生图插件 / 生图存储）消失了 | rc.7 把 `settings.plugin.item` 槽改为**按设置命名空间 keyed**（一个 key 一张卡），旧版用 `id` 注册被静默拒绝 | 升级插件到最新版（注册改为 `key: dsh-imagegen`，存储清理并入设置卡内嵌区块） |
-| 生成图时对话里多出一张毫不相干的图片 | c7 的 markdown 渲染器开始渲染 `![...](https://raw.githubusercontent.com/Github-CJX/dsh-tool-imagegen/8544125fc0a69c399802b3c8c49eb10ed27976aa/http(s)://...)`；模型从信封得知「图片已生成」后自己写 markdown 图片引用（URL 为模型幻觉） | 升级插件到最新版（信封与系统提示已明确告知模型「图片已直接显示，请勿在回复中引用图片」） |
+| 生成图时对话里多出一张毫不相干的图片 | c7 的 markdown 渲染器开始渲染 `![...](https://raw.githubusercontent.com/Github-CJX/dsh-tool-imagegen/6027ca1cee48a54b5934e610713aa70298364e7e/http(s)://...)`；模型从信封得知「图片已生成」后自己写 markdown 图片引用（URL 为模型幻觉） | 升级插件到最新版（信封与系统提示已明确告知模型「图片已直接显示，请勿在回复中引用图片」） |
 | 对话出现 `UNSUPPORTED_CONTENT` 报错 | 本插件永不产生 `image` 块；此报错来自平台原生图片上传或其他图像插件 | 检查是否在文本模型会话用了平台自带的上传/其他图像插件；本插件的生成/上传/修改均不会触发 |
 | 设置卡片提示「当前环境不提供该设置」 | 浏览器不是通过本机回环地址访问 | 设置桥仅限 loopback；远程访问 DSH 时设置只读，密钥永远不出本机 |
 

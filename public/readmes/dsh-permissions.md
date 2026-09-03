@@ -26,7 +26,7 @@
 
 | 顶部：作用域与规则构建器 | 规则面板 / 试算器 / 决策日志 | 草稿式保存 |
 |---|---|---|
-| ![顶部概览](https://raw.githubusercontent.com/940842546/dsh-permissions/9ca27df6c0a01cdb01f8345e9b9beb665d35d08c/assets/01-permissions-overview.png) | ![规则面板](https://raw.githubusercontent.com/940842546/dsh-permissions/9ca27df6c0a01cdb01f8345e9b9beb665d35d08c/assets/02-permissions-rules.png) | ![草稿态](https://raw.githubusercontent.com/940842546/dsh-permissions/9ca27df6c0a01cdb01f8345e9b9beb665d35d08c/assets/03-permissions-draft.png) |
+| ![顶部概览](https://raw.githubusercontent.com/940842546/dsh-permissions/ce06f1b35412df0edc321204f3520a4d17bf0e90/assets/01-permissions-overview.png) | ![规则面板](https://raw.githubusercontent.com/940842546/dsh-permissions/ce06f1b35412df0edc321204f3520a4d17bf0e90/assets/02-permissions-rules.png) | ![草稿态](https://raw.githubusercontent.com/940842546/dsh-permissions/ce06f1b35412df0edc321204f3520a4d17bf0e90/assets/03-permissions-draft.png) |
 
 ## 规则语法
 

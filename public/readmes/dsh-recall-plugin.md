@@ -2,14 +2,11 @@
 
 简体中文 | [English](README.en.md)
 
-![npm](https://img.shields.io/npm/v/dsh-recall-plugin?label=npm&color=cb3837)
+[![npm version](https://img.shields.io/npm/v/dsh-recall-plugin.svg)](https://www.npmjs.com/package/dsh-recall-plugin)
+[![npm downloads](https://img.shields.io/npm/dt/dsh-recall-plugin.svg)](https://www.npmjs.com/package/dsh-recall-plugin)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blue)
-![Build](https://img.shields.io/badge/%E7%BA%AFJS-green)
-
-![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-blue)
-![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.1-blue)
-![DSH](https://img.shields.io/badge/DSH-Desktop-blue)
+[![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-blue)](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.1-rc.2)
+[![DSH](https://img.shields.io/badge/DSH-0.1.2--alpha.3-red)](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.2-alpha.3)
 ---
 **在任意一条你发过的消息下方**，**点「↶ 撤回」**，**工作区文件和对话历史一起回到那条消息发出之前的状态**（DSH 0.1.1-rc.2）。
 ---
@@ -20,11 +17,11 @@
 
 | 撤回按钮 | 确认面板 · 变更文件清单 |
 | --- | --- |
-| ![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/82bdda882c50dbbbc827a52e2248e29f33e94b98/docs/screenshots/recall-button.png) |  ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/82bdda882c50dbbbc827a52e2248e29f33e94b98/docs/screenshots/confirm-panel-1.png) |
+| ![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/ef3d7f9e7b74725004bd4866a30ee44d61806583/docs/screenshots/recall-button.png) |  ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/ef3d7f9e7b74725004bd4866a30ee44d61806583/docs/screenshots/confirm-panel-1.png) |
 
 - 设置页 · 插件配置卡片（配置表单 / 排除表 / 快照管理，保存即热生效）
 
- ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/82bdda882c50dbbbc827a52e2248e29f33e94b98/docs/screenshots/settings-exclude-2.png) 
+ ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/ef3d7f9e7b74725004bd4866a30ee44d61806583/docs/screenshots/settings-exclude-2.png) 
 
 
 ## 功能亮点
@@ -67,15 +64,15 @@ dsh plugin --profile web add dsh-recall-plugin
 ```powershell
 dsh plugin --profile web add github:limbo947/dsh-recall-plugin
 ```
-- 重启 DSH 进程（按你的启动方式，任选其一）
+
+- 卸载：同时移除依赖与挂载，快照数据保留在 home 下 `dsh-recall-snapshots/`，想彻底清除手动删掉该目录即可。
 ```powershell
-dsh web                      # 前台直接启动
-pm2 restart <你的dsh进程名>   # 若用 pm2 托管
+dsh plugin --profile web remove dsh-recall-plugin
 ```
 
-**验证**：重启后硬刷新页面（Ctrl+Shift+R），悬停任意一条插件启用后发送的用户消息——复制按钮旁出现「↶」即生效。没有按钮？九成是没重启 DSH 进程，或 git CLI 不在 PATH 里。
+- 验证：重启后硬刷新页面（Ctrl+Shift+R），悬停任意一条插件启用后发送的用户消息——复制按钮旁出现「↶」即生效。没有按钮？九成是没重启 DSH 进程，或 git CLI 不在 PATH 里。
 
-**卸载**：`dsh plugin --profile web remove dsh-recall-plugin`（同时移除依赖与挂载层），快照数据保留在 home 下 `dsh-recall-snapshots/`，想彻底清除手动删掉该目录即可。
+
 
 ## 使用
 
@@ -134,7 +131,7 @@ pm2 restart <你的dsh进程名>   # 若用 pm2 托管
 
 ## 本地开发（无需发布）
 
-把 profile 对本包的依赖改成 `link:` 指向克隆目录，改完代码重启 DSH 即生效（工作区 `lib/` 即运行代码，无需复制或发布）：
+把 profile 对本包的依赖改成 `link:` 指向克隆目录；DSH 加载的是工作区 `lib/` 构建产物（源码在 `src/`），改 `src/` 后先 `npm run build` 再重启 DSH 生效，无需复制或发布：
 
 ```powershell
 # 1. 编辑 $env:USERPROFILE\.dsh\profiles\web\package.json：
@@ -146,15 +143,15 @@ pnpm install
 # 3. 重启 DSH + 硬刷新页面（Ctrl+Shift+R）
 ```
 
-注意：浏览器端代码的源码在 `src/client/`（多文件），`lib/client.js` 是 esbuild 打包产物并随源码提交——**改 `src/client/` 后必须跑 `npm run build`**，否则运行的是旧 UI（CI 有产物新鲜度校验）。Host 端（`lib/` 其余文件）无构建步骤。
+注意：全部源码在 `src/`（Host 在 `src/host/`、浏览器端在 `src/client/`、共享类型在 `src/types/`），`lib/` 是纯构建产物目录——`npm run build` 经 esbuild 生成（逐文件转译 host 产物 + 打包 `lib/client.js`），产物随源码提交。**改任何 `src/` 后必须跑 `npm run build`**，否则运行的是旧产物（CI 有产物新鲜度统一校验）。
 
 ### 测试
 
 - `npm test`：纯逻辑单测（vitest，17 个文件 227 例，无 DSH 依赖，CI 与本地同跑）——配置解析、快照解析器、救援编排、错误分类、脚本模板同名导出契约、客户端纯函数、发布包内容布局、快照索引持久化、存储上限与保留天数等；
 - `npm run test:probe`：官方 API 字段探针（依赖本机 dsh 安装；dsh 升级后本地必跑）——钉住 `renderMessageImages`/`node`/`cwd`、`sessions.fork` 的 `atSeq`/`increaseTitle`、`listSessions` 记录结构、`AgentRegistry` 等字段，违反即红；
 - `npm run verify:host`：装配门禁（依赖本机 dsh 安装）——用真实 cordis 起插件，断言 inject 声明、端点注册、Config schema、卸载清理，装配回归发版前即可拦截；
-- `npm run build`：打包 client 产物（改 `src/client/` 后必跑）；`npm run check:dsh`：dsh 版本巡检（发布前）。
-- CI（GitHub Actions）跑 `npm ci --legacy-peer-deps` + `npm test` + client 产物新鲜度校验（探针与装配门禁只在有 dsh 的机器跑）。
+- `npm run build`：host+client 全量打包（改任何 `src/` 后必跑）；`npm run check:dsh`：dsh 版本巡检（发布前）。
+- CI（GitHub Actions）跑 `npm ci --legacy-peer-deps` + `npm run typecheck` + `npm test` + 产物新鲜度统一校验（`npm run build && git diff --exit-code lib/`；探针与装配门禁只在有 dsh 的机器跑）。
 
 ## License
 

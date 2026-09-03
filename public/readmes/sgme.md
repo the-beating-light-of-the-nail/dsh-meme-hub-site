@@ -28,7 +28,7 @@ Three steps, fully automatic:
 2. **Distill** — raw conversations are distilled into tagged memories (facts, preferences, project states, decisions...), with automatic dedup, merge, and contradiction detection
 3. **Inject** — at the start of each conversation, your AI automatically receives the memories relevant to the current scenario — not the whole store. Casual chat brings identity and recent status; coding brings project-related memories (tech stack, pitfalls, dev habits). Only what the scenario needs.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/system-architecture.png" alt="SGME System Architecture" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/system-architecture.png" alt="SGME System Architecture" width="800"/>
 
 ## Highlights
 
@@ -36,67 +36,67 @@ Three steps, fully automatic:
 
 Switch models, switch agents — your AI loses nothing. SGME fully takes over your memory (who you are), your wiki (what you know), and your skills (how you work). Plug in any agent — Hermes, DSH, a coding partner, a writing assistant — and it already knows you: your projects, your preferences, your workflows. No re-introduction, no re-learning. One shared brain, every body.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-00-seamless-switching.png" alt="Seamless AI switching" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-00-seamless-switching.png" alt="Seamless AI switching" width="800"/>
 
 ### Traceable memory — every memory has a provenance
 
 Everything your AI says is backed by evidence: trace any persona statement all the way back to the original conversation. Memory is not a black box — "why does it know this" and "when did it learn this" are one click away.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-01-trace.png" alt="Traceable memory" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-01-trace.png" alt="Traceable memory" width="800"/>
 
 ### Proactive care — it doesn't just remember you, it reaches out
 
 SGME doesn't just wait for you to ask. Your memory updates, mood shifts, upcoming todos, late nights... it emits signals that prompt your AI to check in on you — not cold notifications, but the kind of "I remembered you had something today" attention. Signal consumption = proactive care: who consumes, who marks (atomic claim + receipt), so you're never double-pestered and never missed.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-10-care.png" alt="Proactive care" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-10-care.png" alt="Proactive care" width="800"/>
 
 ### Persona insight — it doesn't just remember facts, it understands who you are
 
 Every conversation quietly contributes to a living personality profile: decision style, work habits, quality standards — accumulated as evidence-weighted tendencies, never snap judgments. A monthly calibration refines the picture (with an entertainment-grade MBTI for fun), and the result is injected into every chat, so your AI doesn't just recall your past — it adapts to your character. All local, all traceable, toggleable anytime.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-11-persona-insight.png" alt="Persona insight" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-11-persona-insight.png" alt="Persona insight" width="800"/>
 
 ### Unified search — one query, all memories
 
 A single search endpoint recalls from the memory pool, the knowledge base, and your self-managed skills at once: keyword + semantic + label triple fusion, every result traceable to its source. SGME memories, scenes, knowledge base, and skills in one stop.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-03-unified-search.png" alt="Unified search" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-03-unified-search.png" alt="Unified search" width="800"/>
 
 ### Skill hub — your skills, managed in one place
 
 All your self-built skills (prompts, workflows, templates) live in one place: direct read/write locally, auto-sync to NAS. Switch devices without losing your skills.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-05-skillhub.png" alt="Skill hub" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-05-skillhub.png" alt="Skill hub" width="800"/>
 
 ### Shared knowledge — a wiki your AIs write together
 
 A shared knowledge base lives next to your memories. Drop in files, URLs, or pasted text — SGME auto-categorizes, tags, and cross-links them, then makes them searchable and citable by every agent you connect. When an agent learns something useful, it can write it back to the wiki (self-evolution), so knowledge compounds across sessions instead of being re-discovered. Every entry keeps its source and author — traceable, never a black box.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-04-wiki.png" alt="Shared knowledge wiki" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-04-wiki.png" alt="Shared knowledge wiki" width="800"/>
 
 ### Chinese-first — a memory engine built for Chinese
 
 Retrieval is tuned for Chinese text — better distillation and recall for Chinese conversations. There are plenty of English memory engines; very few understand Chinese.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-06-chinese.png" alt="Chinese-first" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-06-chinese.png" alt="Chinese-first" width="800"/>
 
 ### Scenario-based injection — inject what the scenario needs
 
 Memory is not loaded wholesale. SGME picks relevant memories per scenario: casual chat gets identity and recent status, coding gets project-related memories (tech stack, pitfalls, dev habits), work mode gets plans and progress. Irrelevant memories stay out of the way, and stale memories automatically drop out — no three-year-old intel misleading your AI, no dumping the whole store into one prompt.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-07-scenario-inject.png" alt="Scenario-based injection" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-07-scenario-inject.png" alt="Scenario-based injection" width="800"/>
 
 ### Zero-LLM injection — costs nothing
 
 Persona injection is a pure structured SQL query — no LLM call, zero token cost per conversation. Competitors bill per call; SGME is free.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-08-zero-llm.png" alt="Zero-LLM injection" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-08-zero-llm.png" alt="Zero-LLM injection" width="800"/>
 
 ### Self-hosted & lightweight — your data stays yours
 
 Runs on a single machine with Python + SQLite. No GPU, no external database services. Memory data lives on your own machine, privacy under your control.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/26d1e494ef59200bd342e980673efd2346c35252/assets/selling-point-09-selfhosted.png" alt="Self-hosted" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/69f6a0e619e868c89409c1e548dd0a4ae1da2369/assets/selling-point-09-selfhosted.png" alt="Self-hosted" width="800"/>
 
 ## More capabilities
 

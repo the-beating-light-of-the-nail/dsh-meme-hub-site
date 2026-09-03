@@ -8,11 +8,11 @@ This differs from Harness's built-in `@deepseek-ai/dsh-subagent-codex`. The buil
 
 ## Screenshot
 
-![Conversation screenshot](https://raw.githubusercontent.com/wss534857356/dsh-plugin-codex/ad2f35322ebaa2dee61c41663d38653d57ad7a97/docs/images/conversation-screenshot.png)
+![Conversation screenshot](https://raw.githubusercontent.com/wss534857356/dsh-plugin-codex/9db7c07514b92b179ecbc49e24d18ef2fa9b076d/docs/images/conversation-screenshot.png)
 
-![Model selector](https://raw.githubusercontent.com/wss534857356/dsh-plugin-codex/ad2f35322ebaa2dee61c41663d38653d57ad7a97/docs/images/model-selector-screenshot.png)
+![Model selector](https://raw.githubusercontent.com/wss534857356/dsh-plugin-codex/9db7c07514b92b179ecbc49e24d18ef2fa9b076d/docs/images/model-selector-screenshot.png)
 
-![Codex App Server settings card](https://raw.githubusercontent.com/wss534857356/dsh-plugin-codex/ad2f35322ebaa2dee61c41663d38653d57ad7a97/docs/images/codex-settings-card.png)
+![Codex App Server settings card](https://raw.githubusercontent.com/wss534857356/dsh-plugin-codex/9db7c07514b92b179ecbc49e24d18ef2fa9b076d/docs/images/codex-settings-card.png)
 
 [CDP capture log and verification details](docs/evidence/codex-settings-card.md)
 
@@ -26,7 +26,7 @@ Reasoning, assistant text, usage, Codex-owned context, diagnostics, and action l
 
 Harness user images and image-bearing tool results remain durable `ImageAttachmentRef` values in messages, replay, and cache identity. Immediately before an App Server boundary, the adapter verifies each retained attachment and transiently converts it to the protocol-specific image form: Responses `input_image` for cold reconstruction, v2 `image` input for a warm user turn, or `inputImage` for a pending dynamic-tool callback. The oldest model-visible images are replaced deterministically when their projected base64 payload exceeds `maxRequestImageBytes`; omitted images are never read. Completed Codex-native image outputs travel the opposite direction: they are decoded and committed through Harness's attachment service before publication, emitted as standard Harness `image` blocks, and replaced by small durable markers in trajectory and replay. No data URL is persisted. A chat attachment is not an implicit workspace mutation: producing `public/example.png` or another project file still requires Codex to request a declared Harness mutation tool with an explicit destination.
 
-The package also ships a browser plugin. It shadows the stock Assistant cell at a lower slot priority, preserves the standard text, reasoning, image, and generic fallback presentations, and renders `codex-action` blocks with Harness's compact disclosure row and state dot. Image groups delegate to the rc.8 `conversation.message.images` slot; the standard Web profile composes its `ui-attachment` owner, while a custom host must compose that presentation plugin just as the stock Assistant renderer requires. The collapsed row shows the interpreted action, category, and phase; expanding it reveals the summary, exact protocol event, action id, and the durable JSON record in Harness's JSON tree. `thread/start` explicitly reports layered prompt ownership and discovered instruction-source count; it is not labeled as a Harness tool or request failure. The browser plugin also contributes a Codex App Server settings card through DSH's native `settings.plugin.item` extension point without modifying the Models or Settings core packages.
+The package also ships a browser plugin. It shadows the stock Assistant cell at a lower slot priority, preserves the standard text, reasoning, image, and generic fallback presentations, and renders `codex-action` blocks with Harness's compact disclosure row and state dot. Image groups delegate to the current `conversation.message.images` slot; the standard Web profile composes its `ui-attachment` owner, while a custom host must compose that presentation plugin just as the stock Assistant renderer requires. The collapsed row shows the interpreted action, category, and phase; expanding it reveals the summary, exact protocol event, action id, and the durable JSON record in Harness's JSON tree. `thread/start` explicitly reports layered prompt ownership and discovered instruction-source count; it is not labeled as a Harness tool or request failure. The browser plugin also contributes a Codex App Server settings card through DSH's native `settings.plugin.item` extension point without modifying the Models or Settings core packages.
 
 The `thread/start` block is provider lifecycle disclosure, not evidence that the model performed a native action. Codex-added developer, system, and user messages that are not part of injected Harness history appear as `context/injected` reports. They remain logged for audit but are not fed back as Harness-authored history on the next stateless request.
 
@@ -35,6 +35,8 @@ When App Server requests a declared tool in the `deepseek_harness` namespace, th
 Auxiliary work follows the initiating Agent's provider instead of silently switching accounts. A `compaction-basic` request with no explicit summarization route uses the selected Codex model in a one-shot process and commits only its completed text as the durable Harness checkpoint. A `web_search` call from a Codex Agent is conditionally intercepted before the configured Web provider: each query runs native live search in its own one-shot App Server process, URL citations are projected back through the existing Harness tool output contract, and every non-Codex Agent delegates to the original provider chain unchanged. Search cannot reuse the main process because that thread is waiting for the Harness tool result.
 
 ## Install
+
+This release targets DSH `>=0.1.2-alpha.1 <0.2.0`. Its browser manifest declares the current `ui-chat` slot owner and renderer in DSH's informational client graph; the removed `dsh-client-runtime` module is not part of that roster.
 
 Authenticate the native CLI once:
 
@@ -50,9 +52,13 @@ dsh --profile web --dump-config
 dsh --profile web
 ```
 
-To build and pack this checkout instead:
+To build and pack this checkout instead, first check out `deepseek-ai/deepseek-harness` at `cd5ef8148158c3a752a658978873241fdf8e2bbc` beside this repository as `../deepseek-harness`, then prepare its linked packages:
 
 ```sh
+cd ../deepseek-harness
+pnpm install --frozen-lockfile
+pnpm run build:lib
+cd ../harness-plugin
 pnpm install --frozen-lockfile
 pnpm run check
 ```

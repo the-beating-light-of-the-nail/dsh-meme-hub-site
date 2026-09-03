@@ -84,39 +84,39 @@ dsh plugin --profile web add @quill507/dsh-auto-approval-llm
 
 在 Auto 权限预设下使用（`设置 → 通用设置 → 权限 → Auto`；Read Only / Workspace Write / Auto / Full access）：
 
-![Auto 权限预设](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/permission-auto-preset.png)
+![Auto 权限预设](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/permission-auto-preset.png)
 
 设置卡总览——顶层开关即时保存，右侧为可折叠子卡：
 
-![设置卡总览](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/settings-overview.png)
+![设置卡总览](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-overview.png)
 
 计时器与熔断——三档倒计时、熔断防劫持与双熔断阈值：
 
-![计时器与熔断](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/settings-timers-breaker.png)
+![计时器与熔断](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-timers-breaker.png)
 
 在线评审模型——API 协议 / 地址 / 模型 / 密钥（密钥前端不可见）：
 
-![在线评审模型](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/settings-online-reviewer.png)
+![在线评审模型](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-online-reviewer.png)
 
 安全规则列表——安全 Prompt / 白黑名单 / 声明规则 / 规则干跑：
 
-![安全规则列表](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/settings-safety-rules.png)
+![安全规则列表](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-safety-rules.png)
 
 分类开关与信任模式——标准/激进两种位置模式、特权命令允许 LLM 审查开关与各类别独立三态覆盖：
 
-![分类开关与信任模式](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/settings-categories-trust.png)
+![分类开关与信任模式](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-categories-trust.png)
 
 确认制学习——同一签名累计 N 次真实人工确认后自动放行（每次放行前仍经一次在线评审），支持查看与吊销已学习条目：
 
-![确认制学习](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/settings-learning.png)
+![确认制学习](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/settings-learning.png)
 
 审批面板——倒计时贴在超时自动执行的动作上（此处 `超时动作=低风险自动同意` → 中风险超时自动**拒绝**，「拒绝」按钮带倒计时、「允许一次」保持干净）：
 
-![审批面板 · 拒绝倒计时](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/approval-panel-countdown-reject.png)
+![审批面板 · 拒绝倒计时](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/approval-panel-countdown-reject.png)
 
 会话审批统计——会话标题栏「自动审批」按钮弹层：总计/通过/拒绝/超时/熔断 + 最近记录：
 
-![会话审批统计](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/4a9bfba0e06e2fc50a0fd14955e0c9c44564432c/assets/session-stats.png)
+![会话审批统计](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/f07a05e49d8f7017489baf0ca0e46b212b09a018/assets/session-stats.png)
 
 ---
 

@@ -16,14 +16,14 @@ Vibe Coding 很容易从一句模糊需求直接跳到代码，结果往往是�
    - 工具把结构化 `PrototypeBrief` 确定性渲染成包含逐页结构、真实 mock 数据、交互关系和验收方式的完整项目简报；最后用一张页面范围确认卡明确列出将绘制的页面，用户确认前不会创建画板。
    - 视觉品牌、颜色和正式前端实现仍留到生成阶段。
 2. **Open & Demonstrate：用户画给 Agent 看**
-   - 用户说“打开画码，我自己画一下”时，`draw2code_open` 只准备画板，不进入 Create；宿主有侧边栏浏览器时通过 handoff URL 在侧边栏显示。
+   - 用户说“打开画码，我自己画一下”时，由独立的 `$draw2code-open` 快速入口只调用一次 `draw2code_open`，不加载 Create、Update、Generate、代表页复核或质量门禁；宿主有侧边栏浏览器时通过 handoff URL 在侧边栏显示。
    - 用户说“我画好了”后，Agent 先用 `draw2code_read` 读取并复述页面、组件和交互关系，再按用户指令继续修改或生成。
    - URL 就绪、daemon 启动和画布真正可见是三个不同状态；只有侧边栏实际显示后才报告“已经打开”。
 3. **Update：共同画原型**
-   - `draw2code_update` 把语义化低保真页面写入 Excalidraw，用户可以直接拖动、删除、改字或添加便签。
-   - Agent 更新前读取当前画板；冲突、用户删除、手工修改和版本基线都有保护。
-   - Create 会逐页给出核心任务、首屏信息、主操作和语义组件蓝图；3 个及以上页面先画代表页并检查，再铺开整套原型。
-   - 更新经过落盘回读验证后，DSH 会自动打开画码并切换到目标画板；写入成功与原型完成分开报告，最终必须逐页完成视觉复核。
+   - `draw2code_update action=write` 把语义化低保真页面写入 Excalidraw，用户可以直接拖动、删除、改字或添加便签；`action=review` 使用写入返回的 `reviewToken` 记录可见复核，不改画板 revision，也不发布新的 reveal。
+   - Agent 更新前只需读取一次当前画板；`draw2code_read` 和 `draw2code_open` 会直接返回精确容量、当前 review/pending 状态及可执行的下一步参数，不需要搜索会话历史。已有 3 页以上画板的独立小改动不会被旧的首次代表页门禁拦截。
+   - Create 会逐页给出核心任务、首屏信息、主操作和语义组件蓝图；3 个及以上页面返回结构化 `drawingPlan`，强制先生成代表页，复核通过后才生成其余页面。若 Agent 仍误提前提交其余页面，Update 会返回 `pendingUpdateId` 暂存该批 ops，复核后以 `action=commit_pending` 直接提交，避免整批 JSON 被丢弃和重新生成。
+   - 超过 512KB 的批次会在布局检查和写盘前返回 `reduce_update_scope`；更新结果同时返回工具内部各阶段耗时。更新经过落盘回读验证后，DSH 会自动打开画码并切换到目标画板；写入成功与原型完成分开报告，最终必须逐页完成视觉复核。
 4. **Generate：生成并验收前端**
    - `draw2code_generate` 开始前先用普通对话询问是否有参考风格图片；随后读取最新画板，让用户多选页面范围，并结合参考图或产品语义智能推荐整体视觉方向。
    - 原型不完整时先回画板修复；不会在 HTML 中偷偷补出未经确认的产品功能。
@@ -33,7 +33,7 @@ Vibe Coding 很容易从一句模糊需求直接跳到代码，结果往往是�
 ## 主要能力
 
 - DSH 右侧 `dsh-better-sidebar` 中的完整 Excalidraw 画布；
-- 多画板创建、切换、删除、历史版本和导出；
+- 多画板创建、切换、删除、历史版本和导出；独立画码可在本机已明确注册的工作区之间切换，各工作区的画板仍原位保存；
 - Agent 工具：`draw2code_list`、`draw2code_read`、`draw2code_create`、`draw2code_update`、`draw2code_generate`、`draw2code_open`；
 - 用户手工编辑与 Agent 更新之间的三方合并和冲突确认；
 - 成功更新后自动展开画码、激活目标画板，同一事件不会反复抢焦点；
@@ -57,9 +57,9 @@ Vibe Coding 很容易从一句模糊需求直接跳到代码，结果往往是�
 codex plugin add draw2code@personal
 ```
 
-安装后新建 Codex 任务，使 Skill 与六个 MCP 工具进入新会话。用户不需要进入单独的 Plugin 页面或手输工具名，直接说“用 Draw2Code 帮我设计一个习惯追踪 App”“打开画码，我自己画一下”或“帮我画原型”即可。普通“帮我做一个 App”不会自动进入 Draw2Code。
+安装后新建 Codex 任务，使 Skills 与六个 MCP 工具进入新会话。用户不需要进入单独的 Plugin 页面或手输工具名：选择“打开 Draw2Code / 画码”快速入口，或直接说“打开画码”，只走单次 Open；“用 Draw2Code 帮我设计一个习惯追踪 App”“帮我画原型”等产品任务才进入综合工作流。普通“帮我做一个 App”不会自动进入 Draw2Code。
 
-`draw2code_open` 会按能力选择展示：支持 MCP UI 时返回内嵌画板；宿主提供侧边栏浏览器时使用 `presentation=handoff`，由宿主打开短期 URL 并验证画布可见；普通本地图形环境可回退到外部浏览器；headless 环境只返回链接。后续更新通过 WebSocket 刷新，断线时继续使用 revision polling，不反复打开窗口。
+`draw2code_open` 在 MCP/Codex 中默认使用 `presentation=handoff`：MCP 连接初始化时已后台预热共享 daemon，Open 工具只需返回短期 URL，不注册会生成打不开卡片的静态 `openai/outputTemplate`，由宿主在侧边栏或浏览器打开并验证画布可见。只有显式选择 `presentation=browser` 时才尝试启动外部浏览器。后续更新通过 WebSocket 刷新，断线时继续使用 revision polling，不反复打开窗口。
 
 Draw2Code 把画板注册到 `dsh-better-sidebar` 提供的右侧栏中。DSH 当前只会自动启用用户直接安装的 bundle，不会自动启用另一个插件的传递依赖，因此下面两条安装命令都必须执行。
 
@@ -72,7 +72,7 @@ Draw2Code 把画板注册到 `dsh-better-sidebar` 提供的右侧栏中。DSH �
 dsh plugin --profile web add dsh-better-sidebar
 
 # 2. 安装 Draw2Code 稳定版
-dsh plugin --profile web add github:guchang/draw2code#v0.1.2
+dsh plugin --profile web add github:guchang/draw2code#v0.5.0
 
 # 3. 重启 dsh web；如果已经在运行，请先停止旧进程再启动
 dsh web
@@ -127,10 +127,12 @@ draw2code-pages/
 
 这些运行数据已加入 `.gitignore`，不会进入 Draw2Code 源码仓库。
 
+独立画码会记住 Codex、DSH 或其他宿主明确注册过的工作区，并在画板菜单中显示当前工作区及其他已经存在画板的工作区，包括名称、完整路径和画板数量；插件缓存和没有画板的空 root 不进入切换菜单。切换工作区前会先落盘当前待保存内容，再换取目标工作区的新短期凭据；原凭据不能直接读取其他工作区。Draw2Code 不扫描整台电脑，也不会自动复制、合并或迁移不同工作区的画板。
+
 ## 协作与安全边界
 
 - 文件访问受 HostContext workspace 门禁限制，root 经 `realpath` 后不能越过已注册工作区；
-- daemon 只监听 loopback，descriptor 权限为 `0600`；宿主使用随机 bearer，画板只获得短期 workspace/board scoped token；
+- daemon 只监听 loopback，descriptor 权限为 `0600`；宿主使用随机 bearer，画板只获得短期 workspace-scoped token；独立画码切换工作区时必须显式换取目标 root 的新 token；
 - DSH `/api/draw2code/*` 是隐藏 token 的同源 daemon 代理；
 - `draw2code_update` 使用原子写入、revision 和回读验证，不直接修改未知文件；
 - 涉及用户手工修改的危险覆盖会返回确认状态，不会静默写入；

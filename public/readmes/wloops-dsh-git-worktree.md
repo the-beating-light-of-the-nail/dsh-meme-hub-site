@@ -82,7 +82,7 @@ dsh plugin --profile web add dsh-git-worktree
 也可以安装指定版本：
 
 ```bash
-dsh plugin --profile web add github:wloops/dsh-git-worktree#v0.7.1
+dsh plugin --profile web add github:wloops/dsh-git-worktree#v0.7.2
 ```
 
 安装后打开 Git Workspace，在新建 Session 时启用 **Worktree**；已有 Local Session 也可以让模型调用 `worktree_create` 创建隔离 Session。
@@ -95,11 +95,11 @@ dsh plugin --profile web add github:wloops/dsh-git-worktree#v0.7.1
 
 ### 项目聚合与任务状态
 
-![Managed Worktree 聚合到原 Local 项目](https://raw.githubusercontent.com/wloops/dsh-git-worktree/0fc9e5a797034a953b683e9ad01fceddea49fad6/docs/screenshots/00-project-sidebar.png)
+![Managed Worktree 聚合到原 Local 项目](https://raw.githubusercontent.com/wloops/dsh-git-worktree/5838d29d7cb12f1452389b91024034cac2a9b800/docs/screenshots/00-project-sidebar.png)
 
 ### 准备验收
 
-![Agent 完成任务并准备预览修改](https://raw.githubusercontent.com/wloops/dsh-git-worktree/0fc9e5a797034a953b683e9ad01fceddea49fad6/docs/screenshots/02-ready-for-review.png)
+![Agent 完成任务并准备预览修改](https://raw.githubusercontent.com/wloops/dsh-git-worktree/5838d29d7cb12f1452389b91024034cac2a9b800/docs/screenshots/02-ready-for-review.png)
 
 完整操作步骤见[完整使用指南](docs/USAGE.md#完整交付示例)。
 

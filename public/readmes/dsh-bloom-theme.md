@@ -57,7 +57,7 @@
 ## 截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-sage-light.png" alt="Bloom · Sage (light)" width="100%" />
+  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-sage-light.png" alt="Bloom · Sage (light)" width="100%" />
   <sub>鼠尾草·亮色 —— 磨砂玻璃面板 + 莫兰迪绿，选中会话行以当前主题高亮</sub>
 </p>
 
@@ -65,23 +65,23 @@
 
 <table align="center">
 <tr>
-<td align="center">☁️ 雾蓝 Mist<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-mist-light.png" width="100%"/></td>
-<td align="center">🧧 丹红 Cinnabar<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-cinnabar-light.png" width="100%"/></td>
-<td align="center">🌸 花瓣 Petal<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-petal-light.png" width="100%"/></td>
-<td align="center">🌊 涟漪 Ripple<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-ripple-light.png" width="100%"/></td>
+<td align="center">☁️ 雾蓝 Mist<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-mist-light.png" width="100%"/></td>
+<td align="center">🧧 丹红 Cinnabar<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-cinnabar-light.png" width="100%"/></td>
+<td align="center">🌸 花瓣 Petal<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-petal-light.png" width="100%"/></td>
+<td align="center">🌊 涟漪 Ripple<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-ripple-light.png" width="100%"/></td>
 </tr>
 <tr>
-<td align="center">🌿 鼠尾草 Sage<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-sage-light.png" width="100%"/></td>
-<td align="center">🧱 暖石 Stone<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-stone-light.png" width="100%"/></td>
-<td align="center">🔷 青金 Lapis<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-lapis-light.png" width="100%"/></td>
-<td align="center">🍯 琥珀 Amber<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-amber-light.png" width="100%"/></td>
+<td align="center">🌿 鼠尾草 Sage<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-sage-light.png" width="100%"/></td>
+<td align="center">🧱 暖石 Stone<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-stone-light.png" width="100%"/></td>
+<td align="center">🔷 青金 Lapis<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-lapis-light.png" width="100%"/></td>
+<td align="center">🍯 琥珀 Amber<br/><img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-amber-light.png" width="100%"/></td>
 </tr>
 </table>
 
 **每套都有对应暗色**（示例：琥珀·暗色）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/b356a6819bcf810755bc29fc0c2256b11f711f82/assets/screenshots/ui-amber-dark.png" alt="Bloom · Amber (dark)" width="100%" />
+  <img src="https://raw.githubusercontent.com/webkubor/dsh-bloom-theme/64790d4624a299c2e44ca9bb08f300cca69748b8/assets/screenshots/ui-amber-dark.png" alt="Bloom · Amber (dark)" width="100%" />
 </p>
 
 ## 安装

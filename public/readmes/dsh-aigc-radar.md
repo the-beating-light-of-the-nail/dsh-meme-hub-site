@@ -6,7 +6,7 @@
 
 **Stop rebuilding what already exists.** While you plan and implement, the agent proactively checks the curated AIGC Radar library for mature, battle-tested projects that already solve your problem — before you write a line of code. Results render as **native search cards** in the dsh Web UI — not raw markdown — and survive session replay.
 
-![search_ai_projects rendering as a native search card in the dsh Web UI](https://raw.githubusercontent.com/Kaixxrua/dsh-aigc-radar/1f65307e2efaffedf77d6591a816e594724762de/docs/search-card.png)
+![search_ai_projects rendering as a native search card in the dsh Web UI](https://raw.githubusercontent.com/Kaixxrua/dsh-aigc-radar/c7838f0c92d5503d9bda200421b6afc97e346c15/docs/search-card.png)
 
 ## What you get
 

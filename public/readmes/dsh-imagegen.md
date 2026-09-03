@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/imagegen-overview.png" alt="dsh-imagegen AI image studio" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/imagegen-overview.png" alt="dsh-imagegen AI image studio" width="100%" />
 </p>
 
 <div align="center">
@@ -18,11 +18,11 @@
 
 **生成 → 查看 → 加入对话 → 继续编辑**，在同一条工作流里完成。
 
-[快速开始](#quick-start)&nbsp;&nbsp;·&nbsp;&nbsp;[核心工作流](#workflow)&nbsp;&nbsp;·&nbsp;&nbsp;[多模型对比](#compare)&nbsp;&nbsp;·&nbsp;&nbsp;[工作台](#studio)&nbsp;&nbsp;·&nbsp;&nbsp;[模板库](#templates)&nbsp;&nbsp;·&nbsp;&nbsp;[画廊](#gallery)&nbsp;&nbsp;·&nbsp;&nbsp;[配置](#configuration)&nbsp;&nbsp;·&nbsp;&nbsp;[交流群](#community)
+[快速开始](#quick-start)&nbsp;&nbsp;·&nbsp;&nbsp;[核心工作流](#workflow)&nbsp;&nbsp;·&nbsp;&nbsp;[电商模式](#ecommerce)&nbsp;&nbsp;·&nbsp;&nbsp;[多模型对比](#compare)&nbsp;&nbsp;·&nbsp;&nbsp;[工作台](#studio)&nbsp;&nbsp;·&nbsp;&nbsp;[模板库](#templates)&nbsp;&nbsp;·&nbsp;&nbsp;[画廊](#gallery)&nbsp;&nbsp;·&nbsp;&nbsp;[配置](#configuration)&nbsp;&nbsp;·&nbsp;&nbsp;[交流群](#community)
 
 </div>
 
-`dsh-imagegen` 是 DeepSeek Harness（DSH）的原生 AI 图像工作台。配置任意 OpenAI 兼容生图接口后，Agent 对话生图、`/edit_image` 斜杠命令连续编辑、多模型并列对比、441 条案例模板库与画廊资产管理都在同一个窗口完成。生成任务由宿主进程排队执行，不卡界面、不打断对话，图片也不必在多个工具之间来回搬运。
+`dsh-imagegen` 是 DeepSeek Harness（DSH）的原生 AI 图像工作台。配置任意 OpenAI 兼容生图接口后，Agent 对话生图、`/edit_image` 斜杠命令连续编辑、多模型并列对比、441 条案例模板库与画廊资产管理都在同一个窗口完成；电商模式还能把一张商品图扩展成主图、卖点图、场景图等一整套商品视觉。生成任务由宿主进程排队执行，不卡界面、不打断对话，图片也不必在多个工具之间来回搬运。
 
 <a id="quick-start"></a>
 ## 快速开始
@@ -105,6 +105,26 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
       <br/>
     </td>
   </tr>
+  <tr>
+    <td width="33%" align="center" valign="top">
+      <br/>
+      <b><a href="#ecommerce">电商模式（预览）</a></b><br/>
+      <sub>一张商品图扩展成主图、卖点图、场景图整套视觉</sub><br/>
+      <br/>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <br/>
+      <b><a href="#studio">可自定义的界面</a></b><br/>
+      <sub>对话面板可收起，参数栏宽度可拖拽调整</sub><br/>
+      <br/>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <br/>
+      <b><a href="#workflow">宿主任务队列</a></b><br/>
+      <sub>批量任务并行执行，进度、取消、重试一体化</sub><br/>
+      <br/>
+    </td>
+  </tr>
 </table>
 
 <a id="workflow"></a>
@@ -121,7 +141,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 | **继续编辑** | 对 Agent 说，或输入 `/edit_image …` | 以上一张成图为参考提交图生图，只需描述要改的地方 |
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/videos/agent-chat-edit.gif" alt="Agent 对话生图与连续编辑演示" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/videos/agent-chat-edit.gif" alt="Agent 对话生图与连续编辑演示" width="100%" />
   <p><sub><a href="docs/videos/agent-chat-edit.mp4">查看高清 MP4</a> — 从把图片加入对话到 /edit_image 继续修改的完整流程</sub></p>
 </div>
 
@@ -174,7 +194,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 同一个提示词在不同模型上往往呈现完全不同的构图、质感与文字处理。打开“多模型对比”，勾选多个已配置模型，插件会以相同参数提交任务，并在画布和全屏预览中并列展示，方便挑出真正适合当前任务的模型。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/multi-model-comparison.png" alt="gpt-image-2、grok-imagine-image 与 doubao-seedream 的三模型并列结果对比" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/multi-model-comparison.png" alt="gpt-image-2、grok-imagine-image 与 doubao-seedream 的三模型并列结果对比" width="100%" />
   <p><sub>同一提示词在三个模型下的并列结果，画布与全屏预览均支持对比视图</sub></p>
 </div>
 
@@ -187,18 +207,43 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 
 </details>
 
+<a id="ecommerce"></a>
+## 电商模式
+
+顶部导航切换到「电商模式」，把一张商品图扩展成一套可发布的商品视觉：上传商品素材（主体 / 包装 / 细节 / 风格，最多 4 张），选择平台、文案语言、比例与类目，填写商品卖点，然后用卡片勾选套图结构（主图、卖点图、场景图、细节图、规格图、使用图）与每种用途的数量。
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/ecommerce-mode.png" alt="电商模式：商品信息、参数选择、套图结构与结果" width="100%" />
+  <p><sub>左侧规划套图结构，右侧按用途分组查看结果，支持逐张预览、下载、加入画廊或对话</sub></p>
+</div>
+
+- **锚定生成**：确认后先生成主图，其余图片自动以主图为参考生成，并在提示词中附加商品一致性约束，保证整套是同一个商品。
+- **先预览后生成**：点击「生成套图预览」只输出计划（各用途与数量），确认后才批量提交，不浪费额度。
+- **商品一致性**：每张参考素材按角色标注，主图之外的图片默认跟随主图锚定；可在「参考图设置」中为每种用途单独指定参考。
+- **结果管理**：结果按用途分组展示，支持单张重新生成、下载、加入画廊或对话；一键导出 JSON 清单，记录每张图的提示词与参数，方便复现。
+- **历史与恢复**：套图在历史记录中按项目折叠，跨会话点击即可恢复整组结果继续编辑。
+
+<details>
+<summary><b>电商模式说明</b></summary>
+
+- 电商模式目前为预览功能，入口带有「预览」角标；生成仍走已配置的生图渠道与任务队列，额度消耗与普通生成一致。
+- 套图数量与结构可自由组合，规格图、使用图等用途默认关闭，点击卡片即可启用。
+- 未上传商品图时主图会按文字描述生成并作为锚定基准，建议先上传清晰的主图获得更高一致性。
+
+</details>
+
 <a id="studio"></a>
 ## 图像工作台
 
-点击“新会话 / 生图”中的“生图”Tab，工作区按“历史记录 | 生图区 | AI 对话”三栏排列，拖动分隔线即可调整对话区宽度；左侧历史区与结果预览区均可收起，专注查看大图。
+点击“新会话 / 生图”中的“生图”Tab，工作区按“历史记录 | 生图区 | AI 对话”三栏排列。顶部导航在普通生图（文生图 / 图生图）、画廊与电商模式之间切换；右侧对话面板默认收起，点击头部的「对话」按钮随时展开，拖动分隔线即可调整对话区宽度；左侧参数栏的宽度也可拖拽调整并自动记忆。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/image-generation-studio-three-column.png" alt="三栏工作台" width="100%" />
-  <p><sub>历史记录 ｜ 生图区 ｜ AI 对话 三栏同屏，分隔线可拖拽</sub></p>
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/image-generation-studio-three-column.png" alt="三栏工作台" width="100%" />
+  <p><sub>顶部导航切换模式，历史记录 ｜ 生图区 ｜ AI 对话 三栏同屏</sub></p>
 </div>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/image-generation-studio-four.png" alt="AI 生图工作台四图结果布局" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/image-generation-studio-four.png" alt="AI 生图工作台四图结果布局" width="100%" />
   <p><sub>一次生成多张时的结果布局，可全屏缩放、翻页查看</sub></p>
 </div>
 
@@ -219,7 +264,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 随插件内置 441 条精选 `gpt-image-2` 提示词案例（含参考图快照），没有灵感时可以先看看别人怎么写。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/prompt-template-library.png" alt="提示词模板库：分类筛选与案例卡片" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/prompt-template-library.png" alt="提示词模板库：分类筛选与案例卡片" width="100%" />
   <p><sub>按 18 个分类浏览，案例详情含参考图、作者署名与原链，可一键回填</sub></p>
 </div>
 
@@ -233,7 +278,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 满意的图片可从结果卡、全屏预览或历史记录一键加入画廊；画廊中的图片也能直接加入当前对话，再用 `/edit_image` 修改。画廊为持续积累作品设计：左侧筛选，右侧瀑布流或整齐网格，点击任意图片即可打开大图预览。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/gallery-workspace.png" alt="画廊工作区：分类筛选、瀑布流和大图预览" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/gallery-workspace.png" alt="画廊工作区：分类筛选、瀑布流和大图预览" width="100%" />
   <p><sub>左侧分类筛选带计数，右侧瀑布流 / 网格可切换</sub></p>
 </div>
 
@@ -248,7 +293,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 打开 DSH 的“设置 → 插件”，展开 **AI 生图（dsh-imagegen）**。每个提供方都有独立的 API 地址、密钥和模型目录，可同时配置多个服务；预置了 OpenAI、智谱、xAI、字节火山方舟（Seedream）等常用渠道，也可添加任意自定义 OpenAI 兼容渠道。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/plugin-settings.png" alt="DSH 设置页中的 AI 生图插件配置" width="72%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/plugin-settings.png" alt="DSH 设置页中的 AI 生图插件配置" width="72%" />
   <p><sub>设置 → 插件 → AI 生图（dsh-imagegen）</sub></p>
 </div>
 
@@ -295,7 +340,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 欢迎加入 QQ 群，一起交流 DSH、AI 生图和插件使用体验，也欢迎分享提示词、工作流与改进建议。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/985772e204394b4ff3021886ded9e4664ebcb0e6/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/17ea913fb9f4468e7def457f22e2e4a7b4bcfd47/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
 </p>
 
 <a id="development"></a>

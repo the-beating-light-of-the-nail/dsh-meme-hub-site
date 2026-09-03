@@ -55,7 +55,7 @@ dsh plugin --profile <name> add dsh-plugin-subagent-director
   name: dsh-plugin-subagent-director
   config:
     subagentProvider: spawn      # 传输：spawn（无父上下文）/ fork（继承父历史）
-    toolName: subagent_role      # 模型可见工具名
+    toolName: subagent_role      # 本插件注册的模型可见工具名（不是内置 subagent）
     enableRunInBackground: true
     backgroundMode: one-shot     # one-shot 或 continuable
     maxDepth: 3
@@ -124,6 +124,35 @@ subagent_role({ role: "code-reviewer", model: "deepseek-chat", prompt: "..." }) 
 `role` 参数支持用角色 id 或显示名引用：未命中 id 时会按 `displayName` 精确匹配
 （多个同名角色取定义顺序第一个并提示）；建议始终用 id，见系统提示中的 Delegate 行。
 
+> **`subagent_role` 与内置 `subagent` 是两个不同的工具。** 本插件注册的是
+> `subagent_role`（工具名由 `toolName` 配置，默认 `subagent_role`）；DSH 基础
+> bundle 另有内置的 `subagent` / `subagent_fork`，两者在同一次请求的工具清单里
+> **并存**。只有走 `subagent_role` 才会应用角色 persona 与 `toolFilter`；模型改用
+> 内置 `subagent` 时这两项不生效（`applyDefaultRoute` 开启时默认模型仍会生效）。
+> 因此需要角色语义时，请在提示里明确要求调用 `subagent_role`。
+
+### 纯编排模式（`/orchestrate`）
+
+```text
+/orchestrate 分析上周A股走势   # 本轮开启并直接编排该任务（推荐用法）
+/orchestrate                  # 本轮开启（按轮生效，无需 on/off）
+/orchestrate on               # 持久开启（直到 /orchestrate off）
+/orchestrate off              # 退出持久模式
+```
+
+在消息开头声明 `/orchestrate`（可后接任务文本，如 `/orchestrate 分析上周A股走势`），
+或用自然语言写「使用orchestrate模式」（含「请使用 orchestrate 模式」「use
+orchestrate mode」等变体），该轮会话即自动进入纯编排模式——类似 `/using aegis`
+的按轮声明式用法，无需记忆开关状态；未声明时保持普通模式。`/orchestrate <任务>`
+会把任务文本排入下一轮并唤醒模型，该轮以纯编排模式处理任务。开启后注入一段
+「纯编排者」系统提示：主代理只允许通过委派工具派活，角色清单从当前
+`subagent-director.roles` 动态渲染（无硬编码 role id）。**未配置角色时**不会注入
+束缚性的纯编排框架，而是注入一段简短提示，让模型明确告知需要先配置角色并继续
+以普通模式处理请求（避免「对话无输出」）。该模式依赖宿主的 `commands` 与
+`sessionProjections` 服务：标准 profile（dsh-base）都会提供二者；
+`sessionProjections` 缺失时命令返回明确错误而不是假装成功，`commands` 缺失时
+命令不注册，插件其余功能不受影响。
+
 ## 术语
 
 - **subagentProvider（传输）**：`spawn` / `fork` / `acp`——子代理跑在哪条传输链路上；
@@ -135,7 +164,7 @@ subagent_role({ role: "code-reviewer", model: "deepseek-chat", prompt: "..." }) 
 
 ```bash
 npm install
-npm test          # vitest（129 用例）
+npm test          # vitest（253 用例）
 npm run typecheck
 npm run build     # host(tsc) + client(rolldown bundle)
 ```
@@ -149,6 +178,14 @@ DSH 的 Web API 只向白名单内的 settings 命名空间开放读写。本插
 未配置任何角色且未配置默认模型时与未安装本插件完全一致（零侵入）。配置了
 `defaultProvider`/`defaultModel` 且未关闭 `applyDefaultRoute` 时，所有未显式
 指定模型的子代理（含内置工具发起的）都会使用该默认模型。
+
+**用过 `/orchestrate` 的会话，卸载插件后还能打开吗？**
+不能。`/orchestrate` 会在会话日志写入 `orchestrate/change` 事件，而宿主的持久化
+加载校验遇到「未知且未标记 ignorable」的事件类型时会拒绝加载整个日志（避免误解
+日志语义）。插件挂载时会动态注册该事件类型，正常使用不受影响；但在未挂载本插件
+的环境（卸载后、其他 profile）中，这些会话将无法打开。上游暂未提供第三方事件
+类型的官方注册或 `ignorable` 写入 API，此为已知取舍，详见
+[issue #6](https://github.com/SeverusZh/dsh-plugin-subagent-director/issues/6)。
 
 **新供应商/API 会自动出现吗？**
 会。设置页订阅了供应商与设置变更事件，在 Models 页新增供应商/API key 后，下拉列表自动刷新，无需重启。

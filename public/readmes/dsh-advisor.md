@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/dt/dsh-advisor)](https://www.npmjs.com/package/dsh-advisor)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933.svg)
-![dsh](https://img.shields.io/badge/dsh-0.1.1--rc.2-4B32C3.svg)
+![dsh](https://img.shields.io/badge/dsh-0.1.2--alpha.4-4B32C3.svg)
 ![dsh tui](https://img.shields.io/badge/dsh%20tui-compatible-4B32C3.svg)
 [![dshfind](https://dshfind.com/api/badge/omdsh-dev/dsh-advisor)](https://dshfind.com/plugins/omdsh-dev/dsh-advisor?ref=badge)
 
@@ -50,7 +50,7 @@ The same keys compose across **three surfaces** (later layers override earlier o
 
 In a **dsh-tui** profile the same five keys are editable in the TUI `/settings` screen: run `dsh --profile dsh-tui`, open `/settings`, and edit the **Advisor** section (`enabled` / `provider` / `model` / `immuneTurns` / `maxDeltaMessages`, each with zh/en label + hint). Edits are staged and written on save through the revision-fenced `settings.mutate` into the same `advisor` namespace user layer the web card writes, and re-apply live without a restart. `systemPrompt` is NOT a TUI field (the TUI text control is single-line; a multi-line prompt would be truncated) — edit it via the web card or `$DSH_HOME/settings.yaml`. The section requires dsh-tui ≥ v0.8.0 (shipped in the `dsh-tui-settings-sections` row of the v0.8.0+ bundle); older dsh-tui versions no-op it cleanly and the two file paths — profile patch layer + global `$DSH_HOME/settings.yaml` — remain the edit paths. `/advisor config` stays a read-only readback whose edit hint names the `/settings` screen when the seam is mounted. Save behavior differs from the web card: the TUI seam has no cross-field validation, so a save may set `enabled: true` with empty `provider`/`model` — the explicit model gate resolves that to disabled-with-reason at runtime (visible via `/advisor status` and `/advisor config`); the web card blocks such a save outright. Full reference → [docs/configuration.md](docs/configuration.md).
 
-![Advisor card on the dsh web Settings (插件配置) page](https://raw.githubusercontent.com/btspoony/dsh-advisor/579d65c8c9a88a3a43f7b7056679f7ee3424c45c/docs/screenshots/advisor-settings-card.webp)
+![Advisor card on the dsh web Settings (插件配置) page](https://raw.githubusercontent.com/btspoony/dsh-advisor/fbab6dda4a3e0d6e490c3429e368d6d3285709d3/docs/screenshots/advisor-settings-card.webp)
 
 ### Verify
 
@@ -85,7 +85,7 @@ In a **dsh-tui** profile, `/advisor config` additionally reads back the composed
 - **No-stall failure policy**: a failing or quota-limited advisor only drops its own bounded backlog — it can never park or pollute the primary loop.
 - **Session-scoped controls**: `/advisor on|off|status|config` work per session; the toggles are ephemeral overrides, never persisted config.
 
-![Advisor note injected into the session stream](https://raw.githubusercontent.com/btspoony/dsh-advisor/579d65c8c9a88a3a43f7b7056679f7ee3424c45c/docs/screenshots/advisor-injected-note.webp)
+![Advisor note injected into the session stream](https://raw.githubusercontent.com/btspoony/dsh-advisor/fbab6dda4a3e0d6e490c3429e368d6d3285709d3/docs/screenshots/advisor-injected-note.webp)
 
 ## Mount-only (no dsh modification)
 

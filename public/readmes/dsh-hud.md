@@ -12,9 +12,9 @@ A **HUD status panel** plugin for [DeepSeek Harness](https://github.com/deepseek
 
 ## Screenshot
 
-![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/ba0e78adae6fc0645d42ec243700e8c81151e98a/assets/hud-button.png)
+![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/6f12a594489adb3408ba61faead40dda90d4fb66/assets/hud-button.png)
 
-![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/ba0e78adae6fc0645d42ec243700e8c81151e98a/assets/hud-panel.png)
+![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/6f12a594489adb3408ba61faead40dda90d4fb66/assets/hud-panel.png)
 
 The gauge button in the input toolbar opens the floating panel showing git status, commit history, MCP servers, skills and official usage info (tokens, cache hit rate, turns/steps, LLM & tool time, context usage).
 
@@ -54,8 +54,10 @@ Manual mount fallback: see [docs/install.md](docs/install.md).
 ## Usage
 
 Click the **gauge icon** in the input toolbar (official DSH design tokens, follows
-dark/light theme). The panel opens on the right side (default 240px);
-drag its left edge to resize (200–480px, remembered in `localStorage`). Section headers
+dark/light theme). The panel opens on the left side by default (240px wide), clear of the
+official right-edge turn navigator; **drag its title bar to move it anywhere** (position
+remembered in `localStorage`, restored on reopen); drag its left edge to resize
+(200–480px, remembered in `localStorage`). Section headers
 with count badges are clickable to collapse/expand. Data auto-refreshes every 30s (when
 the panel is closed, only the lightweight git badge keeps polling).
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/73ea0122b533e43adb17e5b18f52025751826b99/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
+<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/686325113117873c00ca74c476f18874b2876796/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
 
 # DSH Chat Import
 
@@ -44,11 +44,21 @@ import_chat({ format: "chatgpt", path: "~/Downloads/chatgpt-export/conversations
 import_chat({ format: "local-jsonl", path: "D:\downloads\session.jsonl" })
 ```
 
+Reasonix directory imports conservatively collapse only recovery ancestors proven by both a strict semantic prefix and an explicit `parent_id` lineage. Ambiguous or divergent files remain separate; use `lineageMode: "physical"` for one session per JSONL.
+
 2. **Resume** — refresh the session list, open the imported session, and keep chatting from where the source left off.
 
 3. **Sync (optional)** — the panel's "Sync" tab offers bidirectional incremental sync, off by default. Sub-agent conversations are filtered out by default in both directions.
 
 Full tool / command usage (parameters, examples, edge cases) lives in **[docs/USAGE.md](docs/USAGE.md)**.
+
+## Companion tool: config migration
+
+Only need to migrate **configuration** (skills, hooks, global settings) rather than conversation history? [dsh-movein](https://github.com/sjh9714/dsh-movein) handles config migration and complements this plugin -- DSH Chat Import only handles conversation history, and each tool works standalone. Its first-migration guide ([中文](https://github.com/sjh9714/dsh-movein/blob/main/docs/first-migration.zh.md)) walks through a preview-first, apply-second, verify-each-step flow.
+
+> The combined flow of the two tools has not been jointly validated, and cross-linking is not a mutual endorsement; check sources, targets, duplicate-import and retraction boundaries for each tool separately.
+
+This plugin's `import_agents` is a lightweight asset mover (it persists pi/opencode/Claude/Codex agents, prompts and skills as DSH skills); for full config migration (hooks, permission rules, settings), use dsh-movein.
 
 ## Features
 

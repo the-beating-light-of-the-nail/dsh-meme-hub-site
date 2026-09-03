@@ -40,11 +40,11 @@ TypeScript SDK `identity.json`; create a new Rust-backed identity after upgradin
 
 ### Messaging
 
-![AWiki direct and group messaging in DeepSeek Harness](https://raw.githubusercontent.com/AgentConnect/dsh-awiki/a88e6750fc7a51387377a4e1322efefc3c280300/assets/screenshots/awiki-messaging.png)
+![AWiki direct and group messaging in DeepSeek Harness](https://raw.githubusercontent.com/AgentConnect/dsh-awiki/9f4bcd2015c81139d25cfcf0d05f64563cbb2484/assets/screenshots/awiki-messaging.png)
 
 ### Mail
 
-![AWiki mailbox in DeepSeek Harness](https://raw.githubusercontent.com/AgentConnect/dsh-awiki/a88e6750fc7a51387377a4e1322efefc3c280300/assets/screenshots/awiki-mail.jpg)
+![AWiki mailbox in DeepSeek Harness](https://raw.githubusercontent.com/AgentConnect/dsh-awiki/9f4bcd2015c81139d25cfcf0d05f64563cbb2484/assets/screenshots/awiki-mail.jpg)
 
 The first release does not implement end-to-end encryption, multiple identities,
 post-creation group administration or multiple attachments in one message. The Agent listener accepts only
@@ -294,7 +294,7 @@ pnpm run verify:workspace
 pnpm pack --dry-run
 ```
 
-The production Host loads the exact `@awiki/im-core-node@0.1.9` runtime package;
+The production Host loads the exact `@awiki/im-core-node@0.1.10` runtime package;
 the platform-specific native addon is selected through its optional dependencies
 and remains external to the JavaScript bundle. Consumers do not need Rust or an
 `awiki-cli-rs2` checkout. See `THIRD_PARTY_NOTICES.md` for provenance and

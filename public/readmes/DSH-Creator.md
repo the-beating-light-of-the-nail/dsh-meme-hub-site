@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Jackywxsz/DSH-Creator/ccdf07e54c5b2949f1ac97db3c0118bfb3213f77/assets/readme/hero.png" width="100%" alt="Jacky Creator：把对话、内容与运营放进同一块 DeepSeek Harness 创作工作台">
+  <img src="https://raw.githubusercontent.com/Jackywxsz/DSH-Creator/ba063cdef68878ae6a18ec122dfbe7d85f5445ff/assets/readme/hero.png" width="100%" alt="Jacky Creator：把对话、内容与运营放进同一块 DeepSeek Harness 创作工作台">
 </p>
 
 <p align="center">
@@ -43,17 +43,17 @@ Jacky Creator 把 DeepSeek Harness 的对话能力和本地创作目录连起来
 
 ### 2. 安装 Jacky Creator
 
-可以通过插件市场一键安装，也可以在 DSH Desktop 的内置终端直接安装当前版本。
+推荐在 DSH Desktop 的内置终端安装 npm 成品包；插件市场同步完成后也可以一键安装。
 
-#### 方式一：通过插件市场安装
+#### 方式一：通过 DSH Plugin Hub 安装
 
 先打开 DSH Desktop 的内置终端，安装可视化插件市场：
 
 ```bash
-dsh plugin --profile web add dshmarket
+dsh plugin --profile web add dsh-plugin
 ```
 
-彻底退出并重新打开 DSH Desktop，然后进入“设置 → 插件市场”，搜索 `DSH-Creator` 或 `Jacky Creator`，打开插件卡片并点击安装。
+彻底退出并重新打开 DSH Desktop。市场目录同步并显示 `Jacky Creator` 后，进入“设置 → 插件市场”，打开插件卡片并点击安装。
 
 插件市场目录按周期同步。如果市场显示的版本低于 GitHub 最新版本，可以改用下面的命令行方式。
 
@@ -62,7 +62,13 @@ dsh plugin --profile web add dshmarket
 打开 DSH Desktop 的内置终端，复制下面一行并回车：
 
 ```bash
-dsh plugin --profile web add https://github.com/Jackywxsz/DSH-Creator/releases/download/v0.1.0-beta.6/jacky-creator-0.1.0-beta.6.tgz
+dsh plugin --profile web add jacky-creator
+```
+
+如果 npm 通道暂时不可用，可以改装同版本的 GitHub Release 成品包：
+
+```bash
+dsh plugin --profile web add https://github.com/Jackywxsz/DSH-Creator/releases/download/v0.1.0-beta.7/jacky-creator-0.1.0-beta.7.tgz
 ```
 
 无论使用哪种方式，安装完成后都要彻底退出并重新打开 DSH Desktop。侧边栏左上角出现 **Jacky Creator**，并能进入“内容 / 运营 / 灵感”，即表示安装成功。

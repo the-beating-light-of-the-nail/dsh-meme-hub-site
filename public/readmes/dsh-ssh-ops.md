@@ -8,21 +8,23 @@
 
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![DSH](https://img.shields.io/badge/DeepSeek%20Harness-plugin-blue)
-![version](https://img.shields.io/badge/version-0.2.16-blue)
+![version](https://img.shields.io/badge/version-0.2.19-blue)
+
+> **v0.2.19 新增**：DSH Desktop 桌面版界面适配、多终端标签页、`ssh_write` 输入后自动回车（`press_enter`）。桌面版安装说明见 **[INSTALL.md](./INSTALL.md)**。
 
 ## 示例
 
 主对话直接指挥已连接的服务器，右侧保留真实交互式终端，支持文件管理（SFTP）、端口转发与数据库管理：
 
-![SSH 主界面](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/223b5e970c32b3027edb220ab913538e1fb110b0/assets/screenshots/ssh-main-view.png)
+![SSH 主界面](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/092e93588562ab6fd62c195d0fb8f13b5104b0c4/assets/screenshots/ssh-main-view.png)
 
-![文件管理（SFTP）](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/223b5e970c32b3027edb220ab913538e1fb110b0/assets/screenshots/ssh-files-tab.png)
+![文件管理（SFTP）](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/092e93588562ab6fd62c195d0fb8f13b5104b0c4/assets/screenshots/ssh-files-tab.png)
 
-![端口转发](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/223b5e970c32b3027edb220ab913538e1fb110b0/assets/screenshots/ssh-tunnels-tab.png)
+![端口转发](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/092e93588562ab6fd62c195d0fb8f13b5104b0c4/assets/screenshots/ssh-tunnels-tab.png)
 
-![数据库管理界面](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/223b5e970c32b3027edb220ab913538e1fb110b0/assets/screenshots/db-panel.png)
+![数据库管理界面](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/092e93588562ab6fd62c195d0fb8f13b5104b0c4/assets/screenshots/db-panel.png)
 
-![SSH 资产管理](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/223b5e970c32b3027edb220ab913538e1fb110b0/assets/screenshots/ssh-resources.png)
+![SSH 资产管理](https://raw.githubusercontent.com/caoyiwei850/dsh-ssh-ops/092e93588562ab6fd62c195d0fb8f13b5104b0c4/assets/screenshots/ssh-resources.png)
 
 ## 能做什么
 
@@ -38,7 +40,7 @@
 - **主机指纹校验（TOFU）**：SSH 连接校验服务器主机公钥指纹——首次连接记录并信任，之后指纹变化即拒（防中间人 / 误连重装机）。每台服务器可选 `accept-new`（默认）/`verify`（拒绝未知）/`off`；指纹变化时**不重试、不自动重连**，提示用「忘记指纹」重置。设置 → SSH 资源可按服务器设置校验模式、管理已信任指纹并一键忘记。校验在用户认证前，与登录账号/密码无关，同一台服务器换人登录不会被挡。
 - **文件管理**：SSH 面板「文件」页签，基于 SFTP 浏览服务器目录树，支持上传、下载、新建目录、删除与重命名；对话中也可用 `sftp_*` 工具直接操作。
 - **端口转发**：SSH 面板「转发」页签，可建立本地转发（本机 → 服务器可达目标）与远程转发（服务器 → 本机），实时查看与停止隧道；对话中也可用 `tunnel_*` 工具。
-- **多机批量**：主对话说「批量执行 <命令>」，Agent 创建批量任务，右侧 SSH 面板弹出勾选弹窗，列出 SSH 资源中已保存的全部服务器（**含未连接的**）供手动勾选，确认后并发执行（每台用保存凭据建连 → 执行 → 断开），结果按服务器分节展示（成功绿 / 失败红）。批量目标与当前打开的连接完全无关，可勾选未连接的服务器；命中安全策略时「命令 + N 台目标」一次性确认，不再逐台弹窗。旧的 `ssh_cluster`（基于已打开连接）已软废弃为 `ssh_cluster_deprecated`，由 `ssh_batch` 取代。
+- **多机批量**：主对话说「批量执行 <命令>」，Agent 创建批量任务，右侧 SSH 面板弹出勾选弹窗，列出 SSH 资源中已保存的全部服务器（**含未连接的**）供手动勾选，确认后并发执行（每台用保存凭据建连 → 执行 → 断开），结果按服务器分节展示（成功绿 / 失败红）。批量目标与当前打开的连接完全无关，可勾选未连接的服务器；命中安全策略时「命令 + N 台目标」一次性确认，不再逐台弹窗。旧的 `ssh_cluster`（基于已打开连接、无需确认即群发）已彻底移除：多机操作只能经 `ssh_batch` 由操作者勾选确认，杜绝「点名一台、全量执行」。
 - **数据库**：SSH 面板「数据库」页签，支持连接 MySQL / PostgreSQL / Redis / MongoDB，可手动执行 SQL 查询或命令并查看结果表格；对话中也可用 `db_*` 工具直接操作。
   - 支持 `db_connect` 自动 SSH 隧道：连了服务器后，回环地址（127.0.0.1 / localhost / ::1）的数据库自动经当前服务器隧道访问内网库；`via_ssh` 可选 `auto`（默认）/`yes`/`no`，显式 `ssh_connection_id` 优先级最高。
   - 支持 SSL 三档（`disabled` 不加密 / `preferred` 加密不验证 / `verify` 加密+验证 CA）适配云托管数据库。
@@ -59,7 +61,7 @@ Agent 命中上述黑名单时不会被静默拒绝：插件会创建一条一�
 ### 从 GitHub 安装（推荐）
 
 ```bash
-dsh plugin --profile web add github:caoyiwei850/dsh-ssh-ops#v0.2.16
+dsh plugin --profile web add github:caoyiwei850/dsh-ssh-ops#v0.2.19
 ```
 
 安装后重启 DSH Web：
@@ -72,14 +74,14 @@ dsh web
 
 ### 从发布压缩包安装
 
-从 [GitHub Releases](https://github.com/caoyiwei850/dsh-ssh-ops/releases/tag/v0.2.16) 下载 `dsh-ssh-ops-0.2.16.tgz` 后：
+从 [GitHub Releases](https://github.com/caoyiwei850/dsh-ssh-ops/releases/tag/v0.2.19) 下载 `dsh-ssh-ops-0.2.19.tgz` 后：
 
 ```bash
-dsh plugin --profile web add /path/to/dsh-ssh-ops-0.2.16.tgz
+dsh plugin --profile web add /path/to/dsh-ssh-ops-0.2.19.tgz
 dsh web
 ```
 
-`dsh-ssh-ops-0.2.16.zip` 适用于离线审阅或二次开发；解压后可在目录中执行 `npm install && npm run build`。
+`dsh-ssh-ops-0.2.19.zip` 适用于离线审阅或二次开发；解压后可在目录中执行 `npm install && npm run build`。
 
 ## 使用方式
 
@@ -88,10 +90,15 @@ dsh web
 3. 顶部 **SSH** 仅控制右侧终端的显示和隐藏；右上角 `+` 可选择已保存资源，或创建不落盘的临时连接。
 4. 在主对话中直接说“查询服务器内存使用情况”或“配置 Nginx SSL 证书”。主 Agent 只能操作当前活动连接，不能枚举保存资源、读取凭据或自动用保存凭据连接。
 5. 需要数据库时，让 Agent 调 `db_connect`（或自己在「数据库」页签新建连接），随后即可在对话中查询/执行。
+6. 可选：安装内置「运维模式」原生预设：`npx --package=dsh-ssh-ops dsh-ssh-ops-install-ops-preset`。重启 DSH 后，在新对话中选择「运维模式」。已存在同名预设时安装器不会覆盖；要用包内版本更新可加 `--force`。
+
+### 运维 Agent 预设
+
+插件随包提供 DSH 原生「运维模式」预设（`.agent-presets/ops`）：它去除了本地 shell，保留本地文件编辑；服务器操作经 dsh-ssh-ops 的 SSH/SFTP/隧道/批量/数据库工具完成，并附带 `test-op` 变更验证技能。预设采用显式安装与选择，不会自动改写全局 persona 或已有会话。
 
 ### Agent 工具
 
-共 30 个 Agent 工具，省略 `connection_id` / `db_connection_id` 时默认作用于当前活动连接，**无需先调 `ssh_list` / `db_list_connections`**。
+共 29 个 Agent 工具，省略 `connection_id` / `db_connection_id` 时默认作用于当前活动连接，**无需先调 `ssh_list` / `db_list_connections`**。
 
 #### SSH（6）
 
@@ -101,7 +108,7 @@ dsh web
 | `ssh_connect` | 建立 SSH 连接（密码或私钥）并设为当前服务器 |
 | `ssh_exec` | 在当前服务器执行 Agent 命令，回传退出码/输出/耗时/超时/截断/脱敏状态 |
 | `ssh_read` | 按需读取右侧终端缓冲输出（不静默塞入对话） |
-| `ssh_write` | 向当前终端写入交互输入（如 `y\n` 回答提示） |
+| `ssh_write` | 向指定终端写入交互输入；`press_enter`（默认 true）自动补回车提交（可传 `connection_id` 指定目标服务器的终端） |
 | `ssh_disconnect` | 断开当前连接及其 shell 会话 |
 
 #### SFTP（6）
@@ -127,7 +134,7 @@ dsh web
 
 | 工具 | 用途 |
 | --- | --- |
-| `ssh_batch` | 基于 SSH 资源中已保存服务器（含未连接的）创建批量执行任务，由操作者在面板勾选确认后并发下发，结果按服务器分节；**仅当用户明确要求多机批量时使用**（旧的 `ssh_cluster` 已软废弃为 `ssh_cluster_deprecated`） |
+| `ssh_batch` | 基于 SSH 资源中已保存服务器（含未连接的）创建批量执行任务，由操作者在面板勾选确认后并发下发，结果按服务器分节；**仅当用户明确要求多机批量时使用**（旧的 `ssh_cluster` 已彻底移除，多机操作无免确认路径） |
 
 #### 数据库（14）
 
@@ -156,10 +163,12 @@ npm run build
 npm run pack:release
 ```
 
+推送与 `package.json.version` 一致的 `vX.Y.Z` tag 时，GitHub Actions 会测试、构建并从同一个 `.tgz` 同时发布 npm 包和 GitHub Release。首次启用前，在仓库 Secrets 配置 `NPM_TOKEN`。
+
 生成物位于 `release/`：
 
-- `dsh-ssh-ops-0.2.16.tgz`：可直接被 DSH 安装。
-- `dsh-ssh-ops-0.2.16.zip`：完整离线源码包。
+- `dsh-ssh-ops-0.2.19.tgz`：可直接被 DSH 安装。
+- `dsh-ssh-ops-0.2.19.zip`：完整离线源码包。
 
 ## 许可
 

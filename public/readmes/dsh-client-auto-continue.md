@@ -1,14 +1,14 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/5076d01e1b6db92fc7f2651c576f9070b8cbb5a2/docs/banner.svg" alt="dsh-auto-continue" width="720">
+    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/banner.svg" alt="dsh-auto-continue" width="720">
   </picture>
 </p>
 
 <h1 align="center">dsh-auto-continue</h1>
 
 <p align="center">
-  <em>DSH Web UI plugin — when a request is interrupted by a network error or any other non-human cause, it automatically types 「继续」 and sends it for you.</em>
+  <em>DSH Web UI plugin — when a request is interrupted by a network error or any other non-human cause, it automatically sends “Continue” for you.</em>
 </p>
 
 <p align="center">
@@ -17,6 +17,7 @@
   <a href="https://github.com/HsiangNianian/dsh-auto-continue/stargazers"><img src="https://img.shields.io/github/stars/HsiangNianian/dsh-auto-continue?logo=github&label=Stars" alt="GitHub stars"></a>
   <a href="https://github.com/HsiangNianian/dsh-auto-continue/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-65a30d?style=flat" alt="MIT license"></a>
   <a href="https://awesome-dsh-plugin.com"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="awesome · DSH plugin"></a>
+  <a href="https://www.dsh.so/artifact/dsh-auto-continue/"><img src="https://www.dsh.so/badge/install/dsh-auto-continue.svg" alt="dsh.so install"></a>
   <br>
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=fff" alt="TypeScript">
   <img src="https://img.shields.io/badge/esbuild-FFCF00?style=flat&logo=esbuild&logoColor=000" alt="esbuild">
@@ -31,15 +32,16 @@
 
 ## What It Does
 
-For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh web`): whenever a request in the web GUI gets interrupted by a **non-human cause**, the plugin simulates the user typing **「继续」** and sends it, so the agent keeps working without manual intervention. The message enters the session log exactly like a manual prompt — the model sees it, and the interrupted work resumes. Since 0.8.0 the engine runs **inside the host process** (single instance), so it keeps watching even with every browser tab closed, and multiple open tabs can never double-send.
+For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh web`): whenever a request in the web GUI gets interrupted by a **non-human cause**, the plugin simulates the user typing **“Continue”** and sends it, so the agent keeps working without manual intervention. The message enters the session log exactly like a manual prompt — the model sees it, and the interrupted work resumes. Since 0.8.0 the engine runs **inside the host process** (single instance), so it keeps watching even with every browser tab closed, and multiple open tabs can never double-send.
 
-![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/5076d01e1b6db92fc7f2651c576f9070b8cbb5a2/docs/demo.svg)
+![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/demo.svg)
 
 **Smart recovery** (all configurable):
 
-- **Error classification** — transient failures (network / timeout / 5xx / 429…) are auto-resumed; permanent ones are **skipped** and notified, because retrying them never helps. A failure counts as permanent when its HTTP status is 401/403 or its code/message matches auth, credential/API-key, balance/quota, unknown-model, or context-length/overflow keywords. Turn classification off to resume everything
+- **Error classification** — transient failures (network / timeout / 5xx / 429…) are auto-resumed; permanent ones are **skipped** and notified, because retrying them never helps. A failure counts as permanent when its HTTP status is 401/403 or its code/message matches auth, credential/API-key, balance/quota, unknown-model, or context-length/overflow keywords. Provider-specific exceptions can be opted into with literal custom retryable patterns; turn classification off to resume everything
 - **Adaptive backoff** — consecutive failures wait longer each time (cooldown × factor: 20s → 40s → 80s…), capped at the max backoff, instead of hammering a broken upstream
-- **Templated continue text** — `continueText` supports `{code}` `{message}` `{status}` `{tool}` `{turn}` `{errorCount}` `{sessionTitle}` `{elapsed}` placeholders, so the resume message can carry the failure context ("继续 (git push failed: UPSTREAM)"); a **separate template** fires on `max-tokens` (e.g. "继续输出, 不要重复已生成的内容")
+- **English / Chinese localization** — the settings card, built-in resume / guard / loop text, and browser notifications follow DSH's active UI language (initially selected from the browser language). Only `en` and `zh` are supported; other languages fall back to Chinese. Switching languages updates built-in defaults without overwriting custom text
+- **Templated continue text** — `continueText` supports `{code}` `{message}` `{status}` `{tool}` `{turn}` `{errorCount}` `{sessionTitle}` `{elapsed}` placeholders, so the resume message can carry the failure context ("Continue ({tool} failed: {code})"); a **separate template** fires on `max-tokens` (e.g. "Continue the output without repeating anything already generated")
 - **Idempotency guard** — before resuming, the plugin inspects the last tool call: if its result is unconfirmed (the turn died mid-tool, e.g. a `git push` that may have gone through), the resume message tells the model to check state first and not to rerun; if the tool is confirmed done, it says so and asks not to repeat it; a failed tool gets no guard (retrying it is the point). Both guard texts are configurable (`{tool}` / `{result}` placeholders)
 - **Pause** — a global **Pause auto-continue** toggle in the settings card stops everything (live + scan) instantly; per-session pauses (e.g. via a notification button) suspend only one session until they expire. The **Resume now** notification button is the one explicit exception: pressing it is the user asking for exactly one send, pause or not
 - **Notification buttons** — notifications carry **Resume now** (send immediately, ignoring cooldown, the consecutive cap and any pause) and **Pause this session 1h** actions
@@ -68,11 +70,17 @@ On host boot it also scans the live sessions: a session whose last turn ended wi
 
 The browser half is a thin shell: the settings card, plus a status bridge that shows notifications (with Resume now / Pause this session 1h buttons, routed back to the host engine) and feeds the card's stats / paused-sessions panels.
 
+### Recovery workflow
+
+The diagram summarizes the automatic recovery path, the loop-guard restart path, and the exit to human intervention. Click it to open the full-size version.
+
+[![dsh-auto-continue recovery workflow](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/auto-continue-workflow.en.svg)](docs/auto-continue-workflow.en.svg)
+
 ## Quick Start
 
 DSH plugins install into a **profile** (`dsh web` → `web` profile). Install, restart `dsh web`, done.
 
-> **Use the latest DSH (recommended: 0.1.2-alpha.1 or newer).** Run `dsh --version` before installing. Plugin v0.8.2 supports the new 0.1.2 client-store module layout and retains a fallback for DSH 0.1.0-rc.7 through 0.1.1; rc.6 and earlier remain unsupported (`list slot ... requires options.id`). Preview releases may appear on the [official DSH releases page](https://github.com/deepseek-ai/deepseek-harness/releases) before the public npm tag catches up.
+> **Use the latest DSH (recommended: 0.1.2-alpha.4 or newer).** Run `dsh --version` before installing. Plugin v0.11.1 supports the settings API used by DSH 0.1.2-alpha.2+ (including alpha.3 and alpha.4) while retaining compatibility with DSH 0.1.0-rc.7 through 0.1.1; rc.6 and earlier remain unsupported (`list slot ... requires options.id`). Preview releases may appear on the [official DSH releases page](https://github.com/deepseek-ai/deepseek-harness/releases) before the public npm tag catches up.
 
 ### From npm (recommended)
 
@@ -144,18 +152,23 @@ dsh web
 
 ## Configuration
 
-Everything is configurable from the GUI — no file or console edits needed. Open **Settings → Plugins** and find the **dsh-client-auto-continue** configuration card, right where every other plugin's config lives. Besides the fields below, the card shows a live **stats panel** (today's activity with a reset button) and the list of **paused sessions** (each with a per-session resume button).
+Everything is configurable from the GUI — no file or console edits needed. Open **Settings → Plugins → Plugin configuration**. **Auto Continue** appears as a collapsed card alongside the other plugins; click the card or its right-hand chevron to expand the full configuration in place. Besides the fields below, the expanded card shows a live **stats panel** (today's activity with a reset button) and the list of **paused sessions** (each with a per-session resume button).
 
-**Or skip the GUI and edit the config file directly** — the engine reads the plugin's section from `~/.dsh/settings.yaml` (one shared file for every plugin's sections), so this works in any install, patched or not. The file is watched and re-read automatically, so changes apply live; restart `dsh web` if a page that was already open doesn't pick them up. Fields you leave out fall back to the defaults in the table below:
+The settings card groups controls by handoff, safety, recovery, loop breaking, and live status. Its header also keeps the open-source repository and a **Star on GitHub** shortcut within reach.
+
+**Or skip the GUI and edit the config file directly** — the engine reads the plugin's section from `~/.dsh/settings.yaml` (one shared file for every plugin's sections), so this works in any install, patched or not. The file is watched and re-read automatically, so changes apply live; restart `dsh web` if a page that was already open doesn't pick them up. Fields you leave out fall back to the defaults in the table below.
+
+The browser mirrors DSH's active language into the internal `locale` field. Leave the five localized text fields empty or omit them to follow that language automatically; any non-empty value is treated as your own template and is never rewritten when the language changes:
 
 ```yaml
 auto-continue:
+  locale: 'en' # normally managed by the browser
   paused: false
-  continueText: '继续'
-  continueTextMaxTokens: '继续'
+  continueText: ''
+  continueTextMaxTokens: ''
   guardTools: true
-  guardPendingText: '(上一步工具「{tool}」可能未完成, 先确认状态再继续, 不要重复执行)'
-  guardDoneText: '(上一步工具「{tool}」已完成, 结果: {result}; 不要重复执行, 直接继续)'
+  guardPendingText: ''
+  guardDoneText: ''
   graceMs: 3000
   cooldownMs: 20000
   maxConsecutive: 3
@@ -164,6 +177,7 @@ auto-continue:
   freshMs: 900000
   verbose: true
   classify: true
+  retryableErrorPatterns: ''
   backoffFactor: 2
   backoffMaxMs: 300000
   notify: false
@@ -173,12 +187,12 @@ auto-continue:
   loopShortCount: 12
   loopRepeatText: 4
   loopToolRepeat: 5
-  loopText: '(检测到你可能陷入循环, 请停止重复刚才的动作, 换一种方式继续)'
+  loopText: ''
 ```
 
 **How the card works:**
 
-![Stats & paused sessions](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/5076d01e1b6db92fc7f2651c576f9070b8cbb5a2/docs/screenshots/07-card-panels.png)
+![The collapsed Auto Continue card in the plugin configuration list](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/680f044bd440f70503d250ea5e4a41176fd79561/docs/screenshots/02-settings-card.png)
 
 - Edits are **staged** — nothing reaches the disk until you hit **Save**; an unsaved badge marks the card while drafts are pending, and **Discard** drops them
 - A field you changed shows an **Overridden** badge with a per-field **Reset to default** button that restores the built-in value
@@ -190,8 +204,8 @@ auto-continue:
 | Field | Default | Description |
 | --- | --- | --- |
 | Pause auto-continue | `off` | Global pause: no live or scan auto-send fires, queued pending sends are cancelled |
-| Continue text | `继续` | Text automatically sent after an interruption |
-| Continue text (max tokens) | `继续` | Text sent when the output token ceiling is reached (same placeholders) |
+| Continue text | `Continue` | Text automatically sent after an interruption |
+| Continue text (max tokens) | `Continue` | Text sent when the output token ceiling is reached (same placeholders) |
 | Idempotency guard | `on` | Inspect the last tool call before resuming and steer the model (see What It Does) |
 | Loop guard | `on` | Detect a running turn spinning in place and restart it (see What It Does) |
 | Short-sentence max (chars) | `40` | A model message shorter than this counts as a short sentence (spinning signal) |
@@ -199,9 +213,9 @@ auto-continue:
 | Short-sentence threshold | `12` | Consecutive short sentences inside the window, with no tool call in between, trip the loop guard |
 | Identical message count | `4` | Consecutive identical messages (any length) trip the loop guard — the strongest spinning signal |
 | Same-tool repeat count | `5` | Consecutive calls of the same tool with identical arguments and results trip the loop guard |
-| Loop text | `(检测到你可能陷入循环, 请停止重复刚才的动作, 换一种方式继续)` | Text sent after the loop guard restarts a turn; `{tool}` placeholder |
-| Guard text (unconfirmed result) | `(上一步工具「{tool}」可能未完成, 先确认状态再继续, 不要重复执行)` | Appended when the last tool may have partially executed; `{tool}` placeholder |
-| Guard text (tool succeeded) | `(上一步工具「{tool}」已完成, 结果: {result}; 不要重复执行, 直接继续)` | Appended when the last tool is confirmed done; `{tool}` / `{result}` placeholders |
+| Loop text | `(You may be stuck in a loop. Stop repeating the last action and continue with a different approach.)` | Text sent after the loop guard restarts a turn; `{tool}` placeholder |
+| Guard text (unconfirmed result) | `(The previous tool "{tool}" may not have completed. Check its state before continuing and do not run it again.)` | Appended when the last tool may have partially executed; `{tool}` placeholder |
+| Guard text (tool succeeded) | `(The previous tool "{tool}" completed successfully. Result: {result}; do not run it again. Continue from there.)` | Appended when the last tool is confirmed done; `{tool}` / `{result}` placeholders |
 | Grace period (ms) | `3000` | Wait after an interruption; cancelled if the host recovers on its own |
 | Cooldown (ms) | `20000` | Min interval between auto-continues per session (failed attempts count too) |
 | Max consecutive | `3` | Max consecutive auto-continues; stops until a user intervenes or a turn completes |
@@ -210,11 +224,22 @@ auto-continue:
 | Scan window (ms) | `900000` | Scan only considers interruptions inside this window |
 | Verbose logs | `on` | `[auto-continue]` console logs |
 | Classify errors | `on` | Auto-resume transient failures only; auth / balance / model errors are skipped and notified |
+| Custom retryable errors | empty | One case-insensitive literal per line; matching the error code, HTTP status, or message explicitly overrides the built-in classifier |
 | Backoff factor | `2` | Cooldown multiplier per consecutive failure (2 = 20s → 40s → 80s…) |
 | Max backoff (ms) | `300000` | Cap on the adaptive backoff interval |
 | Browser notifications | `off` | Notify when auto-continue fires, gives up, or hits a permanent error |
 
-`continueText` (and `continueTextMaxTokens`) accept the placeholders `{code}`, `{message}`, `{status}`, `{tool}` (last tool call before the failure), `{turn}`, `{errorCount}` (consecutive failures including this one), `{sessionTitle}` (from the session list) and `{elapsed}` (time since the failure, e.g. `1m5s`) — e.g. `继续 ({tool}: {code})` becomes `继续 (git push: UPSTREAM)`. The guard texts accept `{tool}` and `{result}` (a truncated excerpt of the last tool output).
+For a provider-specific error that is safe to resume (confirm first that manually sending "continue" recovers), add a narrow, stable fragment rather than disabling classification globally:
+
+```yaml
+auto-continue:
+  retryableErrorPatterns: |-
+    Upstream rejected the request as invalid
+```
+
+Patterns are literal substrings, not regular expressions. Blank lines are ignored; any matching line wins before the built-in permanent-error rules. Cooldown and consecutive-attempt limits still apply.
+
+`continueText` (and `continueTextMaxTokens`) accept the placeholders `{code}`, `{message}`, `{status}`, `{tool}` (last tool call before the failure), `{turn}`, `{errorCount}` (consecutive failures including this one), `{sessionTitle}` (from the session list) and `{elapsed}` (time since the failure, e.g. `1m5s`) — e.g. `Continue ({tool}: {code})` becomes `Continue (git push: UPSTREAM)`. The guard texts accept `{tool}` and `{result}` (a truncated excerpt of the last tool output).
 
 ---
 

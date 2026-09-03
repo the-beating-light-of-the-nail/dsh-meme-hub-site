@@ -13,6 +13,9 @@
 [![Release](https://img.shields.io/github/v/release/Icather/dsh-clean-desktop-shell?color=blue)](https://github.com/Icather/dsh-clean-desktop-shell/releases/latest)
 [![DSH](https://img.shields.io/badge/DeepSeek_Harness-0.1.1--rc.2-4D6BFE)](https://github.com/deepseek-ai/deepseek-harness)
 [![Contributors](https://img.shields.io/github/contributors/Icather/dsh-clean-desktop-shell?color=blueviolet)](https://github.com/Icather/dsh-clean-desktop-shell/graphs/contributors)
+[![npm downloads](https://img.shields.io/npm/dt/dsh-clean-desktop-shell?logo=npm&color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-clean-desktop-shell)
+[![Installs](https://img.shields.io/github/downloads/Icather/dsh-clean-desktop-shell/total?logo=github&color=2ea043&label=installs)](https://github.com/Icather/dsh-clean-desktop-shell/releases)
+[![Clones](https://img.shields.io/badge/clones-194%20%2F%2014d-8957E5?logo=github&label=clones)](https://github.com/Icather/dsh-clean-desktop-shell)
 
 </div>
 
@@ -66,6 +69,42 @@
 - 后端关闭 / 被杀的一刻，窗口立刻切回离线页——不会停在旧页面假装还活着
 - 离线页内置快捷按钮：重新加载 / 启动后端 / 自动探测后端 / 设置后端安装文件夹
 
+## macOS 状态（v0.1.7 重要说明）
+
+v0.1.7 修复了插件形态在 macOS 上无法定位 `Electron.app` 路径的问题（该 bug 导致窗口在 Mac 上完全静默失败）。
+
+但**当前开发者没有 Mac 实机**，以下事项仍然依赖 Mac 用户验证/贡献：
+
+- **.dmg 安装包未签名、未公证**：Apple 要求年度开发者计划（$99/年）才能给安装包签名+公证。首次打开 .dmg 里的应用，很可能提示「已损坏，无法打开」或「无法验证开发者」。这不是应用本身损坏，是 Gatekeeper 拦截了未签名应用。
+  - 临时解决：`xattr -cr "/Applications/DSH Clean Desktop Shell.app"`，然后右键 → 打开。
+  - 长期解决：需要一位有 Apple Developer 账号的 Mac 合作者协助签名/公证，或长期把 .dmg 安装体验写为「需要右键打开 / 执行 xattr」。
+- **Electron.app 解压后的可执行位、quarantine 扩展属性等**只有真机能确认行为是否完全正确。
+- **如果窗口还是没弹出来**：启动失败时会把诊断信息写到 DSH home 下的 `desktop-shell-launch.log`：
+
+  ```sh
+  cat "${DSH_HOME:-$HOME/.dsh}/desktop-shell-launch.log"
+  ```
+
+  把内容贴到 Issue 即可——里面记录了平台、架构、Node 版本、DSH home、运行时目录和具体报错。没有界面时，这是唯一能回传的信息。
+
+诚挚邀请有 Mac 环境、愿意一起打磨的同学参与：能帮忙验证安装流程、补充签名配置、或者把开机自启/登录项做进 Electron 托盘，欢迎直接提 PR 或在 Issue 里 @ 我，我会把你加入 [CONTRIBUTORS.md](./CONTRIBUTORS.md)。
+
+## 安全与权限：它到底做了什么
+
+第三方安全扫描器（如 [dsh-xray](https://github.com/unStone/dsh-xray)）会给本项目打出「高能力 + 敏感行为」的评级。这个评级**没有误报**——列出的每一条都属实，但每一条都有明确且必要的原因。既然要装进你的机器，就该摊开讲清楚。
+
+| 行为 | 为什么必须这么做 | 代码位置 |
+|:--|:--|:--|
+| 执行系统命令（spawn） | 壳的核心功能就是**启动 / 重启 / 停止 `dsh web` 后端**，以及探测 3080 端口占用。不调用系统命令无法实现。 | `electron/service.js` |
+| 下载约 100MB 的 Electron 运行时 | 首次启动需要。两个源按网络环境自动竞速（3 秒超时）：`github.com` 与 `npmmirror.com`——后者是国内镜像，CN 网络下通常更快。 | `src/host/runtime.js` |
+| 访问 `api.github.com` | 仅用于托盘「检查更新」拉取最新 Release 信息。 | `electron/update.js` |
+| 读取环境变量 | 只用于定位路径和功能开关：`DSH_HOME`（DSH 主目录）、`DSH_SHELL_ELECTRON_DIR`（复用本地 Electron，跳过下载）、`DSH_SHELL_AUTO_LAUNCH=0`（关闭自动弹窗）、`USERPROFILE` / `APPDATA`（Windows 下定位 `dsh.cmd` 与快捷方式目录）。 | `src/host/common.js`、`src/host/index.js`、`electron/shortcut.js` |
+| 修改 DSH 运行时（`cordis.patch.yml`） | **DSH 官方的插件注册机制**，所有 DSH 插件都靠它挂载，并非本项目特有行为。 | `cordis.patch.yml` |
+
+**边界**：不上传任何数据、不读取会话内容、不回传遥测。全部网络请求只有上面两类（下载运行时 / 查更新），且都可通过设置 `DSH_SHELL_ELECTRON_DIR` 完全避免。
+
+安装包的未签名警告（Windows SmartScreen、macOS Gatekeeper）来自**缺少代码签名证书**，与上述行为无关。
+
 ## 安装
 
 **方式一：从 Release 下载安装包（想要独立桌面应用的用户）**
@@ -73,7 +112,12 @@
 - Windows：下载 `DSH-Clean-Desktop-Shell-Setup-<版本>.exe`
 - macOS：下载 `DSH-Clean-Desktop-Shell-<版本>.dmg`（Intel）或 `-arm64.dmg`（Apple Silicon）
 
-安装包会**自动创建桌面快捷方式**，并提供系统托盘等完整桌面体验。首次运行 Windows 安装包可能触发 SmartScreen 警告——**这是未签名程序的正常现象，不是病毒**，见下方「Windows SmartScreen 警告说明」。
+安装包会**自动创建桌面快捷方式**，并提供系统托盘等完整桌面体验。
+
+- **Windows**：首次运行安装包可能触发 SmartScreen 警告——**这是未签名程序的正常现象，不是病毒**，见下方「Windows SmartScreen 警告说明」。
+- **macOS**：.dmg 未签名/未公证，首次打开可能触发 Gatekeeper。见上方「macOS 状态」。
+
+
 
 **方式二：作为 DSH 插件安装（DSH 生态用户）**
 
@@ -167,6 +211,33 @@ npm run pack    # 打包 NSIS (Win) / DMG (mac)
 ```
 
 ## 更新历史
+
+### 0.1.10
+- 版本比较改用 semver（industry-standard `semver.coerce` + `semver.gt`），替换手写元组比较。
+- 所有 HTTP 超时改为 `AbortSignal.timeout`（标准自清理 API，无泄漏风险）。
+- 配置持久化改为原子写入（tmp + rename），崩溃/断电不会留下截断的 config.json。
+- 移除代码中硬编码的 `D:\deepseek-harness\prod\...` 开发机路径：改用 config backendPath + `DSH_BACKEND_DIR` 环境变量 + npm 全局目录候选。
+- Windows 后端进程停止改用 `taskkill /T /F` 树杀（.cmd shim 留下的孤儿 node 进程不再占端口）；POSIX 先 SIGTERM 再 SIGKILL 优雅降级。
+- 快捷方式管理整体替换为 Electron 原生 `shell.writeShortcutLink` / `readShortcutLink`，移除 PowerShell + COM 依赖（顺带修复 OneDrive 桌面重定向问题）。
+- 新增进程级 crash guard：`uncaughtException` / `unhandledRejection` 写入 `userData/shell-crash.log`（128KB 上限自动截断），便于附在 bug 报告中。
+- Electron runtime 下载后新增 SHA-256 完整性校验（对比源站点 SHASUMS256.txt），损坏文件自动跳到下一源重试。
+- 冗余加固：后端 stdout/stderr 缓冲 64KB 环形截断；配置字段类型校验并自动丢弃未知键；窗口离线页检测从 `includes('error.html')` 改为精确 URL 比对。
+- 自检脚本 `npm run check` 扩展到覆盖全部 17 个发布 JS 文件的语法门禁（此前只检查 lib/index.js）。
+
+### 0.1.9
+- 插件形态发现新版本时新增「立即更新」一键更新：从安装位置旁的 lockfile 推断实际使用的包管理器（pnpm/npm/yarn/bun），按命令变体链逐条尝试（含 corepack 兜底），吸收 PATH 与 pnpm 版本差异；更新后校验磁盘版本，成功 / 未变化 / 失败三态弹窗，失败时附已试命令与输出（可复制）。
+- 更新弹窗同时内嵌可复制的手动更新命令，并保留 DSH 插件市场入口；Windows 下经 `shell:true` + `windowsHide` 执行，兼容 `.cmd` shim 与 PowerShell / cmd 环境。
+
+### 0.1.8
+- 插件形态（npm 安装）的更新检查改查 npm registry 的 `dist-tags.latest`，与本地版本同源对比；不再错爬 GitHub `/releases/latest`（此前 GitHub Latest 标记未及时挪动时会弹出「当前 0.1.7 已是最新（v0.1.6）」的自相矛盾提示）。
+- 打包桌面应用仍走 GitHub Releases；修复「已是最新」弹窗括号内重复显示版本号的文案。
+
+### 0.1.7
+- **修复 macOS 上窗口完全打不开的静默失败**：Electron 的 macOS 包是 `Electron.app` 应用包，可执行文件位于 `Electron.app/Contents/MacOS/Electron`；此前按 Linux 布局去找顶层 `electron`，导致 Mac 上必然启动失败且无任何提示。
+- 解压改为多策略回退（ditto / unzip / tar）并校验产物；解压后补齐可执行位，清除 macOS quarantine 扩展属性。
+- 启动失败不再只写日志：诊断信息落盘到 `desktop-shell-launch.log`，并在提示中给出完整路径。
+- macOS 托盘改用模板图，深浅色菜单栏自适应；非 Windows 平台隐藏「创建桌面快捷方式」。
+- 新增 `CONTRIBUTORS.md`，公开招募 Mac 合作开发者（代码签名 / 公证 / 实机验证）。
 
 ### 0.1.6
 - 修复插件形态下「检查更新」误报 Electron 运行时版本号的问题。

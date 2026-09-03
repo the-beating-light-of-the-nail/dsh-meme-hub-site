@@ -217,7 +217,7 @@ conversation (**never sent**):
    context row** (source-tagged, not into the composer; the model sees it next
    turn).
 
-![Bring-back demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/9dda48d72d3b51589096e8b130d3dd83740531f7/docs/bring-back.gif)
+![Bring-back demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/51182e1b312490ba7ae7859770eb18e64a1bbce6/docs/bring-back.gif)
 
 ### Ask about the current question dialog
 
@@ -235,7 +235,7 @@ The main conversation keeps waiting on the dialog — nothing is interrupted; do
 the research in the side chat first, then bring the answer back and answer the
 dialog.
 
-![Question dialog demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/9dda48d72d3b51589096e8b130d3dd83740531f7/docs/question-dialog.gif)
+![Question dialog demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/51182e1b312490ba7ae7859770eb18e64a1bbce6/docs/question-dialog.gif)
 
 ### Delete side chats
 

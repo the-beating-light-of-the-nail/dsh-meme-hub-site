@@ -4,7 +4,7 @@ English | [简体中文](README.zh.md)
 
 Automatic, coherent, and user-customizable icons for DeepSeek Harness Settings and sidebar actions.
 
-![Settings overview](https://raw.githubusercontent.com/yzke/dsh-icon-theme/cf5d18f738900467c72b0247df18aa5cb76c3d69/docs/images/settings-overview.png)
+![Settings overview](https://raw.githubusercontent.com/yzke/dsh-icon-theme/2bf102dffce5373668cb0eca4718437f017e00fd/docs/images/settings-overview.png)
 
 _Screenshots use the Chinese locale; the plugin ships equivalent English labels._
 
@@ -14,7 +14,7 @@ DSH 0.1.x settings contributions expose stable IDs and labels, but not an icon f
 
 - Discovers live winning `settings.section` and `sidebar.footer.action` contributions generically. Audited per-plugin records are used only when a sidebar is partially rendered and cannot be correlated by order.
 - Stores choices by stable key, such as `settings.section:market`, never by translated labels or DOM position.
-- Ships 50 curated Fluent UI 16 Regular glyphs plus the audited monochrome dsh-market glyph.
+- Ships 50 curated Fluent UI 16 Regular glyphs, 70 official DSH UI glyphs, and the audited monochrome dsh-market glyph (121 total).
 - Uses no icon CDN, webfont, Iconify API, GitHub request, or package scanning at runtime.
 - Restores every host SVG and owned DOM marker on unload or hot reload.
 - Reports non-rendered contributions and non-icon cards instead of pretending they were changed.
@@ -38,7 +38,8 @@ npm run build
 dsh plugin --profile web add link:"$PWD"
 ```
 
-Supported DSH range: `>=0.1.0-rc.6 <0.2.0`. Node.js 22 or newer is required for source builds.
+Supported DSH peer range: `>=0.1.0-rc.6 <0.2.0-0 || >=0.1.1-rc.0 <0.2.0-0 || >=0.1.2-alpha.1 <0.2.0-0`.
+This includes the source-only `dsh-v0.1.2-alpha.1` GitHub preview. Node.js 22 or newer is required for source builds.
 
 ## Uninstall
 
@@ -52,7 +53,7 @@ Restart `dsh web`. The plugin restores every host SVG and removes all owned DOM 
 
 The page lists every discovered target, its stable key, its compatibility state, and the source of the current icon. Search by feature name, ID, or icon; filter Settings/sidebar/unrecognized/customized entries; choose a glyph; or restore one/all targets to automatic behavior.
 
-![Icon picker](https://raw.githubusercontent.com/yzke/dsh-icon-theme/cf5d18f738900467c72b0247df18aa5cb76c3d69/docs/images/icon-picker.png)
+![Icon picker](https://raw.githubusercontent.com/yzke/dsh-icon-theme/2bf102dffce5373668cb0eca4718437f017e00fd/docs/images/icon-picker.png)
 
 Resolution is deterministic:
 

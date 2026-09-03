@@ -1,6 +1,6 @@
 # Agent DAG Workflow
 
-`@gm-hz/agent-dag-workflow` 是一个可嵌入任意 Agent Host 的持久化 DAG Workflow 内核。它把 Agent、Tool、Skill、MCP 和受控本地能力编排成同一份可保存、校验、发布、恢复、审计和重放的 `WorkflowTemplate` JSON。
+`@gm-hz/agent-dag-workflow` 是一个轻量、Host-neutral 的 DAG Workflow Runtime。它让 Codex、DSH 或其他 Agent 直接复用已有的 Tool、Skill 与 MCP，把离散调用组织成可保存、校验、恢复、审计和重放的 `WorkflowTemplate` JSON。
 
 它不是另一个 Coze/Dify 平台，也不内建模型 Provider、凭据中心或 Tool 市场。Host 继续负责已有的 Agent/Tool/Skill/MCP 生态；本项目只负责把离散能力变成稳定流程。
 
@@ -37,7 +37,19 @@ flowchart LR
 - Trigger 不进入 DAG：Cron、Webhook、钉钉等只产生可信 Envelope，再通过固定 Binding 启动发布修订。
 - 默认由当前 Agent、CLI 或 Host 直接调用 Runtime；Queue/Runner 只是不可靠进程或分布式部署需要时才启用的可选适配器。
 
-完整设计见 [核心通用化重构方案](docs/core-generalization-refactor.md)、[Core hardening 不变量](docs/core-hardening.md) 与 [Core Verification Harness](docs/core-verification-harness.md)，Agent 访问方式见 [访问架构技术方案](docs/agent-access-architecture.md)，模板字段见 [Workflow Template v1](spec/workflow-template-v1.md)。
+代码按职责分成五层，但仍作为一个 npm 包发布：
+
+| 层 | 负责 | 不负责 |
+| --- | --- | --- |
+| Template / Catalog | v1 JSON、校验、草稿 CAS、不可变发布修订 | 执行外部能力 |
+| Runtime / Engine | 编译 DAG、调度、恢复、Replay、资源上限 | 发现凭据或绕过 Host 权限 |
+| Journal / SQLite | Run、Event、Checkpoint、Artifact、Ingress 与 Delivery 事实 | 猜测旧格式语义 |
+| Access / Adapter | SDK、CLI、固定 MCP Gateway、Skill、DSH、Trigger、Canvas | 创建第二套执行引擎或 DSL |
+| Host Gateway | Tool、Agent、Approval、Authority 和自定义 Node 实现 | 修改 Workflow 的调度事实 |
+
+当前架构见 [总体架构](docs/architecture.md)，安全与恢复不变量见 [Core hardening](docs/core-hardening.md) 和 [Core Verification Harness](docs/core-verification-harness.md)，模板字段见 [Workflow Template v1](spec/workflow-template-v1.md)。
+
+完整的使用手册发布在 [Agent DAG Workflow 文档站](https://gm-hz.github.io/agent-dag-workflow/)。仓库内文档是站点唯一内容源，随 `main` 分支自动部署，不维护另一份 Wiki 副本。
 
 ## 安装
 
@@ -87,7 +99,7 @@ const runtime = new WorkflowRuntime({
 })
 
 const template = {
-  apiVersion: 'workflow.gm-hz.dev/v1alpha1',
+  apiVersion: 'workflow.gm-hz.dev/v1',
   kind: 'WorkflowTemplate',
   metadata: { id: 'hello', name: 'Hello' },
   spec: {
@@ -209,28 +221,28 @@ Recorded Replay 不声称重放模型隐藏思维链。它只使用显式输入�
 
 ## CLI
 
-CLI 默认使用当前目录的 `.agent-dag-workflow.db`，也可以用 `--db` 指定 SQLite 文件：
+CLI 提供简写 `adw` 和完整命令 `agent-workflow`，二者完全等价。日常交互推荐使用 `adw`；脚本可以继续使用语义更明确的完整命令。CLI 默认使用当前目录的 `.agent-dag-workflow.db`，也可以用 `--db` 指定 SQLite 文件：
 
 ```bash
-agent-workflow validate examples/script-transform.workflow.json
-agent-workflow draft put examples/script-transform.workflow.json --db workflows.db
-agent-workflow publish script-transform-demo --expected 1 --db workflows.db
-agent-workflow search "transform" --db workflows.db
-agent-workflow describe script-transform-demo@1 --view schema --db workflows.db
-agent-workflow run script-transform-demo@1 --input input.json --db workflows.db
-agent-workflow run-get <runId> --db workflows.db
-agent-workflow trace <runId> --events --db workflows.db
-agent-workflow trace <runId> --follow --format jsonl --db workflows.db
-agent-workflow replay <runId> --mode recorded --db workflows.db
-agent-workflow resume <runId> --db workflows.db
-agent-workflow migrate-template old.json --output workflow-v1.json
+adw validate examples/script-transform.workflow.json
+adw draft put examples/script-transform.workflow.json --db workflows.db
+adw publish script-transform-demo --expected 1 --db workflows.db
+adw search "transform" --db workflows.db
+adw describe script-transform-demo@1 --view schema --db workflows.db
+adw run script-transform-demo@1 --input input.json --db workflows.db
+adw run-get <runId> --db workflows.db
+adw trace <runId> --events --db workflows.db
+adw trace <runId> --follow --format jsonl --db workflows.db
+adw replay <runId> --mode recorded --db workflows.db
+adw resume <runId> --db workflows.db
+adw cancel <runId> --reason "operator stop" --db workflows.db
 ```
 
 所有非流式命令都返回单个 `agent-workflow.cli/v1` JSON Envelope；`--input -` 从 stdin 读取 JSON，不需要把大型输入塞进 shell 参数。CLI 对每个命令使用严格参数契约，未知、重复或多余参数会在打开数据库前 fail closed。包含 Tool/Agent 节点时，必须显式传入 `--host ./host.mjs`。该模块导出 Gateway、Authority 和可选自定义 Node；CLI 不会隐式读取环境变量来猜测能力或凭据。
 
 Host 不需要 Provider 层。最小 Tool Adapter、加载时契约校验、Authority 边界和错误排查方式见 [Host Adapter 接入](docs/host-adapter.md)。
 
-后台调用使用 `run ... --detach`，并由 `agent-workflow worker --once` claim/resume。Host 必须提供可恢复的 Authority Resolver，否则 Runtime 会拒绝后台启动。
+后台调用使用 `run ... --detach`，并由 `agent-workflow worker --once` claim/resume。Host 必须提供可恢复的 Authority Resolver，否则 Runtime 会拒绝后台启动。1.0 的 Worker 是单进程、单次 claim/resume 的参考执行器；Core 不内置 `worker_threads`、进程池或分布式调度。需要水平扩展时，由 Host 在共享 Store 上补充 fencing token 与部署级调度约束。
 
 ## Codex、Skill 与 MCP
 
@@ -252,7 +264,7 @@ agent-workflow-mcp --db workflows.db --profile invoke
 agent-workflow-mcp --db workflows.db --profile author
 ```
 
-`invoke` profile 永远只有 `workflow_search`、`workflow_describe`、`workflow_run`、`workflow_run_get` 和 `workflow_trace` 五个 Tool。`author` 额外提供有界的节点、校验、草稿、diff 和发布 Tool。Catalog 中有多少 Workflow 都不会改变 Tool 数量；Agent 只按需读取被选中 Workflow 的 Schema。搜索由 Repository 在已发布 revision 上有界执行，不会读取未发布 Draft 元数据。
+`invoke` profile 永远只有 `workflow_search`、`workflow_describe`、`workflow_run`、`workflow_run_get`、`workflow_cancel` 和 `workflow_trace` 六个 Tool。`author` 额外提供六个有界的节点、校验、草稿、diff 和发布 Tool。Catalog 中有多少 Workflow 都不会改变 Tool 数量；Agent 只按需读取被选中 Workflow 的 Schema。搜索由 Repository 在已发布 revision 上有界执行，不会读取未发布 Draft 元数据。
 
 ## DSH 与 Canvas
 
@@ -274,6 +286,8 @@ dsh web
 插件向 DSH 注册 `workflow-builder` Skill，以及查询节点、创建/更新/校验 draft、发布和运行的受保护工具。Canvas 编辑的是同一份 `WorkflowTemplate`，Trace 来自同一份 Journal。
 Canvas 的“触发与投递”页面还能查看 Binding、重复 Ingress、run 关联和状态不确定的 Delivery，并从入口直接打开权威 Trace。
 
+根 bundle 会把持久 Run 的 `authorityRef` 绑定到稳定的 DSH `Session.id`，并通过 `agents` 服务在重启后恢复当前 Agent；它不会读取旧的 Session 字段，也不会把 Agent object 或凭据写进 SQLite。外部 Tool 在未知副作用边界上恢复时仍会进入 `paused`，需要操作者显式选择 retry/fail。
+
 ## Trigger
 
 Trigger 通过不可变 Binding 把可信入口映射到固定发布修订：
@@ -284,6 +298,8 @@ Trigger 通过不可变 Binding 把可信入口映射到固定发布修订：
 ```
 
 外部 payload 不能指定最终 Authority、幂等键或 Workflow revision。Cron、Webhook 和钉钉只提供 reference adapter；生产部署仍需按平台协议实现可靠 HTTP/消息接收、加密凭据、持久队列和运维告警。
+
+后台 Worker 在 Run 进入终态后会按 `deliveryRef` 自动调用 Result Delivery。投递与 Workflow 终态分离：失败或状态未知不会把已完成 Workflow 改成失败，而是写入可重试的 delivery attention；运维方法与 SQLite 备份、导出和清理见 [运行与存储运维](docs/operations.md)。
 
 Trigger Adapter 只需注册自己的 `uses` 与配置 Schema；通用 Binding Catalog 负责目标、映射和 CAS，不需要 Provider 层：
 
@@ -307,7 +323,7 @@ const bindings = new WorkflowBindingCatalog(
 )
 
 await bindings.publish({
-  apiVersion: 'workflow.gm-hz.dev/v1alpha1',
+  apiVersion: 'workflow.gm-hz.dev/v1',
   kind: 'WorkflowBinding',
   metadata: { id: 'weekly-from-acme' },
   spec: {
@@ -321,6 +337,15 @@ await bindings.publish({
 
 CLI、固定 MCP Gateway、DSH Plugin、SDK 和 Trigger 最终都调用同一个 Runtime。入口不会改变固定 revision、输入输出 Schema、Authority、Journal、Checkpoint 或 Replay 语义。
 
+## 版本与兼容边界
+
+- Template 只接受 `workflow.gm-hz.dev/v1` 和当前节点 `uses@major`，没有旧 API Version、旧节点别名或双解析器。
+- SQLite 只初始化空数据库，或打开 application id 与 schema version 都精确匹配当前实现的数据库；旧、未知或被篡改的数据库会在启动时拒绝。
+- 包不导出迁移 API，CLI 也不提供隐式转换命令。升级协议时应先导出当前模板/审计数据，再由明确的独立工具生成并人工校验新模板。
+- 发布修订和历史 Run 永不原地改写。破坏性节点语义使用新的 `uses@major`，并发布新的 Workflow revision。
+
+这一边界是 1.0 的刻意约束：Runtime 只执行一种事实模型，避免兼容分支进入调度、恢复和权限路径。
+
 ## 示例与验证
 
 仓库包含以下长期基准：
@@ -329,6 +354,7 @@ CLI、固定 MCP Gateway、DSH Plugin、SDK 和 Trigger 最终都调用同一个
 - [approval-gate.workflow.json](examples/approval-gate.workflow.json)：条件分支；
 - [batch-contract-review.workflow.yaml](examples/batch-contract-review.workflow.yaml)：foreach 与子工作流；
 - [weekly-ai-model-news.workflow.json](examples/weekly-ai-model-news.workflow.json)：多路检索、Agent 结构化、确定性排序和 Top 10；
+- [Example 回归清单](examples/README.md)：9 个模板的固定输入、期望输出与 Codex Plugin 全链路回归；
 - [showcase 说明](docs/showcase-workflows.md)：复杂场景的依赖与运行方式。
 
 源码验证：
@@ -336,11 +362,14 @@ CLI、固定 MCP Gateway、DSH Plugin、SDK 和 Trigger 最终都调用同一个
 ```bash
 pnpm install
 pnpm check
+pnpm exec playwright-cli install-browser chromium # 首次运行或 CI 镜像中执行
+pnpm verify:canvas-browser
 pnpm verify:pack
 pnpm demo
+pnpm examples:codex
 pnpm example:weekly
 ```
 
-`pnpm example:weekly` 会在本地持久化数据库中真实执行 21 节点的“AI 模型周报”模板：13 路 Tool 调用、4 次 Agent 结构化处理、确定性合并排序、Top 10 输出和完整 Journal Trace。默认使用离线确定性 Host；替换为真实 Host 的方式见 [Showcase 说明](docs/showcase-workflows.md#运行-ai-模型周报)。
+`pnpm examples:codex` 会通过真实 Codex Plugin wrapper 对清单中的 9 个模板逐一执行 validate、draft、publish、search、describe、run、run-get 和 trace；确定性 Host 让契约回归可在本地与 CI 重复。`pnpm example:weekly` 则单独执行 21 节点的“AI 模型周报”：13 路 Tool 调用、4 次 Agent 结构化处理、确定性合并排序、Top 10 输出和完整 Journal Trace。替换为真实 Host 的方式见 [Showcase 说明](docs/showcase-workflows.md#运行-ai-模型周报)。
 
-项目使用 MIT License。发布、兼容性和实现门禁以 [重构方案](docs/core-generalization-refactor.md) 的完成定义为准。
+项目使用 MIT License。验证命令和发布门禁见 [Core Verification Harness](docs/core-verification-harness.md) 与 [1.0 发布流程](docs/release.md)。

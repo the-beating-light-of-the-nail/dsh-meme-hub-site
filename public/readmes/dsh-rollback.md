@@ -5,7 +5,7 @@
 
 English | [中文](README.zh.md)
 
-File-mutation rollback plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): it observes every successful tool result for the pre-image a `write`/`edit` mutation reports, checkpoints that pre-image into the workspace git object database or a snapshot store, and exposes restore through a model-facing `rollback_files` tool and a `/rollback` human command. It registers no service and changes no loop code — capture rides the `tools/result` observation event, and restore writes files directly (never through the fs policy seam or the sandbox, because undoing a mutation must not be gated by the policy the mutation passed).
+File-mutation rollback plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): it checkpoints the pre-image a `write`/`edit` mutation reports in its result, forward-snapshots the workspace around black-box `bash`/`run_code` calls so the files they change are diffable, retains every pre-image in the workspace git object database or a snapshot store, and exposes restore through a model-facing `rollback_files` tool and a `/rollback` human command. It registers no service and changes no loop code — capture rides the documented `tools/*` extension points (the `tools/result` observation event and the `tools/execute` around hook), and restore writes files directly (never through the fs policy seam or the sandbox, because undoing a mutation must not be gated by the policy the mutation passed).
 
 ## Install
 
@@ -81,7 +81,7 @@ One model-facing tool, `rollback_files {count}` (no prompt section). It is meant
 
 ### What is captured
 
-Only successful `write`/`edit` tool results that carry a `before` pre-image. Mutations through `bash`, `str_replace_editor`, or raw subprocesses carry no pre-image and are not captured (see [Known Limitations](#known-limitations-and-deferred-work)). A session can only restore records at or under its own working directory.
+Two capture paths feed the same store: successful `write`/`edit` tool results that carry a `before` pre-image, and file changes made by root `bash`/`run_code` calls (forward-snapshotted in git repositories, then diffed — see [Behavior](#behavior)). Mutations through `str_replace_editor`, raw subprocesses, or a `bash` call outside a git repository carry no recoverable pre-image and are not captured. A session can only restore records at or under its own working directory.
 
 ## Demo: before and after
 
@@ -122,12 +122,16 @@ Under the hood: `git hash-object -w` wrote the pre-image into git's object datab
 
 ```mermaid
 flowchart TD
-    M[模型调用 write/edit] --> R["tools/result 观察事件"]
-    R --> C{结果带 before 改前映像?}
+    A["write/edit 工具结果"] --> B["tools/result 观察事件"]
+    B --> C{结果带 before 改前映像?}
     C -- 否 --> X[忽略]
     C -- 是 --> S[CheckpointStore 捕获]
+    A2["bash / run_code 调用"] --> B2["tools/execute 前向快照 + diff"]
+    B2 --> C2{工作区是 git 仓库?}
+    C2 -- 否 --> X2[跳过并告警]
+    C2 -- 是 --> S
     S --> G{工作区是 git 仓库?}
-    G -- 是 --> B["git hash-object -w 存 blob"]
+    G -- 是 --> BLOB["git hash-object -w 存 blob"]
     G -- 否 --> P["写 storeDir/snapshots/ 快照"]
     S --> MF["追加 manifest.jsonl"]
     U["模型调 rollback_files / 用户 /rollback"] --> RS["restore 按 session.cwd 作用域"]
@@ -148,10 +152,13 @@ A function/namespace plugin (`name` / `inject` / `Config` / `apply`), not a serv
 | `storeDir` | string | `''` | Root holding the durable `manifest.jsonl` and `snapshots/`. Empty resolves to `rollback` under the Harness home. |
 | `maxRecords` | number | `200` | Upper bound on in-memory records per store; the oldest are dropped beyond it (the durable manifest keeps everything). |
 | `gitPath` | string | `'git'` | Git executable name or absolute path. |
+| `mutationTools` | string[] | `['bash', 'run_code']` | Tool names that get a forward snapshot — black-box mutation calls without a `before` pre-image. Only root dispatches are snapshotted (nested Code Mode sub-calls are covered by their `run_code` parent) and only inside a git repository. |
 
 ### Behavior
 
 **Capture.** A `tools/result` listener converts a successful `write`/`edit` outcome into a checkpoint: the outcome's `before` field is the pre-mutation content (`null` records a file that did not exist). `blob` pre-images are written with `git hash-object -w --stdin` inside the file's repository (discovered by walking up to `.git`, cached per directory) — zero index/branch/working-tree pollution, content-addressed and deduplicated by git itself. Every record is appended as one JSONL line to `manifest.jsonl`; a store replay on plugin load restores the in-memory list, so restores survive restarts. Only absolute local display paths are captured; relative or remote display paths (non-local filesystem backends) are ignored.
+
+**Forward snapshot (`bash` / `run_code`).** A `tools/execute` around hook snapshots the workspace before a root `bash` (or `run_code`) call runs: every file under the session working directory is retained as a git blob (`git hash-object -w`, zero index/working-tree pollution), reusing a `mtime + size` fast path so unchanged files are not re-hashed. When the call settles, the tree is walked again and diffed, and every changed file is checkpointed — modified or deleted files keep the pre-mutation blob, created files an `absent` record. `.git` and `node_modules` are never snapshotted (and therefore never restored), and the plugin's own store directory is excluded. The snapshot is scoped to the session working directory and requires a git repository; otherwise it is skipped with a warning. Nested Code Mode sub-calls are covered by their `run_code` parent, so a mutation is never checkpointed twice.
 
 **Restore.** `restore(count, under)` re-materializes the `count` most-recent records whose path lies at or under `under` (the calling agent's session working directory): `blob` via `git cat-file blob <hash>`, `snapshot` from `storeDir/snapshots/<ref>`, and `absent` by deleting the file. Writes are atomic (temp file + rename) and create parent directories. Restored records are removed from the in-memory list; the manifest stays append-only, so a restart replays the same records and a later restore re-applies the identical pre-image (idempotent, no double-undo).
 
@@ -182,7 +189,7 @@ Append-only; the added tool schema and result follow the reusable request prefix
 
 ## Known Limitations and Deferred Work
 
-- **Only `write`/`edit` mutations are checkpointed** — mutations made through `bash`, `str_replace_editor`, or raw subprocesses carry no `before` pre-image in their result and are not captured. A plan-scoped batch backup (capture every file a plan touches before execution) is the corresponding generalization, deferred.
+- **`str_replace_editor` and raw subprocesses are not checkpointed** — `bash`/`run_code` file changes are captured by forward snapshot, but only inside a git repository (a non-repository workspace skips the snapshot with a warning), and a `bash` call is snapshotted at the session working directory only, so files it changes elsewhere are not captured. A plan-scoped batch backup (capture every file a plan touches before execution) is the corresponding generalization, deferred.
 - **UTF-8 text only** — pre-images travel as strings; binary content is outside scope (matching the fs tools' text-only contract).
 - **Restores are workspace-scoped** — records outside the calling agent's session working directory are never restored by that caller; there is no cross-directory or global restore entry point.
 - **Append-only manifest, no pruning** — restored records remain in `manifest.jsonl` and re-appear on replay (idempotent re-restore, never a double-undo), but a long-lived harness home grows without compaction.
@@ -194,7 +201,7 @@ Append-only; the added tool schema and result follow the reusable request prefix
 ```sh
 pnpm install     # peer packages resolve from npm releases
 pnpm run build   # tsdown -> lib/ (ESM + d.mts), self-contained
-pnpm test        # vitest, 9 store-level tests
+pnpm test        # vitest, 16 store-level tests
 ```
 
 ## License

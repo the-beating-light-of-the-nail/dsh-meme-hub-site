@@ -12,15 +12,15 @@ A [Bark](https://github.com/Finb/Bark) push-notification plugin for [DeepSeek Ha
 - **Browser half** (`src/client/` + `lib/client.js`): registers a `settings.section` slot; the form reads and writes Host config through the RPC. **The Bark URL never crosses the wire to the browser** — only a masked status is shown (configured: `••••••••3F82`).
 
 <p align="center">
-  <img width="900" alt="Settings page" src="https://raw.githubusercontent.com/pc439527/dsh-notify-bark/26e229876312b18cc46b7a7ba04daa73e0226603/docs/images/settings-page.png" />
+  <img width="900" alt="Settings page" src="https://raw.githubusercontent.com/pc439527/dsh-notify-bark/d1d8571b52c93da69e5fef1e6284494cf5b91f8b/docs/images/settings-page.png" />
 </p>
 
 <p align="center">
-  <img width="480" alt="dsh-notify-bark" src="https://raw.githubusercontent.com/pc439527/dsh-notify-bark/26e229876312b18cc46b7a7ba04daa73e0226603/docs/images/plugin-card.jpg" />
+  <img width="480" alt="dsh-notify-bark" src="https://raw.githubusercontent.com/pc439527/dsh-notify-bark/d1d8571b52c93da69e5fef1e6284494cf5b91f8b/docs/images/plugin-card.jpg" />
 </p>
 
 <p align="center">
-  <img width="300" alt="Bark notification" src="https://raw.githubusercontent.com/pc439527/dsh-notify-bark/26e229876312b18cc46b7a7ba04daa73e0226603/docs/images/bark-notification.jpg" />
+  <img width="300" alt="Bark notification" src="https://raw.githubusercontent.com/pc439527/dsh-notify-bark/d1d8571b52c93da69e5fef1e6284494cf5b91f8b/docs/images/bark-notification.jpg" />
 </p>
 
 ## Notification events (9 switches)

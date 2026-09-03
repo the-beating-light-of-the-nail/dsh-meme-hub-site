@@ -18,15 +18,15 @@ DeepSeek Harness 侧边栏左下角的「站点余额」：点开后显示**当�
 
 侧边栏入口，金额跟随当前选中的账户：
 
-![侧边栏入口](https://raw.githubusercontent.com/MuAllen/dsh-gateway-wallet/bb874e805171e366f59f11b83b3bfb2254c1e2bf/assets/sidebar.png)
+![侧边栏入口](https://raw.githubusercontent.com/MuAllen/dsh-gateway-wallet/c239009846d356bde8dbfa1f4b2bcf651d9c7439/assets/sidebar.png)
 
 点开后的站点账本（上半：账户与金额）：
 
-![面板上半](https://raw.githubusercontent.com/MuAllen/dsh-gateway-wallet/bb874e805171e366f59f11b83b3bfb2254c1e2bf/assets/panel-top.png)
+![面板上半](https://raw.githubusercontent.com/MuAllen/dsh-gateway-wallet/c239009846d356bde8dbfa1f4b2bcf651d9c7439/assets/panel-top.png)
 
 同一面板下滑（下半：用量、速率、读取来源）：
 
-![面板下半](https://raw.githubusercontent.com/MuAllen/dsh-gateway-wallet/bb874e805171e366f59f11b83b3bfb2254c1e2bf/assets/panel-bottom.png)
+![面板下半](https://raw.githubusercontent.com/MuAllen/dsh-gateway-wallet/c239009846d356bde8dbfa1f4b2bcf651d9c7439/assets/panel-bottom.png)
 
 ## 安装
 

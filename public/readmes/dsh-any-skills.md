@@ -60,7 +60,7 @@ dsh plugin --profile web add .
 `设置（左下角齿轮）→ Skill 管理`：
 
 - **⚡ 按钮开关**：可在设置页开启/关闭对话输入框旁的 ⚡ 技能选择按钮（默认开启；关闭后仍可用 `/技能名` 直接调用）
-- **已安装技能**：列出所有已安装技能，可单个卸载（移入 `.trash-<时间戳>-<名称>`，可手动恢复）；卸载后提示中包含回收目录名、一键「恢复」按钮与 `mv` 手动恢复命令
+- **已安装技能**：列出所有已安装技能，支持**搜索过滤**（按技能名/说明实时筛选）；「已安装技能」与「导入」卡片均可点击头部**折叠/展开**（状态记忆）；可单个卸载（移入 `.trash-<时间戳>-<名称>`，可手动恢复）；卸载后提示中包含回收目录名、一键「恢复」按钮与 `mv` 手动恢复命令
 - **导入**：自动检测 Codex / Claude Code / OpenCode 的用户级与项目级技能目录，每行显示**绝对路径**与**技能数量**；点击行可**展开**查看每个技能的详情（名称/描述/路径/已安装标记），支持「导入全部」或对单个技能单独导入；也支持输入本机目录路径直接导入
 - **安装**：输入 GitHub 仓库（`owner/repo` 或完整 URL）或 npm 包名，支持批量；安装过程中按钮禁用并显示加载动画，防止重复操作
 
@@ -101,6 +101,25 @@ description: 一句话描述
 - 也支持扁平格式 `<skill-name>.md`
 - 导入时名称会自动规范化为 kebab-case（大写转小写、下划线转连字符等）
 - frontmatter 可选字段：`whenToUse`、`disable-model-invocation`、`user-invocable`、`metadata`
+
+### 多语言说明（跟随应用语言） / Localized descriptions
+
+列表与 ⚡ 选择器中的技能说明会**跟随 DSH 应用语言**（设置 → General → Language，zh/en）自动切换。技能作者可按需补充按语言区分的字段（缺省回退到 `description` / `whenToUse`）：
+
+```markdown
+---
+name: my-skill
+description: One-line summary.
+description_zh: 一句话中文说明。
+description_en: One-line summary (en).
+whenToUse: Use when the user asks about X.
+whenToUse_zh: 当用户询问 X 时使用。
+whenToUse_en: Use when the user asks about X (en).
+---
+```
+
+- 未提供对应语言字段时，显示原始 `description` / `whenToUse`（向后兼容所有现有技能）
+- 插件的自身界面文案（按钮/标签/提示）也随应用语言在 zh/en 间切换
 
 ## 配置 / Configuration
 

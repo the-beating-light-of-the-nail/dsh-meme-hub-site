@@ -9,12 +9,12 @@ DeepSeek Harness 插件:在会话输入框(发送栏)旁提供一个「优化」
 - **Host 半侧**:注册 `POST /dsh-prompt-optimizer/optimize`(SSE 流式)与 `POST /dsh-prompt-optimizer/test-model`(连通性探活)两条路由,调用 `ctx.llm` 完成「分析 + 改写」。
 - **Client 半侧**:向 `conversation.input.right` 槽位注入按钮,向 `conversation.input.dock` 注入结果面板(输入卡上方整行、与 TodoDock 同族,新会话界面也渲染,且不遮挡输入框),向 `settings.plugin.item` 注入可折叠的设置卡片(设置页自动获得配置界面,无需单独开发页面)。界面文案跟随 DSH 界面语言(中文 / English)。
 
-![结果面板:五维诊断与优化稿流式上屏,可替换/撤回/复制;徽章显示实际路由与用时](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/401fddef912511ad21ff9359775260063dcc99c5/docs/screenshots/optimize-panel.png)
+![结果面板:五维诊断与优化稿流式上屏,可替换/撤回/复制;徽章显示实际路由与用时](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/optimize-panel.png)
 
 | | |
 |---|---|
-| ![发送栏空闲态:✨ 优化按钮位于模型选择旁,空输入时禁用](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/401fddef912511ad21ff9359775260063dcc99c5/docs/screenshots/composer-idle.png) | ![面板错误态:上游模型错误完整透传,可一键重试](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/401fddef912511ad21ff9359775260063dcc99c5/docs/screenshots/panel-error.png) |
-| ![设置卡折叠态:标题栏显示「模型 · 模式」关键摘要](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/401fddef912511ad21ff9359775260063dcc99c5/docs/screenshots/settings-collapsed.png) | ![设置卡展开态:模型 / 调用参数 / 上下文 三组配置](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/401fddef912511ad21ff9359775260063dcc99c5/docs/screenshots/settings-expanded.png) |
+| ![发送栏空闲态:✨ 优化按钮位于模型选择旁,空输入时禁用](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/composer-idle.png) | ![面板错误态:上游模型错误完整透传,可一键重试](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/panel-error.png) |
+| ![设置卡折叠态:标题栏显示「模型 · 模式」关键摘要](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/settings-collapsed.png) | ![设置卡展开态:模型 / 调用参数 / 上下文 三组配置](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/dd76f879e81547de865efb144f65089ca9682adf/docs/screenshots/settings-expanded.png) |
 
 ## 功能
 

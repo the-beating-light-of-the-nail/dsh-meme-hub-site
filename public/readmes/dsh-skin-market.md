@@ -2,11 +2,11 @@
 
 一个嵌入 DSH 设置页的皮肤市场，可以浏览、安装、使用、停用、更新和卸载社区皮肤。
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/9b2d4e6dda9267ec872acaf2c8884bb45d31d841/docs/assets/skin-market-liang.png" alt="DSH 设置中的皮肤市场发现页" width="70%">
+  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/33ee9ab75332cfac8ba4c94009fb8976dc188b8a/docs/assets/skin-market-liang.png" alt="DSH 设置中的皮肤市场发现页" width="70%">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/9b2d4e6dda9267ec872acaf2c8884bb45d31d841/docs/assets/skin-market-deep-whale.png" alt="DSH 皮肤市场中的 Deep Whale 皮肤详情弹窗" width="70%">
+  <img src="https://raw.githubusercontent.com/kingOfSoySauce/dsh-skin-market/33ee9ab75332cfac8ba4c94009fb8976dc188b8a/docs/assets/skin-market-deep-whale.png" alt="DSH 皮肤市场中的 Deep Whale 皮肤详情弹窗" width="70%">
 </p>
 
 ### 在线预览

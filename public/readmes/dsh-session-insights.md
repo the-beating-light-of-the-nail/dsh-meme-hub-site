@@ -17,7 +17,7 @@ It helps answer questions such as:
 
 This is **behavioral review, not telemetry**. It is not a live monitor, a billing calculator, or a claim that it can judge the quality of your work.
 
-![Scattered session trails pass through an analysis lens and resolve into structured evidence cards and a clear report](https://raw.githubusercontent.com/GreenLv/dsh-session-insights/06fe15b07f1dace151bbf37eb152a7e1e217da1e/assets/social/hero.jpg)
+![Scattered session trails pass through an analysis lens and resolve into structured evidence cards and a clear report](https://raw.githubusercontent.com/GreenLv/dsh-session-insights/0f9eea3fc12496a9b32a5f48b83bfca4e5bff3ce/assets/social/hero.jpg)
 
 ## What you get
 
@@ -31,7 +31,7 @@ The dashboard brings several views of the same evidence together:
 | Wins and friction | Evidence-backed strengths plus failures, retries, and other signals worth investigating |
 | Recommendations | DSH workflow suggestions tied to measured evidence, with prompts you can copy |
 
-<p align="center"><img src="https://raw.githubusercontent.com/GreenLv/dsh-session-insights/06fe15b07f1dace151bbf37eb152a7e1e217da1e/assets/screenshots/dashboard-overview-en.png" alt="Deterministic retrospective dashboard overview (synthetic data)" width="640"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/GreenLv/dsh-session-insights/0f9eea3fc12496a9b32a5f48b83bfca4e5bff3ce/assets/screenshots/dashboard-overview-en.png" alt="Deterministic retrospective dashboard overview (synthetic data)" width="640"></p>
 
 The HTML file contains its own styles and data, so you can keep it locally and open it without a server. A machine-readable JSON report is written beside it.
 
@@ -164,6 +164,12 @@ Each model-produced JSON file is validated before it can enter the final report.
 - Reports infer patterns from available evidence; they do not prove intent, quality, task acceptance, or security.
 
 Exact package, CI, native macOS, and focused native Windows evidence is kept in the [v0.2.0 release acceptance record](docs/acceptance/v0.2.0-candidate.md). Deterministic slash dispatch and rendered English DOM remain unverified natively on Windows. The historical v0.1 CLI/Skill evidence remains in the [v0.1.0 acceptance record](docs/acceptance/v0.1.0-candidate.md).
+
+## npm download history
+
+![Cumulative npm download growth for dsh-session-insights](https://raw.githubusercontent.com/GreenLv/dsh-session-insights/0f9eea3fc12496a9b32a5f48b83bfca4e5bff3ce/npm-downloads.svg)
+
+The cumulative chart is generated daily from the npm Downloads API. npm download counts measure registry requests; they are not counts of unique users or confirmed installations. The workflow can also be run manually if GitHub delays or disables a scheduled run.
 
 ## Development and project docs
 

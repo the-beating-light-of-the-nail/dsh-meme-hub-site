@@ -10,12 +10,12 @@ A notification plugin for the dsh web GUI. When a session finishes, hits an erro
 
 | The settings panel with the **Notifications** entry in the sidebar and the section content | The sound picker for each kind (the official dropdown) |
 | --- | --- |
-| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/f2f093b8c8c1a66b31de88c1bc2769b1da813c28/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/f2f093b8c8c1a66b31de88c1bc2769b1da813c28/screenshots/02-sound-menu-open.png) |
+| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/ae2a70812062d18f2fa2732aadb640c30ce546eb/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/ae2a70812062d18f2fa2732aadb640c30ce546eb/screenshots/02-sound-menu-open.png) |
 
 ## Install
 
 ```sh
-# Install from npm (requires dsh >= 0.1.2-alpha.1)
+# Install from npm (requires dsh >= 0.1.2-alpha.2)
 dsh plugin --profile web add @dingyi222666/dsh-session-notification
 # Restart dsh web for it to take effect
 dsh web

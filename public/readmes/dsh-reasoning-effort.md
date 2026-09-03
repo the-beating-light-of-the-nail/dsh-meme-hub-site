@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/83bc8c548749d7156a03d11d875d8117e9b5d994/assets/readme/hero.webp" alt="dsh-reasoning-effort 为 DeepSeek Harness 提供 Codex 风格的模型与推理强度滑块" width="1200">
+<img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/54c76c7e652b8f792f7c3f94d0a723d382e32db5/assets/readme/hero.webp" alt="dsh-reasoning-effort 为 DeepSeek Harness 提供 Codex 风格的模型与推理强度滑块" width="1200">
 
 # dsh-reasoning-effort
 
@@ -8,13 +8,15 @@
 
 [English](README.en.md) · [最新发行版](https://github.com/HanaAyane/dsh-reasoning-effort/releases/latest) · [反馈问题](https://github.com/HanaAyane/dsh-reasoning-effort/issues)
 
-[![main 0.6.2](https://img.shields.io/badge/main-0.6.2-6f83ff?style=flat-square)](https://github.com/HanaAyane/dsh-reasoning-effort/tree/main)
+[![main 0.7.0](https://img.shields.io/badge/main-0.7.0-6f83ff?style=flat-square)](https://github.com/HanaAyane/dsh-reasoning-effort/tree/main)
 [![DSH 0.1.0-rc.6](https://img.shields.io/badge/DSH-0.1.0--rc.6-8b5cf6?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
 [![MIT License](https://img.shields.io/badge/license-MIT-536990?style=flat-square)](LICENSE)
 
 </div>
 
 第一次打开插件时，你会在 DSH 输入框下方看到新的模型入口。点击后，弹层上方是推理强度滑块，档位随当前模型自动适配，下方仍然是熟悉的模型选择入口。插件默认启用，并与 DSH 的 `/model` 命令保持同步。
+
+插件运行时界面提供简体中文和英文，并跟随 **设置 → 通用设置** 中的 DSH 语言即时切换。模型菜单、设置项、无障碍标签、知识库说明、警告和可复制 YAML 注释会统一切换，无需刷新页面。
 
 ## 第一次使用：三步完成
 
@@ -46,7 +48,7 @@ dsh plugin --profile web add github:HanaAyane/dsh-reasoning-effort#main
 dsh --profile web --dump-config
 ```
 
-`main` 当前版本为 `0.6.2`，与最新发行 Tag `v0.6.2` 一致。`#main` 始终安装最新代码（之后可能包含未发布改动）；如需固定在当前版本，可把命令中的 `#main` 改为 `#v0.6.2`。
+`main` 当前版本为 `0.7.0`，与最新发行 Tag `v0.7.0` 一致。`#main` 始终安装最新代码（之后可能包含未发布改动）；如需固定在当前版本，可把命令中的 `#main` 改为 `#v0.7.0`。
 
 ### 2. 重启 DSH Web Host
 
@@ -61,7 +63,7 @@ dsh --profile web --dump-config
 
 完成后，你看到的效果应当与下面一致：
 
-<img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/83bc8c548749d7156a03d11d875d8117e9b5d994/assets/readme/themes.webp" alt="推理强度选择器在 DeepSeek Harness 深色和浅色主题中的真实效果" width="1200">
+<img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/54c76c7e652b8f792f7c3f94d0a723d382e32db5/assets/readme/themes.webp" alt="推理强度选择器在 DeepSeek Harness 深色和浅色主题中的真实效果" width="1200">
 
 ## 档位从哪里来
 
@@ -113,7 +115,7 @@ dsh-reasoning-effort:
 2. 找到“外观”下方的 **大肥鱼滑块**。
 3. 关闭开关，再回到模型入口。
 
-<img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/83bc8c548749d7156a03d11d875d8117e9b5d994/assets/readme/settings.webp" alt="DeepSeek Harness 通用设置中的推理强度滑块和大肥鱼滑块开关" width="1200">
+<img src="https://raw.githubusercontent.com/HanaAyane/dsh-reasoning-effort/54c76c7e652b8f792f7c3f94d0a723d382e32db5/assets/readme/settings.webp" alt="DeepSeek Harness 通用设置中的推理强度滑块和大肥鱼滑块开关" width="1200">
 
 大肥鱼只替换按钮外观，不改变档位吸附、键盘控制、辐射特效或模型选择。拖动时动画会自动加速；系统启用“减少动态效果”后会停留在稳定帧。
 

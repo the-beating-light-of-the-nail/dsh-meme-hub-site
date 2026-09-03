@@ -1,8 +1,11 @@
-# dsh-memory-palace <img src="https://raw.githubusercontent.com/lovezi0/dsh-memory-palace/9704f7950b1d87eb9212c159342e49f31062539d/assets/memory-icon.svg" width="36" height="36" alt="dsh-memory-palace" />
+# dsh-memory-palace <img src="https://raw.githubusercontent.com/lovezi0/dsh-memory-palace/ec32111eddaebd56ad691c03c20b9f0918943586/assets/memory-icon.svg" width="36" height="36" alt="dsh-memory-palace" />
 
 把 WorkBuddy 的文件式记忆系统移植进 [DeepSeek Harness](https://www.deepseek.com/harness/) —— 为 Harness 提供**跨会话持久化、人类可直接编辑的 Markdown 记忆**。
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
+> mian分支已适配**deepseek harness 0.1.2-alpha.2+**
+> 旧版本已切换分支归档，见`dsh-v0.1.x`
 
 ## 特性
 
@@ -79,7 +82,7 @@ turn/end ──► 轻量兜底闸门
 
 ```bash
 dsh plugin --profile web add github:lovezi0/dsh-memory-palace
-# 锁定版本：dsh plugin --profile web add github:lovezi0/dsh-memory-palace#v1.4.2-alpha.1
+# 锁定版本：dsh plugin --profile web add github:lovezi0/dsh-memory-palace#v1.6.2-alpha.4
 ```
 
 方式二：clone 后本地安装（开发 / 修改源码场景）
@@ -120,6 +123,15 @@ dsh plugin --profile web remove dsh-memory-palace
 
 ## 版本历史
 
+- **1.6.2**
+    - **1.6.2.alpha.4**
+        - 🔥适配deepseek harness 0.1.2-alpha.4
+    - **1.6.2.alpha.2**
+        - 原1.6.0发布
+- **1.6.1**
+    - 原1.6.0.alpha.1发布
+- **1.6.0**
+    - 🔥适配deepseek harness 0.1.2-alpha.2
 - **1.6.0.alpha.1** *未发布npm*
     - 🔥新增混合模式(hybrid) *仍默认插件模式，建议切换至混合模式*
     - 🔥新增记忆子agent处理轮次会话日志

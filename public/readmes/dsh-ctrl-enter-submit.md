@@ -5,15 +5,17 @@
 
 [English](#english) | 中文
 
-DeepSeek Harness (DSH) 插件：将对话框的提交快捷键从 **Enter** 改为 **Ctrl/Cmd+Enter**，普通 Enter 用于换行。可在「设置 → 插件」中随时开关，禁用后恢复默认行为。
+DeepSeek Harness (DSH) 插件：将文本输入的提交快捷键从 **Enter** 改为 **Ctrl/Cmd+Enter**。覆盖主对话框与 Agent 提问卡片（`ask_user_question`）的所有输入控件；可在「设置 → 插件」中随时开关，禁用后恢复默认行为。
 
 ## 行为
 
 | 按键 | 插件启用时 | 插件禁用后 |
 |---|---|---|
-| Enter | 换行（不提交） | 提交消息 |
-| Ctrl/Cmd+Enter | 提交消息 | 提交消息（DSH 原本就支持） |
-| Shift+Enter | 换行 | 提交消息（DSH 原生行为） |
+| Enter | 多行框换行；单行框/选项按钮不动作 | 提交消息 / 回答 / 下一题 |
+| Ctrl/Cmd+Enter | 提交消息 / 回答 / 下一题 | 提交（DSH 原本就支持） |
+| Shift+Enter | 多行框换行 | 提交消息（DSH 原生行为） |
+
+适用范围：主对话框 composer，以及 Agent 提问卡片（`ask_user_question`）的所有输入控件——多行 textarea（普通 Enter / Shift+Enter 换行）、单行自定义输入框（普通 Enter 不动作）、选项按钮（普通 Enter 不再选中/跳题，鼠标点击与空格选择不受影响）。
 
 `/` 和 `@` 触发菜单打开时，Enter 仍然正常选择菜单项，不会被拦截。输入法组合状态下也不会被拦截。
 
@@ -68,15 +70,17 @@ dsh plugin --profile web add ./dsh-ctrl-enter-submit
 <a name="english"></a>
 # English
 
-A DeepSeek Harness (DSH) plugin that changes the composer submit shortcut from **Enter** to **Ctrl/Cmd+Enter**, so plain Enter inserts a newline. Toggle it on/off anytime in **Settings → Plugins**; disabling restores the default Enter-submit behavior.
+A DeepSeek Harness (DSH) plugin that changes the submit shortcut from **Enter** to **Ctrl/Cmd+Enter**. It covers the main composer and every input control in the agent question card (`ask_user_question`). Toggle it on/off anytime in **Settings → Plugins**; disabling restores the default Enter-submit behavior.
 
 ## Behavior
 
 | Key | Plugin enabled | Plugin disabled |
 |---|---|---|
-| Enter | Newline (no submit) | Submits the message |
-| Ctrl/Cmd+Enter | Submits the message | Submits (DSH supports this natively) |
-| Shift+Enter | Newline | Submits the message (DSH native behavior) |
+| Enter | Newline in multiline fields; no action in single-line inputs / option buttons | Submits the message / answer / advances |
+| Ctrl/Cmd+Enter | Submits the message / answer / advances | Submits (DSH supports this natively) |
+| Shift+Enter | Newline in multiline fields | Submits the message (DSH native behavior) |
+
+Scope: the main composer and the agent question card (`ask_user_question`) — multiline textarea (plain Enter / Shift+Enter insert a newline), single-line custom-answer input (plain Enter does nothing), and option buttons (plain Enter no longer selects/advances; mouse click and Space still select).
 
 When the `/` or `@` candidate menu is open, Enter selects the highlighted item as usual. IME composition is never intercepted.
 

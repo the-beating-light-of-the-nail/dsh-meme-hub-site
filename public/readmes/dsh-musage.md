@@ -11,7 +11,13 @@
 [![v0.1.0](https://img.shields.io/badge/version-v0.1.0-blue.svg)](./CHANGELOG.md)
 [![5 providers](https://img.shields.io/badge/providers-5-orange.svg)](./docs/architecture.md)
 
-![demo](https://raw.githubusercontent.com/Thedeergod666/dsh-musage/12a3f14537b1e51c1135e8dc6e4d49512930ecd4/docs/assets/demo.gif)
+## Screenshots
+
+![MiniMax 5h/7d dual window](https://raw.githubusercontent.com/Thedeergod666/dsh-musage/9a05ddfc9bbc4c80c541511cc6604a11b22b4f24/docs/assets/screenshots/screenshot-2-minimax.png)
+
+![DeepSeek balance](https://raw.githubusercontent.com/Thedeergod666/dsh-musage/9a05ddfc9bbc4c80c541511cc6604a11b22b4f24/docs/assets/screenshots/screenshot-1-deepseek.png)
+
+![OpenRouter balance](https://raw.githubusercontent.com/Thedeergod666/dsh-musage/9a05ddfc9bbc4c80c541511cc6604a11b22b4f24/docs/assets/screenshots/screenshot-3-openrouter.png)
 
 ## 这是什么
 
@@ -28,7 +34,7 @@
 
 ## 演示
 
-![demo](https://raw.githubusercontent.com/Thedeergod666/dsh-musage/12a3f14537b1e51c1135e8dc6e4d49512930ecd4/docs/assets/demo.gif)
+![demo](https://raw.githubusercontent.com/Thedeergod666/dsh-musage/9a05ddfc9bbc4c80c541511cc6604a11b22b4f24/docs/assets/demo.gif)
 
 > (GIF: minimax 5h/周 双窗口 → 切到 deepseek 自动显示余额 → 切到 zai-coding-cn 显示智谱套餐. 中间切换无刷新无 loading 态.)
 

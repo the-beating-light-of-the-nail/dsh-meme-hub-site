@@ -13,7 +13,10 @@
 
 
 ```bash
-# 从 GitHub
+# 从 npm（推荐，最短）
+dsh plugin --profile web add dsh-token-pulse
+
+# 或从 GitHub
 dsh plugin --profile web add github:Hou-DL/dsh-token-pulse
 
 # 或从 Gitee（国内访问更快）
@@ -30,11 +33,11 @@ dsh plugin --profile web add "git+https://gitee.com/HouDL/dsh-token-pulse.git"
 ## 截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/cfdf3b9d6e66f1e54c75810b59ac79a8c55081c5/assets/screenshot-week.png" alt="周视图" width="60%">
+  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/8e37df626cb534499d9de6badb94dd582adcd12f/assets/screenshot-week.png" alt="周视图" width="60%">
   <br><br>
-  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/cfdf3b9d6e66f1e54c75810b59ac79a8c55081c5/assets/screenshot-month.png" alt="月视图" width="60%">
+  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/8e37df626cb534499d9de6badb94dd582adcd12f/assets/screenshot-month.png" alt="月视图" width="60%">
   <br><br>
-  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/cfdf3b9d6e66f1e54c75810b59ac79a8c55081c5/assets/screenshot-quarter-year.png" alt="季度 / 年度视图" width="60%">
+  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/8e37df626cb534499d9de6badb94dd582adcd12f/assets/screenshot-quarter-year.png" alt="季度 / 年度视图" width="60%">
 </p>
 
 ## 功能

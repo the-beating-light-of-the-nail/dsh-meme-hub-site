@@ -3,7 +3,7 @@
 <p align="center"><strong>把飞书变成 DSH 的遥控器</strong> —— 双向对话、流式富卡片、一键审批、扫码即用。</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.8.0-1f6feb?style=flat" alt="version">
+  <img src="https://img.shields.io/badge/version-0.9.0-1f6feb?style=flat" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-3fb950?style=flat" alt="license">
   <img src="https://img.shields.io/badge/DSH-bundle%20plugin-6e40c9?style=flat" alt="DSH bundle plugin">
   <a href="https://github.com/whoisjiahao/dsh-feishu-channel/actions/workflows/gates.yml"><img src="https://github.com/whoisjiahao/dsh-feishu-channel/actions/workflows/gates.yml/badge.svg" alt="gates"></a>
@@ -29,20 +29,26 @@
 
 ## 快速开始
 
-> **环境要求**：DeepSeek Harness 的 `dsh web`（本插件在 **0.1.1-rc.2** 主线上开发并实测，依赖宿主 agents / settings / commands 等核心服务，标准 dsh web 组合自带）；Node `^22.19.0 || >=24`。
+> **环境要求**：DeepSeek Harness 的 `dsh web`（本插件在 **0.1.2-alpha.2** 主线上开发并实测，依赖宿主 agents / settings / commands / sessionController 等核心服务，标准 dsh web 组合自带）；Node `^22.19.0 || >=24`。
 
 **① 安装**（三选一，装进你的 web profile；命令即转发 pnpm，在 `~/.dsh/profiles/web` 内执行）：
 
 ```sh
 # 已发布版本（需要对应 tag 已推送到 GitHub）
-dsh plugin --profile web add github:whoisjiahao/dsh-feishu-channel#v0.8.0
+dsh plugin --profile web add github:whoisjiahao/dsh-feishu-channel#v0.9.0
 
 # 或：从 GitHub Releases 下载 tgz 后本地安装（无需网络解析 git 引用）
-dsh plugin --profile web add ~/Downloads/dsh-feishu-channel-0.8.0.tgz
+dsh plugin --profile web add ~/Downloads/dsh-feishu-channel-0.9.0.tgz
 
 # 或：开发模式——链接本仓库，pnpm build 后热重载即可见
 dsh plugin --profile web add file:/绝对路径/dsh-feishu-channel
 ```
+
+> **安装排障**（pnpm 门禁都是幂等占位行，改完重跑即安全）：
+>
+> - `ERR_PNPM_IGNORED_BUILDS`（protobufjs）：依赖链 feishu-channel → `@larksuite/channel` → protobufjs（Lark 协议层），插件侧移不掉。pnpm 会在 profile 的 `pnpm-workspace.yaml` 写入 `protobufjs: null` 占位行，把 null 改为 `true` 重跑即可；其 postinstall 只做本地版本提示，放行风险可控。
+> - `ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED`（git 安装）：**0.9.0 起不再发生**——插件已把 `prepare` 改为 `prepublishOnly`（`lib/` 随 git 提交，git 安装无需构建）。仅安装 ≤0.8.0 旧版会遇到，解法同上（占位行改 `true`）或改用 tgz 安装。
+> - 新版依赖刚发布被拒（minimumReleaseAge 门禁）：pnpm 可能拒绝解析刚发布的 `@deepseek-ai/*` 版本。等几天后重跑，或在 profile 的 `pnpm-workspace.yaml` 加 `minimumReleaseAgeExclude` 条目。
 
 **② 重启 dsh web**，启动日志出现二维码：
 
@@ -83,10 +89,10 @@ test -f ~/.dsh/profiles/$PROFILE/package.json && echo profile-ok
 **步骤 1 · 安装包体（二选一）**
 
 ```sh
-# A. 发布版（要求 GitHub 存在 v0.7.1 tag；未发布则用 B）
-dsh plugin --profile $PROFILE add github:whoisjiahao/dsh-feishu-channel#v0.8.0
-# B. 本地 tgz（从 Releases 资产下载，或仓库内 pnpm pack 产出）
-dsh plugin --profile $PROFILE add /绝对路径/dsh-feishu-channel-0.8.0.tgz
+# A. 本地 tgz（从 Releases 资产下载，或仓库内 pnpm pack 产出；不触发任何构建门禁）
+dsh plugin --profile $PROFILE add /绝对路径/dsh-feishu-channel-0.9.0.tgz
+# B. 发布版（要求 GitHub 存在 v0.9.0 tag；未发布则用 A）
+dsh plugin --profile $PROFILE add github:whoisjiahao/dsh-feishu-channel#v0.9.0
 ```
 
 完成标志：`~/.dsh/profiles/$PROFILE/package.json` 的 `dependencies` 出现 `"dsh-feishu-channel"`。
@@ -123,7 +129,7 @@ dsh plugin --profile $PROFILE remove dsh-feishu-channel
 结论优先呈现，支持表格、编号列表与默认收起的分析过程。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/5feb7f18badfb53923dae244eeba9fa4a0814652/docs/preview/feishu-reply-completed.png" width="760" alt="飞书中的 DSH 完整回复卡片">
+  <img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/604c22079c4398063768566ba6b4e9a17c4f4fde/docs/preview/feishu-reply-completed.png" width="760" alt="飞书中的 DSH 完整回复卡片">
 </p>
 
 ### 命令执行
@@ -136,8 +142,8 @@ dsh plugin --profile $PROFILE remove dsh-feishu-channel
     <td width="50%" align="center"><strong>已完成</strong></td>
   </tr>
   <tr>
-    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/5feb7f18badfb53923dae244eeba9fa4a0814652/docs/preview/feishu-command-running.png" width="100%" alt="飞书命令执行中的卡片"></td>
-    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/5feb7f18badfb53923dae244eeba9fa4a0814652/docs/preview/feishu-command-completed.png" width="100%" alt="飞书命令执行完成的卡片"></td>
+    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/604c22079c4398063768566ba6b4e9a17c4f4fde/docs/preview/feishu-command-running.png" width="100%" alt="飞书命令执行中的卡片"></td>
+    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/604c22079c4398063768566ba6b4e9a17c4f4fde/docs/preview/feishu-command-completed.png" width="100%" alt="飞书命令执行完成的卡片"></td>
   </tr>
 </table>
 
@@ -151,8 +157,8 @@ dsh plugin --profile $PROFILE remove dsh-feishu-channel
     <td width="50%" align="center"><strong>模型设置</strong></td>
   </tr>
   <tr>
-    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/5feb7f18badfb53923dae244eeba9fa4a0814652/docs/preview/feishu-command-center.png" width="100%" alt="飞书中的 DSH 命令中心"></td>
-    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/5feb7f18badfb53923dae244eeba9fa4a0814652/docs/preview/feishu-model-setting.png" width="100%" alt="飞书中的 DSH 模型设置卡片"></td>
+    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/604c22079c4398063768566ba6b4e9a17c4f4fde/docs/preview/feishu-command-center.png" width="100%" alt="飞书中的 DSH 命令中心"></td>
+    <td valign="top"><img src="https://raw.githubusercontent.com/whoisjiahao/dsh-feishu-channel/604c22079c4398063768566ba6b4e9a17c4f4fde/docs/preview/feishu-model-setting.png" width="100%" alt="飞书中的 DSH 模型设置卡片"></td>
   </tr>
 </table>
 

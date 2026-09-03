@@ -12,7 +12,7 @@ Migrate your Claude Code setup into [DeepSeek Harness (DSH)](https://github.com/
 
 Preview instructions, skills, commands, agents, hooks, permission rules, and MCP servers before DSH writes anything. Existing destinations stay untouched.
 
-![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/5eb363e00d10c15f6402b646a0af8db569bd74a2/docs/settings-demo.gif)
+![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/28472559cd233c795a47eca888c785a898525a09/docs/settings-demo.gif)
 
 This GIF uses two screenshots from a live DSH `0.1.1-rc.2` run. The first shows the dry run and the second shows the applied result.
 
@@ -25,6 +25,8 @@ dsh plugin --profile web add dsh-movein
 ```
 
 Restart `dsh web`, open **Settings**, then choose **Move in**.
+
+Using a coding agent? [Copy the install, preview, and verification request](https://github.com/sjh9714/dsh-movein/blob/main/docs/agent-setup.md). To see a synthetic setup move without touching your own files, follow the [Chinese first-migration walkthrough](https://github.com/sjh9714/dsh-movein/blob/main/docs/first-migration.zh.md).
 
 - Claude Code is the primary path
 - Dry run is the default
@@ -103,7 +105,7 @@ If any JSONC file cannot be parsed, `--apply` is blocked before the first write.
 - On Windows, a permission-denied symlink falls back to a copy and is named in the report
 - `cordis.patch.yml` is backed up before each write
 - `npx dsh-movein restore` restores the newest patch backup
-- `~/.dsh/movein-manifest.json` records moved sources and destinations
+- `~/.dsh/movein-manifest.json` records moved instructions, assets, and generated configuration destinations; a safe repeated apply can recover missing instruction provenance when the existing destination still byte-matches its source
 - Environment placeholders remain runtime references
 - Secret-looking plaintext values are reported before apply
 - Sessions stay out of scope
@@ -119,6 +121,10 @@ npx dsh-movein doctor --live
 `doctor --live` never activates the migrated configuration. It requires an already-installed `@deepseek-ai/dsh` `0.1.1-rc.2` or newer and first proves the boot-free `web --dump-config` contract in a separate disposable snapshot containing only the official `@deepseek-ai/dsh-base` and `@deepseek-ai/dsh-web-app` bundles and empty patch layers. Only after that succeeds does it ask DSH to compose the active migration snapshot. Both dumps must return a bounded, non-empty config with the expected sectioned YAML-list shape; their output is discarded and never printed. It then resets the active snapshot to the same official base/web-only configuration, boots it on an OS-assigned loopback port, and verifies its HTML boot wire and one same-origin JavaScript bundle. Static `doctor` checks the migrated package references separately.
 
 No DSH download, model, or API credential is used. Child processes receive only a small OS, `PATH`, and locale allowlist; home, application-data, XDG, cache, and temporary paths all point inside the disposable snapshot. Shutdown signals the retained direct child handle and success requires observing that child exit and the loopback port become unreachable. It does not issue PID-tree kill commands. If child termination cannot be confirmed, the snapshot is preserved and the live check fails. Live checking requires the DSH-supported Node 22.19+ or 24+ runtime; Node 23 is rejected before any child starts.
+
+If the official-only baseline cannot load a native binding or import official DSH packages, `doctor --live` names the host installation failure separately from migration results. Missing package names alone do not prove a native-loader problem. A reproduced case with DSH `0.1.1-rc.2`, pnpm `11.24.0`, and `node-addon-native-custom-loader` `0.1.5` on macOS arm64 resolves the platform package from the native addon's directory but not from the shared loader's directory. The installed binary loads successfully when resolved from its owning package; a separate hoisted installation also passes. This dependency-ownership issue is tracked in [DSH discussion #3250](https://github.com/deepseek-ai/deepseek-harness/discussions/3250).
+
+Keep your migration profile intact. Compare a **separate** local DSH installation using npm or pnpm's project-local `nodeLinker: hoisted`, then rerun the live check against that installation. This is a diagnostic comparison, not an automatic repair or a guarantee for every installation layout. The doctor does not install missing packages, change global package-manager settings, disable release-age or script-approval policies, or add internal Node flags.
 
 Then inspect the composed DSH profile.
 
@@ -162,7 +168,13 @@ If you only need Claude Code command hooks in OpenCode, use the focused [opencod
 - Instruction globs, remote instruction URLs, or multiple instruction files
 - Hand-written DSH MCP and hook rows during reverse moving
 
-Conversation history belongs in [dsh-chat-import](https://github.com/Nwflower/dsh-chat-import).
+Conversation history belongs in [dsh-chat-import](https://github.com/Nwflower/dsh-chat-import). Configuration migration and session import are separate operations; review the selected sources, destinations, and each tool's limits. A combined workflow is not jointly validated or endorsed.
+
+See [configuration and session-import boundaries](https://github.com/sjh9714/dsh-movein/blob/main/docs/session-import-boundaries.md) before repeating or undoing either operation. Movein's `restore` restores only its patch backup; chat-import's `retract_import` removes a registry entry, not session files. Neither is a full rollback.
+
+### Windows setup comes first
+
+If DSH cannot start PowerShell on Windows, [dsh-win32](https://github.com/sjh9714/dsh-win32) diagnoses known Windows failures and separately verifies the installed official component chain. Resolve that host problem before applying a migration. Movein does not install dsh-win32, and its success does not establish complete Minimal-session or hook-enforcement support.
 
 ## Project status
 

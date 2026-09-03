@@ -2,22 +2,39 @@
 
 [English](README_EN.md) | 中文
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/banner-zh-dark.svg">
+    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/banner-zh.svg" alt="DSH Usage Statistics Panel" width="720">
+  </picture>
+</p>
+
 ![npm version](https://img.shields.io/npm/v/dsh-usage-statistics-panel)
 ![npm downloads](https://img.shields.io/npm/dm/dsh-usage-statistics-panel)
 ![License](https://img.shields.io/github/license/HaoyueQin/dsh-usage-statistics-panel)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue)
 ![dsh-plugin](https://img.shields.io/badge/dsh-plugin-4D6BFE)
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+[![Commit activity](https://img.shields.io/github/commit-activity/t/HaoyueQin/dsh-usage-statistics-panel)](https://github.com/HaoyueQin/dsh-usage-statistics-panel/graphs/commit-activity)
+[![Last commit](https://img.shields.io/github/last-commit/HaoyueQin/dsh-usage-statistics-panel)](https://github.com/HaoyueQin/dsh-usage-statistics-panel/commits)
 
 DSH web 插件的用量统计面板：按天 Token 趋势、GitHub 风格活跃热力图、缓存命中率曲线、按模型用量拆分（环形图 + 列表），在设置页新增一个"使用统计"页面。
 
 所有图表均为手绘 SVG，不依赖图表库；配色使用 GitHub Primer 的 data-viz 双套色板（前 5 名模型各取一个等级色，其余归入灰色 "Other" 桶），并随 DSH 主题自适应。
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/demo-zh.svg" alt="demo：安装后设置页出现「使用统计」入口，进入面板后卡片、热力图、趋势与环形图依次点亮" width="720">
+</p>
+
 ## 预览
 
-![面板概览：汇总卡片、活跃热力图与按天 Token 趋势](https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/f73a03952d3469d2789672378f51359a42da181f/docs/images/panel-overview.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/images/panel-overview.png" alt="面板概览：汇总卡片、活跃热力图与按天 Token 趋势" width="720">
+</p>
 
-![模型用量：环形图、列表与趋势图](https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/f73a03952d3469d2789672378f51359a42da181f/docs/images/model-usage.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-usage-statistics-panel/de483e712643e54e75263ac41722c5155e33f996/docs/images/model-usage.png" alt="模型用量：环形图、列表与趋势图" width="720">
+</p>
 
 ## 功能
 
@@ -39,6 +56,8 @@ dsh plugin --profile <name> add dsh-usage-statistics-panel@latest
 装完**硬刷新浏览器**（Cmd/Ctrl+Shift+R）：client 半的改动 DSH 会热加载，无需重启；仅 host 半（采集/存储/路由）更新时需要重启 DSH。
 
 插件挂载后，在 Web UI 的设置页左侧导航会出现"使用统计"页面。
+
+**兼容性**：已验证 DeepSeek Harness `0.1.1-rc.2` ~ `0.1.2-alpha.4`（peer 声明 `^0.1.1-rc.2 || ^0.1.2-alpha.1`），CI 对 `0.1.2-alpha.3` / `0.1.2-alpha.4` 双版本回归（`.github/workflows/test.yml`）；更高版本通常可用，属未验证范围。
 
 ## 数据来源
 
@@ -71,6 +90,10 @@ pnpm build       # tsc declarations + tsdown (host ESM + 双通道 client bundle
 ## 致谢
 
 本面板是对 reasonix 用量统计功能的复刻移植：作者曾为 [DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) 实现并贡献了该功能（PR [#7238](https://github.com/esengine/DeepSeek-Reasonix/pull/7238)、[#7503](https://github.com/esengine/DeepSeek-Reasonix/pull/7503)），本插件按 DSH 的插件规范将其移植到 DeepSeek Harness，前端图表大比例复用原实现，数据层则基于 DSH 的会话日志与 storage-domain 重新实现。
+
+## Activity
+
+[![HaoyueQin/dsh-usage-statistics-panel GitStock K-Line Chart](https://gitstock.org/HaoyueQin/dsh-usage-statistics-panel/stock.svg)](https://gitstock.org/HaoyueQin/dsh-usage-statistics-panel)
 
 ## License
 

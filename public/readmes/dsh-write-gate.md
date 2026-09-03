@@ -16,8 +16,9 @@ That turn ran fully local, zero API keys; reproduction and session-log receipts 
 
 ```sh
 npm install dsh-write-gate        # library + dsh plugin (see Mounting below)
-npx dsh-write-gate check --help   # standalone CLI, 0.2.0+
 ```
+
+The `dsh-write-gate check` CLI ships in 0.2.0, tagged on GitHub with the npm publish pending; `npm install` today resolves 0.1.1, which has no CLI. Until the publish, run it from a clone: `pnpm install && pnpm build && node dist/cli/index.js --help`.
 
 ## How it enforces: two tiers in two slots
 
@@ -79,6 +80,7 @@ A standalone check outside any harness, for CI, pre-commit hooks, or manual use:
 
 ```sh
 dsh-write-gate check --commitments <file> --tool <name> [--path <p> ...] [--command <c>] [--explain] [--json]
+dsh-write-gate --help | -h   # or: dsh-write-gate check --help (prints this usage synopsis, exit 0)
 ```
 
 **v0 is tier-1 (structural) only — no `--judge` flag exists yet.** Every `semantic: true` commitment that structure alone cannot settle always escalates to "no judge configured", and then follows the commitments file's `failMode`. With the default `failMode: closed`, that means **every escalating semantic commitment always blocks** in the CLI today. A `--judge` flag is an explicitly deferred follow-up; until then, treat semantic commitments as block-on-touch when driving the CLI directly (the dsh plugin itself has no such limit when `judge` is configured).
@@ -120,7 +122,7 @@ A `severity: warn`, `semantic: true` stay-on-task commitment escalates to the ti
 - The CLI (`dsh-write-gate check`) is tier-1 only: it never configures a judge, so every escalating semantic commitment reports "no judge configured" and follows `failMode` — block by default. See the CLI section above.
 - The action normalizer is a heuristic table over dsh's in-tree tool names (`bash`, `read`/`write`/`edit`, web tools); unrecognized tools degrade to kind `other` with a full summary — visible to semantic commitments, but path/command rules do not apply to them.
 - dsh is a 0.1.0-rc developer preview with breaking changes announced; peers are pinned to `<0.2.0`.
-- Early releases (0.1.x core + dsh plugin; 0.2.0 adds the CLI); `pnpm build` emits `dist/`, `prepublishOnly` gates every publish on build + tests.
+- Early releases (0.1.x core + dsh plugin on npm; 0.2.0 adds the CLI, tagged on GitHub, npm publish pending); `pnpm build` emits `dist/`, `prepublishOnly` gates every publish on build + tests.
 - The tier-2 judge is only as good as its model and rubric; the measured numbers above are from the shipped fixtures, and the benchmark that scores this gate (and others) against labeled trajectories is [holdline](https://github.com/couldbeme/holdline) (see Roadmap).
 
 ## Roadmap

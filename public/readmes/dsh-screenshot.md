@@ -2,10 +2,10 @@
 
 [English](README.en.md) | [中文](README.md)
 
-**DSH 轻量截图插件：一键全屏，或先摆好窗口再框选；Agent 可自助截屏；传路径不传图、零依赖零二进制；路径通用，接上 modlens（选装）即可一步读出结构化内容。**
+**DSH 轻量截图插件**：**轻**：零依赖零二进制；**摆**：一键全屏、窗口排版、悬停吸附截取被遮挡窗口；**自助**：Agent 可自助截屏，传路径不传图，路径通用，接上 modlens（选装）一步读出结构化内容。
 
 - **轻** — 纯 PowerShell 实现，零依赖、零二进制；截图能力独立维护，不随任何上游更新而失效。
-- **摆** — 一键全屏即拍；框选前整个桌面保持可操作，所有窗口像布置画面一样自由移动、缩放，摆好阵型再拖动选区——所得即所见。
+- **摆** — 一键全屏即拍；框选前整个桌面保持可操作，所有窗口像布置画面一样自由移动、缩放；**鼠标悬停任意窗口即亮起吸附边框，点一下直接截该窗口——被遮挡也能拿到完整内容**（独立运行的 PowerShell 除外，见下）——所得即所见。
 - **自助** — Agent 可随时自行截屏；接上 modlens（选装），截屏 + 识图一步产出结构化内容（OCR/版面/语义），纯文本模型也能消费。
 
 ## 快速开始
@@ -15,7 +15,7 @@ dsh plugin --profile web add @paicat1/dsh-screenshot
 # 重启 dsh web
 ```
 
-- `Ctrl+Alt+S` — 区域截图：桌面保持 live，可先移动/缩放任意窗口摆好布局，再到桌面空白处按下左键拖动选区（Esc 取消）
+- `Ctrl+Alt+S` — 截图：进入选取后，**点一下桌面 = 全屏**；**鼠标悬停窗口会亮起吸附边框，点一下 = 截该窗口完整内容（被遮挡也一样，独立运行的 PowerShell 除外）**；**拖拽 = 自由选区**（Esc 取消）
 - `Ctrl+Shift+Alt+S` — 全屏截图：无交互，直接捕获整个虚拟桌面
 - 想让 Agent 自己截屏？直接告诉它用 `modlens_screenshot` 工具即可
 
@@ -28,9 +28,9 @@ dsh plugin --profile web add @paicat1/dsh-screenshot
 | 浏览器热键（人） | "我想给你看这块屏幕" | 全屏 / 框选；截图后 PNG 路径自动插入 DSH 输入框，并复制到剪贴板 |
 | `modlens_screenshot` 工具（Agent） | "我自己看一下屏幕" | 模型自主调用：截屏 +（modlens 在场时）当场读出结构化内容，返回证据 + 截图路径 |
 
-| 人工操作演示 | Agent 自助调用演示 |
-|---|---|
-| ![人工操作演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/70ef3ea64e68e593c5d0754bacf90ddbcbdfa58c/assets/demo-manual.gif) | ![Agent 自助调用演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/70ef3ea64e68e593c5d0754bacf90ddbcbdfa58c/assets/demo-agent.gif) |
+| 人工操作演示 | Agent 自助调用演示 | 窗口吸附演示 |
+|---|---|---|
+| ![人工操作演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/dd8a3b2bcbaba97144d0706f5bc19ce3179afeb1/assets/demo-manual.gif) | ![Agent 自助调用演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/dd8a3b2bcbaba97144d0706f5bc19ce3179afeb1/assets/demo-agent.gif) | ![窗口吸附演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/dd8a3b2bcbaba97144d0706f5bc19ce3179afeb1/assets/demo-window-snap.gif) |
 
 ## 为什么传路径，不传图？
 
@@ -46,13 +46,17 @@ dsh plugin --profile web add @paicat1/dsh-screenshot
 
 | 层 | 能力 | 归属 |
 |---|---|---|
-| 截图 | 全屏 / 框选 / 摆窗布局，PowerShell 零依赖 | 本插件 |
+| 截图 | 全屏 / 框选 / **窗口吸附截图** / 摆窗布局，PowerShell 零依赖 | 本插件 |
 | 分发 | 传路径不传图、剪贴板、独立保存目录 | 本插件 |
 | 入口 | 浏览器热键 + Agent 可调用的截图工具 | 本插件 |
 | 读图 | OCR / 版面 / 语义 结构化证据 | modlens（选装） |
 | 消费 | 谁看懂这张图 | 任意多模态模型 / 视觉桥，不挑 |
 
 截图与分发是纯本插件能力，可独立使用；读图是生态组合能力——装上 modlens（或交给任意支持图片的模型/视觉桥）即解锁，未装时截图照常工作。
+
+**窗口吸附为什么能截到"被挡住"的窗口？** 悬停时插件枚举屏幕上的窗口、高亮光标下的那一个；单击后通过 `PrintWindow` 让窗口**自己把内容渲染出来**——截的是窗口自身，不是屏幕上可见的像素，所以被其他窗口遮挡、被 DWM 阴影包裹都不影响；最后按内容边界裁掉阴影，四边干净。
+
+**已知特例：独立运行的 PowerShell 窗口**：它的控制台（conhost）实现**不响应 `PrintWindow`**，且被覆盖时**不渲染 GDI 表面**——两条"穿透遮挡"的路径都走不通，只能截到屏幕可见像素（会带上遮挡内容）。把它切到前台再截，或直接拖拽框选即可。**其他窗口（含 cmd 等控制台窗口）均正常**。
 
 ## 配置
 

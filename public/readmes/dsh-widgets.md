@@ -16,10 +16,14 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Physicolor/dsh-widgets/cb099853b7be9f48f8c0eeb9c7cff3a9b81b7fa0/docs/screenshots/cover.png" alt="DeepSeek-Harness Widgets preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Physicolor/dsh-widgets/d40bee9af37552dc8192e8a216868c49635b620e/docs/screenshots/cover.png" alt="DeepSeek-Harness Widgets preview" width="100%">
 </p>
 
 DeepSeek-Harness Widgets is a **persistent DSH bundle plugin** built on the Cordis composition model. It provides a customizable multi-column widget rail on the right side of the conversation page — real-time session insights, usage monitoring, and quick actions — with an extensible declarative registry.
+
+## Website / Showcase
+
+A self-contained showcase site lives in [`website/`](website/) and is ready for GitHub Pages at **https://physicolor.github.io/dsh-widgets/** — what dsh-widgets is, why it exists, every real widget (galleries + a live playground), the widget-unit architecture, the production workflow, and a requirement-form → widget-spec generator. Plain HTML/CSS/JS, no build step, all paths relative for the project Pages base path. `node website/verify.mjs` self-verifies (static checks + Edge-headless browser checks). Deploy: see `website/README.md`.
 
 ---
 
@@ -78,9 +82,11 @@ A 2×2-only peak-pricing card showing whether the current moment is inside a Dee
 
 ## Architecture
 
-- **Widget registry**: `WIDGETS` declarative descriptors (id / name / size / group / render); the rail and the settings page share one registry — adding a widget is just one descriptor;
+- **Widget units + build-time discovery (ARCH-001)**: every widget is an independent unit under [`src/widgets/<id>/`](src/widgets/) — `manifest.json` (machine-readable contract: id / group / sizes / defaultInstalled / per-widget locale) + `index.ts` (the `defineWidget` descriptor: render + name/desc thunks + configSchema + example). The registry is **generated**, never hand-maintained: [`scripts/gen-registry.mjs`](scripts/gen-registry.mjs) scans the unit dirs and emits `src/client/generated.registry.ts` (`WIDGETS` / `ALL_INSTANCES` / `STATS_WIDGET_IDS` / `DEFAULT_INSTALLED` / merged `WIDGET_LOCALES`). Adding a widget = adding one unit dir; `pnpm build` regenerates and `pnpm check:registry` fails loudly when the registry is stale. The widget template lives in [`src/widgets-template/`](src/widgets-template/) — outside the scan root, so it can never be discovered or registered;
+- **Shared layer (stable core)**: [`src/client/lib/`](src/client/lib/) — `contract.ts` (the Widget contract + resolvers), `format.ts` (pure formatters / heatmap grid builders), `usage-view.ts` (OpenCode usage family renders), `heatmap-accounting.ts` (token heatmap self-accounting provider). Widget units import these; widget-specific logic stays in the unit;
+- **Per-widget i18n**: widget strings live in each unit's `manifest.json` (family-shared strings once in `src/widgets/_shared/locales.json`); the shell dictionary (`src/client/i18n.ts`) owns only the shell UI. The generated registry merges everything and the shell registers it with the official locale service at apply() time;
 - **Data collector**: mounted on the `conversation.composer.dock` slot, which renders only when an active session exists — a natural "session alive" signal;
-- **Host half**: `webServer` + `credentials` services; registers the `/api/opencode-usage` same-origin proxy route and the `/api/widgets-state` store (widget-rail configuration persisted to `profiles/web/dsh-widgets-state.json` — the authoritative copy that survives browser origin switches, private mode and site-data clearing);
+- **Host half**: `webServer` + `credentials` services; registers the `/api/opencode-usage` / `/api/opencode-usage-multi` same-origin proxy routes and the `/api/widgets-state` store (widget-rail configuration persisted to `profiles/web/dsh-widgets-state.json` — the authoritative copy that survives browser origin switches, private mode and site-data clearing);
 - **Reversible cleanup**: all registrations are managed by the fiber-effect lifecycle; uninstalling restores everything;
 - **Slot integration**: `shell.overlay` (panel), `conversation.session.header.utilities` (capsule toggle), `settings.section` (settings page).
 
@@ -100,9 +106,13 @@ After installing, **hard-refresh the browser** (Ctrl+Shift+R) and click the "Com
 
 ```sh
 pnpm install
-pnpm run build      # tsdown builds lib/
-pnpm run check      # typecheck + tests + build
+pnpm run build      # gen-registry (discovery) + tsdown builds lib/
+pnpm run check      # registry up-to-date guard + tsc --noEmit
+pnpm check:registry # discovery guard only
+node scripts/validate-widget-unit.mjs [dir]   # widget-unit contract validator (Worker self-check / review)
 ```
+
+> Note: `tsc --noEmit` still reports pre-existing strict-mode errors on UNTOUCHED code — the peer slot types (`@deepseek-ai/dsh-client-ui-slots`) only know the `root` slot name while the runtime accepts arbitrary slot ids (live plugin works; the v1.3.0 refactor went from 24 to 18 such errors, all outside the changed files), and the host half lacks `@types/node`. The project gate is `pnpm build` + `pnpm check:registry` (both green) plus the live-bundle discovery probe (`docs/verify-discovery.cjs`).
 
 - `peerDependencies`: `@deepseek-ai/dsh-client-ui-slots`, `dsh-client-runtime` (provided by the DSH web profile);
 - `cordis.patch.yml` inserts one `widgets` row; the host half and browser half are loaded by the loader and client-modules respectively.
@@ -114,6 +124,34 @@ pnpm run check      # typecheck + tests + build
 - Coordinates explicitly with `dsh-better-sidebar`'s right rail (shares `--dsh-sidebar-width`); no residue after uninstall.
 
 ## Changelog
+
+### v1.4.0 (project website — first public release)
+
+- 🚀 **Published as v1.4.0** — `dsh-widgets@1.4.0` is live on GitHub and npm. The project website is now public at `https://physicolor.github.io/dsh-widgets/` via GitHub Pages. No plugin code changes; version bumped solely to ship the website.
+- 🌐 **Project website / widget showcase** added in [`website/`](website/) — a single-page static site (HTML + CSS + vanilla JS, no framework): hero with a 3-row widget-rail animation, one-command install terminal with copy, gallery of **all 19 real widgets** (filter by 5 real categories), design-philosophy good-vs-bad comparison, five-step how-to-create section + requirement form to widget-spec generator, and a slim contribution section with docs/issues links.
+- ✅ **Self-contained verification** [`website/verify.mjs`](website/verify.mjs): JS/CSS/HTML syntax checks + Edge-headless CDP render — 44/44 checks green across desktop (1440/1920), tablet, and mobile viewports, including default light theme, default Chinese language, full zh↔EN toggle, dark theme persistence, real-widget token checks, i18n key completeness, liquid-glass sheen, and console/network monitoring.
+- 🎨 **Widget previews are the real widget rendering** — `previews.js` ports the plugin's own `PREVIEW_STATS`, `format.ts` helpers, per-unit `render()`, and the `CardBody` / `ChartBlock` scale formula 1:1; colors are the real DSH tokens extracted from the live UI (`deepseek-500` light / `deepseek-400` dark). No invented design system; no plugin code touched.
+- 🖼️ **Hero = a ~1150px first screen**: left story column (title / bilingual description / CTA / stats), right = a real widget array (plugin grid rules: `cardSide 150`, `panelPadding 24`, 2-col rail width 372px, 2×4 wide = 324px); install terminal as the hero's footer.
+- 🪷 **Liquid-glass navigation** — real refraction + sheen: `backdrop-filter` blur+saturate + diagonal highlight (`::before`) + slowly drifting light band (`::after`, `nav-sheen` 11s). Only decorative layers move; text and icons stay stable.
+- 🧹 **Playground and Demo removed** — the website now has five sections (Hero, Widgets, Design, Create, Contribute). All widget display is unified through the single `DASH_PREVIEWS.render()` adapter; no "simulated" labels remain.
+- 🌏 **Full Chinese / English bilingual** — first visit defaults to Chinese + Light; a nav toggle switches the entire site through one dictionary (`i18n.js`). Dark stays opt-in and persisted.
+- 🧮 **Hero stat numbers** use HarmonyOS Sans (not monospace); `tabular-nums` kept for alignment.
+- 🧾 **Footer simplified** to a single row (brand + links only).
+- 🔧 **Bug fix**: usage-bars chart labels (x-axis) no longer overflow the chart container — chart wrapper now sizes to content, matching the real `ChartBlock`.
+- 🔗 Zero plugin code touched — no build/registry impact.
+
+### v1.3.0
+**Architecture — widget units + build-time discovery (ARCH-001: widget unitization, contract, low-conflict registry, multi-agent isolation):**
+
+- 🧱 **Every widget is now an independent unit** under `src/widgets/<id>/` (`manifest.json` + `index.ts`). The old monolith `src/client/widgets.ts` (all 19 widgets + all renders + the hand-maintained `WIDGETS` array) is gone; i18n strings for widgets moved out of the shared `i18n.ts` dictionary into each unit's manifest.
+- 🔎 **The registry is generated, not edited**: `scripts/gen-registry.mjs` scans the unit dirs at build time and emits `src/client/generated.registry.ts` (`WIDGETS` / `ALL_IDS` / `ALL_INSTANCES` / `STATS_WIDGET_IDS` / `DEFAULT_INSTALLED` / merged `WIDGET_LOCALES`) with a three-way id consistency check (dir name === manifest.id === index.ts id literal). `pnpm build` regenerates first; `pnpm check:registry` (and `pnpm check`) fails loudly when the registry is stale.
+- 🤖 **Parallel-agent safe**: creating Widget A never requires editing Widget B's files or any central registry — a worker touches only its own unit dir; registration follows automatically at build. Verified end-to-end with two concurrent worker agents creating TEST-A/TEST-B units (parallel-creation test, units removed after the proof).
+- 🧩 **Shared layer split** (`src/client/lib/`): `contract.ts` (Widget contract + resolvers), `format.ts` (pure formatters / grid builders), `usage-view.ts` (OpenCode usage family renders), `heatmap-accounting.ts` (heatmap self-accounting moved verbatim out of the shell entry).
+- 🌐 **Per-widget i18n**: widget strings live in each unit's `manifest.json` (usage-family strings once in `src/widgets/_shared/locales.json`); the shell dictionary keeps only shell UI. Merge + registration happen at apply() time via `WIDGET_LOCALES`.
+- 🖼️ **Preview mock (Example) is widget-owned**: the market/config preview quirks that used to be hard-coded in `components.tsx` (heatmap window-aligned grid, quote placeholder, peak-pricing sim base) now live in each unit's `example` field; the shell applies it generically. New widgets with custom preview data no longer touch shared code.
+- 🗂️ **Template**: `src/widgets-template/` holds the skeleton + contract guide; physically outside the discovery root, so the template can never be registered.
+- 🎨 Per-widget CSS is now safe: `tsdown` CSS-module tag ids use the src-relative path instead of the bare basename (two units shipping `index.module.css` no longer collide).
+- 🏷️ Market group labels are dictionary-driven (`group.<group-id>`, fallback to the widget name) instead of a hard-coded map.
 
 ### v1.2.4
 **Fix — rail open/close glide returns to main-thread `right` transition for perfect lockstep (with dsh-ui-harmonizer v0.8.3):**
@@ -335,14 +373,15 @@ pnpm run check      # typecheck + tests + build
 
 ## Roadmap
 
-The widget registry (`WIDGETS` descriptors) already lays the foundation for more — adding a widget is just one descriptor.
+The widget system is now built for scale: each widget is an independent, contract-driven unit under `src/widgets/` with build-time discovery — a new widget is a new unit dir, no shared file edits (guide: `src/widgets-template/README.md`).
 
+- **Agent-produced widgets**: the machine-readable contract (`manifest.json` + `defineWidget` descriptor + template + shared API) is exactly what a worker agent needs to create a widget end-to-end; the parallel-creation test in v1.3.0 demonstrated two agents adding widgets concurrently with zero file conflicts;
 - **Heatmap range/period controls**: let the 2×4 heatmap and bars pick custom ranges (weekly/monthly/etc.) beyond the current half-year / 7-day defaults;
 - **Multi-platform usage widgets**: Z.ai, DeepSeek balance, etc., reusing the host same-origin proxy + credentials pattern;
 - **Custom peak-pricing schedules**: expose window customization for the peak-pricing widget (currently hard-coded Beijing weekdays 09:00–12:00 / 14:00–18:00) — custom start/end times, weekday sets, and timezone;
 - **Utility widgets**: one-click compact (needs DSH official compaction) and more;
 - **External integrations**: Feishu / WeChat push & interaction, keys strictly via DSH credentials;
-- **Widget marketplace**: open a third-party widget registration mechanism so community widgets can join like plugins;
+- **Widget marketplace**: open a third-party widget registration mechanism so community widgets can join like plugins — the unit + discovery architecture (v1.3.0) is the carrier; a future `widgets-market` bundle can drop units into `src/widgets/` the same way;
 - **More locales**: the dictionary layer now has zh/en for every key — adding `ja`/`ko` etc. is a pure dictionary extension;
 - **Cross-device sync** (optional): today each DSH service keeps its own `dsh-widgets-state.json` — a cloud/account sync layer could share one configuration across machines, but local-first independence is the deliberate default.
 

@@ -9,7 +9,7 @@
 > DeepSeek 不认图？OpenCode 多模态平替方案：给纯文本主模型加一个**可配置的识图模型**。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/poiuyjie/dsh-vision-opencode/5ee76acd0f4178f3d51c8f19a8c401bdeab20d30/assets/demo.png" alt="dsh-vision-opencode 演示" width="860" />
+  <img src="https://raw.githubusercontent.com/poiuyjie/dsh-vision-opencode/3f29fe138d8167462db44c9252db95581a9ef01c/assets/demo.png" alt="dsh-vision-opencode 演示" width="860" />
 </p>
 
 ## 它能做什么
@@ -73,7 +73,7 @@ vision-opencode:
 有「关闭」档的模型很少，没有时界面显示「默认 / 强制关闭」并标注「不保证成功」。关掉思考一般能明显降低首 token 延迟和花费（MiMo 实测 `reasoning_effort:"none"` 可真正关掉）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/poiuyjie/dsh-vision-opencode/5ee76acd0f4178f3d51c8f19a8c401bdeab20d30/assets/reasoning-off.png" alt="推理关闭设置" width="860" />
+  <img src="https://raw.githubusercontent.com/poiuyjie/dsh-vision-opencode/3f29fe138d8167462db44c9252db95581a9ef01c/assets/reasoning-off.png" alt="推理关闭设置" width="860" />
 </p>
 
 > ⚠️ 各供应商对「关闭思考」的声明很混乱（`off:"none"` / `off:null` / 无字段各不相同），插件只能尽力按厂商目录区分「关闭」与「强制关闭」并试参数，**不保证每个供应商都能真正关掉**。

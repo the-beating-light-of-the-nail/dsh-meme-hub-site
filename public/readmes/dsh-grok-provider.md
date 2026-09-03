@@ -4,7 +4,11 @@
 
 让 DeepSeek Harness 使用你已登录的官方 Grok Build 账号：动态模型发现、流式推理、图片输入、可选 Web/X Search、工具调用，以及账号额度与模型能力面板。
 
-> 非官方社区项目，与 xAI 或 DeepSeek Harness 官方无隶属关系。当前源码候选版本为 `0.1.10`；当前稳定版及 npm Registry 的 `latest` 均为 `0.1.9`。已发布的 `0.1.9` 完成了唯一制品、双平台 CI、签名与 provenance 验证，但遗漏 Host 设置注册，因此 Web/X Search 开关会显示暂时不可用；尚未发布的 `0.1.10` 专门修复这条链路。`0.1.8` 曾发布后撤回且版本号不可复用。项目不再发行预发行版；正式版缺陷通过新的递增稳定版本修复。
+> 非官方社区项目，与 xAI 或 DeepSeek Harness 官方无隶属关系。本说明对应 `dsh-grok-provider@1.0.3` 制品；`0.1.8` 曾发布后撤回且版本号不可复用。
+
+`1.0.3` 修复两类真实运行中断：流开始前遇到 401/403 时，通过官方 Grok CLI 进行一次有界会话刷新并仅重试一次；流已开始后绝不重放。若连接中断前只收到安全的文本/reasoning，Provider 会保留已收到内容并提示用户发送“继续”；一旦出现工具调用、未知事件或协议异常，仍严格失败关闭。
+
+本 README 随 `1.0.3` 一起进入 npm tarball，下面的精确安装命令也固定为 `1.0.3`。npm Registry 已确认 `dsh-grok-provider@1.0.3` 可安装且 `latest=1.0.3`；Registry、GitHub Release 与冻结制品逐字节一致。
 
 ## 它解决什么问题
 
@@ -15,8 +19,8 @@
 | 模型 | 运行时读取账号可见的全部 Grok Build 模型，不维护静态模型白名单 |
 | 对话 | Responses 流式文本、reasoning、加密 reasoning replay、usage 与 finish reason |
 | 图片 | 仅精确 `grok-4.6` 接收 Harness attachment 中有界的 JPEG/PNG 图片；`grok-4.5` 与其他模型保持 text-only |
-| 搜索 | `0.1.9` 已包含协议与设置页，但开关因缺少 `llm-grok` Host 注册而不可用；`0.1.10` 候选修复注册，使精确 `grok-4.6` 的 Web Search / X Search 可默认关闭、分别开启，远端 lifecycle 不伪装成本地工具 |
-| 工具 | 将 function call 交回 Harness 权限层；Provider 本身不执行工具 |
+| 搜索 | 精确 `grok-4.6` 提供默认关闭的 Web/X Search；`1.0.3` 增加流前认证恢复与安全的部分输出保留，不自动重放已开始的流 |
+| 工具 | 将 function call 交回 Harness 权限层；Provider 本身不执行工具，关闭对应 Search 开关时保留本地 `web_search` / `x_search` |
 | 账户面板 | 登录状态、每周/月额度、重置时间、动态模型能力与 reasoning 档位 |
 | 界面 | Web 设置页中英文切换；TUI 提供闭合的 `/grok` 命令 |
 
@@ -40,10 +44,10 @@ grok models
 
 ### 2. 安装 Provider
 
-`0.1.10` 尚未发布；待它发布并完成 Registry 回读后，从 npm 安装该精确版本：
+安装精确版本：
 
 ```sh
-dsh plugin --profile web add dsh-grok-provider@0.1.10
+dsh plugin --profile web add dsh-grok-provider@1.0.3
 dsh web
 ```
 
@@ -79,21 +83,21 @@ Web 设置页展示：
 <table>
   <tr>
     <td colspan="3" width="50%" valign="top" align="center">
-      <a href=".github/assets/plugin-preview/image-input.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/fe1e5a7d82defb17ab5bcbb0d9979c43cb48c028/.github/assets/plugin-preview/image-input.png" alt="Grok 4.6 分析 Harness 对话中的图片输入" width="100%"></a><br>
+      <a href=".github/assets/plugin-preview/image-input.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/aaeb641997bdebc859bd7aa2273557a4d3559b1d/.github/assets/plugin-preview/image-input.png" alt="Grok 4.6 分析 Harness 对话中的图片输入" width="100%"></a><br>
       <sub><strong>图片输入</strong> — Grok 4.6 直接分析 Harness 附件</sub>
     </td>
     <td colspan="3" width="50%" valign="top" align="center">
-      <a href=".github/assets/plugin-preview/model-picker.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/fe1e5a7d82defb17ab5bcbb0d9979c43cb48c028/.github/assets/plugin-preview/model-picker.png" alt="在 DeepSeek Harness 模型选择器中选择 Grok 4.6 或 Grok 4.5" width="100%"></a><br>
+      <a href=".github/assets/plugin-preview/model-picker.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/aaeb641997bdebc859bd7aa2273557a4d3559b1d/.github/assets/plugin-preview/model-picker.png" alt="在 DeepSeek Harness 模型选择器中选择 Grok 4.6 或 Grok 4.5" width="100%"></a><br>
       <sub><strong>模型选择</strong> — 按当前账户能力选择 Grok 4.6 或 Grok 4.5</sub>
     </td>
   </tr>
   <tr>
     <td colspan="4" width="66.67%" valign="top" align="center">
-      <a href=".github/assets/plugin-preview/grok-context.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/fe1e5a7d82defb17ab5bcbb0d9979c43cb48c028/.github/assets/plugin-preview/grok-context.png" alt="Grok 4.6 对话的上下文统计与工具调用" width="100%"></a><br>
+      <a href=".github/assets/plugin-preview/grok-context.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/aaeb641997bdebc859bd7aa2273557a4d3559b1d/.github/assets/plugin-preview/grok-context.png" alt="Grok 4.6 对话的上下文统计与工具调用" width="100%"></a><br>
       <sub><strong>对话上下文</strong> — 查看上下文统计与工具调用</sub>
     </td>
     <td colspan="2" width="33.33%" valign="top" align="center">
-      <a href=".github/assets/plugin-preview/account-dashboard.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/fe1e5a7d82defb17ab5bcbb0d9979c43cb48c028/.github/assets/plugin-preview/account-dashboard.png" alt="Grok Build 账户额度、重置时间和动态模型能力" width="100%"></a><br>
+      <a href=".github/assets/plugin-preview/account-dashboard.png"><img src="https://raw.githubusercontent.com/yoshino-xiao7/dsh-grok-provider/aaeb641997bdebc859bd7aa2273557a4d3559b1d/.github/assets/plugin-preview/account-dashboard.png" alt="Grok Build 账户额度、重置时间和动态模型能力" width="100%"></a><br>
       <sub><strong>账户面板</strong> — 额度、重置时间与动态模型能力</sub>
     </td>
   </tr>
@@ -130,8 +134,10 @@ dsh web
 
 ## 项目来源与发现
 
-- npm 当前稳定版：[dsh-grok-provider@0.1.9](https://www.npmjs.com/package/dsh-grok-provider/v/0.1.9)（发行制品已验证；Search 开关存在已知设置注册缺陷）
-- GitHub 最近发行版与校验值：[v0.1.9](https://github.com/yoshino-xiao7/dsh-grok-provider/releases/tag/v0.1.9)
+- 本说明对应的 npm 精确版本：[dsh-grok-provider@1.0.3](https://www.npmjs.com/package/dsh-grok-provider/v/1.0.3)
+- 当前已完成回读的 GitHub Release：[v1.0.3](https://github.com/yoshino-xiao7/dsh-grok-provider/releases/tag/v1.0.3)
+- 发布证据：release commit `07ebd35c56348a1b3296bd46d1a69f5b0f430241`，annotated tag object `7ec8a8a1086749e7ac1dfb0ef2bd50c821838363` peel 至该提交，final CI run [`33378215345`](https://github.com/yoshino-xiao7/dsh-grok-provider/actions/runs/33378215345)，Trusted Publisher run [`33379149158` attempt 1](https://github.com/yoshino-xiao7/dsh-grok-provider/actions/runs/33379149158/attempts/1)。仓库所有者明确授权的唯一 tarball 含 77 个文件、267,403 bytes，unpacked size 829,862 bytes；SHA-1 为 `6197c3d30ec1ef5f559371911d612f6236eee2f9`，SHA-256 为 `7f740c7258ab7eee0c96e1ddae3398b41a25e718cf267e244f8693c3c99aeb0d`，SRI 为 `sha512-kJgN0NKKV7Te3oAgbPnEua/EQCLnj5S0KWAWrhP0ixudJBepplRFARYHCxwxOwbG87bnX07Mz/dxCoBiphWhqQ==`。冻结制品、GitHub Release asset 与 npm Registry tarball 逐字节一致，Registry 锁定安装通过 Host/client 加载且生产审计为 0 漏洞；本包公开 metadata 含 1 个 Registry signature、2 个 attestations，安装图为 11 个已验证签名包与 2 个 attested 包。SLSA provenance 精确绑定 `release.yml`、`refs/tags/v1.0.3`、release commit 与 publish run。
+- npm 页面文档修正：`1.0.1` tarball 内曾保留旧安装示例；已发布的 `1.0.2` tarball 内，本 README 使用精确 `@1.0.2` 命令。已发布的 `1.0.1` 字节不会被覆盖。
 - GitHub 社区发现：仓库已添加 DeepSeek Harness 官方推荐的 `dsh-plugin` 与 `dsh` Topics
 - YukiRyou 受管来源：[deepseek-yukiryou-plugin-catalog](https://github.com/yoshino-xiao7/deepseek-yukiryou-plugin-catalog)，当前仍锁定已完成真机验收的 `dsh-grok-provider@0.1.0`，且只标记 `darwin-arm64`
 
@@ -139,21 +145,53 @@ dsh web
 
 ## 兼容性与范围
 
-| 项目 | `0.1.9` 稳定版 / `0.1.10` 候选状态 |
+### `1.0.3` 修复边界
+
+- 仅在 200/SSE 开始前的 401/403 上，通过官方 Grok CLI 做一次有界共享会话刷新、重新读取凭据并最多重试一次；持续拒绝仍返回 `AUTH`，不新增 API Key 模式。
+- 流开始后绝不自动重放。transport interruption、干净过早 EOF 或连续两分钟没有任何 wire bytes 时，只有无工具副作用且有界的 text/reasoning 可以被保留并附加“发送继续”提示；工具调用、未知事件、畸形协议、用户 abort 或空部分响应继续失败关闭。
+- 精确 Node `24.19.0` 门禁为 274 tests、272 pass、0 fail、2 platform skips；唯一 77 文件制品的 final release commit、双平台 CI、明确授权、隔离安装、Registry、签名、attestations 与 provenance 回读均已完成。真实账号成功路径只验证当前连接，不模拟未来 401 或断流；本版也不构成 Windows 真机浏览器登录验收。详情见 [`docs/releases/v1.0.3.md`](docs/releases/v1.0.3.md)。
+
+### `1.0.2` 修复边界
+
+- 普通严格空 reasoning item 继续执行既有 ID/type、sequence、output index、状态、summary/content 空性、大小、可选 encrypted content 与闭合校验；Search-backed 同 ID 复用项继续额外执行精确 own-data 键集与 accessor 拒绝。本版没有扩大协议接受域。
+- Provider 延迟创建 Harness reasoning block，只有收到首个非空 summary/raw delta 才发送 `block-start`，随后按原顺序发送 delta 和 `block-end`。完整生命周期最终为空时产生零个可见 reasoning chunk。
+- 多个非空 reasoning item 继续按 output index 保持独立块；正文、工具调用、usage、finish reason、可见非空 reasoning replay、Search 后 replay 抑制和失败关闭行为不变。被隐藏的普通空 item 不占可见 block/replay 对齐槽，其有界 encrypted content 通过校验后不持久化。
+- 精确 Node `24.19.0` 本地门禁为 265 tests、263 pass、0 fail、2 platform skips；生产依赖审计 0 漏洞，74 文件制品的 final release commit `be200f9352afe93b27dd2856d89c01674f0cd637` 与 final CI run [`33318426571`](https://github.com/yoshino-xiao7/dsh-grok-provider/actions/runs/33318426571) 已在 macOS 14 / Windows 2022 全绿。唯一授权制品、隔离安装、Registry、签名、attestations 与 provenance 回读均已完成。
+- 修复只影响升级后的新回复；旧会话中已经持久化的空 `Think` 行不会被回写删除。
+- 本版不改变 Search 开关、模型、认证、图片、固定 endpoint、citation/URL 或 Harness 工具权限边界，也不构成 Windows 真机浏览器登录验收。
+
+### `1.0.1` 修复边界
+
+- 根因不是模型、账号、Search 响应形状或 42 项工具总数，而是启用 server Search 时，同名 Harness function definition 与 `{ type: "web_search" }` / `{ type: "x_search" }` 共存；固定 Proxy 对该组合返回 HTTP 400。
+- 编译器先完整验证 40 个源 functions，再仅过滤与已启用 server Search 同名的 wire definitions。关闭对应开关时，本地工具保持原样；已有会话中的历史 `function_call` / `function_call_output` 也不删除或改名。
+- 最终 request receipt 拒绝 function/server-tool 名称交集；SSE parser 保留 source transport error，HTTP 400 因而映射到 `PROVIDER_ERROR`，真正的 SSE/协议错误仍为 `INVALID_RESPONSE`。
+- 一次经明确授权的脱敏真实账号回放使用原失败 X 会话结构：8 条 messages、40 个 source functions、wire 38 functions + 2 server tools、保留 2 个历史 reserved-name calls；只执行 1 次 models GET 和 1 次 Responses POST，接收 314 events 并以 `response.completed` 闭合。未保存消息/回复正文、URL、身份或凭据。
+- 精确 Node `24.19.0` 本地全量门禁为 253 tests、251 pass、0 fail、2 platform skips；生产依赖审计为 0 漏洞，隔离 cache 的 dry-run pack 列出 73 个文件，秘密模式扫描只命中显式 fixture canary 及其检查表记录。代码 PR #31、main CI run `33312621786`、最终 release commit、双平台 final CI、唯一授权制品、隔离安装、Registry、签名、attestations 与 provenance 回读均已完成；这些证据仍不代表 Windows 真机浏览器登录已经完成。详情见 [`docs/releases/v1.0.1.md`](docs/releases/v1.0.1.md)。
+
+### `1.0.0` 修复边界
+
+- 一个 reasoning ID 的原始生命周期必须先闭合，并且首次复用前必须已有一个完成的 Web/X server Search；之后只允许它以严格空占位再次出现。
+- “严格空”是指可见 summary/content 为空，且没有 summary/raw lifecycle；允许有界、不透明的 `encrypted_content`，但不会把它当作可见 reasoning 或保存上游明文。
+- 每次复用都必须收到独立的 `response.output_item.done`；若 `response.incomplete` 到来时仍有复用段未闭合，则返回通用非法响应错误，所有复用段已闭合后的 `max_output_tokens` 终态仍有效。非空 summary/raw、跨类型、未知 terminal 字段或 accessor 字段继续拒绝。
+- 完成态 `open_page` 只接受精确 `type + url`，streamed/final action 的类型与 URL 必须一致；Provider 校验后丢弃 URL，不会访问、预览、下载或回放。
+- 最终源码完成两层脱敏真实账号复验：原始 Web/X 协议探针各 1 次请求、各 64 events，分别观察到对应 Search 且终态 `completed`；生产 adapter 共完成 5 次 Responses，direct Web/X 均为 `stop`，Harness 形状的本地 `x_search` call/result 续跑三轮依次为 `tool-calls`、`tool-calls`、`stop`，前两轮各 1 次本地调用。该续跑没有在同一 wire request 中同时放入 Harness `x_search` function definition 与 xAI `{ type: "x_search" }` server descriptor；`1.0.1` 后续才隔离出这一 HTTP 400 冲突。未保存结果、URL、prompt、身份或凭据；这些不是发布、OAuth 或 Windows 真机证据。
+- manifest/lock 已同步为 `1.0.0`；Node 24 全量测试为 245 项、243 pass、0 fail、2 项平台跳过，生产依赖审计为 0 漏洞，确定性 build/bundle、72 项 dry-run pack、秘密模式扫描与 diff 检查均通过。代码 PR #28、main CI run [`33308371009`](https://github.com/yoshino-xiao7/dsh-grok-provider/actions/runs/33308371009)、最终 release commit、双平台 final CI、唯一制品、精确授权及 Registry/signature/attestation/provenance 回读均已完成。
+
+| 项目 | `1.0.3` 已发布兼容边界 |
 | --- | --- |
 | DeepSeek Harness | 精确支持 `0.1.1-rc.2` |
 | Node.js | `>=24.19.0` |
-| macOS arm64 | 图片发送已完成真实 Harness 验证；`0.1.10` Search 修复已通过真实 SettingsProvider/LLM 回归、候选 tarball 隔离安装、设置 API、浏览器开关写入与候选 macOS 14 CI |
-| Windows x64 | 代码、slow-fake 与 `0.1.10` 候选 Windows 2022 CI 已通过。网络可达时由官方 CLI 生成 URL 并打开浏览器，该路径仍未完成 Windows 真机验收 |
+| macOS arm64 | 图片发送已完成真实 Harness 验证；`1.0.3` 增加流前认证恢复与安全部分输出保留 |
+| Windows x64 | 代码路径与现有 slow-fake 保持不变；网络可达时由官方 CLI 生成 URL 并打开浏览器，该路径仍未完成 Windows 真机验收 |
 | macOS x64 / Linux | 不支持 |
 | Grok CLI | 不锁完整版本；严格校验官方路径、`login --oauth` 能力与生产 OIDC 凭据契约 |
 | 模型 | 当前账号目录中 backend 已被严格 codec 支持的全部模型 |
 
-`0.1.10` 沿用已发布版本的图片边界：只为精确的 `grok-4.6` 开启图片输入；`grok-4.5` 与其他动态发现的模型继续按 text-only 处理。图片发送已在真实 Harness 对话中确认可用。图片只能来自 Harness attachment service 的已验证 JPEG/PNG 投影，支持普通用户内容和一层工具结果中的图片，并固定使用 `detail:"high"`；不接受 URL、文件路径、file ID 或调用方预制的 data URL。普通 user/system 历史中的私有 reasoning 会被省略并保留相邻可见文本。
+`0.1.11` 沿用已发布版本的图片边界：只为精确的 `grok-4.6` 开启图片输入；`grok-4.5` 与其他动态发现的模型继续按 text-only 处理。图片发送已在真实 Harness 对话中确认可用。图片只能来自 Harness attachment service 的已验证 JPEG/PNG 投影，支持普通用户内容和一层工具结果中的图片，并固定使用 `detail:"high"`；不接受 URL、文件路径、file ID 或调用方预制的 data URL。普通 user/system 历史中的私有 reasoning 会被省略并保留相邻可见文本。
 
 每张投影图片最多 4 MiB、16,777,216 像素且任一边不超过 8192px；每次请求最多保留 8 张、投影字节合计最多 8 MiB。超限时按全局最旧优先移除图片并保留 Harness 的文本占位，最终 JSON 仍受 16 MiB 上限约束。
 
-已发布的 `0.1.9` 包含 Search 协议实现和设置页面，但漏掉了 Host 侧 `llm-grok` namespace 注册，两个开关因此永久处于不可用状态。`0.1.10` 候选使用 Harness 官方 settings 模块注册并持久化这两个设置；每个新调用在模型发现前读取一次最新值，已准备和在途调用保持原快照。Search 仍只对精确 `grok-4.6` 开放并默认关闭。开启后，普通对话内容以及模型据此生成的检索词会交给 xAI，并可能产生额外用量。Web/X 是服务端已执行的检索过程，不会变成 Harness 本地工具调用；回答中的 citation Markdown 保留为普通文本，结构化 URL 元数据有界校验后丢弃，插件不会打开或下载引用。搜索结果属于不可信远端数据，执行命令或修改文件前应核实来源。图片生成、任意文件下载、API Key 模式、多账号、企业 OIDC、ACP 与 Headless agent 封装仍不在本版本范围内；后续切片见[能力路线图](docs/11-capability-roadmap.md)。
+已发布的 `0.1.10` 使用 Harness 官方 settings 模块注册并持久化两个 Search 设置；每个新调用在模型发现前读取一次最新值，已准备和在途调用保持原快照。真实使用随后发现精确 `grok-4.6` 在 High Effort + Web Search 续跑时，可能先关闭 reasoning 项，在一次 Search 完成后再把同一 ID 使用一次作为空占位，旧解码器会因此失败关闭。已发布的 `0.1.11` 仅在已完成 Search 位于两段 reasoning 之间时允许该 ID 以严格空项再出现一次，并增加官方 raw `reasoning_text` 生命周期；raw 与 summary 互斥，replay 元数据不保存 raw 明文，后续请求只发送 `encrypted_content` 与空 summary，当前流中的 raw delta 仍会作为 Harness 可见 reasoning 输出。脱敏真实探针观察到 34 个 summary delta、0 个 raw delta，因此只验证 summary/Search 路径，raw reasoning 仍只有 fixture 回归。Search 继续只对精确 `grok-4.6` 默认关闭地开放；远端活动不变成本地工具，citation URL 不会被打开或下载。搜索结果属于不可信远端数据，执行命令或修改文件前应核实来源。图片生成、任意文件下载、API Key 模式、多账号、企业 OIDC、ACP 与 Headless agent 封装仍不在本版本范围内；后续切片见[能力路线图](docs/11-capability-roadmap.md)。
 
 ## 工作原理
 
@@ -256,7 +294,11 @@ npm run pack:check
 - [x] 发布 `0.1.6`：图片历史 reasoning 兼容与 Windows 官方 CLI 分阶段 deadline 修复版；图片发送已完成真实 Harness 验证
 - [x] 发布 `0.1.7`：Provider/CLI 双版本诊断、CLI 安装恢复、OIDC discovery 超时脱敏结算与 `IconThinkOutline16` 设置导航兼容层
 - [x] 发布 `0.1.9`：加入 Web/X Search 协议与设置页，唯一制品、双平台 CI、签名与 SLSA provenance 均已验证；发布后确认 Host 设置 namespace 遗漏，开关不可用
-- [ ] 发布 `0.1.10`：`llm-grok` 注册、按调用读取设置、隔离安装、代码 PR 与 main 双平台 CI 已完成；仍需合并发布证据、冻结唯一制品和精确发布授权
+- [x] 发布 `0.1.10`：`llm-grok` 注册、按调用读取设置、唯一制品、双平台 CI、签名与 provenance 已完成
+- [x] 发布 `0.1.11`：修复 High Effort + Web Search reasoning 生命周期兼容；唯一制品、双平台 final CI、精确授权、Registry、签名、attestations 与 provenance 回读均已完成
+- [x] 发布 `1.0.0`：修复多次严格空 reasoning ID 复用和完成态 Web Search `open_page` action；唯一制品、双平台 final CI、精确授权、Registry、签名、attestations 与 provenance 回读均已完成
+- [x] 发布 `1.0.1`：修复 server Search 与 Harness 同名 function definition 的 HTTP 400 冲突，并保留真实 transport error 分类；唯一制品、双平台 final CI、精确授权、Registry、签名、attestations 与 provenance 回读均已完成
+- [x] 发布 `1.0.2`：隐藏严格空 reasoning 的无内容 `Think` 投影，同时保持协议校验与 output-index 顺序；唯一制品、双平台 final CI、精确授权、Registry、签名、attestations 与 provenance 回读均已完成
 - [ ] 再后续独立切片：默认关闭的图片生成（只收内联结果，提交 Harness attachment）
 - [ ] 完成 Windows x64 独立真机验收并按需发布后续稳定修复版
 

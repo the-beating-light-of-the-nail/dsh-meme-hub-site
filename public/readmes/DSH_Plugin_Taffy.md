@@ -4,7 +4,7 @@
 
 这是一个 dsh 的插件，把 Taffy 表情包挂在 DeepSeek Harness Web UI 右下角，随 agent 状态自动切换：待审批、思考中、干活中、出错、被打断……全部有专属表情。标准 DSH 插件包（bundle + web client），素材随包分发，一条命令安装。
 
-![taffy](https://raw.githubusercontent.com/vegetable-kun/DSH_Plugin_Taffy/cd7ab206a2beffb3e9e34b976c243da88b517af4/assets/taffy-fork.gif)
+![demo](https://raw.githubusercontent.com/vegetable-kun/DSH_Plugin_Taffy/dcf95a98d99eb4d495422425a96d77b53cd5319f/assets/demo.gif)
 
 ## 安装
 
@@ -15,9 +15,9 @@ dsh plugin --profile web add github:vegetable-kun/DSH_Plugin_Taffy
 然后重启 `dsh web` 即生效。安装器会自动把包加进 profile 的 bundles 层列表，无需手动编辑任何配置。
 
 <details>
-<summary><b>效果预览（点击展开）</b></summary>
+<summary><b>效果详细说明（点击展开）</b></summary>
 
-## 效果预览
+## 效果详细说明
 
 | 状态 | 表情 | 触发条件 |
 |---|---|---|

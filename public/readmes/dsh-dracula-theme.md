@@ -12,7 +12,7 @@
 
 ## Preview
 
-![Dracula skin applied to the DSH Web GUI](https://raw.githubusercontent.com/ossFrankFrank/dsh-dracula-theme/b8c7e809043296485ebff870a4c705e9139b3d5f/assets/preview.png)
+![Dracula skin applied to the DSH Web GUI](https://raw.githubusercontent.com/ossFrankFrank/dsh-dracula-theme/28e4621866680a241467fb7249bc07231afb8459/assets/preview.png)
 
 The classic Dracula canvas (`#282a36`) mapped onto the full DSH surface stack — sidebar, conversations, code blocks — with the purple/cyan brand accents from the official Dracula DeepSeek port.
 
@@ -63,6 +63,13 @@ dsh plugin --profile web add https://github.com/ossFrankFrank/dsh-dracula-theme
 ```
 
 Restart the profile, then pick the skin in **Settings → General → Dracula theme**.
+
+> **DSH Desktop 2.0.4+** — DSH client packages moved to `0.1.2-alpha.1`; **1.1.0** is
+> the first release compatible with that host (see CHANGELOG). On DSH Desktop,
+> install from the in-app plugin market instead of the CLI `--profile web` flow
+> (the desktop app now owns its own profile). Installing 1.0.0 on a 2.0.4 host
+> makes the app **fail to start** (plugin client bundle references the removed
+> `@deepseek-ai/dsh-client-runtime` module), so do not install the old version.
 
 ## Development
 
