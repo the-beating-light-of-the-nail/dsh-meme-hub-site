@@ -44,7 +44,7 @@
 
 ## git 提交纪律
 
-- 提交身份用真实账号：`git -c user.name="the-beating-light-of-the-nail" -c user.email="the-beating-light-of-the-nail@users.noreply.github.com" commit ...`
+- 提交身份用 `alexanderdcervantes-7716 <alexanderdcervantes@gmail.com>`（本仓 local 配置已设好，直接 `git commit` 即可，不要临时 -c 覆盖）。
 - commit message 带类型前缀：`feat(收录):` / `fix(seo):` / `chore(data):` 等。
 - push 前先 `git fetch origin <branch>` + rebase；禁止 force push。
 

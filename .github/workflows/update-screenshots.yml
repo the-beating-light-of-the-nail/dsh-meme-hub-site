@@ -9,10 +9,10 @@ name: Update Screenshots & Discovery
 #       整体重建文件,runner 上无此路径必崩,且会丢 screenshots/image_w 等下游字段)
 #   ④ 跑 discover-plugins.mjs,生成新插件「提名」清单 data/discovery/candidates.json
 #      (提名 ≠ 收录:候选仅供人工/AI 审核,收录仍走既有数据源流程)
-#   ⑤ IndexNow 全量提交 sitemap:数据刷新→commit→mirror→Vercel 部署后,次日把
+#   ⑤ IndexNow 全量提交 sitemap:数据刷新→commit→Vercel 部署后,次日把
 #      sitemap 全部 URL 重新推给搜索引擎,保证新增/变更详情页尽快被收录
-# 前四个脚本都幂等/失败不写文件 —— git diff 有变化才 commit 回 master(→ 触发
-# mirror 同步 → Vercel 重新部署),无变化不产生空提交。
+# 前四个脚本都幂等/失败不写文件 —— git diff 有变化才 commit 回 master(→ Vercel
+# 自动重新部署),无变化不产生空提交。
 
 on:
   schedule:
@@ -28,8 +28,8 @@ permissions:
 
 jobs:
   update:
-    # 只在旧仓库运行;被 mirror 同步到新仓库后自动跳过(同 ci.yml/mirror.yml)
-    if: github.repository == 'the-beating-light-of-the-nail/dsh-meme-hub-site'
+    # 只在正式仓(alexanderdcervantes-commits/dsh-hub)运行
+    if: github.repository == 'alexanderdcervantes-commits/dsh-hub'
     runs-on: ubuntu-latest
     timeout-minutes: 45 # 批1起全量抓 1800+ 仓 README,30 分钟余量不够
     env:
