@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dsh-meme-hub-site",
+  "compatibility_date": "2026-09-03",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./.output/public/",
+    "not_found": "./.output/public/404.html"
+  },
+  "routes": [
+    { "pattern": "dsh-meme-hub.cdqyfdbymn.me", "custom_domain": true }
+  ]
+}
