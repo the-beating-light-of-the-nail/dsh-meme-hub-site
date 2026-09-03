@@ -58,7 +58,7 @@ export default defineNuxtConfig({
       // 正式域名；过渡期在 CI 用 NUXT_PUBLIC_SITE_URL 覆盖
       siteUrl: 'https://dsh-meme-hub.cdqyfdbymn.me',
       siteName: 'DSH Meme Hub',
-      githubRepo: 'alexanderdcervantes-commits/dsh-hub',
+      githubRepo: 'the-beating-light-of-the-nail/dsh-meme-hub-site',
     },
   },
 

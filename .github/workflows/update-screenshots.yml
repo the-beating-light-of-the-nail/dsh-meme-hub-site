@@ -11,8 +11,8 @@ name: Update Screenshots & Discovery
 #      (提名 ≠ 收录:候选仅供人工/AI 审核,收录仍走既有数据源流程)
 #   ⑤ IndexNow 全量提交 sitemap:数据刷新→commit→Vercel 部署后,次日把
 #      sitemap 全部 URL 重新推给搜索引擎,保证新增/变更详情页尽快被收录
-# 前四个脚本都幂等/失败不写文件 —— git diff 有变化才 commit 回 master(→ Vercel
-# 自动重新部署),无变化不产生空提交。
+# 前四个脚本都幂等/失败不写文件 —— git diff 有变化才 commit 回 master（部署走
+# Cloudflare wrangler 直传,不随 push 自动）,无变化不产生空提交。
 
 on:
   schedule:
@@ -28,8 +28,8 @@ permissions:
 
 jobs:
   update:
-    # 只在正式仓(alexanderdcervantes-commits/dsh-hub)运行
-    if: github.repository == 'alexanderdcervantes-commits/dsh-hub'
+    # 只在正式仓运行（已迁回 the-beating-light-of-the-nail/dsh-meme-hub-site）
+    if: github.repository == 'the-beating-light-of-the-nail/dsh-meme-hub-site'
     runs-on: ubuntu-latest
     timeout-minutes: 45 # 批1起全量抓 1800+ 仓 README,30 分钟余量不够
     env:
