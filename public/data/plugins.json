@@ -77193,19 +77193,19 @@
    "name": "dsh-pet#dsh-pet",
    "repo": "PC2005-cloud/dsh-pet#dsh-pet",
    "url": "https://github.com/PC2005-cloud/dsh-pet/tree/main/dsh-pet",
-   "description_zh": "DSH Web UI 桌面宠物：25 个透明动画、屏幕漫游、点击反应与拖拽，附可复现的素材生成链。",
-   "description_en": "Desktop pet for the DSH Web UI with 25 transparent animations, screen wandering, click reactions and drag, plus a reproducible asset-generation pipeline.",
-   "stars": 524,
+   "description_zh": "DSH Web UI 桌面宠物：97 段手绘风透明动画随 Agent 动作无缝演出（打瞌睡、玩魔方、吃火锅…），屏幕漫游、拖拽投掷物理反弹、右键菜单点播动作、余额气泡、多开，还可用 AI 视频素材链自造宠物",
+   "description_en": "Desktop pet for the DSH Web UI: 97 hand-drawn transparent animations acting out your agent's every move (dozing, Rubik's-cubing, hotpot...), plus screen wandering, drag-and-toss physics, a right-click action menu, balance bubbles, multi-instance support, and an AI-video asset chain to breed your own pets",
+   "stars": 529,
    "forks": 33,
-   "category_zh": "娱乐",
-   "category_en": "Just for Fun",
-   "is_meme": false,
-   "meme_section": null,
-   "meme_caption_zh": "",
-   "meme_caption_en": "",
+   "category_zh": "赛博宠物",
+   "category_en": "Cyber Pets",
+   "is_meme": true,
+   "meme_section": "pets",
+   "meme_caption_zh": "Agent 打字它打瞌睡，Agent 写代码它开吃火锅——97 段手绘动画实时跟演，拖出去扔了还能 Q 弹落地",
+   "meme_caption_en": "Dozes off while you type, fires up hotpot while the agent codes — 97 hand-drawn animations follow every move in real time, and fling it across the screen to watch it bounce",
    "image": null,
    "install_cmd": "dsh plugin --profile web add dsh-pet",
-   "pushed_at": "2026-09-02",
+   "pushed_at": "2026-09-03",
    "license": "MIT",
    "language": "TypeScript",
    "has_manifest": true,
@@ -77215,11 +77215,41 @@
     "dsh",
     "dsh-plugin"
    ],
-   "description_zh_TW": "DSH Web UI 桌面寵物：25 個透明動畫、螢幕漫遊、點選反應與拖拽，附可復現的素材生成鏈。",
-   "category_zh_TW": "娛樂",
-   "meme_caption_zh_TW": "",
-   "screenshots": [],
-   "auto_ingested": true
+   "description_zh_TW": "DSH Web UI 桌面寵物：97 段手繪風透明動畫隨 Agent 動作無縫演出（打瞌睡、玩魔術方塊、吃火鍋…），螢幕漫遊、拖拽投擲物理反彈、右鍵選單點播動作、餘額氣泡、多開，還可用 AI 影片素材鏈自造寵物",
+   "category_zh_TW": "賽博寵物",
+   "meme_caption_zh_TW": "Agent 打字它打瞌睡，Agent 寫程式它開吃火鍋——97 段手繪動畫即時跟演，扔出去還能 Q 彈落地",
+   "screenshots": [
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-1.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-2.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-3.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-4.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-5.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-6.png",
+     "w": null,
+     "h": null
+    }
+   ]
   },
   {
    "slug": "dsh-ths-holdings",
