@@ -36,7 +36,7 @@ Without history there's no peace of mind.
 
 **Every refresh saves the last snapshot of the day** (SQLite, deduplicated by day); over time it draws a trend line that is uniquely yours:
 
-![Daily snapshots become trend charts](https://raw.githubusercontent.com/0xRabit/dsh-crypto-portfolio/bd81f79422b7c41e38bbc0da671f5b2d49da00ad/assets/flow.svg)
+![Daily snapshots become trend charts](https://raw.githubusercontent.com/0xRabit/dsh-crypto-portfolio/bff2b1555c1845ca47ac575ebd790b70f7691775/assets/flow.svg)
 
 ---
 
@@ -51,11 +51,11 @@ Without history there's no peace of mind.
 - **Multi-profile configs.** The `default` profile ships with public template wallets (vitalik.eth, genesis BTC, public SOL) and empty keys; your private wallets and keys live in a separately named profile with its own snapshot history.
 - **Themes & i18n**: light/dark theme toggle, EN / 中文 (English by default), chain/exchange logos throughout.
 
-![Dashboard](https://raw.githubusercontent.com/0xRabit/dsh-crypto-portfolio/bd81f79422b7c41e38bbc0da671f5b2d49da00ad/assets/screenshot.png)
+![Dashboard](https://raw.githubusercontent.com/0xRabit/dsh-crypto-portfolio/bff2b1555c1845ca47ac575ebd790b70f7691775/assets/screenshot.png)
 
 Every box in the diagram is a real data pipeline:
 
-![Architecture](https://raw.githubusercontent.com/0xRabit/dsh-crypto-portfolio/bd81f79422b7c41e38bbc0da671f5b2d49da00ad/assets/arch.svg)
+![Architecture](https://raw.githubusercontent.com/0xRabit/dsh-crypto-portfolio/bff2b1555c1845ca47ac575ebd790b70f7691775/assets/arch.svg)
 
 ## How it integrates with DSH
 

@@ -14,11 +14,11 @@ English | **中文**
 
 </div>
 
-![卡片示意](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/fc143d06984802098686f3073d998e2677b1d55f/docs/preview.png%3Fv%3D4)
+![卡片示意](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/485a018298f7af46fe454dbc7aa0768a7d073345/docs/preview.png%3Fv%3D4)
 
 **悬停浮现倒计时与方向**
 
-![悬停态](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/fc143d06984802098686f3073d998e2677b1d55f/docs/screenshots/hover.png)
+![悬停态](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/485a018298f7af46fe454dbc7aa0768a7d073345/docs/screenshots/hover.png)
 
 ## 这是什么
 

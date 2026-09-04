@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/df62b370853c7049b90e188141309114d6814010/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -38,7 +38,7 @@ Return to the same Harness session from whichever device is with you. Harness ke
 ## Features
 
 - Continue active sessions and review their latest progress from another device
-- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2` or `dsh-v0.1.2-alpha.1`–`alpha.2`
+- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2` or `dsh-v0.1.2-alpha.1`–`rc.1`
 - Answer questions and permission requests from clients with live conversation controls
 - Open workspaces from another authorized computer on the same account
 - Reuse the native Harness interface instead of maintaining a separate desktop conversation UI
@@ -58,7 +58,7 @@ Linux. Remote is included and enabled by default, so no separate plugin installa
 Add the exact package version through DSH's plugin manager for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote@0.4.5
+dsh plugin --profile web add ds-harness-remote@0.4.9
 ```
 
 Restart Harness after installation.
@@ -73,7 +73,7 @@ profile; it does not require the Desktop browser `connection` service. Install t
 TUI profile:
 
 ```sh
-dsh plugin --profile dsh-tui add ds-harness-remote@0.4.5
+dsh plugin --profile dsh-tui add ds-harness-remote@0.4.9
 ```
 
 Start dsh-TUI and use its native slash command:
@@ -91,7 +91,7 @@ code. Login defaults to Zhihu; GitHub is also supported. Host control is enabled
 `/remote logout` revokes the Host and rotates its local device identity. Host configuration is not
 exposed yet; the integration uses `https://dsh.r2049.cn`. Tab completion is available for the
 subcommands and login providers. The `/remote` Host-management surface supports TUI profiles on
-`dsh-v0.1.1-rc.2` and `dsh-v0.1.2-alpha.1`–`alpha.2`; Remote workspace capabilities are advertised
+`dsh-v0.1.1-rc.2` and `dsh-v0.1.2-alpha.1`–`rc.1`; Remote workspace capabilities are advertised
 only when their official Harness carrier is available.
 
 See the [dsh-TUI Remote guide](docs/dsh-tui.md) for the compatibility matrix, rc.2 ApiProxy setup,
@@ -118,14 +118,14 @@ available as a Host.
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/df62b370853c7049b90e188141309114d6814010/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/df62b370853c7049b90e188141309114d6814010/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -137,9 +137,9 @@ open a workspace, and continue the conversation with text or image prompts. The 
 toolbar also lets you switch the active model and choose any reasoning effort declared by it.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/df62b370853c7049b90e188141309114d6814010/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/df62b370853c7049b90e188141309114d6814010/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/df62b370853c7049b90e188141309114d6814010/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -148,62 +148,9 @@ toolbar also lets you switch the active model and choose any reasoning effort de
 DSH Desktop / Remote Web / Android
   ↔ authenticated, end-to-end encrypted channel
 Remote Plugin on the Host
-  ↔ allowlisted native Harness API or optional CodeX App Server domain
-Harness sessions/workspaces or CodeX Threads/projects
+  ↔ supported Harness or optional Codex workspace support
+Harness sessions/workspaces or Codex projects
 ```
-
-## Experimental Codex virtual workspaces
-
-Codex is an optional domain inside the same Remote Plugin. After connecting to a Host, the normal
-Remote workspace picker can also show CodeX working directories. Selecting one switches the existing
-DSH Workspace/Session data plane to an in-memory virtual carrier: CodeX threads appear as Sessions,
-and their history and live frames are projected into native DSH Session events. The existing DSH
-workspace list, conversation renderer, composer, tool cards, and approval UI remain responsible for
-the interface; there is no separate CodeX page. The native Session permission control can switch
-between `Workspace write` and explicitly confirmed `Full access`. CodeX accepts text plus PNG, JPEG,
-WebP, or GIF image prompts from Desktop clipboard paste or Android's system image picker over the
-bounded encrypted transfer path. General file attachments are not exposed.
-
-Android consumes the same authenticated `codex.app.*` carrier directly after capability discovery.
-It merges the CodeX workspace catalog into its existing workspace screen, keeps those rows read-only,
-and reuses the mobile conversation, model, permission, image, tool, interrupt, and approval controls.
-The Android state is also an in-memory display projection; it never creates a second CodeX data store.
-
-The live projection covers assistant/reasoning/plan deltas, command and file output, file-change
-summaries, MCP progress, thread status, and model reroutes. Web Search, Subagent, Image, Compaction,
-and Review Mode items reuse native tool cards. Large live tool output is kept in a bounded in-memory
-window, while file patch events expose only paths and change kinds rather than forwarding raw diffs as
-Workspace file content.
-
-Native Workspace creation starts a Thread in the selected CodeX workspace root and keeps an empty Thread
-attached until it becomes visible in the App Server listing. The Host pages History on DSH message
-boundaries with `beforeSeq` / `maxMessages` before transfer; the Client searches the visible Thread
-title, preview, directory, and identifier locally.
-
-This is a presentation adapter, not an import. The virtual Workspace/Session records are never written
-to DSH SessionStore, workspace storage, or Harness logs. CodeX App Server remains the source of truth.
-`project/list` is preferred for visible Workspaces; when it is unavailable or has no usable roots, the
-exact absolute `cwd` values already exposed by `thread/list` become read-only fallback Workspaces. The directory picker
-may also start a Thread in a real descendant of those authority roots; lexical and `realpath` checks reject traversal and
-symlink escapes. Create, rename, archive,
-prompt, interrupt, and approval actions are routed back to its allowlisted methods. The Host carrier
-still uses the existing account membership, pinned Host identity, Noise channel, and adaptive transport.
-CodeX is enabled by default and can be disabled from the DeepSeek Remote settings card. Changes to
-this setting take effect after restarting DSH. Desktop encrypted cross-machine turn and approval
-validation has passed for this experimental release; Android real-device CodeX E2E remains pending.
-
-```yaml
-ds-harness-remote:
-  codex:
-    enabled: false
-    binary: codex
-```
-
-`binary` must resolve to a Codex CLI that provides `codex app-server`. With the default `codex` value
-on macOS, the Plugin first tries the current ChatGPT app's bundled Codex and then falls back to
-`PATH`; an explicitly configured binary is always used as-is. Existing installs using the former
-`dsh-remote` settings namespace are copied once into `ds-harness-remote` without deleting the legacy
-section.
 
 The Harness Host does not need a public listening port. You can connect from
 anywhere with internet access, and Remote communicates over a bidirectional end-to-end encrypted channel.
@@ -211,6 +158,20 @@ It switches the client to the selected Host's native Harness API, so the origina
 tools, and permission flow remain on that computer. Every settings namespace currently
 registered by the Host can also be configured remotely through the official Harness settings
 API. Credential values remain write-only, and Host-local document/open actions are never exposed.
+
+## Experimental Codex workspaces
+
+Remote can also show Codex projects from an authorized Host. Pick one from the normal workspace
+chooser and continue in the existing Harness or Android interface; there is no separate Codex screen
+to learn. The Desktop chooser and Android workspace page can also add a Host directory to the Codex
+project catalog without importing it into Harness storage.
+
+Codex Remote is meant as a convenience layer for your own devices. It supports text prompts, image
+prompts where available, model and permission controls, interrupt, and approvals. It is still
+published as experimental while long-running recovery and compatibility work continue.
+
+Codex is enabled by default and can be turned off in the DeepSeek Remote settings card. Advanced
+configuration and implementation notes live in [Codex Remote technical notes](docs/codex-remote.md).
 
 ## End-to-end encryption
 
@@ -238,7 +199,7 @@ validation status.
 - The workspace picker lists folders only and returns bounded, read-only directory metadata.
 - Optional File Viewer access is limited to authenticated, encrypted range reads and continues to enforce provider root and locator authorization.
 - Remote file preview cannot write, delete, upload, execute, or open a path in an external application.
-- Codex Remote is enabled by default with a settings toggle to disable it, exposes CodeX `project/list` Workspaces or exact `thread/list.cwd` fallbacks, and rejects raw shell/process/config App Server methods.
+- Codex Remote is optional, can be disabled, and follows the same encrypted Host permission boundary as the rest of Remote.
 - Removing a device revokes its credentials, membership, and active Remote connections.
 
 ## Compatibility
@@ -246,23 +207,24 @@ validation status.
 **Breaking change notice:** Plugin `0.4.1` removes the earlier experimental
 Remote business RPC surface (`sessions.*`, `session.*`, `permissions.respond`,
 `sync.from`). Harness session traffic now only uses the official rc.2
-`ApiProxy` or the alpha Typert Remote Gateway, and this plugin does not provide
+`ApiProxy` or the v0.1.2 Typert Remote Gateway, and this plugin does not provide
 an adapter or wire-format translation for the old RPC surface.
 
-Plugin `0.4.5` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
-official `ApiProxy`, and `dsh-v0.1.2-alpha.1`–`alpha.2` through the
-official Typert Remote Gateway. A `0.4.5` Client running rc.2 remains compatible
+Plugin `0.4.9` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
+official `ApiProxy`, and `dsh-v0.1.2-alpha.1`–`rc.1` through the
+official Typert Remote Gateway. A `0.4.9` Client running rc.2 remains compatible
 with older rc.2 Hosts through the legacy capability fallback.
 
 Both Desktop endpoints must use the same Harness transport generation. Plugin
-`0.4.x` does not translate rc.2 and alpha business models: an alpha Client
-cannot open an rc.2 Host, and an rc.2 Client cannot open an alpha Host. Mixed
+`0.4.x` does not translate legacy ApiProxy and v0.1.2 Typert business models: a
+Typert Client cannot open an ApiProxy Host, and an ApiProxy Client cannot open a Typert Host. Mixed
 connections are rejected before switching the native UI or mutating a Workspace.
 
 ## Documentation
 
 - [Plugin guide](packages/plugin/README.md)
 - [dsh-TUI Remote guide](docs/dsh-tui.md)
+- [Codex Remote technical notes](docs/codex-remote.md)
 - [Documentation index](docs/README.md)
 - [End-to-end encryption](docs/end-to-end-encryption.md)
 - [Network and transport](docs/network.md)

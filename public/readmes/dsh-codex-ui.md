@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/98eb3b77fc5f3f875539e5b9dc1ccdef87c96ed6/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
 </p>
 
 <div align="center">
@@ -8,7 +8,7 @@
 
   **Rebuild the DeepSeek Harness Web sidebar, workspace tree, search, and turn navigation in a Codex-style layout**
 
-  [简体中文](README.zh-CN.md) · [Changelog](CHANGELOG.md) · [Apache-2.0](LICENSE)
+  [简体中文](README.zh-CN.md) · [项目交接](docs/00-交接入口/00-阅读导航.md) · [Changelog](CHANGELOG.md) · [Apache-2.0](LICENSE)
 
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![npm package](https://img.shields.io/npm/v/%40michengai%2Fdsh-codex-ui.svg?label=npm%20package)](https://www.npmjs.com/package/@michengai/dsh-codex-ui)
@@ -33,19 +33,19 @@
 
 Light theme: Codex-style sidebar, workspace tree, and conversation column.
 
-![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/98eb3b77fc5f3f875539e5b9dc1ccdef87c96ed6/assets/screenshots/conversation-light.png)
+![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/conversation-light.png)
 
 Dark theme: the same layout with Codex dark tokens.
 
-![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/98eb3b77fc5f3f875539e5b9dc1ccdef87c96ed6/assets/screenshots/conversation.png)
+![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/conversation.png)
 
 Conversation menu: rename, pin, unread, archive, fork, copy, and delete.
 
-![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/98eb3b77fc5f3f875539e5b9dc1ccdef87c96ed6/assets/screenshots/session-menu.png)
+![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/session-menu.png)
 
 **Settings → About** lists the companion plugins and their install state.
 
-![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/98eb3b77fc5f3f875539e5b9dc1ccdef87c96ed6/assets/screenshots/settings-about.png)
+![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/settings-about.png)
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ dsh plugin --profile web add .
 dsh --profile web --dump-config
 ```
 
-Restart DSH Web and hard-refresh the browser. Do not copy `dist` manually; local installation reads both package metadata and `cordis.patch.yml`.
+Restart DSH Web and hard-refresh the browser. Do not copy `lib` manually; local installation reads both package metadata and `cordis.patch.yml`.
 
 ## Usage
 
@@ -132,7 +132,6 @@ Deleting a workspace registration does not delete its folder or conversation rec
 | Data | Storage | Scope |
 | --- | --- | --- |
 | Pinned workspaces | Host profile file with a `localStorage` cache | Survives DSH restarts and Desktop tray reloads |
-| Pinned conversations | `localStorage` key `dsh.session-pins.v1` | Current browser only |
 | Unread conversations | `localStorage` key `dsh.session-unread.v1` | Current browser only |
 | Conversation records | DSH host services | Unchanged by this plugin |
 

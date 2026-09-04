@@ -11,22 +11,34 @@
 ## ✨ 亮点
 
 - **可视化插件管理**：「设置 → 插件」内的完整管理页——分类折叠、来源筛选、启停开关、版本更新、市场安装
+- **事务化卸载**（v0.8）：卸载前**影响预览**（依赖它的插件/条目/开关行）→ 备份 → 删除 → 启动前自检 → **失败自动回滚**；卸载后可**一键撤销**
+- **操作历史 + 场景方案**（v0.8）：最近 20 次操作留痕可撤销；把插件组合保存为命名场景，一键切换（应用前展示变更预览）
 - **救砖能力彻底解耦**（v0.7+）：主引擎挂了，**独立守护服务（3081 端口）照样能自检、修复、拉起**——不再依赖主进程
 - **浏览器即启动器**：把主页设为 `http://127.0.0.1:3081/`，打开浏览器 = 自动自检 → 修复 → 启动 → 跳转主界面
 - **多源更新聚合**：npm registry / 插件超市 dshfind / GitHub / 自定义镜像并行查询，限流熔断，公平取最高版本
 
 ---
 
-## 📋 功能总览（v0.7.3）
+## 📋 功能总览（v0.8.0）
 
 ### 插件列表
 
 - **分类折叠**：按必要程度收纳为 🔴 必须 / 🟡 推荐 / 🟢 可选 三组可折叠分组（头部显示启用计数与可更新角标，搜索自动展开）
 - **来源分类**：区分**架构自带**（随 dsh 提供）与**用户安装**（`dsh plugin add` / 市场安装），顶部 chips 筛选 + 行徽标
+- **来源人工修正**（v0.8）：自动判定来源标签（npm / GitHub / 本地 / 内置），每行可手动覆盖并持久化（覆盖后以手动标签为准）
 - **状态一目了然**：启用状态（🔴 错误/需检查 · 🟡 需更新 · ⚪ 未启用 · 🟢 启用）、名称、功能简介、必要程度、已装→最新版本 + 来源、开关按键
 - **简介自动提取**：内置中文目录优先；未收录的 mod 自动从 `README.zh.md`（优先）/ `package.json.description` / `README.md` 提取一句话简介
 - **架构保护**：web 层刻意禁用的行（tool-fs 等）与界面骨架插件（ui-layout 等）禁止开关（🔒 标记 + 原因）
 - **配置卡片**（v0.6.9）：检测 `settings.plugin.item` 注册，大 mod（vision-router 等）行内直接出配置卡片，带错误边界
+
+### 🔐 事务化卸载、历史与场景（v0.8）
+
+- **卸载影响预览**：卸载前展示「影响范围」——依赖该包的已安装插件（`dependencies` / `peerDependencies` 反向图）、将移除的插件条目、将清理的开关行、bundles 声明
+- **事务化卸载**：备份 `package.json` + `cordis.patch.yml`（`.rescue-bak-*`）→ `pnpm remove` + 移除 bundles/开关行 → 启动前自检 → **任何失败自动回滚**（恢复备份 + 重装依赖）；Windows 文件锁残留目录登记 `pendingRemovals`，下次启动自动清理
+- **卸载报告**：自检结果、清理开关行数、级联卸载包、残留列表；支持级联卸载依赖它的可卸载包
+- **操作历史**：最近 20 次操作（卸载/启停/隔离/场景应用/重置开关），一键撤销（恢复文件备份或恢复期望开关状态），侧车持久化跨重启
+- **场景方案**：把当前启停状态保存为命名场景（如「办公/写作/演示」），一键应用——先展示**变更预览**（哪些条目会切换/被保护跳过），确认后切换；可更新、删除
+- **依赖安装提示**：市场安装后自动检测 `dependencies` / `peerDependencies`（可选 `dsh.recommendedDeps`）中缺失的包并提示
 
 ### 📥 更新与下载
 
@@ -48,6 +60,7 @@
 - **浮动救援球**：右下角 🛟 按钮，设置页损坏时的入口
 - **自动隔离**：可选开关（默认关），加载失败的插件自动禁用
 - **启动前自检**：`verifyProfile` / `fixProfile`——坏 bundle 会在启动阶段拖垮引擎，管理器提供一键检查与隔离修复
+- **运行期失败条目自动隔离**（v0.8.1）：插件与引擎不兼容时 loader 会拖垮整棵树启动（静态自检查不出来）——open-boot / rescue-daemon / dsh-boot 启动失败后自动**解析启动日志 → 隔离失败条目 → 重试**，引擎恢复；隔离行带备份可逆
 
 ### 🧰 独立救砖工具链（v0.7+，核心亮点）
 
@@ -66,7 +79,7 @@
 
 ## 环境要求
 
-- Windows 10/11 · macOS · Linux（脚本层如桌面救援入口为 Windows 专属，macOS/Linux 直接 `dsh web` 启动）
+- Windows 10/11 · macOS · Linux（部分辅助配置脚本如系统级自启/入口为平台专属，跨平台下直接 `dsh web` 启动且 `/rescue` 与三个 bin 工具均可用）
 - Node.js ≥ 18 · DeepSeek Harness `dsh`（全局安装或 npx）· `pnpm`（`dsh plugin` 与更新功能依赖）
 
 ## 安装
@@ -76,7 +89,7 @@
 dsh plugin --profile web add dsh-plugin-manager-pro
 
 # 方式二：GitHub Release tarball（离线/自建，走 Release 页下载最新版）
-dsh plugin --profile web add ./dsh-plugin-manager-pro-0.7.3.tgz
+dsh plugin --profile web add ./dsh-plugin-manager-pro-<latest>.tgz
 
 # 重启 web 生效
 dsh web
@@ -135,8 +148,8 @@ npm pack           # 产出安装用 tarball
 | 启动器报 `The argument 'stdio' is invalid` | v0.7.2 已修复（spawn 改用数字 fd）；升级救砖工具链 |
 | `dsh plugin add` 报 "Already up to date" 不更新 | pnpm 按版本号缓存 tarball；**修改后必须升版本号**再 add |
 | 引擎起不来（坏 bundle 进 package.json） | 开 `http://127.0.0.1:3081/` 独立救援 → 运行检查 → 修复 → 启动；或双击 `dsh-boot.cmd` |
-| 救砖页自检总报"patch 解析失败" | 已修复：注释开头的合法 patch 不再被误判损坏（~/.dsh/scripts/dsh-web-rescue.ps1） |
-| 桌面快捷方式双击没反应 | v0.7.1 修复：`web.pid` 陈旧（svchost）误判"已运行"导致拒绝启动——现在只认 node 进程 |
+| 救砖页自检总报"patch 解析失败" | 已修复：注释开头的合法 patch 不再被误判损坏；升级插件即可 |
+| 修复 `cordis.patch.yml` 被误判、日志误报 | 自检逻辑与宿主 `verifyProfile` 同源（`lib/preflight.mjs`），升级后回溯修复均为可逆备份 |
 | 浏览器报 `waiting for service: remote.xxx` | 客户端 inject 不能包含自身挂载的 remote（死锁）；inject 只保留 `["slots","locale","remote"]` |
 | P2P 磁力链接无法下载 | 安装 aria2c（自动启用）或装 webtorrent，或用 NDM/比特彗星手动导入 |
 

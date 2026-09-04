@@ -112,6 +112,33 @@ pnpm build
 declarations, then bundles the host (`lib/index.js`) and client
 (`lib/client.js` + `lib/client-registry.js`) with tsdown.
 
+## CI and publishing
+
+[GitHub Actions](.github/workflows) covers two jobs:
+
+- **[`ci.yml`](.github/workflows/ci.yml)** runs on every push to `main` and on
+  pull requests: it installs dependencies, typechecks, builds, runs the test
+  script, and packs the tarball (uploaded as an artifact) for Node 20 and 22.
+- **[`publish.yml`](.github/workflows/publish.yml)** fires when a `v*` tag is
+  pushed: it builds and publishes the package to **npm** as
+  [`dsh-side-chat-plus`](https://www.npmjs.com/package/dsh-side-chat-plus),
+  authenticated with the `NPM_TOKEN` repository secret.
+
+The package name is `dsh-side-chat-plus` (the plain `dsh-side-chat` name on npm
+belongs to a different maintainer, so the release is published under the
+`-plus` name).
+
+> **Registry dependencies.** The harness packages this plugin targets (the DSH
+> `0.1.2` API line) are published to npm as prereleases (`0.1.2-rc.1`) and, in a
+> few cases, declare internal dependencies with a plain `>=0.1.2` range that
+> npm/pnpm refuses to match against a prerelease. The developer `pnpm-workspace.yaml`
+> therefore points the `@deepseek-ai/dsh-*` packages at a local harness checkout
+> (absolute `D:/code/...` paths that exist only on the maintainer's machine). CI
+> swaps that file for one whose overrides pin every `@deepseek-ai/dsh-*`
+> dependency to `0.1.2-rc.1`, so installs resolve from the registry. On another
+> machine, point the overrides at your own harness clone or use the CI workspace
+> file as a template.
+
 ## Deploy
 
 DSH web loads external plugins from the active profile. This package is a
@@ -120,10 +147,29 @@ DSH web loads external plugins from the active profile. This package is a
 That declaration is what lets `dsh plugin add` install the package *and*
 activate it in one step.
 
+> **Recommended: install from npm.** The package is published to
+> [npm](https://www.npmjs.com/package/dsh-side-chat-plus) as
+> `dsh-side-chat-plus`, so `dsh plugin add` needs no source checkout — the
+> tarball ships the prebuilt `lib/` and is activated in one go.
+
+### Install from npm
+
+The built package is published to npm as [`dsh-side-chat-plus`](https://www.npmjs.com/package/dsh-side-chat-plus). Installed from the registry, the tarball ships the prebuilt `lib/` (plus `cordis.patch.yml` and `dsh.plugin.json`), so no source build is needed:
+
+```bash
+npx -p @deepseek-ai/dsh dsh plugin --profile web add dsh-side-chat-plus
+```
+
+`dsh plugin` reconciles the bundle into the profile's `dsh.profile.bundles`
+layer list; the prebuilt `lib/` means nothing extra runs at install time.
+Version falls out of the tagged release (see [CI and publishing](#ci-and-publishing)).
+
+Restart `dsh web`, then hard-refresh the page (Ctrl/Cmd+Shift+R).
+
 ### Install from GitHub
 
 ```bash
-npx -p @deepseek-ai/dsh dsh plugin --profile web add github:heartmove/dsh-side-chat
+npx -p @deepseek-ai/dsh dsh plugin --profile web add github:heartmove/dsh-side-chat-plus
 ```
 
 `dsh plugin` forwards to pnpm inside `~/.dsh/profiles/web/`, then reconciles the
@@ -138,13 +184,13 @@ the exact package key pnpm printed into the profile's `pnpm-workspace.yaml`
 
 ```yaml
 allowBuilds:
-  dsh-side-chat: true
+  dsh-side-chat-plus: true
 ```
 
 then re-run the `add`. That allowance means "run this package's code on my
 machine at install time" — only allow packages whose source you trust, and pin a
-commit (`github:heartmove/dsh-side-chat#<sha>`) so a later push cannot silently
-change what runs.
+commit (`github:heartmove/dsh-side-chat-plus#<sha>`) so a later push cannot
+silently change what runs.
 
 Restart `dsh web`, then hard-refresh the page (Ctrl/Cmd+Shift+R).
 
@@ -153,7 +199,7 @@ Restart `dsh web`, then hard-refresh the page (Ctrl/Cmd+Shift+R).
 From the directory that contains this checkout:
 
 ```bash
-npx -p @deepseek-ai/dsh dsh plugin --profile web add ./dsh-side-chat
+npx -p @deepseek-ai/dsh dsh plugin --profile web add ./dsh-side-chat-plus
 ```
 
 pnpm links the checkout and `dsh` activates the bundle the same way.
@@ -167,17 +213,17 @@ the loader row, so no `insert` entry is needed):
 ```json
 {
   "dependencies": {
-    "dsh-side-chat": "link:D:\\path\\to\\dsh-side-chat"
+    "dsh-side-chat-plus": "link:D:\\path\\to\\dsh-side-chat-plus"
   },
   "dsh": {
     "profile": {
-      "bundles": ["@deepseek-ai/dsh-base", "@deepseek-ai/dsh-web-app", "dsh-side-chat"]
+      "bundles": ["@deepseek-ai/dsh-base", "@deepseek-ai/dsh-web-app", "dsh-side-chat-plus"]
     }
   }
 }
 ```
 
-(On POSIX systems use `link:/path/to/dsh-side-chat`.) Then run `pnpm install`
+(On POSIX systems use `link:/path/to/dsh-side-chat-plus`.) Then run `pnpm install`
 in the profile directory and restart `dsh web`.
 
 ## Usage
@@ -217,7 +263,7 @@ conversation (**never sent**):
    context row** (source-tagged, not into the composer; the model sees it next
    turn).
 
-![Bring-back demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/51182e1b312490ba7ae7859770eb18e64a1bbce6/docs/bring-back.gif)
+![Bring-back demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/a691d109b14e5c050bbfc7d2b5792819bbdf5baa/docs/bring-back.gif)
 
 ### Ask about the current question dialog
 
@@ -235,7 +281,7 @@ The main conversation keeps waiting on the dialog — nothing is interrupted; do
 the research in the side chat first, then bring the answer back and answer the
 dialog.
 
-![Question dialog demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/51182e1b312490ba7ae7859770eb18e64a1bbce6/docs/question-dialog.gif)
+![Question dialog demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/a691d109b14e5c050bbfc7d2b5792819bbdf5baa/docs/question-dialog.gif)
 
 ### Delete side chats
 

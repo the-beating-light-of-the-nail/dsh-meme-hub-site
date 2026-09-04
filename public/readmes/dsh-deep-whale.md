@@ -10,8 +10,8 @@ DeepSeek Harness Web GUI 的鲸鱼娘主题皮肤系列(独立分发仓库)。
 
 | 皮肤 | 亮色模式 | 暗色模式 |
 |---|---|---|
-| maid-atelier | [![maid-atelier 亮色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/4803ea62dfd0ae3f4a0b97d33fdc0c2fff4805df/maid-atelier/preview/light.webp)](maid-atelier/preview/light.webp) | [![maid-atelier 暗色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/4803ea62dfd0ae3f4a0b97d33fdc0c2fff4805df/maid-atelier/preview/dark.webp)](maid-atelier/preview/dark.webp) |
-| orca-link | [![orca-link 亮色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/4803ea62dfd0ae3f4a0b97d33fdc0c2fff4805df/orca-link/preview/light.png)](orca-link/preview/light.png) | [![orca-link 暗色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/4803ea62dfd0ae3f4a0b97d33fdc0c2fff4805df/orca-link/preview/dark.png)](orca-link/preview/dark.png) |
+| maid-atelier | [![maid-atelier 亮色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/3c815696eec85f5eac89450ddc84ea80d648c3d4/maid-atelier/preview/light.webp)](maid-atelier/preview/light.webp) | [![maid-atelier 暗色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/3c815696eec85f5eac89450ddc84ea80d648c3d4/maid-atelier/preview/dark.webp)](maid-atelier/preview/dark.webp) |
+| orca-link | [![orca-link 亮色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/3c815696eec85f5eac89450ddc84ea80d648c3d4/orca-link/preview/light.png)](orca-link/preview/light.png) | [![orca-link 暗色模式](https://raw.githubusercontent.com/Small-tailqwq/dsh-deep-whale/3c815696eec85f5eac89450ddc84ea80d648c3d4/orca-link/preview/dark.png)](orca-link/preview/dark.png) |
 
 ## 住户
 

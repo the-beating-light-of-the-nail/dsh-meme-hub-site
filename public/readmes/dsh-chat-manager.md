@@ -23,7 +23,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/dd9b9d25221e21091410e0f0331eadf96ef6a7ec/docs/assets/hero.png" alt="DeepSeek Harness 聊天历史与归档会话管理器，支持搜索、恢复和安全永久删除">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/3c94cb27b3d8d3d02d074c1059b95e1de5ac0c40/docs/assets/hero.png" alt="DeepSeek Harness 聊天历史与归档会话管理器，支持搜索、恢复和安全永久删除">
 </p>
 
 | 归档可找回 | 聊天可搜索 | 删除更稳妥 |
@@ -31,7 +31,7 @@
 | 从侧边栏打开归档管理器，查看并恢复隐藏的会话 | 按会话名、工作区或用户与助手的聊天内容搜索归档 | 原生菜单保留二次确认；运行中的任务先安全停止，再删除本机会话记录 |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/dd9b9d25221e21091410e0f0331eadf96ef6a7ec/docs/assets/archive-manager.png" width="414" alt="DeepSeek Harness 原生归档会话管理器，支持聊天历史搜索、恢复和永久删除">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/3c94cb27b3d8d3d02d074c1059b95e1de5ac0c40/docs/assets/archive-manager.png" width="414" alt="DeepSeek Harness 原生归档会话管理器，支持聊天历史搜索、恢复和永久删除">
   <br><sub>DeepSeek Harness 0.1.1-rc.2 中的原生界面</sub>
 </p>
 
@@ -40,14 +40,14 @@
 ### DSH 标准命令
 
 ```sh
-dsh plugin --profile web add dsh-chat-manager@1.3.0
+dsh plugin --profile web add dsh-chat-manager@1.3.1
 ```
 
 安装完成后，保存工作并按 DSH 的正常方式重启一次，使新的 bundle 配置生效。
 
 ### 交给 Agent
 
-请使用固定版本的 [AGENTS.md](https://raw.githubusercontent.com/WSL043/dsh-chat-manager/v1.3.0/AGENTS.md)，
+请使用固定版本的 [AGENTS.md](https://raw.githubusercontent.com/WSL043/dsh-chat-manager/v1.3.1/AGENTS.md)，
 其中写明了安装、更新、验收、卸载和安全边界。不要把 `main` 分支文档当作安装依据。
 
 ## 使用
@@ -68,7 +68,7 @@ dsh plugin --profile web add dsh-chat-manager@1.3.0
 3. 在确认弹窗中核对会话名称并再次确认 **永久删除**；也可以随时点击 **取消**。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/dd9b9d25221e21091410e0f0331eadf96ef6a7ec/docs/assets/confirm-delete.png" width="414" alt="DeepSeek Harness 安全永久删除会话的中文二次确认弹窗">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-chat-manager/3c94cb27b3d8d3d02d074c1059b95e1de5ac0c40/docs/assets/confirm-delete.png" width="414" alt="DeepSeek Harness 安全永久删除会话的中文二次确认弹窗">
   <br><sub>永久删除无法撤销，确认弹窗会明确显示目标会话</sub>
 </p>
 
@@ -96,7 +96,7 @@ dsh plugin --profile web add dsh-chat-manager@1.3.0
 ## 兼容性
 
 <!-- dsh-compatibility -->
-支持软件包元数据中记录的最新版 DeepSeek Harness。
+支持软件包元数据中记录的最新版 DeepSeek Harness（`0.1.2-rc.1`）。
 <!-- /dsh-compatibility -->
 
 归档浏览、恢复和内容搜索使用 DSH 的工作区注册表与会话查询能力；永久删除适用于 DSH 默认的逐会话
@@ -104,10 +104,10 @@ JSONL 存储。安装后替换为带会话管理功能的原生工作区列表�
 
 ## 更新与卸载
 
-更新时继续用 DSH 标准命令安装目标 npm 版本。v1.3.0 的命令是：
+更新时继续用 DSH 标准命令安装目标 npm 版本。v1.3.1 的命令是：
 
 ```sh
-dsh plugin --profile web add dsh-chat-manager@1.3.0
+dsh plugin --profile web add dsh-chat-manager@1.3.1
 ```
 
 卸载只移除这个插件的 bundle 层，不删除任何会话：

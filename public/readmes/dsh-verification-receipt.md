@@ -8,7 +8,7 @@
 [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 [![featured on dsh-suite](https://img.shields.io/badge/featured%20on-dsh--suite-4d6bfe)](https://whyihaveyou.github.io/dsh-suite/)
 
-![DSH Verification Receipt social preview](https://raw.githubusercontent.com/030611/dsh-verification-receipt/92f63a9022e1840b147152ae340276ad5ff5d98b/docs/social-preview.jpg)
+![DSH Verification Receipt social preview](https://raw.githubusercontent.com/030611/dsh-verification-receipt/87f3fb0198090f0f26a37a52840db150609db748/docs/social-preview.jpg)
 
 > Ask a smaller, checkable question: what verification-shaped execution signals did DSH record this turn?
 
@@ -22,7 +22,7 @@ The receipt summarizes recorded tool counts and lexical verification-shaped sign
 
 DSH Verification Receipt is a small, passive Profile Bundle for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). After each durable `turn/end`, it appends one privacy-minimal, heuristic execution summary to a local JSONL file.
 
-![Verification Receipt data flow](https://raw.githubusercontent.com/030611/dsh-verification-receipt/92f63a9022e1840b147152ae340276ad5ff5d98b/docs/verification-flow.svg)
+![Verification Receipt data flow](https://raw.githubusercontent.com/030611/dsh-verification-receipt/87f3fb0198090f0f26a37a52840db150609db748/docs/verification-flow.svg)
 
 It records execution traces, not semantic correctness. A receipt shows only that DSH logged tool calls and that a lexical heuristic found a possible verification signal. It never proves that a test ran. It cannot show that the right command executed, that assertions were sufficient, that output was truthful, or that the assistant's conclusion was correct.
 
@@ -30,7 +30,7 @@ This is intentionally not an evidence-audit ledger: rows stay independent and th
 
 ## Compatibility evidence
 
-The package is audited against DeepSeek Harness commit `47f943859bef60e4160492346772ded9b24f765a`, whose manifests declare `@deepseek-ai/dsh-session` `0.1.0-rc.5`, Cordis `4.0.1`, and Schemastery `3.18.1`. Peer ranges start at those versions and stop before `dsh-session` stable `0.1.0` or the next Cordis/Schemastery semver major. The release checks also exercise the available `dsh-session` `0.1.0-rc.6` package. Versions admitted by the range but not named here are compatibility expectations, not tested evidence. Cordis and Session are optional host peers because DSH supplies their runtime services; Schemastery is included as an exact runtime dependency and also declared as a compatibility peer.
+Version 0.1.1 supports exactly DSH `0.1.2-alpha.3`, `0.1.2-alpha.4`, and `0.1.2-alpha.5` on Node.js `^22.19.0 || >=24.0.0`. Each release passed local package gates and disposable Windows Web Profile install, composed-config, cold-start, and uninstall acceptance. See [the compatibility evidence](docs/compatibility-0.1.1.md) for the exact boundary. Cordis and Session are optional host peers because DSH supplies their runtime services; Schemastery is included as an exact runtime dependency and also declared as a compatibility peer.
 
 ## Install
 
@@ -49,7 +49,7 @@ Repeat the first command with another profile name (for example, `headless`) whe
 
 The image below shows a real receipt emitted by the released plugin code over synthetic, non-user DSH events; the right side displays selected persisted fields only. It is not a user conversation and does not prove that tests ran or passed.
 
-![Real Verification Receipt output from a synthetic fixture](https://raw.githubusercontent.com/030611/dsh-verification-receipt/92f63a9022e1840b147152ae340276ad5ff5d98b/docs/receipt-output.png)
+![Real Verification Receipt output from a synthetic fixture](https://raw.githubusercontent.com/030611/dsh-verification-receipt/87f3fb0198090f0f26a37a52840db150609db748/docs/receipt-output.png)
 
 The default file is:
 
@@ -102,7 +102,7 @@ Both hashes are unkeyed and recomputable. `receiptHash` is SHA-256 over the exac
 
 ## Privacy and agent behavior
 
-![Receipt persistence and exclusion boundary](https://raw.githubusercontent.com/030611/dsh-verification-receipt/92f63a9022e1840b147152ae340276ad5ff5d98b/docs/privacy-boundary.png)
+![Receipt persistence and exclusion boundary](https://raw.githubusercontent.com/030611/dsh-verification-receipt/87f3fb0198090f0f26a37a52840db150609db748/docs/privacy-boundary.png)
 
 The persisted receipt does not contain:
 

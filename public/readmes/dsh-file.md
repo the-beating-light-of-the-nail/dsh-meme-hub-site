@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/e582f38bc028fcabc6608e0b863f3c467c04cf54/docs/logo-transparent.svg" alt="dsh-file logo" width="120" />
+  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/4ace98226b5bf25075beedbdd7f62bcce51f90cd/docs/logo-transparent.svg" alt="dsh-file logo" width="120" />
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/chengzhi43/dsh-file/releases"><img alt="version" src="https://img.shields.io/badge/version-0.2.0-0969da?style=flat" /></a>
+  <a href="https://github.com/chengzhi43/dsh-file/releases"><img alt="version" src="https://img.shields.io/badge/version-0.2.1-0969da?style=flat" /></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" /></a>
   <img alt="DeepSeek Harness" src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-4dabf7?style=flat" />
   <a href="https://github.com/chengzhi43/dsh-file"><img alt="stars" src="https://img.shields.io/github/stars/chengzhi43/dsh-file?style=flat&label=stars" /></a>
@@ -33,7 +33,7 @@
 ## 截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/e582f38bc028fcabc6608e0b863f3c467c04cf54/docs/screenshot.jpg" alt="dsh-file 使用界面：左侧文件树，中间 Monaco 编辑器" width="100%" />
+  <img src="https://raw.githubusercontent.com/chengzhi43/dsh-file/4ace98226b5bf25075beedbdd7f62bcce51f90cd/docs/screenshot.jpg" alt="dsh-file 使用界面：左侧文件树，中间 Monaco 编辑器" width="100%" />
 </p>
 
 侧边栏文件树浏览工作区，点击文件后在中间列「文件」视图中编辑（Monaco 编辑器，语法高亮）。
@@ -71,7 +71,7 @@ dsh plugin --profile web add @rose43/dsh-file
 或从 [Releases](https://github.com/chengzhi43/dsh-file/releases) 页面下载 tarball 后本地安装（桌面端把 `--profile web` 换成 `--profile desktop`）：
 
 ```sh
-dsh plugin --profile web add ./rose43-dsh-file-0.2.0.tgz
+dsh plugin --profile web add ./rose43-dsh-file-0.2.1.tgz
 ```
 
 ### 配置

@@ -15,11 +15,15 @@ By default the DeepSeek Harness web GUI collapses each file edit into a tiny one
 
 A typical edit: changed lines paired side by side, with the exact words that changed highlighted:
 
-![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/9f3593f302c12bd2e95ed83311340efc2b4fa318/docs/screenshot-compact-card.png)
+![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/f3b64e88c1d7c73cf5111f7f12f7b932221b9d5c/docs/screenshot-compact-card.png)
 
 ## Words or whole lines
 
 By default a changed line gets double highlighting: the row is tinted green/red, and on top of that the exact words that changed get a stronger highlight. Prefer it calmer? Open **Settings → Plugins → Inline diff** and pick *Lines only*. You keep the row tint but lose the word chips. The choice is saved in your DSH settings and survives restarts.
+
+## Line numbers
+
+Every row carries its real 1-based file line number in a muted gutter, on both the old and the new side. The numbers come from the harness itself: when an edit settles, the plugin anchors each served hunk to its true position, and for hunks without an anchor the card reads the file through a fenced workspace route and locates the changed block verbatim — a block that appears more than once, or a file that changed since, refuses to guess and simply shows no number rather than a wrong one.
 
 ## Indentation
 
@@ -37,7 +41,7 @@ Every color on the card, from surfaces and text to borders and the green/red dif
 
 The same compact edit under a custom theme — [dsh-stylevault](https://github.com/GptsApp/dsh-stylevault) overrides exactly those token variables, so a restyle there restyles every diff card:
 
-![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/9f3593f302c12bd2e95ed83311340efc2b4fa318/docs/screenshot-compact-themed.png)
+![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/f3b64e88c1d7c73cf5111f7f12f7b932221b9d5c/docs/screenshot-compact-themed.png)
 
 ## Language
 

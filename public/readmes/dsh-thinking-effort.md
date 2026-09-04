@@ -25,6 +25,14 @@ A [DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) plug
 >
 > The published runtime entries are `lib/index.js` (Host) and `lib/client.js` (Client). After changing TypeScript or locale sources, run `npm run build` before running DSH or packing the plugin. Current DSH does not expose a public semver metadata contract, so runtime capability detection is authoritative. An optional version is used only when explicit metadata or test input supplies it; unknown valid versions still use the detected capabilities. The plugin supports both modern `remote.settings` and legacy `connection.api.settings`.
 
+## DSH compatibility
+
+| DSH range | Gateway compatibility settings |
+| --- | --- |
+| `0.1.0-rc.7` | Not available |
+| `0.1.0-rc.8` to `<0.1.2-alpha.1` | Available |
+| `0.1.2-alpha.1` to `<0.1.3-0` | Available |
+
 ## Why use it?
 
 The `llm-pi-ai` adapter supports hand-declared third-party models, but those entries often do not declare `reasoningEfforts`. As a result, Composer does not show a reasoning effort selector, and gateway-specific values such as `ultra` cannot be mapped to DSH's standard levels.
@@ -127,7 +135,7 @@ These compat values are control plane configuration. They do not implement or re
 
 The page header contains the language selector. Below it, the Subagent default effort card controls the default for requests without an explicit effort. The Quick settings controls apply a preset across models. Provider sections can be expanded or collapsed; each model row exposes input capabilities, context length, and gateway compatibility controls in its settings area. `models[]` saves use one complete array set rather than an array-index path operation.
 
-![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/5a9a3dcc0578c4d1c585aa0a60ba38cee0056868/docs/assets/settings-model-capabilities-en.png)
+![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/ff4148864942094bdf765e24343c21dfcb26ef09/docs/assets/settings-model-capabilities-en.png)
 
 
 ## How it works

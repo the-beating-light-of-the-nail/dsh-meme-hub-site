@@ -5,6 +5,11 @@
 > 梗：梁文峰 = 峰 = 高峰时段（价格翻倍，快跑）；梁文谷 = 谷 = 空闲时段（半价，随便薅）。
 > 定价依据：<https://api-docs.deepseek.com/zh-cn/quick_start/pricing> —— 高峰时段为北京时间 9:00–12:00、14:00–18:00，其余为空闲时段（半价）。
 
+## 变更 (v0.7.1)
+
+- **适配 DSH 0.1.2-rc.1**：客户端胶囊改为在 `shell.overlay` 槽位 `slots.inject` 注册，并给客户端 plugin 加 `inject: ['slots']`，避免 `ctx.get('slots')` 一次判定因时序拿到 `undefined` 而走 fallback、胶囊不渲染。cordis 升到 `^4.0.2`。
+- 已实测：0.1.2-rc.1 下胶囊 + 弹窗正常挂载。
+
 ## 功能
 
 - **到点大喊**（北京时间，钉死 Asia/Shanghai，与机器时区无关）：

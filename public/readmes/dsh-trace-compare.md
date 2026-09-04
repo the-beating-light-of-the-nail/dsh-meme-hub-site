@@ -22,27 +22,27 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的**执行迷宫**：把 Agent 真实的干活过程完整画出来、并分析给你看。
 
-![执行迷宫：迷宫 + 数据轨道 + 执行分析，一屏读懂一场 8.6 小时的真实会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-hero.png)
+![执行迷宫：迷宫 + 数据轨道 + 执行分析，一屏读懂一场 8.6 小时的真实会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-hero.png)
 
 - **迷宫**——主干路径、失败支路、折返点落在同一根时间轴上；空闲自动折叠、密集段自动聚合成「×N」徽标（点击放大、标签逐级补齐）、进度条自带失败热力，8 小时的会话照样字字可辨：
 
-![密集会话：整图态聚合徽标 → 点击放大 → 标签补齐 → 点开失败详情](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-zoom.gif)
+![密集会话：整图态聚合徽标 → 点击放大 → 标签补齐 → 点开失败详情](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-zoom.gif)
 
 - **数据轨道**——每一步的工具调用密度、Token 脉冲（缓存背景 + 未缓存输入/推理/输出增量柱）、上下文压力曲线（70%/90% 阈值线、压缩事件「⌄−N%」标注，悬停看压缩前后真值）：
 
-![轨道悬停：Token 分层数字 → 上下文占用 → 压缩事件前后对比](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-tracks.gif)
+![轨道悬停：Token 分层数字 → 上下文占用 → 压缩事件前后对比](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-tracks.gif)
 
 - **执行分析**——失败恢复链（原样重试 / 换参数 / 换工具 / 未恢复）、工具结果矩阵、耗时分位散点。**每个结论一键点回原始命令与返回内容**：
 
-![点失败链任意一条：缩放定位到那次失败，弹出完整命令、报错返回与判定依据](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-drilldown.gif)
+![点失败链任意一条：缩放定位到那次失败，弹出完整命令、报错返回与判定依据](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-drilldown.gif)
 
 - **多会话对比**——同一任务在不同模型上的 2~5 次跑同轴对比：轮次对齐、手动锚点、支路盘点。
 
-![对比：同一任务的两次真实跑 → 支路盘点按轮次列差额 → 点行缩放到该轮](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-compare.gif)
+![对比：同一任务的两次真实跑 → 支路盘点按轮次列差额 → 点行缩放到该轮](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-compare.gif)
 
 - **回放**——最高 300× 重放整场执行，看它是怎么一步步走到结果的：
 
-![回放：300× 重放一场 8.6 小时的会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b6bf5d366046b69fd341825c12f6bd11269323c6/assets/maze-replay.gif)
+![回放：300× 重放一场 8.6 小时的会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-replay.gif)
 
 **铁律**：所有数字都是对判定数据的确定性聚合，不调 LLM；每个判定带依据、每个结论可回溯到证据；数据缺失时如实标注（不画没有数据的轨道、不猜未知模型的窗口），绝不编。
 
@@ -68,6 +68,7 @@
 - **导出**：一键导出当前视图（含缩放窗口与过滤淡化状态）为 SVG 或 2x PNG，样式已内联、拿去即用；**无论页面当前是浅色还是暗色，导出固定浅色底**（分享场景）。
 - **界面双语**（v0.5.0 起）：整页 UI（上传区、图例、泳道统计、对齐线、支路盘点、悬停卡、详情面板、错误提示）中英双语，嵌入宿主时实时跟随 dsh 的语言设置切换，独立打开按浏览器语言兜底；判定依据是结构化键值、按当前语言渲染，切语言不用重新上传。
 - **主题跟随**（v0.3.1 起）：页面随宿主 dsh 的明暗主题自动切换（宿主组件监听 `body[data-ds-dark-theme]` 并 postMessage 进 iframe）；独立打开时按系统偏好。
+- **设置页开关**（v2.1.0 起）：「设置 → Maze」可隐藏侧边栏入口——只用「实时迷宫」页签的人可以把常驻按钮收掉，开关即时生效、无需刷新，按浏览器保存；隐藏后实时页签与已打开的迷宫页不受影响。
 - **紧凑页头**（v0.3.1 起）：出数据后说明文字隐藏、上传区收成细条、泳道统计卡隐藏（同信息已画在泳道带内）、图例压成一行——迷宫拿走绝大部分视口。
 - 播放功能最高 300× 回放整次运行。
 
@@ -96,18 +97,19 @@
 
 ## 安装
 
-兼容性：已对官方 `0.1.0-rc.6`（构建 + 全量测试）与 `rc.8`（插槽/类型核对 + 实机验收）验证；peer 范围覆盖 `rc.6` 到当前 rc 线，且随官方每个新 rc 版本跟进复验。
+**先看你的宿主是哪来的。** 宿主 `0.1.2` 把客户端包重新拆分了一次（`dsh-client-runtime` 拆成 `dsh-client-store` 等），同时换掉了会话快照的数据模型，所以两条线的插件不通用：
 
-> **自己从上游 master 构建宿主的人看这里。** 宿主 `0.1.2` 重新拆分了客户端包、并换掉了会话快照的数据模型，两条线的插件不通用——本页其余内容对应 `1.1.x`（也就是从 npm 装宿主的那条线）。宿主是 `0.1.2-alpha.1` 及以后的，装 2.x：
->
-> ```sh
-> dsh plugin --profile web add dsh-maze@2.0.0-alpha.2
-> ```
->
-> 2.x 的代码在 `feat/host-0.1.2-package-split` 分支上，暂时不合进 main：拆分出来的几个宿主新包还没发到 npm，合进来会让 main 没法从源码构建。等 `0.1.2` 正式上 npm，就把它合进 main、把 npm 的 `latest` 切过去。背景见 [#7](https://github.com/lamost423/dsh-maze/issues/7)。
+| 你的宿主 | 装哪个版本 | 命令 |
+|---|---|---|
+| `0.1.2` 线——DSH Desktop 2.x、npm 的 `@deepseek-ai/dsh@next`（`0.1.2-rc.1`）、或自建 master | dsh-maze `2.x`，`latest` 标签 | `dsh plugin --profile web add dsh-maze` |
+| 老宿主——npm `latest`（`0.1.0-rc.6` ~ `0.1.1-rc.2`） | dsh-maze `1.1.0`，手动钉版本 | `dsh plugin --profile web add dsh-maze@1.1.0` |
+
+宿主 `0.1.2-rc.1` 与拆分出的客户端包已发到 npm（`next` 标签），所以从 v2.0.0 起 `latest` 归 `2.x`；还在老宿主上的人钉住 `1.1.0` 即可。等宿主的 `latest` 也切到 `0.1.2`，这张表就并成一行。
+
+兼容性：`2.0.0` 对着 npm 的 `0.1.2-rc.1` 全家桶构建，类型检查与 49 个测试全绿；实机验收在 `2.0.0-alpha.2` × 上游 master `0.1.2-alpha.1` 上做过——从 npm 装包、真会话跑通、界面数字与宿主自己的统计逐项对账。`1.1.x` 已对官方 `0.1.0-rc.6`（构建 + 全量测试）与 `rc.8`（插槽/类型核对 + 实机验收）验证。
 
 ```sh
-npm install --global @deepseek-ai/dsh@0.1.0-rc.8
+npm install --global @deepseek-ai/dsh@next
 dsh plugin --profile web add dsh-maze
 dsh web
 ```

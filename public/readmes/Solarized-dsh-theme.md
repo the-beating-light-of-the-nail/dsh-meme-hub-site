@@ -1,5 +1,5 @@
 <h3 align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/solarized-logo.svg" width="100" alt="Logo"/><br/>
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/solarized-logo.svg" width="100" alt="Logo"/><br/>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 	Solarized + Selenized for <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/preview.webp" width="100%" alt="Solarized and Selenized themes in DeepSeek Harness"/>
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/preview.webp" width="100%" alt="Solarized and Selenized themes in DeepSeek Harness"/>
 </p>
 
 ## Table of Contents
@@ -75,19 +75,19 @@ remembers your choice.
 
 <details>
 <summary>☀️ Solarized Dark</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/solarized-dark.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/solarized-dark.webp"/>
 </details>
 <details>
 <summary>🌞 Solarized Light</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/solarized-light.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/solarized-light.webp"/>
 </details>
 <details>
 <summary>🟢 Selenized Dark</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/selenized-dark.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/selenized-dark.webp"/>
 </details>
 <details>
 <summary>🌿 Selenized Light</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/selenized-light.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/selenized-light.webp"/>
 </details>
 
 ## Install
@@ -176,7 +176,7 @@ Then restart `dsh web`.
 &nbsp;
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/5884baa70c68509c0119cad836d20f505b0f8756/assets/solarized-footer.svg" />
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Solarized-dsh-theme/1480701b224708eaf098dc5aa2d05ababee667ab/assets/solarized-footer.svg" />
 </p>
 
 <p align="center">

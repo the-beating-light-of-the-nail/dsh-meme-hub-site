@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/ac8c4a4d57a915a70020b77013d1705fa59b1860/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 <p align="center">
@@ -23,9 +23,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
 - **Extensions (Go or Rust)** — native binaries speak the **PXB** binary protocol over stdin/stdout; official author SDKs for Go ([`ext/go`](ext/go)) and a zero-dependency Rust port ([`ext/rust`](ext/rust)): LLM tools, slash commands, event intercepts, confirm dialogs — no JSON, no reflection. See [Extensions](#extensions)
 - **Any model** — OpenAI-compatible or Anthropic, no vendor lock-in
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/ac8c4a4d57a915a70020b77013d1705fa59b1860/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/ac8c4a4d57a915a70020b77013d1705fa59b1860/assets/image.png)
 
 - [Docs](https://pulseaiclub.github.io/docs/getting-started/)
 - [Quick start](#quick-start)
@@ -115,7 +115,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/64608d2dc2e86c0d79001f8bb4439c05308b8e5a/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/ac8c4a4d57a915a70020b77013d1705fa59b1860/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml

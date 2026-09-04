@@ -3,7 +3,7 @@
 中文 | [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/24a2f8c4e2489a669b5a94bf3d5bb0765cfec692/assets/logo/your-name-movie-logo-blue.svg" alt="Kimi no Na wa" width="460">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/55c85467814bf2c98bcd815c59123018d049b6ee/assets/logo/your-name-movie-logo-blue.svg" alt="Kimi no Na wa" width="460">
 </p>
 
 <p align="center">
@@ -45,7 +45,7 @@ dsh-kimino-theme 把 DSH Web GUI 变成新海诚《你的名字。》的模样�
 | 还原 | — | 卸载即完全还原 |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/24a2f8c4e2489a669b5a94bf3d5bb0765cfec692/docs/screenshots/home-hero.png" alt="主页：居中大尺寸电影 Logo" width="760">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/55c85467814bf2c98bcd815c59123018d049b6ee/docs/screenshots/home-hero.png" alt="主页：居中大尺寸电影 Logo" width="760">
 </p>
 
 ## 主题细节
@@ -61,8 +61,8 @@ dsh-kimino-theme 把 DSH Web GUI 变成新海诚《你的名字。》的模样�
 - 首页（hero）标题替换为居中大尺寸 Logo。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/24a2f8c4e2489a669b5a94bf3d5bb0765cfec692/docs/screenshots/sidebar.png" alt="侧边栏：展开态的电影品牌标识" width="123">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/24a2f8c4e2489a669b5a94bf3d5bb0765cfec692/docs/screenshots/chat-main.png" alt="主界面：壁纸上的玻璃拟态会话视图" width="676">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/55c85467814bf2c98bcd815c59123018d049b6ee/docs/screenshots/sidebar.png" alt="侧边栏：展开态的电影品牌标识" width="123">
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/55c85467814bf2c98bcd815c59123018d049b6ee/docs/screenshots/chat-main.png" alt="主界面：壁纸上的玻璃拟态会话视图" width="676">
 </p>
 
 ### 输入卡与占位文案
@@ -243,7 +243,7 @@ A: token 层是叠加式的，但视觉上会互相覆盖。建议同一时间�
 > 每天自动更新（GitHub Actions）。左轴：**累计下载量**（蓝色）；右轴：**Star 数**（紫色）——两个量级不同，使用独立双纵轴。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/24a2f8c4e2489a669b5a94bf3d5bb0765cfec692/docs/stats.svg" alt="dsh-kimino-theme 每日 Star × 累计下载量成长曲线" width="900"/>
+  <img src="https://raw.githubusercontent.com/niiang/dsh-kimino-theme/55c85467814bf2c98bcd815c59123018d049b6ee/docs/stats.svg" alt="dsh-kimino-theme 每日 Star × 累计下载量成长曲线" width="900"/>
 </p>
 
 *数据每 24 小时自动采集一次：下载量来自 [npm 官方 API](https://api.npmjs.org/downloads/range/2026-08-26:2026-12-31/dsh-kimino-theme)，Star 来自 [GitHub API](https://github.com/niiang/dsh-kimino-theme/stargazers)。*

@@ -1,18 +1,48 @@
-# dsh-tool-see-image
+<div align="center">
+
+# 👁️ dsh-tool-see-image
+
+**Give your text-only model eyes.**  
+`see_image` routes an image to a configurable vision model (default: Zhipu GLM-4V-Flash, free) and relays its description back to your DeepSeek Harness session.
 
 [![npm version](https://img.shields.io/npm/v/dsh-tool-see-image)](https://www.npmjs.com/package/dsh-tool-see-image)
 [![npm downloads](https://img.shields.io/npm/dm/dsh-tool-see-image)](https://www.npmjs.com/package/dsh-tool-see-image)
 [![npm license](https://img.shields.io/npm/l/dsh-tool-see-image)](https://www.npmjs.com/package/dsh-tool-see-image)
 [![CI](https://github.com/gugu123a/dsh-tool-see-image/actions/workflows/test.yml/badge.svg)](https://github.com/gugu123a/dsh-tool-see-image/actions/workflows/test.yml)
+[![Awesome](https://img.shields.io/badge/awesome--deepseek--harness--plugins-Featured-brightgreen)](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
 
-Glad to make a plugin for #deepseekharness （or #dsh）.
+> ### 🎖️ Featured in the community **awesome-deepseek-harness-plugins** list.
 
-Give a **text-only model** (e.g. `deepseek-v4-flash`) the ability to **"see" images**:
-the `see_image` tool sends an image file to a configurable **vision model**
-(default: Zhipu GLM-4V-Flash, free), which describes it in text; the text-only
-model relays that description back to you.
+</div>
 
-## How it works
+---
+
+## ✨ Why
+
+DSH's default text-only model (e.g. `deepseek-v4-flash`) **can't see images**. This plugin gives it eyes via a small, free vision model — no local GPU, no image-editing, no changes to your model.
+
+## 🚀 Features
+
+- **`see_image` tool** — pass any image path + a question; get a text description back.
+- **Vision-model-agnostic** — any OpenAI-compatible `/chat/completions` endpoint (Zhipu GLM-4V-Flash by default, or SiliconFlow / Qwen2.5-VL, …).
+- **Sandbox-aware** — reads through `ctx.fs`, respecting DSH's sandbox / observation policy.
+- **Bonus paste-to-text** — a patch script that lets you paste an image straight into the chat and auto-convert it to text.
+
+## 📚 Contents
+
+- [How it works](#how-it-works)
+- [Install (DSH web profile)](#install-dsh-web-profile)
+- [Configuration](#configuration-tool-see-image-line-in-cordispatchyml)
+- [Uninstall / rollback](#uninstall--rollback)
+- [Implementation notes](#implementation-notes-for-plugin-developers)
+- [Regression test](#regression-test)
+- [Field notes](#field-notes)
+- [Paste-to-text relay (bonus)](#paste-to-text-relay-bonus)
+- [License](#license)
+
+---
+
+## 🔍 How it works
 
 ```
 You: "Look at this image" ──►  Text-only model (no vision)
@@ -29,7 +59,9 @@ You: "Look at this image" ──►  Text-only model (no vision)
                              Text-only model ──► reports to you
 ```
 
-## Install (DSH web profile)
+---
+
+## 📦 Install (DSH web profile)
 
 1. **Copy the plugin** into your profile directory, e.g.
    `$DSH_HOME/profiles/web/plugins/dsh-tool-see-image/`
@@ -66,7 +98,9 @@ You: "Look at this image" ──►  Text-only model (no vision)
    Use see_image to look at path/to/your/image.png
    ```
 
-## Configuration (tool-see-image line in cordis.patch.yml)
+---
+
+## ⚙️ Configuration (tool-see-image line in cordis.patch.yml)
 
 | Key | Default | Description |
 | --- | --- | --- |
@@ -87,14 +121,18 @@ config:
   model: Qwen/Qwen2.5-VL-32B-Instruct
 ```
 
-## Uninstall / rollback
+---
+
+## 🗑️ Uninstall / rollback
 
 1. Remove the `- insert: ... tool-see-image ...` block from `cordis.patch.yml`;
 2. Remove the junction: `Remove-Item profiles\node_modules\dsh-tool-see-image`;
 3. Remove that line from `profiles/web/package.json` dependencies;
 4. Restart `dsh web`.
 
-## Implementation notes (for plugin developers)
+---
+
+## 🧠 Implementation notes (for plugin developers)
 
 - Exports `{ name, inject, Config, apply }`, same shape as every DSH tool plugin;
 - `inject: ["tools", "fs"]` — the tool registry and the sandboxed file service
@@ -109,7 +147,9 @@ config:
 - Network request carries a timeout and `exec.signal` cancellation; errors are
   model-readable.
 
-## Regression test
+---
+
+## 🧪 Regression test
 
 `test/mount-test.mjs` mounts this plugin line under a real Cordis Loader
 (timer + system-prompt + tools + this plugin) and asserts that `see_image`
@@ -125,7 +165,9 @@ The script temporarily links the plugin into the checkout's node_modules
 (Windows junction / other-platform symlink) and cleans up afterwards — no
 hardcoded local paths.
 
-## Field notes
+---
+
+## 📝 Field notes
 
 - 2026-08-13: real key + `triz-workflow.png` (a DSH Web GUI screenshot) →
   HTTP 200 in ~6.8s, correctly read the UI text (search box / MCP settings /
@@ -133,7 +175,9 @@ hardcoded local paths.
 - Pitfall: glm-4v-flash's `max_tokens` cap is 1024 (the default of 2048 caused
   a 400; the default has been fixed).
 
-## Paste-to-text relay (bonus)
+---
+
+## 📋 Paste-to-text relay (bonus)
 
 Beyond the `see_image` tool (which reads an image *by path*), this repo ships a
 **patch script** that lets you **paste images straight into the chat box** and
@@ -158,6 +202,8 @@ Requires `ZHIPU_API_KEY`. The image cache itself is portable and stays under
 **Re-run the script after any `npx` dsh upgrade** —
 the patch is lost when the npm cache is refreshed.
 
-## License
+---
 
-MIT
+## 📄 License
+
+[MIT](LICENSE)

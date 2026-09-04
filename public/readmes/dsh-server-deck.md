@@ -1,6 +1,6 @@
 # DSH Server Deck 🖧
 
-**DeepSeek Harness 的服务器卡片仪表盘** —— 已连接服务器的卡片视图(在线状态 / CPU / 内存 / 磁盘 / 延迟),点卡片直接进入 xterm.js 交互终端。
+**DeepSeek Harness 的服务器卡片仪表盘** —— 已连接服务器的卡片视图(在线状态 / CPU / 内存 / 磁盘 / 延迟),点卡片进入 xterm.js 交互终端;独立趋势视图记录并可视化一段时间的 CPU / 内存 / 磁盘变化。
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 [![dsh-plugin](https://img.shields.io/badge/dsh-plugin-4d6bfe)](https://github.com/topics/dsh-plugin)
@@ -8,7 +8,7 @@
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/2674cb363a1b817d2871ce443aba25cdf096291b/docs/screenshots/dashboard.png" width="420" alt="服务器卡片仪表盘">
+  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/0d10c6dfa432cdf1e50cd745fb564befdbcc8104/docs/screenshots/dashboard.png" width="420" alt="服务器卡片仪表盘">
 </p>
 
 ## ✨ 功能一览
@@ -23,13 +23,27 @@
 | 三条用量条 | CPU · 内存 · 磁盘,<60% 绿 / ≥60% 黄 / ≥85% 红 |
 | 错误详情 | 离线时内联展示失败原因(悬停看全文) |
 
-自动刷新周期可选 **手动 / 10s / 15s / 30s / 60s**,面板不可见或浏览器切后台时自动暂停。
+自动刷新周期可选 **手动 / 10s / 15s / 30s / 60s**(读主机侧快照,不再现场 SSH);「刷新」按钮强制立即探测一轮。
+
+### 📈 趋势视图
+卡片与趋势两个独立视图互相切换。每台主机 **CPU / 内存 / 磁盘各一张独立图**(不叠线):
+
+| 项 | 说明 |
+|---|---|
+| 窗口 | 1 小时(滚动,默认)/ 24 小时(滚动)/ 一周 / 一个月(本地自然日 0 点起,含今天)/ 自定义(≤31 天) |
+| 粒度 | 自动 / 10s / 30s / 1m / 5m / 15m / 1h;单次查询上限 1200 点,超限自动升档 |
+| 摘要 | 最新值 + 窗口均值;悬停竖线读该时刻数值,tooltip 含最高 / 最低 / 样本数 |
+| 采集 | 主机侧常驻,默认 10s(可选 30s / 1m / 5m),与面板是否打开无关;离线也记一条用于画断档 |
+| 落盘 | `~/.dsh/server-deck-metrics/{hostId}/`:raw 3h、1m 24h、15m 7d、1h 31d;删除主机级联清理 |
+| 历史回填 | 窗口早于本地记录时,尝试 `sar -u` / `sar -r`(sysstat)回填 CPU / 内存;磁盘容量无法回填 |
+
+**怎么用:**打开「服务器」页签 → 点工具栏「📈 趋势」(与卡片视图互切,不是叠在卡片里)。窗口默认 **1 小时滚动**;「24 小时」也是滚动过去 24 小时,不是当天 0 点起。粒度选「自动」即可(1 小时窗口默认 10s)。采集在主机侧常驻,**关面板也会继续记**;刚启用时图上可能只有右侧一小段,等几个采集周期就会铺开。更早的 CPU / 内存若服务器装了 `sysstat`,会在首次查询时尝试回填。
 
 ### ⌨ 点卡片进交互终端
 xterm.js 全功能终端:5000 行回滚、256 色、窗口尺寸实时同步、光标闪烁。Node 半区做 WebSocket ↔ ssh2 shell 双向桥。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/2674cb363a1b817d2871ce443aba25cdf096291b/docs/screenshots/terminal.png" width="420" alt="交互终端">
+  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/0d10c6dfa432cdf1e50cd745fb564befdbcc8104/docs/screenshots/terminal.png" width="420" alt="交互终端">
 </p>
 
 ### ⤓ 一键导入 `~/.ssh/config`
@@ -42,7 +56,7 @@ xterm.js 全功能终端:5000 行回滚、256 色、窗口尺寸实时同步、�
 密码 / 私钥文件(+口令)/ SSH Agent 三种认证;连接测试按钮即时反馈延迟。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/2674cb363a1b817d2871ce443aba25cdf096291b/docs/screenshots/add-host.png" width="420" alt="添加服务器表单">
+  <img src="https://raw.githubusercontent.com/meyaomiao/dsh-server-deck/0d10c6dfa432cdf1e50cd745fb564befdbcc8104/docs/screenshots/add-host.png" width="420" alt="添加服务器表单">
 </p>
 
 ## 🔀 双形态挂载
@@ -69,7 +83,7 @@ cd dsh-server-deck && pnpm install && pnpm build
 dsh plugin --profile web add .
 ```
 
-安装后**重启 `dsh web`**(host 半新增了路由),浏览器 Ctrl+F5 强刷。侧边栏「+」菜单出现「服务器」页签即成功。
+安装后**重启 `dsh web`**(host 半新增了路由与常驻采集器),浏览器 Ctrl+F5 强刷。侧边栏「+」菜单出现「服务器」页签即成功。
 
 ## 🔐 安全模型
 
@@ -81,11 +95,12 @@ dsh plugin --profile web add .
 ## 🏗️ 架构
 
 ```
-┌─ Client(lib/client.js)──────────────┐   ┌─ Host(lib/index.js)────────────────┐
-│ better-sidebar 页签 ⇄ 独立抽屉 双形态 │◄──│ /server-deck/api/*  REST(仅回环)    │
-│ React 卡片网格 / 表单 / xterm.js      │WS▶│ /server-deck/ws/pty ws↔ssh2 PTY 桥 │
-└──────────────────────────────────────┘   │ ssh2 连接池 · 台账 ~/.dsh/*.json    │
-                                           └────────────────────────────────────┘
+┌─ Client(lib/client.js)──────────────────┐   ┌─ Host(lib/index.js)─────────────────────┐
+│ better-sidebar 页签 ⇄ 独立抽屉 双形态     │◄──│ /server-deck/api/*  REST(仅回环)         │
+│ React 卡片网格 / 趋势图 / 表单 / xterm.js │WS▶│ /server-deck/ws/pty ws↔ssh2 PTY 桥      │
+└─────────────────────────────────────────┘   │ ssh2 连接池 · 台账 ~/.dsh/*.json         │
+                                              │ MetricRecorder 常驻采集(默认 10s)        │
+                                              └─────────────────────────────────────────┘
 ```
 
 ## 🛠️ 开发
@@ -94,7 +109,7 @@ dsh plugin --profile web add .
 pnpm install
 pnpm build       # esbuild:server bundle + client bundle(ModuleLoader 包装)
 pnpm typecheck   # tsc --noEmit
-pnpm test        # ssh config 解析 / 探针输出解析(Linux+Darwin) / 台账校验
+pnpm test        # ssh config / 探针解析 / 台账校验 / 窗口粒度 / sar 回填 / 时序落盘
 ```
 
 ## 📋 兼容性
@@ -102,7 +117,7 @@ pnpm test        # ssh config 解析 / 探针输出解析(Linux+Darwin) / 台账
 - DeepSeek Harness `0.1.1-rc.2` 与 `0.1.2-alpha.4`(web profile)
 - DSH `0.1.2-alpha.1` 起已删除 `@deepseek-ai/dsh-client-runtime`;本包从 0.1.1 起不再把它写进 `dsh.client.inject`
 - dsh-better-sidebar **可选**(未装时走独立抽屉形态);升 alpha.4 时侧栏请用 `dsh-better-sidebar@alpha`
-- Node ≥ 20;被管理服务器只需开放 SSH(无需预装任何东西)
+- Node ≥ 20;被管理服务器只需开放 SSH(无需预装任何东西)。趋势回填依赖远端 `sar`(sysstat),未装则静默跳过。
 
 ## License
 

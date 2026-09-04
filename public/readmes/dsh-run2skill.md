@@ -16,13 +16,15 @@
 
 它不会让 Agent 偷偷给自己立规矩。每份技能草稿都可以先看来源、适用范围和完整内容，然后由你决定确认保存还是放弃草稿。只有确认后，它才会写入 DSH 的原生 Skill 目录。
 
-> 当前稳定版为 [`0.3.1`](https://github.com/qkycir-123/dsh-run2skill/releases/tag/v0.3.1)。目前仅支持 DSH Web `0.1.1-rc.2`。
+> 当前稳定版为 [`0.4.0`](https://www.npmjs.com/package/dsh-run2skill/v/0.4.0)。目前仅支持 DSH Web `0.1.2-rc.1`。
 
-`0.3.1` 增加了低噪声整理状态、“立即整理本次经验”、按意见生成新版草稿，以及长工作流关键证据保留。“立即整理”仍会等待 Agent 停止运行和事实完整，并继续经过查重、审核与发布安全门；设置页不会展示内部批次计数。
+`0.4.0` 改用 DSH `0.1.2-rc.1` 的 Remote/API Gateway 与浏览器认证契约，并适配 Session、Storage/Profile、Settings 和插件生命周期变化。它只支持 RC1 保留的内置 `standard` preset；使用旧 DSH `0.1.1-rc.2` 时请继续安装 `dsh-run2skill@0.3.1`。
+
+低噪声整理状态、“立即整理本次经验”、按意见生成新版草稿，以及长工作流关键证据保留继续保留。“立即整理”仍会等待 Agent 停止运行和事实完整，并继续经过查重、审核与发布安全门；设置页不会展示内部批次计数。
 
 ## 看一遍完整流程
 
-![Run2Skill 从待审核技能草稿、人工核对到成功沉淀的真实 DSH Web 流程](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/866f4f68657c0784a9c72576d2efceecd4c87781/docs/assets/run2skill-demo.gif)
+![Run2Skill 从待审核技能草稿、人工核对到成功沉淀的真实 DSH Web 流程](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/d653aaf7fa9570d71ef38212b359041ca1df3b09/docs/assets/run2skill-demo.gif)
 
 1. **发现技能草稿**：Run2Skill 只在有事项需要处理时提醒你，并把草稿放在 **设置 → 插件 → Run2Skill**。
 2. **核对来源与范围**：查看生成理由、经过过滤的对话证据、保存范围以及将要写入的完整 `SKILL.md`。
@@ -32,20 +34,20 @@
 <details>
 <summary>查看三张关键界面截图</summary>
 
-![Run2Skill 设置页中的待审核技能草稿](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/866f4f68657c0784a9c72576d2efceecd4c87781/docs/assets/01-proposal-inbox.png)
+![Run2Skill 设置页中的待审核技能草稿](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/d653aaf7fa9570d71ef38212b359041ca1df3b09/docs/assets/01-proposal-inbox.png)
 
-![Run2Skill 技能草稿的来源、保存范围与审核内容](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/866f4f68657c0784a9c72576d2efceecd4c87781/docs/assets/02-review-details.png)
+![Run2Skill 技能草稿的来源、保存范围与审核内容](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/d653aaf7fa9570d71ef38212b359041ca1df3b09/docs/assets/02-review-details.png)
 
-![Run2Skill 最近活动中显示已经成功创建的原生 Skill](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/866f4f68657c0784a9c72576d2efceecd4c87781/docs/assets/03-saved-activity.png)
+![Run2Skill 最近活动中显示已经成功创建的原生 Skill](https://raw.githubusercontent.com/qkycir-123/dsh-run2skill/d653aaf7fa9570d71ef38212b359041ca1df3b09/docs/assets/03-saved-activity.png)
 
 </details>
 
 ## 安装
 
-先确认你使用 DSH Web `0.1.1-rc.2`，已经安装 Node.js `^22.19.0 || >=24.0.0`，并能在终端运行 `dsh` 和 `pnpm`。然后执行：
+先确认你使用 DSH Web `0.1.2-rc.1`，已经安装 Node.js `^22.19.0 || >=24.0.0`，并能在终端运行 `dsh` 和 `pnpm`。然后执行：
 
 ```bash
-dsh plugin --profile web add dsh-run2skill@0.3.1
+dsh plugin --profile web add dsh-run2skill@0.4.0
 ```
 
 重启 DSH Web。打开 **Settings → Plugins**，看到 **run2skill** 卡片就说明插件已加载。

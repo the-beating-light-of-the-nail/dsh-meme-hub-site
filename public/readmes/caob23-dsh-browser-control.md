@@ -1,7 +1,7 @@
 # DSH Browser Control
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/d7bcfdf79f554a623fad5fe01628224d891c6c4a/extension/icons/icon128.png" width="100" alt="DSH Browser Control">
+  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/27631487aaf7fddf2ce2e51926ad8849bb4feed4/extension/icons/icon128.png" width="100" alt="DSH Browser Control">
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 Chrome 浏览器扩展 + DeepSeek Harness 插件，让 AI Agent 像人一样操控你的真实浏览器。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/d7bcfdf79f554a623fad5fe01628224d891c6c4a/assets/banner.png" width="480" alt="DSH Browser Control — a whale searching Google with a mouse">
+  <img src="https://raw.githubusercontent.com/caob23/dsh-browser-control/27631487aaf7fddf2ce2e51926ad8849bb4feed4/assets/banner.png" width="480" alt="DSH Browser Control — a whale searching Google with a mouse">
 </p>
 
 ## 这是什么
@@ -64,8 +64,8 @@ Chrome 扩展（CDP 驱动）
 
 | 文件 | 说明 |
 |---|---|
-| [DSH-Browser-Control-1.0.5.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.5/DSH-Browser-Control-1.0.5.zip) | Chrome 扩展（解压后加载） |
-| [dsh-browser-control-plugin-v1.0.5.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.5/dsh-browser-control-plugin-v1.0.5.zip) | dsh 插件（离线兜底，在线装直接用方式 A/B） |
+| [DSH-Browser-Control-1.0.7.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.7/DSH-Browser-Control-1.0.7.zip) | Chrome 扩展（解压后加载） |
+| [dsh-browser-control-plugin-v1.0.7.zip](https://github.com/caob23/dsh-browser-control/releases/download/v1.0.7/dsh-browser-control-plugin-v1.0.7.zip) | dsh 插件（离线兜底，在线装直接用方式 A/B） |
 
 ## 安装 Chrome 扩展（30 秒）
 
@@ -96,7 +96,7 @@ npm install @caob23/dsh-browser-control
 
 ```bash
 # 直接从 GitHub 安装
-dsh plugin --profile web add "github:caob23/dsh-browser-control#v1.0.5"
+dsh plugin --profile web add "github:caob23/dsh-browser-control#v1.0.7"
 
 # 本地目录调试（注意：必须显式 file: 前缀）
 dsh plugin --profile web add "file:D:\path\to\dsh-browser-control"
@@ -111,7 +111,9 @@ dsh plugin --profile web remove @caob23/dsh-browser-control
 > ⚠️ 本地目录请用 `file:` 前缀。裸路径 / 相对路径会被 pnpm 当作 `link:` 协议，
 > 在 hoisted 布局下不会物化到 node_modules 顶层，导致启动时无法解析该包。
 
-安装并重启后：dsh 设置 → 插件 → DSH 浏览器控制 → 开启。
+安装并重启后，桥接默认开启（v1.0.6+），不需要再去设置里手动启用。状态页 http://127.0.0.1:9777/ 可看到服务已监听。
+
+> 想关掉默认开启：在 `~/.dsh/settings.yml` 的 `browser-bridge.config` 下写 `enabled: false` 即可。
 
 ### 方式 C：复制进 harness 源码树（旧方式，v1.0.2 及以前）
 
@@ -173,6 +175,10 @@ git checkout v1.0.2   # 旧布局在 v1.0.2 tag
 | `browser_tabs` | 标签页管理（列表/新建/关闭/切换） |
 | `browser_evaluate` | 执行任意 JS |
 | `browser_screenshot` | 截取页面截图 |
+| `browser_console_log` | 抓取页面 console 日志（v1.0.7+） |
+| `browser_network_log` | 抓取 HTTP 请求/响应（v1.0.7+） |
+| `browser_pdf` | 当前页导出 PDF（v1.0.7+） |
+| `browser_emulate` | 切设备视口（移动 / 桌面 / 自定义，v1.0.7+） |
 | `browser_cleanup` | 清理临时文件 |
 
 ## 架构

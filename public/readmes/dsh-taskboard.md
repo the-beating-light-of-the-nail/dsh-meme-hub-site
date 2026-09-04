@@ -18,9 +18,9 @@ DeepSeek Harness 的**任务看板插件**：人建卡、agent 认领执行、�
 
 ## 界面
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/283840ed82c37c792298877176c4871f64370631/img/board.png" alt="任务看板" width="880"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/e72fa7c62063515e00e9f08bc37cdad4af8b5bd1/img/board.png" alt="任务看板" width="880"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/283840ed82c37c792298877176c4871f64370631/img/modal.png" alt="新建任务" width="440"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloader/dsh-taskboard/e72fa7c62063515e00e9f08bc37cdad4af8b5bd1/img/modal.png" alt="新建任务" width="440"></p>
 
 ## 目录
 

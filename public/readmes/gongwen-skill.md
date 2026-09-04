@@ -7,7 +7,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 # 公文全流程处理工具
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linhut/gongwen-skill/c17b8ab48e11935ade8417b02613aca07fa46955/logo/2026-08-19_11-17-43.png" alt="公文全流程处理工具" width="760">
+  <img src="https://raw.githubusercontent.com/linhut/gongwen-skill/b0f4b508b61d4218c6c5a85c95bf9a26b89918e0/logo/2026-08-19_11-17-43.png" alt="公文全流程处理工具" width="760">
 </p>
 
 > 中文公文全流程处理工具——基于 **GB/T 9704《党政机关公文格式》** 国家标准，支持 **格式检查与修复、内容优化（Word 原生修订+批注/差异对比版）、模板生成、Markdown 转公文、版头版记页码注入、事实核验、风格增强** 等完整能力。原生支持 **DeepSeek Harness (DSH)** 技能系统，打包为可被 AI Agent 直接调用的 Skill，完全自包含，克隆即用。
@@ -32,9 +32,10 @@ Licensed under the MIT License. See the LICENSE file for details.
 | 🏗️ 模板生成 | `template` | 按类型生成 GB/T 9704 标准空白模板 |
 | 🔍 解析 | `parse` | `.docx` → 结构化 DocumentModel |
 | ✅ 格式检查 | `check` | 按国标检查，分级 P0/P1/P2（只读） |
-| 🔧 格式修复 | `optimize` | 自动修复字体/字号/行距/页边距，输出合规文档 |
-| ✍️ **内容优化** | **`optimize-content`** | 内容润色：默认 **Word 原生修订+批注**（审阅面板逐条接受/拒绝），可选行内差异对比版 |
+| 🔧 格式修复 | `optimize` | 自动修复字体/字号/行距/页边距，输出合规文档；`--verify` 单命令闭环自动复查、P0 存在时退出码非 0；`--json` 结构化输出 |
+| ✍️ **内容优化** | **`optimize-content`** | 内容润色：默认 **Word 原生修订+批注**（审阅面板逐条接受/拒绝），可选行内差异对比版；`--precheck` 预检 changes 与原文一致性、`--preset quick/full/review` 参数收敛 |
 | 📝 草稿转公文 | `md2docx` | Markdown 文本直接转为格式化 `.docx`（支持 Front Matter） |
+| 🚀 一站式生成 | `draft` | Markdown 草稿 → 国标成品 + 自动验证（路径 C 四步合一） |
 | 📄 模型生成 | `generate` | 从 JSON 模型生成 `.docx` |
 | 🔴 版头 | `header` | 注入发文机关标志 + 发文字号 + 签发人 + 红色反线 |
 | 📑 版记 | `footer` | 注入抄送机关 + 印发机关 + 印发日期 + 分隔线 |
@@ -45,12 +46,12 @@ Licensed under the MIT License. See the LICENSE file for details.
 | 🔍 审稿生成 | `review` | 按五角色审稿机制生成审稿意见 |
 | 🧩 完整审校 | `full-review` | 修订+批注联合命令（句子级差异修订 + 分类批注） |
 | 🎨 样式学习 | `style-learn` / `style-list` | 上传标准文档学习 Run/段落/页面三级样式（字体/字号/字间距/行距/缩进/页边距），生成命名模板持久化，后续用 `optimize -t 模板名` 套用 |
-| 🔄 版本自检 | `check-update` | 版本自检（PyPI pip 包权威判定 + GitHub 备用，GitCode/AtomGit 作国内镜像提示） |
-| 🩺 自我诊断 | `doctor` / `repair` | 全面诊断 22 项（Python/依赖/版本一致性/字体/DSH 文件/DSH 技能 frontmatter/代码风格），自动修复常见问题 |
+| 🔄 版本自检 | `check-update` | 版本自检（PyPI pip 包权威判定 + GitHub 备用，GitCode/AtomGit 作国内镜像提示；GitHub 不可达时自动做 DNS 污染诊断 + hosts 建议） |
+| 🩺 自我诊断 | `doctor` / `repair` | 全面诊断 23 项（Python/依赖/版本一致性/字体/DSH 文件/DSH 技能 frontmatter/代码风格/网络 DNS），自动修复常见问题；`--offline` 跳过网络检查 |
 | 🕵️ 文档审计 | `audit` | 检查删除线/加粗/AI 声明等痕迹 |
 | 🤝 会话交接 | `handoff` | 跨会话上下文传递（`--list` / `--latest` / Agent 长任务收尾必写） |
 | ⚙️ 规则管理 | `rule-export/import/list` | YAML 规则三层定制（官方/单位/用户） |
-| 🧭 向导式交互 | `wizard` | 交互式路径引导（A/B/C/D）+ 一键执行；Agent 用 `--answers` 非交互 / `--dry-run` 只打印命令 |
+| 🧭 向导式交互 | `wizard` | 交互式路径引导（A/B/C/D/E）+ 一键执行；Agent 用 `--answers` 非交互 / `--dry-run` 只打印命令 |
 
 ## 使用示例
 
@@ -69,7 +70,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 
 > **如果你是无法执行代码的纯对话 AI**（如豆包、Kimi、ChatGPT 网页版等），请按以下方式协助用户：
 
-1. **告知工具性质**：向用户说明「这是一个本地运行的 Python 命令行工具，需要在你自己的电脑上安装后使用」，并说明它能做什么（格式检查、自动修复、内容优化、模板生成等 25 项能力）。
+1. **告知工具性质**：向用户说明「这是一个本地运行的 Python 命令行工具，需要在你自己的电脑上安装后使用」，并说明它能做什么（格式检查、自动修复、内容优化、模板生成等 29 项命令能力）。
 2. **引导安装**：请用户在自己的电脑上执行以下步骤：
    ```bash
    # 步骤 1：克隆仓库
@@ -130,8 +131,8 @@ python -m gongwen template notice -o 通知模板.docx
 # 检查公文格式（只读）
 python -m gongwen check 公文.docx -t notice --json
 
-# 自动修复格式（--apply 确认执行，默认预览）
-python -m gongwen optimize 公文.docx -o 成品.docx -t notice --apply
+# 自动修复格式（--apply 确认执行，默认预览）；--verify 生成后自动复查，P0 存在时退出码非 0
+python -m gongwen optimize 公文.docx -o 成品.docx -t notice --apply --verify
 
 # 一步到位：检查 + 修复 + 版头/版记/页码全注入（--layout 指向 JSON 配置）
 python -m gongwen optimize 公文.docx -o 成品.docx --layout 版式.json
@@ -139,8 +140,17 @@ python -m gongwen optimize 公文.docx -o 成品.docx --layout 版式.json
 # Markdown 草稿 → 正式公文（支持管道输入和 Front Matter 元数据）
 python -m gongwen md2docx 草稿.md -o 正式公文.docx -t report --signer "XX单位" --date "2026年8月1日"
 
+# 一步到位：Markdown 草稿 → 国标成品 + 自动验证（路径 C 四步合一）
+python -m gongwen draft 草稿.md -o 正式公文.docx -t report --signer "XX单位" --date "2026年8月1日"
+
 # 内容优化（默认 tracked 模式：Word 原生修订+批注，审阅面板逐条接受/拒绝）
 python -m gongwen optimize-content 原文.docx --changes 修订内容.json --apply --mode tracked -t news
+
+# 预检 changes 与原文一致性（不生成文档，输出不匹配清单+相似度诊断；不匹配时退出码 1）
+python -m gongwen optimize-content 原文.docx --changes 修订内容.json --precheck
+
+# 预设组合：quick 精简快速 / full 完整默认 / review 完整审稿（显式参数优先）
+python -m gongwen optimize-content 原文.docx --changes 修订内容.json --apply --preset full
 
 # 注入版头（发文机关标志 + 发文字号 + 签发人 + 红色反线）
 python -m gongwen header 公文.docx -o 红头公文.docx --org-name "XX单位" --doc-number "〔2026〕1号"
@@ -265,7 +275,7 @@ python -m gongwen optimize-content 新闻稿.docx --changes changes.json \
 交互式引导选择处理路径并一键执行，适合不熟悉命令行的用户；Agent 可走非交互模式：
 
 ```bash
-python -m gongwen wizard                        # 终端交互：菜单选 A/B/C/D → 逐项填参 → 预览确认 → 执行
+python -m gongwen wizard                        # 终端交互：菜单选 A/B/C/D/E → 逐项填参 → 预览确认 → 执行
 python -m gongwen wizard --answers 答案.json     # Agent 非交互：跳过提问直接执行
 python -m gongwen wizard --answers 答案.json --dry-run  # 只打印将执行的命令
 ```
@@ -328,7 +338,7 @@ python -m gongwen rule-list notice
 
 - **路径 A**：格式修复（不改文字，只修排版）
 - **路径 B**：内容优化（润色文字，Word 原生修订+批注 / 差异对比版）
-- **路径 C**：生成公文（从零创建，四步流水线）
+- **路径 C**：生成公文（从零创建，四步流水线；`draft` 命令可一步到位）
 
 **平台适配**：`SKILL.md` 采用通用 frontmatter（`name/description/whenToUse/user-invocable`），兼容 **WorkBuddy、CloudCode、Claude Code、AtomCode、DeepSeek Harness** 等以 `SKILL.md` 为技能清单的平台；纯对话 LLM（无代码执行能力）请参见上方「纯对话 LLM 使用指引」。
 
@@ -336,7 +346,7 @@ python -m gongwen rule-list notice
 
 Agent 加载 skill 后**必须执行版本追新自检**，确保使用最新版本：
 
-1. **远程自检**（首选）：`python -m gongwen check-update`——以 **PyPI（pip 包发布源）为权威判定渠道**并发查询比对本地（pip install -U 即从 PyPI 拉取）；PyPI 不可达时回退 GitHub tag（备用渠道）。全部渠道不可达时明确告知"版本自检跳过"。GitHub 为海外渠道（国内常超时）采用短超时快速降级；GitHub 不可达时自动提示国内代码镜像（GitCode/AtomGit，与 GitHub 同源 tag）与 GitHub520 hosts 加速方案
+1. **远程自检**（首选）：`python -m gongwen check-update`——以 **PyPI（pip 包发布源）为权威判定渠道**并发查询比对本地（pip install -U 即从 PyPI 拉取）；PyPI 不可达时回退 GitHub tag（备用渠道）。全部渠道不可达时明确告知"版本自检跳过"。GitHub 为海外渠道（国内常超时）采用短超时快速降级；GitHub 不可达时自动提示国内代码镜像（GitCode/AtomGit，与 GitHub 同源 tag）、GitHub520 hosts 加速方案，并自动做 **DNS 污染诊断**（对比系统解析与安全 DNS/DoH 真实 IP，输出可直接粘贴的 hosts 条目建议）
 2. **本地 git tag 对比**（补充）：对 skill 安装目录执行 `git -C "<skill安装目录>" describe --tags --abbrev=0`；若安装目录不在 git 管理下，应告知用户"无法执行版本对比，建议手动检查 GitHub 更新"
 3. **落后则警告**：发现本地版本落后于最新版本时，**必须在执行前警告用户**并提示更新——`check-update` 会按安装形态自动给出精准更新命令（pip 包安装：`pip install --upgrade gongwen-skill`；git/skill 目录安装：`cd <gongwen-skill目录> && git pull && git fetch --tags`），不得静默使用旧版本
 
@@ -356,7 +366,7 @@ DSH 采用 **Cordis 模块化微内核架构**：技能体系基于本地文件�
 git clone https://github.com/linhut/gongwen-skill.git
 cd gongwen-skill
 pip install -r requirements.txt   # 或 pip install gongwen-skill（已上 PyPI）
-python -m gongwen --version       # 检验：gongwen-skill v2.7.0
+python -m gongwen --version       # 检验：gongwen-skill v2.9.0
 ```
 
 ### 方式一：作为 DSH Skill 注册（基于本地文件系统）
@@ -412,7 +422,7 @@ pnpm add -w gongwen-skill
   "dependencies": {
     "@deepseek-ai/dsh-base": "...",
     "@deepseek-ai/dsh-web-app": "...",
-    "gongwen-skill": "^2.7.0"
+    "gongwen-skill": "^2.9.0"
   },
   "dsh": {
     "profile": {
@@ -440,6 +450,14 @@ dsh plugin --profile web add -w "link:/path/to/gongwen-skill"
 #  - dependencies 出现 "gongwen-skill": "link:/path/to/gongwen-skill"
 #  - dsh.profile.bundles 包含 "gongwen-skill"
 ```
+
+### 架构边界（O12 · DSH 插件）
+
+> 规则：**CLI（`python -m gongwen`）是唯一业务逻辑入口**，DSH 插件（`dsh/`）只做 UI 代理与结果展示。
+
+- 插件通过 `spawn("python", ["-m", "gongwen", ...])` 子进程转发命令，**不直接 import 引擎、不操作 docx**，避免双入口行为分裂
+- `dsh/index.js` 的 `POSITIONAL_ARGS` 声明各命令的位置参数（如 `draft: ["input"]`）；新增/调整 CLI 命令位置参数时**必须同步更新该表**，否则插件转发会构造出 `--input` 而 CLI 只接受位置参数
+- 插件保持薄层：业务逻辑全在 CLI / engine，改动引擎不影响插件；改动 CLI 参数形态时需同步检查 `dsh/index.js` 转发（doctor 自检覆盖 DSH 文件存在性）
 
 ### 🚀 启动 DSH Web 服务
 
@@ -593,7 +611,7 @@ pip install -r requirements.txt
 用户：帮我优化这份会议通知的第二章节措辞
 
 Agent：📋 合规自检报告
-Skill 版本: v2.7.0（版本自检已确认最新）
+Skill 版本: v2.9.0（版本自检已确认最新）
 路径判定: B（内容优化）
 依据: 用户指定了已有文档，且要求"优化措辞"
 命令调用: 1. python -m gongwen optimize-content 会议通知.docx --changes changes.json --apply --paragraphs "5-8"
@@ -629,6 +647,23 @@ Skill 定位为**工具层**，默认不依赖 LLM（确定性工作全自包含
 
 ---
 
+## 🌐 GitHub 不可达排查（安全 DNS / DoH）
+
+国内网络访问 GitHub 常遇「无法访问 / 超时」问题，常见原因之一是 **DNS 污染**——系统 DNS 返回的不是真实 IP，而是保留/Fake-IP 段（如 198.18.0.0/15、0.0.0.0），连接自然失败或超时。
+
+**快速诊断**：运行 python -m gongwen doctor（含网络/DNS 检查项），或 python -m gongwen check-update（GitHub 渠道不可达时自动诊断）。检测到疑似污染时，会输出系统解析 vs 安全 DNS 真实 IP 对比，以及可直接粘贴的 hosts 条目建议。
+
+**原理**：安全 DNS（DoH，DNS over HTTPS）通过加密 HTTP 查询 DNS，避免中间设备篡改解析结果，可拿到域名的真实 IP。本工具内置阿里（dns.alidns.com）、腾讯（doh.pub / 1.12.12.12）等国内公共 DoH 端点，多端点自动降级；可通过环境变量 GONGWEN_DOH 覆盖为自定义端点（如自建的 DoH 服务）。
+
+**自动兜底（v2.9.0）**：`font install` 下载字体、`check-update` 查 PyPI 时若常规请求失败（疑似 DNS 污染），自动用 DoH 真实 IP + TLS SNI 直连重试——TLS 证书仍按真实域名校验，安全不降级，用户零操作。
+
+**处置建议**（按推荐度）：
+1. 若使用了代理工具（Clash/V2Ray 等）且系统解析命中 198.18.x Fake-IP，优先检查其 DNS 模式的 fake-ip-filter 是否漏掉 GitHub 域名（比改 hosts 更治本）
+2. 将诊断输出的 hosts 条目写入 C:\Windows\System32\drivers\etc\hosts（需管理员权限），git / 浏览器即可直连真实 IP
+3. 或使用国内镜像仓库克隆/更新（见下方「镜像仓库」）
+
+> 诊断 + 自动兜底：本工具不写入 hosts、不修改系统配置；但 `font install` 下载字体、`check-update` 查询 PyPI 遇到 DNS 污染导致的失败时，会**自动用安全 DNS（DoH）真实 IP + TLS SNI 直连重试**（零操作，证书校验不降级）。DoH 查询经第三方公共 DNS 服务，仅在诊断/兜底失败时发起少量查询，隐私敏感者可设置 GONGWEN_DOH 指向自有端点。
+
 ## 📄 许可证与出处
 
 MIT License · **(c) 2026 Jose AI** · https://www.linhut.cn
@@ -640,4 +675,3 @@ MIT License · **(c) 2026 Jose AI** · https://www.linhut.cn
 - GitHub：https://github.com/linhut/gongwen-skill
 - GitCode：https://gitcode.com/linhut/gongwen-skill
 - AtomGit：https://atomgit.com/linhut/gongwen-skill
-

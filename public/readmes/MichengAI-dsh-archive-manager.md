@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/026a20d2a5ac1545afcd8e0e6d12e4b6a1f73ea5/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/4f6d6b50b93f2b69a2705f9d1020558ec6b04834/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -36,11 +36,11 @@
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/026a20d2a5ac1545afcd8e0e6d12e4b6a1f73ea5/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/4f6d6b50b93f2b69a2705f9d1020558ec6b04834/assets/screenshots/archive-session-menu.png)
 
 Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/026a20d2a5ac1545afcd8e0e6d12e4b6a1f73ea5/assets/screenshots/archived-sessions.png)
+![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/4f6d6b50b93f2b69a2705f9d1020558ec6b04834/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 

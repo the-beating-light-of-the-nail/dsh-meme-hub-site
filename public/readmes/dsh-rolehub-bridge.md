@@ -62,10 +62,10 @@ Optional capabilities are never granted automatically. A missing required capabi
 
 ## Native DSH UI
 
-The package adds RoleHub actions to the official `conversation.session.header.actions` and `sidebar.footer.action` slots. Both open the same native `Modal`, where you can search Hubs, tags, descriptions, and capabilities; inspect the bundle digest and effective capability groups; then create a role Session. With Room v0.6 or newer installed, the bridge registers the same verified picker in Room's distinct header and footer provider seats, with the current Room preselected. The original header-seat key remains registered so existing provider integrations keep working.
+The package adds RoleHub actions to the official `conversation.session.header.actions` and `sidebar.footer.action` slots. Both open the same native `Modal`, where you can search Hubs, tags, descriptions, and capabilities; inspect the bundle digest and effective capability groups; then create a role Session. With a Room release that offers the native `Room` conversation view installed, the bridge registers the same verified picker in Room's distinct header, footer, and view provider seats, with the current Room preselected. The original header-seat key remains registered so existing provider integrations keep working.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ishuowang/dsh-rolehub-bridge/a0444e4effc017c3683894beddbacf2058d2e47d/assets/rolehub-native-ui-concept.svg" width="920" alt="Concept preview of the RoleHub chooser in native DSH Web">
+  <img src="https://raw.githubusercontent.com/ishuowang/dsh-rolehub-bridge/d6780fd92c33538e3942b098952cb80f7ddb157d/assets/rolehub-native-ui-concept.svg" width="920" alt="Concept preview of the RoleHub chooser in native DSH Web">
   <br>
   <sub>Concept preview with synthetic data—not a screenshot of a live account. The bundled client uses native DSH slots, primitives, and tokens.</sub>
 </p>
@@ -73,7 +73,7 @@ The package adds RoleHub actions to the official `conversation.session.header.ac
 The UI's first open performs only a same-origin `GET`. Refresh explicitly runs `/rolehub refresh`; starting a role explicitly runs `/rolehub start`. The browser snapshot exposes Hub ids, public role metadata, digests, capability labels, and bounded Room summaries. It omits catalog/archive URLs, local paths, stored policy receipts, provider bindings, transcripts, and private Room data.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ishuowang/dsh-rolehub-bridge/a0444e4effc017c3683894beddbacf2058d2e47d/assets/room-invite-concept.svg" width="820" alt="Concept preview of choosing a RoleHub role from an Agent Team Room">
+  <img src="https://raw.githubusercontent.com/ishuowang/dsh-rolehub-bridge/d6780fd92c33538e3942b098952cb80f7ddb157d/assets/room-invite-concept.svg" width="820" alt="Concept preview of choosing a RoleHub role from an Agent Team Room">
   <br>
   <sub>Optional Room flow: choose a verified role, create an independent Session, then attach it through Room's public API.</sub>
 </p>

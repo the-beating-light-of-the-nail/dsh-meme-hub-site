@@ -1,10 +1,10 @@
-![HA Orchestrator —— 模型故障恢复与多智能体编排](https://raw.githubusercontent.com/Saktawdi/dsh-ha-orchestrator/7a0601d6988a1c297c217c42dcd663cba41e7467/docs/hero-banner.png)
+![HA Orchestrator —— 模型故障恢复与多智能体编排](https://raw.githubusercontent.com/Saktawdi/dsh-ha-orchestrator/86ace1f8ad84eaa7079bd0d36f17b37645a8a903/docs/hero-banner.png)
 
 <p align="center">
-  <a href="https://github.com/Saktawdi/dsh-ha-orchestrator/releases"><img src="https://img.shields.io/badge/version-v0.12.2-4d6bfe?style=flat-square" alt="版本" height="20"></a>
+  <a href="https://github.com/Saktawdi/dsh-ha-orchestrator/releases"><img src="https://img.shields.io/badge/version-v0.12.4-4d6bfe?style=flat-square" alt="版本" height="20"></a>
   <a href="https://github.com/deepseek-ai/dsh"><img src="https://img.shields.io/badge/platform-DeepSeek%20Harness-4d6bfe?style=flat-square" alt="平台" height="20"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="许可证 MIT" height="20"></a>
-  <a href="docs/verification.md"><img src="https://img.shields.io/badge/tests-219%20passing-2ea44f?style=flat-square" alt="测试" height="20"></a>
+  <a href="docs/verification.md"><img src="https://img.shields.io/badge/tests-227%20passing-2ea44f?style=flat-square" alt="测试" height="20"></a>
   <a href="docs/configuration.md"><img src="https://img.shields.io/badge/orchestration%20modes-5-6f42c1?style=flat-square" alt="编排模式" height="20"></a>
   <a href="https://awesome-dsh-plugin.com"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="Awesome DSH Plugin" height="20"></a>
 </p>
@@ -135,11 +135,11 @@ HA Orchestrator 是 [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（dsh
 ## 展示
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Saktawdi/dsh-ha-orchestrator/7a0601d6988a1c297c217c42dcd663cba41e7467/docs/settings-gallery.png" alt="HA Orchestrator 设置展示：模型高可用、子智能体编排、自定义子智能体与编辑页" width="1000">
+  <img src="https://raw.githubusercontent.com/Saktawdi/dsh-ha-orchestrator/86ace1f8ad84eaa7079bd0d36f17b37645a8a903/docs/settings-gallery.png" alt="HA Orchestrator 设置展示：模型高可用、子智能体编排、自定义子智能体与编辑页" width="1000">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Saktawdi/dsh-ha-orchestrator/7a0601d6988a1c297c217c42dcd663cba41e7467/docs/run-states-gallery.png" alt="HA Orchestrator 已完成运行与预算耗尽异常状态" width="1000">
+  <img src="https://raw.githubusercontent.com/Saktawdi/dsh-ha-orchestrator/86ace1f8ad84eaa7079bd0d36f17b37645a8a903/docs/run-states-gallery.png" alt="HA Orchestrator 已完成运行与预算耗尽异常状态" width="1000">
 </p>
 
 > 注：上述展示来源版本：v0.12.x
@@ -195,7 +195,7 @@ HA Orchestrator 是 [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（dsh
 ## 注意事项
 
 - 配置和 HA 状态按「会话 workspace / `DSH_HOME` → 沙箱 `workspace-write` 可写根」查找；没有候选目录时，配置写入会在诊断里报告失败。运行记录和 Markdown 工件在没有候选目录时还会尝试写入 fs 服务默认 cwd。
-- HA 运行态（隔离、失败计数、轮换游标、切换历史）以 500ms 防抖持久化到 `dsh-ha-orchestrator.ha.json`，重启自动恢复；编排运行记录写入 `dsh-ha-orchestrator.runs.jsonl`（磁盘最多 200 条、内存最多 50 条），并额外生成 `dsh-ha-orchestrator.run-<runId>.md`，包含完整子任务输出。
+- HA 运行态（隔离、失败计数、轮换游标、切换历史）以 500ms 防抖持久化到 `dsh-ha-orchestrator.ha.json`，重启自动恢复；编排运行记录写入 `dsh-ha-orchestrator.runs.jsonl`（磁盘最多 200 条、内存最多 20 条），并额外生成 `dsh-ha-orchestrator.run-<runId>.md`，包含完整子任务输出。
 - 运行记录和工件可能包含任务 prompt 与模型输出，请确保 workspace 只对可信用户/进程可读。
 - `/ha` 与 `/orchestrate` 的所有斜杠命令见上方「已注册命令」。
 

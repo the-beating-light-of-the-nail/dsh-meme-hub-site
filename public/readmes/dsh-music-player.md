@@ -6,7 +6,7 @@ DeepSeek Harness 音乐/小说播放插件。
 
 写代码写累了、想摸鱼又不想切窗口？这个插件就是你的**摸鱼神器**——直接在 DeepSeek Harness 的网页里塞进一个 **DSH音乐播放器**：扫一下你电脑上的音乐目录（默认 `~/Music`）就能在浏览器里听歌，带播放条和可拖拽的播放面板，还能自己建歌单。
 
-光听歌还不够，它还能**听书**：把本地 `.txt`/`.epub` 小说丢给 AI 朗读，想听哪章点哪章、声音随便挑。现在还能**听新闻**：让 agent 用联网搜索收集当天头条（热点/国内/国际/科技/财经/体育/娱乐，或 AI 等任意自定义主题），整理筛选成口播稿用 AI 声音播报——支持每日多定时任务定时、静默收集、文字版阅读。最绝的是它注册了 `music_play` 等模型工具——你连鼠标都不用动，在对话框里跟 agent 说句「播放周杰伦的歌」，音乐分分钟响起来，摸鱼摸出新境界。
+光听歌还不够，它还能**听书**：把本地 `.txt`/`.epub` 小说丢给 AI 朗读，想听哪章点哪章、声音随便挑。现在还能**听新闻**：让 agent 用联网搜索收集当天头条（热点/国内/国际/科技/财经/体育/娱乐，或 AI 等任意自定义主题），整理筛选成口播稿用 AI 声音播报——支持每日多定时任务定时、静默收集、文字版阅读。还能**听网络电台**：中文主流台（央广/凤凰/CCTV 伴音等，含 HLS 流）与全球电台一键开播。最绝的是它注册了 `music_play` 等模型工具——你连鼠标都不用动，在对话框里跟 agent 说句「播放周杰伦的歌」，音乐分分钟响起来，摸鱼摸出新境界。
 
 ## 特性
 
@@ -24,16 +24,18 @@ DeepSeek Harness 音乐/小说播放插件。
 - **自建歌单**：可新建多个歌单，从本地文件（支持多选、可跨目录）添加歌曲；播放条爱心按钮一键收藏到默认歌单「我最喜欢」；歌单作为播放来源时，顺序/乱序循环只在该歌单内进行
 - **在线 QQ 音乐**：面板内置「QQ音乐」页签——微信/QQ 扫码登录（解锁 VIP/高音质）、我的歌单/推荐歌单/分类歌单/排行榜/新歌/搜索浏览、卡片式歌单展示、一键收藏到「我喜欢」
 - **在线酷狗音乐**：面板内置「酷狗音乐」页签——酷狗 App 扫码登录（解锁高音质）、推荐/分类歌单/排行榜（TOP500 等）/统一搜索/我的歌单，逐字歌词内嵌翻译；详见下文「在线酷狗音乐」
+- **在线网易云音乐**：面板内置「网易云」页签——扫码登录后浏览/搜索/播放（免费歌 320k 高音质直链、VIP 歌试听片段）、我的歌单/推荐/分类歌单/排行榜、YRC 逐字歌词与 LRC+逐句翻译；详见下文「在线网易云音乐」
+- **网络电台**：面板内置「网络电台」页签——radio-browser 全球开放电台目录（数万台、无登录），按台名/国家/标签搜索，中文电台/热门电台按主题分组浏览、收藏与最近播放；**支持 HLS(m3u8) 电台**（央广/凤凰/CRI/CCTV 伴音等中文主流台），Host 端纯 Node 把 HLS 转成浏览器直接可播的音频流，无新依赖；`music_play` 传 `source=radio` 可按台名直接开播；详见下文「网络电台」
 
 ## 截图
 
 | 播放本地音乐 | 播放QQ音乐 |
 |:---:|:---:|
-| ![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-bar.png) | ![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-qq.png) |
+| ![播放本地音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/09ee0dd891aa1659f68ecff146c43ccf86df2d66/assets/screenshot-bar.png) | ![播放QQ音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/09ee0dd891aa1659f68ecff146c43ccf86df2d66/assets/screenshot-qq.png) |
 | 播放酷狗音乐 | AI讲书 |
-| ![播放酷狗音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-kg.png) | ![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-spectrum.png) |
+| ![播放酷狗音乐](https://raw.githubusercontent.com/kendu76/dsh-music-player/09ee0dd891aa1659f68ecff146c43ccf86df2d66/assets/screenshot-kg.png) | ![播放AI讲书](https://raw.githubusercontent.com/kendu76/dsh-music-player/09ee0dd891aa1659f68ecff146c43ccf86df2d66/assets/screenshot-novel.png) |
 | QQ音乐面板 | 酷狗音乐面板 |
-| ![播放面板1](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-panel-qq.png) | ![播放面板2](https://raw.githubusercontent.com/kendu76/dsh-music-player/b72f8d4d830da03e603c23b13a32a2e63c7e4432/assets/screenshot-panel-kg.png) |
+| ![播放面板1](https://raw.githubusercontent.com/kendu76/dsh-music-player/09ee0dd891aa1659f68ecff146c43ccf86df2d66/assets/screenshot-panel-qq.png) | ![播放面板2](https://raw.githubusercontent.com/kendu76/dsh-music-player/09ee0dd891aa1659f68ecff146c43ccf86df2d66/assets/screenshot-panel-kg.png) |
 
 ## 安装
 
@@ -133,6 +135,35 @@ dsh plugin --profile <profile> add github:kendu76/dsh-music-player
 > **使用声明**：与在线 QQ 音乐相同——非官方接口、仅供个人学习试听、严禁商业用途；
 > 账号风控风险由使用者自行承担。技术细节与端点调研见
 > [docs/kugou-integration-research.md](docs/kugou-integration-research.md)。
+
+## 在线网易云音乐
+
+播放面板侧栏切到「**网易云**」页签。**需先用网易云音乐 App 扫码登录**（与 QQ/酷狗一致，未登录只显示登录入口），登录后支持：
+
+- **播放**：免费歌曲直接拿 320k 高音质直链播放（播放条显示「网易云 · 高音质」）；VIP/数字专辑歌曲仅能播 **45 秒试听片段**（显示「试听」）。
+- **浏览**：推荐歌单 / 分类歌单（65 个分类）/ 官方排行榜（飙升榜、新歌榜等 63 个榜单）/ 统一搜索（歌曲 + 歌单，多分型）。歌单详情（含超大歌单，如 200 首的热歌榜自动批量补齐）与榜单详情头部均有「▶ 播放全部」。
+- **歌词**：YRC 逐字行窗口（与 QQ QRC / 酷狗 KRC 同级精度，命中时生效）；普通歌曲回退整行 LRC，外语歌带逐句翻译（tlyric）与罗马音。
+- **我的歌单**：登录后可查看「我喜欢的音乐」与自建/收藏歌单；**公开歌单详情页可一键「☆ 收藏 / ★ 已收藏」**（收藏进「我的歌单」，取消收藏同按钮）。
+- **续播**：播放进度 + 队列独立持久化，刷新后自动恢复；单曲版权受限/取链失败自动跳下一首。
+- 登录态保存在 Host 端（`~/.dsh/music-player-netease-cookie.json`，0600），刷新/重启不丢。
+- 另有「匿名取链」能力保留在后端：agent 用 `music_play` 工具传 `source=netease` 时，未登录也能播免费曲（供对话场景直接点播）。
+
+> **使用声明**：与在线 QQ 音乐相同——非官方接口、仅供个人学习试听、严禁商业用途；
+> 账号风控风险由使用者自行承担。技术细节与端点调研见
+> [docs/netease-integration-research.md](docs/netease-integration-research.md)。
+
+## 网络电台
+
+播放面板切到「**网络电台**」页签即可在线听全球电台（radio-browser.info 开放目录，**无需登录、无 key**）。子页签：**我的电台（收藏）/ 最近播放 / 中文电台 / 热门电台 / 搜索**。
+
+- **数据源**：radio-browser.info 社区目录（~4 万电台，CC 开放数据），多镜像自动故障转移；按台名/国家/标签/主题搜索或浏览。
+- **中文电台 / 热门电台**：按主题分组浏览（中文=全部/新闻/音乐/交通/财经/文艺/故事/体育；热门=全部/音乐/新闻/古典/摇滚/爵士/谈话），「加载更多」分页拉取，会话内缓存切回不重拉。
+- **HLS(m3u8) 支持**：央广/凤凰/CRI/CCTV 伴音等中文主流台多为 HLS 流（实测 CN 目录约四成为 HLS）。Host 端纯 Node（`lib/hls.js`）实时解析 m3u8（支持 master 嵌套、防盗链 token 与 scheme-relative URL）→ 逐分片归一化为 AAC(ADTS) 连续流喂给浏览器——兼容 **MPEG-TS 分片**（央广/凤凰/CCTV）与**裸 ADTS 分片**（蜻蜓/喜马拉雅系 .aac，如「华语金曲500首」）两种容器，**无需 hls.js/ffmpeg 任何新依赖**，浏览器 `<audio>` 直接可播（LIVE 直播态/断流自动重连与纯流台一致）。HLS 台在列表显示绿色「HLS」徽章、播放条标「电台 · HLS」。
+- **收藏**：点行尾 ♥ 收藏到本地收藏夹（`~/.dsh/music-player-radio.json`），「我的电台」随时回听。
+- **命令**：`music_play` 工具传 `source=radio` + 台名/国家，agent 可直接搜台开播（如「播放网络电台 中国之声」）。
+- 直播流不 seek、无进度条（LIVE 态）；个别台站可能失效或编码特殊（fMP4/加密等非 AAC）时会明确提示换台。
+
+> **合规**：目录为 CC 开放数据，播放的是各电台公开直播流；仅供个人收听，不录制/不二次分发，遵守台站 ToS。设计与实测记录见 [docs/internet-radio-design.md](docs/internet-radio-design.md)。
 
 ## AI 讲书
 

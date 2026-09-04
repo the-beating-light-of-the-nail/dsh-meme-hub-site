@@ -6,7 +6,7 @@
 
 **Stop rebuilding what already exists.** While you plan and implement, the agent proactively checks the curated AIGC Radar library for mature, battle-tested projects that already solve your problem — before you write a line of code. Results render as **native search cards** in the dsh Web UI — not raw markdown — and survive session replay.
 
-![search_ai_projects rendering as a native search card in the dsh Web UI](https://raw.githubusercontent.com/Kaixxrua/dsh-aigc-radar/c7838f0c92d5503d9bda200421b6afc97e346c15/docs/search-card.png)
+![search_ai_projects rendering as a native search card in the dsh Web UI](https://raw.githubusercontent.com/Kaixxrua/dsh-aigc-radar/d2ece97b883d005c8e8b587bb93699c111b1d435/docs/search-card.png)
 
 ## What you get
 
@@ -18,7 +18,7 @@
 Two routing layers make discovery automatic rather than opt-in:
 
 - **Explicit discovery** — ask "找个能做 deep research 的开源框架" and the agent comes back with starred, categorized results, no "use the tool" needed
-- **Proactive reuse check** — before the agent implements a major module or subsystem (auth, payments, workflow engines, search/indexing, protocol implementations, end-to-end RAG/Agent pipelines…), it runs one library check on its own initiative, so mature alternatives surface before anyone rebuilds them. Narrow work (bug fixes, renames, styling, CRUD) is deliberately excluded
+- **Proactive reuse check** — before the agent implements a major module or subsystem (auth, payments, workflow engines, search/indexing, protocol implementations, end-to-end RAG/Agent pipelines…), or recommends the architecture / technology / build-vs-reuse approach for one, it runs one library check on its own initiative, so mature alternatives surface before anyone rebuilds them. Narrow work (bug fixes, renames, styling, CRUD) is deliberately excluded
 
 ### Why a native plugin instead of the MCP server?
 

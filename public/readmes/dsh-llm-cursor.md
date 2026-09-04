@@ -10,10 +10,13 @@ The package root exposes the Cordis plugin contract. The same artifact exports `
 
 ## Installation
 
-This release targets DeepSeek Harness 0.1.2-alpha.1. Install directly from GitHub. Signing in after install uses the same unofficial session as the rest of this plugin, so the ban risk above applies immediately:
+This release targets DeepSeek Harness 0.1.2-alpha.4 and is not compatible with Alpha.1–Alpha.3. Install directly from GitHub. Signing in after install uses the same unofficial session as the rest of this plugin, so the ban risk above applies immediately. Users remaining on Alpha.1–Alpha.3 must keep the last Alpha.1-compatible release instead of installing this version:
 
 ~~~sh
-dsh plugin --profile web add github:NOirBRight/dsh-llm-cursor#v0.2.14
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.3/dsh-llm-providers-ui-0.1.3.tgz
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-llm-cursor/releases/download/v0.2.15/dsh-llm-cursor-0.2.15.tgz
 dsh web
 ~~~
 
@@ -23,7 +26,7 @@ The repository tracks release-ready lib artifacts, so GitHub installation needs 
 
 Open Settings → LLM Providers → Cursor. The card subtitle is the same warning as above: unofficial private endpoints; Cursor staff treat this as against ToS; **the account can be banned**.
 
-![Cursor plugin card: ToS warning, sign-in, subscription usage, and saved catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/af32e2fdbcd27bf2e3b9af509595beb865986ead/docs/screenshots/plugin-card.png)
+![Cursor plugin card: ToS warning, sign-in, subscription usage, and saved catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/60e22939241fb9db07569c51b46db51f845885b9/docs/screenshots/plugin-card.png)
 
 **Sign in with Cursor** starts a Host-owned Deep Control PKCE flow (the same session entry the official CLI uses), opens the system browser, and polls until the login completes. The session is stored only on the Host at `$DSH_HOME/cursor-oauth.json` (mode `0600`). The card then shows the account email when known. Sign out deletes that file. The browser never receives tokens.
 
@@ -31,9 +34,9 @@ This plugin does **not** read or write `~/.cursor` or official CLI credential fi
 
 After sign-in, **Fetch available models** reads the account catalog with `GetUsableModels`. Cursor lists every thinking-level SKU as a separate wire id; the plugin collapses those into one family and maps the chat thinking-level picker back to the matching wire id. Fast SKUs stay their own models. Fetch offers a sibling `-1m` row only for families Cursor actually has Max Context for (for example `claude-opus-5-1m`), not for every `maxMode` flag; saving keeps only the rows you picked. You can then reorder, rename, or edit capability flags. Chat uses that saved catalog.
 
-![Fetch picker: choose which model families to keep in the catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/af32e2fdbcd27bf2e3b9af509595beb865986ead/docs/screenshots/catalog-picker.png)
+![Fetch picker: choose which model families to keep in the catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/60e22939241fb9db07569c51b46db51f845885b9/docs/screenshots/catalog-picker.png)
 
-![Chat model picker after the catalog is saved](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/af32e2fdbcd27bf2e3b9af509595beb865986ead/docs/screenshots/chat-model-menu.png)
+![Chat model picker after the catalog is saved](https://raw.githubusercontent.com/NOirBRight/dsh-llm-cursor/60e22939241fb9db07569c51b46db51f845885b9/docs/screenshots/chat-model-menu.png)
 
 Chat itself goes through HTTP/2 Connect+protobuf `POST https://api2.cursor.sh/agent.v1.AgentService/Run`. DSH remains the only agent loop and tool executor. When signed in, the card also shows subscription usage from the Cursor dashboard rails (Cursor Models / Other Models, and On-Demand when it has spend or a cap). Logged-out cards do not request usage; an unrecognized surface is shown as unsupported, not as an error.
 
@@ -120,7 +123,7 @@ The **LLM Providers** Settings page (`settings.section` `id: providers` with chi
 
 - This plugin contributes only its keyed card (`key: llm-cursor`) and its Host `llm` route; it does not install the page or the shared `llm-providers` namespace. Load order with the owner does not matter.
 - Without the owner (Headless or Web without `dsh-llm-providers-ui`): the Host model route `cursor` still works; in Web the Providers page and this card are omitted and the browser console warns that the owner is missing. The pack gate verifies that this plugin’s browser factory does not request or bundle the owner; Web composition remains a profile responsibility.
-- The nav globe glyph is a temporary `alpha.1` DOM adapter owned only by `dsh-llm-providers-ui` (`src/client/nav-icon.ts`); this plugin does not ship that adapter.
+- The nav globe glyph is a temporary `Alpha.4` DOM adapter owned only by `dsh-llm-providers-ui` (`src/client/nav-icon.ts`); this plugin does not ship that adapter.
 
 Install `dsh-llm-providers-ui` explicitly in the profile alongside provider plugins (see that package's `cordis.patch.yml`).
 
@@ -131,7 +134,7 @@ MIT. The vendored AgentService protobuf binding is derived from [oh-my-pi](https
 
 ## Release installation (Latest)
 
-Unofficial Cursor subscription login, model discovery, and chat. The release artifact targets DeepSeek Harness 0.1.2-alpha.1 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
+Unofficial Cursor subscription login, model discovery, and chat. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 and is not compatible with Alpha.1–Alpha.3; it contains built Host/Client files only and has no sibling-repository source, workstation path, link:, or workspace: dependency. Users on older runtimes must keep the last Alpha.1-compatible tag.
 
 The dsh-llm-providers-ui package owns the LLM Providers page, navigation, and shared order store. This package owns only its provider card, models, credentials, and Host route. Install the Owner first for Web; headless Host routing works without the Owner.
 
@@ -139,23 +142,23 @@ Owner (Latest):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/latest/download/dsh-llm-providers-ui.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/latest/download/dsh-llm-providers-ui-0.1.3.tgz
 ~~~
 
 Provider (Latest):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-cursor/releases/latest/download/dsh-llm-cursor.tgz
+  https://github.com/NOirBRight/dsh-llm-cursor/releases/latest/download/dsh-llm-cursor-0.2.15.tgz
 ~~~
 
 Fixed versions (reproducible):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.2/dsh-llm-providers-ui.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.3/dsh-llm-providers-ui-0.1.3.tgz
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-cursor/releases/download/v0.2.14/dsh-llm-cursor.tgz
+  https://github.com/NOirBRight/dsh-llm-cursor/releases/download/v0.2.15/dsh-llm-cursor-0.2.15.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -163,7 +166,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-cursor/releases/latest/download/dsh-llm-cursor.tgz
+  https://github.com/NOirBRight/dsh-llm-cursor/releases/latest/download/dsh-llm-cursor-0.2.15.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -175,4 +178,4 @@ Configuration: use the plugin section in Settings for Web UI plugins, or the pro
 
 Rollback: rerun the fixed v0.2.14 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.2.14](https://github.com/NOirBRight/dsh-llm-cursor/releases/tag/v0.2.14) · [SHA256SUMS](https://github.com/NOirBRight/dsh-llm-cursor/releases/download/v0.2.14/SHA256SUMS).
+Release and integrity: [v0.2.15](https://github.com/NOirBRight/dsh-llm-cursor/releases/tag/v0.2.15) · [SHA256SUMS](https://github.com/NOirBRight/dsh-llm-cursor/releases/download/v0.2.15/SHA256SUMS).

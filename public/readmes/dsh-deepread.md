@@ -11,7 +11,7 @@
 [![Awesome DSH Plugin](https://beancookie.github.io/awesome-dsh-plugin/badge.svg)](https://beancookie.github.io/awesome-dsh-plugin)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-![DeepRead evidence-first reading workflow](https://raw.githubusercontent.com/xiehuan123/dsh-deepread/36b89114be847e39ed1820fd91e65dc812a6f522/assets/deepread-demo.svg)
+![DeepRead evidence-first reading workflow](https://raw.githubusercontent.com/xiehuan123/dsh-deepread/79da4d2c548e51538370a8811953e91a159e5c93/assets/deepread-demo.svg)
 
 DeepRead is available in two compatible forms:
 
@@ -32,7 +32,7 @@ If the source does not support a claim, DeepRead says **“source does not provi
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/main/.github/assets/deepread-panel-dark.jpg">
-    <img src="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/36b89114be847e39ed1820fd91e65dc812a6f522/.github/assets/deepread-panel-light.jpg" width="470" alt="DeepRead reading panel with input, reading mode, export, focus, and budget controls">
+    <img src="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/79da4d2c548e51538370a8811953e91a159e5c93/.github/assets/deepread-panel-light.jpg" width="470" alt="DeepRead reading panel with input, reading mode, export, focus, and budget controls">
   </picture>
   <br>
   <sub>The real DeepSeek Harness Web reading panel. The portable Agent Skill uses the same evidence-first workflow without this runtime UI.</sub>
@@ -57,6 +57,12 @@ For every important claim, show the supporting evidence and source location.
 
 ```sh
 dsh plugin --profile web add dsh-deepread
+```
+
+If pnpm reports `ERR_PNPM_ADDING_TO_ROOT`, retry with the profile workspace made explicit:
+
+```sh
+dsh plugin --profile web add -w dsh-deepread
 ```
 
 Restart `dsh web`, then use the 📖 reading panel or call the `deepread` tool in chat.
@@ -135,6 +141,26 @@ dsh plugin --profile web add dsh-deepread@1.0.0
 # Exact GitHub tag (after v1.0.0 is created)
 dsh plugin --profile web add "github:xiehuan123/dsh-deepread#v1.0.0"
 ```
+
+To remove DeepRead from the Web profile:
+
+```sh
+dsh plugin --profile web remove dsh-deepread
+```
+
+#### pnpm workspace-root compatibility
+
+Some DSH releases create each profile as a pnpm workspace but forward `add` and `remove` without marking the workspace root explicitly. With affected pnpm versions, the command stops before any DeepRead code runs and reports `ERR_PNPM_ADDING_TO_ROOT`. Retry only that failed operation with `-w` (the pnpm shorthand for `--workspace-root`):
+
+```sh
+# Install after ERR_PNPM_ADDING_TO_ROOT
+dsh plugin --profile web add -w dsh-deepread
+
+# Remove after the same workspace-root error
+dsh plugin --profile web remove -w dsh-deepread
+```
+
+This is a profile package-manager compatibility issue and can affect any DSH plugin installed into that profile. Do not delete pnpm caches or edit `node_modules` by hand; let `dsh plugin` update the profile manifest and bundle list.
 
 Restart `dsh web` for it to take effect. A 📖 shortcut button appears next to the input area; click it to open the card-style reading panel. You can also just say: "Read this article in knowledge-map mode: <content>".
 
@@ -263,7 +289,7 @@ npm pack --dry-run --json   # inspect the publishable file list and public entri
 
 For Chinese-language notes about AI tools, open-source projects, and practical workflows, follow **Appoint 实验室** on WeChat:
 
-<img src="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/36b89114be847e39ed1820fd91e65dc812a6f522/.github/assets/appoint-lab-wechat.png" width="360" alt="Appoint 实验室 WeChat public account poster and QR code">
+<img src="https://raw.githubusercontent.com/xiehuan123/dsh-deepread/79da4d2c548e51538370a8811953e91a159e5c93/.github/assets/appoint-lab-wechat.png" width="360" alt="Appoint 实验室 WeChat public account poster and QR code">
 
 If traceable AI reading is useful to you, [star the repository](https://github.com/xiehuan123/dsh-deepread) to make it easier for the next reader to find and to follow future releases.
 

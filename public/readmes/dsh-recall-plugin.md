@@ -1,14 +1,13 @@
-# dsh-recall-plugin
+# dsh-recall-plugin ![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)
 
 简体中文 | [English](README.en.md)
 
 [![npm version](https://img.shields.io/npm/v/dsh-recall-plugin.svg)](https://www.npmjs.com/package/dsh-recall-plugin)
 [![npm downloads](https://img.shields.io/npm/dt/dsh-recall-plugin.svg)](https://www.npmjs.com/package/dsh-recall-plugin)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-[![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-blue)](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.1-rc.2)
-[![DSH](https://img.shields.io/badge/DSH-0.1.2--alpha.3-red)](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.2-alpha.3)
+[![DSH](https://img.shields.io/badge/DSH-0.1.2--rc.1-blue)](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.2-rc.1)
 ---
-**在任意一条你发过的消息下方**，**点「↶ 撤回」**，**工作区文件和对话历史一起回到那条消息发出之前的状态**（DSH 0.1.1-rc.2）。
+**在任意一条你发过的消息下方**，**点「↶ 撤回」**，**工作区文件和对话历史一起回到那条消息发出之前的状态**
 ---
 
 [更新日志](CHANGELOG.md)
@@ -17,11 +16,11 @@
 
 | 撤回按钮 | 确认面板 · 变更文件清单 |
 | --- | --- |
-| ![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/ef3d7f9e7b74725004bd4866a30ee44d61806583/docs/screenshots/recall-button.png) |  ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/ef3d7f9e7b74725004bd4866a30ee44d61806583/docs/screenshots/confirm-panel-1.png) |
+| ![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/2552c6b91e7513c7b5842fe127b37ea53ed1da76/docs/screenshots/recall-button.png) |  ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/2552c6b91e7513c7b5842fe127b37ea53ed1da76/docs/screenshots/confirm-panel-1.png) |
 
 - 设置页 · 插件配置卡片（配置表单 / 排除表 / 快照管理，保存即热生效）
 
- ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/ef3d7f9e7b74725004bd4866a30ee44d61806583/docs/screenshots/settings-exclude-2.png) 
+ ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/2552c6b91e7513c7b5842fe127b37ea53ed1da76/docs/screenshots/settings-exclude-2.png) 
 
 
 ## 功能亮点

@@ -1,13 +1,17 @@
 # dsh-theme-escook
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Simon-yyy/dsh-theme-escook/19f36748198c3b79fcd9d21e639f014c709b2901/assets/logo.svg" width="96" alt="escook-theme logo" />
+  <img src="https://raw.githubusercontent.com/Simon-yyy/dsh-theme-escook/f05860133cd0a77743b5c7564c3d8428cff19628/assets/logo.svg" width="96" alt="escook-theme logo" />
 </p>
 
 <h3 align="center">🌸 Escook Theme for DeepSeek Harness</h3>
 
 <p align="center">
   A premium dark violet & amber gold aesthetic theme crafted for DeepSeek Harness Web GUI & Desktop.
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Simon-yyy/dsh-theme-escook/f05860133cd0a77743b5c7564c3d8428cff19628/assets/preview.png" alt="escook-theme 4-in-1 preview" width="100%" />
 </p>
 
 ---

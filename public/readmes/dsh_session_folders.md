@@ -8,9 +8,9 @@ A session-folders plugin for the DeepSeek Harness web UI: the sidebar workspace 
 
 <table>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/EugeneVl/dsh_session_folders/8d4f0834df411e878be292fed7f302bafc1bc1bf/assets/screenshot-1.jpg" alt="dsh-session-folders screenshot 1" width="280"></td>
-    <td><img src="https://raw.githubusercontent.com/EugeneVl/dsh_session_folders/8d4f0834df411e878be292fed7f302bafc1bc1bf/assets/screenshot-2.jpg" alt="dsh-session-folders screenshot 2" width="280"></td>
-    <td><img src="https://raw.githubusercontent.com/EugeneVl/dsh_session_folders/8d4f0834df411e878be292fed7f302bafc1bc1bf/assets/screenshot-3.jpg" alt="dsh-session-folders screenshot 3" width="280"></td>
+    <td><img src="https://raw.githubusercontent.com/EugeneVl/dsh_session_folders/4b6c6202874605c9764ff37ab7029cb5d4f4dbf6/assets/screenshot-1.jpg" alt="dsh-session-folders screenshot 1" width="280"></td>
+    <td><img src="https://raw.githubusercontent.com/EugeneVl/dsh_session_folders/4b6c6202874605c9764ff37ab7029cb5d4f4dbf6/assets/screenshot-2.jpg" alt="dsh-session-folders screenshot 2" width="280"></td>
+    <td><img src="https://raw.githubusercontent.com/EugeneVl/dsh_session_folders/4b6c6202874605c9764ff37ab7029cb5d4f4dbf6/assets/screenshot-3.jpg" alt="dsh-session-folders screenshot 3" width="280"></td>
   </tr>
 </table>
 

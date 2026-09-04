@@ -8,9 +8,9 @@
 
 ## 效果
 
-| ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/ae67475b20f6729f0391295b6e18bc0103437bf6/assets/screenshot_01.png)<br>深色 · 主题效果 | ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/ae67475b20f6729f0391295b6e18bc0103437bf6/assets/screenshot_02.png)<br>深色 · 主题效果 | ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/ae67475b20f6729f0391295b6e18bc0103437bf6/assets/screenshot_03.png)<br>深色 · 主题效果 |
+| ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/2901caaec7a33b48c9bad4aa286765bc6f456b71/assets/screenshot_01.png)<br>深色 · 主题效果 | ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/2901caaec7a33b48c9bad4aa286765bc6f456b71/assets/screenshot_02.png)<br>深色 · 主题效果 | ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/2901caaec7a33b48c9bad4aa286765bc6f456b71/assets/screenshot_03.png)<br>深色 · 主题效果 |
 | --- | --- | --- |
-| ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/ae67475b20f6729f0391295b6e18bc0103437bf6/assets/screenshot_04.png)<br>深色 · 主题效果 | ![浅色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/ae67475b20f6729f0391295b6e18bc0103437bf6/assets/screenshot_05.png)<br>浅色 · 主题效果 | ![主题调节面板](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/ae67475b20f6729f0391295b6e18bc0103437bf6/assets/screenshot_06.png)<br>主题调节面板 |
+| ![深色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/2901caaec7a33b48c9bad4aa286765bc6f456b71/assets/screenshot_04.png)<br>深色 · 主题效果 | ![浅色 · 主题效果](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/2901caaec7a33b48c9bad4aa286765bc6f456b71/assets/screenshot_05.png)<br>浅色 · 主题效果 | ![主题调节面板](https://raw.githubusercontent.com/shawnlone/dsh-theme-tuner/2901caaec7a33b48c9bad4aa286765bc6f456b71/assets/screenshot_06.png)<br>主题调节面板 |
 
 ## 功能
 
@@ -36,7 +36,7 @@ dsh plugin --profile web add github:shawnlone/dsh-theme-tuner
 - **背景**：`--dsw-alias-bg-base` / `--dsw-alias-bg-layer-1/2/3` / `--dsw-specific-sidebar-fill`
 - **前景**：`--dsw-alias-label-primary/secondary/tertiary`（由所选前景色 + 对比度自动推导）
 
-设置经 `theme-tuner` 命名空间持久化；设置行注册到 `settings.general.item`（order 15），排在「外观」（order 10）正下方。
+设置经 `theme-tuner` 命名空间持久化；设置行注册到 `settings.general.item`（order 10.5），排在「外观」（order 10）正下方（DSH 0.1.2-rc.1 起新增的「字号大小」在 order 11、「对话显示」在 order 12，故用 10.5 保持紧贴外观）。
 
 ## 目录结构
 

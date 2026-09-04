@@ -30,11 +30,11 @@ It never commits, stashes, resets, switches branches, edits the Git index, or de
 
 Rewind appears as an icon-only third action under each user message, after its timestamp and native Copy action:
 
-![Turn Rewind action under a user message](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/8dcdbbb6faa5f4e0c821adc88e0e43298730da5a/docs/assets/turn-rewind-action.png)
+![Turn Rewind action under a user message](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/9a2acfc44a6f5c94fd81e8cd217a1f54c75750f4/docs/assets/turn-rewind-action.png)
 
 Opening it shows the affected files and offers three choices: restore the files and restart from before that message, restore only the files, or rewind only the messages and leave the files untouched:
 
-![Turn Rewind review dialog](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/8dcdbbb6faa5f4e0c821adc88e0e43298730da5a/docs/assets/turn-rewind-dialog.png)
+![Turn Rewind review dialog](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/9a2acfc44a6f5c94fd81e8cd217a1f54c75750f4/docs/assets/turn-rewind-dialog.png)
 
 ## Why it has a Change Ledger engine
 

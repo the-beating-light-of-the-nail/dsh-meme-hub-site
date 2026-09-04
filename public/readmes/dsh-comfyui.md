@@ -3,7 +3,7 @@
 [English](README.en.md) | **中文**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/fandc520/dsh-comfyui/7744638f3d0ceb11da179c7df8db90c04c6d23f9/logo.png" width="480" alt="dsh-comfyui logo" />
+  <img src="https://raw.githubusercontent.com/fandc520/dsh-comfyui/b0a4e31068d2512e57b0b73acaba481cc1f40919/logo.png" width="480" alt="dsh-comfyui logo" />
 </p>
 
 <h1 align="center">dsh-comfyui</h1>
@@ -15,6 +15,15 @@
   <a href="https://www.npmjs.com/package/dsh-comfyui"><img src="https://img.shields.io/npm/dm/dsh-comfyui" alt="npm downloads" /></a>
   <img src="https://img.shields.io/npm/l/dsh-comfyui" alt="license" />
 </p>
+
+> **版本配对（选对 dsh 版本再装，否则 dshmarket 会报风险提示）**：
+>
+> | dsh-comfyui | 配对的 DeepSeek Harness | 说明 |
+> | --- | --- | --- |
+> | **0.4.0（最新，`latest` tag）** | **≥ 0.1.2** | 0.4.0 起使用新版 settings 服务 API |
+> | **0.3.x（beta 线，`beta` tag）** | **0.1.1** | 老版本 dsh 请留在 0.3.x 线 |
+>
+> 安装：`dsh plugin --profile web add dsh-comfyui`（装最新 0.4.0）/ `dsh plugin --profile web add dsh-comfyui@beta`（老宿主装 0.3.x）。
 
 ## 功能
 
@@ -35,7 +44,7 @@ Agent 直接驱动 ComfyUI，无需手动操作画布：
 - **资产** —— 所有生成结果，预览、下载、悬停可删除（同步清理 ComfyUI 输出目录里的文件）。
 - **队列** —— 实时队列 + 历史任务五态展示，支持删除 / 中断 / 重跑 / 清空 / 释放内存，插件提交的任务带进度条与预览。
 
-<p align="center"><img src="https://raw.githubusercontent.com/fandc520/dsh-comfyui/7744638f3d0ceb11da179c7df8db90c04c6d23f9/images/panel.png" width="70%" alt="插件主面板：工作流 / 资产 / 队列" title="插件主面板：工作流 / 资产 / 队列" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/fandc520/dsh-comfyui/b0a4e31068d2512e57b0b73acaba481cc1f40919/images/panel.png" width="70%" alt="插件主面板：工作流 / 资产 / 队列" title="插件主面板：工作流 / 资产 / 队列" /></p>
 
 ### 加载区（媒体加载器）
 

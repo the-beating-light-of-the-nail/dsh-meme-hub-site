@@ -28,7 +28,7 @@ Using a coding agent? [Copy the setup and verification request](https://github.c
 
 **Reproduced setup flow. This is not a screen recording.**
 
-![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/efa8364628850416096be7acd47f39a1a3e0ea86/assets/demo.gif)
+![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/6bc7d402daaed73c7cacf6b521c5e7593197ef0d/assets/demo.gif)
 
 The command checks the official persistent PowerShell and Workspace Write packages, creates the shortcut, and leaves the profile on the stock Minimal preset.
 

@@ -19,6 +19,32 @@ Restart `dsh web`, then open **Settings → Loop engine**.
 > Everything else you wrote in that file is preserved; only the plugin's own
 > span changes.
 
+> **pnpm users:** pnpm 10+ blocks dependency build scripts by default, so the
+> install may report `@google/genai`, `node-pty`, and `protobufjs` as blocked.
+> This is expected — click **"Allow build scripts and retry"** (or run
+> `pnpm approve-builds`, or list them under `pnpm.onlyBuiltDependencies` in
+> your project root) and retry. Only the installing project can grant this;
+> the plugin cannot pre-approve its own dependencies.
+
+## Version compatibility
+
+dsh-loop-engine is versioned **independently** of the harness (`1.0.0-rcN`) but
+is bound to a specific harness release via `peerDependencies`. The two must be
+matched — a mismatch fails loudly at boot or session resume:
+
+| dsh-loop-engine | Requires harness |
+|---|---|
+| 1.0.0-rc8 | **0.1.2-rc.1** |
+| 1.0.0-rc7 | 0.1.1-rc.2 |
+
+- **1.0.0-rc8 is not compatible with harness 0.1.1-rc.2 or earlier.** It uses
+  the 0.1.2 persistence seam (`SessionPersistence.create` / `open` +
+  `SessionHandle`), the `installSection` settings API, `ToolCallId`, and
+  `Session.snapshotEvents()` — none of which exist in older harnesses.
+- To use the plugin with an older harness, install the loop-engine release that
+  matches it (e.g. `npm i dsh-loop-engine@1.0.0-rc7` for harness 0.1.1-rc.2).
+- The GitHub Release body of each tag states the harness version it targets.
+
 ### Requirements
 
 - For the Claude Code engine: the Claude Code CLI installed and logged in on
@@ -39,6 +65,18 @@ Restart `dsh web`, then open **Settings → Loop engine**.
 2. To return to the default, pick **In-process** and restart again.
 3. To remove the plugin: `dsh plugin --profile web remove dsh-loop-engine`, then
    restart `dsh web`.
+
+### What a hosted engine takes over
+
+While a hosted engine is selected, it owns the session's command and skill
+surface: the plugin disables dsh's own `/goal` and points new sessions at a
+managed `loop-engine` agent preset — a copy of `standard` minus the dsh-native
+`/compact`, `/plan`, goal-tool, and skill rows that an external engine cannot
+honor — so the slash menu shows the engine's bridged commands and its own
+skill catalog. Engine-agnostic dsh commands (`/export`, `/feedback`,
+`/permission`) keep working and stay. Switching back to `in-process` restores
+the previous preset default; already-running sessions always keep the preset
+they were created with.
 
 ### Engine notes
 

@@ -1,6 +1,6 @@
 # dsh-notify-on-complete — Desktop Notifications for DeepSeek Harness · DeepSeek Harness 桌面通知插件
 
-<p align="center"><img src="https://raw.githubusercontent.com/pitetow/dsh-notify-on-complete/21eefda31f414320b900557086f65c4a22ac13c8/assets/notify-cover.jpg" alt="dsh-notify-on-complete — 运行结束通知与系统提示音" width="640"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/pitetow/dsh-notify-on-complete/4cf3277c50cfeb930b75a8d5ecdfcf161b0246d3/assets/notify-cover.jpg" alt="dsh-notify-on-complete — 运行结束通知与系统提示音" width="640"></p>
 
 Send desktop notifications from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`): get a system notification when a run finishes, and an immediate one when the model asks you a question (`ask_user_question`) or waits for approval (sandbox escalation / tool permission). The body reflects the result (completed / error / aborted / max-tokens).
 

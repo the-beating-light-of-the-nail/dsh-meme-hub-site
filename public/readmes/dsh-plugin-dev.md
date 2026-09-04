@@ -47,7 +47,7 @@
 |---|---|---|
 | OS | Windows 11 Pro（build 26200），git-bash（MSYS2 3.5.7） | 本文档的 Windows 特例均在此环境实测 |
 | Node | **v24.18.1**（`~/node24` 便携版） | dsh wrapper 优先使用；系统 node 22.15 不可用 |
-| dsh（npm） | **npm @deepseek-ai/dsh@next（npm 线解析为 0.1.1-rc.2；已在本地 harness 0.1.2-alpha.4 验证，lib 生产模式）** | 通过 `npx -p @deepseek-ai/dsh@next dsh web --no-open` 启动（lib 生产模式；勿 `install -g` 全局安装） |
+| dsh（npm） | **npm @deepseek-ai/dsh@next（npm 线解析为 0.1.2-rc.1；已在本地 harness 0.1.2-rc.1 验证，lib 生产模式）** | 通过 `npx -p @deepseek-ai/dsh@next dsh web --no-open` 启动（lib 生产模式；勿 `install -g` 全局安装） |
 | TypeScript / Vitest | **各仓库 devDependencies 自包含（typescript/vitest/@types/node + lockfile）** | 独立 checkout 可 `npm install` → `npm run typecheck` → `npm test` → `npm run build` → `npm pack` |
 | pnpm | **11.18.0** | `dsh plugin` 内部转发用（profile 目录内） |
 | gh CLI | **2.97.0**（2026-07-31），账号 whiteicey，scopes `gist, read:org, repo` | API 操作与仓库创建/可见性管理 |
@@ -75,7 +75,7 @@
 | `DSH_HOME` | `C:\Users\admin\.dsh` | 未显式设置时默认 `~/.dsh` |
 | `DSH_*` 特殊变量 | 一律由启动环境（wrapper/export）传入 | 放 `~/.dsh/.env` 会启动报错（坑 7） |
 
-启动：`npx -p @deepseek-ai/dsh@next dsh web --no-open`（DSH 0.1.2-alpha.4，lib 生产模式；勿 `install -g` 全局安装）。旧快照方式的 wrapper 已弃用：`~/.local/bin/dsh`（不要直接跑 `bin/dsh`——Windows 下 MSYS 路径转换触发 `ERR_UNSUPPORTED_ESM_URL_SCHEME`，issue #388；wrapper 用 `file://` URL 启动 tsx 规避）。
+启动：`npx -p @deepseek-ai/dsh@next dsh web --no-open`（DSH 0.1.2-rc.1，lib 生产模式；勿 `install -g` 全局安装）。旧快照方式的 wrapper 已弃用：`~/.local/bin/dsh`（不要直接跑 `bin/dsh`——Windows 下 MSYS 路径转换触发 `ERR_UNSUPPORTED_ESM_URL_SCHEME`，issue #388；wrapper 用 `file://` URL 启动 tsx 规避）。
 
 ### 平台行为差异（与"标准做法"文档对照）
 

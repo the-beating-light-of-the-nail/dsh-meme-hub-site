@@ -42,7 +42,9 @@ The three packages install hooks and mount facades through the compiled launcher
 resolves the DSH path and forwards its arguments; it injects the compiled
 preload through `NODE_OPTIONS=--import ...` before the official CLI loads. The
 preload owns profile composition, dependency healing, argv normalization,
-environment setup, and hook registration. No host patch checkout is required.
+environment setup, and hook registration. It statically imports the official profile
+composition and healing APIs from the DSH-provided `@deepseek-ai/dsh-app-boot` peer;
+the carrier does not bundle a second app-boot copy. No host patch checkout is required.
 The preload also records a process-local `stent-dsh`
 launch capability, so Stent-dependent plugins stay unavailable under plain
 `dsh` even if low-level hooks were installed by another path. The same
@@ -91,14 +93,14 @@ activation, but it must not contain `config.stent.patches` descriptors.
 The `@oh-my-dsh/stent` package is intentionally split by platform:
 
 - `@oh-my-dsh/stent` — platform-free runtime, bridge, service, and patch types;
-- `@oh-my-dsh/stent/node` — Node hook installation, binding flush, and cache re-transformation;
+- `@oh-my-dsh/stent/loader` — Node hook installation, binding flush, and cache re-transformation;
 - `@oh-my-dsh/stent/browser` — build transforms, package identity resolvers, and runtime bundle serving;
 - `@oh-my-dsh/stent/client` — browser Cordis client artifact;
 - `@oh-my-dsh/stent/testing` — isolated child-process fixtures.
 
 Orchestrion configuration, wire serialization, module identity internals, and
 loader-thread implementation remain private under `packages/stent/src/transform`
-and `packages/stent/src/node`. Browser transforms accept public `StentPatchStub`
+and `packages/stent/src/loader`. Browser transforms accept public `StentPatchStub`
 arrays and convert them internally; Node hooks read only the live runtime
 registry. The package no longer exports platform implementation files as
 compatibility subpaths.

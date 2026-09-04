@@ -14,7 +14,7 @@
 > **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 7 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`, `misakanet_me_events`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/2155cb3ded4461673e52629eb3697596ae5a875e/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/08e3a06b415d9d842f7d74fe40269b0245a211d2/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 <p align="center">
@@ -43,6 +43,7 @@
   <a href="https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/score"><img src="https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/badges/score.svg" alt="Glama score"></a>
   <a href="https://mcptoplist.com/server/io.github.Ikalus1988%2Fmisakanet"><img src="https://mcptoplist.com/badge/io.github.Ikalus1988%2Fmisakanet.svg" alt="MCP Toplist"></a>
   <a href="https://smithery.ai/servers/misakanet/misakanet"><img src="https://smithery.ai/badge/misakanet/misakanet" alt="Smithery"></a>
+  <a href="https://hol.org/registry/plugins/Ikalus1988%2FMisakaNet"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3DIkalus1988%252FMisakaNet%26metric%3Dtrust%26style%3Dfor-the-badge%26label%3DMisakaNet" alt="MisakaNet on HOL Registry"></a>
   <a href="https://github.com/Ikalus1988/MisakaNet/tree/main/docs/benchmarks"><img src="https://img.shields.io/badge/Benchmark-Weekly%20Workers%20AI-blue" alt="Benchmark"></a>
 </p>
 
@@ -266,7 +267,7 @@ Runs the same hosted endpoint through the [Smithery registry](https://smithery.a
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/2155cb3ded4461673e52629eb3697596ae5a875e/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/08e3a06b415d9d842f7d74fe40269b0245a211d2/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -337,6 +338,8 @@ Didn't find a fix? [📮 Share your failure lesson →](https://github.com/Ikalu
 **Agent-only intake (no GitHub account, no email, no browser pairing):**
 
 If an agent cannot find a good lesson, it can submit a redacted intake directly through the remote MCP endpoint. `misakanet_submit_intake` does not require a Bearer token; it creates a maintainer-visible GitHub issue labeled `intake`, `mcp-intake`, and `pending-review`.
+
+**Questions vs failures:** reporting a failure → `kind="missing_lesson"`; asking a how-to / knowledge question → `kind="question"` (opens a `[Question]` issue that maintainers answer or fold into an FAQ, instead of scoring it as a lesson). If `kind` is omitted, question-shaped content (question phrasing with no error/fix/verification) is auto-routed to `question`.
 
 ```bash
 curl -sS https://misakanet.org/mcp \
@@ -560,7 +563,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/2155cb3ded4461673e52629eb3697596ae5a875e/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/08e3a06b415d9d842f7d74fe40269b0245a211d2/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

@@ -21,18 +21,18 @@ This plugin runs inside DSH Web, adds predictable keyboard control for question 
 
 Question and approval interaction shortcuts:
 
-![Question and approval shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/48be33e0ef800ee35f0dbcf6fafc85ff611b5c81/docs/ScreenShot_2026-08-24_011032_061.png)
+![Question and approval shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/ad94409eb3603729f352dc435b9833e5b0fa4e3a/docs/ScreenShot_2026-08-24_011032_061.png)
 
 Global Session and Workspace shortcuts with platform keycaps:
 
-![Global Session and Workspace shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/48be33e0ef800ee35f0dbcf6fafc85ff611b5c81/docs/ScreenShot_2026-08-24_011111_040.png)
+![Global Session and Workspace shortcut settings](https://raw.githubusercontent.com/hytime/dsh-client-ui-shortcuts/ad94409eb3603729f352dc435b9833e5b0fa4e3a/docs/ScreenShot_2026-08-24_011111_040.png)
 
 ## Install in 60 seconds
 
 The recommended path is the npm release because it includes prebuilt `lib/` artifacts and requires no install-time build. Install it through the DSH CLI, then restart or reload the Web composition:
 
 ```bash
-dsh plugin --profile web add @hytime/dsh-client-ui-shortcuts@0.1.18
+dsh plugin --profile web add @hytime/dsh-client-ui-shortcuts@0.1.19
 dsh --profile web
 ```
 

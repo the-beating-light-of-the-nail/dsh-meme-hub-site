@@ -5,7 +5,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/e63c8516543345ea1b868ff4483e043a854b0ab4/docs/banner.svg" alt="DSH Diff Stat" width="720">
+    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/d2e8da47d2edae5601bef67d171cd969f312dc8c/docs/banner.svg" alt="DSH Diff Stat" width="720">
   </picture>
 </p>
 
@@ -22,7 +22,7 @@
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web plugin that visualizes agent file changes: inline **+N −M** badges on mutation tool rows, a per-turn file-change summary card, and full aligned diffs on click. Covers native `edit`/`write` calls, the minimal preset's `str_replace_editor`, and Code Dispatch (PTC) sub-calls end to end. No git dependency, no third-party plugin dependencies.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/e63c8516543345ea1b868ff4483e043a854b0ab4/docs/demo.svg" alt="demo" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/d2e8da47d2edae5601bef67d171cd969f312dc8c/docs/demo.svg" alt="demo" width="720">
 </p>
 
 ## Features
@@ -43,7 +43,7 @@ A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web plugin
 
 | Turn summary card | Taken-over row & aligned diff |
 | --- | --- |
-| ![turn summary card with per-file rows and inline preview](https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/e63c8516543345ea1b868ff4483e043a854b0ab4/docs/images/glass-card-peek.png) | ![taken-over edit row with badge and aligned diff](https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/e63c8516543345ea1b868ff4483e043a854b0ab4/docs/images/glass-diff-edit.png) |
+| ![turn summary card with per-file rows and inline preview](https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/d2e8da47d2edae5601bef67d171cd969f312dc8c/docs/images/glass-card-peek.png) | ![taken-over edit row with badge and aligned diff](https://raw.githubusercontent.com/HaoyueQin/dsh-diff-stat/d2e8da47d2edae5601bef67d171cd969f312dc8c/docs/images/glass-diff-edit.png) |
 
 Per-turn card with review / open / undo per file (left); an inline badge with its aligned diff window (right), both under the optional background glass.
 
@@ -84,11 +84,12 @@ pnpm check:align    # diff aligner & data-model assertions (needs Node >= 23.6)
 ```
 
 > **Kernel compatibility:** this build targets harness `>= 0.1.2-rc.1`
-> (compile-time types pinned to the `0.1.2-rc.1` devDependencies). The
-> `0.1.2-rc.1` release line shares every surface this plugin touches. Older
-> kernels (`0.1.1-rc.x`, the pre-`0.1.2-alpha.5` alpha line) need an older
-> plugin release — install `dsh-diff-stat@0.1.6` there. Every future release
-> note repeats this hint.
+> (compile-time types pinned to the `0.1.2-rc.1` devDependencies). Every
+> `0.1.2-rc` kernel so far shares every surface this plugin touches —
+> verified against DSH master `76fda72979` (rc.1 + 99 commits); re-verify
+> against each new rc before shipping. Older kernels (`0.1.1-rc.x`, the
+> pre-`0.1.2-alpha.5` alpha line) need an older plugin release — install
+> `dsh-diff-stat@0.1.6` there. Every future release note repeats this hint.
 
 ## Activity
 

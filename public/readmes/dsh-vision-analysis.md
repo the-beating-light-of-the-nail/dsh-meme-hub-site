@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/246201788f4d28978bbc9227f940f48b3579cea2/assets/banner.svg" alt="DSH Vision Analysis — image understanding for the DeepSeek Harness" width="100%">
+<img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/42cc54be1eb665e5b5ce43a9fa16f9fcb62a8e39/assets/banner.svg" alt="DSH Vision Analysis — image understanding for the DeepSeek Harness" width="100%">
 
 [![npm version](https://img.shields.io/npm/v/dsh-vision-analysis?label=npm&color=blue)](https://www.npmjs.com/package/dsh-vision-analysis)
 [![vision source: FREE](https://img.shields.io/badge/vision%20source-FREE-10b981)](#️-demo)
@@ -39,7 +39,7 @@ Your text-only agent can finally "see" — **with a free vision source built in*
 Paste an image, ask a question, get a real answer — even on a text-only model. The image is routed to your configured vision endpoint and the analysis lands straight in the conversation:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/246201788f4d28978bbc9227f940f48b3579cea2/assets/demo.png" alt="dsh-vision-analysis in action: a pasted image of a DeepSeek fan-art character is identified with full reasoning in a DSH conversation" width="640">
+  <img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/42cc54be1eb665e5b5ce43a9fa16f9fcb62a8e39/assets/demo.png" alt="dsh-vision-analysis in action: a pasted image of a DeepSeek fan-art character is identified with full reasoning in a DSH conversation" width="640">
 </p>
 
 <sub>In the screenshot: a pasted image plus the question "这是谁?" — the vision endpoint identifies the DeepSeek fan-art character and walks through its reasoning, all without switching models or saving files locally.</sub>
@@ -50,7 +50,7 @@ Three everyday capabilities, each answered by a different free vision model auto
 
 **1. OCR — pull text out of documents and screenshots**
 
-<p align="center"><img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/246201788f4d28978bbc9227f940f48b3579cea2/assets/demo-ocr.png" alt="A short ops-report document to transcribe" width="460"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/42cc54be1eb665e5b5ce43a9fa16f9fcb62a8e39/assets/demo-ocr.png" alt="A short ops-report document to transcribe" width="460"></p>
 
 > Weekly Ops Report — 2026-W33
 > Item 01 · Pending action: review queue / escalate blocker
@@ -59,7 +59,7 @@ Three everyday capabilities, each answered by a different free vision model auto
 
 **2. Charts → structured data your agent can use**
 
-<p align="center"><img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/246201788f4d28978bbc9227f940f48b3579cea2/assets/demo-chart.png" alt="A monthly revenue bar chart" width="460"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/42cc54be1eb665e5b5ce43a9fa16f9fcb62a8e39/assets/demo-chart.png" alt="A monthly revenue bar chart" width="460"></p>
 
 ```json
 { "title": "Monthly Revenue — Q1–Q3", "rows": [["Jan","82"],["Feb","95"],…] }
@@ -67,7 +67,7 @@ Three everyday capabilities, each answered by a different free vision model auto
 
 **3. UI review — a designer's eye on your interface**
 
-<p align="center"><img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/246201788f4d28978bbc9227f940f48b3579cea2/assets/demo-ui.png" alt="A simple e-commerce product page mockup" width="460"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Harvey-Will/dsh-vision-analysis/42cc54be1eb665e5b5ce43a9fa16f9fcb62a8e39/assets/demo-ui.png" alt="A simple e-commerce product page mockup" width="460"></p>
 
 > • Inconsistent button styling across "Add to cart" and "Checkout" (High)
 > • Product name and price lack visual hierarchy (Medium)

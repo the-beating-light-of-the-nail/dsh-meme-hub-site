@@ -37,17 +37,18 @@ dsh agent, and everything the desktop UI shows lives in the chat:
 - 🎯 **Live goal & todo cards** — long-running tasks update a card in real time instead of
   going silent; goals auto-resume after restarts.
 - 🔌 **WebSocket long connection** — no public callback URL, no reverse proxy.
+- 🔄 **Dual-end sync** — bot settings and plugin lists stay in step between the `web` profile and the Desktop 2.0.0 app (`/bot sync-plugins`).
 
 Feishu is the carrier; the work is still done by DeepSeek Harness itself.
 
 ## 🚀 Quick Start in 60 Seconds
 
-**Prerequisites:** Node 18+, a DeepSeek API key, and the Feishu app on your phone.
+**Prerequisites:** Node 18+, [pnpm](https://pnpm.io/installation) (recommended, see note), a DeepSeek API key, and the Feishu app on your phone.
 
 ```sh
-# 1. install the plugin into a dsh profile & boot
-npx @deepseek-ai/dsh plugin --profile web add github:moyu-good/dsh-lark-bridge \
-  && npx @deepseek-ai/dsh web
+# 1. install the plugin into a dsh profile & boot (pnpm — ~20s, parallel install)
+pnpm dlx @deepseek-ai/dsh plugin --profile web add @moyu-good/dsh-lark-bridge \
+  && pnpm dlx @deepseek-ai/dsh web
 
 # 2. a QR code prints → scan it with Feishu
 #    (this creates the app + event subscription automatically)
@@ -57,13 +58,70 @@ npx @deepseek-ai/dsh plugin --profile web add github:moyu-good/dsh-lark-bridge \
 # 4. DM the bot, or @ it in a group. That's it.
 ```
 
-> [!WARNING]
-> **Do NOT** `npm i -g dsh-lark-bridge` — that name on npm belongs to an
-> unrelated project. Our package is installable from this GitHub repo today;
-> a scoped npm release (`@moyu-good/…`) is planned.
+> [!NOTE]
+> **First-time `plugin add` fails once** with
+> `ERR_PNPM_IGNORED_BUILDS ... protobufjs` — pnpm 11 blocks the postinstall
+> of `protobufjs` (a Feishu SDK dependency; its script is a harmless no-op).
+> Open `<your-home>/.dsh/profiles/web/pnpm-workspace.yaml` and change the
+> placeholder line to `protobufjs: true`, then re-run the same command. This
+> is a one-time step per profile.
 
-Daily ops: run `npx @deepseek-ai/dsh web` again, or host it under systemd/supervisor.
+> [!WARNING]
+> **Use pnpm, not bare npx/npm, to run the upstream dsh CLI.** Measured on the
+> same machine: `pnpm dlx` installs dsh's dependency tree (197 packages,
+> ~250 MB) in **~20 s** including downloads, while `npx`/`npm install` takes
+> **~25 minutes** (npm's serial reify) even with a warm cache — and on
+> machines with ≤4 GB RAM the npm process itself dies with
+> "JavaScript heap out of memory" mid-install. If you must use npm, pre-set
+> `NODE_OPTIONS=--max-old-space-size=2048`.
+>
+> **Do NOT** `npm i -g dsh-lark-bridge` — that name on npm belongs to an
+> unrelated project. This plugin is published as **`@moyu-good/dsh-lark-bridge`**
+> (the GitHub source also works, but installing a git-hosted plugin makes pnpm
+> block its `prepare` script until you whitelist it under `allowBuilds` in the
+> profile's `pnpm-workspace.yaml` — the registry package needs no build at all).
+
+Daily ops: run `pnpm dlx @deepseek-ai/dsh web` again (subsequent runs hit the
+pnpm store, so they're fast), or host it under systemd/supervisor.
 The package ships **prebuilt** (`lib/` committed) — nothing compiles on install.
+
+## 📦 Moving to a new machine
+
+The bridge carries its own migration path — on the old machine:
+
+```text
+/bot export include-secrets --to-feishu   # uploads to the app's own Feishu drive
+/bot export include-secrets               # or a local file, credentials masked
+```
+
+The Feishu route needs no copying at all: the file lands in the app's own
+cloud space (visible only to this app), and the new machine pulls it with
+`/bot import --from-feishu`. For the local-file route, copy the printed file
+(the sync directory, e.g. `~/.dsh/dsh-lark-bridge/migrate.json`) to the same
+path on the new machine, install the plugin there (Quick Start above), then:
+
+```text
+/bot import                       # preview: settings + plugin plan + warnings
+/bot import apply                 # execute (add --from-feishu for the cloud slot)
+```
+
+What travels: shared settings and per-profile plugin lists (installed through
+the upstream CLI, so cross-platform moves just work). What never travels:
+peer heartbeats, control tokens, `node_modules`, session history — sessions
+live under `~/.dsh` (upstream-owned); copy that directory to carry them.
+
+**Device lifecycle**: every machine mints a stable `deviceId` on first boot
+(`/bot devices` shows the roster: this machine, heartbeat-live peers, the
+cloud-active endpoint, and migration provenance). Instead of stopping the old
+service by hand, retire it — `/bot retire` on the old machine puts it out of
+the reply path (messages get a one-line notice, not an agent turn; the flag
+is per-machine local state and is never synced), and `/bot activate` brings
+it back — and when the cloud carrier is available it also claims the active
+slot, so other machines stand down on their next message. Every live machine
+renews its presence in the cloud ledger each minute; if the active machine
+goessilent, the freshest machine with the smallest deviceId is elected
+automatically on the next inbound message. `/bot name <readable-name>` names
+a device for the roster.
 
 ## ✨ Features
 
@@ -239,19 +297,6 @@ Two tracks, written down so nobody guesses:
 
 Promoting preview → stable requires the full quality gate to pass:
 `pnpm test` → `node plugin-contract-test.mjs` → `node scripts/verify-dsh-contract.mjs` → `pnpm typecheck && pnpm run build` → live smoke.
-
-## 🧱 Development & MR Flow
-
-`main` is the stable baseline and only receives **reviewed merge requests**. All development happens on feature branches (`feat/<name>`), never directly on `main`.
-
-Per-MR checklist:
-1. Branch from `main`; keep the change small and single-purpose.
-2. Full quality gate green (tests, contract, drift, build).
-3. Repo hygiene scan — `scripts/check_repo_leak.py <repo> --lib` — must exit 0.
-4. Reviewer approves → merge to `main` → deploy from `main`.
-5. Production incidents revert on the spot (history stays in git); the reverted branch is rebased and re-MR'd with a fix.
-
-This is enforced because past direct-to-`main` experiments had to be rolled back as a multi-commit revert in one batch — feature branches keep `main` shippable at all times.
 
 ## ❓ FAQ
 

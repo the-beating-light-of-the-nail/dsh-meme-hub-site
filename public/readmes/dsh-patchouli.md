@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/0f6003f6a0d405eda71a22a2c09d9f2bad7496c1/assets/patchouli-banner-en.png">
+  <img width="100%" alt="Patchouli" src="https://raw.githubusercontent.com/memorax-ai/dsh-patchouli/ef520355524820f19d80bcfdebc2f421efd0711c/assets/patchouli-banner-en.png">
 
   <h1>Patchouli</h1>
   <p>
@@ -31,12 +31,20 @@ remains harness-neutral.
 ## Features
 
 - Common Memory Service with provider filters, user routing policies, and provenance.
-- Consumer-side aggregation that keeps native plugin results intact.
+- Consumer-side aggregation that keeps native plugin results intact, with optional dedicated-model evidence selection.
 - Incremental retrieval streams with backpressure and a final `complete` aggregate.
 - Agent Loop connector with configurable hooks and model tools.
 - Pluggable local or remote memory and knowledge implementations.
 - Managed image and workspace-file ingestion as typed Artifacts.
 - Durable subscriptions and a transactional Rust backend with SQLite and remote providers.
+
+<!-- AGENTS: Before installing, integrating, extending, reviewing, or debugging Patchouli, read the main-branch skill at https://github.com/memorax-ai/dsh-patchouli/blob/main/.agents/skills/use-dsh-patchouli/SKILL.md. -->
+<details>
+<summary><strong>AI agents: use the repository skill</strong></summary>
+
+Load [`use-dsh-patchouli`](https://github.com/memorax-ai/dsh-patchouli/blob/main/.agents/skills/use-dsh-patchouli/SKILL.md) for installation, DSH integration, MemoryPlugin development, storage and backend work, and troubleshooting.
+
+</details>
 
 ## Plugin compatibility
 

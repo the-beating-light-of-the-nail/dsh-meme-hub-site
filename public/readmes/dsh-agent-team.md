@@ -23,17 +23,17 @@ An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-
 
 Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
 
-![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/eb0e81b86a1f43a56afb43d67ddccdbf4e23ddc9/assets/readme/dsh-entry.png)
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/69de757eede54b718def59b298fd67185dd08fb4/assets/readme/dsh-entry.png)
 
 Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
 
-![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/eb0e81b86a1f43a56afb43d67ddccdbf4e23ddc9/assets/readme/team-mode.png)
+![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/69de757eede54b718def59b298fd67185dd08fb4/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/eb0e81b86a1f43a56afb43d67ddccdbf4e23ddc9/assets/readme/task-thread.png)
+![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/69de757eede54b718def59b298fd67185dd08fb4/assets/readme/task-thread.png)
 
 If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-team) helps other DSH users find it.
 
@@ -41,7 +41,7 @@ If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-t
 
 ### 1. Check DSH
 
-This release is certified against DSH `0.1.1-rc.2`. If `dsh` is not installed yet, start DSH with the official package:
+This release is certified against DSH `0.1.2-rc.1`. If `dsh` is not installed yet, start DSH with the official package:
 
 ```sh
 npx @deepseek-ai/dsh web
@@ -110,7 +110,7 @@ Published packages include built artifacts. A local checkout needs the adjacent 
 
 ## Compatibility and limits
 
-- This release is certified against DSH `0.1.1-rc.2`.
+- This release is certified against DSH `0.1.2-rc.1`, and requires it: earlier DSH versions are not supported.
 - The bundle is single-host. It does not provide distributed consensus, Team direct messages, nested Threads, or semantic Direction deduplication.
 - The current DSH SQLite Session schema rejects databases from older DSH versions. Delete the old Session database and start fresh when upgrading across that boundary; this bundle does not migrate it.
 - Team-managed Agent Sessions use `danger-full-access`. Use them only in trusted Workspaces.

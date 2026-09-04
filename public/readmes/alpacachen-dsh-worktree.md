@@ -11,7 +11,7 @@ A Git worktree plugin for DeepSeek Harness that creates task branches, registers
 
 [简体中文](README.zh.md) · **English**
 
-![Create a worktree from a new DSH session](https://raw.githubusercontent.com/alpacachen/dsh-worktree/c68fca78896c24c424d87a4775901beec3af1747/docs/preview.png)
+![Create a worktree from a new DSH session](https://raw.githubusercontent.com/alpacachen/dsh-worktree/591d66c392eff816b44b3428136c73f5dce861f8/docs/preview.png)
 
 ## Features
 

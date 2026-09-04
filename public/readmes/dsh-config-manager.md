@@ -89,15 +89,15 @@ Browse the built-in official market for ready-made configurations (model provide
 
 | Export | Import Preview |
 |:---:|:---:|
-| ![One-click Export](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/88dccc4da05754d807869506cb4164e19f2d68b1/assets/screenshot-export.png) | ![Import Preview](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/88dccc4da05754d807869506cb4164e19f2d68b1/assets/screenshot-import-preview.png) |
+| ![One-click Export](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/68d778ca90635d30161fdf50c34885dc147247f4/assets/screenshot-export.png) | ![Import Preview](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/68d778ca90635d30161fdf50c34885dc147247f4/assets/screenshot-import-preview.png) |
 
 | Snapshot Restore | Remote Sync |
 |:---:|:---:|
-| ![Snapshot Restore](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/88dccc4da05754d807869506cb4164e19f2d68b1/assets/screenshot-snapshots.png) | ![Remote Sync](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/88dccc4da05754d807869506cb4164e19f2d68b1/assets/screenshot-sync.png) |
+| ![Snapshot Restore](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/68d778ca90635d30161fdf50c34885dc147247f4/assets/screenshot-snapshots.png) | ![Remote Sync](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/68d778ca90635d30161fdf50c34885dc147247f4/assets/screenshot-sync.png) |
 
 | Configuration Market |
 |:---:|
-| ![Configuration Market](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/88dccc4da05754d807869506cb4164e19f2d68b1/assets/screenshot-market.png) |
+| ![Configuration Market](https://raw.githubusercontent.com/xiajiajun516/dsh-config-manager/68d778ca90635d30161fdf50c34885dc147247f4/assets/screenshot-market.png) |
 
 ---
 

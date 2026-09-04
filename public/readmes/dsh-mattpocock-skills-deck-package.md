@@ -7,7 +7,7 @@
 > 唯一打开形式）+ GitHub issue 动作注入（诊断 / 修复 / 讨论 / 执行，均带 `/wayfinder` `/triage` 技能命令）
 > + 交接开新会话。
 
-- **插件包名**: `dsh-mattpocock-skills-deck`（可分发 npm 包，见 `package/`，当前 **v1.7.13**（`latest`，品牌迁移自 dsh-waystation v1.5.0，`npm view` 已验）：v1.4 详情页（#441）+ v1.5 升级 map 全量落地 —— 状态栏 BUG/诊断过滤 + 设置直达 + 删 panelHeight + Matt 引导 + 新增 wayfinder + 仓库身份 + 双语 + 仓库级缓存架构（git 根检测 → 磁盘缓存秒开 → 自动探测刷新）+ 进度契约与阶段闸门 + 正文格式容错 + markdown 白名单渲染 + 3 项 bug 修复 + T10 自动刷新机制（变化行高亮/即时转圈反馈））
+- **插件包名**: `dsh-mattpocock-skills-deck`（可分发 npm 包，见 `package/`，当前 **v1.7.14**（`latest`，品牌迁移自 dsh-waystation v1.5.0，`npm view` 已验）：v1.4 详情页（#441）+ v1.5 升级 map 全量落地 —— 状态栏 BUG/诊断过滤 + 设置直达 + 删 panelHeight + Matt 引导 + 新增 wayfinder + 仓库身份 + 双语 + 仓库级缓存架构（git 根检测 → 磁盘缓存秒开 → 自动探测刷新）+ 进度契约与阶段闸门 + 正文格式容错 + markdown 白名单渲染 + 3 项 bug 修复 + T10 自动刷新机制（变化行高亮/即时转圈反馈））
 - **动态版 pluginId**: `wfst-1`（v9–v24 迭代产物）
 - **平台**: Client（浏览器页面）+ Host（Node 进程，gh CLI 数据层）
 - **配套**: [mattpocock/skills](https://github.com/mattpocock/skills)（wayfinder / triage / grilling / handoff / ask-matt 等）
@@ -22,7 +22,7 @@
 | 进度显示 | map 行右侧 18px 迷你圆环 + n/total（等宽数字右缘对齐，圆环零间隙） |
 | 面板 · 技能 | 技能雷达（推荐 / 列表 / 圆环），点击注入 /skill |
 | 面板 · 环境检查 | 8 项前置检查（仓库定位 / setup / tracker / gh CLI / 登录 / API / 技能探测），红黄绿分组 + 一键处理 |
-| tabs 行 | 列表 / 技能 / 环境检查 + 右侧刷新按钮 + 最右侧版本号（如 v1.7.13），便于核对已更新 |
+| tabs 行 | 列表 / 技能 / 环境检查 + 右侧刷新按钮 + 最右侧版本号（如 v1.7.14），便于核对已更新 |
 | 行级动作 | 按 label 四选一：诊断(/triage) / 修复(/wayfinder) / 讨论(/wayfinder) / 执行(/wayfinder)，按钮色 = GitHub label 配置色，点击预填输入框；执行/新会话按钮常显（复制/外链也常显） |
 | map 详情 | 顶部「执行」+ 任务按状态动作、可接/已认领/被阻塞/已关闭垂直走廊、Decision/Fog/Out-of-scope 折叠 |
 | 交接 | 第一击注入 /handoff 时间戳模板；第二击预填 /read + 复述确认 prompt 并开新会话 |
@@ -173,7 +173,7 @@ dsh plugin --profile web remove dsh-mattpocock-skills-deck
 - UI 逐版定稿：C 卡片式两行结构、编号/map 竖排、18px 迷你圆环进度、标签贪心折叠 +N 弹窗（自适应面板）、窄屏按钮正方形
 - tabs 行刷新按钮 + 最右侧版本号 v1.3.3
 - 快照性能提速 ~35s → ~12s（GraphQL aliases 批量 + 合并 fetchMaps + 缓存 60s）
-- 开发工作流文档 DEV-WORKFLOW.md（改 bug → 实时生效完整流程）
+- 开发工作流文档 docs/workflow/DEV-WORKFLOW.md（改 bug → 实时生效完整流程）
 
 ## v1.5.0 新增（2026-08-16/17）
 
@@ -196,7 +196,7 @@ dsh plugin --profile web remove dsh-mattpocock-skills-deck
   - `lib/client.js` —— 浏览器半 bundle（`window.__ModuleLoader__.load` 注册格式）
 - `README.md` —— 本说明
 - `issues-checklist.html` —— 迭代需求清单（v9–v24，43+ 项）
-- `DESIGN.md` / `prototype.html` —— 设计定稿与原型
+- `docs/DESIGN.md` / `prototype.html` —— 设计定稿与原型
 - `tests/` —— host 逻辑测试（verify-status / verify-panel）
 
 ## 备注

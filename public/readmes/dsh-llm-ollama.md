@@ -6,6 +6,8 @@ Ollama Cloud integration for DeepSeek Harness. Chat uses Ollama's OpenAI-compati
 
 The package root exposes the Cordis plugin contract and OllamaAdapter. The same artifact exports ./client, which contributes the Ollama Cloud card under Settings → LLM Providers. The protocol and capability split is recorded in [ADR 0001](docs/adr/0001-separate-chat-protocol-from-ollama-capabilities.md).
 
+Compatibility: this release requires DeepSeek Harness `0.1.2-alpha.4` and `@deepseek-ai/cordis@4.0.2`; it is not compatible with Alpha.1–Alpha.3. Users on older runtimes must keep the last plugin tag built for that runtime. Ollama real API checks remain `SKIP-QUOTA` when the account quota is exhausted.
+
 
 ## LLM Providers UI ownership
 
@@ -13,17 +15,20 @@ The **LLM Providers** Settings page (`settings.section` `id: providers` with chi
 
 - This plugin contributes only its keyed card (`key: llm-ollama`) and its Host ``llm`` route; it does not install the page or the shared `llm-providers` namespace. Load order with the owner does not matter.
 - Without the owner (Headless or Web without `dsh-llm-providers-ui`): the Host model route `ollama-cloud` still works; in Web the Providers page and this card are omitted and the browser console warns that the owner is missing. A Web release composition test rejects a bundle graph that ships provider cards without the owner.
-- The nav globe glyph is a temporary `alpha.1` DOM adapter owned only by `dsh-llm-providers-ui` (`src/client/nav-icon.ts`); this plugin does not ship that adapter.
+- The nav globe glyph is a temporary Alpha.4 DOM adapter owned only by `dsh-llm-providers-ui` (`src/client/nav-icon.ts`); this plugin does not ship that adapter.
 
 Install `dsh-llm-providers-ui` explicitly in the profile alongside provider plugins (see that package's `cordis.patch.yml`).
 
 
 ## Installation
 
-DeepSeek Harness 0.1.2-alpha.1 or later is required. Install directly from GitHub:
+DeepSeek Harness 0.1.2-alpha.4 is required. Install directly from GitHub:
 
 ~~~sh
-dsh plugin --profile web add github:NOirBRight/dsh-llm-ollama#v0.6.15
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.3/dsh-llm-providers-ui-0.1.3.tgz
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-llm-ollama/releases/download/v0.6.16/dsh-llm-ollama-0.6.16.tgz
 dsh web
 ~~~
 
@@ -31,7 +36,7 @@ The repository tracks release-ready lib artifacts, so GitHub installation needs 
 
 ## Connection authentication and trust
 
-This plugin registers its management, discovery, and usage channel with the official alpha1 Connection service through the two-argument `rpc.handle(channel, handler)` API. It does not select an authority; alpha1 Connection owns one authenticated policy for every Host RPC method and WebSocket stream.
+This plugin registers its management, discovery, and usage channel with the official Alpha.4 Connection service through the two-argument `rpc.handle(channel, handler)` API. It does not select an authority; Alpha.4 Connection owns one authenticated policy for every Host RPC method and WebSocket stream.
 
 Each process mints a random launch token. DSH accepts that token only on `GET /`, exchanges it for an authority-bound signed browser-session cookie, and redirects to the clean root URL. Missing, expired, malformed, or wrong-authority cookies are rejected with 401 before RPC dispatch; static assets remain public. Query tokens outside the root exchange and Authorization-header tokens are not accepted.
 
@@ -51,11 +56,11 @@ The model catalog starts collapsed and lists one row per model: a drag handle re
 
 Cloud usage and the complete weekly model activity list:
 
-![Ollama Cloud connection and usage](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/c7ddb509b2a1cf63cb9f9d5ea9a751bd31844385/docs/images/ollama-cloud-usage.png)
+![Ollama Cloud connection and usage](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/ff477df0c6e8099b4b0941c520bb4c84cff0e761/docs/images/ollama-cloud-usage.png)
 
 Sortable model catalog:
 
-![Ollama Cloud sortable model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/c7ddb509b2a1cf63cb9f9d5ea9a751bd31844385/docs/images/ollama-model-catalog.png)
+![Ollama Cloud sortable model catalog](https://raw.githubusercontent.com/NOirBRight/dsh-llm-ollama/ff477df0c6e8099b4b0941c520bb4c84cff0e761/docs/images/ollama-model-catalog.png)
 
 The Models page lists saved ollama-cloud models and can select them. Current Harness releases do not expose a third-party editor slot inside that page, so this package owns its editor under Plugin configuration.
 
@@ -161,7 +166,7 @@ Stable model, system prompt, history, tool definitions, and request options pres
 
 ## Release installation (Latest)
 
-Ollama Cloud chat, model discovery, and Web Search/Fetch providers. The release artifact targets DeepSeek Harness 0.1.2-alpha.1 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
+Ollama Cloud chat, model discovery, and Web Search/Fetch providers. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
 
 The dsh-llm-providers-ui package owns the LLM Providers page, navigation, and shared order store. This package owns only its provider card, models, credentials, and Host route. Install the Owner first for Web; headless Host routing works without the Owner.
 
@@ -169,23 +174,23 @@ Owner (Latest):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/latest/download/dsh-llm-providers-ui.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/latest/download/dsh-llm-providers-ui-0.1.3.tgz
 ~~~
 
 Provider (Latest):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-ollama/releases/latest/download/dsh-llm-ollama.tgz
+  https://github.com/NOirBRight/dsh-llm-ollama/releases/latest/download/dsh-llm-ollama-0.6.16.tgz
 ~~~
 
 Fixed versions (reproducible):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.2/dsh-llm-providers-ui.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.3/dsh-llm-providers-ui-0.1.3.tgz
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-ollama/releases/download/v0.6.15/dsh-llm-ollama.tgz
+  https://github.com/NOirBRight/dsh-llm-ollama/releases/download/v0.6.16/dsh-llm-ollama-0.6.16.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -193,7 +198,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-ollama/releases/latest/download/dsh-llm-ollama.tgz
+  https://github.com/NOirBRight/dsh-llm-ollama/releases/latest/download/dsh-llm-ollama-0.6.16.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -205,4 +210,4 @@ Configuration: use the plugin section in Settings for Web UI plugins, or the pro
 
 Rollback: rerun the fixed v0.6.15 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.6.15](https://github.com/NOirBRight/dsh-llm-ollama/releases/tag/v0.6.15) · [SHA256SUMS](https://github.com/NOirBRight/dsh-llm-ollama/releases/download/v0.6.15/SHA256SUMS).
+Release and integrity: [v0.6.16](https://github.com/NOirBRight/dsh-llm-ollama/releases/tag/v0.6.16) · [SHA256SUMS](https://github.com/NOirBRight/dsh-llm-ollama/releases/download/v0.6.16/SHA256SUMS).

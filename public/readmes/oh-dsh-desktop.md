@@ -4,7 +4,7 @@
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/3c1a9b15b6e62a23a88d6c9582dddc0d202f4bc2/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
   <h1>Oh-DSH</h1>
   <p><strong>一套 DSH runtime，Desktop、Web 与 TUI 三种开发体验。</strong></p>
   <p>把 AI Agent、Workspace、本地工具与插件生态带到你习惯的界面。</p>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/3c1a9b15b6e62a23a88d6c9582dddc0d202f4bc2/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
 </p>
 
 Oh-DSH 将 DeepSeek Harness、Node.js、本地开发工具和内置插件打包为可安装的
@@ -153,14 +153,9 @@ ohdsh tui              # 启动 Oh-DSH TUI
 设置 `OH_DSH_HOME` 可以统一更换数据目录；运行 `ohdsh web --help` 或
 `ohdsh tui --help` 可以查看界面专属选项。
 
-内置的 `@oh-dsh/vision` 为三端提供同一个 `view_image` 工具，让用户对 Workspace
-内的本地图片、HTTP(S) 图片或 image data URL 做 OCR、读图与界面诊断。图片复制、
-粘贴、缩略图和提交继续由 DSH 原生 attachment rail 负责；插件在 Host 的最终图片
-能力校验处放行 DeepSeek V4，并在固定的 text-only 适配器序列化同一轮请求前，通过
-配置的视觉后端描述原生附件。不另加输入栏气泡或引用协议。TUI 通过 Workspace
-图片路径或 URL 使用同一能力。
-凭据与后端配置见[图片识别使用说明](./docs/usage.zh.md#图片识别)；云端/本地 Key 与 Vision
-设置也可以在原生“设置 → 插件 → 插件配置 → Vision”卡片中修改。
+图片输入由 DSH 原生多模态模型（如 DeepSeek V4 Flash）直接处理：复制、粘贴、
+缩略图与提交全部由原生 attachment rail 负责，无需额外的视觉桥接插件或单独的
+API Key。详情见[图片输入使用说明](./docs/usage.zh.md#图片输入)。
 
 <details>
 <summary><strong>从源码运行</strong></summary>
@@ -208,11 +203,11 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ### 插件市场
 
-![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/3c1a9b15b6e62a23a88d6c9582dddc0d202f4bc2/assets/oh-dsh-plugin-marketplace.png)
+![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/oh-dsh-plugin-marketplace.png)
 
 ### Oh-DSH 皮肤
 
-![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/3c1a9b15b6e62a23a88d6c9582dddc0d202f4bc2/assets/oh-dsh-desktop-skins.png)
+![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh-desktop/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/oh-dsh-desktop-skins.png)
 
 </details>
 
@@ -228,7 +223,6 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | DSH runtime、会话与插件加载器 |
 | [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | **Oh-DSH TUI 的直接上游插件**，提供终端渲染、交互和命令体系 |
 | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | Git Review、文件与 PTY Host 能力 |
-| [dsh-vision](https://github.com/william-jin-cmu/dsh-vision) | 跨 Desktop、Web 与 TUI 的 `view_image` 视觉工具参考实现 |
 | [dshfind](https://dshfind.com/) | DSH 插件超市与学习社区，提供插件、生态与 DeepSeek Harness 周边推荐 |
 
 Oh-DSH 保留上游实现与署名，并在其上提供统一启动器、Profile、数据目录、

@@ -34,9 +34,9 @@ It does **not** provide a plugin marketplace itself (catalog/distribution).
 
 ## Screenshots
 
-![vet shield panel (light theme)](https://raw.githubusercontent.com/wulun811/dsh-plugin-vet/b91b0eeed8fbc8f88381c7c7c28c552ada7351b8/assets/white.jpg)
+![vet shield panel (light theme)](https://raw.githubusercontent.com/wulun811/dsh-plugin-vet/4b679d8875f9e6887263b93ad478e463252657f8/assets/white.jpg)
 
-![vet shield panel (dark theme)](https://raw.githubusercontent.com/wulun811/dsh-plugin-vet/b91b0eeed8fbc8f88381c7c7c28c552ada7351b8/assets/dark.jpg)
+![vet shield panel (dark theme)](https://raw.githubusercontent.com/wulun811/dsh-plugin-vet/4b679d8875f9e6887263b93ad478e463252657f8/assets/dark.jpg)
 
 - 📚 Architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - 🧾 Audit protocol: [AUDIT_PROTOCOL.md](AUDIT_PROTOCOL.md)

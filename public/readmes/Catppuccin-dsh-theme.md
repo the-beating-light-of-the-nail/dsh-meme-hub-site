@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/d3e85a27bb8aa7e46953f61dca31bdda55aff2cb/assets/preview.webp" width="100%" alt="The four Catppuccin flavors in DeepSeek Harness"/>
+	<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/f00241842e94c2a659aa0af47b3f1070c60f7a15/assets/preview.webp" width="100%" alt="The four Catppuccin flavors in DeepSeek Harness"/>
 </p>
 
 ## Table of Contents
@@ -79,19 +79,19 @@ catwalk composite; each flavor below in full):
 
 <details>
 <summary>🌻 Latte</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/d3e85a27bb8aa7e46953f61dca31bdda55aff2cb/assets/latte.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/f00241842e94c2a659aa0af47b3f1070c60f7a15/assets/latte.webp"/>
 </details>
 <details>
 <summary>🪴 Frappé</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/d3e85a27bb8aa7e46953f61dca31bdda55aff2cb/assets/frappe.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/f00241842e94c2a659aa0af47b3f1070c60f7a15/assets/frappe.webp"/>
 </details>
 <details>
 <summary>🌺 Macchiato</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/d3e85a27bb8aa7e46953f61dca31bdda55aff2cb/assets/macchiato.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/f00241842e94c2a659aa0af47b3f1070c60f7a15/assets/macchiato.webp"/>
 </details>
 <details>
 <summary>🌿 Mocha</summary>
-<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/d3e85a27bb8aa7e46953f61dca31bdda55aff2cb/assets/mocha.webp"/>
+<img src="https://raw.githubusercontent.com/zhijun-dai/Catppuccin-dsh-theme/f00241842e94c2a659aa0af47b3f1070c60f7a15/assets/mocha.webp"/>
 </details>
 
 ## Install

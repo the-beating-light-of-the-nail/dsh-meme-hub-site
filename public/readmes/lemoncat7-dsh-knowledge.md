@@ -6,6 +6,10 @@
 
 `dsh-knowledge` 是面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的知识库插件。它不修改 DSH Agent Loop，同一个插件既能使用本地 SQLite，也能连接远程中央知识库。
 
+## 兼容性
+
+正式版 `2.3.0` 针对 DeepSeek Harness `0.1.2-rc.1` 构建并完成部署验证，需要 Node.js `22.19+` 或 `24+`。浏览器端使用该版本的 Session Controller、Renderer、Chat、Settings 与 Theme 插槽接口。
+
 当前版本提供可部署的多知识库、按需检索工具、本地与远程中央服务、文档型 Web 管理台，以及全局回写策略与安全直写协调：
 
 - 回答完成后同步调用 DSH 当前模型判断是否产生知识，并在回答下方显示逐库回写结果。
@@ -32,7 +36,7 @@
 - 认证 HTTP API，可作为其他 DSH 客户端和未来桌面端的中央知识库。
 - 笔记软件式双栏文档界面：左侧以“知识库 → 文档”树形目录浏览和新建，右侧支持 Markdown 编辑与安全预览；目录按知识库懒加载并分页，只有打开文档时才读取正文。已有文档默认预览，新建文档默认编辑。
 - 每个生效主题对应一篇真实 Markdown 文档；相似知识作为章节或增量内容写入同一文档。创建、改名、保存、归档和删除会同步 SQLite、全文索引、版本历史与物理文件。
-- 独立的笔记工作区：在知识工作区上方提供可无限嵌套的目录树，支持 Markdown 与常见文本文件直接编辑，图片和 PDF 就地浏览，以及任意文件的拖拽移动、复制、重命名和下载。笔记默认不参与知识检索、自动召回或 AI 回写。
+- 独立的笔记工作区：在知识工作区上方提供可无限嵌套的目录树，支持 Markdown 与常见文本文件直接编辑，图片和 PDF 就地浏览，以及任意文件的拖拽移动、复制、重命名和下载。Markdown 编辑器提供标题大纲定位、文内查找与替换、选区浮动格式菜单和 `Ctrl/Cmd + F` 快捷键；每次保存会形成按需读取的页面历史，可预览、比较并恢复为新版本。笔记默认不参与知识检索、自动召回或 AI 回写。
 - 知识文档使用独立的“关联笔记”列表引用笔记文档或文件，正文不再插入引用语法。关系绑定稳定编号，笔记移动或改名不会失效；旧 `note://` 引用会在升级时安全回填为结构化关系。
 - 用户明确要求时，AI 可使用 `knowledge_note_list / search / read / create / update / move / delete` 浏览和维护笔记工作区；所有目标都使用当前会话签名句柄，远程操作继续服从令牌权限，删除被知识文档引用的笔记会被拒绝。
 - `knowledge_note_references` 单独负责查看、添加或移除知识文档与笔记的结构化关联，并在执行时重新检查知识挂载范围、写入模式和文档封存状态。
@@ -53,13 +57,13 @@ dsh plugin --profile web add @lemoncat7/dsh-knowledge
 需要固定本次正式版本时：
 
 ```bash
-dsh plugin --profile web add @lemoncat7/dsh-knowledge@1.0.2
+dsh plugin --profile web add @lemoncat7/dsh-knowledge@2.3.0
 ```
 
 也可以从 [GitHub Releases](https://github.com/lemoncat7/dsh-knowledge/releases) 下载对应版本的完整预构建包后安装：
 
 ```bash
-dsh plugin --profile web add ./lemoncat7-dsh-knowledge-1.0.2.tgz
+dsh plugin --profile web add ./lemoncat7-dsh-knowledge-2.3.0.tgz
 ```
 
 卸载：
@@ -141,13 +145,13 @@ pnpm dsh web
 - 在知识库页切换全局“严谨 / 主动”回写策略。
 - 管理当前项目挂载和会话覆盖，设定召回、写入模式与标签范围。
 - 在左侧知识目录中搜索、新建和切换文档，在右侧进行 Markdown 编辑与安全预览；文档区域随窗口自适应，窄屏时知识目录切换为抽屉。
-- 在“笔记工作区”中建立多级目录，直接编辑 Markdown、文本、JSON、YAML、代码和配置文件，并上传、拖放、复制、移动、搜索、就地浏览图片与 PDF；知识文档底部的“关联笔记”栏用于查看、打开、添加和移除资料关系。
+- 在“笔记工作区”中建立多级目录，直接编辑 Markdown、文本、JSON、YAML、代码和配置文件；Markdown 笔记支持标题大纲定位、文内查找/替换，以及选中文字后的段落、标题、列表、引用、代码、链接等快捷格式菜单。页面历史按需加载单个版本，可查看逐行差异并将任意旧版恢复为新的保存记录。工作区同时支持上传、拖放、复制、移动、搜索、下载和就地浏览图片与 PDF；知识文档底部的“关联笔记”栏用于查看、打开、添加和移除资料关系。
 - 查看 AI 提取依据和真实增删差异，直接通过、编辑最终文档后通过或拒绝候选。
 - 创建、查看和撤销客户端令牌；新令牌原文只显示一次。
 
 知识库的 `description` 同时用于读取和回写路由：它以轻量目录形式告诉模型每个挂载库覆盖什么主题，`knowledge_base_search` 也用它匹配当前信息需求；文档正文不会随目录注入。主模型不执行内容回写，所有回答都在完整结束后进行一次独立的严格提取，同时判断长期价值、目标知识库、重复、更新与冲突；用户明确要求保存时也走同一条回答后链路。挂载只表示“可选”，不代表每次回答都要写入。`extractionInstructions` 用于匹配后继续限定具体收录规则。
 
-笔记工具与知识回写相互独立。AI 只有在当前用户直接要求查看或维护笔记时才能调用：先用 `knowledge_note_list` 浏览目录或按名称搜索，也可用 `knowledge_note_search` 查找非目录节点；随后把返回的精确句柄传给 `knowledge_note_read / update / move / delete`。`knowledge_note_create` 未指定父目录时写入笔记根目录，指定目录时必须使用 `knowledge_note_list` 返回的文件夹句柄。本地和远程模式由当前 Provider 决定，工具不接受也不猜测存储位置。
+笔记工具与知识回写相互独立。当前用户消息只要明确提到“笔记文档”“笔记目录”或“笔记工作区”，AI 就可以按该消息的要求查看和维护笔记，不需要固定授权句式；永久删除仍必须在当前消息中明确提出，并且授权不会从历史消息延续。工具会先用 `knowledge_note_list` 浏览目录或按名称搜索，也可用 `knowledge_note_search` 查找非目录节点；随后把返回的精确句柄传给 `knowledge_note_read / update / move / delete`。`knowledge_note_create` 未指定父目录时写入笔记根目录，指定目录时必须使用 `knowledge_note_list` 返回的文件夹句柄。本地和远程模式由当前 Provider 决定，工具不接受也不猜测存储位置。管理台中的笔记文档和普通文件均可从目录列表或打开后的工具栏下载。
 
 创建示例：
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/aab97af8002bf0c8ac18d88da64293e41c9eb121/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/44444ea6b5818bacef31de7a17128ffaafd97ea1/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
 </p>
 
 # Mnemon
@@ -40,7 +40,7 @@ Most memory tools embed their own LLM inside the pipeline. Mnemon takes a differ
 Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs discover and invoke tools. ODBC/JDBC standardizes how applications access databases. But how LLMs interact with databases using memory semantics — this layer has no protocol. Mnemon's three primitives — `remember`, `link`, `recall` — form an intent-native protocol: command names map to the LLM's cognitive vocabulary (`remember` not INSERT, `recall` not SELECT), and output is structured JSON with signal transparency rather than raw database rows.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/aab97af8002bf0c8ac18d88da64293e41c9eb121/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/44444ea6b5818bacef31de7a17128ffaafd97ea1/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
   <br />
   <sub>The LLM-Supervised pattern: hooks drive the lifecycle, the host LLM makes judgment calls, the binary handles deterministic computation.</sub>
 </p>
@@ -48,7 +48,7 @@ Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs dis
 Memory has a **compound interest effect** — the longer it accumulates, the greater its value. LLM engines iterate constantly, skill files cost nearly nothing to write, but memory is a private asset that grows with the user. It is the only component in the agent ecosystem worth deep investment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/aab97af8002bf0c8ac18d88da64293e41c9eb121/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/44444ea6b5818bacef31de7a17128ffaafd97ea1/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
   <br />
   <sub>A real knowledge graph built by Mnemon — 87 insights, 2150 edges across four graph types.</sub>
 </p>
@@ -468,13 +468,25 @@ reported by ID in the triggering command's `auto_pruned_ids` field.
 
 The embedding client speaks the Ollama API by default and the
 OpenAI-compatible embeddings API when the endpoint ends in `/v1` (or when
-`MNEMON_EMBED_PROTOCOL=openai` is set). For example, a local server such as
+`MNEMON_EMBED_PROTOCOL=openai` is set). OpenAI-compatible servers are
+normally probed via their `models` route; servers that do not serve that
+route (e.g. [Voyage AI](https://docs.voyageai.com)) are detected via an
+embeddings round-trip instead. For example, a local server such as
 [oMLX](https://omlx.dev) can be configured with:
 
 ```bash
 export MNEMON_EMBED_ENDPOINT=http://127.0.0.1:18000/v1
 export MNEMON_EMBED_MODEL=bge-m3-mlx-8bit
 export MNEMON_EMBED_API_KEY=sk-... # omit for keyless local servers
+mnemon embed --status
+```
+
+A hosted provider such as Voyage AI needs only the endpoint, model, and key:
+
+```bash
+export MNEMON_EMBED_ENDPOINT=https://api.voyageai.com/v1
+export MNEMON_EMBED_MODEL=voyage-3.5
+export MNEMON_EMBED_API_KEY=pa-...
 mnemon embed --status
 ```
 

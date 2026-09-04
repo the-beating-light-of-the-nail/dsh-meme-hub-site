@@ -66,7 +66,7 @@
 
 左：默认 Web UI。右：dsh-smooth-stream。
 
-![左：未使用插件。右：使用 dsh-smooth-stream。](https://raw.githubusercontent.com/Laplace-bit/dsh-smooth-stream/18e82cadf2d66557574f9ef9e37641c01189b7d8/docs/compare.gif)
+![左：未使用插件。右：使用 dsh-smooth-stream。](https://raw.githubusercontent.com/Laplace-bit/dsh-smooth-stream/f3c5380f71b9c0bb3bde13995c6e74fc5f4d16d7/docs/compare.gif)
 
 ---
 

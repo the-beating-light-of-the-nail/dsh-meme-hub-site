@@ -9,7 +9,7 @@
 It is the harness-internal sibling of [SSEye](#relationship-to-sseye) — same diagnostic philosophy, different observation layer.
 
 <p>
-  <img src="https://raw.githubusercontent.com/jhuanxx44/dsh-sseye/1b4bdcf02bf99ac849f33db821548d4fc87d799b/assets/panel-detail.png" width="560" alt="SSEye panel: turn-grouped call list with an expanded inline detail — provider/model hero, TTFT/duration/usage stats, cache-hit bar, prompt and message sections">
+  <img src="https://raw.githubusercontent.com/jhuanxx44/dsh-sseye/e656ab042aadd483379d5b9f4cfc5bcd7e66dacd/assets/panel-detail.png" width="560" alt="SSEye panel: turn-grouped call list with an expanded inline detail — provider/model hero, TTFT/duration/usage stats, cache-hit bar, prompt and message sections">
 </p>
 
 ## Installation

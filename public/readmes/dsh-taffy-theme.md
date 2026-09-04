@@ -17,7 +17,7 @@
 **普通用户只需一条命令，无需克隆仓库或本地构建。**
 
 ```bash
-dsh plugin --profile web add https://github.com/lengzhanbao/dsh-taffy-theme/releases/latest/download/dsh-external-dsh-taffy-theme-0.1.2.tgz
+dsh plugin --profile web add https://github.com/lengzhanbao/dsh-taffy-theme/releases/download/v0.1.3/dsh-external-dsh-taffy-theme-0.1.3.tgz
 dsh web
 ```
 
@@ -34,11 +34,11 @@ dsh web
 
 | 浅色 Light | 深色 Dark |
 | --- | --- |
-| ![Light](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/f9ef69c54814109a04e86f3dd69602b747f51aab/preview/light-v2.webp) | ![Dark](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/f9ef69c54814109a04e86f3dd69602b747f51aab/preview/dark-v2.webp) |
+| ![Light](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/ec93f4302880d1655480d06e12bb9f7f1434a1f6/preview/light-v2.webp) | ![Dark](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/ec93f4302880d1655480d06e12bb9f7f1434a1f6/preview/dark-v2.webp) |
 
 ## 简介
 
-**Taffy Live Atelier** 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web 提供虚拟直播工房式界面：浅色花房与深色霓虹舞台、粉金亚克力对话框、塔菲 Q 版侧栏与左右立绘。资源全部本地打包，不依赖 CDN；**只改外观**，不影响对话逻辑与其他插件。
+**Taffy Live Atelier** 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web 提供虚拟直播工房式界面：浅色花房与深色霓虹舞台、粉金亚克力对话框、塔菲 Q 版侧栏。资源全部本地打包，不依赖 CDN；**只改外观**，不影响对话逻辑与其他插件。
 
 - 架构思路参考 [maid-atelier](https://github.com/Small-tailqwq/dsh-deep-whale/tree/main/maid-atelier)，**未复制**其代码与资产
 - `--dsw-*` token 限定在 DSH 列容器内；亚克力 **opt-in**，降低误伤第三方插件风险

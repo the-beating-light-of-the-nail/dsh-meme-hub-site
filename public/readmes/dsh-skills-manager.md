@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/0d253555ccf252ae233e255e227ae3b73f5a9d93/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
@@ -22,7 +22,7 @@
 
 ## Features
 
-- Discover and load user-level skills from `.agents`, CC Switch, Codex, Claude, Gemini, and OpenCode into DSH.
+- Discover and load user-level skills from `.agents`, CC Switch, Codex, Claude, Gemini, OpenCode, and Cursor into DSH.
 - Discover project-level `.dsh/skills` and `.agents/skills` from active Session workspaces, grouped by project; every valid Skill can be enabled or disabled through non-mutating local policy.
 - Persist every per-Skill toggle under `$DSH_HOME/skills-manager/state.json` without rewriting any source Skill file.
 - Inspect Markdown bodies, frontmatter, invocation state, duplicate shadowing, and format diagnostics in a source-first UI.
@@ -34,15 +34,15 @@
 
 Browse by source or search in **Settings → Skills**. External Agent sources are made available through manager policy while their files stay read-only:
 
-![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/0d253555ccf252ae233e255e227ae3b73f5a9d93/assets/screenshots/skills-manager-v2-preview.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/screenshots/skills-manager-v2-preview.png)
 
 Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/0d253555ccf252ae233e255e227ae3b73f5a9d93/assets/screenshots/skill-detail.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/screenshots/skill-detail.png)
 
 Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/0d253555ccf252ae233e255e227ae3b73f5a9d93/assets/screenshots/delete-plugin.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 
@@ -153,6 +153,7 @@ Escape closes only the frontmost upload or confirmation dialog and leaves Settin
 | `$DSH_HOME\skills` | Yes | Manager state only | Yes | Moves to Trash |
 | `$DSH_AGENTS_HOME\skills` | Yes | Manager state only | No | No |
 | `~\.cc-switch\skills` | Yes, enabled by default | Manager state only | No | No |
+| `%USERPROFILE%\.cursor\skills` (or `$DSH_CURSOR_HOME\skills`) | Yes | Manager state only | No | No |
 | `~/.codex/skills`, `~/.claude/skills`, `~/.gemini/skills`, `~/.config/opencode/skills` | Yes | Manager state only | No | No |
 | `<project>/.dsh/skills` | Yes, for active Session workspaces | Manager state only | Create in Settings | Moves to Trash and restores to the original project |
 | `<project>/.agents/skills` | Yes, for active Session workspaces | Manager state only | No | No |

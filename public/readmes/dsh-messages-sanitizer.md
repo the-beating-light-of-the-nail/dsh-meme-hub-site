@@ -44,6 +44,19 @@ API 直接返回 `400 INVALID_REQUEST`，且重试时历史原封不动，反复
 如果崩溃后还有多次失败重试，日志里还会留下**多条重复的 user 消息**横在孤儿
 assistant 与注入点之间，让"补插 tool 消息"也无法满足紧邻约束。
 
+## 背景（与 DSH 官方讨论对照）
+
+同类故障在 DeepSeek Harness 官方仓库也已被跟踪：
+[Discussion #4843「残缺或孤立的 tool_calls 记录导致 DeepSeek 接口返回 400」](https://github.com/deepseek-ai/deepseek-harness/discussions/4843)
+描述了「会话历史中存在无配对 result、或 id/name/arguments 残缺的 tool_calls 时，chat-completions 接口返回 400」，
+并从 harness 源码层（agent-loop 剥离、llm-deepseek 合成 fallback id、compaction 的 tool-pairing 按 callId 而非计数）
+给出根因修复 patch。
+
+本插件与那个修复是**互补而非替代**：它在 DSH 源码里根治；本插件是一个
+**不修改 DSH 源码、在运行时自动矫正 messages 数组**的安全网——已中毒的旧会话，
+或跑在仍带该 bug / 工具调度崩溃的 harness 版本上的用户，都能被自动救回并继续对话，
+而不必等待 harness 发版。
+
 ## 插件如何修复（四层防御）
 
 1. **自动续跑（agent/status，主路径）**：工具调度崩溃（如 `prepare` 崩）后，趁

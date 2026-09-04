@@ -2,18 +2,18 @@
 
 DeepSeek Harness 插件：右下角「会员额度」悬浮球 + 面板，一眼看清各 AI 平台的套餐额度与余额。
 
-![面板特写](https://raw.githubusercontent.com/Minokun/dsh-quota/ab533ed5dbd6207fc247a9ac9de6a195e2663f96/docs/screenshot-panel.png)
+![面板特写](https://raw.githubusercontent.com/Minokun/dsh-quota/bdd789a4eb1e14f1c74ab78cf03ab181161cc9a7/docs/screenshot-panel.png)
 
 <details>
 <summary>📸 整页效果（悬浮球在右下角）</summary>
 
-![整页效果](https://raw.githubusercontent.com/Minokun/dsh-quota/ab533ed5dbd6207fc247a9ac9de6a195e2663f96/docs/screenshot-full.png)
+![整页效果](https://raw.githubusercontent.com/Minokun/dsh-quota/bdd789a4eb1e14f1c74ab78cf03ab181161cc9a7/docs/screenshot-full.png)
 
 </details>
 
 **截图里都是什么：**
 
-- **右下角的「会员额度」悬浮球**：圆点表示整体状态（绿 = 全部正常 / 黄 = 部分异常 / 红 = 全部失败），旁边是上次刷新时间；点击展开/收起面板，打开时数据超过 5 分钟会自动后台刷新
+- **右下角的「会员额度」悬浮球**：圆点表示整体状态（绿 = 全部正常 / 黄 = 部分异常 / 红 = 全部失败），旁边是上次刷新时间；点击展开/收起面板，打开时数据超过 5 分钟会自动后台刷新；**按住可拖拽到屏幕任意位置**（位置自动记住，拖到上半屏时面板改为向下展开）
 - **每个平台一张卡片**：右上两个徽标——`API` = 官方 API 直查（key 自动同步自 DSH 凭证域，下方灰色小字显示用的是哪个凭证引用，例如 `⇄ 已同步 KIMI_CODING_API_KEY · DSH 凭证`），`MCP` = 通过已注册的 MCP 服务器查询；`正常` / `失败` / `未配 Key` 是本次查询状态
 - **彩色进度条**：用量占比（<60% 绿 / 60–85% 黄 / >85% 红），右侧是 `已用 / 上限 剩xx`，下方小字是额度窗口的重置时间
 - **头部「刷新」按钮**：立即重新查询所有平台；面板底部「API Key 管理」折叠区可手动补 key（一般不需要——DSH 里加过的 key 会自动同步过来）
@@ -35,6 +35,8 @@ DeepSeek Harness 插件：右下角「会员额度」悬浮球 + 面板，一眼
 **MCP 平台**（纯可选扩展，通过另行注册的 `mcp__*` 工具取数；本仓库不包含这些 MCP 服务器）：智谱 BigModel、通义千问（百炼）、超算互联网、TokenRouter、SupaWriter。没注册时对应平台自动隐藏。
 
 **自定义平台**：有余额 API 的平台（聚合站 / one-api / new-api…）在面板底部「自定义平台」直接添加，或在 config 里声明 `httpPlatforms` / `mcpPlatforms` —— 详见 **[docs/extending.md](docs/extending.md)**（含"如何把网页 Cookie 平台做成 MCP 接入"的完整指南）。
+
+NewAPI 有两种口径：`openai-billing` 使用模型 `sk-*` key 查询该 key 的额度；`newapi-account` 使用个人设置里的系统访问令牌与用户 ID 查询 `/api/user/self`，显示整个账号的余额和累计用量。
 
 ## 安装
 
@@ -81,17 +83,11 @@ pnpm typecheck
 sh scripts/reload.sh   # 构建；Host 改动重启 dsh 生效，界面改动刷新页面生效
 ```
 
-## 发布（maintainer）
+## 交流群
 
-发版走 **npm Trusted Publishing（GitHub Actions OIDC）**——不需要本地 token 或 2FA 验证码：
+扫码加入 QQ 交流群，一起反馈问题、分享用法、共建插件——欢迎一起来建设！
 
-```sh
-sh scripts/release.sh          # 默认 patch；也可 sh scripts/release.sh minor / 0.8.0
-```
-
-流程：`npm version` 升版本并打 tag → 推送触发 `.github/workflows/publish.yml` → CI 里构建（含门禁）→ OIDC 认证发布，自带 SLSA provenance。动作日志见 [Actions](https://github.com/Minokun/dsh-quota/actions)。
-
-绑定配置（一次性，已绑好）：npmjs.com 包设置 → Trusted Publisher → GitHub Actions → `Minokun` / `dsh-quota` / `publish.yml` / 允许 `npm publish`。
+<img src="https://raw.githubusercontent.com/Minokun/dsh-quota/bdd789a4eb1e14f1c74ab78cf03ab181161cc9a7/docs/qq-qrcode.jpg" alt="QQ 交流群二维码" width="240" />
 
 ## License
 

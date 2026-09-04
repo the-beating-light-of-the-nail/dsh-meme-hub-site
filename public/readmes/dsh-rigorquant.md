@@ -3,7 +3,7 @@
 **English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/edgesworth-box.png" alt="Edgeworth box with contract curve and Pareto optimum" width="70%">
 
 </p>
 <p align="center"><sub>
@@ -58,56 +58,56 @@ The Orchestrator is the only role that sees every report; the separation is
 enforced by the composition, so **the producer never checks its own work** — an
 idea dies only on a concrete counterexample, never on style or vibes.
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-orchestrator.png" align="left" width="200" alt="Orchestrator">
 
 **Orchestrator** · `root persona` — fans out the work, synthesizes, and writes the state. Bound by four rules: producer ≠ checker, counterexample-only elimination, seeds always recorded, no handwaved load-bearing claims.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-explorer.png" align="left" width="200" alt="Explorer">
 
 **Explorer** · `subagent_explorer` — blank-context and divergent. Proposes lemmas, equations, constructions, and candidate methods with exact statements. Status reports are rejected.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-offgrid.png" align="left" width="200" alt="OffGridThinker">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-offgrid.png" align="left" width="200" alt="OffGridThinker">
 
 **OffGridThinker** · `subagent_offgrid` — the off-grid lane. Raw model intelligence plus the pinned compute lane (sympy, numpy, mpmath, cvxpy, hypothesis, jax; Lean checkers when provisioned) — and nothing else: no web, no skills, no delegation, no other agents' results. Its own agent, not an Explorer variant: isolation is the identity.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-doublechecker.png" align="left" width="200" alt="DoubleChecker">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-doublechecker.png" align="left" width="200" alt="DoubleChecker">
 
 **DoubleChecker** · `subagent_double_checker` — blind (no web, no skills, no delegation, no drafts). Re-derives the load-bearing claims from first principles, twice by different means.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-adversary.png" align="left" width="200" alt="Adversary">
 
 **Adversary** · `subagent_adversary` — runs the check group and hunts counterexamples. Ends in a verdict: `PASS` or `NEEDS-EDITS`.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-literature.png" align="left" width="200" alt="Literature">
 
 **Literature** · `subagent_lit_line` · `_adversary` — a walled citation-graph sweep, then an independent adversary re-retrieves each claim and certifies it's real **and** current.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-validator.png" align="left" width="200" alt="Validator">
 
 **Validator** · `rq_check.py` + schemas — refuses a `PASS` with missing evidence. Reads the audit record, never the study's own claims — a study cannot vouch for itself.
 
 <br clear="left">
 
 
-<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
+<img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/avatar-document-adversary.png" align="left" width="200" alt="Document adversary">
 
 **Document adversary** · `subagent_document_adversary` — an independent agent that audits each finished deliverable for **self-completeness** (the thing 90% of AI-generated writing drops): every jargon term, symbol, and abbreviation the document uses must be defined in the artifact itself or the audience spec's symbol registry. Returns `VERDICT: PASS` / `VERDICT: NEEDS-EDITS`; a `NEEDS-EDITS` is a blocking gap the validator refuses a `PASS` without.
 
@@ -132,7 +132,7 @@ publishes and serves a JSON snapshot + portraits over
 are `--dsw-alias` tokens, so it follows the shell's own light/dark theme.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/569d38e1bd1c58422012efd0ca9bd04d2bd9a62f/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
+  <img src="https://raw.githubusercontent.com/linxichen/dsh-rigorquant/cd4678c358fa225a6f4b98c6134d73af5b0a0fe1/docs/figs/agent-team-activity.svg" width="52%" alt="RigorQuant agent team activity view — team summary, segmented progress, member roster, and task dependency graph">
 </p>
 
 The picture above is the reader-safe rendering of the same design (the live

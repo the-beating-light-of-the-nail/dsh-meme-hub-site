@@ -50,7 +50,7 @@ observe exact bundle id + pid
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anionex/dsh-computer-use/b04d2b5e39c671259b1c8c601c76d9c77b2c9d52/assets/computer-use-fixture.png" width="760" alt="The never-active deterministic native fixture before target-process pointer input, showing the dedicated pointer probe and ready status." />
+  <img src="https://raw.githubusercontent.com/Anionex/dsh-computer-use/97b9731abcccb14d32d3985df971982a56506e1a/assets/computer-use-fixture.png" width="760" alt="The never-active deterministic native fixture before target-process pointer input, showing the dedicated pointer probe and ready status." />
 </p>
 
 The fixture records every `applicationDidBecomeActive` callback. An independent native monitor also samples the system cursor and frontmost pid every millisecond throughout click, scroll, and drag. The default release path must not increase `activationCount`; it also requires unchanged cursor coordinates, an unchanged frontmost pid, exact click/scroll counts, and one complete down/up drag gesture.
