@@ -13,6 +13,12 @@
 //   6. README 提取不足 6 张时,逐个 HEAD 探测约定文件名(content-type 以 image/ 开头才算存在)
 //   7. 全部落空 → 兜底 opengraph.githubassets.com/{SHA}/{repo}(GitHub 自动生成的社交封面)
 //
+// monorepo 子包:repo 字段形如 owner/name#packages/foo 时,README 与约定文件名都从子包
+// 目录起算(与 fetch-readmes.mjs 同款约定),ls-remote/opengraph 只用 owner/name 部分。
+//
+// 失败语义(对齐 refresh-stars.py):单仓失败只记原因,保留该插件现有 screenshots 不清空——
+// 整体覆盖只发生在收集成功时,网络抖动/仓库改名不会抹掉已有截图。
+//
 // 本机访问 GitHub 必须走 sing-box 代理;Node 内置 fetch 不读 HTTP_PROXY 环境变量,
 // 故依赖 undici 的 ProxyAgent(setGlobalDispatcher)。git 同样不读环境变量代理,
 // ls-remote 时以 -c http.proxy=... 显式传入。单个 repo 失败只记失败原因,绝不中断整体。
@@ -97,12 +103,12 @@ function isBadgeOrIcon(url) {
 
 /**
  * URL 归一化(防裂图):
- *   - 相对路径 → raw.githubusercontent.com/{repo}/{SHA}/{path}(README 位于仓库根)
- *   - 同仓库 raw 链接 / github blob 链接 → 分支名替换为 SHA
+ *   - 相对路径 → raw.githubusercontent.com/{repo}/{SHA}/{baseDir + path}(README 所在目录起算)
+ *   - 同仓库 raw 链接 / github blob 链接 → 分支名替换为 SHA(路径是仓库绝对路径,不叠 baseDir)
  *   - 其余绝对 https 链接原样保留;其余协议、锚点、data: 一律丢弃
  * @returns {string|null}
  */
-function normalizeImageUrl(rawUrl, repo, sha) {
+function normalizeImageUrl(rawUrl, repo, sha, baseDir = '') {
   let u = rawUrl.trim()
   if (u.startsWith('<') && u.endsWith('>')) u = u.slice(1, -1)
   if (!u || u.startsWith('#') || u.startsWith('data:')) return null
@@ -127,8 +133,9 @@ function normalizeImageUrl(rawUrl, repo, sha) {
   }
   if (/^[a-z][a-z0-9+.-]*:/i.test(u)) return null // mailto: ftp: 等其它协议
 
-  // 仓库内相对路径:逐段消解 ./ ../,含空格/中文的段做百分号编码
+  // 仓库内相对路径:先落子包基路径(monorepo),再逐段消解 ./ ../,含空格/中文的段做百分号编码
   const segs = []
+  for (const seg of baseDir.split('/')) if (seg) segs.push(seg)
   for (const seg of u.split('/')) {
     if (!seg || seg === '.') continue
     if (seg === '..') { segs.pop(); continue }
@@ -138,10 +145,11 @@ function normalizeImageUrl(rawUrl, repo, sha) {
 }
 
 /** 逐个 HEAD 探测约定文件名,content-type 以 image/ 开头才算存在 */
-async function probeConventional(repo, sha) {
+async function probeConventional(repo, sha, baseDir = '') {
   const found = []
+  const prefix = baseDir ? `${baseDir}/` : ''
   for (const file of CONVENTIONAL_FILES) {
-    const url = `${RAW_BASE}/${repo}/${sha}/${file}`
+    const url = `${RAW_BASE}/${repo}/${sha}/${prefix}${file}`
     try {
       const res = await fetchViaProxy(url, { method: 'HEAD', signal: AbortSignal.timeout(TIMEOUT_MS) })
       if (res.ok && (res.headers.get('content-type') || '').toLowerCase().startsWith('image/')) found.push(url)
@@ -151,8 +159,12 @@ async function probeConventional(repo, sha) {
   return found
 }
 
-/** 单个 repo 的完整抓图流程,返回 { screenshots, via } */
-async function collectScreenshots(repo) {
+/** 单个 repo 的完整抓图流程,返回 { screenshots, via };repo 形如 owner/name 或 owner/name#sub/dir */
+async function collectScreenshots(repoField) {
+  const hashIdx = repoField.indexOf('#')
+  const repo = hashIdx >= 0 ? repoField.slice(0, hashIdx) : repoField
+  const baseDir = hashIdx >= 0 ? repoField.slice(hashIdx + 1) : ''
+  const readmePrefix = baseDir ? `${baseDir}/` : ''
   const sha = await headSha(repo)
   const shots = []
   const seen = new Set()
@@ -163,14 +175,14 @@ async function collectScreenshots(repo) {
   }
 
   for (const file of README_FILES) {
-    const text = await fetchText(`${RAW_BASE}/${repo}/${sha}/${file}`)
-    for (const u of extractImageUrls(text)) add(normalizeImageUrl(u, repo, sha))
+    const text = await fetchText(`${RAW_BASE}/${repo}/${sha}/${readmePrefix}${file}`)
+    for (const u of extractImageUrls(text)) add(normalizeImageUrl(u, repo, sha, baseDir))
   }
   let via = shots.length ? 'readme' : ''
 
   if (shots.length < MAX_SHOTS) {
     const before = shots.length
-    for (const url of await probeConventional(repo, sha)) add(url)
+    for (const url of await probeConventional(repo, sha, baseDir)) add(url)
     if (shots.length > before) via = via ? `${via}+probe` : 'probe'
   }
 
@@ -204,10 +216,10 @@ async function worker() {
       console.log(`${tag()} ${plugin.repo} → ${screenshots.length} 张 (${via})`)
     }
     catch (err) {
-      plugin.screenshots = []
+      // 失败保留现有 screenshots(与 refresh-stars.py 的「沿用旧值」语义对齐),只记失败原因
       const reason = err?.message || String(err)
       failures.push({ repo: plugin.repo, reason })
-      console.log(`${tag()} ${plugin.repo} → 0 张 (失败: ${reason})`)
+      console.log(`${tag()} ${plugin.repo} → 保留原有 ${plugin.screenshots?.length || 0} 张 (失败: ${reason})`)
     }
     done++
   }
