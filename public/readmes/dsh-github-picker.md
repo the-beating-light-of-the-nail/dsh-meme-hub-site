@@ -8,7 +8,7 @@ English | [中文](README.zh.md)
 
 GitHub issue and pull request references for the DeepSeek Harness web GUI. Click the GitHub icon next to the send button to search the current workspace repository's issues and PRs, and insert a reference — a GitHub URL or an `@owner/repo#number` mention.
 
-![dsh-github-picker in the DeepSeek Harness web GUI](https://raw.githubusercontent.com/bitxeno/dsh-github-picker/ce94497ee7178ce54e0d69825c089d13a197d5c7/docs/image/preview.jpeg)
+![dsh-github-picker in the DeepSeek Harness web GUI](https://raw.githubusercontent.com/bitxeno/dsh-github-picker/fe41806cf944a0be92a6e4b1b62033fa51579569/docs/image/preview.jpeg)
 
 ## Install
 

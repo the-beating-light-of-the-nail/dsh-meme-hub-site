@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/57003eeac27b129826d6e40e6088559b2b04f817/docs/assets/stratagate-avatar.png" alt="StrataGate Agent Memory banner" width="100%" />
+<img src="https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/c1bd0dbf1149c39a5f079e19cf7f0a145da08725/docs/assets/stratagate-avatar.png" alt="StrataGate Agent Memory banner" width="100%" />
 
 # StrataGate
 
@@ -10,6 +10,7 @@ StrataGate helps long-running AI agents remember across sessions without turning
 
 [![CI](https://github.com/diqierjia/StrataGate-AgentMemory/actions/workflows/ci.yml/badge.svg)](https://github.com/diqierjia/StrataGate-AgentMemory/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/stratagate-dsh.svg)](https://www.npmjs.com/package/stratagate-dsh)
+[![npm downloads](https://img.shields.io/npm/dt/stratagate-dsh.svg)](https://www.npmjs.com/package/stratagate-dsh)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6.svg)](https://www.typescriptlang.org/)
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
@@ -108,7 +109,7 @@ This is a single-conversation comparison on `conv-26`, not a full LoCoMo score. 
 
 ## How it works
 
-![StrataGate workflow: layered memory, event cards, and the evidence gate](https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/57003eeac27b129826d6e40e6088559b2b04f817/docs/assets/stratagate-how-it-works.en.png)
+![StrataGate workflow: layered memory, event cards, and the evidence gate](https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/c1bd0dbf1149c39a5f079e19cf7f0a145da08725/docs/assets/stratagate-how-it-works.en.png)
 
 The normal path is deliberately simple:
 

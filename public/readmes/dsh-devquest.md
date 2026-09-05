@@ -66,8 +66,8 @@
 侧边栏底部 ⚔️ 入口，点击弹出面板；成就解锁与回合结算时弹出 toast：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lucky8197/dsh-devquest/8c5e885b8a5437901a2246497ecede45a73f1baf/screenshots/panel.png" alt="DevQuest 面板：等级环 / 冲刺条 / 每日+每周任务 / 商店 / 新手链 / 称号 / 收藏 / 成就墙 / 周报" width="440">
-  <img src="https://raw.githubusercontent.com/lucky8197/dsh-devquest/8c5e885b8a5437901a2246497ecede45a73f1baf/screenshots/toast.png" alt="成就解锁 toast（稀有度着色）" width="300">
+  <img src="https://raw.githubusercontent.com/lucky8197/dsh-devquest/0edc762a29e40649351095424b66a4230b429773/screenshots/panel.png" alt="DevQuest 面板：等级环 / 冲刺条 / 每日+每周任务 / 商店 / 新手链 / 称号 / 收藏 / 成就墙 / 周报" width="440">
+  <img src="https://raw.githubusercontent.com/lucky8197/dsh-devquest/0edc762a29e40649351095424b66a4230b429773/screenshots/toast.png" alt="成就解锁 toast（稀有度着色）" width="300">
 </p>
 
 ## ⚙️ 安装

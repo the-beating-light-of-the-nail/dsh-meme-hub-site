@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/356bf3f6b88a4d0ceafca7d81855981821b8664c/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
+  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/94f8671ddd337479c3f783594491615cd3795787/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
 </p>
 
 <h1 align="center">dsh-md-notes</h1>
@@ -43,12 +43,12 @@ history in [docs/compatibility.md](docs/compatibility.md)):
 
 | Plugin version | dsh version | Verified on |
 |---|---|---|
-| 0.10.1 | `0.1.2-alpha.5` | 2026-09-03 |
-| 0.10.0 | `0.1.2-alpha.5` | 2026-09-02 |
-| 0.10.0 | `0.1.2-alpha.4` | 2026-09-02 |
+| 0.11.0 | `0.1.3-alpha.1` | 2026-09-04 |
+| 0.10.1 | `0.1.3-alpha.1` | 2026-09-04 |
+| 0.10.0 | `0.1.3-alpha.1` | 2026-09-04 |
 
 The plugin is not pinned to a specific mainline commit; pin the plugin version at install
-time if you need a fixed combination (e.g. `dsh plugin --profile web add dsh-md-notes@0.10.1`).
+time if you need a fixed combination (e.g. `dsh plugin --profile web add dsh-md-notes@0.11.0`).
 Runtime dependencies (`@deepseek-ai/*`, `react`) are declared as optional peer dependencies
 and resolve from the dsh installation.
 

@@ -25,11 +25,11 @@
 ## Compatibility
 
 Host `0.1.2-alpha.2` and later fails closed on the session event vocabulary, so this plugin no longer writes its log-only fact events (`background-agents/fact`, `team-room/fact`) there: facts route to the logger/panel channel instead and the projections degrade to an empty fold. Older rc lines (through `0.1.1-rc.2`) keep the ignorable-marker discipline. The client half now rides the current client packages (`dsh-api-session-controller`, `dsh-client-web`) and the current subagent remote (`interruptByParent`, `prompt` with a client-minted `requestId`; the old `history` RPC is gone — result peeks read the child session's `conversation` projection).
-0.1.2-alpha.5 (adapted 2026-09-02): the session envelope keeps its ignorable field for stored-log read compatibility only - Session.append still cannot stamp it, so audit-gate behavior is unchanged.
+0.1.2-rc.1 (adapted 2026-09-04): the session envelope keeps its ignorable field for stored-log read compatibility only - Session.append still cannot stamp it (the third parameter is SurfaceIntent for surface event types only, never an options bag), so fact-gate behavior is unchanged.
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.2-alpha.5` (peers `>=0.1.0-rc.8 <0.2.0`) |
+| Harness | DeepSeek Harness `0.1.2-rc.1` (peers `>=0.1.0-rc.8 <0.2.0`) |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | All (host tools; optional Web sidebar panel and team rooms via the storage-domain capability) |
 | Model | Any (children inherit the parent's route; `childProvider`/`childModel` override) |
@@ -132,7 +132,7 @@ Everything rides the official subagent seam: `startContinuable`, `followup`, `in
 
 The plugin writes every fact through **one structured channel and one model-visible channel**:
 
-- **`background-agents/fact` structured fact events** — the registered / message / stop / progress / archived facts plus the per-turn `metrics` samples (tokens, turn wall time, error flag), appended to the parent log as log-only records with the envelope's `ignorable: true` marker; readers that do not know the type skip the records instead of refusing the log. Hosts whose `Session.append` predates the marker (every released rc line through `0.1.0-rc.8` and `0.1.1-rc.2` drops it silently — the stamping fix exists on harness master only — making unmarked sessions unresumable on stricter builds) are detected before the first append (peer-version pre-check, then a probe of the returned envelope) and fact appends are skipped with a one-time warning — the durable store, the notices, and the tools keep working, and the projections degrade to an empty fact fold.
+- **`background-agents/fact` structured fact events** — the registered / message / stop / progress / archived facts plus the per-turn `metrics` samples (tokens, turn wall time, error flag), appended to the parent log as log-only records with the envelope's `ignorable: true` marker; readers that do not know the type skip the records instead of refusing the log. Hosts whose `Session.append` predates the marker (every released rc line through `0.1.0-rc.8` and `0.1.1-rc.2`, and the `0.1.2-rc` line (which keeps the envelope field for stored-log read compatibility only and still cannot stamp it), drop it silently — the stamping fix exists on harness master only — making unmarked sessions unresumable on stricter builds) are detected before the first append (peer-version pre-check, then a probe of the returned envelope) and fact appends are skipped with a one-time warning — the durable store, the notices, and the tools keep working, and the projections degrade to an empty fact fold.
 - **`tool/result` replay metadata** — the same facts in logs written before the structured channel (folded only while a row has no structured provenance).
 - **injected `user/message` notices** (model-visible), source `{ kind: 'plugin', plugin: 'dsh-background-agents' }` — the throttled progress lines and archive notices (canonical `[background-agent <id>] …` prefix).
 - the **official `subagent-settled` notice** — the child's durable "settled" fact.

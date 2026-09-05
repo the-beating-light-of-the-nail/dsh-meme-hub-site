@@ -4,9 +4,9 @@
 
 中文 | [English](README.en.md)
 
-> DSH Web GUI 插件，提供**类 Codex 的工具折叠体验**：把连续的**工具调用**折叠成一条简洁的折叠条，只展示最后一个调用的一行摘要，点击即可展开/收起。不替换任何内置渲染器，卸载后界面完全恢复原样。
+> DSH Web GUI 插件，提供**简单的工具调用折叠体验**：把连续的**工具调用**折叠成一条简洁的折叠条，只展示最后一个调用的一行摘要，点击即可展开/收起。不替换任何内置渲染器，卸载后界面完全恢复原样。
 
-![折叠效果演示](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/2eb1625aeb2ab247e305db74c26d50998c0b9740/assets/demo-fold.gif)
+![折叠效果演示](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/7c6b2d3c75c6d05b25a24d2e2bb1e5dfb76bdbc7/assets/demo-fold.gif)
 
 ---
 
@@ -66,7 +66,7 @@ dsh plugin --profile web remove dsh-toolfold
 - **点击折叠条**：展开或收起工具调用卡片（键盘 `Enter` / `Space` 同样有效）
 - **折叠条显示**：最后一个工具调用的一行摘要 + “已折叠 N 个工具调用 · 点击展开”
 
-![展开/收起动画](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/2eb1625aeb2ab247e305db74c26d50998c0b9740/assets/expand-collapse.gif)
+![展开/收起动画](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/7c6b2d3c75c6d05b25a24d2e2bb1e5dfb76bdbc7/assets/expand-collapse.gif)
 
 ---
 
@@ -116,7 +116,7 @@ dsh plugin --profile web remove dsh-toolfold
 
 设置入口：**设置 → 插件 → 工具折叠**（卡片外观与内置插件一致，跟随深浅主题）。
 
-![设置卡片](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/2eb1625aeb2ab247e305db74c26d50998c0b9740/assets/settings.png)
+![设置卡片](https://raw.githubusercontent.com/Minecraftbe/dsh-toolfold/7c6b2d3c75c6d05b25a24d2e2bb1e5dfb76bdbc7/assets/settings.png)
 
 ### 设置项
 

@@ -45,6 +45,26 @@ pnpm add dsh-omni-bridge
 3. 在 profile 目录执行 `pnpm install`（会自动安装 `@larksuiteoapi/node-sdk` 依赖）。
 4. 重启 DSH（bundle 层在启动时组合，需重启生效）。
 
+**方式三：从 DSH 商城 / GitHub 安装**
+
+```bash
+# 在任意一次性或正式 profile 上直接加仓库路径（等价于商城 GitHub 源安装）
+dsh plugin --profile <p> add https://github.com/baisama-cloud/dsh-omni-bridge
+```
+
+## 兼容性
+
+- **DSH 版本范围**：`>=0.1.0-rc.8 <0.2.0`（声明于 `package.json` 的 `dsh.compatibility.dsh`）。
+- **Node.js**：`>=22.13.0`。
+- **逐版本声明**：`package.json` 的 `dsh.compatibility.dshReleases` 对每个公开发行版给出
+  `compatible` 记录（`rc.7`/`rc.8` 为商店仍接受的历史别名，其余为完整 SemVer 键）。
+
+每个声明版本都配有**一次性 Profile 安装/启动/卸载证据**（install、start、uninstall），
+方法与逐版本结果见 [COMPATIBILITY.md](./COMPATIBILITY.md)。该类证据为一次性 Profile
+级（`partial`）：证明 bundle 能随对应 DSH 发行版安装、组合并完成宿主 `apply()` 启动；
+真实第三方消息收发需外部凭据与网络服务，不包含在该证据内。
+
+
 ## 依赖
 
 飞书长连接依赖官方 SDK，由 bundle 的 `dependencies` 自动安装：

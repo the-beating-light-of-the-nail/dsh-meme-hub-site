@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/686325113117873c00ca74c476f18874b2876796/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
+<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/0b4727ad67055069914beab8ce2df09e2cf3ac2e/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
 
 # DSH Chat Import
 

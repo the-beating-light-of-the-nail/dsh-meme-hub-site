@@ -3,7 +3,7 @@
 [English](README_en.md) | 简体中文
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/banner.jpg" alt="dsh-passwords" width="100%">
+  <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/banner.jpg" alt="dsh-passwords" width="100%">
 </p>
 
 <p align="center">
@@ -17,7 +17,7 @@
   &nbsp;
   <a href="https://github.com/slywalker2006/dsh-passwords/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/slywalker2006/dsh-passwords/ci.yml?style=flat-square&label=CI" alt="CI"></a>
   &nbsp;
-  <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/DSH-0.1.2--alpha.5-4c6ef5?style=flat-square&labelColor=454a54" alt="DSH"></a>
+  <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/DSH-0.1.2--rc.1-4c6ef5?style=flat-square&labelColor=454a54" alt="DSH"></a>
   &nbsp;
   <img src="https://img.shields.io/badge/license-GPL--3.0-blue?style=flat-square" alt="License">
   &nbsp;
@@ -62,21 +62,21 @@ dsh 自带的网页界面没有登录与权限控制，公网部署后任何拿�
 
 | 登录页 · 浅色 | 登录页 · 深色 | 登录页 · English |
 |:---:|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/white-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/black-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/white-login-en.png" width="360"> |
+| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/white-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/black-login.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/white-login-en.png" width="360"> |
 
 | dsh 主界面 · 登录后 | 聊天 / 留言 | 设置页卡片 · 账号管理 |
 |:---:|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/main-ui.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/chat.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/card-front.png" width="360"> |
+| <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/main-ui.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/chat.png" width="360"> | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/card-front.png" width="360"> |
 
 | | 设置页卡片 · 权限与配额 | |
 |:---:|:---:|:---:|
-| | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/62486f2465bcf1640e68f2ce3854e1ccfeae3192/docs/screenshots/card-back.png" width="360"> | |
+| | <img src="https://raw.githubusercontent.com/slywalker2006/dsh-passwords/5c6e7a87bddd963219497c857665b4d905be371e/docs/screenshots/card-back.png" width="360"> | |
 
 ## 快速开始
 
 ### 前置条件
 
-宿主机安装需要 Node.js 22.19+ 或 24+、可正常运行的 dsh 和 git。请让本插件与 dsh 宿主使用同一 Node 主线版本；DSH `0.1.2-alpha.5` 的官方运行要求也是 22.19+ 或 24+。Docker 安装只需要 Docker Engine 或 Docker Desktop 和一个 DeepSeek API key。
+宿主机安装需要 Node.js 22.19+ 或 24+、可正常运行的 dsh 和 git。请让本插件与 dsh 宿主使用同一 Node 主线版本；DSH `0.1.2-rc.1` 的官方运行要求也是 22.19+ 或 24+。Docker 安装只需要 Docker Engine 或 Docker Desktop 和一个 DeepSeek API key。
 
 ### 安装
 
@@ -319,7 +319,7 @@ curl -so /dev/null -w "TLS:%{time_appconnect}s\n" https://地址/gateway/login
 
 ### 手动安装
 
-> v2.6.9 的兼容层覆盖 DSH `0.1.2-alpha.1` 至 `alpha.5` 的源码运行时；alpha.1 未发布 npm 包，npm/Docker 可安装基线为 `alpha.2+`，当前锁定并验收 `alpha.5`。安装器会严格检查 Node.js `22.19+` 或 `24+`，并在安装完成后注册插件、探测 dsh 安装目录并应用兼容补丁。自动更新与设置页“重载补丁”会沿用同一补丁链路。
+> v2.6.10 的兼容层覆盖 DSH `0.1.2-alpha.1` 至 `alpha.5` 的源码运行时，并额外适配 `0.1.2-rc.1`；alpha.1 未发布 npm 包，npm/Docker 可安装基线包括 `alpha.2+` 与 rc.1，当前锁定并验收 rc.1。安装器会严格检查 Node.js `22.19+` 或 `24+`，并在安装完成后注册插件、探测 dsh 安装目录并应用兼容补丁。自动更新与设置页“重载补丁”会沿用同一补丁链路。
 
 1. `git clone https://github.com/slywalker2006/dsh-passwords && cd dsh-passwords`
 2. `npm install && npm run build`
@@ -346,12 +346,13 @@ curl -so /dev/null -w "TLS:%{time_appconnect}s\n" https://地址/gateway/login
 
 ## 版本兼容
 
-当前版本 2.6.9。已验证 DSH `0.1.2-alpha.5` 部署；兼容层覆盖 DSH `alpha.1` 至 `alpha.5` 的已知结构适配。npm 包包含预构建 dist、TypeScript 源码与全部脚本；bundled Docker 镜像与 npm 包出自同一份源码，并内置 DSH `0.1.2-alpha.5`。
+当前版本 2.6.10。当前开发与部署基线为 DSH `0.1.2-rc.1`；兼容层保留 DSH `alpha.1` 至 `alpha.5` 的已知结构适配，并已针对 rc.1 的官方 npm 运行时完成本地验证。npm 包包含预构建 dist、TypeScript 源码与全部脚本；bundled Docker 镜像与 npm 包出自同一份源码，并内置 DSH `0.1.2-rc.1`。
 
 ## 参与贡献
 
-- 欢迎 Issue 报告问题与需求，PR 请保持改动聚焦并附测试证据
-- 提交前跑 `npm test && npm run build`，CI 会在 Node 22/24 上自动执行
+- 提交问题前请阅读 [社区规范清单](docs/community-checklist.md)，并使用 [问题模板](.github/ISSUE_TEMPLATE/bug_report.md) 或 [功能模板](.github/ISSUE_TEMPLATE/feature_request.md)
+- 代码贡献请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)，使用 [PR 模板](.github/PULL_REQUEST_TEMPLATE.md)，保持改动聚焦并附测试证据
+- 提交前跑 `npm ci && npm run build && npm test`，CI 会在 Node 22/24 上自动执行
 
 ## 贡献者
 

@@ -6,11 +6,14 @@ English | [中文](README.zh.md)
 
 A persistent, host-side [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) bundle that privately summarizes local Codex, Claude Code, and WorkBuddy/CodeBuddy activity and recommends a built-in DSH agent preset. It is advisory only: there is no LLM call, installation, preset mutation, or network request.
 
+Compatibility baseline: DeepSeek Harness `0.1.2-rc.1`, Cordis `4.0.2`, and Schemastery `3.18.2`.
+The installed Host result is recorded in [Windows DSH 0.1.2 acceptance](docs/WINDOWS_DSH_0.1.2_ACCEPTANCE.md).
+
 ## Preview
 
-![Synthetic aggregate recommendation overview in DeepSeek Harness](https://raw.githubusercontent.com/LeemanCheung/dsh-agent-preset-recommender/409a3218cf139838a5c4189a5e3c9c048cb0b68e/docs/screenshot.png)
+![Synthetic aggregate recommendation overview in DeepSeek Harness](https://raw.githubusercontent.com/LeemanCheung/dsh-agent-preset-recommender/94d176b70b1e0d98107065cb515b3a033916ab6b/docs/screenshot.png)
 
-![Synthetic aggregate project detail in DeepSeek Harness](https://raw.githubusercontent.com/LeemanCheung/dsh-agent-preset-recommender/409a3218cf139838a5c4189a5e3c9c048cb0b68e/docs/project-detail.png)
+![Synthetic aggregate project detail in DeepSeek Harness](https://raw.githubusercontent.com/LeemanCheung/dsh-agent-preset-recommender/94d176b70b1e0d98107065cb515b3a033916ab6b/docs/project-detail.png)
 
 > These previews use synthetic aggregate fixture data. They illustrate the bounded tool results only; no user sessions, paths, prompts, commands, or secrets appear.
 
@@ -20,7 +23,7 @@ A persistent, host-side [DeepSeek Harness](https://github.com/deepseek-ai/deepse
 | --- | --- | --- |
 | Local inventory | Boundedly scans supported session, project, and workflow metadata from Codex, Claude Code, CodeBuddy, and WorkBuddy. | Skips caches, builds, `.git`, symlinks, inaccessible roots, and unknown content. |
 | Privacy-preserving evidence | Aggregates tool, session, workflow, and day-level activity under installation-local HMAC project IDs. | Never persists prompts, replies, commands, arguments, raw events, paths, usernames, secrets, or file bodies. |
-| Deterministic advice | Maps observed evidence to `minimal`/`standard` capability presets plus optional delegation, workflow, web, MCP, and LSP capabilities. | Does not infer the `code` presentation variant, judge task quality, or alter a preset. |
+| Deterministic advice | Maps observed evidence to `minimal`/`standard` capability presets plus optional delegation, workflow, web, MCP, and LSP capabilities. | Knows the shipped `minimal`, `standard`, `ptc`, and `cordis` roster, but never changes the user's current selection. |
 | Agent-facing access | Provides `scan_agent_projects` for a fresh bounded scan and `get_agent_preset_recommendations` for the saved report. | Both tools return bounded readable text; neither installs, enables, or authenticates anything. |
 | Durable local operation | Atomically persists a private report, supports startup and scheduled scans, and serializes all scan triggers. | No LLM call, network request, discovered-command execution, or background work survives plugin disposal. |
 
@@ -38,7 +41,7 @@ Observed aggregate behavior is mapped to:
 
 - capability presets: `minimal` or `standard`.
 
-`code` is a Code Mode presentation variant of `standard`, so this scanner never infers it from local activity volume or silently recommends it as a capability tier.
+DSH `0.1.2-rc.1` ships `minimal`, `standard`, `ptc`, and `cordis`. The scanner lists that roster for accuracy, but automatic advice remains limited to the general-purpose `minimal` and `standard` choices. It never writes a default or current preset, so an explicit user selection remains unchanged.
 - optional capabilities: Codex delegation, Claude Code delegation, workflows, web, MCP, and LSP.
 
 Every recommendation includes confidence and numerical evidence. Thresholds are deterministic and local; results never automatically change DSH.
@@ -171,7 +174,7 @@ Each persisted source report exposes `filesConsidered`, `truncatedFiles`, `skipp
 - Keyed IDs are stable only while the private state directory remains available; deleting `identity.key` intentionally creates a new identifier set.
 - A recommendation reflects observed local frequency, not task quality or organizational policy.
 - The plugin does not verify that optional products or capabilities are installed or authenticated.
-- JSONL files above the byte cap are prefix-sampled within the byte/record bounds; their remaining data, oversized JSON files, old files, and older files beyond a source limit are intentionally omitted. Compressed Codex `.jsonl.zst` rollouts are not read in 0.1.6. Claude workflow scripts and dynamic workflow sidecars are deliberately not parsed.
+- JSONL files above the byte cap are prefix-sampled within the byte/record bounds; their remaining data, oversized JSON files, old files, and older files beyond a source limit are intentionally omitted. Compressed Codex `.jsonl.zst` rollouts are not read in 0.1.7. Claude workflow scripts and dynamic workflow sidecars are deliberately not parsed.
 
 ## Development
 

@@ -1,5 +1,7 @@
 # dsh-cache-miss
 
+[![dsh.so install](https://www.dsh.so/badge/install/dsh-cache-miss.svg)](https://www.dsh.so/artifact/dsh-cache-miss/)
+
 [English](README.en.md)
 
 DSH 网页插件：在一轮的**第一条 assistant 回复**正下方，以一条黄色单行提示该轮首次请求的提示缓存未命中（prompt cache miss）。
@@ -13,7 +15,7 @@ DSH 网页插件：在一轮的**第一条 assistant 回复**正下方，以一�
 ```
 Cache miss after 3m idle: 182k tokens re-billed · 0.8k cached · ttft 2.1s ↑
 ```
-![缓存未命中提示](https://raw.githubusercontent.com/wefio/dsh-cache-miss/ccfcf3dbdc676dd01f0d40f06b9164e3cbef94da/cache-miss.png)
+![缓存未命中提示](https://raw.githubusercontent.com/wefio/dsh-cache-miss/1e2a6d1aeb66a6ade2bb6be30f81d583f7e94434/cache-miss.png)
 
 - `idle` —— 距上一轮结束的空闲时长。
 - `re-billed` —— 该请求未命中缓存的输入 token 数（缩写为 k）。

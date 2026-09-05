@@ -41,11 +41,11 @@ to the Internet. For composition details, see
 
 | Desktop control panel | Mobile workspace |
 |---|---|
-| ![Desktop control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-desktop.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-mobile.png) |
+| ![Desktop control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-desktop.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile.png) |
 
 | Phone confirmation sheet | Remote desktop confirmation |
 |---|---|
-| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-remote-confirm-desktop.png) |
+| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-desktop.png) |
 
 ## Problem
 
@@ -212,9 +212,10 @@ flowchart LR
 ## Requirements
 
 - Node.js `^22.19.0 || >=24`
-- A DeepSeek Harness **web** profile. The plugin depends on `webServer`
-  and is not intended for headless profiles. Verified against
-  **0.1.1-rc.1** (npm dist-tags `latest` and `next`).
+- A DeepSeek Harness **web** profile. The plugin depends on `webServer` and
+  Host `connection` services and is not intended for headless profiles.
+  Verified against **0.1.2-rc.1** (npm `next` dist-tag), with a compatibility
+  path for **0.1.1-rc.1/rc.2**.
 
 ## Installation
 
@@ -309,17 +310,17 @@ address, recommended setup, tunnel target, one-click quick tunnel,
 one-time invite QR, access token, connected devices with source IPs
 (inline rename), and the audit viewer.
 
-![Reverse proxy control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-desktop.png)
+![Reverse proxy control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-desktop.png)
 
 | One-time phone invite (QR) | Connected devices with inline rename |
 |---|---|
-| ![Phone invite](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-invite.png) | ![Connected devices](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-devices.png) |
+| ![Phone invite](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-invite.png) | ![Connected devices](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-devices.png) |
 
 ### Mobile
 
 | Login page | Control panel | Add workspace |
 |---|---|---|
-| ![Mobile login](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-mobile-login.png) | ![Mobile panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-mobile-panel.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-mobile.png) |
+| ![Mobile login](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile-login.png) | ![Mobile panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile-panel.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile.png) |
 
 ### Remote confirmation
 
@@ -329,7 +330,7 @@ look at the host display.
 
 | Phone bottom sheet | Remote desktop card |
 |---|---|
-| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-remote-confirm-desktop.png) |
+| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-desktop.png) |
 
 ### Gate pages
 
@@ -338,7 +339,7 @@ itself, and the first-visit approval wait page.
 
 | Device home | Waiting for approval |
 |---|---|
-| ![Device home](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-home.png) | ![Waiting for approval](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/abd0dfd62e7c02199cb10c8796e4b6c2152eda5c/docs/screenshots/preview-wait.png) |
+| ![Device home](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-home.png) | ![Waiting for approval](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-wait.png) |
 
 ## Configuration
 
@@ -410,6 +411,17 @@ The access token must be treated as a secret. Terminate TLS on the public
 side of the tunnel. For LAN use without a tunnel, set
 `tlsCertFile` / `tlsKeyFile` (for example with
 [mkcert](https://github.com/FiloSottile/mkcert)).
+
+**Public exposure checklist.** Whoever holds the token controls the whole
+Harness — credentials and settings included — so for anything reachable
+from the internet:
+
+- enable `approvalMode: true`, so a new device stays pending until you
+  approve it in the local panel (the panel shows a warning whenever the
+  quick tunnel is online with approval off);
+- consider `allowedCidrs` to pin the entry to known networks;
+- keep `auditLog: true` (the default) and rotate the token after invites
+  outlive their need.
 
 ## Limitations
 

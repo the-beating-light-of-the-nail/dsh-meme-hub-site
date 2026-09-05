@@ -3,14 +3,14 @@
 **中文** · [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/d9e99dc9229f58a6cb5d74bac18ca7aba75a22df/assets/readme/hero.svg" width="100%" alt="dsh-grok-kit：DeepSeek Harness 的 Grok OAuth 与融合搜索插件">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/hero.svg" width="100%" alt="dsh-grok-kit：DeepSeek Harness 的 Grok OAuth 与融合搜索插件">
 </p>
 
 <p align="center">
   <a href="https://github.com/MaRi23333/dsh-grok-kit/actions/workflows/ci.yml"><img src="https://github.com/MaRi23333/dsh-grok-kit/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://www.npmjs.com/package/dsh-grok-kit"><img src="https://img.shields.io/npm/v/dsh-grok-kit.svg" alt="npm version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-4d6bfe.svg" alt="Apache-2.0"></a>
-  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.1--rc.2%2B-4d6bfe" alt="DeepSeek Harness 0.1.1-rc.2+">
+  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.2--rc.1-4d6bfe" alt="DeepSeek Harness 0.1.2-rc.1">
   <img src="https://img.shields.io/badge/status-unofficial%20community%20plugin-7c84a8" alt="Unofficial community plugin">
 </p>
 
@@ -40,22 +40,22 @@
 
 **分离式搜索**会额外发起一轮模型请求完成检索或摘要，再把结果交回主对话。它仍然适合需要独立过滤条件的任务，但会多出一轮模型处理，而且搜索摘要不是在当前回复的 Think 中生成。
 
-**主循环融合搜索**则按 [xAI Responses API 的服务端搜索方式](https://docs.x.ai/developers/tools/web-search)，把 `{type:web_search}` 与 `{type:x_search}` 直接放进主 grok-4.6 请求。检索发生在 Think 里，模型能在同一轮推理中使用刚获得的网页和 X 材料；默认 bundle 已启用这条路径。
+**主循环融合搜索**则按 [xAI Responses API 的服务端搜索方式](https://docs.x.ai/developers/tools/web-search)，把 `{type:web_search}` 与 `{type:x_search}` 直接放进主 grok-4.6 请求。检索发生在 Think 里，模型能在同一轮推理中使用刚获得的网页和 X 材料；这条路径默认关闭（v0.1.8 起），可在设置页或配置中打开。
 
 为让两类搜索共存，宿主原生 `web_search` 仍保留在 DSH 工具列表中，但会从启用融合搜索的 xAI payload 里移除，避免服务端工具重名；其他模型路由仍可照常使用宿主搜索。
 
-> 界面偶尔出现 `x_keyword_search` 等名称时，表示 xAI 已经完成了该次 X 搜索。插件中的同名项只负责让 DSH 收尾当前回合，不会再次检索。
+> 开启主循环搜索时，插件会剥掉 xAI 的 `x_keyword_search` 等收尾桩，避免 DSH 再开一轮并把同一篇正文再写一遍。这些名称若仍出现，属于故障诊断路径，不是正常用户体验。
 
-需要按域名、账号或日期过滤时，可关闭 `backendSearch` 或启用 `nestedSearchTools`，改走独立的 `grok_web_search` / `x_search`。这是可选模式，不是默认路径。
+需要按域名、账号或日期过滤时，改走独立的 `grok_web_search` / `x_search`（`backendSearch` 关闭时的默认路径）；开启 `backendSearch` 后这条独立路径退居可选。
 
-`statefulResponses` 默认关。打开后用 `store: true` + `previous_response_id` 只追加新 user；上一轮若是 `toolUse`（`x_keyword_search` 收尾、bash 等）不会续链，否则会把已经写完的搜索正文再生成一遍。OAuth 探针里 follow-up 能列来源，但 `cached_tokens` 不会变成那次搜索的 10–30 万 KV。
+`statefulResponses` 默认关。打开后用 `store: true` + `previous_response_id` 只追加新 user；上一轮若是 `toolUse`（bash 等客户端工具）不会续链，否则会把已经写完的搜索正文再生成一遍。OAuth 探针里 follow-up 能列来源，但 `cached_tokens` 不会变成那次搜索的 10–30 万 KV。
 
 ## 界面与效果
 
 ### 账号、模型与代理
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/d9e99dc9229f58a6cb5d74bac18ca7aba75a22df/assets/readme/settings.png" width="620" alt="dsh-grok-kit 设置页：Grok CLI 登录、模型选择与 xAI 专用代理">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/settings.png" width="620" alt="dsh-grok-kit 设置页：Grok CLI 登录、模型选择与 xAI 专用代理">
 </p>
 <p align="center"><em>设置页复用 Grok CLI 登录，展示账号可见模型，并按需设置仅对 xAI 生效的网络代理。图中的 <code>127.0.0.1</code> 是本机回环代理示例。</em></p>
 
@@ -64,7 +64,7 @@
 ### 网页搜索融入主循环
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/d9e99dc9229f58a6cb5d74bac18ca7aba75a22df/assets/readme/main-loop-search.png" width="760" alt="Grok 在同一轮 Think 中完成网页搜索并回答">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/main-loop-search.png" width="760" alt="Grok 在同一轮 Think 中完成网页搜索并回答">
 </p>
 <p align="center"><em>没有另起嵌套搜索工具卡片：网页检索直接发生在同一轮 Think 中，材料随即用于当前回复。截图里的新闻内容只用于展示交互，不作为事实来源。</em></p>
 
@@ -73,9 +73,9 @@
 ### X 搜索的服务端调用
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/d9e99dc9229f58a6cb5d74bac18ca7aba75a22df/assets/readme/x-search.png" width="760" alt="xAI 返回 X 搜索 custom_tool_call 后继续完成回答">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/x-search.png" width="760" alt="xAI 返回 X 搜索 custom_tool_call 后继续完成回答">
 </p>
-<p align="center"><em>响应可能显示 <code>x_keyword_search</code> 等 <code>custom_tool_call</code>；搜索已在 xAI 服务端执行，插件只负责让该轮在 DSH 中收尾。截图内容仅作功能演示。</em></p>
+<p align="center"><em>当前版本在开启主循环搜索时会剥掉 <code>x_keyword_search</code> 等收尾桩，正常路径不再把它们转发给 DSH。截图为功能演示，不代表当前界面会露出这些名称。</em></p>
 
 ## 安装
 
@@ -95,10 +95,10 @@ npx @deepseek-ai/dsh web
 
 如果这个 profile 以前安装的是 GitHub 来源，可先尝试 `dsh plugin --profile web add dsh-grok-kit@latest`；若来源没有切换，先移除旧包再重新添加。
 
-需要固定到可复现的 Git 提交时，可使用：
+需要固定到可复现的 Git 提交时，可使用（v0.1.8 代码在 `2a945b9`；不带 SHA 的 `github:MaRi23333/dsh-grok-kit` 跟随 `main`，不是可复现锚点）：
 
 ```sh
-dsh plugin --profile web add github:MaRi23333/dsh-grok-kit#91266c116dd6be086cb91c51e225c1d3d9578562
+dsh plugin --profile web add github:MaRi23333/dsh-grok-kit#2a945b9a20ef97216c6759c12c3a1f4dae13d231
 ```
 
 完整 SHA 会固定安装结果；npm 安装则默认跟随 `latest` 稳定版本。
@@ -120,7 +120,7 @@ dsh plugin --profile web add github:MaRi23333/dsh-grok-kit#91266c116dd6be086cb91
 
 | 配置项 | 默认值 | 说明 |
 | --- | --- | --- |
-| `backendSearch` | schema 为 `false`；本 bundle 设为 `true` | 在主聊天请求中启用 xAI 服务端网页/X 搜索 |
+| `backendSearch` | `false`（默认关闭；设置页可打开） | 在主聊天请求中启用 xAI 服务端网页/X 搜索 |
 | `nestedSearchTools` | 省略时取 `!backendSearch` | 注册独立的 `grok_web_search` / `x_search` |
 | `statefulResponses` | 省略时 `false` | 显式打开才用 `store` + `previous_response_id`；`toolUse` 回合不续链 |
 | `searchModel` | `grok-build-0.1` | 嵌套搜索模式使用的模型 |
@@ -142,14 +142,27 @@ dsh plugin --profile web add github:MaRi23333/dsh-grok-kit#91266c116dd6be086cb91
 - 代理只接受不含用户名/密码的 `http://` 或 `https://` URL；带 userinfo 的旧值会被清理，不会进入状态响应或日志
 - xAI 专用 fetch hook 会在插件卸载时恢复；它不会永久修改系统或进程环境变量
 - Windows 上的 Node mode bit 不等于 NTFS ACL；如果用户目录或 `$DSH_HOME` 位于共享位置，请自行收紧目录权限
+- 插件自己的写入锁（`$DSH_HOME/.xai-oauth-auth.json.lock`）**从不自动删除或改名**。路径上的检查-再-rename/rm 无法绑定已检查的文件代次，可能把活 writer 的锁移走。残留锁 fail-closed（写入超时），交由人工处理
 
 ## 兼容性与限制
 
+- 当前测试矩阵：DeepSeek Harness `0.1.2-rc.1` + `@earendil-works/pi-ai@0.84.4`（Node 22/24）。peer 范围按该矩阵声明，不声称支持 0.1.1
 - 某些订阅档位可能允许浏览器登录，却对聊天或服务端搜索返回 HTTP 403；这是账户资格/服务策略问题，不等同于 token 过期
 - HTTP 401 会在串行刷新后重试一次；403 不会按 token 过期处理
 - 不支持与另一个注册相同 xAI OAuth 路由的 bundle 同时安装；请先按 [INSTALL.zh.md](INSTALL.zh.md) 的迁移步骤移除冲突 bundle
-- backend search 是本 bundle 的默认组合，但可用性仍由账号、模型和 xAI 当前服务决定
+- backend search 默认关闭，可在设置页或配置中开启；可用性仍由账号、模型和 xAI 当前服务决定
 - 删除插件不会自动删除 `~/.grok/auth.json`；需要清理本地登录时，请先在设置页退出
+
+## 故障排查
+
+**启动或聊天报 `timed out waiting for the writer lock`**：某次强杀/崩溃的写入进程遗留了 `*.lock` 文件。本插件 **不会自动清锁**（避免误移走活 writer 的锁）。请手动清理：
+
+1. 关闭所有 DeepSeek Harness 与 Grok CLI 进程；
+2. 删除 `$DSH_HOME`（默认 `~/.dsh`）下的 `.xai-oauth-auth.json.lock`；
+3. `~/.grok/auth.json.lock` 属于 Grok CLI，仅确认 Grok CLI 未运行时删除；
+4. 重新启动。
+
+启动时的目录刷新失败（含上述锁超时）不会阻断聊天：插件先用缓存的模型列表，并在后台按 5s / 30s / 120s 退避重试。
 
 ## 开发
 

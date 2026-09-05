@@ -1,6 +1,6 @@
 # dsh-ui-tweaks
 
-> **依赖版本**：当前依赖 **DSH v0.1.2-alpha.5**。
+> **依赖版本**：当前依赖 **DSH v0.1.3-alpha.1**。
 
 [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harness/)（DSH）Web UI 插件：在设置面板中实时调整对话界面——代码字号、表格样式、**时间线切换**（原生回合导航轨 / 经典网页时间线）、**GitBar**（输入框工具行内的 git 状态胶囊：分支在权限旁、差异在模型前），可开关的**归档管理**（设置中的「归档」页面：查看、恢复或彻底删除已归档会话），可开关的**任务提醒**（会话完成或需要交互时，通过标签页标题闪烁 / 系统通知 / 提示音把你唤回来），以及**缓存命中率两位小数**（把输入框下方统计条的缓存命中百分比改写为精确值）。
 
@@ -8,15 +8,15 @@
 
 | | |
 |---|---|
-| ![Claude Desktop 表格样式](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/table.png) | ![设置面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/settings.png) |
+| ![Claude Desktop 表格样式](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/table.png) | ![设置面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/settings.png) |
 | **表格样式**：Claude Desktop 浅灰圆角卡片风格 | **设置面板**：代码字号 / 表格样式 / Git 状态栏 / 鲸鱼指示器等功能开关 |
-| ![GitBar](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/git.png) | ![分支面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/branch.png) |
+| ![GitBar](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/git.png) | ![分支面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/branch.png) |
 | **GitBar**：输入框工具行内的 git 状态胶囊（分支在权限旁、差异在模型前），支持分支切换、删除、推送到远程，差异面板内可直接提交 | **分支面板**：点击分支胶囊向上弹出——本地 / 远程分支列表，点击即切换，支持删除、拉取、推送远程，底部可新建分支，菜单里可打开**提交图谱**（彩色 SVG 分叉图） |
-| ![差异面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/gitdiff.png) | ![终端面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/terminal.png) |
+| ![差异面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/gitdiff.png) | ![终端面板](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/terminal.png) |
 | **差异面板**：文件列表 + 逐文件 diff（默认只显示有差异的 hunk），底部提交区可提交 / 提交并推送，宽度可拖动 | **终端面板**：真 PTY 终端（xterm.js + WebSocket），完整终端交互，宽度可拖动、一键半屏 |
-| ![打开项目](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/explorer.png) | |
+| ![打开项目](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/explorer.png) | |
 | **打开项目**：会话头部的图标菜单——用资源管理器 / VS Code / IDEA / GoLand / WebStorm / PyCharm 打开当前项目；旁边的终端、差异图标一键唤出对应面板 | |
-| ![归档管理](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/archive.png) | ![MCP 管理](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/072941dcdd582578f8ab0b84615a475689ef3de6/assets/mcp.png) |
+| ![归档管理](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/archive.png) | ![MCP 管理](https://raw.githubusercontent.com/wlj521/dsh-ui-tweaks/0144b87ef81da3d6c8e2e6aaa1b3f4cc9ad8415f/assets/mcp.png) |
 | **归档管理**：设置中的「归档」页面，列出所有已归档会话（标题 / 工作区 / 相对时间），支持恢复与彻底删除 | **MCP 管理**：设置中的「MCP 管理」页面，列出所有配置的 MCP 服务器及其运行状态，支持添加 / 编辑 / 启用停用 / 删除 / 重启 |
 
 ## 功能

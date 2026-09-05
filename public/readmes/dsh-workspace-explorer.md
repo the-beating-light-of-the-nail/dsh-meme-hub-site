@@ -19,22 +19,22 @@ Inspired by the VS Code / Cursor project tree, filling the gap of a missing dire
 
 ## 🖥 Demo
 
-![dsh-workspace-explorer demo](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/demo/preview.gif)
+![dsh-workspace-explorer demo](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/6e0535a79c725433601586a05696bc74eb7b1308/demo/preview.gif)
 
 *Demo GIF (recorded at v0.5.1): the **“Workspace Files” pill entry**, multi-select batch insert, folder drag → compact tree text, paginated preview, and the settings tab. The v0.6.0 split-view preview and file editing are shown in the screenshots below.*
 
 <details>
 <summary><b>Screenshots</b> · 截图</summary>
 
-![Panel](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/panel.png)
+![Panel](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/6e0535a79c725433601586a05696bc74eb7b1308/assets/screenshots/panel.png)
 
-![File tree](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/tree.png)
+![File tree](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/6e0535a79c725433601586a05696bc74eb7b1308/assets/screenshots/tree.png)
 
-![Split-view preview](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/preview.png)
+![Split-view preview](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/6e0535a79c725433601586a05696bc74eb7b1308/assets/screenshots/preview.png)
 
-![Edit mode](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/edit.png)
+![Edit mode](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/6e0535a79c725433601586a05696bc74eb7b1308/assets/screenshots/edit.png)
 
-![Insert & send](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/2061ec57661dff1d5969d55c01ea00aea3e34610/assets/screenshots/insert.png)
+![Insert & send](https://raw.githubusercontent.com/Jiyr0119/dsh-workspace-explorer/6e0535a79c725433601586a05696bc74eb7b1308/assets/screenshots/insert.png)
 
 </details>
 

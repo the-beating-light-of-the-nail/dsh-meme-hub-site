@@ -202,6 +202,17 @@ config:
 Use `['*']` to allow every session (the pre-allowlist behavior). Sessions
 not listed are a zero-cost no-op.
 
+A **denylist** (`sessionDenylist`) always wins over the allowlist — it keeps
+selected sessions out of a fleet-wide rollout, e.g. one reference
+conversation that should stay unmanaged for diagnosis:
+
+```yaml
+config:
+  sessionAllowlist: ['*']              # fleet-wide
+  sessionDenylist:                     # except these
+    - fb80be2a-99aa-42e1-9de8-2f7017d2c0b6   # reference conversation, never compressed
+```
+
 A ready-to-use **DSH plugin backend** lives in
 [`dsh-module/`](dsh-module/DESIGN.md) (design docs in EN/中文).
 
@@ -219,7 +230,7 @@ See the [Roadmap](docs/ROADMAP.md) for upcoming work.
 A deterministic simulation (zero LLM cost, reproducible) runs the real
 algorithm with a rule-based pseudo-LLM. Latest sweep (default parameters):
 
-![Context growth: uncompressed vs MosaicMemoryCompress (log scale)](https://raw.githubusercontent.com/TuringCorp-net/mosaic-memory-compress/b4ac71a7bd7814c35bc1bf529526ad1274b59432/benchmark/chart.svg)
+![Context growth: uncompressed vs MosaicMemoryCompress (log scale)](https://raw.githubusercontent.com/TuringCorp-net/mosaic-memory-compress/fe6e0c35cb60f8db684c61ec7f5608f117194d6c/benchmark/chart.svg)
 
 | Rounds | msgs in | msgs out | tokens in | tokens out | ratio | facts kept |
 |---|---:|---:|---:|---:|---:|---:|

@@ -1,12 +1,18 @@
 # evo-subagent
 
-![evo-subagent — Route. Remember. Evolve.](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/de0814f4daaca94d4aca94bd8724915ef79bce5f/assets/Evo-subagent-preview.png)
+![evo-subagent — Route. Remember. Evolve.](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/13510e4c0e945d429fe64fc9c83ad06f19dab4a2/assets/Evo-subagent-preview.png)
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 [![npm version](https://img.shields.io/npm/v/evo-subagent.svg)](https://www.npmjs.com/package/evo-subagent)
 [![license](https://img.shields.io/npm/l/evo-subagent.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
+
+## Downloads
+
+![Cumulative npm downloads](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/13510e4c0e945d429fe64fc9c83ad06f19dab4a2/assets/npm-downloads.svg)
+
+Cumulative npm download data since the first release, refreshed automatically every day. DSH Market ranks plugins using npm downloads, so this is the closest public adoption signal; it cannot distinguish marketplace installs from direct npm installs.
 
 `evo-subagent` is a DeepSeek Harness plugin for predictable subagent routing and project-scoped evolution.
 
@@ -30,7 +36,7 @@ dsh plugin add evo-subagent
 
 ## Quick start
 
-![Open and manage evo-subagent in DSH](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/de0814f4daaca94d4aca94bd8724915ef79bce5f/assets/evo-subagent-tutorial.gif)
+![Open and manage evo-subagent in DSH](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/13510e4c0e945d429fe64fc9c83ad06f19dab4a2/assets/evo-subagent-tutorial.gif)
 
 1. Open **Settings → Plugins** and expand **evo-subagent**.
 2. Select a workspace and add a built-in role, or place a custom binding in its `agents/` directory.

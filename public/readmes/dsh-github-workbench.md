@@ -13,6 +13,8 @@
 
 *人在面板里亲自点按钮 = 天然的人类审批,无需任何额外审批链。*
 
+**0.2.6** 新增收件箱:头部托盘看公开仓新建 Issue / PR,以及最近仓的 Actions;点行跳到对应页签,可返回进箱前的仓库。
+
 </div>
 
 ---
@@ -21,19 +23,19 @@
 
 | Code:远端目录树 + 文件预览 | Issues 列表 |
 |---|---|
-| ![Code](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/01-code.png) | ![Issues](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/02-issues.png) |
+| ![Code](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/01-code.png) | ![Issues](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/02-issues.png) |
 
 | Issue 详情 + 评论/编辑/关闭 | Pull requests(checks 摘要 / 合并三法) |
 |---|---|
-| ![Issue Detail](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/03-issue-detail.png) | ![Pulls](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/04-pulls.png) |
+| ![Issue Detail](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/03-issue-detail.png) | ![Pulls](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/04-pulls.png) |
 
 | Actions(runs 列表,悬停 重跑/取消) | 仓库切换弹层(自动拉取 + 公开仓搜索) |
 |---|---|
-| ![Actions](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/05-actions.png) | ![Switcher](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/06-repo-switcher.png) |
+| ![Actions](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/05-actions.png) | ![Switcher](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/06-repo-switcher.png) |
 
-| ⚙ 设置(Token / 自动刷新 / 字号) |
-|---|
-| ![Settings](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/5ffb008320e2bc38a7880921e9e0d5d9661d631c/screenshots/07-settings.png) |
+| ⚙ 设置(Token / 自动刷新 / 字号) | 收件箱(Issues / PR / Actions 三分栏) |
+|---|---|
+| ![Settings](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/07-settings.png) | ![Inbox](https://raw.githubusercontent.com/meyaomiao/dsh-github-workbench/49915b3533e10e4a8c4e9aad588d187969ea4ad5/screenshots/08-inbox.png) |
 
 ## 🚀 核心能力
 
@@ -45,7 +47,7 @@
 - **CI 控制**:runs 列表实时状态图标,行悬停 ⟳ 重跑、✕ 取消(取消需确认),点击直达原 run 页
 - **仓库切换器**:打开即列出 Token 可见全部仓库(owner/协作/组织,滤 archived,按推送排序)+ 输入实时过滤 + **公开仓库搜索**(≥3 字符去抖触发,⭐ 排序)+ 最近使用置顶 + 首次打开自动识别当前工作区 `.git/config`;他人的仓可一键从列表移除(本地隐藏,管理页可恢复)
 - **🔗 聊天链接接管**:在 ⚙ 开启「接管聊天中的 GitHub 链接」后,对话里出现的任何 `github.com` 链接点击即在工作台打开——自动切仓、自动落到对应 Issues/PR 详情;每个链接独立实例互不干扰(需 better-sidebar v0.13+,开关位于本插件侧边卡片齿轮内)
-- **🛰 活动哨兵(自动跟随)**:工作台每 10s 轻量轮询当前仓库的新 Issue / PR / CI 活动,发现即自动切换到对应页签并打开详情——agent 用 gh CLI 或任何方式产生的变更都能被捕获;⚙ 内可关闭;面板不可见时暂停
+- **收件箱**:Issues / PR / Actions 三分栏。Issues·PR 监视 Token 可见公开仓的新建单;Actions 只盯当前仓+最近最多 5 个公开仓。点行跳到对应页签,「返回原仓页」回到进箱前。未读露在头部数字、侧栏 tab 角标、独立竖条
 - **↗ 浏览器直达**:顶部工具栏一键在系统浏览器打开当前仓库
 - **原生观感**:全站唯一 16px octicon 风格 SVG 图标集;颜色全部消费宿主 `--dsw-*` 设计令牌,深浅主题与皮肤自动跟随;字号默认跟随 DSH 侧边栏(12px),⚙ 内可调 13/14
 
@@ -92,9 +94,9 @@ dsh plugin --profile web add .
 
 ## 📋 兼容性
 
-- DeepSeek Harness `0.1.1-rc.2` 与 `0.1.2-alpha.4`(web profile)
+- DeepSeek Harness `0.1.2-rc.1`（仍兼容 `0.1.1-rc.2` 与 `0.1.2-alpha.4`，web profile）
 - DSH `0.1.2-alpha.1` 起已删除 `@deepseek-ai/dsh-client-runtime`;本包从 0.2.4 起不再把它写进 `dsh.client.inject`
-- 升 alpha.4 时侧栏请用 `dsh-better-sidebar@alpha`(0.18.0-alpha.0);0.16.x 不兼容 alpha 线
+- 侧栏请用 `dsh-better-sidebar@0.18.0`（适配 0.1.2-rc.1）；0.16.x 不兼容 0.1.2 线
 
 ## 🛠 开发
 
@@ -106,6 +108,8 @@ pnpm test         # node:test 纯函数单测
 ```
 
 设计文档与交互视觉稿:[docs/design.md](./docs/design.md) · [design/mockup.html](./design/mockup.html)
+
+改仓库前先读 [CONTRIBUTING.md](./CONTRIBUTING.md)（Issue → 分支 → Draft PR）。思考原则见 [AI-ISSUE-WORKFLOW.md](./AI-ISSUE-WORKFLOW.md)。
 
 ## License
 

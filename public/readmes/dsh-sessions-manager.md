@@ -67,19 +67,19 @@
 <details>
 <summary>展开查看截图（设置面板 / 自动归档 / 存储占用 / 已收藏 / 回收站 / 会话详情 / 侧边栏菜单）</summary>
 
-![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-submenu.png)
+![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-submenu.png)
 
-![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-settings.png)
+![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-settings.png)
 
-![自动归档面板（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-autoarch.png)
+![自动归档面板（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-autoarch.png)
 
-![存储占用分析（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-storage.png)
+![存储占用分析（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-storage.png)
 
-![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-starred.png)
+![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-starred.png)
 
-![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-trash.png)
+![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-trash.png)
 
-![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/6b8737df00203fff810951b8174a972a6ad516ca/assets/screenshot-session-details.png)
+![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-details.png)
 
 </details>
 

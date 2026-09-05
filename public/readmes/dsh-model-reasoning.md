@@ -6,8 +6,8 @@
 
 配置界面截图：
 
-![浅色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/cbf96ec19ea976e3a9d4309f74c5766f4efe9c9e/screenshot/light.png)
-![深色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/cbf96ec19ea976e3a9d4309f74c5766f4efe9c9e/screenshot/dark.png)
+![浅色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/8c35c31a62e0a040736ea86f02f3348631700efc/screenshot/light.png)
+![深色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/8c35c31a62e0a040736ea86f02f3348631700efc/screenshot/dark.png)
 
 ## 功能
 

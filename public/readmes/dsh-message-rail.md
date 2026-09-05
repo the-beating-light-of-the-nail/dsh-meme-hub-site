@@ -15,7 +15,7 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 会话左侧的消息导航轨道（悬停刻度显示预览卡，点击跳转到对应消息）：
 
-![轨道悬停预览](https://raw.githubusercontent.com/wx-yss/dsh-message-rail/8f92ba050ec8fca5cbccbe41edfa17bcccd4a508/assets/rail-hover-preview.png)
+![轨道悬停预览](https://raw.githubusercontent.com/wx-yss/dsh-message-rail/c937c4852ac40cebf0dc52d0db579ba886e65212/assets/rail-hover-preview.png)
 
 ## 功能
 
@@ -34,8 +34,10 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 ## 兼容性
 
-- DeepSeek Harness `0.1.0-rc.6` 或更高
-- Node.js 22+
+- DeepSeek Harness `>=0.1.0-rc.7`；manifest 已对官方最新三个发行版逐项声明兼容
+- Node.js `>=22.13.0`
+- 系统：macOS、Linux、Windows
+- Profile：`web`
 - 浏览器：Chrome / Edge / Safari / Firefox 最新版
 
 ## 安装

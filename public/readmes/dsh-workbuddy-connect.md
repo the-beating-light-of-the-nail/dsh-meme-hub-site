@@ -12,7 +12,7 @@
 - **开箱即用**：安装和启用插件后，在 DSH 中直接使用，无需额外配置。
 
 
-![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/60cfac7a798391f393eb5c70597052c5d6630af4/assets/1.png)
+![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/bd6a77de40523cd6686b5cce16170eedf5ab6307/assets/1.png)
 
 
 - **图片输入**：大部分模型支持发图，在对话里直接粘贴或拖入图片即可（GLM-5.3-Flash、GLM-5.2、DeepSeek-V4 系列等）；少数只支持文字的模型（如 GLM-5.1）会明确提示不支持。
@@ -30,11 +30,11 @@
 - **信息查看**：设置 → 插件 → DSH WorkBuddy Connect 卡片
 
 
-![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/60cfac7a798391f393eb5c70597052c5d6630af4/assets/2.png)
+![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/bd6a77de40523cd6686b5cce16170eedf5ab6307/assets/2.png)
 
 卡片展开后，可查看账号信息、令牌有效期与剩余积分。
 
-![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/60cfac7a798391f393eb5c70597052c5d6630af4/assets/3.png)
+![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/bd6a77de40523cd6686b5cce16170eedf5ab6307/assets/3.png)
 
 ## 安装
 

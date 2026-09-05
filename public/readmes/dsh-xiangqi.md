@@ -2,7 +2,7 @@
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-<p align="center"><img src="https://raw.githubusercontent.com/ovdoesw/dsh-xiangqi/3f875bfdd79137cafcc7712d44436b3135b57a5b/assets/screenshot.png" alt="dsh-xiangqi 中国象棋棋盘" width="420"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/ovdoesw/dsh-xiangqi/e2a92a398593a8305f14d51c166e2aec8dce0f5a/assets/screenshot.png" alt="dsh-xiangqi 中国象棋棋盘" width="420"/></p>
 
 深度求索 Harness (DSH) Web 客户端插件：一个"AI 思考时可以下中国象棋"的消遣宠物。
 

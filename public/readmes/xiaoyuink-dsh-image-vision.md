@@ -200,7 +200,7 @@ dsh plugin --profile web add "$(pwd)"
 
 - 安装并开启插件后，对话框输入框工具行会出现「📎 添加图片」按钮；也可直接在输入框**粘贴**（Ctrl+V）或**拖拽**图片文件。
 - 支持 `png` / `jpeg` / `webp` / `gif`，单张 ≤ 20MB（附件存储默认单张 5MB，可在 settings `attachment-local.maxImageBytes` 调大）。
-- 发送时图片经 `POST /api/dsh-image-vision/attach` 写入 **DSH 附件存储**（`attachments.saveImage`，内容寻址、永久保留、无自动清理），消息里只留下引用 `![图片](https://raw.githubusercontent.com/xiaoyuink/dsh-image-vision/ce29ffb7322b793981ef247f25490cf1fabcaf81/api/dsh-image-vision/raw/%3Csha256%3E%3Fm%3D..%26b%3D..%26w%3D..%26h%3D..)`（元数据编进 URL，重启后旧引用仍可渲染与精读）。
+- 发送时图片经 `POST /api/dsh-image-vision/attach` 写入 **DSH 附件存储**（`attachments.saveImage`，内容寻址、永久保留、无自动清理），消息里只留下引用 `![图片](https://raw.githubusercontent.com/xiaoyuink/dsh-image-vision/a445f8437a9e1cdddaf4ded34b5d863bd1785b0d/api/dsh-image-vision/raw/%3Csha256%3E%3Fm%3D..%26b%3D..%26w%3D..%26h%3D..)`（元数据编进 URL，重启后旧引用仍可渲染与精读）。
 - 发送后，模型按注入的系统规则自动调用 `image_vision` 识别并回复；`image_vision_ground → image_vision_crop → image_vision_ocr` 像素精读链路直接解析附件引用（经 attachment→草稿物化桥，物化缓存 20 分钟后自动重建，引用本身永不过期）。
 - 无论当前模型是否识图都可用：识图则主模型直接分析，不识图则走插件视觉模型。
 - 图片字节不进会话记录；附件对象位于 `~/.dsh/attachments/v1/objects/`（磁盘只增不减，如需清理需手动删目录；`_preview` 子目录可放带扩展名的预览副本）。
@@ -314,6 +314,11 @@ dsh-image-vision/
 
 > **给维护者**：发布 Release 时，除 `xiaoyuink-dsh-image-vision-<版本>.tgz` 外，请再上传一份固定名资产 `xiaoyuink-dsh-image-vision-latest.tgz`（内容相同），保证首页「一条命令安装最新 Release」的 `releases/latest/download/` 链接始终指向最新的包。
 
+- **v2.9.2**：修复「添加图片」回形针按钮在 DSH 0.1.2-rc.1 下不可点击——当前 DSH 渲染 `conversation.input.left` 槽位时传空对象 `{}`，不再注入 `input` / `inputActions` props，插件此前据此判断 `disabled` 导致按钮一直禁用。现改为不再依赖该 props（按钮可用性由总开关与内部视觉模型检查决定），点击后未配置视觉模型会给出提示。
+- **v2.9.1**：设置页视觉插件 UI 修复（适配 DSH 0.1.2-rc.1 的样式覆盖）——
+  ① 模型行改为独立高特异性 `.iv_modelRow` 并强制 `grid-auto-flow:column`，避免当前 DSH 的 `.zGbnIq_modelRow`（4 列 grid）覆盖导致「使用中」按钮被挤到第二行；手柄固定 24px、模型 id 弹性收缩（超长省略号）、行内按钮/标签永不折行。
+  ② 「内嵌添加模型」面板的已选列表新增 `.iv_selectedRow`（4 列），修正此前模型 id 被塞进 24px 手柄列的错位。
+  ③ 模型发现行 `.iv_inlineRow` 增加 `flex-wrap:wrap` + 子项 `white-space:nowrap`，修复「获取模型列表」/「非视觉模型不可勾选」在窄面板被 flex 压缩成竖排的问题。
 - **v2.9.0**：适配 DSH 0.1.2-rc.1 —— 移除已废弃的 `settingsNamespace()`（改用字符串命名空间 `image-vision` + `settings.register(ns, schema)`）；清理 `dsh.client.inject` 中已不存在的 `@deepseek-ai/dsh-client-runtime` 引用（客户端仅依赖 shell 种子词 react / dsh-client-ui-primitives）。其余宿主/客户端 API 与 0.1.x 完全兼容，无需其他改动。
 - **v2.8.0**：设置页新增「在对话框中显示视觉模型」开关——控制对话输入框左侧的「视觉 xxx」切换下拉是否显示（默认开启，旧配置兼容自动开启）；关闭后输入框不再展示视觉模型选择器，图片识别仍使用当前激活的视觉模型。
 - **v2.7.2**：修复设置页版本号显示错误——版本号改为从 `package.json` 动态读取（服务端），客户端设置页以 `/config` 返回的 `version` 为准显示，硬编码仅兜底，发布版本不再失配。

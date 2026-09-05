@@ -10,7 +10,7 @@
 
 简历 Agent 的内容取舍和验收依据见：[校招简历写作方法论](./docs/resume-writing-methodology.zh.md)。
 
-![dsh-resume 工作台：Markdown、A4 预览与排版状态同屏](https://raw.githubusercontent.com/L3n3L/dsh-resume/384adac0107b98c0c28060507e61ccdbac25ec3a/docs/screenshots/workbench.png)
+![dsh-resume 工作台：Markdown、A4 预览与排版状态同屏](https://raw.githubusercontent.com/L3n3L/dsh-resume/bd4c7a367e1e90990297333a3c3b4e016c808604/docs/screenshots/workbench.png)
 
 ## 你会得到什么
 
@@ -62,7 +62,7 @@ dsh web
 
 工作台会把内容、A4 和排版状态放在同一视线内：
 
-![Markdown 与 A4 预览同屏](https://raw.githubusercontent.com/L3n3L/dsh-resume/384adac0107b98c0c28060507e61ccdbac25ec3a/docs/screenshots/workbench.png)
+![Markdown 与 A4 预览同屏](https://raw.githubusercontent.com/L3n3L/dsh-resume/bd4c7a367e1e90990297333a3c3b4e016c808604/docs/screenshots/workbench.png)
 
 ### 3. 把真实材料和 JD 交给 Agent
 
@@ -157,7 +157,7 @@ dsh web
 
 点击模板卡片只会选择视觉方向，不会把你带离当前页面；确认后再进入 A4 预览。
 
-![模板库：先选择方向，再应用到当前简历](https://raw.githubusercontent.com/L3n3L/dsh-resume/384adac0107b98c0c28060507e61ccdbac25ec3a/docs/screenshots/template-library.png)
+![模板库：先选择方向，再应用到当前简历](https://raw.githubusercontent.com/L3n3L/dsh-resume/bd4c7a367e1e90990297333a3c3b4e016c808604/docs/screenshots/template-library.png)
 
 模板库支持把最多三个候选加入对比。候选缩略图使用当前 Markdown 通过同一套 Renderer 生成的真实 A4 页面，只做缩放展示，不是几条线拼出的静态占位图。模板工坊会同时显示候选缩略图、当前内容的实时 A4 预览和视觉 Token 面板；颜色、圆角和分隔线只先作用于当前预览，点击“另存为模板”后才进入模板库。模板卡片会标出内置/自定义、来源和当前修订号；查看版本时可以基于历史修订继续生成副本，应用模板只改变当前简历，不改模板库。
 
@@ -203,7 +203,7 @@ Agent 适合做：
 - 用滑杆做最后的字号、行高、页边距微调
 - 在导出前确认内容和页面效果
 
-![右侧 AI 助手：在当前工作台继续主对话](https://raw.githubusercontent.com/L3n3L/dsh-resume/384adac0107b98c0c28060507e61ccdbac25ec3a/docs/screenshots/ai-assistant.png)
+![右侧 AI 助手：在当前工作台继续主对话](https://raw.githubusercontent.com/L3n3L/dsh-resume/bd4c7a367e1e90990297333a3c3b4e016c808604/docs/screenshots/ai-assistant.png)
 
 ## AI 助手：不是另一个聊天窗口
 

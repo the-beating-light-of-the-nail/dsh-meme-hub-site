@@ -11,7 +11,7 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 发布安装包内置固定版本的官方 `@deepseek-ai/dsh` 运行时；普通用户无需另外安装 Node.js、pnpm 或 `dsh` CLI。桌面外壳、安装包、连接增强与发布签名均由本项目独立负责，不属于官方运行时的一部分。桌面客户端与官方 `dsh` 使用各自独立的版本号；应用的连接设置页会同时显示两个版本号，便于排查兼容问题。
 
-![DSH Desktop 首页：窗口里就是官方 Web UI 本体](https://raw.githubusercontent.com/bruc3van/dsh-desktop/9249f6714206e2cfec0c075c959abb80018e9cc2/docs/images/dsh-desktop-home.png)
+![DSH Desktop 首页：窗口里就是官方 Web UI 本体](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8607e023aaff2efd1baa315e88a8200f7eed7ab5/docs/images/dsh-desktop-home.png)
 
 ## 为什么值得使用
 
@@ -87,11 +87,11 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 在智能模式下，只要你已经在终端里跑着官方 Web UI，桌面端就会直接复用它——这正是开发者路径：会话与桌面端实时共享，而 Agent 跑在你自己的完整 shell 环境里。
 
-智能模式只使用你机器上**已经存在**的东西——PATH 上的 `dsh`、npx 缓存过的官方包——不联网、不下载、也不替你安装 Node.js。官方 `dsh web` 的端口除 `--port` 外也可写在 web profile 补丁层（`~/.dsh/profiles/web/cordis.patch.yml`）里，客户端会读取并一并探测，不会因为实例挪了端口就在旁边另起一个 harness。连接设置还可以为**客户端自己启动**的 dsh 固定端口（默认随机 `--port 0`，不占 3080；保存后立刻重新拉起；被占用时不会换口）。npx 缓存里的官方包版本低于内置运行时时，连接设置里会说明（缓存仍优先使用——那是你上次 `npx @deepseek-ai/dsh` 留下的，重新跑一次即可刷新）。客户端启动的都是纯后台服务进程，rc.8 及以上带 `--no-open`，退出桌面端时一并关闭；选中的运行时启动失败会按仍启用的来源依次回退（默认最后是内置运行时）。四种来源都可以在连接设置里用多选按钮单独关闭，方便测试时固定到某一种；缺省全部开启，至少保留一种。本机官方实例仍在跑、而智能模式又不会复用它时，客户端不会另起本机已安装 / npx / 内置运行时，也不会替你结束那个进程——需要先在终端里退出。页面完全加载不出来时，启动界面会直接给出**「Web UI 连接…」**按钮。运行时选择顺序的完整细节见[开发指南](docs/development.zh.md#从源码运行)。
+智能模式只使用你机器上**已经存在**的东西——PATH 上的 `dsh`、npx 缓存过的官方包——不联网、不下载、也不替你安装 Node.js。官方 `dsh web` 的端口除 `--port` 外也可写在 web profile 补丁层（`~/.dsh/profiles/web/cordis.patch.yml`）里，客户端会读取并一并探测，不会因为实例挪了端口就在旁边另起一个 harness。客户端自己启动 dsh 时会优先使用 3080；被占用则尝试 13080；仍被占用才使用系统分配的随机端口。连接设置也可改为固定端口（保存后立刻重新拉起；被占用时不会换口）。npx 缓存里的官方包版本低于内置运行时时，连接设置里会说明（缓存仍优先使用——那是你上次 `npx @deepseek-ai/dsh` 留下的，重新跑一次即可刷新）。客户端启动的都是纯后台服务进程，rc.8 及以上带 `--no-open`，退出桌面端时一并关闭；选中的运行时启动失败会按仍启用的来源依次回退（默认最后是内置运行时）。四种来源都可以在连接设置里用多选按钮单独关闭，方便测试时固定到某一种；缺省全部开启，至少保留一种。本机官方实例仍在跑、而智能模式又不会复用它时，客户端不会另起本机已安装 / npx / 内置运行时，也不会替你结束那个进程——需要先在终端里退出。页面完全加载不出来时，启动界面会直接给出**「Web UI 连接…」**按钮。运行时选择顺序的完整细节见[开发指南](docs/development.zh.md#从源码运行)。
 
 连接设置把「智能」和「自定义」分成两种方式：智能模式下只显示四个来源，点选立即生效；选「自定义」后才会出现地址栏，右侧是「保存并连接」。点「智能」会立即切回，已填地址会保留。
 
-![官方设置弹窗里的「桌面设置」：当前连接与四个来源开关、安全市场开关，以及客户端和内置 dsh 的版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/9249f6714206e2cfec0c075c959abb80018e9cc2/docs/images/dsh-desktop-setting.png)
+![官方设置弹窗里的「桌面设置」：当前连接与四个来源开关、安全市场开关，以及客户端和内置 dsh 的版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8607e023aaff2efd1baa315e88a8200f7eed7ab5/docs/images/dsh-desktop-setting.png)
 
 连接状态按**谁启动了这个运行时**来描述，避免「本地」和「内置」混用：
 
@@ -116,10 +116,12 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 | 数据 | 默认位置 | 管理方 |
 |---|---|---|
-| 会话、凭据、模型配置与其他官方 Harness 状态 | `~/.dsh` | 官方 `dsh` 运行时 |
-| 桌面端连接偏好 | `~/.dsh-desktop/settings.json` | 桌面客户端 |
+| 共享环境的会话、凭据、模型配置、插件与其他 Harness 状态 | `~/.dsh` | 官方 `dsh` 运行时 |
+| 桌面客户端设置、命令 shim 与更新下载 | `~/.bruc3van-dsh-desktop` | 桌面客户端 |
+| 桌面端独立环境的会话、凭据、模型配置与插件 | `~/.bruc3van-dsh-desktop/dsh` | 官方 `dsh` 运行时 |
 
 可以分别通过 `DSH_HOME` 和 `DSH_DESKTOP_HOME` 覆盖这两个目录（仅开发/未打包运行时生效；打包后见下文「更新链路防劫持」）。
+升级后首次启动会在新目录尚不存在时把旧的 `~/.dsh-desktop` 整体迁到品牌命名空间；若系统拒绝移动，则复制后保留旧目录作为可恢复备份。设置里的「数据环境」可以在共享环境和桌面端独立环境之间切换，切换通过重启客户端生效。
 
 客户端在安全上采取小边界 + 逐层加固的策略：
 
@@ -142,14 +144,15 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 - 同一个 `DSH_HOME` 下绝不同时跑两个写入者：客户端把自己启动的运行时记录在 `DSH_HOME` 下，下次启动优先接管仍在服务的遗留进程（复用同一个 harness，会话照常共享），接管不了才清理后重启；遗留进程既连不上也结束不掉时，客户端会拒绝启动并说明原因，而不是在它旁边再写一份——两个 harness 同时写同一份会话日志会造成永久损坏。
 - 智能模式复用的 `127.0.0.1:3080` 官方实例失联时，客户端会自动改用自己启动的运行时；固定地址连接失败不会擅自改用其他服务，但报错页会提供「切换到智能模式」出口。
 - 本地 Web UI 意外退出时，客户端只会进行有限次数的重启，不会无限循环。
+- 共享环境因插件解析、加载或激活失败而无法启动时，客户端会列出诊断中确认存在于 profile 的全部问题插件，让用户选择一次性卸载并用共享环境重试，或保留插件并使用桌面端独立环境；取消不会修改插件或数据。只有 profile 中真实存在的直接依赖才会进入卸载操作，且卸载后会核对依赖和 bundle 条目都已移除。独立环境使用自己的运行时锁；若共享环境已占用 3080，自动端口会继续尝试 13080，再退到随机端口，不会误判为同一份数据的写入者。
 - 系统唤醒或长时间后台运行后若页面异常空白，客户端会在确认 Web UI 可达后自动重新加载。
 - macOS 发布版会在启动本地服务前读取一次用户 shell 的 `PATH`（先尝试交互式登录 shell，最长 3 秒；失败再退回非交互登录 shell，最长 2 秒），只合并绝对路径目录，使 Agent 从 Finder/Dock 启动时仍能找到 Homebrew、`~/.local/bin` 以及写在 `~/.zshrc` 里的工具目录。
 
 ## 内置运行时下的 Agent 执行环境
 
-使用内置运行时时，Agent 的能力与官方 `dsh` 一致（同一份运行时、同一个 `~/.dsh`、同样的系统级沙箱机制），执行环境按以下方式对齐到「你在终端里跑 dsh」的效果：
+使用内置运行时时，Agent 的能力与官方 `dsh` 一致（同一份运行时、当前选择的数据环境、同样的系统级沙箱机制），执行环境按以下方式对齐到「你在终端里跑 dsh」的效果：
 
-- **`node`、`dsh`、`pnpm` 始终可用**：发布版把它们发布到 `~/.dsh-desktop/bin`，并**追加**到运行时的 `PATH` 末尾。没装过这些工具的用户，Agent 也能执行 `node script.js` 和市场用的 `dsh plugin add`；装过的用户仍优先使用自己的版本。`dsh` 走默认拒绝的网关，不会再起一个 web profile。该目录不提供 `npm`/`npx`——需要它们的场景（例如用 `npx` 启动 MCP 服务）请自行安装 Node.js，或改用固定地址模式。`node` shim 依靠设置 `ELECTRON_RUN_AS_NODE` 让 Electron 以 Node 方式运行，因此**经它启动的 node 进程及其子进程**会带上该变量：如果你的 node 脚本里还要再启动基于 Electron 的工具，需自行清除该变量，或安装一份真正的 Node.js。
+- **`node`、`dsh`、`pnpm` 始终可用**：发布版把它们发布到 `~/.bruc3van-dsh-desktop/bin`，并**追加**到运行时的 `PATH` 末尾。没装过这些工具的用户，Agent 也能执行 `node script.js` 和市场用的 `dsh plugin add`；装过的用户仍优先使用自己的版本。`dsh` 走默认拒绝的网关，不会再起一个 web profile，并自动指向当前选择的数据环境。该目录不提供 `npm`/`npx`——需要它们的场景（例如用 `npx` 启动 MCP 服务）请自行安装 Node.js，或改用固定地址模式。`node` shim 依靠设置 `ELECTRON_RUN_AS_NODE` 让 Electron 以 Node 方式运行，因此**经它启动的 node 进程及其子进程**会带上该变量：如果你的 node 脚本里还要再启动基于 Electron 的工具，需自行清除该变量，或安装一份真正的 Node.js。
 - **不污染 Agent 的环境**：内置运行时依靠 `ELECTRON_RUN_AS_NODE` 跑在 Electron 的 Node 上，这是启动方式的实现细节。客户端会在运行时启动后将其从环境中摘除，只在运行时自身需要重新拉起 Node 子进程时（原生文件夹选择器、Windows ACL 沙箱执行器）临时补回，因此 Agent 执行的命令**不会**继承它——否则 Agent 运行任何基于 Electron 的工具（如 `code`）都会失败。
 - **文件权限**：应用未启用 App Sandbox，Agent 的文件读写权限与普通用户进程相同。macOS 首次访问桌面、文稿、下载等受保护目录时会以本应用名义询问，授权按应用记账（终端里已有的授权不会自动带过来）；系统弹窗会说明用途。
 - **版本固定**：内置运行时版本随安装包发布，不能单独升级。需要紧跟官方最新版本时，请使用自定义地址连接自行维护的运行时——这正是「官方发版，当天就能用上」的开发者路径。
@@ -160,7 +163,7 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 
 **不想要它**：连接设置里有「安全市场」开关，关掉就会立即移除市场插件，之后启动也不会再装回。就算客户端已经卸载了，市场自己的「已安装」面板也能把它卸载掉——官方 `dsh plugin` 命令不管这份插件，所以面板是最后的入口。
 
-![设置里的「安全市场」：按分类均衡发牌的精选目录，右上角显示市场自身版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/9249f6714206e2cfec0c075c959abb80018e9cc2/docs/images/marketplace.png)
+![设置里的「安全市场」：按分类均衡发牌的精选目录，右上角显示市场自身版本](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8607e023aaff2efd1baa315e88a8200f7eed7ab5/docs/images/marketplace.png)
 
 市场有三个刻意的设计：
 
@@ -168,11 +171,11 @@ DSH Desktop 是一个独立的 DeepSeek Harness（`dsh`）Electron 客户端。�
 - **默认关闭，开启才联网。** 市场关闭时不发起任何网络请求；开启后读取一次目录快照并持久化（`$DSH_HOME/storages/safe_market.json`），之后走 ETag 条件请求，连不上 GitHub 时继续用上次的目录。一个装上就开始联网的插件等于替你做了决定，这个开关把决定还给你。
 - **先审查、再安装。** 「安全安装」不替你执行任何安装命令：它打开一个新会话、把一段安全审查提示词**填入输入框（不发送）**，由你按回车让 Agent 实际读仓库代码——重点检查凭据/token 访问、向第三方外传数据、远程代码执行、`postinstall` 等安装脚本、无对应源码的混淆文件，以及权限是否远超其声称的功能；发现可疑处必须停下来说清原因并询问你。确认干净后，Agent 才会用官方命令 `dsh plugin --profile web add` 安装。审查与安装因此绑在一起、绕不过去；发不发送由你决定，**收录不代表安全背书**——请自己看过再决定。
 
-![点「安全安装」后：审查提示词被填进新会话的输入框，停在这里等你按回车](https://raw.githubusercontent.com/bruc3van/dsh-desktop/9249f6714206e2cfec0c075c959abb80018e9cc2/docs/images/marketplace-sec-install.png)
+![点「安全安装」后：审查提示词被填进新会话的输入框，停在这里等你按回车](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8607e023aaff2efd1baa315e88a8200f7eed7ab5/docs/images/marketplace-sec-install.png)
 
 目录里已经装过的插件会标出「已安装 vX.Y.Z」，按钮也随之变成「安全升级」——走的是同一套「先审查、再动手」的流程，只是提示词第一步先让 Agent 确认上游到底有没有新版本，没有就原样不动。已装插件的日常管理则在同一页顶部的已安装面板：
 
-![已安装面板：版本、启用状态，以及停用/启用与卸载](https://raw.githubusercontent.com/bruc3van/dsh-desktop/9249f6714206e2cfec0c075c959abb80018e9cc2/docs/images/marketplace-installed.png)
+![已安装面板：版本、启用状态，以及停用/启用与卸载](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8607e023aaff2efd1baa315e88a8200f7eed7ab5/docs/images/marketplace-installed.png)
 
 卸载不是从列表里划掉：它先停用插件，再在这个 profile 里执行与官方 `dsh plugin remove` 相同的移除，锁文件和 node_modules 一并清掉。装成了依赖、却没写进 `bundles` 因而当前不会加载的插件，面板也会单独列出并标明——你机器上装过什么，这里就看得见什么，也能就地卸掉。
 

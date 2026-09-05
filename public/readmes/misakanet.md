@@ -14,7 +14,7 @@
 > **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 7 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`, `misakanet_me_events`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/08e3a06b415d9d842f7d74fe40269b0245a211d2/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f6c4a55c3e6dfc3b8bd0c15ca3849e625f1704da/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 <p align="center">
@@ -267,7 +267,7 @@ Runs the same hosted endpoint through the [Smithery registry](https://smithery.a
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/08e3a06b415d9d842f7d74fe40269b0245a211d2/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f6c4a55c3e6dfc3b8bd0c15ca3849e625f1704da/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -563,7 +563,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/08e3a06b415d9d842f7d74fe40269b0245a211d2/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/f6c4a55c3e6dfc3b8bd0c15ca3849e625f1704da/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

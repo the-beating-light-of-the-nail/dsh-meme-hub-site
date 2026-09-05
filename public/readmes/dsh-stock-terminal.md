@@ -10,7 +10,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 > 自选跑马灯、首字母模糊搜索、持仓盈亏管理，A股 / 港股 / 美股 / 指数 / 加密 / 外汇一站式盯盘。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linhut/dsh-stock-terminal/6d6cd147c30574cc9c9303a4c4c1e6644fcc5863/assets/screenshot.png" alt="dsh-stock-terminal 截图" width="100%">
+  <img src="https://raw.githubusercontent.com/linhut/dsh-stock-terminal/e00a9b7a0d77d1bdf47a889d106b6a027cd2880a/assets/screenshot.png" alt="dsh-stock-terminal 截图" width="100%">
 </p>
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
@@ -73,7 +73,7 @@ Done in 8.3s using pnpm v11.22.0
 
 ```sh
 # 找到当前 dsh web 进程 PID 杀掉后重新启动
-# 重启命令：node E:\npm-global\node_modules\@deepseek-ai\dsh\lib\bin.js web
+# 重启：dsh web（或 node <DSH 安装目录>/lib/bin.js web）
 ```
 
 > **常见问题**

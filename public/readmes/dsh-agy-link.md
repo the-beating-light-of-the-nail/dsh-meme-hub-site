@@ -24,9 +24,9 @@
 把 **Google Antigravity 模型接入 DeepSeek Harness（DSH）** —— 支持**多账号智能池化轮换**、**官方双 Bucket 配额监控（5小时滚动 + 7天周额度）**、**浏览器免粘贴一键登录**与**浅色/深色主题高对比度自适应**，由官方未修改的 `agy` CLI 驱动，完整支持流式输出、思考折叠（thinking）、原生工具卡片与精确 token 用量。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/46984db8b6433660be268f708a67634414b0711c/docs/assets/dashboard.png" alt="Antigravity 管理控制台 - 多账号池化与配额监控" width="460" />
+  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/d74fbb7ce4b9ddc2ed17060a08aeba21cc0206a4/docs/assets/dashboard.png" alt="Antigravity 管理控制台 - 多账号池化与配额监控" width="460" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/46984db8b6433660be268f708a67634414b0711c/docs/assets/model-picker.png" alt="DSH 模型选择器中的 Antigravity 模型列表" width="220" />
+  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/d74fbb7ce4b9ddc2ed17060a08aeba21cc0206a4/docs/assets/model-picker.png" alt="DSH 模型选择器中的 Antigravity 模型列表" width="220" />
 </p>
 
 ---
@@ -168,9 +168,9 @@ MIT License.
 Bring **Google Antigravity models into DeepSeek Harness (DSH)** — featuring **Multi-Account Pooling & Automatic Rotation**, **Official Dual-Bucket Quota Tracking (5h Rolling + 7d Weekly)**, **Zero-Paste In-GUI OAuth Login**, and **Theme-Adaptive High-Contrast UI**, powered by the official unmodified `agy` CLI.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/46984db8b6433660be268f708a67634414b0711c/docs/assets/dashboard.png" alt="Antigravity Management Console - Multi-Account Pool & Quota Monitor" width="460" />
+  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/d74fbb7ce4b9ddc2ed17060a08aeba21cc0206a4/docs/assets/dashboard.png" alt="Antigravity Management Console - Multi-Account Pool & Quota Monitor" width="460" />
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/46984db8b6433660be268f708a67634414b0711c/docs/assets/model-picker.png" alt="Antigravity Model Lineup in DSH Model Picker" width="220" />
+  <img src="https://raw.githubusercontent.com/amlyczz/dsh-agy-link/d74fbb7ce4b9ddc2ed17060a08aeba21cc0206a4/docs/assets/model-picker.png" alt="Antigravity Model Lineup in DSH Model Picker" width="220" />
 </p>
 
 ---

@@ -1,13 +1,13 @@
 <div align="center">
   <a href="https://github.com/Sutera-Diffusus/dsh-whale-musume">
-    <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/logo.png" alt="鲸鱼娘 logo" width="128">
+    <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/logo.png" alt="鲸鱼娘 logo" width="128">
   </a>
   <h1>鲸鱼娘 · dsh-whale-musume</h1>
   <p>为 <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a> 打造的桌面看板娘插件。</p>
   <p>一只会陪你写代码的鲸鱼娘：待机安静陪伴，工作开始就抱起笔记本陪你干活；<br>可以摸头养成、解锁成就，也可以拖着她到处走。所有资源本地运行，无遥测、无外部请求。</p>
 
   <p>
-    <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-2.0.0-4da3ff" alt="版本 2.0.0"></a>
+    <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-2.0.1-4da3ff" alt="版本 2.0.1"></a>
     <a href="https://github.com/Sutera-Diffusus/dsh-whale-musume/releases/latest"><img src="https://img.shields.io/badge/下载-最新版-31df76" alt="下载最新版"></a>
     <a href="https://github.com/Sutera-Diffusus/dsh-whale-musume/releases"><img src="https://img.shields.io/github/downloads/Sutera-Diffusus/dsh-whale-musume/total?label=downloads&color=31df76" alt="总下载量"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6f42c1" alt="MIT license"></a>
@@ -28,9 +28,13 @@
     ·
     <a href="#安装教程">安装教程</a>
   </p>
+
+  <p>
+    <a href="README.en.md">English</a> · <a href="README.md">中文</a>
+  </p>
 </div>
 
-![鲸鱼娘：我来找你啦](https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/homepage-promo.png)
+![鲸鱼娘：我来找你啦](https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/homepage-promo.png)
 
 ---
 
@@ -167,11 +171,11 @@
 
 | 场景 | 说明 |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/preview-idle-coffee.png" alt="待机陪伴：喝咖啡小动作" width="560"> | **待机陪伴**：默认悬浮在右下角，安静不打扰；待机时随机出现喝咖啡、伸懒腰等日常小动作。[查看原图](docs/images/preview-idle-coffee.png) |
-| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/preview-working.png" alt="工作状态：抱起笔记本陪你干活" width="560"> | **工作状态联动**：检测到工具运行自动切换为「抱笔记本工作」，带淡蓝光晕；工作态不闲聊、不插嘴。[查看原图](docs/images/preview-working.png) |
-| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/preview-headpat.png" alt="摸头互动：台词气泡反馈" width="560"> | **摸头互动**：单击摸头触发专属立绘与台词气泡——「舒服是舒服，可是发型会乱啦💢」。[查看原图](docs/images/preview-headpat.png) |
-| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/preview-feeding.png" alt="投喂互动：吃东西反应" width="560"> | **投喂互动**：右键 → 投喂小点心，提升饱食度与好感度，触发吃东西立绘——「啊呜——好吃！」。[查看原图](docs/images/preview-feeding.png) |
-| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/31b4e6b4c759475bc4a0d530b14f06adc7aa36cf/docs/images/preview-idle-sparkle.png" alt="待机形态：收起侧边栏后的悬浮形态" width="560"> | **悬浮形态**：200px 默认尺寸，可随意拖拽，松手后位置自动保存；右键可一键回到原位。[查看原图](docs/images/preview-idle-sparkle.png) |
+| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/preview-idle-coffee.png" alt="待机陪伴：喝咖啡小动作" width="560"> | **待机陪伴**：默认悬浮在右下角，安静不打扰；待机时随机出现喝咖啡、伸懒腰等日常小动作。[查看原图](docs/images/preview-idle-coffee.png) |
+| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/preview-working.png" alt="工作状态：抱起笔记本陪你干活" width="560"> | **工作状态联动**：检测到工具运行自动切换为「抱笔记本工作」，带淡蓝光晕；工作态不闲聊、不插嘴。[查看原图](docs/images/preview-working.png) |
+| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/preview-headpat.png" alt="摸头互动：台词气泡反馈" width="560"> | **摸头互动**：单击摸头触发专属立绘与台词气泡——「舒服是舒服，可是发型会乱啦💢」。[查看原图](docs/images/preview-headpat.png) |
+| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/preview-feeding.png" alt="投喂互动：吃东西反应" width="560"> | **投喂互动**：右键 → 投喂小点心，提升饱食度与好感度，触发吃东西立绘——「啊呜——好吃！」。[查看原图](docs/images/preview-feeding.png) |
+| <img src="https://raw.githubusercontent.com/Sutera-Diffusus/dsh-whale-musume/ba9c69480ec4e606ff654160348eb3682a483dd7/docs/images/preview-idle-sparkle.png" alt="待机形态：收起侧边栏后的悬浮形态" width="560"> | **悬浮形态**：200px 默认尺寸，可随意拖拽，松手后位置自动保存；右键可一键回到原位。[查看原图](docs/images/preview-idle-sparkle.png) |
 
 ### 立绘与海报总览
 

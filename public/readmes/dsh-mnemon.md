@@ -17,14 +17,14 @@
 
 <p align="center">
   <a href="https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/media/dsh-mnemon-memory-system-demo.mp4">
-    <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/b17ef91b89147a63e7de0d8c454c1354d3ee4041/docs/assets/media/dsh-mnemon-memory-system-demo-poster.jpg" alt="dsh-mnemon v0.2.0 live multi-memory snapshot and observable provider surfaces" width="1180">
+    <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/7bcadbcf368798bfee1f2c2c45aa9638c55dd09d/docs/assets/media/dsh-mnemon-memory-system-demo-poster.jpg" alt="dsh-mnemon v0.2.0 live multi-memory snapshot and observable provider surfaces" width="1180">
   </a>
 </p>
 
 <p align="center">
   <a href="./docs/en/capabilities.md"><strong>Explore the capability map</strong></a> ·
   <a href="./docs/en/getting-started.md">Start in five minutes</a> ·
-  <a href="./docs/en/releases/v0.5.0.md">Read the v0.5.0 notes</a> ·
+  <a href="./docs/en/releases/v0.5.2.md">Read the v0.5.2 notes</a> ·
   <a href="https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/media/dsh-mnemon-memory-system-demo.mp4">Watch the widescreen demo</a>
 </p>
 
@@ -34,11 +34,15 @@
 
 Runtime, Documents and Memory Spaces are independent Source plugins. A Strategy selects their instance-specific projections, retrieval routes and actions into an immutable per-turn View. Core provides only `ctx.mnemonMemory`; Sources own their data and optional pages, while Memory Spaces owns its private Provider children. The `dsh-mnemon` Starter preserves the default three-tier experience. See [Architecture](./docs/en/architecture.md) and [Plugin development](./docs/en/extensions.md).
 
-**v0.5.0 introduces View-based Memory and independently published Source/Strategy/Provider plugins as the current stable release.** The documented extension exports form the supported v0.5 surface; internal paths and Host RPC remain private. Default user configuration and workflows stay compatible. Compared with v0.4, the ordinary UI adds only three disabled-by-default enhancement switches under **Settings → Memory System**—no View page or plugin-management entry. See the [v0.5.0 scope and upgrade notes](./docs/en/releases/v0.5.0.md).
+**The v0.5 line introduces View-based Memory and independently published Source/Strategy/Provider plugins.** The documented extension exports form the supported v0.5 surface; internal paths and Host RPC remain private. Default user configuration and workflows stay compatible. Compared with v0.4, the ordinary UI adds only three disabled-by-default enhancement switches under **Settings → Memory System**—no View page or plugin-management entry. See the [v0.5.0 architecture scope](./docs/en/releases/v0.5.0.md).
 
 v0.5.0 retains the v0.4 Sidebar behavior: Sidebar is the default; optional `displayMode: builtin` places the same Source pages in the owning conversation. Legacy `buildin` is accepted and automatically saved as `builtin`, without changing memory data. The collapsed icon aligns with neighboring Sidebar controls, and the settings-store and ZIP fixes remain included. See the [stable release notes](./docs/en/releases/v0.5.0.md) and [entry placement and scope mapping](./docs/en/configuration.md#entry-placement-displaymode-and-tabenabled).
 
-The tested DSH baseline remains 0.1.2-rc.1, with source verification against its alpha.5 predecessor and a real WebUI regression on the previous 0.1.1-rc.2 line.
+v0.5.1 fixes writable settings under the released nested Desktop Sidebar and removes an Idle Review race that could reject the next conversation turn with an `already pinned` error. See the [v0.5.1 patch notes](./docs/en/releases/v0.5.1.md).
+
+v0.5.2 makes the existing `mnemon` profile Entry an atomic switch for the complete Starter, so a retained disabled state no longer leaves v0.5 Source and Strategy Entries waiting on `mnemonMemory`. It also completes the one-time transition to independent package versions and selective publication. See the [v0.5.2 patch notes](./docs/en/releases/v0.5.2.md).
+
+The tested DSH baseline remains 0.1.2-rc.1, with Node 20 public-entry compatibility and retained regression evidence for the previous 0.1.1-rc.2 line.
 
 ## Understand the scope in 30 seconds
 
@@ -90,7 +94,7 @@ See the [provider capability and deployment matrix](./docs/en/memory-providers.m
 
 The following roughly 55-second capture comes from a live 1600×900 DSH WebUI. It deliberately pauses on full-page scrolling, page transitions, Provider cards, dialogs, button-state changes, and a completed read-only Agent Query. Destructive confirmations are deliberately not submitted.
 
-![Full dsh-mnemon v0.2.0 WebUI walkthrough with scrolling and button interactions](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/b17ef91b89147a63e7de0d8c454c1354d3ee4041/docs/assets/media/dsh-mnemon-memory-system-demo.gif)
+![Full dsh-mnemon v0.2.0 WebUI walkthrough with scrolling and button interactions](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/7bcadbcf368798bfee1f2c2c45aa9638c55dd09d/docs/assets/media/dsh-mnemon-memory-system-demo.gif)
 
 [Watch the 1600×900 MP4](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/media/dsh-mnemon-memory-system-demo.mp4) · [Open the page-by-page UI guide](./docs/en/ui-guide.md)
 
@@ -114,7 +118,7 @@ Windows users can install the official v0.2.3-or-newer release ZIP. The expected
 
 ### 2. Install DSH and the plugin
 
-The registry installation is verified against stable DSH 0.1.2-rc.1, whose complete profiles require Node.js `^22.19.0 || >=24.0.0`. The immediately preceding DSH 0.1.2-alpha.5 remains covered from source, and the previous 0.1.1-rc.2 registry line remains a backward-regression target. The dsh-mnemon package itself retains Node.js 20 compatibility for older compatible DSH hosts. Use the exact published version below for a reproducible installation; plugin authors can follow the [alpha source workflow](./docs/en/development.md#dsh-012-alpha5-source-compatibility).
+The registry installation is verified against stable DSH 0.1.2-rc.1, whose complete profiles require Node.js `^22.19.0 || >=24.0.0`. The dsh-mnemon package itself retains Node.js 20 public-entry compatibility for older compatible DSH hosts. Use the exact published version below for a reproducible installation; maintainers can run the optional [alpha source compatibility workflow](./docs/en/development.md#manual-dsh-012-alpha5-source-compatibility).
 
 ```sh
 npm install -g @deepseek-ai/dsh@0.1.2-rc.1
@@ -122,7 +126,7 @@ dsh --version
 ```
 
 ```sh
-dsh plugin --profile web add dsh-mnemon
+dsh plugin --profile web add dsh-mnemon@0.5.2
 dsh --profile web
 ```
 
@@ -158,7 +162,7 @@ The primary tab order is intentionally stable: **Status, Runtime, Documents, Mem
 
 | Supervised distillation | Bounded Agent query |
 |---|---|
-| [![Edit a candidate before dispatching an independent task Agent](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/b17ef91b89147a63e7de0d8c454c1354d3ee4041/docs/assets/screenshots/remember-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/remember-dialog.png) | [![Read-only Agent answer grounded in bounded multi-provider evidence](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/b17ef91b89147a63e7de0d8c454c1354d3ee4041/docs/assets/screenshots/recall-agent-answer.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/recall-agent-answer.png) |
+| [![Edit a candidate before dispatching an independent task Agent](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/7bcadbcf368798bfee1f2c2c45aa9638c55dd09d/docs/assets/screenshots/remember-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/remember-dialog.png) | [![Read-only Agent answer grounded in bounded multi-provider evidence](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/7bcadbcf368798bfee1f2c2c45aa9638c55dd09d/docs/assets/screenshots/recall-agent-answer.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/recall-agent-answer.png) |
 
 The workbench makes the task boundary explicit before dispatch and keeps the returned answer beside its evidence scope. Conversation-native Turn memory and Save to memory remain enabled by default and can be changed independently under **Settings → Memory System → Conversation interface**.
 
@@ -166,7 +170,7 @@ The workbench makes the task boundary explicit before dispatch and keeps the ret
 
 | Create explicitly | Route future distillation intelligently |
 |---|---|
-| [![Choose a Provider while creating a Memory Space](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/b17ef91b89147a63e7de0d8c454c1354d3ee4041/docs/assets/screenshots/memory-space-create-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/memory-space-create-dialog.png) | [![Choose manual or smart Provider placement](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/b17ef91b89147a63e7de0d8c454c1354d3ee4041/docs/assets/screenshots/distillation-strategy.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/distillation-strategy.png) |
+| [![Choose a Provider while creating a Memory Space](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/7bcadbcf368798bfee1f2c2c45aa9638c55dd09d/docs/assets/screenshots/memory-space-create-dialog.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/memory-space-create-dialog.png) | [![Choose manual or smart Provider placement](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/7bcadbcf368798bfee1f2c2c45aa9638c55dd09d/docs/assets/screenshots/distillation-strategy.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/e6ca446e45bdd17991f3c7c98560456de465282b/docs/assets/screenshots/distillation-strategy.png) |
 
 Manual creation always asks the user to choose. Smart selection is a distillation policy: hard rules define the eligible set, then an optional prompt guides the Agent only when several candidates remain.
 
@@ -216,7 +220,7 @@ See [Operations, security, and troubleshooting](./docs/en/operations.md) for bac
 | Back up, update, or troubleshoot | [Operations](./docs/en/operations.md) |
 | Integrate tools, commands, or RPC | [Interface reference](./docs/en/interfaces.md) |
 | Build a Source, Strategy or Memory Spaces Provider plugin | [Extension guide](./docs/en/extensions.md) |
-| Review the stable release | [v0.5.0 release notes](./docs/en/releases/v0.5.0.md) |
+| Review the stable release | [v0.5.2 release notes](./docs/en/releases/v0.5.2.md) |
 
 See the [documentation hub](./docs/en/README.md) for the full map.
 

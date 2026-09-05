@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/FlytoMAYDAY80/dsh-pet/2e2854e505a24e3bfa01e52f58fea83d8a8c4689/docs/hero-v2.png" width="100%" alt="DSH PET — 图像、文字与音效三重状态提醒" />
+  <img src="https://raw.githubusercontent.com/FlytoMAYDAY80/dsh-pet/6741135eb90dca28bf527b2950212dcdb246ad65/docs/hero-v2.png" width="100%" alt="DSH PET — 图像、文字与音效三重状态提醒" />
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@
   <img alt="Runtime: Electron" src="https://img.shields.io/badge/runtime-Electron-47848F.svg" />
 </p>
 
-![五种状态预览](https://raw.githubusercontent.com/FlytoMAYDAY80/dsh-pet/2e2854e505a24e3bfa01e52f58fea83d8a8c4689/docs/contact-sheet.png)
+![五种状态预览](https://raw.githubusercontent.com/FlytoMAYDAY80/dsh-pet/6741135eb90dca28bf527b2950212dcdb246ad65/docs/contact-sheet.png)
 
 DSH 桌宠是一只独立的桌面应用：当你在浏览器、IDE、文档里工作时，鲸鱼始终悬浮在桌面一角，用表情、气泡和音效告诉你——**有会话在跑、需要你去审批、任务做完了**。把"任务状态"从需要主动查看的页面，变成余光即得的实时信号。
 
@@ -22,6 +22,7 @@ DSH 桌宠是一只独立的桌面应用：当你在浏览器、IDE、文档里�
 - **毫秒级实时**：双 WebSocket 通道（审批/提问推送 + 运行状态翻转推送），状态变化即时响应
 - **跨会话聚合**：多会话并行时气泡逐行列出每个会话，数量再多也可滚动查看
 - **低打扰**：只在状态真正变化时动画/发声，不刷存在感
+- **精准点击穿透**：仅鲸鱼当前帧的可见像素与可见气泡响应鼠标，其余透明区域不遮挡后方应用
 - **对 DSH 零侵入**：纯只读 HTTP/WebSocket 接口，不写入任何数据，卸载即消失
 - **零代码定制**：`custom/` 目录一键换图案、配色、音效（见下方"定制"）
 
@@ -99,6 +100,7 @@ python3 scripts/ref_to_sprites.py <你的参考图.png>
 ```bash
 pnpm smoke        # 状态引擎冒烟测试（连接/轮询/WebSocket/状态推导）
 pnpm shot         # 两种皮肤 × 5 状态截图到 .shots/
+pnpm hittest      # 透明区、鲸鱼像素、气泡显隐与换帧热区回归测试
 python3 scripts/verify_pixel_src.py   # 素材规格与参考图一致性校验
 python3 scripts/gen_icon.py           # 重新生成应用图标
 ```

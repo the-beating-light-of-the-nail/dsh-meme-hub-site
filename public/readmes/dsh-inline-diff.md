@@ -15,7 +15,7 @@ By default the DeepSeek Harness web GUI collapses each file edit into a tiny one
 
 A typical edit: changed lines paired side by side, with the exact words that changed highlighted:
 
-![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/f3b64e88c1d7c73cf5111f7f12f7b932221b9d5c/docs/screenshot-compact-card.png)
+![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/e7e9c6901f19dc27b5a813a91f790c62c62ba22a/docs/screenshot-compact-card.png)
 
 ## Words or whole lines
 
@@ -23,7 +23,7 @@ By default a changed line gets double highlighting: the row is tinted green/red,
 
 ## Line numbers
 
-Every row carries its real 1-based file line number in a muted gutter, on both the old and the new side. The numbers come from the harness itself: when an edit settles, the plugin anchors each served hunk to its true position, and for hunks without an anchor the card reads the file through a fenced workspace route and locates the changed block verbatim — a block that appears more than once, or a file that changed since, refuses to guess and simply shows no number rather than a wrong one.
+Every row carries a 1-based line number in a muted gutter, on both the old and the new side. The numbers come from the harness itself: when an edit settles, the plugin anchors each served hunk to its true position, and for hunks without an anchor the card reads the file through a fenced workspace route and locates the changed block verbatim. A hunk that cannot be located (a block appearing more than once, a drifted file, no host half) falls back to window-relative numbering from the hunk's first row, so a number always renders — but it may not be the file's true line. Prefer it cleaner? Pick *Off* under **Settings → Plugins → Inline diff → Line numbers** and the gutter disappears entirely. Like the other choices, this is saved and survives restarts.
 
 ## Indentation
 
@@ -41,7 +41,7 @@ Every color on the card, from surfaces and text to borders and the green/red dif
 
 The same compact edit under a custom theme — [dsh-stylevault](https://github.com/GptsApp/dsh-stylevault) overrides exactly those token variables, so a restyle there restyles every diff card:
 
-![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/f3b64e88c1d7c73cf5111f7f12f7b932221b9d5c/docs/screenshot-compact-themed.png)
+![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/e7e9c6901f19dc27b5a813a91f790c62c62ba22a/docs/screenshot-compact-themed.png)
 
 ## Language
 

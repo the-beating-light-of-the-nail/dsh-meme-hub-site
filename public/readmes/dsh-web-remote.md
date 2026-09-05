@@ -1,7 +1,7 @@
 # dsh-web-remote
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/godchen520/dsh-web-remote/154e360b52f87d848e55b7d6c5042866949e4748/docs/banner.svg" alt="dsh-web-remote" width="100%">
+  <img src="https://raw.githubusercontent.com/godchen520/dsh-web-remote/85c46f1d7cc769ec9b9ed3db098ef9ee10aef86d/docs/banner.svg" alt="dsh-web-remote" width="100%">
 </p>
 
 [![npm version](https://img.shields.io/badge/npm-dsh--web--remote-blue)](https://github.com/godchen520/dsh-web-remote)
@@ -46,11 +46,11 @@ dsh plugin --profile web add github:godchen520/dsh-web-remote && dsh web
 
 **快捷按钮**（页面左下角）：
 
-![快捷按钮](https://raw.githubusercontent.com/godchen520/dsh-web-remote/154e360b52f87d848e55b7d6c5042866949e4748/docs/quick-button.png)
+![快捷按钮](https://raw.githubusercontent.com/godchen520/dsh-web-remote/85c46f1d7cc769ec9b9ed3db098ef9ee10aef86d/docs/quick-button.png)
 
 **远程面板**（公网 / 局域网切换、一键复制链接、二维码、启动 / 停止）：
 
-![远程面板](https://raw.githubusercontent.com/godchen520/dsh-web-remote/154e360b52f87d848e55b7d6c5042866949e4748/docs/remote-screenshot.png)
+![远程面板](https://raw.githubusercontent.com/godchen520/dsh-web-remote/85c46f1d7cc769ec9b9ed3db098ef9ee10aef86d/docs/remote-screenshot.png)
 
 ## 📋 安装方式
 

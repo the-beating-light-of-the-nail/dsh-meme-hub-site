@@ -1,6 +1,6 @@
 # 🐋 awesome-dsh-skills — Tested Skills for DeepSeek Harness
 
-**18 original engineering skills (SKILL.md). Every skill passes a format validator mirroring the official `@deepseek-ai/dsh-skill-filesystem` rules plus an isolated-DSH_HOME load smoke test. Copy, drop in, done.**
+**19 original engineering skills (SKILL.md). Every skill passes a format validator mirroring the official `@deepseek-ai/dsh-skill-filesystem` rules plus an isolated-DSH_HOME load smoke test. Copy, drop in, done.**
 
 [中文](README.zh.md) · Sibling repos: [dsh-lab](https://github.com/hackerFish/dsh-lab) · [awesome-dsh-presets](https://github.com/hackerFish/awesome-dsh-presets) · [dsh-video-studio](https://github.com/hackerFish/dsh-video-studio) · [dsh-restart](https://github.com/hackerFish/dsh-restart)
 
@@ -19,10 +19,10 @@ cp -r ~/dsh-skills/skills/* ~/.dsh/skills/   # all, or copy individual skill dir
 ## Quality gates (every skill)
 
 1. `node tools/validate-skills.mjs` — field whitelist, kebab-case names, boolean value forms, single-level structure, per official rules
-2. Load smoke test in an isolated `DSH_HOME` (skills placed, harness booted clean)
+2. `node tools/smoke-load.mjs` — loads every skill through the real `@deepseek-ai/dsh-skill-filesystem` provider in an isolated `DSH_HOME` and asserts all register with no parse rejections. Needs a local DSH install; auto-resolves the package or pass `--pkg <path>`. Last verified against `dsh-skill-filesystem@0.1.1-rc.2` (2026-09).
 3. Content rule: verified facts only; no unverified "magic prompts"
 
-## Skills (18)
+## Skills (19)
 
 | Skill | Purpose |
 |---|---|
@@ -34,6 +34,7 @@ cp -r ~/dsh-skills/skills/* ~/.dsh/skills/   # all, or copy individual skill dir
 | dsh-plugin-client | DSH plugin client half: slot/standard-kit registration, dual build, `__ModuleLoader__` wrap, self-test |
 | dsh-plugin-i18n | DSH plugin UI localization (zh/en): locale namespaces, slot `locale`, `t()` with instant switching |
 | dsh-plugin-publish | Publish a DSH plugin to GitHub + awesome-dsh inclusion: build-artifact commits, repo/topics API, PR etiquette, encoding traps |
+| dsh-preset-authoring | Author/edit a DSH agent preset (`agent.cordis.yml` + `preset.yml`): verified row structure, id rules, `.agent-presets` install, harness validation |
 | dsh-dependency-audit | Dependency & install-script risk audit |
 | dsh-refactor-safe | Baseline-first safe refactoring |
 | dsh-debug-session | DSH boot/plugin failure triage |

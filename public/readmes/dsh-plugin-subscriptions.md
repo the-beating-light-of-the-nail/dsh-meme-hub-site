@@ -6,33 +6,41 @@ Use your **ChatGPT (Codex)**, **Claude**, **Grok (X Premium)**, and **GitHub Cop
 
 ## Demo
 
-Settings → **Subscriptions**: per-provider login/logout, no API keys. Claude imports credentials from Claude Code when available and otherwise uses OAuth, as Codex and Grok always do (account address masked in the screenshot):
+Settings → **Subscriptions**: per-provider login/logout, no API keys. Claude imports credentials from Claude Code when available and otherwise uses OAuth, as Codex and Grok always do (settings screenshots use demo accounts and catalog data):
 
-![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/subscriptions.png)
+![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/subscriptions.png)
+
+Configure visibility, default reasoning effort, and context together in **Edit model list**, with shared Save and Cancel actions:
+
+![Model settings](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/model-settings.png)
+
+Configure image generation, video generation, and X search per provider. Tool switches apply only to sessions created after saving:
+
+![Provider tools](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/provider-tools.png)
 
 Logged-in providers join the session model picker with their live model catalogs:
 
-![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/model-picker.png)
+![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/model-picker.png)
 
 Models that advertise reasoning levels get an **Effort** selector in the same menu — Codex models, Grok 4.6 / 4.5, and Copilot's reasoning models (levels and defaults come from each provider's live catalog, not a hardcoded list; Copilot's `capabilities.supports.reasoning_effort` array is sent as `reasoning_effort` on chat completions and `reasoning.effort` on the Responses wire). Models listing both Copilot endpoints (gpt-5.4, gpt-5-mini) normally speak chat completions but reroute to `/responses` when a request combines function tools with an effort — Copilot rejects that combination on the chat wire:
 
-![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/model-effort.png)
+![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/model-effort.png)
 
 Codex models whose catalog advertises the fast tier (the codex CLI's fast mode) get a **Speed** toggle in the composer's tool row, next to the model selector — Standard or Fast (`service_tier: priority`), per session. The `/fast` slash command offers the same choice as a popup; it errors with an explanation when the current model has no fast tier.
 
-![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/speed-toggle.png)
+![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/speed-toggle.png)
 
 The `image_generate` tool renders its result inline in the conversation:
 
-![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/image-generate-inline.png)
+![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/image-generate-inline.png)
 
 Its `provider` parameter picks the image backend — the same prompt through GPT (`gpt-image-2`, top) and Grok (`grok-imagine-image-2.0`, bottom):
 
-![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/image-generate-providers.png)
+![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/image-generate-providers.png)
 
 The `video_generate` tool plays the generated clip inline:
 
-![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/a4dfee0cd4c722c480f7b0ca78f5334b625d43e8/docs/images/video-generate-inline.png)
+![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/video-generate-inline.png)
 
 ## Providers
 
@@ -54,6 +62,14 @@ Also included, registered when the matching provider is enabled:
 - **`video_generate`** tool (Grok) — `grok-imagine-video-1.5` via `api.x.ai/v1/videos` (async submit + poll); MP4s are saved under `~/.dsh/plugins/subscriptions/videos/`, the path returned, and the clip plays inline in the conversation. Supports duration (1–15 s), aspect ratio, resolution, and image-to-video via `image_url`.
 
 ## Install
+
+### Refreshing model lists
+
+In **Settings → Subscriptions → provider → Edit model list**, use **Refresh** to bypass the five-minute catalog cache and refresh the conversation model picker too. This is separate from refreshing subscription usage. If `models.<provider>` is explicitly configured with a non-empty list, that list still overrides discovery.
+
+Codex catalog visibility depends on the `client_version` request parameter. By default the plugin reads the stable version from the official npm `@openai/codex` package's public metadata (no CLI installation or subscription credentials sent to npm). Successful lookups are cached in memory for six hours; failures retry after five minutes and retain the last successful version, or the verified `0.153.4` fallback on first use. The lookup has a 1.5-second deadline, shares in-flight work across accounts, and ignores prerelease or regressed versions. Manual model-list refresh also rechecks the version. An explicit plugin configuration field, `codexClientVersion: '0.153.4'`, takes precedence and disables automatic lookup; restart DSH after changing it. Model availability remains account-dependent; see [verification notes](docs/codex-catalog-refresh.md).
+
+### Installation commands
 
 With the `dsh` CLI available, install from npm (prebuilt artifacts, no build permission needed):
 
@@ -115,11 +131,21 @@ Not logged in? The provider stays out of the picker, and requests fail with `MIS
 
 Every provider accepts several accounts: once one is connected, the card grows an **Add account** button (Claude offers **Browser authorization** and **Import Claude Code** separately). Accounts are keyed by their identity (email / login) — re-logging the same account updates it in place, a different account appends. Browser authorization signs in whichever account the browser currently uses, so switch accounts there first (or use an incognito window with the manual code) to add a different one. The ★ default account serves the direct provider routes; pool routes use every account. A Claude account imported from Claude Code stays synced with the CLI's credential store; OAuth-added Claude accounts refresh standalone so several accounts never fight over the Keychain entry.
 
-### Default reasoning effort per model
+### Edit visible models, context windows, and tools
 
-Every logged-in provider card in Settings → Subscriptions carries a collapsible **Default reasoning effort** section. It starts collapsed — the header shows how many models advertise reasoning levels and how many you have overridden — and the model list (with its live catalog lookup) loads only once you expand it, so a provider with dozens of models does not stretch the page or make it pay for a lookup nobody asked for. Expanded, each model that advertises reasoning levels gets a row whose options are the levels that provider's live catalog advertises for that exact model; past 8 such models the section also offers a name filter, and models without reasoning levels collapse into a single count line instead of one dead row each. With several accounts connected, the model list is the union across that provider's accounts, so a model any account advertises gets a row; the levels offered for it come from the first account whose catalog lists it (the ★ default account first), matching what the session picker resolves.
+Open **Settings → Subscriptions → provider → Edit model list**, search and select models, then **Save changes**. All discovered models are shown automatically by default. Selecting individual models, selecting all, or clearing the selection saves an explicit list; newly discovered models then stay hidden until selected. Enable automatic display again to restore discovery-driven visibility. Hidden models remain usable by existing sessions, and the editor retains the full catalog so they can be restored. Refreshing discovery preserves preferences; Cancel discards unsaved edits.
 
-Pick a level to make the session model picker preselect it whenever you switch to the model — no more settling for the provider's own default (e.g. Claude shows `Default`, Codex models follow `default_reasoning_level`). Choose **Follow provider** to clear the override. The choice is stored in `~/.dsh/plugins/subscriptions/model-defaults.json` (mode 0600) and survives restarts.
+Codex models also accept a context budget in tokens; leave it blank to follow the provider. The plugin reads each account's `context_window` and `max_context_window`, caps the requested budget at that account's maximum, and uses the advertised default as the conservative ceiling when no maximum is provided. Account pools resolve each member separately and use the smallest window. This changes DSH's local history budget and compaction timing, without sending an API capacity override. Longer contexts can increase response latency.
+
+The same editor controls Codex image generation and Grok image generation, video generation, and X search. Changes apply only to sessions created after saving; existing sessions retain their creation-time policy, including after restart. Image generation is shared: it disappears only when neither configured provider enables it, and execution never falls back to a provider disabled for that session. Claude and Copilot currently have no standalone subscription tools to configure.
+
+Preferences and tool-policy history live in `~/.dsh/plugins/subscriptions/provider-settings.json` (mode 0600), independently of the five-minute discovery cache. Existing non-empty `models.<provider>` configuration still defines the base catalog; visibility selections filter that catalog.
+
+### Reasoning defaults in the model editor
+
+Default reasoning effort now lives in **Edit model list**, beside each model's visibility and context settings. Apply edits with **Save changes**, or discard unsaved edits with Cancel. Hidden models remain editable. Models without reasoning levels have no selector; **Follow provider** clears an override. Choices come from live capabilities, intersected across account-pool members. Custom pool aliases do not offer ineffective effort overrides.
+
+Existing defaults continue to load from and save to `~/.dsh/plugins/subscriptions/model-defaults.json` (mode 0600). If a save fails partway through, unfinished edits remain in the draft; the UI reports any defaults already saved and lets you retry.
 
 ## Config
 
@@ -208,7 +234,9 @@ One trade-off worth knowing: the delay ceiling is shared with that local backoff
 
 ## Proxy
 
-Every subscription request — token exchanges, model-API streams, usage lookups, model discovery, and the `x_search` / `image_generate` / `video_generate` tools — can be routed through an HTTP(S) proxy. Configure it in **Settings → Subscriptions → Proxy → Configure…**: enable the flag, enter the proxy URL (`http://127.0.0.1:7890`), optional username/password, and an optional comma-separated bypass list of hostnames that stay direct (`127.0.0.1`, `localhost`, `*.example.com`). The password is stored in `~/.dsh/plugins/subscriptions/proxy.json` (mode 0600) and is never returned to the browser. A "Test" button probes one endpoint through the current configuration and shows the HTTP status/latency.
+DSH `v0.1.3-alpha.1` introduces host-managed proxy routing. Prefer configuring `HTTP_PROXY` / `HTTPS_PROXY` (or `ALL_PROXY`) and `NO_PROXY` in the launch environment or `$DSH_HOME/.env`, then restart DSH and **disable the plugin proxy**. See the [DSH network proxy guide](https://github.com/deepseek-ai/deepseek-harness/blob/dsh-v0.1.3-alpha.1/docs/user/guide/network-proxy.md). Proxy credentials in environment variables are inherited by child commands; this differs from keeping them in the plugin's private config. Existing settings are not deleted or migrated automatically.
+
+The optional plugin override remains available for supported older DSH hosts and subscription-only routing. Every subscription request — token exchanges, model-API streams, usage lookups, model discovery, and the `x_search` / `image_generate` / `video_generate` tools — can use it. Configure it in **Settings → Subscriptions → Proxy → Configure…**: enable the flag, enter the proxy URL (`http://127.0.0.1:7890`), optional username/password, and an optional comma-separated bypass list (`127.0.0.1`, `localhost`, `*.example.com`). Disabled or bypassed requests use DSH's global fetch routing, **not necessarily a direct connection**; use the host's `NO_PROXY` when direct routing is required. The password is stored in `~/.dsh/plugins/subscriptions/proxy.json` (mode 0600) and is never returned to the browser. A "Test" button probes one endpoint through the current configuration and shows the HTTP status/latency.
 
 Changes apply immediately to subsequent requests — no restart needed. The OAuth authorization page opens in your browser and follows the browser/system proxy, not this setting. SOCKS proxies are not supported.
 

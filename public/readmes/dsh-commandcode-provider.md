@@ -34,19 +34,19 @@ See [Screenshots](#screenshots) below for what the UI looks like.
 
 Pick the release line that matches your DeepSeek Harness version:
 
-- **dsh 0.1.2-alpha.2 or later** (the current alpha line) — use the matching alpha plugin release. Install explicitly with the `alpha` tag:
-
-  ```sh
-  dsh plugin --profile web add @mars-sea/dsh-commandcode-provider@alpha
-  ```
-
-- **Older dsh releases** (the 0.5.0 line and earlier, which use the rc-era Host/browser APIs) — the 0.9.1 plugin keeps working there and stays on the `latest` tag:
+- **dsh 0.1.2-rc.1 or later** (the current 0.1.2 line — what `@latest` installs today):
 
   ```sh
   dsh plugin --profile web add @mars-sea/dsh-commandcode-provider@latest
   ```
 
-> The `alpha` tag never moves `latest`: a plain `@latest` install always gets the newest stable release for older Harness versions, and upgrading to the alpha line is always an explicit opt-in.
+- **Older dsh releases** (the 0.5.0 line and earlier, which use the rc-era Host/browser APIs) — the last plugin version supporting them is 0.9.1, installed by exact version. That line is no longer under active maintenance:
+
+  ```sh
+  dsh plugin --profile web add @mars-sea/dsh-commandcode-provider@0.9.1
+  ```
+
+> The `latest` tag now always points at the current 0.1.2-line plugin release, so a plain `@latest` install gets the newest stable release for dsh 0.1.2+. Users on the old 0.5.0-era Harness line must pin `@0.9.1` explicitly.
 
 Fresh pnpm 10 marketplace generations are supported directly. Do not add a separate `@deepseek-ai/dsh-invariants` dependency; the plugin declares it as a Host peer so the active dsh profile remains the owner of Harness packages.
 
@@ -55,8 +55,8 @@ Fresh pnpm 10 marketplace generations are supported directly. Do not add a separ
 Update with the same tag you installed with:
 
 ```sh
-dsh plugin --profile web update @mars-sea/dsh-commandcode-provider@alpha      # dsh 0.1.2-alpha.2+
-dsh plugin --profile web update @mars-sea/dsh-commandcode-provider@latest     # older dsh (0.5.0 line)
+dsh plugin --profile web update @mars-sea/dsh-commandcode-provider@latest     # dsh 0.1.2-rc.1+
+dsh plugin --profile web update @mars-sea/dsh-commandcode-provider@0.9.1      # older dsh (0.5.0 line, unmaintained)
 ```
 
 Then restart the web app.
@@ -151,7 +151,7 @@ When your deployment's dsh shell mounts the web capability (`@deepseek-ai/dsh-we
 - **Image input is model-gated** — only Vision models accept images; text-only models refuse them.
 - Switching to a text-only model in an image-bearing session is rejected by dsh — pick a model marked *`Image`* or remove the images first.
 - **No `stop` sequences** — requests carrying one fail.
-- Reasoning blocks are not replayed into later turns; only tool calls with a paired tool result are replayed.
+- On the legacy `/alpha/generate` transport, reasoning blocks are not replayed into later turns; on the `/provider/v1/chat/completions` transport, historical reasoning is passed back as `reasoning_content` so tool-calling loops can keep their chain of thought. Only tool calls with a paired tool result are replayed on both transports.
 - The model catalog is browsable without a key; chat requests need one.
 
 ## Permissions & privacy
@@ -200,12 +200,12 @@ MIT — see [LICENSE](./LICENSE). Portions ported from [pi-commandcode-provider]
 
 **Model picker** — plan tier, deal/FREE, peak/off-peak, Image and context annotations:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/d8b47104b13bbe7d000e4ff792e93493317ae1b3/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/c684d8e25c965ef3a576388ad5d263221c1c0ee6/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
 
 **Usage dashboard** — `/commandcode` per-account report:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/d8b47104b13bbe7d000e4ff792e93493317ae1b3/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/c684d8e25c965ef3a576388ad5d263221c1c0ee6/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
 
 **Settings page** — API key, connection knobs, account rotation and the live account-usage card:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/d8b47104b13bbe7d000e4ff792e93493317ae1b3/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/c684d8e25c965ef3a576388ad5d263221c1c0ee6/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">

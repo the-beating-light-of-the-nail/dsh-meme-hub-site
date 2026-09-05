@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-nocturne-memory/fb7a1127b30453bbbf74d2d0bea17f28ca9f5ede/assets/readme/hero.svg" alt="dsh-noc-memory — long-term memory for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-nocturne-memory/722759386bf98f93529d789e2e156fcb60b20fee/assets/readme/hero.svg" alt="dsh-noc-memory — long-term memory for DeepSeek Harness" width="100%">
 </p>
 
 # dsh-noc-memory
 
-Connects DeepSeek Harness to **Noc Memory**: session-start boot + daily briefing, plus memory read / search / create / update, backed by your own Noc Memory MCP server on Cloudflare.
+Connects DeepSeek Harness to **Noc Memory**: session-start boot + daily briefing, plus memory read / search / create / update / delete, backed by your own Noc Memory MCP server on Cloudflare.
 
 > Port of [pi-noc-memory](https://github.com/RealAlexandreAI/pi-noc-memory) — same protocol, same tool names.
 
@@ -14,12 +14,12 @@ Connects DeepSeek Harness to **Noc Memory**: session-start boot + daily briefing
 
 | tool | what it does |
 |---|---|
-| `noc_boot` | load at session start: core memories + recent context + glossary |
-| `noc_briefing` | today's working-memory briefing (`system://briefing`) — recent activity, expiring, cold candidates |
+| `noc_boot` | load at session start: core + recent + triggers (`system://boot`, `system://recent/5`, `system://triggers`) + briefing |
 | `noc_read` | read a memory by URI (`system://…`, `noc://agent`, …) |
-| `noc_search` | search memories by keywords (trigger recall first, then FTS) |
-| `noc_create` | create a memory node (`[Baseline]/[Deviation]/[Result]/[Reusable judgment]`) |
-| `noc_update` | patch (old_string/new_string) or append to a memory; optional `relation` evolution marker |
+| `noc_search` | search memories (semantic + keyword / trigger recall via `search_memory`) |
+| `noc_create` | create a memory node (`[Baseline]`/`[Deviation]`/`[Result]`/`[Reusable judgment]`) |
+| `noc_update` | full replace, patch (old_string/new_string), or append; optional `relation` |
+| `noc_delete` | delete a memory by URI (`delete_memory`) |
 
 ## Quick start
 
@@ -34,7 +34,7 @@ Requires your own Noc Memory server — deploy it to Cloudflare in minutes: [cf-
   name: dsh-noc-memory
   config:
     mcp_url: https://mem.example.com/mcp
-    mcp_auth: Bearer <your token>
+    mcp_auth: ""  # prefer mcp_headers for Access service token
 ```
 
 For a server behind Cloudflare Access (e.g. noc-mem.slahser.com), use the **service token** headers instead of `mcp_auth`:
@@ -52,7 +52,7 @@ For a server behind Cloudflare Access (e.g. noc-mem.slahser.com), use the **serv
 | key | required | meaning |
 |---|---|---|
 | `mcp_url` | yes | your Noc Memory MCP endpoint (Streamable HTTP) |
-| `mcp_auth` | no | `Bearer <token>` if the server requires it |
+| `mcp_auth` | no | legacy; prefer `mcp_headers` for Cloudflare Access service token |
 | `mcp_headers` | no | extra headers merged into every MCP request (e.g. Cloudflare Access service token) |
 
 > **Upgrading from dsh-nocturne-memory (≤0.1.x):** renamed to `dsh-noc-memory`, tools renamed `nocturne_*` → `noc_*`. Remove the old plugin and re-add the new package; update any prompt text referencing `nocturne_*` tools.

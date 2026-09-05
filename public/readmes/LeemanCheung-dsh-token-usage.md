@@ -4,7 +4,7 @@
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
   <a href="https://awesome-dsh-plugin.com"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="Awesome DSH Plugin"></a>
   <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/DeepSeek_Harness-plugin-2f6cff.svg" alt="DeepSeek Harness plugin"></a>
-  <img src="https://img.shields.io/badge/version-0.3.1-2f6cff.svg" alt="Version 0.3.1">
+  <img src="https://img.shields.io/badge/version-0.3.2-2f6cff.svg" alt="Version 0.3.2">
   <img src="https://img.shields.io/badge/data-local--first-6f42c1.svg" alt="Local-first data">
   <img src="https://img.shields.io/badge/AI_analysis-opt--in-f59e0b.svg" alt="Opt-in AI analysis">
   <img src="https://img.shields.io/badge/privacy-allowlist-0f9d8a.svg" alt="Allowlist privacy">
@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/e865951bbeddb8a313c564ecfd173f36be79e82e/assets/token-usage-overview.png" alt="DSH Token 用量概览：八项指标、聚合导出、30 周热力图与周期趋势" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-overview.png" alt="DSH Token 用量概览：八项指标、聚合导出、30 周热力图与周期趋势" width="800">
 </p>
 
 > 截图采集自当前 DSH 界面；采集前已将用量、日期、路由与报告内容替换为明确标注的示例数据，不对应真实会话、模型配置或账单。
@@ -69,17 +69,17 @@
 ### 趋势、效率、运行率与预算
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/e865951bbeddb8a313c564ecfd173f36be79e82e/assets/token-usage-insights.png" alt="Agent 效率与归因：尝试次数、压缩率、缓存占比、路由集中度与运行率" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-insights.png" alt="Agent 效率与归因：尝试次数、压缩率、缓存占比、路由集中度与运行率" width="800">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/e865951bbeddb8a313c564ecfd173f36be79e82e/assets/token-usage-budget.png" alt="30 日 Token 预算、公开费率说明和 AI 用量分析入口" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-budget.png" alt="30 日 Token 预算、公开费率说明和 AI 用量分析入口" width="800">
 </p>
 
 ### AI 用量分析入口与模型热点
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/e865951bbeddb8a313c564ecfd173f36be79e82e/assets/token-usage-ai-analysis.png" alt="AI Token 用量分析：模型选择、隐私说明、模型目录刷新和模型用量热点" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-ai-analysis.png" alt="AI Token 用量分析：模型选择、隐私说明、模型目录刷新和模型用量热点" width="800">
 </p>
 
 > 选择的路由只在用户点击生成后调用；目录失败可重试，也不会静默改用默认模型。
@@ -88,7 +88,7 @@
 ### 会话轨迹报告与浏览器本地历史
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/e865951bbeddb8a313c564ecfd173f36be79e82e/assets/token-usage-trajectory-analysis.png" alt="会话轨迹分析：视口内滚动预览、四组确定性摘要、安全 Markdown 与导出" width="822">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-trajectory-analysis.png" alt="会话轨迹分析：视口内滚动预览、四组确定性摘要、安全 Markdown 与导出" width="822">
 </p>
 
 > 轨迹截图使用示例会话指标，展示限制在视口内的滚动预览、完成态摘要、Markdown 表格与导出；继续向下滚动可查看浏览器本地历史，不对应真实会话内容。
@@ -115,7 +115,8 @@ dsh plugin --profile web add ./dsh-token-usage
 
 ### 兼容性、存储与卸载
 
-- 需要挂载完整 Client 服务的 DSH **Web profile**，并依赖 DSH `0.1.0-rc.6` 系列的 session、LLM、settings、projection 和 Web UI 服务；CLI 或非 Web profile 不提供仪表盘。
+- `0.3.2` 源码已验证兼容 DSH `0.1.2-rc.1` 的 Session Controller、Client Store、UI Renderer 与 Connection 接口；验证范围见 [`docs/compatibility-0.1.2-rc.1.md`](docs/compatibility-0.1.2-rc.1.md)。CLI 或非 Web profile 不提供仪表盘。
+- 标题栏和侧栏速率继续表示最近最多 10 秒内由 Provider 确认并写入投影的输出 Token 增量，每 5 秒刷新；缺少投影、计数回退、来源切换和计时器挂起都会重新采样，不把估算值写成真实入账。
 - 数据分为三层：Host 的会话 projection 聚合统计、DSH settings 中的全局与精确路由滚动 30 日预算（`token-usage.rolling30DayBudget` / `token-usage.routeBudgets`），以及当前浏览器 `localStorage` 中最多 24 条的轨迹报告（`dsh-token-usage.trajectory-history.v1`）。聚合 AI 用量报告不会持久化。
 - 卸载是移除插件挂载，并不是数据重置流程。若要减少本地残留，请先在轨迹历史中删除报告、将预算清零，再按 DSH 自身的 session/cache 保留策略处理 projection 数据。
 

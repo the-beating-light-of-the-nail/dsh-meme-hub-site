@@ -21,12 +21,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/95c5361b00c383fec643a13760f258e705334475/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/95c5361b00c383fec643a13760f258e705334475/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b6b6354a95dfaae094029794ede87781209e95f0/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b6b6354a95dfaae094029794ede87781209e95f0/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/95c5361b00c383fec643a13760f258e705334475/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/95c5361b00c383fec643a13760f258e705334475/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b6b6354a95dfaae094029794ede87781209e95f0/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b6b6354a95dfaae094029794ede87781209e95f0/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -62,7 +62,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 另提供**全局自动清理**（默认关闭）：把长期不活跃的会话快照整目录移除，不影响活动会话与对话日志。可在 `设置→插件→插件配置→快照清理` 面板查看与配置（自动清理开关、失活天数），也可用 `/snapshot-auto-cleanup` 命令查看、设置和运行。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
 
-<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/95c5361b00c383fec643a13760f258e705334475/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
+<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b6b6354a95dfaae094029794ede87781209e95f0/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
 
 ## 本插件的优势
 

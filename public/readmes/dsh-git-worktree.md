@@ -2,7 +2,7 @@
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-![dsh-git-worktree in the Web UI](https://raw.githubusercontent.com/LaoYueHanNi/dsh-git-worktree/49187a2c801902fcec3ca5de5b459ddb26054a7d/gitworktree.png)
+![dsh-git-worktree in the Web UI](https://raw.githubusercontent.com/LaoYueHanNi/dsh-git-worktree/9a7c906b070d8a5825a0dc83ec3c0a1844f1afda/gitworktree.png)
 
 [简体中文](./README.zh.md) | English
 
@@ -36,7 +36,7 @@ Repo: <https://github.com/LaoYueHanNi/dsh-git-worktree>
 - **Storage root configurable**: the **Git Worktree** card under **Settings → Plugins** — a folder picker or a typed path, effective on save; blank keeps the default `$DSH_HOME/gitworktree`. A legacy `~/.dsh/gitworktree/settings.json` value migrates automatically on upgrade.
 - **Sidebar workspace grouping**: the plugin replaces the native sidebar and clusters same-repository workspaces (main checkout plus worktrees) under collapsible repository groups — grouping derives from on-disk git facts, nothing extra is stored. The **Group workspaces** switch (experimental, default on) restores the native list instantly.
 
-  ![Same-repository workspaces grouped in the sidebar](https://raw.githubusercontent.com/LaoYueHanNi/dsh-git-worktree/49187a2c801902fcec3ca5de5b459ddb26054a7d/sidebar-grouping.png)
+  ![Same-repository workspaces grouped in the sidebar](https://raw.githubusercontent.com/LaoYueHanNi/dsh-git-worktree/9a7c906b070d8a5825a0dc83ec3c0a1844f1afda/sidebar-grouping.png)
 
 ## Install
 

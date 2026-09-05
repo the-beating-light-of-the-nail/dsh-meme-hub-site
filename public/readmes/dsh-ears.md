@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/3beaf0cd39026a3599515d54aa6fef09fe3d23b3/assets/banner.jpg" width="100%" alt="dsh-ears" />
+  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/f683d7e9fa13ad4dac44d27d44ddcd338bdfc11a/assets/banner.jpg" width="100%" alt="dsh-ears" />
 </p>
 
 <h1 align="center">dsh-ears</h1>
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/dsh-0.1.0--rc.6%20--%200.1.1--rc.2-1a73e8?style=flat-square&logo=deepseek&logoColor=white" alt="dsh 0.1.0-rc.6 - 0.1.1-rc.2"></a>
+  <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/dsh-%3E%3D0.1.2--rc.1-1a73e8?style=flat-square&logo=deepseek&logoColor=white" alt="dsh >= 0.1.2-rc.1"></a>
   <a href="https://www.npmjs.com/package/dsh-ears"><img src="https://img.shields.io/npm/v/dsh-ears?style=flat-square&logo=npm" alt="npm version"></a>
   <!-- Download badge icon: Akar Icons, MIT, © 2020-present Arturo Wibawa — https://github.com/artcoholic/akar-icons -->
   <a href="https://www.npmjs.com/package/dsh-ears"><img src="https://img.shields.io/npm/dt/dsh-ears?style=flat-square&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTEyIDE1VjNtMCAxMmwtNC00bTQgNGw0LTRNMiAxN2wuNjIxIDIuNDg1QTIgMiAwIDAgMCA0LjU2MSAyMWgxNC44NzdhMiAyIDAgMCAwIDEuOTQtMS41MTVMMjIgMTciLz48L3N2Zz4%3D" alt="npm downloads"></a>
@@ -27,13 +27,19 @@ dsh-ears 为 DeepSeek Harness 提供语音输入与 LLM 润色整理能力。支
 
 ## 安装
 
-前置依赖：[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（`0.1.0-rc.6` 至 `0.1.1-rc.2`）和 Node.js `^22.19.0 || >=24.0.0`。
+前置依赖：[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) `>=0.1.2-rc.1`，以及 Node.js `^22.19.0 || >=24.0.0`。
 
 ### 通过 npm 安装
 
 ```sh
 dsh plugin --profile web add dsh-ears
 ```
+
+> **仍在使用 dsh 0.1.1？** dsh 0.1.2 包含破坏性更新，dsh-ears `0.3.0` 不再兼容 dsh 0.1.1。请安装 `0.3.0` 以前的插件版本：
+>
+> ```sh
+> dsh plugin --profile web add "dsh-ears@<0.3.0"
+> ```
 
 ### 从源码安装
 
@@ -153,3 +159,13 @@ pnpm dev:web        # 启动 dsh web
 ## 友链
 
 - [LINUX DO](https://linux.do) — 新的理想型社区
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=wiziscool%2Fdsh-ears&type=date&logscale=&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=wiziscool/dsh-ears&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=wiziscool/dsh-ears&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=wiziscool/dsh-ears&type=date&legend=top-left" />
+ </picture>
+</a>

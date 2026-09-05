@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/d40bee9af37552dc8192e8a216868c49635b620e/docs/screenshots/cover.png" alt="DeepSeek-Harness Widgets preview" width="100%">
+  <img src="https://raw.githubusercontent.com/Physicolor/harness-widgets/2fdacf8b7a7580713f4611d2b1ceb028d0394829/docs/screenshots/cover.png" alt="DeepSeek-Harness Widgets preview" width="100%">
 </p>
 
 DeepSeek-Harness Widgets is a **persistent DSH bundle plugin** built on the Cordis composition model. It provides a customizable multi-column widget rail on the right side of the conversation page — real-time session insights, usage monitoring, and quick actions — with an extensible declarative registry.
@@ -58,6 +58,7 @@ In both modes the magnified deck is painted by a fixed overlay **outside** the r
 | Cache hits | input cache-hit ratio |
 | Tokens | input / output token counts |
 | Context waterline | system/tool/message segment bars + breakdown; 2×2 and 2×4 supported |
+| System monitor | local hardware family: CPU/GPU utilization numbers, memory, VRAM, GPU temperature — 2×2 cards + 2×4 rings dashboard |
 | One-click compact | context usage % + round corner button (double-click to compact) |
 | Tasks | in-progress / done / todo counts |
 | Usage heatmap | GitHub-style calendar heatmap, self-tracked daily usage; 2×2 = ~3-month calendar, 2×4 = half-year all-points view |
@@ -124,6 +125,68 @@ node scripts/validate-widget-unit.mjs [dir]   # widget-unit contract validator (
 - Coordinates explicitly with `dsh-better-sidebar`'s right rail (shares `--dsh-sidebar-width`); no residue after uninstall.
 
 ## Changelog
+
+### v1.4.1
+
+> This release ships the whole working tree: the **System monitor family** (below), the **rail drawer animation**, and the **usage decimal fix** — all previously unreleased work (logs under the old `v1.4.2` / `v1.5.0 working tree` headers).
+
+**Fix — sparkline↔time-label spacing:**
+
+- 📏 The GPU utilization sparkline now keeps a **3px** gap between the chart area and its bottom time labels — identical to the barsV bar→date-label spacing (outer 4px lead-in unchanged).
+
+**Fix — sys-gpu-line stuck on 「等待设备数据」:**
+
+- 🐛 The sparkline read the host's `history` ring buffer — a field only the NEWEST host build serves. A host that was restarted before that field landed (or not restarted since) never returns it, so the card waited forever.
+- 🩹 The collector now ingests every successful poll into a **client-side fallback history** (module ring buffer, ≤120 samples): the sparkline works on ANY host from the moment the page loads — curve appears after the second poll. When the host is restarted, its (longer, reload-surviving) history takes precedence automatically.
+- 📏 **Sparkline sample window** (组件配置): 10 / 15 / 20 / 25 / 30 points, default **20** — only the most recent N samples are drawn, so the line never compresses into a blob no matter how long the host has been sampling.
+- ✅ `verify-sysinfo.mjs` (12/12) + `verify-usage-guard.mjs` (5/5) stay green.
+
+**Polish — ring-to-caption spacing:**
+
+- 📏 All ring charts (usage-rings 3-ring, CPU·GPU twin rings, the 2×4 board) now keep a **4px** gap between the ring and its caption row — the same rhythm as bar→label in the bars charts. The old 2px glued the percent to the ring; the breathing room matters most on the 2×4 board's small rings.
+
+**Hotfix — one crashing widget took the WHOLE rail down (P1):**
+
+- 🐛 A malformed OpenCode usage payload (one window missing/null, e.g. an upstream partial response) made `usage-rings`/`usage-bars` throw on `u.rolling.percent`; the uncaught render error killed the entire `shell.overlay` slot entry — every widget disappeared until the next hard refresh ("only visible briefly after refresh").
+- 🛡️ **Defense 1 — data layer**: every usage window now reads through `winPct()` (missing / null / non-numeric → the card degrades to a `—` placeholder, never throws); `usageRender` got the same guard.
+- 🛡️ **Defense 2 — render layer**: the rail wraps EVERY card render in try/catch — a crashing widget renders as a `渲染异常` placeholder card while the rest of the rail stays alive; the same isolation covers the config/market previews. A single bad widget can no longer hide the rail, ever.
+- ✅ New regression probe `docs/verify-usage-guard.mjs` asserts both defenses exist in the built bundle (5/5); `verify-sysinfo.mjs` stays 12/12.
+
+**Polish — system widgets round 3 (layouts, big-figure switch, sparkline):**
+
+- 🧹 **sys-board**: the `0/0 GB` sub line is gone (ambiguous); the GPU model + temperature stay at the title row's right end. Ring labels now share ONE row with their percent (`43% CPU`) — the 2×4 board has room for names horizontally.
+- 🚫 **usage-rings**: the rolling/week/month label line under the rings is removed (user preference) — rings show just the percent again, names surface on hover.
+- 🔄 **sys-gpu / sys-cpu big-figure switch**: clicking the card cycles the big number (GPU: VRAM → temp → utilization; CPU: utilization → used memory) and the same selection is available as a config dropdown (「大数值显示」). The cycle persists per-instance via a new `cycle.store` field (`bigMetric`), so sys cycles never collide with the usage pool view nor fire multikey `prefer` calls.
+- 📈 **New `sys-gpu-line` widget** (2×2): Windows-task-manager style GPU utilization sparkline — filled area + polyline, same 7-row footprint/paddings as the barsV chart, time labels on the bottom corners. The host `/api/sysinfo` now returns a rolling `history` ring buffer (≤120 samples of cpu/gpu utilization).
+- ✅ Verification grew to 12 checks (history arrays parallel, first cpu sample null, gpu entries bounded); live probe unaffected.
+
+**Fix — sys-board rendered as 2×2 (sizes double-source mismatch):**
+
+- 🐛 `sys-board` declared `2×4` in its `manifest.json`, but the runtime reads the DESCRIPTOR's `sizes` — which was missing, so `sizesOf()` fell back to `['2x2']`; the market listed and the rail rendered a bogus 2×2 instance. Fixed by adding `sizes: ['2x4']` to the descriptor; persisted `sys-board@2x2` instances auto-migrate to `sys-board@2x4` on load.
+- 🛡️ New build-time guard in `gen-registry.mjs`: the manifest sizes and the descriptor `sizes` literal must now agree (descriptor default = 2×2), so this class of drift fails the build instead of shipping.
+- 🔌 Live probe `docs/probe-sysinfo-live.cjs` relaxed: on a live host the first request usually already has a delta baseline (the browser collector polls continuously), so it accepts either `null` (fresh host) or a numeric util; the pristine first-sample-null assertion stays in `docs/verify-sysinfo.mjs`.
+
+**New — System monitor family (local hardware widgets):**
+
+- 🖥️ **Four new widgets** reading the MACHINE's hardware through a new host route `/api/sysinfo` (CPU utilization = delta of `os.cpus()` totals across two polls, memory = `os.totalmem/freemem`, GPU = one `nvidia-smi` query): `sys-cpu` (CPU % big number + memory line), `sys-gpu` (VRAM big number + utilization/temperature — no model name, the value stays the bottom-left figure), `sys-rings` (CPU / GPU utilization twin donuts) and `sys-board` (2×4 dashboard: CPU / memory / GPU utilization / VRAM rings + the short GPU model in the title row's right end). All four sit in their own `device` marketplace group (「设备状态」— distinct from the harness-system group); shared family logic lives in `src/client/lib/sys-view.ts`.
+- ⏱️ **Per-widget refresh interval** (组件配置): 5 / 10 / 30 / 60 s presets + a custom numeric field, default 10 s. The collector polls at the SHORTEST interval among installed sys-* instances (clamped 5–60); the host caches ~1 s so widgets sharing one tick still trigger a single `nvidia-smi` spawn.
+- 🚫 **CPU temperature deliberately absent** — researched, then abandoned: Windows exposes no reliable, privilege-free CPU temperature source (WMI thermal zones are unavailable on most boards — verified on the dev machine; LibreHardwareMonitor would be an external runtime dependency). GPU temperature comes from `nvidia-smi` and works out of the box; widgets degrade gracefully (`未检测到 NVIDIA GPU`) without one.
+- 🎨 Ring charts now render their label under the percent (9px tertiary, ellipsized) — the usage-rings cards gain their window names (滚动/周/月) in the same stroke.
+- 🗂️ The system widgets form their own marketplace group `device` (「设备状态 / Device」) instead of riding the harness `system` group, which is about DeepSeek Harness internals, not the machine.
+- ✅ Self-contained verification `docs/verify-sysinfo.mjs` drives the REAL host route with a mocked webServer (no running DSH needed): payload shape, first-sample `cpu.util: null`, ~1 s cache hit, delta utilization on the second window, disposer cleanliness — 9/9 green on the dev machine.
+- 🔌 `docs/probe-sysinfo-live.cjs` checks the RUNNING DSH service instead (bundle coherence + live `/api/sysinfo` 200 + delta utilization). While the old host process is still up it fails with 404 — the expected "restart the web host" evidence when cards stay on 「等待设备数据」.
+
+**Also in v1.4.1 — rail drawer open/close animation (matching dsh-better-sidebar's slide language):**
+
+- 🎬 Opening glides the widget rail in from the **right** (`translateX(+railW)` → 0, moving leftwards into its resting slot); closing is the reverse (0 → `translateX(+railW)`, sliding out to the right), using the same `--ds-transition-duration-slow` + `--ds-ease-in-out` tokens as the sidebar panels. The rail, the magnify overlay, and the add panel move as **one surface** via a `position:fixed inset:0` wrapper (a transformed fixed ancestor becomes the children's containing block, but the wrapper spans the viewport so every child's coordinates stay identical).
+- 🔁 CSS transitions interrupt natively: a rapid open→close→open re-toggle animates from the current intermediate geometry straight to the new target — no snap, no desync. The rail unmounts only after the closing slide finishes (`prefers-reduced-motion` closes instantly).
+- 🎯 Travel distance is the rail's own pixel width (+24px margin), **not** a percentage — `translateX(%)` on a full-viewport wrapper resolves against the whole viewport width and would slide a screen-width over the same 0.3s (far too fast).
+- 🖱️ The add panel (market / config / settings overlay) explicitly re-enables `pointer-events: auto`: the drawer wrapper is click-transparent, and without the opt-in the panel was unhit-testable — clicks fell through to the rail's cards.
+- ✅ New self-contained verification `docs/verify-rail-drawer.cjs` (playwright-core + headless Chromium against the live host): open glides in from the right with 60+ intermediate frames, close slides past the viewport then unmounts, interrupt (rapid open→close→open) never unmounts and has zero hard step jumps, plus add-panel / card-render / hover smoke and a mid-slide screenshot; `docs/verify-ui2.cjs` and `docs/smoke-widgets.cjs` regressions stay green.
+
+**Also in v1.4.1 — usage decimal fix:**
+
+- **Fix** — 滚动用量 / 每周用量 / 每月用量卡片的百分比保留一位小数（如 42% → 42.5%），与 OpenCode 官网一致；用量柱状图、用量环图数字格式不变。
 
 ### v1.4.0 (project website — first public release)
 
@@ -376,6 +439,7 @@ node scripts/validate-widget-unit.mjs [dir]   # widget-unit contract validator (
 The widget system is now built for scale: each widget is an independent, contract-driven unit under `src/widgets/` with build-time discovery — a new widget is a new unit dir, no shared file edits (guide: `src/widgets-template/README.md`).
 
 - **Agent-produced widgets**: the machine-readable contract (`manifest.json` + `defineWidget` descriptor + template + shared API) is exactly what a worker agent needs to create a widget end-to-end; the parallel-creation test in v1.3.0 demonstrated two agents adding widgets concurrently with zero file conflicts;
+- **More hardware metrics**: CPU temperature via an optional LibreHardwareMonitor bridge (external dependency, opt-in — deliberately not bundled), AMD/Intel GPU support beyond NVIDIA, per-interface network traffic;
 - **Heatmap range/period controls**: let the 2×4 heatmap and bars pick custom ranges (weekly/monthly/etc.) beyond the current half-year / 7-day defaults;
 - **Multi-platform usage widgets**: Z.ai, DeepSeek balance, etc., reusing the host same-origin proxy + credentials pattern;
 - **Custom peak-pricing schedules**: expose window customization for the peak-pricing widget (currently hard-coded Beijing weekdays 09:00–12:00 / 14:00–18:00) — custom start/end times, weekday sets, and timezone;

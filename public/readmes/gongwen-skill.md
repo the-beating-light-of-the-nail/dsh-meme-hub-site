@@ -7,7 +7,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 # 公文全流程处理工具
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linhut/gongwen-skill/b0f4b508b61d4218c6c5a85c95bf9a26b89918e0/logo/2026-08-19_11-17-43.png" alt="公文全流程处理工具" width="760">
+  <img src="https://raw.githubusercontent.com/linhut/gongwen-skill/5495ced63d155076bf44a98eb9d173f6a9876aa3/logo/2026-08-19_11-17-43.png" alt="公文全流程处理工具" width="760">
 </p>
 
 > 中文公文全流程处理工具——基于 **GB/T 9704《党政机关公文格式》** 国家标准，支持 **格式检查与修复、内容优化（Word 原生修订+批注/差异对比版）、模板生成、Markdown 转公文、版头版记页码注入、事实核验、风格增强** 等完整能力。原生支持 **DeepSeek Harness (DSH)** 技能系统，打包为可被 AI Agent 直接调用的 Skill，完全自包含，克隆即用。
@@ -28,7 +28,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 
 | 能力 | 命令 | 说明 |
 |------|------|------|
-| 📋 列类型 | `list-types` | 列出 24 种支持的公文类型（含新闻稿/讲话稿主持词） |
+| 📋 列类型 | `list-types` | 列出 25 种支持的公文类型（新增主持词 host_speech；含新闻稿/讲话稿） |
 | 🏗️ 模板生成 | `template` | 按类型生成 GB/T 9704 标准空白模板 |
 | 🔍 解析 | `parse` | `.docx` → 结构化 DocumentModel |
 | ✅ 格式检查 | `check` | 按国标检查，分级 P0/P1/P2（只读） |
@@ -102,13 +102,13 @@ Licensed under the MIT License. See the LICENSE file for details.
 
 项目内置以下文字性资源，纯对话 AI 可以直接读取，用作**公文写作指导的知识库**：
 
-| 资源 | 位置 | 内容 | 行数 |
-|:-----|:-----|:------|:----:|
-| **公文语言风格提示词库** | `prompts/style-prompts.md` | 6 套风格（庄重严谨/平实简洁/宏观概括/请示商洽/法规条文/讲话稿），每套含用词规范、句式和语气指导 | 205 |
-| **使用指引与决策速查** | `prompts/usage-prompts.md` | 最小可用指引、决策速查、每种公文类型的用法模板、常见问题解答 | 381 |
-| **公文类型规则库** | `rules/official/*.yaml`（25 个文件） | 每种公文类型的格式规范 + 内容层定义（如"请示应以'妥否，请批示'结尾""通知应以'特此通知'结尾"） | 25 文件 |
-| **通用格式标准** | `rules/official/_common.yaml` | GB/T 9704 国标全文参数：字体/字号/行距/页边距等 | 836 |
-| **技能完整指令** | `SKILL.md` | 路径路由、执行标准、质量评审、禁令清单、审稿机制 | 2854 |
+| 资源 | 位置 | 内容 |
+|:-----|:-----|:------|
+| **公文语言风格提示词库** | `prompts/style-prompts.md` | 6 套风格（庄重严谨/平实简洁/宏观概括/请示商洽/法规条文/讲话稿），每套含用词规范、句式和语气指导 |
+| **使用指引与决策速查** | `prompts/usage-prompts.md` | 最小可用指引、决策速查、每种公文类型的用法模板、常见问题解答 |
+| **公文类型规则库** | `rules/official/*.yaml`（25 个文件） | 每种公文类型的格式规范 + 内容层定义（如"请示应以'妥否，请批示'结尾""通知应以'特此通知'结尾"） |
+| **通用格式标准** | `rules/official/_common.yaml` | GB/T 9704 国标全文参数：字体/字号/行距/页边距等 |
+| **技能完整指令** | `SKILL.md` | 路径路由、执行标准、质量评审、禁令清单、审稿机制 |
 
 **使用方式**：纯对话 AI 在回答用户关于公文写作的问题时，可直接引用上述资源中的内容，例如：
 - 用户问"通知怎么写" → 引用 `rules/official/notice.yaml` 的结语规范和 `style-prompts.md` 的庄重严谨风格
@@ -174,6 +174,17 @@ python -m gongwen style-learn 标准公文.docx -n 模板名
 python -m gongwen style-list            # 列出已学习的模板
 ```
 
+### 🖥️ Windows 控制台编码（GBK 乱码排查）
+
+工具内部已统一按 UTF-8 输出（`gongwen/_bootstrap.py` 强制 stdout/stderr/stdin 重配置为 UTF-8，
+保证管道/Agent 调用无编码问题）。若在原生 `cmd`（默认 GBK 代码页 936）看到中文乱码，任选其一：
+
+- **推荐**：改用 Windows Terminal / VS Code 终端（默认 UTF-8，无乱码）
+- 在 cmd 中先执行 `chcp 65001` 切换 UTF-8 代码页，再运行命令
+- 或设置环境变量 `PYTHONIOENCODING=utf-8`（与工具内部行为一致）
+
+> 说明：GBK 乱码仅影响原生 cmd 的**交互显示**，不影响文件内容与 `--json` 的机器可解析性。
+
 ### 🔤 字体管理
 
 公文标准字体是 GB/T 9704 排版的关键。项目内置 3 个标准字体文件（`assets/fonts/`），支持自动安装：
@@ -181,8 +192,8 @@ python -m gongwen style-list            # 列出已学习的模板
 | 字体 | 用途 | TTF 大小 |
 |:-----|:-----|:---------|
 | 方正小标宋简体 | 公文大标题 | 3.7 MB |
-| 仿宋_GB2312 | 正文 | 3.9 MB |
-| 楷体_GB2312 | 二级标题 | 4.0 MB |
+| 仿宋_GB2312 | 正文 | 3.8 MB |
+| 楷体_GB2312 | 二级标题 | 3.9 MB |
 
 **安装方式**：
 - **git clone 用户**：字体文件在 `assets/fonts/` 中，直接安装
@@ -286,7 +297,7 @@ python -m gongwen wizard --answers 答案.json --dry-run  # 只打印将执行�
 {"path": "A", "input": "原文.docx", "doc_type": "notice", "output": "成品.docx", "apply": true}
 ```
 
-路径：A 格式优化（`optimize`）｜B 内容优化（`optimize-content`）｜C 生成模板（`template`）｜D 一键格式修复（`fix-common`）。A/B/D 默认先预览再 y/n 确认；不写 `apply` 时非交互模式仅预览不执行（安全默认）。
+路径：A 格式优化（`optimize`）｜B 内容优化（`optimize-content`）｜C 生成模板（`template`）｜D 一键格式修复（`fix-common`）｜E 样式学习（`style-learn`）。A/B/D 默认先预览再 y/n 确认；不写 `apply` 时非交互模式仅预览不执行（安全默认）。
 
 ## 📐 GB/T 9704 标准格式
 
@@ -299,15 +310,19 @@ python -m gongwen wizard --answers 答案.json --dry-run  # 只打印将执行�
 | **正文** | 仿宋_GB2312 | 三号（16pt） | 首行缩进2字符 |
 | **西文/数字** | Times New Roman | 与中文字号一致 | — |
 | **页码** | 宋体（4号半角） | 四号（14pt） | 单页右/双页左（双面打印） |
-| **页边距** | — | — | 上3.7/下3.5/左2.8/右2.6 cm |
+| **页边距** | — | — | 上2.8/下2.8/左2.7/右2.7 cm（工具实际采用值，见 `_common.yaml`） |
 
-### 讲话稿/主持词（speech 朗读件）
+### 讲话稿（speech 朗读件）
 
-标题方正小标宋简体 24pt 居中、主持人信息/日期楷体_GB2312 18pt 居中、正文仿宋_GB2312 18pt 加粗、正文行距 33pt exact、标题行距 35pt；跳过版头/版记/发文字号/密级检查。
+页边距为国标默认（上3.7/下3.5/左2.8/右2.6 cm）；标题方正小标宋简体 24pt 居中、行距 35pt；一级标题黑体 18pt、二级标题楷体_GB2312 18pt；署名/日期楷体_GB2312 18pt 居中、行距 35pt；正文仿宋_GB2312 18pt 不加粗、行距 30pt exact、首行缩进 2 字符；跳过版头/版记/发文字号/密级检查。（样式以筹委会最终版定稿为准）
 
-## 📚 支持的 24 种公文类型
+### 主持词（host_speech 朗读件）
 
-通知 · 请示 · 报告 · 函 · 会议纪要 · 纪要 · 决定 · 通告 · 公告 · 命令 · 通报 · 议案 · 批复 · 指示 · 制度 · 公报 · 意见 · 总结 · 方案/计划 · 桌签 · 技术方案 · 决议 · **新闻稿/简报** · **讲话稿/主持词**
+页边距与普通公文一致（上2.8/下2.8/左2.7/右2.7 cm）；标题方正小标宋简体 24pt 居中、行距 35pt；主持人信息/日期楷体_GB2312 18pt 居中、行距 30pt；正文仿宋_GB2312 18pt 不加粗、行距 30pt exact、首行缩进 2 字符，议程引导句（"下面，进行第X项议程…"）可局部加粗；跳过版头/版记/发文字号/密级检查。（样式以筹委会最终版定稿为准）
+
+## 📚 支持的 25 种公文类型
+
+通知 · 请示 · 报告 · 函 · 会议纪要 · 纪要 · 决定 · 通告 · 公告 · 命令 · 通报 · 议案 · 批复 · 指示 · 制度 · 公报 · 意见 · 总结 · 方案/计划 · 桌签 · 技术方案 · 决议 · **新闻稿/简报** · **讲话稿** · **主持词**
 
 > 每种类型对应 `rules/official/*.yaml`，含格式规则 + 内容层定义（structure/focus_checks/title 等），驱动 check/optimize/optimize-content 全链路。
 
@@ -321,7 +336,7 @@ python -m gongwen wizard --answers 答案.json --dry-run  # 只打印将执行�
 ```bash
 python -m gongwen rule-export notice -o notice_rules.yaml
 python -m gongwen rule-import my_company -f 公司规范.yaml
-python -m gongwen rule-list notice
+python -m gongwen rule-list --source all
 ```
 
 ## ⚠️ 使用红线
@@ -366,7 +381,7 @@ DSH 采用 **Cordis 模块化微内核架构**：技能体系基于本地文件�
 git clone https://github.com/linhut/gongwen-skill.git
 cd gongwen-skill
 pip install -r requirements.txt   # 或 pip install gongwen-skill（已上 PyPI）
-python -m gongwen --version       # 检验：gongwen-skill v2.9.0
+python -m gongwen --version       # 检验：gongwen-skill v2.10.0
 ```
 
 ### 方式一：作为 DSH Skill 注册（基于本地文件系统）
@@ -422,7 +437,7 @@ pnpm add -w gongwen-skill
   "dependencies": {
     "@deepseek-ai/dsh-base": "...",
     "@deepseek-ai/dsh-web-app": "...",
-    "gongwen-skill": "^2.9.0"
+    "gongwen-skill": "^2.10.0"
   },
   "dsh": {
     "profile": {
@@ -611,7 +626,7 @@ pip install -r requirements.txt
 用户：帮我优化这份会议通知的第二章节措辞
 
 Agent：📋 合规自检报告
-Skill 版本: v2.9.0（版本自检已确认最新）
+Skill 版本: v2.10.0（版本自检已确认最新）
 路径判定: B（内容优化）
 依据: 用户指定了已有文档，且要求"优化措辞"
 命令调用: 1. python -m gongwen optimize-content 会议通知.docx --changes changes.json --apply --paragraphs "5-8"
@@ -655,7 +670,7 @@ Skill 定位为**工具层**，默认不依赖 LLM（确定性工作全自包含
 
 **原理**：安全 DNS（DoH，DNS over HTTPS）通过加密 HTTP 查询 DNS，避免中间设备篡改解析结果，可拿到域名的真实 IP。本工具内置阿里（dns.alidns.com）、腾讯（doh.pub / 1.12.12.12）等国内公共 DoH 端点，多端点自动降级；可通过环境变量 GONGWEN_DOH 覆盖为自定义端点（如自建的 DoH 服务）。
 
-**自动兜底（v2.9.0）**：`font install` 下载字体、`check-update` 查 PyPI 时若常规请求失败（疑似 DNS 污染），自动用 DoH 真实 IP + TLS SNI 直连重试——TLS 证书仍按真实域名校验，安全不降级，用户零操作。
+**自动兜底（v2.10.0）**：`font install` 下载字体、`check-update` 查 PyPI 时若常规请求失败（疑似 DNS 污染），自动用 DoH 真实 IP + TLS SNI 直连重试——TLS 证书仍按真实域名校验，安全不降级，用户零操作。
 
 **处置建议**（按推荐度）：
 1. 若使用了代理工具（Clash/V2Ray 等）且系统解析命中 198.18.x Fake-IP，优先检查其 DNS 模式的 fake-ip-filter 是否漏掉 GitHub 域名（比改 hosts 更治本）

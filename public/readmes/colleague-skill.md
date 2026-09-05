@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/24acbe03e679a90012620e559a73d98c57d7b501/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
+<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/5525a4e6adac3e7c1a6c522578513448ae3d7390/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
 
 <br>
 
@@ -130,6 +130,7 @@ See the full call for contributors in [UPDATES.md](UPDATES.md) and the current p
 ## Project documents
 
 - [Detailed Preview installation](INSTALL.md)
+- [Changelog](CHANGELOG.md)
 - [Architecture and shipped-state map](docs/architecture.md)
 - [Testing contract](docs/testing.md)
 - [Development workflow](docs/development.md)

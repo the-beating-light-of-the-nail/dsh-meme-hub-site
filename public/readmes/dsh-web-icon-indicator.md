@@ -7,6 +7,8 @@
 [![npm downloads](https://img.shields.io/npm/dm/dsh-web-icon-indicator)](https://www.npmjs.com/package/dsh-web-icon-indicator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
+> **⚠️ DSH version support** — requires **DSH ≥ 0.1.2** (the settings-service API the configuration card uses). Built & verified against **DSH 0.1.2-rc.1**, the highest version currently tested. On **DSH < 0.1.2** the favicon still works, but the settings UI (**Settings → Plugins → Plugin config**) is unavailable.
+
 Browser tab favicon reflects the current DSH session state — `idle` / `running` / `asking` / `done` — so you can see at a glance whether a session needs your attention, even when the tab is in the background.
 
 ## ✨ What it does
@@ -35,7 +37,7 @@ Changes are saved through the settings transport into the profile's `settings.ya
 The four default states, exactly as they appear in the browser tab (the `asking` whale really blinks):
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/states-default.svg" width="420" alt="Default states: idle dark whale, running yellow, asking red/yellow blinking, done green">
+  <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/states-default.svg" width="420" alt="Default states: idle dark whale, running yellow, asking red/yellow blinking, done green">
 </p>
 
 | State | Default color | Default effect |
@@ -56,7 +58,7 @@ exactly like the whale would. With 0–1 active agents it comes right back to
 the whale.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/multi-agent-count.svg" width="576" alt="active=0 dark whale, active=1 yellow whale, active=2/3 yellow count blocks, active=3 asking red block (blinks), active=100 shows 99+">
+  <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/multi-agent-count.svg" width="576" alt="active=0 dark whale, active=1 yellow whale, active=2/3 yellow count blocks, active=3 asking red block (blinks), active=100 shows 99+">
 </p>
 
 | `active` (non-idle agents) | Favicon |
@@ -78,12 +80,12 @@ Every preview below is the real whale path, animated the same way the plugin ren
 
 | Effect | What it does | Preview |
 | --- | --- | --- |
-| `static` | A single colored frame, no motion — uses `colors[0]` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/effects/static.svg" width="56" alt="static effect preview"> |
-| `blink` | Toggles `colors[0]` ⇄ `colors[1]` (a darker second color is derived if missing) over `speed` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/effects/blink.svg" width="56" alt="blink effect preview"> |
-| `breath` | Pulsates smoothly between `colors[0]` and `colors[1]` (derived if missing) over `speed` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/effects/breath.svg" width="56" alt="breath effect preview"> |
-| `rainbow` | Uses `colors[0]` as the starting hue, then cycles the color wheel over `speed` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/effects/rainbow.svg" width="56" alt="rainbow effect preview"> |
-| `heartbeat` | Scale pulses with a sharp lub-dub beat over `speed` — color is `colors[0]` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/effects/heartbeat.svg" width="56" alt="heartbeat effect preview"> |
-| `bounce` | The whale hops up and down over `speed` — color is `colors[0]` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/02d98e3db9f83013a3e7667c6a0848efecb8ef37/assets/effects/bounce.svg" width="56" alt="bounce effect preview"> |
+| `static` | A single colored frame, no motion — uses `colors[0]` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/effects/static.svg" width="56" alt="static effect preview"> |
+| `blink` | Toggles `colors[0]` ⇄ `colors[1]` (a darker second color is derived if missing) over `speed` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/effects/blink.svg" width="56" alt="blink effect preview"> |
+| `breath` | Pulsates smoothly between `colors[0]` and `colors[1]` (derived if missing) over `speed` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/effects/breath.svg" width="56" alt="breath effect preview"> |
+| `rainbow` | Uses `colors[0]` as the starting hue, then cycles the color wheel over `speed` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/effects/rainbow.svg" width="56" alt="rainbow effect preview"> |
+| `heartbeat` | Scale pulses with a sharp lub-dub beat over `speed` — color is `colors[0]` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/effects/heartbeat.svg" width="56" alt="heartbeat effect preview"> |
+| `bounce` | The whale hops up and down over `speed` — color is `colors[0]` | <img src="https://raw.githubusercontent.com/waknow/dsh-web-icon-indicator/a92a362bfb22de929b74cab0c4e352c818f42ff7/assets/effects/bounce.svg" width="56" alt="bounce effect preview"> |
 
 Want to tweak colors and watch the tab favicon change live? Open the self-contained demo ([`demo/dynamic-color.html`](./demo/dynamic-color.html)) — pick a state + effect, edit colors, and the favicon updates in real time (no build, no dependencies).
 
@@ -151,7 +153,7 @@ Entries are shallow-merged over the defaults, so you can override only a few sta
       done:    { effect: heartbeat, colors: ['#2ECC71'] }
 ```
 
-### Settings page & `settings.yaml` (DSH ≥ rc7)
+### Settings page & `settings.yaml` (DSH ≥ 0.1.2)
 
 The plugin registers the whole config surface above with the DSH settings
 service under the `web-icon-indicator` namespace (a schemastery schema in

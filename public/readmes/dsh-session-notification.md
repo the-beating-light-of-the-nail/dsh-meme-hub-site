@@ -10,12 +10,12 @@ A notification plugin for the dsh web GUI. When a session finishes, hits an erro
 
 | The settings panel with the **Notifications** entry in the sidebar and the section content | The sound picker for each kind (the official dropdown) |
 | --- | --- |
-| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/93fb8dcd288bebd5d6e896886009daa5197b76f3/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/93fb8dcd288bebd5d6e896886009daa5197b76f3/screenshots/02-sound-menu-open.png) |
+| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/c7bb90eb736b60b9581ea45d9309bc3adf7c95fd/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/c7bb90eb736b60b9581ea45d9309bc3adf7c95fd/screenshots/02-sound-menu-open.png) |
 
 ## Install
 
 ```sh
-# Install from npm (requires dsh >= 0.1.2-alpha.5)
+# Install from npm (requires dsh >= 0.1.3-alpha.1)
 dsh plugin --profile web add @dingyi222666/dsh-session-notification
 # Restart dsh web for it to take effect
 dsh web
@@ -75,6 +75,7 @@ The browser half watches the sessions list snapshot and each session's conversat
 - `yarn run build` — builds the browser bundle (`lib/client.js`) and the Node half (`lib/index.js` / `lib/invariant.js`).
 - `src/client/notification-service.ts` — the engine (classification) and dispatcher (gating); `src/client/settings-store.ts` — the settings section bridge; `src/client/NotificationsSection.tsx` — the section UI; `src/client/sounds.ts` + `src/client/custom-audio.ts` — the built-in and custom sounds.
 - `yarn test` — behavior tests; `yarn run typecheck` — type gate.
+- dsh 0.1.3-alpha.1: the `@deepseek-ai/dsh-*` types resolve from the sibling dsh checkout (`../test-dingyi222666`) through tsconfig paths until the 0.1.3-alpha.1 packages land on npm (devDependencies install the last published versions for the build toolchain only).
 - Node-half changes need a `dsh web` restart; browser-bundle changes need a rebuild (`yarn run build`) — a `--dev` server hot-reloads them.
 
 ## Known limitations

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/Martty/bc20a7b745284e00b795a517fbb74e1f86ac45ce/assets/martty-lockup.svg" width="650" alt="Martty terminal lockup" />
+  <img src="https://raw.githubusercontent.com/openma-ai/Martty/e6b32e05c23d07c8825cd54c97a1193dc1b0a1e7/assets/martty-lockup.svg" width="650" alt="Martty terminal lockup" />
 </p>
 
 <h1 align="center">Martty</h1>

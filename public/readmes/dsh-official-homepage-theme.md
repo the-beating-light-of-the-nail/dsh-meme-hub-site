@@ -4,9 +4,9 @@
 
 `dsh-official-homepage-theme` 是一个面向DSH Web的[DeepSeek Harness官方首页主题](https://www.deepseek.com/harness/en/)插件，在不改变DSH页面结构与交互的前提下，提供流体背景、鼠标弹性网格和双小鱼动态效果。
 
-![预览gif](https://raw.githubusercontent.com/JohnnyTing/dsh-official-homepage-theme/f3356dbaf70269ad898aebec461a21678eb6607e/static/preview.gif)
-![预览图](https://raw.githubusercontent.com/JohnnyTing/dsh-official-homepage-theme/f3356dbaf70269ad898aebec461a21678eb6607e/static/preview.png)
-![设置页](https://raw.githubusercontent.com/JohnnyTing/dsh-official-homepage-theme/f3356dbaf70269ad898aebec461a21678eb6607e/static/settings.png)
+![预览gif](https://raw.githubusercontent.com/JohnnyTing/dsh-official-homepage-theme/3dc1ee72510db857257ff292d7f3aca1d3f46bb8/static/preview.gif)
+![预览图](https://raw.githubusercontent.com/JohnnyTing/dsh-official-homepage-theme/3dc1ee72510db857257ff292d7f3aca1d3f46bb8/static/preview.png)
+![设置页](https://raw.githubusercontent.com/JohnnyTing/dsh-official-homepage-theme/3dc1ee72510db857257ff292d7f3aca1d3f46bb8/static/settings.png)
 
 
 ## 功能

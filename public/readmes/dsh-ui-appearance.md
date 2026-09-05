@@ -16,13 +16,13 @@ DeepSeek Harness 生态中首个支持多维度 UI 参数深度自定义的外�
 
 | 设置面板 | 壁纸 + 毛玻璃效果 |
 |---|---|
-| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/4b665e85287c167ddc12fbdb8d7dee20adb75d77/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/4b665e85287c167ddc12fbdb8d7dee20adb75d77/docs/screenshot-wallpaper.png) |
+| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-wallpaper.png) |
 
 在 **[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)**(桌面客户端)中同样开箱即用,以下为实拍:
 
 | 高级模式(桌面原生布局与材质) | 兼容模式(上游默认 Web client) |
 |---|---|
-| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/4b665e85287c167ddc12fbdb8d7dee20adb75d77/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/4b665e85287c167ddc12fbdb8d7dee20adb75d77/docs/screenshot-desktop-compat.webp) |
+| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-desktop-compat.webp) |
 
 > 效果图中的壁纸素材 © MadYY([原图](docs/wallpaper-madYY.png)),仅作演示;用户上传自己的图片即可。
 
@@ -59,7 +59,7 @@ powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest 'https://raw.gith
 脚本直接从 npm registry 拉取已构建的发布包（`lib/` 预构建产物随包分发），链接进 profile 自己的 `node_modules` 并在该 profile 的 `package.json` 中注册（`dependencies` 条目 + `dsh.profile.bundles`，与 `dsh plugin add` 的产物一致）——幂等，可重复执行。可选参数：
 
 ```powershell
-.\install.ps1 -Version '0.1.6'      # 固定版本（默认装最新发布版）
+.\install.ps1 -Version '0.1.7'      # 固定版本（默认装最新发布版）
 .\install.ps1 -DshHome 'D:\.dsh'    # 自定义 DSH 主目录（默认 %DSH_HOME% 或 %USERPROFILE%\.dsh）
 .\install.ps1 -ProfileName 'web'    # 目标 profile（默认 web；profile 需已初始化）
 ```

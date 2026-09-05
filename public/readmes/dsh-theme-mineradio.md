@@ -6,7 +6,7 @@ English | [中文](README.zh.md)
 **Mineradio** is a cinematic glassmorphism theme for the DeepSeek Harness web UI — a faithful re-skin of the Mineradio "private visual radio" identity. The header, sidebar, composer, stats line, and trajectory view become panes of warm champagne glass over a near-black studio backdrop. You can put a video as wallpaper and switch it off and the stock UI comes back exactly, with no source changes to DSH itself.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ba98fd17834f1c67bad6547be924ff068a40af75/docs/screenshot-dark.png" alt="Mineradio dark studio — champagne fluid, teal glass sidebar, floating composer" width="920">
+  <img src="https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ac9ffe1b0855557d58a214515f0b8f1d1fd38b13/docs/screenshot-dark.png" alt="Mineradio dark studio — champagne fluid, teal glass sidebar, floating composer" width="920">
 </p>
 
 <p align="center"><em>Dark studio: teal glass over a champagne pour. The prompt floats in the liquid.</em></p>
@@ -17,10 +17,10 @@ Live captures of 2.2.x on DeepSeek Harness — hero, paper-white, and the Looks 
 
 | Dark studio | Light paper |
 | --- | --- |
-| ![Dark theme](https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ba98fd17834f1c67bad6547be924ff068a40af75/docs/screenshot-dark.png) | ![Light theme](https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ba98fd17834f1c67bad6547be924ff068a40af75/docs/screenshot-light.png) |
+| ![Dark theme](https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ac9ffe1b0855557d58a214515f0b8f1d1fd38b13/docs/screenshot-dark.png) | ![Light theme](https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ac9ffe1b0855557d58a214515f0b8f1d1fd38b13/docs/screenshot-light.png) |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ba98fd17834f1c67bad6547be924ff068a40af75/docs/screenshot-settings-dark.png" alt="Mineradio settings — Looks fold with scene and performance presets" width="920">
+  <img src="https://raw.githubusercontent.com/dhicoc/dsh-theme-mineradio/ac9ffe1b0855557d58a214515f0b8f1d1fd38b13/docs/screenshot-settings-dark.png" alt="Mineradio settings — Looks fold with scene and performance presets" width="920">
 </p>
 
 <p align="center"><em>Looks: Studio / Deep sea / Midnight / Mist / Rainbow, plus Performance / Balanced / Vivid — one click, same glass family.</em></p>
@@ -67,6 +67,8 @@ dsh plugin --profile web add dsh-theme-mineradio
 ```
 
 Or search **dsh-theme-mineradio** in Settings → Plugin market. That installs the prebuilt npm package (`lib/` already bundled). There is **no** `prepare` / `postinstall` script.
+
+From 2.3.6 the theme probes the host at load: it uses `@deepseek-ai/dsh-client-runtime` when present (DSH `0.1.1-rc.2+`) and falls back to `@deepseek-ai/dsh-client-store` (DSH Desktop 0.7.x / `0.1.2-alpha.1`). Do not pin 2.3.1 for old desktops and 2.3.5 for new ones — one latest build runs on both.
 
 Do not install with `github:dhicoc/dsh-theme-mineradio` or `dsh plugin add https://github.com/dhicoc/dsh-theme-mineradio`. A git / tarball spec makes pnpm block "build scripts", and market updates then fail. If you already have the git spec, switch to npm:
 

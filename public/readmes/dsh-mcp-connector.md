@@ -28,7 +28,7 @@ dsh plugin --profile web add dsh-mcp-connector
 
 安装或升级后完全重启 DeepSeek Harness Desktop 或 `dsh web`，然后打开左侧「🧩 MCP连接器」。
 
-![MCP 连接器 16 秒演示](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/312becc78bb65809927e26e063ea255bd1aef2b3/docs/demo.gif)
+![MCP 连接器 16 秒演示](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/0b1256858dfec8db7c8c062d2db5b17293e2fb8a/docs/demo.gif)
 
 如果它帮你更快地接入 MCP Server，欢迎 [GitHub 点个 Star](https://github.com/duhu2000/dsh-mcp-connector/stargazers)、[提交新的连接器](https://github.com/duhu2000/dsh-mcp-connector-registry/blob/main/docs/ONBOARDING.md)或[参与贡献](CONTRIBUTING.md)。
 
@@ -68,16 +68,16 @@ dsh plugin --profile web add dsh-mcp-connector
 - 对话工具：`mcp_connector_catalog`、`connect`、`configure`、`import_json`、`export_config`、`snapshot`、`install_from_url`、`status`、`scope`、`health_check`、`policy`、`set_enabled`、`disconnect`、`refresh_catalog`、`publish`、`tools_list`。
 
 <!-- catalog-stats:start -->
-截至 2026-09-02，公共 Registry 已发布 101 条连接器描述；与随包的 4 张企查查卡片合并去重后，市场页可浏览 105 张卡片，覆盖企业数据、金融投资、法律合规、开发工具、办公协作、调研分析、设计创意、效率工具、其他 9 类。推荐位严格保留 4 张企查查卡片、北大法宝和 Wind，共 6 张；其他连接器按业务分类展示。Registry 可独立持续更新，实际数量以客户端刷新后的市场页签徽标和上方实时统计徽标为准。
+截至 2026-09-04，公共 Registry 已发布 100 条连接器描述；与随包的 4 张企查查卡片合并去重后，市场页可浏览 104 张卡片，覆盖企业数据、金融投资、法律合规、开发工具、办公协作、调研分析、设计创意、效率工具、其他 9 类。推荐位严格保留 4 张企查查卡片、北大法宝和 Wind，共 6 张；其他连接器按业务分类展示。Registry 可独立持续更新，实际数量以客户端刷新后的市场页签徽标和上方实时统计徽标为准。
 <!-- catalog-stats:end -->
 
 ## 界面与演示
 
 | 市场总览 | 连接器详情与精选 Prompt |
 |---|---|
-| ![市场总览](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/312becc78bb65809927e26e063ea255bd1aef2b3/docs/screenshots/01-market-overview.jpg) | ![连接器详情](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/312becc78bb65809927e26e063ea255bd1aef2b3/docs/screenshots/02-connector-detail.jpg) |
+| ![市场总览](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/0b1256858dfec8db7c8c062d2db5b17293e2fb8a/docs/screenshots/01-market-overview.jpg) | ![连接器详情](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/0b1256858dfec8db7c8c062d2db5b17293e2fb8a/docs/screenshots/02-connector-detail.jpg) |
 | 工具发现、描述与独立滚动 | JSON 导入 |
-| ![工具发现](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/312becc78bb65809927e26e063ea255bd1aef2b3/docs/screenshots/03-tool-discovery.jpg) | ![JSON 导入](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/312becc78bb65809927e26e063ea255bd1aef2b3/docs/screenshots/04-json-import.jpg) |
+| ![工具发现](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/0b1256858dfec8db7c8c062d2db5b17293e2fb8a/docs/screenshots/03-tool-discovery.jpg) | ![JSON 导入](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/0b1256858dfec8db7c8c062d2db5b17293e2fb8a/docs/screenshots/04-json-import.jpg) |
 
 素材从复刻真实 800px 产品面板的无凭据 UI 验收环境采集，桌面端一行 2 张卡片；只展示公开市场元数据、示例 Prompt 和明确标识的 Mock 工具说明，不包含凭据、本机路径或查询结果。详见 [`docs/screenshots/README.md`](docs/screenshots/README.md)。
 
@@ -167,7 +167,7 @@ npm run dev:ui
 
 公共 Registry 每次合并后会生成 `catalog-stats.json`；本仓库的定时工作流每小时同步中英文介绍和统计快照。npm 页面中的静态正文随版本发布更新，上方动态统计徽标则直接读取 Registry，可在不发布新 npm 版本时保持实时数量一致。
 
-当前公开版本为 [`dsh-mcp-connector@0.2.32`](https://www.npmjs.com/package/dsh-mcp-connector)，对应 [GitHub Release v0.2.32](https://github.com/duhu2000/dsh-mcp-connector/releases/tag/v0.2.32)。
+当前公开版本为 [`dsh-mcp-connector@0.2.35`](https://www.npmjs.com/package/dsh-mcp-connector)，对应 [GitHub Release v0.2.35](https://github.com/duhu2000/dsh-mcp-connector/releases/tag/v0.2.35)。
 
 版本能力与变更记录见 [CHANGELOG.md](CHANGELOG.md)。
 Desktop 发版回归见 [docs/DESKTOP-E2E.md](docs/DESKTOP-E2E.md)。
@@ -180,11 +180,12 @@ stdio 传输的架构、透传边界与安全约束见 [docs/STDIO-SUPPORT.md](d
 - 凭证只持久化在本机 DSH storage 边界：连接记录使用 storage domain，OAuth 轮换凭据同步保存到 `$DSH_HOME/storages/mcp_connector_grants_v1`。该目录为 0700、文件为 0600；凭证不进入市场目录、Git 仓库、页面、日志或对话历史。
 - 市场 Key/Token 校验失败时不写入 storage domain；鉴权、超时、DNS、TLS/网络错误会分类提示。
 - 未检查或 Host 状态不可见时显示“状态未知”，不会冒充健康；健康摘要与最近成功时间当前只保留在插件进程内。
-- 外部 URL 仅允许 HTTPS，HTTP 仅允许回环地址；导入配置会校验 URL 与 Header。
+- 外部 URL 默认仅允许 HTTPS，HTTP 默认仅允许回环地址。用户自建连接可在明确风险确认后放行 RFC1918 IPv4 / RFC4193 IPv6 ULA 字面量；域名、公网 HTTP、链路本地与云元数据地址仍拒绝。
 - 远程目录/描述响应限制 2 MiB，Web API 请求限制 1 MiB；原始 JSON 在归一化前扫描凭据字段。
 - 完整覆盖 Streamable HTTP 与 stdio；旧 `sse` 配置在导入/恢复时归一为 Streamable HTTP。stdio 的 `command/args/env/cwd` 原样交给 `@deepseek-ai/dsh-mcp-client`，插件本身不重复实现进程传输。
 - stdio 会启动本机进程：仅导入或连接可信命令/软件包。市场目录只能用 `credentialFields` + `credentialBindings` 声明输入与 env 映射，不得携带真实 token/secret；用户填写值只写入本机连接记录并交给 Host。
 - OAuth DCR 的 `client_secret` 与 Access/Refresh Token 采用相同的本机存储边界，不会进入市场 API、状态输出或日志。
+- OAuth 连接失败会标明资源发现、服务发现、客户端注册、授权回调或 Token 换取阶段；DCR HTTP 403 表示服务商拒绝未准入客户端，不是用户未点击授权。
 - 脱敏导出把 Token/API Key、静态 Header/env 值、stdio 参数、本地目录及带查询参数的 URL 替换为占位符；OAuth 只保留重新授权引用。快照中的完整配置仍只在当前 profile 的 storage domain 内。
 - 顶部入口通过 DSH 稳定 `data-slot` 定位并使用 React Portal；DSH 若移除该标记，入口会回退到底部，不影响连接器功能。
 - 旧授权迁移必须显式确认，只复制不删除；确认新连接可用后再手动停用旧插件。

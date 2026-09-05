@@ -23,11 +23,11 @@ CC Switch-style token consumption statistics for the **DeepSeek Harness Web GUI*
 
 ## Screenshots
 
-![Usage statistics panel overview](https://raw.githubusercontent.com/qwert702/dsh-token-viewer/cbfe0b1edd4477a7a4ad518f6388735a0e15010e/docs/panel-overview.png)
+![Usage statistics panel overview](https://raw.githubusercontent.com/qwert702/dsh-token-viewer/5f1749572ba9caa5005bcb498a1739aa15e54794/docs/panel-overview.png)
 
-![Per-model statistics tab](https://raw.githubusercontent.com/qwert702/dsh-token-viewer/cbfe0b1edd4477a7a4ad518f6388735a0e15010e/docs/panel-models.png)
+![Per-model statistics tab](https://raw.githubusercontent.com/qwert702/dsh-token-viewer/5f1749572ba9caa5005bcb498a1739aa15e54794/docs/panel-models.png)
 
-![Per-project statistics tab](https://raw.githubusercontent.com/qwert702/dsh-token-viewer/cbfe0b1edd4477a7a4ad518f6388735a0e15010e/docs/panel-projects.png)
+![Per-project statistics tab](https://raw.githubusercontent.com/qwert702/dsh-token-viewer/5f1749572ba9caa5005bcb498a1739aa15e54794/docs/panel-projects.png)
 
 ## Repo layout
 

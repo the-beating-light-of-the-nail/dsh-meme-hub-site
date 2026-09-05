@@ -6,7 +6,7 @@
 
 > **⚠️ 版本跟进声明**：本项目只跟进官方 dsh 的正式发布通道（`next` dist-tag），不跟进 `alpha` 预览通道。
 
-![登录页](https://raw.githubusercontent.com/GDWhisper/dsh-web-startup-auth/d8cc26126003f23c35c7aa6e497707ea4dbaf064/docs/login-page.png)
+![登录页](https://raw.githubusercontent.com/GDWhisper/dsh-web-startup-auth/80bedfde5a45f23acf7fcba5e60b4d0c62851895/docs/login-page.png)
 
 原版 `@deepseek-ai/dsh-web-app/startup` 出于安全考虑**硬拒绝 `--host 0.0.0.0`**；本插件替换它，并配一个带登录/注册页的认证插件，让 `dsh web` 可以在局域网（或任何非回环接口）上安全暴露浏览器界面。
 

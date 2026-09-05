@@ -6,7 +6,7 @@ A real-time usage / cost / balance meter plugin for **DeepSeek Harness (DSH)**.
 See tokens, spending and real wallet balance right next to the chat input — for
 the official DeepSeek models **and** any custom model registered in DSH.
 
-![settings](https://raw.githubusercontent.com/faith1688/dsh-usage-meter-harness/2124d986c787709be192d25a2a8dc64a742ea378/assets/screenshot.png)
+![settings](https://raw.githubusercontent.com/faith1688/dsh-usage-meter-harness/06c5a3500db6e4f9885b70e3854e4f18ba22a814/assets/screenshot.png)
 
 ## Install
 
@@ -165,11 +165,11 @@ in `node_modules`.
 
 Settings page:
 
-![settings](https://raw.githubusercontent.com/faith1688/dsh-usage-meter-harness/2124d986c787709be192d25a2a8dc64a742ea378/assets/screenshot.png)
+![settings](https://raw.githubusercontent.com/faith1688/dsh-usage-meter-harness/06c5a3500db6e4f9885b70e3854e4f18ba22a814/assets/screenshot.png)
 
 Usage popup:
 
-![popup](https://raw.githubusercontent.com/faith1688/dsh-usage-meter-harness/2124d986c787709be192d25a2a8dc64a742ea378/assets/popup.png)
+![popup](https://raw.githubusercontent.com/faith1688/dsh-usage-meter-harness/06c5a3500db6e4f9885b70e3854e4f18ba22a814/assets/popup.png)
 
 ## Configuration
 

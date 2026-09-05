@@ -20,7 +20,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/5a53d9a296c16c94c1ca55161f84734096b70987/docs/assets/readme-hero.webp" width="900" alt="Codex 订阅直接用在 DSH：订阅模型、联网搜索、额度与安全重置、图片生成和高速模式">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/c36c2328340a6d86f2029d4471c291c476c19571/docs/assets/readme-hero.webp" width="900" alt="Codex 订阅直接用在 DSH：订阅模型、联网搜索、额度与安全重置、图片生成和高速模式">
 </p>
 
 ## 三步开始
@@ -44,7 +44,7 @@ DSH-Portable 也提供相同的标准插件命令，因此同样使用上面的�
 | **可恢复、可诊断** | 登录状态会自动对账；设置页可生成不含凭据和账号标识的支持报告 |
 | **额度可见** | 普通 Codex、Spark 等服务端实际返回的额度分开显示 |
 | **输入框额度** | 可选择紧凑百分比、进度条或完全关闭输入框额度显示 |
-| **安全额度重置** | 直接查看最早到期时间，并通过冷静期和知情确认主动尝试重置 |
+| **安全额度重置** | 每张重置卡单独显示，并通过冷静期和知情确认主动尝试重置 |
 | **订阅搜索** | 可将全部模型的搜索明确路由到 DSH 默认搜索或已登录的 Codex 订阅 |
 | **Codex 图片生成与编辑（Beta）** | 可无参考图全新生成，也可明确选择会话图片继续编辑；支持预览、缩放、区域备注、下载原图并衔接回当前输入框 |
 | **高速模式** | 直接在输入框切换标准或高速，无需离开当前会话 |
@@ -56,7 +56,7 @@ DSH-Portable 也提供相同的标准插件命令，因此同样使用上面的�
 ## 实际界面
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/5a53d9a296c16c94c1ca55161f84734096b70987/docs/assets/context-settings.png" width="820" alt="当前 DeepSeek Harness Codex 订阅设置，包含搜索来源、模型感知上下文、输入框额度和支持诊断">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/c36c2328340a6d86f2029d4471c291c476c19571/docs/assets/context-settings.png" width="820" alt="当前 DeepSeek Harness Codex 订阅设置，包含搜索来源、模型感知上下文、输入框额度和支持诊断">
 </p>
 
 图片来自已安装的官方 DeepSeek Harness `0.1.2-rc.1` 与当前插件构建。
@@ -134,12 +134,12 @@ dsh --profile web --dump-config
 
 ## 功能
 
-- ChatGPT OAuth 登录，凭据保留在本机；可手动添加、切换和移除多个账号，不会自动轮换或合并额度；
+- ChatGPT OAuth 登录，凭据保留在本机；账号以默认隐藏部分字符的邮箱区分，点击可切换完整显示；可手动添加、切换和移除多个账号，不会自动轮换或合并额度；
 - Codex 模型和 Beta 图片生成与编辑直接出现在 DSH 会话中；
 - 搜索来源是全局设置，可在 DSH 默认搜索与 Codex 订阅搜索之间切换；它对所有模型和会话生效，不会随当前模型自动切换；
 - 设置页显示服务端返回的额度、重置时间和更新时间；
 - 普通 Codex、Codex-Spark、Credits 等独立额度分开显示；
-- 显示重置卡数量与最早到期时间，也允许在额度未完全用尽时主动尝试，并经过分层确认且不会自动重试；
+- 每张可用重置卡单独显示名称和到期时间，也允许在额度未完全用尽时主动尝试，并经过分层确认且不会自动重试；
 - 输入框可用百分比、进度条或可选的 Beta 续航预测显示当前 Codex 模型的剩余额度（默认关闭）；
 - 输入框可为支持的 Codex 模型切换标准或高速模式；
 - 上下文窗口提供标准、扩展和逐模型自定义；自定义直接填写完整 Token 数值，并在已审核的模型容量内交给 DSH 原生 Agent 压缩策略处理；
@@ -151,7 +151,7 @@ dsh --profile web --dump-config
 ### 输入框额度
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/5a53d9a296c16c94c1ca55161f84734096b70987/docs/assets/composer-quota.png" width="800" alt="中文 DSH 输入框内的 Codex 剩余额度进度条">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/c36c2328340a6d86f2029d4471c291c476c19571/docs/assets/composer-quota.png" width="800" alt="中文 DSH 输入框内的 Codex 剩余额度进度条">
 </p>
 
 可在设置中选择关闭、百分比、进度条或 Beta 续航预测；紧凑额度只在选择 Codex 模型时显示。续航预测仅在用户主动选择后，根据官方剩余百分比估算当前消耗速度。它至少需要 3 个样本；持续高消耗时通常 5–10 分钟即可给出范围，消耗较低时会延长观察或显示稳定。最近 24 小时的无敏感信息观测会保存在本机，重启后可以继续校准；额度重置、账号切换或关闭功能会开启新的校准周期。普通 Codex 使用服务端返回窗口中剩余最少的一项，
@@ -159,7 +159,7 @@ Spark 使用独立额度。插件不会写死“5 小时 + 每周”，也不会
 
 ### 安全使用额度重置
 
-ChatGPT 返回可用重置卡时，设置页会用紧凑的一行显示数量和服务端提供的最早到期时间。即使额度尚未到 100%，
+ChatGPT 返回可用重置卡时，设置页会把每张卡分别显示为紧凑的一行，并展示服务端提供的名称和到期时间。即使额度尚未到 100%，
 也可以主动尝试使用，适合重置卡即将过期的情况；是否需要重置仍由 ChatGPT 判断，服务端可能返回“当前无需重置”且不扣次数。
 最终操作需要勾选知情确认并等待 5 秒。取消不会消耗，快速连续点击只允许一次请求，网络结果不确定时也不会自动重试。
 
@@ -172,7 +172,7 @@ ChatGPT 返回可用重置卡时，设置页会用紧凑的一行显示数量和
 新的图片请求不会静默带入历史图片。GPT Image 2 的耗时可能明显长于文本回复，复杂文字、精确构图和连续角色一致性也可能需要再次调整。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/5a53d9a296c16c94c1ca55161f84734096b70987/docs/assets/image-preview-annotations.png" width="800" alt="DSH 图片查看器中的生成图、区域备注和继续编辑">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/c36c2328340a6d86f2029d4471c291c476c19571/docs/assets/image-preview-annotations.png" width="800" alt="DSH 图片查看器中的生成图、区域备注和继续编辑">
 </p>
 
 GPT Image 返回的精确字节会单独保存在当前 DSH 主目录中，因为 DSH 可能为会话展示和后续模型输入规范化预览图。原图下载前会校验完整性，只允许创建会话或确实继承了该图片结果的 Fork 会话访问；提前创建的 Fork 和无关会话会被拒绝。原图字节不会写入会话日志，卸载插件也不会删除已经生成的原图。

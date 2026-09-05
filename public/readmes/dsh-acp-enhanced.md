@@ -15,7 +15,11 @@ over the ACP wire.
 
 - **Block + reasoning streaming**: text blocks and the model's thinking arrive live
   (`agent_message_chunk` / `agent_thought_chunk`); cancelled/retried attempts never leak
-  torn output
+  torn output. Set `streamDeltas: true` on the acp-enhanced row for token-level
+  streaming instead — the reply renders while the model writes it, coalesced on a 75 ms
+  timer; the trade-off is that a mid-block retry can no longer hide its abandoned
+  partial text, so a visible `_[stream interrupted — retrying]_` marker separates the
+  seam (off by default)
 - **Full telemetry**: context usage ring plus cache hit rate / TPS / input-output-reasoning
   tokens / tool timing / turn counts (`usage_update._meta` carries the full breakdown)
 - **Image support (multimodal)**: when the dsh composition mounts an attachment store
@@ -99,9 +103,9 @@ over the ACP wire.
 
 After picking **dsh-acp-enhanced** in Zed's AI Agent panel:
 
-<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/f6e68d8bc4fb2b450b193e8a7b3264285d094fcc/assets/screenshots/approval-config-context.png" width="560">
+<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/8dc13770965d7d7a98ef4d46d4f625e2837f4459/assets/screenshots/approval-config-context.png" width="560">
 
-<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/f6e68d8bc4fb2b450b193e8a7b3264285d094fcc/assets/screenshots/tool-cards-elicitation.png" width="560">
+<img src="https://raw.githubusercontent.com/grunmin/dsh-acp-enhanced/8dc13770965d7d7a98ef4d46d4f625e2837f4459/assets/screenshots/tool-cards-elicitation.png" width="560">
 
 ## Quick start
 
@@ -155,6 +159,21 @@ Zed spawns agents with a minimal PATH, so use the shipped launcher
 > The API key does not have to live in Zed:
 > store it in `~/.dsh/.credentials.yaml` (`DEEPSEEK_API_KEY`) and the dsh credentials
 > service resolves it; the launcher also falls back to a running `dsh web` process's key.
+
+Debugging a stalled turn (is it the model request or the tool?):
+
+```jsonc
+"env": {
+  // ...existing vars...
+  "ACP_LOG": "/Users/you/.dsh/dsh-acp-enhanced.trace.jsonl"  // append-only JSONL event trace
+}
+```
+
+Each line is one session event with wall-clock `time` (ms epoch); a turn that appears to
+hang is attributable afterwards: a **model request stall** shows a long gap between
+`step/start` and the first `assistant/chunk`, while a **tool-execution stall** shows a
+long gap between `tool/call` and `tool/result` (the result line carries `elapsedMs`).
+`prompt/settled` lines cover the full user-message round trip (stopReason + elapsed).
 
 Optional: pin the panel's default config options (all still changeable in the panel):
 
@@ -373,7 +392,8 @@ PersistenceCoordinator.
 ## Known limitations
 
 Audio attachments are not supported (audio capability is not advertised), text streams at
-block granularity, one in-flight prompt per session. MCP supports stdio and streamable HTTP
+block granularity by default (`streamDeltas: true` opts into token-level streaming, see
+Features), one in-flight prompt per session. MCP supports stdio and streamable HTTP
 (legacy SSE / `acp` transports are not advertised).
 `session/close` / `session/fork` / `session/resume` are not implemented (capabilities
 undeclared, compliant clients will not call them); `session/delete` removes the

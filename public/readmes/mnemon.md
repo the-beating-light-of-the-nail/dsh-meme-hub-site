@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/44444ea6b5818bacef31de7a17128ffaafd97ea1/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/da9b7da0e3e7f10c84d5f8e9a42e24453c8159bb/docs/logo/logo.svg" width="160" height="160" alt="Mnemon Logo" />
 </p>
 
 # Mnemon
@@ -40,7 +40,7 @@ Most memory tools embed their own LLM inside the pipeline. Mnemon takes a differ
 Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs discover and invoke tools. ODBC/JDBC standardizes how applications access databases. But how LLMs interact with databases using memory semantics — this layer has no protocol. Mnemon's three primitives — `remember`, `link`, `recall` — form an intent-native protocol: command names map to the LLM's cognitive vocabulary (`remember` not INSERT, `recall` not SELECT), and output is structured JSON with signal transparency rather than raw database rows.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/44444ea6b5818bacef31de7a17128ffaafd97ea1/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/da9b7da0e3e7f10c84d5f8e9a42e24453c8159bb/docs/diagrams/llm-supervised-concept.jpg" width="720" alt="LLM-Supervised Architecture — three patterns compared, with Mnemon hooks, protocol boundary, and deterministic memory engine" />
   <br />
   <sub>The LLM-Supervised pattern: hooks drive the lifecycle, the host LLM makes judgment calls, the binary handles deterministic computation.</sub>
 </p>
@@ -48,7 +48,7 @@ Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs dis
 Memory has a **compound interest effect** — the longer it accumulates, the greater its value. LLM engines iterate constantly, skill files cost nearly nothing to write, but memory is a private asset that grows with the user. It is the only component in the agent ecosystem worth deep investment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/44444ea6b5818bacef31de7a17128ffaafd97ea1/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
+  <img src="https://raw.githubusercontent.com/mnemon-dev/mnemon/da9b7da0e3e7f10c84d5f8e9a42e24453c8159bb/docs/diagrams/10-knowledge-graph.jpg" width="720" alt="Knowledge Graph — 87 insights connected by temporal, entity, semantic, and causal edges" />
   <br />
   <sub>A real knowledge graph built by Mnemon — 87 insights, 2150 edges across four graph types.</sub>
 </p>
@@ -59,17 +59,34 @@ See [Design & Architecture](docs/DESIGN.md) for details.
 
 ### Install
 
-**Homebrew Cask** (macOS):
+**npm** (recommended; macOS / Linux / Windows, Node.js 22+):
+
+```bash
+npm install --global @mnemon-dev/mnemon
+```
+
+Upgrade the npm-managed CLI at any time:
+
+```bash
+mnemon update
+```
+
+The npm package installs the matching native Go executable for the host OS and
+CPU. Mnemon's engine remains a single native binary; Node.js is used only by
+the npm launcher and package manager.
+
+**Alternative installers**:
 
 ```bash
 brew install --cask mnemon-dev/tap/mnemon
-```
-
-**Go install** (macOS / Linux / Windows):
-
-```bash
 go install github.com/mnemon-dev/mnemon@latest
 ```
+
+Homebrew, `go install`, source builds, and other Node package managers must
+continue to use their original installation method. To migrate one of these
+installations, run the npm install command once and ensure the npm global bin
+directory precedes the old executable on `PATH`; subsequent `mnemon update`
+calls are npm-managed.
 
 Windows supports the core Memory commands. Agency remains unavailable on
 Windows until its local authority boundary has native Windows security.

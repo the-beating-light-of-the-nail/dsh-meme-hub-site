@@ -2,7 +2,7 @@
 
 [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-![Token Usage stats page](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f43d15f2dea1751f7e731532a91085df16318d7e/docs/images/token-usage.png)
+![Token Usage stats page](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/9112baca19ed3bb737c049118b10c9932841822b/docs/images/token-usage.png)
 
 [简体中文](./README.zh.md) | English
 
@@ -27,7 +27,7 @@ Repo: <https://github.com/LaoYueHanNi/dsh-token-usage>
 - **Web stats page**: filters (date range + model + `1d`/`7d`/`30d` shortcuts), summary cards, daily trend chart (hover a day for its total), per-model table.
 - **Session usage tab**: the conversation pane gains a **Usage** view tab (beside Chat / Trajectory) with the active session's dashboard — six stat cards (successful requests with a failure pill, cost, cache hit rate, average time-to-first-token, generation throughput, total tokens), a 4-bucket token strip, an hourly trend chart, and a per-model table. A scope switch toggles **Session / With subagents**, and the subagent table drills into each child and back. Hovering the failure pill breaks failures down per class (rate limited, server error, context exceeded, …).
 
-![Session Usage tab](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f43d15f2dea1751f7e731532a91085df16318d7e/docs/images/usage-tab.png)
+![Session Usage tab](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/9112baca19ed3bb737c049118b10c9932841822b/docs/images/usage-tab.png)
 
 - **Cost figures & model pricing**: per-request cost is computed live from per-model rates (¥ per million tokens); unpriced models warn and count as ¥0. Every priced model's name carries a **rates button** opening its full price table. Rates sync from the cloud feed on every startup; `pricing.json` holds manual overrides — see [Model pricing](#model-pricing).
 - **Provider quota**: an input-bar button (left of the model chip) shows the selected provider's remaining quota. See [Provider quota](#provider-quota).
@@ -71,9 +71,9 @@ plugins:
 
 The input-bar button follows the currently selected provider and opens a panel with remaining quota (the same API key as inference):
 
-<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f43d15f2dea1751f7e731532a91085df16318d7e/docs/images/zhipu-plan-usage.png" width="520" alt="Zhipu GLM quota panel">
+<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/9112baca19ed3bb737c049118b10c9932841822b/docs/images/zhipu-plan-usage.png" width="520" alt="Zhipu GLM quota panel">
 
-<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f43d15f2dea1751f7e731532a91085df16318d7e/docs/images/opencode-go-plan-usage.png" width="520" alt="OpenCode Go quota panel">
+<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/9112baca19ed3bb737c049118b10c9932841822b/docs/images/opencode-go-plan-usage.png" width="520" alt="OpenCode Go quota panel">
 
 | Provider | Shows |
 |---|---|

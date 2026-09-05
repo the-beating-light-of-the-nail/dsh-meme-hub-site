@@ -4,8 +4,8 @@
 
 给 `dsh web` 界面铺上 DeepSeek Harness 首页同款背景：WebGL 流体光效、点线网格和数字点云鲸鱼。
 
-![深色主题](https://raw.githubusercontent.com/yushi-xxh/dsh-homepage-skin/44933213da11f82caefd609ad1bdfe84ac95b3e0/docs/compare-dark.png)
-![亮色主题](https://raw.githubusercontent.com/yushi-xxh/dsh-homepage-skin/44933213da11f82caefd609ad1bdfe84ac95b3e0/docs/compare-light.png)
+![深色主题](https://raw.githubusercontent.com/yushi-xxh/dsh-homepage-skin/329f9e0b12cab223b00b3e75e2f73453d9a46ed5/docs/compare-dark.png)
+![亮色主题](https://raw.githubusercontent.com/yushi-xxh/dsh-homepage-skin/329f9e0b12cab223b00b3e75e2f73453d9a46ed5/docs/compare-light.png)
 
 深色沿用首页深海蓝配色；亮色是适配变体（浅色流体 + 深灰蓝网格与鲸鱼）。亮 / 暗 / 跟随系统仍走自带的「外观」。
 

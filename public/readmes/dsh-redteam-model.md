@@ -173,19 +173,19 @@ dsh-redteam-model/
 
 | 任务台视图（数据统计展示） | 攻防评估模式（数据统计展示） |
 |:---:|:---:|
-| ![任务台视图](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/a.png) | ![攻防评估模式](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/2.png) |
+| ![任务台视图](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/a.png) | ![攻防评估模式](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/2.png) |
 
 | 代码审计模式（数据统计展示） | 二进制分析模式（数据统计展示） |
 |:---:|:---:|
-| ![代码审计模式](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/3.png) | ![二进制分析模式](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/4.png) |
+| ![代码审计模式](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/3.png) | ![二进制分析模式](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/4.png) |
 
 | hunter 狩猎 | webshell 管理 |
 |:---:|:---:|
-| ![hunter 狩猎](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/5.png) | ![webshell 管理](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/6.png) |
+| ![hunter 狩猎](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/5.png) | ![webshell 管理](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/6.png) |
 
 | AttackAtlas(攻击面图谱) |
 |:---:|
-| ![AttackAtlas](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/1b52926068e74b918d93c4d2dafda8df7a435c6b/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/b.png) |
+| ![AttackAtlas](https://raw.githubusercontent.com/SeaOf0/dsh-redteam-model/63674e483f257f4a266ed55b277cbff00ca41cb2/%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/b.png) |
 
 ## 发现问题
 

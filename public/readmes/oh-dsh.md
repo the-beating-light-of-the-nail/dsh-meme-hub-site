@@ -4,7 +4,7 @@
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/19262643092f801b5db9f70c0995acdfe813311e/assets/dsh-whale.png" width="128" alt="Oh-DSH whale">
   <h1>Oh-DSH</h1>
   <p><strong>一套 DSH runtime，Desktop、Web 与 TUI 三种开发体验。</strong></p>
   <p>把 AI Agent、Workspace、本地工具与插件生态带到你习惯的界面。</p>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
+  <img src="https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/19262643092f801b5db9f70c0995acdfe813311e/assets/oh-dsh-desktop-readme.png" alt="Oh-DSH Desktop 界面展示" width="100%">
 </p>
 
 Oh-DSH 将 DeepSeek Harness、Node.js、本地开发工具和内置插件打包为可安装的
@@ -203,11 +203,11 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ### 插件市场
 
-![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/oh-dsh-plugin-marketplace.png)
+![Oh-DSH 插件市场](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/19262643092f801b5db9f70c0995acdfe813311e/assets/oh-dsh-plugin-marketplace.png)
 
 ### Oh-DSH 皮肤
 
-![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/889258f4cdc7339f2eccbf446f0d4e46e59adaa4/assets/oh-dsh-desktop-skins.png)
+![Oh-DSH 跨界面皮肤](https://raw.githubusercontent.com/hust-open-atom-club/oh-dsh/19262643092f801b5db9f70c0995acdfe813311e/assets/oh-dsh-desktop-skins.png)
 
 </details>
 

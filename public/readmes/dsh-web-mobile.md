@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -30,7 +30,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/0e808f5af3e7356356a21c7465ece30dca62e8e0/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/settings.png) |
 
 ## 安装
 

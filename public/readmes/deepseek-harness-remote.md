@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -118,14 +118,14 @@ available as a Host.
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -137,9 +137,9 @@ open a workspace, and continue the conversation with text or image prompts. The 
 toolbar also lets you switch the active model and choose any reasoning effort declared by it.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/88ecc6ea5ab365e5a2745eb2fed388c3d8942afc/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -169,6 +169,10 @@ project catalog without importing it into Harness storage.
 Codex Remote is meant as a convenience layer for your own devices. It supports text prompts, image
 prompts where available, model and permission controls, interrupt, and approvals. It is still
 published as experimental while long-running recovery and compatibility work continue.
+
+Web and Desktop approval controls show the Host-confirmed mode for the selected Codex session.
+If it has not been reported, they indicate that Host settings are inherited. Changing the mode
+requires Host confirmation; sending a prompt preserves the session's current policy.
 
 Codex is enabled by default and can be turned off in the DeepSeek Remote settings card. Advanced
 configuration and implementation notes live in [Codex Remote technical notes](docs/codex-remote.md).

@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 ---
@@ -37,15 +37,15 @@
 
 ## 简介
 
-通过扫码、App Manifest 或已有机器人凭据把 IM 机器人接入 DeepSeek Harness，并让本机 Harness 主动连接公网 AI Office。一个插件、一个设置入口，统一管理九种 IM 渠道和 AI Office Connector。**每个 IM 渠道都支持接入多个机器人**，各机器人的连接状态、工作区和会话绑定彼此独立。
+通过扫码、App Manifest 或已有机器人凭据把 IM 机器人接入 DeepSeek Harness，并让本机 Harness 主动连接公网 AI Office。一个插件、一个设置入口，统一管理九种 IM 渠道和 AI Office Connector。**每个 IM 渠道都支持接入多个机器人**，各机器人的连接状态、工作区、模型和会话绑定彼此独立。
 
 Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest, or entering existing bot credentials, and let the local Harness connect outward to a public AI Office. One plugin and one settings entry manage nine multi-bot IM channels and the AI Office Connector.
 
 ## 界面
 
-![IM 机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/imbot.png)
+![IM 机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/imbot.png)
 
-<img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/access_mode.png" alt="访问模式页面" width="49%">
+<img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/access_mode.png" alt="访问模式页面" width="49%">
 
 ## 当前内置渠道
 
@@ -126,12 +126,15 @@ dsh web
 | 默认行为 | 说明 |
 | --- | --- |
 | 机器人工作区 | 每个机器人独立保存工作区。新机器人默认使用 Host 当时的工作目录；之后可在机器人卡片中修改。 |
+| 模型 | 九个 IM 渠道的每个机器人都可在工作区下方独立选择模型；未选择时跟随 Host 默认。切换只影响之后新建的会话；当前聊天先发送 `/new`，再发送普通消息才会使用新选择。 |
 | Agent Preset | 每个机器人可在设置页卡片中选择 Agent Preset。未选择时跟随 Host 的 `agent-presets.default`；渠道级 `config.agentPreset` 只作为该渠道之后新接入机器人的默认值。切换不会修改或清空已有会话；若当前聊天已有会话，需先发送 `/new`，再发送一条普通消息，才会按新选择创建会话。 |
 | 上下文增强 | 从机器人卡片打开设置，分别决定群聊、私聊是否增强；两个开关默认均关闭，旧机器人升级后也不会自动开启。 |
 
 ### 主动投递
 
 九个 IM 渠道都可以使用稳定的 `botId + targetId` 主动发送文字消息。机器人设置页支持从已聊会话选择或手工填写目标、保存前测试当前路由，以及复制调用参数；HTTP POST、同 Host 插件和 Connection RPC 共用同一目标配置与投递核心。
+
+已保存的私聊目标还可以开启默认关闭的「会话双向同步」。开启后，DSH Web／CLI 在该私聊当前 Session 中发送的用户文字和最终助手文字会同步回私聊；IM 侧原有提问与 `/steer` 不会重复。开关自动跟随 `/session`、`/new` 和工作区切换后的当前 Session。首版仅支持当前 Host 的私聊文字；群聊、Topic、Thread 与显式远程 `harnessBaseUrl` 不支持。
 
 设置步骤、九渠道字段、完整调用示例、管理端点、错误码与排错说明请查看[《主动投递使用指南》](PROACTIVE_DELIVERY.md)（[English](PROACTIVE_DELIVERY.en.md)）。
 
@@ -190,10 +193,11 @@ dsh web
 
 - **图片识别**：九个内置渠道都可以把 JPEG、PNG、WebP，以及以图片文件方式发送的 GIF 交给 Harness；图片可以附带文字说明。单张图片上限为 5 MB，单条消息中的图片总大小上限为 20 MB。
 - **在机器人卡片切换工作区**：设置页中的每张机器人卡片都会显示当前 Harness 工作区。可以直接填写已有目录的绝对路径，也可以打开目录选择器。切换只清除该机器人的旧聊天映射，不会删除、清空或归档旧 Session；已经开始的回复可以继续完成，后续消息使用新工作区。
+- **在机器人卡片选择模型**：九个 IM 渠道的每张机器人卡片都在工作区下方提供模型选择，可选 Host 当前可用模型或跟随默认。选择按机器人独立保存，只用于之后新建的 Session；已有 Session 和正在生成的回复不受影响。
 - **在机器人卡片选择 Agent Preset**：设置页中的每张机器人卡片都可以选择 Host 已有的 Agent Preset，或跟随 Host 默认。切换只作用于该机器人，并且只影响之后新建的会话；已有会话和正在生成的回复不受影响。
 - **检查连接并发送测试消息**：机器人在线时，点击卡片上的「检查连接」会检查平台连接，并向该机器人最近记录的私聊发送一条“DeepSeek Harness 连接测试成功”消息；WhatsApp 会发送到账号自聊。测试消息不会创建 Harness Session，也不会调用模型。机器人必须至少收到过一条私聊才能记住测试目标，否则页面会提示尚无可用的测试会话。
 - **重试连接和移除接入**：机器人离线时，卡片上的操作会变为「重试连接」；不再使用时可以点击「移除接入」。这些操作都只作用于所选机器人，不影响其他机器人或渠道。
-- **多机器人独立管理**：同一渠道可以接入多个机器人。每个机器人分别保存凭据、连接状态、工作区、Agent Preset 和聊天会话映射，卡片上的工作区、Preset、连接检查、重试和移除操作互不影响。
+- **多机器人独立管理**：同一渠道可以接入多个机器人。每个机器人分别保存凭据、连接状态、工作区、模型、Agent Preset 和聊天会话映射，卡片上的工作区、模型、Preset、连接检查、重试和移除操作互不影响。
 - **流式回复和进度提示**：插件会按各平台能力显示正在思考、工具执行和逐步生成的回答；不支持原生流式接口的平台会通过编辑消息、卡片更新或最终消息完成回复。
 
 ## 设计
@@ -256,16 +260,16 @@ IM 管理 RPC 默认仅接受回环浏览器。如果 Web profile 在受信任�
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/wecom.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/wecom.jpg" alt="dsh-im 企业微信群二维码" width="240"></a>
+      <a href="docs/images/wecom.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/wecom.jpg" alt="dsh-im 企业微信群二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/4560d6e98eea685b04d85421315e20cfa4995cdb/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
+      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
     </td>
   </tr>
 </table>

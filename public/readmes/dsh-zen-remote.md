@@ -3,7 +3,7 @@
 
 <p align="center">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0B7285?style=flat-square" alt="MIT"></a>
-<img src="https://img.shields.io/badge/release-v1.1.11-5B4CF0?style=flat-square" alt="v1.1.11">
+<img src="https://img.shields.io/badge/release-v1.1.12-5B4CF0?style=flat-square" alt="v1.1.12">
 <img src="https://img.shields.io/badge/DSH-Web%20Profile-5B4CF0?style=flat-square" alt="DSH Web Profile">
 </p>
 
@@ -11,11 +11,11 @@
 
 | Session list home | Session page | Session info card |
 | --- | --- | --- |
-| ![Session list home](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/04e0c9fc69d063892afb96c02f8dd605c3efccf3/assets/home.png) | ![Session page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/04e0c9fc69d063892afb96c02f8dd605c3efccf3/assets/session.png) | ![Session info card](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/04e0c9fc69d063892afb96c02f8dd605c3efccf3/assets/info.png) |
+| ![Session list home](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/home.png) | ![Session page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/session.png) | ![Session info card](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/info.png) |
 
 | Composer permission sheet | Pairing page a public visitor sees |
 | --- | --- |
-| ![Composer permission sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/04e0c9fc69d063892afb96c02f8dd605c3efccf3/assets/sheet.png) | ![Pairing page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/04e0c9fc69d063892afb96c02f8dd605c3efccf3/assets/pairing.png) |
+| ![Composer permission sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/sheet.png) | ![Pairing page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/pairing.png) |
 
 > Screenshots are a 390×844 phone viewport in the light theme; both themes are supported. The pairing page is drawn by the gateway itself and is always dark.
 
@@ -29,7 +29,11 @@ dsh plugin add dsh-zen-remote
 
 Restart `dsh web` afterwards. The mobile UI and the gateway both come up — there is no config line to hand-write.
 
-> Compatibility: developed and tested against DSH `0.1.1-rc.2` (web profile); last verified 2026-08-22.
+> **Compatibility — one build, both runtimes.** Verified live on DSH `0.1.1-rc.2` and `0.1.2-rc.1` (web profile), 2026-09-04.
+>
+> 0.1.2 removed `@deepseek-ai/dsh-client-runtime` and put the web UI behind a signed cookie, which would have broken the mobile UI and locked the phone out of the gateway. The plugin carries its own store engine instead of importing that package, probes for the services 0.1.2 moved (`uiWorkspace`, `uiSession`) and falls back to the 0.1.1 shapes when they are absent, reads a turn's events through either `session.events` or `session.snapshotEvents()`, and lets the gateway do the browser-token handshake on the phone's behalf — all of it inert on 0.1.1, where the token endpoint does not exist.
+>
+> One thing to know on 0.1.2: the web UI now rejects requests whose `Host` is not trusted. Reaching DSH through this plugin's gateway is unaffected (the gateway presents every request as `127.0.0.1`), but pointing a browser straight at `http://<LAN-IP>:3080` returns 403 unless you start `dsh web --trusted-host <host>`.
 
 To uninstall: `dsh plugin remove dsh-zen-remote` (or delete the two lines from your profile's `dependencies` and `bundles`) and restart `dsh web`. To also wipe the pairing data, delete `~/.dsh/lan-gate-state.json` and `~/.dsh/lan-gate.config.json`.
 
@@ -41,7 +45,7 @@ Edit `~/.dsh/profiles/web/package.json` by hand — one line under `dependencies
 ```jsonc
 {
   "dependencies": {
-    "dsh-zen-remote": "^1.1.11"        // for local development: "link:/path/to/dsh-zen-remote"
+    "dsh-zen-remote": "^1.1.12"        // for local development: "link:/path/to/dsh-zen-remote"
   },
   "dsh": { "profile": { "bundles": [
     "@deepseek-ai/dsh-base",

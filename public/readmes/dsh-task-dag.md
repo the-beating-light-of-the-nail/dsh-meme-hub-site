@@ -17,7 +17,7 @@
   English · <a href="README.zh.md">中文</a>
 </p>
 
-![dsh-task-dag visual overview](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/d063820f7895baf33e4e2d8c99d42750be7aa6ba/docs/task-dag-preview.svg)
+![dsh-task-dag visual overview](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/8fe407f525823091523cd31bc940342feb83b7d1/docs/task-dag-preview.svg)
 
 ## At a glance
 
@@ -44,11 +44,11 @@ Additional behavior:
 
 Captured from a running DSH Web Session with labels anonymized. The panel, controls, layout, and graph presentation are the actual linked plugin UI.
 
-![dsh-task-dag running in DSH Web](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/d063820f7895baf33e4e2d8c99d42750be7aa6ba/docs/screenshot.png)
+![dsh-task-dag running in DSH Web](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/8fe407f525823091523cd31bc940342feb83b7d1/docs/screenshot.png)
 
 Select a Workflow run to open the v1.4.0 definition inspector beside the live topology:
 
-![Workflow definition code preview in dsh-task-dag](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/d063820f7895baf33e4e2d8c99d42750be7aa6ba/docs/workflow-definition.png)
+![Workflow definition code preview in dsh-task-dag](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/8fe407f525823091523cd31bc940342feb83b7d1/docs/workflow-definition.png)
 
 ## Verified live scenarios
 
@@ -66,6 +66,8 @@ To reproduce the Workflow check, create a new top-level Session, invoke the `wor
 `dsh-task-dag` visualizes Agent Teams records but does not install or create the Agent Teams runtime. At the time of this release, Agent Teams is an upstream experimental capability and is not mounted by every stock DSH Web profile. The Host composition must emit the supported Team events before the Agent Teams view can contain data.
 
 ## Install
+
+The `1.5.1` source is interface-compatible with DSH `0.1.2-rc.1` and uses that release's Session Controller, UI Renderer, and `uiConversation.events` registry. The verified scope is recorded in [`docs/compatibility-0.1.2-rc.1.md`](docs/compatibility-0.1.2-rc.1.md). Missing provider, model, or reasoning-effort values remain visibly missing rather than being replaced with defaults.
 
 ```powershell
 dsh plugin --profile web add github:LeemanCheung/dsh-task-dag
@@ -98,7 +100,7 @@ The dialog does not trap focus and does not provide keyboard dragging for the pa
 
 ## Architecture
 
-![dsh-task-dag projection architecture](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/d063820f7895baf33e4e2d8c99d42750be7aa6ba/docs/architecture.svg)
+![dsh-task-dag projection architecture](https://raw.githubusercontent.com/LeemanCheung/dsh-task-dag/8fe407f525823091523cd31bc940342feb83b7d1/docs/architecture.svg)
 
 The plugin combines six durable projections and Client-facing sources:
 

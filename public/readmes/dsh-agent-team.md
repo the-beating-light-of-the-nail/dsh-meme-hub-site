@@ -23,17 +23,17 @@ An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-
 
 Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
 
-![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/69de757eede54b718def59b298fd67185dd08fb4/assets/readme/dsh-entry.png)
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/51561a44a10672d1638a626a3960392645d018d3/assets/readme/dsh-entry.png)
 
 Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
 
-![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/69de757eede54b718def59b298fd67185dd08fb4/assets/readme/team-mode.png)
+![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/51561a44a10672d1638a626a3960392645d018d3/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/69de757eede54b718def59b298fd67185dd08fb4/assets/readme/task-thread.png)
+![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/51561a44a10672d1638a626a3960392645d018d3/assets/readme/task-thread.png)
 
 If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-team) helps other DSH users find it.
 

@@ -111,9 +111,9 @@ dsh web --no-open
 
 | 网络接入与扫码配对 | 设备与安全 |
 | :---: | :---: |
-| ![PC 设置面板 - 网络接入与扫码配对](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/pc-dsh-setting-1.png) | ![PC 设置面板 - 设备与安全](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/pc-dsh-setting-2.png) |
+| ![PC 设置面板 - 网络接入与扫码配对](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/pc-dsh-setting-1.png) | ![PC 设置面板 - 设备与安全](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/pc-dsh-setting-2.png) |
 | **样式片段覆写** | **本地数据存储** |
-| ![PC 设置面板 - 样式片段覆写](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/pc-dsh-setting-3.png) | ![PC 设置面板 - 本地数据存储](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/pc-dsh-setting-4.png) |
+| ![PC 设置面板 - 样式片段覆写](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/pc-dsh-setting-3.png) | ![PC 设置面板 - 本地数据存储](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/pc-dsh-setting-4.png) |
 
 ---
 
@@ -121,7 +121,7 @@ dsh web --no-open
 
 | 登录 | 对话列表字号缩放 | 侧边栏移动端样式 | 官方轨迹查看 |
 | :---: | :---: | :---: | :---: |
-| ![登录](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/mobile-auth.jpg) | ![对话列表字号缩放](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/mobile-dsh-1.jpg) | ![侧边栏移动端样式](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/mobile-dsh-2.jpg) | ![官方轨迹查看](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/1dd0c375ad8090cc599a81d226867e7cb4794dfc/images/mobile-dsh-3.jpg) |
+| ![登录](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/mobile-auth.jpg) | ![对话列表字号缩放](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/mobile-dsh-1.jpg) | ![侧边栏移动端样式](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/mobile-dsh-2.jpg) | ![官方轨迹查看](https://raw.githubusercontent.com/IceApriler/dsh-remote-mobile/556542f860cbf0f16c2d44694f58d53627b66d0b/images/mobile-dsh-3.jpg) |
 
 ---
 

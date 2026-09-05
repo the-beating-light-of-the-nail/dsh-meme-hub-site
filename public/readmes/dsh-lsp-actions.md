@@ -26,7 +26,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.2-alpha.5` (compat declared for `>=0.1.0-rc.8 <0.2.0`); the plugin writes no session events itself - the host records the standard tool/call + tool/result events. |
+| Harness | DeepSeek Harness `0.1.2-rc.1` (compat declared for `>=0.1.0-rc.8 <0.2.0`); the plugin writes no session events itself - the host records the standard tool/call + tool/result events. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | All (pure host; subprocess + filesystem, no network) |
 | Model | Any (tools are model-agnostic; the plugin never calls a model) |
@@ -137,7 +137,7 @@ Every failure carries a stable `code`; models and callers route on the code, nev
 
 [`examples/vscode/`](examples/vscode/) ships a **UI-only** extension (sidebar with the DSH sessions, the diagnostics list, one-click quickfix apply, open-at-range, and format) plus the headless backend composition (`backend/cordis.yml`) it connects to over ACP-style JSON-RPC. The extension implements zero LSP logic — every capability and every byte written belongs to the plugin. Install steps, settings, and the demo-gif recording script are in [`examples/vscode/README.md`](examples/vscode/README.md).
 
-![Editor demo](https://raw.githubusercontent.com/PerryLink/dsh-lsp-actions/96e5d36dc00940ff826838f0e3595fb66353e35e/docs/editor-demo.gif)
+![Editor demo](https://raw.githubusercontent.com/PerryLink/dsh-lsp-actions/6591f7961aad52b41f356edee800e78bfd2a2560/docs/editor-demo.gif)
 
 ## Permissions & data
 

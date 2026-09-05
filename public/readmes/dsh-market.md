@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/12498947336e6bc00e37a877d99c23e6c93af23e/assets/logo.svg" width="96" alt="dsh-market logo">
+  <img src="https://raw.githubusercontent.com/dsh-market/dsh-market/1f7b502c0f3a62acfbf2190052e97c16eb798267/assets/logo.svg" width="96" alt="dsh-market logo">
 </p>
 
 # dsh-market
@@ -11,7 +11,7 @@ English | [中文](README.zh.md)
 
 The plugin market inside DeepSeek Harness. Open Settings → **Plugin Market** → browse, search, one-click install.
 
-![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/12498947336e6bc00e37a877d99c23e6c93af23e/assets/demo-en.png)
+![dsh-market](https://raw.githubusercontent.com/dsh-market/dsh-market/1f7b502c0f3a62acfbf2190052e97c16eb798267/assets/demo-en.png)
 
 One-click themes: install, switch live, no restart.
 
@@ -34,7 +34,7 @@ its own dsh: it may be older than the one `npm` would give you (#139).
 - **Browse & search** the full community catalog (2300+ plugins, growing daily) — category filters, star counts, top/new sorting, bilingual descriptions that follow your UI language
 - **Host-aware discovery** — cards show the DSH requirement declared by `engines.dsh` or lockstep `@deepseek-ai/dsh-*` peers; an opt-in filter hides only confirmed mismatches with the running host. Undeclared, malformed, unavailable, and GitHub-only entries remain visible rather than being guessed incompatible
 - **Screenshots** — AppStore-style screenshots, auto-carousel when there's more than one, click to preview full-size: author-curated shots show right on the card (zero extra requests); plugins without curated shots fall back to automatic README extraction once you open the install dialog. Images load from GitHub hosting only
-- **Comments** — every card opens the plugin's discussion thread in place. It is the same thread its pages on [dshmarket.com](https://dshmarket.com) and the [catalog](https://awesome-dsh-plugin.com) show, so a plugin has one conversation rather than three. Backed by GitHub Discussions through giscus: it loads when you open it, needs a GitHub account only to post, and the note above it says plainly that opening it contacts giscus.app and GitHub
+- **Comments** — every card opens the plugin's discussion thread in place. It is the same thread its pages on [dshmarket.com](https://dshmarket.com) and the [catalog](https://awesome-dsh-plugin.com) show, so a plugin has one conversation rather than three. Backed by GitHub Discussions through giscus: it loads when you open it, needs a GitHub account only to post, and the note above it says plainly that opening it contacts giscus.app and GitHub. On local dsh web, reading stays embedded while a dedicated GitHub action opens the exact discussion in a new tab for sign-in and posting, so the cross-site return never carries or depends on the host session
 - **Favorites** — bookmark plugins and themes from Discover or the Themes tab; a dedicated Favorites tab lists them with search, sort, and install actions. Bookmarks persist in the profile's market state (`state.json`); entries that leave the catalog can be cleared in one click
 - **Themes** — a dedicated tab for community themes and skins: install → active immediately, switch with one click (themes are mutually exclusive, your choice survives restarts), uninstall to revert
 - **One-click install** — confirm the source, watch live progress; most plugins go live after a page refresh, no restart

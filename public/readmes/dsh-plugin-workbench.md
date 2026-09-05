@@ -25,7 +25,7 @@
 
 ## 效果图
 
-![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/a86c61f19bd2f5d15e9d592dd036ffccf0185afa/docs/workbench-webgui.png)
+![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/93cc2d848f380740e053dae5cec56e9e2fccbdfb/docs/workbench-webgui.png)
 
 > 真实 Web GUI 截图。
 
@@ -144,6 +144,14 @@ dsh plugin --profile web remove dsh-plugin-workbench
 
 见 [CONTRIBUTING](./CONTRIBUTING.md) 与 [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md)；
 变更记录见 [CHANGELOG](./CHANGELOG.md)。
+
+## 兼容性
+
+- 实测于 DSH `0.1.2-rc.1`（0.0.16 起布局补丁锚点适配该版：detailsCol 边框样式
+  `1px/--dsw-alias-border-l2` → `.5px/--dsw-alias-border-l3`、DetailsColumn 的
+  children 新增 `SessionProvider` 包裹）；0.1.1-rc.2 及更早版本用 0.0.15 的锚点表。
+- 0.0.9 起插件启动时自动检测并重打布局补丁，DSH 升级后通常无需手动操作；
+  锚点失配会在启动日志提示 `ui-layout patch exited 1`，此时升级本插件即可。
 
 ## 相关插件
 

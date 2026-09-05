@@ -1,7 +1,7 @@
 # dsh-auth-gateway
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/architecture.png" alt="dsh-auth-gateway 架构图" width="720">
+  <img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/architecture.png" alt="dsh-auth-gateway 架构图" width="720">
 </p>
 
 <p align="center">
@@ -14,9 +14,9 @@
 
 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web 提供认证门禁的 Cordis 插件：**密码认证 + TOTP 双因素认证 + 多层防爆破 + 会话管理 + 登录审计**，并在网关层**真实拦截每一个请求**（HTTP 与 WebSocket），未认证流量无法触及后端。
 
-`dsh web` 本身没有任何认证层；配置平面（settings/credentials RPC）被 dsh 钉死在 loopback——官方注释写道"直到真实认证层存在"（until a real authentication layer exists），但从未实现或指定方案。本插件以进程内网关形态自行承担该角色补齐认证面：对外端口由网关独占，内部 webserver 由 bundle patch 钉在回环地址，网关是唯一入口。
+`dsh web` 的官方认证只面向本机回环：dsh 0.1.2 起内部 webserver 启用内置浏览器认证（BrowserAuth），但其设计说明明确写道「没有登出操作，也没有针对反向代理/网关的处理」（*"There is no logout operation or reverse-proxy-specific handling"*），CLI 依旧拒绝 `--host 0.0.0.0`——**dsh 从未预想或支持远程访问，也没有为「前端再套一层网关」预留任何集成通道**。本插件以进程内网关形态补齐官方未提供的远程访问认证面：对外端口由网关独占，内部 webserver 由 bundle patch 钉在回环地址，网关是唯一入口。
 
-本项目已支持最新的 dsh 0.1.1-rc.2 版本。
+本项目已支持最新的 dsh 0.1.2-rc.1 版本。dsh 0.1.2 起内部 webserver 新增了内置浏览器认证（BrowserAuth）：网关经官方 `credentials` 服务读取 upstream 会话密钥，为回环转发自动铸造 upstream cookie，对浏览器与部署方式透明（机制详见 [docs/zh/SECURITY.md](docs/zh/SECURITY.md)）。
 
 ## 安装和卸载
 
@@ -41,7 +41,7 @@ dsh plugin --profile web remove dsh-auth-gateway
 - **密码认证**：首次部署自动生成初始密码（控制台打印，一次性），登录后引导设置个人密码（scrypt 哈希存储），之后每次访问需登录；
 - **双因素认证（TOTP）**：可选启用，兼容 Google Authenticator、Authy、1Password 等主流认证器；含一次性备份代码（scrypt 哈希存储、单次使用），设备丢失时可恢复访问；**OTP 密钥以 AES-256-GCM 加密存储**（主密钥来自环境变量 `DSH_AUTH_GATEWAY_MASTER_KEY` 或自动生成的 `auth-gateway/otp-master.key`），磁盘泄露不再直接暴露第二因素根密钥；
 - **真实请求拦截**：未认证 `/api/*` 返回 401、页面类路径 302 到登录页、WebSocket 升级直接拒绝；认证通过后请求透明转发（Host/Origin 规范化，兼容内部 trust fence）；
-- **登录审计**：登录成功 / 失败 / 登出 / 改密与暴力破解告警（锁定/限流）均输出审计日志（`ctx.logger.info`/`warn`，含来源 IP 与失败原因，不记录任何凭据），并**持久化落盘** `$DSH_HOME/auth-gateway/audit.log`（JSONL，按天轮转、保留 90 天），形成完整可审计闭环；
+- **登录审计**：登录成功 / 失败 / 登出 / 改密与暴力破解告警（锁定/限流）均输出审计日志（`ctx.logger.info`/`warn`，含来源 IP 与失败原因，不记录任何凭据），并**持久化落盘** `$DSH_HOME/auth-gateway/log/audit.log`（JSONL，按天轮转、保留 90 天），形成完整可审计闭环；
 - **多层防爆破**：密码失败按来源锁定（默认 5 次/5 分钟）+ 全局速率限制（默认 60 次/分钟）+ OTP/备份码独立限流（默认 10 次/分钟），scrypt 在 libuv 线程池异步执行，登录洪峰不阻塞事件循环；
 - **会话管理**：内存 256-bit token（30 天），HttpOnly + SameSite=Strict Cookie，修改密码/禁用 OTP 吊销全部会话；
 - **合规形态**：host-only 插件（零构建、零运行时依赖）+ 可选 client 半（设置面板，源码构建），主体全部经 dsh 官方扩展点（`ctx.effect`、`webServer.tapIndex`、`ctx.slots`）；唯有一项记录在案的安全例外——LAN trust（为域名/反代访问下模型设置页可用而对 connection 注册做最小介入，见 [TROUBLESHOOTING §1](docs/zh/TROUBLESHOOTING.md)）。
@@ -65,16 +65,16 @@ dsh plugin --profile web remove dsh-auth-gateway
 
 <table>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/onboarding.png" width="480" alt="引导页（设置个人密码）"><br/>引导页（初始密码登录后）</td>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/login.png" width="480" alt="登录（含 2FA 验证码）"><br/>登录（含 2FA 验证码）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/onboarding.png" width="480" alt="引导页（设置个人密码）"><br/>引导页（初始密码登录后）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/login.png" width="480" alt="登录（含 2FA 验证码）"><br/>登录（含 2FA 验证码）</td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/login-success.png" width="480" alt="2FA 登录成功"><br/>2FA 登录成功</td>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/otp-setup.png" width="480" alt="OTP 设置（QR 码）"><br/>OTP 设置（QR 码）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/login-success.png" width="480" alt="2FA 登录成功"><br/>2FA 登录成功</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/otp-setup.png" width="480" alt="OTP 设置（QR 码）"><br/>OTP 设置（QR 码）</td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/settings-menu.png" width="480" alt="设置菜单（含认证设置入口）"><br/>设置菜单（含"认证设置"入口）</td>
-<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/79692b4d9a47eadd1efca17c78d7cd2056bc8753/docs/assets/settings-auth.png" width="480" alt="认证设置面板"><br/>认证设置面板</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/settings-menu.png" width="480" alt="设置菜单（含认证设置入口）"><br/>设置菜单（含"认证设置"入口）</td>
+<td align="center"><img src="https://raw.githubusercontent.com/xbzbing/dsh-auth-gateway/4d0b404174496e71a05478904dd5c9d42f4ed0f1/docs/assets/settings-auth.png" width="480" alt="认证设置面板"><br/>认证设置面板</td>
 </tr>
 </table>
 
@@ -109,6 +109,13 @@ dsh plugin --profile web remove dsh-auth-gateway
 
 认证状态变更（启用/禁用 OTP、修改密码）均要求完整验证：2FA 激活时禁用 OTP 需当前密码 + 验证码或备份代码；未完成 2FA 的会话不能访问敏感端点。OTP 验证防重放（记录已接受时间步）、防伪造（`x-forwarded-for` 不计入来源）。**OTP 密钥在落盘前以 AES-256-GCM 密封**，读取需主密钥——默认自动生成 `auth-gateway/otp-master.key`（0600），也可经环境变量 `DSH_AUTH_GATEWAY_MASTER_KEY`（hex/base64，32 字节）注入以隔离磁盘泄露。登录审计只记录事件种类、来源 IP 与失败原因，不落任何凭据。完整威胁模型、已知限制与恢复路径见 [docs/zh/SECURITY.md](docs/zh/SECURITY.md)。
 
+## 本插件不做的事情
+
+以下需求在"单实例"前提下**无法真正实现**——它们的前提是进程/OS 强制的执行与存储隔离（独立 OS 账号、容器或沙盒），而本插件只是运行在 dsh 进程内的认证网关，提供不了这层隔离。列出它们是为了明确预期、避免误导：
+
+- **多账号登录 / 多租户**：dsh 是单用户工具——一个 Home、一份模型凭据，全部会话与数据（`sessions/`、`workspace/`、`.credentials.yaml`）都以运行 dsh 的 OS 账号权限存放在本地。网关叠加"账号体系"只能区分**谁在登录**（访问控制 + 审计），无法隔离**谁能看到什么**：任何通过认证的用户都能经 dsh 的工具执行读取同一 Home 下的全部会话与凭据。**没有 OS/容器/沙盒隔离就没有真正的多租户**——本插件不做，也无法做到。
+- **角色权限限制（用户/管理员）**：同理，角色只能在网关自身的 HTTP 路由层生效（例如限制网关管理功能），挡不住 dsh 内部的能力面——普通用户一旦通过认证门，即拥有该实例的完整能力（工具执行、会话读写、配置与凭据访问）。需要"普通用户受限"的场景请用 OS 级隔离的多实例部署并自行管理账号。本插件的职责是：**认证门禁（谁能进入）+ 拦截与审计（谁做了什么），不承担、也无法承担授权与隔离模型**。
+
 ## 文档
 
 | 文档 | 内容 |
@@ -125,6 +132,7 @@ dsh plugin --profile web remove dsh-auth-gateway
 
 - **@adra2n** — 实现 OTP 双因素认证（[PR #1](https://github.com/xbzbing/dsh-auth-gateway/pull/1)），并添加 OTP 密钥 AES-256-GCM 静态加密存储与解密路径错误分类（[PR #6](https://github.com/xbzbing/dsh-auth-gateway/pull/6)）；
 - **@meowtech** — 报告并初步实现了 dsh 新版本（rc8+ 配置平面收归 loopback）下 LAN 浏览器设置不可用问题的修复（[PR #7](https://github.com/xbzbing/dsh-auth-gateway/pull/7)）；该实现（loader 包装 + provide 劫持）随后被证实会破坏共存插件，本仓库已改用最小介入方案重写。
+- **@LuckVd** — 修复 dsh ≥ 0.1.2 上游浏览器认证（BrowserAuth）导致的转发 401（[PR #12](https://github.com/xbzbing/dsh-auth-gateway/pull/12)）：经官方 `credentials` 通道读取密钥并为回环一跳铸造同构 cookie，经评审补齐官方通道读取、轮换即时重铸、部署清单与双语文档后合入。
 
 ## 验证概览
 

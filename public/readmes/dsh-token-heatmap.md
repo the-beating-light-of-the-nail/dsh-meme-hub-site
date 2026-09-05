@@ -8,7 +8,7 @@ A DeepSeek Harness web plugin: a GitHub-style daily token-usage heatmap of the *
 
 新会话屏幕输入框正下方出现一张统计卡（**只在新会话显示**；已对话的会话不显示）：
 
-![热力图](https://raw.githubusercontent.com/KIDLi1412/dsh-token-heatmap/33cf375c95f40ad9951378ad93ac387a9d8c9706/docs/%E7%83%AD%E5%8A%9B%E5%9B%BE.jpg)
+![热力图](https://raw.githubusercontent.com/KIDLi1412/dsh-token-heatmap/1f8aca3e31c4c1731c154d84733b52528473a30b/docs/%E7%83%AD%E5%8A%9B%E5%9B%BE.jpg)
 
 - 📊 **自然年热力图**：GitHub 风格，覆盖所选自然年 1月–12月（可切换年份，`‹ 年份 ›` 选择器在统计行右侧，最多到当前年），列为周（周一起），行为星期（左侧标注一~日全部 7 天）；顶部月份标签按列跨度标注（左侧与格线对齐），今日之后的日期显示为空格。
 - 🎨 **六套配色**：绿色（经典 GitHub 风格）、蓝色、橙色、红色、紫色、青色，可在 设置 → 插件 → 插件配置 切换；颜色按**绝对阈值**分档（按天 token 数，非相对排名）：0 / <1M / 1M–10M / 10M–100M / ≥100M 共 5 级，图例悬停显示各档范围；61M/天 显示为第 3 级。悬停任意格子显示日期与精确 token 数。
@@ -21,7 +21,7 @@ A DeepSeek Harness web plugin: a GitHub-style daily token-usage heatmap of the *
 
 ## 安装 / Install
 
-需要 `web` profile（`@deepseek-ai/dsh >= 0.1.0-rc.6`）与 `pnpm`。
+需要 `web` profile 与 `pnpm`。DSH 兼容版本见下方「兼容性 / Compatibility」；运行于 `@deepseek-ai/dsh >= 0.1.2-alpha.4`（0.1.2 版本线）。
 
 从 npm 安装：
 
@@ -58,6 +58,14 @@ dsh plugin --profile web remove @kidli1412/dsh-token-heatmap
 - 仅回环地址可访问数据端点，凭据不外发；插件只读，不修改任何会话数据。
 - 无会话/无工作区时（`input.dock` 需要会话上下文）统计卡不渲染。
 - 服务端与客户端都随 `dsh web` 启动加载，因此新增/更新插件后需要重启。
+
+## 兼容性 / Compatibility
+
+- **DSH**：manifest 通过 `dsh.compatibility.dshReleases` 将官方最新三个版本 `0.1.2-alpha.4`、`0.1.2-alpha.5`、`0.1.2-rc.1` 逐项声明为 `compatible`（DSH STORE 的精确逐版本兼容证据；仅范围声明不会恢复上架）。插件使用的客户端注入（`dsh-api-remotes` / `dsh-client-connection` / `dsh-client-locale` / `dsh-client-ui-conversation` / `dsh-client-ui-settings`）与 Host 服务（`settings` namespace、`webServer` 精确路由）在这条版本线上保持稳定。
+- **Node**：`^22.19.0 || >=24.0.0`（与 DSH 一致）。
+- **宿主要求（dsh-market 显示）**：`engines.dsh: ^0.1.2-rc.1`，并将运行时依赖的 lockstep 宿主包声明为 `peerDependencies`（`dsh-host-webserver` / `dsh-session` / `dsh-session-persistence` / `dsh-settings` 与客户端模块 `dsh-api-remotes` / `dsh-client-connection` / `dsh-client-locale` / `dsh-client-ui-conversation` / `dsh-client-ui-settings`，均为 `^0.1.2-rc.1`）；插件市场会据此显示"宿主要求"并判断与当前 DSH 是否匹配。
+- **依赖**：`@deepseek-ai/dsh-settings` 自 0.1.3 起提升为 `^0.1.2-rc.1`、`@deepseek-ai/schemastery` 提升为 `^3.18.2`，与 DSH 0.1.2 版本线对齐。npm 的 prerelease 解析规则下 `^0.1.0-rc.7` 不会解析到 `0.1.2-rc.1`（只会装 `0.1.0-rc.8`），因此较低的范围会拉到与新版 DSH 不同 train 的 settings 副本。
+- **0.1.4（DSH 0.1.2 适配）**：rc.1 起 live session 不再携带 `.events` 数组（改用 `session.seq` + `session.eventAt(seq)`，与官方 `dsh-token-meter` 相同），新会话判断从 `composerPhase === "blank"` 改为布尔 `session.blank`；`sessionPersistence` 在 rc.1 不再提供会话枚举（list/listSnapshots 已移除），持久化历史的增量刷新降级为保留已有缓存、只累计 live 会话。客户端注入模块列表同步为新架构模块（见上）。
 
 ## License
 

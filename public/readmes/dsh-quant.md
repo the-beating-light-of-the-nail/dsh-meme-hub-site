@@ -1,7 +1,7 @@
 # 🐳 dsh-quant — The Everything-Plugin Quant OS
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/bbc422d48328d4652ef7b8225bfafd2ae4158983/assets/dsh-quant-open-source-hero.png" alt="dsh-quant open-source quant research hero" width="100%">
+  <img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b67f215de93e6cde2af35a18524d2a7c36c08e64/assets/dsh-quant-open-source-hero.png" alt="dsh-quant open-source quant research hero" width="100%">
 </p>
 
 📣 **Announcement archive**: [2026-09-01 X open-source launch copy](https://github.com/pengpengyi92/dsh-quant/blob/master/ann/2026-09-01_x_open_source_launch.md)
@@ -126,7 +126,7 @@ Agent one-glance guide: [mcp/AGENT_GUIDE.md](mcp/AGENT_GUIDE.md)
 
 ## 🖥️ UI Workbench (dsh-quant-ui)
 
-![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/bbc422d48328d4652ef7b8225bfafd2ae4158983/demos/ui-demo-preview.png)
+![dsh-quant UI](https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b67f215de93e6cde2af35a18524d2a7c36c08e64/demos/ui-demo-preview.png)
 
 [dsh-quant-ui](https://github.com/pengpengyi92/dsh-quant-ui): candlesticks + MA
 overlays + trade markers, equity curves, fund NAV / management-fee / performance-fee
@@ -446,7 +446,7 @@ cd deepseek-harness && pnpm exec tsx ../quant-indicators/consumer-test/boot.ts
 
 If dsh-quant helps your research, a ⭐ makes the project visible to more dsh users.
 
-<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/bbc422d48328d4652ef7b8225bfafd2ae4158983/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/pengpengyi92/dsh-quant/b67f215de93e6cde2af35a18524d2a7c36c08e64/demos/whale-trading.png" alt="dsh whale trading on a holographic screen" width="420" /></p>
 
 This whale stands for DeepSeek Harness (dsh) — trading on its holographic screen 🐋
 

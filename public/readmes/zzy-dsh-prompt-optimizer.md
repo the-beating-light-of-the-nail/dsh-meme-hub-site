@@ -23,17 +23,17 @@ DeepSeek Harness（DSH）的提示词优化插件。插件在对话输入框增�
 
 **输入框入口**
 
-<img src="https://raw.githubusercontent.com/zhengzeyong9527-droid/zzy-dsh-prompt-optimizer/f1d00f3445abc9c39eeeb4b6d29859736d139c1a/assets/screenshots/composer-action.png" alt="提示词优化操作入口" width="520">
+<img src="https://raw.githubusercontent.com/zhengzeyong9527-droid/zzy-dsh-prompt-optimizer/8901f79c8f6f704ccdcfdaf4d13b507389e3aec2/assets/screenshots/composer-action.png" alt="提示词优化操作入口" width="520">
 
 **高级设置**
 
 高级设置按优化策略、会话上下文、工作区文档上下文和模型限制分段展示，避免长说明和输入项交错。
 
-<img src="https://raw.githubusercontent.com/zhengzeyong9527-droid/zzy-dsh-prompt-optimizer/f1d00f3445abc9c39eeeb4b6d29859736d139c1a/assets/screenshots/advanced-settings.png" alt="高级设置" width="520">
+<img src="https://raw.githubusercontent.com/zhengzeyong9527-droid/zzy-dsh-prompt-optimizer/8901f79c8f6f704ccdcfdaf4d13b507389e3aec2/assets/screenshots/advanced-settings.png" alt="高级设置" width="520">
 
 **模型与执行限制**
 
-<img src="https://raw.githubusercontent.com/zhengzeyong9527-droid/zzy-dsh-prompt-optimizer/f1d00f3445abc9c39eeeb4b6d29859736d139c1a/assets/screenshots/model-limits.png" alt="模型与执行限制" width="520">
+<img src="https://raw.githubusercontent.com/zhengzeyong9527-droid/zzy-dsh-prompt-optimizer/8901f79c8f6f704ccdcfdaf4d13b507389e3aec2/assets/screenshots/model-limits.png" alt="模型与执行限制" width="520">
 
 ## 优化模式
 
@@ -56,6 +56,10 @@ dsh plugin --profile web add zzy-dsh-prompt-optimizer
 ```
 
 重启现有 DSH Web 进程并刷新当前 URL。
+
+## 评估
+
+可复现的 30 条盲化 A/B 测试协议、脱敏输入和独立评估结果见 [tests/evaluation/report.md](tests/evaluation/report.md) 与 [tests/evaluation/conclusion.md](tests/evaluation/conclusion.md)。
 
 ## 许可证
 

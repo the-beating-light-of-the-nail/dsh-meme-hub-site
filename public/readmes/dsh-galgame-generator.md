@@ -1,5 +1,7 @@
 # dsh-galgame-generator
 
+**版本：0.4.0**
+
 DeepSeek Harness (DSH) 的 **Galgame 生成器**：提供一份剧本文档 + 立绘/背景/音乐素材，即可生成一个可玩的视觉小说（Galgame）网页。
 新增一个GalGame生成模式，在这个模式的工作区下提供一份剧本文档 + 立绘/CG/背景/音乐素材等，即可生成Galgame网页。
 
@@ -18,6 +20,7 @@ DeepSeek Harness (DSH) 的 **Galgame 生成器**：提供一份剧本文档 + �
 - **背景音乐**：`[bgm 音乐.mp3]` 播放（循环）、`[bgm off]` / `[bgm stop]` 停止、`[bgm 音乐.mp3 0.5]` 可调音量
 - **动画与 CG**：`[op]` 开局动画、`[ed]` 结束动画、`[cg]` CG 插图动画（`img_cg/`，支持 gif / svg / mp4 / webm / avi）
 - **可配置存档数**：`[存档 N]` 设置槽位数（1–20，默认 9）；进度、立绘、表情、背景、BGM、变量全保存；标题页可直接进入读档
+- **可自定义开始界面（标题页）**：剧本里的 `## 开始界面` 区可设置标题背景/标题音乐、是否展示人物、布局（立绘大图站位 / 头像排）、出场人物与站位；不写则保持默认样式
 - **播放器**：打字机、自动/快进、历史记录、结局画面
 - **两个模型工具**：`galgame_scan`（扫描素材）、`galgame_build`（解析生成）
 
@@ -30,6 +33,7 @@ DeepSeek Harness (DSH) 的 **Galgame 生成器**：提供一份剧本文档 + �
 | 背景图片 | `img_bg/`（如 `img_bg/classroom.png`） |
 | 背景音乐 | `audio/`（如 `audio/bgm.mp3`） |
 | 开局/结束动画、CG 插图 | `img_cg/`（如 `img_cg/opening.gif`、`img_cg/cg1.gif`、`img_cg/ending.mp4`） |
+| 开始界面素材（标题背景/标题音乐） | `img_ui/`（可选，如 `img_ui/title.png`） |
 
 剧本示例：
 
@@ -43,6 +47,12 @@ DeepSeek Harness (DSH) 的 **Galgame 生成器**：提供一份剧本文档 + �
 ## 背景
 教室: img_bg/classroom.png
 天台: img_bg/rooftop.png
+
+## 开始界面          ← 可选：自定义标题页（不写则用默认样式）
+背景: img_ui/title.png
+音乐: audio/title.mp3
+布局: 立绘
+人物: 小美 @ 右, 小明 @ 左
 
 ## 剧本
 [bg 教室]
@@ -77,7 +87,7 @@ node scripts/check.mjs   # 语法 + manifest + bundle 契约自检
 ```bash
 pnpm pack
 # 把 dsh-galgame-generator-*.tgz 复制到 web profile 并添加依赖：
-#   例如在 ~/.dsh/profiles/web 下：pnpm add ../path/to/dsh-galgame-generator-0.1.0.tgz
+#   例如在 ~/.dsh/profiles/web 下：pnpm add ../path/to/dsh-galgame-generator-0.4.0.tgz
 # 然后重启 `dsh web`。
 ```
 
@@ -107,6 +117,7 @@ pnpm pack
 | `名字: 台词` | 角色台词（自动显示该角色立绘） |
 | `（旁白）` 或纯文本行 | 旁白（立绘全部淡出） |
 | `[bg 背景名]` | 切换背景 |
+| `## 开始界面`（可选区） | 自定义标题页：`背景: img_ui/title.png`、`音乐: …`、`布局: 立绘|头像`、`显示人物: 是|否`、`人物: 小美 @ 右`（不写=默认样式） |
 | `[show 名字 @ left/center/right]` / `[hide 名字]` | 显式显示/隐藏并锁定立绘 |
 | `[bgm 文件.mp3]` / `[bgm off]` / `[bgm 文件.mp3 0.5]` | 音乐播放/停止/音量 |
 | `[变量 名字 = 值]` / `[变量 名字 + 1]` | 变量赋值/增减 |

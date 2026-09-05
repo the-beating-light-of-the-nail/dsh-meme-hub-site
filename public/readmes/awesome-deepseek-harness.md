@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
- <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/1d01cb610161670141a4e7bd578f274ae32ec2c7/assets/banner.jpg" alt="Awesome DeepSeek Harness">
+ <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/e529f7d4620ac85be59038df6604aaf483eaf8d7/assets/banner.jpg" alt="Awesome DeepSeek Harness">
 </div>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -233,6 +233,7 @@ Management panel: Settings → Plugins.
 
 ## UI, Themes & Interaction
 
+- [fengb3/dsh-theme-macintosh](https://github.com/fengb3/dsh-theme-macintosh) - Classic Macintosh (System 7) pixel theme: desktop pattern canvas, Finder sidebar, monochrome buttons and dialogs, light/dark support.
 - [dsh-view-manager](https://github.com/runcat-tommy/dsh-view-manager) - Manage DeepSeek Harness Web GUI session view tabs (Chat / Trajectory): enable, hide, reorder and rename labels, locale-aware (zh/en), with npm update reminders.
 - [dsh-history-question-nav](https://github.com/TropicWiden/dsh-history-question-nav) - Right-side Questions panel that lists the current session's user questions and scrolls to the matching answer.
 - [dsh-chat-timeline-plus](https://github.com/NIU-001-LIU/dsh-chat-timeline-plus) - Message timeline rail with hover Q&A preview (question + reply digest card), panel pinning, day separators, and bookmarks.
@@ -536,6 +537,7 @@ Management panel: Settings → Plugins.
 - [dsh-checkpoint-rewind](https://github.com/PerryLink/dsh-checkpoint-rewind) - Claude Code /rewind for DSH: git-first workspace snapshots before every mutating tool, turn-boundary session forks, and a one-shot /rewind command that restores files and forks the session back to a checkpoint.
 - [dsh-lsp-actions](https://github.com/PerryLink/dsh-lsp-actions) - LSP action surface: diagnostics, formatting, completion, code actions, symbols, signature help, inlay hints, and rename tools over real language servers.
 - [dsh-git-status](https://github.com/Wongzexu/dsh-git-status) - Specialized in Git branch and status handling: a Git status drawer with a commit DAG lane graph, uncommitted changes/stash rows, inline diffs, and right-click branch/tag operations.
+- [nateEc/dsh-gitLens](https://github.com/nateEc/dsh-gitLens) - Workspace-scoped Git graph with history search and diffs, multi-worktree WIP and agent-session views, and guarded Git operations with recovery refs.
 - [Starfie1d1272/dsh-github-skills](https://github.com/Starfie1d1272/dsh-github-skills) - Skill-first GitHub workflows for DSH covering PR triage, review feedback, GitHub Actions diagnosis, and safe draft-PR publishing over existing capabilities.
 - [dsh-repo-context](https://github.com/qing3a/dsh-repo-context) - Injects git status and repo conventions into the system prompt via the official system-prompt seam.
 - [dsh-test-drive](https://github.com/PerryLink/dsh-test-drive) - Isolated install-smoke-uninstall test drives for DSH plugins in a throwaway DSH_HOME (install → patch check → launch smoke → uninstall → cleanup), emitting structured dsh-test-drive/v1 results for scoring pipelines.
@@ -751,6 +753,7 @@ Management panel: Settings → Plugins.
 - [dsh-desktop-launcher](https://github.com/becomeless/dsh-desktop-launcher) - Windows desktop launcher: double-click to start dsh Web with zero console windows, auto-stop on close, session resume, one-line install.
 - [dsh-quickstart](https://github.com/qzhqzh/dsh-quickstart) - Windows desktop launcher (zero-dependency npm CLI): double-click a desktop shortcut to start dsh web with zero console windows and auto-open the browser once ready.
 - [oxgbl/dsh-no-cmd-launcher](https://github.com/oxgbl/dsh-no-cmd-launcher) - Windows background launcher: run DSH Web without a command window, with desktop start/stop shortcuts and npm/CLI installation.
+- [dsh-dock](https://github.com/UnknowCao/dsh-dock) - Windows desktop launcher plugin: prebuilt whale exe opens the DSH Web UI as a fullscreen Edge app (token health gate, cold-start card); a sidebar More menu adds Settings/Reload/Full Exit, which stops the server and closes the window.
 - [dsh-win32](https://github.com/sjh9714/dsh-win32) - Native Windows shell and Workspace Write sandbox presets for DSH without WSL, using busybox-w32 for sandboxed sessions and Git Bash for unrestricted sessions, with setup diagnostics.
 - [dshp](https://github.com/asdf17128/dshp) - Profile manager: list, create, clone and diff profiles, and export a whole setup (bundle order, plugin versions, patch) as one portable file.
 - [dsh-session-cleaner](https://github.com/fountunt/dsh-session-cleaner) - Delete sessions from a running web runtime: live store, workspace records, and on-disk artifacts (no restart needed).

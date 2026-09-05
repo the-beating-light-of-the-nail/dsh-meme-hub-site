@@ -2,7 +2,7 @@
 
 **Agent-driven kanban boards for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — one board per workspace, one task session per item.**
 
-![A kanban board in the DSH web UI: five columns, one card per item, latest agent activity on every card](https://raw.githubusercontent.com/thomasvvugt/dsh-kanban-flow/5e30ef124ff4a1af29476613748fc76f9b29becf/assets/screenshot.png)
+![A kanban board in the DSH web UI: five columns, one card per item, latest agent activity on every card](https://raw.githubusercontent.com/thomasvvugt/dsh-kanban-flow/450808753be05a20cafed167da349afade051304/assets/screenshot.png)
 
 [![CI](https://github.com/thomasvvugt/dsh-kanban-flow/actions/workflows/ci.yml/badge.svg)](https://github.com/thomasvvugt/dsh-kanban-flow/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -51,6 +51,7 @@ Replying in the item's task session while it is in Review sends the agent back t
 **One agent session per item**
 - Pickup creates a task session named `CODE-12 · Item name` — click a card to jump straight into it
 - Progress narration lives in that session; each card shows a compact latest-activity line ("harness moved to Done · 3 seconds ago")
+- **Hover a card for the agent's latest status**: agents set a short status note (`kanbanflow_set_status`) at the end of every turn — what's done, what's next or what they need from you. It appears in a tooltip on hover (and in the item dialog); cards without a status yet show no tooltip
 - Session-less workspaces aren't left out: their board pins into the current conversation's Board tab (header shows the board's code and workspace) and goes native once that workspace gets its own conversation
 
 **Yours to tune**
@@ -67,7 +68,7 @@ Replying in the item's task session while it is in Review sends the agent back t
 ## Agent tools
 
 `kanbanflow_get` · `kanbanflow_get_item` · `kanbanflow_create_item` · `kanbanflow_update_item` ·
-`kanbanflow_move_item` · `kanbanflow_delete_item` · `kanbanflow_set_code`
+`kanbanflow_move_item` · `kanbanflow_delete_item` · `kanbanflow_set_status` · `kanbanflow_set_code`
 
 ## Storage & trust
 

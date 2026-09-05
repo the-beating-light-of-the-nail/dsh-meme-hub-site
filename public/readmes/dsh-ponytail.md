@@ -4,6 +4,8 @@
 [![GitHub release](https://img.shields.io/github/v/release/gongyijie85/dsh-ponytail)](https://github.com/gongyijie85/dsh-ponytail/releases)
 [![CI](https://github.com/gongyijie85/dsh-ponytail/actions/workflows/ci.yml/badge.svg)](https://github.com/gongyijie85/dsh-ponytail/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2%2B-4d6bfe)](https://github.com/gongyijie85/dsh-ponytail)
+[![-最懒资深](https://img.shields.io/badge/-最懒资深-4d6bfe)]() [![-防过度工程](https://img.shields.io/badge/-防过度工程-4d6bfe)]() [![-YAGNI](https://img.shields.io/badge/-YAGNI-4d6bfe)]() [![-最小代码](https://img.shields.io/badge/-最小代码-4d6bfe)]()
 
 <div align="center">
 
@@ -37,6 +39,8 @@
 | `ponytail-help` | 全部模式/技能/命令的速查卡 |
 
 ## 安装
+
+**支持的 DSH 版本**：`>=0.1.1-rc.2`（已在上线版本验证，兼容更高版本）。
 
 ```sh
 # npm(包名 dsh-ponytail 已被同名项目占用,本包发布为 dsh-ponytail-skills)
