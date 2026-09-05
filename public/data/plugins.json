@@ -58937,18 +58937,18 @@
    "name": "dsh-image-gen",
    "repo": "shanliuling/dsh-image-gen",
    "url": "https://github.com/shanliuling/dsh-image-gen",
-   "description_zh": "为 DeepSeek Harness 提供原生对话生图能力：直接让 Agent 画图，插件自动完成生成并把结果保留在当前会话中。",
-   "description_en": "Native conversational image generation for DeepSeek Harness: ask the agent to create an image, and it handles generation and keeps the result directly in the conversation.",
+   "description_zh": "DSH 原生 AI 图像创作套件：对话生图与连续修图、工作台批量创作与多模型横向对比（Gemini/OpenAI/Seedream/DashScope/本地 ComfyUI），内置 500+ Prompt 灵感库与图库管理，BYOK 自带 Key",
+   "description_en": "A native AI image-creation suite for DSH: conversational generation and iterative editing, a studio for batch creation and advanced canvas, side-by-side model comparison (Gemini/OpenAI/Seedream/DashScope/local ComfyUI), plus a 500+ prompt library and gallery — BYOK",
    "stars": 316,
    "forks": 18,
-   "category_zh": "Agent 与自动化",
-   "category_en": "Agents & Automation",
+   "category_zh": "视觉与多模态",
+   "category_en": "Vision & Multimodal",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
    "meme_caption_en": "",
    "image": null,
-   "install_cmd": "dsh plugin --profile web add github:shanliuling/dsh-image-gen",
+   "install_cmd": "dsh plugin --profile web add dsh-image-gen",
    "pushed_at": "2026-09-04",
    "license": "MIT",
    "language": "TypeScript",
@@ -58966,8 +58966,8 @@
     "prompt-library",
     "seedream"
    ],
-   "description_zh_TW": "為 DeepSeek Harness 提供原生對話生圖能力：直接讓 Agent 畫圖，外掛自動完成生成並把結果保留在當前會話中。",
-   "category_zh_TW": "Agent 與自動化",
+   "description_zh_TW": "DSH 原生 AI 圖像創作套件：對話生圖與連續修圖、工作台批次創作與多模型橫向對比（Gemini/OpenAI/Seedream/DashScope/本機 ComfyUI），內建 500+ Prompt 靈感庫與圖庫管理，BYOK 自帶 Key",
+   "category_zh_TW": "視覺與多模態",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -59000,8 +59000,7 @@
      "w": null,
      "h": null
     }
-   ],
-   "auto_ingested": true
+   ]
   },
   {
    "slug": "DSH-taskboard",
@@ -77198,7 +77197,38 @@
    "description_zh_TW": "DSH Web UI 桌面寵物：97 段手繪風透明動畫隨 Agent 動作無縫演出（打瞌睡、玩魔術方塊、吃火鍋…），螢幕漫遊、拖拽投擲物理反彈、右鍵選單點播動作、餘額氣泡、多開，還可用 AI 影片素材鏈自造寵物",
    "category_zh_TW": "賽博寵物",
    "meme_caption_zh_TW": "Agent 打字它打瞌睡，Agent 寫程式它開吃火鍋——97 段手繪動畫即時跟演，扔出去還能 Q 彈落地",
-   "screenshots": []
+   "screenshots": [
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-1.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-2.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-3.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-4.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-5.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/a8c2cd0c8b76aaef4d8b4bc4ce7f701d59f9a540/assets/screenshots/dsh-pet-running-6.png",
+     "w": null,
+     "h": null
+    }
+   ]
   },
   {
    "slug": "dsh-ths-holdings",
