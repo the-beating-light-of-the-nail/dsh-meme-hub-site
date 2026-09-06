@@ -1,0 +1,47 @@
+name: Build Site Artifact
+
+# 按需构建静态产物（不部署）。本机内存 ~1.6G 禁止 SSG（AGENTS.md 铁律），故：
+#   部署 = 本工作流 workflow_dispatch 构建 nuxt generate
+#        → Actions 页或 gh api 下载 site-output artifact 解压到 .output/public/
+#        → 本机 `npx wrangler deploy` 直传（wrangler.jsonc, OAuth 登录, custom domain）。
+# 不做 CI 内直接部署：Cloudflare 侧没有可长期使用的 API Token（本机是 wrangler
+# OAuth 登录，token 每日过期），塞进 secrets 会静默失效，故产物回本机再传。
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: build-site-artifact
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # 只在正式仓运行
+    if: github.repository == 'the-beating-light-of-the-nail/dsh-meme-hub-site'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate static site (nuxt generate)
+        run: npm run generate
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Upload .output/public as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-output
+          path: .output/public/
+          retention-days: 3
+          compression-level: 6
