@@ -106,6 +106,22 @@ const editorial = computed(() => {
   if (locale.value === 'zh' || locale.value === 'zh-TW') return p.editorial_zh || p.editorial_en || ''
   return p.editorial_en || ''
 })
+
+// 社区发布页(人工字段;平台名为品牌词按语言取字面,未登记平台回退域名,无数据整组不渲染)
+const COMMUNITY_PLATFORMS: Record<string, { emoji: string, zh: string, en: string }> = {
+  xiaohongshu: { emoji: '📕', zh: '小红书笔记', en: 'Xiaohongshu note' },
+  bilibili: { emoji: '📺', zh: 'B站视频', en: 'Bilibili video' },
+  tieba: { emoji: '💬', zh: '贴吧帖子', en: 'Tieba thread' },
+  zhihu: { emoji: '🧠', zh: '知乎文章', en: 'Zhihu article' },
+}
+const communityLinks = computed(() => (plugin.community_links ?? []).map((link) => {
+  const meta = COMMUNITY_PLATFORMS[link.platform]
+  const isZh = locale.value === 'zh' || locale.value === 'zh-TW'
+  let label = link.platform
+  if (meta) label = isZh ? meta.zh : meta.en
+  else { try { label = new URL(link.url).hostname } catch { /* 数据自带平台名兜底 */ } }
+  return { url: link.url, emoji: meta?.emoji ?? '🔗', label }
+}))
 </script>
 
 <template>
@@ -130,6 +146,10 @@ const editorial = computed(() => {
         <span v-if="isMeme || plugin.is_meme" class="chip orange">🔥 meme</span>
         <a class="btn" :href="plugin.url" target="_blank" rel="noopener">{{ t('plugin.viewOnGithub') }} ↗</a>
         <a v-if="plugin.video_url" class="btn" :href="plugin.video_url" target="_blank" rel="noopener">📺 {{ t('plugin.watchDemo') }} ↗</a>
+        <a
+          v-for="link in communityLinks" :key="link.url" class="btn"
+          :href="link.url" target="_blank" rel="noopener"
+        >{{ link.emoji }} {{ link.label }} ↗</a>
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-09-05",
- "count": 2703,
+ "updatedAt": "2026-09-06",
+ "count": 2704,
  "plugins": [
   {
    "slug": "dsh-web-ui",
@@ -114108,6 +114108,39 @@
     }
    ],
    "auto_ingested": true
+  },
+  {
+   "slug": "deepseek-harness-galgame",
+   "name": "deepseek-harness-galgame",
+   "repo": "FynnReinhardt/deepseek-harness-galgame",
+   "url": "https://github.com/FynnReinhardt/deepseek-harness-galgame",
+   "description_zh": "把 DSH 变成 galgame 的开箱即用套件：导入小说/设定集自动整理角色建卡，DSH 切换人格沉浸扮演，按剧情语义检索设定库，对话中自动生成角色立绘（Forge Neo + Anima 模型，Danbooru 标签库助力提示词），立绘侧边栏同步演出，也能当自动生图机用",
+   "description_en": "An out-of-the-box kit that turns DSH into a galgame: feed it a novel or lorebook and it auto-builds character cards, DSH role-plays each character via persona switching and retrieves lore by plot, auto-generating standing art mid-conversation (Forge Neo + Anima, with a Danbooru tag database to sharpen prompts) shown live in the sidebar — or repurpose the whole rig as an auto-illustrator",
+   "stars": 1,
+   "forks": 0,
+   "category_zh": "摸鱼游戏",
+   "category_en": "Slack-Off Zone",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "git clone https://github.com/FynnReinhardt/deepseek-harness-galgame",
+   "pushed_at": "2026-08-18",
+   "license": "MIT",
+   "language": "Python",
+   "has_manifest": false,
+   "topics": [],
+   "description_zh_TW": "把 DSH 變成 galgame 的開箱即用套件：匯入小說／設定集自動整理角色建卡，DSH 切換人格沉浸扮演，按劇情語意檢索設定庫，對話中自動生成角色立繪（Forge Neo + Anima 模型，Danbooru 標籤庫助力提示詞），立繪側邊欄同步演出，也能當自動生圖機用",
+   "category_zh_TW": "摸魚遊戲",
+   "meme_caption_zh_TW": "",
+   "screenshots": [],
+   "community_links": [
+    {
+     "platform": "xiaohongshu",
+     "url": "https://xhslink.cn/o/4Q5QIAx7WUs"
+    }
+   ]
   }
  ]
 }

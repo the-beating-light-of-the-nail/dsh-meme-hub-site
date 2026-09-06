@@ -34,6 +34,8 @@ export interface DshPlugin {
   screenshots?: PluginScreenshot[]
   install_cmd: string
   video_url?: string
+  /** 作者社区发布页（小红书/B站/贴吧等，人工收录字段，缺失则详情页不渲染） */
+  community_links?: { platform: string, url: string }[]
   pushed_at: string
   license?: string | null
   language?: string | null
