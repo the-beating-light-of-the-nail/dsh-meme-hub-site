@@ -18,7 +18,8 @@ DeepSeek Harness 插件:在会话输入框(发送栏)旁提供一个「优化」
 
 - [功能](#功能)
 - [安装](#安装)
-  - [从 Release 安装(推荐,免构建)](#从-release-安装推荐免构建)
+  - [从 npm 安装(推荐,最简)](#从-npm-安装推荐最简)
+  - [从 Release 安装(tarball,免构建)](#从-release-安装tarball免构建)
   - [本地源码安装(tarball)](#本地源码安装tarball)
   - [从 GitHub 安装](#从-github-安装)
   - [卸载](#卸载)
@@ -33,12 +34,12 @@ DeepSeek Harness 插件:在会话输入框(发送栏)旁提供一个「优化」
 
 > 🐣 **第一次用 dsh 插件?** 直接看[小白版指南](README.simple.md):三步装好、点按钮就用,全程大白话。
 
-![结果面板:五维诊断与优化稿流式上屏,可替换/撤回/复制;徽章显示实际路由与用时](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/optimize-panel.png)
+![结果面板:五维诊断与优化稿流式上屏,可替换/撤回/复制;徽章显示实际路由与用时](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/878e9b6885ec9b221f1ef40a72bc6a73ce39296a/docs/screenshots/optimize-panel.png)
 
 | | |
 |---|---|
-| ![发送栏空闲态:✨ 优化按钮位于模型选择旁,空输入时禁用](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/composer-idle.png) | ![面板错误态:上游模型错误完整透传,可一键重试](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/panel-error.png) |
-| ![设置卡折叠态:标题栏显示「模型 · 模式」关键摘要](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/settings-collapsed.png) | ![设置卡展开态:模型 / 调用参数 / 上下文 三组配置](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/ea683dc3da23bbbd9c0b9caca9cb706a453d1bd4/docs/screenshots/settings-expanded.png) |
+| ![发送栏空闲态:✨ 优化按钮位于模型选择旁,空输入时禁用](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/878e9b6885ec9b221f1ef40a72bc6a73ce39296a/docs/screenshots/composer-idle.png) | ![面板错误态:上游模型错误完整透传,可一键重试](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/878e9b6885ec9b221f1ef40a72bc6a73ce39296a/docs/screenshots/panel-error.png) |
+| ![设置卡折叠态:标题栏显示「模型 · 模式」关键摘要](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/878e9b6885ec9b221f1ef40a72bc6a73ce39296a/docs/screenshots/settings-collapsed.png) | ![设置卡展开态:模型 / 调用参数 / 上下文 三组配置](https://raw.githubusercontent.com/Y1X1n/dsh-prompt-optimizer/878e9b6885ec9b221f1ef40a72bc6a73ce39296a/docs/screenshots/settings-expanded.png) |
 
 ## 功能
 
@@ -65,14 +66,19 @@ DeepSeek Harness 插件:在会话输入框(发送栏)旁提供一个「优化」
 
 前提:已安装 `dsh` CLI(`npx @deepseek-ai/dsh web` 可用的环境)。
 
-### 从 Release 安装(推荐,免构建)
+### 从 npm 安装(推荐,最简)
 
 ```sh
-# 下载 y1x1n-dsh-prompt-optimizer.tgz(始终指向最新版),再安装本地文件
-dsh plugin --profile web add ./y1x1n-dsh-prompt-optimizer.tgz
+dsh plugin --profile web add @y1x1n/dsh-prompt-optimizer
 ```
 
-下载地址:https://github.com/Y1X1n/dsh-prompt-optimizer/releases/latest/download/y1x1n-dsh-prompt-optimizer.tgz
+### 从 Release 安装(tarball,免构建)
+
+到 [Releases 页面](https://github.com/Y1X1n/dsh-prompt-optimizer/releases/latest) 下载 `y1x1n-dsh-prompt-optimizer-<版本号>.tgz`,再安装本地文件:
+
+```sh
+dsh plugin --profile web add ./y1x1n-dsh-prompt-optimizer-<版本号>.tgz
+```
 
 ### 本地源码安装(tarball)
 
@@ -103,7 +109,20 @@ dsh plugin --profile web remove @y1x1n/dsh-prompt-optimizer
 
 ## 兼容性
 
-- 开发基线:`@deepseek-ai/*` **0.1.0-rc.7**(与 `npx @deepseek-ai/dsh@0.1.0-rc.7` 内置包一致);已在 **0.1.0-rc.8** 运行时实测通过(2026-08-20,Windows,真实 profile 安装 + Web 路由/客户端 bundle/会话历史 RPC/端到端 LLM 调用),并在 **0.1.1-rc.2** 上复测通过(2026-08-27,Windows:`--dump-config` 组合层、路由注册、client bundle 均正常)。
+> **当前版本(v0.3.16)适配 DeepSeek Harness**:
+>
+> | dsh 版本 | 优化路由 / 模型调用 | 设置页(含 GitHub 入口) | 发送栏按钮 / 结果面板 |
+> |---|---|---|---|
+> | **0.1.2-rc.1 / 0.1.2-alpha.5** | ✅ 实测 | ✅ 实测 | ✅ 实测 |
+> | **0.1.1-rc.2 及以下**(0.1.0-rc.7+) | ✅ 实测 | ✅ 实测 | ✅ 实测 |
+>
+> 同一份构建覆盖 0.1.0-rc.7 至 0.1.2 全线;此标注自 v0.3.15 起在每个 Release 说明中固定维护,更早 Release 的说明已回溯补注。
+
+- 开发基线:`@deepseek-ai/*` **0.1.0-rc.7**;已实测通过 **0.1.0-rc.8**(2026-08-20,Windows,真实 profile 安装 + Web 路由/客户端 bundle/会话历史 RPC/端到端 LLM 调用)、复测通过 **0.1.1-rc.2**(2026-08-27)、适配并通过 **0.1.2-rc.1 与 0.1.2-alpha.5**(2026-09-05/06,真实 profile 端到端冒烟:组合层注入、路由 SSE、client bundle、发送栏按钮与结果面板、设置卡片)。
+- 已在 **macOS** 端通过自动化实测(2026-09-02,macOS 26.5(Darwin 25.5.0),Node.js v26.0.0,`npm install --legacy-peer-deps` 后 `sync:types` / `typecheck` / `build` / `npm test` 全部通过,62 项测试全绿);CI 现同时在 ubuntu-latest 与 macos-latest 上跑 typecheck + 全量测试(@ruijiaang-lab,#3)。
+- **dsh-settings API 兼容层**:0.1.2 线重写了设置 API(独立函数 `installSettingsSection` 移除,改为 `ctx.settings` 服务的 `installSection` 方法)。0.3.16+ 运行时按能力探测自动分派:新 API 存在则走新接口,否则内联等价实现(register+watch+卸载回落),settings 服务整体缺席时回落组合层配置。
+- **客户端槽位 props 双形态**:0.1.2 起 composer 槽位改为 session scope,组件经 standard hooks(`useInput`/`useSession`)读取会话与草稿状态,注册需采用「注入回调内 scope 化注册 + `inject(sessionId)` 钩子」的官方双层形态。组件按 props 形态自动分派(0.1.2 走 hooks,旧版读直传快照),两种宿主共用同一份构建。
+- **client bundle 注册 id**:`lib/client.js` 的 loader id 必须等于插件 npm 包名(宿主 client-modules 按包名校验注册);client 注入列表已随 0.1.2 移除已合并的 `dsh-client-runtime`。
 - HTTP 载体服务名在发布版间漂移过(npm 0.0.1-rc.x 类型包叫 `httpServer`,0.1.0-rc.x 运行时叫 `webServer`):本插件用 `ctx.inject` 同时等待两个名字,且不做静态硬依赖——即使服务名再次变化,也只会使本插件的路由不注册(10 秒后日志告警),不会拖垮整个 Harness 启动。
 - **客户端协议口径**:`/dsh-prompt-optimizer/optimize` 预校验失败返回 400/405/409/413(普通 JSON),成功后进入 SSE 流,模型错误经 `error` 事件传达;`/dsh-prompt-optimizer/test-model` **无论成败一律 HTTP 200**,由 body 的 `ok` 字段区分(探活是应用层语义,刻意不走传输层状态码)——对接方请以 `ok` 为准。
 - 客户端与 Host 需同版本(SSE 协议是私有约定):升级插件后请重启 `dsh web` 并刷新浏览器页面。
@@ -120,7 +139,7 @@ dsh plugin --profile web remove @y1x1n/dsh-prompt-optimizer
 
 ## 验证状态
 
-已在真实环境验证(dsh 0.1.0-rc.8 实测 + 0.1.1-rc.2 复测,Windows,详见「兼容性」);v0.3.9–0.3.11 另在**第三方免费模型**(openrouter 的 `minimax/minimax-m3:free`,不输出标记格式)上完成端到端实测:模板/意图双策略、保真逐要素保留、待补充标记、记忆链与取消保留等行为均按设计工作,并据此修复了快速模式的格式误报。
+已在真实环境验证(dsh 0.1.0-rc.8 实测 + 0.1.1-rc.2 复测,Windows,详见「兼容性」);macOS 端自动化实测通过(2026-09-02,macOS 26.5,62 项测试全绿,CI 亦常驻 macos-latest 跑全量测试);**v0.3.16 起 0.1.2 线(dsh 0.1.2-rc.1 / 0.1.2-alpha.5)完成端到端实测**(发送栏按钮、结果面板、设置卡片、优化路由与 SSE);v0.3.9–0.3.11 另在**第三方免费模型**(openrouter 的 `minimax/minimax-m3:free`,不输出标记格式)上完成端到端实测:模板/意图双策略、保真逐要素保留、待补充标记、记忆链与取消保留等行为均按设计工作,并据此修复了快速模式的格式误报。
 
 - 组合层加载:`--dump-config` 出现 `# == dsh-prompt-optimizer` 层;
 - Host:启动日志 `[dsh-prompt-optimizer] loaded`,优化路由与测试路由的 400/405/409/413 各路径行为正确,SSE 流式输出实测正常;
@@ -186,7 +205,8 @@ dsh-prompt-optimizer/
 │       ├── OptimizeButton.tsx   # 发送栏按钮
 │       ├── ResultDock.tsx       # 输入卡上方的结果面板(流式实况 + 撤回)
 │       ├── SettingsCard.tsx     # 设置页折叠卡片
-│       └── SparkleIcon.tsx      # 手绘 ✨ 图标
+│       ├── SparkleIcon.tsx      # 手绘 ✨ 图标
+│       └── GitHubIcon.tsx       # GitHub 图标(设置卡标题栏仓库入口)
 ├── scripts/build.mjs     # esbuild:Host ESM + Client lazy-CJS factory + 两个测试用产物
 ├── scripts/sync-types.mjs
 ├── scripts/prompt-probe.mjs  # 提示词实证探针:对运行实例发真实优化请求(PROBE_ROUTE=provider/model 可指定路由)

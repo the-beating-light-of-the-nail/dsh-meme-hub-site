@@ -31,7 +31,7 @@ All tools run plain `ros2` / `colcon` / `rosdep` CLI commands on the host; L1 ne
 
 | RViz2 offscreen render (latest `lite_urdf`, real material colors) | Head camera | Wrist-left camera | Wrist-right camera |
 | --- | --- | --- | --- |
-| ![mesh render](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/robot_mesh_full.jpg) | ![head cam](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/camera_head.jpg) | ![wrist left](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/camera_wrist_left.jpg) | ![wrist right](https://raw.githubusercontent.com/StvLi/dsh-ros2/ee3ae03ea33ae47a54e4bfccc988568b6ed7de92/docs/images/camera_wrist_right.jpg) |
+| ![mesh render](https://raw.githubusercontent.com/StvLi/dsh-ros2/fbd09a2689a2182e3674e4beda515942aa00d5dc/docs/images/robot_mesh_full.jpg) | ![head cam](https://raw.githubusercontent.com/StvLi/dsh-ros2/fbd09a2689a2182e3674e4beda515942aa00d5dc/docs/images/camera_head.jpg) | ![wrist left](https://raw.githubusercontent.com/StvLi/dsh-ros2/fbd09a2689a2182e3674e4beda515942aa00d5dc/docs/images/camera_wrist_left.jpg) | ![wrist right](https://raw.githubusercontent.com/StvLi/dsh-ros2/fbd09a2689a2182e3674e4beda515942aa00d5dc/docs/images/camera_wrist_right.jpg) |
 
 > Left: `rviz_offscreen_node` renders with the real rviz stack (OGRE) and publishes to the `/rviz/scene` image topic. Right: three frames grabbed from live camera topics by `ros2_image_snapshot` (1280×720). Full test record: [`docs/test-robot-state-vision.md`](docs/test-robot-state-vision.md).
 
@@ -485,9 +485,13 @@ bundles you need (or the `dsh-ros2` aggregate for the full set):
 ## Development
 
 ```bash
+Install with **pnpm 11.x** (the repo pins `packageManager: pnpm@11.22.0`; CI installs the matching
+pnpm via `pnpm/action-setup@v4`). Node `^22.19 || >=24` is required.
+
+```bash
 pnpm install
 pnpm run typecheck   # tsc --noEmit
-pnpm run test        # vitest (182 cases; plus 10 sidecar Python scenarios)
+pnpm run test        # vitest (185 cases; plus 10 sidecar Python scenarios)
 pnpm run build       # tsc -> lib/ + lib/types/
 ```
 

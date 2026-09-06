@@ -1,8 +1,13 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/591215027dbd2617b46fc7fc8330adf1b07f3aa9/docs/banner.svg" alt="dsh-plugin-workbench banner" width="100%">
+</p>
+
 # dsh-plugin-workbench
 
 ![npm version](https://img.shields.io/npm/v/dsh-plugin-workbench)
-![License](https://img.shields.io/github/license/Pasumao/dsh-plugin-workbench)
+![npm downloads](https://img.shields.io/npm/dm/dsh-plugin-workbench)
 ![CI](https://img.shields.io/github/actions/workflow/status/Pasumao/dsh-plugin-workbench/ci.yml?branch=main)
+![License](https://img.shields.io/github/license/Pasumao/dsh-plugin-workbench)
 ![Stars](https://img.shields.io/github/stars/Pasumao/dsh-plugin-workbench?style=social)
 ![AI Assisted](https://img.shields.io/badge/AI-Assisted-8A2BE2)
 
@@ -25,7 +30,7 @@
 
 ## 效果图
 
-![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/93cc2d848f380740e053dae5cec56e9e2fccbdfb/docs/workbench-webgui.png)
+![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/591215027dbd2617b46fc7fc8330adf1b07f3aa9/docs/workbench-webgui.png)
 
 > 真实 Web GUI 截图。
 

@@ -35,11 +35,11 @@ A Famicom-inspired pixel skin for the DeepSeek Harness Web GUI: warm white surfa
 
 ### DSH Web home
 
-![dsh-pixel-skin home](https://raw.githubusercontent.com/zhuifengqug/pixel-skin/b5e313939f229ffe5ef28c5535ab07a325ea1126/assets/screenshots/home.png)
+![dsh-pixel-skin home](https://raw.githubusercontent.com/zhuifengqug/pixel-skin/bffe4863fc17e58d4883e394fc8a3f4aecd35da9/assets/screenshots/home.png)
 
 ### Settings
 
-![dsh-pixel-skin settings](https://raw.githubusercontent.com/zhuifengqug/pixel-skin/b5e313939f229ffe5ef28c5535ab07a325ea1126/assets/screenshots/settings.png)
+![dsh-pixel-skin settings](https://raw.githubusercontent.com/zhuifengqug/pixel-skin/bffe4863fc17e58d4883e394fc8a3f4aecd35da9/assets/screenshots/settings.png)
 
 ## 安装
 

@@ -59,8 +59,12 @@ DeepSeek Harness 的侧边栏支持工作区内拖拽排序会话，但把会话
   - 全部走同一条备份+回滚管线
 - **🧹 分组合并**：在组标题的「⋯」菜单选「整组迁移…」迁入目标分组后，若源分组已空可一键删除——两条命令完成分组合并
 - **🗂️ 空分组清理**：救援面板只列出真正零成员的工作区（归档会话、幽灵记录都算成员，绝不误报），单个删除或全部清理；删除只移除分组登记，不碰任何会话
+- **🗑️ 会话回收站**：救援面板可把异常/归档会话移入回收站——文件、标题、归属、归档状态完整保留，随时还原到原位置或任意分组；彻底删除需二次确认
+- **💾 备份管理**：迁移自动生成的字节级备份按会话聚合展示（份数/占用/时间跨度），一键恢复（回读校验后才挂账）或按会话清理
 - **📂 打开文件夹**：组标题「⋯」菜单一键用系统文件管理器打开该分组目录
 - **⏪ 移动历史与撤回**：记录最近 100 次跨工作区移动，批量移动聚合为一条记录、整批一键撤回，撤回本身同样生成备份并复用回滚保护
+- **🧾 迁移任务中心 + 🛡️ 数据保护**：批量迁移逐项持久化记录（完成/失败、最后错误与尝试时间），失败项一键重试；回收站与备份的份数/占用汇总，按时间清理先预览释放量再执行
+- **✅ 迁移后校验 + 一键修复**：每次搬运落地即回读档案做 id/cwd 双确认，不符视同失败整体回退；救援面板"一键修复"自动跑完可修复项（逐项隔离，三态汇报），全部列表支持按标题/ID/路径即时筛选
 - **🏷️ 会话标题优先**：确认框、救援列表和最近移动记录都先显示会话标题，找不到标题时显示「未命名会话」
 
 ## 🔬 技术要点
@@ -121,18 +125,18 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 | | |
 |---|---|
 | **把空闲会话行拖到目标工作区标题行，出现虚线高亮** | **确认框亮出目标工作区路径，一键移动** |
-| ![把一个会话拖到另一个工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/drag_session_to_another_workspace.png) | ![跨工作区移动确认框](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/confirm_popup.png) |
+| ![把一个会话拖到另一个工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/drag_session_to_another_workspace.png) | ![跨工作区移动确认框](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/confirm_popup.png) |
 | **设置 → 会话救援：一键找回失联与未记账的会话** | |
-| ![会话救援设置面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/setting_dialogue_repair.png) | |
+| ![会话救援设置面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/setting_dialogue_repair.png) | |
 
 ### 批量迁移 · 多选拖拽
 
 | |
 |---|
 | **Ctrl+点击选中多个会话（当前打开的会话自动带上），左下角亮出计数徽章；拖到目标工作区标题行即整批移动，Esc 清空** |
-| ![批量移动选中时：三个会话高亮，左下角显示已选计数徽章](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/batch_move_selection.png) |
+| ![批量移动选中时：三个会话高亮，左下角显示已选计数徽章](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/batch_move_selection.png) |
 | **组标题「⋯」菜单里的「整组迁移…」：整组搬移，迁入后可删除已空的源分组（分组合并）** |
-| ![组标题菜单中的整组迁移入口](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/workspace_move.png) |
+| ![组标题菜单中的整组迁移入口](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_move.png) |
 
 ### 工作区搬家向导 · 实测全程
 
@@ -141,11 +145,11 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 | | |
 |---|---|
 | **改名前：`Test1` 分组正常工作** | **改名后侧边栏仍显示旧分组（磁盘上文件夹已不在）** |
-| ![改名前的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/original_workspace.png) | ![改名后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/workspace_after_rename.png) |
+| ![改名前的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/original_workspace.png) | ![改名后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_after_rename.png) |
 | **打开设置 → 会话修复：「工作区体检」把分组标为「路径失效」，填入新路径** | **确认框亮出起讫路径与将要迁移的会话数** |
-| ![工作区体检面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/workspace_examination.png) | ![搬家确认弹窗](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/remove_popup.png) |
+| ![工作区体检面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_examination.png) | ![搬家确认弹窗](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/remove_popup.png) |
 | **搬家完成：分组原地更名为 Test2，会话与历史原样保留** | |
-| ![搬家后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/38a83cb25e2e1c703128528e6c6e6b894022b16d/docs/media/workspace_after_move.png) | |
+| ![搬家后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_after_move.png) | |
 
 ## ⌨️ 使用
 
@@ -164,7 +168,10 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 2. **失联**行：选目标工作区 → 点「迁移过去」（真迁移，ID 保留）；
 3. **未记账**行：点「补挂账」原地挂到路径匹配的工作区；
 4. **挂错分组**行：显示「当前分组 → 应属分组」，点「归位」或「全部归位」即时修正归属（文件不动）；
-5. 每次操作前后都有备份与回滚保护，结果即时反馈。
+5. **一键修复**：自动跑完可修复项（挂错归位、未记账补账，逐项隔离失败），孤儿/损坏项跳过并说明原因；
+6. **筛选框**：按标题 / 会话 ID / 路径 / 分组即时过滤所有列表；
+7. **已归档 / 回收站 / 备份**：归档会话一键恢复；删除的会话进回收站，可还原到原位置或任意分组、确认后彻底删除；迁移自动生成的字节级备份按会话聚合，可恢复或清理；
+8. 每次操作前后都有备份与回滚保护，结果按 已修复/跳过/失败 即时反馈。
 
 ### 批量迁移
 
@@ -182,7 +189,7 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 
 ## 🔌 与 DSH 的集成方式
 
-- **Host 半**（`lib/index.js`，零 npm 依赖）：经 `cordis.patch.yml` 以标准 `insert` 行挂载；通过 `ctx.connection.rpc.handle('/workspace-mover', …)` 注册逻辑通道，端点 `mover.status / mover.workspaces / mover.move / mover.moveMany / mover.scan / mover.repair / mover.history / mover.undo / mover.ws.audit / mover.repoint / mover.archived / mover.unarchive / mover.openFolder`，失败详情写入宿主日志（`MOVE FAILED`）。
+- **Host 半**（`lib/index.js`，零 npm 依赖）：经 `cordis.patch.yml` 以标准 `insert` 行挂载；通过 `ctx.connection.rpc.handle('/workspace-mover', …)` 注册逻辑通道，端点 `mover.status / mover.workspaces / mover.move / mover.moveMany / mover.scan / mover.repair / mover.repairAll / mover.history / mover.undo / mover.ws.audit / mover.repoint / mover.archived / mover.unarchive / mover.openFolder / mover.session.delete / mover.trash.list / mover.trash.restore / mover.trash.purge / mover.backups.list / mover.backups.restore / mover.backups.deleteOne`，失败详情写入宿主日志（`MOVE FAILED`）。
 - **移动算法**：
   1. 运行状态检查：仅拒绝回合进行中的会话（`agents.get(id)?.status === 'running'`，与宿主 UI"进行中"徽标同款判据）；常驻内存但空闲的会话允许迁移；
   2. 从磁盘读取权威会话头，校验目标 ≠ 源；
@@ -218,6 +225,18 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 **DSH 版本敏感点**（非插件冲突）：取消归档走 registry 持久状态写通道，在不支持的宿主版本上会明确提示而非报错；投影缓存标题按 v3 形状防御性解析，文件缺失时退化为档案头标题。
 
 ## 🆕 最近更新
+
+### v1.0.0 · 2026-09-05
+
+- 迁移后一致性校验：每次搬运（单个/批量/工作区搬家）落地后回读档案，id 与 cwd 双确认才算成功，不符自动整体回退
+- 一键修复：可自动修复项（挂错归位、未记账补账）一次跑完，逐项隔离失败；孤儿/损坏项跳过并说明原因，结果按 已修复/跳过/失败 汇报
+- 面板筛选：按标题 / 会话 ID / 路径 / 分组即时过滤所有救援列表，分区显示 命中/总数
+
+### v0.9.0 · 2026-09-05
+
+- 会话回收站：救援面板各区块新增「删除」，会话完整移入回收站（文件、标题、归属、归档状态全保留），一键还原到原位置或任意分组，确认后彻底删除
+- 备份管理：迁移自动生成的字节级备份终于可见——按会话聚合展示份数/占用/时间跨度，一键恢复（回读校验后才挂账）或按会话删除
+- 删除即四件套清理：文件、记账、投影缓存、注册表索引一次清干净，不留幽灵
 
 ### v0.8.0 · 2026-09-05
 
@@ -277,17 +296,20 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 
 ## 🔐 安全设计
 
-- 移动前强制备份；attach 失败自动回滚（撤销预置记账 → 还原索引 → 还原字节 + 清理目标 + 重新挂回源工作区）；
+- 移动前强制备份；落地回读校验（id/cwd 双确认，不符整体回退）；attach 失败自动回滚（撤销预置记账 → 还原索引 → 还原字节 + 清理目标 + 重新挂回源工作区）；
+- 删除进回收站：物理移动先行，失败零副作用；manifest 完整记录还原所需信息；彻底删除需二次确认；
+- 驻留内存的会话拒绝删除（防止文件被驻留对象重建为僵尸），并给出重启释放的明确指引；
 - 仅拒绝回合进行中的会话；常驻空闲会话迁移后修复写路径归属，杜绝历史分叉；
 - 注册表/持久化内部访问全部包在 try/catch 中，失败降级为功能可用 + 重启建议提示；
-- 兼容性目标：Node ≥ 22，dsh 0.1.1-rc.2；核心纯函数与端到端沙箱测试见 `npm test`（30 用例，含回滚路径、救援扫描/修复、历史撤回、工作区重定向与批量迁移）。
+- 兼容性目标：Node ≥ 22，dsh 0.1.1-rc.2；核心纯函数与端到端沙箱测试见 `npm test`（70 用例，含回滚路径、救援扫描/修复、历史撤回、工作区重定向、批量迁移、迁移后校验、回收站与备份恢复、迁移任务中心与数据保护清理）。
 
 ## ⚠️ 已知限制
 
 - 不支持把会话移入「Ungrouped」桶；
-- 目标行 ↔ 工作区的映射基于渲染顺序与 `workspace.list` 对齐，若第三方插件重排侧边栏结构需先刷新再拖；
+- 常驻内存的会话（近期打开过）不能直接删除——文件会被驻留对象重建；重启 Harness 释放后再删，删除时会给出 toast 提示；
+- 行 → 会话识别优先读取行元素自带的会话标识（React props），渲染顺序对齐仅作兜底；若第三方插件替换侧边栏 DOM 导致 ARIA 选择器失效，相关功能静默停用（不损坏数据）；
 - 「扁平列表」视图无工作区标题行，本插件在该视图不激活；
-- 若宿主升级改变了注册表缓存字段名或实体结构，相关步骤走降级路径（功能可用，归属刷新可能需重启）；
+- 若宿主升级改变了注册表缓存字段名或实体结构，相关步骤走降级路径（功能可用，归属刷新可能需重启）；取消归档依赖 registry 持久写通道，不可用时明确报错而非静默失败；
 - 工作区搬家依赖实体的统一写入通道 `mutate`；若宿主结构变化使其不可用，向导会在改动第一个文件之前中止并明确提示。
 
 ## License

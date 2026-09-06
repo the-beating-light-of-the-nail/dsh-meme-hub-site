@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -30,7 +30,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/4958879cefa9665a0933e47bd18fdbf8ca1786ca/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/settings.png) |
 
 ## 安装
 
@@ -60,6 +60,33 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 ```
 
 ## 更新内容
+
+### 未发布
+
+**新功能**
+
+- dsh-file-viewer 移动端适配（移植自 fork wzxmt-zhc）：查看器面板套用移动端布局，工具栏按钮与文件行达到触达尺寸，搜索框 16px 避免 iOS 聚焦放大，CSV/代码区横向滚动归滚动容器；未安装该插件时零影响
+
+**变更**
+
+- npm 包名更名为 `dsh-web-mobile`，旧名 `dsh-mobile-nav` 已从 npm 撤下：装过旧版请先移除再装新名，新旧并存会把同一插件注册两份（见「安装」）
+
+**修复**
+
+- 手机端会话视图标签页过多时逐字竖排堆叠，现可横向滑动（#41 by @782042369）
+- 贴左缘划词选择会被抽屉滑出手势劫持，选区被拖没（#43 by @chstd）
+- 输入框里拖选择手柄仍会误开抽屉并清掉选区（#44 by @chstd）
+- iPhone 上一点输入框页面就自动放大、捏合也缩不回来，只能重开应用（#45 by @pandady）
+- 宿主改写 viewport meta 后刘海安全区适配失效（PR #46 by @BuvkB）
+- 桌面窄窗口/系统显示缩放会误启移动端 UI（右上角 Files 按钮、底部状态条全套出现），现鼠标操作的窗口任何宽度都保持桌面版
+- 设置页「Plugins」配置卡与「Web UI Plugins」分组卡标题恢复官方样式：左对齐、标准内边距与间距、箭头无灰底
+- 移动端消息流排版与 DSH 0.1.2-rc.1 的 Lexical 输入框兼容，输入区不再出现左右死区（PR #47 by @johnhom1024）
+- 会话视图任意标签页（轨迹、文件查看器、插件注册视图）打开期间，屏幕左缘横滑让位给标签页内的横向内容，FAB 按钮仍可呼出抽屉；文件查看器布局标记只由查看器自身触发
+- 子代理会话输入区右侧的上下文圈与发送键贴右对齐
+- 触屏设备上用户消息气泡正常显示，tooltip 压制仅作用于消息操作行
+- 新会话输入框居中时，git 分支胶囊与输入行保持间距
+- 输入区固定控件（模型条、上下文圈、发送键）的钉位与收缩规则覆盖 Lexical 可编辑输入框
+- 响应压缩的响应头匹配不区分大小写
 
 ### v2.3.0
 
@@ -140,10 +167,11 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 ## 兼容插件
 
 - [dsh-web-ui](https://www.npmjs.com/package/@linxin666/dsh-web-ui-all)——**0.1.20**
-- [dshmarket](https://www.npmjs.com/package/dshmarket)——**v1.20.2**
-- [dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats)——**0.2.10**
+- [dshmarket](https://www.npmjs.com/package/dshmarket)——**v1.38.0**
+- [dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats)——**0.3.1**
 - [dsh-genui](https://github.com/omdsh-dev/dsh-genui)——**0.9.1**
 - [dsh-meme](https://github.com/mexiaosqwq/dsh-meme)——**v0.1.39**
+- [dsh-file-viewer](https://github.com/liguobao/dsh-file-viewer)——**v0.3.1**
 
 ## 构建
 

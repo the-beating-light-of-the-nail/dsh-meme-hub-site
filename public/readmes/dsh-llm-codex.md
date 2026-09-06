@@ -21,9 +21,9 @@ Install directly from GitHub:
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.5/dsh-llm-providers-ui-0.1.5.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.9/dsh-llm-providers-ui-0.1.9.tgz
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-codex/releases/download/v0.3.12/dsh-llm-codex-0.3.12.tgz
+  https://github.com/NOirBRight/dsh-llm-codex/releases/download/v0.3.14/dsh-llm-codex-0.3.14.tgz
 dsh web
 ~~~
 
@@ -37,7 +37,7 @@ The settings and authentication RPC uses Connection's authenticated `/codex` cha
 
 Open Settings → LLM Providers → Codex. **Sign in with ChatGPT** starts the official ChatGPT OAuth flow, opens the system browser, and stores the session only on the Host at `$DSH_HOME/codex-oauth.json` (mode `0600`). The card then shows usage limits. Sign out deletes that file. The browser never receives tokens.
 
-![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/f61c512bba6d6ddf4bb277e95696d0a48298c916/docs/images/plugin-card-catalog.png)
+![Codex plugin card: ChatGPT login, usage, and Fast catalog rows](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/cc242a57df0e1dbd8c135c4055a1f2f4819a1ec2/docs/images/plugin-card-catalog.png)
 
 ### Model catalog
 
@@ -71,9 +71,9 @@ Search, `view_image`, and `codex_generate_image` are implemented but default off
 
 `codex_generate_image` is a separate model-invoked tool. Any conversation model can call it; it uses this plugin's ChatGPT login and Codex usage (typically 3–5× a text turn) and draws with backend `gpt-image-2`. The routing-model dropdown lists official vision models and defaults to `gpt-5.6-luna`. The name is intentionally not `generate_image`, so it does not collide with other provider plugins. Generated files land under `generated-images/` unless `path` is set.
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/f61c512bba6d6ddf4bb277e95696d0a48298c916/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/cc242a57df0e1dbd8c135c4055a1f2f4819a1ec2/docs/images/plugin-card-capabilities.png)
 
-![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/f61c512bba6d6ddf4bb277e95696d0a48298c916/docs/images/plugin-card-capabilities.png)
+![Optional Codex search and view_image capabilities](https://raw.githubusercontent.com/NOirBRight/dsh-llm-codex/cc242a57df0e1dbd8c135c4055a1f2f4819a1ec2/docs/images/plugin-card-capabilities.png)
 
 ## Config
 
@@ -114,7 +114,7 @@ MIT
 
 ## Release installation (Latest)
 
-ChatGPT Codex login, model catalog, usage, and optional search/image capabilities. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
+ChatGPT Codex login, model catalog, usage, and optional search/image capabilities. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 and 0.1.2-rc.1 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
 
 The dsh-llm-providers-ui package owns the LLM Providers page, navigation, and shared order store. This package owns only its provider card, models, credentials, and Host route. Install the Owner first for Web; headless Host routing works without the Owner.
 
@@ -122,23 +122,23 @@ Owner (Latest):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/latest/download/dsh-llm-providers-ui-0.1.5.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/latest/download/dsh-llm-providers-ui-0.1.9.tgz
 ~~~
 
 Provider (Latest):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-codex/releases/latest/download/dsh-llm-codex-0.3.12.tgz
+  https://github.com/NOirBRight/dsh-llm-codex/releases/latest/download/dsh-llm-codex-0.3.14.tgz
 ~~~
 
 Fixed versions (reproducible):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.5/dsh-llm-providers-ui-0.1.5.tgz
+  https://github.com/NOirBRight/dsh-llm-providers-ui/releases/download/v0.1.9/dsh-llm-providers-ui-0.1.9.tgz
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-codex/releases/download/v0.3.12/dsh-llm-codex-0.3.12.tgz
+  https://github.com/NOirBRight/dsh-llm-codex/releases/download/v0.3.14/dsh-llm-codex-0.3.14.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -146,7 +146,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-llm-codex/releases/latest/download/dsh-llm-codex-0.3.12.tgz
+  https://github.com/NOirBRight/dsh-llm-codex/releases/latest/download/dsh-llm-codex-0.3.14.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -158,4 +158,12 @@ Configuration: use the plugin section in Settings for Web UI plugins, or the pro
 
 Rollback: rerun the fixed v0.3.7 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.3.12](https://github.com/NOirBRight/dsh-llm-codex/releases/tag/v0.3.12) · [SHA256SUMS](https://github.com/NOirBRight/dsh-llm-codex/releases/download/v0.3.12/SHA256SUMS).
+Release and integrity: [v0.3.14](https://github.com/NOirBRight/dsh-llm-codex/releases/tag/v0.3.14) · [SHA256SUMS](https://github.com/NOirBRight/dsh-llm-codex/releases/download/v0.3.14/SHA256SUMS).
+
+## Independent Model Switch search
+
+Since 0.3.14, the Host adapter self-declares its current search model catalog (`tools !== false`) through the existing Model Switch adapter registry: display label `Codex` plus a live serializable `models` list (`{id, name}`) reflecting current provider settings. Search uses the existing ChatGPT credential store and Codex search implementation; no credentials or executable functions are sent to the browser. Unsupported models and missing credentials fail explicitly.
+
+The coordinated search UI that reads this metadata requires Model Switch 0.4.7 (coordinated release, not yet published); the `dsh-model-switch` peer range (`^0.4.5`) is unchanged because older releases ignore the extra fields. Registration does not select global Web routing: explicitly configure `web.searchProvider: model-switch` while preserving the complete existing Web config, then select the adapter/model in Model Switch Settings. `web_fetch` is unchanged. ProviderDirectory role/usage registration remains deferred through `ctx.inject`.
+
+Validation: `pnpm run check`, `pnpm run build`; live acceptance through 3082 official Web selection succeeded with `gpt-5.6-luna`. See the Model Switch integration audit for exact lab composition and evidence.

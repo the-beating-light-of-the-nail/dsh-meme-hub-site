@@ -41,11 +41,11 @@ to the Internet. For composition details, see
 
 | Desktop control panel | Mobile workspace |
 |---|---|
-| ![Desktop control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-desktop.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile.png) |
+| ![Desktop control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-desktop.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile.png) |
 
 | Phone confirmation sheet | Remote desktop confirmation |
 |---|---|
-| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-desktop.png) |
+| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-desktop.png) |
 
 ## Problem
 
@@ -310,17 +310,17 @@ address, recommended setup, tunnel target, one-click quick tunnel,
 one-time invite QR, access token, connected devices with source IPs
 (inline rename), and the audit viewer.
 
-![Reverse proxy control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-desktop.png)
+![Reverse proxy control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-desktop.png)
 
 | One-time phone invite (QR) | Connected devices with inline rename |
 |---|---|
-| ![Phone invite](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-invite.png) | ![Connected devices](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-devices.png) |
+| ![Phone invite](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-invite.png) | ![Connected devices](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-devices.png) |
 
 ### Mobile
 
 | Login page | Control panel | Add workspace |
 |---|---|---|
-| ![Mobile login](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile-login.png) | ![Mobile panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile-panel.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-mobile.png) |
+| ![Mobile login](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile-login.png) | ![Mobile panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile-panel.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile.png) |
 
 ### Remote confirmation
 
@@ -330,7 +330,7 @@ look at the host display.
 
 | Phone bottom sheet | Remote desktop card |
 |---|---|
-| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-remote-confirm-desktop.png) |
+| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-desktop.png) |
 
 ### Gate pages
 
@@ -339,7 +339,7 @@ itself, and the first-visit approval wait page.
 
 | Device home | Waiting for approval |
 |---|---|
-| ![Device home](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-home.png) | ![Waiting for approval](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/89ea572d2a19419ec88db1dd1588b524663afc8f/docs/screenshots/preview-wait.png) |
+| ![Device home](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-home.png) | ![Waiting for approval](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-wait.png) |
 
 ## Configuration
 
@@ -360,7 +360,7 @@ Common options:
     headersTimeoutMs: 15000      # timeout for request headers
     requestTimeoutMs: 300000     # timeout for the complete request (headers + body); covers remote vision uploads
     upstreamTimeoutMs: 15000     # TCP connect + first POST byte after the body; not applied to SSE GET
-    commandTimeoutMs: 300000     # first POST byte for /api/commands/execute; /compact may run long before responding
+    commandTimeoutMs: 300000     # first POST byte for host commands (/compact): /api/commands/execute, or a session.prompt whose single text part starts with "/"
     maxRequestBytes: 167772160   # 160 MiB; matches the Harness /api image envelope
     sessionIdleSeconds: 0        # 0: off; otherwise idle timeout in seconds
     auditLog: true

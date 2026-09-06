@@ -13,9 +13,9 @@ By default the DeepSeek Harness web GUI collapses each file edit into a tiny one
 
 ## What it looks like
 
-A typical edit: changed lines paired side by side, with the exact words that changed highlighted:
+A typical edit: changed lines paired side by side, with the exact words that changed highlighted. Pairs are matched by similarity, so an insertion placed above an edited line (a comment, a blank line) does not steal the changed line's counterpart — unmatched lines simply render as plain additions or removals:
 
-![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/e7e9c6901f19dc27b5a813a91f790c62c62ba22a/docs/screenshot-compact-card.png)
+![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/394c0f82efaf930499a35884d6fc73c4123755da/docs/screenshot-compact-card.png)
 
 ## Words or whole lines
 
@@ -41,7 +41,7 @@ Every color on the card, from surfaces and text to borders and the green/red dif
 
 The same compact edit under a custom theme — [dsh-stylevault](https://github.com/GptsApp/dsh-stylevault) overrides exactly those token variables, so a restyle there restyles every diff card:
 
-![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/e7e9c6901f19dc27b5a813a91f790c62c62ba22a/docs/screenshot-compact-themed.png)
+![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/394c0f82efaf930499a35884d6fc73c4123755da/docs/screenshot-compact-themed.png)
 
 ## Language
 

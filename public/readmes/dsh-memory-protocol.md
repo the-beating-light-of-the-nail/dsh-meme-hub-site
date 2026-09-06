@@ -40,7 +40,7 @@ dsh plugin --profile web add dsh-memory-protocol
 |---|---|---|
 | `MEMORY_SKILL_PYTHON` | `python3` | 解释器路径 |
 | `MEMORY_SKILL_DIR` | `process.cwd()` | memory-skill 项目目录 |
-| `MEMORY_SKILL_DB_PATH` | （未设） | 记忆库路径，server 默认 `memory.db` |
+| `MEMORY_SKILL_DB_PATH` | `~/.memory-skill/memory.db` | 记忆库路径（server 已内置此绝对默认值；如需共享 opencode 的库，显式指向该库文件） |
 | `IMPORTANCE_API_KEY` | （未设） | LLM 重要性评分 key（可选） |
 
 ### 自动引导
@@ -90,10 +90,10 @@ MIT
 
 ## 截图
 
-![cover](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/3c2a59e63bb4990abe55a80d71c6b225be48870b/assets/screenshots/cover.png)
+![cover](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/0724c5a78ad169bb9d3ffe44f57fe5c36f81a838/assets/screenshots/cover.png)
 
 | 架构 | 强制执行演示 | 配置项 |
 |---|---|---|
-| ![architecture](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/3c2a59e63bb4990abe55a80d71c6b225be48870b/assets/screenshots/architecture%402x.png) | ![demo](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/3c2a59e63bb4990abe55a80d71c6b225be48870b/assets/screenshots/enforcement-demo.png) | ![config](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/3c2a59e63bb4990abe55a80d71c6b225be48870b/assets/screenshots/config.png) |
+| ![architecture](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/0724c5a78ad169bb9d3ffe44f57fe5c36f81a838/assets/screenshots/architecture%402x.png) | ![demo](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/0724c5a78ad169bb9d3ffe44f57fe5c36f81a838/assets/screenshots/enforcement-demo.png) | ![config](https://raw.githubusercontent.com/baaai123/dsh-memory-protocol/0724c5a78ad169bb9d3ffe44f57fe5c36f81a838/assets/screenshots/config.png) |
 
 > 演示为真实运行输出：未 weave 调工具 → ⛔ DENY；pre-step 自动 weave 并注入记忆上下文；turn-stopping 自动 ingest。

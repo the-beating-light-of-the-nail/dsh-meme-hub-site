@@ -2,7 +2,7 @@
 
 English | [中文](README.zh.md)
 
-![dsh-smart-restart demo — real-time restart](https://raw.githubusercontent.com/edusrez/dsh-smart-restart/dc6669c01b097a2a6baeae7955efcb2319a53d3a/assets/demo.gif)
+![dsh-smart-restart demo — real-time restart](https://raw.githubusercontent.com/edusrez/dsh-smart-restart/fb73d2aec7c7721553d0ee36f3700173704c79af/assets/demo.gif)
 
 *A real-time restart: the agent restarts the service (canary pre-flight passing, `Canary: passed — restarting…`), and the plugin's boot notification brings the very same session right back — the conversation continues automatically, no user prompt needed.*
 
@@ -40,6 +40,8 @@ A long-lived DSH instance restarts for many reasons: the agent installs or recon
 - **Self-restart** — the main agent can restart DSH itself and resume its task automatically afterwards.
 - **Automatic wake** — an idle main agent is woken and handed the notice on its own.
 - **Targeted delivery** — the post-restart notice returns to the session that requested it; otherwise the `target` config decides where it lands.
+- **Read-before-edit guard** — `smart_restart` reads the LIVE agent registry and refuses to restart while other sessions are mid-turn (unless `force: true`), so a blind interruption is structurally impossible.
+- **Interrupted-head resume** — heads whose turns were cut by a restart each get an automatic resume notice at boot, so the organization never hangs idle post-restart without knowing.
 - **Precise context** — the notice carries the boot time, the previous boot time, the downtime, and an optional reason.
 - **Canary safety** — an optional pre-restart gate boots an ephemeral DSH instance and aborts the restart when it fails (see below).
 - **Self-contained** — a single host bundle; nothing to run, no external service.
@@ -73,6 +75,8 @@ On the next boot, step 4 above reads the pending notice, **pins** it to the call
 If there is **no** pending notice, the plugin looks for a `shutdown-notice.json`. This file is written synchronously by the previous process on `SIGTERM`/`SIGINT`, recording the **last active session** (tracked on `agent/session-start` and `agent/pre-step`) and its timestamp. On boot the plugin **pins** the notice to that session *only if* it was active within `shutdownGraceMs` of shutdown (recent activity ⇒ the user restarted while the agent was mid-task, so auto-notify). If the session was idle well before shutdown (the user probably restarted while idle), the pin is skipped and delivery falls back to `target`.
 
 This is what makes a **plain `systemctl restart`** that the agent ran — or a restart that happened while an agent was active — auto-notify that session at boot, with no user prompt and no need to have called `smart_restart`.
+
+Since **v0.6.0** the boot also auto-notifies the **interrupted heads**: every session of the recorded interrupted set that matches `ignoredSessionPrefixes` (Deepartments `head-<postId>` heads by default) receives its OWN resume notice once it comes live at boot — so after a restart that cut an active head turn, the organization is never left hanging in idle with no notice (fb-46). Heads are still never *pinned* as the single-session last-active target (the pin and the `shutdownTarget` gate keep ignoring `head-*`, preserving the v0.3.1 anti-spurious-notice behavior); only a head whose turn was genuinely cut is notified.
 
 ### (c) External restart (systemd, host reboot, dev tools) — no active session
 
@@ -109,14 +113,25 @@ Registered via `ctx.tools.register` in `apply` (so it is available to agent sess
 | -------- | ------ | -------- | ----------- |
 | `reason` | string | no       | Optional human-readable note, e.g. `"installed dshmarket in stable+dev"`. Included in the post-restart notice. |
 | `canary` | boolean | no      | Optional canary pre-restart validation for THIS call: boots an ephemeral DSH instance and aborts the restart on failure (see [Canary pre-restart validation](#canary-pre-restart-validation)). Overrides the configured `canary` for this call. |
+| `force` | boolean | no      | Explicit override of the [read-before-edit guard](#read-before-edit-guard): restart even when OTHER sessions are mid-turn. The tool refuses (and returns the in-flight session list) unless this is `true`; the override and the list are ALWAYS visible in the log. Use only after explicitly confirming the in-flight work is safe to interrupt. |
 
 **Behavior**
 
 - Validates the configured `restartUnit` — a single systemd unit token (`/^[A-Za-z0-9_.@-]+$/`, no spaces/slashes) to prevent shell injection into the detached command.
 - **Fails fast** when `restartUnit` is not configured **and** auto-detection from `/proc/self/cgroup` finds no unit either (`ok: false`, error `restartUnit not configured`) rather than guessing a unit — an empty `restartUnit` is auto-detected first, and only a failed detection produces that error.
+- **Refuses to restart while other sessions are mid-turn** (read-before-edit guard, see below) — the live registry check runs before anything is persisted or spawned, and runs AGAIN after a canary pass, right before the spawn.
 - Persists `pending-notice.json` **synchronously** (before any spawn) so it survives the service kill and targets the restarting session.
 - Restarts via a **detached** `setsid bash` process (`sleep 1 && systemctl restart <unit>`) that outlives this process, then unrefs it.
-- Returns `{ok: true, restarting: true, sessionId, reason}` on success, or `{ok: false, restarting: false, error}` when it fails.
+- Returns `{ok: true, restarting: true, sessionId, reason}` on success, or `{ok: false, restarting: false, error}` when it fails (a guard-blocked refusal also carries `inFlight: string[]`).
+
+### Read-before-edit guard
+
+Since **v0.6.0**, `smart_restart` implements the **read-before-edit** pattern (fb-168): BEFORE persisting the pending notice or spawning the restart, the tool reads the **live agent registry** inside the DSH process — `ctx.agents`, a session whose `status === 'running'` has an active turn in flight (the same in-process signal Deepartments derives its "running" state from, and the marker of the exact work a restart would cut). This registry is updated synchronously by the harness on every `agent/status` transition, so the check **can never go stale** the way file-based state (e.g. a previously taken `posts.json` snapshot) could.
+
+- If **any session other than the calling session** is mid-turn, the tool returns `{ok: false, restarting: false, error: 'refusing to restart: N other session(s) mid-turn (…)' , inFlight: [<ids>]}` — the caller is excluded because it restarts itself intentionally and is pinned for resume.
+- An explicit **`force: true`** is the only way through; the override and the in-flight list are **always written to the log** (`[smart-restart] smart_restart: FORCE override — restarting with N other session(s) mid-turn: …`).
+- The check runs at call entry **and again after a canary pass** (the canary window can be tens of seconds — the final gate reflects the current state, not the state at call entry).
+- A blind interruption is thus structurally impossible: the tool cannot spawn while other agents are running unless the caller explicitly confirms it.
 
 **Intended agent flow**
 
@@ -131,6 +146,7 @@ install/change a plugin
 **Safety notes**
 
 - The unit token is validated against a strict regex to block shell injection through `restartUnit` into the detached shell command.
+- The tool refuses to interrupt other sessions' live turns unless `force: true` is passed explicitly — a blind restart while agents are mid-turn is structurally impossible.
 - The tool targets a **systemd-managed** DSH install (`setsid` / `systemctl`); it does not apply to a bare process without a systemd unit.
 
 ## Canary pre-restart validation
@@ -144,9 +160,10 @@ When enabled, the `smart_restart` tool can validate the launch **before** anythi
 
 1. **Resolves the dsh binary/profile** — an explicit `canaryBinary` / `canaryProfile` wins; otherwise both are derived from `systemctl show -p ExecStart <restartUnit>` (binary falls back to `dsh` on PATH). The `--profile` flag is omitted when no profile resolves.
 2. **Creates a temp state dir and a temp patch overlay** (`dsh --patch <tmp>/canary.patch.yml`, applied after the profile layer): the `smart-restart` row itself is disabled in the canary (`enabled: false`) and every `canaryStateDirOverrides` entry gets its `stateDir` redirected into the temp dir — so the canary never writes a marker, notice, or live board state.
-3. **Pre-flights the launch** with `--dump-config` (20s timeout; a compose failure aborts the restart).
+3. **Pre-flights the launch** with `--dump-config` (20s timeout; a compose failure aborts the restart) and **checks the dump is coherent** — the composed tree must be a valid entry list and the `smart-restart` row must be DISABLED in the canary (the patch applied; an enabled row would let the ephemeral write into the live state dir).
 4. **Boots the ephemeral instance** detached with the same overlay on an auto-picked free port (`canaryPort` when set) and **polls** `http://127.0.0.1:<port>/` until HTTP 200 or `canaryTimeoutMs` elapses (per-attempt 800ms; a refused connection or non-200 is "not yet").
-5. **Stops the ephemeral** (process-group kill) and returns: `passed` → the restart proceeds; `failed` → abort + alert the caller; `skipped` → the restart proceeds (a skip is not a failure).
+5. **Post-boot validation** — with the instance up, the canary checks: the **client boot graph** (default ON — every `/plugins/<id>/client.js` must register its graph row id); **agent liveness** (default ON — every non-retired member of the deepartments catalog must appear alive in the runtime's live agent registry); **pooler health** (default ON — `/v1/models`, `/usage` and `/__keypool/status`; a missing endpoint, e.g. the fb-75 pooler-capacity deploy pending, is a graceful skip) and the **R8/R9 runtime markers** (default ON — `presence.json` + `toolset-audit.jsonl` well-formed).
+6. **Stops the ephemeral** (process-group kill) and returns: `passed` → the restart proceeds; `failed` → abort + alert the caller; `skipped` → the restart proceeds (a skip is not a failure).
 
 **When it skips (never blocks)** — if the dsh binary/profile cannot be derived (no `systemctl` lookup result AND no explicit `canaryBinary`/`canaryProfile`), the canary reports `skipped` and the restart proceeds unchanged. Generic installs are therefore always safe: a canary failure only ever aborts a restart when *you* opted in with an actual, resolvable launch target.
 
@@ -269,13 +286,21 @@ All behavior is controlled through the plugin row's `config`:
 | `restartUnit` | string  | `''`              | Systemd unit to restart when `smart_restart` is invoked (e.g. `dsh.service` or `dsh-deepartments-dev.service`). Since **v0.5.0** it is **auto-detected from `/proc/self/cgroup`** (the plugin's own unit) when empty; an explicit value always wins. Empty with no detectable unit → the tool fails safe with a clear error. |
 | `toolEnabled` | boolean | `true`            | Whether the `smart_restart` tool is registered (available to agent sessions). |
 | `shutdownGraceMs` | number | `600000`          | Grace window (ms, default 10 minutes) before shutdown within which last agent activity counts as "agent-involved" for the smart shutdown auto-notification. If the last-active session was idle beyond this window on shutdown, the pin is skipped and delivery falls back to `target`. |
-| `ignoredSessionPrefixes` | string[] | `['head-']` | Session-id prefixes that must never be selected as "last active" for the smart-shutdown auto-notification, so Deepartments department-head sessions (`head-<postId>`) don't get a spurious post-restart notice. Configurable list; default ON (heads skipped). |
+| `ignoredSessionPrefixes` | string[] | `['head-']` | Session-id prefixes that must never be selected as the single-session "last active" PIN for the smart-shutdown auto-notification — Deepartments department-head sessions (`head-<postId>`) never get a spurious pinned notice (the v0.3.1 regression). Since v0.6.0 the same prefixes identify the **interrupted-head resume recipients**: a head whose turn was genuinely cut by a restart still receives its own notice at boot (never a pin). Configurable list; default ON (heads skipped from the pin). |
 | `canary` | boolean | `false` | Opt-in [canary pre-restart validation](#canary-pre-restart-validation): boot an ephemeral DSH instance and abort the restart on failure. The per-call `canary` tool parameter overrides this for one call. |
 | `canaryTimeoutMs` | number | `45000` | Hard window (ms) for the canary boot liveness probe (default 45s); a timeout is a canary failure and aborts the restart. |
 | `canaryPort` | number | `0` | HTTP port for the ephemeral canary instance; `0` auto-picks a free port. |
 | `canaryProfile` | string | `''` | Explicit dsh profile for the canary launch; empty derives it from the unit's `ExecStart` (`--profile`). |
 | `canaryBinary` | string | `''` | Explicit dsh binary for the canary launch; empty derives it from the unit's `ExecStart`, else `dsh` on PATH. |
 | `canaryStateDirOverrides` | object | `{}` | Plugin-row id → temp dir; those rows get their `stateDir` redirected in the canary patch so the ephemeral never writes live state (e.g. `deepartments: ''` keeps the canary off live board state). Relative or empty values resolve under the canary temp dir; absolute values are used verbatim. |
+| `canaryClientCheck` | boolean | `true` | Post-boot client-graph validation (P1 lesson): after liveness, parse `__DSH_BOOT__` from the served page and verify every row's `/plugins/<id>/client.js` bundle registers that row's id. A boot with no `__DSH_BOOT__` (non-web surface) passes trivially. |
+| `canaryClientTimeoutMs` | number | `15000` | Whole-phase budget (ms) for the client-graph validation. |
+| `canaryAgentCheck` | boolean | `true` | Post-boot AGENT-LIVENESS check (R8 liveness family): every NON-RETIRED member of the deepartments catalog (`posts.json`) must appear alive in the runtime's live agent registry before the restart proceeds. A member registered but missing from the live registry fails the canary (a restart that lands with heads/workers missing hangs the org). No catalog (generic install) → skip. |
+| `canaryCatalogPath` | string | `'/.deepartments/posts.json'` | Catalog path the agent-liveness check reads (the deepartments runtime's durable registry). |
+| `canaryRuntimeStateDir` | string | `'/.deepartments'` | Runtime stateDir whose R8/R9 marker files the markers check reads. |
+| `canaryPoolerCheck` | boolean | `true` | Post-boot POOLER-HEALTH check: probes `/v1/models`, `/usage` and `/__keypool/status` on the ephemeral web port. A missing endpoint (HTTP 404/405 — e.g. the fb-75 pooler-capacity deploy pending) is a graceful skip, never a failure; a 5xx or unreachable endpoint fails. |
+| `canaryPoolerTimeoutMs` | number | `5000` | Whole-phase budget (ms) for the pooler-health probes. |
+| `canaryMarkersCheck` | boolean | `true` | Post-boot RUNTIME-MARKERS check: the R8 presence cache (`presence.json`) and the R9 toolset-audit sidecar (`toolset-audit.jsonl`) must exist and be well-formed. Absent files (generic install) skip; a malformed file fails. |
 
 `target` semantics (fallback path only — a pending notice or a usable shutdown notice overrides `target` for that boot):
 
@@ -314,7 +339,7 @@ Full example patch row, restating every key with a custom notice and an explicit
 ## Behavior & lifecycle
 
 - **When woken**, the main agent receives a plugin-source user message (`source.kind: 'plugin'`, `form: 'notice'`) and typically acknowledges with a one-liner or resumes any interrupted task.
-- **On success**, the plugin logs `[smart-restart] notice delivered to <id>`; when a pending notice is pinned on boot it logs `[smart-restart] pinned restart notice to session <id>`, and when a smart shutdown notice is pinned it logs `[smart-restart] pinned restart notice to last-active session <id>` — all observable boot evidence in the journal.
+- **On success**, the plugin logs `[smart-restart] notice delivered to <id>`; when a pending notice is pinned on boot it logs `[smart-restart] pinned restart notice to session <id>`, and when a smart shutdown notice is pinned it logs `[smart-restart] pinned restart notice to last-active session <id>`. Interrupted heads are logged too — `[smart-restart] interrupted sessions at shutdown: …`, `[smart-restart] interrupted heads (resume recipients): …` and `[smart-restart] resume notice delivered to interrupted head <id>` — all observable boot evidence in the journal.
 - **Once per boot** — the startup-event delivery and the bounded poll cannot both fire, so a restart produces exactly one notice.
 - **Pinning priority** — (1) a tool-caller `pending-notice.json` wins; (2) a smart shutdown `shutdown-notice.json` pins to the last-active session when it was active within `shutdownGraceMs`; (3) otherwise `target` decides.
 - **Reversible lifecycle** — the event listeners, poll timer, tool registration, and `SIGTERM`/`SIGINT` handlers are reversible via `ctx.effect` (dropped on plugin unload / HMR). The only intentional exceptions are the marker and the `pending-notice.json`/`shutdown-notice.json` files, which must survive the restart they document.
@@ -335,11 +360,11 @@ Be honest about what this plugin does not do:
 
 ```
 src/
-  index.ts   — apply() wiring: marker + pending/shutdown-notice I/O, restart detection, activity tracking + SIGTERM/SIGINT hook, smart_restart tool (incl. the optional canary gate + abort alert, restartUnit auto-detection — resolveRestartUnit reads /proc/self/cgroup when config empty), delivery (followup/inject)
-  boot.ts    — pure, deterministic restart + notice logic (I/O-free, unit-testable), incl. parseShutdownNotice / shutdownTarget
+  index.ts   — apply() wiring: marker + pending/shutdown-notice I/O, restart detection, activity tracking + SIGTERM/SIGINT hook, smart_restart tool (incl. the read-before-edit active-agent guard (fb-168), the optional canary gate + abort alert, restartUnit auto-detection — resolveRestartUnit reads /proc/self/cgroup when config empty), delivery (followup/inject), interrupted-head resume notices (fb-168)
+  boot.ts    — pure, deterministic restart + notice logic (I/O-free, unit-testable), incl. parseShutdownNotice / shutdownTarget / activeAgentGuard / interruptedHeads
   canary.ts  — optional canary pre-restart validation: ExecStart derivation, temp patch build, free-port pick, dump-config pre-flight, boot + liveness probe (all IO injectable via CanaryHooks)
 test/
-  marker.test.js  — detectRestart / parsePendingNotice / parseShutdownNotice / shutdownTarget / parseCgroupUnit / selectsAgent / targetsAgent / compiled exports
+  marker.test.js  — detectRestart / parsePendingNotice / parseShutdownNotice / shutdownTarget / activeAgentGuard / interruptedHeads / parseCgroupUnit / selectsAgent / targetsAgent / compiled exports
   notice.test.js  — buildNotice / humanizeDowntime
   canary.test.js  — deriveExecStartParams / buildPatchContent / pickFreePort / probeStatusHealthy / resolveExecTarget / runCanary with injected hooks
 ```

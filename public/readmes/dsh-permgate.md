@@ -31,33 +31,37 @@
 
 - **会话权限选择器**：在输入框下方的权限选择器中选择「自定义审查」，即由权限网关按分类逐项审查工具调用。
 
-  ![会话权限选择器](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/958f3620ede838674b373f06a44343029151d991/assets/permission-picker.jpg)
+  ![会话权限选择器](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/107e8ee7a849ba73c70f4a0dd8cc7352bccb79da/assets/permission-picker.jpg)
 
 - **新会话默认权限设置**：在设置里把「自定义审查」设为新对话的默认权限，之后每次新建对话自动启用，不用手动重复选择。
 
-  ![默认权限设置](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/958f3620ede838674b373f06a44343029151d991/assets/default-permission.jpg)
+  ![默认权限设置](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/107e8ee7a849ba73c70f4a0dd8cc7352bccb79da/assets/default-permission.jpg)
 
 - **审批弹窗**：编辑/写入类审批可以看到 diff 详情，快速判断改动是否合理；命令类审批展示命令与参数——命中例外直接放行、未命中则询问，并给出可一键添加的规则候选（如 `git status *`），常放行的命令顺手就加进例外。
 
-  ![审批弹窗](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/958f3620ede838674b373f06a44343029151d991/assets/approval-modal.png)
+  ![审批弹窗](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/107e8ee7a849ba73c70f4a0dd8cc7352bccb79da/assets/approval-modal.png)
 
-  ![命令执行审批（Pwsh）](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/958f3620ede838674b373f06a44343029151d991/assets/pwsh-approval.png)
+  ![命令执行审批（Pwsh）](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/107e8ee7a849ba73c70f4a0dd8cc7352bccb79da/assets/pwsh-approval.png)
 
 - **自定义拒绝意见**：拒绝时填写意见，AI 会收到「为什么不行、应该怎么做」的明确理由，立即调整方案。
 
-  ![拒绝意见](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/958f3620ede838674b373f06a44343029151d991/assets/reject-reason.png)
+  ![拒绝意见](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/107e8ee7a849ba73c70f4a0dd8cc7352bccb79da/assets/reject-reason.png)
 
 - **设置 → 权限网关**：一站式管理所有权限——每个分类的默认行为、白/黑名单、快捷工具、自定义规则、底层沙箱，全局与项目分开配置，还能查看最近决策记录。无需再手动编辑配置文件，通过设置界面即可快速调整。
 
-  ![权限网关设置页](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/958f3620ede838674b373f06a44343029151d991/assets/settings-page.jpg)
+  ![权限网关设置页](https://raw.githubusercontent.com/MrWeiCodes/dsh-permgate/107e8ee7a849ba73c70f4a0dd8cc7352bccb79da/assets/settings-page.jpg)
 
 ## 安装
 
-### 方式一：让 AI 安装（最简单）
+### 方式一：插件市场安装（dsh-market，推荐）
+
+已安装 [dsh-market](https://github.com/dsh-market/dsh-market)（DSH 插件市场）的用户：打开 **设置 → 插件市场（Plugin Market）**，搜索 `dsh-permgate`，点卡片上的「安装」并按提示确认来源（`github:MrWeiCodes/dsh-permgate`）。安装完成后**重启 `dsh web`**。然后在会话的权限选择器（`/permission`）中选择 **「自定义审查」**。
+
+### 方式二：让 AI 安装（最简单）
 
 把本仓库地址告诉 DSH 的 AI 助手即可，例如：「安装 https://github.com/MrWeiCodes/dsh-permgate 这个插件」。AI 会替你完成插件装载、依赖与补丁处理；之后重启 `dsh web`，在会话的权限选择器（`/permission`）中选择 **「自定义审查」**（每个对话独立记忆；也可在 设置 → Permission 里设为新会话默认）。
 
-### 方式二：一行命令（自助安装）
+### 方式三：一行命令（自助安装）
 
 宿主侧插件为纯 ESM JavaScript，浏览器注册脚本也作为运行时文件随仓库直接提交。本包没有 build、prepare 或 install 脚本，因此从 Git 安装时不需要授权 pnpm 执行构建。
 
@@ -67,7 +71,7 @@
 dsh plugin --profile web add -w github:MrWeiCodes/dsh-permgate
 ```
 
-从本地 checkout 安装（仅当 checkout 位于 profile 目录内时依赖才能解析；否则请用方式三）：
+从本地 checkout 安装（仅当 checkout 位于 profile 目录内时依赖才能解析；否则请用方式四）：
 
 ```powershell
 dsh plugin --profile web add -w ./dsh-permgate
@@ -75,9 +79,9 @@ dsh plugin --profile web add -w ./dsh-permgate
 
 重启 `dsh web`，然后在会话的权限选择器（`/permission`）中选择 **「自定义审查」**（每个对话独立记忆）；也可在 设置 → Permission 里把它设为新会话默认。
 
-> 已按「方式三」手动安装过的，请先按「卸载」清掉旧的手动行与依赖，再使用方式二，避免重复注册。
+> 已按「方式四」手动安装过的，请先按「卸载」清掉旧的手动行与依赖，再使用方式三，避免重复注册。
 
-### 方式三：手动安装
+### 方式四：手动安装
 
 无 pnpm 或离线环境时的备选路径：
 
@@ -98,8 +102,9 @@ dsh plugin --profile web add -w ./dsh-permgate
 
 按安装方式对应操作，**配置（`$DSH_HOME/dsh-permgate/config.json`）在更新后都会保留**，无需重新设置。
 
-- **方式一（AI 安装）安装的**：直接告诉 AI「更新 dsh-permgate 插件」即可。
-- **方式二（dsh plugin）安装的**：
+- **方式一（dsh-market 安装）的**：打开 **设置 → 插件市场**，在 dsh-permgate 卡片上点「更新」（或按市场提示一键/批量更新）。
+- **方式二（AI 安装）安装的**：直接告诉 AI「更新 dsh-permgate 插件」即可。
+- **方式三（dsh plugin）安装的**：
   ```powershell
   dsh plugin --profile web update dsh-permgate
   ```
@@ -109,7 +114,7 @@ dsh plugin --profile web add -w ./dsh-permgate
   dsh plugin --profile web add -w github:MrWeiCodes/dsh-permgate
   ```
   然后重启 `dsh web`。
-- **方式三（手动）安装的**：
+- **方式四（手动）安装的**：
   ```powershell
   cd "$HOME\.dsh\profiles\web\packages\dsh-permgate"
   git pull            # 或重新拷贝新版本覆盖
@@ -119,11 +124,15 @@ dsh plugin --profile web add -w ./dsh-permgate
 
 ## 卸载
 
-### 方式一（AI 安装）安装的：让 AI 卸载
+### 方式一（dsh-market 安装）的：插件市场卸载
+
+打开 **设置 → 插件市场**，在 dsh-permgate 卡片上点「卸载」（两步确认），本会话安装的插件会即时移除。配置目录 `$DSH_HOME/dsh-permgate/` **不会**被自动删除，按下方「残留位置清单」决定保留或清理。
+
+### 方式二（AI 安装）安装的：让 AI 卸载
 
 直接告诉 AI 助手「卸载 dsh-permgate 插件」。AI 按下方「残留位置清单」移除插件、清理补丁与依赖，并删除配置目录（如需保留配置请提前说明）。
 
-### 方式二（dsh plugin）安装的
+### 方式三（dsh plugin）安装的
 
 ```powershell
 dsh plugin --profile web remove dsh-permgate
@@ -131,7 +140,7 @@ dsh plugin --profile web remove dsh-permgate
 
 `dsh plugin remove` 只移除插件本体与补丁层，**不会删除配置目录**——需按下方清单删除 `$DSH_HOME/dsh-permgate/`。
 
-### 方式三（手动）安装的
+### 方式四（手动）安装的
 
 1. 从 profile 的 `cordis.patch.yml` 中删除 `- insert: permgate` 行；`permission` 预设覆盖整行可一并删除（恢复平台默认预设表）。
 2. 从 profile 的 `package.json` 的 `dependencies` 中删除 `"dsh-permgate": ...`。
@@ -141,8 +150,8 @@ dsh plugin --profile web remove dsh-permgate
 ### 残留位置清单（AI 卸载时按此清理）
 
 - **配置目录**：`$DSH_HOME/dsh-permgate/`——`$DSH_HOME` 默认是 `~/.dsh`（Windows 下 `C:\Users\<用户名>\.dsh`），插件的 `config.json` 保存在这里。卸载不会自动删除，AI 卸载时按此路径删除整个目录。
-- **插件目录**（方式三安装时）：`$DSH_HOME/profiles/<profile>/packages/dsh-permgate/`。
-- **依赖与补丁**（方式三安装时）：profile 的 `package.json` 中的 `"dsh-permgate": ...` 依赖、`cordis.patch.yml` 中的 `- insert: permgate` 行与 `permission` 预设覆盖。
+- **插件目录**（方式四安装时）：`$DSH_HOME/profiles/<profile>/packages/dsh-permgate/`。
+- **依赖与补丁**（方式四安装时）：profile 的 `package.json` 中的 `"dsh-permgate": ...` 依赖、`cordis.patch.yml` 中的 `- insert: permgate` 行与 `permission` 预设覆盖。
 - **会话日志**：会话中的 `permission/preset: custom-review` 事件是 DSH 自身的记录，**不属于插件残留，不要删除**。
 
 ### 卸载残留

@@ -2,7 +2,7 @@
 
 English | [中文](README.zh.md)
 
-[![npm version](https://img.shields.io/badge/npm-1.14.0-blue)](https://www.npmjs.com/package/@roarpeng/graphflow)
+[![npm version](https://img.shields.io/badge/npm-1.15.3-blue)](https://www.npmjs.com/package/@roarpeng/graphflow)
 
 > **The memory & context harness for coding agents.** Local-first code knowledge graph · bounded context compression (~98% token savings) · cross-session learning flywheel.
 
@@ -29,14 +29,16 @@ It is also **local-first and portable**: everything runs offline with no API key
 
 ## Proof, not promises
 
-All headline numbers come from a **public, reproducible benchmark suite** ([benchmarks/README.md](benchmarks/README.md)) with published methodology ([docs/benchmark-standards.md](docs/benchmark-standards.md)) and machine-readable JSON dumps pinned to commits:
+**Third-party reproduction entry:** `npm run proof:flywheel` — one command, offline, no API key. Guide: [docs/flywheel-reproduction.md](docs/flywheel-reproduction.md). Independent runs are welcome; open a GitHub issue titled `[benchmark] Independent reproduction — <commit>`.
+
+All headline numbers come from a **public, reproducible benchmark suite** ([benchmarks/README.md](benchmarks/README.md)) with published methodology ([docs/benchmark-standards.md](docs/benchmark-standards.md)) and machine-readable JSON dumps pinned to commits. Authoritative percentages live in the tracked RESULTS markdown; this package does not invent new scores.
 
 - **~98% token savings** (8-query suite, 262,926 → 2,843 tokens; independently re-counted with `gpt-tokenizer`)
 - **132-query golden retrieval set** in CI (Hit@5 = 100%, MRR = 0.836, NDCG@5 = 0.601); downloadable open dataset: [`benchmarks/datasets/retrieval-golden-v1.json`](benchmarks/datasets/retrieval-golden-v1.json) — run `npm run bench:retrieval`
 - **Skill A/B: 100% vs 61.5%** task success with the flywheel on vs off (26 tasks)
 - **Memory ROI: 100% vs 56.5%** with episodic memory on vs off (62 tasks, with attribution chains)
 
-Results are commit-anchored so any number above can be checked out and re-run. Third-party reproduction is actively welcomed — see [ROADMAP.md](ROADMAP.md) for the open invitation.
+Results are commit-anchored so any number above can be checked out and re-run. See [ROADMAP.md](ROADMAP.md) for the open invitation.
 
 ## Memory poisoning protection
 
@@ -67,7 +69,7 @@ Connect via MCP (Cursor / Claude Code / …):
 }
 ```
 
-The agent calls `graphflow_context` for compressed context, then `graphflow_plan` to plan; without a provider API key GraphFlow automatically bridges the ATP thinking protocol to the host agent (agent-delegated mode).
+The agent calls `graphflow_context` for compressed context, then `graphflow_plan` to plan; without a provider API key GraphFlow automatically bridges the ATP thinking protocol to the host agent (agent-delegated mode). For symbol-precise edits, compose Serena as a second MCP server — [GraphFlow + Serena](docs/graphflow-serena.md) (`examples/graphflow-serena.mcp.json`).
 
 ## Why GraphFlow
 
@@ -82,9 +84,9 @@ Single-purpose tools each do one thing well; GraphFlow combines graph + compress
 | Local-first | ✅ | ✅ | ✅ | ✅ |
 | Open protocol | [ATP/IR public spec](docs/atp-ir-spec-v1.md) | — | — | — |
 
-> The differentiator is the **learning flywheel**: graph indexing and token compression are replicable; project-private experience (skills, lessons, decisions) accumulated across sessions is not — it compounds with use. Serena is a complement, not a competitor — see [GraphFlow + Serena: better together](docs/comparison.md#graphflow--serena-better-together联合方案).
+> The differentiator is the **learning flywheel**: graph indexing and token compression are replicable; project-private experience (skills, lessons, decisions) accumulated across sessions is not — it compounds with use. Serena is a complement, not a competitor — see [GraphFlow + Serena: better together](docs/graphflow-serena.md) ([中文](docs/graphflow-serena.zh.md); [comparison](docs/comparison.md)).
 
-## Core capabilities (v1.13+)
+## Core capabilities (v1.15+)
 
 | Module | Capability |
 | --- | --- |
@@ -96,12 +98,12 @@ Single-purpose tools each do one thing well; GraphFlow combines graph + compress
 | **Vector index** | In-process memoization + disk persistence (fingerprint-checked, seconds to restore after MCP restart) |
 | **Storage backends** | `file` / `memory` / `sqlite` (FTS5, tokenizer-enhanced `searchtext`, camelCase searchable) / **`auto` (sqlite-first with fallback)** / `mcp-http` |
 | **Learning flywheel** | Episodic memory, reflection, skill nodes (score ±1, bounded [-20,20]), nightly training, adaptive evidence-aware forgetting, **auto-capture + Claude Code hooks (on by default)**, **SkillOpt-lite** bounded guidance edits, four-class lifecycle + **canary gate for synced skills**, portable SKILL.md import/export, `npm run backfill:episodes`, contribution reports (`skill report` / `graphflow_diagnose` / `route diagnose`) |
-| **Team sharing** | `skill sync`: export/import skill packs to a committable `.graphflow/skills/team-skills.json`; imports are a **bidirectional MERGE** (per-skill-id union, newer `updatedAt` wins, ties keep local, local-only skills preserved; `--force` to overwrite); golden retrieval queries round-trip via `.graphflow/team-golden.json`; [security model](docs/team-memory-security.md) |
+| **Team sharing** | `graphflow team serve` (tenant + RBAC) + `skill sync export/import/push/pull`; imports/pulls are a **bidirectional MERGE**; golden queries via `.graphflow/team-golden.json`; [security model + ops runbook](docs/team-memory-security.md) |
 | **Benchmarks** | [Comprehensive 92.9%](benchmarks/COMPREHENSIVE-RESULTS.md) · [Independent-style 96.2%](benchmarks/INDEPENDENT-RESULTS.md) · [context-readiness eval](benchmarks/SWE-BENCH-RESULTS.md) · [98.2% token savings](benchmarks/RESULTS.md) |
 | **Model routing** | Smart / Economy tiers; multi-provider health probes and fallback (DeepSeek, OpenAI, Anthropic, Bailian, Doubao) |
 | **Workbench** | Plan DAG seeds function-topic containers; collapsed outline; click `topicId` to resume; drift forks a side branch; original Q/A stored via `assistantReply` |
 | **Observability** | `graphflow_diagnose` / `route diagnose`: provider health + graph stats + token savings + **flywheel health** (auto-capture, episodes, skills by class, session journal) + workbench outline |
-| **Agent surfaces** | CLI `--json`; MCP stdio and Streamable HTTP (stateless JSON or stateful SSE, 10 tools); auto-install into 15+ agents (incl. **Codex Windows NODE/NPX_CLI short-path MCP**) |
+| **Agent surfaces** | CLI `--json`; MCP stdio and Streamable HTTP (stateless JSON or stateful SSE, 10 tools); auto-install into 15+ agents (incl. **Codex Windows NODE/NPX_CLI short-path MCP**). **HostAdapter** registry owns Cursor / Claude Code / DeepSeek Harness install · uninstall · doctor; other hosts still use the legacy installers |
 | **Evidence & governance** | Outcome evidence packages (commit/diff/tests), evidence backfill, tamper-evident audit chains, ADR/Invariant/APIContract/Test review states, artifact three-way merge/signing/encryption, retention/quarantine, release gates |
 | **Engineering quality** | TypeScript strict; vitest suite; `npm run ci` includes extension packaging and smoke tests |
 
@@ -151,6 +153,7 @@ graphflow run "update readme"              # orchestrate (bridge)
 graphflow skill insights                   # skill insights
 graphflow skill report                     # flywheel contribution report
 graphflow mcp serve --http                 # stateless MCP Streamable HTTP (add --stateful for SSE sessions)
+graphflow team serve                       # team graph JSON-RPC (tenant + RBAC; non-loopback requires auth)
 graphflow outcome backfill --evidence evidence.jsonl  # close pending episodes with evidence packages
 graphflow governance release-gate         # enforce proven-skill/fidelity/pending gates
 graphflow skill sync export                # export team skill pack + golden queries (share via git)
@@ -183,7 +186,7 @@ Set `graphPolicy.transport` to `mcp-http` to host the graph on a remote Graphify
 { "graphPolicy": { "transport": "mcp-http", "mcpEndpoint": "http://graphify.team.internal:8080" } }
 ```
 
-A missing/malformed endpoint fails at config validation; connection or runtime request failures degrade transparently to local JSON storage (`graphPolicy.graphStorePath`, default `graphflow-out/graphflow-graph.json`) with a `logger.warn`, consistent with the sqlite→file fallback, never interrupting the agent. The pilot protocol does not yet support full snapshots: `readSnapshot` returns the local mirror file (possibly stale). For the team-sharing security model, see [docs/team-memory-security.md](docs/team-memory-security.md).
+A missing/malformed endpoint fails at config validation; connection or runtime request failures degrade transparently to local JSON storage (`graphPolicy.graphStorePath`, default `graphflow-out/graphflow-graph.json`) with a `logger.warn`, consistent with the sqlite→file fallback, never interrupting the agent. HTTP 401/403 (auth / RBAC deny) do **not** degrade — they throw. `graphflow team serve` implements `graph.read_snapshot` and `team.health`; third-party Graphify servers without those methods still fall back to the local mirror. See [docs/team-memory-security.md](docs/team-memory-security.md).
 
 ## Benchmarks
 
@@ -275,7 +278,7 @@ npx @roarpeng/graphflow uninstall  # remove MCP + Skill + Rules + hooks
 npx @roarpeng/graphflow init       # write a minimal project config
 ```
 
-Supported: Cursor, VS Code, Trae (incl. CN), Claude Code, Windsurf, Cline, Roo Code, Kilo Code, Gemini CLI, Codex, Antigravity, Opencode, Qoder, Amazon Q, Zed, Continue, DeepSeek Harness (`dsh`), and more (15+).
+Supported: Cursor, VS Code, Trae (incl. CN), Claude Code, Windsurf, Cline, Roo Code, Kilo Code, Gemini CLI, Codex, Antigravity, Opencode, Qoder, Amazon Q, Zed, Continue, DeepSeek Harness (`dsh`), and more (15+). Cursor, Claude Code, and DeepSeek Harness go through the HostAdapter registry (`installViaHostAdapter`); remaining hosts still use the legacy installers.
 
 | Path | When to use |
 | --- | --- |
@@ -285,7 +288,7 @@ Supported: Cursor, VS Code, Trae (incl. CN), Claude Code, Windsurf, Cline, Roo C
 
 ## Protocol
 
-[ATP/IR — Agent Thinking Protocol public specification v1.0](docs/atp-ir-spec-v1.md): work-item registry, submit/merge contract, compatibility rules. Third-party tools can implement compatible producers / consumers. Minimal Producer example: [`examples/atp-minimal-producer/`](examples/atp-minimal-producer/).
+[ATP/IR — Agent Thinking Protocol public specification v1.0](docs/atp-ir-spec-v1.md): work-item registry, submit/merge contract, compatibility rules. Third-party tools can implement compatible producers / consumers. Minimal Producer example: [`examples/atp-minimal-producer/`](examples/atp-minimal-producer/). Dual-MCP compose snippet (GraphFlow + Serena, config only): [`examples/graphflow-serena.mcp.json`](examples/graphflow-serena.mcp.json).
 
 ## Community
 
@@ -325,7 +328,8 @@ GraphFlow/
 │       └── mcp/        # MCP server (10 tools)
 ├── tests/              # 142 files / 961 tests (incl. governance foundation and MCP HTTP/stdio matrix)
 ├── benchmarks/         # comprehensive + independent + SWE-bench + token savings + skill A/B (reproducible)
-├── docs/               # ATP spec + context contract + experience memory + comparisons
+├── docs/               # ATP spec + context contract + experience memory + flywheel reproduction + GraphFlow/Serena
+├── examples/           # ATP producer + team-memory config + GraphFlow/Serena dual-MCP snippet
 ├── vscode-extension/   # VS Code panel and commands
 └── CHANGELOG.md
 ```

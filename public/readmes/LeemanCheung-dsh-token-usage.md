@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-overview.png" alt="DSH Token 用量概览：八项指标、聚合导出、30 周热力图与周期趋势" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/d21e2e90fc78952cc07b2a1a0adcd4e86642e84b/assets/token-usage-overview.png" alt="DSH Token 用量概览：八项指标、聚合导出、30 周热力图与周期趋势" width="800">
 </p>
 
 > 截图采集自当前 DSH 界面；采集前已将用量、日期、路由与报告内容替换为明确标注的示例数据，不对应真实会话、模型配置或账单。
@@ -69,17 +69,17 @@
 ### 趋势、效率、运行率与预算
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-insights.png" alt="Agent 效率与归因：尝试次数、压缩率、缓存占比、路由集中度与运行率" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/d21e2e90fc78952cc07b2a1a0adcd4e86642e84b/assets/token-usage-insights.png" alt="Agent 效率与归因：尝试次数、压缩率、缓存占比、路由集中度与运行率" width="800">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-budget.png" alt="30 日 Token 预算、公开费率说明和 AI 用量分析入口" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/d21e2e90fc78952cc07b2a1a0adcd4e86642e84b/assets/token-usage-budget.png" alt="30 日 Token 预算、公开费率说明和 AI 用量分析入口" width="800">
 </p>
 
 ### AI 用量分析入口与模型热点
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-ai-analysis.png" alt="AI Token 用量分析：模型选择、隐私说明、模型目录刷新和模型用量热点" width="800">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/d21e2e90fc78952cc07b2a1a0adcd4e86642e84b/assets/token-usage-ai-analysis.png" alt="AI Token 用量分析：模型选择、隐私说明、模型目录刷新和模型用量热点" width="800">
 </p>
 
 > 选择的路由只在用户点击生成后调用；目录失败可重试，也不会静默改用默认模型。
@@ -88,7 +88,7 @@
 ### 会话轨迹报告与浏览器本地历史
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/c4f767a12caf452cc0282094db22c799de03a493/assets/token-usage-trajectory-analysis.png" alt="会话轨迹分析：视口内滚动预览、四组确定性摘要、安全 Markdown 与导出" width="822">
+  <img src="https://raw.githubusercontent.com/LeemanCheung/dsh-token-usage/d21e2e90fc78952cc07b2a1a0adcd4e86642e84b/assets/token-usage-trajectory-analysis.png" alt="会话轨迹分析：视口内滚动预览、四组确定性摘要、安全 Markdown 与导出" width="822">
 </p>
 
 > 轨迹截图使用示例会话指标，展示限制在视口内的滚动预览、完成态摘要、Markdown 表格与导出；继续向下滚动可查看浏览器本地历史，不对应真实会话内容。

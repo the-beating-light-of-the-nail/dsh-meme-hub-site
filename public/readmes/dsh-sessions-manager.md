@@ -12,7 +12,7 @@
 
 > DSH 会话管理器：在**设置 → 会话管理**里统一归档、移动、恢复、查看详情；在**主页侧边栏**直接标记未读、移动、删除会话。删除先进入回收站，可恢复或彻底清理。
 
-一个 DSH 持久化插件（host + browser 双半）。v3.0.0 起同时覆盖「设置面板」与「主页侧边栏」两个入口，无需打开设置即可完成高频会话操作。
+一个 DSH 持久化插件（host + browser 双半），同时覆盖「设置面板」与「主页侧边栏」两个入口，无需打开设置即可完成高频会话操作。插件同时识别旧式 header 列表/`readFrom` 与新版 snapshot/`SessionHandle`，并按当前 Runtime 的实际能力启用安全操作；尚未验证的删除或迁移路径会在界面与 Host 端同步禁用，避免假成功。
 
 ## 功能
 
@@ -43,7 +43,7 @@
 | 颜色 | 状态 | 说明 |
 |---|---|---|
 | 🔵 蓝 | 手动标记未读 | 通过 ⋯ 菜单或点击圆点手动标记；进入会话后自动清除 |
-| 🟡 黄 | 工作中 | 会话正在运行（`running`） |
+| 🟡 黄 | 工作中 | 会话正在运行（新版 `ongoing`，兼容旧版 `running`） |
 | 🟠 琥珀 | 等待反馈 | 会话有追问，需要用户输入或确认（`warning`） |
 | 🟢 绿 | 完成后未读 | 会话已完成（`done`）但你还没重新打开看过；看过一次后不再显示 |
 | 🔴 红 | 出错 / 需关注 | 会话遇到错误（`error`） |
@@ -67,19 +67,19 @@
 <details>
 <summary>展开查看截图（设置面板 / 自动归档 / 存储占用 / 已收藏 / 回收站 / 会话详情 / 侧边栏菜单）</summary>
 
-![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-submenu.png)
+![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-submenu.png)
 
-![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-settings.png)
+![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-settings.png)
 
-![自动归档面板（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-autoarch.png)
+![自动归档面板（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-autoarch.png)
 
-![存储占用分析（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-storage.png)
+![存储占用分析（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-storage.png)
 
-![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-starred.png)
+![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-starred.png)
 
-![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-trash.png)
+![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-trash.png)
 
-![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/8ad2c23dc5f472ed1ae87f12a63fbaec2f9dd4a6/assets/screenshot-session-details.png)
+![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-details.png)
 
 </details>
 
@@ -149,6 +149,7 @@ lib/client.js      预构建 client（ModuleLoader CJS handshake）
 | POST | `/archived-sessions/storage` | 存储占用聚合（按工作区排行 + 最大的会话）`{ topN }` |
 | POST | `/archived-sessions/auto-archive/settings` | 读取或更新自动归档策略 `{ inactiveDays, skipStarred }`；读取时惰性触发每日检查 |
 | POST | `/archived-sessions/auto-archive/run` | 立即执行一次自动归档检查（忽略每日节流） |
+| POST | `/archived-sessions/capabilities` | 返回当前持久化代际及读取、归档、回收站、永久删除、跨工作区移动能力 |
 
 > 删除会话默认进入回收站，只有回收站内的「彻底删除」才会物理移除日志。被彻底删除的会话由前端永久隐藏，避免 DSH 运行时缓存使其重新出现在侧栏或「未分组」中。
 
@@ -157,6 +158,9 @@ lib/client.js      预构建 client（ModuleLoader CJS handshake）
 - **适配系统**：跨平台（macOS / Windows / Linux）——只要 DSH 能在该系统运行即可；本插件 host 基于 Node（约 `^22.19` 或 `>=24`）、浏览器端为 React，不依赖特定操作系统 API。
 - DSH Desktop / web 均可（同一套 host + client）。
 - peerDependencies 见 `package.json`；`react`、`@deepseek-ai/*` 由 DSH 运行时提供。
+- `0.1.2-rc.1`：现有读取、归档、回收站、永久删除和跨工作区移动能力保持可用。
+- `0.1.3-alpha.1`：支持 snapshot 列表和 `SessionHandle` 只读流程；永久删除与跨工作区移动在缺少已验证安全路径时自动禁用，其余管理能力继续工作。能力以面板实际提示为准。
+- 未经验证的未来 Runtime 默认只开放能够识别的安全能力；插件不会用方法存在与否冒充行为兼容。
 
 ## License
 

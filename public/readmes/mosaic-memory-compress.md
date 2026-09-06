@@ -48,9 +48,9 @@ rules, the relationship. The algorithm reproduces that curve inside one
 message array:
 
 ```
-recent 30 rounds   → verbatim (vivid — what you are actually working on)
-rounds 30–50       → structural truncation (reasoning/args/results trimmed, text kept)
-rounds 50+         → one heavy pair: identity, environment, permissions, rules
+recent 10 rounds   → verbatim (vivid — what you are actually working on)
+rounds 10–40       → structural truncation (reasoning/args/results trimmed, text kept)
+rounds 40+         → one heavy pair: identity, environment, permissions, rules
 ```
 
 No switch moment, no reset, no length limit. The heavy zone is *semantic
@@ -86,7 +86,7 @@ import { mosaicMemoryCompress, type MosaicMemoryConfig } from 'mosaic-memory-com
 const config: MosaicMemoryConfig = {
   lightStart: 10,    // keep 10 most recent rounds raw (vivid)
   lightWindow: 30,   // compress every 30 rounds (aligned with heavy)
-  heavyStart: 30,    // rounds before this enter the heavy zone
+  heavyStart: 40,    // rounds before this enter the heavy zone
   heavyWindow: 30,   // heavy fold cadence (30-round interval)
   callLLM: async (systemPrompt, userInput) => {
     // Wire to OpenAI, Anthropic, or any LLM provider
@@ -230,7 +230,7 @@ See the [Roadmap](docs/ROADMAP.md) for upcoming work.
 A deterministic simulation (zero LLM cost, reproducible) runs the real
 algorithm with a rule-based pseudo-LLM. Latest sweep (default parameters):
 
-![Context growth: uncompressed vs MosaicMemoryCompress (log scale)](https://raw.githubusercontent.com/TuringCorp-net/mosaic-memory-compress/fe6e0c35cb60f8db684c61ec7f5608f117194d6c/benchmark/chart.svg)
+![Context growth: uncompressed vs MosaicMemoryCompress (log scale)](https://raw.githubusercontent.com/TuringCorp-net/mosaic-memory-compress/60959df1ce68022f92032621fcc7a168b204d77e/benchmark/chart.svg)
 
 | Rounds | msgs in | msgs out | tokens in | tokens out | ratio | facts kept |
 |---|---:|---:|---:|---:|---:|---:|

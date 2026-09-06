@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/5525a4e6adac3e7c1a6c522578513448ae3d7390/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
+<img src="https://raw.githubusercontent.com/titanwings/colleague-skill/cf15171f37fcfc4ab7638210705a2973f2b8186a/docs/social-preview-distilly-v7.png" alt="Distilly — Distill how they think into Person Profiles for Agents" width="100%">
 
 <br>
 

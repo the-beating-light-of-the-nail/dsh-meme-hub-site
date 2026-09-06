@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://oh-my-dsh.vercel.app/">
-    <img src="https://raw.githubusercontent.com/wangshunnn/oh-my-dsh/1d45f812f5eeab766f4dfb58d5bd28c42afa4d2e/assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
+    <img src="https://raw.githubusercontent.com/wangshunnn/oh-my-dsh/d51348cbf734df422a45790d8b720085c8892757/assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
   </a>
 </p>
 

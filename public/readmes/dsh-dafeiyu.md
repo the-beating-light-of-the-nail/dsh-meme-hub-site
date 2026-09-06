@@ -12,13 +12,13 @@
 
 </div>
 
-![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/dsh-bigfish-running.png)
+![DSH 大肥鱼在真实任务中显示项目状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/dsh-bigfish-running.png)
 
 DSH 大肥鱼不是一个需要单独启动的桌宠应用。它由 DSH 插件启用，跟随 DSH
 一起启动和退出，并以透明、无边框、始终置顶的原生窗口显示在桌面上。即使切换到
 VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修改、测试、等待还是已经完成。
 
-> 当前版本：`0.1.7` · Windows / WSL2 / Linux x64 · macOS 实验性支持
+> 当前版本：`0.1.9` · Windows / WSL2 / Linux x64 · macOS 实验性支持
 
 ## 关注最新进展
 
@@ -48,15 +48,15 @@ VS Code、浏览器或文件管理器，也能知道 DSH 当前在思考、修�
 
 | 思考 | 工作 |
 | --- | --- |
-| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-working.png) |
+| ![大肥鱼思考状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/status-thinking.png) | ![大肥鱼工作状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/status-working.png) |
 
 | 等待确认 | 完成 |
 | --- | --- |
-| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-success.png) |
+| ![大肥鱼等待用户确认](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/status-waiting.png) | ![大肥鱼任务完成](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/status-success.png) |
 
 | 遇到问题 |
 | --- |
-| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/status-error.png) |
+| ![大肥鱼错误状态](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/status-error.png) |
 
 状态大致按照下面的流程变化：
 
@@ -257,7 +257,7 @@ pnpm dsh plugin --profile web add "C:\Users\you\Downloads\dsh-dafeiyu-<version>.
 设置 → 插件 → 插件配置 → 大肥鱼桌面伴侣
 ```
 
-![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/cf07b7fe504a26117bd44719751a54affc94ae44/docs/images/dsh-bigfish-settings.png)
+![DSH 大肥鱼插件设置入口](https://raw.githubusercontent.com/QCYTSN/dsh-dafeiyu/f4f4482e172fb74097c8d2343221af1a84e9a2f1/docs/images/dsh-bigfish-settings.png)
 
 ## 怎么使用？
 

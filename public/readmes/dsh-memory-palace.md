@@ -1,8 +1,8 @@
-# dsh-memory-palace <img src="https://raw.githubusercontent.com/lovezi0/dsh-memory-palace/411972591aafe7edde9b3259381279e31b07828d/assets/memory-icon.svg" width="36" height="36" alt="dsh-memory-palace" />
+# dsh-memory-palace <img src="https://raw.githubusercontent.com/lovezi0/dsh-memory-palace/0edb8517bab88154a9e290b0733cc66d2b3006d4/assets/memory-icon.svg" width="36" height="36" alt="dsh-memory-palace" />
 
 把 WorkBuddy 的文件式记忆系统移植进 [DeepSeek Harness](https://www.deepseek.com/harness/) —— 为 Harness 提供**跨会话持久化、人类可直接编辑的 Markdown 记忆**。
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com) [![npm](https://img.shields.io/npm/v/dsh-memory-palace.svg?label=npm&color=CB3837&labelColor=4D6BFE)](https://www.npmjs.com/package/dsh-memory-palace) [![DeepSeek Harness:0.1.2-rc.1](https://img.shields.io/badge/DeepSeek%20Harness-0.1.2--rc.1-success.svg?labelColor=4D6BFE)](https://github.com/deepseek-ai/deepseek-harness)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com) [![npm](https://img.shields.io/npm/v/dsh-memory-palace.svg?label=npm&labelColor=000000&color=ff4b01)](https://www.npmjs.com/package/dsh-memory-palace) [![DeepSeek Harness:0.1.2-rc.1](https://img.shields.io/badge/DeepSeek%20Harness-0.1.2--rc.1-success.svg?labelColor=4D6BFE)](https://github.com/deepseek-ai/deepseek-harness)
 
 ## 特性
 

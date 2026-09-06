@@ -10,7 +10,7 @@
 
 <div align="center">
   <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free1.png">
-    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/be190fa6e915116c4575ac7a0b02577f1ca3b7e7/assets/settings-free1.png" alt="免费引擎设置 (Bing)" width="820" />
+    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/d1beabcf643256d95823a9cb8f06fc8f84a40483/assets/settings-free1.png" alt="免费引擎设置 (Bing)" width="820" />
   </a>
   <br>
   <sub>▲ 免费引擎（以Bing为例）</sub>
@@ -42,6 +42,8 @@ dsh 默认的搜索 provider 依赖 DeepSeek 官方 API key（`DEEPSEEK_API_KEY`
 - **网页抓取（web_fetch）** —— 让 agent 抓取网页内容（官方 `dsh-web-fetch-http` provider，纯 JS，零额外依赖）
 - **平台搜索（platform_search）** —— 搜 GitHub / V2EX / B站 / Reddit / Hacker News / Stack Overflow / 维基百科 / npm（公开 API，零依赖）
 - **干净集成** —— 实现官方 `WebSearchProvider` seam 接口，与官方插件共存
+
+如果这个插件帮到了你，欢迎给仓库点个 ⭐（[GitHub](https://github.com/DDDMUC/dsh-free-search)）——星标是开发者继续维护的最大动力，感谢支持！
 
 ### 引擎列表
 
@@ -87,6 +89,16 @@ dsh plugin --profile web add /path/to/dsh-free-search
 dsh web
 ```
 
+#### 姊妹插件：dsh-preset-workbench（预设工作台）
+
+同作者的**姊妹插件**：在设置页里可视化创建/编辑 Agent 预设——分段提示词、15 项能力开关、内置「鲸鱼娘 / 梁神模式」模板，不用手写 YAML。两者搭配：**free-search 解决"AI 联网搜索"、preset-workbench 解决"AI 人设能力编排"**，都是纯免费、开箱即用。
+
+- 仓库：<https://github.com/DDDMUC/dsh-preset-workbench>
+- 安装：`dsh plugin --profile web add github:DDDMUC/dsh-preset-workbench`
+- 用法：设置 → 预设工作台
+
+如果你觉得 preset-workbench 也有用，同样欢迎给它的仓库点个 ⭐。🙏
+
 #### 依赖说明
 
 插件对 `@deepseek-ai/dsh-settings` 和 `@deepseek-ai/dsh-tools` 使用 `peerDependencies`，这是刻意的：DSH 运行时必须使用安装树中的唯一实例。请通过 `dsh plugin --profile <profile> add ...` 安装插件，不要把 DSH 核心包复制进 profile 的本地 `node_modules`；重复副本会导致工具调度器失效。
@@ -109,14 +121,14 @@ dsh web
   <tr style="border: none;">
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/be190fa6e915116c4575ac7a0b02577f1ca3b7e7/assets/settings-free.png" alt="免费引擎设置" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/d1beabcf643256d95823a9cb8f06fc8f84a40483/assets/settings-free.png" alt="免费引擎设置" width="100%" />
       </a>
       <br>
       <sub>▲ <b>免费引擎</b>（显示绿色 FREE 徽章与官网链接）</sub>
     </td>
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-apikey.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/be190fa6e915116c4575ac7a0b02577f1ca3b7e7/assets/settings-apikey.png" alt="付费引擎设置" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/d1beabcf643256d95823a9cb8f06fc8f84a40483/assets/settings-apikey.png" alt="付费引擎设置" width="100%" />
       </a>
       <br>
       <sub>▲ <b>付费/API Key 引擎</b>（显示橙色 API KEY 徽章与获取链接）</sub>
@@ -251,7 +263,7 @@ Windows 用户：桌面快捷方式已内置此配置（`set NODE_USE_ENV_PROXY=
 
 <div align="center">
   <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free1.png">
-    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/be190fa6e915116c4575ac7a0b02577f1ca3b7e7/assets/settings-free1.png" alt="Free Engine Settings (Bing)" width="820" />
+    <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/d1beabcf643256d95823a9cb8f06fc8f84a40483/assets/settings-free1.png" alt="Free Engine Settings (Bing)" width="820" />
   </a>
   <br>
   <sub>▲ Free engine (using Bing as an example)</sub>
@@ -283,6 +295,8 @@ This plugin provides multiple free search engines with automatic fallback, compl
 - **Webpage Fetching (`web_fetch`)** — Allows the agent to read full webpage contents (official `dsh-web-fetch-http` provider, pure JS, zero extra dependencies)
 - **Platform Search (`platform_search`)** — Search GitHub / V2EX / Bilibili / Reddit / Hacker News / Stack Overflow / Wikipedia / npm (public APIs, zero extra dependencies)
 - **Clean Integration** — Implements the official `WebSearchProvider` seam interface, coexisting seamlessly with official plugins
+
+If this plugin has been helpful, a ⭐ on [GitHub](https://github.com/DDDMUC/dsh-free-search) would mean a lot — it's the biggest motivation for the developer to keep maintaining it. Thank you!
 
 ### Supported Engines
 
@@ -328,6 +342,16 @@ Then restart:
 dsh web
 ```
 
+#### Sister Plugin: dsh-preset-workbench
+
+A **sister plugin** by the same author: a **visual workbench for creating/editing agent presets** right inside Settings — sectioned prompts, 15 capability toggles, and built-in "Whale Girl / Liangshen Mode" templates, no YAML needed. Pair them up: **free-search gives your AI web search, preset-workbench shapes its persona & capabilities** — both free and zero-config.
+
+- Repo: <https://github.com/DDDMUC/dsh-preset-workbench>
+- Install: `dsh plugin --profile web add github:DDDMUC/dsh-preset-workbench`
+- Usage: Settings → Preset Workbench
+
+If preset-workbench is useful to you too, a ⭐ on its repo is always welcome. 🙏
+
 #### Dependency Note
 
 This plugin intentionally specifies `@deepseek-ai/dsh-settings` and `@deepseek-ai/dsh-tools` as `peerDependencies`: the DSH runtime must use a single instance from the installation tree. Always install the plugin using `dsh plugin --profile <profile> add ...`. Do **not** copy DSH core packages into a profile-local `node_modules`, as duplicate copies can break the tool scheduler.
@@ -350,14 +374,14 @@ After installation, navigate to **Settings → Plugins → Configurable** tab �
   <tr style="border: none;">
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-free.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/be190fa6e915116c4575ac7a0b02577f1ca3b7e7/assets/settings-free.png" alt="Free Engine Settings" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/d1beabcf643256d95823a9cb8f06fc8f84a40483/assets/settings-free.png" alt="Free Engine Settings" width="100%" />
       </a>
       <br>
       <sub>▲ <b>Free Engine</b> (shows green FREE badge and official website link)</sub>
     </td>
     <td align="center" width="50%" style="border: none; padding: 6px;">
       <a href="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/master/assets/settings-apikey.png">
-        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/be190fa6e915116c4575ac7a0b02577f1ca3b7e7/assets/settings-apikey.png" alt="Paid/API Key Engine Settings" width="100%" />
+        <img src="https://raw.githubusercontent.com/DDDMUC/dsh-free-search/d1beabcf643256d95823a9cb8f06fc8f84a40483/assets/settings-apikey.png" alt="Paid/API Key Engine Settings" width="100%" />
       </a>
       <br>
       <sub>▲ <b>Paid / API Key Engine</b> (shows orange API KEY badge and link to get an API key)</sub>

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/011635f741257406156ae3baf850f00dff7d56d8/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -58,7 +58,7 @@ Linux. Remote is included and enabled by default, so no separate plugin installa
 Add the exact package version through DSH's plugin manager for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote@0.4.9
+dsh plugin --profile web add ds-harness-remote@0.4.10
 ```
 
 Restart Harness after installation.
@@ -73,7 +73,7 @@ profile; it does not require the Desktop browser `connection` service. Install t
 TUI profile:
 
 ```sh
-dsh plugin --profile dsh-tui add ds-harness-remote@0.4.9
+dsh plugin --profile dsh-tui add ds-harness-remote@0.4.10
 ```
 
 Start dsh-TUI and use its native slash command:
@@ -118,14 +118,14 @@ available as a Host.
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/011635f741257406156ae3baf850f00dff7d56d8/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/011635f741257406156ae3baf850f00dff7d56d8/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -137,9 +137,9 @@ open a workspace, and continue the conversation with text or image prompts. The 
 toolbar also lets you switch the active model and choose any reasoning effort declared by it.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/75cdae08659fd5163dad19ac8edc72481a54102e/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/011635f741257406156ae3baf850f00dff7d56d8/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/011635f741257406156ae3baf850f00dff7d56d8/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/011635f741257406156ae3baf850f00dff7d56d8/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -214,9 +214,9 @@ Remote business RPC surface (`sessions.*`, `session.*`, `permissions.respond`,
 `ApiProxy` or the v0.1.2 Typert Remote Gateway, and this plugin does not provide
 an adapter or wire-format translation for the old RPC surface.
 
-Plugin `0.4.9` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
+Plugin `0.4.10` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
 official `ApiProxy`, and `dsh-v0.1.2-alpha.1`–`rc.1` through the
-official Typert Remote Gateway. A `0.4.9` Client running rc.2 remains compatible
+official Typert Remote Gateway. A `0.4.10` Client running rc.2 remains compatible
 with older rc.2 Hosts through the legacy capability fallback.
 
 Both Desktop endpoints must use the same Harness transport generation. Plugin

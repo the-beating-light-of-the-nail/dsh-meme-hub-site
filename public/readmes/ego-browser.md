@@ -169,6 +169,17 @@ pnpm run build   # tsdown 三 bundle：lib/index.js + lib/client.js + bin/ego-ca
 
 插件本体 MIT。内置运行时嵌入 ego-lite 的 MIT 代码；可选下载的 FFmpeg 构建涉及 GPL-3.0-or-later 义务。使用或再分发前请阅读构建来源的许可证与源码获取信息，详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
+## 供应链与权限说明
+
+为目录收录与审查提供的确定性事实：
+
+- **运行文件**：`lib/`（构建产物，由 `npm run build` 从 `src/` TypeScript 以 tsdown 确定性生成）、`bin/`（worker 与 ffmpeg-probe 的可执行入口脚本）、`cordis.patch.yml`（装配层）、`dsh-plugin.json`（manifest）。`*.map` 仅为调试用 sourcemap，不参与运行，已声明排除。
+- **原生/可执行工件**：`runtime/` 内置 ego-lite 运行时（MIT，来源与逐文件清单见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)）——它是本插件的核心功能（自带受管 Chrome/CDP 宿主），属有意携带的可执行工件，非构建副产物。`runtime/PATCHES.md` 记录对上游的全部本地补丁。
+- **依赖**：运行时依赖仅 `@deepseek-ai/schemastery`（由 DSH 宿主提供对等实现）；peer 依赖全部为 `@deepseek-ai/dsh-*` 宿主服务。客户端 bundle 的外部模块由宿主模块表解析，不携带 npm 运行时依赖。
+- **外部服务**：无遥测、无外部 API 调用。唯一的网络行为是**可选的** FFmpeg 安装器按用户指令从 GitHub（或用户配置的镜像）下载构建件，来源校验与许可义务见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+- **失败边界**：宿主无 webServer（TUI/headless）时 watch 路由安全跳过；worker 启动失败时 watch 路由返回 `ok:false` 的 JSON 而非挂起；浏览器进程随宿主 teardown 一并终止（`--stop` fire-and-forget，不阻塞宿主退出）。
+- **权限**：manifest `permissions` 为空——工具集的文件读写被限定在 ego 自管的空间目录与用户工作区，网络访问经由受管的 agent 浏览器而非宿主进程。
+
 ---
 
 ## 友链

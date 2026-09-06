@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 ---
@@ -43,9 +43,9 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 ## 界面
 
-![IM 机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/imbot.png)
+![IM 机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/imbot.png)
 
-<img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/access_mode.png" alt="访问模式页面" width="49%">
+<img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/access_mode.png" alt="访问模式页面" width="49%">
 
 ## 当前内置渠道
 
@@ -59,11 +59,17 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 | Slack | 使用预置 App Manifest 创建应用，再填写 Bot Token（`xoxb-`）和 App Token（`xapp-`） | Socket Mode 长连接；私聊直接回复，频道被 @ 后响应，优先使用官方流式消息 API |
 | Telegram | 使用 @BotFather 生成的 Bot Token | Bot API 长轮询；默认私聊直接响应、群聊被提及或回复时响应，也可为每个机器人独立启用私聊白名单安全模式；私聊通过 Rich Message Draft 流式预览并持久化最终富消息，群聊和 Topic 原位完成占位消息，平台不支持时回退为普通文字 |
 | Discord | 使用 Developer Portal 生成的 Bot Token | Gateway v10 长连接；私信直接回复；服务器文字/公告频道首次 @ 后创建原生 Thread，后续在线程中无需重复 @，并通过编辑消息流式显示回答 |
-| WhatsApp | 使用手机 WhatsApp 扫码关联设备 | WhatsApp Web 长连接；默认仅响应账号自聊，也可切换到指定联系人或开放响应模式；显示已读和“正在输入”，再发送最终回答 |
+| WhatsApp | 使用手机 WhatsApp 扫码关联设备 | WhatsApp Web 长连接；默认仅响应账号自聊，也可切换到指定联系人或开放响应模式；显示已读和“正在输入”，通过每秒编辑同一条消息显示工具进度和逐步生成的回答，长回复自动分段，编辑失败时回退为完整文字回复 |
 
 其他 IM 平台可继续按同一渠道适配器结构接入。
 
 九个内置渠道均支持把 JPEG、PNG、WebP 图片，以及以图片文件方式发送的 GIF，连同可选文字说明发送给 Harness；单张图片上限为 5 MB，单条消息中的图片总大小上限为 20 MB。飞书下载用户消息中的图片或文件需要租户权限 `im:message:readonly`，确认页将其显示为“获取单聊、群组消息”；飞书目前没有为该下载接口提供仅限图片的更窄权限。扫码新建的应用会默认申请；已有或手动绑定的应用可私聊机器人执行 `/repair`，或在「IM机器人」设置页点击“补全权限”，扫码增量补全该权限、上传机器人图片或文件所需的 `im:resource`、原生命令面板所需的 `application:app_slash_command:read` / `write`，以及卡片回调。
+
+### 超时后的结果补发
+
+九个渠道共用超时任务跟踪：收到“等待模型回复超时”后，插件会继续检查原任务，完成后向原聊天或线程补发最终文字；插件重启或连接恢复后也会继续检查。`/stop` 只停止当前聊天提交的对应回合，切换会话后不再向该聊天补发旧会话的结果。无需新增设置，正常回复流程保持原样。
+
+补发仍受渠道发送权限和配额限制。明确发送失败最多尝试三次；发送结果不确定时保留记录并停止自动重试，避免重复消息。此机制恢复文字结果和终态通知，不重放问题、审批或文件工具调用。详见[延迟交付说明](docs/deferred-delivery.md)。
 
 ### 结果文件与图片回传
 
@@ -155,6 +161,8 @@ dsh web
 | 命令 | 作用 |
 | --- | --- |
 | `/help` | 显示机器人支持的命令和用法。 |
+| `/menu`、`/m` | 飞书、钉钉和企业微信打开交互菜单。钉钉的会话、工作区、预设和模型按两列排列，选择后立即生效，并在原卡片更新结果。企微下拉选择后点击应用；收到每日进入单聊事件时也会自动展示菜单。菜单还提供新会话、停止、压缩、状态与帮助等按钮。 |
+| QQ `/menu`、`/m` | 打开按钮与数字菜单：会话选择、工作区、模式／预设、模型、新会话、会话列表、停止、压缩、补充指令、归档显示切换、状态和帮助。列表支持分页；按钮不可用时回复数字选择。菜单按聊天和操作者隔离，15 分钟或重启后失效；普通消息退出数字选择，审批、提问和批量输入保留原有优先级。 |
 | `/new` | 解除当前聊天的会话绑定，让下一条普通消息开启全新 Harness 会话。 |
 | `/status` | 检查当前机器人与 DeepSeek Harness 的连接状态。 |
 | `/version` | 查看当前运行的 dsh-im 插件版本。 |
@@ -186,6 +194,8 @@ dsh web
 | 远程审批 | 回复 `批准` / `拒绝` / `同意` / `不同意` / `yes` / `no`。 |
 
 ### 命令说明
+
+钉钉菜单使用插件内置的共享卡片模板，无需逐个机器人创建或配置模板。卡片打开后可操作 30 分钟；超时或 Host 重启后重新发送 `/m`。模板源文件保存在 `assets/dingtalk-menu-template.json`，供维护者导入卡片平台更新。
 
 [查看命令说明](docs/机器人命令.md)
 
@@ -260,16 +270,16 @@ IM 管理 RPC 默认仅接受回环浏览器。如果 Web profile 在受信任�
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/wecom.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/wecom.jpg" alt="dsh-im 企业微信群二维码" width="240"></a>
+      <a href="docs/images/wecom.png"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/wecom.png" alt="dsh-im 企业微信群二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/1fa86ed913073f69222099cf99917a7811b8594b/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
+      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
     </td>
   </tr>
 </table>

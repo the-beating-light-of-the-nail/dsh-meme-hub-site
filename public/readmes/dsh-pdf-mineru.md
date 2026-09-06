@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/237b5b0e74bd08494ebc672618a5899676093fe5/docs/assets/deepseek-mineru-banner.webp" width="100%" alt="DeepSeek 娘与 MinerU 文档解析插件横幅">
+<img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/70aa65d5e4a1600fb3a66d5f4cce5ee6121a69bb/docs/assets/deepseek-mineru-banner.webp" width="100%" alt="DeepSeek 娘与 MinerU 文档解析插件横幅">
 
 # dsh-pdf-mineru
 
@@ -57,7 +57,7 @@ dsh plugin --profile web add dsh-pdf-mineru
 打开 DSH 界面中的 **Settings → Plugins → MinerU**，根据您的使用场景选择 Provider：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/237b5b0e74bd08494ebc672618a5899676093fe5/docs/assets/mineru-settings-preview.webp" width="780" alt="dsh-pdf-mineru 在 DSH Settings 中的设置界面">
+  <img src="https://raw.githubusercontent.com/Yurzi/dsh-pdf-mineru/70aa65d5e4a1600fb3a66d5f4cce5ee6121a69bb/docs/assets/mineru-settings-preview.webp" width="780" alt="dsh-pdf-mineru 在 DSH Settings 中的设置界面">
 </p>
 
 #### 方案 A：使用 MinerU 官方云（推荐，免部署）
@@ -85,44 +85,45 @@ Agent 会自动根据文档长度和指令意图，智能选择同步返回或�
 
 ### 场景 1：常规论文 / 报告解析
 > **你**：“帮我解析 `/workspace/paper.pdf`，提取正文、数学公式和表格，整理成 Markdown 格式。”
-> **Agent**：调用 `mineru_parse_document`，直接返回排版好的 Markdown 文本与产物清单。
+> **Agent**：调用 `read_pdf`，直接返回排版好的 Markdown 文本与关键内联图表。
 
-### 场景 2：超长文档后台异步解析（推荐）
+### 场景 2：超长文档后台全量解析（推荐）
 > **你**：“请在后台解析这本 120 页的技术研报 `/data/annual-report.pdf`，解析完成后告诉我。”
-> **Agent**：提交 `mineru_submit_parse_job` 并返回任务 ID（如 `mineru-1`），随后可在后台静默运行，完成后自动读取结果并向您汇报。
+> **Agent**：提交 `async_parse_pdf` 并返回任务 ID（如 `mineru-1`），全量解析到本地缓存，完成后返回文档结构化摘要（页数、大纲、表格数、图片数等），并提示使用 `read_pdf` 按需读取。
 
-### 场景 3：指定页码与扫描件 OCR
-> **你**：“解析 `/data/scanned_doc.pdf` 的第 1 到 5 页，这个是扫描件，请开启强制 OCR 模式。”
-> **Agent**：传入 `pages: "1-5"` 与 `ocr: true` 进行精准定向识别。
-
-### 场景 4：检查服务状态
-> **你**：“检查一下当前 MinerU 服务的连接状态和剩余队列。”
-> **Agent**：调用 `mineru_health`，回报服务连通性、鉴权状态与排队情况。
-
----
+### 场景 3：按需切片读取（指定页码与关注内容）
+> **你**：“读取 `/data/report.pdf` 的第 1 到 5 页中的表格。”
+> **Agent**：调用 `read_pdf` 并传入 `pages: "1-5"` 与 `focus: "table"` 进行精准定向提取。
 
 ## ⚙️ 模型工具与参数参考
 
-插件为 Agent 注册了三项核心工具：
+插件为 Agent 注册了两项核心文档解析工具：
 
 | 工具名称 | 适用场景 | 说明 |
 | --- | --- | --- |
-| `mineru_parse_document` | 短篇文档 / 同步等待 | 同步解析文档，直接返回 Markdown 预览、产物清单与存储路径 |
-| `mineru_submit_parse_job` | 长篇文档 / 批量解析 | 注册为 DSH 原生后台任务（`mineru-N`），不阻塞当前对话 |
-| `mineru_health` | 状态诊断 | 检查 MinerU 服务连通性、鉴权有效性及协议版本 |
+| `read_pdf` | 同步读取 / 按需切片 | 同步读取 PDF，支持指定页码（`pages`）与内容类型（`focus`）切片提取，返回 Markdown 文本与按自然顺序排列的内联多模态图表 |
+| `async_parse_pdf` | 长篇文档 / 后台解析 | 注册为 DSH 原生后台任务（`mineru-N`），全量解析 PDF 至本地缓存，完成后交付文档结构化摘要与后续阅读指引，不阻塞当前对话 |
+
+### 核心交付字段与正文状态说明
+
+调用 `read_pdf` 或后台任务 `async_parse_pdf` 完成后，交付结果包含可靠的正文与完整性判定：
+
+- `markdown_content`：提取的正文 Markdown 文本。
+- `content_status`：正文交付状态：
+  - `complete`：本次请求所选页面的提取 Markdown 已完整提供，可直接用于回答，无需重复读取正文文件。
+  - `partial`：提取正文存在但因输出预算截断，提供可读取的完整正文文件路径 (`markdown_path`) 及续读起始行号 (`read_offset_line`)，明确区分正文文件与结果清单 (`manifest_path`)。
+  - `not_requested`：本次请求未包含 `markdown` 产物。
+- `output.maxInlineChars`：单次响应的整次字符预算（默认 200,000 字符），优先保障元信息与正文展示。
 
 ### 常用解析参数（均可通过自然语言告知 Agent）
 
-| 参数 | 类型 | 默认值 | 作用说明 |
+| 参数 | 类型 | 适用工具 | 作用说明 |
 | --- | --- | --- | --- |
-| `file_paths` | `string[]` | 必填 | 待解析的本地文件绝对路径（支持单个或批量） |
-| `model` | `pipeline` / `vlm` | `pipeline` | 解析引擎类型：`pipeline`（快速高效）或 `vlm`（视觉大模型，复杂图文理解更强） |
-| `ocr` | `boolean` | `false` | 是否对所有页面强制开启 OCR（适合纯图片型或扫描版 PDF） |
-| `formula` | `boolean` | `true` | 是否提取数学公式并转换为 LaTeX 代码 |
-| `table` | `boolean` | `true` | 是否提取表格结构 |
-| `pages` | `string` | 全部 | 1-based 页码范围，例如 `"1-10,15"` |
-| `language` | `string` | `"ch"` | 语言提示代码（如 `ch` 中文、`en` 英文等） |
-| `artifacts` | `string[]` | `["markdown"]` | 需要提取保留的产物类型：`markdown`、`images`、`layout`、`content-list` |
+| `file_path` | `string` | 全部 | 待解析/读取的本地文件路径（必填） |
+| `pages` | `number` / `string` / `number[]` | `read_pdf` | 1-based 页码选择，支持单页（如 `3`）、数组（如 `[1, 2, 5]`）或范围字符串（如 `"1-3, 5"`） |
+| `focus` | `string` / `string[]` | `read_pdf` | 关注内容类型：`all`（默认全部）、`text`（正文代码公式）、`table`（表格与表题）、`image`（图表与图题） |
+| `inline_images` | `boolean` | `read_pdf` | 是否直接内联多模态图表（模型路由支持图片时默认开启） |
+| `poll_timeout_ms` | `number` | `read_pdf` | 最大同步等待超时毫秒数 |
 
 ---
 
@@ -130,14 +131,12 @@ Agent 会自动根据文档长度和指令意图，智能选择同步返回或�
 
 ```mermaid
 flowchart LR
-    Agent[DSH Agent] --> Health[mineru_health]
-    Agent --> Sync[mineru_parse_document]
-    Agent --> Async[mineru_submit_parse_job]
+    Agent[DSH Agent] --> Sync[read_pdf]
+    Agent --> Async[async_parse_pdf]
 
     Async --> Jobs[DSH JobRegistry]
     Jobs --> Service[MinerUService]
     Sync --> Service
-    Health --> Providers[ProviderRegistry]
 
     Service --> Cache{Result cache}
     Cache -->|hit| Result[Immutable result]
@@ -151,7 +150,7 @@ flowchart LR
     Publish --> Result
 ```
 
-- **统一工具分发**：Agent 发起的同步请求（`mineru_parse_document`）直接返回结果，异步长任务（`mineru_submit_parse_job`）交由 DSH 原生 JobRegistry 调度。
+- **统一工具分发**：Agent 发起的同步请求（`read_pdf`）直接返回结果，异步长任务（`async_parse_pdf`）交由 DSH 原生 JobRegistry 调度。
 - **智能缓存命中**：每次解析计算文件 SHA-256 与参数指纹，若命中缓存则秒级返回不可变产物。
 - **并发请求合并**：同进程内的并发重复请求由 `SharedOperationRegistry` 合并，避免重复向上游提交。
 - **双 Provider 适配**：上游适配自建 FastAPI v2 或官方云 v4，解析产物经校验后原子发布。
@@ -191,7 +190,6 @@ defaults:
   ocr: false
   formula: true
   table: true
-  artifacts: [markdown]
 ```
 
 ### 2. 本地私有化 (Self-hosted v2) 推荐配置
@@ -211,7 +209,6 @@ defaults:
   ocr: false
   formula: true
   table: true
-  artifacts: [markdown]
 ```
 
 ### 3. 存储与限制自定义（可选）
@@ -219,8 +216,9 @@ defaults:
 storage:
   storageRoot: /absolute/path/to/dsh/cache/pdf-mineru  # 默认在 $DSH_HOME/cache/pdf-mineru
   cacheEnabled: true
+output:
+  maxInlineChars: 200000  # 单次响应最大内联字符预算（UTF-16 字符）
 limits:
-  maxFilesPerRequest: 1
   maxFileBytes: 209715200  # 200 MB
 ```
 

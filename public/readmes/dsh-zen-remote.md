@@ -3,7 +3,7 @@
 
 <p align="center">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0B7285?style=flat-square" alt="MIT"></a>
-<img src="https://img.shields.io/badge/release-v1.1.12-5B4CF0?style=flat-square" alt="v1.1.12">
+<img src="https://img.shields.io/badge/release-v1.1.13-5B4CF0?style=flat-square" alt="v1.1.13">
 <img src="https://img.shields.io/badge/DSH-Web%20Profile-5B4CF0?style=flat-square" alt="DSH Web Profile">
 </p>
 
@@ -11,11 +11,11 @@
 
 | Session list home | Session page | Session info card |
 | --- | --- | --- |
-| ![Session list home](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/home.png) | ![Session page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/session.png) | ![Session info card](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/info.png) |
+| ![Session list home](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a4f8d925c7adb6168a666d06639dc6e488fa105b/assets/home.png) | ![Session page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a4f8d925c7adb6168a666d06639dc6e488fa105b/assets/session.png) | ![Session info card](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a4f8d925c7adb6168a666d06639dc6e488fa105b/assets/info.png) |
 
 | Composer permission sheet | Pairing page a public visitor sees |
 | --- | --- |
-| ![Composer permission sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/sheet.png) | ![Pairing page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/bfd6792387a3feaa9a023e72dcce37b23b67162c/assets/pairing.png) |
+| ![Composer permission sheet](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a4f8d925c7adb6168a666d06639dc6e488fa105b/assets/sheet.png) | ![Pairing page](https://raw.githubusercontent.com/KyoMio/dsh-zen-remote/a4f8d925c7adb6168a666d06639dc6e488fa105b/assets/pairing.png) |
 
 > Screenshots are a 390×844 phone viewport in the light theme; both themes are supported. The pairing page is drawn by the gateway itself and is always dark.
 
@@ -45,7 +45,7 @@ Edit `~/.dsh/profiles/web/package.json` by hand — one line under `dependencies
 ```jsonc
 {
   "dependencies": {
-    "dsh-zen-remote": "^1.1.12"        // for local development: "link:/path/to/dsh-zen-remote"
+    "dsh-zen-remote": "^1.1.13"        // for local development: "link:/path/to/dsh-zen-remote"
   },
   "dsh": { "profile": { "bundles": [
     "@deepseek-ai/dsh-base",

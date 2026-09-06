@@ -10,15 +10,15 @@ The current release supports the Web UI only.
 
 Select the `Auto Approve` permission preset:
 
-![Auto Approve permission preset](https://raw.githubusercontent.com/simon300000/dsh-auto/eb409400843e195886edb45d9a75d2188120a2b6/docs/images/auto-approve-permission.png)
+![Auto Approve permission preset](https://raw.githubusercontent.com/simon300000/dsh-auto/c06fe40e38cc78c1c71e580c8d1beb63d1d8ea2b/docs/images/auto-approve-permission.png)
 
 The Reviewer allows a bounded read-only action:
 
-![Auto Approve allows a bounded read-only action](https://raw.githubusercontent.com/simon300000/dsh-auto/eb409400843e195886edb45d9a75d2188120a2b6/docs/images/auto-approve-allowed.png)
+![Auto Approve allows a bounded read-only action](https://raw.githubusercontent.com/simon300000/dsh-auto/c06fe40e38cc78c1c71e580c8d1beb63d1d8ea2b/docs/images/auto-approve-allowed.png)
 
 The Reviewer denies a high-risk action without sufficient user authorization:
 
-![Auto Approve denies a high-risk action](https://raw.githubusercontent.com/simon300000/dsh-auto/eb409400843e195886edb45d9a75d2188120a2b6/docs/images/auto-approve-denied.png)
+![Auto Approve denies a high-risk action](https://raw.githubusercontent.com/simon300000/dsh-auto/c06fe40e38cc78c1c71e580c8d1beb63d1d8ea2b/docs/images/auto-approve-denied.png)
 
 ## How it works
 
@@ -50,6 +50,7 @@ The bundled defaults use `deepseek-official/deepseek-v4-flash` with `high` reaso
 - id: dsh-auto-approve
   name: dsh-auto
   config:
+    language: auto
     reviewerProvider: deepseek-official
     reviewerModel: deepseek-v4-flash
     reviewerReasoningEffort: high
@@ -66,6 +67,8 @@ The bundled defaults use `deepseek-official/deepseek-v4-flash` with `high` reaso
     maxActionChars: 16000
     maxOutputTokens: 8192
 ```
+
+`language` accepts `auto` (default), `zh`, or `en`. An invalid value emits a warning and falls back to `auto`. In `auto` mode, the plugin counts Han characters across direct user messages in the session: four or more selects Chinese; otherwise it selects English. Agent instructions, assistant messages, and tool results do not affect detection. The Reviewer is instructed to write its rationale in the language of the direct user prompt. The security policy itself remains in Chinese in both modes to avoid changing review semantics through translation.
 
 `reviewerProvider` and `reviewerModel` must be set together. If both are omitted, the Reviewer uses the parent session's current provider and model. A profile override replaces the complete matching bundle-row `config`, so repeat every value that should remain configured.
 

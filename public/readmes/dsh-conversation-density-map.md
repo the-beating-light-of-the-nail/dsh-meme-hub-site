@@ -3,6 +3,7 @@
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 ![Static Badge](https://img.shields.io/badge/license-MIT-blue)
 ![Static Badge](https://img.shields.io/badge/DSH-web-0000E0)  
+## 特此声明：deepseek harness最新版本已内置侧边栏，故此插件停止继续更新，谢谢支持！ 
 安装：`dsh plugin --profile web add github:weien666/dsh-conversation-density-map`
 
 <p>
@@ -13,7 +14,7 @@
 
 纯前端、零依赖、无需构建——真正的插件本体只有 3 个源文件。
 
-![主界面总览](https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/b860585efc441ee9f8f252c591f1969318e92d0a/docs/demo-main.gif)
+![主界面总览](https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/94bb444a8b35639bc72713148561977fcf433a85/docs/demo-main.gif)
 
 ## 特性
 
@@ -34,18 +35,18 @@
       <b>常规窗口 vs 最大化窗口</b><br>
       右侧刻度横向长度随对话规模自动变化<br>
       （常规窗口保持等长；最大化后刻度代表对话内容长度）<br><br>
-      <img src="https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/b860585efc441ee9f8f252c591f1969318e92d0a/docs/demo-window-length.gif" alt="常规与最大化切换" width="100%" />
+      <img src="https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/94bb444a8b35639bc72713148561977fcf433a85/docs/demo-window-length.gif" alt="常规与最大化切换" width="100%" />
     </td>
     <td align="center" valign="top" width="33%">
       <b>常规窗口 · 密集对话的悬停疏散</b><br>
       对话繁多、刻度堆砌时，鼠标靠近右缘<br>
       标签自动上下拉开，便于点击跳转<br><br>
-      <img src="https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/b860585efc441ee9f8f252c591f1969318e92d0a/docs/demo-spread-regular.gif" alt="常规窗口疏散" width="100%" />
+      <img src="https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/94bb444a8b35639bc72713148561977fcf433a85/docs/demo-spread-regular.gif" alt="常规窗口疏散" width="100%" />
     </td>
     <td align="center" valign="top" width="33%">
       <b>最大化窗口 · 密集对话的悬停疏散</b><br>
       同样场景在最大化窗口下的纵向疏散效果<br><br><br>
-      <img src="https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/b860585efc441ee9f8f252c591f1969318e92d0a/docs/demo-spread-maximized.gif" alt="最大化窗口疏散" width="100%" />
+      <img src="https://raw.githubusercontent.com/weien666/dsh-conversation-density-map/94bb444a8b35639bc72713148561977fcf433a85/docs/demo-spread-maximized.gif" alt="最大化窗口疏散" width="100%" />
     </td>
   </tr>
 </table>

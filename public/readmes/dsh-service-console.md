@@ -44,7 +44,7 @@ Alternative — dynamic paste (zero-build, process-local): paste `dynamic/host.j
 
 ## UI preview
 
-![Service Console 0.2.0 — all local services and DSH-style inspector](https://raw.githubusercontent.com/Jiyr0119/dsh-service-console/643ab1b6ccc5a578f215407404f901cab95f6ca7/assets/service-console-0.2.0.gif)
+![Service Console 0.2.0 — all local services and DSH-style inspector](https://raw.githubusercontent.com/Jiyr0119/dsh-service-console/5875d03ec152dd6179cbd0770206818318f6b2ed/assets/service-console-0.2.0.gif)
 
 The preview shows the complete local listening-service list and the expanded inspector card. The ownership badge remains visible as a safety signal, while the list itself is no longer split into conversation/workspace/machine categories.
 

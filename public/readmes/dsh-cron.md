@@ -4,7 +4,7 @@ English | [简体中文](README.zh-CN.md)
 
 Unattended scheduled-jobs plugin for DeepSeek Harness (dsh): run **agent tasks** (spawn a one-shot agent to execute a prompt through the full dsh toolchain) or **command tasks** (run a script directly) on a cron expression, a fixed interval, or a one-time instant. Complementary to `@deepseek-ai/dsh-schedule` — that one is persistent in-session reminders, this one is a host-side job scheduler: jobs belong to no interactive session and fire automatically while the process is up.
 
-![Sidebar job list with expanded run history; clicking an agent run opens the full session replay](https://raw.githubusercontent.com/squirrel20/dsh-cron/0c3481d8db2a9ef83990f95d02fb3f92c3fd9082/assets/demo-run-session.png)
+![Sidebar job list with expanded run history; clicking an agent run opens the full session replay](https://raw.githubusercontent.com/squirrel20/dsh-cron/bc4b4cbb5894cd2a8736f6d1ec0fbae572601074/assets/demo-run-session.png)
 
 ## UI
 
@@ -13,7 +13,7 @@ Unattended scheduled-jobs plugin for DeepSeek Harness (dsh): run **agent tasks**
 
 | Create a job | Row actions |
 | --- | --- |
-| ![Create-job modal](https://raw.githubusercontent.com/squirrel20/dsh-cron/0c3481d8db2a9ef83990f95d02fb3f92c3fd9082/assets/demo-new-job.png) | ![Run now / pause / edit / delete](https://raw.githubusercontent.com/squirrel20/dsh-cron/0c3481d8db2a9ef83990f95d02fb3f92c3fd9082/assets/demo-row-menu.png) |
+| ![Create-job modal](https://raw.githubusercontent.com/squirrel20/dsh-cron/bc4b4cbb5894cd2a8736f6d1ec0fbae572601074/assets/demo-new-job.png) | ![Run now / pause / edit / delete](https://raw.githubusercontent.com/squirrel20/dsh-cron/bc4b4cbb5894cd2a8736f6d1ec0fbae572601074/assets/demo-row-menu.png) |
 
 ## Features
 

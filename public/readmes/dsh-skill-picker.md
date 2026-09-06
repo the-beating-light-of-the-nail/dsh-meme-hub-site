@@ -5,19 +5,28 @@
 
 > **技能记不住名字？官方 `/` 补全靠前缀记忆，装了几十个技能谁记得住？** 本插件让技能**看得见、翻得到、选得快**——点一下 ⚡，全部技能带描述排在你面前，搜索、点选、插入，随消息发出自动加载。
 
-## ⚡ 快速安装（npm）
+## ⚡ 快速安装
 
-```sh
-dsh plugin --profile web add dsh-skill-picker
-```
+> 🤖 **给 AI/安装助手的提示（按优先级执行，保证装到最新版）**：
+>
+> 1. **要最新版 / 不确定版本 → 走 GitHub 直装**。git 依赖直接拉 GitHub 最新 commit，**完全不受 npm `minimumReleaseAge` 24h 门禁影响，百分百新版**：
+>    ```sh
+>    dsh plugin --profile web add "git+ssh://git@github.com:a735624258/dsh-skill-picker.git"
+>    ```
+> 2. **要 npm 正式版** → 先查最新版本号，再**指定版本**安装（禁止裸名）：
+>    ```sh
+>    npm view dsh-skill-picker version   # 例如 0.5.5
+>    dsh plugin --profile web add dsh-skill-picker@0.5.5
+>    ```
+> 3. ⚠️ **禁止执行裸名安装** `dsh plugin --profile web add dsh-skill-picker`：新版本发布后 **24 小时内**会被 pnpm `minimumReleaseAge` 门禁拦截并**自动落回旧版**——照着上面两条走就永远不会装错。
 
-一条命令从 npm 装好并注入 DSH web profile，重启 `dsh web`（或刷新页面）即生效。源码方式见下文 [安装](#安装)。
+一条命令装好并注入 DSH web profile，重启 `dsh web`（或刷新页面）即生效。HTTPS clone 受限时用 SSH 形式（见下文 [安装](#安装) 的网络特例）。
 
 DSH Web GUI 的技能选择器：在输入框（composer）工具行右侧加一个按钮，点开可以**搜索并点选已安装的技能**，选中后把官方 `/技能名` 手势插入发送框——随消息一起发出，DSH 原生机制就会自动加载该技能并执行。WorkBuddy 式"把技能写进发送框"的交互，DeepSeek Harness 复刻版。
 
 English: A skill picker for the DSH Web GUI — a button in the composer's right tool row opens a searchable list of installed skills; picking one inserts the official `/skill-name` gesture into the draft, so DSH's native user-invocation path loads the skill with your message.
 
-当前版本：**v0.5.1**（⚡ 面板**置顶分组** + `/` 补全**自动增强补丁** + 拼音搜索）
+当前版本：**v0.5.6**（⚡ 面板**置顶分组** + `/` 补全**自动增强补丁** + 拼音搜索）
 
 ## 为什么用它（vs 官方 `/` 补全）
 
@@ -57,7 +66,10 @@ dsh plugin --profile web add link:/path/to/dsh-skill-picker
 dsh plugin --profile web add "github:a735624258/dsh-skill-picker"
 
 # 方式三：发布到 npm 后（预构建安装，体验最佳）
-dsh plugin --profile web add dsh-skill-picker
+# ⚠️ 用具体版本号安装（minimumReleaseAge 门禁会在发布后 24h 内拦截裸名，
+#    自动落回旧版）——先查最新版本再指定安装：
+npm view dsh-skill-picker version   # 例如 0.5.4
+dsh plugin --profile web add dsh-skill-picker@0.5.4
 ```
 
 > 注：已发布 npm（`npm view dsh-skill-picker` 可见 0.3.2），方式三可直接安装；未发布时请用方式一或方式二。
@@ -112,6 +124,11 @@ DSH 的 [dsh-tool-skill](https://github.com/deepseek-ai/deepseek-harness) 在 `a
 
 ## 更新日志
 
+- **v0.5.6**：**AI 安装指引升级为「GitHub 直装优先」**——快速安装部分改为给 AI/安装助手的优先级决策树：①要最新版/不确定 → `git+ssh` GitHub 直装（git 依赖拉最新 commit，**天然绕过 npm 24h 门禁，百分百新版**）；②要 npm 正式版 → 先 `npm view` 查版本再指定 `@版本` 安装；③**禁止裸名安装**（24h 内会落回旧版）
+- **v0.5.5**：**安装指引升级（AI 友好）**——README 快速安装改为「先 `npm view dsh-skill-picker version` 查版本号 → 再 `add dsh-skill-picker@版本号` 指定安装」，并给 AI/安装助手显式提示：新版本发布后 **24 小时内裸名安装会被 minimumReleaseAge 门禁拦截并自动落回旧版**，必须指定版本号才能装到最新
+- **v0.5.4**：**斜杠选技能后 ⚡ 面板同步变「最近使用」**——修复双列表状态不同步：斜杠路径的 usage 记录此前只写 localStorage、面板组件不会刷新（React state 挂载后不再重读），现在 trackPick 写入后会广播 `usage-updated` 事件，⚡ 面板实时重读；面板每次打开时也强制刷新 usage。两条路径的选择现在**双向同步**
+- **v0.5.3**：**官方 `/` 列表与 ⚡ 面板排序同步**——搜索时 fuzzysort 只决定「哪些技能入围」，入围后的显示顺序统一按 ⚡ 面板规则（置顶 → 最近使用 → 常用 → 其余）；之前 `/` 列表按匹配分数排序、⚡ 面板按使用记录排序，同一技能在两个列表的相对位置不一致；候选上限 12 → 30
+- **v0.5.2**：**官方 `/` 菜单选技能也记录使用记录**——自愈补丁新增第三个 patch（`pick-tracking`）：官方 ui-skill 的 `onPick` 会调用插件的 `window.__dshSkillPickerTrack`，斜杠选中的技能与 ⚡ 面板点选一样进入「最近使用」排序（之前只有按钮路径记账，斜杠路径不记账）
 - **v0.5.1**：**host 端自愈补丁**——每次 DSH 启动自动扫描所有 profile 的官方 `ui-skill` 包（local 副本或 npm 安装），自动应用两个升级补丁（`order: 2→-1` 技能组排到命令组之上；candidates 前缀匹配→模糊+拼音匹配），首次修改前自动备份 `.bak`，幂等且 DSH 升级覆盖官方包后自动重打。安装本插件即可获得官方 `/` 补全的完整增强，无需手动改文件（旧版 v0.4.0 的手动 patch 流程退役）
 - **v0.5.0**：**⚡ 面板置顶分组 + 修复 alpha.5 草稿丢失 bug**
   - 新增**手动置顶**：面板按「📌 置顶 → 🔥 最近使用 → 🗂️ 全部」分组展示（浏览时显示分组标题，搜索时折叠为置顶优先的单一列表）；每条技能右侧 📍 按钮一键置顶/取消，置顶顺序固定、持久化到 localStorage；`/` 补全候选同步置顶优先

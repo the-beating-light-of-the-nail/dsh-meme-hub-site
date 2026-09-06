@@ -6,7 +6,7 @@ DSH Scholar is an AI research workspace for computational research. It keeps pro
 
 > DSH Scholar is still under active development. Use it for supervised computational-research workflows, review every approval and research claim, and keep independent backups of important source material and results.
 
-![DSH Scholar standalone workspace in English](https://raw.githubusercontent.com/lzszq/dsh-scholar/568e7029a10d13a4b30a255240e3f799426f612b/docs/assets/dsh-scholar-home-en.png)
+![DSH Scholar standalone workspace in English](https://raw.githubusercontent.com/lzszq/dsh-scholar/4def972e2c0941fddab8d6e0ac27ec8b34c3fe9f/docs/assets/dsh-scholar-home-en.png)
 
 ## What it provides
 
@@ -149,7 +149,7 @@ Chat accepts ordinary natural language and top-level slash commands. Explicit co
 
 The repository includes a supervised MNIST handwritten-digit workflow that demonstrates project intake, controlled Docker runs, evidence review, and manuscript-ready results without treating the fixture as a benchmark claim.
 
-![MNIST project overview in English](https://raw.githubusercontent.com/lzszq/dsh-scholar/568e7029a10d13a4b30a255240e3f799426f612b/docs/assets/cnn-mnist-actual-overview-en.png)
+![MNIST project overview in English](https://raw.githubusercontent.com/lzszq/dsh-scholar/4def972e2c0941fddab8d6e0ac27ec8b34c3fe9f/docs/assets/cnn-mnist-actual-overview-en.png)
 
 See the [MNIST reproduction guide](docs/mnist-reproduction.md) for the pinned inputs, rerun procedure, and detailed receipts.
 

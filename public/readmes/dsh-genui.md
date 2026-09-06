@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/f5db33ec-7471-4d4a-a85b-79c9962ab4ef
 </div>
 
 <p align="center">
-  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/680693eda677926942c11a499c476c55587d97c1/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
+  <a href="./assets/demo.mp4"><img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/a9b4680d04e0717cb4282e0112c5ab8797cbd295/assets/demo-thumb.png" width="92%" alt="Preview of the complete dsh-genui walkthrough video"></a>
   <br><em>Click the preview to download the original MP4 if the GitHub player is unavailable.</em>
 </p>
 
@@ -49,21 +49,21 @@ The walkthrough moves from an answer-embedded panel through forms, plotting, Mer
 #### 1. A monitoring panel is an answer, not a separate dashboard
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/680693eda677926942c11a499c476c55587d97c1/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/a9b4680d04e0717cb4282e0112c5ab8797cbd295/assets/showcase-panel.png" width="92%" alt="Real dsh-genui monitoring panel rendered inside a DSH conversation">
   <br><em>Real output: refresh/reset controls, time-range selection, statistics, charts, and a service table live inside the assistant reply.</em>
 </p>
 
 #### 2. A function plot redraws locally as its parameters change
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/680693eda677926942c11a499c476c55587d97c1/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/a9b4680d04e0717cb4282e0112c5ab8797cbd295/assets/showcase-plot.png" width="76%" alt="Real dsh-genui function plot with draggable parameter sliders">
   <br><em>Real output: `plot` renders curves while sliders, reset, and animation controls update the graph locally.</em>
 </p>
 
 #### 3. Layout primitives compose into structured work surfaces
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/680693eda677926942c11a499c476c55587d97c1/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
+  <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-genui/a9b4680d04e0717cb4282e0112c5ab8797cbd295/assets/showcase.png" width="76%" alt="Real dsh-genui layout and card component composition">
   <br><em>Real output: typography, grid, card, and row/column primitives combine into a hierarchy the model can describe declaratively.</em>
 </p>
 
@@ -170,6 +170,7 @@ The following is the detailed capability reference. Every behavior is constraine
 - **Tool channel**: the `render_ui` tool renders the same spec as a card in the tool row (deliverable-style UI goes through the tool, answer-style UI through the fence)
 - **Session panel**: a persistent dock above the composer; `render_ui` / `panel: true` fences update the same surface in place; `/panel` opens it from the client (`/panel <instruction>` customizes via the model, `/panel clear` clears); the top border is draggable to resize; `append: true` merges incrementally — same-named tabs append content, new tabs get added; the whole panel caps at 200 nodes / 200 appends, after which the model should send `replace` to rebuild
 - **Self-healing & limits**: every fence passes a spec guard — bad nodes are silently dropped, numbers clamped, strings truncated; the whole tree is capped at 200 nodes / 8 nesting levels; pathological specs never crash the UI
+- **Canonical component protocol**: native field aliases such as `card.label` → `title`, `table.data` → `rows`, `callout.kind` → `tone`, and `steps.items` → `steps` are normalized deterministically before validation and rendering. `validate_dsh_ui` reports these normalizations and warns about unknown native fields without blocking custom renderer nodes.
 - **Chart error self-healing**: mermaid failures auto-retry with repairs (strip backticks, quote Chinese/space labels, remove `<br/>`) before degrading to source; a broken chart never hits the screen
 - **Accessibility**: tabs/accordions/switches/progress bars carry full ARIA and keyboard navigation (arrow keys switch tabs, Home/End jump)
 - **Zero intrusion**: without the plugin, fences are just code blocks — no errors, no session pollution

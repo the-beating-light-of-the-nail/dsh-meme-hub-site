@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/94f8671ddd337479c3f783594491615cd3795787/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
+  <img src="https://raw.githubusercontent.com/XieZongChen/dsh-md-notes/b1a1b88363873a2d471880d0762d824492fb6ea5/assets/dsh-md-notes.png" width="96" alt="dsh-md-notes" />
 </p>
 
 <h1 align="center">dsh-md-notes</h1>
@@ -11,7 +11,7 @@
 <p align="center">
   DSH third-party plugin (bundle): <b>MD Notes Manager</b>
   <br />
-  <a href="docs/usage.md">User Guide</a> · <a href="docs/features.md">Features</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/context.md">Context</a> · <a href="docs/TODO.md">Roadmap</a> · <a href="CHANGELOG.md">Changelog</a>
+  <a href="docs/usage.md">User Guide</a> · <a href="docs/features.md">Features</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/context.md">Context</a> · <a href="docs/ai-conflict.md">AI Conflict</a> · <a href="docs/TODO.md">Roadmap</a> · <a href="CHANGELOG.md">Changelog</a>
 </p>
 
 ---
@@ -128,6 +128,7 @@ There are **no environment variables and no secrets** in this plugin's configura
 | Plugin doesn't load | Verify the layer: `dsh --profile web --dump-config` and look for the `md-notes` row. |
 | Installed from git and `add` failed | pnpm ≥10 blocks build scripts by default; add the printed package key under `allowBuilds` in the profile's `pnpm-workspace.yaml`, then re-run `add`. |
 | Notes can't be created/saved | Make sure the workspace's `.dsh-notes` points to an existing writable directory (create a workspace in the dsh sidebar first). |
+| Something feels slow | Grab request timings with the browser probe in [docs/debug.md](docs/debug.md) — tells queueing vs server time in seconds. |
 
 Rollback: `dsh plugin --profile web remove dsh-md-notes` restores the previous state (notes files are untouched).
 
@@ -143,7 +144,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 | `src/client/` | Browser frontend: entry (`index.ts`) + feature modules under `features/` (one directory per feature; when one outgrows a single file it splits out feature-private `components/` and `hooks/` subdirectories — see `NotesManager/` for the pattern, `docs/architecture.md`) |
 | `src/client/features/locales/` | zh/en UI dictionaries (dsh locale namespace `md-notes`) |
 | `assets/` | Plugin icon (SVG source + PNG) |
-| `docs/` | Docs: `usage.md`/`usage.zh.md` (user guide), `features.md` (functional), `architecture.md`, `context.md` (@ references), `git.md` (Git sync), `state.md` / `write-lock.md` (state & write-mutex design), `manager-redesign.md` (manager redesign), `compatibility.md` / `compatibility.zh.md` (dsh ↔ plugin version compatibility matrix, en/zh), `TODO.md` |
+| `docs/` | Docs: `usage.md`/`usage.zh.md` (user guide), `features.md` (functional), `architecture.md`, `context.md` (@ references), `git.md` (Git sync), `ai-conflict.md` (AI conflict resolution), `state.md` / `write-lock.md` (state & write-mutex design), `manager-redesign.md` (manager redesign), `compatibility.md` / `compatibility.zh.md` (dsh ↔ plugin version compatibility matrix, en/zh), `TODO.md` |
 | `scripts/` | Dev tooling (e.g. `link-deps.mjs`) |
 | `lib/` | Build output (gitignored; what npm publishes) |
 

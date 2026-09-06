@@ -8,39 +8,39 @@ Use your **ChatGPT (Codex)**, **Claude**, **Grok (X Premium)**, and **GitHub Cop
 
 Settings → **Subscriptions**: per-provider login/logout, no API keys. Claude imports credentials from Claude Code when available and otherwise uses OAuth, as Codex and Grok always do (settings screenshots use demo accounts and catalog data):
 
-![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/subscriptions.png)
+![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/subscriptions.png)
 
 Configure visibility, default reasoning effort, and context together in **Edit model list**, with shared Save and Cancel actions:
 
-![Model settings](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/model-settings.png)
+![Model settings](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/model-settings.png)
 
 Configure image generation, video generation, and X search per provider. Tool switches apply only to sessions created after saving:
 
-![Provider tools](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/provider-tools.png)
+![Provider tools](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/provider-tools.png)
 
 Logged-in providers join the session model picker with their live model catalogs:
 
-![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/model-picker.png)
+![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/model-picker.png)
 
 Models that advertise reasoning levels get an **Effort** selector in the same menu — Codex models, Grok 4.6 / 4.5, and Copilot's reasoning models (levels and defaults come from each provider's live catalog, not a hardcoded list; Copilot's `capabilities.supports.reasoning_effort` array is sent as `reasoning_effort` on chat completions and `reasoning.effort` on the Responses wire). Models listing both Copilot endpoints (gpt-5.4, gpt-5-mini) normally speak chat completions but reroute to `/responses` when a request combines function tools with an effort — Copilot rejects that combination on the chat wire:
 
-![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/model-effort.png)
+![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/model-effort.png)
 
 Codex models whose catalog advertises the fast tier (the codex CLI's fast mode) get a **Speed** toggle in the composer's tool row, next to the model selector — Standard or Fast (`service_tier: priority`), per session. The `/fast` slash command offers the same choice as a popup; it errors with an explanation when the current model has no fast tier.
 
-![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/speed-toggle.png)
+![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/speed-toggle.png)
 
 The `image_generate` tool renders its result inline in the conversation:
 
-![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/image-generate-inline.png)
+![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/image-generate-inline.png)
 
 Its `provider` parameter picks the image backend — the same prompt through GPT (`gpt-image-2`, top) and Grok (`grok-imagine-image-2.0`, bottom):
 
-![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/image-generate-providers.png)
+![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/image-generate-providers.png)
 
 The `video_generate` tool plays the generated clip inline:
 
-![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/725a98ffc51f159d4485240589ba4618000489a9/docs/images/video-generate-inline.png)
+![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/video-generate-inline.png)
 
 ## Providers
 

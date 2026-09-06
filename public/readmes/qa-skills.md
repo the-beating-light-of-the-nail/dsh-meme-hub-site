@@ -3,7 +3,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.png">
-    <img src="https://raw.githubusercontent.com/fishzjp/qa-skills/656379fbbeb0e6a0acb771442d2767ecaa632db7/assets/hero.png" alt="QA Skills —— 知识 × 工具 × 决策的测试工程 Skill 框架：十轴类型决策矩阵与完整测试流水线" width="800">
+    <img src="https://raw.githubusercontent.com/fishzjp/qa-skills/3e2f48594d67f7b3e2bdac8715e0728720c5217a/assets/hero.png" alt="QA Skills —— 知识 × 工具 × 决策的测试工程 Skill 框架：十轴类型决策矩阵与完整测试流水线" width="800">
   </picture>
 </p>
 

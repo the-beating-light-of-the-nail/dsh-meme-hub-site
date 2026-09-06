@@ -6,6 +6,12 @@
 
 > 已发布至 npm。推荐使用下方的 DSH 官方一键安装命令；GitHub 源码挂载方式保留给开发与本地调试。
 
+## 1.4.0 更新
+
+- 设置页的“对话视觉模型”列表改用 DSH `0.1.2-rc.1` 的新模型目录接口读取，适配新版宿主。
+- 插件最低宿主版本要求提升为 `0.1.2-rc.1`（`dsh.plugin.json` 与 `package.json` 的引擎声明同步收紧）。
+- 客户端注入依赖精简：不再注入 `@deepseek-ai/dsh-client-runtime`。
+
 ## 1.3.0 更新
 
 - 兼容新版 DSH 宿主（0.1.1-rc.8 及以上）的适配器接口。
@@ -54,7 +60,7 @@ detectVisionMode() → shouldUsePrimitives() → buildVisionPrompt()
 
 ## 前置条件
 
-- 已可运行的 DSH **Web Profile**。
+- 已可运行的 DSH **Web Profile**（要求 DSH `0.1.2-rc.1` 或更高版本）。
 - Node.js `>= 20` 与 pnpm。
 - 一个可访问的视觉模型服务。默认使用 OpenAI 兼容端点：
   - `POST <Base URL>/chat/completions`
@@ -144,12 +150,13 @@ DSH 会移除包依赖，并自动从 `dsh.profile.bundles` 清除对应 bundle�
 
 | 设置 | 选项 / 默认值 | 作用 |
 | --- | --- | --- |
-| 视觉基元 | `auto` / `on` / `off`（默认 `auto`） | `auto` 根据 Mode 与 Detail 判断；`on` 强制坐标化证据；`off` 只要求纯文本证据。 |
+| 视觉原语 | `auto` / `on` / `off`（默认 `auto`） | `auto` 根据 Mode 与 Detail 判断；`on` 强制坐标化证据；`off` 只要求纯文本证据。 |
 | 分析细节 | `brief` / `standard` / `verbose`（默认 `standard`） | 控制输出密度，不改变任务类型。 |
 | 重试模式 | `off` / `on` / `format-only`（默认 `off`） | 原语缺失时，`on` 重新读图；`format-only` 尽量保留结论，仅补齐格式。 |
 | 最大图片大小 | `10 MB` | 本地、远程与对话附件均受上限约束。 |
 | 超时 | `180000 ms` | 单次视觉模型请求的最长等待时间。 |
 | 输出 Token 预算 | `auto` 或手动值（默认 `auto`） | `auto` 跟随 Detail：brief `1024`、standard `2048`、verbose `4096`。 |
+| 诊断日志 | `off` / `on`（默认 `off`） | 开启后向 DSH 控制台输出插件运行日志，便于排查问题。 |
 
 ## 11 种自动分析模式
 
@@ -234,13 +241,13 @@ DSH 会移除包依赖，并自动从 `dsh.profile.bundles` 清除对应 bundle�
 
 **图片理解结果**
 
-![对话视觉入口成功读取图片](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/e1ba75ad226059c8df374df5c3c607f874e4f3d5/test/test-1-Read_Image_Information.png)
+![对话视觉入口成功读取图片](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/d368edfba1a4e16eac7868d0f7a0cc0b05078721/test/test-1-Read_Image_Information.png)
 
 **UI 复刻过程与结果**
 
-![对截图进行 UI 复刻的对话](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/e1ba75ad226059c8df374df5c3c607f874e4f3d5/test/test-2-Replicate_Image_UI.png)
+![对截图进行 UI 复刻的对话](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/d368edfba1a4e16eac7868d0f7a0cc0b05078721/test/test-2-Replicate_Image_UI.png)
 
-![根据视觉证据生成的 HTML 页面](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/e1ba75ad226059c8df374df5c3c607f874e4f3d5/test/test-2-Replicate_UI_Display.png)
+![根据视觉证据生成的 HTML 页面](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/d368edfba1a4e16eac7868d0f7a0cc0b05078721/test/test-2-Replicate_UI_Display.png)
 
 这些结果证明的是当前版本的端到端链路；生成效果仍取决于外部视觉模型、文本模型、提示词和图片质量。
 

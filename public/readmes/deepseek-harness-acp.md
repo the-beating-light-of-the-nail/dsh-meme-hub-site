@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-acp/9084648dc802a43f0007b2991942cd9c06849ccd/assets/acp-x-deepseek.svg" width="520" alt="Agent Client Protocol × DeepSeek Harness" />
+  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-acp/2e68a2b77f30ac593306a9eeb0eff0f9bc4e55e1/assets/acp-x-deepseek.svg" width="520" alt="Agent Client Protocol × DeepSeek Harness" />
 </p>
 
 <h1 align="center">deepseek-harness-acp</h1>

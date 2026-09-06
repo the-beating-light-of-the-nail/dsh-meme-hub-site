@@ -30,9 +30,24 @@
 - **壁纸效果调节条扩充**（v0.6.x）：「壁纸效果」区新增 **亮度 / 对比度 / 饱和度** 三个滑动条（作用于壁纸媒体滤镜），与壁纸模糊 / 暗化等配合，任意壁纸都能调到与界面融合舒服的状态；全部即时生效、持久保存。
 - **字体自定义**（v0.6.7）：设置新增「字体」分区——总开关默认关闭（即 dsh 原生外观），开启后可调 **字体颜色 / 字重(100–900) / 字体族**（默认 · 雅黑 · 楷体 · 宋体 · 黑体 · 行楷 · 等宽，选项按钮以各自字体实时预览）；报错红字不受染色影响，关闭总开关即一键恢复默认。
 
-![主界面效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/70853ad51e461bfc3ccbfa822e697296ce2fd250/docs/images/main-interface.gif)
+![主界面效果展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/1b9c2deee397b370560dd6dbcdadb4f6d5d70c5e/docs/images/main-interface.gif)
 
 > 壁纸 + 磨砂遮罩 + iOS 液态玻璃，渲染在 DSH 界面后方。
+
+## ⚠️ 升级顺序：先更新 DeepSeek Harness，再更新本插件（v0.7.1 起）
+
+**在旧版 DeepSeek Harness 上请勿升级本插件。** v0.7.1 适配 DeepSeek Harness **0.1.2-rc.1**（对应 **DSH Desktop v2.0.5**，2026-09-03 发布——该版本起桌面端内置的 harness 由 0.1.2-alpha.1 切换为 0.1.2-rc.1）。正确的升级顺序：
+
+1. **先把 DeepSeek Harness / DSH Desktop 更新到最新版**：DSH Desktop 在「顶部导航栏 → 版本信息」检查更新，或到 [GitHub Releases](https://github.com/anywhere-labs/dsh-desktop/releases) 下载对应平台安装包；
+2. **再更新本插件**：`dsh plugin --profile web add dsh-plugin-wallpaper-engine`（或插件市场里点更新）。
+
+> 💡 同时建议把**其它 DSH 插件也一并更新**：旧版插件在 harness 0.1.2-rc.1 下可能直接加载失败（实测 web profile 里的旧版 dsh-better-sidebar 会因 API 变更而启动报错）。
+
+顺序反了（harness 还是旧版就升了插件）时，先把 harness 更新到最新即可恢复；无需回滚插件。插件更新后会在界面里弹一次提示（每个新版本仅出现一次），漏看也没关系。
+
+> ✅ **v0.7.1 已在 DSH Desktop v2.0.5（harness 0.1.2-rc.1）上完成实测**：壁纸宿主路由（inventory / media / scene-frame）、设置一级分区、选择器弹窗、视频与场景壁纸播放、拉绳抽屉、液态玻璃在「兼容模式」与「增强模式」下均正常。本插件依赖的 slots / webserver / 主题变量等 API 在 0.1.2-alpha.1 → 0.1.2-rc.1 之间保持稳定。
+>
+> 🐛 **v0.7.1 修复 rc.1 的「色板 / 黑胶唱片变圆角矩形」**（[#74](https://github.com/elysia395/dsh-wallpaper-engine/issues/74)）：rc.1 主题层新增 `corner-shape.css`，给**所有元素**统一加了 `corner-shape: superellipse(1.5)`（方圆形角），任何 `border-radius:50%` 的正圆都被渲染成圆角矩形。插件现已对自身绘制的全部正圆 / 胶囊控件（色板、黑胶唱片、滑杆圆点、开关滑块、字体 chip 等）显式重置 `corner-shape: round`，在旧版 harness 上该声明会被自动忽略、无副作用。
 
 ## 支持哪些壁纸类型？
 
@@ -199,11 +214,11 @@ dsh plugin --profile web add dsh-plugin-wallpaper-engine
 4. 用 **暂停/播放** 暂停视频壁纸，用 **关闭** 清除壁纸。
    选择会保存在浏览器的 `localStorage`（键 `dsh-wallpaper-engine:selection`）中。
 
-![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/70853ad51e461bfc3ccbfa822e697296ce2fd250/docs/images/settings-ui.gif)
+![设置界面功能展示](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/1b9c2deee397b370560dd6dbcdadb4f6d5d70c5e/docs/images/settings-ui.gif)
 
 > 设置界面：液态玻璃卡片、六页签分区（壁纸 / 外观 / 字体 / 吉祥物 / 效果 / 高级）。
 
-![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/70853ad51e461bfc3ccbfa822e697296ce2fd250/docs/images/wallpaper-library.gif)
+![壁纸选择弹窗与壁纸仓库](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/1b9c2deee397b370560dd6dbcdadb4f6d5d70c5e/docs/images/wallpaper-library.gif)
 
 > 选择弹窗：浏览全部壁纸缩略图，支持批量隐藏与已隐藏恢复。
 
@@ -318,7 +333,7 @@ dsh plugin --profile web add dsh-plugin-wallpaper-engine
 
 > 两幅立绘在打包时都已内联为 base64（透明背景），单文件客户端资源依然自包含。**大小**只改变拉绳自身的盒尺寸，不影响下方的壁纸仓库抽屉。设置即时生效并保存在宿主端配置文件里。
 
-![吉祥物快捷调节页面](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/70853ad51e461bfc3ccbfa822e697296ce2fd250/docs/images/mascot-drawer.png)
+![吉祥物快捷调节页面](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/1b9c2deee397b370560dd6dbcdadb4f6d5d70c5e/docs/images/mascot-drawer.png)
 
 > 点击顶部拉绳吉祥物即可拉出「壁纸仓库」抽屉：六页签快捷调节，当前壁纸黑胶、轮播与自定义壁纸管理随手可及。
 
@@ -379,7 +394,7 @@ dsh plugin --profile web add dsh-plugin-wallpaper-engine
 
 > 侧栏玻璃与设置窗口玻璃是两套独立参数：会话玻璃的「玻璃」滑杆只管输入栏/气泡，侧栏玻璃滑杆管侧边栏。关闭「侧栏液态玻璃」会连同编辑器/终端内容面一起恢复原生样式。侧边栏默认较透（与背景观感一致、避免面板发白）；编辑器/终端等内容面另有独立的近不透明底色 + 透明度控制，保证窄面板里文字可读。
 
-![dsh-better-sidebar 兼容适配与字体自定义](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/70853ad51e461bfc3ccbfa822e697296ce2fd250/docs/images/better-sidebar-font.png)
+![dsh-better-sidebar 兼容适配与字体自定义](https://raw.githubusercontent.com/elysia395/dsh-wallpaper-engine/1b9c2deee397b370560dd6dbcdadb4f6d5d70c5e/docs/images/better-sidebar-font.png)
 
 > 侧边栏液态玻璃适配与「字体」页签自定义（行楷）同时生效的实际观感。
 

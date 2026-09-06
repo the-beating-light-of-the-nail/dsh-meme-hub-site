@@ -6,7 +6,7 @@
 <br>
 
 <div align="center">
- <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/e529f7d4620ac85be59038df6604aaf483eaf8d7/assets/banner.jpg" alt="Awesome DeepSeek Harness">
+ <img width="640" src="https://raw.githubusercontent.com/0xsline/awesome-deepseek-harness/de3b4ca9b70aabd5147f409416daaa97a4d206c7/assets/banner.jpg" alt="Awesome DeepSeek Harness">
 </div>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -120,6 +120,8 @@ Management panel: Settings → Plugins.
 
 - [dsh-product-subagent-console](https://github.com/Jokasa7/dsh-product-subagent-console) - Conversation-level multi-agent workbench for editable task planning, real child-session observation, plan-versus-runtime comparison, and evidence-backed recovery previews; tested with DSH 0.1.1-rc.2.
 
+- [weibaohui/dsh-continue](https://github.com/weibaohui/dsh-continue) - Auto-resume for interrupted agent sessions: an ordered rule table routes by failure type (rate limit, quota, auth, context overflow, crashed orphan) into backoff retry, model switch, resume after compaction, or stop-loss notification, with a visual rule editor and activity log.
+
 ## Context & Search
 
 - [zoahdev/dsh-github-intelligence](https://github.com/zoahdev/dsh-github-intelligence) - Read-only developer-intelligence tools across 16 ecosystems (GitHub, GitLab, Gitee, npm, PyPI, crates.io, Docker Hub, Hugging Face, Hacker News, Stack Overflow, Reddit, dev.to, RubyGems, NuGet, Go, ArXiv) with TTL caching and no API key.
@@ -191,6 +193,8 @@ Management panel: Settings → Plugins.
 - [Mutx163/dsh-model-memory](https://github.com/Mutx163/dsh-model-memory) - Reasoning-effort tier manager for custom API models plus cross-session preference memory: inline low/medium/high/max toggles inside Settings -> Models, atomic settings.yaml persistence, and per-channel auto-restore of the last model and effort level in new sessions.
 - [dsh-cortexm](https://github.com/ssmurfgg04-gif/context-m/tree/main/plugins/dsh-cortexm) - Bi-temporal memory plugin: every fact carries a transaction validity range, with VSA/HRR holographic retrieval, a BLAKE3-chained audit log, and session replay/fork; drives Context-M as a JSON-RPC subprocess (npm: dsh-cortexm, needs the Python `cortexm` package).
 - [dsh-brainagent](https://github.com/stas130286-blip/dsh-brainagent) - Brain-inspired cognitive plugin: episodic / semantic / procedural / emotional memory stores with a reward-ledger and UCB1 bandit loop, a goal stack with time triggers, curiosity-driven autonomous web research, and proactive initiatives. Recalled memories ride along in the prompt to your configured provider; license is source-available, non-commercial.
+
+- [weibaohui/hermes-loop](https://github.com/weibaohui/hermes-loop) - Automatic post-conversation retrospective that distills useful experience into reusable skills for the skill library, with approval mode and skill-library governance (archive/restore, never deletes directly).
 
 ## Input & Editing
 
@@ -290,6 +294,8 @@ Management panel: Settings → Plugins.
 - [RevolutionLA/dsh-dream-skin](https://github.com/RevolutionLA/dsh-dream-skin) - One-command skinning for DSH Web: 8 original themes, wallpaper (opacity/blur/gradient/URL), per-user accent, and shareable theme packs + favorites + surprise-me. Purely native token system.
 - [dsh-workspace-sort](https://github.com/Moonshile/moonshile-dsh-plugins) - Re-sorts sidebar workspaces by last activity once per day; stable order within the day.
 - [dsh-theme-manager](https://github.com/runcat-tommy/dsh-theme-manager) - Two-level theme manager for the DSH Web UI: pick a culture / scene, a national flag, a developer palette, or a bold high-contrast pairing first, then a concrete style (58 built-in palettes, light & dark).
+
+- [weibaohui/dsh-settings-ui](https://github.com/weibaohui/dsh-settings-ui) - Customizes the DSH native settings window: preset or custom sizes, fullscreen, background transparency, and theme, solid-color, or image backgrounds, with a floating ball for quick access; saved in the local browser.
 
 ## Dashboards & Session UX
 
@@ -674,6 +680,8 @@ Management panel: Settings → Plugins.
 - [dsh-vibe-pack](https://github.com/LeemanCheung/dsh-vibe-pack) - Transactional data-only configuration pack manager with integrity, ownership, preview, diff, and rollback safeguards.
 - [Luaphes/dsh-plugins-market](https://github.com/Luaphes/dsh-plugins-market) - Plugin market inside the DSH Web UI: crawls the dsh-plugin topic with noise filtering, curated marks, ranking and one-click install (dsh.bundle-verified).
 - [dsh-blackjack](https://github.com/yul761/dsh-blackjack) - Blackjack in the conversation: free daily hands win CHIP, redeemable one-way into model credit that a fallback route spends only when your own provider quota runs out; operator-funded pool, with the server and its audited ledger open source in the same repo.
+
+- [weibaohui/dsh-xiuxian](https://github.com/weibaohui/dsh-xiuxian) - Xianxia desktop pets tied to live agent sessions: pixel-style companions appear as subagents spawn (up to 3 on screen), with storage-bag collection, a right-click artifact menu, a pet gallery, and Codex pet-format export.
 
 ## Plugin Ecosystem & Development
 

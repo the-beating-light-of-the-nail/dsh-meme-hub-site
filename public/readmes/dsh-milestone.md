@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/3bc2a648f9f9771a978513697dbaebf8a0d7188b/assets/logo.svg" alt="dsh-milestone" width="112">
+<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/7ccae4526a4b3ca0f8b79388b00c518f0054267b/assets/logo.svg" alt="dsh-milestone" width="112">
 
 # dsh-milestone
 
@@ -27,7 +27,7 @@
 - 右侧挂一条**圆点时间线**：一个提问一个圆点，悬停看内容，点击瞬间跳转——长对话的「导航地图」。
 - 官方 slot 机制挂载，不修改 harness 源码，装完即用。
 
-<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/3bc2a648f9f9771a978513697dbaebf8a0d7188b/assets/demo.svg" alt="dsh-milestone 效果示意图" width="100%">
+<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/7ccae4526a4b3ca0f8b79388b00c518f0054267b/assets/demo.svg" alt="dsh-milestone 效果示意图" width="100%">
 
 ## 快速开始
 
@@ -109,8 +109,9 @@ shell.overlay (root scope)
 
 ## 版本与兼容
 
-- 当前官方支持线：**`0.1.1-rc.2`**（peer/dev 依赖 `^0.1.1-rc.2`，与 `@deepseek-ai/dsh` 最新 `latest` 标签一致）。
-- 官方客户端包（`dsh-client-runtime` 等）在 npm 上走 `next` 标签发布（`latest` 标签仍是远古版本）；升级 harness 后若发现插件不匹配，请确认安装的依赖解析到了 `0.1.1-rc.2` 线。
+- 当前官方支持线：**`0.1.2-rc.1`**（与 `@deepseek-ai/dsh` 最新 `latest` 标签一致）。
+- peer/dev 范围采用**双分支**写法 `>=0.1.1-rc.2 <0.1.2 || >=0.1.2-rc.1 <0.2.0-0`：node-semver 的 prerelease 规则会让 `^0.1.1-rc.2` 静默排除 `0.1.2-rc.1`（元组不同），旧写法下升级 harness 的用户会直接 ERESOLVE。
+- 官方客户端包（`dsh-client-runtime` 等）在 npm 上走 `next` 标签发布（`latest` 标签仍是远古版本）；升级 harness 后若发现插件不匹配，请确认安装的依赖解析到了 `0.1.2-rc.1` 线（`dsh-client-runtime` 的 `next` 目前仍为 `0.1.1-rc.2`，属官方发布节奏，不影响）。
 - harness 当前版本在浏览器端没有可信来源（`host.describe().version` 是占位值），因此不做精确探测，以插件声明的支持线为准。
 
 ## 已知限制

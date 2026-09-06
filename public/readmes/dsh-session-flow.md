@@ -8,17 +8,17 @@
 
 | 总览工作台 | 会话流标签页 |
 |---|---|
-| ![总览工作台](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/dac670160afa150581c9838b34366a0233c8314a/assets/screenshots/overview.png) | ![会话流标签页](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/dac670160afa150581c9838b34366a0233c8314a/assets/screenshots/session-flow-tab.png) |
+| ![总览工作台](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/92135d50a7f01f6bb8a574403537f211713f3db8/assets/screenshots/overview.png) | ![会话流标签页](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/92135d50a7f01f6bb8a574403537f211713f3db8/assets/screenshots/session-flow-tab.png) |
 | 会话卡片墙：标题、状态、结论摘要行、首个任务；hover ✎ 行内重命名 | 原生会话页内嵌「会话流」标签：当前会话直接回顾 |
 
 | 轮次悬浮条 | 跨会话全文检索 |
 |---|---|
-| ![轮次悬浮条](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/dac670160afa150581c9838b34366a0233c8314a/assets/screenshots/turn-rail.png) | ![跨会话全文检索](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/dac670160afa150581c9838b34366a0233c8314a/assets/screenshots/fulltext-search.png) |
+| ![轮次悬浮条](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/92135d50a7f01f6bb8a574403537f211713f3db8/assets/screenshots/turn-rail.png) | ![跨会话全文检索](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/92135d50a7f01f6bb8a574403537f211713f3db8/assets/screenshots/fulltext-search.png) |
 | 对话页左侧轮次导航：收拢短横条 ⇄ 展开条目卡，一键跳转任意轮次 | 总览自由文本搜索触发全文模式：跨工作区召回，命中直达定位 |
 
 | 详情并入右栏 | 折叠详情页 |
 |---|---|
-| ![详情并入右栏](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/dac670160afa150581c9838b34366a0233c8314a/assets/screenshots/dock-right.png) | ![折叠详情页](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/dac670160afa150581c9838b34366a0233c8314a/assets/screenshots/folded-detail.png) |
+| ![详情并入右栏](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/92135d50a7f01f6bb8a574403537f211713f3db8/assets/screenshots/dock-right.png) | ![折叠详情页](https://raw.githubusercontent.com/YeqingTang/dsh-session-flow/92135d50a7f01f6bb8a574403537f211713f3db8/assets/screenshots/folded-detail.png) |
 | 详情并入官方右侧面板：主对话与会话流并行，拖拽调宽 | 回合默认折叠，展开按真实时间序；右侧四标签导航 |
 
 ## 功能

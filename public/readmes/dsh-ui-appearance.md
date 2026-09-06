@@ -16,13 +16,13 @@ DeepSeek Harness 生态中首个支持多维度 UI 参数深度自定义的外�
 
 | 设置面板 | 壁纸 + 毛玻璃效果 |
 |---|---|
-| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-wallpaper.png) |
+| ![设置面板](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/f1b780e64d032e90cb51be7d0ea850151f7e88fb/docs/screenshot-settings.png) | ![壁纸毛玻璃](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/f1b780e64d032e90cb51be7d0ea850151f7e88fb/docs/screenshot-wallpaper.png) |
 
 在 **[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)**(桌面客户端)中同样开箱即用,以下为实拍:
 
 | 高级模式(桌面原生布局与材质) | 兼容模式(上游默认 Web client) |
 |---|---|
-| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/51731bb050faefb210d78c22f0addb216364f1d7/docs/screenshot-desktop-compat.webp) |
+| ![高级模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/f1b780e64d032e90cb51be7d0ea850151f7e88fb/docs/screenshot-desktop-fancy.webp) | ![兼容模式](https://raw.githubusercontent.com/TQSY114514/dsh-ui-appearance/f1b780e64d032e90cb51be7d0ea850151f7e88fb/docs/screenshot-desktop-compat.webp) |
 
 > 效果图中的壁纸素材 © MadYY([原图](docs/wallpaper-madYY.png)),仅作演示;用户上传自己的图片即可。
 

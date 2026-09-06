@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/562bbfe083b0ffdd2e5d678b9901e87436a40892/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
@@ -34,15 +34,15 @@
 
 Browse by source or search in **Settings → Skills**. External Agent sources are made available through manager policy while their files stay read-only:
 
-![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/screenshots/skills-manager-v2-preview.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/562bbfe083b0ffdd2e5d678b9901e87436a40892/assets/screenshots/skills-manager-v2-preview.png)
 
 Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/screenshots/skill-detail.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/562bbfe083b0ffdd2e5d678b9901e87436a40892/assets/screenshots/skill-detail.png)
 
 Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/b46e90325bfa8340f6c64e64ce27c143d6a2ae54/assets/screenshots/delete-plugin.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/562bbfe083b0ffdd2e5d678b9901e87436a40892/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 

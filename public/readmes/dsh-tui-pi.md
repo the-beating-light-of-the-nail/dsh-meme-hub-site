@@ -2,11 +2,11 @@
 
 # dsh-tui-pi
 
-pi-style terminal UI for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh) — a plugin suite that turns dsh into a pi-like coding-agent experience: pi-tui look & feel, dsh slash commands, GitHub light/dark themes and a powerline footer.
+A fully-featured pi-style terminal UI for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh) — a plugin suite that turns dsh into a pi-like coding-agent experience: /history look-back & fork-at-turn, guided preset switching, live subagent steering, model profiles, GitHub light/dark themes and a powerline footer.
 
 **Requires dsh >= 0.1.2-rc.1** — this plugin targets the dsh RC/stable line only (CI and releases resolve the newest of the `latest`/`next` dist-tags at runtime). **The alpha line is no longer supported.** A startup guard logs a one-line warning and exits cleanly when the host is older than the floor (opt out with `DSH_TUI_SKIP_HOST_CHECK=1`). See [ADR 0002](docs/adr/0002-target-dsh-0.1.2-alpha.3-single-target.md) for the now-superseded alpha single-target decision.
 
-https://github.com/user-attachments/assets/6a7e00bb-1fd0-4bc5-9070-457f1e9fa54d
+https://github.com/user-attachments/assets/67a7c6ca-ff42-4005-b543-437ba61771bb
 
 *A live recording of a session (MP4, 1.5× speed) — todos, running subagents, think/tool panels and the powerline footer in action.*
 
@@ -47,6 +47,33 @@ Everything that used to need manual patching — the canvas background, the `@de
 node scripts/dev-upgrade.mjs                  # latest
 node scripts/dev-upgrade.mjs 1.0.5 --dry-run  # preview the plan first
 ```
+
+---
+
+## Uninstall
+
+```sh
+dsh plugin --profile <name> remove @aiwayds/dsh-tui-pi
+```
+
+The `dsh-tui-pi` bin shim is global and can stay; if you installed the package globally and want it gone too: `npm -g rm @aiwayds/dsh-tui-pi`.
+
+The host cleans up the profile automatically: the `dsh.profile.bundles` entry is spliced and the whole patch layer goes away with the package — the stock `session-projection-cache` row re-enables, and the projcache wrapper, the `tool-ask-user` insert and its disable row all vanish.
+
+What stays on disk on purpose (deleting user data is destructive; a reinstall reuses all of it):
+
+- `~/.dsh/APPEND_SYSTEM.md` — auto-seeded system-prompt appendix (plugin-owned; delete by hand if unwanted)
+- `~/.dsh/tui-command-usage.json` — slash-command usage ranking
+- `~/.dsh/model-profiles.json` — model profiles (SHARED with other plugins — dsh-subagent-registry reads it)
+- `~/.dsh/keybindings.json` — the dsh-tui app-key rows (host-shared file)
+- `~/.dsh/agents/*.md` and `~/.dsh/skills/` — user-editable agents/skills (shared with other plugins)
+- `.dsh-profile` pin files in project workspaces (written by /model profile pinning)
+- the `dsh-tui:` section of `~/.dsh/settings.yaml` — theme/panel/footer/retention/subagent limits
+- `~/.dsh/storages/session_projcache/` — the session projection cache, incl. `.bak-preflight-*` migration backups
+
+While the plugin runs, the retention janitor (default `maxCount: 100` / `maxAgeDays: 7`, configurable in the `dsh-tui` settings) deletes old session logs — uninstalling stops that, but already-deleted logs are gone.
+
+`scripts/install-font.mjs` mutates OS font/terminal state and has a documented backup; uninstall doesn't touch it.
 
 ---
 
@@ -115,7 +142,7 @@ Other knobs: `dsh-tui.panelHeight` (think/tool panel height), `dsh-tui.iconSet` 
 ```sh
 pnpm check    # tsc --noEmit
 pnpm build    # emit lib/
-pnpm test     # unit tests, node --test against lib/ (pretest builds; 1,100+ tests across 60+ files — see HANDOFF.md for the current baseline)
+pnpm test     # unit tests, node --test against lib/ (pretest builds; 1,100+ tests across 60+ files — the current baseline lives in AGENTS.md)
 ```
 
 `pi-tui` runs pristine from npm — no patches, no fork. See [AGENTS.md](AGENTS.md) for the iron rules and quality gates.
@@ -126,7 +153,6 @@ pnpm test     # unit tests, node --test against lib/ (pretest builds; 1,100+ tes
 
 - [docs/features/](docs/features/) — one doc per feature, with demo videos.
 - [ARCHITECTURE.md](ARCHITECTURE.md) — full design: process model, layers, data flow.
-- [HANDOFF.md](HANDOFF.md) — session history and current state (Chinese).
 - [CHANGELOG.md](CHANGELOG.md) — release history.
 - [AGENTS.md](AGENTS.md) — working conventions and quality gates for contributors.
 - [docs/](docs/) — design notes (steer/follow-up flow, showcase drafts, …).

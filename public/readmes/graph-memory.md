@@ -1,7 +1,7 @@
 # Graph Memory
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/a469f6fb12d578b6684ec4b303d396e0e0c2b195/docs/images/brand/graph-memory-hosts-banner.png" alt="Graph Memory for DeepSeek Harness, compatible with OpenClaw" width="100%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/brand/graph-memory-hosts-banner.png" alt="Graph Memory for DeepSeek Harness, compatible with OpenClaw" width="100%">
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 ## The problem it solves
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/a469f6fb12d578b6684ec4b303d396e0e0c2b195/docs/images/context-memory-illustration.webp" alt="Long agent history becomes graph navigation plus a compact recent-turn context" width="100%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/context-memory-illustration.webp" alt="Long agent history becomes graph navigation plus a compact recent-turn context" width="100%">
 </p>
 
 Graph Memory owns the **model-visible historical surface** without deleting DSH's event log. By default it keeps the newest five completed user turns, removes completed reasoning/tool traces from future requests, and recalls relevant older or cross-session source Q/A automatically.
@@ -32,7 +32,7 @@ Graph Memory owns the **model-visible historical surface** without deleting DSH'
 ## Measured first
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/a469f6fb12d578b6684ec4b303d396e0e0c2b195/docs/images/dsh-context-takeover-chart.svg" alt="DSH 20-turn first-request context comparison" width="100%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/dsh-context-takeover-chart.svg" alt="DSH 20-turn first-request context comparison" width="100%">
 </p>
 
 | Real 20-turn GLM-5.2 run | Native DSH | DSH + Graph Memory | Change |
@@ -51,8 +51,8 @@ Graph Memory owns the **model-visible historical surface** without deleting DSH'
 ## Memory survives the context window
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/a469f6fb12d578b6684ec4b303d396e0e0c2b195/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in DSH" width="48%">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/a469f6fb12d578b6684ec4b303d396e0e0c2b195/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session recall in a fresh DSH session" width="48%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in DSH" width="48%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session recall in a fresh DSH session" width="48%">
 </p>
 
 The graph is a **navigation layer**, not a replacement for evidence. `TASK`, `SKILL`, and `EVENT` nodes point back to the original user question and final visible answer; recalled context includes those exact source messages.
@@ -132,7 +132,7 @@ Activate the Context Engine slot in `~/.openclaw/openclaw.json`:
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/a469f6fb12d578b6684ec4b303d396e0e0c2b195/docs/images/token-comparison.png" alt="Earlier OpenClaw seven-turn token comparison" width="76%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/token-comparison.png" alt="Earlier OpenClaw seven-turn token comparison" width="76%">
 </p>
 
 </details>

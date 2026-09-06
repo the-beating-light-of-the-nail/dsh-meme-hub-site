@@ -1,4 +1,4 @@
-![Univer × DeepSeek](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/univer-deepseek-banner.png)
+![Univer × DeepSeek](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/univer-deepseek-banner.png)
 
 # DSH × Univer Office
 
@@ -18,12 +18,12 @@ After installation, describe the result you want in natural language. The agent 
 
 ## See it in action
 
-[![Play the DSH × Univer Office demo](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/nike-presentation-demo.png)](https://www.youtube.com/watch?v=k-2zW_CMiew)
+[![Play the DSH × Univer Office demo](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/nike-presentation-demo.png)](https://www.youtube.com/watch?v=k-2zW_CMiew)
 
 
 The agent created this spreadsheet from a natural-language request, then added conditional formatting and a chart in the same conversation. The result can be previewed, revised, merged into the current version, or discarded in place.
 
-![Reviewing a spreadsheet with conditional formatting and a chart in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/chart-and-formatting.png)
+![Reviewing a spreadsheet with conditional formatting and a chart in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/chart-and-formatting.png)
 
 > **Deliver a standard Excel file:** after review, ask the agent to export the spreadsheet as `.xlsx` so it can be opened and edited in Excel, WPS Office, and other compatible office applications.
 
@@ -32,15 +32,15 @@ The agent created this spreadsheet from a natural-language request, then added c
 
 ### 1. Describe the task in natural language
 
-![Asking the agent to create a class score sheet](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/spreadsheet-request.png)
+![Asking the agent to create a class score sheet](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/spreadsheet-request.png)
 
 ### 2. Follow the result live while the agent works
 
-![A live spreadsheet window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/live-worktree.png)
+![A live spreadsheet window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/live-worktree.png)
 
 ### 3. Approve or discard the changes in the conversation
 
-![The spreadsheet review card after the task completes](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/review-result.png)
+![The spreadsheet review card after the task completes](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/review-result.png)
 
 </details>
 
@@ -48,7 +48,7 @@ The agent created this spreadsheet from a natural-language request, then added c
 
 Give the agent a topic, audience, page count, content outline, and visual direction. It can build the complete presentation, verify content and layout page by page, and leave the result in the conversation for review.
 
-![Reviewing a bubble sort teaching presentation in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/presentation-review.png)
+![Reviewing a bubble sort teaching presentation in DSH](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/presentation-review.png)
 
 > **Deliver a standard PowerPoint file:** after review, ask the agent to export the presentation as `.pptx` so it can be presented and edited in PowerPoint, WPS Office, and other compatible office applications.
 
@@ -57,11 +57,11 @@ Give the agent a topic, audience, page count, content outline, and visual direct
 
 #### 1. Specify the topic, audience, and page requirements
 
-![Asking the agent to create a bubble sort teaching presentation](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/presentation-request.png)
+![Asking the agent to create a bubble sort teaching presentation](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/presentation-request.png)
 
 #### 2. Follow and verify the pages while the agent works
 
-![A live presentation window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/a6e40aa64e9a24c110eae75dd5b0266d37124d09/docs/assets/readme/presentation-live.png)
+![A live presentation window while the agent works](https://raw.githubusercontent.com/dream-num/dsh-univer-office/3cfc26a464fb6784f6d2cda423a6bd690d826c8a/docs/assets/readme/presentation-live.png)
 
 </details>
 
@@ -172,6 +172,7 @@ DSH selects these tools automatically; you normally do not need to call them man
 - **Live Univer window** — changes open automatically in a window you can drag, resize, fold, or maximize. Disable automatic opening under **Settings → Plugins → Plugin configuration → Univer Office** without removing conversation review cards.
 - **Conversation review cards** — each edited `.univer` file has its own full preview card, while deleted temporary files leave no stale cards behind.
 - **Pinned worktree comparison** — use **Compare** in a draft or submitted worktree to compare it with trunk or another active worktree. Both sides are pinned when the comparison opens, changed entities can be navigated, and a refresh control appears if either side advances.
+- **Responsive review Header** — View/Compare stays centered when space permits; controls share a compact row and wrap in order as the window narrows. The title shows the selected document name; long names truncate, and merge-status messages remain visible.
 - **Historical review** — drafts, submitted changes, approvals, and discarded results remain in the conversation, with older cards collapsed by default.
 - **Session isolation** — each DSH session shows only its own windows, cards, and review state.
 - **English and Chinese UI** — the plugin shell and every open Viewer follow the DSH locale.

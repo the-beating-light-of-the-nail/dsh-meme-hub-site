@@ -6,6 +6,7 @@
 |---|---|---|
 | **IM → dsh**（飞书/微信/Telegram 消息进入 dsh 会话） | cc-connect 的 `dsh` agent 适配器（Go） | [`go/`](./go/) |
 | **dsh → IM**（dsh 会话主动推送消息到飞书等） | dsh 插件 `@dsh-external/cc-connect`（Cordis，两个工具） | 本仓库根目录 |
+| **新版 dsh 兼容层**（恢复旧点号 `/api/session.*` + `/api/events.mux`） | dsh 宿主插件 `cc-connect-bridge` | [`bridge/`](./bridge/) |
 
 ```
 飞书/微信/… ──IM 消息──▶ cc-connect ──dsh agent(Go, go/)──▶ dsh RPC API ──▶ dsh 会话
@@ -13,8 +14,11 @@
      └──────────── cc_connect_send 工具（dsh 插件）◀─────────────────────────┘
 ```
 
+> **新版 dsh 注意**：新版 dsh 已把点号 API（`/api/session.create`）改为斜杠 + 分 channel + cookie 鉴权（`/api/session/create`）的协议，并移除 `/api/events.mux`。要让**未改动**的 cc-connect 直接驱动新版 dsh，需在 dsh 侧安装 [`bridge/`](./bridge/) 兼容插件。
+
 - **入站**：cc-connect 项目配置 `type = "dsh"` 后，飞书等平台的消息由 cc-connect 转发到本机 `dsh web` 服务器（`POST /api/session.prompt` + WebSocket 事件流），每个项目一个 dsh 会话、自动续聊、流式回复、审批/问答卡回传。见 [`go/README.md`](./go/README.md)。
 - **出站**：dsh 插件注册 `cc_connect_send` / `cc_connect_list` 工具，让 dsh 的 agent 主动把消息推送到 cc-connect 的任意平台会话（走 cc-connect 内部 unix socket `/send`），以及通过管理 API 列出项目/会话。
+- **新版 dsh 兼容层**：cc-connect 侧使用的仍是旧点号协议。若你的 `dsh web` 是已改协议的新版，安装 [`bridge/cc-connect-bridge.cjs`](./bridge/cc-connect-bridge.cjs)，在 loopback 上恢复旧接口供 cc-connect 调用。见 [`bridge/README.md`](./bridge/README.md)。
 
 ---
 
@@ -26,6 +30,8 @@
 ├── tests/                # vitest 单元测试
 ├── lib/                  # 构建产物（已提交，dsh plugin add 直接使用）
 ├── cordis.yml            # 组合插入片段示例
+├── bridge/               # 新版 dsh 兼容层（恢复旧点号 API 供 cc-connect 调用）
+│   └── cc-connect-bridge.cjs
 └── go/                   # cc-connect 侧 dsh agent 的独立 Go module
     └── dsh/              #   package dsh（client / session / agent / aggregator）
 ```
@@ -140,6 +146,27 @@ dsh plugin --profile web add git+ssh://git@github.com:dsh-external/dsh-cc-connec
 
 - **`cc_connect_send`**：`message`（必填）、`project`、`session_key`（后两者可省略用默认值）。把文本作为机器人消息推送到 cc-connect 对应平台的聊天会话（走 unix socket `POST /send`）。适合把 dsh 的进度/结果/通知推给飞书、微信等。
 - **`cc_connect_list`**：列出 cc-connect 项目及其会话（platform / session_key / live 状态），方便模型发现可用的发送目标。
+
+---
+
+## 三、新版 dsh 兼容层（bridge）
+
+新版 dsh 已把 cc-connect 依赖的旧点号 RPC（`/api/session.*`、`/api/events.mux`）改为斜杠 + 分 channel + cookie 鉴权协议，并移除了 `/api/events.mux`。`bridge/cc-connect-bridge.cjs` 是一个 dsh 宿主插件，在 **loopback** 上恢复旧接口，并把新版事件翻译成 cc-connect 期望的帧格式，让**未改动**的 cc-connect 直接驱动新版 dsh。
+
+```bash
+# 复制到 web profile 插件目录
+cp bridge/cc-connect-bridge.cjs ~/.dsh/profiles/web/plugins/
+```
+
+在 `~/.dsh/profiles/web/cordis.patch.yml` 的 `insert` 列表追加：
+
+```yaml
+- insert:
+    - id: cc-connect-bridge
+      name: './plugins/cc-connect-bridge.cjs'
+```
+
+重启 `dsh web` 即可。详见 [`bridge/README.md`](./bridge/README.md)。
 
 ---
 

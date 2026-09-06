@@ -18,7 +18,7 @@
 [![license](https://img.shields.io/npm/l/@a9i5k4/dsh-anchored-monitor)](LICENSE)
 [![node](https://img.shields.io/badge/node-%3E%3D22.19-blue)](#requirements)
 
-![dashboard](https://raw.githubusercontent.com/Aik358/dsh-anchored-monitor/8cb863fa50c3d17dec2683a247b93f90deeb5a16/docs/dashboard.png)
+![dashboard](https://raw.githubusercontent.com/Aik358/dsh-anchored-monitor/086bd05e1e3035ddf23133f3a0ee479291a4b237/docs/dashboard.png)
 
 ---
 

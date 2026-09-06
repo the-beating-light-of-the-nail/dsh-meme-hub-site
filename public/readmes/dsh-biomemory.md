@@ -1,218 +1,304 @@
-# dsh-biomemory · Biomimetic Memory for DeepSeek Harness
+# dsh-biomemory
 
-> [中文文档](README.zh-CN.md) · [English](README.md)
+> **生物仿生记忆系统**：跨会话记忆插件，像人脑一样分层记、分级审、会代谢、透明可改。
+>
+> [简体中文](README.md) · [English](README.en.md)
 
-> **Version v0.6.0** · MIT License · **Compatibility**: DeepSeek Harness ≥ 0.1.1-rc.2 (current latest line; tested on 0.1.2-rc.1 too)
+> **v0.6.4** · MIT License · DSH ≥ 0.1.1-rc.2（0.1.2-rc.1 已实测）· Node ≥ 22.19.0
 
-A cross-session memory plugin for DeepSeek Harness (DSH), designed like a human brain: layered memory, graded approval, memory metabolism, fully transparent.
+给 [DeepSeek Harness](https://github.com/deepseek-ai/dsh)（DSH）的跨会话记忆插件：像人脑一样**分层记、分级审、会代谢、透明可改**。数据层为 SQLite（`node:sqlite` 内置、WAL 模式、零外部依赖），旧 Markdown 记忆首次启动自动迁移并保留只读备份。
 
-**v0.6.0 (2026-08-31) — architecture refactor + session-end auto-consolidation:**
+## 功能特性
 
-- **Modular architecture**: `index.mjs` slimmed to a wiring layer; business logic split into focused modules — `shared` (config/utils/audit/conflict), `store` (write/pin/remove/restore/migration), `retrieve` (query/semantic), `meta` (metabolism/reflect), `snapshot` (frozen snapshot/session consolidator), `gate` (approval/self-heal), `notify` (pet bubble), `session-state`. No behavior change; 57 tests green.
-- **Session-end auto-consolidation**: after a turn ends (`turn/end` completed), the plugin injects a "consolidate this turn" directive into the next prompt assembly; the model then writes anything worth remembering via `memory add`. Cleared on write, 5-minute stale guard, deduplication respected.
-- **Fix**: `package.json` `files` whitelist now includes all new modules (publishing without them would break consumers with `ERR_MODULE_NOT_FOUND`); `/reflect` `/dream` endpoints read `dryRun` from the request body.
+| 能力 | 说明 |
+| --- | --- |
+| 分层记忆 | Memory / Retrieved / Applied 三层分离——存储层、查询候选、已注入快照；检索到 ≠ 已采用，执行与否由 AI 结合上下文判断 |
+| 分级审批 | 重要记忆（用户偏好/项目决策/踩坑教训）人工审批，普通事实自动写入；审批通道不可用时按 `approvalFallback` 降级（auto/deny） |
+| 自动沉淀 | 会话结束自动注入「沉淀本轮」指令；启动自动注入**冻结记忆快照**（锁定与偏好最高优先级，冲突行为记忆置顶 `[冲突]` 标注） |
+| 记忆代谢 | 半衰期衰减 + 引用巩固（用进废退）+ 冲突豁免 + 低权重归档；执行前自动备份、支持断点续跑与 dry-run 预览 |
+| 深度反思 | 主题聚类 / 趋势统计 / 冲突提醒 / 遗忘建议，纯本地无 LLM，报告写入 `longterm/reflections/` |
+| 记忆类别 | `memory_class` 自动推断：user_decision / user_preference / fact / model_suggestion / model_inference（建议 ≠ 决定） |
+| 来源可溯 | `source_ref` 记录来源，`add` 缺省记 `session:<id>`；结构化审计五元组（时间/操作者/事件/条目/详情）全程可查 |
+| 语义检索 | 本地嵌入模型 bge-small-zh-v1.5（512 维，离线）优先；TF-IDF + cosine 纯 JS 降级；exact / semantic / hybrid 三模式 |
+| 透明可改 | 每条记忆可编辑/删除/回滚（删除前自动备份）；SQLite 单文件即所有数据，`.db` 直接用标准工具查看 |
+| 零原生依赖 | `node:sqlite` 内置 + 纯 JS 实现，无原生模块冲突；管理 UI 五 tab「记忆工作台」，深色模式跟随 DSH 主题 |
 
-**v0.5.3 (2026-08-31) — UI modernization:**
+## 安装
 
-- Settings page restyled with the "monumental visual" design language (warm paper-toned surfaces, accent gold line, rounded cards, focus rings) — no more default-blue look; peer deps bumped to `>=0.1.1-rc.1`.
-
-**v0.5.2 (2026-08-20) — editable memories + conflict surfacing:**
-
-- **Edit entries in place**: `memory action=update fp="..." text="..."` (tool), `/memory edit <fp> <new text>` (command) and an **Edit** button on the Knowledge tab — metadata (pin/weight/layer) is preserved, the stale vector is cleared, and an `UPDATE` audit event is recorded; duplicates are rejected.
-- **Conflict surfacing**: behavior memories that clash with user preferences are **pinned to the top** of `memory action=list`, the Knowledge tab (red badge + left border) and the frozen session snapshot (marked `[冲突]`) — so conflicts float up for you to judge and fix, instead of being silently auto-arbitrated away. Search results keep relevance order but still carry the conflict marker.
-- **Conflict arbitration in the Reflect tab**: conflicts are listed at the top of the reflect view, each with inline **Edit** (large auto-growing editor) and **Delete** buttons, plus an **Undo** bar after deletion.
-- **Single-entry rollback**: `memory action=restore fp="..."` (tool), `/memory undo <fp>` (command), `POST /entries/restore` (API) restore a deleted entry from the newest backup DB — metadata preserved, `RESTORE` audit event recorded.
-- **Reflect data source fixed to SQLite** (was scanning the Markdown read-only backups — deleted entries resurrected on the next reflect).
-
-**v0.5.1 (2026-08-20) — pet bridge extracted:**
-
-- The DSH↔desktop-pet bridge (session/event state forwarding + approval panel) moved out to its own plugin `dsh-whale-pet-bridge` — biomemory now only handles memory (save notifications to the pet are kept).
-- No functional changes to memory features.
-
-**v0.5 (2026-08-19) — SQLite + semantic retrieval:**
-
-- **SQLite data layer** (`~/.dsh/biomemory/biomemory.db`, Node 24 built-in `node:sqlite`, WAL mode, zero external deps) — L2/L3 structured entries + vector blobs + audit log
-- **Offline embedding model** (`bge-small-zh-v1.5`, 512-dim, quantized ONNX ~24MB at `~/.dsh/models/`) via transformers.js — pure JS, no native modules
-- **Three retrieval modes**: `exact` (keyword) / `semantic` (vector) / `hybrid` (default, Reciprocal Rank Fusion per v0.5 design doc §3.4)
-- **Automatic Markdown migration**: existing `~/.dsh/memory` entries imported once on first boot (Markdown kept as read-only backup)
-- **Audit aggregation** (P1-003): group by action / day / entry
-- **Dream checkpointing** (P0-002): resume interrupted metabolism from the last checkpoint
-- Graceful degradation: model unavailable → keyword retrieval only; memory features unaffected
-
-Core features (unchanged from v0.4):
-
-- `memory` tool: add / query / update / remove / list / pin / unpin / dream / audit
-- **Frozen snapshot injection** at session start (pinned memories and user preferences at top priority, then recent knowledge/behavior)
-- **Graded approval gate**: important memories (preferences/decisions/lessons) require human approval; ordinary facts are auto-saved; fails closed when no approval channel is available
-- `/memory` command: list / query / add / edit / remove / pin / unpin / dream / audit
-- `memory_recall` tool: cross-session recall ("do you remember…" scenarios)
-- Deduplication: content fingerprint skips duplicate entries
-- **Memory metabolism** (`/memory dream`): half-life decay, reference consolidation, conflict arbitration, cold archiving (status flag, never deleted)
-- **Memory pins**: lock a memory so it never decays and always enters the snapshot
-
-## Install
+### 从 GitHub 安装（推荐）
 
 ```bash
-# As a local bundle in a DSH profile
-dsh plugin add dsh-biomemory
-# Or pnpm local link
-pnpm add link:./dsh-biomemory
+# 需要已安装 git；--profile web 换成你的 profile 名
+dsh plugin --profile web add github:KLRSL/dsh-biomemory
 ```
 
-Add `dsh-biomemory` to `dsh.profile.bundles` in the profile.
+### 本地 bundle（开发 / link）
 
-## Memory Layout
-
-```
-~/.dsh/memory/
-├── preferences.md      # User/project preferences (top priority, frozen-injected)
-├── hot/
-│   ├── knowledge.md    # L1 recent knowledge (facts/decisions)
-│   └── behavior.md     # L1 recent behavior (lessons/habits/workflows)
-├── projects/<name>/    # L2 project archives
-├── longterm/           # L3 long-term memory
-├── archive/            # Memories archived by metabolism (decayed below threshold, never deleted)
-├── backups/            # Automatic backups before dream runs (rollback source)
-├── audit.log           # Human-readable audit (legacy, kept for compatibility)
-└── audit.jsonl         # Structured audit (JSON Lines, v0.3)
+```bash
+# 在项目目录下执行
+dsh plugin --profile web add link:./dsh-biomemory
 ```
 
-Each entry is a single line: `- [knowledge|auto] [fp:xxx] [w:10] [h:3] [t:2026-08-16 13:00] [pin] text`
+`dsh plugin` 会自动把安装的包登记到 profile 的 `dsh.profile.bundles` 并挂载补丁；安装完成后重启 DSH。
 
-- `w` = weight (default 10) — decay/consolidation base
-- `h` = reference count — consolidation input
-- `t` = write time — decay age source
-- `pin` = locked (excluded from decay, always injected)
+**安装后验证**：
 
-## Memory Metabolism (Dream)
+```bash
+# 1. 工具已注册 —— 在会话中直接调用（对话内模型可见）
+memory action=query text="测试"
 
-`/memory dream` (or `memory action=dream`) manually triggers memory metabolism — the housekeeping a sleeping brain does:
+# 2. 数据层就绪 —— 首次启动后应出现
+ls ~/.dsh/biomemory/
+# biomemory.db  biomemory.db-wal  biomemory.db-shm
 
-1. **Half-life decay** (default 7 days): weight halves every half-life (`w × 0.5^(age/halfLife)`), floored at 1.
-2. **Reference consolidation**: entries referenced ≥ `consolidateThreshold` (default 3) times gain +1 weight, capped at `weightCap` (default 20).
-3. **Conflict surfacing (v0.5.2)**: when behavior memory conflicts with preferences it is no longer silently halved — it is exempted from decay/archival, stays active, and floats to the top of listings and the session snapshot so **you** can judge and edit it. A `CONFLICT` audit event is recorded; once you edit it into agreement, normal metabolism resumes.
-4. **Archiving**: entries whose weight drops below `decayThreshold` (default 3) move to `archive/` — moved, never deleted.
+# 3. 旧 Markdown 记忆自动迁移（保留只读备份，不删除）
+#    迁移状态可通过 Web API 查看：
+#    GET /biomemory/api/status → migration 字段
 
-Usage:
-
-```
-/memory dream            # run metabolism
-/memory dream --dry-run  # preview only, no changes
-memory action=dream dryRun=true   # same via the memory tool
+# 4. 管理 UI —— DSH 设置页出现「记忆工作台」五个 tab：
+#    概览 / 知识库 / 代谢 / 反思 / 设置
 ```
 
-Dry-run example output:
+## 快速开始
 
-```
-【预览】扫描 120 条：衰减 12 · 巩固 3 · 冲突 0 · 归档 4
-备份：（dry-run 不执行备份）
-```
+```text
+# ① 保存一条用户偏好（重要记忆 → 触发人工审批；审批通过后入库）
+memory action=add track=user text="用户偏好：网络下载一律用国内镜像源" source="用户原话"
 
-**Backup & rollback**: before an actual run, the whole memory store is automatically copied to `backups/<timestamp>/` (including `audit.jsonl`). On startup, the self-check restores the latest backup automatically if a primary memory file is found corrupted. Rollbacks are recorded as `ROLLBACK` audit events.
+# ② 查询（hybrid = 精确 + 语义融合，默认）
+memory action=query text="镜像源" mode=hybrid topK=5
 
-## Auto recall / auto save (v0.4.0)
+# ③ 修复一条记忆（内容说错了，直接改文本，元数据不动）
+memory action=update fp="a1b2c3" text="用户偏好：网络下载一律用国内镜像源（pip 清华 / npm npmmirror）"
 
-Three automatic layers on top of explicit calls:
+# ④ 锁定重要条目（不参与衰减，永远进会话快照）
+memory action=pin fp="a1b2c3"
 
-1. **Approval fallback**: important memories normally require approval; when approval is unavailable (policy `never` / service missing), they are saved automatically per `approvalFallback` (default `auto`), audited as `[降级]`. Switch to `deny` in settings to stay fail-closed.
-2. **Auto consolidation (use-it-or-lose-it)**: every keyword query/recall hit bumps `hits+1` and writes back — memories that get recalled often decay slower (audit `RECALL`).
-3. **Auto dream/reflect**: `autoDreamDays` (default 7) and `autoReflectDays` (default 3) run metabolism/reflection at startup when older than the interval; `0` disables. Audit `AUTO-DREAM` / `AUTO-REFLECT`.
+# ⑤ 代谢 + 反思（建议跑一次看看效果；--dry-run 可以只预览）
+memory action=dream dryRun=true
+memory action=reflect dryRun=true
 
-## Deep reflection (Reflect, v0.4.0)
+# ⑥ 审计（看看这段时间记忆系统发生了什么）
+memory action=audit sinceDays=7
+memory action=audit aggregate=true groupBy=action
 
-`/memory reflect` (or `memory action=reflect`, settings tab) — a purely local, LLM-free periodic summary:
-
-1. **Topic clustering**: all entries clustered by TF cosine similarity (≥0.25) to surface recurring topics;
-2. **Trend stats**: writes in the last 7 days vs the previous week (rising / steady);
-3. **Conflict alerts**: behavior memories that clash with preferences;
-4. **Forget candidates**: low-weight entries worth reviewing.
-
-Reports are written to `longterm/reflections/<timestamp>.md`; `--dry-run` previews without writing.
-
-## Knowledge page (v0.4.0)
-
-The settings page gains a **Knowledge** tab: full-text/semantic search, layer filter, per-entry weight/hits/time/pin display, one-click pin/unpin, **edit** (inline textarea) and **safe removal** (backed up first, restorable). Conflicting behavior entries float to the top with a red badge. Web API: `GET /biomemory/api/entries`, `POST /biomemory/api/entries/pin|unpin|update|remove`, `POST /biomemory/api/reflect`.
-
-## Memory Pins
-
-Lock a memory so it never participates in decay and always enters the snapshot:
-
-```
-/memory pin <fp>      # lock
-/memory unpin <fp>    # unlock
-memory action=pin fp="xxx"
-memory action=unpin fp="xxx"
+# ⑦ 运行时也可以在对话里用 /memory 命令
+/memory list
+/memory query 偏好
 ```
 
-Snapshot injection priority: **pinned > preferences > knowledge > behavior**.
+## 使用指南
 
-## Audit
+### memory 工具（action 清单）
 
-Two audit channels:
+| action | 参数 | 说明 |
+| --- | --- | --- |
+| `add` | `text`（必填）, `track`=user\|agent, `source` | 保存记忆；重要条目自动请求审批，审批不可用时按 `approvalFallback` 降级 |
+| `query` | `text`, `mode`=hybrid\|exact\|semantic, `topK`, `minWeight`, `projectId`, `fragmentTypes`, `includeArchived` | 查询；命中自动巩固（用进废退） |
+| `update` | `fp`, `text` | 编辑一条记忆（保留锁定/权重等元数据；文本变了向量置空重算；审计 UPDATE） |
+| `remove` | `fp` | 删除一条（删除前自动备份数据库，可回滚） |
+| `restore` | `fp` | 从最近备份回滚被删除的一条 |
+| `list` | `topK` | 列出全部条目；与偏好冲突的行为记忆置顶并标注 |
+| `pin` / `unpin` | `fp` | 锁定/解锁。锁定 = 不遗忘（防衰减/归档），不代表每轮必须执行 |
+| `dream` | `dryRun`, `resume`（默认 true） | 记忆代谢：衰减/巩固/冲突/归档；支持断点续跑 |
+| `reflect` | `dryRun` | 深度反思：主题聚类/趋势统计/冲突提醒/遗忘建议 |
+| `audit` | `type`, `sinceDays`, `aggregate`, `groupBy`（action\|day\|entry） | 结构化审计查询/聚合统计 |
 
-- `audit.log` — human-readable one-line summaries, backward compatible
-- `audit.jsonl` — structured, one JSON object per line
+示例：
 
-Events: `WRITE`, `DECAY`, `CONSOLIDATE`, `CONFLICT`, `ARCHIVE`, `PIN`, `UNPIN`, `PREVIEW` (dry-run), `ROLLBACK`.
-
-Example line:
-
-```json
-{"t":"2026-08-16T05:00:00.000Z","event":"DECAY","fp":"abc123","text":"..."}
-```
-
-Query:
-
-```
-/memory audit                    # recent events
-/memory audit --since 7d         # last 7 days
-/memory audit --type DECAY       # only DECAY events
+```text
+memory action=add track=user text="正式名「大肥鱼」，不用旧名" source="用户原话"
+memory action=query text="UI 渲染宽度规则" mode=hybrid topK=10 minWeight=0.1 fragmentTypes=decision,preference
 memory action=audit type="DECAY" sinceDays=7
+memory action=audit aggregate=true groupBy=day
 ```
 
-## Semantic Retrieval
+**记忆类别（自动推断，写入时记录）**：`user_decision`（用户明确决定）· `user_preference`（用户偏好）· `fact`（普通事实）· `model_suggestion`（模型建议）· `model_inference`（模型推测）。建议 ≠ 决定，模型建议永不冒充用户拍板。
 
-Keyword matching runs first; when hits are insufficient, results are supplemented with a pure-JS TF-IDF + cosine implementation — **no native modules, no external dependencies**, fully offline. Semantic hits are marked as "semantic" in query output.
+### memory_recall 工具
 
-## Configuration
+跨会话召回（「你还记得…吗」场景），与 `memory query` 同底，语义上专用于回忆：
 
-```js
-// Plugin config (bundle or profile layer)
-{
-  halfLifeDays: 7,          // half-life in days for decay
-  decayThreshold: 3,        // weight below this → archived
-  consolidateThreshold: 3,  // references ≥ this → consolidate (+1 weight)
-  weightCap: 20,            // consolidation weight cap (prevents runaway growth)
-  hotTokenLimit: 5000,      // snapshot hot-section token budget
-  maxQueryResults: 20,      // query result cap
-  petEndpoint: null         // optional: local notification service URL (off by default)
-}
+```text
+memory_recall text="去年定下的版本规则"
 ```
 
-## Compatibility
+### /memory 命令族
 
-- Node >= 22.19.0
-- `@deepseek-ai/dsh-*` >= 0.1.1-rc.2 runtime (implemented against actual lib sources)
+| 命令 | 说明 |
+| --- | --- |
+| `/memory list` | 列出全部条目（冲突条目置顶） |
+| `/memory query <词>` | 关键词 + 语义检索 |
+| `/memory add <内容>` | 直接写入（人类发起，免审批） |
+| `/memory edit <fp> <新内容>` | 编辑一条 |
+| `/memory remove <fp>` | 删除一条（可回滚） |
+| `/memory undo <fp>` | 回滚被删除的一条 |
+| `/memory pin <fp>` / `unpin <fp>` | 锁定 / 解锁 |
+| `/memory entries [词]` | 列出条目（可带过滤词） |
+| `/memory dream [--dry-run]` | 记忆代谢 |
+| `/memory reflect [--dry-run]` | 深度反思 |
+| `/memory audit [--since 7d] [--type DECAY]` | 审计查询 |
 
-## Troubleshooting (FAQ)
+### 冻结快照注入
 
-- **Node version**: requires Node >= 22.19.0; older versions may fail to load the plugin.
-- **DSH runtime compatibility**: targets `@deepseek-ai/dsh-*` >= 0.1.1-rc.2 (current latest line; tested on 0.1.2-rc.1 too) — check the version of the runtime you actually run.
-- **Memory directory issues**: if writes fail, check read/write permissions on the memory root; if `DSH_MEMORY_ROOT` is set, it must point to an existing, writable directory.
-- **Native module conflicts**: this plugin has **no native dependencies** — it is pure JS, so it cannot clash with native modules of other plugins.
+会话启动时，插件自动把高价值记忆冻结注入 system prompt（注册即冻结，快照标记「会话冻结」）：
 
-## Usage Scenarios
+- 头部明确三层概念：**本快照 = Applied Context**（已注入 prompt）；Memory（存储层）与 Retrieved（查询候选）不在此列；**检索到 ≠ 已采用**。
+- 注入顺序：**锁定记忆（最高优先级，不参与衰减）→ 用户偏好（最高优先级，写入须尊重）→ 近期知识 → 近期行为**。
+- 与偏好冲突的行为记忆**置顶并标注 `[冲突]`**，由你裁决修改。
+- 热区 token 预算 `hotTokenLimit`（默认 5000），超出时保留偏好与锁定段。
 
-- **Personal knowledge base, long-term maintenance**: accumulate facts and decisions over time, query them later like a second brain; decay and archiving keep the store tidy without manual pruning.
-- **Project experience accumulation**: lessons, habits and decisions live per-project in `projects/<name>/`, consolidating (weight grows) as topics are referenced repeatedly.
-- **Cross-session preference memory**: preferences are injected at every session start, pin important ones for stability, and let conflict arbitration keep preferences authoritative over behavior.
+### 分级审批门
 
-## Contributing
+| 记忆类型 | 审批方式 |
+| --- | --- |
+| 用户偏好 / 项目决策 / 踩坑教训（`track=user` 或命中重要词） | **人工审批**（ask） |
+| 普通事实 | 自动写入（auto） |
+| 审批通道不可用（策略 never / 服务缺失） | 按 `approvalFallback`：`auto` = 自动保存并审计降级标记 · `deny` = 拒绝写入（fail-closed） |
 
-- **Report issues**: open an issue with the DSH runtime version, Node version, and reproduction steps.
-- **Pull requests**: fork the repository, make the change, add/update tests, and run `npm test` before submitting.
-- **Tests**: run `npm test` (node:test). New behavior should ship with test coverage.
+### 记忆代谢（Dream）
+
+相当于睡眠时大脑做的事——`/memory dream` 或 `memory action=dream`：
+
+1. **半衰期衰减**（默认 7 天）：`w × 0.5^(年龄/半衰期)`，下限 1。
+2. **引用巩固**：单条命中引用 ≥ `consolidateThreshold`（默认 3）次则 +1 权重，上限 `weightCap`（默认 20）。
+3. **冲突豁免**：与偏好冲突的行为记忆不衰减不归档、保持活跃，在列表与快照中**置顶浮出**，由你人工裁决（编辑改掉冲突内容后恢复正常代谢），记 `CONFLICT` 事件。
+4. **低权重归档**：权重低于 `decayThreshold`（默认 3）→ `status=archived`，**移动不删除**。
+
+执行前自动备份数据库（保留最近 7 次，`ROLLBACK` 事件可溯）；每 100 条写检查点，中断后 `resume=true` 断点续跑；`--dry-run` 只预览不落盘。
+
+### 深度反思（Reflect）
+
+纯本地、无 LLM 的周期总结：**主题聚类**（TF 向量余弦相似度 ≥ 0.25）· **趋势统计**（近 7 天 vs 上一周写入量）· **冲突提醒**（行为与偏好潜在冲突清单）· **遗忘建议**（低权重候选）。报告写入 `longterm/reflections/<时间戳>.md`，支持 `--dry-run` 预览。
+
+### 知识库（管理 UI）
+
+DSH 设置页「记忆工作台」五个 tab：
+
+| tab | 功能 |
+| --- | --- |
+| 概览 | 存储统计（条目/锁定/分层/向量数/审计近 7 天）、模型状态、迁移状态、冲突与低权重速览 |
+| 知识库 | 全文/语义搜索（exact/semantic/hybrid）、按分层筛选、权重/引用/时间/锁定状态展示；一键锁定/解锁、**就地编辑**、**安全删除**（先备份可回滚）；冲突条目置顶 + 红色徽标 |
+| 代谢 | 一键执行 / 预览记忆代谢，展示衰减/巩固/冲突/归档结果 |
+| 反思 | 一键执行 / 预览深度反思，报告罗列与冲突就地裁决（编辑或删除） |
+| 设置 | 全部配置项可视化编辑（含恢复默认） |
+
+### 审计
+
+双通道：**SQLite `audit_log` 表**（结构化，五元组 `t / actor / action / entry_id / detail`，主通道）+ **`audit.log`**（人类可读一行摘要，向后兼容）。
+
+事件类型：`WRITE` / `DECAY` / `CONSOLIDATE` / `CONFLICT` / `ARCHIVE` / `RECALL` / `ROLLBACK` / `AUTO-DREAM` / `AUTO-REFLECT`（其余辅助事件：`PIN` / `UNPIN` / `UPDATE` / `REMOVE` / `RESTORE` / `MIGRATE` / `VECTORIZE` / `PREVIEW` / `REFLECT` / `CONFIG`）。
+
+```text
+/memory audit                      # 最近事件
+/memory audit --since 7d           # 最近 7 天
+/memory audit --type DECAY         # 只看 DECAY
+memory action=audit type="DECAY" sinceDays=7
+memory action=audit aggregate=true groupBy=action   # 聚合统计
+```
+
+### 语义检索
+
+先关键词匹配；命中不足时用纯 JS 的 **TF-IDF + cosine** 补充召回（无原生模块、完全离线）。配置了本地嵌入模型（bge-small-zh-v1.5，512 维，存储于 `~/.dsh/models/`）且可用时，自动升级为 **hybrid** 融合检索（RRF 变体）；模型缺失/加载失败自动降级为关键词检索，记忆功能不受影响。语义命中在输出中标注「语义」。
+
+## 配置
+
+| key | 默认值 | 说明 |
+| --- | --- | --- |
+| `halfLifeDays` | `7` | 半衰期（天）：权重每过半衰期衰减一半 |
+| `decayThreshold` | `3` | 权重低于此值 → 归档（移动，不删除） |
+| `consolidateThreshold` | `3` | 引用 ≥ 此次数 → 巩固（+1 权重） |
+| `weightCap` | `20` | 巩固权重上限（防膨胀） |
+| `hotTokenLimit` | `5000` | 快照注入热区 token 上限 |
+| `maxQueryResults` | `20` | 查询返回上限 |
+| `approvalFallback` | `auto` | 审批不可用时：`auto`=自动保存并审计降级 / `deny`=拒绝写入 |
+| `autoDreamDays` | `7` | 启动时距上次代谢 ≥ 此天数自动执行（`0`=关闭） |
+| `autoReflectDays` | `3` | 启动时距上次反思 ≥ 此天数自动执行（`0`=关闭） |
+| `conflictOverlap` | `3` | 冲突检测：行为与单条偏好的专有双字重叠阈值 |
+| `petEndpoint` | `null` | 可选：本地桌宠通知服务 URL（默认关闭） |
+
+可在设置页「设置」tab 可视化修改，或通过 `POST /biomemory/api/config` 调整；持久化为 `biomemory.config.json`（透明可改）。
+
+## 集成
+
+### Web API（DshWebServer 注册，prefix `/biomemory/api`）
+
+| 方法 / 路径 | 说明 |
+| --- | --- |
+| `GET /status` | 存储统计 + 配置 + 模型/迁移状态 |
+| `GET /config` · `POST /config` | 读取 / 更新配置（白名单字段，`reset:true` 恢复默认） |
+| `POST /dream` | 记忆代谢（body `{ "dryRun": true }`） |
+| `POST /reflect` | 深度反思（body `{ "dryRun": true }`） |
+| `GET /entries` | 条目列表（`q` 搜索词 / `layer` 分层 / `mode` 检索模式 / `limit` 上限） |
+| `POST /entries/pin` · `/unpin` · `/remove` · `/restore` · `/update` | 条目管理（body 含 `fp` 等） |
+| `POST /vectors` · `GET /vectors` | 触发向量化 / 查询向量化状态 |
+| `GET /audit` · `GET /audit/aggregate` | 审计查询（`sinceDays`/`type`）/ 聚合统计（`groupBy`） |
+
+### 通知（可选）
+
+配置 `petEndpoint` 后，记忆保存等事件通过 HTTP POST 通知本地桌宠气泡（离线静默失败，不影响记忆本体）。
+
+### 环境变量
+
+| 变量 | 默认值 | 说明 |
+| --- | --- | --- |
+| `DSH_BIOMEMORY_DIR` | `~/.dsh/biomemory` | SQLite 数据目录 |
+| `DSH_MEMORY_ROOT` | `~/.dsh/memory` | 旧 Markdown 根目录（迁移源与只读备份） |
+| `DSH_MODELS_ROOT` | `~/.dsh/models` | 本地嵌入模型目录 |
+| `DSH_MEMORY_DEBUG` | — | `1` 时输出调试日志 |
+
+## 兼容性
+
+- **Node ≥ 22.19.0**（`node:sqlite` 内置要求）。
+- **运行时**：`@deepseek-ai/dsh-*` ≥ 0.1.1-rc.2（当前 latest 线；0.1.2-rc.1 已实测，按实际 lib 源码核对实现）。
+- **peerDependencies**：`@deepseek-ai/cordis ^4.0.2`、`@deepseek-ai/dsh-session >= 0.1.1-rc.2`、`@deepseek-ai/dsh-tools >= 0.1.1-rc.2`。
+- **零原生 npm 依赖**：数据层为 `node:sqlite` 内置 + 纯 JS，不会与其他插件的原生模块冲突；语义检索模型为可选离线组件，缺失自动降级。
+- v0.6.3 起 memory 工具返回值兼容 dsh-tools 新版 lossless JSON 校验（undefined/NaN 字段统一置 null，避免工具校验报错）。
+
+## 版本历史
+
+| 版本 | 日期 | 要点 |
+| --- | --- | --- |
+| **v0.6.4** | 2026-09-06 | **数据层单轨制**：SQLite 为唯一运行时数据源——写入一律走 memory 工具（writeEntry 不再追加 preferences.md）；偏好文本/冲突检测改从 SQLite 读（prefsText()，替代读 Markdown）；Markdown（hot/projects/longterm/preferences）永久降级为只读备份+人工查看层，不再参与运行时读写（消除「双轨不同步」盲区）；60 测试全绿 |
+| **v0.6.3** | 2026-09-05 | 适配 DSH 0.1.2-rc.1：memory 工具返回值兼容 dsh-tools 新版 lossless JSON 校验（undefined/NaN 字段置 null，修复工具报错）；插件 UI 深色适配（DSH 主题跟随，双通道探测 + MutationObserver） |
+| **v0.6.2** | 2026-09-05 | 管理 UI 按「骨架/血肉/呼吸」设计语言重构：现代极简——neutralSurface 底 + 白色圆角卡片分层、主色下划线 tabs、4/8px 栅格、150ms 动效；配色全部取自 dsh-fuse design 令牌，零硬编码；确立紫粉品牌色（记忆神经） |
+| **v0.6.1** | 2026-09-05 | Memory / Retrieved / Applied 三层分离（检索到 ≠ 已采用）；记忆钉语义修正（锁定 = 不遗忘 + relevance admission）；记忆类别 `memory_class` + 来源 `source_ref`；schema 演进（entries 表新增列，旧库启动自动 ALTER，幂等） |
+| **v0.6.0** | 2026-08-31 | `index.mjs` 拆为 shared / store / retrieve / meta / snapshot / gate / notify / session-state 模块（行为不变，57 测试全绿）；会话结束自动沉淀（turn/end 后注入总结指令，写即清标记、5 分钟防呆、严格去重） |
+| **v0.5.3** | 2026-08-31 | 设置页改用 dsh-fuse 设计令牌；peerDeps 升至 `>=0.1.1-rc.1` |
+| **v0.5.2** | 2026-08-20 | 可编辑记忆（update 保留锁定/权重，审计 UPDATE，防重复）+ 冲突浮出置顶（行为与偏好冲突不再静默降权）+ 单条回滚（restore / `/memory undo`） |
+| **v0.5.0** | 2026-08-20 | SQLite 数据层（`~/.dsh/biomemory/biomemory.db`，node:sqlite 内置、WAL、零外部依赖）+ 本地嵌入语义检索（bge-small-zh-v1.5，512 维，离线）；旧 Markdown 记忆自动迁移（保留只读备份）+ 审计聚合 + dream 断点续跑 |
+| **v0.4.0** | — | 自动召回（命中巩固，用进废退）/ 自动保存（审批降级 + 自动代谢/反思周期）+ 深度反思 + 知识页（设置页 tab） |
+| **v0.3.x** | — | 记忆代谢（dream）+ 记忆钉（pin）+ 结构化审计（audit.jsonl）+ 语义检索（TF-IDF）+ 设置面板 |
+
+## 常见问题
+
+- **Node 版本**：要求 Node ≥ 22.19.0（`node:sqlite` 内置）；旧版本可能无法加载插件。
+- **DSH 运行时兼容性**：目标 `@deepseek-ai/dsh-*` ≥ 0.1.1-rc.2——请核对实际运行的运行时版本（0.1.2-rc.1 已实测）。
+- **工具报错（Invalid object / lossless JSON）**：升级到 v0.6.3+，返回值已兼容 dsh-tools 新版严格校验。
+- **语义检索不可用**：检查 `~/.dsh/models/bge-small-zh-v1.5` 模型是否存在；缺失时自动降级为关键词 + TF-IDF 检索，记忆功能不受影响。
+- **记忆写入失败**：检查 `~/.dsh/biomemory/`（及 `DSH_BIOMEMORY_DIR`）读写权限；审批被拒时确认审批策略与 `approvalFallback` 设置。
+- **旧 Markdown 记忆去哪了**：首次启动已自动迁移进 SQLite；`E:\DE\memory\` 保留为只读备份（**v0.6.4 起为纯只读层，不再写入/读取**，修改它不会影响运行时——写入一律走 memory 工具）。
+
+## 数据层（单轨）
+
+- **唯一数据源**：`~/.dsh/biomemory/biomemory.db`（SQLite，node:sqlite 内置、WAL）。
+- **只读镜像**：`E:\DE\memory\`（hot/ projects/ longterm/ preferences.md）仅备份与人工查看，v0.6.4 起不参与运行时——手工编辑不会生效。
+- **写入入口**：`memory` 工具（add/edit/remove/pin）与 `/memory` 命令，全部落 SQLite 并审计。
+- **一次性迁移**：新环境首次启动仍会从 Markdown 导入历史（meta.migrated_at 幂等，仅一次）。
+- **误删的条目还能找回吗**：删除前自动备份数据库（保留最近 7 次），`/memory undo <fp>` 或 `memory action=restore fp=...` 即可恢复。
+- **原生模块冲突**：本插件无任何原生依赖——纯 JS 实现，不会与其他插件冲突。
+
+## 开发
+
+```bash
+# 运行测试（node:test，60 个用例全绿）
+npm test
+```
+
+模块结构：`index.mjs`（接线层）+ `shared`（配置/审计/冲突）· `store`（写入/钉/删/回滚/迁移）· `retrieve`（查询/语义）· `meta`（代谢/反思）· `snapshot`（快照/会话沉淀）· `gate`（审批/自检）· `notify`（桌宠通知）· `session-state` · `db`（SQLite 数据层）· `embed`（嵌入模型）。
+
+**贡献**：fork → 修改 → 补充/更新测试 → 提交前运行 `npm test`；报 issue 请附 DSH 运行时版本、Node 版本与复现步骤。
 
 ## License
 
-MIT
+MIT — 完整文本见 [LICENSE](LICENSE)。
