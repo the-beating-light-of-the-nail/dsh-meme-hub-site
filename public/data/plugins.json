@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-09-06",
- "count": 2704,
+ "count": 2705,
  "plugins": [
   {
    "slug": "dsh-web-ui",
@@ -114139,6 +114139,55 @@
     {
      "platform": "xiaohongshu",
      "url": "https://xhslink.cn/o/4Q5QIAx7WUs"
+    }
+   ]
+  },
+  {
+   "slug": "zouu-x-dsh-remote",
+   "name": "dsh_remote",
+   "repo": "Zouu-X/dsh_remote",
+   "url": "https://github.com/Zouu-X/dsh_remote",
+   "description_zh": "把 DeepSeek Harness 装进手机的自托管远程端：Mac 跑 Harness，手机经 Tailscale 私网随时派活——实时看 Agent 输出与任务状态、排队或追加指令、回答问题并批准一次性权限请求；PWA 添加到主屏接近原生体验，一键脚本自动配好 LaunchAgent 与 Tailscale Serve，全程不暴露公网",
+   "description_en": "A self-hosted remote that puts DeepSeek Harness in your pocket: your Mac runs the Harness while your phone drives it over a private Tailscale network — launch tasks in any workspace, follow agent output and status live, queue or append instructions mid-run, answer questions and approve one-off permission requests. Install as a PWA for a near-native feel; one setup script wires the LaunchAgent and Tailscale Serve so nothing touches the public internet",
+   "stars": 5,
+   "forks": 1,
+   "category_zh": "客户端与终端",
+   "category_en": "Clients & Terminals",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "git clone https://github.com/Zouu-X/dsh_remote.git dsh-remote && cd dsh-remote && ./macos/launch-agent/setup.sh",
+   "pushed_at": "2026-08-23",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": false,
+   "topics": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-plugin-market",
+    "dsh-plugins"
+   ],
+   "description_zh_TW": "把 DeepSeek Harness 裝進手機的自架遠端：Mac 跑 Harness，手機經 Tailscale 私網隨時派活——即時看 Agent 輸出與任務狀態、排隊或追加指令、回答問題並核准一次性權限請求；PWA 加入主畫面接近原生體驗，一鍵腳本自動配好 LaunchAgent 與 Tailscale Serve，全程不暴露公網",
+   "category_zh_TW": "客戶端與終端",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://raw.githubusercontent.com/Zouu-X/dsh_remote/dd8013b9fa989fc98931f1f6129ef1a680bf657a/assets/readme/hero-zh-light.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/Zouu-X/dsh_remote/dd8013b9fa989fc98931f1f6129ef1a680bf657a/assets/readme/hero-en-light.png",
+     "w": null,
+     "h": null
+    }
+   ],
+   "community_links": [
+    {
+     "platform": "xiaohongshu",
+     "url": "https://xhslink.cn/o/5iF2LHBolvh"
     }
    ]
   }
