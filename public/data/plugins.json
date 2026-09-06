@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-09-06",
- "count": 2705,
+ "count": 2706,
  "plugins": [
   {
    "slug": "dsh-web-ui",
@@ -115717,6 +115717,67 @@
     {
      "platform": "xiaohongshu",
      "url": "https://xhslink.cn/o/5iF2LHBolvh"
+    }
+   ]
+  },
+  {
+   "slug": "zhu1090093659-dsh-trading",
+   "name": "dsh-trading",
+   "repo": "zhu1090093659/dsh-trading",
+   "url": "https://github.com/zhu1090093659/dsh-trading",
+   "description_zh": "Agent 原生交易终端：Crypto/美股/A股/港股同屏三栏，19+ 数据源热切换，行情/盘口/衍生品上下文一键发给 Agent 分析；默认 dry-run、实盘逐笔人工审批，内置四大市场风控清单与大师/交易员/研究员/风控角色化多智能体；刷过的财经视频还能沉淀为带事实核查的本机知识图谱，结论条条可溯源",
+   "description_en": "An agent-native trading terminal: Crypto/US/CN/HK in one three-column GUI with 19+ hot-swappable connectors — send quotes, order book and derivatives context to the agent in one click. Dry-run by default with human approval on every live order, market-specific risk checklists, and a role-based multi-agent team (master/trader/researcher/risk reviewer). Finance videos you watch become a local, fact-checked knowledge graph with source-traceable conclusions",
+   "stars": 106,
+   "forks": 7,
+   "category_zh": "股票金融",
+   "category_en": "Stocks & Quant",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile trading-web add @dshtrading/base @dshtrading/crypto @dshtrading/us @dshtrading/cn @dshtrading/hk",
+   "pushed_at": "2026-09-06",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "agent-native",
+    "ai-agent",
+    "cryptocurrency",
+    "dsh",
+    "dsh-plugin",
+    "dsh-plugin-desktop",
+    "lightweight-charts",
+    "multi-market",
+    "quantitative-trading",
+    "react",
+    "trading-terminal"
+   ],
+   "description_zh_TW": "Agent 原生交易終端：Crypto/美股/A股/港股同螢幕三欄，19+ 資料源熱切換，行情/盤口/衍生品上下文一鍵送給 Agent 分析；預設 dry-run、實盤逐筆人工核准，內建四大市場風控清單與大師/交易員/研究員/風控角色化多智慧體；看過的財經影片還能沉澱為帶事實核查的本機知識圖譜，結論條條可溯源",
+   "category_zh_TW": "股票金融",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://raw.githubusercontent.com/zhu1090093659/dsh-trading/60d262afb742c36348ac58522629c5f66cd4001a/docs/screenshots/terminal-overview.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/zhu1090093659/dsh-trading/60d262afb742c36348ac58522629c5f66cd4001a/docs/screenshots/chart-to-agent.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/zhu1090093659/dsh-trading/60d262afb742c36348ac58522629c5f66cd4001a/docs/screenshots/provider-routing.png",
+     "w": null,
+     "h": null
+    }
+   ],
+   "community_links": [
+    {
+     "platform": "bilibili",
+     "url": "https://www.bilibili.com/video/BV1BPbn6wEDe"
     }
    ]
   }
