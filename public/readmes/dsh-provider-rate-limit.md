@@ -184,17 +184,17 @@ npm test   # 31 tests: bucket behavior, FIFO, abort/reject, identity patch,
 
 ### Settings Card
 
-![Settings Card](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/ea53fcc8db7b99adc2fcba81cf28dd47dd8a30ee/assets/screenshots/settings-card.png)
+![Settings Card](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/3de070c3a8258b8cecffc148f125ddc466480e74/assets/screenshots/settings-card.png)
 
 ### Settings Configuration
 
 | | |
 |---|---|
-| ![Settings Config 1](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/ea53fcc8db7b99adc2fcba81cf28dd47dd8a30ee/assets/screenshots/settings-config-1.png) | ![Settings Config 2](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/ea53fcc8db7b99adc2fcba81cf28dd47dd8a30ee/assets/screenshots/settings-config-2.png) |
+| ![Settings Config 1](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/3de070c3a8258b8cecffc148f125ddc466480e74/assets/screenshots/settings-config-1.png) | ![Settings Config 2](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/3de070c3a8258b8cecffc148f125ddc466480e74/assets/screenshots/settings-config-2.png) |
 
 ### Composer Dock Live Stats
 
-![Composer Dock Stats](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/ea53fcc8db7b99adc2fcba81cf28dd47dd8a30ee/assets/screenshots/composer-dock-stats.png)
+![Composer Dock Stats](https://raw.githubusercontent.com/jyao-SUSE-power-group/dsh-provider-rate-limit/3de070c3a8258b8cecffc148f125ddc466480e74/assets/screenshots/composer-dock-stats.png)
 
 ## License
 

@@ -30,7 +30,7 @@ Start with the [Windows first-run walkthrough](./docs/windows-first-run.md) if D
 
 **Reproduced setup flow. This is not a screen recording.**
 
-![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/7401db4567f96538d57b9c15d01680b1b562b24e/assets/demo.gif)
+![Reproduced dsh-win32 setup on current DSH](https://raw.githubusercontent.com/sjh9714/dsh-win32/4c978a78173b819c365dae4b4953b7f5edb4c8af/assets/demo.gif)
 
 The command checks the official persistent PowerShell and Workspace Write packages, creates the shortcut, and leaves the profile on the stock Minimal preset.
 

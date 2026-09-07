@@ -8,7 +8,7 @@ English | [简体中文](README.zh-CN.md)
 [![dsh.so risk](https://www.dsh.so/badge/deepseek-harness-genui.svg)](https://www.dsh.so/artifact/deepseek-harness-genui/)
 [![License](https://img.shields.io/badge/license-MIT-202124)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/9e207bfd9441a09fa453f1d7e17f0ce7d097565a/assets/hero-en.png" width="1280" alt="DeepSeek Harness with an interactive day plan inline and a scientific model open in Canvas">
+<img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/85356270c22dc30522f71af3955803b5f62efe9a/assets/hero-en.png" width="1280" alt="DeepSeek Harness with an interactive day plan inline and a scientific model open in Canvas">
 
 DeepSeek Harness GenUI lets an Agent build a focused interface when a task is awkward in text. The Coding Agent writes ordinary React + TypeScript—not a component-tree DSL—and the interface can save user selections for the next Agent turn.
 
@@ -21,11 +21,11 @@ Related research: [*EvoGenUI-Bench: Evaluating LLMs as Multi-Turn Generative UI 
 Requires Node.js `^22.19.0 || ^24.0.0` and a supported DeepSeek Harness Web profile.
 
 ```sh
-dsh plugin --profile web add dsh-plugin-genui --allow-build=esbuild
+dsh plugin --profile web add dsh-plugin-genui
 dsh --profile web
 ```
 
-v0.14 supports Inline, Canvas, fullscreen, and localhost on the tested Harness versions listed in the [release notes](docs/release-notes-v0.14.0.md). TUI/headless profiles are not supported. `--allow-build=esbuild` enables the local compiler; plugin users do not need Chrome or Chromium.
+v0.14 supports Inline, Canvas, fullscreen, and localhost on the tested Harness versions listed in the [release notes](docs/release-notes-v0.14.1.md). TUI/headless profiles are not supported. The local compiler uses WebAssembly and needs no install-script approval. Plugin users do not need Chrome or Chromium.
 
 ## Where It Helps
 
@@ -34,15 +34,15 @@ Use an interface when the user needs to see a complex relationship or make sever
 <table>
   <tr>
     <td><strong>Pick calendar slots</strong><br><br>Select useful writing blocks and save them to the task. A later calendar action remains separate and permission-gated.</td>
-    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/9e207bfd9441a09fa453f1d7e17f0ce7d097565a/screenshots/en/calendar-planner.jpg" width="280" alt="English interface for choosing three writing slots"></td>
+    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/85356270c22dc30522f71af3955803b5f62efe9a/screenshots/en/calendar-planner.jpg" width="280" alt="English interface for choosing three writing slots"></td>
   </tr>
   <tr>
     <td><strong>Explore photosynthesis</strong><br><br>Move four causal controls and see the limiting step change immediately.</td>
-    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/9e207bfd9441a09fa453f1d7e17f0ce7d097565a/screenshots/en/photosynthesis-explorer.jpg" width="280" alt="English interactive photosynthesis model with four causal controls"></td>
+    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/85356270c22dc30522f71af3955803b5f62efe9a/screenshots/en/photosynthesis-explorer.jpg" width="280" alt="English interactive photosynthesis model with four causal controls"></td>
   </tr>
   <tr>
     <td><strong>Trace a code path</strong><br><br>Turn a source-grounded CLI explanation into a local explorer of files, functions, and branches.</td>
-    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/9e207bfd9441a09fa453f1d7e17f0ce7d097565a/screenshots/en/code-path-explorer.jpg" width="280" alt="English source-grounded code path explorer returned from a CLI request"></td>
+    <td><img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/85356270c22dc30522f71af3955803b5f62efe9a/screenshots/en/code-path-explorer.jpg" width="280" alt="English source-grounded code path explorer returned from a CLI request"></td>
   </tr>
 </table>
 
@@ -59,7 +59,7 @@ Later edits update the same app. A candidate that fails the build or source chec
 
 | Inline | Canvas |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/9e207bfd9441a09fa453f1d7e17f0ce7d097565a/screenshots/en/code-path-inline.jpg" width="620" alt="An interactive code path shown inline in a DeepSeek Harness conversation"> | <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/9e207bfd9441a09fa453f1d7e17f0ce7d097565a/screenshots/en/code-path-canvas.jpg" width="620" alt="The DeepSeek Harness sidebar, conversation, and code-path explorer visible together in the right-side Canvas"> |
+| <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/85356270c22dc30522f71af3955803b5f62efe9a/screenshots/en/code-path-inline.jpg" width="620" alt="An interactive code path shown inline in a DeepSeek Harness conversation"> | <img src="https://raw.githubusercontent.com/pengyue-polaron/deepseek-harness-genui/85356270c22dc30522f71af3955803b5f62efe9a/screenshots/en/code-path-canvas.jpg" width="620" alt="The DeepSeek Harness sidebar, conversation, and code-path explorer visible together in the right-side Canvas"> |
 | A compact control or focused choice. | More room without covering the conversation. |
 
 Inline, Canvas, fullscreen, and localhost are different surfaces over the same task state.
@@ -114,6 +114,6 @@ pnpm test
 pnpm run package:plugin
 ```
 
-[Acceptance scenarios](examples/real-user-scenarios.md) · [Release notes](docs/release-notes-v0.14.0.md) · [Contributing](CONTRIBUTING.md) · MIT
+[Acceptance scenarios](examples/real-user-scenarios.md) · [Release notes](docs/release-notes-v0.14.1.md) · [Contributing](CONTRIBUTING.md) · MIT
 
 Listed on [dsh-market](https://dshmarket.com/p/pengyue-polaron/deepseek-harness-genui/) · [dsh.so](https://www.dsh.so/artifact/deepseek-harness-genui/) · [awesome-dsh-plugin](https://awesome-dsh-plugin.com/p/pengyue-polaron/deepseek-harness-genui/) · [dsh.plus](https://www.dsh.plus/en/plugins/deepseek-harness-genui/)

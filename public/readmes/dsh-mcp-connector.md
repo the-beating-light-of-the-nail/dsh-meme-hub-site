@@ -28,7 +28,7 @@ dsh plugin --profile web add dsh-mcp-connector
 
 安装或升级后完全重启 DeepSeek Harness Desktop 或 `dsh web`，然后打开左侧「🧩 MCP连接器」。
 
-![MCP 连接器 16 秒演示](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/d3c5868f44fabc9d716de3e1429b5076e66cbb15/docs/demo.gif)
+![MCP 连接器 16 秒演示](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/aa918f2257eb1cdf5d9a9bdd90e847a5c6f9dbd8/docs/demo.gif)
 
 如果它帮你更快地接入 MCP Server，欢迎 [GitHub 点个 Star](https://github.com/duhu2000/dsh-mcp-connector/stargazers)、[提交新的连接器](https://github.com/duhu2000/dsh-mcp-connector-registry/blob/main/docs/ONBOARDING.md)或[参与贡献](CONTRIBUTING.md)。
 
@@ -75,9 +75,9 @@ dsh plugin --profile web add dsh-mcp-connector
 
 | 市场总览 | 连接器详情与精选 Prompt |
 |---|---|
-| ![市场总览](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/d3c5868f44fabc9d716de3e1429b5076e66cbb15/docs/screenshots/01-market-overview.jpg) | ![连接器详情](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/d3c5868f44fabc9d716de3e1429b5076e66cbb15/docs/screenshots/02-connector-detail.jpg) |
+| ![市场总览](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/aa918f2257eb1cdf5d9a9bdd90e847a5c6f9dbd8/docs/screenshots/01-market-overview.jpg) | ![连接器详情](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/aa918f2257eb1cdf5d9a9bdd90e847a5c6f9dbd8/docs/screenshots/02-connector-detail.jpg) |
 | 工具发现、描述与独立滚动 | JSON 导入 |
-| ![工具发现](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/d3c5868f44fabc9d716de3e1429b5076e66cbb15/docs/screenshots/03-tool-discovery.jpg) | ![JSON 导入](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/d3c5868f44fabc9d716de3e1429b5076e66cbb15/docs/screenshots/04-json-import.jpg) |
+| ![工具发现](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/aa918f2257eb1cdf5d9a9bdd90e847a5c6f9dbd8/docs/screenshots/03-tool-discovery.jpg) | ![JSON 导入](https://raw.githubusercontent.com/duhu2000/dsh-mcp-connector/aa918f2257eb1cdf5d9a9bdd90e847a5c6f9dbd8/docs/screenshots/04-json-import.jpg) |
 
 素材从复刻真实 800px 产品面板的无凭据 UI 验收环境采集，桌面端一行 2 张卡片；只展示公开市场元数据、示例 Prompt 和明确标识的 Mock 工具说明，不包含凭据、本机路径或查询结果。详见 [`docs/screenshots/README.md`](docs/screenshots/README.md)。
 
@@ -167,7 +167,7 @@ npm run dev:ui
 
 公共 Registry 每次合并后会生成 `catalog-stats.json`；本仓库的定时工作流每小时同步中英文介绍和统计快照。npm 页面中的静态正文随版本发布更新，上方动态统计徽标则直接读取 Registry，可在不发布新 npm 版本时保持实时数量一致。
 
-当前公开版本为 [`dsh-mcp-connector@0.2.35`](https://www.npmjs.com/package/dsh-mcp-connector)，对应 [GitHub Release v0.2.35](https://github.com/duhu2000/dsh-mcp-connector/releases/tag/v0.2.35)。
+当前公开版本为 [`dsh-mcp-connector@0.2.37`](https://www.npmjs.com/package/dsh-mcp-connector)，对应 [GitHub Release v0.2.37](https://github.com/duhu2000/dsh-mcp-connector/releases/tag/v0.2.37)。
 
 版本能力与变更记录见 [CHANGELOG.md](CHANGELOG.md)。
 Desktop 发版回归见 [docs/DESKTOP-E2E.md](docs/DESKTOP-E2E.md)。

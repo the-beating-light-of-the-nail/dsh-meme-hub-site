@@ -8,7 +8,9 @@
 
 ## 兼容性
 
-正式版 `2.3.4` 针对 DeepSeek Harness `0.1.2-rc.1` 构建并完成部署验证，需要 Node.js `22.19+` 或 `24+`。浏览器端使用该版本的 Session Controller、Renderer、Chat、Settings 与 Theme 插槽接口。
+正式版 `2.3.6` 针对 DeepSeek Harness `0.1.2-rc.1` 构建并完成部署验证，需要 Node.js `22.19+` 或 `24+`。浏览器端使用该版本的 Session Controller、Renderer、Chat、Settings 与 Theme 插槽接口。
+
+`2.3.6` 包含长对话回写前检索触发 HTTP 400 / 431 的修复，并补全干净构建所需的依赖锁文件：自动检索使用有界关键词，长查询通过 POST 传输。使用远程知识库时，请同时更新发起回写的客户端；只更新中央服务不能修复旧客户端发送的超长 GET URL。更新并重启后，可重试之前失败的回写。
 
 当前版本提供可部署的多知识库、按需检索工具、本地与远程中央服务、文档型 Web 管理台，以及全局回写策略与安全直写协调：
 
@@ -28,6 +30,7 @@
 - 回答前通过 DSH 官方提示组装接口提供有界的挂载库地图，并自动召回最多 3 条达到相关性门槛的摘要；不自动注入完整文档。模型可继续按“`knowledge_base_search` 找库 → `knowledge_search` 搜索指定库 → `knowledge_read` 读取文档”的顺序核对完整内容。
 - 内容回写完全独立于主 Agent：主模型不暴露 `knowledge_write`，普通沉淀和用户明确提出的“写入知识库”都在回答完整结束后由独立提取调用处理；正文不得叙述尝试、拒绝或结果，真实状态只显示在回答下方，也不追加伪用户消息。
 - 用户明确要求时，模型可调用 `knowledge_base_create` 和 `knowledge_base_update` 创建或修改知识库，包括描述、标签、回写策略与专用回写模型；工具内部跟随当前 Provider 自动写入本地 SQLite 或远程中央服务，模型不传也不猜存储位置。
+- `knowledge_base_create` 默认不保存专用 provider/model，回写沿用本机覆盖设置，否则跟随每次会话；即使连接远程知识库，也不复制远端模型配置。只有明确指定 `useCurrentSessionModel: false` 时，才要求并校验成对的专用模型参数。默认模式下旧调用夹带的模型字段会被忽略，并在结果中说明。
 - 创建或修改工具不会自动挂载知识库，也不会回退、双写或同步到另一端；结果会明确返回实际写入的 `local` 或 `remote`。
 - 搜索和读取由服务端按当前会话挂载、项目范围及包含/排除标签强制限权，读取句柄带签名且仅限当前会话。
 - 本地与远程 Provider 使用同一接口；远程模式不做隐式双向同步。
@@ -58,7 +61,7 @@ dsh plugin --profile web add @lemoncat7/dsh-knowledge
 需要固定本次正式版本时：
 
 ```bash
-dsh plugin --profile web add @lemoncat7/dsh-knowledge@2.3.2
+dsh plugin --profile web add @lemoncat7/dsh-knowledge@2.3.6
 ```
 
 也可以从 [GitHub Releases](https://github.com/lemoncat7/dsh-knowledge/releases) 下载对应版本的完整预构建包后安装：
@@ -175,7 +178,7 @@ pnpm dsh web
 | --- | --- | --- | --- |
 | GET | `/health` | public | 健康检查 |
 | GET/PUT | `/settings` | read/admin | 读取或修改全局回写策略 |
-| GET | `/search` | read | FTS 检索 |
+| GET / POST | `/search` | read | FTS 检索；长查询使用 POST JSON 请求体，字段为 `text`、`limit`、`projectId`、`knowledgeBaseIds`、`includeTags`、`excludeTags`、`types` |
 | GET/POST | `/knowledge-bases` | read/write | 知识库列表和创建 |
 | GET/PUT/PATCH | `/knowledge-bases/:id` | read/write | 详情、完整替换和局部修改 |
 | POST | `/knowledge-bases/:id/archive` | admin | 归档并关闭相关挂载 |

@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/ac7a588408306a815ee7d00064e0faec713fb0e0/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -30,28 +30,21 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/63c15103e9f7bf73c4682ad79287628877a25c05/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/ac7a588408306a815ee7d00064e0faec713fb0e0/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/ac7a588408306a815ee7d00064e0faec713fb0e0/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/ac7a588408306a815ee7d00064e0faec713fb0e0/assets/settings.png) |
 
 ## 安装
 
 > [DSHA](https://github.com/qiannianhuanxiang/DSHA) 用户无需单独安装：DSHA 已内置本插件，装 APK 即用。
 
-从 npm 一行装：
+从 npm 一行装（仓库自带构建产物，无需构建配置），装完重启 `dsh web`：
 
 ```sh
 dsh plugin --profile web add dsh-web-mobile
 ```
 
-仓库自带构建产物，无 `allowBuilds` 拦截。装完重启 `dsh web`。
+> **旧版迁移**：装过旧名 `dsh-mobile-nav`（更早为 `@dsh-external/dsh-mobile-nav`）的用户请**先移除再装新名**——`dsh plugin --profile web rm <旧键名>`；patch 行 id 随包名一起换了，新旧并存会把同一插件注册两份，不迁移也会留下死依赖或加载失败。
 
-> 包名说明：2026-08-30 起 npm 包名由 `dsh-mobile-nav` 更名为 `dsh-web-mobile`（与 GitHub 仓库名统一，旧 npm 名已整包撤下）；更早的 `@dsh-external/dsh-mobile-nav` 亦不复存在。装过旧版的用户请**先移除再装新名**（patch 行 id 随包名一起换了，新旧并存会把同一插件注册两份）：
->
-> ```sh
-> dsh plugin --profile web rm dsh-mobile-nav      # 2.1.x 及更早的装法键名是 @dsh-external/dsh-mobile-nav，同样先 rm
-> dsh plugin --profile web add dsh-web-mobile     # GitHub 直装：dsh plugin --profile web add github:mexiaosqwq/dsh-web-mobile
-> ```
->
-> 不迁移的后果分路线：npm 装法留下死依赖，profile 里后续任何插件安装/更新都会 404；GitHub 直装拉到新代码后，旧键名与包内新名失配，重启 `dsh web` 时该插件加载失败。两种路线都是 `rm` 旧键名即解。
+GitHub 直装：`dsh plugin --profile web add github:mexiaosqwq/dsh-web-mobile`
 
 本地开发：
 
@@ -87,6 +80,7 @@ dsh plugin --profile web add link:/path/to/dsh-web-mobile
 - 新会话输入框居中时，git 分支胶囊与输入行保持间距
 - 输入区固定控件（模型条、上下文圈、发送键）的钉位与收缩规则覆盖 Lexical 可编辑输入框
 - 响应压缩的响应头匹配不区分大小写
+- iPhone 上键盘收起后，点发送/停止/加号按钮不再重新唤起键盘盖住对话（PR #48 by @johnhom1024）
 
 ### v2.3.0
 
@@ -181,6 +175,13 @@ pnpm build
 ```
 
 `lib/` 与源码同步入库，改动源码后重新构建再提交。
+
+## 贡献与工程
+
+- **先读 [AGENTS.md](AGENTS.md)**：带注释的仓库树、每条 Pitfall 的紧凑不变式与完整档案（`docs/maintenance/pitfalls.md`）。
+- 本地门：`pnpm verify`（typecheck）→ `pnpm test:core`（单测）→ `pnpm build`；`lib/` 随源码入库，漏构建会被 CI 的 `git diff --exit-code lib` 新鲜度门拦下。
+- 回归探针：`scripts/probes/` 七个历史锚点可单跑；主探针 `pnpm smoke:cdp`、手势门 `scripts/cdp-swipe-failures.mjs`、iOS 放大守卫 `scripts/cdp-zoom-probe.mjs`（CDP 环境参数见 AGENTS.md）。
+- 设计文档在 `docs/specs/`；宿主升级对账走 `docs/upstream/`——`node scripts/cdp-compat-contracts.mjs` 一键核对 CSS module 哈希是否漂移。
 
 ## License
 

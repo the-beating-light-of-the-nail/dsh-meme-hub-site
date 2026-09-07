@@ -9,11 +9,11 @@ An open-source terminal front door for [DeepSeek Harness](https://github.com/dee
 
 `@tomowang/dsh-tui` is an **out-of-tree mode bundle**: it stacks on `@deepseek-ai/dsh-base` exactly like the shipped `dsh-web-app` and `dsh-headless` bundles do, but drives the agent from your terminal instead of a browser. The package is both a Cordis plugin (terminal input and presentation) and a dsh bundle (`dsh.bundle.patch` in `package.json` points at [`cordis.patch.yml`](cordis.patch.yml)); everything else — model adapters, tools, session persistence, sandbox and approval policy — stays in `dsh-base` and remains patchable underneath.
 
-![dsh-tui screencast](https://raw.githubusercontent.com/tomowang/dsh-tui/792de5ac50fe331ca49d73585364a0ee9def919f/assets/screencast.gif)
+![dsh-tui screencast](https://raw.githubusercontent.com/tomowang/dsh-tui/660e36a5af5fc9a6b401c152fc3c2fc2cc273db3/assets/screencast.gif)
 
 ## How it works
 
-- The TUI renders **only from the durable session log**: it replays `agent.session.events` on startup and follows `session/event` live, so `--resume` shows the exact history the log carries — the harness's "model-visible ⟺ logged" invariant does the heavy lifting.
+- The TUI renders **only from the durable session log**: it replays `agent.session.snapshotEvents()` on startup and follows `session/event` live, so `--resume` shows the exact history the log carries — the harness's "model-visible ⟺ logged" invariant does the heavy lifting.
 - The interface runs full-screen in the terminal's alternate screen buffer, with an application-owned transcript viewport (scroll with the mouse wheel/trackpad, `PageUp`/`PageDown`) that auto-follows new output until you scroll up.
 - Line input maps to the agent inbox: `agent.followup()` while idle, `agent.steer()` while a turn is running, `Ctrl+C` cancels the running turn.
 - `tui-startup` parses this app's flags (everything after the launcher's own) through `dsh-cmdline` and publishes them as an ordinary Cordis service; the runner row reads them via the bundle patch, mirroring `dsh-headless`.

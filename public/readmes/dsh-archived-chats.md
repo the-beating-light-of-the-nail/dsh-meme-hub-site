@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/brand/session-archive-banner.png" alt="Session Archive: local-first archived-chat center for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/brand/session-archive-banner.png" alt="Session Archive: local-first archived-chat center for DeepSeek Harness" width="100%">
 </p>
 
 <div align="center">
@@ -45,8 +45,8 @@ dsh plugin --profile web update dsh-archived-chats
 ```
 
 <p align="center">
-  <a href="assets/screenshots/preview-03.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-03.png" width="49%" alt="Native read-only History preview with snapshot time and a synthetic stored image"></a>
-  <a href="assets/screenshots/preview-07.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-07.png" width="49%" alt="Storage and Retention with session directories, protection snapshots, and policy controls"></a>
+  <a href="assets/screenshots/preview-03.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-03.png" width="49%" alt="Native read-only History preview with snapshot time and a synthetic stored image"></a>
+  <a href="assets/screenshots/preview-07.png"><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-07.png" width="49%" alt="Storage and Retention with session directories, protection snapshots, and policy controls"></a>
 </p>
 
 ## Core capabilities
@@ -54,6 +54,7 @@ dsh plugin --profile web update dsh-archived-chats
 | Area | What it provides |
 | --- | --- |
 | **Browse and search** | Workspace-grouped archive browsing, full-text search across messages and tool results, filters, sorting, tags, and notes. |
+| **Archive a workspace** | From **Settings → Session Archive**, choose a workspace and open one confirmation for every eligible chat in it. Empty new-session windows are excluded; the workspace and its directory stay unchanged. |
 | **Read-only preview** | Native conversation layout for Markdown, reasoning, tool activity, JSON, code, and available stored images, with responsive turn navigation. |
 | **Local History** | Validated versions captured after archive, read-only snapshot preview, confirmed deletion, clear-history, and **Restore as copy** without overwriting the source. |
 | **Backup and restore** | JSON + Markdown ZIP export with preview-first, conflict-safe import. Existing session IDs are never overwritten. |
@@ -66,6 +67,7 @@ dsh plugin --profile web update dsh-archived-chats
 - **No silent overwrite:** imports and History restores create or select non-conflicting IDs; they never replace an existing session.
 - **Deletion stays explicit:** ordinary removal enters the Recycle Bin after snapshot protection. Physical removal is available only through confirmed permanent-purge actions.
 - **No automatic cleanup:** retention policies are saved separately from execution. Every cleanup starts with a short-lived preview and explicit selection.
+- **Confirmed workspace archive:** the plugin prepares the exact set in the background, then shows one confirmation with the workspace and chat count. Only sessions whose inspected log contains a real `turn/start` are eligible; empty new-session windows and sessions whose content cannot be confirmed are skipped. Its five-minute, single-use credential excludes chats added later; a running chat is skipped, never stopped or moved.
 - **Backup scope is visible:** ZIP exports preserve complete session JSON and readable Markdown, but do not include attachment bytes or descendant sessions.
 
 ## Compatibility
@@ -75,7 +77,9 @@ Features activate from the public capabilities exposed by the DeepSeek Harness H
 | Host capability | Plugin behavior |
 | --- | --- |
 | Archive and session reads | Browsing, search, preview, History inventory, storage accounting, and lineage. |
+| `settings.section` + public `archiveSession` | The plugin-owned settings page provides the workspace chooser and one-confirmation archive flow without requiring a workspace-menu extension slot. Without archive capability, preparation returns `workspace-archive-unsupported` and makes no change. |
 | Attachment reads | Stored images appear in conversation and snapshot previews; without it, text remains readable. |
+| Session-scoped log location | Recycle Bin permanent deletion uses the persistence provider's public `locate(meta)` capability. Providers without a session-scoped location remain unsupported; failed operations retain their rows and display the reason. |
 | Public session writer | ZIP import, **Restore as copy**, and snapshot fallback when an original is missing all write through the Host's public `create` / `append` / `locate` capability, or a dedicated restore entry point where one exists. |
 | Missing write capability | The operation returns `restore-unsupported` without writing or overwriting data. |
 
@@ -90,20 +94,20 @@ The eight fixed screenshots below come from an isolated Simplified Chinese light
 <br>
 <table>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-01.png" alt="Session Archive overview with five management views"><br><sub>Archive overview</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-02.png" alt="Full-text search, filters, tags, and readable hit excerpts"><br><sub>Full-text search</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-01.png" alt="Session Archive overview with five management views"><br><sub>Archive overview</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-02.png" alt="Full-text search, filters, tags, and readable hit excerpts"><br><sub>Full-text search</sub></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-03.png" alt="Native read-only History preview with a stored image"><br><sub>Read-only preview</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-04.png" alt="History timeline with restore-as-copy and deletion actions"><br><sub>History timeline</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-03.png" alt="Native read-only History preview with a stored image"><br><sub>Read-only preview</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-04.png" alt="History timeline with restore-as-copy and deletion actions"><br><sub>History timeline</sub></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-05.png" alt="Irreversible confirmation before clearing ordinary History"><br><sub>Clear History confirmation</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-06.png" alt="Recycle Bin protection snapshot, restore, and permanent deletion"><br><sub>Recycle Bin</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-05.png" alt="Irreversible confirmation before clearing ordinary History"><br><sub>Clear History confirmation</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-06.png" alt="Recycle Bin protection snapshot, restore, and permanent deletion"><br><sub>Recycle Bin</sub></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-07.png" alt="Storage accounting and retention policy controls"><br><sub>Storage and retention</sub></td>
-    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/4111e3f9e9b3759f2dedf994e237abeb4c36960e/assets/screenshots/preview-08.png" alt="Origins and Branches with forks, subagents, and recycled state"><br><sub>Origins and Branches</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-07.png" alt="Storage accounting and retention policy controls"><br><sub>Storage and retention</sub></td>
+    <td><img src="https://raw.githubusercontent.com/Ultronen/dsh-archived-chats/bcc32cab03ec9b88267d0747ad918bff966d0a34/assets/screenshots/preview-08.png" alt="Origins and Branches with forks, subagents, and recycled state"><br><sub>Origins and Branches</sub></td>
   </tr>
 </table>
 </details>

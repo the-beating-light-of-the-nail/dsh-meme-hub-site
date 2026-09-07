@@ -1,5 +1,8 @@
 # dsh-rewind
 
+> [!WARNING]
+> **计划使用 DSH `0.1.3` 的用户：请尽早升级到最新插件（`>= 0.9.0-alpha.1`），并运行 `/dsh-rewind-fix` 更新旧回退标记**（[更新指南](docs/rewind-fix.zh.md)）。
+
 DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消息**——同窗口内完成，不新建分支、不换窗口，可一并还原工作区文件（完整 Claude Code `/rewind` 语义）。
 
 [![npm version](https://img.shields.io/npm/v/dsh-rewind-plugin.svg)](https://www.npmjs.com/package/dsh-rewind-plugin)
@@ -21,12 +24,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b4bf17b322e5de68220c6e5eea63db1a23a5c560/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b4bf17b322e5de68220c6e5eea63db1a23a5c560/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/d277a1397a4f800e7e0a50454474747ea2d3cf41/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/d277a1397a4f800e7e0a50454474747ea2d3cf41/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b4bf17b322e5de68220c6e5eea63db1a23a5c560/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b4bf17b322e5de68220c6e5eea63db1a23a5c560/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/d277a1397a4f800e7e0a50454474747ea2d3cf41/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/d277a1397a4f800e7e0a50454474747ea2d3cf41/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -62,7 +65,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 另提供**全局自动清理**（默认关闭）：把长期不活跃的会话快照整目录移除，不影响活动会话与对话日志。可在 `设置→插件→插件配置→快照清理` 面板查看与配置（自动清理开关、失活天数），也可用 `/snapshot-auto-cleanup` 命令查看、设置和运行。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
 
-<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/b4bf17b322e5de68220c6e5eea63db1a23a5c560/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
+<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/d277a1397a4f800e7e0a50454474747ea2d3cf41/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
 
 ## 本插件的优势
 
@@ -81,13 +84,13 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 ### 1. 对话回退：一次「遮蔽」，而不是「删除」
 
-`append-only` 是铁律：会话日志只追加、从不改写——这是可审计与信息安全的地基。回退从不动历史，它只做一步：往日志末尾追加**一条内容为空的消息标记**，用它把目标消息之后的全部内容「遮蔽」掉，让模型和界面都只看得到目标之前的部分。
+`append-only` 是铁律：会话日志只追加、从不改写——这是可审计与信息安全的地基。回退从不动历史，它只做一步：往日志末尾追加一条**内容为空的标记消息**，把目标消息之后的全部内容「遮蔽 + 替换」掉，让模型和界面都只看得到目标之前的部分。
 
-- 标记本身是**空的**——不进入模型上下文、不渲染成任何对话内容，模型和你看到的对话就是目标消息当时的样子，真正的「就地」；
-- 因为是「遮蔽」而非「删除」，**被撤回的每一条事件都完整留在日志里**，可审计、可追溯，原则上也随时能手动恢复；
-- 标记非常「懂」dsh——它复用**最后一个已开始的回合**的编号（而不是「最后回合 + 1」），并自带一个独立的**幽灵步骤框架**。于是 harness 自己的日志重放、`/compact` 压缩、续接检查都能正确识别它，绝不会把它误认为真实对话。
+- **标记是规范的**——插件复刻 `/compact` 标准的「隐藏 + 替换」：`/compact` 把一段历史压缩成摘要，`/rewind` 则换成一条空用户消息。由于其规范性，harness 的日志重放、`/compact` 压缩、续接检查都能正确识别它，绝不会把它误认为真实对话；
+- **替换内容是空的**——模型对空消息完全忽略、无感（理论 + 实测验证）。配合插件对界面显示的处理，模型和你看到的对话就是目标消息当时的样子，真正的「就地」；
+- 因为是「遮蔽」而非「删除」，**被撤回的每一条事件都完整留在日志里**，可审计、可追溯、可查看，原则上也随时能手动恢复。
 
-> **设计点睛**：整个对话回退就是**一条**追加。它确定、可审计，且因为日志从未被破坏，回溯是「干净的」——用最小的动作，实现最完整的语义。那些与 harness 内部的兼容细节（幽灵步骤框架、复用回合号）正是插件的专业所在，每一条都由专门的探针测试固化。
+> **设计点睛**：整个对话回退就是**一条**追加。它确定、可审计，且因为日志从未被破坏，回溯是「干净的」——用最小的动作，实现最完整的语义。那些与 harness 内部的兼容细节（对 `/compact` 的复刻、空消息的遮蔽）正是插件的专业所在，每一条都由专门的探针测试固化。
 
 ### 2. 文件还原：轻量检查点，「改前备份」
 
@@ -111,7 +114,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 | 同内容存为链接（去重） | 上百次重复写入几乎不占空间；淘汰组前先落地链接，绝不悬空 |
 | 会话级自动清理 | 只移除长期不活跃会话的快照，活动会话与对话日志永不触及 |
 | 对照真实磁盘再还原 | 幂等、零副作用、不误伤 |
-| 幽灵步骤框架 + 复用回合号 | 与宿主深度兼容，且被探针测试固化 |
+| 空消息遮蔽 + 对 `/compact` 的复刻 | 与宿主深度兼容，且被探针测试固化 |
 | 崩溃安全（原子写 + 还原日志） | 断电/崩溃后仍可续做或回滚 |
 | 纯函数规划 + 注入探针的存储 | 无需宿主即可单测，测试驱动 |
 
@@ -141,10 +144,9 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 1. **导出的日志是完整内容**——回退只是把消息从模型上下文和视图中移除，`/export` 导出的会话日志包含**已撤回的消息**。本插件无法改动导出。
 2. **轻量文件回退存在代价**——特定情况可能无法回退所有修改。行为与 Claude Code 一致。详见：[文件回退的追踪边界](docs/compat/tracking-boundary.zh.md)。
-3. **v0.2.4 及更早版本**回退过的会话，继续对话后可能加载历史失败。可安装 v0.3.3 及之前版本的随附修复工具处理（[完整步骤](docs/compat/troubleshooting.zh.md)）。
-4. **v0.3.3 及更早版本**回退过的会话，压缩对话（compact）不可用。新版本已兼容；受影响的旧会话建议新建会话。
-5. **导轨显示已回退轮次**——DSH `v0.1.2` 新增右侧导轨，为已撤回消息保留刻度，悬浮显示已撤回正文。仅显示差异，无功能影响。
-6. **回退重显系统提示词**——DSH `v0.1.2` 回退重发消息时，与 `/compact` 一样重显“系统提示词”组件。仅显示差异，无功能影响。
+3. **导轨显示已回退轮次**——DSH `v0.1.2` 新增右侧导轨，为已撤回消息保留刻度，悬浮显示已撤回正文。仅显示差异，无功能影响。
+4. **回退重显系统提示词**——DSH `v0.1.2` 回退重发消息时，与 `/compact` 一样重显“系统提示词”组件。仅显示差异，无功能影响。
+5. **旧回退标记不再兼容**——DSH `v0.1.3` 拒绝旧版插件（≤ 0.8.0）的回退标记。新版本已解决，并提供会话更新功能。详见：[更新指南](docs/rewind-fix.zh.md)。
 
 > [!NOTE]
 > 本插件提供浏览器端诊断输出；详见 [浏览器诊断](docs/compat/diagnostics.zh.md)。

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/bc66a1a9060033071ffe9af7c3f241c467a24785/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
+<img src="https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/dci-promo.png" alt="DSH Chat Import" width="100%" />
 
 # DSH Chat Import
 
@@ -26,6 +26,15 @@
 Now covers import from 20 agents: Claude Code, Codex, ChatGPT, Cursor, Gemini, Reasonix, opencode, MiMo Code, ZCode, Grok Build, OpenClaw, Pi Coding Agent, Hermes, Kimi CLI / Kimi Code, Kilo Code, Qoder CLI, WorkBuddy, Qwen Work CN (千问办公) and DSH session logs.
 
 Export back to: Claude Code, Codex, Kimi Code.
+
+## Supported Agents
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| [![Claude Code](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/claude.svg)<br>**Claude Code**](https://github.com/anthropics/claude-code) | [![Codex](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/codex.svg)<br>**Codex**](https://github.com/openai/codex) | [![ChatGPT](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/chatgpt.svg)<br>**ChatGPT**](https://chatgpt.com) | [![Cursor](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/cursor.svg)<br>**Cursor**](https://cursor.com) | [![Gemini](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/gemini.svg)<br>**Gemini CLI**](https://github.com/google-gemini/gemini-cli) |
+| [![Reasonix](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/reasonix.svg)<br>**Reasonix**](https://github.com/esengine/DeepSeek-Reasonix) | [![OpenCode](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/opencode.svg)<br>**OpenCode**](https://github.com/anomalyco/opencode) | [![MiMo Code](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/mimocode.svg)<br>**MiMo Code**](https://github.com/XiaomiMiMo/MiMo-Code) | [![Kilo Code](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/kilocode.svg)<br>**Kilo Code**](https://github.com/Kilo-Org/kilocode) | [![ZCode](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/zcode.svg)<br>**ZCode**](https://z.ai) |
+| [![Grok Build](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/grokbuild.svg)<br>**Grok Build**](https://github.com/xai-org/grok-build) | [![OpenClaw](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/openclaw.svg)<br>**OpenClaw**](https://github.com/openclaw/openclaw) | [![Pi Coding Agent](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/pi.svg)<br>**Pi Coding Agent**](https://github.com/badlogic/pi-mono) | [![Hermes](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/hermes.svg)<br>**Hermes**](https://github.com/NousResearch/hermes-agent) | [![Kimi CLI](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/kimi.svg)<br>**Kimi CLI**](https://github.com/MoonshotAI/kimi-cli) |
+| [![Qoder CLI](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/qoder.svg)<br>**Qoder CLI**](https://github.com/qoderAI/qoder-cli) | [![WorkBuddy](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/workbuddy.svg)<br>**WorkBuddy**](https://github.com/gabotechs/workbuddy) | [![Qwen Work CN](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/qwen.svg)<br>**Qwen Work CN**](https://github.com/QwenLM/qwen-code) | [![DSH](https://raw.githubusercontent.com/Nwflower/dsh-chat-import/de33c2256e282cceae74509760cbb5d453c09bf0/assets/agents/dsh.svg)<br>**DSH**](https://github.com/deepseek-ai/deepseek-harness) |  |
 
 ## Install
 
@@ -69,6 +78,8 @@ This plugin's `import_agents` is a lightweight asset mover (it persists pi/openc
 | Full-fidelity resume | Imported sessions | Tool calls & results, reasoning, titles, models and timestamps carry over |
 | Export back | `export_chat` (`format: claude` / `codex` / `kimi`) | Serialize DSH sessions back to Claude / Codex / Kimi |
 | Bidirectional sync | panel "Sync" tab | Incremental sync in both directions (external ↔ DSH), off by default |
+
+> One documented exception to full fidelity: **failed ghost retry steps**. When a tool call never received its result and the very next step re-emits the same call id verbatim, the dead step is dropped at import — the result already pairs with the re-emitted call. Duplicate call ids in the imported log would hard-fail DSH's conversation folding (a second `start` for the same id), swallowing the whole trajectory after the first duplicate. See the `droppedRetrySteps` counter on the converter result.
 
 ## Docs
 

@@ -12,7 +12,7 @@
 
 [English](README.md) · [简体中文](README.zh.md)
 
-![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/demo.gif)
+![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/demo.gif)
 
 </div>
 
@@ -68,7 +68,7 @@
 
 | File Explorer | Source Control | Diff |
 | --- | --- | --- |
-| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/92844313b984a6d445b46e2f62fc9d113e260bf9/assets/screenshot-3-diff.png) |
+| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/assets/screenshot-3-diff.png) |
 
 ## Installation
 

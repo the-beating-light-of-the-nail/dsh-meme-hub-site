@@ -20,7 +20,7 @@ DSH WebUI 移动端适配插件（**PiUI 翻页器结构**）：窄屏下框架�
 
 | 桌面（原生三栏） | 手机（侧边栏半开，聊天露半边） | 手机（聊天全屏） |
 |---|---|---|
-| ![桌面原生](https://raw.githubusercontent.com/lehhair/dsh-mobile/b5316884413a03052a318ee23a50ac486543f0e7/screenshots/desktop-native.png) | ![侧边栏半开](https://raw.githubusercontent.com/lehhair/dsh-mobile/b5316884413a03052a318ee23a50ac486543f0e7/screenshots/mobile-sidebar-page.png) | ![聊天全屏](https://raw.githubusercontent.com/lehhair/dsh-mobile/b5316884413a03052a318ee23a50ac486543f0e7/screenshots/mobile-chat-page.png) |
+| ![桌面原生](https://raw.githubusercontent.com/lehhair/dsh-mobile/1144e6b98419010588cb01a207dfb1b33035ca9f/screenshots/desktop-native.png) | ![侧边栏半开](https://raw.githubusercontent.com/lehhair/dsh-mobile/1144e6b98419010588cb01a207dfb1b33035ca9f/screenshots/mobile-sidebar-page.png) | ![聊天全屏](https://raw.githubusercontent.com/lehhair/dsh-mobile/1144e6b98419010588cb01a207dfb1b33035ca9f/screenshots/mobile-chat-page.png) |
 
 ## 安装
 

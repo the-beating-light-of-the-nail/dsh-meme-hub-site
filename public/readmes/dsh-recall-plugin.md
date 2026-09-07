@@ -1,4 +1,4 @@
-# dsh-recall-plugin ![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)
+# dsh-recall-plugin [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/zh/p/limbo947/dsh-recall-plugin/)
 
 简体中文 | [English](README.en.md)
 
@@ -17,11 +17,11 @@
 
 | 撤回按钮 | 确认面板 · 变更文件清单 |
 | --- | --- |
-| ![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/1f812af7b20effa69f8eef0d42235677b0afdadb/docs/screenshots/recall-button.png) |  ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/1f812af7b20effa69f8eef0d42235677b0afdadb/docs/screenshots/confirm-panel-1.png) |
+| ![悬停出现撤回按钮](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/4474834d33f80494d23b57f0519f8df94f0a567d/docs/screenshots/recall-button.png) |  ![确认面板 · 变更文件清单](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/4474834d33f80494d23b57f0519f8df94f0a567d/docs/screenshots/confirm-panel-1.png) |
 
 - 设置页 · 插件配置卡片（配置表单 / 排除表 / 快照管理，保存即热生效）
 
- ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/1f812af7b20effa69f8eef0d42235677b0afdadb/docs/screenshots/settings-exclude-2.png) 
+ ![设置页](https://raw.githubusercontent.com/limbo947/dsh-recall-plugin/4474834d33f80494d23b57f0519f8df94f0a567d/docs/screenshots/settings-exclude-2.png) 
 
 
 ## 功能亮点

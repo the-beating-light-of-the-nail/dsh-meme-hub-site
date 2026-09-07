@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
 </p>
 
 <h1 align="center">DSH Mobile</h1>
@@ -26,14 +26,14 @@
 
 > DSH Mobile 是 DeepSeek Harness 社区插件，原生 App 仅支持 Android。
 >
-> **0.3.9 更新**：感谢 @qzyqmzn 贡献自建 FRP 的 VPS 一键部署，在控制面板填写 SSH 信息即可自动安装 frps、Caddy 与证书；`/mobile` 定制不再盲改，会先读取手机端现状并自检；同时支持 DeepSeek Harness 0.1.3-alpha.1。[详细记录](CHANGELOG.md)。
+> **0.3.12 更新**：补充远程通知限制说明（#46，纯文档，无代码改动）。[详细记录](CHANGELOG.md)。
 >
-> **升级提醒**：Windows DSH Desktop 用户请更新至插件 0.3.9；现有 0.3.3-0.3.8 App 可继续使用，无需重新配对。[兼容说明](#兼容性)。
+> **升级提醒**：Windows DSH Desktop 用户请更新至插件 0.3.12；现有 0.3.3-0.3.11 App 可继续使用，无需重新配对。[兼容说明](#兼容性)。
 
 <p align="center">
-  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.9/dsh-mobile-android-v0.3.9.apk"><img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/brand/app-icon-rounded.svg" alt="DSH Mobile 安卓应用图标" width="72" height="72"></a><br>
-  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.9/dsh-mobile-android-v0.3.9.apk"><strong>下载 Android App 0.3.9</strong></a><br>
-  <sub><a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.9">版本说明与校验文件</a></sub>
+  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.12/dsh-mobile-android-v0.3.12.apk"><img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/brand/app-icon-rounded.svg" alt="DSH Mobile 安卓应用图标" width="72" height="72"></a><br>
+  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.12/dsh-mobile-android-v0.3.12.apk"><strong>下载 Android App 0.3.12</strong></a><br>
+  <sub><a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.12">版本说明与校验文件</a></sub>
 </p>
 
 DSH Mobile 是一个 DeepSeek Harness 插件，让手机浏览器或 Android App 通过局域网，或可选的 Tailscale Funnel、cpolar、自建 FRP 远程通道连接电脑，继续使用同一份会话、工作区、消息和工具。局域网与远程访问分别启停、分别管理设备，且都不修改 DeepSeek Harness 源码。
@@ -97,7 +97,7 @@ dsh plugin --profile web add dshmarket
 适合同一 Wi-Fi、以太网或手机热点，是默认且最简单的连接方式。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
 </p>
 
 1. 让手机和电脑连接同一个局域网，在 DeepSeek Harness 左下角打开 **移动访问 → 局域网**。
@@ -114,7 +114,7 @@ dsh plugin --profile web add dshmarket
 远程服务可能受带宽和连接限额影响：[cpolar 免费方案](https://svip.cpolar.com/pricing) 当前为 1 Mbps，[Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel#requirements-and-limitations) 也存在不可配置的带宽限制。DSH Mobile 通过 10 条分页、顶部按需加载、gzip 和 WebSocket 长连接减少流量与等待，但无法突破服务商限额。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
 </p>
 
 1. 在 DeepSeek Harness 左下角打开 **移动访问 → 远程**，选择一种连接方式：
@@ -124,6 +124,8 @@ dsh plugin --profile web add dshmarket
 2. 状态变为“远程访问已就绪”后，点击 **生成远程配对二维码**。
 3. 在 Android App 中进入 **远程访问**，扫描二维码完成独立配对。
 4. 此后 App 会保存设备信任并自动重连；不使用时可以关闭远程访问，局域网连接不会受影响。
+
+> **远程通知说明**：浏览器通知权限按地址分别授权，远程地址需在浏览器中单独允许；系统级弹窗只出现在电脑上，手机收不到。任务完成要推送到手机时，请使用第三方通道（如 dsh-messager 的飞书/企业微信/Telegram 推送），它们走服务端下发，不受网关影响。
 
 Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。其运行组件把公开监听生命周期绑定到父进程和受限控制通道；父进程退出、控制通道关闭或显式停止时会结束当前代次并清理资源。cpolar 更适合国内网络；自建 FRP 适合已有 VPS、希望避开公共服务带宽限制的用户。中国大陆 VPS 上的未备案域名可能被云厂商拦截，此时可使用公网 IPv4 模式。插件会校验按需下载的固定版本组件，配置与程序均保存在 `$DSH_HOME/mobile-access/`，可随时在面板中彻底清除。
 
@@ -156,10 +158,10 @@ Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。
 示例的实际效果：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/6ba4f4079d70cb3cf0099648a03e6ecb1125085e/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/2b4df4a11d0ea3df9e1fa121a0914c84fb49f680/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
 </p>
 
 ## App 与手机浏览器
@@ -207,13 +209,14 @@ flowchart LR
 
 | DSH Mobile 插件 | 验证支持的 DeepSeek Harness 版本 |
 | --- | --- |
+| `0.3.10`-`0.3.12` | `0.1.3-alpha.1` |
 | `0.3.9` | `0.1.3-alpha.1` |
 | `0.3.6`-`0.3.8` | `0.1.2-rc.1` |
 | `0.3.4`、`0.3.5` | `0.1.2-alpha.2` |
 | `0.3.0`-`0.3.3` | `0.1.2-alpha.1` |
 | `0.1.4`、`0.2.x` | `0.1.1-rc.2` |
 
-现有 0.3.3-0.3.8 App 无需重新配对；更早的 App 使用不同的状态栏策略，建议同步升级；App 0.1.3 及更早版本需卸载重装并重新配对。
+现有 0.3.3-0.3.11 App 无需重新配对；更早的 App 使用不同的状态栏策略，建议同步升级；App 0.1.3 及更早版本需卸载重装并重新配对。
 
 ## 卸载
 

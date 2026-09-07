@@ -12,7 +12,7 @@ This plugin belongs to the **`@max-null/*` family** — a set of plugins that to
 
 | 画卷展开（收藏过滤 + 收藏导航条） | 消息操作按钮（收藏 ★ / 填充 ➕ / 复制） |
 |---|---|
-| ![rail-fav-1](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/ed3885fb638024d71db9169b2353d1aca5b7907a/docs/shots/rail-fav-1.png) | ![rail-fav-2](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/ed3885fb638024d71db9169b2353d1aca5b7907a/docs/shots/rail-fav-2.png) |
+| ![rail-fav-1](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/7c29b678a18b6187ae6163ee8fe2fa3e541413a2/docs/shots/rail-fav-1.png) | ![rail-fav-2](https://raw.githubusercontent.com/Max-Null/dsh-chat-rail/7c29b678a18b6187ae6163ee8fe2fa3e541413a2/docs/shots/rail-fav-2.png) |
 
 ## 为什么比市面上的导航栏优秀
 

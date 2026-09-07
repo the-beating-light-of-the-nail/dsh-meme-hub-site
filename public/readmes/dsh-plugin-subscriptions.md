@@ -8,39 +8,39 @@ Use your **ChatGPT (Codex)**, **Claude**, **Grok (X Premium)**, and **GitHub Cop
 
 Settings → **Subscriptions**: per-provider login/logout, no API keys. Claude imports credentials from Claude Code when available and otherwise uses OAuth, as Codex and Grok always do (settings screenshots use demo accounts and catalog data):
 
-![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/subscriptions.png)
+![Subscriptions settings page](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/subscriptions.png)
 
 Configure visibility, default reasoning effort, and context together in **Edit model list**, with shared Save and Cancel actions:
 
-![Model settings](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/model-settings.png)
+![Model settings](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/model-settings.png)
 
 Configure image generation, video generation, and X search per provider. Tool switches apply only to sessions created after saving:
 
-![Provider tools](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/provider-tools.png)
+![Provider tools](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/provider-tools.png)
 
 Logged-in providers join the session model picker with their live model catalogs:
 
-![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/model-picker.png)
+![Model picker with subscription models](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/model-picker.png)
 
 Models that advertise reasoning levels get an **Effort** selector in the same menu — Codex models, Grok 4.6 / 4.5, and Copilot's reasoning models (levels and defaults come from each provider's live catalog, not a hardcoded list; Copilot's `capabilities.supports.reasoning_effort` array is sent as `reasoning_effort` on chat completions and `reasoning.effort` on the Responses wire). Models listing both Copilot endpoints (gpt-5.4, gpt-5-mini) normally speak chat completions but reroute to `/responses` when a request combines function tools with an effort — Copilot rejects that combination on the chat wire:
 
-![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/model-effort.png)
+![Reasoning effort selector](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/model-effort.png)
 
 Codex models whose catalog advertises the fast tier (the codex CLI's fast mode) get a **Speed** toggle in the composer's tool row, next to the model selector — Standard or Fast (`service_tier: priority`), per session. The `/fast` slash command offers the same choice as a popup; it errors with an explanation when the current model has no fast tier.
 
-![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/speed-toggle.png)
+![Speed toggle with the Standard/Fast menu open](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/speed-toggle.png)
 
 The `image_generate` tool renders its result inline in the conversation:
 
-![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/image-generate-inline.png)
+![image_generate renders the image inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/image-generate-inline.png)
 
 Its `provider` parameter picks the image backend — the same prompt through GPT (`gpt-image-2`, top) and Grok (`grok-imagine-image-2.0`, bottom):
 
-![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/image-generate-providers.png)
+![image_generate with provider gpt vs grok](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/image-generate-providers.png)
 
 The `video_generate` tool plays the generated clip inline:
 
-![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/d871942224c7c5b63a1fb16311c93d768c3cd43a/docs/images/video-generate-inline.png)
+![video_generate plays the clip inline](https://raw.githubusercontent.com/V1ki/dsh-plugin-subscriptions/1a2777ca2c68dd4e3c08072b97b9ab36e98bfa9b/docs/images/video-generate-inline.png)
 
 ## Providers
 
@@ -60,6 +60,13 @@ Also included, registered when the matching provider is enabled:
 - **`x_search`** tool (Grok) — xAI's hosted X search, returning `{ answer, citations }`.
 - **`image_generate`** tool (ChatGPT or Grok) — `gpt-image-2` via the Codex backend, or `grok-imagine-image-2.0` via `api.x.ai/v1/images/generations`. The `provider` argument picks the preferred provider (`gpt`, the default, or `grok`); when the preferred one is logged out the other serves as fallback. Images are saved under `~/.dsh/plugins/subscriptions/images/` and the paths returned. The `size`/`quality` arguments map onto Grok's `aspect_ratio`/`quality` on the Grok path.
 - **`video_generate`** tool (Grok) — `grok-imagine-video-1.5` via `api.x.ai/v1/videos` (async submit + poll); MP4s are saved under `~/.dsh/plugins/subscriptions/videos/`, the path returned, and the clip plays inline in the conversation. Supports duration (1–15 s), aspect ratio, resolution, and image-to-video via `image_url`.
+
+`image_generate` also supports editing: the model passes optional `referenceImages` (1–5 complete DSH attachment references) to edit or use existing images as sources; omitting it keeps text-to-image generation. References can come from uploads, `read_image`, or previous generated images. Read local files with `read_image` first; paths are not attachment references. Copy references from the image reference text or structured tool results. Their order matches the prompt's image order. Edits save new files and return reusable references, including for subsequent edits with another provider.
+
+Codex edits use `/backend-api/codex/images/edits`; Grok edits use `/v1/images/edits`. Existing provider preference, logged-out fallback, and session tool policy still apply. Empty arrays, duplicate or invalid references, and attachment-limit violations fail explicitly instead of generating a new image. Editing requires the DSH attachment service.
+
+
+Image generation and editing share same-provider account scheduling: try the default account first, then prefer the successful account in that session. Explicit quota, authentication, or image-entitlement rejection tries the remaining accounts; a 401 gets at most one credential refresh and retry first. Image-only cooldowns honor provider reset times and clear on login/logout. Transport failures, timeouts, 5xx responses, and invalid requests do not automatically resend, avoiding duplicate images. Set `pool.enabled: false` or `pool.autoAccounts: false` (legacy `autoFamilies` is accepted) to use only the default account. Image scheduling does not use chat catalogs, chat quota scoring, `families`, or `tiers`.
 
 ## Install
 

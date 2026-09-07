@@ -12,7 +12,7 @@
 
 Keep using Claude Code while you try its skills in DSH. Preview the changes, apply the parts you choose, and start a small task in a new DSH session. Source files and existing destinations stay untouched.
 
-![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/02c7a1367cfae617044d985214bd44a59d9f0409/docs/settings-demo.gif)
+![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/9fade12a2f291ededd8049b127b3f045d27540bb/docs/settings-demo.gif)
 
 Recorded from a real DSH `0.1.2-rc.1` Web host on macOS with a synthetic project and dsh-movein `0.13.8`. It shows preview and apply; the source was preserved and the imported skill was checked byte-for-byte. No model task ran. [Full screen recording](https://github.com/sjh9714/dsh-movein/blob/main/docs/settings-demo.webm).
 

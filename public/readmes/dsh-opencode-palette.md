@@ -4,16 +4,16 @@
 
 **🌐 [中文](README.md) · [English](docs/README.en.md)**
 
-**为长时间编程而生 —— 34 款护眼配色一键换上，眼睛舒服，码字开心。**
+**为长时间编程而生 —— 38 款护眼配色一键换上，眼睛舒服，码字开心。**
 
-*Built for long coding sessions — 34 eye-friendly themes, one click.*
+*Built for long coding sessions — 38 eye-friendly themes, one click.*
 
 你的 ⭐是我夜空中最亮的星。
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm](https://img.shields.io/npm/v/dsh-opencode-palette)](https://www.npmjs.com/package/dsh-opencode-palette)
-[![themes](https://img.shields.io/badge/themes-34%20opencode-orange)](https://github.com/anomalyco/opencode)
-[![tests](https://img.shields.io/badge/tests-31%2F31-green)]()
+[![themes](https://img.shields.io/badge/themes-38%20opencode-orange)](https://github.com/anomalyco/opencode)
+[![tests](https://img.shields.io/badge/tests-38%2F38-green)]()
 
 </div>
 
@@ -22,19 +22,19 @@
 
 <div align="center">
 
-每天盯屏幕十几个小时，眼睛难免发涩——换套温柔的配色，让眼睛歇一会儿。opencode 的 34 套经典配色深受开发者喜爱，一键给整个 DSH 换上，深色护眼、浅色通透，白天黑夜各取所需。
+每天盯屏幕十几个小时，眼睛难免发涩——换套温柔的配色，让眼睛歇一会儿。opencode 的 38 套经典配色深受开发者喜爱，一键给整个 DSH 换上，深色护眼、浅色通透，白天黑夜各取所需。
 
 **👇 装完重启，主界面就是这个样子（opencode 主题）。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/c459636f1d88a5eb3c0cfb37aff2ff09d62c10d3/showcase/overview-opencode-zh.png" width="640" alt="OpenCode 调色板 — 主界面概览（opencode 主题，34 款同款）" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/showcase/overview-opencode-zh.png" width="640" alt="OpenCode 调色板 — 主界面概览（opencode 主题，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
 
-**👇 设置面板：34 款按色系分组，搜一下即切。**
+**👇 设置面板：38 款按色系分组，搜一下即切。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/c459636f1d88a5eb3c0cfb37aff2ff09d62c10d3/showcase/opencode%E8%B0%83%E8%89%B2%E6%9D%BF%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2-zh.png" width="640" alt="OpenCode 调色板 — 设置面板（opencode 主题，34 款同款）" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/showcase/opencode%E8%B0%83%E8%89%B2%E6%9D%BF%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2-zh.png" width="640" alt="OpenCode 调色板 — 设置面板（opencode 主题，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
 
 **👇 白天党放心：浅色主题同样完整覆盖。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/c459636f1d88a5eb3c0cfb37aff2ff09d62c10d3/showcase/overview-github-light-zh.png" width="640" alt="OpenCode 调色板 — 浅色主题概览（GitHub 亮色，34 款同款）" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/showcase/overview-github-light-zh.png" width="640" alt="OpenCode 调色板 — 浅色主题概览（GitHub 亮色，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 
@@ -65,15 +65,15 @@ dsh plugin --profile web add dsh-opencode-palette
 
 <div align="center">
 
-每个主题名字背后都有一段来历，34 款在设置面板里按色系分组、一搜即切。每款最核心的 7 种颜色 —— `背景 · 文字 · 主色 · 强调 · 错误 · 警告 · 成功` —— 定义在 `src/themes/`。
+每个主题名字背后都有一段来历，38 款在设置面板里按色系分组、一搜即切。每款最核心的 7 种颜色 —— `背景 · 文字 · 主色 · 强调 · 错误 · 警告 · 成功` —— 定义在 `src/themes/`。
 
 </div>
 
-![theme stories](https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/c459636f1d88a5eb3c0cfb37aff2ff09d62c10d3/assets/theme-stories-zh.svg)
+![theme stories](https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/assets/theme-stories-zh.svg)
 
 <div align="center">
 
-排印独立于主题：等宽（终端风）或常规（界面风）、字号 11–18 px、5 种代码字体带实时预览。`system` 一键回到 DSH 原生外观，排印设置保留。面板跟着 DSH 界面语言走（中文 / English），切换即时跟随。
+排印独立于主题：作用到全部文字或仅代码、字号 11–18 px、6 种代码字体带实时预览。`system` 一键回到 DSH 原生外观，排印设置保留。面板跟着 DSH 界面语言走（中文 / English），切换即时跟随。
 
 </div>
 
@@ -114,6 +114,6 @@ dsh plugin --profile web add dsh-opencode-palette@<版本>
 
 遇到问题或有改进建议，欢迎直接 [提交 Issue](https://github.com/FeatherHunter/dsh-opencode-palette/issues)；也欢迎扫码添加作者飞书，备注 `dsh-opencode-palette`，一起交流。
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/c459636f1d88a5eb3c0cfb37aff2ff09d62c10d3/assets/feishu-qr.png" alt="作者飞书二维码" width="260" />
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/assets/feishu-qr.png" alt="作者飞书二维码" width="260" />
 
 </div>

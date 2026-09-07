@@ -33,11 +33,11 @@ dsh plugin --profile web add "git+https://gitee.com/HouDL/dsh-token-pulse.git"
 ## 截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/8e37df626cb534499d9de6badb94dd582adcd12f/assets/screenshot-week.png" alt="周视图" width="60%">
+  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/2a0ed754ff5d64ee0aed164aa323cd5a97bd8ff7/assets/screenshot-week.png" alt="周视图" width="60%">
   <br><br>
-  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/8e37df626cb534499d9de6badb94dd582adcd12f/assets/screenshot-month.png" alt="月视图" width="60%">
+  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/2a0ed754ff5d64ee0aed164aa323cd5a97bd8ff7/assets/screenshot-month.png" alt="月视图" width="60%">
   <br><br>
-  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/8e37df626cb534499d9de6badb94dd582adcd12f/assets/screenshot-quarter-year.png" alt="季度 / 年度视图" width="60%">
+  <img src="https://raw.githubusercontent.com/Hou-DL/dsh-token-heatmap/2a0ed754ff5d64ee0aed164aa323cd5a97bd8ff7/assets/screenshot-quarter-year.png" alt="季度 / 年度视图" width="60%">
 </p>
 
 ## 功能
@@ -55,7 +55,7 @@ dsh plugin --profile web add "git+https://gitee.com/HouDL/dsh-token-pulse.git"
 
 ## 常见问题
 
-- **显示 0？** 确认 `~/.dsh/sessions` 下有含 `usage` 字段的会话日志。
+- **显示 0？** 确认 `$DSH_HOME/sessions` 下有含 `usage` 字段的会话日志。
 - **会联网吗？** 不会，纯本地统计。
 - **时区？** 固定北京时区，周一为周起始。
 - **如何重置？** 设置页右上角 ⋯ → 「重置历史」。

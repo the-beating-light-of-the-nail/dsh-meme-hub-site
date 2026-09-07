@@ -3,13 +3,13 @@
 **中文 | [English](./README.en.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/hero.svg" width="100%" alt="dsh-fish-tts — DeepSeek Harness 语音合成插件（仅支持 Fish Audio API）" />
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/ba84d64b539dcf01aea95e135ce4e3b708002d8f/assets/readme/hero.svg" width="100%" alt="dsh-fish-tts — DeepSeek Harness 语音合成插件（仅支持 Fish Audio API）" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/MaRi23333/dsh-fish-tts/ci.yml?style=flat-square&label=CI" alt="CI" />
   <img src="https://img.shields.io/github/license/MaRi23333/dsh-fish-tts?style=flat-square" alt="License: MIT" />
-  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.1--rc.1-4d6bfe?style=flat-square" alt="DeepSeek Harness 0.1.1-rc.1" />
+  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.2--rc.1-4d6bfe?style=flat-square" alt="DeepSeek Harness 0.1.2-rc.1" />
 </p>
 
 > **English:** dsh-fish-tts is a third-party **TTS plugin** for the
@@ -47,17 +47,17 @@
 ## 界面截图
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/screenshot-read-aloud.png" width="75%" alt="消息操作条上的朗读按钮" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/ba84d64b539dcf01aea95e135ce4e3b708002d8f/assets/readme/screenshot-read-aloud.png" width="75%" alt="消息操作条上的朗读按钮" /><br>
   <em>消息操作条上的「朗读」按钮</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/screenshot-auto-read.png" width="75%" alt="输入栏的自动朗读开关" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/ba84d64b539dcf01aea95e135ce4e3b708002d8f/assets/readme/screenshot-auto-read.png" width="75%" alt="输入栏的自动朗读开关" /><br>
   <em>输入栏的自动朗读开关</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/46a6733c1b7a21128a6b931bcb6371128f9c834d/assets/readme/screenshot-settings.png" width="75%" alt="语音合成设置页（模型 / 音色 / API Key / 代理）" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-fish-tts/ba84d64b539dcf01aea95e135ce4e3b708002d8f/assets/readme/screenshot-settings.png" width="75%" alt="语音合成设置页（模型 / 音色 / API Key / 代理）" /><br>
   <em>设置页：模型 / 音色 / API Key / 代理 / 试听</em>
 </p>
 
@@ -149,7 +149,7 @@ pnpm run check:pack # npm pack 内容白名单校验
 
 - host 侧在 `src/index.ts`（Node，注册 `/fish-tts/*` 路由与设置存储）
 - client 侧在 `src/client/`（React，注册 `conversation.chat.assistant-actions`、`conversation.input.left`、`settings.section` 三个 slot）
-- 运行时 API 构建基线为 DSH `0.1.0-rc.6`，已在 `0.1.1-rc.1` 实测正常（无接口漂移）；其他版本如接口漂移请对照 [deepseek-harness 仓库](https://github.com/deepseek-ai/deepseek-harness) 相应 tag 调整。
+- 已针对 DSH `0.1.2-rc.1` 的会话 API 与界面图标变化完成适配和验证；其他版本如接口漂移请对照 [deepseek-harness 仓库](https://github.com/deepseek-ai/deepseek-harness) 相应 tag 调整。
 
 ## License
 

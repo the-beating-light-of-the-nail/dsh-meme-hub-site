@@ -14,7 +14,7 @@
 
 | 浅色模式 | 深色模式 |
 |---|---|
-| ![浅色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/225c90a65b91c8dac4ec369e4759a0884af51a02/assets/screenshot-light.png) | ![深色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/225c90a65b91c8dac4ec369e4759a0884af51a02/assets/screenshot-dark.png) |
+| ![浅色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/b10a1a61f505cfcc94e0e63f4780ca57c8aec793/assets/screenshot-light.png) | ![深色模式](https://raw.githubusercontent.com/Ruler4396/dsh-launcher/b10a1a61f505cfcc94e0e63f4780ca57c8aec793/assets/screenshot-dark.png) |
 
 ## 这是什么
 

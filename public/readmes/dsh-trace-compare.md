@@ -22,27 +22,27 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的**执行迷宫**：把 Agent 真实的干活过程完整画出来、并分析给你看。
 
-![执行迷宫：迷宫 + 数据轨道 + 执行分析，一屏读懂一场 8.6 小时的真实会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-hero.png)
+![执行迷宫：迷宫 + 数据轨道 + 执行分析，一屏读懂一场 8.6 小时的真实会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b710f53843a4090f5f9f2307ef96da2250180383/assets/maze-hero.png)
 
 - **迷宫**——主干路径、失败支路、折返点落在同一根时间轴上；空闲自动折叠、密集段自动聚合成「×N」徽标（点击放大、标签逐级补齐）、进度条自带失败热力，8 小时的会话照样字字可辨：
 
-![密集会话：整图态聚合徽标 → 点击放大 → 标签补齐 → 点开失败详情](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-zoom.gif)
+![密集会话：整图态聚合徽标 → 点击放大 → 标签补齐 → 点开失败详情](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b710f53843a4090f5f9f2307ef96da2250180383/assets/maze-zoom.gif)
 
 - **数据轨道**——每一步的工具调用密度、Token 脉冲（缓存背景 + 未缓存输入/推理/输出增量柱）、上下文压力曲线（70%/90% 阈值线、压缩事件「⌄−N%」标注，悬停看压缩前后真值）：
 
-![轨道悬停：Token 分层数字 → 上下文占用 → 压缩事件前后对比](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-tracks.gif)
+![轨道悬停：Token 分层数字 → 上下文占用 → 压缩事件前后对比](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b710f53843a4090f5f9f2307ef96da2250180383/assets/maze-tracks.gif)
 
 - **执行分析**——失败恢复链（原样重试 / 换参数 / 换工具 / 未恢复）、工具结果矩阵、耗时分位散点。**每个结论一键点回原始命令与返回内容**：
 
-![点失败链任意一条：缩放定位到那次失败，弹出完整命令、报错返回与判定依据](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-drilldown.gif)
+![点失败链任意一条：缩放定位到那次失败，弹出完整命令、报错返回与判定依据](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b710f53843a4090f5f9f2307ef96da2250180383/assets/maze-drilldown.gif)
 
 - **多会话对比**——同一任务在不同模型上的 2~5 次跑同轴对比：轮次对齐、手动锚点、支路盘点。
 
-![对比：同一任务的两次真实跑 → 支路盘点按轮次列差额 → 点行缩放到该轮](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-compare.gif)
+![对比：同一任务的两次真实跑 → 支路盘点按轮次列差额 → 点行缩放到该轮](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b710f53843a4090f5f9f2307ef96da2250180383/assets/maze-compare.gif)
 
 - **回放**——最高 300× 重放整场执行，看它是怎么一步步走到结果的：
 
-![回放：300× 重放一场 8.6 小时的会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/8c099de6141ada3b8a7eebc01397ecddb66b312a/assets/maze-replay.gif)
+![回放：300× 重放一场 8.6 小时的会话](https://raw.githubusercontent.com/lamost423/dsh-trace-compare/b710f53843a4090f5f9f2307ef96da2250180383/assets/maze-replay.gif)
 
 **铁律**：所有数字都是对判定数据的确定性聚合，不调 LLM；每个判定带依据、每个结论可回溯到证据；数据缺失时如实标注（不画没有数据的轨道、不猜未知模型的窗口），绝不编。
 
@@ -64,6 +64,7 @@
 - **支路盘点**（同任务对比件）：「📋 支路盘点」打开按轮次的盘点表——每轮各泳道的支路步数、墙钟耗时、类别构成（✗ 失败 / ↻ 无效重试 / · 扑空），双泳道附差额列（如「第 2 会话多耗 48.4s」）；点一行缩放到该轮并只保留该轮支路，其余淡化。某泳道没有这轮显示「—」，缺席本身就是信号。任务不同的文件仅同轴并排，这三样不出现（图例明示原因）。
 - **泳道数据轨道**（v0.7 起，📊 可开关）：泳道带底部三条与迷宫同一时间轴联动的轨道——**工具调用密度**（每次调用一根刻线，按读取/检索/命令/编辑/其他着色）、**Token 脉冲**（每步堆叠柱：缓存输入/未缓存输入/推理/可见输出，读自 usage 真值）、**上下文压力**（折线+面积，纵轴随数据自适应；模型窗口已知时显示占用百分比与 70%/90% 阈值线，上下文压缩呈现为锯齿下落，窗口未知或表值过时自动退回绝对 token 数——绝不显示超过 100% 的占用）。日志没报 usage 的轨道不画、不占高度。
 - **执行分析区**（v0.7 起，迷宫下方主界面直出）：摘要三卡（工具失败与恢复 / 时间消耗 / 上下文压力）+ **耗时分布散点图**（每工具一行，P50/P95 参考线，失败点标红，悬停看单次调用）+ 按工具的结果矩阵（成功/失败/扑空/盲重试/成功率 + P50/P95/最长耗时）+ **失败恢复链**——每个失败调用之后发生了什么：原样重试 / 换参数 / 换工具 / 未恢复，恢复耗时如实标注；点一条缩放到该失败并打开详情。口径：链只统计失败（✗），扑空（· 检索无结果）与盲重试（↻）计入矩阵各自列、不单独进链，盲重试也不作为恢复证据。全部数字是确定性聚合，不调 LLM。
+- **结果与证据**（诊断层第 1 项，分析区首块）：六格——任务完成 / 测试 / 构建 / Lint / 产物 / 人工确认——加一个综合徽标（已完成 / 部分成功 / 未验证），全部来自日志证据、不信 Agent 自述。测试/构建/Lint 按命令正则在**命令位置**识别（初版覆盖 JS/TS、Python、Rust、Go、Swift；npm/pnpm/yarn 的 `check` 脚本按测试计；`cat vitest.config.ts`、`grep pytest` 不算），一条命令命中多类分别记；通过 = 该调用没有错误标志且返回**末行**没有非零退出码；每个类别以最后一次运行的结果为准，此前别的命令最后一次失败的条数小字注明（「同一条命令」按命中的那段算，`cd` 前缀、重定向、`&& echo PASS` 装饰不同不算两条）；后台任务按之后 `job_output` 末行的退出码计，取不到就不计并标注；点格定位到最后一次运行所在的那一步并打开该步详情。产物 = 写入/编辑/补丁类调用成功触及的文件去重（格内展开路径）；任务完成 = 最后一轮 `turn/end` 不是 error/aborted/interrupted/blocked 且最后一步是回答；人工确认只看最终回答之后有没有真人消息，不解读内容。一条验证命令都没有时显示中性的「未验证」；code 模式会话（`run_code`）里脚本内部派发的真实命令暂不识别，块里如实标注。规则在 `verdict.js` 的 `ANALYSIS_RULES.VALIDATION`。
 - **Agent 关系图谱**（v0.7 起，分析区内的块）：主 Agent 与子代理的星形总览，节点大小 = 各 Agent 消耗的 token、连线粗细 = 工具调用数、运行中的虚线标示；点子代理节点跳到时间轴位置。只在有子代理数据时出现。
 - **导出**：一键导出当前视图（含缩放窗口与过滤淡化状态）为 SVG 或 2x PNG，样式已内联、拿去即用；**无论页面当前是浅色还是暗色，导出固定浅色底**（分享场景）。
 - **界面双语**（v0.5.0 起）：整页 UI（上传区、图例、泳道统计、对齐线、支路盘点、悬停卡、详情面板、错误提示）中英双语，嵌入宿主时实时跟随 dsh 的语言设置切换，独立打开按浏览器语言兜底；判定依据是结构化键值、按当前语言渲染，切语言不用重新上传。
@@ -102,7 +103,7 @@
 | 你的宿主 | 装哪个版本 | 命令 |
 |---|---|---|
 | `0.1.2` 线——DSH Desktop 2.x、npm 的 `@deepseek-ai/dsh@next`（`0.1.2-rc.1`）、或自建 master | dsh-maze `2.x`，`latest` 标签 | `dsh plugin --profile web add dsh-maze` |
-| 老宿主——npm `latest`（`0.1.0-rc.6` ~ `0.1.1-rc.2`） | dsh-maze `1.1.0`，手动钉版本 | `dsh plugin --profile web add dsh-maze@1.1.0` |
+| 老宿主——npm `latest`（`0.1.0-rc.6` ~ `0.1.1-rc.2`） | dsh-maze `1.1.1`，手动钉版本 | `dsh plugin --profile web add dsh-maze@1.1.1` |
 
 宿主 `0.1.2-rc.1` 与拆分出的客户端包已发到 npm（`next` 标签），所以从 v2.0.0 起 `latest` 归 `2.x`；还在老宿主上的人钉住 `1.1.0` 即可。等宿主的 `latest` 也切到 `0.1.2`，这张表就并成一行。
 

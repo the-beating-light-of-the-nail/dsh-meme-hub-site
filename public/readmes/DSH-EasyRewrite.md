@@ -1,7 +1,7 @@
 <div align="center">
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Renzic-Stone/DSH-EasyRewrite/main/assets/logo-dark.png" />
-<img src="https://raw.githubusercontent.com/Renzic-Stone/DSH-EasyRewrite/9b3051f42547f4eba5ca692b7a67688cffa2c3ee/assets/logo.png" alt="dsh-easyrewrite" width="320" />
+<img src="https://raw.githubusercontent.com/Renzic-Stone/DSH-EasyRewrite/8bfa03c946e81e6159d0c839ffb7a02c6c52c158/assets/logo.png" alt="dsh-easyrewrite" width="320" />
 </picture>
 
 # DSH-EasyRewrite
@@ -18,7 +18,7 @@
 
 单击自己的消息气泡即可原位编辑；点击复制键旁的撤回键可撤回该消息及其后的全部内容。**一切修改都发生在你真正确认之后**——在按下「确定」（编辑）或「发送」（撤回）之前，对话、模型上下文、会话日志纹丝不动。
 
-> 兼容 DeepSeek Harness Web（rc.6+），纯官方扩展点实现，不改 DSH 源码。
+> 兼容 DeepSeek Harness Web（**2.4.0 要求 dsh 0.1.2-rc.1+**；0.1.1-rc.2 及更早宿主用户请停留 **2.3.1**——该线最终版，功能完整可用，仅不再追加新功能）。纯官方扩展点实现，不改 DSH 源码。
 
 ---
 

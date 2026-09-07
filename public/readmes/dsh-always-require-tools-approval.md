@@ -57,12 +57,22 @@ This file takes precedence over the value baked into the bundle.
 
 Every call prompts again — approving once never grants a blank check. The prompt text is fixed by design.
 
+Subagents are covered too. The harness normally rejects a delegated child's approval asks automatically, so when a watched tool runs inside a subagent this plugin forwards the question to the top-level (user-facing) session instead, where you approve or reject it as usual. Because the subagent's call card is not part of the top-level conversation, the prompt is explicit about what is happening:
+
+```
+Subagent approval: run "bash" · Why: clean the build output · Command: rm -rf dist
+```
+
+`Why:` is the tool call's own description and `Command:` the exact command about to run; the fields are separated by `·` so the prompt stays readable in the single-line approval headline.
+
 ## Safety model
 
 - **One-shot.** One approval authorizes exactly one execution.
 - **Fail closed.** No approval channel (headless run, unmounted service) → the tool is **denied**, never silently allowed.
 - **No auto-approve.** For a watched tool the plugin only asks; it never approves on its own.
 - **No interference.** Unwatched tools delegate to the next plugin.
+
+See [SECURITY.md](./SECURITY.md) for the security posture and how to report a vulnerability.
 
 ## Update & remove
 
@@ -82,7 +92,7 @@ pnpm typecheck  # type-check source + tests
 pnpm test       # node --test
 ```
 
-The plugin is three modules — `src/contracts.ts` (harness types), `src/gate.ts` (the gate policy), `src/index.ts` (wiring). See [ADR 0001](./docs/adr/0001-self-declared-harness-contracts.md) for why the harness types are self-declared.
+The plugin is four modules — `src/contracts.ts` (harness types), `src/gate.ts` (the gate policy), `src/subagent.ts` (the subagent lineage rules), `src/index.ts` (wiring). See [ADR 0001](./docs/adr/0001-self-declared-harness-contracts.md) for why the harness types are self-declared and [ADR 0002](./docs/adr/0002-routing-subagent-approval-to-root.md) for why subagent approvals are routed to the root session.
 
 ## License
 

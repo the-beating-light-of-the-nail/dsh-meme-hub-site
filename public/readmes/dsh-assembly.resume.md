@@ -3,6 +3,10 @@
 Bring an existing Codex or Claude Code conversation into DSH, then continue it
 with the DSH Agent.
 
+## DSH Compatibility
+
+- Supported DSH version: [`0.1.2-rc.1`](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.2-rc.1) (Sep.3)
+
 ## What It Does
 
 - Finds local conversations from Codex, Claude Code CLI, and Claude Code Desktop.
@@ -12,7 +16,7 @@ with the DSH Agent.
 - If the historical path no longer exists or the original conversation had no workspace, a new workspace can be specified during handoff. Otherwise, the conversation imports unbound and the old directory is never recreated.
 - Continue the conversation in DSH after transfer.
 
-![Session Resume settings](https://raw.githubusercontent.com/kanchengw/dsh-assembly.resume/ebb82dd8f334114227388a31a5e0323a9dfcf604/assets/ScreenShot_config.png)
+![Session Resume settings](https://raw.githubusercontent.com/kanchengw/dsh-assembly.resume/33b7faacd98bc9c6815d5d99111c11b4d849cd88/assets/ScreenShot_config.png)
 
 ## Installation
 

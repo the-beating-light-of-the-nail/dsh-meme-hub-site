@@ -12,6 +12,11 @@ Task outcome ledger & acceptance plugin for DeepSeek Harness (DSH) · 任务结�
 - **User owns and controls the data**: inspect, delete, or export — with a preview + redaction gate before any export;
 - **Separates success, failure, unknown, stale evidence, user acceptance and user abandonment** — an unknown is never silently converted into a success.
 
+## Interview oral (3 minutes)
+
+One-page whiteboard script (no ADR binder): [`docs/ORAL-3MIN.md`](docs/ORAL-3MIN.md).
+Covers problem → data/control plane → non-negotiables → proof we are not cosplaying Datadog.
+
 ## Quick start
 
 ### Install

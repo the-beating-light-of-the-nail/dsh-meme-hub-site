@@ -12,7 +12,7 @@
 
 > DSH 会话管理器：在**设置 → 会话管理**里统一归档、移动、恢复、查看详情；在**主页侧边栏**直接标记未读、移动、删除会话。删除先进入回收站，可恢复或彻底清理。
 
-一个 DSH 持久化插件（host + browser 双半），同时覆盖「设置面板」与「主页侧边栏」两个入口，无需打开设置即可完成高频会话操作。插件同时识别旧式 header 列表/`readFrom` 与新版 snapshot/`SessionHandle`，并按当前 Runtime 的实际能力启用安全操作；尚未验证的删除或迁移路径会在界面与 Host 端同步禁用，避免假成功。
+一个 DSH 持久化插件（host + browser 双半），同时覆盖「设置面板」与「主页侧边栏」两个入口，无需打开设置即可完成高频会话操作。插件同时识别旧式 header 列表/`readFrom` 与新版 snapshot/`SessionHandle`，按当前 Runtime 的实际能力启用操作：删除与迁移路径必须可验证才会开放（新版 Runtime 上由守卫式路径推导与写所有权探测保障），无法验证时在界面与 Host 端同步禁用，避免假成功。
 
 ## 功能
 
@@ -23,7 +23,7 @@
 - **冷态标题同步**：侧栏使用日志中最新的 `session/title` 修正冷启动缓存，改名后的会话无需先打开即可显示新名称。
 - **侧栏跨工作区拖拽**：直接把会话拖到目标工作区标题即可切换工作区；目标高亮、同工作区拦截、失败反馈，并保留“更多 → 移动会话”作为键盘操作入口。
 - **归档 / 恢复**：归档把会话从侧栏隐藏；恢复取消归档并放回原工作区分组。
-- **移动到工作区**：任选**已有工作区**或**新建目录路径**（自动创建），新建目录支持点击 **「浏览…」** 调用系统目录选择窗口。会话的工作目录与日志一起迁移；即使会话处于打开状态也可安全移动。
+- **移动到工作区**：任选**已有工作区**或**新建目录路径**（自动创建），新建目录支持点击 **「浏览…」** 调用系统目录选择窗口。会话的工作目录与日志一起迁移。旧版 Runtime（`0.1.2-rc.1`）下已打开的会话也可移动；新版 Runtime（`0.1.3-alpha.1`）为避免并发写入损坏日志，正在写入的会话会被拒绝移动，待其空闲后重试即可。
 - **会话详情**：展开单条会话查看**磁盘占用**、**轮次 / 步骤 / 用户·助手消息 / 工具调用 / 图片附件**统计、**工具使用分布**、**搜索·抓取记录**、**write/edit 写过的文件列表**（已过滤磁盘上已不存在的路径），以及**血统**（父会话 / 子会话 / 子代理）。
 - **导出**：详情面板底部提供两个入口——「**下载原始日志 (ZIP)**」直接走 DSH 官方 `session.export` 端点（含子会话与附件，持久化后端不支持时自动隐藏）；「**导出 Markdown**」由本插件把会话渲染为人类可读对话记录（front matter + 按轮分节 + 用户 / 助手 / 工具调用摘要，流式增量不重复）。
 - **存储占用分析**：维护栏的「存储占用」按钮按需展开，按工作区聚合会话日志的磁盘占用（占比条 + 会话数），并列出占用最大的会话 Top 10。纯只读统计，不修改任何数据；默认收起、展开时才统计，因此不会拖慢会话列表的加载。
@@ -67,19 +67,19 @@
 <details>
 <summary>展开查看截图（设置面板 / 自动归档 / 存储占用 / 已收藏 / 回收站 / 会话详情 / 侧边栏菜单）</summary>
 
-![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-submenu.png)
+![主页侧边栏 ⋯ 菜单（标记未读、移动会话、删除会话）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-submenu.png)
 
-![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-settings.png)
+![设置面板「会话管理」](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-settings.png)
 
-![自动归档面板（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-autoarch.png)
+![自动归档面板（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-autoarch.png)
 
-![存储占用分析（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-storage.png)
+![存储占用分析（维护栏内联展开）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-storage.png)
 
-![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-starred.png)
+![已收藏（星标）视图](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-starred.png)
 
-![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-trash.png)
+![回收站](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-trash.png)
 
-![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/4429f39c18a7d2a54d74b3e9fea3126c4c581f17/assets/screenshot-session-details.png)
+![会话详情（磁盘占用 / 统计 / 工具使用）](https://raw.githubusercontent.com/TOBYCAI/dsh-sessions-manager/49d2ce8f34b8e4d6a261f41d2a3cce41860ca888/assets/screenshot-session-details.png)
 
 </details>
 
@@ -161,6 +161,16 @@ lib/client.js      预构建 client（ModuleLoader CJS handshake）
 - `0.1.2-rc.1`：现有读取、归档、回收站、永久删除和跨工作区移动能力保持可用。
 - `0.1.3-alpha.1`：支持 snapshot 列表和 `SessionHandle` 只读流程；永久删除与跨工作区移动在缺少已验证安全路径时自动禁用，其余管理能力继续工作。能力以面板实际提示为准。
 - 未经验证的未来 Runtime 默认只开放能够识别的安全能力；插件不会用方法存在与否冒充行为兼容。
+
+### `0.1.3-alpha.1` 下的行为差异与降级说明
+
+- **回收站恢复需要校验**：恢复前会确认底层会话仍存在（live / `stat` / 列表三级判定）。底层会话已不存在（`DSM_SESSION_MISSING`）、已被彻底删除（`DSM_SESSION_PURGED`）或索引仍在但日志文件消失（`DSM_SESSION_LOG_MISSING`）时返回准确错误；无法核验日志位置时如实标注 `unverified`，不会假装校验通过。恢复到「工作区已删除」的会话会成功并提示其暂归「未分组」。
+- **彻底删除 / 清空回收站 / 自动物理清理**：官方公共契约未提供删除 API，插件沿用 legacy 时代的半官方路线——从后端实例的存储根目录字段出发做**三层守卫式路径推导**（根目录 → 会话目录结构 → 会话 ID 归属校验），通过后整目录删除并以官方 `stat` 复核；存在活跃写入的会话会被拒绝（409）。推导失败（如无法确认存储根目录）时自动禁用并说明原因，绝不盲删。
+- **跨工作区移动**：主路径为官方 `create` + `append` 事件重放（写所有权探测拒绝活跃会话、revision 前后校验防并发写入、备份回滚保证失败不留半移动状态）；后端存在同 ID 幽灵记录时回退到 frame0 cwd 改写搬运（帧数与内容逐位校验）。路径同样来自守卫式推导；移动后自动重建工作区分组索引，无需重启。
+- **彻底删除墓碑不压制新会话**：若同 ID 会话被重新创建，墓碑自动让位，新会话正常出现在列表与侧栏。
+- **元数据缓存的变更令牌**：新 Runtime 优先使用官方 `stat`/`list` 快照的 `revision`（仅同一 service 实例、同一会话内可比较）判断会话是否变化，旧 Runtime 继续使用 `(mtime, size)` 文件指纹；`revision` 绝不写入跨进程持久索引。列表元数据直接取自 `snapshot.header`，标题走批量投影——没有标题时**不会**自动解码整本日志，避免放大 alpha 已知的历史会话加载性能回退。
+- **自动归档**：新 Runtime 不提供可靠的「最后活跃时间」，无法证明会话闲置时检查会跳过（`no-activity-data`），绝不基于猜测归档。
+- **侧栏注入**：DOM / React fiber 识别收敛为可版本化的 adapter；上游侧栏结构不被识别时整体安全停用，不影响官方侧栏本身。识别正常时以 MutationObserver 增量驱动为主，仅保留低频兜底检查。
 
 ## License
 

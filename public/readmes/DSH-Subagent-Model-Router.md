@@ -22,13 +22,13 @@ That means faster routine work, stronger results on difficult problems, better c
 
 ### Follow every specialist from Better Sidebar
 
-![Better Sidebar Tasks view showing delegated subagents and their selected model chips](https://raw.githubusercontent.com/CypherNaught-0x/DSH-Subagent-Model-Router/ddb619587d5e15dc6f4561ffbcae8df3569acd4d/docs/screenshots/better-sidebar-task-model-chips.png)
+![Better Sidebar Tasks view showing delegated subagents and their selected model chips](https://raw.githubusercontent.com/CypherNaught-0x/DSH-Subagent-Model-Router/fe5fee42005966a92817172520cdccf960e46d1a/docs/screenshots/better-sidebar-task-model-chips.png)
 
 *See parallel delegated work, current status, and the selected model together in the task tree you already use.*
 
 ### Build your ideal model team
 
-![Subagent Model Router settings for aliases, providers, tags, token limits, and routing guidance](https://raw.githubusercontent.com/CypherNaught-0x/DSH-Subagent-Model-Router/ddb619587d5e15dc6f4561ffbcae8df3569acd4d/docs/screenshots/subagent-model-router-settings.png)
+![Subagent Model Router settings for aliases, providers, tags, token limits, and routing guidance](https://raw.githubusercontent.com/CypherNaught-0x/DSH-Subagent-Model-Router/fe5fee42005966a92817172520cdccf960e46d1a/docs/screenshots/subagent-model-router-settings.png)
 
 *Define friendly routes and tell the orchestrator when each model shines—from quick, budget-friendly tasks to your most demanding work.*
 
@@ -51,7 +51,11 @@ With an empty `models` list, the catalog, configuration, and wait tools remain a
 
 ## Orchestrator behavior
 
-When model-selectable delegation is available, the system prompt tells the orchestrator not to duplicate work it delegated. After issuing all intended background delegations, it must call `wait-for-subagents` before synthesizing the child results or giving a final answer. The wait tool joins every continuable background child started by that parent, whether through a standard delegation tool or `subagent_model`; it remains useful when no model routes are configured. It preserves every terminal content block and drops retained records when the parent is disposed, while foreground calls already return their result directly. A ten-second watchdog reconciles an unresolved record against the exact live child identity and recovers its terminal reason and output from the retained epoch log when the lifecycle event was missed. If another plugin already owns or scope-shadows the `wait-for-subagents` name, this plugin leaves it untouched and suppresses its wait-specific guidance and tracking for the affected agents.
+When model-selectable delegation is available, the system prompt tells the orchestrator not to duplicate work it delegated. After issuing all intended background delegations, it must call `wait-for-subagents` before synthesizing the child results or giving a final answer. The wait tool joins every continuable background child started by that parent through `subagent`, `subagent_fork`, `subagent_model`, or `auto_agent_run`; it remains useful when no model routes are configured. It reserves standard, forked, and project-specialist delegation calls before they can publish a child, and after plugin reload it discovers direct continuable children only when the live Agent registry reports them as running and their durable descriptors confirm their mode. It preserves every terminal content block and drops retained records when the parent is disposed, while foreground one-shot runs and job-backed non-continuable delegations remain outside this join because their owning tool already returns or collects the result.
+
+Direct human steering must not leave the parent blocked in an old join. When a committed `agent/inbox/spliced` event inserts a `source.kind: user` message at `next-step` for that parent, an active wait returns `{ kind: "interrupted", pending: [...] }` without cancelling or consuming any child. Each pending entry carries the exact child and run identity when available. The DSH agent loop does not automatically schedule a second tool call after the parent answers. Instead, the plugin's system prompt, tool description, and interruption result explicitly require the parent to answer the steering message first and then call `wait-for-subagents` again before final synthesis. That second call resumes the retained records and returns their eventual terminal output; queued `next-turn` input, model-authored context, cancellations, and events for other sessions do not trigger this outcome. A simultaneous child completion remains retained for the resumed wait.
+
+A ten-second watchdog reconciles an unresolved record against the exact child and run identity when the lifecycle event was missed. It requires both the child's retained epoch log and the continuation manager's matching durable settlement notice before recovering the terminal reason and output, so an absent registry entry or an idle/resumable child is never treated as success by itself. This also settles a completed activation whose exact child object remains readable after becoming idle. Cancellation still rejects the active tool call without consuming records, and parent disposal still releases tracked children and active waits. If another plugin already owns or scope-shadows the `wait-for-subagents` name, this plugin leaves it untouched and suppresses its wait-specific guidance and tracking for the affected agents.
 
 ## Model identity chips
 

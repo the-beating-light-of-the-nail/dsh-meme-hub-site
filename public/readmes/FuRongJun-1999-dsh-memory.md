@@ -61,7 +61,7 @@ dsh plugin --profile web add @furongjun1999/dsh-memory
 
 **想做什么 → 找对应泳道 → 走条件边到功能**（流程图 = 认知图 = 条件路由图，**82 工具**全收录，[工具总表 → docs/灵枢MCP工具总表_v3.4.md](docs/灵枢MCP工具总表_v3.4.md)）：
 
-[![灵枢使用教学认知图](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/5ed5cc4e7d06848fd89596a3806e6083d5233e54/docs/lingshu_tutorial.html)](docs/lingshu_tutorial.html)
+[![灵枢使用教学认知图](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/8025c1c7701711d7e795c440a8b6e7e12e254180/docs/lingshu_tutorial.html)](docs/lingshu_tutorial.html)
 
 > 图中每条边 = 一个使用条件：比如「问知识」走 `wisdom_chat`（白箱优先），「验证说法」走 `wisdom_verify`（互维双通道），「记住信息」走 `remember`。找不到路径时用 `service_info` 看协议实例身份。
 
@@ -275,7 +275,7 @@ python -m aeis.mcp.server
 > 视角：**使用性**（普通用户/开发者体感）——「存、找、想、准、安」五维。
 > 评估基准：公开能力 + 设计者校准（2026-08-17）。灵枢分数经设计者核对（不虚高）。
 
-![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/5ed5cc4e7d06848fd89596a3806e6083d5233e54/docs/memory_score.png)
+![记忆系统使用性评分](https://raw.githubusercontent.com/FuRongJun-1999/dsh-memory/8025c1c7701711d7e795c440a8b6e7e12e254180/docs/memory_score.png)
 
 （插图源文件：[memory_score.html](docs/memory_score.html)，可浏览器打开重新截图）
 

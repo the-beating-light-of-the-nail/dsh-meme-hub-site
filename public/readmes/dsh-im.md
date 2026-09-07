@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 ---
@@ -43,9 +43,9 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 ## 界面
 
-![IM 机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/imbot.png)
+![IM 机器人页面](https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/imbot.png)
 
-<img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/access_mode.png" alt="访问模式页面" width="49%">
+<img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/access_mode.png" alt="访问模式页面" width="49%">
 
 ## 当前内置渠道
 
@@ -270,16 +270,16 @@ IM 管理 RPC 默认仅接受回环浏览器。如果 Web profile 在受信任�
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/wecom.png"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/wecom.png" alt="dsh-im 企业微信群二维码" width="240"></a>
+      <a href="docs/images/wecom.png"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/wecom.png" alt="dsh-im 企业微信群二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/45693cbb44a3fa50766e3939f78d0d96675aa651/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
+      <a href="docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/xmanrui/dsh-im/11b1bc232ba0068a55f2fc59eb4b29dc38f87d0d/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
     </td>
   </tr>
 </table>

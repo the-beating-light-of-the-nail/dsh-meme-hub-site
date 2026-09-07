@@ -48,6 +48,10 @@ Topics: `dsh-plugin` `dsh` `adb` `android` `automotive` `bench`
 
 Errors are structured `AdbError` with stable codes: `ADB_NOT_FOUND`, `ADB_UNAVAILABLE`, `DEVICE_NOT_FOUND`, `NO_DEVICES`, `CONNECT_FAILED`, `INSTALL_FAILED`, `ADB_EXIT_<code>`, etc.
 
+## Approval guard (destructive operations)
+
+Device-mutating calls route through harness's approval seam before executing: `adb_install`, `adb_file push/rm`, and `adb_operation_ledger rollback` return a pre-execute `ask` decision with a human-readable reason (tool + serial + target), and the session's approval answerer (web UI card, ACP machine policy) decides. **Fail closed by design**: with no approval service loaded (headless) or a `never` policy, these calls are denied — read-only tools are unaffected and need no approval wiring. This mirrors the plugin-wide rule that "couldn't check" ≠ "allowed".
+
 ## Usage: adb_watch_crash (Crash Watchdog)
 
 Watch the device's crash buffer for **new** real crashes. On start, it reads the current buffer and remembers every existing crash signature (seed), so only crashes that appear *after* the watch begins are reported. Boot markers (`mtk-brm-*`) are not crashes and are ignored.

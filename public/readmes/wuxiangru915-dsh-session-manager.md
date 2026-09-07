@@ -52,7 +52,7 @@ The repository ships plain-JS `lib/` artifacts with no build step, so git-source
 
 ### Web UI
 
-![Session manager (settings page)](https://raw.githubusercontent.com/wuxiangru915/dsh-session-manager/902bae8ea3e8fdd7fc7be40bc0d04ea8b4571f6f/assets/session-manager.png)
+![Session manager (settings page)](https://raw.githubusercontent.com/wuxiangru915/dsh-session-manager/5bafbdb26f339510155ad598ad6e7f5bb2d8dcf6/assets/session-manager.png)
 
 Open **Settings → Session manager**:
 

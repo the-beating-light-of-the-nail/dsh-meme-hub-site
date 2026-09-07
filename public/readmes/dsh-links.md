@@ -8,7 +8,7 @@
 <p align="center"><strong>Beta</strong> · <strong>Android only</strong> · <strong>Trusted LAN</strong> · <strong>Relay 内测（需接入码）</strong> · <strong>Unofficial</strong></p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lunaship/dsh-links/7406c1e8183368db6706dac168ff285b458fdaa4/docs/images/dsh-workbench-latest.png" width="900" alt="当前 DSH Web 工作台，展示会话、思考事件、消息和模型选择。">
+  <img src="https://raw.githubusercontent.com/lunaship/dsh-links/4df13382c056d545fbf7a4bc289470c213d8a4f8/docs/images/dsh-workbench-latest.png" width="900" alt="当前 DSH Web 工作台，展示会话、思考事件、消息和模型选择。">
 </p>
 
 <p align="center"><sub>电脑继续运行 DSH、工具和工作区；手机负责查看会话、发送消息、接收实时事件和处理审批。</sub></p>
@@ -19,16 +19,16 @@
 
 | 组成 | 作用 | 发布方式 |
 |---|---|---|
-| **本仓库 `dsh-links`** | DSH 插件、手机 HTTPS 接入代理、电脑端配对与设备管理面板 | 开源 npm 插件 |
+| **本仓库 `dsh-links`** | DSH 插件、手机 HTTPS 接入代理、电脑端配对与设备管理面板；Relay 源码在 [`relay/`](relay/) | 开源 npm 插件；Relay 源码同仓公开，使用仍需维护者接入码 |
 | **DSH Links Android App** | 扫码/手动配对、设备入口、原生会话工作台、实时流与审批 | 私有源码；仅发布官方签名 APK |
-| **DSH Links Relay** | 跨网络中继：电脑与手机均主动连接 Relay，电脑不接受公网入站 | 维护者内测中。接入码只由维护者发放；本仓库、Release 和 npm 包都不含接入码 |
 
 ## Android App 能做什么
 
 - 扫描电脑端二维码，或手动输入地址和一次性配对码添加 DSH。
 - 保存多个已配对设备，显示连接状态，并可随时移除本机记录。
 - 在原生工作台中浏览会话与历史、继续对话、查看工具/思考事件，并通过 SSE 接收实时更新。
-- 在手机上处理 DSH 的审批请求；手机在线但超过 5 分钟未处理的审批会按「不可用」结束，该次工具调用失败，可重试。丢失设备时，可从电脑端立即吊销该设备。
+- 在手机上处理 DSH 的审批请求；短暂断线（默认 30 秒内重连，且不超过原 5 分钟期限）仍可继续处理。超时未处理按「不可用」结束，该次工具调用失败，可重试。丢失设备时，可从电脑端立即吊销该设备。
+- 系统通知只覆盖 App 仍能收到当前会话 SSE 时的本地提醒；进程被杀、锁屏推送和全会话后台通知尚未交付（渠道待定）。完整说明见 [`PRIVACY.md`](PRIVACY.md) 与 [`docs/MOBILE_SYNC_CONTRACT.md`](docs/MOBILE_SYNC_CONTRACT.md)。
 - 使用手机本地加密保存配对 Token 与 TLS 证书指纹；App 禁用云备份和明文 HTTP。完整说明见 [`PRIVACY.md`](PRIVACY.md)。
 
 Android App 当前最低支持 Android 8.0（API 26）。源码不在本仓库；请只安装 GitHub Release 随版本号和 SHA-256 发布的官方签名 APK。
@@ -43,14 +43,14 @@ Android App 当前最低支持 Android 8.0（API 26）。源码不在本仓库�
 
 ## 最新界面截图
 
-*电脑端截图于 2026-08-30 从当前本地运行版本重新截取；二维码、配对码、主机名、内网地址和设备标识均已脱敏。Android 截图来自当前 `0.5.0-beta.14` 构建。*
+*电脑端截图于 2026-08-30 从当时本地运行版本截取；二维码、配对码、主机名、内网地址和设备标识均已脱敏。Android 截图来自 `0.5.0-beta.14` 构建。当前发布 App 是 `0.5.0-beta.16`，界面未重拍。*
 
 ### 电脑端手机连接与 Android 设备
 
 <table>
   <tr>
-    <td width="60%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/7406c1e8183368db6706dac168ff285b458fdaa4/docs/images/phone-connection-latest-sanitized.png" alt="当前 DSH Links 电脑端手机连接设置，展示局域网配对入口和已配对设备。"><br><sub><b>电脑端手机连接</b>：从当前 DSH Web 设置发起局域网配对。</sub></td>
-    <td width="40%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/7406c1e8183368db6706dac168ff285b458fdaa4/docs/images/android-devices-latest-sanitized.png" alt="当前 DSH Links Android App 设备列表，展示局域网和云端设备入口。"><br><sub><b>Android 设备</b>：查看多个已配对设备及其连接状态。</sub></td>
+    <td width="60%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/4df13382c056d545fbf7a4bc289470c213d8a4f8/docs/images/phone-connection-latest-sanitized.png" alt="当前 DSH Links 电脑端手机连接设置，展示局域网配对入口和已配对设备。"><br><sub><b>电脑端手机连接</b>：从当前 DSH Web 设置发起局域网配对。</sub></td>
+    <td width="40%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/4df13382c056d545fbf7a4bc289470c213d8a4f8/docs/images/android-devices-latest-sanitized.png" alt="当前 DSH Links Android App 设备列表，展示局域网和云端设备入口。"><br><sub><b>Android 设备</b>：查看多个已配对设备及其连接状态。</sub></td>
   </tr>
 </table>
 
@@ -58,14 +58,14 @@ Android App 当前最低支持 Android 8.0（API 26）。源码不在本仓库�
 
 <table>
   <tr>
-    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/7406c1e8183368db6706dac168ff285b458fdaa4/docs/images/android-workspace-latest.png" alt="当前 Android App 原生会话工作台，展示对话、思考事件、模型选择和消息输入。"><br><sub><b>原生工作台</b>：在手机上继续会话、查看思考事件并发送消息。</sub></td>
-    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/7406c1e8183368db6706dac168ff285b458fdaa4/docs/images/android-navigation-latest.png" alt="当前 Android App 工作区导航抽屉，展示工作区、会话和设置入口。"><br><sub><b>工作区导航</b>：切换设备、工作区、会话与设置。</sub></td>
+    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/4df13382c056d545fbf7a4bc289470c213d8a4f8/docs/images/android-workspace-latest.png" alt="当前 Android App 原生会话工作台，展示对话、思考事件、模型选择和消息输入。"><br><sub><b>原生工作台</b>：在手机上继续会话、查看思考事件并发送消息。</sub></td>
+    <td width="50%" valign="top"><img src="https://raw.githubusercontent.com/lunaship/dsh-links/4df13382c056d545fbf7a4bc289470c213d8a4f8/docs/images/android-navigation-latest.png" alt="当前 Android App 工作区导航抽屉，展示工作区、会话和设置入口。"><br><sub><b>工作区导航</b>：切换设备、工作区、会话与设置。</sub></td>
   </tr>
 </table>
 
 ### Android App 设置
 
-<img src="https://raw.githubusercontent.com/lunaship/dsh-links/7406c1e8183368db6706dac168ff285b458fdaa4/docs/images/android-settings-latest.png" width="60%" alt="当前 Android App 设置页，展示通用设置、模型、会话、插件和外观选项。">
+<img src="https://raw.githubusercontent.com/lunaship/dsh-links/4df13382c056d545fbf7a4bc289470c213d8a4f8/docs/images/android-settings-latest.png" width="60%" alt="当前 Android App 设置页，展示通用设置、模型、会话、插件和外观选项。">
 
 ## Beta support boundary
 
@@ -78,7 +78,7 @@ This release is an **Android Beta**. The supported public path remains a trusted
 - **Experimental, at your own risk:** a Tailscale or Cloudflare Tunnel path you operate yourself. It is not a supported Beta path and is not covered by the security or compatibility promise.
 - **Not supported:** exposing port `18640` directly to the public Internet or using frp. Public self-serve Relay enrollment is not available.
 
-The Android APK is distributed only as an official signed release. Verify the version and SHA-256 published with that release; do not install repackaged APKs. This repository contains the plugin and its documentation only; the Android source and Relay server are not included here.
+The Android APK is distributed only as an official signed release. Verify the version and SHA-256 published with that release; do not install repackaged APKs. This repository contains the plugin, Relay source under [`relay/`](relay/), and documentation. Android source stays in a private repository.
 
 ## 安装
 

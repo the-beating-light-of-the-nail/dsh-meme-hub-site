@@ -15,7 +15,7 @@ By default the DeepSeek Harness web GUI collapses each file edit into a tiny one
 
 A typical edit: changed lines paired side by side, with the exact words that changed highlighted. Pairs are matched by similarity, so an insertion placed above an edited line (a comment, a blank line) does not steal the changed line's counterpart — unmatched lines simply render as plain additions or removals:
 
-![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/394c0f82efaf930499a35884d6fc73c4123755da/docs/screenshot-compact-card.png)
+![A diff card of an edit, with changed words highlighted](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/0cc04d9bfbe05c07f5ff76e56c64b80efccadf98/docs/screenshot-compact-card.png)
 
 ## Words or whole lines
 
@@ -41,7 +41,7 @@ Every color on the card, from surfaces and text to borders and the green/red dif
 
 The same compact edit under a custom theme — [dsh-stylevault](https://github.com/GptsApp/dsh-stylevault) overrides exactly those token variables, so a restyle there restyles every diff card:
 
-![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/394c0f82efaf930499a35884d6fc73c4123755da/docs/screenshot-compact-themed.png)
+![A compact diff card with a custom theme](https://raw.githubusercontent.com/JanEickholt/dsh-inline-diff/0cc04d9bfbe05c07f5ff76e56c64b80efccadf98/docs/screenshot-compact-themed.png)
 
 ## Language
 
@@ -80,6 +80,10 @@ dsh plugin --profile web add github:JanEickholt/dsh-inline-diff
 ## Contributing
 
 Contributions of any kind are welcome: code, bug reports, docs, design ideas, screenshots, or just telling us what confused you. Open an issue or a pull request; nothing is too small.
+
+### Layout
+
+The client ships as a single self-contained file because DSH loads it as one module. Its source of truth is `src/`, split per concern (`line-diff.js`, `render.js`, `style.js`, `i18n.js`, …). `pnpm build` (or `pnpm test`, which builds first) concatenates those blocks into `lib/client.js`. Edit files under `src/`, never `lib/client.js` directly. The two-tab indentation on code lines mirrors the module-loader wrapper the generated file is wrapped in; blank-line placement between blocks is added by the build.
 
 ## About this project
 

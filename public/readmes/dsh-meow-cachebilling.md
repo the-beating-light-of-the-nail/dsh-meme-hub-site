@@ -99,7 +99,7 @@ AI需要重读代码的miss输入（可以通过fork减少这项成本）。
 
 点开输入框右侧的上下文圆环，弹层底部就是账单：
 
-![效果预览](https://raw.githubusercontent.com/Phant0Meow/dsh-meow-cachebilling/c29df409555d82a16a0df33cda183482887353af/docs/%E6%95%88%E6%9E%9C%E9%A2%84%E8%A7%88.webp)
+![效果预览](https://raw.githubusercontent.com/Phant0Meow/dsh-meow-cachebilling/2da2b2819ad1dca26e2d6c856d7bb66a4861c904/docs/%E6%95%88%E6%9E%9C%E9%A2%84%E8%A7%88.webp)
 
 数字为示意，实际按你的用量与时刻费率计算。
 

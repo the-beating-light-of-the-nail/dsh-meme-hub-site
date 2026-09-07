@@ -14,11 +14,11 @@ English | **中文**
 
 </div>
 
-![余额数字徽章](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/904d1a78a29e8a9ee336f0780bade079b2874546/docs/preview.png%3Fv%3D4)
+![余额数字徽章](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/6e702cff5f516e70c1683b6a0b659166664359c7/docs/preview.png%3Fv%3D4)
 
 **悬停浮现峰谷时间轴**
 
-![悬停态](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/904d1a78a29e8a9ee336f0780bade079b2874546/docs/screenshots/hover.png)
+![悬停态](https://raw.githubusercontent.com/uckkk/dsh-valley-meter/6e702cff5f516e70c1683b6a0b659166664359c7/docs/screenshots/hover.png)
 
 ## 这是什么
 

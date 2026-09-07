@@ -8,8 +8,8 @@
   </thead>
   <tbody>
     <tr>
-      <td align="center"><img src="https://raw.githubusercontent.com/Choi-Peng/dsh-footer-order/1cf4537628eaa363832abf6c76ab2ba594fb8db4/docs/imgs/before.png" alt="修改前" width="240"></td>
-      <td align="center"><img src="https://raw.githubusercontent.com/Choi-Peng/dsh-footer-order/1cf4537628eaa363832abf6c76ab2ba594fb8db4/docs/imgs/after.png" alt="修改后" width="240"></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/Choi-Peng/dsh-footer-order/a32cdb03490efd99a9fdafd927c205556addf919/docs/imgs/before.png" alt="修改前" width="240"></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/Choi-Peng/dsh-footer-order/a32cdb03490efd99a9fdafd927c205556addf919/docs/imgs/after.png" alt="修改后" width="240"></td>
     </tr>
     <tr>
       <td align="center"><sub>多个 footer 插件挤在同一行</sub></td>

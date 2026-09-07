@@ -62,7 +62,7 @@ After a bundle plugin is added to the profile layer stack, **restart `dsh web`**
 
 The settings card (设置 → 插件 → 插件配置 → *Playwright 网页爬取*) edits the `web-fetch-playwright` settings section live:
 
-![Playwright 网页爬取 plugin configuration card](https://raw.githubusercontent.com/chendefine/dsh-web-fetch-playwright/e32f205e01f434626afb2cf2388951e3f7ccedaf/playwright-plugin-config.png)
+![Playwright 网页爬取 plugin configuration card](https://raw.githubusercontent.com/chendefine/dsh-web-fetch-playwright/27fca793aacb71d449dc02fa63af3a57d1358a62/playwright-plugin-config.png)
 
 | Field | Default | Description |
 | --- | --- | --- |
@@ -109,7 +109,7 @@ Some strict sites serve a Cloudflare interstitial before the real page. A real b
 
 With the wait on (default):
 
-1. **Detection** — a response carrying `cf-mitigated: challenge` (the documented signal for every challenge page type), or a 403/503 HTML document from a `server: cloudflare` edge, or the localized interstitial itself (title family like "Just a moment…", `请稍候…`, "Минутку…", plus structural markers: `/cdn-cgi/challenge-platform/` scripts, `#challenge-*` elements, `cf-chl-widget-` frames, `window._cf_chl_opt`). The content-level markers are the *fallback tier* and only run on challenge-compatible responses — 403/429/503 or a Cloudflare edge (`server: cloudflare` / `cf-ray`) — because interstitials never ship as a plain 200, so an ordinary article that merely quotes challenge text can never be mistaken for one. A hard block ("Sorry, you have been blocked") is classified separately and fails immediately.
+1. **Detection** — a response carrying `cf-mitigated: challenge` (the documented signal for every challenge page type), or a 403/503 HTML document from a `server: cloudflare` edge, or the localized interstitial itself (title family like "Just a moment…", `请稍候…`, "Минутку…", plus structural markers: `/cdn-cgi/challenge-platform/` scripts, `#challenge-*` elements, `cf-chl-widget-` frames, `window._cf_chl_opt`). The content-level markers are the *fallback tier* and only run on challenge-compatible responses — 403/429/503 or a Cloudflare edge (`server: cloudflare` / `cf-ray`) — because interstitials never ship as a plain 200, so an ordinary article that merely quotes challenge text can never be mistaken for one. Cloudflare Bot Management's passive JavaScript-Detections telemetry (`/cdn-cgi/challenge-platform/scripts/jsd/`, injected into every *normal* page of a protected zone — e.g. openrouter.ai) is neutralized before the prefix scan, so protected 200 pages with real content never misclassify. A hard block ("Sorry, you have been blocked") is classified separately and fails immediately.
 2. **Bounded wait, same tab and context** — the fetch polls the live DOM (500ms interval) for the challenge to disappear while the browser runs its own verification; the *last* main-frame navigation response is tracked so the reloaded real document's status and headers are the ones reported. SPA-style clears (content swapped without any navigation) are caught by the same DOM probe.
 3. **Bounded retry** — when a window runs out, the same tab re-navigates once (default; `challengeRetries`) with whatever clearance cookies the context already holds.
 4. **Clear failure** — `WEB_FETCH_CHALLENGE` (a provider-specific code the web seam's open-string `code` allows) naming the site, the budget spent, and the last challenge status.

@@ -31,7 +31,7 @@
 
 <br />
 
-<p align="center"><img src="https://raw.githubusercontent.com/xxxyz/DeepSeekHarness-MCP-Manager/c903a77974b58d5adf08aaa75024bf70be72d923/show.png" alt="dsh-mcp-manager 设置 → MCP 管理 页面图例" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/xxxyz/DeepSeekHarness-MCP-Manager/01e111b7e80006eff3b3fb85fe9682ef3e6839b8/show.png" alt="dsh-mcp-manager 设置 → MCP 管理 页面图例" /></p>
 
 ## ✨ 功能一览
 

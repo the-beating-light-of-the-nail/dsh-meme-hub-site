@@ -6,6 +6,14 @@
 
 > 已发布至 npm。推荐使用下方的 DSH 官方一键安装命令；GitHub 源码挂载方式保留给开发与本地调试。
 
+## 1.5.0 更新
+
+- 修复 DSH 0.1.2-rc.1 上设置页保存时“DSH 凭据服务暂不可用”的问题：凭据读写迁移到新的 `ctx.remote.credentials` 接口，并保留旧宿主的兼容路径。
+- “对话增强”模型选择器现在会置灰本身支持图片输入的模型（它们无需桥接），并标注“自带图片支持，无需增强”。
+- 网关拒绝图片输入（如 `Model do not support image input`）或视觉模型返回空内容时，改为清晰的中文错误提示，不再把网关原始 JSON 注入对话。
+- 修复持久化设置被 `null` 覆盖、模型目录响应无上限读取等问题。
+- 完善重试路径诊断、空响应拦截、并发去重注释等稳定性细节。
+
 ## 1.4.0 更新
 
 - 设置页的“对话视觉模型”列表改用 DSH `0.1.2-rc.1` 的新模型目录接口读取，适配新版宿主。
@@ -36,7 +44,7 @@
 - 三种视觉原语策略：`auto`（默认）、`on`、`off`；原语使用 `<ref>`、`<box>`、`<point>`，坐标范围为 `0–999`。
 - 仅为你选定的纯文本模型追加 `[vision]` 变体；原模型保留，不受影响。
 - 会话级视觉证据缓存：追问仅在已有证据覆盖新问题时复用，否则重新读图。
-- 原生设置页：安全密钥存储、连接测试、`/models` 搜索选择、手动模型 ID，以及按供应商折叠选择待增强模型。
+- 原生设置页：安全密钥存储、连接测试、`/models` 搜索选择、手动模型 ID，以及按供应商折叠选择待增强模型（自带图片输入的模型自动置灰）。
 
 ## 工作方式
 
@@ -241,13 +249,13 @@ DSH 会移除包依赖，并自动从 `dsh.profile.bundles` 清除对应 bundle�
 
 **图片理解结果**
 
-![对话视觉入口成功读取图片](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/d368edfba1a4e16eac7868d0f7a0cc0b05078721/test/test-1-Read_Image_Information.png)
+![对话视觉入口成功读取图片](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/73d8d56ccb0c97a1547d73b2024b5508da46d1fb/test/test-1-Read_Image_Information.png)
 
 **UI 复刻过程与结果**
 
-![对截图进行 UI 复刻的对话](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/d368edfba1a4e16eac7868d0f7a0cc0b05078721/test/test-2-Replicate_Image_UI.png)
+![对截图进行 UI 复刻的对话](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/73d8d56ccb0c97a1547d73b2024b5508da46d1fb/test/test-2-Replicate_Image_UI.png)
 
-![根据视觉证据生成的 HTML 页面](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/d368edfba1a4e16eac7868d0f7a0cc0b05078721/test/test-2-Replicate_UI_Display.png)
+![根据视觉证据生成的 HTML 页面](https://raw.githubusercontent.com/InkshadeWoods/dsh-tool-visual-primitives/73d8d56ccb0c97a1547d73b2024b5508da46d1fb/test/test-2-Replicate_UI_Display.png)
 
 这些结果证明的是当前版本的端到端链路；生成效果仍取决于外部视觉模型、文本模型、提示词和图片质量。
 

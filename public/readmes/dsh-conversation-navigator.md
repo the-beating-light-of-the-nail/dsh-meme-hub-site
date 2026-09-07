@@ -17,10 +17,10 @@
 
 纯浏览器插件(无宿主行为)、纯 JavaScript、零构建、零 npm 依赖(按钮/Tooltip 复用 DSH 内核 seed 的官方 primitives)。
 
-![显示轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/3aea3f8605e45816b14a8022c890470cc9ae6a36/assets/modes/mode-main.png)
-![隐藏轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/3aea3f8605e45816b14a8022c890470cc9ae6a36/assets/modes/mode-no-round.png)
-![极简模式·收起](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/3aea3f8605e45816b14a8022c890470cc9ae6a36/assets/modes/mode-minimal-hide.png)
-![极简模式·展开](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/3aea3f8605e45816b14a8022c890470cc9ae6a36/assets/modes/mode-minimal-expand.png)
+![显示轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/d20db712dba9721ca2967706393632f4d1af80b2/assets/modes/mode-main.png)
+![隐藏轮次模式](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/d20db712dba9721ca2967706393632f4d1af80b2/assets/modes/mode-no-round.png)
+![极简模式·收起](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/d20db712dba9721ca2967706393632f4d1af80b2/assets/modes/mode-minimal-hide.png)
+![极简模式·展开](https://raw.githubusercontent.com/gjj-star/dsh-conversation-navigator/d20db712dba9721ca2967706393632f4d1af80b2/assets/modes/mode-minimal-expand.png)
 
 > 三种形态:显示轮次、隐藏轮次、极简·左(极简·右已暂缓,代码保留在仓库中;极简收起仅露行内指示条,悬停展开定位面板)。完整截图见 [assets/screenshots](./assets/screenshots)。其中「社区皮肤适配」两张为第三方皮肤下的效果(鲸鱼娘女仆主题与君の名は主题),非插件自带。
 
@@ -92,6 +92,19 @@ dsh plugin --profile web add ./dsh-conversation-navigator-<version>.tgz
 - **宿主依赖声明**:`@deepseek-ai/dsh-client-ui-conversation` 以 peerDependencies + semver 范围声明(awesome-dsh-plugin 约定,dshmarket 的依赖检查据此展示宿主兼容性)
 - **版本敏感点**:`[data-chat-anchor-key]` / `[data-conversation-scroll]` 是当前 DSH 聊天视图的 DOM 锚点约定(官方 v0.1.2-rc.1 中已验证仍在),DSH 升级后若锚点变化,只需调整 `lib/client.js` 中 `findAnchor` / `computeActiveKey` 两个函数
 - 未声明 `timer` 硬依赖:客户端的 timer 服务存在则用于节流,不存在时自动退化为未节流模式
+
+## 宿主版本 ↔ 插件版本
+
+官方 v0.1.2-rc.1 对会话数据层做了一次爆破性更新(会话节点从 `session.chat` 快照迁移到 `uiConversation` 的 chat target 快照),因此插件按宿主版本分叉:
+
+| 宿主 `dsh-client-ui-conversation` | 对应插件版本 | npm 标签 |
+|---|---|---|
+| **≥ 0.1.2-rc.1**（有 `uiConversation` 服务） | **0.2.6 及以后**（当前 0.2.8） | `latest`（默认） |
+| **≤ 0.1.1-rc.2**（无 `uiConversation`，旧 `session.chat` 快照） | **0.2.5 及以前** | `legacy` |
+
+- 新宿主直接安装最新版即可（`dsh plugin --profile web add dsh-conversation-navigator`）。
+- 旧宿主请指定旧标签：`npm i dsh-conversation-navigator@legacy`（= 0.2.5）。
+- 0.2.6 起 `peerDependencies` 声明为 `>=0.1.2-rc.1 <0.2.0`（仅新宿主）；0.2.5 及以前不声明该范围。
 
 ## 目录结构
 

@@ -38,7 +38,7 @@
 | --- | --- |
 | `/memlearn <lesson>` | 人工触发记忆沉淀：与 `memlearn` 模型工具完全同源的脱敏 / 查重 / 持久化，不开启模型回合，原始输入不进会话日志 |
 
-![记忆检索调用示例](https://raw.githubusercontent.com/Rxiain/dsh-openviking/ef79f3b0c3762d4a16257b9d6c8223d495e6da73/docs/screenshot-memory-recall.png)
+![记忆检索调用示例](https://raw.githubusercontent.com/Rxiain/dsh-openviking/bac2c53cd889707183a1236e999dbc802b650f73/docs/screenshot-memory-recall.png)
 
 ## 为什么选择 OpenViking？
 
@@ -93,7 +93,7 @@ dsh --profile <name>
       enabled: true
       # 每回合最多注入的记忆条数，范围 1–50
       limit: 6
-      # 补充记忆的最低分数，范围 0–1
+      # 本地综合相关性最低分（语义分 + 有界词法重合），范围 0–1
       scoreThreshold: 0.15
       # 单条记忆内容上限（字符），范围 100–5000
       maxContentChars: 500

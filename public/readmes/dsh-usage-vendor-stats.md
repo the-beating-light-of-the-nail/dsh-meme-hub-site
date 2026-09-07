@@ -28,9 +28,9 @@ DeepSeek Harness usage statistics plugin: aggregates API usage **by vendor (subs
 
 ### Screenshots
 
-![Dashboard](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/ac22bed8af20c8059c5f4d86bf21dc88d3870888/assets/screenshot-dashboard.png)
+![Dashboard](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/bdccf889df9f39df459f06482aca5cf3f8aaab55/assets/screenshot-dashboard.png)
 
-![Heatmap & tables](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/ac22bed8af20c8059c5f4d86bf21dc88d3870888/assets/screenshot-heatmap.png)
+![Heatmap & tables](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/bdccf889df9f39df459f06482aca5cf3f8aaab55/assets/screenshot-heatmap.png)
 
 ### Data source
 
@@ -113,9 +113,9 @@ DeepSeek Harness 用量统计插件：**按厂商（订阅 / 官方 API）× KPI
 
 ### 截图
 
-![用量看板](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/ac22bed8af20c8059c5f4d86bf21dc88d3870888/assets/screenshot-dashboard.png)
+![用量看板](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/bdccf889df9f39df459f06482aca5cf3f8aaab55/assets/screenshot-dashboard.png)
 
-![热力图与表格](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/ac22bed8af20c8059c5f4d86bf21dc88d3870888/assets/screenshot-heatmap.png)
+![热力图与表格](https://raw.githubusercontent.com/kirigayakazima/dsh-usage-vendor-stats/bdccf889df9f39df459f06482aca5cf3f8aaab55/assets/screenshot-heatmap.png)
 
 ### 数据说明
 

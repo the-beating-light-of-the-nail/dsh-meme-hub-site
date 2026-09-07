@@ -4,9 +4,9 @@ Workspace path references for the DeepSeek Harness web interface. Type `@` in th
 
 **Why dsh-at-any instead of dsh-at-file**: the original plugin capped its index at 5000 entries by default, which silently dropped `.java`/`.vue` and other source files in workspaces with more files (the bug this fork fixes). dsh-at-any removes the practical cap (default 1,000,000) and indexes **every source format** — `.java`, `.vue`, `.ts`, XML, YAML, images, PDFs, extension-less and hidden files (`.env`, ...). Build-artifact directories (`target`/`dist`/`node_modules`/...) are still skipped by default.
 
-![@ path picker](https://raw.githubusercontent.com/hatsuyuki0103/dsh-at-any/e9185dbd0bfa40e71cd467d72455f7e07b9f129c/assets/screenshots/workspace-path-picker.png)
+![@ path picker](https://raw.githubusercontent.com/hatsuyuki0103/dsh-at-any/f1dd29715f74edafab120c8c206f7f86de882929/assets/screenshots/workspace-path-picker.png)
 
-![File reference in the composer](https://raw.githubusercontent.com/hatsuyuki0103/dsh-at-any/e9185dbd0bfa40e71cd467d72455f7e07b9f129c/assets/screenshots/file-mention-composer.png)
+![File reference in the composer](https://raw.githubusercontent.com/hatsuyuki0103/dsh-at-any/f1dd29715f74edafab120c8c206f7f86de882929/assets/screenshots/file-mention-composer.png)
 
 ## Usage
 
@@ -54,7 +54,7 @@ Use the same command to update an existing installation. Restart `dsh web` after
 
 Open **Settings -> File mentions** to manage file-name filters.
 
-![File mention settings with Exact and Regex rules](https://raw.githubusercontent.com/hatsuyuki0103/dsh-at-any/e9185dbd0bfa40e71cd467d72455f7e07b9f129c/assets/screenshots/file-mention-settings.png)
+![File mention settings with Exact and Regex rules](https://raw.githubusercontent.com/hatsuyuki0103/dsh-at-any/f1dd29715f74edafab120c8c206f7f86de882929/assets/screenshots/file-mention-settings.png)
 
 - **Global** contains rules shared by every workspace.
 - **Workspace** contains additional rules for the selected workspace path. Each workspace keeps its own list, and the panel shows the global rules it inherits.

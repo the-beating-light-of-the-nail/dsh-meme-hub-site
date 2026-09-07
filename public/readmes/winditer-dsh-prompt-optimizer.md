@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/c4926acd41715da38731788b47b3bae6f1dd2cee/assets/screenshot.png" width="70%" alt="dsh-prompt-optimizer preview card">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/be0fb0a07380a20a81287dedb17a3400aa88b592/assets/screenshot.png" width="70%" alt="dsh-prompt-optimizer preview card">
 </p>
 
 # dsh-prompt-optimizer
@@ -27,7 +27,7 @@ One-click prompt polishing for the DSH composer: select nothing, just type a dra
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/c4926acd41715da38731788b47b3bae6f1dd2cee/assets/screenshot.png" width="90%" alt="Optimization preview card with reasoning and streaming result">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-prompt-optimizer/be0fb0a07380a20a81287dedb17a3400aa88b592/assets/screenshot.png" width="90%" alt="Optimization preview card with reasoning and streaming result">
 </p>
 
 ## Requirements
@@ -41,6 +41,19 @@ One-click prompt polishing for the DSH composer: select nothing, just type a dra
 > The bundle entry (`id: prompt-optimizer`) is self-declared by this package's `cordis.patch.yml` —
 > no manual patch file is needed.
 
+### From GitHub (recommended)
+
+Install by repository identity so the market can match your package to
+`winditer/dsh-prompt-optimizer` unambiguously (several unrelated plugins
+share the npm name `dsh-prompt-optimizer`; a bare npm install hides the
+GitHub link and description in dshmarket):
+
+```sh
+dsh plugin --profile desktop add github:winditer/dsh-prompt-optimizer
+```
+
+For a web profile, use `--profile web`. Restart DSH (quit fully and reopen), then a ✨ button appears to the right of the composer.
+
 ### From npm
 
 ```sh
@@ -48,6 +61,11 @@ dsh plugin --profile desktop add dsh-prompt-optimizer
 ```
 
 For a web profile, use `--profile web`. Restart DSH (quit fully and reopen), then a ✨ button appears to the right of the composer.
+
+> ⚠️ The npm name `dsh-prompt-optimizer` is shared by several unrelated
+> plugins. Because the spec carries no repository identity, dshmarket cannot
+> disambiguate it and its Installed tab shows no GitHub link or description.
+> Prefer the `github:` install above.
 
 ### From source (development)
 

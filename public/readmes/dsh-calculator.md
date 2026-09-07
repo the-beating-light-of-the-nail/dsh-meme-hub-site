@@ -9,8 +9,9 @@ A DeepSeek Harness (DSH) web plugin that shows your **DeepSeek API spend** and
   **in your local timezone**; resets at local midnight)
 - **胶囊实时费用** — the collapsed pill shows today's total spend live
 - **账户余额** — live balance from the DeepSeek API (`GET /user/balance`)
-- **第三方模型不计费** — only `deepseek-official` routes are billed; any other
-  provider/model is listed as unbilled
+- **第三方模型不计费** — only DeepSeek official routes (`deepseek-official`
+  与视觉专用 `deepseek-vision`) are billed; any other provider/model is
+  listed as unbilled
 - **峰谷计价** — prices events by the Beijing peak/off-peak schedule (peak
   09:00–12:00 & 14:00–18:00, off-peak = half price); events before 2026-08-17
   are still billed at the then-current flat rates
@@ -113,6 +114,7 @@ price) all day:
 |---|---|---|---|
 | deepseek-v4-flash | ¥0.10 / ¥0.05 | ¥3.0 / ¥1.5 | ¥9.0 / ¥4.5 |
 | deepseek-v4-pro | ¥0.30 / ¥0.15 | ¥9.0 / ¥4.5 | ¥27.0 / ¥13.5 |
+| deepseek-v4-flash-vision-exp | ¥0.10 / ¥0.05 | ¥3.0 / ¥1.5 | ¥9.0 / ¥4.5 |
 
 - 2026-08-17 之前的会话事件按当时费率计费（flash ¥0.02 / ¥1.0 / ¥2.0，pro
   ¥0.025 / ¥3.0 / ¥6.0）

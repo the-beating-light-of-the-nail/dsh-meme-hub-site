@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/Hero.png" width="100%"
+<img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/Hero.png" width="100%"
      alt="DeepSeek Harness hero 横幅：对话自动分层蒸馏成记忆，模型每步前自动召回注入——右侧对话气泡逐层溶解为三层渐亮光带，流入带发光圆球与渐变轨道的玻璃胶囊（下有 日常·工作·智能·关闭 四档刻度），光丝回流示意召回注入">
 
 # dsh-layered-memory
@@ -10,26 +10,27 @@
 [English](README.en.md) · [最新发行版](https://github.com/JunNanLYS/dsh-layered-memory/releases/latest) · [反馈问题](https://github.com/JunNanLYS/dsh-layered-memory/issues)
 
 [![npm version](https://img.shields.io/npm/v/dsh-layered-memory?color=6f83ff&style=flat-square&label=npm)](https://www.npmjs.com/package/dsh-layered-memory)
-[![DSH 0.1.2-alpha.x](https://img.shields.io/badge/DSH-0.1.2--alpha.x-8b5cf6?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
+[![DSH 0.1.2](https://img.shields.io/badge/DSH-0.1.2-8b5cf6?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
 [![MIT License](https://img.shields.io/badge/license-MIT-536990?style=flat-square)](LICENSE)
 
 </div>
 
 ## 快速开始
 
-需要 Node ≥ 22.16 与 DeepSeek Harness ≥ **0.1.2-alpha.1**（0.8.12 起仅支持
-0.1.2-alpha.x 宿主线；旧版插件请看 [历史版本](https://github.com/JunNanLYS/dsh-layered-memory/releases)）。
+需要 Node ≥ 22.16 与 DeepSeek Harness **0.1.2-alpha.1 ~ 0.1.2-rc.1**（0.10.0 起
+支持到 0.1.2-rc.1，npm latest 已指向该版本；旧版插件请看
+[历史版本](https://github.com/JunNanLYS/dsh-layered-memory/releases)）。
 两种调用方式任选（`npx` 前缀可替换下面任何 `dsh` 命令）：
 
 ```bash
-# 方式一：npx 直接跑官方 CLI（无需预装 dsh；宿主须带 alpha 版本号——npm latest 仍指向 0.1.1-rc.x）
-npx -y @deepseek-ai/dsh@0.1.2-alpha.2 plugin --profile web add dsh-layered-memory
+# 方式一：npx 直接跑官方 CLI（无需预装 dsh）
+npx -y @deepseek-ai/dsh plugin --profile web add dsh-layered-memory
 
-# 方式二：已装 dsh CLI（先升级到 alpha 线：npm i -g @deepseek-ai/dsh@0.1.2-alpha.2 并重启；
+# 方式二：已装 dsh CLI（升级：npm i -g @deepseek-ai/dsh 并重启；
 # dsh 是 pnpm 转发器，未装 pnpm 时先 npm i -g pnpm）
 dsh plugin --profile web add dsh-layered-memory
 
-# 包源备选：GitHub 仓库 / 本地路径（开发调试，link: 指向仓库，npm run build + 重启 dsh 即生效）
+# 包源备选：GitHub 仓库 / 本地路径（开发调试，link: 指向仓库，pnpm run build + 重启 dsh 即生效）
 dsh plugin --profile web add https://github.com/JunNanLYS/dsh-layered-memory
 dsh plugin --profile web add /path/to/dsh-layered-memory
 ```
@@ -60,21 +61,41 @@ Agent 应当返回安装结果，并明确告诉你配置中是否已经出现 `
 **卸载**：`dsh plugin --profile web remove dsh-layered-memory` + 重启。数据保留在
 `~/.dsh/memory/`，不需要时手动删除整个目录即可。
 
+### 终端形态（TUI / headless）
+
+除 web 外，同一插件可直接装进终端形态宿主：
+
+```bash
+# dsh-tui（Claude Code 风格 TUI 前门，详见 github.com/ccch1mneyyy/dsh-TUI · 官网 https://dshtui.com）
+dsh plugin --profile dsh-tui add @deepseek-harness-tui/dsh-tui   # 首次：建 profile 并装 TUI 宿主
+dsh plugin --profile dsh-tui add dsh-layered-memory
+dsh --profile dsh-tui
+```
+
+- **`/memory <auto|chat|work|off>`** 切换当前会话档位，无参数时弹出档位选择面板；
+- **状态行**：提示框上方常驻 `记忆:智能` 等当前档位读数；
+- **`/settings` 设置区块**：总开关、捕获、蒸馏、召回、蒸馏模型路由与输入预算可直接编辑
+  （与 web 设置面板同一存储；复杂路由链仍走 web / YAML）；
+- **headless**（`dsh --profile headless "一次性任务"`）：捕获与蒸馏照常工作，无界面元素。
+  web 与终端形态共享 `~/.dsh/memory/` 同一份记忆。
+
 ### 从源码开发
 
 ```bash
 git clone https://github.com/JunNanLYS/dsh-layered-memory
 cd dsh-layered-memory
-npm install && npm run build
-dsh plugin --profile web add .        # link: 安装，改代码后 npm run build + 重启 dsh 即生效
-npm run smoke                         # 冒烟测试（先重编：见下方命令）
+pnpm install && pnpm run build
+dsh plugin --profile web add .        # link: 安装，改代码后 pnpm run build + 重启 dsh 即生效
+pnpm run smoke                        # 冒烟测试（先重编：见下方命令）
 npx tsc src/smoke.ts --outDir dist-smoke --module nodenext --moduleResolution nodenext --target es2022 --strict --skipLibCheck --esModuleInterop
 ```
+
+依赖管理用 pnpm（与 dsh 官方安装通道一致，版本由 `packageManager` 字段钉死）。
 
 ## 运行时数据流
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/readme/flow.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/readme/flow.svg" width="100%"
        alt="dsh-layered-memory 运行时数据流：左侧 User 与 Assistant 的会话事件流入插件（L0 捕获、L1–L3 蒸馏、检索召回、记忆工具），插件经 agent/pre-step 把相关记忆注入右侧 DSH 核心；蒸馏复用核心的 ctx.llm，数据双写 ~/.dsh/memory/">
 </p>
 
@@ -95,28 +116,28 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 真机实录：召回注入与工具调用在对话里的样子——"上下文注入 · memory"行先带出相关记忆，模型再按需调 `memory_read_scene` 读取场景块，凭记忆直接作答：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/MemoryTools.png" width="60%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/MemoryTools.png" width="60%"
        alt="对话界面实录（浅色主题）：用户消息"我们最近要干什么？"上方可见"上下文注入 · memory"行；助手回答前列出 4 次 memory_read_scene 工具调用（参数为 scenes 场景块的 .md 文件名），随后凭记忆梳理近期目标与推进路线">
 </p>
 
 在只开放代码执行入口的受限会话中，模型经由 `run_code` 间接调用记忆工具（轨迹视图中的 SUBTOOL 嵌套）：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/ToolTrajectory.png" width="80%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/ToolTrajectory.png" width="80%"
        alt="工具调用轨迹视图：顶部彩色时间线与左侧步骤列表（SYSTEM/CONTEXT/USER/ASSISTANT/TOOL/SUBTOOL 彩色标签），run_code 工具步骤内嵌套 5 次 memory_read_scene 子工具调用（SUBTOOL 标记），右侧为所选步骤的详情面板">
 </p>
 
 ## 分层记忆（L0–L3）
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/Layers.png" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/Layers.png" width="100%"
        alt="分层记忆四层（自左上向右下逐层精炼）：L0 原始对话（对话气泡）→ L1 原子记忆（发光事实粒子）→ L2 场景块（玻璃文档板）→ L3 核心画像（发光晶核）；层间由 LLM 提取/整合/蒸馏光束相连，宽度递减表示数据逐层精炼">
 </p>
 
 ## 会话级记忆档位
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/MemoryChip.png" width="72%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/MemoryChip.png" width="72%"
        alt="深色主题下的会话记忆芯片与级联菜单：输入栏左簇 Read Only 芯片右侧是「记忆 · 智能 ▾」芯片；点击向上弹出圆角浮层菜单，两行「记忆范围 智能 ›」「数据流 跟随全局 ›」，数据流行右侧悬停出二级子面板列出 跟随全局✓/读写/只写/暂停 四个选项">
 </p>
 
@@ -140,13 +161,15 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
   一并停止；`memory_search` 等读工具返回只写提示）。覆盖按会话持久化，切回
   「跟随全局」即清除、跟随自动化区的召回开关；适合调试/评测/敏感会话「只吸收不干扰」。
   与暂停正交：暂停是完全隐身（连捕获都关），只写保留「进」关「出」。
+- **终端形态（TUI）**：同一档位体系在 dsh-tui 宿主下以 `/memory` 命令、状态行与
+  `/settings` 区块呈现（安装见快速开始）。
 
 ## 界面预览
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/ui-dark.png" width="49.5%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/ui-dark.png" width="49.5%"
        alt="深色主题下的记忆工作台总览：五区任务导航（总览选中），健康摘要卡（运行正常 + 存储/向量检索/蒸馏队列子系统标签 + 待蒸馏注意提示）、最近活动列表（新增/更新动词标签 + 记忆/场景层标签 + 相对时间）、关键数字瓦片（记忆资产/场景/本周蒸馏输出/上次蒸馏）与四区跳转按钮">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/ui-light.png" width="49.5%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/ui-light.png" width="49.5%"
        alt="浅色主题下的同一记忆工作台总览：同款五区导航与健康摘要/最近活动/关键数字布局，浅色卡片底与同套品牌蓝强调色，主题切换无需重载">
 </p>
 
@@ -170,7 +193,7 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 > 0.8.5 基线（A 组数据；对话赛道 B 组已下线，只跑 A 组）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/readme/bench-dialog.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/readme/bench-dialog.svg" width="100%"
        alt="DSH-MemBench 对话赛道准确率图（A 组·记忆开）：总准确率 95.2%（400/420）；核心六题型各 60 题——抽取 58/60、多跳 60/60、时序 56/60、更新 55/60、场景回忆 52/60、拒答 60/60 且 0 编造；扩展四题型各 15 题——增量积累 15/15、连锁更新 15/15、事件排序 14/15、同义改写 15/15">
 </p>
 
@@ -181,7 +204,7 @@ L1/L2/L3 层级过滤）、层级 × 时间窗口表格（调用数 / 输出与�
 ### 工作流赛道（0.8.3 存档 · 7 场景版 · A 组 3 次 / B 组 1 次，真实工具沙箱）：做得对、做得省吗
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/readme/bench-workflow.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/readme/bench-workflow.svg" width="100%"
        alt="DSH-MemBench 工作流赛道 A/B 对照图：探针段完成度 A 组 59/69（85.5%）对 B 组 10/23（43.5%）；成本对比（B 组为满格基准，每场景均值）——步骤 24.3 对 41.4（B +70%）、工具调用 37.7 对 62.1（B +65%）、输入 token 266k 对 1.81M（B 6.8 倍）；风格规范场景探针 A 12/12 对 B 0/4；长任务每场景输入 token A 266k 对 B 1.81M">
 </p>
 
@@ -211,7 +234,7 @@ node bench/harness/retrieval-metrics.mjs <runDir> --flood 200,600               
 ## 存储布局
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/readme/storage.svg" width="100%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/readme/storage.svg" width="100%"
        alt="存储布局：双写架构（JSONL 事实源只增不改 + memory.db 主检索库）；文件形态含 conversations/records/scenes/persona/state/pending/session-modes/embedding-source/模型目录/推理运行时/日志与重建归档；检索三策略 keyword/embedding/hybrid（RRF k=60）；降级链保证永不阻塞宿主">
 </p>
 
@@ -223,7 +246,7 @@ node bench/harness/retrieval-metrics.mjs <runDir> --flood 200,600               
 设置页（记忆 → 自动化 → 嵌入模型）选择嵌入源，即时生效、无需改配置重启：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/1790977e2f197698f3697421922e7640fd191ef4/assets/img/EmbeddingSource.png" width="70%"
+  <img src="https://raw.githubusercontent.com/JunNanLYS/dsh-layered-memory/69028fbee43e9950fffecc578430909fc827527e/assets/img/EmbeddingSource.png" width="70%"
        alt="设置页语义检索（嵌入源）面板（浅色主题）：三态选择器（关闭/本地/远程，本地选中）显示当前嵌入源与首次启用自动安装运行时提示；下方本地模型目录列出 BGE small 中文（使用中/已就绪）、EmbeddingGemma 300M（下载 316MB）、BGE-M3（下载 560MB）三款模型的维度/上下文/体积/特点与下载入口">
 </p>
 

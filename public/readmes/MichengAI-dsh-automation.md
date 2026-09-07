@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/branding/dsh-banner.png" alt="DSH Automation" width="100%">
 </p>
 
 <div align="center">
@@ -34,25 +34,25 @@
 
 Scheduled tasks live in the workspace **Scheduled** tab, next to **Tasks** and **Channels**:
 
-![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/screenshots/workspace-scheduled.png)
+![Scheduled sidebar](https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/screenshots/workspace-scheduled.png)
 
 Open **Settings → Scheduled Tasks** to search, create, pause, and inspect rules:
 
-![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/screenshots/settings-tasks.png)
+![Scheduled tasks settings](https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/screenshots/settings-tasks.png)
 
 Describe the job in chat. The agent calls `automation_create` and asks through the official approval card:
 
-![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/screenshots/chat-create.png)
+![Create a scheduled task from chat](https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/screenshots/chat-create.png)
 
-![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/screenshots/chat-approval.png)
+![Official approval for automation_create](https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/screenshots/chat-approval.png)
 
 After approval, the rule is saved and summarized in the conversation:
 
-![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/screenshots/chat-created.png)
+![Scheduled task created](https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/screenshots/chat-created.png)
 
 Run history stays in Settings and can be filtered by day, week, month, task, or status:
 
-![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/d4f3d35cea93e05dde42144cd5e82e9918a60f0c/assets/screenshots/settings-runs.png)
+![Run history](https://raw.githubusercontent.com/MichengAI/dsh-automation/f1bc91a3437f0b952631a46a8363089587b9ae6a/assets/screenshots/settings-runs.png)
 
 ## DSH product ecosystem
 
@@ -124,6 +124,7 @@ Each dispatched run uses the saved prompt, workspace, model, and permission boun
 | Item | Behavior |
 | --- | --- |
 | Permission | Options and the default come directly from the Host `permissionPresets` service, including custom presets. |
+| Tool calls | Follow Host tool availability, permission, and approval checks without an additional fixed tool allowlist or a background-shell ban. The Host manages background processes. |
 | Full access | The official `danger-full-access` option uses the same risk confirmation and orange warning as Chat. |
 | Approval | Chat create follows the session policy. Full access (`never`) proceeds; Workspace Write / Read Only (`ask`) shows the official card. Unattended runs stay fail-closed `never`. |
 | Retry | No automatic retry after a started run. |

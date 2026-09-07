@@ -12,7 +12,7 @@ DSH Remote 通过你的私有 Tailscale 网络，为 [DeepSeek Harness](https://
 <!-- README_MEDIA_SLOT:HERO -->
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Zouu-X/dsh_remote/dd8013b9fa989fc98931f1f6129ef1a680bf657a/assets/readme/hero-zh-light.png" width="900"
+  <img src="https://raw.githubusercontent.com/Zouu-X/dsh_remote/a18ce28abec513421d79fe862f680be3f15d20df/assets/readme/hero-zh-light.png" width="900"
        alt="手机上的 DSH Remote：任务列表里有一个正在运行的任务，以及一条可以「允许一次」或「拒绝」的权限请求。">
 </p>
 

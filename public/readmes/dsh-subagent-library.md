@@ -3,13 +3,13 @@
 **中文 | [English](./README.en.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/6426c64da27f0d31f773e4486120e85502663618/assets/readme/hero.svg" width="100%" alt="dsh-subagent-library — DeepSeek Harness 具名子代理库插件" />
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/d7c4ed62a2283b4778322295bdcdebc675fc22bc/assets/readme/hero.svg" width="100%" alt="dsh-subagent-library — DeepSeek Harness 具名子代理库插件" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/MaRi23333/dsh-subagent-library/ci.yml?style=flat-square&label=CI" alt="CI" />
   <img src="https://img.shields.io/github/license/MaRi23333/dsh-subagent-library?style=flat-square" alt="License: MIT" />
-  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.1--rc.1-4d6bfe?style=flat-square" alt="DeepSeek Harness 0.1.1-rc.1" />
+  <img src="https://img.shields.io/badge/DeepSeek%20Harness-0.1.2--rc.1-4d6bfe?style=flat-square" alt="DeepSeek Harness 0.1.2-rc.1" />
 </p>
 
 > **English:** dsh-subagent-library is a named subagent roster plugin for the
@@ -35,17 +35,17 @@ DeepSeek Harness 的具名子代理库插件：把常用角色（代码审查、
 ## 界面
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/6426c64da27f0d31f773e4486120e85502663618/assets/readme/screenshot-settings.png" width="75%" alt="设置页「子代理库」卡片：可视化编辑名册条目" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/d7c4ed62a2283b4778322295bdcdebc675fc22bc/assets/readme/screenshot-settings.png" width="75%" alt="设置页「子代理库」卡片：可视化编辑名册条目" /><br>
   <em>设置页「子代理库」卡片：可视化增删改条目（模型 / 传输层 / 深度 / 禁用工具 / persona）</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/6426c64da27f0d31f773e4486120e85502663618/assets/readme/screenshot-command-palette.png" alt="命令面板里的 /subagent 命令" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/d7c4ed62a2283b4778322295bdcdebc675fc22bc/assets/readme/screenshot-command-palette.png" alt="命令面板里的 /subagent 命令" /><br>
   <em><code>/subagent</code> 命令（快速查看子代理库名册）</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/6426c64da27f0d31f773e4486120e85502663618/assets/readme/screenshot-roster.png" width="75%" alt="/subagent 输出：具名子代理名册一览" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/d7c4ed62a2283b4778322295bdcdebc675fc22bc/assets/readme/screenshot-roster.png" width="75%" alt="/subagent 输出：具名子代理名册一览" /><br>
   <em>名册输出示例：每个条目一句话角色描述 + 模型路由 + 可续聊标记</em>
 </p>
 
@@ -134,7 +134,7 @@ pnpm run typecheck
 pnpm run build   # host: lib/index.js；client: lib/client.js
 ```
 
-- 开发依赖锁定 DSH `0.1.0-rc.6`（见 package.json devDependencies），实机验证兼容至 `0.1.1-rc.1`；其他版本如接口漂移请对照 [deepseek-harness 仓库](https://github.com/deepseek-ai/deepseek-harness) 相应 tag 调整。
+- 开发依赖仍锁定 DSH `0.1.0-rc.6`（见 package.json devDependencies），已由用户在最新 DSH `0.1.2-rc.1` 实际验证正常；其他版本如接口漂移请对照 [deepseek-harness 仓库](https://github.com/deepseek-ai/deepseek-harness) 相应 tag 调整。
 
 ## License
 

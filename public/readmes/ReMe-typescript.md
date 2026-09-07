@@ -4,7 +4,7 @@
 
 `@agentscope-ai/reme` connects DeepSeek Harness and OpenClaw to ReMe's local-first, file-native long-term memory. The package also exposes a host-independent ReMe HTTP client.
 
-![ReMe Status in DeepSeek Harness](https://raw.githubusercontent.com/agentscope-ai/ReMe/0eba6ea831c915ca92e4c501785951dc00538a41/typescript/figures/dsh/reme-status-overview.png)
+![ReMe Status in DeepSeek Harness](https://raw.githubusercontent.com/agentscope-ai/ReMe/36e3a87c75f95c8b0e2908c73f7ae81f90c0fd0d/typescript/figures/dsh/reme-status-overview.png)
 
 ## Capabilities
 

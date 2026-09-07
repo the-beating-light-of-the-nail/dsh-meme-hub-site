@@ -7,10 +7,10 @@ One-stop SKILL & MCP manager — a **host-level plugin** for [DeepSeek Harness](
 ## Screenshots
 
 MCP management
-![MCP 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/f66c756edbcd8e175b842b1e68931ce2785a1e52/docs/screenshot-mcp.png)
+![MCP 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/c5e4aa5f0302e5de928e8688a643e1bed3c97876/docs/screenshot-mcp.png)
 
 SKILL management
-![SKILL 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/f66c756edbcd8e175b842b1e68931ce2785a1e52/docs/screenshot-skills.png)
+![SKILL 管理](https://raw.githubusercontent.com/alone-tree/dsh-skill-mcp-manager/c5e4aa5f0302e5de928e8688a643e1bed3c97876/docs/screenshot-skills.png)
 
 ## Core features
 
@@ -113,7 +113,7 @@ The plugin provides three small, fixed tools to manage all on-demand MCPs.
 
   `tier` ∈ `eager` | `on-demand` | `disabled` (default `on-demand`). `notes` is user-maintained and is not overwritten by developer MCP updates.
 - **`mcp_load { name, peek? }`** — load / hot-reload a server instance **for the current session**, returning full tool definitions + server-declared metadata; other sessions are unaffected. `peek: true` only reads the snapshot — no connect, no disconnect — handy when the AI forgot a tool's parameters and wants a quick peek without interrupting the MCP's live process. Especially friendly for stateful MCPs like browser automation.
-- **`mcp_call { name, tool, args? }`** — invoke an on-demand tool (must `mcp_load` first) through **the current session's** loaded instance. Structured `args` only — never shell text, never a temp file.
+- **`mcp_call { name, tool, args? }`** — invoke an on-demand tool (must `mcp_load` first) through **the current session's** loaded instance. Structured `args` only — never shell text, never a temp file. Malformed shapes (missing/non-string `tool`, non-object `args`) are rejected with the correct shape spelled out, never auto-unwrapped; failed calls (protocol errors and server `isError` results) echo back `called MCP tool: <server>/<tool>` plus the exact `arguments` sent so the model can self-correct.
 
 ## Config
 

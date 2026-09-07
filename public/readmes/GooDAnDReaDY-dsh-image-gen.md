@@ -45,6 +45,8 @@
 ## 🛠️ Complete Tools Reference
 
 * **`generate_image`**: Generate images with pluggable providers, seeds, aspect ratios, and style presets.
+* **`edit_image`**: Targeted inpainting and modification with automatic session reference resolution (#142, #144, #145).
+* **`vary_image`**: Controlled variation generation preserving composition (#143, #144).
 * **`remove_background`**: Extract subject with transparent PNG output (FAL BiRefNet / Rembg).
 * **`upscale_image`**: 2x / 4x super-resolution with clarity reconstruction.
 * **`vectorize_image`**: Convert raster graphics to clean scalable SVG vectors with palette quantization.
@@ -52,8 +54,28 @@
 * **`generate_image_pack`**: Simultaneous multi-aspect ratio rendering with graceful partial recovery.
 * **`compare_images`**: Pixel-level visual difference ratio comparison.
 * **`inspect_image_quality`**: Automated visual audit, Laplacian sharpness scoring, and defect detection.
+* **`extract_design_tokens`**: Extract CSS Variables, Tailwind color palettes, and W3C Design Tokens from concept art (#172).
+* **`image_to_css_gradient`**: Generate lightweight pure CSS Mesh / Radial / Linear gradients (< 1KB) from image colors (#174).
+* **`check_image_contrast`**: Evaluate background luminance and WCAG 2.1 AA/AAA contrast for text with scrim suggestions (#175).
+* **`optimize_vector_svg`**: Clean and sanitize SVG, normalize viewBox, and export ready-to-use React TSX components (#176).
+* **`generate_pwa_icon_suite`**: Generate full PWA icon sets, HTML meta tags, and web app manifest.json (#190).
 
 ---
+
+
+## 🚀 Updates in v0.10.4: Cordis Lifecycle, Full Settings GUI, and i18n
+- **Cordis Lifecycle (#136)**: wrapped all 7 tool registrations in `ctx.effect` for proper disposal on reload.
+- **Settings GUI Completeness (#137)**: exposed fields for Replicate, SeaDream, Gemini, Local ComfyUI/A1111, style presets, and LLM enhancer.
+- **Package Manifest (#138)**: declared kernel `peerDependencies` (`host-webserver`, `settings`, `llm`, `system-prompt`).
+- **React Cleanup (#139)**: removed dead state hooks from `FalImageCard`.
+- **Complete Localization (#140)**: eliminated hardcoded strings, wiring comprehensive dictionaries for en, ru, and zh.
+
+
+### 🚀 What's New in v0.10.7 (#197)
+* **Robust Error Formatting**: completely prevents `[object Object]` from appearing in provider refusal chains, extracting deep `.message`, `.detail`, and `.error` objects cleanly.
+* **Deduplicated Provider Prefixes**: eliminates redundant `codex: codex: ...` prefixes.
+* **FAL Credential Aliasing**: seamless fallback between `FAL_API_KEY` and `FAL_KEY` in credentials and environment.
+* **Subscription Aspect Ratio Mapping**: maps aspect ratios (`16:9`, `3:2`, `9:16`, `2:3`) to appropriate subscription dimensions (`1536x1024` / `1024x1536`) instead of falling back to default square `1024x1024`.
 
 ## 🎨 Supported Generation Backends
 

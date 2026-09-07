@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/eba281ffae4aaa01a20cc2456e4ea4f521bf1737/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
 </p>
 
 <div align="center">
@@ -27,25 +27,27 @@
 - List workspaces and conversations with expand/collapse, drag reorder, project pinning, unread dots, and running-state indicators.
 - Add project and conversation menus for rename, pin, unread, archive, fork, open folder, copy, and delete.
 - Restyle the conversation column and composer card, and add a compact turn navigator on the current session.
+- Recall submitted text with Up/Down from an empty composer, with workspace isolation and guards for drafts, IME, and candidate menus. BTW is not required.
+- Capture ordinary messages only from live events while the input extension is mounted. Opening or reloading conversations and loading older messages do not backfill history; input sent while the extension is unmounted is not imported.
 - Show companion-plugin status in **Settings → About**, and install the missing pieces from npm.
 
 ## Screenshots
 
 Light theme: Codex-style sidebar, workspace tree, and conversation column.
 
-![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/conversation-light.png)
+![Light theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/eba281ffae4aaa01a20cc2456e4ea4f521bf1737/assets/screenshots/conversation-light.png)
 
 Dark theme: the same layout with Codex dark tokens.
 
-![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/conversation.png)
+![Dark theme conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/eba281ffae4aaa01a20cc2456e4ea4f521bf1737/assets/screenshots/conversation.png)
 
 Conversation menu: rename, pin, unread, archive, fork, copy, and delete.
 
-![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/session-menu.png)
+![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/eba281ffae4aaa01a20cc2456e4ea4f521bf1737/assets/screenshots/session-menu.png)
 
 **Settings → About** lists the companion plugins and their install state.
 
-![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/7da13660f6b2b01ef148a2cee4ffd8b34b97698d/assets/screenshots/settings-about.png)
+![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/eba281ffae4aaa01a20cc2456e4ea4f521bf1737/assets/screenshots/settings-about.png)
 
 ## Prerequisites
 

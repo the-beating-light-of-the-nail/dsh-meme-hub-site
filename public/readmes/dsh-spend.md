@@ -38,9 +38,9 @@
 
 ## 界面预览
 
-![仪表盘总览](https://raw.githubusercontent.com/nonewind/dsh-spend/68af4b832bf4b9cdddb82cc536c55e11c21a8157/docs/screenshots/dashboard.png)
+![仪表盘总览](https://raw.githubusercontent.com/nonewind/dsh-spend/d621227bc878c748905743e1fde454979af10000/docs/screenshots/dashboard.png)
 
-![调用明细窗口](https://raw.githubusercontent.com/nonewind/dsh-spend/68af4b832bf4b9cdddb82cc536c55e11c21a8157/docs/screenshots/details-window.png)
+![调用明细窗口](https://raw.githubusercontent.com/nonewind/dsh-spend/d621227bc878c748905743e1fde454979af10000/docs/screenshots/details-window.png)
 
 ## 交互方式
 
