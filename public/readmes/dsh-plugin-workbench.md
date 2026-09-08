@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/d39b723424092ad7a2806304c6c8ee22bc829827/docs/banner.svg" alt="dsh-plugin-workbench banner" width="100%">
+  <img src="https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/ee95cd8377847d0436189ccfbbdd0afd1f6af4d9/docs/banner.svg" alt="dsh-plugin-workbench banner" width="100%">
 </p>
 
 # dsh-plugin-workbench
@@ -30,7 +30,7 @@
 
 ## 效果图
 
-![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/d39b723424092ad7a2806304c6c8ee22bc829827/docs/workbench-webgui.png)
+![workbench 实机截图：DSH 网页内的文件树与可编辑预览](https://raw.githubusercontent.com/Pasumao/dsh-plugin-workbench/ee95cd8377847d0436189ccfbbdd0afd1f6af4d9/docs/workbench-webgui.png)
 
 > 真实 Web GUI 截图。
 

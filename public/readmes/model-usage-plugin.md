@@ -2,7 +2,7 @@
 
 DeepSeek Harness（DSH）Web 插件：统计各模型 tokens 消耗并估算费用，显示 API 账户余额。
 
-![设置面板"模型消耗"页签效果](https://raw.githubusercontent.com/AKS1st/model-usage-plugin/62b5c88f574f68623c8096ccdb0e2159452c1565/image.png)
+![设置面板"模型消耗"页签效果](https://raw.githubusercontent.com/AKS1st/model-usage-plugin/23e36843e628b688d338df70a60d86faac0addf2/image.png)
 
 ## 功能
 
@@ -56,6 +56,7 @@ dsh plugin --profile web remove model-usage-plugin
 ## 数据与隐私
 
 - 统计、价格与汇率缓存（含时间戳）保存在 `$DSH_HOME/musage-stats.json`
+- 统计接口只接受 loopback 同源请求；不要将包含该插件的 WebServer 暴露到公网
 - 页面填写的余额 API Key 仅保存在内存，不会写入磁盘；需持久化时请配置 `DEEPSEEK_API_KEY` 环境变量或凭证
 
 ## License

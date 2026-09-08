@@ -1,69 +1,73 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yuxino/dsh-blue-whale-maid/e6f640d70cac830a5ecb82b2229142eb2a70bed7/assets/logo.gif" width="180" alt="蓝鲸女仆桌宠挥挥尾巴">
+  <img src="https://raw.githubusercontent.com/yuxino/dsh-blue-whale-maid/982db8ef29ae34134aa06911fd67f75c3b739e65/assets/logo.gif" width="180" alt="Blue Whale Maid waving her tail">
 </p>
 
-<h1 align="center">蓝鲸女仆桌宠</h1>
+<h1 align="center">Blue Whale Maid</h1>
 
 <p align="center">
-  给 DeepSeek Harness Web 加一只会跟随任务状态、在需要确认、结束或失败时提醒你，并显示费用估算的蓝鲸女仆。
+  A little companion for DeepSeek Harness Web: task reactions, reminders when a turn needs your attention, and cost estimates.
 </p>
 
 <p align="center">
-  <a href="#安装"><strong>安装试试</strong></a> ·
-  <strong>喜欢她就点右上角 ⭐ Star</strong>
+  English · <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
-## 她会做什么
+<p align="center">
+  <a href="#install"><strong>Install</strong></a> ·
+  <a href="https://whale.yuxino.cn/">Website</a>
+</p>
 
-装好以后，她会待在 DSH Web 右下角。任务开始时跟着忙；轮到你确认、这一轮结束或者出了问题，她会换个动作，再冒个泡提醒你。
+## What she does
 
-平时可以把她拖到顺手的位置。点一下，她会挥手；双击一下，她会跳起来。点旁边的余额按钮，还能看看 DeepSeek 余额、今天大概花了多少，以及当前会话用了多少钱。
+After installation, she sits in the bottom-right corner of DSH Web. When a task starts, she gets busy too. When an action needs confirmation, a turn ends, or something goes wrong, she changes her animation and shows a speech bubble.
 
-她只说自己能确定的事。比如一轮结束了，她会告诉你“结束了”，不会擅自说“成功了”。
+Drag her somewhere comfortable. Click once to make her wave, or double-click to make her jump. The balance button beside her opens your DeepSeek balance, an estimate of today's spending, and the current session's cost.
 
-## 安装
+She only reports what the task state establishes. A finished turn is reported as ended, without assuming it succeeded.
 
-需要 Node.js `^22.19.0` 或 `>=24.0.0`、`pnpm`，以及可用的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web profile。下面沿用 DSH 官方的无版本号命令。
+## Install
+
+Requires Node.js `^22.19.0` or `>=24.0.0`, `pnpm`, and a working [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web profile. These commands use the unversioned DSH package entry point.
 
 ```sh
 npx @deepseek-ai/dsh plugin --profile web add github:yuxino/dsh-blue-whale-maid
 ```
 
-装好后重启 DSH Web：
+Restart DSH Web after installation:
 
 ```sh
 npx @deepseek-ai/dsh web
 ```
 
-余额与费用面板需要当前 profile 配置 `DEEPSEEK_API_KEY`；没有 Key 时，桌宠和任务提醒照常能用。
+The balance and cost panel requires `DEEPSEEK_API_KEY` in the current profile. The companion and task reminders still work without a key.
 
-## 费用说明
+## Cost estimates
 
-- API Key 由 DSH 服务端读取，不会传给浏览器；桌宠界面只访问本机接口。
-- “今日约消费”根据本机当天的余额变化估算，不是官方账单。
-- “本会话已用”只计算来源明确、价格已知的 DeepSeek 官方模型；最终费用以 [DeepSeek 控制台](https://platform.deepseek.com/usage) 为准。
+- DSH reads the API key on the server; it is never passed to the browser. The companion UI only calls local endpoints.
+- Today's estimated spending is calculated from changes in the locally observed balance during the current day. It is not an official bill.
+- Session cost includes only recognized official DeepSeek models with an established source and known pricing. The [DeepSeek console](https://platform.deepseek.com/usage) is the authority for actual charges.
 
 <details>
-<summary><strong>更新与卸载</strong></summary>
+<summary><strong>Update and uninstall</strong></summary>
 
-更新：
+Update:
 
 ```sh
 npx @deepseek-ai/dsh plugin --profile web update dsh-blue-whale-maid
 ```
 
-卸载：
+Uninstall:
 
 ```sh
 npx @deepseek-ai/dsh plugin --profile web remove dsh-blue-whale-maid
 ```
 
-更新或卸载后都要重启 DSH Web。
+Restart DSH Web after either operation.
 
 </details>
 
 <details>
-<summary><strong>本地开发</strong></summary>
+<summary><strong>Local development</strong></summary>
 
 ```sh
 npm run build
@@ -71,7 +75,7 @@ npm test
 npm run check
 ```
 
-让 Web profile 直接使用当前仓库：
+Point the Web profile at this checkout:
 
 ```sh
 npx @deepseek-ai/dsh plugin --profile web add .
@@ -79,8 +83,6 @@ npx @deepseek-ai/dsh --profile web --dump-config
 npx @deepseek-ai/dsh web --no-open
 ```
 
-修改代码后先重新构建，再重启 DSH。依赖或 `cordis.patch.yml` 有变化时，需要重新执行一次 `add .`。
+Rebuild after changing the code, then restart DSH. Run `add .` again if dependencies or `cordis.patch.yml` change.
 
 </details>
-
-如果她让 DSH 好用了一点，欢迎点一下页面右上角的 ⭐ Star。这样我能知道，确实有人想让这个小插件继续更新。

@@ -1,4 +1,4 @@
-# dsh-guardrail
+# @jypjypjypjyp/dsh-guardrail
 
 工具调用规范守卫：对 agent 工具调用**输入参数**做字符串匹配，命中危险行为则**拦截（deny）并注入原因**给模型，或**放行但注入警告（warn）**。附规则管理面板（配置/启停/增删/试跑/审计全部可在 UI 完成）。
 
@@ -51,7 +51,7 @@ bash scripts/build.sh        # 链接 DSH 安装依赖 + tsc(host) + tsdown(clie
 
 ### 3. 规则管理
 
-![面板-配置与规则](https://raw.githubusercontent.com/jypjypjypjyp/dsh-guardrail/ff3b1f7583ab76a85acc00bbe5069fbbae38cb67/docs/images/panel-config-rules.png)
+![面板-配置与规则](https://raw.githubusercontent.com/jypjypjypjyp/dsh-guardrail/b4e1a0daee668c4e67cefd62c770af41b4eb522d/docs/images/panel-config-rules.png)
 
 每条规则一行，含：
 
@@ -66,13 +66,13 @@ bash scripts/build.sh        # 链接 DSH 安装依赖 + tsc(host) + tsdown(clie
 
 ### 4. 测试匹配器与添加规则
 
-![面板-测试与审计](https://raw.githubusercontent.com/jypjypjypjyp/dsh-guardrail/ff3b1f7583ab76a85acc00bbe5069fbbae38cb67/docs/images/panel-test-add-audit.png)
+![面板-测试与审计](https://raw.githubusercontent.com/jypjypjypjyp/dsh-guardrail/b4e1a0daee668c4e67cefd62c770af41b4eb522d/docs/images/panel-test-add-audit.png)
 
 - **测试 / 添加规则**：填「工具名」（如 `bash`）+「参数 JSON」（如 `{"command":"rm -rf /"}`），点 **试跑**，下方显示命中的规则与片段：
   - `✅ 命中 rm-root · 片段: rm -rf /` → 该输入会被对应规则拦截/警告
   - `未命中` → 匹配不到任何启用规则
 
-![面板-试跑结果](https://raw.githubusercontent.com/jypjypjypjyp/dsh-guardrail/ff3b1f7583ab76a85acc00bbe5069fbbae38cb67/docs/images/panel-test-result.png)
+![面板-试跑结果](https://raw.githubusercontent.com/jypjypjypjyp/dsh-guardrail/b4e1a0daee668c4e67cefd62c770af41b4eb522d/docs/images/panel-test-result.png)
 
 - **添加规则**：填 `id`（必填）、正则 `pattern`（必填）、动作 `deny/warn`、`reason`（可用 `{tool}` / `{pattern}` 占位）、`tools`（逗号分隔，空=全部）、`field`（可选参数路径，如 `command`），点 **添加规则** 即热加载。
 

@@ -16,7 +16,7 @@ This guide describes the published pairing below. Check `dsh --version` first; f
 
 | Requirement | Verified pairing |
 |---|---|
-| Codex Connect | `0.1.0-alpha.4.30` |
+| Codex Connect | `0.1.0-alpha.4.31` |
 | DeepSeek Harness | `0.1.2-rc.1` |
 | Node.js | `^22.19.0 \|\| >=24.0.0` |
 | Account | ChatGPT OAuth with access to the requested Codex model; availability is decided by OpenAI |
@@ -24,7 +24,7 @@ This guide describes the published pairing below. Check `dsh --version` first; f
 ### 1. Install
 
 ```sh
-dsh plugin --profile web add dsh-codex-connect@0.1.0-alpha.4.30
+dsh plugin --profile web add dsh-codex-connect@0.1.0-alpha.4.31
 dsh web
 ```
 
@@ -46,7 +46,7 @@ dsh plugin --profile web exec dsh-codex-connect doctor --json
 `status --json` exits `0` when signed in and `1` when signed out, without starting OAuth. `doctor --json` reports local installation diagnostics without a network request or raw credentials. A passing diagnostic is not proof of model access; verify that with an actual request.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/dfdb2ad1ced29411c62033b1fe825dffc36f17b3/docs/assets/en/hero.jpg" alt="Codex Connect — ChatGPT OAuth for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/92b09bff0c8dc2855d5d44f45e438953743f97ff/docs/assets/en/hero.jpg" alt="Codex Connect — ChatGPT OAuth for DeepSeek Harness" width="100%">
 </p>
 
 ## Core capabilities
@@ -58,7 +58,7 @@ dsh plugin --profile web exec dsh-codex-connect doctor --json
 - **Update guidance:** compare the installed DSH/plugin pair with the public verification record without installing an upgrade.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/dfdb2ad1ced29411c62033b1fe825dffc36f17b3/docs/assets/composer-capabilities.jpg" alt="Fast Mode and quota controls in the DeepSeek Harness Composer" width="820">
+  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/92b09bff0c8dc2855d5d44f45e438953743f97ff/docs/assets/composer-capabilities.jpg" alt="Fast Mode and quota controls in the DeepSeek Harness Composer" width="820">
 </p>
 
 ## Optional capabilities

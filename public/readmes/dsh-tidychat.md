@@ -5,19 +5,20 @@
 > **▼ DSH 版本适配**
 > | DSH 版本 | settings 注册 | 折叠/分隔线/自动加载 | 左缘定位条 |
 > | --- | --- | --- | --- |
-> | 0.1.0-rc.7 / 0.1.1-rc.x | `register` | ✅ 正常 | ⛔ 自 0.2.6 起暂不显示 |
-> | 0.1.2-alpha.2+ / 0.1.2-rc.1 | `installSection` | ✅ 正常 | ⛔ 自 0.2.6 起暂不显示 |
+> | 0.1.0-rc.7 / 0.1.1-rc.x | `register`（v0.2.7+）/ `installSettingsSection`（v0.2.5） | ✅ 折叠/分隔线/自动加载正常（v0.2.8 起回退 anchor-key；v0.2.7 不生效） | ✅ 可用（navigator 开；旧槽 + 锚点均在） |
+> | 0.1.2-alpha.2+ / 0.1.2-rc.1 | `installSection` | ✅ 正常 | ⛔ 暂停（官方右缘 TurnNavigator + `react-dom`） |
 >
-> - **settings 自动适配**：插件按宿主 DSH 版本自动选用注册 API——0.1.2+ 用 `installSection`，0.1.0-rc.7 / 0.1.1-rc.x 用 `register`——同一份插件在 **0.1.0-rc.7 ~ 0.1.2-rc.1** 都能正常加载并设置开关。
+> - **settings 自动适配**：插件按宿主 DSH 版本自动选用注册 API——0.1.2+ 用 `installSection`，0.1.0-rc.7 / 0.1.1-rc.x 用 `register`——同一份插件在 **0.1.0-rc.7 ~ 0.1.2-rc.1** 都能加载并设置开关。
+> - **左缘定位条**：在**没有官方右缘 TurnNavigator 的旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）上可用**（navigator 开；旧槽 `conversation.session.header.utilities` 存在且被渲染，所需 DOM 锚点均在，已从 0.1.1-rc.2 源码确认）。在 **DSH 0.1.2+**（有官方右缘 TurnNavigator）**暂停显示**，原因：官方新增右缘 TurnNavigator 与它重叠，且定位条依赖 `react-dom`（当前插件与宿主均未提供）。是否保留/优化待后续版本定。
+> - **折叠/分隔线**：v0.2.8 起在旧版 DSH 也可用——`data-chat-turn` 缺失时回退到从 `data-chat-anchor-key` 解析 turn 号（v0.2.5 的做法）。v0.2.7 无此回退，故 v0.2.7 在旧版折叠/分隔线不生效（仅自动加载正常）。
 > - **功能重叠**：DSH 0.1.2 起官方原生新增「折叠过程内容 + System prompt」与右缘 TurnNavigator，与插件的 fold / 左缘定位条重叠。
 > - **使用建议**：
->   - **DSH 0.1.2+**：官方原生折叠与插件 fold 二选一——用官方就关插件 fold（避免双折叠）；想用插件的折叠控制条就关官方原生折叠。
->   - **DSH ≤ 0.1.1-rc.x**：折叠/分隔线/智能加载正常可用；左缘定位条同样暂不显示（0.2.6 起统一停用）。
-> - **左缘定位条暂缓说明**：自 0.2.6 起不再显示。原因有二：一是与 DSH 0.1.2 官方新增的**右缘 TurnNavigator / 原生折叠**功能重叠；二是定位条实现依赖 **`react-dom`**（当前插件与宿主均未提供）。是否保留、或改造成与官方导航/折叠协同，**待后续版本再决定**（源码与历史截图保留）。
+>   - **DSH 0.1.2+**：官方原生折叠与插件 fold 二选一——用官方就关插件 fold（避免双折叠）；想用插件的折叠控制条就关官方原生折叠。左缘定位条默认暂停。
+>   - **DSH ≤ 0.1.1-rc.x**：左缘定位条可用（navigator 开）；折叠/分隔线/自动加载在 v0.2.8 起也可用。
 
 让 DSH 的长会话变成**可扫读、可跳转**的结论流。
 
-多任务、多轮次的会话里，思考、工具调用、中间文字和最终总结混在一起，回头找「上次那个任务的结论」很费劲。dsh-tidychat 把已完成的任务轮次自动折叠成一条结论，把思考与正文用分隔线切开；原本聊天区左缘的 Codex 式全局导航定位条（Canvas minimap）因与官方新功能冲突、且存在 react-dom 问题，**0.2.6 起暂不显示**，是否保留或优化待后续版本决定。
+多任务、多轮次的会话里，思考、工具调用、中间文字和最终总结混在一起，回头找「上次那个任务的结论」很费劲。dsh-tidychat 把已完成的任务轮次自动折叠成一条结论，把思考与正文用分隔线切开；聊天区左缘的 Codex 式全局导航定位条（Canvas minimap）在**没有官方右缘 TurnNavigator 的旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）上可用**（navigator 开），在**DSH 0.1.2+（有官方右缘 TurnNavigator）暂停**（与官方功能重叠 + 依赖 react-dom）。
 
 > 🔌 生态：挂 `#dsh` · `#dsh-plugin` topic，欢迎收录。
 
@@ -27,31 +28,31 @@
 | --- | --- |
 | 🗂 自动折叠 | 已完成轮次自动收起思考（Think）、工具调用与中间文字，只保留最终总结；控制条含「过程 N 步」和处理时长（用时 / 首 token / 速率） |
 | ➖ 分隔线 | 思考行与正文之间的实线，一眼区分「过程」与「结论」 |
-| 📍 左缘定位条（Adaptive Navigation Rail） | **0.2.6 起暂不显示**（与官方新功能冲突 + react-dom 问题，是否保留/优化待后续版本）。历史能力：固定高度 Canvas minimap，任意轮次全局映射；鱼眼悬停、拖动预览、点击跳转、当前轮次高亮；配色可自适应或手动选「色系 × 明度」 |
+| 📍 左缘定位条（Adaptive Navigation Rail） | **旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x，无官方右缘 TurnNavigator）可用**（navigator 开）；**DSH 0.1.2+ 暂停**（与官方新功能冲突 + react-dom 问题）。历史能力：固定高度 Canvas minimap，任意轮次全局映射；鱼眼悬停、拖动预览、点击跳转、当前轮次高亮；配色可自适应或手动选「色系 × 明度」 |
 | ⬆ 智能加载更早历史 | 页面空闲时逐步加载更早记录；检测到页面响应开始下降时自动暂停，保持长会话流畅，需要时仍可手动继续加载 |
 | 📤 一键报告问题 | 自动生成诊断报告（版本/浏览器/性能数据/异常检测/现象标签），一键打开 GitHub issue 预填页，标题正文全带，零手写提交 |
 
-折叠 / 分隔线 / 智能加载更早历史可各自独立开关（「设置 → 插件配置」，改动即时生效）；左缘定位条与官方新功能冲突、且有 react-dom 问题，**0.2.6 起暂不显示**。另有一键「📤 生成诊断报告并提交」入口。
+折叠 / 分隔线 / 智能加载更早历史可各自独立开关（「设置 → 插件配置」，改动即时生效）；左缘定位条在**无官方右缘 TurnNavigator 的旧版 DSH 上可用**（navigator 开），在 **DSH 0.1.2+ 暂停**（默认关）。另有一键「📤 生成诊断报告并提交」入口。
 
 ## 📸 效果
 
 **自动折叠**：已完成轮次收成一条控制条，只留最终结论（上）；点击「展开」恢复思考、工具调用与中间文字（下）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/ea43d886ca07d402f065f7cdf541bce1119df5a9/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/ea43d886ca07d402f065f7cdf541bce1119df5a9/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
 </p>
 
-**左缘定位条（Canvas minimap）**：__0.2.6 起暂不显示__（与官方新功能冲突 + react-dom 问题，后续版本再决定是否保留/优化）。下图为历史版本运行效果。
+**左缘定位条（Canvas minimap）**：在**无官方右缘 TurnNavigator 的旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）可用**（navigator 开）；**DSH 0.1.2+ 暂停**（与官方新功能冲突 + react-dom）。下图为历史版本运行效果。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/ea43d886ca07d402f065f7cdf541bce1119df5a9/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要（历史版本）">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要（历史版本）">
 </p>
 
 **设置面板**：四个功能独立开关 + 现象标签 + 一键「生成诊断报告并提交」，改动即时生效。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/ea43d886ca07d402f065f7cdf541bce1119df5a9/assets/settings.png" width="92%" alt="设置面板四开关">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/settings.png" width="92%" alt="设置面板四开关">
 </p>
 
 ## 🚀 安装
@@ -63,7 +64,7 @@
 dsh plugin --profile web add @bananasoldier01/dsh-tidychat
 
 # 方式 2：从 GitHub 安装（推荐钉版本，可复现）
-dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.7
+dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.8
 ```
 
 安装后重启 dsh web + 硬刷新（Cmd+Shift+R）。
@@ -77,7 +78,7 @@ dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat
 dsh plugin --profile web update @bananasoldier01/dsh-tidychat
 
 # 方式 B：装的是某个 tag，改钉到新 tag 重新 add
-dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.7
+dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.8
 ```
 
 更新后同样重启 dsh web + 硬刷新。
@@ -145,10 +146,15 @@ dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat
 3. **⚠️ 左缘定位条暂缓显示**：DSH 0.1.2-rc.1 起官方原生新增右侧 TurnNavigator 与原生折叠，与插件左缘定位条功能重叠；同时插件定位条依赖 `react-dom`（当前插件 / 宿主均未提供）。因此从本版起**左缘定位条不再显示**。是否保留、或改造成与官方新的导航/折叠协同，待后续版本再定（源码与历史截图保留）。
 4. **折叠含重试提示（issue #8）**：DSH 把被重试的模型请求渲染为 `model-retry` 行（“已重试模型请求”），此前折叠不会收起它。本版起 `model-retry` 作为过程噪音随思考/工具调用一起折叠。
 
-### 0.2.7（已发布，本次）—— settings API 向后兼容
+### 0.2.7（已发布）—— settings API 向后兼容
 
 1. **settings 注册自动适配**：宿主注册配置时按 DSH 版本自动选用 API——0.1.2+ 用 `installSection`，0.1.0-rc.7 / 0.1.1-rc.x 用 `register`——让同一份插件在 **DSH 0.1.0-rc.7 ~ 0.1.2-rc.1** 都能正常加载并注册设置开关（此前 0.2.6 沿用 0.1.2 的 `installSection`，在旧版 DSH 上会报 “Failed to load plugins”）。
 2. **左缘定位条**：仍与官方新功能冲突、且依赖 `react-dom`，继续暂缓显示（本次兼容不恢复它）。
+
+### 0.2.8（已发布，本次）—— 旧版 DSH（无右缘 TurnNavigator）整套可用
+
+1. **折叠/分隔线兼容回退**：折叠分组在 `data-chat-turn` 缺失（旧版 DSH 0.1.0-rc.7 ~ 0.1.1-rc.x）时，回退到从 `data-chat-anchor-key` 解析 turn 号（v0.2.5 做法），让折叠/分隔线在旧版 DSH 也生效（0.1.2+ 仍走 `data-chat-turn`，行为不变）。
+2. **左缘定位条确认可用**：旧版 DSH 没有官方右缘 TurnNavigator，旧槽 `conversation.session.header.utilities` 存在且被渲染、所需 DOM 锚点均在（0.1.1-rc.2 源码确认）——**旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）定位条可正常使用**（navigator 开）；DSH 0.1.2+ 因有官方右缘 TurnNavigator 仍暂停。
 
 ### 下一版本（候选）
 

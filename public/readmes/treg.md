@@ -1,6 +1,6 @@
 # Treg (OpenRouter for Tools)
 
-![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/f91f0522ebab502f7d0a24d829eafd4c600c48d0/docs/assets/treg-hero.png)
+![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/7e7dd742e596c20879052d45ca6db4cf04595715/docs/assets/treg-hero.png)
 
 **OpenRouter, but for agent tools instead of models.** Point an agent at one base URL with one token
 and it can do the job: **2,896 catalogued endpoints across 60 providers** — SEO and backlinks,
@@ -235,6 +235,9 @@ treg org access <member> --tools a,b          # per-member tool access (admin+)
 ```
 
 ## Going deeper
+
+- **Feedback:** `treg feedback submit friction "The pagination example is unclear."`
+  Share problems or suggestions without private information. See [feedback instructions](https://treg.to/feedback.md).
 
 - [`USAGE.md`](USAGE.md) — the full `treg` CLI reference.
 - [`/llms.txt`](https://treg.to/llms.txt) — the agent-onboarding file: call

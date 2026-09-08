@@ -4,7 +4,7 @@
 
 Windows desktop notifications, optional sounds, and DSH-styled in-page cards for DeepSeek Harness Web. Keep the DSH tab open and receive task results or requests for attention while working in another application.
 
-![DSH notification settings with an in-page card and a Windows desktop notification](https://raw.githubusercontent.com/lsq-dsh-plugins/dsh-windows-notifications/9769f3fa1b4e4dd922ef449510eb3b258d9183ef/assets/notification-settings.png)
+![DSH notification settings with an in-page card and a Windows desktop notification](https://raw.githubusercontent.com/lsq-dsh-plugins/dsh-windows-notifications/6873ab36654825d3b61fcd9b2ccd055fe6d5e9f3/assets/notification-settings.png)
 
 ## Notification behavior
 

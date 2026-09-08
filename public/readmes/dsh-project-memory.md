@@ -1,5 +1,7 @@
 # dsh-project-memory
 
+> 如果这个插件帮你省下 1 小时 Debug 时间，请点个 Star。
+
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 [![ci](https://github.com/00080000/dsh-project-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/00080000/dsh-project-memory/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![npm](https://img.shields.io/npm/v/@yolk_vat-y/dsh-project-memory)](https://www.npmjs.com/package/@yolk_vat-y/dsh-project-memory) [![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/00080000/dsh-project-memory) [![Awesome](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
@@ -9,9 +11,9 @@ A persistent **project development memory** for [DeepSeek Harness](https://githu
 
 > The plugin keeps a compact project **memory** on disk, with every entry pointing to a concrete file and line — the agent can reorient quickly instead of re-reading the whole project. Tasks and experience persist across session compactions and handovers.
 
-![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/d72b02a765391e8a4980cf1625b6fcab9aa64ea0/docs/images/image.png)
+![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/027945ed1722390776440b0a4c581afafbeb1ed4/docs/images/image.png)
 The workflow panel is collapsible, automatically adapts to dsh and theme plugin styles, and offers four card style options to switch between.
-![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/d72b02a765391e8a4980cf1625b6fcab9aa64ea0/docs/images/image-4.png)
+![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/027945ed1722390776440b0a4c581afafbeb1ed4/docs/images/image-4.png)
 ## Features
 
 - **TaskBridge: cross-session development tasks** — the plugin watches each session's live todo list (`todo_write` events) and file reads (`tool/call`): progress snapshots (`steps`) and touched files sync into durable per-project task entities. An unbound session that writes a todo auto-creates a task. New sessions continue by `list_tasks` → `select_task` (bind / rename / unarchive); `query_memory` gains `type: 'task'` and appends a task-count hint to `type: 'all'` results. The user-side `/tasks` command shows the task stack, step progress, involved files, and the current session binding. Titles are chosen by the model via `select_task(title=…)` (fallback: the part of your message after the last colon). Capacity is project-size adaptive (`fileCount/20`, clamped 5–100). Storage: `.dsh-project-memory/tasks.json` + `binding.json`. Auto-sync requires a dsh build with session events + `todo_write` (verified on 0.1.2-alpha.x); on older hosts the task tools still work as a plain record list.
@@ -35,6 +37,7 @@ The workflow panel is collapsible, automatically adapts to dsh and theme plugin 
 - **BM25 memory recall** — ranked search over documents, symbols, and experience notes, with optional LLM query expansion to handle vocabulary mismatch. **CJK-optimized**: precise phrase boost (3+ char phrases ×1.5 score on title/keywords match), synonym table (e.g. 数据库连接池 ↔ 连接池 ↔ DB pool), and CJK-aware word boundaries for doc↔symbol linking.
 - **blindSpots-aware recall** — document summaries carry a `blindSpots` field (what the summary explicitly does NOT cover). When a query hits a blind spot, `query_memory` appends a warning pointing the model to read the source file, preventing hallucination from partial summaries.
 - **Experience notes** — problems → solutions; similar problems supersede instead of duplicating, and notes are returned only when a search matches. The note store is bounded: capacity scales with project size (clamped to 100–2000), and the oldest notes are pruned when the limit is exceeded. **Supersede tightened to bidirectional 0.7 overlap** (was 0.6); **experience `problem` field now participates in CJK phrase boost** for long-tail query recall.
+- **v0.5 tiered insight memory (lessons / decisions / procedures)** — one `insight` entity across three scopes: `task` (private drafts in `tasks.json`), `project` (`.dsh-project-memory/insights.json`), `global` (`~/.config/dsh-project-memory/global.json`). `save_lesson` writes any scope; dedupe is bidirectional token overlap ≥ 0.7 (merge) with a 0.65–0.7 reinforce band; **promotion is a scope change, not a copy** — 2 tasks hitting the same insight promote it to project, 3+ to global. Archive is soft (`archived`), decay/capacity prune archived entries only; writes are filtered for secret/token-shaped content. LLM **reflection is off by default** and only ever writes task-level drafts (`source: reflect`) on task switch-away/archive. Panel gains a Task / Project / Global memory view with approve, promote/demote, archive/restore, delete, edit and a create form (procedures can carry an “as Skill” trigger). Old `experience.json` notes are imported into `insights.json` once, non-destructively. Defaults & rationale: `PLAN-v0.5.0.md`.
 - **Streaming TF + IDF caching** — query path caches IDF (term inverse frequency) per store version; on cache hit, single-pass streaming scores 20k entries in ~8 ms (5k files) / ~1 ms (1k files) with zero intermediate objects; write path is O(1) version bump.
 - **Lock-free sync transactions** — all writes (index / watch / remember / forget / watch_repo) go through synchronous transactions `store.commit(fn)`; fn succeeds then atomic write; JS single-threaded event loop guarantees no interleaving; `remember`/`forget` never blocked by watch re-indexing.
 - **Minimal dependencies** — pure JavaScript; the only runtime dependency is `pdfjs-dist` (PDF text extraction), no native builds required.
@@ -120,8 +123,10 @@ The tools below are **invoked by the agent**, not typed by the user. In the chat
 | `show_task_panel` | Show the task panel in the UI. Call when the user asks to see the task list or when you want to display the panel. |
 | `/tasks` (typed by the user, not the model) | Shows the task stack: title, step progress, involved files, and which task the current session is bound to. |
 | `/task` (typed by the user, not the model) | Task panel subcommands: `switch` / `archive` / `unbind` / `rename` / `todos`. Invoked by panel buttons/clicks; does not go through the model. |
+| `/insight` (typed by the user, not the model) | v0.5 memory view actions (panel buttons): `list [task|project|global]`, `confirm` / `promote` / `demote` / `archive` / `restore` / `delete` `<scope> <id>`, `save <scope> <json>`, `edit <scope> <id> <json>`. |
 | `remember problem solution` | Save an experience note. Similar problems supersede instead of duplicating. |
 | `forget id_or_query` | Delete stale experience notes. |
+| `save_lesson` (agent tool) | Save a lesson/decision/procedure at task/project/global scope (single insight entity). Near-duplicates merge (≥ 0.7 overlap) or reinforce (0.65–0.7); 2+ tasks hitting the same insight auto-promote task → project, 3+ → global. Params: `title`, `kind`, `scope`, `pattern`/`fix` or `choice`/`reason` or `steps`/`trigger`, `task_id`, `files`, `symbols`, `confidence`, `root`. |
 
 ## Design
 
@@ -134,6 +139,7 @@ The tools below are **invoked by the agent**, not typed by the user. In the chat
   watch.json       watched roots
   tasks.json       TaskBridge task entities (cross-session)
   binding.json     current session ↔ task binding
+  insights.json    v0.5 project-scope insights (lessons/decisions/procedures); v0.4 experience notes imported once, non-destructively
 ```
 
 Stores created before v0.2.0 (single `entries.json` / `index.json`) migrate automatically and idempotently on first load. Within one dsh process, all tool calls share a single in-memory store per project, so hot-path indexing writes only the shard that changed.
@@ -229,7 +235,7 @@ These are deliberate scope choices.
 
 **Why:** Experience notes are low-stakes, high-volume, and retrieval-only. Aggressive deletion prevents stale noise from polluting search. For precision, delete by ID (shown in `query_memory` output).
 
-### 11. TypeScript enhancement is optional, lazy, and cached
+### 10. TypeScript enhancement is optional, lazy, and cached
 
 **We do:** L2 TS Compiler API enhancement runs async in a priority queue (P0 on `fs/observed`, P1 on `watch`, P2 on `index_repo`), results cached by content hash in `type-cache/`. Zero config — just `npm i -D typescript@5` or `typescript@6`. Falls back to L1 regex if TS absent or disabled.
 
@@ -257,6 +263,9 @@ These are deliberate scope choices.
 | `watchInterval` | 15 | poll interval (seconds) |
 | `tsPath` | (auto) | optional absolute path to a specific `typescript` install; if omitted, resolves from project cwd → plugin node_modules |
 | `enableTypeScript` | true | set `false` to disable L2 TS enhancement entirely (L1 regex only) |
+| `insight.*` | dedupOverlap `0.7` · reinforceBand `0.65` · maxProject `100` · maxGlobalProcedures `200` · promoteConfidence `0.7` · globalPromoteTasks `3` · decayDays `90` · `globalFile` (auto) | v0.5 insight dedupe / reinforce / promotion / capacity / archive settings |
+| `reflection.enabled` | false | v0.5 LLM reflection, **draft-only at task level** (fires on task switch-away / archive). `cooldownMs` `1800000`, `maxLessonsPerReflect` `3`, `maxDecisionsPerReflect` `2` |
+| `autoContext.enabled` | true | v0.5 silent injection wrapper (entry block + relevance). Inert (full passthrough) until the host exposes a resolvable session cwd; `maxTokens` `400` |
 
 ### Toggling features
 
@@ -292,7 +301,7 @@ These commands are for **maintaining the plugin code** — regular users do not 
 
 ```bash
 npm install
-npm test          # 177 tests (166 core + 11 TaskBridge)
+npm test          # 211 tests (166 core + 11 TaskBridge + 11 insight-store + 5 reflection + 9 auto-inject + 9 insight-actions)
 ```
 
 ## License

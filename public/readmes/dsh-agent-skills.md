@@ -8,7 +8,7 @@
 
 在 DeepSeek Harness 的设置页中查看、启停和管理本地 Agent Skills。
 
-![Agent Skills 设置页面](https://raw.githubusercontent.com/minivv/dsh-agent-skills/fcc914b5189b6882ce24fa245022a32eb907326f/agent-skills-page.png)
+![Agent Skills 设置页面](https://raw.githubusercontent.com/minivv/dsh-agent-skills/7c587aa46f8f5150b61259671df10fbddb49c4e9/agent-skills-page.png)
 
 ## 功能
 

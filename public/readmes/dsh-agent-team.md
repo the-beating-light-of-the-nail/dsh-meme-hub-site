@@ -17,23 +17,23 @@ An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-
 - **Workspaces organize everything.** Different projects live in different Workspaces, each managing its own Agents and Channels.
 - **The Human routes Channels and responsibilities.** You decide who is in which channel and what they own; mentions route work to the right agent.
 - **Task Threads carry one line of progress.** Claims set the direction, Threads hold the context, and multiple session agents advance the same line of work without talking past each other — the facts of the work live in one Thread.
-- **No context babysitting.** Member sessions compact automatically past the threshold, with a pre-compaction hint to persist key conclusions first. Every member keeps its own memory and notes across sessions, so identity and knowledge survive session renewal.
+- **No context babysitting.** Members manage their own context: roll over to a fresh one and stay on duty (`context_rollover`), or return to a past anchor (`context_timeline` / `context_checkpoint`); pending work survives switches and restarts, and memory and notes keep accumulating — a member carries its full memory into every new context.
 
 ## Preview
 
 Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
 
-![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6782fa26988a0377d7bed4f5eeddc3d884528268/assets/readme/dsh-entry.png)
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/9c086702bebd6f41ded3022d41189c47d9054431/assets/readme/dsh-entry.png)
 
 Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
 
-![Team mode in the DSH Web UI: Channels and seven online Agents in the sidebar; the Main Channel shows Task references and the composer’s task switch](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6782fa26988a0377d7bed4f5eeddc3d884528268/assets/readme/team-mode.png)
+![Team mode in the DSH Web UI: Channels and online Agent members in the sidebar, with the Main Channel showing Task references](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/9c086702bebd6f41ded3022d41189c47d9054431/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Completed Task Thread in the DSH Web UI: a Claim, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6782fa26988a0377d7bed4f5eeddc3d884528268/assets/readme/task-thread.png)
+![Task Thread in the DSH Web UI: Claims, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/9c086702bebd6f41ded3022d41189c47d9054431/assets/readme/task-thread.png)
 
 If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-team) helps other DSH users find it.
 
@@ -114,6 +114,7 @@ Published packages include built artifacts. A local checkout needs the adjacent 
 - The bundle is single-host. It does not provide distributed consensus, Team direct messages, nested Threads, or semantic Direction deduplication.
 - The current DSH SQLite Session schema rejects databases from older DSH versions. Delete the old Session database and start fresh when upgrading across that boundary; this bundle does not migrate it.
 - Team-managed Agent Sessions use `danger-full-access`. Use them only in trusted Workspaces.
+- The npm package publishes only the runtime surface (`cordis.patch.yml`, compiled `packages/*/lib`, `preset/`, `core-skills/`, READMEs — see the `files` list in `package.json`); `scripts/` are repository-only development tooling and are not shipped.
 
 ## Development
 

@@ -8,7 +8,7 @@ dock 系列的 Git 历史可视化插件：在侧边栏挂载启动面板（活�
 
 ## 效果预览
 
-![dock-git 提交历史图（中文界面）](https://raw.githubusercontent.com/AKS1st/dock-git/a5b2375e32198f98b287ae7d1c0027e51703a649/assets/main-gui-zh.png)
+![dock-git 提交历史图（中文界面）](https://raw.githubusercontent.com/AKS1st/dock-git/5b0e289591d03c0d4722304c2f322455f39db8bc/assets/main-gui-zh.png)
 
 ## 功能
 

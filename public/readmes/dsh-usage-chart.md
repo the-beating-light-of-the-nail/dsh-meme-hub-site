@@ -12,8 +12,8 @@ Interface preview: light English on the left and dark Simplified Chinese on the 
 
 <table>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/c4a89765bbdef67436991100edabd1a85692c267/docs/images/usage-panel-demo-en-lightv1.0.0.png" alt="Light-theme English usage-panel demo" /><br /><sub>Light theme · English</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/c4a89765bbdef67436991100edabd1a85692c267/docs/images/usage-panel-demo-zh-darkv1.0.0.png" alt="Dark-theme Simplified Chinese usage-panel demo" /><br /><sub>Dark theme · 简体中文</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/0d7580134400b8e03ad7a699ca2fb7dbd64af79d/docs/images/usage-panel-demo-en-lightv1.0.0.png" alt="Light-theme English usage-panel demo" /><br /><sub>Light theme · English</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/Max-Samson/dsh-usage-chart/0d7580134400b8e03ad7a699ca2fb7dbd64af79d/docs/images/usage-panel-demo-zh-darkv1.0.0.png" alt="Dark-theme Simplified Chinese usage-panel demo" /><br /><sub>Dark theme · 简体中文</sub></td>
   </tr>
 </table>
 
@@ -76,7 +76,7 @@ To update (upgrade to a new version): pnpm may print `Already up to date` when a
 
 ```sh
 # Option ①: pin the target version explicitly
-dsh plugin --profile web add dsh-usage-chart@1.1.2
+dsh plugin --profile web add dsh-usage-chart@1.1.4
 # Option ②: remove, then re-add (back to latest)
 dsh plugin --profile web remove dsh-usage-chart
 dsh plugin --profile web add dsh-usage-chart
@@ -278,7 +278,7 @@ dsh-usage-chart/
 
 | Component | Supported |
 |---|---|
-| DSH | ≥ 0.1.0-rc.6, built against the 0.1.x API |
+| DSH | ≥ 0.1.0-rc.6, built against the 0.1.x API; adapts to the `dsh-session` `snapshotEvents()` API — `Session.events` was removed in `0.1.2-rc.1`, so the `/usage` route reads events via `snapshotEvents()` with a legacy `events` fallback |
 | Node.js | ≥ 20 |
 | Web UI | React 18 / `conversation.composer.dock` + `conversation.chat.assistant-actions` |
 | OS | macOS, Linux, Windows (pure JavaScript, no native dependencies) |

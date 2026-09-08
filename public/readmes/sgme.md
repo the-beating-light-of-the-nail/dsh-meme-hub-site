@@ -28,7 +28,7 @@ Three steps, fully automatic:
 2. **Distill** — raw conversations are distilled into tagged memories (facts, preferences, project states, decisions...), with automatic dedup, merge, and contradiction detection
 3. **Inject** — at the start of each conversation, your AI automatically receives the memories relevant to the current scenario — not the whole store. Casual chat brings identity and recent status; coding brings project-related memories (tech stack, pitfalls, dev habits). Only what the scenario needs.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/system-architecture.png" alt="SGME System Architecture" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/system-architecture.png" alt="SGME System Architecture" width="800"/>
 
 ## Highlights
 
@@ -36,73 +36,73 @@ Three steps, fully automatic:
 
 Switch models, switch agents — your AI loses nothing. SGME fully takes over your memory (who you are), your wiki (what you know), and your skills (how you work). Plug in any agent — Hermes, DSH, a coding partner, a writing assistant — and it already knows you: your projects, your preferences, your workflows. No re-introduction, no re-learning. One shared brain, every body.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-00-seamless-switching.png" alt="Seamless AI switching" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-00-seamless-switching.png" alt="Seamless AI switching" width="800"/>
 
 ### Traceable memory — every memory has a provenance
 
 Everything your AI says is backed by evidence: trace any persona statement all the way back to the original conversation. Memory is not a black box — "why does it know this" and "when did it learn this" are one click away.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-01-trace.png" alt="Traceable memory" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-01-trace.png" alt="Traceable memory" width="800"/>
 
 ### Proactive care — it doesn't just remember you, it reaches out
 
 SGME doesn't just wait for you to ask. Your memory updates, mood shifts, upcoming todos, late nights... it emits signals that prompt your AI to check in on you — not cold notifications, but the kind of "I remembered you had something today" attention. Signal consumption = proactive care: who consumes, who marks (atomic claim + receipt), so you're never double-pestered and never missed.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-10-care.png" alt="Proactive care" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-10-care.png" alt="Proactive care" width="800"/>
 
 ### Persona insight — it doesn't just remember facts, it understands who you are
 
 Every conversation quietly contributes to a living personality profile: decision style, work habits, quality standards — accumulated as evidence-weighted tendencies, never snap judgments. A monthly calibration refines the picture (with an entertainment-grade MBTI for fun), and the result is injected into every chat, so your AI doesn't just recall your past — it adapts to your character. All local, all traceable, toggleable anytime.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-11-persona-insight.png" alt="Persona insight" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-11-persona-insight.png" alt="Persona insight" width="800"/>
 
 ### Unified search — one query, all memories
 
 A single search endpoint recalls from the memory pool, the knowledge base, and your self-managed skills at once: keyword + semantic + label triple fusion, every result traceable to its source. SGME memories, scenes, knowledge base, and skills in one stop.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-03-unified-search.png" alt="Unified search" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-03-unified-search.png" alt="Unified search" width="800"/>
 
-### Skill hub — your skills, managed in one place
+### Skills module — your skills, managed in one place
 
-All your self-built skills (prompts, workflows, templates) live in one place: direct read/write locally, auto-sync to NAS. Switch devices without losing your skills.
+All your self-built skills (prompts, workflows, templates) live in SGME's skills module — a peer of memory and wiki: git-backed source of truth (write-side lint gate + dedup) + skills.db index, four-level disclosure on demand, local read/write, NAS auto-sync, no skill lost across devices. Installing SGME = taking over the memory / wiki / skills trio at once.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-05-skillhub.png" alt="Skill hub" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-05-skillhub.png" alt="Skills module" width="800"/>
 
 ### Shared knowledge — a wiki your AIs write together
 
 A shared knowledge base lives next to your memories. Drop in files, URLs, or pasted text — SGME auto-categorizes, tags, and cross-links them, then makes them searchable and citable by every agent you connect. When an agent learns something useful, it can write it back to the wiki (self-evolution), so knowledge compounds across sessions instead of being re-discovered. Every entry keeps its source and author — traceable, never a black box.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-04-wiki.png" alt="Shared knowledge wiki" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-04-wiki.png" alt="Shared knowledge wiki" width="800"/>
 
 ### Chinese-first — a memory engine built for Chinese
 
 Retrieval is tuned for Chinese text — better distillation and recall for Chinese conversations. There are plenty of English memory engines; very few understand Chinese.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-06-chinese.png" alt="Chinese-first" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-06-chinese.png" alt="Chinese-first" width="800"/>
 
 ### Scenario-based injection — inject what the scenario needs
 
 Memory is not loaded wholesale. SGME picks relevant memories per scenario: casual chat gets identity and recent status, coding gets project-related memories (tech stack, pitfalls, dev habits), work mode gets plans and progress. Irrelevant memories stay out of the way, and stale memories automatically drop out — no three-year-old intel misleading your AI, no dumping the whole store into one prompt.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-07-scenario-inject.png" alt="Scenario-based injection" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-07-scenario-inject.png" alt="Scenario-based injection" width="800"/>
 
 ### Zero-LLM injection — costs nothing
 
 Persona injection is a pure structured SQL query — no LLM call, zero token cost per conversation. Competitors bill per call; SGME is free.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-08-zero-llm.png" alt="Zero-LLM injection" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-08-zero-llm.png" alt="Zero-LLM injection" width="800"/>
 
 ### Self-hosted & lightweight — your data stays yours
 
 Runs on a single machine with Python + SQLite. No GPU, no external database services. Memory data lives on your own machine, privacy under your control.
 
-<img src="https://raw.githubusercontent.com/freehul/sgme/35a4b1c672ba539a5f5feb8362e203bb0e727690/assets/selling-point-09-selfhosted.png" alt="Self-hosted" width="800"/>
+<img src="https://raw.githubusercontent.com/freehul/sgme/6c047d9f6e8c2679030a3be555a4829f80632d35/assets/selling-point-09-selfhosted.png" alt="Self-hosted" width="800"/>
 
 ## More capabilities
 
 - **Memory marking**: AI got it wrong? Mark a memory as "rejected" with a correction note — data is kept, never deleted, and can be undone anytime
 - **Automatic memory expiry**: stale memories automatically leave injection (e.g. outdated project states) while remaining traceable — no misleading your AI with old intel
-- **15-dimension tag system**: identity, projects, tech stack, preferences... auto-categorized, dimensions dynamically extensible, aliases auto-normalized ("Python" and "python" are the same)
+- **14-dimension tag system**: identity, family/social, values, skills, tech stack, preferences, habits, environment, style, focus, goals, status, ideas... auto-categorized, dimensions dynamically extensible, aliases auto-normalized ("Python" and "python" are the same)
 - **Conflict resolution**: duplicate facts auto-merge; contradictory versions are detected and adjudicated
 - **Hybrid retrieval**: BM25 keyword + vector semantic + label filtering, fused — works even without a vector database
 - **Built-in evaluation framework**: extraction quality proven with data (L1 F1, retrieval ranking tuning), not trust
@@ -135,9 +135,17 @@ python -m sgme
 #   docs/guide/免费模型Key申请指南.md (Agnes agnes-2.5-flash 免费 / 硅基流动 bge-m3 零费用).
 #   AGNESAI_API_KEY=<agnes>   SILICONFLOW_API_KEY=<siliconflow>
 
-# 4. Run tests
+# 4. (Optional) Build the WebUI management panel — requires Node.js
+#    Not needed if you only use the HTTP/MCP API, or if you deploy via Docker / Windows service
+#    (both include the pre-built UI)
+cd ui && npm ci && npm run build && cd ..
+
+# 5. Run tests
 pytest tests/ -q
 ```
+
+> **pip SSL error (SSLEOFError)?** If you are behind a system proxy (e.g. Clash), either disable it
+> before installing or use a China mirror: `pip install -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 See [docs/runbook.md](docs/runbook.md) for the operations manual (startup / environment variables / verification commands).
 
@@ -188,6 +196,8 @@ You have a long-term memory engine, SGME (ShiGuang Memory Engine), running on th
 **Write format**: the first line of content must be `# {ISO timestamp} {role}` (user/assistant), otherwise 422 is returned
 
 **Batch refine discipline**: batches of ≥20 files must be split (≤20 per batch) with 30–60s between batches; never retry a 429 immediately (server-side batch_scan will catch up); always use async mode
+
+**Skill acquisition (B114+: skills is a standalone module, MUST)**: when you need a capability SGME doesn't have built in, first `skill_search(query)`, then `skill_get(name)` for the full text before executing — **never claim a skill or improvise steps without searching**; write lessons back via the ownership rule (skill-specific pitfalls → `skill_put` into the skill itself; general world knowledge → `wiki_evolve_trigger` into the wiki).
 
 **Vector Engine Setup** (when `health()` reports `vector.available=false` / `vector.connectivity=false`): local-first, cloud fallback — prefer a local Ollama or LM Studio running `bge-m3` (1024-dim; cloud fallback `BAAI/bge-m3` on siliconflow is free and automatic, same dims → no index rebuild on switch). Probe `curl http://127.0.0.1:11434/api/tags` (Ollama) or `curl http://127.0.0.1:1234/v1/models` (LM Studio) → if no `bge-m3`, run `ollama pull bge-m3` (or download it in LM Studio) → write the `search.vector` block (`base_url`, `model: bge-m3`, `fallbacks`) into `config/sgme.yaml` and restart SGME → re-run `health()` until `vector.connectivity=true`. llama.cpp is NOT recommended (model state unmanaged, lost after VRAM cleanup).
 
@@ -242,8 +252,8 @@ sgme/
 ├── profile/         # template engine (template / inject / tier0 summary)
 ├── log/             # unified logging (get_logger is the sole entry; console + JSON dual format)
 ├── refinery/        # knowledge refinement engine (ingest/extract/validate/output; serves wiki)
-├── skills/          # skills management module (index source_dirs SKILL.md; skills.enabled)
-├── skills_hub/      # skill-hub extension (map/copy dual mode; skills_hub.enabled)
+├── skills/          # skills management module (git-backed source_dirs + skills.db index + write-side gate; skills.enabled; peer of memory/wiki)
+├── skills_hub/      # skill-hub extension (map/copy dual mode; git-sync duty only since B114; skills_hub.enabled)
 ├── wiki/            # wiki knowledge-base extension (/v1/wiki/* endpoints; wiki.enabled)
 ├── signal/          # signal engine (event publishing / SSE / pull cursor)
 ├── backup/          # backup & restore (snapshot tiers / cold archive / off-site copies)
@@ -255,6 +265,7 @@ templates/           # predefined 4-mode templates (daily/coding/work/full)
 prompts/             # refinement prompts (with MIT source attribution)
 registry/            # dimension registry + alias table
 config/              # runtime configuration
+ui/                  # Vue 3 + Vite frontend (cd ui && npm ci && npm run build → ui/dist, served by FastAPI)
 ```
 
 ## Design Docs

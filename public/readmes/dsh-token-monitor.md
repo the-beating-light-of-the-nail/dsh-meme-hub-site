@@ -2,10 +2,11 @@
 
 # dsh-token-monitor
 
-[![release](https://img.shields.io/github/v/release/licyer/dsh-token-monitor.svg)](https://github.com/licyer/dsh-token-monitor/releases)
-[![npm version](https://img.shields.io/npm/v/dsh-token-monitor.svg)](https://www.npmjs.com/package/dsh-token-monitor)
-[![license](https://img.shields.io/npm/l/dsh-token-monitor.svg)](LICENSE)
-[![node](https://img.shields.io/badge/node-%3E%3D22-339933)](https://nodejs.org)
+<a href="https://www.npmjs.com/package/dsh-token-monitor" target="_blank" rel="noopener noreferrer"><img alt="npm version" src="https://img.shields.io/npm/v/dsh-token-monitor.svg?color=CB3837"></a>
+[![release](https://img.shields.io/github/v/release/licyer/dsh-token-monitor.svg?color=24292f)](https://github.com/licyer/dsh-token-monitor/releases)
+[![license](https://img.shields.io/npm/l/dsh-token-monitor.svg?color=lightgrey)](LICENSE)
+[![dsh](https://img.shields.io/badge/dsh-0.1.2--rc.1-3964fe)](https://github.com/deepseek-ai/deepseek-harness)
+[![node](https://img.shields.io/badge/node-22.5.0%2B-339933)](https://nodejs.org)
 
 [安装](#安装) · [功能](#功能) · [插件配置](#插件配置) · [供应商适配](#供应商适配) · [常见问题](#常见问题) · [设计](#设计) · [开发](#开发)
 
@@ -14,13 +15,15 @@
 DeepSeek Harness（DSH）Web 界面的大模型**余量与用量监控**插件：会话头部实时余量徽标 + 主区"用量"页签，本地 SQLite 记录每次调用的 token 与费用。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-overview.png" alt="用量页签总览" width="100%">
+  <img src="https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-overview.png" alt="用量页签总览" width="100%">
 </p>
 
 ## 安装
 
 > [!NOTE]
-> 需要 **Node.js ≥ 22**（依赖内置 `node:sqlite`）。仅支持 DSH Web 端（`platform: web`）。
+> 需要 **Node.js ≥ 22.5.0**（依赖内置 `node:sqlite`）。仅支持 DSH Web 端（`platform: web`）。
+>
+> 实测环境：DSH **0.1.2-rc.1**（对 0.1.1 的旧接口做了兼容回退，但**会话数据不可跨版本回退**——0.1.2 写过的会话 0.1.1 无法打开，回退版本需连会话数据一起回退；更高版本未验证）。
 
 ### 从 npm（推荐）
 
@@ -56,7 +59,7 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 
 点击徽标弹出详情层：当前提供方指标、本会话 token 用量（可切换会话）、全部提供方折叠区、cc-switch 数据同步提示条、更新时间与刷新。
 
-![余量徽标与详情弹层](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/quota-popover.png)
+![余量徽标与详情弹层](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/quota-popover.png)
 
 ### 用量页签
 
@@ -64,27 +67,27 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 
 - **使用趋势**：渐变面积图，左轴 token 构成，右轴切换预估费用 / 请求次数；当天为分钟级刻度（2~60 分钟自适应 ≥12 桶，补桶不跨天），悬浮提示显示桶区间（如 `15:00~15:30`）
 
-![使用趋势](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-trend.png)
+![使用趋势](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-trend.png)
 
 - **供应商消耗统计**：X 轴供应商、柱内按模型堆叠，右柱费用 / 次数可切换
 
-![供应商消耗统计](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/provider-bars.png)
+![供应商消耗统计](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/provider-bars.png)
 
 - **年度消耗热力图**：GitHub 日历风，近 12 个整月，色深 = 当日 token，首尾按周补齐
 
-![年度消耗热力图](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/heatmap.png)
+![年度消耗热力图](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/heatmap.png)
 
 - **使用排行**：模型 / 供应商 / 客户端三维度聚合，默认按总消耗降序
 
-![使用排行](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-rank.png)
+![使用排行](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-rank.png)
 
 - **请求记录**：分页明细表（时间倒序），页码跳转、每页条数可调（10/20/50/100）
 
-![请求记录](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-records.png)
+![请求记录](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-records.png)
 
 - **跨设备同步**：底部"数据来源"提供导出 / 导入按钮，把不同设备的使用记录合并到一台设备，重复导入无副作用）
 
-![跨设备同步](https://raw.githubusercontent.com/licyer/dsh-token-monitor/6ca21e8dd36d9a7ffdd23bc64408c0325c7a5b76/docs/images/usage-sync.png)
+![跨设备同步](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-sync.png)
 
 ## 插件配置
 
@@ -143,6 +146,18 @@ A: 用量来自会话日志采集：确认 `$DSH_HOME/sessions` 下有会话日�
 <summary><strong>费用准不准？</strong></summary>
 
 A: 按 pi-ai 本地刊例价估算，仅供参考、非实际账单；订阅制不产生真实扣费。未定价模型计入 token 不计入费用。
+
+</details>
+
+<details>
+<summary><strong>升级 DSH 后再回退旧版，会话打不开 / 弹层显示"未配置模型"？</strong></summary>
+
+A: 这是 **DSH 会话数据单向向前**导致的，与插件无关。DSH 的会话日志带事件白名单校验：新版新增的事件若未标 `ignorable`，旧版会把整份日志判为"由更新的 harness 写入"并拒读（典型报错 `resume failed … SessionFormatUnsupportedError: event type "…" unknown to this harness and not marked ignorable …`），于是：
+
+- 该会话在旧版里**点开即失败（无法恢复）**；
+- 弹层因此拿不到当前模型，显示"未配置 / 未识别模型"。
+
+**举例**：0.1.2 起，会话日志会写入 `model/selection` 等 0.1.1 没有的新事件。若你在 0.1.2 期间创建或续写过某个会话，再回退到 0.1.1，这个会话就会打不开——0.1.1 不认识 `model/selection`，直接拒绝整份日志；该会话在 0.1.1 下无法恢复，**改日志或跳过校验只会损坏数据**。
 
 </details>
 

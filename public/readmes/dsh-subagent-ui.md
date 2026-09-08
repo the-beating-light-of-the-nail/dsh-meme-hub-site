@@ -22,9 +22,9 @@ A Web client plugin that adds a **子代理管理** button to the conversation-h
 
 The screenshots demonstrate the compact manager and active-agent floating panel:
 
-![Subagent manager panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/7683533105a471afef47d0a6e2b15448cbf14d39/docs/images/screenshot-1.png)
+![Subagent manager panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/c1afd17949de7f2136acdd4dea5e876a8544cddf/docs/images/screenshot-1.png)
 
-![Active subagent floating panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/7683533105a471afef47d0a6e2b15448cbf14d39/docs/images/screenshot-2.png)
+![Active subagent floating panel](https://raw.githubusercontent.com/miuzel/dsh-subagent-ui/c1afd17949de7f2136acdd4dea5e876a8544cddf/docs/images/screenshot-2.png)
 
 1. **Header** — title, current-session/workspace counts, and close action.
 2. **Search and scope row** — ordinary name/title/workspace search, with `id: xxx` reserved for Session ID search; workspace, session, sorting, and grouping selectors stay on one compact row.
@@ -54,6 +54,10 @@ A full persistent workspace-wide archive view requires a host-side catalog RPC (
 ## Compatibility
 
 v1.3.1 is compatible with dsh **0.1.2-alpha.2** (new `binding.eventSource` live-output path) and **0.1.1-rc.2** (legacy `chat.legacy` snapshot path). Live output is selected by capability detection, so older hosts behave as before.
+
+## v1.3.4
+
+- **Feature**: the whole UI is localized through DSH client-locale (zh/en, AI-assisted English strings). Labels, buttons, stats, live output (context injection / thinking / tool details) and confirm dialogs now use translation keys and follow the host language.
 
 ## v1.3.3
 

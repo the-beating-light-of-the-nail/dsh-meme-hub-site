@@ -23,7 +23,7 @@ Unofficial [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harnes
 - **Multi-account rotation** — when one account hits its usage limit, requests switch to the next account automatically. See [Account rotation](#account-rotation).
 - **Flexible API key setup** — via the settings page, an environment variable, or the official CLI login file.
 - **Model-picker annotations** — minimum plan, active deal or `FREE` badge, peak/off-peak state, image support, and context window; free models listed first.
-- **Plan-aware picker** — models above your subscription tier are hidden by default (toggleable).
+- **Plan-aware picker** — models above your subscription tier are hidden by default (toggleable); an optional **Visible models** allowlist keeps only your favorites in the picker.
 - **Reasoning-effort support** — models with selectable reasoning effort levels expose them in the picker.
 - **Image input** — Vision-capable models accept images.
 - **Web search** — the dsh `web_search` tool is backed by the Command Code Provider API (`/alpha/web-search`) with the same key/endpoint as chat, so no separate search key or base URL is needed. See [Web search](#web-search).
@@ -95,6 +95,7 @@ With several Command Code subscriptions, the plugin **switches to the next accou
 - **Setup** — use the **Account rotation** card at Settings → **Command Code** to add accounts with a label and API key; the top-level key always serves first as the `default` account.
 - **Manual switching** — the **Active account** dropdown pins a preferred account; if it is exhausted, requests fall back to other accounts and return once its window resets.
 - **Route models to accounts** — the **Route models to accounts** card picks catalog models (multi-select, fetched from the live catalog) and routes them to an account. A request whose model is in a rule serves from that account while it is usable; an exhausted or invalid routed account falls back to the normal rotation. Rules match in list order — the first hit wins.
+- **Show only favorite models** — the **Visible models** card keeps only the checked models in the model picker; unchecked shows all (the default).
 - **Status** — the **Account usage** card and `/commandcode` report per-account state.
 
 The equivalent YAML (`$DSH_HOME/settings.yaml` or composition config):
@@ -116,6 +117,9 @@ llm-commandcode:
     - models:
         - tencent/hy4-preview
       account: default
+  visibleModels:                       # optional: show only these models in pickers (catalog model ids); unset shows all
+    - deepseek/deepseek-v4-pro
+    - tencent/hy4-preview
 ```
 
 ## Configure
@@ -138,10 +142,10 @@ llm-commandcode:
 
 When your deployment's dsh shell mounts the web capability (`@deepseek-ai/dsh-web` + `@deepseek-ai/dsh-tool-web`), the model's `web_search` tool is served by this plugin's `commandcode` search provider — it calls the Command Code Provider API's `/alpha/web-search` endpoint with the **same API key and base URL** as chat. You do not configure a separate search key, endpoint, or model.
 
-**On by default.** The plugin's **Settings → Command Code** page has a *"Serve dsh web search with Command Code"* toggle (`webSearch`, default on). When on, the plugin selects `commandcode` as the active search backend automatically; turn it off to fall back to dsh's shipped DeepSeek search. The toggle takes effect on the next search — no restart needed.
+**On by default.** The plugin's **Settings → Command Code** page has a *"Serve dsh web search with Command Code"* toggle (`webSearch`, default on). When on, the plugin selects `commandcode` as the active search backend automatically; turn it off to hand the selection back to whichever backend was there before (a sibling search plugin such as modsearch keeps working — it is never forced back to dsh's shipped DeepSeek search). The toggle takes effect on the next search — no restart needed.
 
 - The provider registers as `commandcode` on `ctx.web` only when the web service is present; without it this stays a chat-only plugin.
-- The toggle works by selecting `commandcode` in the web seam at boot and on every settings change. If you'd rather pin it durably, set `searchProvider: commandcode` (or `$DSH_WEB_SEARCH_PROVIDER=commandcode`); that remains effective even if this plugin's runtime selection is unavailable.
+- The toggle works by selecting `commandcode` in the web seam at boot and on every settings change, remembering the backend it displaced; turning the toggle off (or unloading the plugin) restores that backend. If you'd rather pin it durably, set `searchProvider: commandcode` (or `$DSH_WEB_SEARCH_PROVIDER=commandcode`); that remains effective even if this plugin's runtime selection is unavailable.
 - `numResults` from the dsh tool is clamped to the Command Code range (1–10, default 5); results map to the dsh `WebSearchSource` shape (`url`/`title`/`snippet`).
 
 > This reuses the Command Code Provider API directly (like the official CLI's built-in `web_search`), so it is distinct from a DeepSeek-native search backend.
@@ -200,12 +204,12 @@ MIT — see [LICENSE](./LICENSE). Portions ported from [pi-commandcode-provider]
 
 **Model picker** — plan tier, deal/FREE, peak/off-peak, Image and context annotations:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/88257ad7f6db3969588f45ad6090330be6cdad8a/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/0427d5bc9e1c8eae1dfe6d8b77a1691c5db2dabb/assets/screenshots/model-picker.png" alt="Model picker with plan, deal, image and context annotations" width="320">
 
 **Usage dashboard** — `/commandcode` per-account report:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/88257ad7f6db3969588f45ad6090330be6cdad8a/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/0427d5bc9e1c8eae1dfe6d8b77a1691c5db2dabb/assets/screenshots/usage-dashboard.png" alt="Usage dashboard" width="520">
 
 **Settings page** — API key, connection knobs, account rotation and the live account-usage card:
 
-<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/88257ad7f6db3969588f45ad6090330be6cdad8a/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">
+<img src="https://raw.githubusercontent.com/Mars-Sea/dsh-commandcode-provider/0427d5bc9e1c8eae1dfe6d8b77a1691c5db2dabb/assets/screenshots/settings-page.png" alt="Command Code settings page with the account usage card" width="640">

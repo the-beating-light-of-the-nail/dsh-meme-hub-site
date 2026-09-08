@@ -28,9 +28,9 @@
 - [💝 致谢](#致谢)
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/combined.png" width="100%" alt="Catppuccin 四主题下的 DeepSeek Harness"/>
+	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/combined.png" width="100%" alt="Catppuccin 四主题下的 DeepSeek Harness"/>
 	<br/><br/>
-	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/glass-combined.png" width="100%" alt="玻璃质感 · Latte & Mocha"/>
+	<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/glass-combined.png" width="100%" alt="玻璃质感 · Latte & Mocha"/>
 </p>
 
 ## 简介
@@ -55,7 +55,7 @@ Catppuccin 主题。
 - 🧩 接入官方主题系统，与内置浅色 / 深色 / 跟随系统主题平级
 - 🎯 全界面配色覆盖，不只是一两个强调色
 - ⚙️ 设置页一行切换，选择自动保存、重启自动恢复
-- 🌐 中英文双语文案（跟随系统语言）
+- 🌐 中 / 英 / 日 / 韩 / 西 / 法 / 德七语文案（跟随系统语言）
 - 🪟 **玻璃质感**：顶栏 / 侧边栏 / 输入框 / 统计行 / 轨迹视图 / 聊天气泡 /
   新会话按钮磨砂玻璃效果，设置里一键开关；云母 / 兼容双模式，模糊度、磨砂度、
   背景亮度自由调节（交互参考 [DSH-Transparent-UI-Plugin](https://github.com/WYH66666666/DSH-Transparent-UI-Plugin)）
@@ -71,19 +71,19 @@ Catppuccin 主题。
 
 <details>
 <summary>🌻 Latte（浅色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/latte.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/latte.png"/>
 </details>
 <details>
 <summary>🪴 Frappé（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/frappe.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/frappe.png"/>
 </details>
 <details>
 <summary>🌺 Macchiato（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/macchiato.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/macchiato.png"/>
 </details>
 <details>
 <summary>🌿 Mocha（深色）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/mocha.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/mocha.png"/>
 </details>
 
 ### 玻璃质感（Mica 云母模式）
@@ -97,11 +97,11 @@ Catppuccin 主题。
 
 <details>
 <summary>🌻 Latte（浅色玻璃）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/glass-latte.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/glass-latte.png"/>
 </details>
 <details>
 <summary>🌿 Mocha（深色玻璃）</summary>
-<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/4c0aa9efe839f37e37ca235620982ada4fa7bc6d/assets/previews/glass-mocha.png"/>
+<img src="https://raw.githubusercontent.com/NoNameLeGo/dsh-catppuccin-theme/374e5ebe5cb7ae11bf9f29f13cbf9e3b101b285a/assets/previews/glass-mocha.png"/>
 </details>
 
 ## 安装
@@ -225,15 +225,27 @@ dsh plugin --profile dsh-tui add https://github.com/NoNameLeGo/dsh-catppuccin-th
 ```sh
 pnpm install
 pnpm typecheck   # tsc --noEmit 类型检查
-pnpm test        # vitest 跑配色表覆盖测试
+pnpm test        # vitest 跑配色表 / 契约 / e2e 覆盖测试
 pnpm build       # tsdown 构建 -> lib/index.js（服务端）+ lib/client.js（浏览器）
 ```
 
-配色表由生成器脚本产出——修改 `scripts/generate-palettes.mjs` 后重跑：
+配色表由生成器脚本产出——修改 `scripts/generate-palettes.mjs` 后重跑
+（`--pin <sha>` 可把上游 commit SHA 写进 `palettes.ts` 头部，见
+`docs/plugin-improvements.md` 的 L 项）：
 
 ```sh
-node scripts/generate-palettes.mjs
+node scripts/generate-palettes.mjs [--pin <upstream-sha>]
 ```
+
+对外 API（`./client`、`./tui-themes` 子路径导出）的 typedoc 文档生成到
+`docs/api/`（GitHub Pages 发布交给 maintainer）：
+
+```sh
+pnpm docs:api
+```
+
+贡献指南见 [CONTRIBUTING.md](CONTRIBUTING.md)；状态契约的版本迁移约定见
+[docs/state-migrations.md](docs/state-migrations.md)。
 
 ### 本地链接调试
 

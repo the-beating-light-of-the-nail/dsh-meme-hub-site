@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/4f6d6b50b93f2b69a2705f9d1020558ec6b04834/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/8a8d22103569b9d70374da3ba1264b804f3f5963/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -21,37 +21,37 @@
 
 ## Features
 
-- Archive a session from the sidebar session menu.
-- Archive every active chat in a workspace from its sidebar action menu.
-- Search archived chats, sort them by update time, creation time, or title, and filter them by workspace in **Settings → Archived**.
-- Restore a session to its original workspace with **Unarchive**.
-- Restore or permanently delete every archived chat in a project group.
-- Restore all archived chats from the page header.
-- Permanently delete a confirmed session, its workspace association, archive marker, and projection cache.
-- Delete all archived chats after confirmation, including child agents.
-- Remove unloaded deleted sessions from connected sidebars immediately.
-- Paste one sentence into DSH, Codex, or WorkBuddy and let that agent install the plugin locally.
+Put inactive conversations away and find them again when needed. Search, restore, and clean up archives in one place while keeping everyday task lists tidy.
+
+- **Put finished tasks away**: archive one conversation or all active chats in a workspace.
+- **Find past work**: search titles, filter by project, and sort by time or title in **Settings → Archived sessions**.
+- **Resume your work**: restore one conversation, a project group, or all archived chats.
+- **Clean up records**: permanently delete individual chats or batches after confirmation. **Permanent deletion cannot be undone.**
 
 ## Screenshots
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/4f6d6b50b93f2b69a2705f9d1020558ec6b04834/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/8a8d22103569b9d70374da3ba1264b804f3f5963/assets/screenshots/archive-session-menu.png)
 
-Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived**:
+Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived sessions**:
 
-![Archived chats settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/4f6d6b50b93f2b69a2705f9d1020558ec6b04834/assets/screenshots/archived-sessions.png)
+![Archived sessions settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/8a8d22103569b9d70374da3ba1264b804f3f5963/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 
-This product can be installed independently or used through the desktop app or Web suite. They share the same DSH core but serve different ways of working:
+For a ready-to-use workbench, download [DSH Codex Desktop](https://github.com/MichengAI/dsh-codex-desktop/releases). If you already use [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), install any of these eight plugins individually. The desktop app includes all eight.
 
-| Product | Relationship to this product |
+| Plugin | What you can do |
 | --- | --- |
-| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | The host runtime that provides models, sessions, tools, and the plugin system |
-| [DSH Codex Desktop](https://github.com/MichengAI/dsh-codex-desktop) | A ready-to-install desktop product with this product and the other five feature products built in |
-| [DSH Codex Suite](https://github.com/MichengAI/dsh-codex-ui/tree/main/packages/dsh-codex-suite) | A one-click suite for existing DSH Web environments that installs this product and the other five feature products |
-| Six feature products | [Codex UI](https://github.com/MichengAI/dsh-codex-ui) · [IM Connect](https://github.com/MichengAI/dsh-im-connect) · [Automation](https://github.com/MichengAI/dsh-automation) · [Skills Manager](https://github.com/MichengAI/dsh-skills-manager) · [Archive Manager](https://github.com/MichengAI/dsh-archive-manager) · [Agency Agents](https://github.com/MichengAI/dsh-agency-agents) |
+| [Codex UI](https://github.com/MichengAI/dsh-codex-ui) | Organize projects and conversations, search tasks, and navigate chat turns |
+| [IM Connect](https://github.com/MichengAI/dsh-im-connect) | Send tasks and receive replies through your usual messenger |
+| [Automation](https://github.com/MichengAI/dsh-automation) | Schedule tasks and review each run |
+| [Skills Manager](https://github.com/MichengAI/dsh-skills-manager) | Find, enable, create, and import local skills |
+| [Archive Manager](https://github.com/MichengAI/dsh-archive-manager) | Search, restore, or clean up archived conversations |
+| [Agency Agents](https://github.com/MichengAI/dsh-agency-agents) | Choose and summon specialists for your task |
+| [BTW](https://github.com/MichengAI/dsh-btw) | Ask side questions without interrupting the main task |
+| [Simplify](https://github.com/MichengAI/dsh-simplify) | Use /simplify to improve code within your Git changes |
 
 ## Prerequisites
 
@@ -61,39 +61,15 @@ This product can be installed independently or used through the desktop app or W
 
 ## Installation
 
-`dsh plugin add` forwards to `pnpm add` in the profile directory. Without a version and official registry, a local mirror or minimum-release-age policy can leave you on an older build.
+The installation commands below use the official npm registry.
 
-### Ask another agent to install it
+### Ask an agent to install it (recommended)
 
-This plugin runs inside DeepSeek Harness Web. Copy one of the sentences below into DSH, Codex, or WorkBuddy and let that agent install it into your local `web` profile.
-
-From npm:
+Send the prompt below to any agent that can run terminal commands on your computer. Replace `web` with your actual profile. Once installed, use the plugin in DSH.
 
 ```text
-Install the latest DSH plugin @michengai/dsh-archive-manager into my local web profile using the official npm registry: dsh plugin --profile web add @michengai/dsh-archive-manager@latest --registry=https://registry.npmjs.org/. Then run dsh --profile web --dump-config, confirm archive-manager is mounted, and remind me to restart DSH Web and hard-refresh the browser.
+Install the DSH plugin @michengai/dsh-archive-manager into my local web profile by running: dsh plugin --profile web add @michengai/dsh-archive-manager@latest --registry=https://registry.npmjs.org/. Then run dsh --profile web --dump-config, confirm the configuration includes workspace-archive-manager, ui-workspace-archive-manager, and explain how to reload DSH and start using the plugin.
 ```
-
-From source:
-
-```text
-Install the DSH plugin from source at https://github.com/MichengAI/dsh-archive-manager: clone it, run pnpm install --frozen-lockfile and pnpm build, then run dsh plugin --profile web add . from that directory. Do not copy lib by itself. Then run dsh --profile web --dump-config, confirm archive-manager is mounted, and remind me to restart DSH Web and hard-refresh the browser.
-```
-
-| Product | How to use it |
-| --- | --- |
-| DSH | Send one of the sentences above to the current session. |
-| Codex | Send one of the sentences above to Codex and let it install locally. |
-| WorkBuddy | Send one of the sentences above to WorkBuddy; for a source install you can also paste `https://github.com/MichengAI/dsh-archive-manager`. |
-
-Codex and WorkBuddy only install the plugin. After that, open DSH Web and use **Settings → Archived**.
-
-You can also run the same npm command yourself:
-
-```powershell
-dsh plugin --profile web add @michengai/dsh-archive-manager@latest --registry=https://registry.npmjs.org/
-```
-
-If `dsh` is not on PATH, replace the leading `dsh` with `npx --yes @deepseek-ai/dsh`.
 
 ### Install the latest package from the official npm registry
 
@@ -109,6 +85,33 @@ dsh --profile web --dump-config
 To pin a release, replace `@latest` with a specific version such as `@x.y.z`.
 
 The configuration output should contain `workspace-archive-manager` and `ui-workspace-archive-manager`. Restart DSH Web and hard-refresh the browser. Do not copy client files manually: the Settings page and archive menu need the mounted plugin.
+
+## Updates
+
+The settings title shows the installed version and a **Check for updates** button. When a newer release is available, **Update automatically** runs only when the DSH CLI or Desktop update service is available; otherwise, the dialog provides a profile-specific manual command to copy and run.
+
+## Usage
+
+1. Open the sidebar session menu and choose **Archive session**.
+2. Open **Settings → Archived sessions** to inspect sessions by workspace.
+3. Search by title, sort by update time, creation time, or title, or filter the list by project.
+4. Select **Unarchive** to restore one session, or select **Restore all** in the page header.
+5. Open a project heading's action menu to restore or delete all of that project's archived chats.
+6. Use the delete icon to remove one session permanently, then confirm the deletion. **It cannot be undone.**
+
+If the entry is missing after installation or upgrade, restart DSH Web and hard-refresh the browser. It is located directly after **Connectors** in Settings.
+
+## Data handling limits
+
+- Deletion always requires confirmation.
+- It removes workspace records, archive markers, and the projection cache. For the official JSONL backend, a validated layout also allows removal of the session-owned directory and its contents, including attachments. Other backends or unknown layouts only lose the located transcript artifact, never its parent directory.
+- Project containers and storage roots are retained. Deletion refuses symbolic links or Windows junctions at the official layout's project/session directory levels and keeps the operation retryable.
+- Layout validation uses the official backend's initialized absolute root, so a relative root remains stable across host working-directory changes. If that field is unavailable, only an absolute configured root is accepted. An unverified official JSONL layout emits a warning with the session ID and artifact path before falling back to artifact-only deletion.
+- Directory validation is not a cross-process filesystem lock: do not concurrently move or replace storage directories or change directory links during deletion. Storage paths writable by untrusted processes are not a security isolation boundary.
+- A live session finishes writing before cleanup to prevent data truncation.
+- The plugin replaces DSH’s default workspace and projection services. Install through the DSH profile instead of manually composing the patch.
+
+## Secondary development
 
 ### Install from source
 
@@ -127,26 +130,6 @@ dsh --profile web --dump-config
 ```
 
 Restart DSH Web and hard-refresh the browser. `dsh plugin ... add .` reads the package metadata and `cordis.patch.yml`; do not install by copying `lib` directly.
-
-## Usage
-
-1. Open the sidebar session menu and choose **Archive session**.
-2. Open **Settings → Archived** to inspect sessions by workspace.
-3. Search by title, sort by update time, creation time, or title, or filter the list by project.
-4. Select **Unarchive** to restore one session, or select **Restore all** in the page header.
-5. Open a project heading's action menu to restore or delete all of that project's archived chats.
-6. Use the delete icon to remove one session permanently, then confirm the deletion. **It cannot be undone.**
-
-If the entry is missing after installation or upgrade, restart DSH Web and hard-refresh the browser. It is located directly after **Connectors** in Settings.
-
-## Data handling limits
-
-- Deletion always requires confirmation.
-- It removes the session directory, workspace records, archive set, and projection cache.
-- A live session finishes writing before cleanup to prevent data truncation.
-- The plugin replaces DSH’s default workspace and projection services. Install through the DSH profile instead of manually composing the patch.
-
-## Secondary development
 
 `src` is the sole maintained source directory. `pnpm build` uses esbuild to compile it into publishable `lib` output. Do not edit `lib` directly because the next build overwrites it.
 
@@ -181,7 +164,3 @@ pnpm verify
 ## License
 
 Licensed under [Apache License 2.0](LICENSE).
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for retained release notes.

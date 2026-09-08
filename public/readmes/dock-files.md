@@ -10,7 +10,7 @@ dock 系列的文件浏览插件：在侧边栏挂载文件面板，浏览当前
 
 | 主界面 | 右键菜单 |
 | --- | --- |
-| ![dock-files 文件浏览主界面](https://raw.githubusercontent.com/AKS1st/dock-files/4ad915c6214446cc3572e309b5043929be983088/assets/main-gui.png) | ![dock-files 右键菜单](https://raw.githubusercontent.com/AKS1st/dock-files/4ad915c6214446cc3572e309b5043929be983088/assets/menu-zh.png) |
+| ![dock-files 文件浏览主界面](https://raw.githubusercontent.com/AKS1st/dock-files/fd58e18ff1fb8069c683d14e96e33768da1fa753/assets/main-gui.png) | ![dock-files 右键菜单](https://raw.githubusercontent.com/AKS1st/dock-files/fd58e18ff1fb8069c683d14e96e33768da1fa753/assets/menu-zh.png) |
 
 ## 功能
 

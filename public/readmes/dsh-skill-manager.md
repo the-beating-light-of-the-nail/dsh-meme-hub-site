@@ -1,7 +1,7 @@
 # dsh-skill-manager
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AKS1st/dsh-skill-manager/e5bdac91e6a69545ecccd6b2b1cf284e87cb441a/assets/SKILLMANAGER.png" alt="dsh-skill-manager" width="640">
+  <img src="https://raw.githubusercontent.com/AKS1st/dsh-skill-manager/592fae343afae7142d7e3d30dfac24059bc31786/assets/SKILLMANAGER.png" alt="dsh-skill-manager" width="640">
 </p>
 
 [English](README.md) · [中文](README.zh-CN.md)
@@ -24,11 +24,11 @@ you manage them without touching the filesystem by hand:
 
 The **Skills** page inside the settings panel:
 
-![Skills page](https://raw.githubusercontent.com/AKS1st/dsh-skill-manager/e5bdac91e6a69545ecccd6b2b1cf284e87cb441a/assets/screenshot-en.png)
+![Skills page](https://raw.githubusercontent.com/AKS1st/dsh-skill-manager/592fae343afae7142d7e3d30dfac24059bc31786/assets/screenshot-en.png)
 
 The file editor window (click a file to open it):
 
-![File editor](https://raw.githubusercontent.com/AKS1st/dsh-skill-manager/e5bdac91e6a69545ecccd6b2b1cf284e87cb441a/assets/editor-en.png)
+![File editor](https://raw.githubusercontent.com/AKS1st/dsh-skill-manager/592fae343afae7142d7e3d30dfac24059bc31786/assets/editor-en.png)
 
 ## Install
 

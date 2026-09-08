@@ -21,7 +21,7 @@ five-wave Gerstner/TSL look, adds a translucent Harness theme, and is available
 as a one-line DSH plugin, Harness-only Chrome/Edge extension, one-command static
 installer, or native Harness source integration.
 
-![Open Sea for DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/marketplace/open-sea-harness-cover.png)
+![Open Sea for DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/5dd47e7c7b53fa6be410accc39d0d2ec8778194e/docs/marketplace/open-sea-harness-cover.png)
 
 ## Recommended — install as a DSH plugin
 
@@ -29,7 +29,7 @@ Install the complete local-only ocean runtime and lower-left quick controls
 directly from GitHub:
 
 ```sh
-dsh plugin --profile web add 'github:d-dev0101/open-sea-skin#v1.2.2'
+dsh plugin --profile web add 'github:d-dev0101/open-sea-skin#v1.2.3'
 ```
 
 Restart `dsh web`, then use **Skin settings** at the lower left to adjust wave
@@ -53,24 +53,24 @@ at **40% glass opacity**. The overview baseline is wave size **56** and daylight
 
 ### 1 — Dark Harness overview
 
-![Open Sea inside DeepSeek Harness in dark mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-dark-overview-40.gif)
+![Open Sea inside DeepSeek Harness in dark mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/5dd47e7c7b53fa6be410accc39d0d2ec8778194e/docs/screenshots/harness-dark-overview-40.gif)
 
 ### 2 — Light Harness overview
 
-![Open Sea inside DeepSeek Harness in light mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-light-overview-40.gif)
+![Open Sea inside DeepSeek Harness in light mode](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/5dd47e7c7b53fa6be410accc39d0d2ec8778194e/docs/screenshots/harness-light-overview-40.gif)
 
 ### 3 — Adjusting wave size
 
 Daylight stays at Afternoon (55) while the wave control moves from moderate to
 calm, through high sea, and back to the baseline of 56.
 
-![Adjusting wave size in DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-wave-control-40.gif)
+![Adjusting wave size in DeepSeek Harness](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/5dd47e7c7b53fa6be410accc39d0d2ec8778194e/docs/screenshots/harness-wave-control-40.gif)
 
 ### 4 — Daylight to sunset
 
 Wave size stays at 56 while daylight moves smoothly from Midday to Dusk.
 
-![Adjusting daylight from midday to sunset](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/07507a4e7b43e1c9b9006ad8af97406330adb2ea/docs/screenshots/harness-daylight-sunset-40.gif)
+![Adjusting daylight from midday to sunset](https://raw.githubusercontent.com/d-dev0101/open-sea-skin/5dd47e7c7b53fa6be410accc39d0d2ec8778194e/docs/screenshots/harness-daylight-sunset-40.gif)
 
 ## Install option 1 — Chrome or Edge extension
 
@@ -91,7 +91,7 @@ daylight, and glass-opacity controls. Values are saved with
 
 ## Install option 2 — Harness static build (no source compilation)
 
-Run this from **any directory**. It downloads the pinned `v1.2.2` source archive
+Run this from **any directory**. It downloads the pinned `v1.2.3` source archive
 to a temporary directory, runs the installer, and removes the download when it
 finishes. **Stop Harness before running it**, then start `dsh web` again, keep
 that terminal process running, and reload the browser:

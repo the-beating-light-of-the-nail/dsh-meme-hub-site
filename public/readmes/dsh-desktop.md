@@ -11,7 +11,7 @@ DSH Desktop 是独立的 DeepSeek Harness（`dsh`）Electron 客户端。窗口�
 
 安装包内置固定版本的官方 `@deepseek-ai/dsh` 运行时。普通用户不需要安装 Node.js、pnpm 或 `dsh` CLI。桌面客户端和官方运行时使用不同版本号，连接设置会同时显示这两个版本。
 
-![DSH Desktop 首页](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8e320a894a31f09434a227fc473667e67fb43617/docs/images/dsh-desktop-home.png)
+![DSH Desktop 首页](https://raw.githubusercontent.com/bruc3van/dsh-desktop/f741d9341e70b2b2ac1356b02210894260e4c40b/docs/images/dsh-desktop-home.png)
 
 ## 主要功能
 
@@ -70,7 +70,7 @@ DSH Desktop 是独立的 DeepSeek Harness（`dsh`）Electron 客户端。窗口�
 
 可从托盘菜单、macOS 应用菜单或主窗口快捷键打开“桌面设置”：macOS 使用 `Cmd+,`，Windows/Linux 使用 `Ctrl+,`。
 
-![桌面设置：连接方式、运行时来源、安全市场和版本信息](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8e320a894a31f09434a227fc473667e67fb43617/docs/images/dsh-desktop-setting.png)
+![桌面设置：连接方式、运行时来源、安全市场和版本信息](https://raw.githubusercontent.com/bruc3van/dsh-desktop/f741d9341e70b2b2ac1356b02210894260e4c40b/docs/images/dsh-desktop-setting.png)
 
 连接状态说明：
 
@@ -142,7 +142,7 @@ macOS 可在应用目录可写时自动替换并重启应用。更新失败时�
 
 市场默认关闭。开启后才会读取目录，并缓存上一次成功获取的数据。关闭市场会移除市场插件，之后启动时不会自动装回。
 
-![安全市场](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8e320a894a31f09434a227fc473667e67fb43617/docs/images/marketplace.png)
+![安全市场](https://raw.githubusercontent.com/bruc3van/dsh-desktop/f741d9341e70b2b2ac1356b02210894260e4c40b/docs/images/marketplace.png)
 
 市场目录来自 [awesome-dsh-plugin](https://github.com/bruc3van/awesome-dsh-plugin)：
 
@@ -154,11 +154,11 @@ macOS 可在应用目录可写时自动替换并重启应用。更新失败时�
 
 **收录不代表安全背书。安装前仍需查看审查结果。**
 
-![安全安装会先填入审查提示词](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8e320a894a31f09434a227fc473667e67fb43617/docs/images/marketplace-sec-install.png)
+![安全安装会先填入审查提示词](https://raw.githubusercontent.com/bruc3van/dsh-desktop/f741d9341e70b2b2ac1356b02210894260e4c40b/docs/images/marketplace-sec-install.png)
 
 已安装插件可以查看版本、启用、停用或卸载。已安装但未加载的插件也会显示。
 
-![已安装插件管理](https://raw.githubusercontent.com/bruc3van/dsh-desktop/8e320a894a31f09434a227fc473667e67fb43617/docs/images/marketplace-installed.png)
+![已安装插件管理](https://raw.githubusercontent.com/bruc3van/dsh-desktop/f741d9341e70b2b2ac1356b02210894260e4c40b/docs/images/marketplace-installed.png)
 
 市场与当前运行时不兼容时，客户端会停止接入市场，不影响其他插件。更完整的配置、目录协议和限制见[安全市场仓库](https://github.com/bruc3van/dsh-desktop-safe-market)。
 

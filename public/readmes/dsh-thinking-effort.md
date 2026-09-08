@@ -31,7 +31,7 @@ A [DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) plug
 | --- | --- |
 | `0.1.0-rc.7` | Not available |
 | `0.1.0-rc.8` to `<0.1.2-alpha.1` | Available when exposed by the DSH schema, but without `supportsFinishReason` and `supportsThinkingTokenBudget` |
-| `0.1.2-alpha.1` to `<0.1.3-0` | All 15 fields when exposed by the DSH schema |
+| `0.1.2-alpha.1` to `<0.1.4-0` | All 15 fields when exposed by the DSH schema |
 
 From DSH `0.1.0-rc.8` onward, field availability follows the runtime schema. The table shows the maximum field set for each DSH version; the route protocol can further reduce it.
 
@@ -67,6 +67,7 @@ These identifiers have different responsibilities:
 | Per-model editor | Select levels and configure gateway values for both catalog/modelOverrides and `models[]` entries in Settings |
 | Gateway compatibility | Configure 15 common scalar fields globally per provider or separately per model, grouped by role/reasoning, format/output, streaming/tools, and storage/cache; groups are collapsed by default |
 | Gateway mapping | Send `ultra` when the user selects DSH `high` |
+| Composer effort slider | Registers an optional Composer `seat` when the Web runtime exposes `modelDirectories`, with host-resolved tiers for the current `provider/model` |
 | Subagent default | Apply a default effort only when a subagent request has no explicit value |
 | Multilingual settings | Includes Chinese, English, Japanese, and Korean dictionaries; Japanese/Korean switching uses DSH language-pack support |
 | Version watermark | Show the installed plugin version in the bottom-right corner |
@@ -107,7 +108,15 @@ See [INSTALL.md](./docs/INSTALL.md) for profile discovery, migration, validation
    | `high` | `ultra` |
    | `max` | `max` |
 
-7. Return to Composer and select the model to use its reasoning selector.
+7. Return to Composer, choose the configured model, then use its reasoning-effort slider.
+
+### Composer reasoning-effort slider
+
+When the DSH Web runtime exposes `modelDirectories`, the client registers an optional `conversation.input.model` `seat` with a low `shadow` priority; it does not modify Composer itself. The slider reads the host-resolved `reasoning.efforts` array for the current exact `provider/model`, so it shows only the tiers currently effective for that model. Changing a level submits the ordinary session model selection; it does not mutate the plugin Settings document.
+
+The model's `defaultEffort` is shown through the matching tier. If the host model has no `defaultEffort`, the panel also provides **Follow model default**, which submits a selection without a reasoning-effort override. The control uses the host `--dsw-*` semantic tokens and therefore follows the active light or dark theme without its own theme preference.
+
+The `seat` is not registered when the runtime does not provide `modelDirectories`; the Settings page and its legacy Settings transport behavior continue to work. This plugin does not modify the DSH Composer, `ui-conversation`, or `ui-model-selection` packages.
 
 The settings page shows the installed version as a small watermark such as `v0.1.14` in the bottom-right corner.
 
@@ -138,13 +147,15 @@ These compat values are control plane configuration. They do not implement or re
 
 The page header contains the language selector. Below it, the Subagent default effort card controls the default for requests without an explicit effort. The Quick settings controls apply a preset across models. Provider sections can be expanded or collapsed; each model row exposes input capabilities, context length, and gateway compatibility controls in its settings area. `models[]` saves use one complete array set rather than an array-index path operation.
 
-![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/0e428b9d64fec44b2b7405aedfb6ba21359d79ad/docs/assets/settings-gateway-compat-en.png)
+![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/9c7c5300e557eefe41e22869cf9db8263b5083a5/docs/assets/screenshots/plugin-en-settings-expanded.png)
+
+See the complete Chinese, English, Japanese, and Korean screenshot gallery in [`docs/SCREENSHOTS.md`](./docs/SCREENSHOTS.md).
 
 
 ## How it works
 
 - **Host:** Scans `llm-pi-ai` `models` and `modelOverrides` on startup and settings changes, adding defaults only where `reasoningEfforts` is missing.
-- **Client:** Registers a settings page through the DSH Settings Remote (`ctx.remote.settings`) and the official DSH locale service. Chinese, English, Japanese, and Korean dictionaries are maintained separately in `src/locales/zh.json`, `src/locales/en.json`, `src/locales/ja.json`, and `src/locales/ko.json`, then generated into the client bundle before publishing.
+- **Client:** Registers the Settings page through the DSH Settings Remote (`ctx.remote.settings`) and, when the runtime exposes `modelDirectories`, registers the optional Composer `seat` with a low `shadow` priority and host-resolved effort slider. Chinese, English, Japanese, and Korean dictionaries are maintained separately in `src/locales/zh.json`, `src/locales/en.json`, `src/locales/ja.json`, and `src/locales/ko.json`, then generated into the client bundle before publishing.
 - **Subagents:** Stores the default in the `llm-pi-ai` user layer as `subagentEffort`. The `agent/request` waterfall only fills requests that do not already specify an effort.
 - **No configured default:** The plugin does not automatically choose `off`, `high`, or `max`; the request omits `reasoning` and the gateway decides its own default behavior.
 
@@ -154,7 +165,8 @@ The page header contains the language selector. Below it, the Subagent default e
 - Non-`off` levels require a gateway value. An empty `off` value means that the parameter is omitted.
 - The selected subagent level must be supported by the target model, or the gateway may return `UNSUPPORTED_REASONING_EFFORT`.
 - `off` and an unset effort may both omit `reasoning`; whether this disables thinking depends on the gateway protocol.
-- Host changes require a DSH restart. Settings and locale changes are applied in the browser, with a refresh available when needed.
+- The Composer slider is available only when the Web runtime provides the optional `modelDirectories` service. The `seat` is not registered when that service is unavailable, and the plugin leaves Composer unchanged.
+- Host changes require a DSH restart. Settings, locale, and Client bundle changes take effect after a Web page refresh.
 
 ## CI and release maintenance
 
@@ -163,7 +175,7 @@ The page header contains the language selector. Below it, the Subagent default e
 - The ordinary CI workflow does not publish to npm. Publishing is triggered only by a `v<version>` tag through `publish.yml`.
 - Before creating a release tag, update `package.json` version and `CHANGELOG.md` files, commit those changes, and create the matching `v<version>` tag. The tag must point to a commit in the `main` history.
 - npm Trusted Publishing must be configured for repository `hytime/dsh-thinking-effort` and workflow `publish.yml`. The workflow publishes provenance through GitHub OIDC and does not require `NPM_TOKEN`.
-- Before publishing, the workflow builds and tests three official DSH capability representatives in this order: `dsh-v0.1.0-rc.7` (`0.1.0-rc.7`), `dsh-v0.1.1-rc.2` (`0.1.1-rc.2`), and `dsh-v0.1.2-alpha.3` (`0.1.2-alpha.3`), using the official `dsh plugin` command and real compatibility checks.
+- Before publishing, the workflow builds and tests three official DSH capability representatives in this order: `dsh-v0.1.0-rc.7` (`0.1.0-rc.7`), `dsh-v0.1.1-rc.2` (`0.1.1-rc.2`), and `dsh-v0.1.3-alpha.2` (`0.1.3-alpha.2`), using the official `dsh plugin` command and real compatibility checks.
 - The workflow never changes the package version or any `CHANGELOG` file automatically; an existing npm version also blocks publishing.
 
 ## License

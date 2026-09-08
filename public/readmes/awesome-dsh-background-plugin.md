@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/leavestring/awesome-dsh-background-plugin/2b758a6fed8dfc79644c0cfb755eae11a7778332/screenshots/banner.png" alt="DSH Background" width="100%" />
+  <img src="https://raw.githubusercontent.com/leavestring/awesome-dsh-background-plugin/ab23c3a6e0513cd7d9cdde693500f98906520c90/screenshots/banner.png" alt="DSH Background" width="100%" />
 </p>
 
 # DSH Background
@@ -8,6 +8,7 @@
 
 **简体中文** | [English](README.en.md)
 
+[![Listed on DSH Directory](https://dsh.directory/badges/listed.svg)](https://dsh.directory/plugins/leavestring/awesome-dsh-background-plugin)
 [![Release v0.1.9](https://img.shields.io/badge/release-v0.1.9-5B4CF0?style=flat-square)](https://github.com/leavestring/awesome-dsh-background-plugin/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0B7285?style=flat-square)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
@@ -34,11 +35,11 @@ DSH Web 默认只有一套主题色背景。如果你和我一样，希望自己
 
 暗色模式 + 自定义图片背景：
 
-![暗色模式自定义背景](https://raw.githubusercontent.com/leavestring/awesome-dsh-background-plugin/2b758a6fed8dfc79644c0cfb755eae11a7778332/screenshots/dark-mode-image.png)
+![暗色模式自定义背景](https://raw.githubusercontent.com/leavestring/awesome-dsh-background-plugin/ab23c3a6e0513cd7d9cdde693500f98906520c90/screenshots/dark-mode-image.png)
 
 浅色模式 + 自定义图片背景：
 
-![浅色模式自定义背景](https://raw.githubusercontent.com/leavestring/awesome-dsh-background-plugin/2b758a6fed8dfc79644c0cfb755eae11a7778332/screenshots/light-mode-image.png)
+![浅色模式自定义背景](https://raw.githubusercontent.com/leavestring/awesome-dsh-background-plugin/ab23c3a6e0513cd7d9cdde693500f98906520c90/screenshots/light-mode-image.png)
 
 ## 功能
 

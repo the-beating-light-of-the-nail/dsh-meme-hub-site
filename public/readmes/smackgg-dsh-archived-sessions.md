@@ -1,6 +1,6 @@
 # dsh-archived-sessions
 
-[简体中文](https://github.com/smackgg/dsh-archived-sessions/blob/main/README.zh-CN.md)
+[简体中文](./README.zh-CN.md)
 
 An installable [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) **plugin bundle** that adds an **Archived** settings page and restores archived sessions.
 

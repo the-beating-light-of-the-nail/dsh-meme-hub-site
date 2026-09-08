@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/hero-zh.webp" alt="dsh-image-gen 中文功能概览" width="100%" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/hero-zh.webp" alt="dsh-image-gen 中文功能概览" width="100%" />
 
 <br />
 
@@ -34,7 +34,7 @@
 
 **为 DeepSeek Harness 带来完整的 AI 图像创作工作流。**
 
-`dsh-image-gen` 不只是简单的对话生图，而是为 DSH 补齐了从**自然语言连续修图**、**Studio 批量创作**、**多模型横向对比**，到 **500+ Prompt 灵感库**与**本地 ComfyUI** 的全流程能力。支持 **Google Gemini、OpenAI Images / Compatible、ByteDance Seedream、Aliyun DashScope** 及本地私有化工作流，采用 BYOK（自带 Key）模式，生成结果支持按工作区隔离存储。
+`dsh-image-gen` 不只是简单的对话生图，而是为 DSH 补齐了从**自然语言连续修图**、**Studio 批量创作**、**多模型横向对比**，到 **500+ Prompt 灵感库**与**本地 ComfyUI** 的全流程能力。支持 **Google Gemini、OpenAI Images / Compatible、ByteDance Seedream、Aliyun DashScope、xAI Grok Imagine、智谱 GLM-Image** 及本地私有化工作流，采用 BYOK（自带 Key）模式，生成结果支持按工作区隔离存储。
 
 ```bash
 pnpm dsh plugin --profile web add dsh-image-gen@latest
@@ -42,7 +42,7 @@ pnpm dsh plugin --profile web add dsh-image-gen@latest
 
 > **版本更新提示：** 本次版本变化较大，老用户请更新至最新版本。
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/workflow-overview.webp" alt="dsh-image-gen 完整 AI 图像创作工作流" width="100%" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/workflow-overview.webp" alt="dsh-image-gen 完整 AI 图像创作工作流" width="100%" />
 
 ---
 
@@ -95,7 +95,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 
 **设置 → 插件 → 插件配置 → 图像生成**
 
-选择 Provider，填写自己的 API Key，并按需调整模型、Endpoint / Base URL 与工作区保存选项。使用 ComfyUI 时，请填写 DSH Host 可访问的服务地址，并导入 **API Format Workflow JSON**。
+选择 Provider，填写自己的 API Key，并按需调整模型、Endpoint / Base URL 与工作区保存选项。填好 Key 后可点击**「测试连接」**验证可用性，或点击**「拉取模型」**一键获取该厂商支持的全部生图模型，无需手动查文档。使用 ComfyUI 时，请填写 DSH Host 可访问的服务地址，并导入 **API Format Workflow JSON**。
 
 ### 3. 开始创作
 
@@ -114,8 +114,8 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/provider-settings.webp" alt="DSH 插件配置界面" width="46%" />
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/chat-example.webp" alt="对话生图与风格重构效果" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/provider-settings.webp" alt="DSH 插件配置界面" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/chat-example.webp" alt="对话生图与风格重构效果" width="46%" />
   <br />
   <sub>左：Provider 配置 · 右：在 DSH 对话中直接生图、图生图与连续编辑。</sub>
 </div>
@@ -136,8 +136,8 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/regenerating.webp" alt="图片正在重新生成" width="46%" />
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/revision-switcher.webp" alt="在同一图片卡片中切换生成版本" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/regenerating.webp" alt="图片正在重新生成" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/revision-switcher.webp" alt="在同一图片卡片中切换生成版本" width="46%" />
   <br />
   <sub>修改 Prompt 后原位重新生成，并在同一张图片卡片中切换历史版本。</sub>
 </div>
@@ -152,7 +152,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/studio-workbench.webp" alt="dsh-image-gen Studio 工作台" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/studio-workbench.webp" alt="dsh-image-gen Studio 工作台" width="100%" />
   <br />
   <sub>在同一个 Studio 中完成参考图导入、参数控制、批量生成、结果筛选与保存。</sub>
 </div>
@@ -166,7 +166,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/multi-model-compare.webp" alt="同一 Prompt 的多模型生成对比" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/multi-model-compare.webp" alt="同一 Prompt 的多模型生成对比" width="100%" />
   <br />
   <sub>在同一画布中比较不同模型结果，再批量保存满意的图片。</sub>
 </div>
@@ -181,7 +181,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/inspiration-library.webp" alt="Prompt 灵感素材库" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/inspiration-library.webp" alt="Prompt 灵感素材库" width="100%" />
   <br />
   <sub>先找灵感，再把 Prompt 带入工作台；全本地缓存，浏览或复制不消耗生成额度。</sub>
 </div>
@@ -196,7 +196,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/gallery-management.webp" alt="图库筛选、收藏与批量管理" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/gallery-management.webp" alt="图库筛选、收藏与批量管理" width="100%" />
   <br />
   <sub>图库支持多维度筛选、收藏、批量管理与工作区数据隔离。</sub>
 </div>
@@ -215,7 +215,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/d6aacb3109b638559669944bcc15e28e33c708cd/docs/assets/readme/comfyui-workflows.webp" alt="ComfyUI 多工作流配置" width="58%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/comfyui-workflows.webp" alt="ComfyUI 多工作流配置" width="58%" />
   <br />
   <sub>为不同用途维护独立工作流，并通过名称让 Agent 精确选择。</sub>
 </div>
@@ -229,12 +229,16 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 | Provider                          | 对话生图 | 对话编辑 | Studio | 多模型对比 |
 | :-------------------------------- | :------: | :------: | :----: | :--------: |
 | **Google Gemini**                 |    ✅    | ✅ 多图  |   ✅   |     ✅     |
-| **OpenAI Images / Compatible**    |    ✅    | ✅ 多图  |   ✅   |     ✅     |
+| **OpenAI Images**                 |    ✅    | ✅ 多图  |   ✅   |     ✅     |
+| **OpenAI Compatible（中转站）**   |    ✅    | ✅ 多图  |   ✅   |     ✅     |
 | **ByteDance Seedream / 火山方舟** |    ✅    | ✅ 多图  |   ✅   |     ✅     |
 | **Aliyun DashScope / Qwen Image** |    ✅    | ✅ 多图  |   ✅   |     ✅     |
+| **xAI Grok Imagine**              |    ✅    | ⚠️ 有限  |   ✅   |     ✅     |
+| **智谱 GLM-Image**                |    ✅    |    —     |   ✅   |     ✅     |
 | **Local ComfyUI**                 |    ✅    | ✅ 单图  |   —    |     —      |
 
 > Studio 与多模型对比目前只支持云端 Provider；多模型对比调用的是各 Provider 在设置中已配置的模型。
+> 智谱 GLM-Image 上游本身不支持图生图；xAI 图生图走 OpenAI 兼容协议（multipart），部分网关可能需等待后续适配。
 
 <details>
 <summary><strong>当前默认模型与 Endpoint（均可修改）</strong></summary>
@@ -246,6 +250,8 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 | OpenAI Compatible  | 自定义                       | 自定义 Base URL                                                 |
 | ByteDance Seedream | `doubao-seedream-5-0-260128` | `https://ark.cn-beijing.volces.com/api/v3`                      |
 | Aliyun DashScope   | `qwen-image-3.0`             | `https://dashscope.aliyuncs.com/api/v1`                         |
+| xAI Grok Imagine   | `grok-imagine-image`         | `https://api.x.ai/v1`                                           |
+| 智谱 GLM-Image     | `glm-image`                  | `https://open.bigmodel.cn/api/paas/v4`                          |
 | Local ComfyUI      | 用户导入的 API Workflow      | `http://127.0.0.1:8188`                                         |
 
 </details>
@@ -286,7 +292,7 @@ dsh --profile web --dump-config
 <details>
 <summary><strong>为什么 ComfyUI 没有出现在 Studio 中？</strong></summary>
 
-当前 Studio 与多模型对比只支持四类云端 Provider。ComfyUI 已支持在 Agent 对话中进行文生图、单图编辑以及多个命名工作流。
+当前 Studio 与多模型对比仅支持云端 Provider，暂未接入 ComfyUI。ComfyUI 已支持在 Agent 对话中进行文生图、单图编辑以及多个命名工作流。
 
 </details>
 

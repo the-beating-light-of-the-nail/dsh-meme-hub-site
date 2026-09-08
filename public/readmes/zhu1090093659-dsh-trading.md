@@ -1,6 +1,6 @@
 # dsh-trading
 
-![dsh-trading — Your next trading terminal, and your AI Agent](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/44177acf9d8704a9c41f98d396fe2ef8942e41a5/docs/banners/banner-en.jpg)
+![dsh-trading — Your next trading terminal, and your AI Agent](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/6533fa45fe532624b3e318f04803e7325aa018f3/docs/banners/banner-en.jpg)
 
 > **Your next trading terminal can also be your AI agent.**
 > *No chumps for the slaughter, just everyday traders.*
@@ -28,7 +28,7 @@ That is why dsh-trading exists: an **agent-native trading terminal** built on [D
 
 Crypto, US equities, China A-shares, Hong Kong stocks. One terminal. One agent. Nineteen-plus connectors. Zero vendor lock-in — every key stays on your machine.
 
-![dsh-trading terminal — watchlist, chart stage with indicators, order book and derivatives panel](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/44177acf9d8704a9c41f98d396fe2ef8942e41a5/docs/screenshots/terminal-overview.png)
+![dsh-trading terminal — watchlist, chart stage with indicators, order book and derivatives panel](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/6533fa45fe532624b3e318f04803e7325aa018f3/docs/screenshots/terminal-overview.png)
 
 ---
 
@@ -42,7 +42,7 @@ dsh-trading turns that relationship upside down: **the agent is a first-class ci
 
 1. **Quotes, news, capital flow — the agent has it all.** One click on *Send to Agent*, and the symbol you're watching — live quote, current candle, the chart series' time range with a fetch locator (so the agent pulls the same routed data itself and analyzes it in code), the computed readings of your active indicators, available chart screenshot and derivatives snapshot, plus freshly requested announcements, news and a bounded fundamentals summary — is packaged into the composer without sending. Missing sources are explicit; the agent is guided to verify original disclosures and fill gaps with native research tools. No more screenshot-copy-paste ritual.
 
-![Send to Agent — chart snapshot and quote context injected into the composer](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/44177acf9d8704a9c41f98d396fe2ef8942e41a5/docs/screenshots/chart-to-agent.png)
+![Send to Agent — chart snapshot and quote context injected into the composer](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/6533fa45fe532624b3e318f04803e7325aa018f3/docs/screenshots/chart-to-agent.png)
 
 2. **The agent can trade, but the gate is in your hands.** Market data, order books, derivatives positioning, news, and order placement are all native tools. Yet every order defaults to **dry-run simulation**; live routing requires an explicit `liveTrading: true` opt-in, and then each order still passes through interactive human approval. In headless environments it fails closed. One rule: no move without the gate. Nothing executes behind your back.
 
@@ -73,7 +73,7 @@ A shoddy terminal makes even the smartest agent an armchair general.
 
 **Hot-swappable data planes.** Not happy with a data source? Swap it. Settings → Trading routes any market to any installed provider: the quote panel re-routes on save, agent sessions pick it up on their next turn — no restarts, no config archaeology.
 
-![Provider routing — per-market exchange selection with BYOK credential slots](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/44177acf9d8704a9c41f98d396fe2ef8942e41a5/docs/screenshots/provider-routing.png)
+![Provider routing — per-market exchange selection with BYOK credential slots](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/6533fa45fe532624b3e318f04803e7325aa018f3/docs/screenshots/provider-routing.png)
 
 ## Safety and privacy: discipline welded in, not preached
 
@@ -94,13 +94,16 @@ Three steps, and you're in:
 
 ```sh
 # Install into a dedicated DSH profile (pick your markets)
+# Trading lives in its own DSH home (~/.dsh-trading) so it never mixes with your
+# main dsh web home (~/.dsh); every dsh-trading package resolves data paths via $DSH_HOME
+export DSH_HOME=~/.dsh-trading
 dsh plugin --profile trading-web add @dshtrading/base @dshtrading/crypto @dshtrading/us
 # …or all four markets
 dsh plugin --profile trading-web add @dshtrading/base @dshtrading/crypto @dshtrading/us @dshtrading/cn @dshtrading/hk
 
 # Serve the browser UI in this profile (once): add the in-box web host layer
 # right after the dsh core layer in the profile manifest
-node -e "const f=require('os').homedir()+'/.dsh/profiles/trading-web/package.json',fs=require('fs'),m=JSON.parse(fs.readFileSync(f,'utf8'));m.dsh.profile.bundles.includes('@deepseek-ai/dsh-web-app')||m.dsh.profile.bundles.splice(1,0,'@deepseek-ai/dsh-web-app');fs.writeFileSync(f,JSON.stringify(m,null,2)+'\n')"
+node -e "const f=(process.env.DSH_HOME||require('os').homedir()+'/.dsh')+'/profiles/trading-web/package.json',fs=require('fs'),m=JSON.parse(fs.readFileSync(f,'utf8'));m.dsh.profile.bundles.includes('@deepseek-ai/dsh-web-app')||m.dsh.profile.bundles.splice(1,0,'@deepseek-ai/dsh-web-app');fs.writeFileSync(f,JSON.stringify(m,null,2)+'\n')"
 
 # Launch the terminal
 dsh --profile trading-web
@@ -154,7 +157,7 @@ Six invariants lock the ecosystem down: insert-only bundle patches · knowledge 
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/zhu1090093659/dsh-trading/44177acf9d8704a9c41f98d396fe2ef8942e41a5/docs/assets/dsh-trading-qq.png" alt="dsh-trading QQ group QR code — group 319737695" width="280" />
+<img src="https://raw.githubusercontent.com/zhu1090093659/dsh-trading/6533fa45fe532624b3e318f04803e7325aa018f3/docs/assets/dsh-trading-qq.png" alt="dsh-trading QQ group QR code — group 319737695" width="280" />
 
 </div>
 

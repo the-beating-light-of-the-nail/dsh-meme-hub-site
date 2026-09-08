@@ -6,7 +6,7 @@ Sub agents and parallel development never quite deliver in today's agent apps. T
 
 This is a plugin for `DeepSeek Harness`; it cannot run standalone.
 
-![branch_tab](https://raw.githubusercontent.com/Jason-skd/dsh-session-fork/d69e8e3546c8c66895560917e5c47359a5b94f2b/docs/media/branch_tab.png)
+![branch_tab](https://raw.githubusercontent.com/Jason-skd/dsh-session-fork/a4e429e4bee55e0053c78372cc516f34397af1e0/docs/media/branch_tab.png)
 
 ## Pain points it solves
 

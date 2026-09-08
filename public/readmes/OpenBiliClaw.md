@@ -48,7 +48,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
+  <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/hero-demo-zh.gif" width="820" alt="OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习" />
 </p>
 
 ## 快速开始
@@ -82,11 +82,11 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/user-community-qrcode.png" width="200" alt="QQ 用户交流群二维码" /><br/>
       <b>QQ 用户群</b>
     </td>
     <td align="center" width="50%">
-      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
+      <a href="https://discord.gg/PU6Xgch8yg"><img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/discord-community-qrcode.jpg" width="200" alt="Discord 社区二维码" /></a><br/>
       <b>Discord 社区</b><br/>
       <sub>扫码或<a href="https://discord.gg/PU6Xgch8yg">点击加入</a>，链接长期有效</sub>
     </td>
@@ -133,22 +133,22 @@
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-recommend.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-recommend.png" width="200" /><br/>
       <b>智能推荐</b><br/>
       <sub>像朋友一样解释为什么你会喜欢</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-profile-portrait.png" width="200" /><br/>
       <b>灵魂画像</b><br/>
       <sub>自然语言描述的深度人格分析</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-profile-traits.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-profile-traits.png" width="200" /><br/>
       <b>结构化特质</b><br/>
       <sub>MBTI · 核心特质 · 深层需求</sub>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-chat.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-chat.png" width="200" /><br/>
       <b>对话调教</b><br/>
       <sub>聊天告诉它你想看什么</sub>
     </td>
@@ -162,19 +162,19 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/desktop-home.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/desktop-home.png" width="480" /><br/>
       <b>桌面推荐首页</b><br/>
       <sub>惊喜推荐 Hero · 为你推荐网格 · 朋友式推荐理由</sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/desktop-cards.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/desktop-cards.png" width="480" /><br/>
       <b>推荐卡片网格</b><br/>
       <sub>封面 + 推荐理由 · 喜欢 / 不感兴趣 / 稍后 / 收藏 / 聊一聊</sub>
     </td>
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/desktop-profile.png" width="480" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/desktop-profile.png" width="480" /><br/>
       <b>画像 + 实时看板</b><br/>
       <sub>侧栏 Runtime 看板 + 后台动态 · 人格素描 · 核心特质 · MBTI 推断</sub>
     </td>
@@ -186,18 +186,18 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/mobile-recommend.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/mobile-recommend.png" width="210" /><br/>
       <b>手机推荐页</b><br/>
       <sub>惊喜推荐 + 池子状态 · 朋友式推荐原因</sub><br/>
       <sub>看看 / 喜欢 / 稍后 / 收藏 / 不感兴趣 / 聊一聊</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/mobile-profile.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/mobile-profile.png" width="210" /><br/>
       <b>手机画像页</b><br/>
       <sub>人格素描 · 核心特质 · 深层需求 · MBTI</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/mobile-chat.png" width="210" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/mobile-chat.png" width="210" /><br/>
       <b>手机对话页</b><br/>
       <sub>与插件共享主聊天历史</sub>
     </td>
@@ -212,17 +212,17 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-recommend-feedback.png" width="200" /><br/>
       <b>推荐反馈</b><br/>
       <sub>点赞 / 多来点 / 少来点 / 没兴趣</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-profile-values.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-profile-values.png" width="200" /><br/>
       <b>价值偏好与兴趣</b><br/>
       <sub>内在驱动力 · 猜测兴趣方向</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/44f4736e9d56e9f085830a7c8580499a6f361b9e/docs/images/screenshot-profile-style.png" width="200" /><br/>
+      <img src="https://raw.githubusercontent.com/whiteguo233/OpenBiliClaw/870997bb86aa32bd17b0b81e2e5c0d6563f641c7/docs/images/screenshot-profile-style.png" width="200" /><br/>
       <b>认知风格</b><br/>
       <sub>信息处理偏好 · 内容口味</sub>
     </td>
@@ -636,6 +636,8 @@ OpenClaw 收到 `interest.probe` 事件（或主动拉取 `next-probe`），发�
 - 🔧 **完全可控** — 同类型 LLM 可配置多个独立渠道，拖拽全局 / 模块故障切换链；也可直接编辑画像、写自定义 Skill
 
 ## 🏛️ 架构概览
+
+推荐交互：`主 API → 可选独立推荐进程 → 当前 SQLite 候选 → 完整排序 → 原子提交 → 卡片 + 总量/平台库存`；主 API 桥接库存事件，后台补货由有客户端时的库存观察任务同步。
 
 完整的架构总览 ASCII 图（runtime 并发闸门、Agent 编排层、多源适配、发现 / 推荐 / 保存链路）已拆分到单独文档，避免 README 过长：
 

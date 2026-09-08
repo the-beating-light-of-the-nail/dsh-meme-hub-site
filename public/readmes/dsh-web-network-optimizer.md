@@ -2,6 +2,18 @@
 
 **中文** | [English](./README.en.md)
 
+> # ⚠️ 已废弃（DEPRECATED）——请勿在 dsh ≥ 0.1.2 上安装
+>
+> DeepSeek Harness 更新到最新版（**0.1.2-rc.1**，2026-09 起为 npm `latest`）后，官方已完整内置本插件的全部功能，本插件**不再需要、停止维护**：
+>
+> - **响应压缩** —— `@deepseek-ai/dsh-host-webserver` 内置 gzip（profile 配置 `compression: gzip`，压缩级别/阈值可调），本地与远程访问一视同仁；
+> - **浏览器缓存** —— 插件 client bundle 不再按文件 URL 下发，全部改走 `@deepseek-ai/dsh-client-modules` 的内容寻址 combo（`/plugins/??…&rev=<内容sha1>`）并下发 `Cache-Control: immutable`：URL 即内容哈希、更新必然换 rev、rev 不匹配即拒绝加载——缓存永远新鲜，不存在"缓存没跟上更新"的死角；
+> - **断线自动重连** —— 官方 ConnectionController 自带指数退避自动重连与离线感知（`navigator.onLine`），恢复后数据自动重同步。
+>
+> 本插件基于的是上述功能出现**之前**的旧版架构（逐条包装 webServer 路由表 + 按文件 URL 分发 client bundle），在新架构下既失去作用对象、又与之冲突——主实例升级到 0.1.2-rc.1 后即因安装本插件而启动异常，随后被禁用摘除。**本插件只在 dsh 0.1.x（≤ 0.1.1-rc.2）上有意义**；`package.json` 已用 `peerDependencies` 把允许的 dsh 版本限定为 `@deepseek-ai/dsh >=0.1.0-rc.2 <=0.1.1-rc.2`，包管理器会据此提示不兼容。
+>
+> 已升级到 dsh ≥ 0.1.2 的用户请卸载：`dsh plugin --profile <name> remove dsh-web-network-optimizer`。
+
 **dsh网页端网络优化：通过缓存与压缩技术降低传输，从而大幅提升网页加载速度；同时提供网络断连指示与自动断网重连功能。非常适合追求极致性能或网络不稳定用户使用。**
 
 **Network optimization for the DSH web UI: reduces transfer size with caching and compression to greatly speed up page loading, plus a connection-drop indicator and automatic reconnection. Ideal for users pursuing peak performance or using unstable networks.**

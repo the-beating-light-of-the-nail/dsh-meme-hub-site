@@ -3,7 +3,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-better-reasoning-effort/7f7c9920d335777be456f787c8428001aa790b3c/docs/banner.svg" alt="DSH Better Reasoning Effort" width="720">
+    <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-better-reasoning-effort/1211089330d633c36d81e384c64a2ee165a4d350/docs/banner.svg" alt="DSH Better Reasoning Effort" width="720">
   </picture>
 </p>
 
@@ -23,11 +23,11 @@
 Reasoning-effort **and input-modality** editing for **third-party models** in DeepSeek Harness — thinking levels and image-input support declared per model, auto-adapted from a model knowledge base + wire-protocol inference, edited right inside the official Models page card. Plus a **quick reasoning-effort slider inside the official model menu** (white round thumb, integrated from HanaAyane's dsh-reasoning-effort — see [Acknowledgements](#acknowledgements)) — the composer's official bottom-right *model · effort* display is left untouched.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-better-reasoning-effort/7f7c9920d335777be456f787c8428001aa790b3c/docs/demo.svg" alt="demo" width="640">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-better-reasoning-effort/1211089330d633c36d81e384c64a2ee165a4d350/docs/demo.svg" alt="demo" width="640">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-better-reasoning-effort/7f7c9920d335777be456f787c8428001aa790b3c/assets/models-page-effort-editor.png" alt="The thinking-effort editor injected into a model row on the official Models page" width="720">
+  <img src="https://raw.githubusercontent.com/HaoyueQin/dsh-better-reasoning-effort/1211089330d633c36d81e384c64a2ee165a4d350/assets/models-page-effort-editor.png" alt="The thinking-effort editor injected into a model row on the official Models page" width="720">
 </p>
 
 ## Why
@@ -58,11 +58,11 @@ This plugin brings both configuration surfaces back into the UI: **edit right in
 
 ## Install
 
-Requires DeepSeek Harness **`0.1.2-rc.1` or `0.1.3-alpha.1`** (the current 0.1.x kernel release line; the `@deepseek-ai/dsh-api-remotes@>=0.1.2-rc.1` peer range already covers both, the host half also peers on `@deepseek-ai/dsh-settings` with the same range and on `@deepseek-ai/schemastery@^3.18.0`).
+Requires DeepSeek Harness **`0.1.2-rc.1` or `0.1.3` (`alpha.1`/`alpha.2` and later)** (the current 0.1.x kernel release line; the `@deepseek-ai/dsh-api-remotes@>=0.1.2-rc.1` peer range already covers both, the host half also peers on `@deepseek-ai/dsh-settings` with the same range and on `@deepseek-ai/schemastery@^3.18.0`).
 
 > **On an older DeepSeek Harness?** This line of the plugin targets the `0.1.2-rc` and `0.1.3-alpha` kernel release lines — the `0.1.1-rc.x` line and the `0.1.2-alpha.1`–`alpha.5` pre-releases are **no longer supported**. Please upgrade Harness, or install an older plugin release that matches your kernel (for example `dsh-better-reasoning-effort@0.3.4` for the `0.1.1-rc` / `0.1.2-alpha` lines).
 
-Since `0.1.2-rc.1` is the compilation baseline and `0.1.3-alpha.1` leaves every seam this plugin rides **unchanged** (verified source-level: the settings Remote wire, the Models-page anchors, the model-directory types, slots / locale, and the llm-pi-ai profile schema are identical), the same artifact runs on both kernels; a smoke test on `0.1.3-alpha.1` is recommended once it lands on npm. Seam details: the settings Remote is the generated Typert `ctx.remote.settings` stub (argument-less `describe`, positional `mutate(ns, ops, expectedRevision)`, `{ok, value | error}` envelopes, `settings/conflict` / `settings/rejected` refusal codes), the Models-page anchors (`Capacities`/容量, Model ID, Display name, Provider ID, Base URL, API protocol; the `settings.models.footer` slot) are unchanged, and the raw-listing probe mirrors the kernel's own model discovery — the same protocol set (now including **Anthropic Messages** via its native `/v1/models` route with `x-api-key` + `anthropic-version`), the same dual `data`/`models` listing shapes, and the same 4 MB ceiling. The client bundle requests no official module at runtime, so it loads unchanged.
+Since `0.1.2-rc.1` is the compilation baseline and `0.1.3` changes only the `llm-pi-ai` compat schema among the seams this plugin rides (verified source-level: the settings Remote wire, the Models-page anchors, the model-directory types, slots / locale are identical; pi-ai 0.85.1 adds `thinkingTokenBudgetField` / `vllmPriority` / `supportsMaxOutputTokens`), the same artifact runs on both kernels: new-schema keys are suggested where the protocol takes them and stripped automatically on a `0.1.2-rc.1` write refusal, with no version sniffing. Seam details: the settings Remote is the generated Typert `ctx.remote.settings` stub (argument-less `describe`, positional `mutate(ns, ops, expectedRevision)`, `{ok, value | error}` envelopes, `settings/conflict` / `settings/rejected` refusal codes), the Models-page anchors (`Capacities`/容量, Model ID, Display name, Provider ID, Base URL, API protocol; the `settings.models.footer` slot) are unchanged, and the raw-listing probe mirrors the kernel's own model discovery — the same protocol set (now including **Anthropic Messages** via its native `/v1/models` route with `x-api-key` + `anthropic-version`), the same dual `data`/`models` listing shapes, and the same 4 MB ceiling. The client bundle requests no official module at runtime, so it loads unchanged.
 
 **One DOM-bypass path for the per-model editor (no version sniffing):** the injector keys off the official Capacity disclosure anchors (`Capacities`/`容量`), so the editor mounts under every model row that expands — inside the *edit → custom settings* flow — including unsaved rows on a provider's create card (staged, flushed the moment the row is saved). The slider toggle rides the official `settings.models.footer` slot, declared through the plugin's own `remote.settings` inject — the same service contract the official Models page consumes. The Models page's other sanctioned seat, the keyed `settings.models.provider-card` (per provider card), is the migration path for card-level UI — but no slot reaches a single model row, which is why the per-model editor keeps the DOM bypass.
 
@@ -120,6 +120,8 @@ The host half accepts optional configuration on its profile row (the values belo
         probeTimeoutMs: 15000
         # Boot-fill retry backoff schedule; [] means "try exactly once".
         bootRetryDelaysMs: [1000, 2000, 4000, 8000, 16000, 30000]
+        # Map effort-less calls on forced-thinking ladders to the vendor default.
+        defaultGuard: true
 ```
 
 Set `autofill: false` to disable the silent auto-fill entirely — the browser-side **Auto-adapt** button keeps working.
@@ -152,7 +154,7 @@ npm test            # vitest: knowledge / inference / autofill / DOM injection /
 npm run build       # lib/*.js + lib/client.js (module-loader bundle)
 ```
 
-Contract version: `@deepseek-ai/dsh-api-remotes@0.1.2-rc.1` (client contract types), verified by typecheck, the test suite, and a full build against the `0.1.2-rc.1` packages. The `0.1.3-alpha.1` contract surface is source-identical; a runtime smoke test will follow once it is published to npm.
+Contract version: `@deepseek-ai/dsh-api-remotes@0.1.2-rc.1` (client contract types), verified by typecheck, the test suite, and a full build against the `0.1.2-rc.1` packages. The `0.1.3` contract adds only the `llm-pi-ai` compat keys above; the suite covers both kernels (new-behavior tests plus a `0.1.2-rc.1` downgrade-retry path).
 
 ## Known limitations
 
@@ -163,6 +165,8 @@ Contract version: `@deepseek-ai/dsh-api-remotes@0.1.2-rc.1` (client contract typ
 - The knowledge base is not exhaustive — spellings drift as vendors ship models, and families without an effort ladder carry no entry at all; unlisted models fall back to protocol inference + generic levels and can be adjusted by hand.
 - The modality vocabulary follows pi-ai's core (`text` / `image` today). Wider support some gateways serve (PDF, audio, video) is recorded per family until the core vocabulary grows — declaring them is impossible today by design, not oversight.
 - Name-heuristic modality advice (vision-flavored ids like `*-vl*` / `*vision*` / `gpt-4o`) is deliberately low-confidence and labeled as such — verify before relying on it.
+- Self-hosted relays: auto-fill and Auto-adapt pin `supportsDeveloperRole: false` on `openai-completions` routes no official host claims, so the system prompt keeps the `system` role (some upstreams reject `developer` with 角色信息不正确). Explicit values are never overwritten. Uncheck every level + Apply clears a declaration back to bare provider-default requests, which is the compatibility mode for relays that reject thinking parameters.
+- Forced-thinking models (ladders without `off`, e.g. GLM-5.3): provider tests and Default calls would otherwise send `thinking: disabled` and fail (e.g. 1210) — the host maps them to the ladder's vendor default instead. Set `defaultGuard: false` to restore the old behavior.
 
 ## Acknowledgements
 
@@ -178,7 +182,7 @@ What was deliberately **changed** in this integration:
 - **White round thumb only.** The chibi-runner "big fish" knob is not carried over (it swaps the thumb for the fish sprite); everything else is upstream verbatim — the gradient pill track, the left-clipped radiation canvas effect and the flare glow, the drag/keyboard contract, the optimistic commit with rollback.
 - **The official model seat is never replaced.** The upstream plugin shadows the whole seat (its own trigger + menu); here the official bottom-right *model · effort* display stays untouched, and the slider is injected into the top of the official menu when it opens.
 - **Different placement / fewer settings.** The upstream "推理强度滑块 / 大肥鱼滑块" items lived in the general settings page; here only the *Reasoning effort slider* toggle remains, in a boxed container on the **Models** page below the add-provider actions. The "大肥鱼滑块" item is dropped together with the feature.
-- **Maintained on the `0.1.2-rc` and `0.1.3-alpha` lines.** This is a reduced re-implementation over the harness wire contract (not a fork of the upstream bundle): it runs on the `0.1.2-rc.1` and `0.1.3-alpha.1` kernels (every seam it rides is identical — see the compatibility note above) without the upstream's `0.1.0-rc.6` pins, and the whole mount/unmount lifetime is managed by this plugin's DOM injector. If the upstream project resumes publishing, keep both in mind: running both plugins doubles up — the upstream shadows the official seat again, so the official trigger would disappear once more.
+- **Maintained on the `0.1.2-rc` and `0.1.3-alpha` lines.** This is a reduced re-implementation over the harness wire contract (not a fork of the upstream bundle): it runs on the `0.1.2-rc.1` and `0.1.3` kernels (only the `llm-pi-ai` compat schema differs — see the compatibility note above) without the upstream's `0.1.0-rc.6` pins, and the whole mount/unmount lifetime is managed by this plugin's DOM injector. If the upstream project resumes publishing, keep both in mind: running both plugins doubles up — the upstream shadows the official seat again, so the official trigger would disappear once more.
 
 If you used the upstream plugin before, remove it to avoid two effort controls on the same seat:
 

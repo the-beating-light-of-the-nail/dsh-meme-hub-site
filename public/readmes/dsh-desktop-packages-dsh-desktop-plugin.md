@@ -1,6 +1,6 @@
 # @mixian/dsh-desktop-plugin
 
-![DSH Desktop Plugin logo](https://raw.githubusercontent.com/FuqiangCraft/dsh-desktop/3438104051f6b79df1ddac9338c6536e5b68fe4b/packages/dsh-desktop-plugin/assets/logo.png)
+![DSH Desktop Plugin logo](https://raw.githubusercontent.com/FuqiangCraft/dsh-desktop/8a807c1b09134e3c232f4991ab8c9a6f615f0b3f/packages/dsh-desktop-plugin/assets/logo.png)
 
 Desktop-grade companion plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`). Brings three desktop-class capabilities the stock web UI lacks:
 

@@ -30,11 +30,11 @@ Turn your DSH into a **calendar + task list + AI assistant workbench**.
 
 | 主界面 | 日历 | 任务列表 |
 |---|---|---|
-| ![主界面](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/806466dfd8790b2a7ac6b50dbb04e8b7c97797b0/screenshot/%E4%B8%BB%E7%95%8C%E9%9D%A2.PNG) | ![日历](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/806466dfd8790b2a7ac6b50dbb04e8b7c97797b0/screenshot/%E6%97%A5%E5%8E%86%E9%A1%B5%E9%9D%A2.png) | ![任务列表](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/806466dfd8790b2a7ac6b50dbb04e8b7c97797b0/screenshot/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E7%95%8C%E9%9D%A2.png) |
+| ![主界面](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/d3906fd01c2d391998e8aae6c26bec754636a797/screenshot/%E4%B8%BB%E7%95%8C%E9%9D%A2.PNG) | ![日历](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/d3906fd01c2d391998e8aae6c26bec754636a797/screenshot/%E6%97%A5%E5%8E%86%E9%A1%B5%E9%9D%A2.png) | ![任务列表](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/d3906fd01c2d391998e8aae6c26bec754636a797/screenshot/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E7%95%8C%E9%9D%A2.png) |
 
 | 知识库 | 点子 | 点子王 |
 |---|---|---|
-| ![知识库](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/806466dfd8790b2a7ac6b50dbb04e8b7c97797b0/screenshot/%E7%9F%A5%E8%AF%86%E5%BA%93%E7%95%8C%E9%9D%A2.png) | ![点子](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/806466dfd8790b2a7ac6b50dbb04e8b7c97797b0/screenshot/%E7%82%B9%E5%AD%90%E7%95%8C%E9%9D%A2.png) | ![点子王](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/806466dfd8790b2a7ac6b50dbb04e8b7c97797b0/screenshot/%E7%82%B9%E5%AD%90%E7%8E%8B.png) |
+| ![知识库](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/d3906fd01c2d391998e8aae6c26bec754636a797/screenshot/%E7%9F%A5%E8%AF%86%E5%BA%93%E7%95%8C%E9%9D%A2.png) | ![点子](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/d3906fd01c2d391998e8aae6c26bec754636a797/screenshot/%E7%82%B9%E5%AD%90%E7%95%8C%E9%9D%A2.png) | ![点子王](https://raw.githubusercontent.com/Dely0/dsh-personal-workbench/d3906fd01c2d391998e8aae6c26bec754636a797/screenshot/%E7%82%B9%E5%AD%90%E7%8E%8B.png) |
 
 ## 功能清单
 

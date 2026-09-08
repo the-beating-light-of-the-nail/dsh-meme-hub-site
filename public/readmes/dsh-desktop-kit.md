@@ -8,7 +8,7 @@ Self-owned desktop shell for [DeepSeek Harness](https://github.com/deepseek-ai/d
 
 [dsh-desktop](https://github.com/s3yf1337/dsh-desktop) is great and was the blueprint. We rebuilt a smaller one for one concrete reason: **real macOS fullscreen**. Its window is frameless with a web-drawn title bar and never wires up `setFullscreen` — the maximize button is zoom, not a native fullscreen Space. This shell uses a plain **decorated** window, so the green traffic-light button and Ctrl+Cmd+F give you true macOS fullscreen out of the box.
 
-## Features (v0.2.4)
+## Features (v0.2.6)
 
 - **Authenticated native window on the loopback web surface** — the plugin uses DSH's connection service to mint a process-token URL, so the WebKit client can establish its signed browser cookie under DSH `0.1.2-rc.1`; the visible URL becomes clean after the exchange.
 - **Real macOS fullscreen** — decorated window, native fullscreen Space, no custom title bar needed.
@@ -19,6 +19,7 @@ Self-owned desktop shell for [DeepSeek Harness](https://github.com/deepseek-ai/d
 - **Small** — system WebKit (WKWebView), no bundled Chromium; the shell binary is a few MB.
 - **External links that work** — `target="_blank"` / cross-origin links are delegated to the system browser via the shell's `kit_open_external` command (a bare WKWebView renders them dead otherwise).
 - **Browser-style zoom** — Cmd/Ctrl + `=` / `-` / `0` zooms the page (persisted), something a bare WKWebView does not offer.
+- **Follows DSH Language** — the window renders the same DSH web application and the same Host-backed global language preference as a browser client. Changing **Settings → Language** updates DSH and localized plugins such as `dsh-rw` live inside the desktop window; Desktop Kit has no separate language setting or plugin-owned UI copy.
 
 Deliberately not in v0.1: tray, OS notifications, file panel, in-app updater, control channel. The architecture (control pipe over stdin/stdout, `dshdctl:` protocol) is documented in the blueprint and can grow later.
 
@@ -39,40 +40,41 @@ in order: `config.bin` / `DSH_DESKTOP_KIT_BIN` → `$DSH_HOME/bin/dsh-desktop-ki
 
 ## Install
 
-Requires the `dsh` CLI and macOS (other platforms are untested). Version `0.2.4`
+Requires the `dsh` CLI and macOS (other platforms are untested). Version `0.2.6`
 supports DSH `0.1.2-rc.1` and later compatible `0.1.x` releases, including the
 new launch-token authentication flow.
 
 ```bash
-# 1. the plugin
-dsh plugin --profile web add dsh-desktop-kit          # dsh-market
-# or from the latest prebuilt GitHub Release tarball:
+# 1. GitHub source, shown by DSH Market as a compact repository basename
+dsh plugin --profile web add github:MDR-EX1000/dsh-desktop-kit
+# or use the exact latest prebuilt GitHub Release archive:
 dsh plugin --profile web add https://github.com/MDR-EX1000/dsh-desktop-kit/releases/latest/download/dsh-desktop-kit.tgz
-# or from a checkout / GitHub source:
+# or use a local checkout for development:
 dsh plugin --profile web add /path/to/dsh-desktop-kit
 
-# 2. restart dsh web — the release package installs the shell and DSH.app,
+# 2. restart dsh web — the packaged repository installs the shell and DSH.app,
 #    then opens the native window with it
 ```
 
-The macOS arm64 release package includes the native shell, native launcher, and `app/` assets. The
-GitHub source repository also tracks the compiled plugin `lib/`, the arm64 `bin/dsh-desktop-kit` and
-`bin/dsh-launcher`, and the app assets, so a dsh-market GitHub-source install does not need a local TypeScript or Rust build on
-Apple Silicon. Release packages use the stable filename `dsh-desktop-kit.tgz` across versions, so
-the `releases/latest/download` URL remains valid after upgrades. On the first `dsh web` start it
+The GitHub source repository tracks the compiled plugin `lib/`, the arm64
+`bin/dsh-desktop-kit` and `bin/dsh-launcher`, and the `app/` assets, so a DSH Market
+GitHub-source install needs no local TypeScript or Rust build on Apple Silicon. Market keeps the
+`github:` source when updating and resolves the repository's current default-branch commit. Release
+packages contain the same runtime assets and use the stable filename `dsh-desktop-kit.tgz`, so the
+`releases/latest/download` URL remains valid when an exact release archive is required. On the
+first `dsh web` start the plugin
 installs the native shell and launcher to `~/.dsh/bin`
 and creates `~/Applications/DSH.app`. Signed executables are replaced atomically so macOS does not
-reuse stale code-signature state after a local upgrade. A source checkout still requires `cargo build --release`
+reuse stale code-signature state after a local upgrade, and the completed app bundle is ad-hoc signed
+after its resources are assembled so strict bundle verification succeeds. A source checkout still requires `cargo build --release`
 only when rebuilding the native shell; `app/install.sh` compiles the small native launcher with
 clang when a prebuilt `bin/dsh-launcher` is not present.
 
 ### Source-install maintenance notes
 
-If the dsh-market catalog omits the `tarball` field, dsh-market falls back to
-`github:MDR-EX1000/dsh-desktop-kit`. The installer then uses the repository's current
-default-branch commit instead of the latest formal Release; it does not rebuild this plugin during
-installation. The committed `lib/`, `bin/dsh-desktop-kit`, `bin/dsh-launcher`, and `app/` files are the installable
-runtime assets and must remain in Git.
+The basename installation follows the repository's default branch and does not rebuild this plugin
+during installation. The committed `lib/`, `bin/dsh-desktop-kit`, `bin/dsh-launcher`, and `app/`
+files are the installable runtime assets and must remain in Git.
 
 When changing the TypeScript plugin or the native shell, regenerate and commit the corresponding
 artifacts before users install from GitHub:
@@ -84,10 +86,11 @@ cd shell && cargo build --release  # refreshes the native binary when shell code
 # build/copy app/dsh-launcher.c to bin/dsh-launcher when the native launcher changes
 ```
 
-The bundled binary is currently macOS **arm64**. A GitHub-source install does not cross-compile it
-for Intel Macs, Linux, or Windows; unsupported platforms keep the browser fallback described above.
-Choose a Release tarball when you need the exact tested Release contents, and choose the GitHub
-source target only when following the default branch is intentional.
+For each release, commit every changed runtime asset before pushing the version commit and tag.
+Existing basename installations then stay on the same concise GitHub source through future Market
+updates. The bundled binary is currently macOS **arm64**. A GitHub-source install does not
+cross-compile it for Intel Macs, Linux, or Windows; unsupported platforms keep the browser fallback
+described above. Use a Release tarball only when an exact tested archive is required.
 
 To uninstall: `dsh plugin --profile web remove dsh-desktop-kit`, delete
 `~/.dsh/bin/dsh-desktop-kit`, and remove `~/Applications/DSH.app` if it was installed.
@@ -143,6 +146,15 @@ Plugin config keys (defaults shown):
 Shell argv: `dsh-desktop-kit [url] [title]` — the plugin supplies an authenticated URL; standalone defaults remain `http://127.0.0.1:3080` and `DSH`.
 `--selftest` runs a scriptable native-fullscreen enter/exit check (exit 0 on pass);
 `DSH_KIT_NO_SINGLE_INSTANCE=1` runs a side-by-side instance (selftest, dev).
+
+## Language
+
+Desktop Kit does not duplicate or translate the DSH interface. Its WKWebView loads the running DSH
+web surface, so DSH's global `locale.preference` and live locale updates are preserved exactly as
+they are in the browser. Plugin dictionaries registered through
+`@deepseek-ai/dsh-client-locale` therefore work inside `DSH.app` without Desktop Kit-specific code.
+The stable application and window name `DSH` is language-neutral; native macOS window controls
+continue to follow the operating system locale.
 
 ## Known limitations
 

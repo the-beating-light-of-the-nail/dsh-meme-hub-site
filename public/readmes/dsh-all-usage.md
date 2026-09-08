@@ -21,6 +21,7 @@ DeepSeek Harness 全量用量看板：按模型、供应商、工作区和时间
 - **完整历史与增量重建**：基线扫描全部可读历史会话；独立用量账本同时作为每会话游标——未变化的会话直接复用账本，新增事件只增量回填，长历史重启不再全量重建
 - **重启免读**：用持久化日志的 revision 作为每会话的变更信号（只读头部行 + stat，不读全量）——日志未变的会话重启时连事件都不读，直接从账本复用；仅日志变化（新增/修改）的会话才做增量读取
 - **数据健康与按需刷新**：扫描完成后浏览器只检查轻量状态版本，只有用量、别名或同步状态变化时才拉完整历史；显示本次数据更新时间、历史扫描健康、revision 免读、实际读取、账本恢复和失败，网络异常保留上次成功数据并可重试
+- **工作区注册同步**：监听 DSH 的 `domain/changed` 事件自动跟随工作区注册表——注册表一有改动（创建/删除/重命名/重排/归档/成员变化）就重读 `workspaceRegistry.list()`；只对新增/删除的工作区做增量处理，未变化的已有工作区直接复用已计算账本（零重扫）。统计严格限定已注册工作区：未注册 cwd（含存在但未登记目录）一律忽略
 - **性能优化**：Host 在 ingest 时维护 local/UTC 的日期、工作区、模型身份日级 cube 与单日小时桶；scope 查询按 bucket 合并，成本使用精确 BigInt 小数累加，53 周热力图只生成实际需要的字段，并继续使用 revision-scoped snapshot/records 缓存和可回收的实时事件队列；Client 将热力图、tooltip、趋势、环形图、请求日志和定价对话框隔离为 memoized 边界，指针坐标通过 ref + requestAnimationFrame 更新，不再触发整页重渲染；浏览器入口在打包前确定性压缩
 - **趋势折线图**：按当前范围、时区、工作区、供应商和模型显示输入、缓存读写、输出、推理及总处理量；单日范围按小时聚合并显示小时轴，跨日范围按日聚合；使用平滑单调曲线与入场动画，悬停查看精确值，图例可切换曲线，点击点位进入当日明细
 - **统一筛选与审计**：工作区、供应商、模型和日期筛选贯穿摘要、热力图、趋势、表格与 CSV；工作区、供应商、模型三个筛选维度可独立自由组合，工作区、供应商和模型选项只展示当前日期范围内实际使用过的值；切换范围后失效筛选会自动清除；请求日志以紧凑分页表常驻显示，选择单条后查看分组 Token 详情
@@ -45,7 +46,7 @@ DeepSeek Harness 全量用量看板：按模型、供应商、工作区和时间
 - **中断请求**：上游请求被中断时可能只有 `assistant/chunk` 的 usage，没有最终 `assistant/message`；本插件会保留该 chunk 用量。同一 `turn / step` 后续出现最终 message 时，message 会替换 chunk。若上游完全没有 usage 事件，则无法从响应内容精确恢复 Token。
 - **估算成本**：成本是基于 models.dev 价格和 DSH usage 桶的估算，不是供应商账单；目录不可用或模型没有官方匹配时不会猜测价格，而是显示未计价。缓存读取、缓存写入和 reasoning 的口径取决于 DSH 上游事件。
 - **分层价格**：models.dev 的 tiered/context-dependent 价格按本次请求的输入上下文（fresh input + cache read + cache write）选择对应档位；阈值边界遵循目录定义，无法验证的异常 tier 仍显示为 unsupported。
-- **历史边界**：只有能按 cwd 映射到已注册工作区的会话会进入统计；会话尚未成功 flush 前删除或损坏的日志无法由独立账本恢复。
+- **工作区边界**：只有 cwd 能映射到 DSH 已注册工作区的会话才进入统计；未注册 cwd（包括已存在但未在 registry 中登记的目录）会被忽略。工作区注册列表通过 DSH 的 `domain/changed` 探针自动同步：注册表一有改动就重读并只对新增/删除的工作区做增量处理，未变化的已有工作区直接复用已计算账本，不会全量重扫。会话尚未成功 flush 前删除或损坏的日志无法由独立账本恢复。
 
 ### 本地统计与官方账单
 
@@ -54,7 +55,7 @@ DeepSeek Harness 全量用量看板：按模型、供应商、工作区和时间
 - 本地统计读取 DSH 的 `assistant/chunk`、最终 `assistant/message` 和其他会话事件，按同一 `turn / step` 去重和替换；官方账单可能按供应商自己的请求、分词器、舍入、折扣、免费额度和结算周期计算。
 - 失败请求只要留下 usage chunk，就会进入本地统计；供应商是否对该失败请求收费，应以官方账单为准。
 - 价格来自 models.dev 的公开模型目录和本地显式覆盖；目录价格、供应商实际价格、区域费率和账单折扣可能不同。成本字段应理解为估算值。
-- 本地统计只包含能映射到已注册工作区的会话，并可能因日志损坏、清理或上游没有发出 usage 而少于官方账单。
+- 本地统计只包含已注册工作区；未注册 cwd 与已删除目录的旧 ledger 不进入统计，并可能因日志损坏、清理或上游没有发出 usage 而少于官方账单。
 
 ### 可复现事件示例
 
@@ -103,6 +104,11 @@ node scripts/replay-fixture.mjs fixtures/usage-events.json
 
 ### 最近更新
 
+**v1.1.5**
+
+- **工作区注册探针**：自动跟随 DSH 工作区注册表（`domain/changed` 事件）；只对新增/删除的工作区增量重扫，未变化工作区直接复用账本，零全量重扫。移除了手动“刷新工作区”按钮与其 `POST /api/all-usage/workspaces/refresh` 路由。
+- **严格注册边界**：统计只包含 cwd 能映射到已注册工作区的会话；未登记目录（即使存在）与历史 `unregistered:` 账本行不再进入统计，已删除目录的旧账本行在恢复时跳过（`sourceCwd` 现在随每条账本持久化以校验归属）。
+
 **v1.1.4**
 
 - **模型品牌图标**：请求日志、选中调用详情、模型统计表、成本设置匹配表、环形图图例与模型筛选下拉现在显示真实厂商品牌 SVG（DeepSeek、OpenAI、Claude、Gemini、Meta、Zhipu、xAI、Qwen、Doubao、Kimi、MiniMax）；模型命名空间优先于 DSH 供应商名，未知或混牌行保持中性。图标在构建期以 data URI 内嵌并由 scripts/svg-guard.mjs 校验（实体解码、CSS 转义/CDO/命名空间、url()/image-set() 均覆盖，注释与文本不误杀），运行时零网络请求。
@@ -121,11 +127,11 @@ node scripts/replay-fixture.mjs fixtures/usage-events.json
 
 ### 截图 / Screenshots
 
-![dsh-all-usage 看板总览 / Dashboard overview](https://raw.githubusercontent.com/ParticleLight/dsh-all-usage/f8c4c265a72bcd2529c8701f2dc4e585f14d9033/assets/screenshot-1.png)
+![dsh-all-usage 看板总览 / Dashboard overview](https://raw.githubusercontent.com/ParticleLight/dsh-all-usage/d0b2b7352263fb14663a2f262d12ea0998200ff2/assets/screenshot-1.png)
 
-![dsh-all-usage 成本统计设置 / Cost statistics settings](https://raw.githubusercontent.com/ParticleLight/dsh-all-usage/f8c4c265a72bcd2529c8701f2dc4e585f14d9033/assets/screenshot-2.png)
+![dsh-all-usage 成本统计设置 / Cost statistics settings](https://raw.githubusercontent.com/ParticleLight/dsh-all-usage/d0b2b7352263fb14663a2f262d12ea0998200ff2/assets/screenshot-2.png)
 
-![dsh-all-usage 请求日志与审计 / Request logs and audit](https://raw.githubusercontent.com/ParticleLight/dsh-all-usage/f8c4c265a72bcd2529c8701f2dc4e585f14d9033/assets/screenshot-3.png)
+![dsh-all-usage 请求日志与审计 / Request logs and audit](https://raw.githubusercontent.com/ParticleLight/dsh-all-usage/d0b2b7352263fb14663a2f262d12ea0998200ff2/assets/screenshot-3.png)
 
 ### 安装
 
@@ -213,6 +219,7 @@ A full usage dashboard for DeepSeek Harness. Analyze tokens, cache behavior, est
 - **Interface language**: switch between Chinese and English from the dashboard header; your choice persists locally in the browser
 - **Full history & incremental rebuild**: the baseline scans every readable historical session; the durable usage ledger doubles as a per-session cursor, so unchanged sessions are reused straight from the ledger and only newly appended events are folded — long histories restart without a full rebuild
 - **Restart with no re-read**: the persisted log revision (a header-line + stat via `sessionPersistence.listSnapshots()`) acts as a per-session change signal — sessions whose log is unchanged are applied from the ledger on restart without reading their events at all; only changed/new sessions are read incrementally
+- **Workspace registry sync**: follows DSH's `domain/changed` event so the workspace registry stays fresh automatically — any durable registry write (create/delete/rename/reorder/archive/membership) triggers a reread of `workspaceRegistry.list()`, with only added/removed workspaces reprocessed incrementally while unchanged workspaces reuse their computed aggregates and ledger (zero rescan). Usage is strictly limited to registered workspaces: unregistered cwds, including existing directories absent from the registry, are ignored.
 - **Data health and on-demand refresh**: after a scan completes, the browser polls only a lightweight status revision and fetches full history only after usage, alias, or sync state changes; it shows the latest full-data update, historical scan health, revision skips, rereads, ledger recovery, and failures while preserving last-good data on network errors
 - **Performance**: Host maintains ingest-time local/UTC day, workspace, model-identity cubes and single-day hour buckets; scope queries merge buckets, exact costs use BigInt decimal accumulators, and the 53-week heatmap emits only the fields it consumes, while revision-scoped snapshot/records caches and recyclable live-event queues remain in place. Client isolates the heatmap, tooltip, trend, donuts, request records, and pricing dialog behind memoized boundaries; pointer coordinates update through refs plus requestAnimationFrame instead of rerendering the page, and the browser entry is deterministically minified before packing
 - **Trend line chart**: show input, cache read/write, output, reasoning, and total processed tokens for the active range, timezone, workspace, provider, and model scope; use hourly buckets for a single-day scope and daily buckets for cross-day scopes, with smooth monotone curves, staged entrance animation, hover for exact values, and click a point to inspect that day
@@ -238,7 +245,7 @@ An unlisted DSH version is not necessarily incompatible. Include the DSH, Node.j
 - **Interrupted requests**: an interrupted upstream request may emit only `assistant/chunk` usage and never produce a final `assistant/message`; that chunk is retained. A later final message for the same turn/step replaces it. If the upstream emits no usage event at all, exact token usage cannot be reconstructed from response text.
 - **Estimated cost**: cost is an estimate based on models.dev rates and DSH usage buckets, not a provider invoice. Unavailable catalogs and unmatched models remain unpriced instead of receiving guessed rates. Cache reads, cache writes, and reasoning follow the buckets reported by the upstream DSH event.
 - **Tiered prices**: models.dev context-tiered entries select the applicable rate from the request input context (fresh input plus cache read/write tokens); malformed schedules remain unsupported.
-- **History boundary**: only sessions whose cwd maps to a registered workspace are included; data deleted or corrupted before a successful session flush cannot be recovered from the separate ledger.
+- **Workspace boundary**: only sessions whose cwd maps to a DSH-registered workspace are included. Unregistered cwds, including existing directories absent from the registry, are ignored. The registry is kept fresh by a `domain/changed` probe: any durable workspace-domain write triggers a reread, and only added/removed workspaces are reprocessed incrementally — unchanged workspaces reuse their computed aggregates and ledger. Data deleted or corrupted before a successful session flush cannot be recovered from the separate ledger.
 
 ### Local Statistics vs Official Billing
 
@@ -247,7 +254,7 @@ This plugin reports replayable statistics from local DSH event logs; it is not a
 - Local statistics read DSH `assistant/chunk`, final `assistant/message`, and related session events, then deduplicate and replace samples by logical `turn / step`. Official billing may use a provider tokenizer, rounding rules, discounts, free quotas, and billing periods.
 - A failed request is included locally whenever it leaves a usage chunk; whether the provider charged for that failed request must be checked against the official bill.
 - Prices come from the public models.dev catalog and local explicit overrides. Catalog prices can differ from provider prices, regional rates, and invoice discounts, so the cost field is an estimate.
-- Local statistics include only sessions mapped to registered workspaces and can be lower than the official bill when logs are damaged, cleaned up, or the upstream emits no usage event.
+- Local statistics include registered workspaces only; unregistered cwds and old ledger rows for deleted directories are excluded, and totals can still be lower than the official bill when logs are damaged, cleaned up, or the upstream emits no usage event.
 
 ### Reproducible Event Examples
 
@@ -295,6 +302,11 @@ The command loads the real plugin Host, calls its compatible APIs, checks the do
 - [Cost calculation issue / 成本计算问题](.github/ISSUE_TEMPLATE/cost-calculation.md)
 
 ### Latest Update
+
+**v1.1.5**
+
+- **Workspace registry probe**: all-usage follows DSH's workspace registry automatically through the `domain/changed` event; only added/removed workspaces are reprocessed incrementally while unchanged workspaces reuse their ledger with zero rescan. The manual Refresh workspaces control and its `POST /api/all-usage/workspaces/refresh` route were removed.
+- **Strict registration boundary**: only sessions whose cwd maps to a registered workspace are counted; unregistered directories (even existing ones) and legacy `unregistered:` ledger rows never re-enter statistics, and ledger rows for deleted directories are skipped on recovery (`sourceCwd` is now persisted with every ledger record so ownership can be validated after a restart).
 
 **v1.1.4**
 

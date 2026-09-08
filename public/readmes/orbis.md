@@ -7,11 +7,11 @@ Orbis is a remote control client for Deepseek Harness (DSH).
 The Orbis plugin provides device pairing, end-to-end encrypted transport, and real-time
 updates across multiple devices.
 
-![Screenshots](https://raw.githubusercontent.com/icodesign/orbis/929900fecbbea224d32d9d95ec8d7c213cd5aa90/assets/orbis-screenshots.webp)
+![Screenshots](https://raw.githubusercontent.com/icodesign/orbis/f88498f63ca52cff1a5c900e247a69167a69ff2d/assets/orbis-screenshots.webp)
 
 ## Getting Started
 
-1. Download the Orbis app. It is currently in beta. [iOS: Join TesFlight](https://testflight.apple.com/join/3Nqcbpns). Android: Working in progress.
+1. Download the Orbis app. It is currently in beta. [iOS: Join TesFlight](https://testflight.apple.com/join/3Nqcbpns). [Android APK](https://github.com/icodesign/orbis/releases/download/%40orbisapp%2Fremote-dsh%400.2.9/orbis-android-20260908T011113Z.apk).
 2. Install the Orbis plugin into DSH.
 
 ```sh
@@ -72,7 +72,7 @@ Changesets list. The release pull request consumes and clears the file for the n
 
 Wechat Group
 
-![Wechat group](https://raw.githubusercontent.com/icodesign/orbis/929900fecbbea224d32d9d95ec8d7c213cd5aa90/assets/wechat-group.webp)
+![Wechat group](https://raw.githubusercontent.com/icodesign/orbis/f88498f63ca52cff1a5c900e247a69167a69ff2d/assets/wechat-group.webp)
 
 ## License
 

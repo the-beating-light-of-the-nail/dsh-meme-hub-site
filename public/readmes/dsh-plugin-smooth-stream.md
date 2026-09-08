@@ -3,8 +3,9 @@
 简体中文 | [English](README.en.md)
 
 [![npm](https://img.shields.io/npm/v/dsh-plugin-smooth-stream)](https://www.npmjs.com/package/dsh-plugin-smooth-stream)
+[![CI](https://github.com/SpookySandwich/dsh-plugin-smooth-stream/actions/workflows/ci.yml/badge.svg)](https://github.com/SpookySandwich/dsh-plugin-smooth-stream/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-4b8dff)](https://github.com/deepseek-ai/deepseek-harness)
+[![dsh](https://img.shields.io/badge/dsh-0.1.2--rc.1-4b8dff)](https://github.com/deepseek-ai/deepseek-harness)
 [![deepseek1024](https://img.shields.io/badge/deepseek1024-%E5%B7%B2%E6%94%B6%E5%BD%95-4b8dff)](https://deepseek1024.com/plugins/SpookySandwich/dsh-smooth-stream)
 [![stars](https://img.shields.io/github/stars/SpookySandwich/dsh-plugin-smooth-stream?style=flat&label=stars)](https://github.com/SpookySandwich/dsh-plugin-smooth-stream/stargazers)
 
@@ -12,7 +13,7 @@
 
 **左：DSH 原生渲染 · 右：Smooth Stream** —— 同一个问题，同时开始：
 
-![对比演示](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/demo.gif)
+![对比演示](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/demo.gif)
 
 ## 安装
 
@@ -49,17 +50,20 @@ dsh plugin --profile web add dsh-plugin-smooth-stream
 
 | 淡入 Fade | 上升 Rise |
 |---|---|
-| ![fade](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/fade.gif) | ![rise](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/rise.gif) |
+| ![fade](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/fade.gif) | ![rise](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/rise.gif) |
 | **浮现 Dissolve** | **拂过 Wipe** |
-| ![dissolve](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/dissolve.gif) | ![wipe](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/wipe.gif) |
+| ![dissolve](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/dissolve.gif) | ![wipe](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/wipe.gif) |
 | **聚焦 Focus** | **映亮 Glow** |
-| ![focus](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/focus.gif) | ![glow](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/glow.gif) |
+| ![focus](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/focus.gif) | ![glow](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/glow.gif) |
 | **晕开 Iris** | **洇染 Soak** |
-| ![iris](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/iris.gif) | ![soak](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/93b1e816c0336310b7c362bfc67d7b53da7a6861/assets/variants/soak.gif) |
+| ![iris](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/iris.gif) | ![soak](https://raw.githubusercontent.com/SpookySandwich/dsh-plugin-smooth-stream/23bd57cdf3c97ce7d53bbc181d9a6ceccd99016c/assets/variants/soak.gif) |
 
 ## 兼容性
 
-- 在 dsh `0.1.0-rc.6` 上验证。
+本次兼容目标为 DSH `0.1.2-rc.1`。运行 `npm ci`、`npm test` 和 `npm run check:package` 可验证构建及发布包。更新后请重启 DSH。
+
+
+- 已适配 dsh `0.1.2-rc.1` 的客户端服务、Markdown 和图片接口；自动化测试覆盖加载与组件渲染。
 - 本插件接管对话视图的 assistant 消息渲染（`conversation.chat.node` 的 `assistant-step` 槽位），与其他同样接管该渲染的插件互斥——同装时只有一个生效。
 - 遵循 `prefers-reduced-motion`：系统开启减少动态效果时，所有动画与平滑滚动自动关闭。
 - 渲染出错时自动降级为纯文本显示，不影响会话其余部分。

@@ -1,5 +1,7 @@
 # dsh-ux
 
+[![Listed on DSH Directory](https://dsh.directory/badges/listed.svg)](https://dsh.directory/plugins/jiangnanquan/dsh-ux)
+
 **中文** | [English](README_EN.md)
 
 DSH(DeepSeek Harness)Web 界面体验套件,包含两件东西:
@@ -9,7 +11,7 @@ DSH(DeepSeek Harness)Web 界面体验套件,包含两件东西:
 | **dsh-enhance**(仓库根目录) | DSH web 插件:主题、布局、折叠胶囊、账户用量 |
 | **dsh-desktop**(`desktop/` 子目录) | 无边框 Electron 桌面壳,双击即用 |
 
-![dsh-enhance](https://raw.githubusercontent.com/jiangnanquan/dsh-ux/9a2a16c57e05b051fc05ceea26cbcef90af60546/screenshot.png)
+![dsh-enhance](https://raw.githubusercontent.com/jiangnanquan/dsh-ux/429ccaa12f94b9c44c292cb934187ca1a7d5cd49/screenshot.png)
 
 ## 能力(dsh-enhance)
 
@@ -22,7 +24,7 @@ DSH(DeepSeek Harness)Web 界面体验套件,包含两件东西:
 
 长工具链会跟随消息列宽度自动重新分行，每个视觉行保持独立、完整的胶囊轮廓：
 
-![工具链换行后每行独立胶囊](https://raw.githubusercontent.com/jiangnanquan/dsh-ux/9a2a16c57e05b051fc05ceea26cbcef90af60546/docs/images/tool-chain-multiline-capsules.png)
+![工具链换行后每行独立胶囊](https://raw.githubusercontent.com/jiangnanquan/dsh-ux/429ccaa12f94b9c44c292cb934187ca1a7d5cd49/docs/images/tool-chain-multiline-capsules.png)
 
 ## 安装
 

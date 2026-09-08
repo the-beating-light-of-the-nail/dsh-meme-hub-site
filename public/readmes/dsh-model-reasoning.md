@@ -1,4 +1,4 @@
-# dsh-model-reasoning
+# dsh-model-fix
 
 [DSH](https://github.com/deepseek-ai/deepseek-harness)（DeepSeek Harness）插件：为所有非官方（自定义）提供商的模型自动填充推理级别（`reasoningEfforts`）、最大上下文（`contextWindow`）、输出上限（`maxTokens`）与图片模态（`input`），数据来自 [models.dev](https://models.dev)。
 
@@ -6,8 +6,8 @@
 
 配置界面截图：
 
-![浅色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/861a8c8e19ad4cba29ffd58eac56189a63e95b85/screenshot/light.png)
-![深色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/861a8c8e19ad4cba29ffd58eac56189a63e95b85/screenshot/dark.png)
+![浅色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/7704ed80ba37a5eacf37e6d533ca39ed17e57c10/screenshot/light.png)
+![深色主题设置卡片](https://raw.githubusercontent.com/TikaFlow/dsh-model-reasoning/7704ed80ba37a5eacf37e6d533ca39ed17e57c10/screenshot/dark.png)
 
 ## 功能
 
@@ -21,6 +21,12 @@
 
 ## 安装
 
+> 若此前已安装旧（<0.8.0）版本 `dsh-model-reasoning` 需要先卸载，否则将会冲突：
+>
+> ```bash
+> dsh plugin --profile web remove dsh-model-reasoning
+> ```
+
 > 设置界面的可视化卡片需要 DSH ≥ 0.1.2-alpha.2（alpha 通道：`npm i -g @deepseek-ai/dsh@alpha` 或按官方渠道升级）；更旧的 DSH 上插件自动填充功能一切正常，仅无设置卡片。
 
 -  通过插件市场安装（推荐）
@@ -30,7 +36,7 @@
 -  通过命令行安装
 
 ```bash
-dsh plugin --profile web add github:TikaFlow/dsh-model-reasoning
+dsh plugin --profile web add github:TikaFlow/dsh-model-fix
 
 # 重启 DSH 
 dsh web
@@ -58,5 +64,3 @@ tikaflow-model-fix:
       context: false    # 不更新已有模型的 contextWindow/maxTokens；默认 false
       image: false      # 不更新已有模型的 input 图片模态声明；默认 false
 ```
-
-> 旧版本 `model-reasoning` 命名空间下的配置会自动迁移为上述对象形态，无需手动处理；旧配置段会留在文件中，确认无误后可自行删除。

@@ -249,7 +249,7 @@ MIT © FeatherHunter
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/FeatherHunter/dsh-mattpocock-skills-deck/main/docs/star-history-dark.svg?v=20260905" />
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/FeatherHunter/dsh-mattpocock-skills-deck/main/docs/star-history-light.svg?v=20260905" />
-    <img alt="Star History Chart" src="https://raw.githubusercontent.com/FeatherHunter/dsh-mattpocock-skills-deck/05a36f1480f49350d7b7843a527ea2338e9459e9/docs/star-history-light.svg?v=20260905" />
+    <img alt="Star History Chart" src="https://raw.githubusercontent.com/FeatherHunter/dsh-mattpocock-skills-deck/6b4e170fd14115016db2247060e4458e54f3cc5e/docs/star-history-light.svg?v=20260905" />
   </picture>
 </a>
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-all-search/971d2cdde8bb46d77b4d900633aece2328c1c069/assets/readme/hero.svg" alt="dsh-all-search AnySearch web search for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-all-search/dc1a7b4a154c1c58c0c0083a69c952c63c7ae766/assets/readme/hero.svg" alt="dsh-all-search AnySearch web search for DeepSeek Harness" width="100%">
 </p>
 
 # dsh-all-search

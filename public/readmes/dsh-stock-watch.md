@@ -1,8 +1,7 @@
 <h1 align="center">dsh-stock-watch</h1>
 <p align="center">
+  <a href="https://dsh.directory/plugins/awu12277/dsh-stock-watch"><img src="https://dsh.directory/badges/listed.svg" alt="Awesome DSH Plugin"></a>
   <a href="https://awesome-dsh-plugin.com"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="Awesome DSH Plugin"></a>
-  <a href="https://www.dsh.so/artifact/dsh-stock-watch"><img src="https://www.dsh.so/badge/dsh-stock-watch.svg" alt="dsh.so"></a>
-  <a href="https://www.dsh.so/artifact/dsh-stock-watch"><img src="https://www.dsh.so/badge/install/dsh-stock-watch.svg" alt="dsh.so"></a>
   <a href="https://www.npmjs.com/package/dsh-stock-watch"><img src="https://img.shields.io/npm/v/dsh-stock-watch?style=flat-square&color=00ff41&labelColor=050607" alt="npm version"></a>
   <a href="https://github.com/Awu12277/dsh-stock-watch"><img src="https://img.shields.io/github/stars/Awu12277/dsh-stock-watch?style=flat-square&color=00ff41&labelColor=050607" alt="GitHub stars"></a>
   <img src="https://img.shields.io/badge/license-MIT-ff1493?style=flat-square&labelColor=050607" alt="MIT">
@@ -33,15 +32,15 @@ dsh plugin --profile web add dsh-stock-watch
 
 | 折叠药丸（右上角实时涨跌家数） | 暗色列表（分组 + 分时迷你折线 + 目标价触发） |
 |---|---|
-| ![pill](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/0a3c54b536529a9e4ea683793c86ff5c935a5711/screenshots/pill.png) | ![list-dark](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/0a3c54b536529a9e4ea683793c86ff5c935a5711/screenshots/list-dark.png) |
+| ![pill](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/ea922597583d339f4e0fba0facae95b5a127d004/screenshots/pill.png) | ![list-dark](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/ea922597583d339f4e0fba0facae95b5a127d004/screenshots/list-dark.png) |
 
 | 暗色·分时（价格线 / 均价线 / 昨收基准） | 暗色·日 K（TradingView Lightweight Charts） |
 |---|---|
-| ![minute](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/0a3c54b536529a9e4ea683793c86ff5c935a5711/screenshots/detail-minute-dark.png) | ![kline](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/0a3c54b536529a9e4ea683793c86ff5c935a5711/screenshots/detail-kline-dark.png) |
+| ![minute](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/ea922597583d339f4e0fba0facae95b5a127d004/screenshots/detail-minute-dark.png) | ![kline](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/ea922597583d339f4e0fba0facae95b5a127d004/screenshots/detail-kline-dark.png) |
 
 | 浅色主题 |
 |---|
-| ![light](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/0a3c54b536529a9e4ea683793c86ff5c935a5711/screenshots/light.png) |
+| ![light](https://raw.githubusercontent.com/Awu12277/dsh-stock-watch/ea922597583d339f4e0fba0facae95b5a127d004/screenshots/light.png) |
 
 ## 功能特性
 

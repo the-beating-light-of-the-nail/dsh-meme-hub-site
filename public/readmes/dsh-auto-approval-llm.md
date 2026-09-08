@@ -106,39 +106,39 @@ npx tsdown                 # 构建 client bundle → lib/client.js
 
 在 Auto 权限预设下使用（`设置 → 通用设置 → 权限 → Auto`；Read Only / Workspace Write / Auto / Full access）：
 
-![Auto 权限预设](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/permission-auto-preset.png)
+![Auto 权限预设](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/permission-auto-preset.png)
 
 设置卡总览——顶层开关即时保存，右侧为可折叠子卡：
 
-![设置卡总览](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/settings-overview.png)
+![设置卡总览](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/settings-overview.png)
 
 计时器与熔断——三档倒计时、熔断防劫持与双熔断阈值：
 
-![计时器与熔断](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/settings-timers-breaker.png)
+![计时器与熔断](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/settings-timers-breaker.png)
 
 在线评审模型——API 协议 / 地址 / 模型 / 密钥（密钥前端不可见）：
 
-![在线评审模型](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/settings-online-reviewer.png)
+![在线评审模型](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/settings-online-reviewer.png)
 
 安全规则列表——安全 Prompt / 白黑名单 / 声明规则 / 规则干跑：
 
-![安全规则列表](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/settings-safety-rules.png)
+![安全规则列表](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/settings-safety-rules.png)
 
 分类开关与信任模式——标准/激进两种位置模式、特权命令允许 LLM 审查开关与各类别独立三态覆盖：
 
-![分类开关与信任模式](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/settings-categories-trust.png)
+![分类开关与信任模式](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/settings-categories-trust.png)
 
 确认制学习——同一签名累计 N 次真实人工确认后自动放行（每次放行前仍经一次在线评审），支持查看与吊销已学习条目：
 
-![确认制学习](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/settings-learning.png)
+![确认制学习](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/settings-learning.png)
 
 审批面板——倒计时贴在超时自动执行的动作上（此处 `超时动作=低风险自动同意` → 中风险超时自动**拒绝**，「拒绝」按钮带倒计时、「允许一次」保持干净）：
 
-![审批面板 · 拒绝倒计时](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/approval-panel-countdown-reject.png)
+![审批面板 · 拒绝倒计时](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/approval-panel-countdown-reject.png)
 
 会话审批统计——会话标题栏「自动审批」按钮弹层：总计/通过/拒绝/超时/熔断 + 最近记录：
 
-![会话审批统计](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/9a63f421d3e92f55b31ba83da172a029c32d0cc7/assets/session-stats.png)
+![会话审批统计](https://raw.githubusercontent.com/cuddly-guacamole/dsh-auto-approval-llm/78075d81863df0f3fecd5bba30c629278e818aa7/assets/session-stats.png)
 
 ---
 
@@ -190,6 +190,7 @@ npx tsdown                 # 构建 client bundle → lib/client.js
 | `trustedDirs` | [] | host-only 键：额外信任目录根（绝对路径数组），作为 standard 档位置白名单成员与两档共用的 symlink 复检区成员；凭据段/home/dshHome/critical 路径排除；仅 patch/YAML 可配，设置卡保存不会抹掉 |
 | `trustedDshSubpaths` | [] | host-only 键：允许 Auto 会话写入的 DSH_HOME 子目录（绝对路径数组）。默认空 = DSH_HOME 整树恒拒（`edit`/`write`/`apply_patch`/`str_replace_editor` 四路一致）；列出子树后该树获得与插件开发区同级放行，仅 patch/YAML 可配。清洗规则：非绝对路径、DSH_HOME 之外、等于 DSH_HOME 本身、覆盖 `sessions`/`plugins`/`credentials*`、归一化后落入 critical 树的条目全部 warn+丢弃。**开口只服务结构化工具**：shell 写向量（cp/tee/sed -i/dd/重定向/嵌套解释器写）对 DSH_HOME 一律恒拒、不随开口放开。**开启前请知情**：技能文件会作为指令注入 agent 上下文，放开 `skills` = 允许 agent 持久改写自身行为约束；插件运行态文件（history/audit/learning…）恒拒与本键正交，不受影响 |
 | `directHumanEnabled` | false | 直接人工通道：agent 可调用 `dsa_request_user` 把后续操作路由给人工而非 LLM 分类器；默认关 = 零行为差异。工具仅在开启时于启动注册（工具集不可热换——开启需重启），审批通道读取该开关是实时的，关掉立即停用已注册工具 |
+| `slashCommandsEnabled` | false | 命令面板注册 `/approval-mode` `/approval-reset` `/approval-reset-all`（评审模式查看/设置 + 熔断重置）。默认关 = 零命令表面积。命令集不可热换——仅在开启时于启动注册（开启需重启），每个 handler 读取该开关是实时的，运行中关掉立即停用已注册命令 |
 | `learningEnabled` | false | 确认制学习：同一操作被人工反复确认达阈值后自动放行（命中仍须过一次标准在线评审）；默认关 = 零行为差异。高风险/锁定四类/敏感路径永不参与（unknown 自 0.0.15 起可学）；每根会话学习放行上限 50 次 |
 | `learningThreshold` | 3 | 触发学习放行所需的人工确认次数（保存时钳入 2–10）；同签名操作被人工拒绝即清零计数 |
 
@@ -200,6 +201,8 @@ npx tsdown                 # 构建 client bundle → lib/client.js
 ---
 
 ## 评审模式与命令
+
+> 以下命令默认**不注册**：需要时在设置卡开启「注册 /approval-mode /approval-reset /approval-reset-all 命令」（`slashCommandsEnabled`）并重启后进入命令面板；运行中关闭开关，已注册命令立即停用。
 
 - `/approval-mode`　查看当前会话评审模式
 - `/approval-mode manual|smart|unattended`　设置（持久化）

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/banner.jpg" width="100%" alt="ModSearch" />
+  <img src="https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/banner.jpg" width="100%" alt="ModSearch" />
 </p>
 
 <h1 align="center">ModSearch</h1>
@@ -36,7 +36,7 @@ Hit a problem? [Open an issue](https://github.com/liustack/modsearch/issues/new/
 
 ## Features
 
-- **🥇 The strongest free web search plugin for DeepSeek Harness (dsh):** one command installs it, `npx -y @deepseek-ai/dsh plugin --profile web add @liustack/modsearch@5.10.1`. Details in [harness setup](docs/harness-setup.md#deepseek-harness-dsh).
+- **🥇 The strongest free web search plugin for DeepSeek Harness (dsh):** one command installs it, `npx -y @deepseek-ai/dsh plugin --profile web add @liustack/modsearch@5.10.2`. Details in [harness setup](docs/harness-setup.md#deepseek-harness-dsh).
 - **Free out of the box, no signup.** Search and page fetch run on Firecrawl Keyless by default: [1,000 free credits/month](https://www.firecrawl.dev/blog/firecrawl-keyless-launch), no account, no API key, no card. Every fallback channel is free too: Antigravity CLI needs only a browser sign-in, and Tavily, Exa, and a free Firecrawl key each add their own monthly quota with no card required.
 - **Automatic failover.** When a channel fails or exhausts its quota, the next one takes over.
 - **Per-engine key rotation.** Give Tavily, Exa, or Firecrawl multiple comma-separated keys. Authentication, rate-limit, and quota failures rotate to the next key before the engine chain falls back.
@@ -49,19 +49,19 @@ All four screenshots are unedited runs, the first two from the Codex desktop app
 
 Give it a blog link and ask what the post says. Twenty-five seconds later: a structured summary of the whole post, with no browser involved.
 
-![Text-only DeepSeek summarising a blog link through ModSearch](https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/demo-codex-fetch.png)
+![Text-only DeepSeek summarising a blog link through ModSearch](https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/demo-codex-fetch.png)
 
 Give it no target at all, just "anything interesting in AI today?". Thirty-six seconds later: six sourced stories, with a closing note on which details came from aggregation and deserve a second look. The note comes from the `uncertainty` field.
 
-![An open-ended question comes back as six sourced stories with a stated confidence caveat](https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/demo-codex-search.png)
+![An open-ended question comes back as six sourced stories with a stated confidence caveat](https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/demo-codex-search.png)
 
 Ask dsh web for today's top AI stories. dsh's native search tool row runs straight on the modsearch engine chain, and eighteen seconds later three stories come back, each with a source link.
 
-![dsh web's native search running on the modsearch engine chain, returning three sourced stories](https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/demo-dsh-web-search.png)
+![dsh web's native search running on the modsearch engine chain, returning three sourced stories](https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/demo-dsh-web-search.png)
 
 Ask which Node.js line is still in maintenance. `read_page` reads the release page and the release schedule in turn, and sixty seconds later the verdict arrives with a version status table and sources at the end.
 
-![read_page reading two pages and returning the Node.js maintenance verdict](https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/demo-dsh-web-fetch.png)
+![read_page reading two pages and returning the Node.js maintenance verdict](https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/demo-dsh-web-fetch.png)
 
 ## Supported engines
 
@@ -101,7 +101,7 @@ Picked a key instead? Send one line to your AI: "set my tavily key to tvly-...".
 
 dsh users have a path that never touches the command line. Settings → Plugins → Plugin config has a ModSearch card: pick the preferred engine, fill in an API key or a self-hosted endpoint, tick which engines join failover, hit save and it takes effect.
 
-![The ModSearch card in the dsh settings page, shown in Chinese: pick the preferred engine, fill in an API key and endpoint, tick the engines that join failover](https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/demo-dsh-settings-card.jpg)
+![The ModSearch card in the dsh settings page, shown in Chinese: pick the preferred engine, fill in an API key and endpoint, tick the engines that join failover](https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/demo-dsh-settings-card.jpg)
 
 ## Usage
 
@@ -121,7 +121,7 @@ Once installed, you do not need to remember any commands. Just chat. Ask anythin
 | [Security](docs/security.md) | SSRF guards, DNS-rebinding protection, untrusted input |
 | [CHANGELOG](CHANGELOG.md) | Finding what changed in a version |
 
-GitHub and other sites blocked because Steam++ / Watt Toolkit or a VPN pointed them at this machine or a reserved address? See [Blocked private network target](docs/troubleshooting.md#blocked-private-network-target).
+Proxy fake-IP mode (Clash, Clash Verge Rev, mihomo, Surge) works out of the box. DNS answers in `198.18.0.0/15` are treated as fake-IP placeholders with no switch needed. Literal URLs such as `http://198.18.0.5/` stay blocked when `allowPrivateNetwork` is off. For other reserved ranges used by VPNs or hosts-file accelerators such as Steam++ / Watt Toolkit, see [Blocked private network target](docs/troubleshooting.md#blocked-private-network-target).
 
 ## Contributing
 
@@ -135,7 +135,7 @@ This repo does not accept pull requests. The project is maintained by the author
 Follow the WeChat official account **liustack** (Chinese-language): AI tools, practice, and ideas, posted as they land. Scan the code, or search WeChat for "liustack":
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liustack/modsearch/d5097a7b83d18ff65c1614204c3d9253ad3cf751/assets/wechat-qrcode.png" width="420" alt="WeChat official account liustack" />
+  <img src="https://raw.githubusercontent.com/liustack/modsearch/7c164513d6ba824d294bcf43df9485ada3beff19/assets/wechat-qrcode.png" width="420" alt="WeChat official account liustack" />
 </p>
 
 ⭐ If it helps, star [ModSearch](https://github.com/liustack/modsearch). Stars are how the next developer finds it.

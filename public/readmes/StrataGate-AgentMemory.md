@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/c1bd0dbf1149c39a5f079e19cf7f0a145da08725/docs/assets/stratagate-avatar.png" alt="StrataGate Agent Memory banner" width="100%" />
+<img src="https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/d4b7cc169ffed24435f949b0fbb397593e21fbad/docs/assets/stratagate-avatar.png" alt="StrataGate Agent Memory banner" width="100%" />
 
 # StrataGate
 
@@ -109,7 +109,7 @@ This is a single-conversation comparison on `conv-26`, not a full LoCoMo score. 
 
 ## How it works
 
-![StrataGate workflow: layered memory, event cards, and the evidence gate](https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/c1bd0dbf1149c39a5f079e19cf7f0a145da08725/docs/assets/stratagate-how-it-works.en.png)
+![StrataGate workflow: layered memory, event cards, and the evidence gate](https://raw.githubusercontent.com/diqierjia/StrataGate-AgentMemory/d4b7cc169ffed24435f949b0fbb397593e21fbad/docs/assets/stratagate-how-it-works.en.png)
 
 The normal path is deliberately simple:
 

@@ -26,15 +26,15 @@
 
 **👇 装完重启，主界面就是这个样子（opencode 主题）。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/showcase/overview-opencode-zh.png" width="640" alt="OpenCode 调色板 — 主界面概览（opencode 主题，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/aa3f19f129061b31969f8eb141257bf5b616b17a/showcase/overview-opencode-zh.png" width="640" alt="OpenCode 调色板 — 主界面概览（opencode 主题，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
 
 **👇 设置面板：38 款按色系分组，搜一下即切。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/showcase/opencode%E8%B0%83%E8%89%B2%E6%9D%BF%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2-zh.png" width="640" alt="OpenCode 调色板 — 设置面板（opencode 主题，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/aa3f19f129061b31969f8eb141257bf5b616b17a/showcase/opencode%E8%B0%83%E8%89%B2%E6%9D%BF%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2-zh.png" width="640" alt="OpenCode 调色板 — 设置面板（opencode 主题，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
 
 **👇 白天党放心：浅色主题同样完整覆盖。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/showcase/overview-github-light-zh.png" width="640" alt="OpenCode 调色板 — 浅色主题概览（GitHub 亮色，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/aa3f19f129061b31969f8eb141257bf5b616b17a/showcase/overview-github-light-zh.png" width="640" alt="OpenCode 调色板 — 浅色主题概览（GitHub 亮色，38 款同款）" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 
@@ -69,7 +69,7 @@ dsh plugin --profile web add dsh-opencode-palette
 
 </div>
 
-![theme stories](https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/assets/theme-stories-zh.svg)
+![theme stories](https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/aa3f19f129061b31969f8eb141257bf5b616b17a/assets/theme-stories-zh.svg)
 
 <div align="center">
 
@@ -114,6 +114,6 @@ dsh plugin --profile web add dsh-opencode-palette@<版本>
 
 遇到问题或有改进建议，欢迎直接 [提交 Issue](https://github.com/FeatherHunter/dsh-opencode-palette/issues)；也欢迎扫码添加作者飞书，备注 `dsh-opencode-palette`，一起交流。
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/90d94435d74700437cdab980526f3c0732d2edb6/assets/feishu-qr.png" alt="作者飞书二维码" width="260" />
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-opencode-palette/aa3f19f129061b31969f8eb141257bf5b616b17a/assets/feishu-qr.png" alt="作者飞书二维码" width="260" />
 
 </div>

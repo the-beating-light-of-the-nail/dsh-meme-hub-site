@@ -20,7 +20,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/806278e6e8ce7b3eebaf4551cf892fd6707737a7/docs/assets/readme-hero.webp" width="900" alt="Codex 订阅直接用在 DSH：订阅模型、联网搜索、额度与安全重置、图片生成和高速模式">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d4e205d8b1b29c068cffdd8c6c59272717446d14/docs/assets/readme-hero.webp" width="900" alt="Codex 订阅直接用在 DSH：订阅模型、联网搜索、额度与安全重置、图片生成和高速模式">
 </p>
 
 ## 三步开始
@@ -56,7 +56,7 @@ DSH-Portable 也提供相同的标准插件命令，因此同样使用上面的�
 ## 实际界面
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/806278e6e8ce7b3eebaf4551cf892fd6707737a7/docs/assets/context-settings.png" width="820" alt="当前 DeepSeek Harness Codex 订阅设置，包含搜索来源、模型感知上下文、输入框额度和支持诊断">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d4e205d8b1b29c068cffdd8c6c59272717446d14/docs/assets/context-settings.png" width="820" alt="当前 DeepSeek Harness Codex 订阅设置，包含搜索来源、模型感知上下文、输入框额度和支持诊断">
 </p>
 
 截图用于说明设置页布局；可用选项会随 DSH 与插件版本变化。
@@ -143,7 +143,7 @@ dsh --profile web --dump-config
 ### 输入框额度
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/806278e6e8ce7b3eebaf4551cf892fd6707737a7/docs/assets/composer-quota.png" width="800" alt="中文 DSH 输入框内的 Codex 剩余额度进度条">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d4e205d8b1b29c068cffdd8c6c59272717446d14/docs/assets/composer-quota.png" width="800" alt="中文 DSH 输入框内的 Codex 剩余额度进度条">
 </p>
 
 可在设置中选择关闭、百分比、进度条或 Beta 续航预测；紧凑额度只在选择 Codex 模型时显示。续航预测仅在用户主动选择后，根据官方剩余百分比估算当前消耗速度。它至少需要 3 个样本；持续高消耗时通常 5–10 分钟即可给出范围，消耗较低时会延长观察或显示稳定。最近 24 小时的无敏感信息观测会保存在本机，重启后可以继续校准；额度重置、账号切换或关闭功能会开启新的校准周期。输入框分别显示服务端返回的各额度窗口，并标明窗口时长：Plus 返回 5 小时和每周额度时，两项都会显示。
@@ -166,7 +166,7 @@ ChatGPT 返回可用重置卡时，设置页会把每张卡分别显示为紧凑
 新的图片请求不会静默带入历史图片。GPT Image 2 可能比文本回复耗时更长，复杂文字、精确构图和连续角色一致性也可能需要再次调整。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/806278e6e8ce7b3eebaf4551cf892fd6707737a7/docs/assets/image-preview-annotations.png" width="800" alt="DSH 图片查看器中的生成图、区域备注和继续编辑">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/d4e205d8b1b29c068cffdd8c6c59272717446d14/docs/assets/image-preview-annotations.png" width="800" alt="DSH 图片查看器中的生成图、区域备注和继续编辑">
 </p>
 
 上图展示图片查看与图上备注的基本交互；具体按钮会随图片和所安装的查看器版本变化。

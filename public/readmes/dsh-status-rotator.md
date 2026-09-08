@@ -13,11 +13,11 @@
 dsh plugin --profile web add dsh-status-rotator
 ```
 
-**v0.14.1 — stable release**
+**v0.15.1 — stable release**(v0.15.0 → v0.15.1: a new default-enabled `star` pack — star-ask phrases plus one phrase per current stargazer, `正在路由 <login> 写代码…`; the default bank grows 886 → 1047 phrases across 11 theme packs)
 
 > ⭐ **If this made you smile, give it a star** — it keeps the memes flowing.
 
-A [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) client plugin that replaces the hardcoded `Deep diving...` status line in the Web UI's turn footer with your own phrase bank: phase-aware switching, typewriter output, timed rotation, weighted random picking, template placeholders with live values, an animated rainbow gradient, video-site-style danmaku, and a real-time engine that feeds the phrases, the browser tab title and a floating status pill. The elapsed-time clock of the UI (which appears after 15 seconds) is left untouched.
+A [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) client plugin that replaces the hardcoded `Deep diving...` status line in the Web UI's turn footer with your own phrase bank: phase-aware switching, typewriter output, timed rotation, weighted random picking, template placeholders with live values, an animated rainbow gradient, video-site-style danmaku, and a real-time engine that feeds the phrases and the browser tab title. The elapsed-time clock of the UI (which appears after 15 seconds) is left untouched.
 
 ## Feature Overview
 
@@ -43,8 +43,7 @@ A [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) clie
 
 **Live**
 
-- **Real-time status engine** — subscribes to the dsh session snapshot (session list, conversation snapshot, model RPC) with a DOM clock fallback — one source feeding phrases, tab title and pill;
-- **Live status pill** — floating pill in the official `shell.overlay` seat, template-driven live info (`{model} · {phaseLabel} · {elapsed} · ⚡{tps} tok/s`), position/opacity configurable;
+- **Real-time status engine** — subscribes to the dsh session snapshot (session list, conversation snapshot, model RPC) with a DOM clock fallback — one source feeding phrases and the tab title;
 - **Browser tab title** — rotates `document.title` through your templates, restores the original title when idle (configurable);
 - **Presets & scheduling** — multiple named phrase banks with their own config, switched from the settings page or automatically by time-of-day / weekday rules.
 
@@ -83,7 +82,7 @@ The plugin's `package.json` declares a `dsh.bundle.patch` manifest, so it is rec
 
 ### First run
 
-On first start the plugin serves the `config.json` sitting next to the package (all 886 default phrases are inside it — see [Phrase Bank](#phrase-bank)). To tweak phrases or options you can either edit that file (hot-reloaded while the page is open) or use the new **Status Texts** page in DSH Settings (bottom-left) — see [Settings Page](#settings-page).
+On first start the plugin serves the `config.json` sitting next to the package (all 1047 default phrases are inside it — see [Phrase Bank](#phrase-bank)). To tweak phrases or options you can either edit that file (hot-reloaded while the page is open) or use the new **Status Texts** page in DSH Settings (bottom-left) — see [Settings Page](#settings-page).
 
 ## How It Works
 
@@ -105,7 +104,7 @@ The status label is located precisely by `role="status"` + `aria-live="polite"`,
 
 ## Phrase Bank
 
-The default bank ships **886 phrases**, split into **10 theme packs** (the core `phrases` table is empty — everything lives in packs, all enabled by default):
+The default bank ships **1047 phrases**, split into **11 theme packs** (the core `phrases` table is empty — everything lives in packs, all enabled by default):
 
 | Pack | zh | en | Total |
 | --- | --- | --- | --- |
@@ -119,12 +118,15 @@ The default bank ships **886 phrases**, split into **10 theme packs** (the core 
 | `western-ai` 西方 AI 圈 | 16 | 18 | 34 |
 | `reverse-proxy` 反代 | 14 | 16 | 30 |
 | `china-ai` 中国 AI 圈 | 12 | 10 | 22 |
-| **total** | **468** | **418** | **886** |
+| `star` 求star | 80 | 81 | 161 |
+| **total** | **548** | **499** | **1047** |
 
 - Most entries are zh/en mirrored pairs; recent community submissions are often zh-only — choose **zh + en (both)** in the submission form to get each phrase in both languages;
 - 5 weighted showcase entries (see [Weighted Random](#weighted-random)) — most phrases are plain weight-1 strings;
 - The bank grows through the community [phrase-submission form](#contributing-phrases-via-github-issues): validated and merged submissions are credited in [CONTRIBUTORS.md](./CONTRIBUTORS.md);
 - Numbers are refreshed at each release; run `node scripts/check-bank-memes.mjs` locally to audit the current bank (duplicates, lengths, ellipsis, series share).
+
+**Star pack** — the default-enabled `star` pack ships star-ask phrases (e.g. `正在向你讨一个 star…`) plus **one phrase per current stargazer** (`正在路由 <login> 写代码…` / `Routing <login> to write code…`), so the rotation literally routes every star-giver to work. The list is refreshed at each release (GitHub now requires authentication for the stargazers endpoint); new stars appear on the next version. Existing installs pick the pack up on upgrade; if a saved settings document already overrides the pack list, re-save once from the Settings → Status Texts page.
 
 ## Phrase Packs
 
@@ -145,7 +147,7 @@ The bank is composable from named packs layered on top of the core `phrases` tab
 - `enabledPacks` absent/`null` = all packs on; `[]` = core bank only. Unknown ids in the list are ignored;
 - Packs support the exact same entries as the core bank (strings or `{text, weight}`, per-phase groups, placeholders);
 - The settings page shows every pack with a per-pack **enable toggle** and a **pack editor target**: pick a pack and the phrase library editor reads/writes that pack's phrases;
-- The default config ships **10 packs** (`deepseek` / `western-ai` / `china-ai` / `coding` / `reverse-proxy` / `sysadmin` / `math-physics` / `slacking` / `internet-memes` / `daily`) — the core table is empty, so disabling a pack really removes that theme from the pool;
+- The default config ships **11 packs** (`deepseek` / `western-ai` / `china-ai` / `coding` / `reverse-proxy` / `sysadmin` / `math-physics` / `slacking` / `internet-memes` / `daily` / `star`) — the core table is empty, so disabling a pack really removes that theme from the pool;
 - The phrase-submission form has a **目标词库包** picker (same pack ids plus `community` as the default landing spot): submissions land in the chosen pack, and a `community` pack is created on first use — the core bank stays untouched, so you can disable or prune community content in one place;
 - Old configs without packs keep working untouched.
 
@@ -244,20 +246,9 @@ Optionally rotate the browser tab title while a turn is running:
 
 Templates support the same placeholders as phrases. When no turn is active the title shows `idleTemplate`, or the original title if it is `""`. `title: false` disables it entirely.
 
-## Live Status Pill
+## Live Status Pill (removed)
 
-A floating pill (official `shell.overlay` seat — the documented place for status pills) shows live information driven by the same real-time engine:
-
-```json
-"pill": {
-    "enabled": true,
-    "template": "{model} · {phaseLabel} · {elapsed} · ⚡{tps} tok/s",
-    "position": "right-bottom",   // right-bottom / left-bottom / right-top / left-top
-    "opacity": 0.92
-}
-```
-
-The template supports every phrase placeholder (including the live-engine ones: `{model}`, `{provider}`, `{tps}`, `{pending}`, `{tools}`). While a turn runs it ticks with: the **model name** (read from the official model-directory service, following session/model switches), the **phase** (`thinking`/`running`/`long`), the **elapsed time** and the streaming **tokens/s** — phase and elapsed are derived from the session snapshot (the turn's start moment is tracked by the engine itself, so it never depends on DOM structure); when idle it shows `— · 空闲 · 0秒 · ⚡0 tok/s`. `pill: false` disables it. If the session API is unavailable (older dsh), the DOM clock drives phase/elapsed as a fallback and the live fields show `—` — no crash, no errors.
+> **Since v0.15.0 the floating status pill has been removed from the UI** (the `shell.overlay` registration, its settings-page section and the documented config are gone; the implementation stays in `lib/client.js` as commented code and can be restored). **The real-time engine is unaffected**: `{model}`, `{provider}`, `{tps}`, `{pending}`, `{tools}` placeholders still work (phrases and tab title), with `liveTickMs` controlling the refresh pace.
 
 ## Presets & Scheduling
 
@@ -298,9 +289,9 @@ Phrases are fully separated from the source code and live in JSON config files. 
 
 ```json
 {
-    "config": { "intervalMs": 10000, "typeSpeedMs": 30, "longAfterMs": 60000, "reloadIntervalMs": 15000, "liveTickMs": 1000, "weightedRandom": true, "debug": false, "fontWeight": "inherit", "gradient": { "enabled": true, "colors": ["#ff5f6d", "#ffc371", "#ffdd55", "#7dff7d", "#5fd4ff", "#a78bfa", "#ff8adb"], "speed": 4 }, "title": { "enabled": false, "templates": ["⏳ {phaseLabel} {elapsed}", "🤔 {phaseLabel}… {elapsed}"], "idleTemplate": "💤 dsh 空闲", "intervalMs": 8000 }, "pill": { "enabled": true, "template": "{model} · {phaseLabel} · {elapsed} · ⚡{tps} tok/s", "position": "right-bottom", "opacity": 0.92 }, "danmaku": { "enabled": true, "intervalMs": 2500, "speedMs": 18000, "fontSizeMin": 14, "fontSizeMax": 30, "rainbow": true, "colors": ["#ff5f6d", "#ffc371", "#ffdd55", "#7dff7d", "#5fd4ff", "#a78bfa", "#ff8adb"], "color": "#ffffff", "opacity": 0.3, "maxCount": 12, "zIndex": -1, "scope": "all", "marginTop": 16, "marginBottom": 160 } },
+    "config": { "intervalMs": 10000, "typeSpeedMs": 30, "longAfterMs": 60000, "reloadIntervalMs": 15000, "liveTickMs": 1000, "weightedRandom": true, "debug": false, "fontWeight": "inherit", "gradient": { "enabled": true, "colors": ["#ff5f6d", "#ffc371", "#ffdd55", "#7dff7d", "#5fd4ff", "#a78bfa", "#ff8adb"], "speed": 4 }, "title": { "enabled": false, "templates": ["⏳ {phaseLabel} {elapsed}", "🤔 {phaseLabel}… {elapsed}"], "idleTemplate": "💤 dsh 空闲", "intervalMs": 8000 }, "danmaku": { "enabled": true, "intervalMs": 2500, "speedMs": 18000, "fontSizeMin": 14, "fontSizeMax": 30, "rainbow": true, "colors": ["#ff5f6d", "#ffc371", "#ffdd55", "#7dff7d", "#5fd4ff", "#a78bfa", "#ff8adb"], "color": "#ffffff", "opacity": 0.3, "maxCount": 12, "zIndex": -1, "scope": "all", "marginTop": 16, "marginBottom": 160 } },
     "phrases": { "zh": { "thinking": ["…"], "running": ["…"], "long": ["…"] }, "en": { "thinking": ["…"], "running": ["…"], "long": ["…"] } },
-    "packs": [],            // optional, see "Phrase Packs" (default config ships 10 theme packs)
+    "packs": [],            // optional, see "Phrase Packs" (default config ships 11 theme packs)
     "enabledPacks": null,   // null/absent = all packs, [] = core bank only
     "presets": [],          // optional, see "Presets & Scheduling"
     "activePreset": null,   // optional preset id
@@ -314,13 +305,12 @@ Phrases are fully separated from the source code and live in JSON config files. 
 | `typeSpeedMs` | 30 | Typewriter delay per character (ms), 0 disables the typewriter |
 | `longAfterMs` | 60000 | Threshold for entering the `long` phase |
 | `reloadIntervalMs` | 15000 | Interval for auto re-reading `config.json` while the page is open (ms), 0 disables |
-| `liveTickMs` | 1000 | Refresh interval for live placeholders (`{elapsed}` / `{date}` / `{time}` / `{tps}`…) in phrases, titles and the pill (ms), 0 disables |
+| `liveTickMs` | 1000 | Refresh interval for live placeholders (`{elapsed}` / `{date}` / `{time}` / `{tps}`…) in phrases and titles (ms), 0 disables |
 | `weightedRandom` | true | Weighted random picking. `false` = fully uniform over phrases. Phrase entries may be `"text"` or `{ "text": "...", "weight": 3 }` (weight > 0, capped at 1000, invalid/missing = 1) |
 | `debug` | false | Console diagnostic logs |
-| `fontWeight` | `"inherit"` | Font weight of the status text, the live pill and the danmaku: a number (1–1000; typical 100–900) or a CSS keyword (`normal`/`bold`/`bolder`/`lighter`); `"inherit"` follows the UI (default; danmaku keeps its built-in 600) |
+| `fontWeight` | `"inherit"` | Font weight of the status text and the danmaku: a number (1–1000; typical 100–900) or a CSS keyword (`normal`/`bold`/`bolder`/`lighter`); `"inherit"` follows the UI (default; danmaku keeps its built-in 600) |
 | `gradient` | see above | Rainbow gradient: `false` / `true` / `{enabled, colors, speed}` |
 | `title` | see above | Tab title rotation: `false` / `{enabled, templates, idleTemplate, intervalMs}` |
-| `pill` | see above | Live status pill: `false` / `{enabled, template, position, opacity}` |
 | `danmaku` | see above | Bullet-screen comments: `false` / `{enabled, intervalMs, speedMs, fontSizeMin, fontSizeMax, rainbow, colors, color, opacity, maxCount, zIndex, scope, marginTop, marginBottom}` |
 | `phrases` | from config file | The phrases (Chinese/English × three phases; partial entries allowed, missing ones fall back to other sources) |
 | `packs` | none | Modular phrase packs: `[{ id, label?, phrases? }]`, merged into the effective bank in order (deduped by text) |
@@ -349,7 +339,6 @@ Open Settings in the bottom-left of DSH and a new **Status Texts** page appears 
 - **中文 / English** tabs, each with three text boxes for `thinking` / `running` / `long`, **one phrase per line**, blank lines are ignored; a line `text | weight` sets that phrase's weight;
 - Each phase shows the current phrase count in real time;
 - Basic settings (rotation interval, typewriter speed, long-task threshold, auto-reload interval, placeholder refresh interval, font weight, weighted-random toggle) live on the same page;
-- **Live pill settings**: enable toggle, display template, position — the pill and the live-engine placeholders are configured in the same page;
 - **Rainbow gradient settings**: enable toggle, color sequence, speed — no more manual `config.json` editing to turn the gradient off;
 - **Danmaku settings**: enable toggle, spawn interval, cross duration, random font-size range, rainbow mode + palette, opacity, max concurrent bullets, layer z-index and phrase scope — everything editable without touching `config.json`;
 - **Pack controls**: every pack has an enable toggle and an editor target; the phrase library editor reads/writes the selected pack (when the default bank is empty, the first pack is selected automatically);
@@ -404,7 +393,7 @@ dsh-status-rotator/
 ├── lib/
 │   ├── index.js            # node half: registers the HTTP route for config.json (GET/PUT, validated)
 │   └── client.js           # client half: status text replacement / placeholders / gradient / title / danmaku / presets
-├── config.example.json     # complete template (default config + all 886 phrases in 10 packs, committed)
+├── config.example.json     # complete template (default config + all 1047 phrases in 11 packs, committed)
 ├── config.json             # local personalized config (gitignored)
 ├── gen-config.cjs          # script that initializes config.json
 ├── cordis.patch.yml        # dsh bundle patch manifest (referenced by package.json dsh.bundle.patch)

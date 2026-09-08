@@ -29,7 +29,7 @@ itself stays git-ignored).
 > already exists, what you must not touch, and what to tell the user — the parts
 > agents reliably get wrong when improvising.
 
-> **Status: 0.10.1 — experimental.** The hard index cap (a `PreToolUse` hook) is
+> **Status: 0.11.0 — experimental.** The hard index cap (a `PreToolUse` hook) is
 > deterministic for the matched direct-edit tools (`Edit | Write | MultiEdit`) but
 > NOT a global write guard (shell tools — Bash, PowerShell, a background Monitor
 > command — plus MCP file tools, external editors, and sync clients bypass it);
@@ -199,6 +199,25 @@ manual transition; they do **not** perform or guarantee this semantic sync.
    (snippet in `hooks/settings.snippet.json`).
 4. Point `<MEMORY_ROOT>` at your memory directory; ensure it's `.gitignore`d if
    inside a repo.
+
+> **Optional — read the transcripts behind a memory.** A note holds the conclusion;
+> the host's transcripts hold what was actually said. When a note is terse and you
+> want the reasoning, when you suspect it is stale and want the original evidence, or
+> when something was discussed but never written down, `tools/engramory_trace.py`
+> searches those transcripts — local and read-only, nothing uploaded, indexed, or
+> embedded:
+>
+> ```bash
+> python tools/engramory_trace.py "streaming parser"   # search this project
+> python tools/engramory_trace.py --show <session-id>  # replay one session
+> ```
+>
+> By default it searches only what was *said*, not tool output — otherwise a term
+> taken from a memory matches every turn that re-injected that memory, burying the
+> discussion that produced it. Where the host stamps an origin session onto a note,
+> `--show` goes straight to it. Claude Code only: it parses that host's JSONL layout.
+> This is a convenience for you, not part of the protocol — the discipline in
+> [`SKILL.md`](SKILL.md) neither needs it nor mentions it.
 
 ### Codex
 
