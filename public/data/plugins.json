@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-09-07",
- "count": 2706,
+ "updatedAt": "2026-09-08",
+ "count": 2707,
  "plugins": [
   {
    "slug": "dsh-web-ui",
@@ -39764,8 +39764,8 @@
    "description_en": "Finance data toolkit for DSH agents: number and currency formatting (incl. Chinese wan/yi units), return and CAGR math, valuation and profitability ratios, PV/FV, risk metrics, and a data-quality checklist.",
    "stars": 6,
    "forks": 1,
-   "category_zh": "工具与集成",
-   "category_en": "Tools & Integrations",
+   "category_zh": "股票金融",
+   "category_en": "Stocks & Quant",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
@@ -39786,7 +39786,7 @@
     "risk"
    ],
    "description_zh_TW": "為 DSH agent 提供金融資料工具包：數字與貨幣格式化（含中文萬/億單位）、收益與年化計算、估值與盈利比率、現值/終值、風險指標與資料質量清單。",
-   "category_zh_TW": "工具與整合",
+   "category_zh_TW": "股票金融",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -115777,6 +115777,44 @@
     {
      "platform": "bilibili",
      "url": "https://www.bilibili.com/video/BV1BPbn6wEDe"
+    }
+   ]
+  },
+  {
+   "slug": "smackgg-dsh-archived-sessions",
+   "name": "dsh-archived-sessions",
+   "repo": "smackgg/dsh-archived-sessions",
+   "url": "https://github.com/smackgg/dsh-archived-sessions",
+   "description_zh": "会话归档管理组合包：新增「已归档」设置页，按标题/工作区/最后更新时间列出已归档会话，支持搜索、按项目筛选分组与一键取消归档恢复；Host 与 Web Client 同 bundle 供给，官方安全删除 API 就绪前删除入口保持只读",
+   "description_en": "An installable DSH plugin bundle that adds an Archived settings page: list archived sessions with title, workspace and last-updated time, search and group them by project, and restore any back to the sidebar with one-click unarchive — one bundle serving Host and Web Client, with delete entry points kept read-only until Harness ships a safe deletion API",
+   "stars": 6,
+   "forks": 1,
+   "category_zh": "会话与消息",
+   "category_en": "Sessions & Messages",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:smackgg/dsh-archived-sessions",
+   "pushed_at": "2026-08-14",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [],
+   "description_zh_TW": "會話歸檔管理組合包：新增「已歸檔」設定頁，按標題/工作區/最後更新時間列出已歸檔會話，支援搜尋、按專案篩選分組與一鍵取消歸檔復原；Host 與 Web Client 同 bundle 供給，官方安全刪除 API 就緒前刪除入口保持唯讀",
+   "category_zh_TW": "會話與訊息",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://raw.githubusercontent.com/smackgg/dsh-archived-sessions/7f58de3e5fc1dd6f0262b47c3e0735312b956312/docs/images/archived-sessions.en.png",
+     "w": null,
+     "h": null
+    },
+    {
+     "url": "https://raw.githubusercontent.com/smackgg/dsh-archived-sessions/7f58de3e5fc1dd6f0262b47c3e0735312b956312/docs/images/archived-sessions.zh-CN.png",
+     "w": null,
+     "h": null
     }
    ]
   }
