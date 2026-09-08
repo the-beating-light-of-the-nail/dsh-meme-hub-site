@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-16",
-  "count": 19,
+  "updatedAt": "2026-09-08",
+  "count": 20,
   "_note": "DSH 桌面化/一键启动器收录。全部经 GitHub API 实时核实（star/license/平台/最近推送）。数据抓取自各项目 README，未编造。无 license 声明者如实标注 null。这不是 dsh 插件目录——它们是桌面壳/启动器，把 dsh web 装进原生窗口方便小白。",
   "launchers": [
     {
@@ -649,6 +649,39 @@
         "Linux 專屬",
         "托盤 + 程序管理",
         "deb/AppImage"
+      ]
+    },
+    {
+      "slug": "dsh-mobile-apk",
+      "name": "dsh-mobile-apk",
+      "repo": "kelai141/dsh-mobile-apk",
+      "url": "https://github.com/kelai141/dsh-mobile-apk",
+      "image": null,
+      "description_zh": "把完整 DeepSeek Harness 装进安卓手机的壳应用：WebView UI 覆盖内嵌 Termux 运行时快照（node/git/bash/coreutils/dsh 与插件解压即跑，免装 Termux app），一个 APK 即得完整 web agent 且能真实执行 bash；前台服务保活 + 看门狗自愈、SAF 目录桥、任务完成通知、运行时在线原子更新，0.13 起支持 ADB 真实通道（配对 / 端口发现 / 授权门禁 / 审计）",
+      "description_en": "A shell app that puts the full DeepSeek Harness on your Android phone: a WebView UI over an embedded Termux runtime snapshot (node, git, bash, coreutils, dsh and plugins unzip-and-run — no Termux app needed). One APK delivers the complete dsh web agent that really executes bash, with a keep-alive foreground service and self-healing watchdog, SAF directory bridge, task-completion notifications, atomic online runtime updates, and since 0.13 a real ADB channel (pairing, port discovery, authorization gates, audit).",
+      "stars": 326,
+      "platforms": [
+        "Android"
+      ],
+      "stack": "Android 原生（内嵌 Termux 快照）",
+      "language": "Kotlin",
+      "license": "MIT",
+      "highlights_zh": [
+        "内嵌运行时解压即跑",
+        "保活看门狗自愈",
+        "ADB 真实通道"
+      ],
+      "highlights_en": [
+        "Embedded unzip-and-run runtime",
+        "Keep-alive watchdog self-healing",
+        "Real ADB channel"
+      ],
+      "pushed_at": "2026-09-05T07:24:02Z",
+      "description_zh_TW": "把完整 DeepSeek Harness 裝進安卓手機的殼應用：WebView UI 覆蓋內嵌 Termux 執行環境快照（node/git/bash/coreutils/dsh 與外掛解壓即跑，免裝 Termux app），一個 APK 即得完整 web agent 且能真實執行 bash；前景服務保活 + 看門狗自癒、SAF 目錄橋、任務完成通知、執行環境線上原子更新，0.13 起支援 ADB 真實通道（配對 / 連接埠探索 / 授權門禁 / 稽核）",
+      "highlights_zh_TW": [
+        "內嵌執行環境解壓即跑",
+        "保活看門狗自癒",
+        "ADB 真實通道"
       ]
     }
   ]
