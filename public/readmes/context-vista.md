@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/GooodWei/context-vista/fdde2e6da8524cd5ea27598c19eae744d4a1078a/pic.png" alt="context-vista — /context 环形图" width="100%">
+<img src="https://raw.githubusercontent.com/GooodWei/context-vista/c57a4954639c63ccac2744d6c66ec2a67dd5b892/pic.png" alt="context-vista — /context 环形图" width="100%">
 
 <br>
 </div>

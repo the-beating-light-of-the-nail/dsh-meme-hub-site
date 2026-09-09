@@ -13,9 +13,9 @@ Codex 风格的**左侧**会话锚点轨（默认），以及（旧版 DSH 上�
 
 默认 Codex 左侧轨：
 
-![对话区左侧短横线锚点与悬停预览](https://raw.githubusercontent.com/biggerboy/dsh-conversation-anchors/f78af27f9a2e915a404eda0834921c1d939d6408/assets/image.png)
+![对话区左侧短横线锚点与悬停预览](https://raw.githubusercontent.com/biggerboy/dsh-conversation-anchors/6c4a47330489b43eba31cdb5163f95ee397083d3/assets/image.png)
 
-![悬停时横线起伏与预览卡片](https://raw.githubusercontent.com/biggerboy/dsh-conversation-anchors/f78af27f9a2e915a404eda0834921c1d939d6408/assets/anchors-wave1.png)
+![悬停时横线起伏与预览卡片](https://raw.githubusercontent.com/biggerboy/dsh-conversation-anchors/6c4a47330489b43eba31cdb5163f95ee397083d3/assets/anchors-wave1.png)
 
 设置面板切换：
 <img width="2735" height="1911" alt="image" src="https://github.com/user-attachments/assets/f470b44f-d47a-43e2-ac89-302b307e29f0" />

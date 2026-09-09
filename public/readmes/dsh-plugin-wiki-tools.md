@@ -13,7 +13,7 @@ Native [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) tools
 dsh plugin --profile web add dsh-plugin-wiki-tools
 ```
 
-Pair with **[dsh-plugin-wiki-skills](https://github.com/Lion-1209/dsh-plugin-wiki-skills)** for the prompt-level skills (`wiki`, `wiki-ingest`, `wiki-query`, `wiki-lint`, `save`).
+Pair with **[dsh-plugin-wiki-skills](https://github.com/Lion-1209/dsh-plugin-wiki-skills)** for the prompt-level skills (`wiki`, `wiki-ingest`, `wiki-query`, `wiki-lint`, `save`), and with **[dsh-wiki-web](https://github.com/Lion-1209/dsh-wiki-web)** for a self-hosted web UI over the same vault — browse, BM25 search, link graph, and lint dashboard in the browser, no Obsidian required.
 
 *If this toolchain saves you time maintaining a wiki vault, a ⭐ helps other dsh users find it. 如果这个工具帮到了你，欢迎点个 Star。*
 
@@ -70,7 +70,7 @@ node --test
 
 # 中文
 
-Obsidian wiki vault 的 DeepSeek Harness 原生工具：`wiki_query`、`wiki_write`、`wiki_lint` 实现知识库技能套件的机械核心（路径路由、frontmatter 补全、索引/日志簿记、来源增量追踪、健康检查），让模型把轮次花在综合而非文件操作上。与 [dsh-plugin-wiki-skills](https://github.com/Lion-1209/dsh-plugin-wiki-skills) 配套使用。
+Obsidian wiki vault 的 DeepSeek Harness 原生工具：`wiki_query`、`wiki_write`、`wiki_lint` 实现知识库技能套件的机械核心（路径路由、frontmatter 补全、索引/日志簿记、来源增量追踪、健康检查），让模型把轮次花在综合而非文件操作上。与 [dsh-plugin-wiki-skills](https://github.com/Lion-1209/dsh-plugin-wiki-skills)（提示词技能）和 [dsh-wiki-web](https://github.com/Lion-1209/dsh-wiki-web)（同一 vault 的自托管 Web 界面：浏览、BM25 搜索、链接图谱、lint 仪表盘，无需 Obsidian）配套使用。
 
 ## 出处
 

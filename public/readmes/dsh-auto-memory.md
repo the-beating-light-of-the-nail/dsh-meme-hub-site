@@ -1,23 +1,25 @@
-# dsh-auto-memory — She remembers, unbidden · 无问自忆
+# 无问自忆 · 记忆不断线
+
+**dsh-auto-memory** — *She remembers, unbidden.*
 
 > **EN** Now, across windows, too. Context that survives windows, sessions, and tools
-> **中文** 无问自忆——该想起的，自己浮现。跨窗口 · 跨会话 · 跨工具，记忆不断线
+> **中文** 该想起的，自己浮现。跨窗口 · 跨会话 · 跨工具，记忆不断线
 
 <p align="center">
   <a href="https://htmlpreview.github.io/?https://github.com/Aik358/dsh-auto-memory/blob/preview/docs/landing/index.html"><strong>🌐 Landing page (full feature tour · data flow · papers · screenshots)</strong></a>
 </p>
 
 <p align="center">
-  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="820" alt="dsh-auto-memory hero: she remembers, unbidden" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-0-banner-v2.png"></a>
+  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="820" alt="dsh-auto-memory hero: she remembers, unbidden" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-0-banner-v2.png"></a>
 </p>
 
 <p align="center">
-  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="130" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-0-banner-v2.png"></a>
-  <a href="docs/screenshots/promo/promo-2-tour.png"><img width="130" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-2-tour.png"></a>
-  <a href="docs/screenshots/promo/promo-3-recall.png"><img width="130" alt="recall & crystallization" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-3-recall.png"></a>
-  <a href="docs/screenshots/promo/promo-4-unattended.png"><img width="130" alt="unattended mode" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-4-unattended.png"></a>
-  <a href="docs/screenshots/promo/promo-5-external.png"><img width="130" alt="external memory inheritance" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-5-external.png"></a>
-  <a href="docs/screenshots/promo/promo-6-greeting.png"><img width="130" alt="scheduled greetings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-6-greeting.png"></a>
+  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="130" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-0-banner-v2.png"></a>
+  <a href="docs/screenshots/promo/promo-2-tour.png"><img width="130" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-2-tour.png"></a>
+  <a href="docs/screenshots/promo/promo-3-recall.png"><img width="130" alt="recall & crystallization" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-3-recall.png"></a>
+  <a href="docs/screenshots/promo/promo-4-unattended.png"><img width="130" alt="unattended mode" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-4-unattended.png"></a>
+  <a href="docs/screenshots/promo/promo-5-external.png"><img width="130" alt="external memory inheritance" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-5-external.png"></a>
+  <a href="docs/screenshots/promo/promo-6-greeting.png"><img width="130" alt="scheduled greetings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-6-greeting.png"></a>
 </p>
 <p align="center"><sub>Promo gallery · six frames · click any thumbnail to view full size</sub></p>
 
@@ -26,32 +28,32 @@
 
 #### Frame 1 · Hero — She remembers, unbidden
 
-<p align="center"><img width="720" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-1-hero.png"></p>
+<p align="center"><img width="720" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-1-hero.png"></p>
 
 #### Frame 2 · Welcome Tour — Every feature, explained and toggled on the spot
 
-<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-2-tour.png"></p>
+<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-2-tour.png"></p>
 
 #### Frame 3 · Recall & Crystallization — Conversation condenses into skills, traceably
 
-<p align="center"><img width="720" alt="recall" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-3-recall.png"></p>
+<p align="center"><img width="720" alt="recall" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-3-recall.png"></p>
 
 #### Frame 4 · Unattended Mode — Runs all night, zero small talk, zero interruptions
 
-<p align="center"><img width="720" alt="unattended" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-4-unattended.png"></p>
+<p align="center"><img width="720" alt="unattended" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-4-unattended.png"></p>
 
 #### Frame 5 · External Memory Inheritance — Your other AIs feed her memory too
 
-<p align="center"><img width="720" alt="external" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-5-external.png"></p>
+<p align="center"><img width="720" alt="external" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-5-external.png"></p>
 
 #### Frame 6 · Scheduled Greetings — Every day remembered
 
-<p align="center"><img width="720" alt="greeting" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/promo/promo-6-greeting.png"></p>
+<p align="center"><img width="720" alt="greeting" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-6-greeting.png"></p>
 
 </details>
 
 <p align="center">
-  <a href="README.zh-CN.md">中文</a> · <b>English</b> · License BSD-3-Clause · <code>pnpm add @a9i5k4/dsh-auto-memory</code> · <a href="https://qm.qq.com/q/v7Asxn6vPa">QQ group</a>
+  <a href="README.zh-CN.md">中文</a> · <b>English</b> · License BSD-3-Clause · <code>pnpm add @a9i5k4/dsh-auto-memory</code> · <a href="docs/USER-GUIDE.zh-CN.md">📖 User guide (settings & tuning)</a> · <a href="https://qm.qq.com/q/v7Asxn6vPa">QQ group</a>
 </p>
 
 ---
@@ -239,9 +241,9 @@ And finally, the boundaries — written as character:
 
 **Everything is a switch.** First launch auto-plays the **welcome tour**: one Office/Fluent-style liquid-glass app icon per step — cyan inject, amber greeting, green calendar, violet engine, sky radar, coral finish — each with its own looping motion (bell sway, page flip, linked rings, prism spin, radar sweep, rising spark). Flip every feature right in the tour; switches write config instantly, no second trip to settings. The semantic engine's detection, download, and self-test are inline in the tour, done in one pass. External memory sources are scanned live, ticked per source. Close it halfway without worry — the final "finish" step tells you exactly where each switch lives in Settings.
 
-<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/tour-welcome.png"></p>
+<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-welcome.png"></p>
 
-<p align="center"><img width="720" alt="tour core" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/tour-core.png"></p>
+<p align="center"><img width="720" alt="tour core" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-core.png"></p>
 
 One-time catch-up for upgraders: from v0.1.30 every user auto-plays the full tour once after upgrading, then the changelog follows (skippable). Reopen anytime via **Settings → Appearance → Welcome tour → ▶ Replay**.
 
@@ -352,43 +354,43 @@ Config file `~/.dsh/dsh-auto-memory.json` (everything adjustable in the Settings
 
 ### Memory panel · Overview (away greeting + AI period summaries)
 
-<img width="480" alt="overview" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/panel-overview.png">
+<img width="480" alt="overview" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/panel-overview.png">
 
 ### Memory Hub · three stores + skill promotion approvals
 
-<img width="480" alt="hub" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/panel-hub.png">
+<img width="480" alt="hub" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/panel-hub.png">
 
 ### Recall review · grade every activation decision
 
-<img width="720" alt="refine" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/panel-refine.png">
+<img width="720" alt="refine" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/panel-refine.png">
 
 ### Welcome tour · feature switches + engine detection
 
-<img width="720" alt="tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/tour-toggles.png">
+<img width="720" alt="tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-toggles.png">
 
 <details>
 <summary><b>More screenshots</b> (click to expand)</summary>
 
 ### External memory scan (inside the tour)
 
-<img width="720" alt="external scan" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/tour-external.png">
+<img width="720" alt="external scan" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-external.png">
 
 ### Connect other AI tools
 
-<img width="480" alt="connect" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/connect-en.png">
+<img width="480" alt="connect" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/connect-en.png">
 
 ### Calendar view
 
-<img width="480" alt="calendar" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/calendar-zh.png">
+<img width="480" alt="calendar" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/calendar-zh.png">
 
 ### Workspace mind map
 
-<img width="480" alt="workspace map" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/workspace-map-zh.png">
+<img width="480" alt="workspace map" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/workspace-map-zh.png">
 
 ### Settings
 
-<img width="480" alt="settings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/settings-en.png">
-<img width="480" alt="settings 2" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/0af3f1abf32ca7e5db92791e17fc733074ec9a1e/docs/screenshots/settings-2-zh.png">
+<img width="480" alt="settings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/settings-en.png">
+<img width="480" alt="settings 2" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/settings-2-zh.png">
 
 </details>
 

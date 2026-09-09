@@ -14,7 +14,7 @@
 ![DSH](https://img.shields.io/badge/DSH-0.1.1--rc.2-4c8dff)
 ![License](https://img.shields.io/badge/license-MIT-3fb950)
 
-<img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/f2f97d5fdf3a9808fb3813e41e941dea532fd90e/assets/in-chat.png" alt="附件随消息发出,AI 直接读取文件内容" width="880">
+<img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/08e40f217ef80ceb96ead9e22d09499e8c0d5f69/assets/in-chat.png" alt="附件随消息发出,AI 直接读取文件内容" width="880">
 
 </div>
 
@@ -31,17 +31,17 @@
 
 | 拖进来 | 发出去 | 随时预览 |
 | :---: | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/f2f97d5fdf3a9808fb3813e41e941dea532fd90e/assets/drop-in.png" alt="拖入文件后显示附件卡片"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/f2f97d5fdf3a9808fb3813e41e941dea532fd90e/assets/in-chat.png" alt="附件随消息发出,AI 读取内容"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/f2f97d5fdf3a9808fb3813e41e941dea532fd90e/assets/preview-modal.png" alt="浏览器内预览附件"> |
+| <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/08e40f217ef80ceb96ead9e22d09499e8c0d5f69/assets/drop-in.png" alt="拖入文件后显示附件卡片"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/08e40f217ef80ceb96ead9e22d09499e8c0d5f69/assets/in-chat.png" alt="附件随消息发出,AI 读取内容"> | <img src="https://raw.githubusercontent.com/demacia1314/dsh-airdrop/08e40f217ef80ceb96ead9e22d09499e8c0d5f69/assets/preview-modal.png" alt="浏览器内预览附件"> |
 | 拖到窗口任意位置,卡片立刻出现 | 附件跟着消息走,AI 直接读内容 | 点开就能预览,还能下载 |
 
 ## 🚀 三分钟上手
 
 ```powershell
-dsh plugin --profile web add dsh-universal-attachments
+dsh plugin --profile web add dsh-airdrop
 dsh web
 ```
 
-> 重启 `dsh web` 生效;会话需要有工作区目录。另外:仓库名叫 `dsh-airdrop`,安装包名保持 `dsh-universal-attachments` 不变——改名会破坏已有安装。
+> 重启 `dsh web` 生效;会话需要有工作区目录。从 0.2.1 起包名与仓库统一为 `dsh-airdrop`(旧名 `dsh-universal-attachments` 已停用);历史会话里的附件卡片与磁盘数据仍按旧格式读取,无需迁移。
 
 <details>
 <summary>想从源码构建?</summary>
@@ -50,7 +50,7 @@ dsh web
 pnpm install
 pnpm run build
 pnpm pack
-dsh plugin --profile web add .\dsh-universal-attachments-0.1.1.tgz
+dsh plugin --profile web add .\dsh-airdrop-0.2.1.tgz
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # evo-subagent
 
-![evo-subagent — Route. Remember. Evolve.](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/8b7b4b8b0ec863361f010666a966be33a15c2cce/assets/Evo-subagent-preview.png)
+![evo-subagent — Route. Remember. Evolve.](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/848bc7c9e0216b4d0a92a8962f12c9be8fe05865/assets/Evo-subagent-preview.png)
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
@@ -10,7 +10,7 @@
 
 ## Downloads
 
-![Cumulative npm downloads](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/8b7b4b8b0ec863361f010666a966be33a15c2cce/assets/npm-downloads.svg)
+![Cumulative npm downloads](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/848bc7c9e0216b4d0a92a8962f12c9be8fe05865/assets/npm-downloads.svg)
 
 Cumulative npm download data since the first release, refreshed automatically every day. DSH Market ranks plugins using npm downloads, so this is the closest public adoption signal; it cannot distinguish marketplace installs from direct npm installs.
 
@@ -36,7 +36,7 @@ dsh plugin add evo-subagent
 
 ## Quick start
 
-![Open and manage evo-subagent in DSH](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/8b7b4b8b0ec863361f010666a966be33a15c2cce/assets/evo-subagent-tutorial.gif)
+![Open and manage evo-subagent in DSH](https://raw.githubusercontent.com/ZekaiShi/evo-subagent/848bc7c9e0216b4d0a92a8962f12c9be8fe05865/assets/evo-subagent-tutorial.gif)
 
 1. Open **Settings → Plugins** and expand **evo-subagent**.
 2. Select a workspace and add a built-in role, or place a custom binding in its `agents/` directory.

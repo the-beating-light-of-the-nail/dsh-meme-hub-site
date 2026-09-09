@@ -1,7 +1,7 @@
 # Graph Memory
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/brand/graph-memory-hosts-banner.png" alt="Graph Memory for DeepSeek Harness, compatible with OpenClaw" width="100%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/f5e828c9ce222bc09a29804ad3d8111fb345dc2b/docs/images/brand/graph-memory-hosts-banner.png" alt="Graph Memory for DeepSeek Harness, compatible with OpenClaw" width="100%">
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
   <a href="README_CN.md">中文</a> ·
   <a href="https://www.dsh.so/artifact/graph-memory">dsh.so</a> ·
   <a href="benchmarks/dsh-context-takeover/README.md">20-turn benchmark</a> ·
-  <a href="docs/DSH_NATIVE_PLAN.md">Architecture</a>
+  <a href="docs/TURN_MEMORY_NAVIGATION_UPGRADE_CN.md">Upgrade guide</a>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 ## The problem it solves
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/context-memory-illustration.webp" alt="Long agent history becomes graph navigation plus a compact recent-turn context" width="100%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/f5e828c9ce222bc09a29804ad3d8111fb345dc2b/docs/images/context-memory-illustration.webp" alt="Long agent history becomes graph navigation plus a compact recent-turn context" width="100%">
 </p>
 
 Graph Memory owns the **model-visible historical surface** without deleting DSH's event log. By default it keeps the newest five completed user turns, removes completed reasoning/tool traces from future requests, and recalls relevant older or cross-session source Q/A automatically.
@@ -32,7 +32,7 @@ Graph Memory owns the **model-visible historical surface** without deleting DSH'
 ## Measured first
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/dsh-context-takeover-chart.svg" alt="DSH 20-turn first-request context comparison" width="100%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/f5e828c9ce222bc09a29804ad3d8111fb345dc2b/docs/images/dsh-context-takeover-chart.svg" alt="DSH 20-turn first-request context comparison" width="100%">
 </p>
 
 | Real 20-turn GLM-5.2 run | Native DSH | DSH + Graph Memory | Change |
@@ -51,21 +51,23 @@ Graph Memory owns the **model-visible historical surface** without deleting DSH'
 ## Memory survives the context window
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in DSH" width="48%">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session recall in a fresh DSH session" width="48%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/f5e828c9ce222bc09a29804ad3d8111fb345dc2b/docs/images/dsh/plugin-inventory-active.png" alt="Graph Memory active in DSH" width="48%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/f5e828c9ce222bc09a29804ad3d8111fb345dc2b/docs/images/dsh/vector-cross-session-recall.png" alt="Cross-session recall in a fresh DSH session" width="48%">
 </p>
 
 The graph is a **navigation layer**, not a replacement for evidence. `TASK`, `SKILL`, and `EVENT` nodes point back to the original user question and final visible answer; recalled context includes those exact source messages.
 
 ## Install on DeepSeek Harness
 
-Node.js `22.13+` · no DSH fork · current beta installs directly from GitHub:
+Node.js `22.13+` · no DSH fork · install from npm first, without requiring a GitHub clone:
 
 ```bash
-npx @deepseek-ai/dsh plugin --profile web add github:adoresever/graph-memory
+npx @deepseek-ai/dsh plugin --profile web add graph-memory
 npx @deepseek-ai/dsh --profile web --dump-config
 npx @deepseek-ai/dsh web
 ```
+
+The repository build remains available with `npx @deepseek-ai/dsh plugin --profile web add github:adoresever/graph-memory`.
 
 Confirm that `graph-memory/dsh` is active under **Settings → Plugins**. The default database is `$DSH_HOME/graph-memory/graph-memory.db`, normally `~/.dsh/graph-memory/graph-memory.db`.
 
@@ -132,7 +134,7 @@ Activate the Context Engine slot in `~/.openclaw/openclaw.json`:
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/38ce29ff1b801d246e60a2947ac10a08e5b56ef3/docs/images/token-comparison.png" alt="Earlier OpenClaw seven-turn token comparison" width="76%">
+  <img src="https://raw.githubusercontent.com/adoresever/graph-memory/f5e828c9ce222bc09a29804ad3d8111fb345dc2b/docs/images/token-comparison.png" alt="Earlier OpenClaw seven-turn token comparison" width="76%">
 </p>
 
 </details>
@@ -146,11 +148,12 @@ The repository also contains an experimental read-only DSH Pro Lite Host + Clien
 
 ## Verification and limits
 
-Current beta `1.6.0-beta.13` passes **124/124 automated tests**, both TypeScript builds, npm package verification, and a clean-profile install/boot on official DSH `0.1.3-alpha.1` (`d347e70390`).
+Current beta `1.6.0-beta.15` passes **138/138 automated tests**, both TypeScript builds, npm package verification, and a real 20-turn run against the latest DSH source.
 
 - Structured extraction still depends on model contract compliance: the measured run succeeded 19/20 times; failures stay quarantined and never block the foreground conversation.
 - Recall is bounded by configurable Top-K. Focused probes succeeded; one broad multi-topic query can require a larger Top-K or separate questions.
 - The published run is an engineering workload, not a universal LoCoMo/LongMemEval score.
+- The design, source-code map, and porting sequence for the summary + SPO navigation + exact-Q/A upgrade are documented in the [Chinese upgrade guide](docs/TURN_MEMORY_NAVIGATION_UPGRADE_CN.md).
 
 Reproduce it from [`benchmarks/dsh-context-takeover/`](benchmarks/dsh-context-takeover/). Raw conversations, provider responses, local paths, and credentials are excluded.
 

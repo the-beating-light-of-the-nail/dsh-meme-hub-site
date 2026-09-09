@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="https://github.com/omdsh-dev/dsh-mnemon/blob/main/docs/en/guides/ui-guide.md">
-    <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/f3a7c601f2dbb2b9a69e04725a2d13fd5e26d87e/docs/assets/webui-v0.5.4/en/spaces.jpg" alt="Memory Spaces in the Light DSH Sidebar after importing a Mnemon Pack" width="1180" />
+    <img src="https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/0d5f5fafe4e8d7ec5e299c637baa1a05d3020c84/docs/assets/webui-v0.5.4/en/spaces.jpg" alt="Memory Spaces in the Light DSH Sidebar after importing a Mnemon Pack" width="1180" />
   </a>
 </p>
 
@@ -60,7 +60,7 @@ Upgrading from v0.4 retains the familiar configuration, data and workflow. Three
 
 ## Source + Strategy → View
 
-[![Source facts flow through a Strategy and Core validation into one View for the DSH Host](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/f3a7c601f2dbb2b9a69e04725a2d13fd5e26d87e/docs/assets/diagrams/en/composable-memory.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/main/docs/en/development/architecture.md)
+[![Source facts flow through a Strategy and Core validation into one View for the DSH Host](https://raw.githubusercontent.com/omdsh-dev/dsh-mnemon/0d5f5fafe4e8d7ec5e299c637baa1a05d3020c84/docs/assets/diagrams/en/composable-memory.png)](https://github.com/omdsh-dev/dsh-mnemon/blob/main/docs/en/development/architecture.md)
 
 - **Source** owns memory, its projection, read/write operations and optional DSH pages.
 - **Strategy** chooses how available Sources participate: selection, resident context, retrieval and guidance. Pure composition does not write memory.

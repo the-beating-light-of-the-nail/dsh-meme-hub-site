@@ -61,7 +61,7 @@ text：……                                             ← 下一个 text 出
 
 标题里的文件名可点击复制完整路径：悬停变 DeepSeek 蓝 + 白色下划实线：
 
-![文件名悬停](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/004d233369768a09b02b97b644afe6e87c1bf080/docs/images/segment-file-hover.png)
+![文件名悬停](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/f07546aec9e4e778ef139fa54a7f1779a566b216/docs/images/segment-file-hover.png)
 
 ## 功能二：运行中回合折叠栏 + 整回合折叠成一个回合折叠栏
 
@@ -75,8 +75,8 @@ text：……                                             ← 下一个 text 出
 ```
 
 - **发消息即出现回合折叠栏（0 秒占位）**：用户发送消息后立即出现回合折叠栏（耗时从 0 开始计时），
-  不等第一个 response——由 `user` 渲染器覆盖实现占位，第一条中间节点到达后占位消失、
-  正式回合折叠栏接替显示（位置连续）；
+  不等第一个 response——占位栏由输入区 dock 条目渲染在输入区上方，第一条中间节点到达后
+  占位消失、正式回合折叠栏接替显示；
 - **指标实时更新**：回合折叠栏中的**耗时秒数每秒走动**（从回合 `turn/start` 起计时），
   **"消耗token"按随机间隔（默认 125~250ms）刷新且持续增长**，tok/s 按已输出 token / 已耗时实时估算，
   **缓存命中率显示两位小数**（如 `80.00%`），**首字（TTFT）**在第一个请求完成
@@ -127,11 +127,11 @@ text：……                                             ← 下一个 text 出
 回合进行中/手动展开：回合折叠栏实时显示耗时、首字、token、tok/s、缓存命中率、
 已折叠步数（右端对齐轮次），过程内容按步骤分组折叠、工具卡片与 Think 行原样可读：
 
-![回合展开态](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/004d233369768a09b02b97b644afe6e87c1bf080/docs/images/turn-expanded.png)
+![回合展开态](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/f07546aec9e4e778ef139fa54a7f1779a566b216/docs/images/turn-expanded.png)
 
 回合结束后（或手动收起）：整回合收进回合折叠栏，只保留最终总结正文与用量脚注：
 
-![整回合折叠](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/004d233369768a09b02b97b644afe6e87c1bf080/docs/images/turn-folded.png)
+![整回合折叠](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/f07546aec9e4e778ef139fa54a7f1779a566b216/docs/images/turn-folded.png)
 
 ## 组件样式与行距
 
@@ -252,7 +252,7 @@ chevron）：
 
 设置弹窗（回合折叠栏字段显隐 + 折叠图标选择；预览项悬浮 2x 放大）：
 
-![设置弹窗](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/004d233369768a09b02b97b644afe6e87c1bf080/docs/images/gear-popup.png)
+![设置弹窗](https://raw.githubusercontent.com/Winter-And-You-Gone/dsh-turn-fold/f07546aec9e4e778ef139fa54a7f1779a566b216/docs/images/gear-popup.png)
 
 ## 自定义图标（Agent Skill）
 
@@ -299,7 +299,23 @@ git push --follow-tags
 - DSH 会话 UI 是 Cordis 插件 + Slot 插槽系统拼出来的；聊天流每个块经
   `conversation.chat.node`（keyed slot）按类型分发渲染器。
 - Slot 注册器官方支持 **不同 priority 覆盖**（`register at a different priority to shadow it, lowest renders`）。
-  本插件用 `priority: -1` 覆盖内置的 `tool-call` / `assistant-step` / `context` **以及 `user`** 渲染器。
+  本插件用 `priority: -1` 覆盖内置的 `tool-call` / `assistant-step` / `context` 渲染器；
+  `user` 格**不再注册**——0 秒占位迁往输入区 dock 条目，`user` 格让给 user 消息专用
+  插件（如 dsh-easyrewrite 的撤回/重编辑气泡），从根上消除同 key 同 priority 抢位
+  导致对方加载失败的一类冲突。
+- **注册冲突自动让位**：注册前探测同 key/id 的 `priority: -1` 是否已被占用
+  （`ctx.slots.entries`），被占则自动让位到第一个不冲突的值（官方 `0` 恒预留，绝不
+  落回官方档）并打 `console.warn`——本插件后加载时不再与先占者冲突。
+  `conversation.chat.node` 三格与 `settings.general.item` 的 transcript-view 行都走该逻辑。
+- **注册异常软降级（绝不带崩 DSH）**：slots 注入回调若让异常外泄，延迟执行路径
+  （目标 slot 声明晚于插件加载时，回调跑在官方声明者的调用栈里 / 声明订阅里
+  uncaught re-throw）会打断官方 UI 激活、web 整页无法启动。因此本插件**所有** slot
+  注册（chat.node 三格、设置行、dock 占位条）统一走一个注册管道：inject 声明等待
+  与回调内 register 各自兜异常（`return undefined` 即"无可清理资源"，官方
+  cachedSlotInject 对 falsy 返回无害），单个条目注册失败仅跳过该条目，`console.warn`
+  留排查线索并弹一次中性措辞的降级 Toast 告知用户（不指涉冲突方——旧版宿主未声明
+  slot 的版本缺口也走同一条降级路径）；宿主半边的 skill 注册同样双层防护。DSH 启动
+  不受本插件任何注册异常影响。
 - 展开时通过 `ctx.slots.entries('conversation.chat.node')` 取到内置组件引用做**委托渲染**，
   工具卡片/Think 行/上下文注入的内容与样式与内置完全一致。
 - 整回合折叠通过会话快照的 `turnEnds`（turn/end 事件驱动）判定回合完成，配合
@@ -314,8 +330,11 @@ git push --follow-tags
   `useChat` 快照本体，否则从 `useSession(s).chat` 取；`turnEnds`/`turnTimings` 优先读
   `chat.legacy`、顶层兼容字段兜底。所有 hooks 无条件调用（数据计算与订阅和"是否接管
   折叠"解耦），折叠模式切换（接管 ↔ 委托内置）不改变 hook 数量，条目不会崩。
-- **0 秒占位**：`user` 渲染器覆盖在「会话运行中且用户消息仍是最后一条」时渲染占位回合折叠栏
-  （耗时从运行中回合的 `startTime` 计时），第一条中间节点到达后自动交接给正式回合折叠栏。
+- **0 秒占位**：`RunningTurnDock` 条目注册到输入区 `conversation.input.dock`（list slot，
+  按 `id` 共存——与官方 todo/queue dock 不存在 priority 冲突面），在「会话运行中且
+  最后一条消息是 user」时渲染占位回合折叠栏（耗时从运行中回合的 `startTime` 计时），
+  第一条中间节点到达后自动交接给正式回合折叠栏。旧版 DSH 未声明该 slot 时注册
+  try/catch 跳过（占位条缺失不影响其余功能）。
 - **首字（TTFT）三来源（官方优先）**：① **step settle 后即实时读取官方值**——
   `assistant-step` 节点的 `data.finalNode.timing`（官方在 `assistant/message` 事件后写入
   `{ stepStartTime, firstTokenTime, completedTime }`），取回合内 step 号最小者（第一个
@@ -337,8 +356,9 @@ git push --follow-tags
 
 ## 注意事项
 
-- 兼容 DSH 0.1.1-rc.2 与 0.1.2-alpha.1（会话快照契约差异由插件内适配层消化，见工作原理）；
-  DSH 升级若改变上述槽位契约或内置组件 props，本插件可能需要随版本小改（属插件维护，非改源码）。
+- 兼容 DSH 0.1.1-rc.2 ~ 0.1.3-alpha.1（会话快照契约差异由插件内适配层消化、官方
+  渲染 hook 面自动跟随，见工作原理）；DSH 升级若改变上述槽位契约或内置组件 props，
+  本插件可能需要随版本小改（属插件维护，非改源码）。
 - 折叠栏文案在 `client.js` 顶部 `CONFIG` 可调。
 - **耦合点清单**（DSH 升级时对照排查；任一失效均优雅降级——回退内置渲染 / 文案兜底 +
   `console.warn` 提示，不会白屏）：

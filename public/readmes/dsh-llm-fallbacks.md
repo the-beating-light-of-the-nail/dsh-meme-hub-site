@@ -18,7 +18,7 @@ Works in both dsh front ends: the **web** profile (Settings → Plugins → Fall
 
 Time slots rotate the **effective root chain** by wall-clock windows: each slot row carries its own fallback chain, and the first row whose window contains the current moment replaces the all-day chain for the next root request — the all-day chain stays as the last resort when no slot matches. Peak and valley windows can therefore use different chains while the failure walk (fallback switch) remains untouched.
 
-![Time slots](https://raw.githubusercontent.com/btspoony/dsh-llm-fallbacks/a5be34dac1279f52cf7dd81deefdf23572783bb5/docs/assets/screenshot-1-en.png)
+![Time slots](https://raw.githubusercontent.com/btspoony/dsh-llm-fallbacks/a6c6ae9656d28fbb63ad5aa2398b1f41bf98a8bb/docs/assets/screenshot-1-en.png)
 
 Four frozen UTC+8 presets (windows are code constants; preset rows lock `tz` to Asia/Shanghai):
 

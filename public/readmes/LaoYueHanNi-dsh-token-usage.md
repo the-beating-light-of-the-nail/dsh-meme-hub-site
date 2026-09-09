@@ -2,7 +2,7 @@
 
 [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-![Token Usage stats page](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/257ee198bf85ead9c81ed34f79acfa3b1d9b6084/docs/images/token-usage.png)
+![Token Usage stats page](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f3fce2ad8cf452befdf2444e314f7a95b17704a5/docs/images/token-usage.png)
 
 [简体中文](./README.zh.md) | English
 
@@ -27,7 +27,7 @@ Repo: <https://github.com/LaoYueHanNi/dsh-token-usage>
 - **Web stats page**: filters (date range + model + `1d`/`7d`/`30d` shortcuts), summary cards, daily trend chart (hover a day for its total), per-model table. The table block toggles between **per-model / per-session**: the session table groups by working directory (switchable to a flat list), sorts by total tokens / cost / recent activity on header click, and **Ctrl+click** on a session row jumps straight to that session's usage tab.
 - **Session usage tab**: the conversation pane gains a **Usage** view tab (beside Chat / Trajectory) with the active session's dashboard — six stat cards (successful requests with a failure pill, cost, cache hit rate, average time-to-first-token, generation throughput, total tokens), a 4-bucket token strip, an hourly trend chart, and a per-model table. A scope switch toggles **Session / With subagents**, and the subagent table drills into each child and back. Hovering the failure pill breaks failures down per class (rate limited, server error, context exceeded, …).
 
-![Session Usage tab](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/257ee198bf85ead9c81ed34f79acfa3b1d9b6084/docs/images/usage-tab.png)
+![Session Usage tab](https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f3fce2ad8cf452befdf2444e314f7a95b17704a5/docs/images/usage-tab.png)
 
 - **Cost figures & model pricing**: per-request cost is computed live from per-model rates (¥ per million tokens); unpriced models warn and count as ¥0. Every priced model's name carries a **rates button** opening its full price table, and the filter row carries a **pricing table** entry opening an overview of every model in the cloud feed — searchable, with simulated billing and expandable effective rates. Rates sync from the cloud feed on every startup — see [Model pricing](#model-pricing).
 - **Provider quota**: an input-bar button (left of the model chip) shows the selected provider's remaining quota. See [Provider quota](#provider-quota).
@@ -63,9 +63,9 @@ plugins:
 
 The input-bar button follows the currently selected provider and opens a panel with remaining quota (the same API key as inference):
 
-<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/257ee198bf85ead9c81ed34f79acfa3b1d9b6084/docs/images/zhipu-plan-usage.png" width="520" alt="Zhipu GLM quota panel">
+<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f3fce2ad8cf452befdf2444e314f7a95b17704a5/docs/images/zhipu-plan-usage.png" width="520" alt="Zhipu GLM quota panel">
 
-<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/257ee198bf85ead9c81ed34f79acfa3b1d9b6084/docs/images/opencode-go-plan-usage.png" width="520" alt="OpenCode Go quota panel">
+<img src="https://raw.githubusercontent.com/LaoYueHanNi/dsh-token-usage/f3fce2ad8cf452befdf2444e314f7a95b17704a5/docs/images/opencode-go-plan-usage.png" width="520" alt="OpenCode Go quota panel">
 
 | Provider | Shows |
 |---|---|

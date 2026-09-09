@@ -12,7 +12,7 @@
 
 [English](README.md) · [简体中文](README.zh.md)
 
-![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/demo.gif)
+![dsh-solution-explorer demo](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/1a95aaf060b523f71d60dbd9c8b480c0eda39a55/demo.gif)
 
 </div>
 
@@ -26,7 +26,10 @@
   indicators.
 - **Source Control** — staged / unstaged / untracked change lists with
   stage / unstage / discard (per-file or all), commit with a message, and a
-  branch info bar. **Diff view**: full-file side-by-side compare with an
+  branch info bar. **AI commit message**: pick a host-configured model in
+  Settings and tap the ✨-icon beside the commit box to generate a Conventional
+  Commits draft from the staged diff (optionally guided by the repo's
+  AGENTS.md). **Diff view**: full-file side-by-side compare with an
   editable right column (Enter splits lines, backspace/delete merges, NBSP
   placeholders), a middle gutter to stage (⤒) or revert (↩) individual hunks,
   Ctrl+S to save. **Commit Graph**: an SVG history view with
@@ -68,7 +71,7 @@
 
 | File Explorer | Source Control | Diff |
 | --- | --- | --- |
-| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/5064ca47f5b255f8feefb8ae17342531aaa0e765/assets/screenshot-3-diff.png) |
+| ![File Explorer](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/1a95aaf060b523f71d60dbd9c8b480c0eda39a55/assets/screenshot-1-file-explorer.png) | ![Source Control](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/1a95aaf060b523f71d60dbd9c8b480c0eda39a55/assets/screenshot-2-source-control.png) | ![Diff](https://raw.githubusercontent.com/xiaoksio/dsh-solution-explorer/1a95aaf060b523f71d60dbd9c8b480c0eda39a55/assets/screenshot-3-diff.png) |
 
 ## Installation
 

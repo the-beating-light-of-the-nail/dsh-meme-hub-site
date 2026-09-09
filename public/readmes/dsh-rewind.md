@@ -24,12 +24,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e6c4da5a81fbf866df1c5b587f2d603eb92e9fa3/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e6c4da5a81fbf866df1c5b587f2d603eb92e9fa3/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e6c4da5a81fbf866df1c5b587f2d603eb92e9fa3/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e6c4da5a81fbf866df1c5b587f2d603eb92e9fa3/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -65,7 +65,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 另提供**全局自动清理**（默认关闭）：把长期不活跃的会话快照整目录移除，不影响活动会话与对话日志。可在 `设置→插件→插件配置→快照清理` 面板查看与配置（自动清理开关、失活天数），也可用 `/snapshot-auto-cleanup` 命令查看、设置和运行。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
 
-<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e6c4da5a81fbf866df1c5b587f2d603eb92e9fa3/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
+<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
 
 ## 本插件的优势
 
@@ -86,8 +86,8 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 `append-only` 是铁律：会话日志只追加、从不改写——这是可审计与信息安全的地基。回退从不动历史，它只做一步：往日志末尾追加一条**内容为空的标记消息**，把目标消息之后的全部内容「遮蔽 + 替换」掉，让模型和界面都只看得到目标之前的部分。
 
-- **标记是规范的**——插件复刻 `/compact` 标准的「隐藏 + 替换」：`/compact` 把一段历史压缩成摘要，`/rewind` 则换成一条空用户消息。由于其规范性，harness 的日志重放、`/compact` 压缩、续接检查都能正确识别它，绝不会把它误认为真实对话；
-- **替换内容是空的**——模型对空消息完全忽略、无感（理论 + 实测验证）。配合插件对界面显示的处理，模型和你看到的对话就是目标消息当时的样子，真正的「就地」；
+- **标记是规范的**——插件复刻 `/compact` 标准的「隐藏 + 替换」：`/compact` 把一段历史压缩成摘要，`/rewind` 则换成一条空标记消息。由于其规范性，harness 的日志重放、`/compact` 压缩、续接检查都能正确识别它，绝不会把它误认为真实对话；
+- **替换内容无感**——模型对空标记忽略、无感（实测验证）。配合插件对界面显示的处理，模型和你看到的对话就是目标消息当时的样子，真正的「就地」；
 - 因为是「遮蔽」而非「删除」，**被撤回的每一条事件都完整留在日志里**，可审计、可追溯、可查看，原则上也随时能手动恢复。
 
 > **设计点睛**：整个对话回退就是**一条**追加。它确定、可审计，且因为日志从未被破坏，回溯是「干净的」——用最小的动作，实现最完整的语义。那些与 harness 内部的兼容细节（对 `/compact` 的复刻、空消息的遮蔽）正是插件的专业所在，每一条都由专门的探针测试固化。

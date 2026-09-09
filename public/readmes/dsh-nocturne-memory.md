@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-nocturne-memory/864d93349fbd6600a15bf195a98f17b044dbf9c5/assets/readme/hero.svg" alt="dsh-noc-memory — long-term memory for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-nocturne-memory/16b67b9625be2852b46491f28ac2e8174b96f61a/assets/readme/hero.svg" alt="dsh-noc-memory — long-term memory for DeepSeek Harness" width="100%">
 </p>
 
 # dsh-noc-memory
@@ -14,7 +14,7 @@ Connects DeepSeek Harness to **Noc Memory**: session-start boot + daily briefing
 
 | tool | what it does |
 |---|---|
-| `noc_boot` | load at session start: core + recent + triggers (`system://boot`, `system://recent/5`, `system://triggers`) + briefing |
+| `noc_boot` | load at session start: `system://boot`, `system://recent/5`, `system://triggers`, then best-effort `system://briefing`; afterward read `system://focus` (recent is a briefing subset — no need to re-read it after boot) |
 | `noc_read` | read a memory by URI (`system://…`, `noc://agent`, …) |
 | `noc_search` | search memories (semantic + keyword / trigger recall via `search_memory`) |
 | `noc_create` | create a memory node (`[Baseline]`/`[Deviation]`/`[Result]`/`[Reusable judgment]`) |

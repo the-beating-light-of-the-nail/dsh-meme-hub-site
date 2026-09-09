@@ -16,7 +16,7 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web plugin that lets the Composer stay at the bottom or dock in a right-side column. The chat and Composer keep their own space, while the normal DSH model, permission, quota, session, and tool behavior remains intact.
 
-![Keep the answer in view while you write](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/5cc41be2f7334ec0306abc4a21d7bf1d5c695d2a/assets/hero-en.png)
+![Keep the answer in view while you write](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/9edfea4b4c8ffa44c05c67affa363e75b7fa229c/assets/hero-en.png)
 
 ## Why a side-by-side Composer?
 
@@ -28,19 +28,22 @@ Docking Composer to the right gives reading and writing separate vertical space.
 
 ## See it in DSH
 
-![A real DSH Web session beside a tall right-side Composer](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/5cc41be2f7334ec0306abc4a21d7bf1d5c695d2a/assets/screenshots/hero-en.png)
+![A real DSH Web session beside a tall right-side Composer](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/9edfea4b4c8ffa44c05c67affa363e75b7fa229c/assets/screenshots/hero-en.png)
 
 ## Switch and resize
 
-![Right-edge handle, layout switch, and right-pane resize](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/5cc41be2f7334ec0306abc4a21d7bf1d5c695d2a/assets/screenshots/layout-guide-en.webp)
+![Right-edge handle, layout switch, and right-pane resize](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/9edfea4b4c8ffa44c05c67affa363e75b7fa229c/assets/screenshots/layout-guide-en.webp)
 
 ## What it adds
 
-- Bottom and right-side Composer placement from **Settings → Plugins → Composer Layout**.
-- A visible docking handle; in the right layout it also resizes the Composer pane.
+- Bottom, Right, and Automatic Composer placement from **Settings → Plugins → Composer Layout**. Automatic uses the main area's width-to-height ratio, with a threshold of 0.5–2 (default 1), and requires enough width for both columns.
+- A docking handle shifted left away from the Composer input border; in the right layout it also resizes the Composer pane. When Right is unavailable, its disabled action explains the width requirement.
 - Per-session placement and manually resized right-pane width when “Remember this session layout” is enabled.
 - When the window cannot fit both columns, temporarily stack the Composer while retaining a layout rail; the remembered right-side layout returns automatically once width is available again.
-- In the right-side layout, close slash/reference candidates before another Composer popup opens, so model, access, and context panels do not overlap them.
+- In the right-side layout, close slash/reference candidates before another Composer popup opens, so model, access, and context panels do not overlap them. Third-party right-slot controls collapse into an ellipsis popup when space is limited.
+- Adapt to DSH's nested conversation scroll containers and bridge scroll events between the host container and Chat. See [release checks](docs/RELEASE_CHECKS.md) for verification scope and the outstanding stream-end timing issue.
+
+In the right-side layout, Chat uses the available left-column width and the plugin divider adjusts reading space. DSH's two native transcript-width handles are hidden to prevent them from overlapping Composer; independent transcript whitespace adjustment is unavailable in this mode. Returning to Bottom restores those handles and preserves DSH's saved width preference.
 
 The plugin is presentation-only: it does not add model-facing tools, change prompts, or alter token accounting.
 
@@ -48,7 +51,7 @@ The plugin is presentation-only: it does not add model-facing tools, change prom
 
 ### Install from npm
 
-The npm package already contains the prebuilt plugin bundle:
+The npm package contains the prebuilt plugin bundle. Stable, alpha, and legacy DSH releases are tested with their corresponding plugin versions in Chromium and WebKit. Consult the [version-paired checks](docs/RELEASE_CHECKS.md#version-paired-browser-checks) before choosing a package; a successful alpha test does not promise compatibility with future alpha releases. Users of older DSH versions can pin `dsh-composer-layout@0.1.12`. Check the current npm release with `npm view dsh-composer-layout version`.
 
 ```sh
 dsh plugin --profile web add dsh-composer-layout@latest
@@ -57,10 +60,10 @@ dsh web --profile web
 
 ### Install directly from GitHub
 
-DSH installs the plugin bundle directly from a GitHub repository; pinning the command to `v0.1.12` makes the installed source explicit and repeatable.
+DSH installs the plugin bundle directly from a GitHub repository; the new release tag is `v0.1.16` for DSH 0.1.2-rc.1. Users of older DSH versions can keep the `v0.1.12` tag.
 
 ```sh
-dsh plugin --profile web add "github:lavapapa/dsh-composer-layout#v0.1.12"
+dsh plugin --profile web add "github:lavapapa/dsh-composer-layout#v0.1.16"
 dsh web --profile web
 ```
 
@@ -74,7 +77,7 @@ dsh --profile web --dump-config
 
 ### Update
 
-To move an existing installation to the current npm release:
+To move an existing installation to the current npm release (check it with `npm view dsh-composer-layout version` first):
 
 ```sh
 dsh plugin --profile web remove dsh-composer-layout
@@ -82,7 +85,7 @@ dsh plugin --profile web add dsh-composer-layout@latest
 dsh web --profile web
 ```
 
-The DSH Web package range supported by the plugin is declared in [`package.json`](package.json). The [DSH compatibility workflow](https://github.com/lavapapa/dsh-composer-layout/actions/workflows/dsh-latest-compat.yml) regularly checks the plugin against the current DSH release.
+Dependency declarations are in [`package.json`](package.json); the DSH versions actually verified are recorded in [release checks](docs/RELEASE_CHECKS.md). The [DSH compatibility workflow](https://github.com/lavapapa/dsh-composer-layout/actions/workflows/dsh-latest-compat.yml) regularly checks the plugin against the current DSH release.
 
 ## Development
 

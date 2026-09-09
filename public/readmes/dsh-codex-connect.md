@@ -16,7 +16,7 @@ This guide describes the published pairing below. Check `dsh --version` first; f
 
 | Requirement | Verified pairing |
 |---|---|
-| Codex Connect | `0.1.0-alpha.4.31` |
+| Codex Connect | `0.1.0-alpha.4.32` |
 | DeepSeek Harness | `0.1.2-rc.1` |
 | Node.js | `^22.19.0 \|\| >=24.0.0` |
 | Account | ChatGPT OAuth with access to the requested Codex model; availability is decided by OpenAI |
@@ -24,7 +24,7 @@ This guide describes the published pairing below. Check `dsh --version` first; f
 ### 1. Install
 
 ```sh
-dsh plugin --profile web add dsh-codex-connect@0.1.0-alpha.4.31
+dsh plugin --profile web add dsh-codex-connect@0.1.0-alpha.4.32
 dsh web
 ```
 
@@ -46,19 +46,19 @@ dsh plugin --profile web exec dsh-codex-connect doctor --json
 `status --json` exits `0` when signed in and `1` when signed out, without starting OAuth. `doctor --json` reports local installation diagnostics without a network request or raw credentials. A passing diagnostic is not proof of model access; verify that with an actual request.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/92b09bff0c8dc2855d5d44f45e438953743f97ff/docs/assets/en/hero.jpg" alt="Codex Connect — ChatGPT OAuth for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/62d0f65647f0daf2448fac8da29fa7dd0cee51d9/docs/assets/en/hero.jpg" alt="Codex Connect — ChatGPT OAuth for DeepSeek Harness" width="100%">
 </p>
 
 ## Core capabilities
 
 - **Accounts:** save up to 16 accounts on the DSH host and manually select the active account for subsequent requests. Account selection is not a per-session binding. Requests keep their captured account; the plugin does not rotate accounts or silently fail over.
-- **Models and Astra support:** the currently verified DSH and plugin combination supports `gpt-6-astra`. The plugin supplies the Astra model definition missing from the current dependency catalog, so users can select it without separately upgrading the underlying library. When the installed dependency catalog includes Astra, the plugin prefers its native definition. A model appearing in the list does not mean the current account has permission to use it; overall compatibility with new dependency versions still requires separate verification.
+- **Models and Astra support:** the currently verified DSH and plugin combination supports `gpt-6-astra`. The plugin supplies its missing model definition with Low, Medium, High, Xhigh, and Max reasoning levels; Default preserves the provider default. Saved Off/Minimal selections require an [explicit update](MIGRATION.md#astra-reasoning-selections). When the installed dependency catalog includes Astra, the plugin prefers its native definition. A model appearing in the list does not mean the current account has permission to use it; overall compatibility with new dependency versions still requires separate verification.
 - **Fast Mode:** request priority service for one conversation, off by default. Actual speed and quota consumption depend on the service; no fixed speed multiplier is guaranteed.
 - **Quota:** show the server-returned `5h` and `7d` windows and reset times, normally refreshed every 60 seconds while signed in. Missing windows are not invented; Spark uses its separate quota bucket.
-- **Update guidance:** compare the installed DSH/plugin pair with the public verification record without installing an upgrade.
+- **Plugin updates:** check for newer Codex Connect releases without installing anything or recommending changes to DSH. Host compatibility is available through explicit local diagnostics.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/92b09bff0c8dc2855d5d44f45e438953743f97ff/docs/assets/composer-capabilities.jpg" alt="Fast Mode and quota controls in the DeepSeek Harness Composer" width="820">
+  <img src="https://raw.githubusercontent.com/franksong2702/dsh-codex-connect/62d0f65647f0daf2448fac8da29fa7dd0cee51d9/docs/assets/composer-capabilities.jpg" alt="Fast Mode and quota controls in the DeepSeek Harness Composer" width="820">
 </p>
 
 ## Optional capabilities

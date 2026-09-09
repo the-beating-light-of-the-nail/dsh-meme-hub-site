@@ -199,9 +199,9 @@ On first enable, the plugin checks whether `demo.html` exists under
 
 ## Screenshots
 
-![Input card with edge refraction](https://raw.githubusercontent.com/FAVKTOXIC/dsh-theme-liquid-glass/d24167a4fbbfb08c07b60ef64cbbde6a49cecfc1/assets/screenshots/screenshot-input.png)
-![Chat interface with glass bubbles](https://raw.githubusercontent.com/FAVKTOXIC/dsh-theme-liquid-glass/d24167a4fbbfb08c07b60ef64cbbde6a49cecfc1/assets/screenshots/screenshot-chat.png)
-![Settings panel](https://raw.githubusercontent.com/FAVKTOXIC/dsh-theme-liquid-glass/d24167a4fbbfb08c07b60ef64cbbde6a49cecfc1/assets/screenshots/screenshot-settings.png)
+![Input card with edge refraction](https://raw.githubusercontent.com/FAVKTOXIC/dsh-theme-liquid-glass/2d10a5ff53f08429e0d9e6582c89ee9e9fa1099d/assets/screenshots/screenshot-input.png)
+![Chat interface with glass bubbles](https://raw.githubusercontent.com/FAVKTOXIC/dsh-theme-liquid-glass/2d10a5ff53f08429e0d9e6582c89ee9e9fa1099d/assets/screenshots/screenshot-chat.png)
+![Settings panel](https://raw.githubusercontent.com/FAVKTOXIC/dsh-theme-liquid-glass/2d10a5ff53f08429e0d9e6582c89ee9e9fa1099d/assets/screenshots/screenshot-settings.png)
 
 ---
 

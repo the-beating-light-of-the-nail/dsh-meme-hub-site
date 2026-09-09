@@ -26,6 +26,14 @@ pnpm dsh web
 
 安装后的正常启动不需要 `--patch`。
 
+### 兼容版本
+
+- DSH：`>=0.1.2-rc.1 <0.2.0`
+- Node.js：`^22.19.0 || >=24.0.0`
+- Profile：`web`
+
+`0.1.2-rc.1` 已在 Windows x64 的一次性 Profile 中完成本地 tarball 安装、配置加载、Web 冷启动、HTTP 访问和卸载验证。`0.1.3-alpha.1` 没有可获取的 npm 发行物；`0.1.3-alpha.2` 的官方 CLI 在本机被自身的 `fs-ext` 原生依赖阻断，因此这两个版本均保守标记为 `unknown`。完整命令和边界见 [兼容性验证记录](docs/compatibility.md)。
+
 ### 2. 配置准备使用的模型
 
 打开“设置 → 模型”，配置至少两个模型：
@@ -49,7 +57,7 @@ pnpm dsh web
 4. 模型正确识别红色后，Vision Mix 才会保存能力声明；失败会自动回滚。
 5. 回到上方“基础设置”，由你自行在“图片模型”中选择该模型。
 
-![Vision Mix 基础路由与模型图片能力设置](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/6188b630c0c3be8d770bb6ffd660be3ee671190e/docs/settings-routing.png)
+![Vision Mix 基础路由与模型图片能力设置](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/3ef61bbbcbcd7659b0c9d6b0efacc2c57247678f/docs/settings-routing.png)
 
 测试会产生一次很小的模型调用，但不会出现在聊天会话中。
 
@@ -158,19 +166,19 @@ DSH Web 模型编辑器会保留这个额外字段。
 
 ### 模型与生图设置
 
-![Vision Mix 生图设置页面](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/6188b630c0c3be8d770bb6ffd660be3ee671190e/docs/generation-routing.png)
+![Vision Mix 生图设置页面](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/3ef61bbbcbcd7659b0c9d6b0efacc2c57247678f/docs/generation-routing.png)
 
 ### 会话级识图记录
 
 安装可选的 [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) 后，每次识图调用默认折叠显示；展开后可以查看完整提示词、图片预览、attachment id 和解析结果。
 
-![会话级识图记录](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/6188b630c0c3be8d770bb6ffd660be3ee671190e/docs/vision-history.png)
+![会话级识图记录](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/3ef61bbbcbcd7659b0c9d6b0efacc2c57247678f/docs/vision-history.png)
 
 ### 会话级生图记录
 
 生图与编辑记录和识图记录分开，包含提示词、源图片、输出参数和生成结果。
 
-![会话级生图记录](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/6188b630c0c3be8d770bb6ffd660be3ee671190e/docs/generation-history.png)
+![会话级生图记录](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/3ef61bbbcbcd7659b0c9d6b0efacc2c57247678f/docs/generation-history.png)
 
 侧边栏插件不是必需依赖。未安装时，Mix 路由、识图、跨轮追问、生图、对话图片显示和记录持久化仍然正常，只是不显示侧边栏入口。
 
@@ -198,7 +206,7 @@ DSH Web 模型编辑器会保留这个额外字段。
 
 | 参考设计稿 | Mix 单轮生成结果 |
 |---|---|
-| ![LumaBoard 参考设计稿](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/6188b630c0c3be8d770bb6ffd660be3ee671190e/docs/benchmark-reference.png) | ![Mix 生成的 LumaBoard 页面](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/6188b630c0c3be8d770bb6ffd660be3ee671190e/docs/benchmark-mix.png) |
+| ![LumaBoard 参考设计稿](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/3ef61bbbcbcd7659b0c9d6b0efacc2c57247678f/docs/benchmark-reference.png) | ![Mix 生成的 LumaBoard 页面](https://raw.githubusercontent.com/haiziyao/dsh-vision-mix/3ef61bbbcbcd7659b0c9d6b0efacc2c57247678f/docs/benchmark-mix.png) |
 
 Mix 用时 8分37秒、共 11 个 Agent 步骤。Vision Mix 完成初始识图、针对布局和排版的附件追问，以及成品截图复查。1440×900 下没有页面滚动、控制台错误或页面异常。
 

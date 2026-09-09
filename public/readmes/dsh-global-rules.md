@@ -6,7 +6,7 @@
 
 Edit your `~/.dsh/AGENTS.md` (global rules) from the DeepSeek Harness web settings panel.
 
-![全局规则设置页](https://raw.githubusercontent.com/badai147/dsh-global-rules/2ed39cc22c636d09ed7b65c30805a523fc713f04/globalrule.png)
+![全局规则设置页](https://raw.githubusercontent.com/badai147/dsh-global-rules/91b40ccc8cbff0a94a99b83437269e6d393978b6/globalrule.png)
 
 ## 功能 / Features
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/modusensus/dsh-mneme/dbde8c34170f8236e80a53bf8d146773995e0b2c/%E6%A8%AA%E5%B9%85.png" alt="dsh-mneme banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/modusensus/dsh-mneme/0fe6833adfcc66a42a2e976af92b409f18706cd1/%E6%A8%AA%E5%B9%85.png" alt="dsh-mneme banner" width="100%" />
 </p>
 
 <h1 align="center">dsh-mneme</h1>
@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-3E63DD?style=flat-square" alt="license"></a>
   <a href="https://github.com/modusensus/dsh-mneme/actions"><img src="https://img.shields.io/github/actions/workflow/status/modusensus/dsh-mneme/ci.yml?style=flat-square&label=CI" alt="CI"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-24%2B-3E63DD?style=flat-square&logo=nodedotjs&logoColor=white" alt="node"></a>
-  <a href="https://github.com/modusensus/dsh-mneme"><img src="https://img.shields.io/badge/tests-662%20passed-3E63DD?style=flat-square" alt="tests"></a>
+  <a href="https://github.com/modusensus/dsh-mneme"><img src="https://img.shields.io/badge/tests-712%20passed-3E63DD?style=flat-square" alt="tests"></a>
   <a href="https://codecov.io/gh/modusensus/dsh-mneme"><img src="https://img.shields.io/codecov/c/github/modusensus/dsh-mneme/main?style=flat-square" alt="coverage"></a>
   <a href="https://github.com/awesome-dsh-plugin/awesome-dsh-plugin"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="Awesome"></a>
 </p>
@@ -103,30 +103,25 @@ dsh web
 | **v0.5.0** | 召回融合与记忆可视化：BM25 + 图谱 + 热记忆 | ✅ |
 | **v0.6.0** | 会话生命周期：删会话 ≠ 删记忆 | ✅ |
 | **v0.7.0** | 自进化记忆：heat 幂律衰减 + sleep 双保护 + 实体热投影 | ✅ |
-| **v0.7.1** | issue #31 修复：tags 桥接 entity_attrs + autoTag 面板开关生效 | ✅ |
-| **v0.7.2** | issue #35 删除按钮内联确认修复 + issue #34 对话开始注入当前时间（opt-in） | ✅ |
-| **v0.7.3** | issue #38 左下角入口按钮可选开关 `showSidebarTrigger` | ✅ |
-| **v0.7.4** | issue #40 记忆花括号转义 + issue #41 记忆窗口关闭按钮重叠修复 | ✅ |
-| **v0.7.5** | 分层记忆类型 user/fact + Web 总览视图 + stats 端点 | ✅ |
-| **v0.7.6** | issue #48 修复：截断/前缀 id 也能精确操作（统一 resolveMemoryId）+ client.js 改 src 正源 | ✅ |
-| **v0.7.7** | issue #23 图谱回填：sleep 批量实体抽取 phase + node:sqlite 兼容修复 | ✅ |
-| **v0.7.8** | issues #58 #59 修复：DSH 0.1.2-rc.1 兼容——Session.events 改为 snapshotEvents() 垫片，autoSummarize 与 hot-context 注入恢复 | ✅ |
-| **v0.7.9** | issue #65 修复：v0.7.8 的 snapshotEvents 适配只改了 src/ 未同步 npm 实际加载的 lib/——补齐 lib 并加发布前 src/lib 一致性校验（check-sync.js 闸门）+ lib 冒烟测试 | ✅ |
-| **v0.7.10** | Web 面板体验升级：记忆类型色点体系 + 图谱画布平移/缩放 + 设置页分区重排 + 侧边栏同标签冲突修复 + 只读端点 /entities | ✅ |
-| **v0.7.11** | 记忆库面板改版：按月分页无限滚动 + 搜索全局化 + 30s 静默刷新 + 删除两步确认 + issue #72/#59 修复 | ✅ |
-| **v0.7.12** | 近重写：内置面板改纯 HTTP API（Bearer 鉴权）+ 独立 CLI dsh-mneme + 轻量模式 lightMode；记忆类型收窄（删 user/fact） | ✅ |
-| **v0.7.13** | 编码记忆蒸馏 codingRetrospect（新增 rejected_solution/pitfall/constraint 三类型）+ 蒸馏 429 调速器（指数退避重试） | ✅ |
-| **v0.7.14** | 安全修复（CWE-200）：蒸馏不再采集私有 reasoning 块，只采公开 text | ✅ |
-| **v0.7.15** | 桌面端适配：记忆库面板重设计 + 功能开关 30 键 UI + 状态页工作台 + 导入导出 | ✅ |
-| **v0.7.16** | 修复 autoDream 在 thinking 模型上空体 failed：恢复 config-first 路由 + reasoningEffort 被拒自动回退 + 解析失败如实记账；补测 API 路由空白与 lib 运行时冒烟 | ✅ |
+| **v0.7.15** | 桌面端适配：记忆库面板重设计 + 功能开关 30 键 UI（features API）+ 状态页工作台 + 导入导出（镜像同构 md 黄金闭环）+ Token 面板默认遮蔽 | ✅ |
+| **v0.7.21** | 修复 autoDream/sleep 的 effort 回退在流式路径失效（catch 式回退死代码→流级捕获失败原因 + 去 effort 重试 + audit 记真实原因） | ✅ |
+| **v0.7.22** | 恢复 skipInvalid 宽容校验（issue #89：弱模型整单拒绝→单条跳过 + 合法子集应用 + run 记 degraded）+ autoDream 最小触发间隔 | ✅ |
+| **v0.7.23** | 记忆沉淀「反复失败」根治（consolidation 合法空数组 [] → no-op）+ 空体修复第二段（dreamMaxTokens 默认 8192→32768）+ skipInvalid splice 残留 bug | ✅ |
+| **v0.7.24** | 桌面端崩溃紧急修复（v0.7.23 回归：cordis Proxy 直接访问未 inject 属性抛错 → 恢复 webServer 到 inject + ctx.reflect.get 守卫，714 测试全绿） | ✅ |
+| **v0.7.25** | 工具兼容性加固（memory_get 工具 + 内容预览 + 巩固模型引导，718 测试全绿） | ✅ |
+| **v0.7.26** | 记忆巩固 UNSUPPORTED_REASONING_EFFORT 根治（defaultEffort 陷阱 → resolveDreamEffort 能力探测）+ LLM 模型连通性测试（llm-providers / test-model，732 测试全绿） | ✅ |
+| **v0.7.27** | v0.7.26 端点遗漏补齐（修复发版树缺 fix/dream-effort-trap 分支：llm-providers / test-model 落地，面板连通性测试可用，733 测试全绿） | ✅ |
+| **v0.7.28** | 连通性测试三连修：maxTokens 16→1024（思考模型 reply 不再恒空）+ 测试状态按巩固/睡眠拆分（按钮不再串扰）+ 面板草稿补睡眠键（重挂载后睡眠路由不再显示回「跟随默认路由」，值一直有存） | ✅ |
 | **v0.8.0** | 图谱增强：兴趣漂移可视化 + scope 隔离（issue #17）+ 跨 workspace 共享 | 🚧 计划中（9 月末） |
+
+> 完整逐小版本路线图见 [dsh-mneme/README.md](dsh-mneme/README.md#-进化路线图)（中）/ [dsh-mneme/README.en.md](dsh-mneme/README.en.md#-evolution-roadmap)（英）。
 
 ## 🧪 本地开发
 
 ```bash
 cd dsh-mneme
 npm install
-npm test          # 662 个测试
+npm test          # 712 个测试
 npm run stress    # 三轴线压测
 npm run sync      # src → lib 同步
 ```
@@ -220,30 +215,25 @@ Works out of the box. Enable these as needed:
 | **v0.5.0** | Recall fusion & visualization: BM25 + graph + hot memory | ✅ |
 | **v0.6.0** | Session lifecycle: delete session ≠ delete memories | ✅ |
 | **v0.7.0** | Self-evolving memory: heat decay + sleep dual-protection + entity heat projection | ✅ |
-| **v0.7.1** | Issue #31 fix: tags bridged to entity_attrs + autoTag panel toggle takes effect | ✅ |
-| **v0.7.2** | Issue #35 delete button inline-confirm fix + Issue #34 inject current time at conversation start (opt-in) | ✅ |
-| **v0.7.3** | Issue #38 optional sidebar trigger `showSidebarTrigger` | ✅ |
-| **v0.7.4** | Issue #40 prompt-brace escaping + Issue #41 overlay close-button overlap fix | ✅ |
-| **v0.7.5** | Layered memory types (user/fact) + Overview view + stats endpoint | ✅ |
-| **v0.7.6** | Issue #48 fix: truncated/prefix ids resolve for exact ops (unified resolveMemoryId) + client.js now src-authored | ✅ |
-| **v0.7.7** | Issue #23 graph backfill: sleep batch entity extraction phase + node:sqlite compat fix | ✅ |
-| **v0.7.8** | Issues #58 #59 fix: DSH 0.1.2-rc.1 compat — Session.events moved to snapshotEvents() shim; autoSummarize & hot-context injection restored | ✅ |
-| **v0.7.9** | Issue #65 fix: v0.7.8's snapshotEvents shim only landed in src/, never in the npm-loaded lib/ — synced lib + added a pre-publish src↔lib consistency gate (check-sync.js) + lib smoke tests | ✅ |
-| **v0.7.10** | Web panel UX: memory-type color dots + graph canvas pan/zoom + settings re-grouping + sidebar tab-conflict fix + read-only /entities endpoint | ✅ |
-| **v0.7.11** | Library panel redesign: monthly pagination + infinite scroll + global search + 30s silent refresh + two-step delete + issues #72/#59 fixes | ✅ |
-| **v0.7.12** | Near-rewrite: inlined panel replaced by a pure HTTP API (Bearer auth) + standalone CLI + lightMode; memory types narrowed (user/fact dropped) | ✅ |
-| **v0.7.13** | Coding-memory distillation `codingRetrospect` (+ rejected_solution/pitfall/constraint types) + 429 governor (exponential backoff) | ✅ |
-| **v0.7.14** | Security fix (CWE-200): distillation no longer collects private `reasoning` blocks, only public `text` | ✅ |
-| **v0.7.15** | Desktop adaptation: library panel redesign + 30-key feature-flag UI + status dashboard + import/export | ✅ |
-| **v0.7.16** | Fix autoDream empty-body failures on thinking models: restore config-first routing + reasoningEffort auto-fallback + honest audit on parse failure; backfill API-route & lib smoke tests | ✅ |
+| **v0.7.15** | Desktop adaptation: library panel redesign + 30-key feature-flag UI (features API) + status dashboard + import/export (mirror-isomorphic md golden loop) + token masking by default | ✅ |
+| **v0.7.21** | Fix autoDream/sleep effort fallback dead on the stream path (catch-based retry → stream-level failure capture + effortless retry + real cause in audit) | ✅ |
+| **v0.7.22** | Restore skipInvalid tolerant validation (issue #89: weak-model whole-batch rejection → per-item skip + valid-subset apply + run marked degraded) + autoDream min trigger interval | ✅ |
+| **v0.7.23** | "Consolidation keeps failing" root cause (legal empty array [] → no-op) + empty-body part 2 (dreamMaxTokens default 8192→32768) + skipInvalid splice residue bug | ✅ |
+| **v0.7.24** | DSH Desktop plugin-tree load crash fix (v0.7.23 regression: cordis Proxy throws on un-injected property access → restored webServer to inject + ctx.reflect.get guard, 714 tests green) | ✅ |
+| **v0.7.25** | Tool-compat hardening (memory_get tool + render content preview + consolidation-model guide, 718 tests green) | ✅ |
+| **v0.7.26** | Consolidation UNSUPPORTED_REASONING_EFFORT root fix (defaultEffort trap → resolveDreamEffort capability probing) + LLM connectivity test (llm-providers / test-model, 732 tests green) | ✅ |
+| **v0.7.27** | v0.7.26 endpoint backfill (release tree was missing the fix/dream-effort-trap branch: llm-providers / test-model now shipped, panel connectivity test works, 733 tests green) | ✅ |
+| **v0.7.28** | Connectivity test triple fix: maxTokens 16→1024 (thinking-model replies no longer empty) + per-route test state (dream/sleep buttons no longer cross-trigger) + mount draft includes sleep keys (sleep route no longer shows "follow default route" after remount — values were always saved) | ✅ |
 | **v0.8.0** | Graph enhancement: interest-drift visualization + scope isolation (issue #17) + cross-workspace sharing | 🚧 Planned (late Sep) |
+
+> Full per-minor-version roadmap: [dsh-mneme/README.md](dsh-mneme/README.md#-进化路线图) (zh) / [dsh-mneme/README.en.md](dsh-mneme/README.en.md#-evolution-roadmap) (en).
 
 ## 🧪 Local Development
 
 ```bash
 cd dsh-mneme
 npm install
-npm test          # 662 tests
+npm test          # 712 tests
 npm run stress    # three-axis stress test
 npm run sync      # src → lib sync
 ```

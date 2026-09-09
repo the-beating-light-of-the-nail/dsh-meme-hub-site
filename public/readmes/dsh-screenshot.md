@@ -30,7 +30,7 @@ dsh plugin --profile web add @paicat1/dsh-screenshot
 
 | 人工操作演示 | Agent 自助调用演示 | 窗口吸附演示 |
 |---|---|---|
-| ![人工操作演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/dd8a3b2bcbaba97144d0706f5bc19ce3179afeb1/assets/demo-manual.gif) | ![Agent 自助调用演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/dd8a3b2bcbaba97144d0706f5bc19ce3179afeb1/assets/demo-agent.gif) | ![窗口吸附演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/dd8a3b2bcbaba97144d0706f5bc19ce3179afeb1/assets/demo-window-snap.gif) |
+| ![人工操作演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/cfc83f68dd5892fbe77dce2e29d6dfec4836ab28/assets/demo-manual.gif) | ![Agent 自助调用演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/cfc83f68dd5892fbe77dce2e29d6dfec4836ab28/assets/demo-agent.gif) | ![窗口吸附演示](https://raw.githubusercontent.com/paicat1/dsh-screenshot/cfc83f68dd5892fbe77dce2e29d6dfec4836ab28/assets/demo-window-snap.gif) |
 
 ## 为什么传路径，不传图？
 

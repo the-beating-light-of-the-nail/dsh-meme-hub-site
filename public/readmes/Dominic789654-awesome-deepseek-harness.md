@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Dominic789654/awesome-deepseek-harness/311ed463f524535fb1306831a7afdfbb27d35f2e/assets/deepseek-logo.svg" alt="DeepSeek" height="48">
+  <img src="https://raw.githubusercontent.com/Dominic789654/awesome-deepseek-harness/50d8da470841afa4b271cf0628f2464ba69cb9d7/assets/deepseek-logo.svg" alt="DeepSeek" height="48">
 </p>
 
 # Awesome DeepSeek Harness [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
@@ -14,7 +14,7 @@ This list collects the best of that ecosystem. Contributions welcome — see [Co
 
 > **Tip for authors:** DeepSeek asks plugin repositories to carry the **`#dsh`** GitHub topic so they can be discovered. Add it to your repo, then open a PR here.
 
-![DeepSeek Harness ecosystem map](https://raw.githubusercontent.com/Dominic789654/awesome-deepseek-harness/311ed463f524535fb1306831a7afdfbb27d35f2e/assets/dsh-ecosystem.svg)
+![DeepSeek Harness ecosystem map](https://raw.githubusercontent.com/Dominic789654/awesome-deepseek-harness/50d8da470841afa4b271cf0628f2464ba69cb9d7/assets/dsh-ecosystem.svg)
 
 ## Quick Start
 
@@ -1475,6 +1475,7 @@ _Cross-session memory, checkpoints, pinning, and session navigation plugins._
 - [lovezi0/dsh-memory-palace](https://github.com/lovezi0/dsh-memory-palace) — Ports WorkBuddy's file-based memory system into DeepSeek Harness — persistent, human-editable Markdown memory across sessions.
 - [benz-ai-x/dsh-session-graph](https://github.com/benz-ai-x/dsh-session-graph) — Visual session graph for DeepSeek Harness — browse, arrange, branch, merge, and summarize AI agent sessions on an interactive canvas.
 - [ErrorLst/dsh-notes](https://github.com/ErrorLst/dsh-notes) — DeepSeek Harness (dsh) notes plugin.
+- [jingchangzhao-gif/dsh-note](https://github.com/jingchangzhao-gif/dsh-note) — Local Markdown notes and cross-session memory for DeepSeek Harness, with keyword search, note editing, bounded context recall, and memory compaction.
 - [Lsc-91-69/dsh-brain-compaction](https://github.com/Lsc-91-69/dsh-brain-compaction) — Human-brain-inspired context-compaction logic for DeepSeek Harness — significantly reduces long-task context footprint and token consumption.
 - [PolinniZhong/dsh-session-workbench](https://github.com/PolinniZhong/dsh-session-workbench) — Session Workbench for DeepSeek Harness: session-library full-text search + recall + conversation-view management (show/hide + reorder).
 - [Yvesgao/dsh-env-profile](https://github.com/Yvesgao/dsh-env-profile) — Global environment-experience plugin for DeepSeek Harness: auto-detects the environment, keeps a cross-session profile, and injects it at low overhead — cuts repeated probing, speeds up sessions, and reduces token spend.
@@ -2036,7 +2037,6 @@ _Plugin marketplaces, install managers, indexes, and ecosystem tooling._
 - [hackerFish/awesome-dsh-plugin](https://github.com/hackerFish/awesome-dsh-plugin) — A curated list of plugins for DeepSeek Harness (dsh).
 
 - [qinyre/dsh-plugin-capabilities](https://github.com/qinyre/dsh-plugin-capabilities) — Manage skills and MCP servers from the dsh settings page, with import support from Claude Code and Codex.
-- [qinyre/dsh-plugin-install](https://github.com/qinyre/dsh-plugin-install) — Adds an "Install" tab to the dsh settings page to install any third-party plugin by package name.
-- [dff652/deepseek-harness-community-plugins](https://github.com/dff652/deepseek-harness-community-plugins) — Co
+- [qinyre/dsh-plugin-install](https://github.com/qinyre/dsh-
 
 <!-- 本 README 超过 400KB,此处截断,完整内容请去仓库查看 -->

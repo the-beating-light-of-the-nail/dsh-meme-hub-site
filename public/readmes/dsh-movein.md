@@ -12,7 +12,7 @@
 
 Keep using Claude Code while you try its skills in DSH. Preview the changes, apply the parts you choose, and start a small task in a new DSH session. Source files and existing destinations stay untouched.
 
-![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/9fade12a2f291ededd8049b127b3f045d27540bb/docs/settings-demo.gif)
+![The native DSH settings page previews and applies a Claude Code setup](https://raw.githubusercontent.com/sjh9714/dsh-movein/eac664961b233dcd636e2d6a51943d2258adb46d/docs/settings-demo.gif)
 
 Recorded from a real DSH `0.1.2-rc.1` Web host on macOS with a synthetic project and dsh-movein `0.13.8`. It shows preview and apply; the source was preserved and the imported skill was checked byte-for-byte. No model task ran. [Full screen recording](https://github.com/sjh9714/dsh-movein/blob/main/docs/settings-demo.webm).
 
@@ -65,7 +65,7 @@ After a successful CLI apply, a human TTY asks `Star dsh-movein? (Enter = Yes) [
 
 ## Compatibility
 
-The DSH plugin is tested in a fresh `web` profile against every currently supported Store release:
+These DSH releases passed installation, authenticated Web startup, and removal in a fresh Linux `web` profile. This checks host/plugin loading, not model tasks, migrated-hook enforcement, or Windows Minimal TUI acceptance.
 
 | DSH release | Install | Web start | Uninstall |
 | --- | --- | --- | --- |
@@ -76,6 +76,11 @@ The DSH plugin is tested in a fresh `web` profile against every currently suppor
 | `0.1.2-alpha.4` | Compatible | Compatible | Compatible |
 | `0.1.2-alpha.5` | Compatible | Compatible | Compatible |
 | `0.1.2-rc.1` | Compatible | Compatible | Compatible |
+| `0.1.3-alpha.2` | Compatible | Compatible | Compatible |
+
+DSH `0.1.3-alpha.2` adds the native `fs-ext` dependency for session file locking. Its build needs explicit approval when using pnpm; the [CI allowlist](.github/workflows/ci.yml) names this package individually and preserves strict build and release-age policies. No compatibility is claimed for the GitHub-only `0.1.3-alpha.1` release or untested newer alphas.
+
+On macOS, `0.1.3-alpha.2` also passed a separate local hoisted-host check, including the live doctor's HTML/JavaScript and cleanup probes. The pnpm 11 linked `dlx` layout can start through the official CLI but fail the isolated doctor's official-component resolution. Compare a separate local hoisted host in that case; do not delete the migration profile, inherit an arbitrary `NODE_PATH`, or disable package-manager checks.
 
 | Origin | What moves |
 | --- | --- |

@@ -40,6 +40,17 @@ with one goal: **save tokens**.
   tokenization), recall runs a bounded substring scan over the newest session
   logs (zstd-decompressed, LRU-cached) and appends matched past sessions —
   deterministic `# past sessions` lines, capped files and bytes.
+- **Session-start auto-recall (`autoRecallOnStart`, default on)** — the pull-only
+  design had a gap proven in real use: recall tools relied on model initiative,
+  and in practice the model almost never calls `engram_recall` on its own (19
+  real sessions, thousands of tool calls, ~5 recall calls total). So at the FIRST
+  assembly of a new session the host runs one deterministic BM25 recall keyed on
+  the session's first user message and injects the top ≤ `autoRecallLimit` hits
+  as a `[RECALL]` block (default 700-char budget, "few and precise" — agentmemory
+  candidate ①). Relevant memory is in context even without a single recall call.
+  Pure rule, zero LLM, pure read (never bumps `hits`); superseded stale truth does
+  not occupy an injection slot (still fetchable via `engram_detail`); frozen per
+  session together with `[ENGRAM]` for prefix stability.
 - **Memory-to-memory semantics** — `engram_store` accepts optional
   `supersedes` / `contradicts` memory ids (validated against the same
   workspace). A superseded ("stale truth") memory is demoted to the tail of
@@ -128,13 +139,104 @@ LLM-distillation and vector/graph niches are already crowded. dsh-engram fills t
 three gaps that matter for token discipline:
 
 1. **No model in the write path** — capture is deterministic pattern matching.
-2. **No raw text in the prompt** — a bounded symbolic index is injected, retrieval
-   stays on demand ("retrieved ≠ injected").
+2. **No raw text in the prompt** — a bounded symbolic index is injected, plus the
+   top ≤ N memories auto-recalled for the session's first message (within budget);
+   deeper retrieval stays on demand ("retrieved ≠ full-text injected").
 3. **Honest task closure** — STABLE cannot be declared without evidence.
 
 DSH already provides cross-session FTS (`ctx.sessionQuery`), storage
 (`ctx.storageDomain`), prompt-injection hooks and settings slots; dsh-engram is a
 thin composition layer over them, not a re-implementation.
+
+## Security model
+
+The DSH plugin ecosystem is young and unvetted — there is no official directory,
+no signature check, and the harness's read/write permission tiers do **not**
+constrain what a plugin's own code can do. So the trust bar for a memory plugin
+is higher than for a tool: a memory plugin sits on your prompt prefix and writes
+to disk on your behalf. dsh-engram's model, stated plainly:
+
+- **No network, ever.** The plugin has no outbound socket, no telemetry, no
+  update pinger. Nothing here can leak your sessions off the machine.
+- **No shell, no filesystem access beyond one storage file.** It never executes
+  commands and never touches arbitrary paths. All data lives in the single
+  storage-domain unit `~/.dsh/storages/dsh_engram.json` (plus the session-log
+  reads it makes through DSH's own `ctx.sessionQuery`).
+- **Secrets are redacted before they can land on disk.** Every write path —
+  `engram_store`, auto-capture, and the import/restore route — runs text through
+  the deterministic `redactText` rule engine (API keys, JWTs, `Bearer` tokens,
+  private keys, `key=value` secret shapes) *before* the dedup hash, the char
+  cap, and storage. Nothing sensitive is ever persisted, so nothing sensitive
+  can be recalled later.
+- **Doing harm requires your harness's own permissions.** The plugin only *asks*
+  the host to do things via the same seams the tools you already trust use. It
+  does not widen sandbox policy or escalate to `danger-full-access` — if you
+  keep your profile's defaults, engram inherits exactly those bounds.
+- **Read-mostly web API, loopback-fenced.** The GUI routes under
+  `/api/dsh-engram` reject any non-loopback caller unless you explicitly
+  whitelist a hostname via `trustedHosts`; even then the same-origin fence holds.
+- **Verifiable.** `npm run dsh-engram -- doctor` (`/scripts/dsh-engram.mjs
+  doctor`) reports what the plugin is configured to touch; the whole store is
+  inspectable, nothing is opaque. If you ever doubt a claim in this section, the
+  code to check is `lib/redact.js`, `lib/store.js` and this plugin's
+  `cordis.patch.yml`.
+
+What this deliberately does **not** claim: it is not an air-gap. If your profile
+grants the agent `danger-full-access` or a shell, the agent can use those —
+engram is a memory layer, not a sandbox. The point above is that *dsh-engram
+itself* adds no surface of its own.
+
+## Data contract: export / import
+
+Memory should not be a hostage. The four tables (memories / tasks / links /
+entities) can be dumped and restored through a stable, versioned, machine-readable
+shape — so the corpus survives a reinstall, a machine move, or (when a thin
+adapter is written) a move to another harness, MCP end-point or Claude Code
+skill. The contract is plain JSON with a self-describing header:
+
+```http
+GET  /api/dsh-engram/export?workspace=/path/to/project   # one workspace
+GET  /api/dsh-engram/export                              # every workspace
+```
+
+```jsonc
+{
+  "meta": { "format": "dsh-engram/export", "version": 1, "exportedAt": 1724…, "workspace": "/path/to/project" },
+  "memories": [ /* all rows, archived included — a backup never loses provenance */ ],
+  "tasks":    [ /* draft/active/stable + archived */ ],
+  "links":    [ /* typed edges */ ],
+  "entities": [ /* graph nodes */ ]
+}
+```
+
+Restore is idempotent by default and gated when destructive:
+
+```http
+POST /api/dsh-engram/import          # body: { payload, mode, dryRun?, workspace?, confirm? }
+```
+
+- **`mode: "merge"`** (default) — writes only rows whose `id` is absent, so a
+  backup can be re-applied any number of times without duplicating anything. Each
+  row keeps its own `workspace`.
+- **`mode: "replace"`** — wipes the target `workspace` from all four tables, then
+  restores only its rows. Destructive, so it additionally requires
+  `confirm: "restore"` in the body.
+- **`dryRun: true`** — computes the identical plan (what would be written /
+  skipped) without writing a single row.
+- **Import honors the same invariants as `storeMemory`**: memory text passes the
+  secret redactor before touching disk, and rows that would break the contract
+  (missing id/workspace, empty text, over `maxMemoryChars`, id already present
+  in merge, over the workspace memory cap) are skipped and listed in the
+  response report instead of aborting the batch.
+
+A restore round-trip for one workspace is then:
+
+```sh
+curl -s "http://127.0.0.1:3080/api/dsh-engram/export?workspace=$PWD" -o engram-backup.json
+curl -s -X POST http://127.0.0.1:3080/api/dsh-engram/import \
+  -H "content-type: application/json" \
+  -d "{\"payload\": $(cat engram-backup.json), \"mode\": \"merge\"}"
+```
 
 ## Install
 
@@ -317,8 +419,8 @@ npm run build:client
 
 | Tool | Purpose | Kind |
 |---|---|---|
-| `engram_store` | Explicitly store one memory (kind, tags, optional entity anchor, optional supersedes/contradicts memory ids) | write |
-| `engram_recall` | Deterministic keyword recall over workspace memories; optional `search_sessions` FTS over past sessions | read |
+| `engram_store` | Explicitly store one memory (kind, tags, optional entity anchor, optional supersedes/contradicts ids, optional `source`/`conditions`) | write |
+| `engram_recall` | Deterministic keyword recall over workspace memories; optional `search_sessions` FTS over past sessions; opt-in `scope=global`/`recallScope` cross-workspace recall with `[W:<ws>]` origin markers | read |
 | `engram_detail` | Full record of one memory id (provenance, tags, hits) | read |
 | `esr_task` | Create a task entity (draft → active) | write |
 | `esr_close` | Close a task via the evidence protocol (artifact + evaluation + memory_ref) | write |
@@ -542,7 +644,11 @@ ESR operating protocol (static, byte-identical every turn)
 [ENGRAM] workspace: symbolic-index · 2 memories · 1 task(s) active · 0 links
 [D] 06-18 Decided: use sqlite-vec for retrieval #a2331d87
 [T] 06-18 Retrieval upgrade — ACTIVE · gap: artifact, evaluation, memory_ref #tsk_8b26
-drill: engram_store (user asks to remember) | engram_recall <query> | engram_detail <id> | esr_task / esr_close / esr_link
+drill: use [RECALL] below · engram_detail <id> (full record) · engram_recall <query> (more) · esr_task/esr_node/esr_link (work)
+
+[RECALL] recall · 1 hit(s) · first msg: retrieval
+- [D] 06-18 Decided: use sqlite-vec for retrieval upgrade #a2331d87 ×2
+context: use above · engram_detail <id> · engram_recall <query>
 
 [ESR] tasks: 1 active / 1 stable
 - tsk_0d: Retrieval upgrade — ACTIVE · gap: artifact, evaluation, memory_ref
@@ -564,6 +670,14 @@ records via `engram_detail`. When a workspace has no tasks, `[ESR]` still render
 one line naming `esr_task`/`esr_close` so the mechanism stays visible to the
 model instead of vanishing.
 
+`[RECALL]` (session-start auto recall, `autoRecallOnStart`) runs one deterministic
+BM25 pass over the workspace keyed on the session's first user message and injects
+the top `autoRecallLimit` hits, bounded by the `autoRecallMaxChars` character
+budget; nothing renders on zero hits or an empty workspace. It is a *pointer* — the
+model should treat it as "this is relevant; `engram_detail` for the full record" —
+rather than full-text dumping. It is a pure read (never bumps `hits`), superseded
+stale truth never occupies a slot, and it freezes per session with `[ENGRAM]`.
+
 ## Config
 
 Defaults are token-conscious; override any key via the profile patch
@@ -574,6 +688,10 @@ Defaults are token-conscious; override any key via the profile patch
   config:
     autoCapture: true        # zero-LLM tool-result capture
     sessionSearch: true      # engram_recall may also FTS past sessions
+    recallScope: workspace   # recall scope: "workspace" (strict isolation, default) | "global" (opt-in cross-workspace recall with [W:<ws>] origin markers)
+    autoRecallOnStart: true  # session-start auto recall (false = back to pure pull)
+    autoRecallLimit: 3       # [RECALL] max injected hits (few and precise)
+    autoRecallMaxChars: 700  # [RECALL] char budget
     autoCapturePerSession: 40
     indexMaxLines: 12        # [ENGRAM] line cap
     indexMaxChars: 700       # [ENGRAM] char cap (token budget)
@@ -616,7 +734,11 @@ dedup 1.0.
 **/api/dsh-engram/stats + the observability panel** is the real-session layer —
 it answers how the model actually uses the memory in production (ESR
 proactivity ratio, recall hit rate, detail conversion), while the eval
-answers how good the retrieval layer itself is.
+answers how good the retrieval layer itself is. The stats read the
+concatenated multi-frame `session.jsonl.zstd` logs with Node's built-in
+`node:zlib` (frame scan + one reused decoder handle) — **no system `zstd` CLI
+is required**, so the telemetry works out-of-the-box on Windows and other
+hosts without an external codec.
 
 Repo layout: `lib/` (host half: store / capture / index-block / tools / api /
 settings), `client/` (browser half, TSX + `build.mjs`), `test/` (node:test).

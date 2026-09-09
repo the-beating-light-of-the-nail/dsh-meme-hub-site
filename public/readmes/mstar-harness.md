@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/9546a2ba54cb3414a9f4e30f2d2cadc95bc7a06c/assets/logo.svg" alt="Morning Star Harness" width="96">
+<img src="https://raw.githubusercontent.com/btspoony/mstar-harness/1e1fa1595e64ea8988115e734d23aea6a1482268/assets/logo.svg" alt="Morning Star Harness" width="96">
 
 # [Morning Star](https://github.com/btspoony/mstar-harness)
 
@@ -90,7 +90,7 @@ Enter PM, then run the per-plan cycle: `Prepare → Execute → QC → QA gate �
 |------|----------|
 | dsh (DeepSeek Harness) | `pm` skill (via the mstar skill provider; no auto-load) |
 | omp | `/skill:pm` each session (no auto-load) |
-| OpenCode | `agent.project-manager` (`agents/project-manager.md`) |
+| OpenCode | `agent.project-manager` (OpenCode-only shell, `packages/opencode/agents/project-manager.md`) |
 | Cursor | `/pm` |
 | Kimi | session auto-loads `pm`; or `/skill:pm` |
 | ZCode | `/morning-star-harness:pm` each session (no auto-load) |

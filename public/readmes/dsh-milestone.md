@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/7ccae4526a4b3ca0f8b79388b00c518f0054267b/assets/logo.svg" alt="dsh-milestone" width="112">
+<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/73193b8a752231e3323deb11257f17db6e8b1b0e/assets/logo.svg" alt="dsh-milestone" width="112">
 
 # dsh-milestone
 
@@ -27,7 +27,7 @@
 - 右侧挂一条**圆点时间线**：一个提问一个圆点，悬停看内容，点击瞬间跳转——长对话的「导航地图」。
 - 官方 slot 机制挂载，不修改 harness 源码，装完即用。
 
-<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/7ccae4526a4b3ca0f8b79388b00c518f0054267b/assets/demo.svg" alt="dsh-milestone 效果示意图" width="100%">
+<img src="https://raw.githubusercontent.com/SnowCrescenter-tech/dsh-milestone/73193b8a752231e3323deb11257f17db6e8b1b0e/assets/demo.svg" alt="dsh-milestone 效果示意图" width="100%">
 
 ## 快速开始
 

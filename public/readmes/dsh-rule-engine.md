@@ -1,11 +1,11 @@
 # dsh-rule-engine
 
 ![npm](https://img.shields.io/npm/v/dsh-rule-engine)
-![version](https://img.shields.io/badge/version-0.6.2-blue)
+![version](https://img.shields.io/badge/version-0.6.3-blue)
 
 DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯一真相源，自动解析规则四要素与执行等级，再通过「工具守卫 + 文本检测 + 时序检查 + 审计台账」执行用户规则，而不是内置一套与用户无关的安全清单。
 
-> 当前版本 **0.6.2**（0.1.2-rc.1 适配：Remote 新合同（typert-protocol `Remote(undefined, …)` 形态，typeof-null 陷阱修复）+ peer 锚扩 `>=0.1.2-rc.0`；白名单 3 轮扩充（gh 只读态 / `gh api` 只读 / `git ls-remote` / `cmdkey /list` + Do- 结构词回归修复）；E7 豁免预插（release-plugin bump 后自动追加 pnpm minimumReleaseAgeExclude——⑬ 口径防发布后红灯窗口，单源 `scripts/lib/pnpm-exempt.mjs`））。本插件面向"规则机器化执行"：规则写在 AGENTS.md 里，引擎负责让它们真的被遵守；所有规则动态解析，规则增删改后无需重写插件。
+> 当前版本 **0.6.3**（0.1.2-rc.1 适配：Remote 新合同（typert-protocol `Remote(undefined, …)` 形态，typeof-null 陷阱修复）+ peer 锚扩 `>=0.1.2-rc.0`；白名单 3 轮扩充（gh 只读态 / `gh api` 只读 / `git ls-remote` / `cmdkey /list` + Do- 结构词回归修复）；E7 豁免预插（release-plugin bump 后自动追加 pnpm minimumReleaseAgeExclude——⑬ 口径防发布后红灯窗口，单源 `scripts/lib/pnpm-exempt.mjs`））。本插件面向"规则机器化执行"：规则写在 AGENTS.md 里，引擎负责让它们真的被遵守；所有规则动态解析，规则增删改后无需重写插件。
 
 ## 项目背景
 
@@ -70,6 +70,151 @@ DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯�
 
 **迁移（0.5.x → 0.6.0）**：0.6.0 前默认生效的守卫在升级后**不再默认激活**——需要本机行为（统一入口保护 / 手册豁免 / M8 记忆链 / 追加受保护文件）时，按上表把配置段并入本机 `rule-engine.json`。**通用用户无需任何配置**；未配置时相关守卫路径不存在，直写任意文件不受引擎限制（这是 0.6.0 的设计决定：发布物无权限制其他用户的写入方式；本机约定属于本机配置，不属于通用引擎）。
 
+## 词表配置（lexicons / patterns / criticismPersonal / dualtrack）
+
+引擎的行为词表与检测正则**全部可配置**：代码里只留机制与语言无关的内置默认，中文/本机词表放在 `rule-engine.json`。
+
+### 分界：通用层 vs 个人层
+
+| 层 | 在哪 | 内容 | 谁维护 |
+|---|---|---|---|
+| **通用层** | `lib/` 代码（随包发布） | 机制 + 语言无关最小集（英文核心词） | 插件作者 |
+| **个人层** | `rule-engine.json` | 你的语言/习惯词表（如中文） | 你 |
+
+**Override 语义**（三个键一致）：
+
+- 键**缺省**（不写）→ 用内置默认（通用最小集）；
+- 键**存在** → 按键**完全替换**（不做合并，配置即真相）；
+- 写 `{}` → 回退内置默认；**删键** → 同样回退。
+
+> 配置在插件启动时读取。改完保存后**重载插件**（或重启 DSH）生效。
+
+### 三个配置键
+
+#### 1. `lexicons` —— 行为词表（11 键）
+
+判定“用户这句话是什么意思”用的词表：
+
+| 键 | 作用 |
+|---|---|
+| `approval` | 执行许可词（确认/同意/可以…） |
+| `exec_follow` | 执行语（即可/现在/马上…） |
+| `approval_exec` | 派生：许可词 + 16 字内 + 执行语（可显式覆盖） |
+| `plan_only` | 纯方案/理解确认（不算授权） |
+| `action_words` | 执行动作词（意图判定与授权判定共用） |
+| `strong_exec` | 强执行语（直接执行指令） |
+| `directive` | 指令式动作词 |
+| `rejection` | 拒绝词 |
+| `question` | 疑问词 |
+| `status_signal` | 状态信号词（“我已重启”） |
+| `dangerous_action` | 危险动作词（命中则不算状态信号） |
+
+```json
+{
+  "lexicons": {
+    "action_words": "执行|跑|落盘|重构|部署",
+    "question": "[？?]|吗|为什么|怎么"
+  }
+}
+```
+
+#### 2. `patterns` —— 检测正则（正则键 + 映射键 + 数值键）
+
+文本健康检测（规则 2 时间 / 5 来源 / 7 承诺 / 11 术语 / 16 建议 / 19 / 21 / 22 / 23 / 27 / 31）与规则激活词。
+
+- **正则键**：值是正则 source 字符串，如 `"time_words": "今天|昨天|刚才"`；
+- **映射键** `self_cert_hints`：值是对象 `{ "14": "总结|汇报", "31": "撞墙|盲试" }`（键=规则编号）；
+- **数值键** `criticism_caps_ratio`：0–1 的阈值（英文全大写比率，默认 0.6）。
+
+```json
+{
+  "patterns": {
+    "time_words": "今天|昨天|刚才",
+    "promise_words": "包在我身上|肯定能|万无一失",
+    "self_cert_hints": { "14": "总结|汇报|完成" },
+    "criticism_caps_ratio": 0.6
+  }
+}
+```
+
+#### 3. `criticismPersonal` —— 本机辱骂词枚举（数组）
+
+批评检测的**个人词表**（通用层只留语言无关形态：连续问号/叹号、全大写比率）。
+
+```json
+{ "criticismPersonal": ["示例词一", "示例词二"] }
+```
+
+#### 4. `dualtrack` —— 分层残留词表（**发布者私有**）
+
+它不是行为词表，而是**发布门禁**用的「我这台机器长什么样」清单：`dualtrack-check`（B3 层）与 `local-residue-scan`（B2 层）用它扫 `lib/`，看有没有夹带本机信息（用户名、本机路径、私人概念等）。
+
+| 键 | 作用 |
+|---|---|
+| `markers` | 本机标识词表（字符串数组，每项一个待扫串） |
+| `whitelist` | 本机豁免（`files` 整文件 / `strings` 精确串）——与包内 `scripts/dualtrack-whitelist.json` 合并生效 |
+
+```json
+{
+  "dualtrack": {
+    "markers": ["<你的用户名>", "<你的本机路径片段>"],
+    "whitelist": { "files": [], "strings": [] }
+  }
+}
+```
+
+**加载优先级**（取先命中者）：`rule-engine.json` 的 `dualtrack.markers` → 环境变量 `DUALTRACK_MARKERS` 指向的文件（每行一个，`#` 开头为注释）→ 包内 `scripts/local-residue-markers.txt`（仅示例）。
+
+> **三者皆空 = REFUSED**（fail-closed）：空词表不会被当成「没有残留」，而是直接拒绝执行——**空 txt 文件同样不作为词表源**。闸本身怎么跑，见「开发与测试」章节的「分层残留闸（dualtrack）」。
+
+### 「加一个词」操作路径
+
+1. 打开 `~/.dsh/rule-engine.json`（或你 DSH_HOME 下的同名文件）；
+2. 在 `lexicons` / `patterns` 里找到对应键，用 `|` 追加词（正则元字符需转义，如 `\\.`）；
+3. 保存 → 重载插件（或重启 DSH）；
+4. 想回滚：删掉该键（或整个键值）→ 恢复内置默认。
+
+> **验证**：`/guard status` 查看配置加载是否正常；非法正则/未知键会在启动时记审计（`/guard log` 可查），**不会静默半套生效**。
+
+## 质量账本（可选，默认关）
+
+给**每个安装者**的私有质量统计：同类任务做得多了，能看出返工率是升是降。
+
+### 是什么
+
+| 层 | 内容 | 归属 |
+|---|---|---|
+| 机制 | `lib/core/quality-ledger.js`（`taskSignature` / `recordQuality` / `qualityTrend`） | 随包发布 |
+| 数据 | `~/.dsh/quality-ledger.jsonl`（每单一行） | **本机数据，永不发布** |
+| 配置 | `rule-engine.json` 的 `qualityLedger` 键 | 你的配置 |
+
+### 怎么开
+
+```json
+{ "qualityLedger": { "enabled": true, "window": 5 } }
+```
+
+- `enabled` **默认 false**——不开**不会产生任何文件**；
+- `window`：趋势比较窗口（最近 N 单 vs 之前 N 单，默认 5）。
+
+### 怎么看
+
+按签名查询趋势（同签名 = 同类任务）：
+
+```js
+import { taskSignature, qualityTrend } from "dsh-rule-engine/lib/core/quality-ledger.js";
+const sig = taskSignature("给插件加一个设置项", ["npm test 全绿"]);
+console.log(qualityTrend(sig).summary);   // 方向：rework 改善 / 持平 / 恶化
+```
+
+每单记录的指标：`rework`（返工数）、`interventions`（介入数）、`frictions`（摩擦数=引擎拦截次数）、`tokens`。
+
+### 隐私说明
+
+**落盘的是单向指纹，不是原文。** 签名 = sha256(归一化内容) 取前 12 位；归一化规则（去引号 → 绝对路径替换为 `<path>` → 数字替换为 `<n>` → 折叠空白 → 小写）在机制层公开可审计。即使 `quality-ledger.jsonl` 被人看到，也只能知道「有个 12 位指纹的同类任务做过 N 次、返工趋势如何」，**看不出任务内容**。
+
+> 本机制**不拦截、不评分、不上传**——纯旁路统计。
+
 ## 注入噪音治理（0.5.6 / 0.5.7）
 
 只提醒真正值得提醒的事——这条原则贯穿 0.5.6 与 0.5.7：
@@ -96,6 +241,7 @@ DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯�
 > 更早版本（0.1.0-0.5.5）与本机历史要点见 git 历史；各版本内部"用户定稿"等决策细节不再随发布物携带。
 
 | 版本 | 日期 | 要点 |
+| **0.6.3** | 2026-09-09 | docs(readme): 词表配置章节补齐 dualtrack（markers/whitelist/加载优先级/空表 REFUSED） |
 | **0.6.2** | 2026-09-08 | fix(0.6.2): whitelist 3-round + 0.1.2 adaptation + peer-anchor 0.1.2 + E7 pre-plug wiring  |
 |---|---|---|
 | **0.6.1+（本地增强，未发版）** | 2026-09-07 | 只读豁免清单扩充（用户定调"纯只读顺畅"）：`gh api` 只读态（无 -X/--method/graphql/-F/-f 的段）、`gh release/issue/pr/run view`、`cmdkey /list`、`git ls-remote` 显式；写形态（gh api -F/graphql、git fetch、curl 下载、重定向落盘）保持拦截；26 用例全绿 + 语法体检 + 热重载生效（发版需 bump 0.6.2） |
@@ -116,7 +262,8 @@ DSH 规则执行引擎 v3 的插件实现。它把 `~/.dsh/AGENTS.md` 当作唯�
 
 ## 发行固定源
 
-- **0.6.2（当前）** 固定于 main Commit `92da194`（`git checkout 92da194` 可复现 npm `dsh-rule-engine@0.6.2` 与 GitHub Release v0.6.2 同源代码——0.6.2 = 0.1.2-rc.1 适配（Remote 新合同 `Remote(undefined, …)` / peer 锚扩 `>=0.1.2-rc.0`）+ 白名单 3 轮扩充 + Do- 结构词回归修复 + E7 豁免预插机制上线）。
+- **0.6.3（当前）** 固定于 main Commit `3e87f9d`（`git checkout 3e87f9d` 可复现 npm `dsh-rule-engine@0.6.3` 与 GitHub Release v0.6.3 同源代码——0.6.3 = 分层残留闸 `dualtrack-check`（判据 A：中文≠个人化）+ 词表全量配置化（lexicons / patterns / criticismPersonal / dualtrack 走 `rule-engine.json`）+ 第三批第 1 批文案层 + 三项门禁修复（`--init` 覆盖保护 / loader-smoke 中文夹具 / 中文目录顿号兼容）。
+- **0.6.2** 固定于 main Commit `92da194538fce2f56fa7c6712c70711865772686`（`git checkout 92da194538fce2f56fa7c6712c70711865772686` 可复现 npm `dsh-rule-engine@0.6.2` 与 GitHub Release v0.6.2 同源代码——0.6.2 = 0.1.2-rc.1 适配（Remote 新合同 `Remote(undefined, …)` / peer 锚扩 `>=0.1.2-rc.0`）+ 白名单 3 轮扩充 + Do- 结构词回归修复 + E7 豁免预插机制上线）。
 - **0.6.1** 固定于 main Commit `051e2da`（`git checkout 051e2da` 可复现 npm `dsh-rule-engine@0.6.1` 与 GitHub Release v0.6.1 同源代码——0.6.1 = 豁免预插（release-plugin bump 后自动追加 pnpm minimumReleaseAgeExclude，⑬ 绝对口径防发布后红灯窗口——踩坑 18 镜像）+ 豁免判定单源化（scripts/lib/pnpm-exempt.mjs 与 verify-all ⑬ 共享，4 单测锁定）+ viewFails 发布语境 STRICT 计 ❌ + ⑬ 块头注释绝对口径（E1/E2/E3 收尾批）。
 - **0.6.0** 固定于 main Commit `be5b8c93`（可复现 `dsh-rule-engine@0.6.0` 与 Release v0.6.0——0.6.0 = 本机集成层（localIntegrations 四键）+ 本机痕迹消号 + li-skipped/entry-script-missing 启动审计 + 发布门禁 B1/B2（readme-version-check / local-residue-scan，挂 verify-all/release-plugin/check:meta）+ check-tool-coverage 素材 fail-closed；词表文件 `scripts/local-residue-markers.txt` 为本机门禁工具，不入库、不进发布物（见 .gitignore / package.json files 排除）。固定源之后的提交仅限 README 指针文本）。
 
@@ -265,6 +412,12 @@ bash scripts/build.sh
 ```
 
 交付前体检（0.5.7 起）：`node scripts/verify-all.mjs`（七层：语法/单元/组合冒烟/工具箱覆盖/守卫链覆盖/关联一致性/真实判例）与 `node scripts/health-audit.mjs`（找茬）——详见「质量与验证」。
+
+**分层残留闸（dualtrack）**：`node scripts/dualtrack-check.mjs` 扫描 `lib/` 是否混入发布者私有内容（本机标识 / 个人规则描述），棘轮式**只许降不许升**；已挂 `npm run check:meta` 与 `verify-all.mjs` 第 ⑩′ 层自动调用。基线 `scripts/dualtrack-baseline.json` **随 git 仓库提供、不进 npm 包**：
+
+- **从 git clone 的贡献者无需任何操作**（基线已在仓库里）——**勿在有基线时跑 `--init`**，它会把当前计数覆盖为基线、棘轮当场失效；
+- **仅当基线缺失时**（如从 npm 包解压后跑门禁、或基线被删）首次运行 `node scripts/dualtrack-check.mjs --init` 生成；
+- 词表（哪些字符串算「本机残留」）来自 `rule-engine.json` 的 `dualtrack.markers` → `DUALTRACK_MARKERS` 环境变量 → 包内示例；三者皆空时 **REFUSED**（fail-closed，不会「以为配好了其实没配」）。
 
 发布：`node scripts/release-plugin.mjs <插件名> <版本号>`（一键 npm + git + GitHub Release；发布脚本随插件仓库管理——`scripts/release-plugin.mjs`；改发布脚本后须 `--dry-run` + 代码审查，注意 dry-run 不覆盖 git 段）。
 

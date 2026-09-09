@@ -11,9 +11,9 @@ A persistent **project development memory** for [DeepSeek Harness](https://githu
 
 > The plugin keeps a compact project **memory** on disk, with every entry pointing to a concrete file and line — the agent can reorient quickly instead of re-reading the whole project. Tasks and experience persist across session compactions and handovers.
 
-![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/027945ed1722390776440b0a4c581afafbeb1ed4/docs/images/image.png)
+![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/3500f2e529a091ed469fddcc341e0ecaeade29eb/docs/images/image.png)
 The workflow panel is collapsible, automatically adapts to dsh and theme plugin styles, and offers four card style options to switch between.
-![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/027945ed1722390776440b0a4c581afafbeb1ed4/docs/images/image-4.png)
+![alt text](https://raw.githubusercontent.com/00080000/dsh-project-memory/3500f2e529a091ed469fddcc341e0ecaeade29eb/docs/images/image-4.png)
 ## Features
 
 - **TaskBridge: cross-session development tasks** — the plugin watches each session's live todo list (`todo_write` events) and file reads (`tool/call`): progress snapshots (`steps`) and touched files sync into durable per-project task entities. An unbound session that writes a todo auto-creates a task. New sessions continue by `list_tasks` → `select_task` (bind / rename / unarchive); `query_memory` gains `type: 'task'` and appends a task-count hint to `type: 'all'` results. The user-side `/tasks` command shows the task stack, step progress, involved files, and the current session binding. Titles are chosen by the model via `select_task(title=…)` (fallback: the part of your message after the last colon). Capacity is project-size adaptive (`fileCount/20`, clamped 5–100). Storage: `.dsh-project-memory/tasks.json` + `binding.json`. Auto-sync requires a dsh build with session events + `todo_write` (verified on 0.1.2-alpha.x); on older hosts the task tools still work as a plain record list.

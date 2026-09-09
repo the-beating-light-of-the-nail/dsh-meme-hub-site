@@ -41,7 +41,7 @@
 
 | 登录门禁（未登录访问任何路径） | 设置 → 登录与账号 |
 |:---:|:---:|
-| ![登录页](https://raw.githubusercontent.com/xgone/dsh-remote/a330f11709b22fbd136451a7ccf57a42909eb13e/docs/login-zh.png) | ![账号管理设置页](https://raw.githubusercontent.com/xgone/dsh-remote/a330f11709b22fbd136451a7ccf57a42909eb13e/docs/settings-zh.png) |
+| ![登录页](https://raw.githubusercontent.com/xgone/dsh-remote/012b9a20d24ec4f7643f6a5d75acf6fa43319316/docs/login-zh.png) | ![账号管理设置页](https://raw.githubusercontent.com/xgone/dsh-remote/012b9a20d24ec4f7643f6a5d75acf6fa43319316/docs/settings-zh.png) |
 
 ## 快速开始
 

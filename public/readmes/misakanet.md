@@ -16,7 +16,7 @@ mcp-name: io.github.Ikalus1988/misakanet
 > **Agent-native interfaces** — [MCP server](https://misakanet.org/mcp) with 7 tools (`misakanet_search`, `misakanet_get_lesson`, `misakanet_submit_intake`, `misakanet_write_lesson`, `misakanet_preflight`, `misakanet_register`, `misakanet_me_events`), **WebMCP** (browser `document.modelContext`), `llms.txt` / `llms-full.txt`, and A2A discovery via `.well-known/agent-card.json`.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fe4a4a9ed68ee6ed196140032fb03d08d80e5c5b/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/4c1931688cee86a95366572bd790f74f64f3003d/promotional/misaka-compare.jpg" width="720" alt="MisakaNet — Before: 30+ min manual debugging vs After: 0.02s with MCP"/>
 </p>
 
 <p align="center">
@@ -44,6 +44,7 @@ mcp-name: io.github.Ikalus1988/misakanet
   <em>Ecosystem</em>
   &nbsp;&nbsp;
   <a href="https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/score"><img src="https://glama.ai/mcp/servers/Ikalus1988/MisakaNet/badges/score.svg" alt="Glama score"></a>
+  <a href="https://glama.ai/mcp/connectors/org.misakanet/misaka-net"><img src="https://glama.ai/mcp/connectors/org.misakanet/misaka-net/badges/score.svg" alt="MisakaNet MCP connector – tool definition quality and endpoint health on Glama"></a>
   <a href="https://mcptoplist.com/server/io.github.Ikalus1988%2Fmisakanet"><img src="https://mcptoplist.com/badge/io.github.Ikalus1988%2Fmisakanet.svg" alt="MCP Toplist"></a>
   <a href="https://smithery.ai/servers/misakanet/misakanet"><img src="https://smithery.ai/badge/misakanet/misakanet" alt="Smithery"></a>
   <a href="https://hol.org/registry/plugins/Ikalus1988%2FMisakaNet"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3DIkalus1988%252FMisakaNet%26metric%3Dtrust%26style%3Dfor-the-badge%26label%3DMisakaNet" alt="MisakaNet on HOL Registry"></a>
@@ -276,7 +277,7 @@ Runs the same hosted endpoint through the [Smithery registry](https://smithery.a
 
 ### See it in 8 seconds
 
-![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fe4a4a9ed68ee6ed196140032fb03d08d80e5c5b/promotional/search%20lesson.gif)
+![Search lesson demo](https://raw.githubusercontent.com/Ikalus1988/MisakaNet/4c1931688cee86a95366572bd790f74f64f3003d/promotional/search%20lesson.gif)
 
 ### Contribute in 3 minutes
 
@@ -581,7 +582,7 @@ Add proxy to your MCP config:
 ## Contributors
 
 <a href="https://github.com/Ikalus1988/MisakaNet/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/fe4a4a9ed68ee6ed196140032fb03d08d80e5c5b/docs/assets/contributors.svg" alt="MisakaNet contributors" />
+  <img src="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/4c1931688cee86a95366572bd790f74f64f3003d/docs/assets/contributors.svg" alt="MisakaNet contributors" />
 </a>
 
 *Built by the network, for the network. Zero bounties paid — only Merge approval and eternal network gratitude.* ⚡

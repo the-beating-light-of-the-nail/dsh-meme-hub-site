@@ -9,7 +9,7 @@
 
 <p align="center">
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.5.3-green.svg">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.5.4-green.svg">
 </p>
 
 ---
@@ -20,7 +20,7 @@
 
 还内置可选的 **AI 中间层**（`autoManage`）：开启中间层时，停用的 MCP 立即释放上下文，被中间层接管；模型需要 MCP 工具时，由中间层**临时开启** MCP，按需调用工具；用户手动打开的 MCP 全程对模型保持可见以维持高灵敏调用 —— 上下文占用完全由你的开关决定。
 
-![MCP 管理面板](https://raw.githubusercontent.com/lilyblessing/dsh-mcp-skill-panel/2ab4278b342f3a21c21eab40e37cef0840be1f82/docs/images/mcp-panel.jpg)
+![MCP 管理面板](https://raw.githubusercontent.com/lilyblessing/dsh-mcp-skill-panel/215623d49e02a5cdfb54b302301649f2bb6894fb/docs/images/mcp-panel.jpg)
 
 ## 🎯 核心能力
 
@@ -122,7 +122,7 @@ dsh plugin --profile web add "github:lilyblessing/dsh-mcp-skill-panel#main"
 
 > 📦 已发布到 **npm**：`dsh-mcp-skill-panel`（[npm 页面](https://www.npmjs.com/package/dsh-mcp-skill-panel)）。npm 版为预构建产物，安装可跳过 `allowBuilds` 构建授权，也可直接以包名安装；git 源方式始终可用。
 >
-> ⬆️ **升级**：git 源用户请在 DSH profile 目录执行 `pnpm update dsh-mcp-skill-panel`（`pnpm add` 对相同 spec 不会重解析 git 分支）；npm 用户 `pnpm add dsh-mcp-skill-panel@latest`（当前 latest = **0.5.3**）即可。
+> ⬆️ **升级**：git 源用户请在 DSH profile 目录执行 `pnpm update dsh-mcp-skill-panel`（`pnpm add` 对相同 spec 不会重解析 git 分支）；npm 用户 `pnpm add dsh-mcp-skill-panel@latest`（当前 latest = **0.5.4**）即可。
 
 ## 🚀 使用
 
@@ -257,6 +257,18 @@ node 半区 tsdown 必须 `external: [/^@deepseek-ai\//]`：内联 dsh-tools 会
 `build.mjs` 的顺序必须是「tsdown → tsc dts」：tsdown 的 `clean` 会清掉 `lib/`，若先 tsc 生成、后 tsdown，`lib/types` 会被连带删除（0.4.7 修复，verify 有护栏）。
 
 ## 📋 变更日志
+
+### v0.5.5（2026-09-08）— rc.1 空面板修复（standing 组合兜底）
+
+- 🐛 **空面板修复**：rc.1 起 preset 行挂 standing 组合、不再进 `ctx.loader.entries()`（实证 loader 156 行零 MCP），面板 `mcp[]==0` 空列表。`mcp.length===0` 时以当前会话 preset 的 standing 快照行补行（`compositionInventory` + preset 文本解析 `serverName/transport/超时`）。
+- 🔧 **开关链路**：预设行开关走 `state.json desired` 意图（恒 pending 徽标），`syncPresetFiles`/`applyStateResidue` 负责物化；运行期不写 preset 文件（事故铁律不变）。
+- ⚠️ **范围**：仅面板显示修复；`mcp_call` 预设行直通是后续工作（仍报「不在 loader 中」，`presetTimeoutMs` 仅补超时窄场景 + 60s 缓存）。
+
+### v0.5.4（2026-09-08）— rc.1 兼容（无业务变更）
+
+- 🔧 **rc.1 兼容**：`dsh.client.inject` 去残留 `@deepseek-ai/dsh-client-runtime` 一行；dsh 系 pin `0.1.0-rc.8`→`0.1.2-rc.1`（含 peer `dsh-scope`，新增 `dsh-util-values` 类型依赖）。
+- 🐛 **构建修复**（rc.1 类型漂移，纯类型层、零运行时影响）：`JsonValue` 改自 `@deepseek-ai/dsh-util-values` 导入（`tools` 不再转出）；`CallId` 改名 `ToolCallId`（`dsh-llm`）。
+- ✅ **确认**：`settings.section`（`runtime-inventory`/order 30）沿用 `slots.inject` 写法，与 rc.1 下正常的 `hud 1.3.0` 同构，有效不动。
 
 ### v0.5.3（2026-08-27）— 发布批次：新功能 + 测试期修复 + 工程改进
 

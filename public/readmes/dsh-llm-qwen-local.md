@@ -2,11 +2,11 @@
 
 English | [简体中文](README.zh.md)
 
-![Qwen 本地 (vLLM) settings page](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/c630f3397f6c04e8d90f5d5058cabccf9fd63ab5/docs/assets/setting.png)
+![Qwen 本地 (vLLM) settings page](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/9fa66d596a9384ac287f7136b4fa0680d65f2f91/docs/assets/setting.png)
 
 DeepSeek Harness LLM adapter plugin for a **locally deployed Qwen model** (e.g. Qwen3.8-27B) served by **vLLM** behind its OpenAI-compatible `/v1/chat/completions` endpoint.
 
-> **v0.3.1** · exact compatibility target: DSH `0.1.1-rc.2` · MIT · community-maintained and not a DeepSeek or Qwen product.
+> **v0.3.2** · exact compatibility target: DSH `0.1.2-rc.1` · MIT · community-maintained and not a DeepSeek or Qwen product.
 
 ```sh
 dsh plugin --profile web add dsh-llm-qwen-local
@@ -45,7 +45,7 @@ Two deployment-specific knobs are first-class:
 
 ## Requirements
 
-- An installed `dsh` (the CLI) **0.1.1-rc.2 or newer**, and a vLLM instance serving your Qwen model with the OpenAI-compatible API.
+- An installed `dsh` (the CLI) **0.1.2-rc.1 or newer**, and a vLLM instance serving your Qwen model with the OpenAI-compatible API.
 - Node.js with global `fetch` (18+).
 - A profile whose composition mounts `@deepseek-ai/dsh-attachment` — the standard `web` and `headless` profiles do, via `dsh-base`.
 
@@ -64,7 +64,7 @@ dsh plugin --profile web add github:starefinger/dsh-llm-qwen-local
 dsh plugin --profile web add ./path/to/qwen3.8-LLM-plugin
 
 # or from a packed tarball (prebuilt — no build step on install):
-dsh plugin --profile web add ./dsh-llm-qwen-local-0.3.1.tgz
+dsh plugin --profile web add ./dsh-llm-qwen-local-0.3.2.tgz
 
 # verify the contributed layer, then start:
 dsh --profile web --dump-config
@@ -76,8 +76,8 @@ dsh --profile web
 Each compatibility snapshot is tagged with the dsh version it targets. Snapshots published since 0.3.1 use `dsh-<dsh-version>-plugin-<plugin-version>` (dsh version first, plugin version as suffix); earlier snapshots use the bare `dsh-<dsh-version>` form. **For a given dsh version, several tags may exist — use the one with the newest plugin-version suffix: it is the latest snapshot that supports your dsh.** To install a specific snapshot, append `#<tag>` to the git URL — pnpm resolves the tag to the exact commit, so the install is reproducible and independent of `main`'s current state:
 
 ```sh
-# install the latest snapshot for dsh 0.1.1-rc.2 (plugin 0.3.1):
-dsh plugin --profile web add "git+https://github.com/starefinger/dsh-llm-qwen-local.git#dsh-0.1.1-rc.2-plugin-0.3.1"
+# install the latest snapshot for dsh 0.1.2-rc.1 (plugin 0.3.2):
+dsh plugin --profile web add "git+https://github.com/starefinger/dsh-llm-qwen-local.git#dsh-0.1.2-rc.1-plugin-0.3.2"
 ```
 
 Pick the tag matching your dsh version (`dsh --version`) — when several tags share the same dsh version, take the newest plugin-version suffix. After upgrading dsh, remove and re-add with the tag for the new version:
@@ -97,9 +97,9 @@ Git and local-path installs run the package's `prepare` script (→ `pnpm build`
 
 The bundle's `cordis.patch.yml` inserts a baseline `llm-qwen-local` line (model `qwen3.8`, `multimodal: true`, `off/low/medium/xhigh` efforts, default `xhigh`). Open **Settings → Qwen 本地 (vLLM)** to edit it: endpoint, optional API key (stored in the host credentials service, never in `settings.yaml`), and one card per model — id, display name, context window, output cap, image budgets, the multimodal switch, thinking preservation, and the reasoning-effort table:
 
-![Settings page: endpoint, image budget, API key, and the model card](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/c630f3397f6c04e8d90f5d5058cabccf9fd63ab5/docs/assets/setting.png)
+![Settings page: endpoint, image budget, API key, and the model card](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/9fa66d596a9384ac287f7136b4fa0680d65f2f91/docs/assets/setting.png)
 
-![Settings page: reasoning-effort table, default level, and the discover/save actions](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/c630f3397f6c04e8d90f5d5058cabccf9fd63ab5/docs/assets/setting2.png)
+![Settings page: reasoning-effort table, default level, and the discover/save actions](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/9fa66d596a9384ac287f7136b4fa0680d65f2f91/docs/assets/setting2.png)
 
 - **Discover models** probes `{baseURL}/models` and merges the ids it finds.
 - **Save** applies **live** — the adapter re-resolves per request, so a saved change reaches the next model call without a restart.
@@ -109,13 +109,13 @@ The bundle's `cordis.patch.yml` inserts a baseline `llm-qwen-local` line (model 
 
 In the Web UI's model selector, the baseline `qwen3.8` entry appears under its **Qwen (local)** provider group:
 
-![Model selector with Qwen3.8-27B (local) selected](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/c630f3397f6c04e8d90f5d5058cabccf9fd63ab5/docs/assets/use_guide_1.png)
+![Model selector with Qwen3.8-27B (local) selected](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/9fa66d596a9384ac287f7136b4fa0680d65f2f91/docs/assets/use_guide_1.png)
 
 ### 3. Switch the reasoning level per request
 
 Click the input footer (model name + effort, e.g. `Qwen3.8-27B (local) xhigh`) to switch the session model or the per-request **reasoning level** (the levels your config declares, e.g. `off` / `low` / `medium` / `xhigh`):
 
-![Reasoning level menu opened from the input footer](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/c630f3397f6c04e8d90f5d5058cabccf9fd63ab5/docs/assets/use_guide_2.png)
+![Reasoning level menu opened from the input footer](https://raw.githubusercontent.com/starefinger/dsh-llm-qwen-local/9fa66d596a9384ac287f7136b4fa0680d65f2f91/docs/assets/use_guide_2.png)
 
 ## Configuration at a glance
 

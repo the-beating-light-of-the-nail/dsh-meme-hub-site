@@ -12,7 +12,7 @@
 - **开箱即用**：安装和启用插件后，在 DSH 中直接使用，无需额外配置。
 
 
-![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/bd6a77de40523cd6686b5cce16170eedf5ab6307/assets/1.png)
+![WorkBuddy 模型出现在 DSH 模型选择器中](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/6cba7b98cb44afb77e18b29fd8542cc73a278a37/assets/1.png)
 
 
 - **图片输入**：大部分模型支持发图，在对话里直接粘贴或拖入图片即可（GLM-5.3-Flash、GLM-5.2、DeepSeek-V4 系列等）；少数只支持文字的模型（如 GLM-5.1）会明确提示不支持。
@@ -30,11 +30,11 @@
 - **信息查看**：设置 → 插件 → DSH WorkBuddy Connect 卡片
 
 
-![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/bd6a77de40523cd6686b5cce16170eedf5ab6307/assets/2.png)
+![设置卡片显示插件](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/6cba7b98cb44afb77e18b29fd8542cc73a278a37/assets/2.png)
 
 卡片展开后，可查看账号信息、令牌有效期与剩余积分。
 
-![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/bd6a77de40523cd6686b5cce16170eedf5ab6307/assets/3.png)
+![设置卡片显示账号与剩余积分](https://raw.githubusercontent.com/corrinehu/dsh-workbuddy-connect/6cba7b98cb44afb77e18b29fd8542cc73a278a37/assets/3.png)
 
 ## 安装
 
@@ -74,7 +74,7 @@ dsh plugin --profile dsh-tui add dsh-workbuddy-connect
 dsh --profile dsh-tui
 ```
 
-> **TUI 用户请先留在 0.2.6**：实测在 TUI 上安装本插件 0.3.0 会导致启动崩溃（报 `events is not iterable`），原因是终端界面插件 `@deepseek-harness-tui/dsh-tui` 还没适配 DSH 新核心（修复已提交，尚未发版）。建议 TUI 用户暂时继续使用 DSH `0.1.1-rc.2` 和本插件 `0.2.6`，等终端界面插件发布适配版本后再升级 0.3.0。
+> **TUI 用户请注意版本搭配**：终端界面插件 `@deepseek-harness-tui/dsh-tui` 需要 **`0.10.0-beta.5` 及以上**（更早的版本装了本插件会启动失败，报 `events is not iterable`）。请先用 TUI 自带的更新方式把壳升到 beta.5 及以上，再安装本插件；当前最新的是 beta 版，正式版发布后同样可用。
 
 > 提示：`dsh-tui` profile 需用 pnpm 11 安装（PATH 里是其他版本会报 `ERR_PNPM_UNEXPECTED_STORE`，用 `npx pnpm@11` 即可）。
 
@@ -86,7 +86,7 @@ dsh --profile dsh-tui
 
 ## 已知限制
 
-- 在 macOS 的 DSH Web / Desktop profile（`0.1.2-rc.1`+、Node 22+）下验证通过；TUI 待终端界面插件发布 0.1.2 适配版后验证（见安装章节说明）。Windows 会依次探测 Local 与 Roaming AppData；WSL 会优先从挂载的 Windows 用户目录读取登录凭据。若 Windows 与 Linux 用户名不同且 Windows 环境变量未传入 WSL，请通过 `WORKBUDDY_AUTH_FILE` 指定实际位置。
+- 在 macOS 的 DSH Web / Desktop / TUI 下验证通过（`0.1.2-rc.1`+、Node 22+；TUI 需终端界面插件 `0.10.0-beta.5` 及以上，见安装章节说明）。Windows 会依次探测 Local 与 Roaming AppData；WSL 会优先从挂载的 Windows 用户目录读取登录凭据。若 Windows 与 Linux 用户名不同且 Windows 环境变量未传入 WSL，请通过 `WORKBUDDY_AUTH_FILE` 指定实际位置。
 - 依赖 WorkBuddy 客户端接口（非官方开放 API），WorkBuddy 更新后插件可能需要随之调整。
 
 ## 免责声明

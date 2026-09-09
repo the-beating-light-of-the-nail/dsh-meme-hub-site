@@ -18,9 +18,9 @@ and opens them with **Ctrl+click** (⌘ on macOS):
 Plain clicks stay inert, so text selection and copy are never disturbed. When a
 path does not exist, a small toast explains why instead of failing silently.
 
-![ctrl+click tooltip](https://raw.githubusercontent.com/penguin-oo/dsh-pathlink/ddc5a9f3fe0bba72d86f4af14fde58283ccbd238/docs/screenshot-tooltip.png)
+![ctrl+click tooltip](https://raw.githubusercontent.com/penguin-oo/dsh-pathlink/b1275a4f983b67ab02a58fcb75a634f19078f65b/docs/screenshot-tooltip.png)
 
-![recognized path in chat](https://raw.githubusercontent.com/penguin-oo/dsh-pathlink/ddc5a9f3fe0bba72d86f4af14fde58283ccbd238/docs/screenshot-recognized.png)
+![recognized path in chat](https://raw.githubusercontent.com/penguin-oo/dsh-pathlink/b1275a4f983b67ab02a58fcb75a634f19078f65b/docs/screenshot-recognized.png)
 
 > ① Hovering a path shows the Ctrl+click hint — Ctrl+click opens the containing
 > folder with the file selected · ② The recognized path in a real conversation

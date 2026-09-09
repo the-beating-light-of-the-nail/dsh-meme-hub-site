@@ -34,7 +34,7 @@ dsh web
 
 | 浅色 Light | 深色 Dark |
 | --- | --- |
-| ![Light](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/ec93f4302880d1655480d06e12bb9f7f1434a1f6/preview/light-v2.webp) | ![Dark](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/ec93f4302880d1655480d06e12bb9f7f1434a1f6/preview/dark-v2.webp) |
+| ![Light](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/dbeb73fd2788358884512034d5d9b356d07a36c7/preview/light-v2.webp) | ![Dark](https://raw.githubusercontent.com/lengzhanbao/dsh-taffy-theme/dbeb73fd2788358884512034d5d9b356d07a36c7/preview/dark-v2.webp) |
 
 ## 简介
 

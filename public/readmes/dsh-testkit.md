@@ -75,9 +75,9 @@ resolve -> install-dsh -> package -> install-plugin -> assemble -> boot -> regis
         -> exercise -> update? -> uninstall -> reboot -> recover? -> cleanup
 ```
 
-The adapter currently accepts exact `@deepseek-ai/dsh` versions `0.1.1-rc.2` (default), `0.1.0-rc.8`, `0.1.0-rc.7`, and `0.1.0-rc.6`. An unknown version stops before runner creation with exit code `4`, so host drift is not mislabeled as a plugin failure.
+DSH Testkit `0.4.3` accepts exact `@deepseek-ai/dsh` versions `0.1.1-rc.2` (default), `0.1.2-rc.1`, `0.1.0-rc.8`, `0.1.0-rc.7`, and `0.1.0-rc.6`. Use npm `dsh-testkit@0.4.3` or the corresponding Action release for this support matrix. An unknown version stops before runner creation with exit code `4`, so host drift is not mislabeled as a plugin failure.
 
-The disposable canary matrix follows exact npm artifacts and immutable upstream releases independently of formal support. As of 2026-09-08, npm provides `0.1.2-alpha.2` through `0.1.2-alpha.5`, `0.1.2-rc.1`, and `0.1.3-alpha.2`; the official `0.1.2-alpha.1` and `0.1.3-alpha.1` releases are waiting for matching npm packages. These candidates are not formally supported. See [Host Compatibility](docs/host-compatibility.md) for known failures, evidence, and promotion requirements.
+The disposable canary matrix follows exact npm artifacts and immutable upstream releases independently of formal support. As of 2026-09-08, unsupported published alpha versions include `0.1.2-alpha.2` through `0.1.2-alpha.5` and `0.1.3-alpha.2`. Release Watch selects versions newer than the highest supported host: its current runnable candidate is `0.1.3-alpha.2`, while `0.1.3-alpha.1` awaits a matching npm package. The older official `0.1.2-alpha.1` also has no matching npm artifact and is outside the current watch range. See [Host Compatibility](docs/host-compatibility.md) for evidence and promotion requirements.
 
 ### What A Pass Means
 
@@ -153,7 +153,7 @@ steps:
       publish-junit-check: 'false'
 ```
 
-This default writes JUnit annotations to the job, uploads the complete evidence directory, and exposes the artifact ID, URL, digest, report path, and stable exit code. It does not call the Checks API.
+This default writes JUnit annotations to the job and exposes the artifact ID, URL, digest, report path, and stable exit code. It does not call the Checks API. The source Action checks evidence before either publication outlet and uploads only a fresh staged copy with a hash manifest. Unsafe evidence fails the job and is not published. This guard is not included in the published `v0` Action until a release includes it.
 
 A trusted push or release workflow may opt into a named JUnit Check:
 
@@ -181,7 +181,7 @@ The project-local Skill and the exported `dsh-testkit/skills/dsh-testkit/SKILL.m
 DSH Testkit also ships an optional, community-maintained DSH Profile Bundle:
 
 ```bash
-dsh plugin --profile web add dsh-testkit@0.4.2
+dsh plugin --profile web add dsh-testkit@0.4.3
 dsh --profile web --dump-config
 ```
 

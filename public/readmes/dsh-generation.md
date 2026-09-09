@@ -6,13 +6,15 @@ A DeepSeek Harness plugin that **forks agent presets and runs a task on the next
 
 It is **make, not a compiler**. Creator mode is already the compiler: it can inspect the runtime, edit files, and author presets. This plugin only records a lineage — copy a known-good preset, let the meta agent edit that copy with ordinary `fs` / `bash`, then start a **new** working session on it.
 
+Compatible with DeepSeek Harness **0.1.2+** (`dsh-v0.1.3-alpha.2` and current `master`). It needs `Session.snapshotEvents()`, async `ctx.agents.create({ sessionId, meta, signal, setup })`, Host-global `ctx.tools.register`, and `dsh.bundle.patch`. Do not add `@deepseek-ai/*` to this package — a second copy of those modules crashes tool dispatch.
+
 ## Install
 
 ```sh
-dsh plugin --profile web add github:goecho/dsh-generation#fb2f69d
+dsh plugin --profile web add github:goecho/dsh-generation
 ```
 
-Then **restart** `dsh --profile web` so the host profile reloads. Pin that commit, or a later SHA from the [commit history](https://github.com/goecho/dsh-generation/commits/main), after you have read the source. The package is plain JavaScript, so git installs do not need a `prepare` build allowlist.
+Then **restart** `dsh --profile web` so the host profile reloads. Pin a SHA from the [commit history](https://github.com/goecho/dsh-generation/commits/main) after you have read the source. The package is plain JavaScript, so git installs do not need a `prepare` build allowlist. Plugin 0.2.0 is the line that talks to `snapshotEvents()` and passes the parent `AbortSignal` into `agents.create`.
 
 Then open a **Creator mode** (`cordis`) session — or a copy of that preset whose composition still has a plugin row `name: '@deepseek-ai/dsh-tool-cordis'`.
 
@@ -78,7 +80,7 @@ Returns `{ ok, id, from, purpose, path, compositionPath }` where `path` is the p
 | `preset` | yes | Preset id to mount on the new working session. Must not be `cordis`. |
 | `task` | yes | Self-contained follow-up for the worker. It does not see meta history. |
 
-Refuses a worker whose composition still has a plugin row `name: '@deepseek-ai/dsh-tool-cordis'`. Inherits the meta session’s workspace `cwd`, records `origin: subagent` and `parentSession` so logs chain, and does not dump the full worker transcript into the meta context. If the worker never goes idle, it is cancelled after 15 minutes (`stopReason: "timeout"`). Domain failures keep `{ ok: false }` but render as `ERROR:` so the model notices.
+Refuses a worker whose composition still has a plugin row `name: '@deepseek-ai/dsh-tool-cordis'`. Inherits the meta session’s workspace `cwd`, records `origin: subagent` and `parentSession` so logs chain, and passes the parent tool `AbortSignal` into `agents.create` so cancelling the meta tool also aborts worker creation. It does not dump the full worker transcript into the meta context. Worker logs are read with `snapshotEvents()`. If the worker never goes idle, it is cancelled after 15 minutes (`stopReason: "timeout"`). Domain failures keep `{ ok: false }` but render as `ERROR:` so the model notices.
 
 Returns `{ ok, sessionId, presetId, stopReason, toolsUsed, lastAssistantText }`.
 

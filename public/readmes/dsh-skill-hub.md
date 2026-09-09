@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/82f9d11b571ed30e9b36f07e91c9f4ee31215597/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
+  <img src="https://raw.githubusercontent.com/cheshireez/dsh-skill-hub/a81074052665ac8826bc2415763b25af7b44c53c/promo/real-skill-hub.png" alt="dsh-skill-hub panel" width="640">
 </p>
 
 In-GUI skill hub for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — browse the full `ctx.skills` catalog, toggle skills, inspect bodies, fix discovery issues, install from the market, and scaffold new ones.
@@ -24,7 +24,7 @@ dsh plugin --profile web add dsh-skill-hub
 # restart dsh web → Settings → 技能 → Market → scan → import
 ```
 
-Requires `Node ^22.19 || >=24` + dsh web (`0.1.2-alpha.5`, `0.1.x` forward compatible).
+Requires `Node ^22.19 || >=24` + dsh web (`0.1.5-alpha.1`, `0.1.x` forward compatible).
 
 ## Features
 

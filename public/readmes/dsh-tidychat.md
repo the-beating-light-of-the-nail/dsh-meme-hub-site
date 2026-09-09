@@ -28,7 +28,7 @@
 | --- | --- |
 | 🗂 自动折叠 | 已完成轮次自动收起思考（Think）、工具调用与中间文字，只保留最终总结；控制条含「过程 N 步」和处理时长（用时 / 首 token / 速率） |
 | ➖ 分隔线 | 思考行与正文之间的实线，一眼区分「过程」与「结论」 |
-| 📍 左缘定位条（Adaptive Navigation Rail） | **旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x，无官方右缘 TurnNavigator）可用**（navigator 开）；**DSH 0.1.2+ 暂停**（与官方新功能冲突 + react-dom 问题）。历史能力：固定高度 Canvas minimap，任意轮次全局映射；鱼眼悬停、拖动预览、点击跳转、当前轮次高亮；配色可自适应或手动选「色系 × 明度」 |
+| 📍 左缘定位条（Adaptive Navigation Rail） | **旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x，无官方右缘 TurnNavigator）可用**（navigator 开）；**DSH 0.1.2+ 暂停**（与官方新功能冲突 + react-dom 问题）。历史能力：固定高度 Canvas minimap，任意轮次全局映射；鱼眼悬停、拖动预览、点击跳转、当前轮次高亮；配色可自适应，或用调色盘自定义（HEX/RGB 输入 + 透明度） |
 | ⬆ 智能加载更早历史 | 页面空闲时逐步加载更早记录；检测到页面响应开始下降时自动暂停，保持长会话流畅，需要时仍可手动继续加载 |
 | 📤 一键报告问题 | 自动生成诊断报告（版本/浏览器/性能数据/异常检测/现象标签），一键打开 GitHub issue 预填页，标题正文全带，零手写提交 |
 
@@ -39,20 +39,20 @@
 **自动折叠**：已完成轮次收成一条控制条，只留最终结论（上）；点击「展开」恢复思考、工具调用与中间文字（下）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
 </p>
 
 **左缘定位条（Canvas minimap）**：在**无官方右缘 TurnNavigator 的旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）可用**（navigator 开）；**DSH 0.1.2+ 暂停**（与官方新功能冲突 + react-dom）。下图为历史版本运行效果。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要（历史版本）">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要（历史版本）">
 </p>
 
 **设置面板**：四个功能独立开关 + 现象标签 + 一键「生成诊断报告并提交」，改动即时生效。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/45d6a7958cb615529a086e080e0d2035fc8c380d/assets/settings.png" width="92%" alt="设置面板四开关">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/settings.png" width="92%" alt="设置面板四开关">
 </p>
 
 ## 🚀 安装
@@ -64,7 +64,7 @@
 dsh plugin --profile web add @bananasoldier01/dsh-tidychat
 
 # 方式 2：从 GitHub 安装（推荐钉版本，可复现）
-dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.8
+dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.9
 ```
 
 安装后重启 dsh web + 硬刷新（Cmd+Shift+R）。
@@ -78,7 +78,7 @@ dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat
 dsh plugin --profile web update @bananasoldier01/dsh-tidychat
 
 # 方式 B：装的是某个 tag，改钉到新 tag 重新 add
-dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.8
+dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat.git#v0.2.9
 ```
 
 更新后同样重启 dsh web + 硬刷新。
@@ -151,10 +151,16 @@ dsh plugin --profile web add git+https://github.com/BananaSoldier01/dsh-tidychat
 1. **settings 注册自动适配**：宿主注册配置时按 DSH 版本自动选用 API——0.1.2+ 用 `installSection`，0.1.0-rc.7 / 0.1.1-rc.x 用 `register`——让同一份插件在 **DSH 0.1.0-rc.7 ~ 0.1.2-rc.1** 都能正常加载并注册设置开关（此前 0.2.6 沿用 0.1.2 的 `installSection`，在旧版 DSH 上会报 “Failed to load plugins”）。
 2. **左缘定位条**：仍与官方新功能冲突、且依赖 `react-dom`，继续暂缓显示（本次兼容不恢复它）。
 
-### 0.2.8（已发布，本次）—— 旧版 DSH（无右缘 TurnNavigator）整套可用
+### 0.2.8（已发布）—— 旧版 DSH（无右缘 TurnNavigator）整套可用
 
 1. **折叠/分隔线兼容回退**：折叠分组在 `data-chat-turn` 缺失（旧版 DSH 0.1.0-rc.7 ~ 0.1.1-rc.x）时，回退到从 `data-chat-anchor-key` 解析 turn 号（v0.2.5 做法），让折叠/分隔线在旧版 DSH 也生效（0.1.2+ 仍走 `data-chat-turn`，行为不变）。
 2. **左缘定位条确认可用**：旧版 DSH 没有官方右缘 TurnNavigator，旧槽 `conversation.session.header.utilities` 存在且被渲染、所需 DOM 锚点均在（0.1.1-rc.2 源码确认）——**旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）定位条可正常使用**（navigator 开）；DSH 0.1.2+ 因有官方右缘 TurnNavigator 仍暂停。
+
+### 0.2.9（已发布，本次）—— 调色盘配色 + 折叠残留标记修复
+
+1. **配色改为调色盘**：定位条默认色 / 强调色由「色系 × 明度」chip 改为「自动 / 自定义」二选一；自定义 = 原生取色器无极调色 + HEX/`rgb()`/`rgba()` 文本输入 + 透明度滑杆，实时色块预览。host schema 新增 `navColorCustom` / `navAccentCustom`（旧色系值仍兼容解析）。
+2. **修复折叠残留标记（issue #12 疑似根因）**：`applyFold` 只遍历本轮判定要折叠的行，若某行从「整行折叠（whole）」变成「只折叠思考（inline）」，旧的 `data-tidychat-folded` 不会被移除 → 该行被 CSS 永久隐藏（含总结正文），直到刷新页面。现在每轮重算前先统一清理标记再按本轮判定重打（同任务内完成，不闪烁）；同时修复「关闭 fold 开关后先前折叠的行仍隐藏」。
+3. **修复悬停摘要文字色被换肤覆盖**（PR #9，issue #11）：`.tidychat-nav-tip` 双类名 + `!important`，`applyTipContrast()` 的 token 读取源由 `documentElement` 改为 `document.body`（DSH 的 `--dsw-alias-*` token 定义在 body，html 上读不到）。
 
 ### 下一版本（候选）
 
@@ -180,7 +186,7 @@ dsh plugin --profile web add link:$PWD
 - **思考↔文字分隔线**：在思考行与正文文字之间插入实线，区分过程与结论。
 - **左缘定位条**：聊天区左缘的细窄条状导航，悬停显示摘要、点击跳转到对应消息。
 - **智能加载更早历史**：页面空闲时逐步加载更早记录；检测到页面响应下降时自动暂停，保持长会话流畅，需要时仍可手动继续。
-- **配色（高级，卡片内可折叠）**：两组均按「色系 × 多级明度」正交配置。**默认色**默认「自动」——优先用宿主淡色文字色，与聊天区背景对比不足时自动切纠偏灰（深背景淡灰、浅背景深灰），也可手动选色系（灰/黑/白/蓝/紫/青/绿/橙/红）与明度（l1 极浅 → l5 极深）；**强调色**控制「当前轮次 + 悬停/导航目标回合」的高亮色，默认「自动」= 跟随主题品牌色（`--dsw-alias-state-business-primary`）。
+- **配色（高级，卡片内可折叠）**：**默认色**与**强调色**各自「自动 / 自定义」二选一。**自动**：默认色优先用宿主淡色文字色，与聊天区背景对比不足时自动切纠偏灰（深背景淡灰、浅背景深灰）；强调色跟随主题品牌色（`--dsw-alias-state-business-primary`）。**自定义**：调色盘无极调色（原生取色器），或直接输入 HEX / `rgb()` / `rgba()` 精确定位，另有透明度滑杆；**强调色**控制「当前轮次 + 悬停回合」的高亮色。
 
 ## 🔧 原理
 

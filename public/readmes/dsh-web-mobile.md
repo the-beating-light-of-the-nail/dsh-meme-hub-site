@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/42cf783fe04c3e141b557bf0ff7e4620eb98ceab/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -30,7 +30,7 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/42cf783fe04c3e141b557bf0ff7e4620eb98ceab/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/42cf783fe04c3e141b557bf0ff7e4620eb98ceab/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/42cf783fe04c3e141b557bf0ff7e4620eb98ceab/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/settings.png) |
 
 ## 更新内容
 
@@ -38,8 +38,8 @@
 
 **新功能**
 
-- 移动端会话删除（移植自 fork wzxmt-zhc v2.7.0）：会话行 ⋯ 菜单新增「删除会话」项，配底部确认弹窗；宿主新增删除端点，冷会话连同存储目录整体删除，运行中的会话拒绝并提示先停止。宿主抽屉以会话行形式渲染会话列表后生效（0.1.1-rc.2 的抽屉是图标栏，属宿主升级预备）
-- dsh-file-viewer 移动端适配（移植自 fork wzxmt-zhc）：查看器面板套用移动端布局，工具栏按钮与文件行达到触达尺寸，搜索框 16px 避免 iOS 聚焦放大，CSV/代码区横向滚动归滚动容器；未安装该插件时零影响
+- 移动端会话删除（移植自 fork wzxmt-zhc v2.7.0）：会话行 ⋯ 菜单新增「删除会话」项，配确认弹窗。宿主抽屉以会话行形式渲染会话列表后生效（0.1.1-rc.2 的抽屉是图标栏，属宿主升级预备）
+- dsh-file-viewer 移动端适配（移植自 fork wzxmt-zhc）：查看器面板套用移动端布局，未安装该插件时零影响
 
 **变更**
 
@@ -181,7 +181,7 @@ pnpm build
 
 - **先读 [AGENTS.md](AGENTS.md)**：带注释的仓库树、每条 Pitfall 的紧凑不变式与完整档案（`docs/maintenance/pitfalls.md`）。
 - 本地门：`pnpm verify`（typecheck）→ `pnpm test:core`（单测）→ `pnpm build`；`lib/` 随源码入库，漏构建会被 CI 的 `git diff --exit-code lib` 新鲜度门拦下。
-- 回归探针：`scripts/probes/` 七个历史锚点可单跑；主探针 `pnpm smoke:cdp`、手势门 `scripts/cdp-swipe-failures.mjs`、iOS 放大守卫 `scripts/cdp-zoom-probe.mjs`（CDP 环境参数见 AGENTS.md）。
+- 回归探针：`scripts/probes/` 八个历史锚点可单跑（会话删除探针兼作宿主升级绊线）；主探针 `pnpm smoke:cdp`、手势门 `scripts/cdp-swipe-failures.mjs`、iOS 放大守卫 `scripts/cdp-zoom-probe.mjs`（CDP 环境参数见 AGENTS.md）。
 - 设计文档在 `docs/specs/`；宿主升级对账走 `docs/upstream/`——`node scripts/cdp-compat-contracts.mjs` 一键核对 CSS module 哈希是否漂移。
 
 ## License

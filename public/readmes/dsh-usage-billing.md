@@ -6,7 +6,7 @@
 
 针对 DeepSeek Harness 的**免构建**双面插件：自动统计本机所有会话的 DeepSeek 模型调用，按官方定价分段计费，并在主界面与设置页提供图表化的用量面板。
 
-> 计费口径：2026-08-17 00:00（北京时间）前旧价；之后峰谷定价（高峰为**工作日** 9:00–12:00、14:00–18:00（2026-08-23 起生效，此前周末同样计高峰），空闲价为高峰价的一半）。价格表见文末。
+> 计费口径：2026-08-17 00:00（北京时间）前旧价；之后峰谷定价（高峰为**工作日** 9:00–12:00、14:00–18:00（2026-08-23 起生效，此前周末同样计高峰），空闲价为高峰价的一半；9/10 12:00 起 flash 系列再次调价（空闲 hit 0.02 / miss 1 / out 4，高峰 ×2，pro 不变））。价格表见文末。
 
 ## 功能
 
@@ -35,19 +35,19 @@
 
 **统计弹窗 · 总览**（主界面侧边栏卡片点开）
 
-![统计弹窗总览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/e2939bd2a1a18e70b51d36df78b740d378964436/assets/screenshots/02-stats-dialog-overview.png)
+![统计弹窗总览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/02-stats-dialog-overview.png)
 
 **统计弹窗 · 图表区**（分段占比 + 用量热力图，支持 ¥/USD 切换）
 
-![统计弹窗图表](https://raw.githubusercontent.com/940842546/dsh-usage-billing/e2939bd2a1a18e70b51d36df78b740d378964436/assets/screenshots/03-stats-dialog-charts.png)
+![统计弹窗图表](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/03-stats-dialog-charts.png)
 
 **美元模式**（弹窗右上角一键切换，汇率换算）
 
-![美元模式](https://raw.githubusercontent.com/940842546/dsh-usage-billing/e2939bd2a1a18e70b51d36df78b740d378964436/assets/screenshots/07-stats-dialog-usd.png)
+![美元模式](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/07-stats-dialog-usd.png)
 
 **设置页 · 用量统计**
 
-![设置页概览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/e2939bd2a1a18e70b51d36df78b740d378964436/assets/screenshots/04-settings-usage-overview.png)
+![设置页概览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/04-settings-usage-overview.png)
 
 ## 安装
 
@@ -100,6 +100,8 @@ npm 包：https://www.npmjs.com/package/dsh-usage-billing
 | 8/17 后·高峰 | v4-flash | 0.10 | 3.0 | 9.0 |
 | 8/17 后·空闲 | v4-pro | 0.15 | 4.5 | 13.5 |
 | 8/17 后·高峰 | v4-pro | 0.30 | 9.0 | 27.0 |
+| 9/10 12:00 后·空闲 | v4-flash | 0.02 | 1 | 4 |
+| 9/10 12:00 后·高峰 | v4-flash | 0.04 | 2 | 8 |
 
 > 模型按名称子串归类计价：名字含 `flash`（含 `deepseek-v4-flash-vision-exp` 等视觉变体，官方同价）按 flash 档，含 `pro` 按 pro 档，其余归入「未定价/免费」。
 

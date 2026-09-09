@@ -10,7 +10,7 @@ Licensed under the MIT License. See the LICENSE file for details.
 > 自选跑马灯、首字母模糊搜索、持仓盈亏管理，A股 / 港股 / 美股 / 指数 / 加密 / 外汇一站式盯盘。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/linhut/dsh-stock-terminal/4aee1e7a9ec9a89b994d43648a86a65b6dcdce83/assets/screenshot.png" alt="dsh-stock-terminal 截图" width="100%">
+  <img src="https://raw.githubusercontent.com/linhut/dsh-stock-terminal/6c9c10523d9e9cb1966dea90d4da401ff6dc28b9/assets/screenshot.png" alt="dsh-stock-terminal 截图" width="100%">
 </p>
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)

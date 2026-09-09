@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/30f7d0ae7e46b9d407007836a27d4296557dd5e4/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 <p align="center">
@@ -23,9 +23,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
 - **Extensions (Go or Rust)** — native binaries speak the **PXB** binary protocol over stdin/stdout; official author SDKs for Go ([`ext/go`](ext/go)) and Rust ([`ext/rust`](ext/rust)): LLM tools, slash commands, event intercepts, confirm dialogs — no reflection; JSON at the SDK edges via `serde_json`. See [Extensions](#extensions)
 - **Any model** — OpenAI-compatible or Anthropic, no vendor lock-in
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/30f7d0ae7e46b9d407007836a27d4296557dd5e4/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/30f7d0ae7e46b9d407007836a27d4296557dd5e4/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/image.png)
 
 - [Docs](https://pulseaiclub.github.io/docs/getting-started/)
 - [Quick start](#quick-start)
@@ -115,7 +115,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/30f7d0ae7e46b9d407007836a27d4296557dd5e4/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -433,11 +433,11 @@ Sub-agents themselves use a **role** (`explore` default | `review` | `worker`):
 
 | Role | Tools | Use for |
 |------|--------|---------|
-| `explore` | read-only (+ allowlisted bash) | Search / map structure |
-| `review` | read-only (+ allowlisted bash) | Diffs / checks; no edits |
-| `worker` | full tools except nesting | Planned, independent edits |
+| `explore` | no write/edit; bash except hard denies | Multi-hop recon / map structure |
+| `review` | same as explore | Diffs / checks; report only |
+| `worker` | full tools except nesting; bash except hard denies | Scoped, self-contained edits |
 
-Default stays explore (read-only). Prefer worker only after the parent has a concrete plan.
+Default stays explore (no edits). Prefer worker when the task is to implement a scoped change in an isolated context.
 
 ## Tools
 

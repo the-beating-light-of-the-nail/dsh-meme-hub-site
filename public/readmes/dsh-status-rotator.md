@@ -13,9 +13,9 @@
 dsh plugin --profile web add dsh-status-rotator
 ```
 
-**v0.15.1 — stable release**(v0.15.0 → v0.15.1: a new default-enabled `star` pack — star-ask phrases plus one phrase per current stargazer, `正在路由 <login> 写代码…`; the default bank grows 886 → 1047 phrases across 11 theme packs)
+**v0.16.1 — stable release**(v0.16.0 → v0.16.1: **danmaku is visible again** — the layer now mounts inside the element that paints the app background instead of the app frame, which the conversation panel's own opaque background was covering; **the settings layer works again** after `@deepseek-ai/dsh-settings` stopped exporting `settingsNamespace()`, a thrown-and-swallowed call that had silently disabled saved settings)
 
-> ⭐ **If this made you smile, give it a star** — it keeps the memes flowing.
+> ⭐ **Star it and your GitHub name joins the rotation** — the `star-route` pack carries one phrase per stargazer (`正在路由 <login> 写代码…`) and a workflow refreshes the list every week. 75 names so far.
 
 A [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) client plugin that replaces the hardcoded `Deep diving...` status line in the Web UI's turn footer with your own phrase bank: phase-aware switching, typewriter output, timed rotation, weighted random picking, template placeholders with live values, an animated rainbow gradient, video-site-style danmaku, and a real-time engine that feeds the phrases and the browser tab title. The elapsed-time clock of the UI (which appears after 15 seconds) is left untouched.
 
@@ -82,7 +82,7 @@ The plugin's `package.json` declares a `dsh.bundle.patch` manifest, so it is rec
 
 ### First run
 
-On first start the plugin serves the `config.json` sitting next to the package (all 1047 default phrases are inside it — see [Phrase Bank](#phrase-bank)). To tweak phrases or options you can either edit that file (hot-reloaded while the page is open) or use the new **Status Texts** page in DSH Settings (bottom-left) — see [Settings Page](#settings-page).
+On first start the plugin serves, in order: your **saved settings** (`$DSH_HOME/settings.yaml`, namespace `status-rotator`) merged over the `config.json` sitting next to the package — or over `config.example.json` when that file is absent, which is the case for npm installs (all 1059 default phrases live inside it — see [Phrase Bank](#phrase-bank)). To tweak phrases or options you can either edit that file (hot-reloaded while the page is open) or use the **Status Texts** page in DSH Settings (bottom-left) — see [Settings Page](#settings-page).
 
 ## How It Works
 
@@ -104,29 +104,37 @@ The status label is located precisely by `role="status"` + `aria-live="polite"`,
 
 ## Phrase Bank
 
-The default bank ships **1047 phrases**, split into **11 theme packs** (the core `phrases` table is empty — everything lives in packs, all enabled by default):
+The default bank ships **1059 phrases**, split into **12 theme packs** (the core `phrases` table is empty — everything lives in packs). Ten packs are enabled by default; the two **star packs are shipped but off by default** — turn them on from Settings → Status Texts → Phrase packs:
 
-| Pack | zh | en | Total |
-| --- | --- | --- | --- |
-| `deepseek` DeepSeek 专场 | 103 | 111 | 214 |
-| `coding` 写代码日常 | 84 | 81 | 165 |
-| `daily` 日常 | 77 | 64 | 141 |
-| `internet-memes` 网络梗 | 54 | 33 | 87 |
-| `sysadmin` 系统管理 | 41 | 38 | 79 |
-| `slacking` 摸鱼 | 36 | 29 | 65 |
-| `math-physics` 数学与物理 | 31 | 18 | 49 |
-| `western-ai` 西方 AI 圈 | 16 | 18 | 34 |
-| `reverse-proxy` 反代 | 14 | 16 | 30 |
-| `china-ai` 中国 AI 圈 | 12 | 10 | 22 |
-| `star` 求star | 80 | 81 | 161 |
-| **total** | **548** | **499** | **1047** |
+| Pack | zh | en | Total | Default |
+| --- | --- | --- | --- | --- |
+| `deepseek` DeepSeek 专场 | 103 | 111 | 214 | on |
+| `coding` 写代码日常 | 84 | 81 | 165 | on |
+| `daily` 日常 | 77 | 64 | 141 | on |
+| `internet-memes` 网络梗 | 54 | 33 | 87 | on |
+| `sysadmin` 系统管理 | 41 | 38 | 79 | on |
+| `slacking` 摸鱼 | 36 | 29 | 65 | on |
+| `math-physics` 数学与物理 | 31 | 18 | 49 | on |
+| `western-ai` 西方 AI 圈 | 16 | 18 | 34 | on |
+| `reverse-proxy` 反代 | 14 | 16 | 30 | on |
+| `china-ai` 中国 AI 圈 | 12 | 10 | 22 | on |
+| `star-ask` 求 star | 11 | 12 | 23 | **off** |
+| `star-route` 星标者路由 | 75 | 75 | 150 | **off** |
+| **total** | **554** | **505** | **1059** | 886 on / 173 off |
 
 - Most entries are zh/en mirrored pairs; recent community submissions are often zh-only — choose **zh + en (both)** in the submission form to get each phrase in both languages;
 - 5 weighted showcase entries (see [Weighted Random](#weighted-random)) — most phrases are plain weight-1 strings;
 - The bank grows through the community [phrase-submission form](#contributing-phrases-via-github-issues): validated and merged submissions are credited in [CONTRIBUTORS.md](./CONTRIBUTORS.md);
 - Numbers are refreshed at each release; run `node scripts/check-bank-memes.mjs` locally to audit the current bank (duplicates, lengths, ellipsis, series share).
 
-**Star pack** — the default-enabled `star` pack ships star-ask phrases (e.g. `正在向你讨一个 star…`) plus **one phrase per current stargazer** (`正在路由 <login> 写代码…` / `Routing <login> to write code…`), so the rotation literally routes every star-giver to work. The list is refreshed at each release (GitHub now requires authentication for the stargazers endpoint); new stars appear on the next version. Existing installs pick the pack up on upgrade; if a saved settings document already overrides the pack list, re-save once from the Settings → Status Texts page.
+**The star packs (off by default)** — two separate packs, so you can take one without the other:
+
+| Pack | What it is |
+| --- | --- |
+| `star-ask` 求 star | pure star-ask phrases, e.g. `正在向你讨一个 star…` / `Begging for a star…` |
+| `star-route` 星标者路由 | **one phrase per current stargazer** — `正在路由 <login> 写代码…` / `Routing <login> to write code…`, so the rotation literally routes every star-giver to work |
+
+They ship disabled because begging is a matter of taste, not because they are broken: flip them on in Settings → Status Texts → Phrase packs. The stargazer list is refreshed by the [`Star packs` workflow](.github/workflows/star-pack.yml) — weekly and on demand (`workflow_dispatch`) — which reads the stargazers with the repository's own `GITHUB_TOKEN`, so a new star shows up in the bank within a week without anyone doing anything (the endpoint needs a token that can see this repo; a `STAR_TOKEN` secret overrides it). Locally: `node scripts/update-star-pack.cjs --token <pat>`, or `--names names.json` to rebuild from an offline list. Existing installs pick the packs up on upgrade; if a saved settings document already pins `enabledPacks`, the two ids simply stay off until you toggle them.
 
 ## Phrase Packs
 
@@ -139,7 +147,7 @@ The bank is composable from named packs layered on top of the core `phrases` tab
           "label": { "zh": "社区投稿", "en": "Community" },
           "phrases": { "zh": { "running": ["正在试用词库包…"] } } }
     ],
-    "enabledPacks": ["community"]   // absent = all packs enabled
+    "enabledPacks": ["community"]   // absent = all packs enabled; [] = core bank only
 }
 ```
 
@@ -147,7 +155,7 @@ The bank is composable from named packs layered on top of the core `phrases` tab
 - `enabledPacks` absent/`null` = all packs on; `[]` = core bank only. Unknown ids in the list are ignored;
 - Packs support the exact same entries as the core bank (strings or `{text, weight}`, per-phase groups, placeholders);
 - The settings page shows every pack with a per-pack **enable toggle** and a **pack editor target**: pick a pack and the phrase library editor reads/writes that pack's phrases;
-- The default config ships **11 packs** (`deepseek` / `western-ai` / `china-ai` / `coding` / `reverse-proxy` / `sysadmin` / `math-physics` / `slacking` / `internet-memes` / `daily` / `star`) — the core table is empty, so disabling a pack really removes that theme from the pool;
+- The default config ships **12 packs** (`deepseek` / `western-ai` / `china-ai` / `coding` / `reverse-proxy` / `sysadmin` / `math-physics` / `slacking` / `internet-memes` / `daily` / `star-ask` / `star-route`) and pins `enabledPacks` to the ten non-star ids, so the two star packs ship **off by default** — the core table is empty, so disabling a pack really removes that theme from the pool;
 - The phrase-submission form has a **目标词库包** picker (same pack ids plus `community` as the default landing spot): submissions land in the chosen pack, and a `community` pack is created on first use — the core bank stays untouched, so you can disable or prune community content in one place;
 - Old configs without packs keep working untouched.
 
@@ -227,7 +235,8 @@ Optional: every phrase can also spawn as video-site-style bullet-screen comments
 }
 ```
 
-- With `zIndex < 0` (default) the layer is mounted inside the dsh app frame and sits **between the app background and the chat content**: bullets are visible in the empty area and behind the conversation, never covering the chat bubbles or the sidebar. If your theme paints an opaque background that hides them, set a non-negative `zIndex` to float them above the UI instead — the layer never intercepts pointers (`pointer-events: none`).
+- With `zIndex < 0` (default) the layer is mounted **inside the element that paints the app background** — normally the conversation surface, which is why bullets sit *between that background and the chat content*: visible in the empty area and behind the conversation, never covering the chat bubbles or the sidebar. If your theme paints an opaque background that hides them, set a non-negative `zIndex` to float them above the UI instead — the layer never intercepts pointers (`pointer-events: none`).
+- **Mount point is re-resolved on every spawn** (v0.15.2, target refined in v0.16.1). The app frame is located through the shell's own `data-shell-overlay` marker first, then by structure; inside it, the innermost element that paints an opaque background and covers most of the conversation column becomes the host (the layer is sandwiched in it, with `isolation: isolate`). If neither is there yet — the client half loads *before* the shell renders — the layer briefly falls back to `document.body` at a **visible** z-index and is moved into place as soon as the target appears. Earlier versions kept the `z-index: -1` body fallback forever (v0.15.2), or hung the layer on the app frame while the conversation panel painted its own opaque background on top of it (v0.16.1) — in both cases the bullets existed and animated, you just could never see them. If it is still invisible, turn on `debug` and look for `danmaku layer mounted inside the background panel` in the browser console.
 - Bullets support the same placeholders as phrases (`{elapsed}`, `{model}`, `{phase}`…), rendered with the live engine values at spawn time.
 - `danmaku: false` disables it entirely. `fontSizeMin` / `fontSizeMax` set the random size range (auto-corrected if reversed, clamped to 8–96 px).
 
@@ -287,12 +296,14 @@ Phrases are fully separated from the source code and live in JSON config files. 
 
 **Persistent storage since v0.6.1**: saved edits are written into the **official dsh settings store** (`$DSH_HOME/settings.yaml`, namespace `status-rotator`) — the same store the rest of dsh uses for its settings, which **survives plugin upgrades**. Upgrading via npm or a release package will no longer wipe your gradient/phrases/presets (previously `config.json` lived inside the plugin directory and was deleted on upgrade). The plugin-directory `config.json` remains as a compatibility mirror and fallback; a one-time import migrates an existing `config.json` into the settings store on first start.
 
+**v0.16.1 fixed a silent regression here**: a newer `@deepseek-ai/dsh-settings` no longer exports `settingsNamespace()`, and the old call threw inside a swallowed `catch` — so the whole settings layer was ignored (saved values did not apply, saves did not persist to `settings.yaml`, and the served config fell back to the package's `config.example.json`). v0.16.1 detects the helper and falls back to the plain namespace name. **Restart `dsh web` once after upgrading to 0.16.1** so the node half loads the fix (the danmaku fix is client-side — a page refresh is enough; only this one needs the restart).
+
 ```json
 {
     "config": { "intervalMs": 10000, "typeSpeedMs": 30, "longAfterMs": 60000, "reloadIntervalMs": 15000, "liveTickMs": 1000, "weightedRandom": true, "debug": false, "fontWeight": "inherit", "gradient": { "enabled": true, "colors": ["#ff5f6d", "#ffc371", "#ffdd55", "#7dff7d", "#5fd4ff", "#a78bfa", "#ff8adb"], "speed": 4 }, "title": { "enabled": false, "templates": ["⏳ {phaseLabel} {elapsed}", "🤔 {phaseLabel}… {elapsed}"], "idleTemplate": "💤 dsh 空闲", "intervalMs": 8000 }, "danmaku": { "enabled": true, "intervalMs": 2500, "speedMs": 18000, "fontSizeMin": 14, "fontSizeMax": 30, "rainbow": true, "colors": ["#ff5f6d", "#ffc371", "#ffdd55", "#7dff7d", "#5fd4ff", "#a78bfa", "#ff8adb"], "color": "#ffffff", "opacity": 0.3, "maxCount": 12, "zIndex": -1, "scope": "all", "marginTop": 16, "marginBottom": 160 } },
     "phrases": { "zh": { "thinking": ["…"], "running": ["…"], "long": ["…"] }, "en": { "thinking": ["…"], "running": ["…"], "long": ["…"] } },
-    "packs": [],            // optional, see "Phrase Packs" (default config ships 11 theme packs)
-    "enabledPacks": null,   // null/absent = all packs, [] = core bank only
+    "packs": [],            // optional, see "Phrase Packs" (default config ships 12 theme packs)
+    "enabledPacks": null,   // null/absent = all packs; the shipped default pins the ten non-star ids
     "presets": [],          // optional, see "Presets & Scheduling"
     "activePreset": null,   // optional preset id
     "schedule": []          // optional time rules
@@ -314,7 +325,7 @@ Phrases are fully separated from the source code and live in JSON config files. 
 | `danmaku` | see above | Bullet-screen comments: `false` / `{enabled, intervalMs, speedMs, fontSizeMin, fontSizeMax, rainbow, colors, color, opacity, maxCount, zIndex, scope, marginTop, marginBottom}` |
 | `phrases` | from config file | The phrases (Chinese/English × three phases; partial entries allowed, missing ones fall back to other sources) |
 | `packs` | none | Modular phrase packs: `[{ id, label?, phrases? }]`, merged into the effective bank in order (deduped by text) |
-| `enabledPacks` | null (all) | Which packs are enabled; `null`/absent = all, `[]` = core bank only |
+| `enabledPacks` | null (all) | Which packs are enabled; `null`/absent = all, `[]` = core bank only. The shipped default lists the ten non-star ids, so `star-ask` / `star-route` start off |
 | `presets` | none | Named phrase banks, each with optional `config` / `phrases` |
 | `activePreset` | null | Which preset is active (`null` = use the top-level config/phrases) |
 | `schedule` | none | Time rules that switch the active preset automatically |
@@ -344,6 +355,7 @@ Open Settings in the bottom-left of DSH and a new **Status Texts** page appears 
 - **Pack controls**: every pack has an enable toggle and an editor target; the phrase library editor reads/writes the selected pack (when the default bank is empty, the first pack is selected automatically);
 - **Preset selector**: edit each preset's phrases/config independently; "Set active" writes `activePreset`; the currently effective preset (schedule included) is shown live;
 - **Schedule editor**: add/remove weekday + time-window rules that switch presets automatically;
+- **Repository link at the bottom of the page** — the footer links straight to [github.com/01Virex/dsh-status-rotator](https://github.com/01Virex/dsh-status-rotator), so the page always has a way back to the source;
 - Clicking "Save Phrase Bank" makes the browser `PUT` the full JSON to `/plugins/dsh-status-rotator/config.json`; the node half validates it and **writes it back atomically**, and already-open pages hot-apply it immediately without a refresh;
 - Submitted content is validated (phrases must be string arrays, presets/schedule must match their shapes); invalid content returns 400 and shows an error on the page, so the config file can't be corrupted.
 
@@ -387,22 +399,27 @@ dsh-status-rotator/
 │   ├── workflows/
 │   │   ├── phrase-submit.yml   # phrase-submission bot (issue opened → validate → auto-PR)
 │   │   ├── release.yml         # GitHub Release on tag push
+│   │   ├── star-pack.yml       # refreshes star-ask / star-route with the repo's GITHUB_TOKEN
 │   │   └── test.yml            # npm test on every push / PR
 │   └── ISSUE_TEMPLATE/
 │       └── phrase-submit.yml   # "Phrase Submission" form (auto-applies the 词库投稿 label)
 ├── lib/
 │   ├── index.js            # node half: registers the HTTP route for config.json (GET/PUT, validated)
 │   └── client.js           # client half: status text replacement / placeholders / gradient / title / danmaku / presets
-├── config.example.json     # complete template (default config + all 1047 phrases in 11 packs, committed)
+├── config.example.json     # complete template (default config + all 1059 phrases in 12 packs, committed)
 ├── config.json             # local personalized config (gitignored)
 ├── gen-config.cjs          # script that initializes config.json
 ├── cordis.patch.yml        # dsh bundle patch manifest (referenced by package.json dsh.bundle.patch)
 ├── scripts/
 │   ├── fetch-qq-group.cjs  # fetches QQ group members and generates the phrase config
 │   ├── check-bank-memes.mjs # dev-only bank audit (dups / length / ellipsis / series share)
+│   ├── danmaku-mount-test.html # dev-only browser regression page for the danmaku mount point
+│   ├── run-danmaku-mount-test.cjs # dev-only: drives that page headlessly (4 timing scenarios)
+│   ├── probe-danmaku-live.cjs # dev-only: inspects the live dsh web page (mount point / paint order)
 │   ├── package-release.cjs # packages release files
 │   ├── phrase-bot.cjs      # phrase-submission bot (parse form / validate / apply / open PR)
 │   ├── smoke-test.cjs      # pure-function smoke tests (npm test)
+│   ├── update-star-pack.cjs # rebuilds star-ask / star-route from the stargazer list
 │   └── unify-ellipsis.cjs  # default-bank ellipsis normalization / integrity check
 ├── package.json
 ├── README.md               # English docs
@@ -434,6 +451,15 @@ Submissions only append string entries to the **community pack's** arrays (`pack
 ## Testing
 
 `npm test` (or `node scripts/smoke-test.cjs`) loads `lib/client.js` in a Node sandbox and asserts the pure logic — placeholder interpolation, elapsed formatting, clock parsing, config/preset/schedule normalization, schedule matching, and the node half's validation — no browser needed. The same suite runs automatically in CI on every push/PR (see [.github/workflows/test.yml](.github/workflows/test.yml)).
+
+The danmaku mount logic depends on the live DOM, which pure-function tests cannot cover, so there is a real-browser regression page: [`scripts/danmaku-mount-test.html`](./scripts/danmaku-mount-test.html). `node scripts/run-danmaku-mount-test.cjs` drives it headlessly through CDP in four timing scenarios (shell and background panel together, panel later than the shell, no background panel, shell never renders) and prints the verdict. To drive it by hand, `frameDelay` / `panelDelay` are how many ms each layer renders *after* the plugin (negative = never):
+
+```bash
+msedge --headless=new --disable-gpu --virtual-time-budget=9000 \
+       --dump-dom "file:///<repo>/scripts/danmaku-mount-test.html?frameDelay=1200&panelDelay=600"
+```
+
+When danmaku is invisible in a running GUI, `node scripts/probe-danmaku-live.cjs "http://127.0.0.1:3080/?token=..."` attaches a headless browser to that page and reports where the layer is mounted, its z-index, the bullet count, and whether a bullet actually paints above the background panel (paint-order check).
 
 For phrase-bank maintenance there is also `node scripts/check-bank-memes.mjs` (dev-only, not shipped to npm): it reports per-group sizes (core + packs), duplicate detection, missing-ellipsis and over-length entries, and the share of series like the 反代/路由 families — pass a candidate JSON as the second argument to compare it against the bank before merging.
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/72bd91b0f057813d2431a22803d9f0d69f3659ca/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
@@ -35,15 +35,15 @@ Bring skills from your computer and projects into one DSH management page. Find 
 
 Browse by source or search in **Settings → Skills**. External Agent sources are made available through manager policy while their files stay read-only:
 
-![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/72bd91b0f057813d2431a22803d9f0d69f3659ca/assets/screenshots/skills-manager-v2-preview.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/screenshots/skills-manager-v2-preview.png)
 
 Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/72bd91b0f057813d2431a22803d9f0d69f3659ca/assets/screenshots/skill-detail.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/screenshots/skill-detail.png)
 
 Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/72bd91b0f057813d2431a22803d9f0d69f3659ca/assets/screenshots/delete-plugin.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 

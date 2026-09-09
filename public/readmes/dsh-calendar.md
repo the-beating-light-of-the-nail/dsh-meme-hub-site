@@ -13,7 +13,9 @@ DSH 社区插件：通过 CalDAV 读写日历事件。提供 5 个日历操作�
 
 ## 兼容性
 
-已在 `@deepseek-ai/dsh@0.1.3-alpha.1` 官方源码基线上验证插件接口与 Web profile 同载（2026-09-07）。OAuth 使用离线模拟的令牌端点和 DAV 响应测试，未使用真实 Google 账号验证。遵循 cordis 组合包补丁模型（`cordis.patch.yml` + `dsh.bundle.patch`），运行时不 import 任何 `@deepseek-ai/*` 内部模块。
+2026-09-08 已在本机安装的官方 `@deepseek-ai/dsh@0.1.3-alpha.2`、Node `24.16.0` 中，通过 `dsh plugin --profile web add` 安装 npm 发布包，验证组合配置、6 个工具注册及 Web 启动；经宿主工具执行流程调用 `calendar_list`，真实 Google 令牌刷新返回 200、CalDAV REPORT 返回 207，并生成模型可读的结果。本次仅验证 Google 读取，未执行写入。
+
+遵循官方[插件打包与安装要求](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/basic/publish.md)：ESM 入口、预构建 `lib/`、`dsh.bundle.patch` 和 `cordis.patch.yml` 配置层；显式注入 `tools`，提供 JSON Schema 参数、规范化输出和渲染函数，运行时不 import `@deepseek-ai/*` 内部模块。使用 Node 22.19 及以上的 22.x 或 Node 24 及以上版本；Harness 仍在快速迭代，上述版本是实测基线。
 
 ## 安装
 
@@ -93,6 +95,10 @@ export DSH_CALENDAR_REFRESH_TOKEN='你授权后取得的 refresh token'
 
 凭据必须来自你自己的 Google Cloud OAuth 客户端和一次用户授权，而不是邮箱应用专用密码。按 [Google CalDAV 官方设置说明](https://developers.google.com/workspace/calendar/caldav/v2/guide) 启用 API、配置 OAuth；申请日历读写范围 `https://www.googleapis.com/auth/calendar`，并请求离线访问（`access_type=offline`）以取得刷新令牌，参见 [Google 离线授权说明](https://developers.google.com/identity/protocols/oauth2/web-server#offline)。尚未提供浏览器一键登录或独立登录 CLI；已有 OAuth 配置的用户可直接填入刷新令牌。
 
+**Google CalDAV 范围实测（2026-09-08）**：同一账号与日历使用 `calendar.readonly` 时，令牌刷新返回 200、集合探测 PROPFIND 返回 207，但读取日程 REPORT 返回 403；改为上述 `calendar` 范围后，REPORT 返回 207，重启验证进程后再次刷新和读取也通过。因此，请按这里的 CalDAV 配置申请范围，并用 `calendar_list` 验证真实读取，不能只凭令牌获取成功或集合探测成功判断日程可读。本次真实测试仅执行读取，没有验证 Google 的写入操作。
+
+`calendar` 范围允许查看、修改、分享及删除可访问的日历，申请前请确认接受该权限范围，详见 [Google 权限定义](https://developers.google.com/workspace/calendar/api/auth)。外部 OAuth 应用处于 **Testing** 状态时，包含日历权限的刷新令牌会在 7 天后过期；长期使用需处理重新授权或按 Google 要求配置生产状态，详见 [刷新令牌到期规则](https://developers.google.com/identity/protocols/oauth2#expiration)。
+
 插件在内存中缓存访问令牌，并在每次 DAV 请求前检查有效期、提前刷新；令牌请求与 DAV 请求都会透传调用的取消信号。401 会使缓存失效，下一次调用重新刷新，**不会自动重放写请求**。OAuth 请求不跟随重定向、不向其它源的对象 href 发送 Bearer token，请填写最终日历集合地址。运行时令牌不会写入配置或日志；若其他 OAuth 提供方轮换 refresh token，重启时需要重新提供有效凭据。
 
 ### iCloud 示例
@@ -139,7 +145,7 @@ iCloud 需要完整日历集合 URL（含你的用户 ID 与日历 ID），在 i
 
 ## 认证失败排查
 
-Google：仅支持 OAuth 2.0。401/403 时检查 OAuth 授权、日历范围与日历访问权限；令牌刷新失败时核对 clientId/clientSecret/refreshToken，授权被撤销或过期时重新授权。**重新生成应用专用密码不能解决 Google CalDAV 认证失败。**
+Google：仅支持 OAuth 2.0。401/403 时检查 OAuth 授权、日历范围与日历访问权限；如果令牌刷新和 PROPFIND 成功而 REPORT 返回 403，核对实际授予的范围是否为上述 `calendar`，不要将 `calendar.readonly` 的集合探测成功当作日程读取成功。令牌刷新失败时核对 clientId/clientSecret/refreshToken，授权被撤销或过期时重新授权，并检查是否仍处于 Testing 的 7 天期限内。**重新生成应用专用密码不能解决 Google CalDAV 认证失败。**
 
 iCloud：登录 appleid.apple.com → 登录与安全 → App 专用密码，生成后填到 `password` 或 `DSH_CALENDAR_PASSWORD`。不能用你的 Apple ID 密码。
 
@@ -162,6 +168,8 @@ Nextcloud / 自定义 Basic 服务：检查账号、密码或服务要求的应�
 
 ## 版本记录
 
+- **0.5.2（2026-09-08）**：补充官方 Harness 0.1.3-alpha.2 的安装、加载与真实 Google 工具调用验证，更新兼容性和 Node 版本要求；运行时代码与 0.5.0 相同。
+- **0.5.1（2026-09-08）**：补充真实 Google OAuth/CalDAV 读取验证、`calendar.readonly` 与 `calendar` 范围对比及 Testing 刷新令牌到期说明；运行时代码与 0.5.0 相同。
 - **0.5.0（2026-09-07）**：修复 Google CalDAV #2：新增 OAuth 凭据与环境变量配置、请求时刷新、取消与代理透传；健康检查区分 Basic/OAuth，修正误导的应用专用密码说明。保留其他服务的 Basic 认证。
 - **0.4.0**：新增 `calendar_health` 自检（离线检查 CalDAV 端点与凭据配置，不验证连接）。
 - **0.3.2**：

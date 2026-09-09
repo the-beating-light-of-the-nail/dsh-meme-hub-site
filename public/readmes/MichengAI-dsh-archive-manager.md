@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/8a8d22103569b9d70374da3ba1264b804f3f5963/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/1f27a250a2031e828fde356e0ac5ae9b82328f05/assets/branding/dsh-banner.png" alt="DSH Archive Manager" width="100%">
 </p>
 
 <div align="center">
@@ -32,11 +32,11 @@ Put inactive conversations away and find them again when needed. Search, restore
 
 Open the sidebar session menu and choose **Archive session**:
 
-![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/8a8d22103569b9d70374da3ba1264b804f3f5963/assets/screenshots/archive-session-menu.png)
+![Archive a session from the session menu](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/1f27a250a2031e828fde356e0ac5ae9b82328f05/assets/screenshots/archive-session-menu.png)
 
 Search, sort, filter by project, unarchive, or permanently delete chats in **Settings → Archived sessions**:
 
-![Archived sessions settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/8a8d22103569b9d70374da3ba1264b804f3f5963/assets/screenshots/archived-sessions.png)
+![Archived sessions settings page](https://raw.githubusercontent.com/MichengAI/dsh-archive-manager/1f27a250a2031e828fde356e0ac5ae9b82328f05/assets/screenshots/archived-sessions.png)
 
 ## DSH product ecosystem
 
@@ -55,11 +55,30 @@ For a ready-to-use workbench, download [DSH Codex Desktop](https://github.com/Mi
 
 ## Prerequisites
 
+- Plugin `0.1.33` and later support DeepSeek Harness `0.1.3-alpha.2` (official master `c389f96`) alongside the verified legacy hosts listed below. Later master commits require separate validation.
+
 - A working DeepSeek Harness Web installation with `dsh` available in PowerShell.
 - Examples use the `web` profile; replace it with the target profile.
 - Source installation and development require Node.js 22+ and pnpm. npm installation does not require running `pnpm install` separately.
 
 ## Installation
+
+Run `pnpm test:compat` to test the same plugin artifacts with isolated host dependencies. The following combinations have passed; this does not claim coverage of every intermediate release:
+
+- `pnpm test`: build and run local tests, excluding `test/fixtures`; local host links may affect dependency resolution.
+- `pnpm test:matrix`: build, then install three isolated host versions and run the full matrix.
+- `pnpm test:latest`: build, then run the six real storage tests against the isolated latest baseline.
+- `pnpm test:compat`: validate legacy cache migration and run the full matrix.
+
+Do not run `test/fixtures/*.mjs` directly. Fixtures validate the isolated entry point, dependency versions, and resolved paths before loading the host. If local dependencies have drifted, run `pnpm install --frozen-lockfile` to restore declared development dependencies. This does not guarantee removal of undeclared packages or host links under `test/node_modules`; use the isolated commands for compatibility acceptance.
+
+| DSH | Cordis | Automated regression |
+| --- | --- | --- |
+| `0.1.1-rc.2` | `4.0.1` | 134 passed, plus legacy cache migration validation |
+| `0.1.2-rc.1` | `4.0.2` | 134 passed |
+| `0.1.3-alpha.2` | `4.0.2` | 137 passed |
+
+Coverage includes client Remote integration, archive/restore, real JSONL/Zstandard deletion and subagent cascades, and queries/reopened storage after deletion. Tested on Windows / Node.js 24; a full DSH Web browser acceptance run has not been performed. The latest storage fixture isolates only the upstream POSIX `fs-ext` import that cannot load on Windows; file operations and native Windows locking still use the official implementation.
 
 The installation commands below use the official npm registry.
 

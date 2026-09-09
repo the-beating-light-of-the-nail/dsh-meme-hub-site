@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/hero-zh.webp" alt="dsh-image-gen 中文功能概览" width="100%" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/hero-zh.webp" alt="dsh-image-gen 中文功能概览" width="100%" />
 
 <br />
 
@@ -16,6 +16,7 @@
   <a href="https://www.npmjs.com/package/dsh-image-gen"><img src="https://img.shields.io/npm/v/dsh-image-gen?style=flat-square&color=4f6ef7" alt="npm version" /></a>
   <a href="https://www.npmjs.com/package/dsh-image-gen"><img src="https://img.shields.io/npm/dm/dsh-image-gen?style=flat-square&color=10b981" alt="npm downloads" /></a>
   <a href="https://github.com/shanliuling/dsh-image-gen/actions/workflows/ci.yml"><img src="https://github.com/shanliuling/dsh-image-gen/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://dsh-insights.com/p/shanliuling/dsh-image-gen"><img src="https://dsh-insights.com/badge/shanliuling/dsh-image-gen.svg" alt="DSH Insights health" /></a>
   <a href="https://github.com/shanliuling/dsh-image-gen/stargazers"><img src="https://img.shields.io/github/stars/shanliuling/dsh-image-gen?style=flat-square" alt="GitHub stars" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-f5c542?style=flat-square" alt="License: MIT" /></a>
   <a href="https://linux.do/"><img src="https://img.shields.io/badge/LINUX%20DO-社区友链-555?style=flat-square" alt="LINUX DO" /></a>
@@ -42,7 +43,7 @@ pnpm dsh plugin --profile web add dsh-image-gen@latest
 
 > **版本更新提示：** 本次版本变化较大，老用户请更新至最新版本。
 
-<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/workflow-overview.webp" alt="dsh-image-gen 完整 AI 图像创作工作流" width="100%" />
+<img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/workflow-overview.webp" alt="dsh-image-gen 完整 AI 图像创作工作流" width="100%" />
 
 ---
 
@@ -114,8 +115,8 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/provider-settings.webp" alt="DSH 插件配置界面" width="46%" />
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/chat-example.webp" alt="对话生图与风格重构效果" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/provider-settings.webp" alt="DSH 插件配置界面" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/chat-example.webp" alt="对话生图与风格重构效果" width="46%" />
   <br />
   <sub>左：Provider 配置 · 右：在 DSH 对话中直接生图、图生图与连续编辑。</sub>
 </div>
@@ -136,8 +137,8 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/regenerating.webp" alt="图片正在重新生成" width="46%" />
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/revision-switcher.webp" alt="在同一图片卡片中切换生成版本" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/regenerating.webp" alt="图片正在重新生成" width="46%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/revision-switcher.webp" alt="在同一图片卡片中切换生成版本" width="46%" />
   <br />
   <sub>修改 Prompt 后原位重新生成，并在同一张图片卡片中切换历史版本。</sub>
 </div>
@@ -152,7 +153,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/studio-workbench.webp" alt="dsh-image-gen Studio 工作台" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/studio-workbench.webp" alt="dsh-image-gen Studio 工作台" width="100%" />
   <br />
   <sub>在同一个 Studio 中完成参考图导入、参数控制、批量生成、结果筛选与保存。</sub>
 </div>
@@ -166,7 +167,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/multi-model-compare.webp" alt="同一 Prompt 的多模型生成对比" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/multi-model-compare.webp" alt="同一 Prompt 的多模型生成对比" width="100%" />
   <br />
   <sub>在同一画布中比较不同模型结果，再批量保存满意的图片。</sub>
 </div>
@@ -181,7 +182,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/inspiration-library.webp" alt="Prompt 灵感素材库" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/inspiration-library.webp" alt="Prompt 灵感素材库" width="100%" />
   <br />
   <sub>先找灵感，再把 Prompt 带入工作台；全本地缓存，浏览或复制不消耗生成额度。</sub>
 </div>
@@ -196,7 +197,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/gallery-management.webp" alt="图库筛选、收藏与批量管理" width="100%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/gallery-management.webp" alt="图库筛选、收藏与批量管理" width="100%" />
   <br />
   <sub>图库支持多维度筛选、收藏、批量管理与工作区数据隔离。</sub>
 </div>
@@ -215,7 +216,7 @@ pnpm dsh plugin --profile web add ./dsh-image-gen
 <br />
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/560aa4bc70db088a1fbc5ba4661054c3ad575cc1/docs/assets/readme/comfyui-workflows.webp" alt="ComfyUI 多工作流配置" width="58%" />
+  <img src="https://raw.githubusercontent.com/shanliuling/dsh-image-gen/fa2426589d2a1a0bce3d9a9111b5ad7324f7770f/docs/assets/readme/comfyui-workflows.webp" alt="ComfyUI 多工作流配置" width="58%" />
   <br />
   <sub>为不同用途维护独立工作流，并通过名称让 Agent 精确选择。</sub>
 </div>

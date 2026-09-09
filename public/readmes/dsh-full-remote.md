@@ -41,11 +41,11 @@ to the Internet. For composition details, see
 
 | Desktop control panel | Mobile workspace |
 |---|---|
-| ![Desktop control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-desktop.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile.png) |
+| ![Desktop control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-desktop.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-mobile.png) |
 
 | Phone confirmation sheet | Remote desktop confirmation |
 |---|---|
-| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-desktop.png) |
+| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-remote-confirm-desktop.png) |
 
 ## Problem
 
@@ -296,7 +296,11 @@ dsh plugin --profile web update --latest dsh-full-remote
 
 Then restart `dsh web`. `--latest` ignores the current range, installs the
 newest version, and rewrites `package.json`. For a specific version use
-`dsh plugin --profile web update dsh-full-remote@0.3.7`.
+`dsh plugin --profile web update dsh-full-remote@0.3.11`.
+
+### Language
+
+The plugin panel has a **Language / 语言** selector: **Auto**, **English**, or **中文**. Auto follows the Harness locale when available, otherwise your browser language (English for non-Chinese browsers). An explicit choice is saved per browser and origin and also applies to remote confirmation overlays. Login, approval-wait, and device-home pages continue to follow the browser’s HTTP language header.
 
 ## Screenshots
 
@@ -310,17 +314,17 @@ address, recommended setup, tunnel target, one-click quick tunnel,
 one-time invite QR, access token, connected devices with source IPs
 (inline rename), and the audit viewer.
 
-![Reverse proxy control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-desktop.png)
+![Reverse proxy control panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-desktop.png)
 
 | One-time phone invite (QR) | Connected devices with inline rename |
 |---|---|
-| ![Phone invite](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-invite.png) | ![Connected devices](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-devices.png) |
+| ![Phone invite](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-invite.png) | ![Connected devices](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-devices.png) |
 
 ### Mobile
 
 | Login page | Control panel | Add workspace |
 |---|---|---|
-| ![Mobile login](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile-login.png) | ![Mobile panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile-panel.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-mobile.png) |
+| ![Mobile login](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-mobile-login.png) | ![Mobile panel](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-mobile-panel.png) | ![Mobile workspace](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-mobile.png) |
 
 ### Remote confirmation
 
@@ -330,7 +334,7 @@ look at the host display.
 
 | Phone bottom sheet | Remote desktop card |
 |---|---|
-| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-remote-confirm-desktop.png) |
+| ![Phone confirmation sheet](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-remote-confirm-mobile.png) | ![Remote desktop confirmation](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-remote-confirm-desktop.png) |
 
 ### Gate pages
 
@@ -339,7 +343,7 @@ itself, and the first-visit approval wait page.
 
 | Device home | Waiting for approval |
 |---|---|
-| ![Device home](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-home.png) | ![Waiting for approval](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/071da24fdcb9b57349d46033ebd9a411ebfa4998/docs/screenshots/preview-wait.png) |
+| ![Device home](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-home.png) | ![Waiting for approval](https://raw.githubusercontent.com/JUANWANG-BUAA/dsh-full-remote/b3b8d25d64fd31b4475402cd625ea45b0f3c4eea/docs/screenshots/preview-wait.png) |
 
 ## Configuration
 
@@ -464,7 +468,7 @@ from the internet:
 
 ```sh
 pnpm pack
-dsh plugin --profile web add ./dsh-full-remote-0.3.7.tgz
+dsh plugin --profile web add ./dsh-full-remote-0.3.11.tgz
 ```
 
 Git installs run the `prepare` build. On pnpm ≥ 10 allow it:

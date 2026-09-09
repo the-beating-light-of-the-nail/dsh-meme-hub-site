@@ -19,45 +19,45 @@ A local plugin for DeepSeek Harness (DSH) desktop / web. Adds a **Personal Cente
 
 | Token Usage | Personalization |
 |---|---|
-| ![Token Usage](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/token-usage.png) | ![Personalization](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/personalization.png) |
+| ![Token Usage](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/token-usage.png) | ![Personalization](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/personalization.png) |
 
 | Appearance (global font size) | Pet |
 |---|---|
-| ![Appearance](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/appearance.png) | ![Pet](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/pet.png) |
+| ![Appearance](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/appearance.png) | ![Pet](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/pet.png) |
 
 ### Feature details
 
 | Token Usage · light | Review · dark |
 |---|---|
-| ![Token Usage · light](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/light-profile.png) | ![Review · dark](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/dark-review.png) |
+| ![Token Usage · light](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/light-profile.png) | ![Review · dark](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/dark-review.png) |
 
 | Pet panel · light | Pet panel · dark |
 |---|---|
-| ![Pet · light](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/light-pet.png) | ![Pet · dark](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/dark-pet.png) |
+| ![Pet · light](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/light-pet.png) | ![Pet · dark](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/dark-pet.png) |
 
 | Session status overview (double-click to jump) |
 |---|
-| ![Session status overview](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/pet-status-overview.png) |
+| ![Session status overview](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/pet-status-overview.png) |
 
 **Five emotion animations** (happy / busy / tired / wallet-pain / dozing):
 
 | Black whale | Blue whale |
 |---|---|
-| ![Black whale · five emotions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/pet-emotions.gif) | ![Blue whale · five emotions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/pet-emotions-blue.gif) |
+| ![Black whale · five emotions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/pet-emotions.gif) | ![Blue whale · five emotions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/pet-emotions-blue.gif) |
 
 **New actions (v0.8.0)** (thinking / waiting / celebrate / drag / wave):
 
 | Black whale | Blue whale |
 |---|---|
-| ![Black whale · new actions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/pet-new-actions-black-whale.gif) | ![Blue whale · new actions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/pet-new-actions-blue-whale.gif) |
+| ![Black whale · new actions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/pet-new-actions-black-whale.gif) | ![Blue whale · new actions](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/pet-new-actions-blue-whale.gif) |
 
 | Model cost · dark |
 |---|
-| ![Model cost · dark](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/dark-model-cost.png) |
+| ![Model cost · dark](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/dark-model-cost.png) |
 
 | Personalization · per workspace (layered instructions + templates) |
 |---|
-| ![Personalization · per workspace](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/725b868ab849351b992245ac87000d654f3a4ff3/docs/screenshots/workspace-instructions.png) |
+| ![Personalization · per workspace](https://raw.githubusercontent.com/PolinniZhong/dsh-personal-center/10c6a2bfd664bbd08390165e87e57da824c92ad5/docs/screenshots/workspace-instructions.png) |
 
 ## ✨ Features
 

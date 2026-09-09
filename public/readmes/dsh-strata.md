@@ -21,7 +21,7 @@ is the shape of the run at a glance: where you spoke, how much work each prompt 
 where it went wrong.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jsdvjx/dsh-strata/283bea4c66458165e4a32752e8f04c28074a6267/docs/demo.gif" alt="Live demo: hovering expands the rail with a preview card, clicking a band or an anchor dot jumps, dragging the lens scrubs the whole session" width="840">
+  <img src="https://raw.githubusercontent.com/jsdvjx/dsh-strata/b4715f71745c5e89bcd3292eed4844c033f8737b/docs/demo.gif" alt="Live demo: hovering expands the rail and lights the band under the cursor, clicking a band or an anchor dot jumps, dragging the lens scrubs the whole session" width="840">
 </p>
 
 ## What the map shows
@@ -47,6 +47,26 @@ while it is up, so there is one scroll control, not two — no layout shifts, be
 gutter stays reserved either way. It is a takeover, not a theft: the moment the map stands
 down (Trajectory tab, no session, a transcript that does not scroll) the native scrollbar
 comes straight back, and uninstalling restores it permanently.
+
+## …and the turn rail beside it
+
+DSH 0.1.2-rc.1 grew a navigator of its own: a fixed-pitch rail of turn marks
+down the right edge of the transcript — the same strip this map lives in, so
+the two land on top of each other and the host's rail covers the anchor dots.
+The map treats it exactly like the scrollbar: while the map is up the host
+rail is hidden, and the moment the map stands down (Trajectory, no session, a
+transcript that does not scroll) it is handed straight back. Nothing reflows
+either way — that rail is absolutely positioned inside a zero-height sticky
+slot, so hiding it costs no layout.
+
+Want both? Keep the host's rail with
+
+```js
+localStorage['dsh-strata.native-turn-rail'] = 'keep'
+```
+
+and reload. On DSH releases without that rail (0.1.1-rc.2 and earlier) there
+is nothing to hide and nothing changes.
 
 ## Anchors
 
@@ -90,8 +110,9 @@ history shifts the window, never the scale.
 ## Use
 
 - **Click an anchor dot** to jump to that message or failure.
-- **Hover** the rail — it widens and shows a preview card for the row under the cursor
-  (kind, `n/total` for your own messages, and the row's text).
+- **Hover** the rail — it widens, the band under the cursor lights up, and on one of
+  your own messages the clue wall opens (an anchor dot's tooltip carries the kind and
+  `n/total`).
 - **Click** a band to scroll it into reading position; the row flashes when it lands.
 - **Click empty track or drag** to scrub proportionally, like a scrollbar.
 - **Wheel** over the rail or the dots to scroll the transcript.
@@ -104,6 +125,29 @@ history shifts the window, never the scale.
 
 The map hides itself when there is nothing to navigate: no session, a transcript that does
 not scroll, or a non-chat view such as Trajectory.
+
+## Compatibility
+
+| DSH | Status |
+|---|---|
+| 0.1.2-rc.1 | Tested — turn folding, the turn navigator, the width handle and the locale switch are all accounted for (see below) |
+| 0.1.1-rc.2 | Tested — nothing 0.1.2-specific is required; every seam degrades to the old behaviour |
+
+What 0.1.2 brought, and what the map does about it:
+
+- **Turn folding** (Compact mode hides a finished turn's process rows in place): folded
+  rows leave the map the moment they fold, and come back the moment they open.
+- **The turn navigator**: hidden while the map is up, handed back when it stands down
+  (`localStorage['dsh-strata.native-turn-rail'] = 'keep'` keeps both).
+- **The content-width handle** sits under the dot column at laptop widths: the column
+  owns its 14px, so a gap between two dots is not a resize grip.
+- **Language switching**: labels come through the host's locale service and follow a
+  switch in Settings → General without a reload; a language pack can translate the
+  `dsh-strata` namespace into a third-party language. A host without the service
+  gets the built-in zh/en table keyed on the document language.
+- **Pager lifecycle**: 0.1.2 unmounts the "load older" control while a page is in
+  flight; the load chain waits for it to come back instead of calling the history
+  exhausted, and measures progress by rows landed rather than by scroll height.
 
 ## Install
 
@@ -127,18 +171,24 @@ dsh plugin --profile web remove dsh-strata
 
 Pure browser half; the Node half is empty and no session data crosses the wire for it.
 Geometry and semantics both come from anchors the conversation view already publishes —
-`[data-conversation-scroll]` for the scrollport, `[data-chat-anchor-key]` per flow row,
-`data-chat-flow-kind` for that row's registered Chat Node kind, `data-state="error"` for a
-failed tool or command, `[data-composer-seat]` to stay clear of the sticky composer. It
+`[data-conversation-scroll]` for the scrollport, `[data-chat-anchor-key]` per flow row
+(the *outermost* one: a tool renderer nests a `call:<id>` anchor of its own inside the
+row, and that belongs to the row rather than being a row), `data-chat-flow-kind` for
+that row's registered Chat Node kind, `data-state="error"` for a failed tool or command,
+`hidden` on a row for the turn folding DSH 0.1.2 does in Compact mode,
+`[data-composer-seat]` to stay clear of the sticky composer. It
 contributes one entry to the frame-wide `shell.overlay` list slot, so it adds a surface
-instead of replacing one, and uninstalling leaves the native UI untouched. The scrollbar
+instead of replacing one, and uninstalling leaves the native UI untouched. Labels are
+registered with the host's locale service as the `dsh-strata` namespace and translated
+through its `t` seat, so they follow the UI language live. The scrollbar
 takeover uses the theme's documented seam — rebinding `--dsh-scrollbar-thumb` to
 `transparent` on the scrollport, the same mechanism ui-sidebar uses — so both the WebKit
 and Firefox rendering paths are covered and no stylesheet is overridden.
 
-Rendering is a canvas repainted on a rAF, re-measuring rows only when the transcript
-mutates or its scroll height changes — a plain scroll moves the lens and nothing else, so a
-streaming turn does not drag layout through the map. Colors are read from the theme's own
+Rendering is a canvas repainted on a rAF, re-measuring rows only when the transcript's
+structure changes — a streaming reply grows one band through its own ResizeObserver
+report, a plain scroll moves the lens and nothing else, and the strata are cached as a
+base layer so a hover repaints one band, not the session. Colors are read from the theme's own
 `--dsw-alias-*` tokens, so light and dark both come out right, and `prefers-reduced-motion`
 disables the transitions.
 
@@ -151,6 +201,9 @@ disables the transitions.
   anchors; the map stands down there rather than guessing.
 - The rail occupies a ~14px strip of the transcript's right padding, so clicks in that
   strip go to the map.
+- Hiding the host's turn rail is keyed on the stylesheet that rail ships
+  (the rule declaring `--turn-rail-band`). A DSH that stops shipping it under
+  that name gets its rail back, not a broken map.
 
 ## Development
 
@@ -162,7 +215,11 @@ node test/replay/replay.mjs   # headless-Chrome replay against a live `dsh web` 
 The geometry, caches and the history-load state machine are exported as
 `internals` from `client.js` and tested without a browser; the replay drives
 a real session through Chrome's DevTools protocol (scroll consistency, drag,
-wall paging, load chains, session switch).
+wall paging, load chains, session switch). The mounted map exposes a read-only
+seam for it on its root element (`root.__dshStrata`: the measured bands, the
+observation set, hot-path tallies) — a test hook, not an API. Keep the DSH
+tab in the foreground while replaying: a background tab gets no animation
+frames, and the map legitimately reads as stood down.
 
 ## License
 

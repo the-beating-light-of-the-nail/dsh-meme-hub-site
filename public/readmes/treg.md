@@ -1,6 +1,6 @@
 # Treg (OpenRouter for Tools)
 
-![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/7e7dd742e596c20879052d45ca6db4cf04595715/docs/assets/treg-hero.png)
+![treg — the tool catalog for your agent](https://raw.githubusercontent.com/superdesigndev/treg/6e6ba3f0d5355c2b4bbbdab8f3c84e67304d0a02/docs/assets/treg-hero.png)
 
 **OpenRouter, but for agent tools instead of models.** Point an agent at one base URL with one token
 and it can do the job: **2,896 catalogued endpoints across 60 providers** — SEO and backlinks,

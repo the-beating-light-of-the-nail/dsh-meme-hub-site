@@ -1,7 +1,7 @@
 <div align="center">
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Renzic-Stone/DSH-EasyRewrite/main/assets/logo-dark.png" />
-<img src="https://raw.githubusercontent.com/Renzic-Stone/DSH-EasyRewrite/8bfa03c946e81e6159d0c839ffb7a02c6c52c158/assets/logo.png" alt="dsh-easyrewrite" width="320" />
+<img src="https://raw.githubusercontent.com/Renzic-Stone/DSH-EasyRewrite/f8c04d3783b447172cb8b397cb7d1ad187b8b6f2/assets/logo.png" alt="dsh-easyrewrite" width="320" />
 </picture>
 
 # DSH-EasyRewrite

@@ -75,10 +75,10 @@ flowchart LR
 
 从旧 Harness 升级时请先处理 Host 数据迁移：`0.1.2-rc.1` 已移除可选 SQLite Session 后端，旧数据需使用旧版 Harness 导出；Code Mode 已更名为 PTC mode，但现有会话记录仍可读取。应用和本插件统一通过 `dsh` Profile 启动与安装。
 
-从旧版 Harness 升级后，如果 Web 界面提示 **Failed to load plugins**，请安装 `0.7.5` 或更高版本并重启 Harness。`0.7.2` 及更早版本依赖已停止发布的 `dsh-client-runtime`；`0.7.3` 在 rc.1 Web Client 中还可能形成 `conversation` / `uiWorkspace` 循环等待。
+从旧版 Harness 升级后，如果 Web 界面提示 **Failed to load plugins**，请安装 `0.8.0` 或更高版本并重启 Harness。`0.7.2` 及更早版本依赖已停止发布的 `dsh-client-runtime`；`0.7.3` 在 rc.1 Web Client 中还可能形成 `conversation` / `uiWorkspace` 循环等待。
 
 ```bash
-dsh plugin --profile web add dsh-git-worktree@0.7.5
+dsh plugin --profile web add dsh-git-worktree@0.8.0
 ```
 
 ### 安装
@@ -90,7 +90,7 @@ dsh plugin --profile web add dsh-git-worktree
 也可以安装指定版本：
 
 ```bash
-dsh plugin --profile web add github:wloops/dsh-git-worktree#v0.7.5
+dsh plugin --profile web add github:wloops/dsh-git-worktree#v0.8.0
 ```
 
 安装后打开 Git Workspace，在新建 Session 时启用 **Worktree**；已有 Local Session 也可以让模型调用 `worktree_create` 创建隔离 Session。
@@ -103,11 +103,11 @@ dsh plugin --profile web add github:wloops/dsh-git-worktree#v0.7.5
 
 ### 项目聚合与任务状态
 
-![Managed Worktree 聚合到原 Local 项目](https://raw.githubusercontent.com/wloops/dsh-git-worktree/4a90c376046f34b954bbec8cec786b4fdf98d348/docs/screenshots/00-project-sidebar.png)
+![Managed Worktree 聚合到原 Local 项目](https://raw.githubusercontent.com/wloops/dsh-git-worktree/fb9a2fe2640907a39752b13e9ad03cef08ede5a3/docs/screenshots/00-project-sidebar.png)
 
 ### 准备验收
 
-![Agent 完成任务并准备预览修改](https://raw.githubusercontent.com/wloops/dsh-git-worktree/4a90c376046f34b954bbec8cec786b4fdf98d348/docs/screenshots/02-ready-for-review.png)
+![Agent 完成任务并准备预览修改](https://raw.githubusercontent.com/wloops/dsh-git-worktree/fb9a2fe2640907a39752b13e9ad03cef08ede5a3/docs/screenshots/02-ready-for-review.png)
 
 完整操作步骤见[完整使用指南](docs/USAGE.md#完整交付示例)。
 
@@ -160,3 +160,7 @@ pnpm run dev:dsh
 ## 许可证
 
 [MIT](LICENSE)
+
+## 界面语言
+
+插件跟随 DSH 的中英文选择，不提供独立语言开关。请在 DSH 中明确选择 English，以便界面、工具和 `/worktree` 消息都使用英文；自动浏览器语言尚未写入 DSH 偏好时，工具和命令会回退中文。详见 [语言传递与文案贡献说明](docs/i18n.md)。

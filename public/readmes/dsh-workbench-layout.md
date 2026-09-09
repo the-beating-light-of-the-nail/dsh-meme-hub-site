@@ -4,9 +4,9 @@
 
 A three-column workspace for DeepSeek Harness Web: navigation on the left, files and terminals in the middle, and the native DSH conversation on the right.
 
-![DSH Workbench Layout showing the file explorer, editor, and native conversation](https://raw.githubusercontent.com/lsq-dsh-plugins/dsh-workbench-layout/19961c890370856606287bc5f8c56d1185590b4c/assets/workbench-files-and-chat.png)
+![DSH Workbench Layout showing the file explorer, editor, and native conversation](https://raw.githubusercontent.com/lsq-dsh-plugins/dsh-workbench-layout/9da0fdcaf528619c99e46f729f267312a86741ac/assets/workbench-files-and-chat.png)
 
-![DSH Workbench Layout showing the Git changes view, a side-by-side diff, and the native conversation](https://raw.githubusercontent.com/lsq-dsh-plugins/dsh-workbench-layout/19961c890370856606287bc5f8c56d1185590b4c/assets/workbench-git-diff.png)
+![DSH Workbench Layout showing the Git changes view, a side-by-side diff, and the native conversation](https://raw.githubusercontent.com/lsq-dsh-plugins/dsh-workbench-layout/9da0fdcaf528619c99e46f729f267312a86741ac/assets/workbench-git-diff.png)
 
 ## Overview
 

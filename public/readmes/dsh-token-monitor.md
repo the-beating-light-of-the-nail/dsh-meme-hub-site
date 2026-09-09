@@ -15,7 +15,7 @@
 DeepSeek Harness（DSH）Web 界面的大模型**余量与用量监控**插件：会话头部实时余量徽标 + 主区"用量"页签，本地 SQLite 记录每次调用的 token 与费用。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-overview.png" alt="用量页签总览" width="100%">
+  <img src="https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/usage-overview.png" alt="用量页签总览" width="100%">
 </p>
 
 ## 安装
@@ -23,7 +23,7 @@ DeepSeek Harness（DSH）Web 界面的大模型**余量与用量监控**插件�
 > [!NOTE]
 > 需要 **Node.js ≥ 22.5.0**（依赖内置 `node:sqlite`）。仅支持 DSH Web 端（`platform: web`）。
 >
-> 实测环境：DSH **0.1.2-rc.1**（对 0.1.1 的旧接口做了兼容回退，但**会话数据不可跨版本回退**——0.1.2 写过的会话 0.1.1 无法打开，回退版本需连会话数据一起回退；更高版本未验证）。
+> 实测环境：DSH **0.1.2-rc.1**（对 0.1.1 的旧接口做了兼容回退，但**会话数据不可跨版本回退**——0.1.2 写过的会话 0.1.1 无法打开；更高版本未验证）。
 
 ### 从 npm（推荐）
 
@@ -59,7 +59,7 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 
 点击徽标弹出详情层：当前提供方指标、本会话 token 用量（可切换会话）、全部提供方折叠区、cc-switch 数据同步提示条、更新时间与刷新。
 
-![余量徽标与详情弹层](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/quota-popover.png)
+![余量徽标与详情弹层](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/quota-popover.png)
 
 ### 用量页签
 
@@ -67,27 +67,27 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 
 - **使用趋势**：渐变面积图，左轴 token 构成，右轴切换预估费用 / 请求次数；当天为分钟级刻度（2~60 分钟自适应 ≥12 桶，补桶不跨天），悬浮提示显示桶区间（如 `15:00~15:30`）
 
-![使用趋势](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-trend.png)
+![使用趋势](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/usage-trend.png)
 
 - **供应商消耗统计**：X 轴供应商、柱内按模型堆叠，右柱费用 / 次数可切换
 
-![供应商消耗统计](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/provider-bars.png)
+![供应商消耗统计](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/provider-bars.png)
 
 - **年度消耗热力图**：GitHub 日历风，近 12 个整月，色深 = 当日 token，首尾按周补齐
 
-![年度消耗热力图](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/heatmap.png)
+![年度消耗热力图](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/heatmap.png)
 
 - **使用排行**：模型 / 供应商 / 客户端三维度聚合，默认按总消耗降序
 
-![使用排行](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-rank.png)
+![使用排行](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/usage-rank.png)
 
 - **请求记录**：分页明细表（时间倒序），页码跳转、每页条数可调（10/20/50/100）
 
-![请求记录](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-records.png)
+![请求记录](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/usage-records.png)
 
 - **跨设备同步**：底部"数据来源"提供导出 / 导入按钮，把不同设备的使用记录合并到一台设备，重复导入无副作用）
 
-![跨设备同步](https://raw.githubusercontent.com/licyer/dsh-token-monitor/68aac8276ef1cafac53abb966e675104eb58eb48/docs/images/usage-sync.png)
+![跨设备同步](https://raw.githubusercontent.com/licyer/dsh-token-monitor/d4540feb02a4a203c03da06be208c681bac0a677/docs/images/usage-sync.png)
 
 ## 插件配置
 
@@ -109,6 +109,7 @@ dsh plugin --profile web add github:licyer/dsh-token-monitor
 | `moonshotai-cn` | 按量余额 | 可用余额（CNY）+ 现金/代金券明细 | ✅ 已验证 |
 | `deepseek` | 按量余额 | 账户余额（按币种账户显示） | ✅ 已验证 |
 | `opencode-go` | 订阅额度 | 5h / 7d / 30d（百分比与重置倒计时） | ✅ 已验证 |
+| `commandcode` | 订阅额度 | 月额度 + 5h / 7d 滚动窗口（已用百分比与重置倒计时；额外结转额度单独行） | ✅ 已验证（个人账号实测；org 组织账号 / Provider 按量账号路径待校准） |
 | `openrouter` | 按量余额 | 积分余额（1 积分 = $1）+ 本月/总消耗 | ✅ 已验证 |
 | `minimax` / `minimax-cn` | 订阅额度 | 5h / 7d 用量百分比（剩余%） | ⚠️ 待真实 key 验证 |
 | `zai` / `zai-coding-cn` | 订阅额度 | 5h / 7d 用量百分比（窗口自动识别，含重置时间） | ⚠️ 待真实 key 验证 |

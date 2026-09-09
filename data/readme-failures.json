@@ -30,16 +30,16 @@
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/bitterSmilezzz/dsh-mac-desktop.git/' not found"
   },
   {
-    "repo": "cking000bigdemon/dsh-toolbelt",
-    "slug": "dsh-toolbelt",
-    "kind": "error",
-    "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/cking000bigdemon/dsh-toolbelt.git/' not found"
-  },
-  {
     "repo": "openma-ai/deepseek-harness-typescript-sdk",
     "slug": "deepseek-harness-typescript-sdk",
     "kind": "error",
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/openma-ai/deepseek-harness-typescript-sdk.git/' not found"
+  },
+  {
+    "repo": "cking000bigdemon/dsh-toolbelt",
+    "slug": "dsh-toolbelt",
+    "kind": "error",
+    "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/cking000bigdemon/dsh-toolbelt.git/' not found"
   },
   {
     "repo": "ayahunter/dsh-trail#bundle",
@@ -54,8 +54,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-web-ui#dsh-aionui-panel",
-    "slug": "dsh-web-ui-dsh-aionui-panel",
+    "repo": "DamonKoy/dsh-web-ui#dsh-web-ui-settings",
+    "slug": "dsh-web-ui-dsh-web-ui-settings",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
+  },
+  {
+    "repo": "DamonKoy/dsh-web-ui#dsh-task-board",
+    "slug": "dsh-web-ui-dsh-task-board",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -66,20 +72,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-web-ui#dsh-web-ui-settings",
-    "slug": "dsh-web-ui-dsh-web-ui-settings",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
-  },
-  {
     "repo": "DamonKoy/dsh-web-ui#dsh-liangshen",
     "slug": "dsh-web-ui-dsh-liangshen",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-web-ui#dsh-task-board",
-    "slug": "dsh-web-ui-dsh-task-board",
+    "repo": "DamonKoy/dsh-web-ui#dsh-aionui-panel",
+    "slug": "dsh-web-ui-dsh-aionui-panel",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -132,14 +132,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "TZHR-invest/dsh-plugins#dsh-mobile-ui",
-    "slug": "dsh-plugins-dsh-mobile-ui",
+    "repo": "UndeadSheep/dsh-file-preview#dsh-file-preview",
+    "slug": "dsh-file-preview-dsh-file-preview",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "UndeadSheep/dsh-file-preview#dsh-file-preview",
-    "slug": "dsh-file-preview-dsh-file-preview",
+    "repo": "TZHR-invest/dsh-plugins#dsh-mobile-ui",
+    "slug": "dsh-plugins-dsh-mobile-ui",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -150,14 +150,14 @@
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/wjy9902/dsh-web-default-session.git/' not found"
   },
   {
-    "repo": "wsxwj123/dsh-plugins#dsh-composer-tools",
-    "slug": "dsh-plugins-dsh-composer-tools",
+    "repo": "wsxwj123/dsh-plugins#dsh-turn-scrubber",
+    "slug": "dsh-plugins-dsh-turn-scrubber",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "wsxwj123/dsh-plugins#dsh-turn-scrubber",
-    "slug": "dsh-plugins-dsh-turn-scrubber",
+    "repo": "wsxwj123/dsh-plugins#dsh-composer-tools",
+    "slug": "dsh-plugins-dsh-composer-tools",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -300,14 +300,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "CHplus0/dsh-learning-mode#plugin",
-    "slug": "dsh-learning-mode-plugin",
+    "repo": "DamonKoy/dsh-plugins#dsh-mcp-client-v2",
+    "slug": "dsh-plugins-dsh-mcp-client-v2",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-plugins#dsh-mcp-client-v2",
-    "slug": "dsh-plugins-dsh-mcp-client-v2",
+    "repo": "CHplus0/dsh-learning-mode#plugin",
+    "slug": "dsh-learning-mode-plugin",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -324,8 +324,8 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "jiayan-xu/dsh-codebase-memory",
-    "slug": "dsh-codebase-memory",
+    "repo": "jinguanghai/deepseek-harness-forge-plugins#forge-tcm",
+    "slug": "deepseek-harness-forge-plugins-forge-tcm",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -336,8 +336,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "jinguanghai/deepseek-harness-forge-plugins#forge-tcm",
-    "slug": "deepseek-harness-forge-plugins-forge-tcm",
+    "repo": "jiayan-xu/dsh-codebase-memory",
+    "slug": "dsh-codebase-memory",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
+  },
+  {
+    "repo": "jiayan-xu/dsh-nuphus-mcp",
+    "slug": "dsh-nuphus-mcp",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -352,12 +358,6 @@
     "slug": "pty-runner",
     "kind": "error",
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/JohnXu22786/pty-runner.git/' not found"
-  },
-  {
-    "repo": "jiayan-xu/dsh-nuphus-mcp",
-    "slug": "dsh-nuphus-mcp",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
   },
   {
     "repo": "kaiwangleo/xiwen#dsh-xiwen",
@@ -384,10 +384,10 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "xxiaoxiong/dsh-issue-tracker",
-    "slug": "dsh-issue-tracker",
-    "kind": "error",
-    "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/xxiaoxiong/dsh-issue-tracker.git/' not found"
+    "repo": "wulun811/LiuHe#bundle",
+    "slug": "LiuHe-bundle",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
   },
   {
     "repo": "xxiaoxiong/dsh-kubernetes",
@@ -396,10 +396,10 @@
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/xxiaoxiong/dsh-kubernetes.git/' not found"
   },
   {
-    "repo": "wulun811/LiuHe#bundle",
-    "slug": "LiuHe-bundle",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
+    "repo": "xxiaoxiong/dsh-issue-tracker",
+    "slug": "dsh-issue-tracker",
+    "kind": "error",
+    "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/xxiaoxiong/dsh-issue-tracker.git/' not found"
   },
   {
     "repo": "yun520-1/deepseek-heartflow",
@@ -486,14 +486,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "Ceelog/dsh-plugins#dsh-plugin-scheduled-tasks",
-    "slug": "dsh-plugins-dsh-plugin-scheduled-tasks",
+    "repo": "bpc-oss/dsh-verification#dsh-verification",
+    "slug": "dsh-verification-dsh-verification",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "bpc-oss/dsh-verification#dsh-verification",
-    "slug": "dsh-verification-dsh-verification",
+    "repo": "Ceelog/dsh-plugins#dsh-plugin-scheduled-tasks",
+    "slug": "dsh-plugins-dsh-plugin-scheduled-tasks",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -528,12 +528,6 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "whyihaveyou/dsh-suite#plugin-team-board",
-    "slug": "dsh-suite-plugin-team-board",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
-  },
-  {
     "repo": "xxiaoxiong/dsh-ci",
     "slug": "dsh-ci",
     "kind": "error",
@@ -542,6 +536,12 @@
   {
     "repo": "tong-io/tongflow#dsh-tongflow",
     "slug": "tongflow-dsh-tongflow",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
+  },
+  {
+    "repo": "whyihaveyou/dsh-suite#plugin-team-board",
+    "slug": "dsh-suite-plugin-team-board",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -558,14 +558,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "kaziii/dsh-github-connector#github",
-    "slug": "dsh-github-connector-github",
+    "repo": "No-PRM/dsh-explorer#dsh-explorer",
+    "slug": "dsh-explorer-dsh-explorer",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "No-PRM/dsh-explorer#dsh-explorer",
-    "slug": "dsh-explorer-dsh-explorer",
+    "repo": "kaziii/dsh-github-connector#github",
+    "slug": "dsh-github-connector-github",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -648,12 +648,6 @@
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/Relistencode/dsh-myrules.git/' not found"
   },
   {
-    "repo": "wingsky-1/dsh-plugin-hub#packages/dsh-skill-explorer",
-    "slug": "dsh-plugin-hub-packages-dsh-skill-explorer",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
-  },
-  {
     "repo": "strukto-ai/mirage#dsh",
     "slug": "mirage-dsh",
     "kind": "no-readme",
@@ -666,14 +660,20 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "DamonKoy/dsh-plugins#dsh-secret-redactor",
-    "slug": "dsh-plugins-dsh-secret-redactor",
+    "repo": "wingsky-1/dsh-plugin-hub#packages/dsh-skill-explorer",
+    "slug": "dsh-plugin-hub-packages-dsh-skill-explorer",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
     "repo": "DamonKoy/dsh-plugins#dsh-approve-for-me",
     "slug": "dsh-plugins-dsh-approve-for-me",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
+  },
+  {
+    "repo": "DamonKoy/dsh-plugins#dsh-secret-redactor",
+    "slug": "dsh-plugins-dsh-secret-redactor",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -732,14 +732,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "vlln/plugin-registry#console",
-    "slug": "plugin-registry-console",
+    "repo": "whyihaveyou/dsh-suite#plugin-manager",
+    "slug": "dsh-suite-plugin-manager",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "whyihaveyou/dsh-suite#plugin-manager",
-    "slug": "dsh-suite-plugin-manager",
+    "repo": "vlln/plugin-registry#console",
+    "slug": "plugin-registry-console",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -858,14 +858,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "dff652/deepseek-harness-community-plugins#dsh-ai-asset-hub",
-    "slug": "deepseek-harness-community-plugins-dsh-ai-asset-hub",
+    "repo": "dff652/deepseek-harness-community-plugins#dsh-agent-mail",
+    "slug": "deepseek-harness-community-plugins-dsh-agent-mail",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "dff652/deepseek-harness-community-plugins#dsh-agent-mail",
-    "slug": "deepseek-harness-community-plugins-dsh-agent-mail",
+    "repo": "dff652/deepseek-harness-community-plugins#dsh-ai-asset-hub",
+    "slug": "deepseek-harness-community-plugins-dsh-ai-asset-hub",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -888,14 +888,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "Tencent/WeKnora#dsh-weknora",
-    "slug": "WeKnora-dsh-weknora",
+    "repo": "Tianbuyu-wwx/DSH-FormatForge#dsh-formatforge",
+    "slug": "DSH-FormatForge-dsh-formatforge",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "Tianbuyu-wwx/DSH-FormatForge#dsh-formatforge",
-    "slug": "DSH-FormatForge-dsh-formatforge",
+    "repo": "Tencent/WeKnora#dsh-weknora",
+    "slug": "WeKnora-dsh-weknora",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -924,14 +924,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "Tencent/BrowserSkill#dsh-plugin-browserskill",
-    "slug": "BrowserSkill-dsh-plugin-browserskill",
+    "repo": "ankye/dsh-client-vision#tool-vision",
+    "slug": "dsh-client-vision-tool-vision",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "ankye/dsh-client-vision#tool-vision",
-    "slug": "dsh-client-vision-tool-vision",
+    "repo": "Tencent/BrowserSkill#dsh-plugin-browserskill",
+    "slug": "BrowserSkill-dsh-plugin-browserskill",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -948,20 +948,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "baosfeng/my-dsh-plugins#dsh-mermaid-render",
-    "slug": "my-dsh-plugins-dsh-mermaid-render",
-    "kind": "no-readme",
-    "reason": "README.md / README / readme.md 均不存在"
-  },
-  {
     "repo": "qishuilalala/dsh-voice-mode#dsh-voice-mode",
     "slug": "dsh-voice-mode-dsh-voice-mode",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "PyModel/dsh-research-plugins#dsh-mcp-context7",
-    "slug": "dsh-research-plugins-dsh-mcp-context7",
+    "repo": "baosfeng/my-dsh-plugins#dsh-mermaid-render",
+    "slug": "my-dsh-plugins-dsh-mermaid-render",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -972,20 +966,26 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
+    "repo": "PyModel/dsh-research-plugins#dsh-mcp-context7",
+    "slug": "dsh-research-plugins-dsh-mcp-context7",
+    "kind": "no-readme",
+    "reason": "README.md / README / readme.md 均不存在"
+  },
+  {
     "repo": "yinhcao/yinchao-ai-music",
     "slug": "yinchao-ai-music",
     "kind": "error",
     "reason": "remote: Repository not found.\nfatal: repository 'https://github.com/yinhcao/yinchao-ai-music.git/' not found"
   },
   {
-    "repo": "Asif2BD/JARVIS-Mission-Control-DeepSeek#dsh-plugin-mission-control",
-    "slug": "JARVIS-Mission-Control-DeepSeek-dsh-plugin-mission-control",
+    "repo": "240xu/tech-lead-skill#dsh-tech-lead",
+    "slug": "tech-lead-skill-dsh-tech-lead",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "240xu/tech-lead-skill#dsh-tech-lead",
-    "slug": "tech-lead-skill-dsh-tech-lead",
+    "repo": "Asif2BD/JARVIS-Mission-Control-DeepSeek#dsh-plugin-mission-control",
+    "slug": "JARVIS-Mission-Control-DeepSeek-dsh-plugin-mission-control",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -1026,14 +1026,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "baosfeng/my-dsh-plugins#dsh-file-activity",
-    "slug": "my-dsh-plugins-dsh-file-activity",
+    "repo": "wsz987/dsh-channels#channels",
+    "slug": "dsh-channels-channels",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "wsz987/dsh-channels#channels",
-    "slug": "dsh-channels-channels",
+    "repo": "baosfeng/my-dsh-plugins#dsh-file-activity",
+    "slug": "my-dsh-plugins-dsh-file-activity",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
@@ -1050,14 +1050,14 @@
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "CH4ACKO3/dsh-render-engine#code-render",
-    "slug": "dsh-render-engine-code-render",
+    "repo": "dphmoblie/dsh-error-tell#client-tell",
+    "slug": "dsh-error-tell-client-tell",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },
   {
-    "repo": "dphmoblie/dsh-error-tell#client-tell",
-    "slug": "dsh-error-tell-client-tell",
+    "repo": "CH4ACKO3/dsh-render-engine#code-render",
+    "slug": "dsh-render-engine-code-render",
     "kind": "no-readme",
     "reason": "README.md / README / readme.md 均不存在"
   },

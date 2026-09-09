@@ -23,17 +23,17 @@ An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-
 
 Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
 
-![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/9c086702bebd6f41ded3022d41189c47d9054431/assets/readme/dsh-entry.png)
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6ef338578a1756825a8042687b53655025b4a2ac/assets/readme/dsh-entry.png)
 
 Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
 
-![Team mode in the DSH Web UI: Channels and online Agent members in the sidebar, with the Main Channel showing Task references](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/9c086702bebd6f41ded3022d41189c47d9054431/assets/readme/team-mode.png)
+![Team mode in the DSH Web UI: Channels and online Agent members in the sidebar, with the Main Channel showing Task references](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6ef338578a1756825a8042687b53655025b4a2ac/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Task Thread in the DSH Web UI: Claims, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/9c086702bebd6f41ded3022d41189c47d9054431/assets/readme/task-thread.png)
+![Task Thread in the DSH Web UI: Claims, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6ef338578a1756825a8042687b53655025b4a2ac/assets/readme/task-thread.png)
 
 If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-team) helps other DSH users find it.
 

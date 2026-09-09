@@ -26,15 +26,15 @@
 
 | 推荐 · 亮色 | 推荐 · 深色（跟随 DSH 主题） |
 |---|---|
-| ![推荐 · 亮色](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/overview-light.png) | ![推荐 · 深色](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/overview-dark.png) |
+| ![推荐 · 亮色](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/overview-light.png) | ![推荐 · 深色](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/overview-dark.png) |
 
 | 内容库 | 对话 | 画像 |
 |---|---|---|
-| ![内容库](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/library-light.png) | ![对话](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/dialogue-light.png) | ![画像](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/profile-light.png) |
+| ![内容库](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/library-light.png) | ![对话](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/dialogue-light.png) | ![画像](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/profile-light.png) |
 
 | 设置 · 模型 | 设置 · 调度 | 设置 · 通用 |
 |---|---|---|
-| ![设置 · 模型](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/settings-models-light.png) | ![设置 · 调度](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/settings-scheduler-light.png) | ![设置 · 通用](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/d6bb3be90e874a1a2e5efbcf1b1f858616edcf74/docs/screenshots/settings-general-light.png) |
+| ![设置 · 模型](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/settings-models-light.png) | ![设置 · 调度](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/settings-scheduler-light.png) | ![设置 · 通用](https://raw.githubusercontent.com/whiteguo233/dsh-openbiliclaw/f9511b06c2962b7f5410fda1f914519690c6166a/docs/screenshots/settings-general-light.png) |
 
 ## 功能
 

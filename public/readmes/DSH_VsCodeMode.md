@@ -22,6 +22,13 @@
   完整操作条（Keep / Undo / 跳转 / 回滚 / 归档对比），不会再出现第二个差异栏。header 差异角标 +
   DiffLauncher 全局总览 + 归档/批次回滚；状态持久化到工作区旁车（`.dsh-edit-review.json`，重启不丢）。
 - **Monaco 离线分发**：`assets/vendor/monaco` AMD 构建随包发布，经 `/edrv/vendor/*` 前缀路由提供，全离线可用。
+- **PDF 浏览与编辑**（v0.1.55，借鉴开源 [pdf.js](https://github.com/mozilla/pdf.js)，Apache-2.0）：
+  打开 `.pdf` 文件在编辑区页签内直接浏览（连续滚动/翻页/缩放/文本选择，cmaps 支持中文渲染）；
+  工具条进入注释编辑：✎ 文本框 / 🖌 画笔 / 🖍 高亮，`Ctrl+S` 或 💾 保存把批注写回原文件
+  （`pdfDocument.saveDocument()` → `edrv.saveBinary` base64 回写，工作区边界 + 32MB 上限约束）。
+  引擎离线 vendor 于 `assets/vendor/pdfjs`（build + viewer 组件 + cmaps + standard_fonts，约 5MB），
+  与 Monaco 同模式经 `/edrv/vendor/pdfjs/*` 分发；升级版本用 `node scripts/vendor-pdfjs.mjs [版本]`。
+  能力边界：注释级编辑（浏览器开源方案不支持无损改写既有正文文字）；加密 PDF 暂不支持。
 - **文件管理侧边栏**（类 VSCode 活动栏 + 面板）：编辑器内嵌活动栏 + 可拖拽调宽的面板区；首期「资源管理器」= 懒加载目录树
   （展开目录实时读取、点文件在编辑器打开、差异角标、活动文件高亮、`edrv:refresh`/手动 ⟳ 刷新、`Ctrl+B` 显隐并持久化；
   侧栏形态默认收起以节省面板宽度；拖拽调宽下限 = 最小宽度（默认 300，设置 → VSCodeMode → 通用「编辑器」可调 180–560），
@@ -56,15 +63,15 @@
 
 ## 界面截图
 
-![侧边栏编辑形态：AI 对话与文件编辑同屏](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/e77dcdde0e552251899e728472908cafa8f49c11/docs/screenshots/img1.png)
+![侧边栏编辑形态：AI 对话与文件编辑同屏](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/bafa4e06fc0587bc7824f7506964896a849c9ec8/docs/screenshots/img1.png)
 
 > dsh-vscode-mode 侧边栏编辑形态：betterSidebar 右侧栏内的 Monaco 文件编辑器与中央 AI 对话同屏，
 > 差异条统一挂在对话输入框上方的原生 dock（编辑器未打开=「差异 N 个文件 · 查看下一个」，
 > 打开后=完整 Keep / Undo 操作条）。
 
-![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/e77dcdde0e552251899e728472908cafa8f49c11/docs/screenshots/img2.png)
+![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/bafa4e06fc0587bc7824f7506964896a849c9ec8/docs/screenshots/img2.png)
 
-![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/e77dcdde0e552251899e728472908cafa8f49c11/docs/screenshots/img3.png)
+![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/bafa4e06fc0587bc7824f7506964896a849c9ec8/docs/screenshots/img3.png)
 
 ## 安装（官方 `dsh plugin` 方式，三选一）
 
@@ -148,6 +155,10 @@ src/
     ├── events.ts       窗口事件助手（edrv:refresh/open-editor/show-launcher；侧栏路由优先、旧页签回退）
     ├── state/          records.ts（摘要/计数/空差异）+ regions.ts（差异区域/行裁剪）纯函数
     ├── monaco/         loader.ts（AMD 加载/语言映射）+ diffRender.ts（差异自绘渲染器）
+    ├── pdf/            pdfLoader.ts（pdf.js vendor 产物 module-script 加载）+ pdfPanel.ts（PDF 面板控制器：
+    │                   PDFViewer 接线/注释编辑模式/saveDocument 保存回写）
+    ├── pdfPreview.ts   PDF 判定与 base64 编解码纯函数（可单测）
+    ├── imagePreview.ts 图片判定与 data URL 纯函数（可单测）
     ├── diffDock.ts     差异 dock 轮转/文案/形态纯函数（对话 dock 与 DiffBox 共用）
     ├── sidebar/        ★ 侧边栏面板系统：registry.ts（注册表，镜像 fileOpeners）+ SidebarView.ts（活动栏/面板区/拖拽调宽）
     │                   + types.ts（SidebarPanelDef/SidebarCtx）+ panels/FileExplorer.ts（文件树面板 #1）
@@ -274,6 +285,10 @@ V8 展开约 10×）。会话越多越大，启动内存越高，可能冲爆堆
   `Editor/com.dsh.editor.asmdef`，`"unity": "2019.4"` 基线；机制参照 com.unity.ide.traeCN 的
   `IExternalCodeEditor`：虚拟安装 `dsh-editor://vscode-mode`，`OpenProject` → `Application.OpenURL(深链)`，
   不需要本地可执行文件，不生成 csproj）。
+- **打开过滤**：Unity 对双击的任何资产（含 prefab/scene）都会回调 `OpenProject`；仅文本/代码类扩展名
+  （白名单 + Project Settings 用户自定义扩展 `EditorSettings.projectGenerationUserExtensions`）交 DSH
+  打开，其余返回 `false` 交还 Unity 原生处理（双击预制体进预制体模式、双击场景开场景），对齐官方
+  `DefaultExternalCodeEditor` 行为。
 - **一键安装/更新**：设置页登记 Unity 项目根（校验 `Assets` + `ProjectSettings` 特征）后，点「安装/更新」把包源
   整目录复制为 `<项目>/Packages/com.dsh.editor`（Unity **内嵌包**自动发现，无需改 manifest.json）；更新 = 整目录
   替换，列表显示已装版本与「可更新」徽标；目标已存在且 `package.json` name 不是 `com.dsh.editor` 时拒绝覆盖。
