@@ -1,3 +1,9 @@
+<blockquote>
+
+**ARCHIVED (read-only)** — The official DSH web shell shipped a built-in Turn navigation rail in the **0.1.2 series** (npm `@deepseek-ai/dsh` ≥ 0.1.2-rc.1; upstream `feat(ui-chat): full-session turn rail with load-and-jump`, b3064cca): a `TurnNavigator` rail with hover previews, click-to-jump, reading-position tracking, and jump-loads for unloaded turns. The core capabilities of this plugin are now covered by the host, so this repository is archived. Historical implementation remains in `docs/` and the git history.
+
+</blockquote>
+
 <p align="center"><a href="README.zh.md">中文</a> | English</p>
 
 <h1 align="center">navbar</h1>
@@ -14,7 +20,7 @@ An evenly spaced node strip along the right edge of the conversation area (one n
 
 ## Preview
 
-![navbar node navigation rail (real runtime screenshot: node strip on the right edge + active highlight)](https://raw.githubusercontent.com/vlln/dsh-navbar/f41d446f843e575c3291e4926718f9dc6e0f3bea/docs/preview/navbar.png)
+![navbar node navigation rail (real runtime screenshot: node strip on the right edge + active highlight)](https://raw.githubusercontent.com/vlln/dsh-navbar/e53adfc8c837ebcb4b6a52c2c4baf7cb6e8b795e/docs/preview/navbar.png)
 
 ## Features
 

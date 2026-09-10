@@ -39,20 +39,20 @@
 **自动折叠**：已完成轮次收成一条控制条，只留最终结论（上）；点击「展开」恢复思考、工具调用与中间文字（下）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/f2b5f19c7708a1655439b5f7a862dfbc855625b4/assets/fold-collapsed.png" width="92%" alt="折叠：只留最终结论">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/f2b5f19c7708a1655439b5f7a862dfbc855625b4/assets/fold-expanded.png" width="92%" alt="展开：恢复完整过程">
 </p>
 
 **左缘定位条（Canvas minimap）**：在**无官方右缘 TurnNavigator 的旧版 DSH（0.1.0-rc.7 ~ 0.1.1-rc.x）可用**（navigator 开）；**DSH 0.1.2+ 暂停**（与官方新功能冲突 + react-dom）。下图为历史版本运行效果。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要（历史版本）">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/f2b5f19c7708a1655439b5f7a862dfbc855625b4/assets/navigator.png" width="92%" alt="左缘定位条与悬停摘要（历史版本）">
 </p>
 
 **设置面板**：四个功能独立开关 + 现象标签 + 一键「生成诊断报告并提交」，改动即时生效。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/dd8bf4fa27049363bc5f9b4692009c912ae2556a/assets/settings.png" width="92%" alt="设置面板四开关">
+  <img src="https://raw.githubusercontent.com/BananaSoldier01/dsh-tidychat/f2b5f19c7708a1655439b5f7a862dfbc855625b4/assets/settings.png" width="92%" alt="设置面板四开关">
 </p>
 
 ## 🚀 安装

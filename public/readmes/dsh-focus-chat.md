@@ -10,9 +10,9 @@ A plugin for the dsh web GUI that adds a **focus chat** tab — a condensed, Cla
 
 | Off — the normal chat view | On — the focus chat view |
 | --- | --- |
-| ![Off: the normal chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/f1f82e842b2955c816264715fc49fa2a2879bbbd/screenshots/before.png) | ![On: the focus chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/f1f82e842b2955c816264715fc49fa2a2879bbbd/screenshots/after.png) |
+| ![Off: the normal chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/03282b81f7aa3581fa8d68dcbe70a7baf71588d9/screenshots/before.png) | ![On: the focus chat view](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/03282b81f7aa3581fa8d68dcbe70a7baf71588d9/screenshots/after.png) |
 | Settings |
-| ![Focus chat settings](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/f1f82e842b2955c816264715fc49fa2a2879bbbd/screenshots/settings.png) |
+| ![Focus chat settings](https://raw.githubusercontent.com/dingyi222666/dsh-focus-chat/03282b81f7aa3581fa8d68dcbe70a7baf71588d9/screenshots/settings.png) |
 
 Instead of watching every step live, one assistant turn collapses into a single summary line:
 
@@ -25,7 +25,7 @@ Switch to it whenever you want the "what happened?" view, and flip back for the 
 ## Install
 
 ```sh
-# Install from npm (requires dsh >= 0.1.3-alpha.2)
+# Install from npm (requires dsh >= 0.1.5-alpha.2)
 dsh plugin --profile web add @dingyi222666/dsh-focus-chat
 # Restart dsh web; the tab mounts automatically
 dsh web
@@ -52,7 +52,7 @@ If you want the chat view itself to behave differently, that's an in-repo change
 
 Focus chat is a faithful reading surface, not a second chat view:
 
-- **No Inspect / details-panel deep links.** The chat's Inspect affordance needs internals plugins can't touch. The tool cards render the same content, just without the jump-to-details button.
+- **Inspect focuses the trajectory view.** A tool row's Inspect action opens the official trajectory view on that call (`openView('trajectory', callId)`) — the 0.1.5 replacement for the removed details panel. Focus cannot render third-party keyed tool views (see the next bullet).
 - **Third-party tool-card extensions don't render here.** Cards that other plugins add to the chat view won't appear in the focus view; the built-in card renderers are used instead.
 - **Folding is per consecutive tool-run.** Any visible content between two runs (a reply, a command, your interjection) keeps them separate.
 - **Inline file links need the optional file-mentions service** — the same off switch the chat view uses.
@@ -60,7 +60,7 @@ Focus chat is a faithful reading surface, not a second chat view:
 
 ## Development
 
-> This build targets the dsh v0.1.3-alpha.2 client surface, and every `@deepseek-ai/*` runtime dependency installs from the npm registry (see `package.json`). The `/client` entries those packages ship are `window.__ModuleLoader__` browser closures, and the dsh test runtime is built against the source tree, so `yarn test` resolves the `@deepseek-ai` client surface from the dsh mainline source checkout at the same 0.1.3-alpha.2 line: `vitest.config.ts` derives its aliases from that checkout's own tsconfig path map (the `MAINLINE` constant in the config) — keep the checkout on the 0.1.3-alpha.2 release and everything else stays npm-installed.
+> This build targets the dsh v0.1.5-alpha.2 client surface, and every `@deepseek-ai/*` runtime dependency installs from the npm registry (see `package.json`). The `/client` entries those packages ship are `window.__ModuleLoader__` browser closures, and the dsh test runtime is built against the source tree, so `yarn test` resolves the `@deepseek-ai` client surface from the dsh mainline source checkout at the same 0.1.5-alpha.2 line: `vitest.config.ts` derives its aliases from that checkout's own tsconfig path map (the `MAINLINE` constant in the config) — keep the checkout on the 0.1.5-alpha.2 release and everything else stays npm-installed.
 
 - `yarn run build` — builds the browser bundle and the Node half.
 - `src/client/model/` — the pure logic (folding, merging, row models, the remote turn-slice projection); `src/client/view/FocusView.tsx` — the view; `src/host/` — the host half's turn index and RPC channel; `src/protocol.ts` — the wire contract shared by both halves.

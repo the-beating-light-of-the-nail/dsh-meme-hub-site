@@ -3,7 +3,7 @@
 **中文** · [English](README.en.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/hero.svg" width="100%" alt="dsh-grok-kit：DeepSeek Harness 的 Grok OAuth 与融合搜索插件">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/44d78092094c53c153bb3fec8a3a6746d045dde6/assets/readme/hero.svg" width="100%" alt="dsh-grok-kit：DeepSeek Harness 的 Grok OAuth 与融合搜索插件">
 </p>
 
 <p align="center">
@@ -55,7 +55,7 @@
 ### 账号、模型与代理
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/settings.png" width="620" alt="dsh-grok-kit 设置页：Grok CLI 登录、模型选择与 xAI 专用代理">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/44d78092094c53c153bb3fec8a3a6746d045dde6/assets/readme/settings.png" width="620" alt="dsh-grok-kit 设置页：Grok CLI 登录、模型选择与 xAI 专用代理">
 </p>
 <p align="center"><em>设置页复用 Grok CLI 登录，展示账号可见模型，并按需设置仅对 xAI 生效的网络代理。图中的 <code>127.0.0.1</code> 是本机回环代理示例。</em></p>
 
@@ -64,7 +64,7 @@
 ### 网页搜索融入主循环
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/main-loop-search.png" width="760" alt="Grok 在同一轮 Think 中完成网页搜索并回答">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/44d78092094c53c153bb3fec8a3a6746d045dde6/assets/readme/main-loop-search.png" width="760" alt="Grok 在同一轮 Think 中完成网页搜索并回答">
 </p>
 <p align="center"><em>没有另起嵌套搜索工具卡片：网页检索直接发生在同一轮 Think 中，材料随即用于当前回复。截图里的新闻内容只用于展示交互，不作为事实来源。</em></p>
 
@@ -73,7 +73,7 @@
 ### X 搜索的服务端调用
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/b94d97e15a34813cc02e51a5a930d519e5e10cbf/assets/readme/x-search.png" width="760" alt="xAI 返回 X 搜索 custom_tool_call 后继续完成回答">
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-grok-kit/44d78092094c53c153bb3fec8a3a6746d045dde6/assets/readme/x-search.png" width="760" alt="xAI 返回 X 搜索 custom_tool_call 后继续完成回答">
 </p>
 <p align="center"><em>当前版本在开启主循环搜索时会剥掉 <code>x_keyword_search</code> 等收尾桩，正常路径不再把它们转发给 DSH。截图为功能演示，不代表当前界面会露出这些名称。</em></p>
 

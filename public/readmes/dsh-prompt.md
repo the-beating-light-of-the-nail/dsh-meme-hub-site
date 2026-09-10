@@ -49,7 +49,7 @@ dsh plugin --profile desktop add dsh-prompt@0.1.6 --registry https://registry.np
 
 **👇 装完重启，输入框左侧多出这枚按钮就是成功。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/214f43d4349bb7fd2104316af606612eab78b99e/assets/readme/01-install-ready.png" width="720" alt="安装成功后输入框左侧的 Prompt 按钮" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/20908f90ac00906779db012454acc40411201d11/assets/readme/01-install-ready.png" width="720" alt="安装成功后输入框左侧的 Prompt 按钮" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 
@@ -93,7 +93,7 @@ dsh plugin --profile web remove dsh-prompt   # 卸载
 
 **👇 按钮一点，面板长这样。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/214f43d4349bb7fd2104316af606612eab78b99e/assets/readme/02-panel-button.png" width="640" alt="Prompt 按钮悬浮面板：阶段筛选与模板列表" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/20908f90ac00906779db012454acc40411201d11/assets/readme/02-panel-button.png" width="640" alt="Prompt 按钮悬浮面板：阶段筛选与模板列表" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 
@@ -107,7 +107,7 @@ dsh plugin --profile web remove dsh-prompt   # 卸载
 
 **👇 输一半，候选自动收窄。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/214f43d4349bb7fd2104316af606612eab78b99e/assets/readme/03-trigger-prompt.png" width="640" alt="/prompt 触发源：输入过滤后的候选列表" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/20908f90ac00906779db012454acc40411201d11/assets/readme/03-trigger-prompt.png" width="640" alt="/prompt 触发源：输入过滤后的候选列表" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 
@@ -131,7 +131,7 @@ dsh plugin --profile web remove dsh-prompt   # 卸载
 
 **👇 24 条全貌在设置页一次看完。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/214f43d4349bb7fd2104316af606612eab78b99e/assets/readme/05-templates-gallery.png" width="640" alt="模板一览：设置页中的 24 条预制模板" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/20908f90ac00906779db012454acc40411201d11/assets/readme/05-templates-gallery.png" width="640" alt="模板一览：设置页中的 24 条预制模板" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 
@@ -145,7 +145,7 @@ dsh plugin --profile web remove dsh-prompt   # 卸载
 
 **👇 新增弹窗长这样，填完点添加。**
 
-<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/214f43d4349bb7fd2104316af606612eab78b99e/assets/readme/06-custom-manage.png" width="640" alt="自定义管理：新增自定义模板弹窗" style="border:1px solid #30363d;border-radius:6px">
+<img src="https://raw.githubusercontent.com/FeatherHunter/dsh-prompt/20908f90ac00906779db012454acc40411201d11/assets/readme/06-custom-manage.png" width="640" alt="自定义管理：新增自定义模板弹窗" style="border:1px solid #30363d;border-radius:6px">
 
 </div>
 

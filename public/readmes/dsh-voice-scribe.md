@@ -9,7 +9,7 @@
 [![dsh.so install](https://www.dsh.so/badge/install/dsh-voice-scribe.svg)](https://www.dsh.so/artifact/dsh-voice-scribe/)
 [![Listed in awesome-dsh-plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/PensiveFei/dsh-voice-scribe/)
 
-DSH 专属语音输入插件：**点按或按住 Alt 说话、松开/再点按转文字**，插入输入框光标处。
+DSH 专属语音输入插件：**点按或按住 Alt 说话、松开/再点按转文字**，结果追加到输入框草稿末尾（不覆盖已输入内容）。
 Voice input for DeepSeek Harness: tap or hold Alt to talk, get text in the composer.
 
 > ⚠️ 非官方插件，与 DeepSeek / 深度求索公司无关联。使用前请阅读 [SECURITY.md](./SECURITY.md)。
@@ -65,7 +65,10 @@ DeepSeek=deep seek|迪普西克
 
 ## 自定义润色提示词（可选）
 
-设置 → 语音输入 → 开启润色后，可自定义润色提示词（多行，保存在服务端）；留空或「恢复默认」使用内置的最小必要修正提示词。
+设置 → 语音输入 → 开启润色后：
+
+- **润色模型**：下拉选择复用的 DSH 模型（选项来自 DSH 已配置的 provider，首次开启自动选中第一个）
+- **润色提示词**：可自定义（多行，保存在服务端）；留空或「恢复默认」使用内置的最小必要修正提示词
 
 > 润色时会先做一步**本地规则预润色**（去「嗯/呃」等口头禅、折叠多余空格），再把更短更干净的文本交给 LLM，省 token；LLM 失败时仍保留原始转写。
 
@@ -90,6 +93,17 @@ DeepSeek=deep seek|迪普西克
 | 提示词优化 / 文件转 Markdown | ❌ | ✅ |
 
 只想要**更省心、更私密的语音输入** → dsh-voice-scribe；需要**一整套输入增强**（提示词优化、文件转 Markdown） → dsh-better-input。两者可并存。
+
+## 已知限制 Known limitations
+
+- 输入框里含 `@` 引用芯片（如 `@文件`）时，DSH 只提供「整段替换草稿」的接口，转写结果插入会把芯片展开成纯文本；先发送或清空草稿再听写可避免。
+- 浏览器 Web Speech 依赖外部语音服务，国内网络下通常需要改用本地离线或云端引擎。
+
+## 兼容性 Compatibility
+
+- 需要 **DSH 0.1.0-rc.6 及以上**（含 `0.1.1-rc` / `0.1.2-alpha` / `0.1.3-alpha` / `0.1.5-alpha` 各预发布线）。
+- 输入框插槽 `conversation.input.right` 在 DSH **0.1.2** 起由 `<textarea>` 改为 Lexical `contenteditable`：0.4.8 起两种形态都支持（读取实时草稿走 `useInput`，写入走 `inputActions.setDraft`）。
+- 界面没有麦克风按钮（旧壳子没有该插槽）时，**Alt 热键仍然可用**。
 
 ## 开发 Dev
 

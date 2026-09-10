@@ -4,21 +4,21 @@
 
 为 DeepSeek Harness 的回复加入可切换、自定义的行内表情。
 
-![dsh-emoji 蓝鲸表情包](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/banner.png)
+![dsh-emoji 蓝鲸表情包](https://raw.githubusercontent.com/hellodigua/dsh-emoji/3b77dc3d622e3a5970533561df5bdfbc076aa2b2/assets/readme/banner.png)
 
 ## 效果预览
 
 默认的大肥鱼表情：
 
-![蓝鲸表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/chat-preview.png)
+![蓝鲸表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/3b77dc3d622e3a5970533561df5bdfbc076aa2b2/assets/readme/chat-preview.png)
 
 切换到贴吧表情包后，也能使用同一套语义协议展示贴吧表情：
 
-![贴吧表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/chat-preview.tieba.png)
+![贴吧表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/3b77dc3d622e3a5970533561df5bdfbc076aa2b2/assets/readme/chat-preview.tieba.png)
 
 上传并切换到 B 站表情包后，也能保留熟悉的社区表达风格：
 
-![B 站表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/84a1106632e6e8ded61f946432c609c4d13f92e9/assets/readme/chat-preview.bilibili.png)
+![B 站表情在 DSH 对话中的行内显示效果](https://raw.githubusercontent.com/hellodigua/dsh-emoji/3b77dc3d622e3a5970533561df5bdfbc076aa2b2/assets/readme/chat-preview.bilibili.png)
 
 同一套语义协议也可用于小红书、抖音、微博等自定义表情包。
 
@@ -95,7 +95,7 @@ sarcastic, cool, celebrate, cheer, thanks, sorry, hug, please, applause
 
 ## 兼容性
 
-当前版本面向 npm `@deepseek-ai/dsh@0.1.0-rc.7`，DSH peers 声明为 `^0.1.0-rc.7`。本地开发固定精确 rc.7 类型链，部署时由 Web Profile 提供共享运行时。
+当前验证版本为 npm `@deepseek-ai/dsh@0.1.5-alpha.1`，需要 Node.js `^22.19.0 || >=24`。本地开发固定精确 DSH 类型链，部署时由 Web Profile 提供共享运行时；逐版本兼容状态记录在 `package.json` 的 `dsh.compatibility.dshReleases` 中。
 
 ## 本地开发
 

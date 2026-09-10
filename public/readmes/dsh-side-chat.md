@@ -263,7 +263,7 @@ conversation (**never sent**):
    context row** (source-tagged, not into the composer; the model sees it next
    turn).
 
-![Bring-back demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/a691d109b14e5c050bbfc7d2b5792819bbdf5baa/docs/bring-back.gif)
+![Bring-back demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/4a0e35cd24f245493bcb53d912e5857aeea606fd/docs/bring-back.gif)
 
 ### Ask about the current question dialog
 
@@ -281,7 +281,7 @@ The main conversation keeps waiting on the dialog — nothing is interrupted; do
 the research in the side chat first, then bring the answer back and answer the
 dialog.
 
-![Question dialog demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/a691d109b14e5c050bbfc7d2b5792819bbdf5baa/docs/question-dialog.gif)
+![Question dialog demo](https://raw.githubusercontent.com/heartmove/dsh-side-chat/4a0e35cd24f245493bcb53d912e5857aeea606fd/docs/question-dialog.gif)
 
 ### Delete side chats
 
@@ -298,6 +298,7 @@ Open DSH **Settings → 侧边聊天 (Side chat)** to configure:
 | `sendImmediately` | on | Whether selecting text sends it immediately, or stages it as an attachment. |
 | `defaultPrompt` | *(empty)* | Extra prompt appended when the selection is sent immediately. |
 | `bringMode` | `draft` | Where brought-back content lands: `draft` into the composer, or `context` as a collapsed context row. |
+| `panelHome` | `sidebar-right` | Where the panel lives: `sidebar-right` docks it into the new built-in right sidebar as a "Side chat" tab (same rail as document previews, default); `floating` is the classic drag-resizable right-edge panel. In floating mode the side chat yields automatically while the built-in sidebar is open (docked, fullscreen or floated), so the two never cover each other. |
 
 Preferences are stored in the DSH settings namespace `dsh-side-chat`.
 

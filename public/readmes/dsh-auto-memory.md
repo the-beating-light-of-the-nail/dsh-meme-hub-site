@@ -10,16 +10,16 @@
 </p>
 
 <p align="center">
-  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="820" alt="dsh-auto-memory hero: she remembers, unbidden" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-0-banner-v2.png"></a>
+  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="820" alt="dsh-auto-memory hero: she remembers, unbidden" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-0-banner-v2.png"></a>
 </p>
 
 <p align="center">
-  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="130" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-0-banner-v2.png"></a>
-  <a href="docs/screenshots/promo/promo-2-tour.png"><img width="130" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-2-tour.png"></a>
-  <a href="docs/screenshots/promo/promo-3-recall.png"><img width="130" alt="recall & crystallization" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-3-recall.png"></a>
-  <a href="docs/screenshots/promo/promo-4-unattended.png"><img width="130" alt="unattended mode" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-4-unattended.png"></a>
-  <a href="docs/screenshots/promo/promo-5-external.png"><img width="130" alt="external memory inheritance" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-5-external.png"></a>
-  <a href="docs/screenshots/promo/promo-6-greeting.png"><img width="130" alt="scheduled greetings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-6-greeting.png"></a>
+  <a href="docs/screenshots/promo/promo-0-banner-v2.png"><img width="130" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-0-banner-v2.png"></a>
+  <a href="docs/screenshots/promo/promo-2-tour.png"><img width="130" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-2-tour.png"></a>
+  <a href="docs/screenshots/promo/promo-3-recall.png"><img width="130" alt="recall & crystallization" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-3-recall.png"></a>
+  <a href="docs/screenshots/promo/promo-4-unattended.png"><img width="130" alt="unattended mode" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-4-unattended.png"></a>
+  <a href="docs/screenshots/promo/promo-5-external.png"><img width="130" alt="external memory inheritance" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-5-external.png"></a>
+  <a href="docs/screenshots/promo/promo-6-greeting.png"><img width="130" alt="scheduled greetings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-6-greeting.png"></a>
 </p>
 <p align="center"><sub>Promo gallery · six frames · click any thumbnail to view full size</sub></p>
 
@@ -28,32 +28,32 @@
 
 #### Frame 1 · Hero — She remembers, unbidden
 
-<p align="center"><img width="720" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-1-hero.png"></p>
+<p align="center"><img width="720" alt="hero" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-1-hero.png"></p>
 
 #### Frame 2 · Welcome Tour — Every feature, explained and toggled on the spot
 
-<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-2-tour.png"></p>
+<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-2-tour.png"></p>
 
 #### Frame 3 · Recall & Crystallization — Conversation condenses into skills, traceably
 
-<p align="center"><img width="720" alt="recall" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-3-recall.png"></p>
+<p align="center"><img width="720" alt="recall" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-3-recall.png"></p>
 
 #### Frame 4 · Unattended Mode — Runs all night, zero small talk, zero interruptions
 
-<p align="center"><img width="720" alt="unattended" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-4-unattended.png"></p>
+<p align="center"><img width="720" alt="unattended" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-4-unattended.png"></p>
 
 #### Frame 5 · External Memory Inheritance — Your other AIs feed her memory too
 
-<p align="center"><img width="720" alt="external" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-5-external.png"></p>
+<p align="center"><img width="720" alt="external" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-5-external.png"></p>
 
 #### Frame 6 · Scheduled Greetings — Every day remembered
 
-<p align="center"><img width="720" alt="greeting" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/promo/promo-6-greeting.png"></p>
+<p align="center"><img width="720" alt="greeting" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/promo/promo-6-greeting.png"></p>
 
 </details>
 
 <p align="center">
-  <a href="README.zh-CN.md">中文</a> · <b>English</b> · License BSD-3-Clause · <code>pnpm add @a9i5k4/dsh-auto-memory</code> · <a href="docs/USER-GUIDE.zh-CN.md">📖 User guide (settings & tuning)</a> · <a href="https://qm.qq.com/q/v7Asxn6vPa">QQ group</a>
+  <a href="README.zh-CN.md">中文</a> · <b>English</b> · License BSD-3-Clause · <code>pnpm add @a9i5k4/dsh-auto-memory</code> · <a href="docs/USER-GUIDE.en.md">📖 User guide (settings & tuning)</a> · <a href="docs/USER-GUIDE.zh-CN.md">📖 用户文档</a> · <a href="https://qm.qq.com/q/v7Asxn6vPa">QQ group</a>
 </p>
 
 ---
@@ -82,7 +82,7 @@ Now we push this route to its last missing piece — when the context fills, she
 | **Everything is a switch** | Welcome tour + settings page, every feature individually toggleable (incl. unattended mode) |
 | **External memory inheritance** | Memories from WorkBuddy / CodeBuddy / Claude Code / Codex are scanned, importable, per-source managed |
 | **Production-grade hygiene** | Write gate (mojibake/stutter/JSON-injection blocking) + dirty-token scanner + credentials never enter prompts |
-| **Astra-style context management (experimental)** | A filling context no longer collapses into one summary — four-part handoff notes carry work across windows, full history stays searchable, the agent retrieves on demand (off by default; enable in Settings → Automation) |
+| **Astra-style context management** | A filling context no longer collapses into one summary — four-part handoff notes carry work across windows, full history stays searchable, the agent retrieves on demand (on by default, threshold 0.75) |
 | **Model-agnostic** | No vendor lock, no tier lock: any model on DSH works out of the box — lexical 0GB floor, built-in ~130MB semantic tier, advanced 563MB |
 | **Portable memory** | Everything lives on your own disk; memories scan in from other AI tools, every entry has an evidence chain — auditable, deletable. Memory belongs to you, not to any vendor |
 
@@ -104,9 +104,9 @@ Humans use memory two ways: deliberately retracing what was done before — and,
 
 Once a person learns to ride, they never replay the tutorial — muscle memory takes over, and the skill transfers to the next road on its own. She grows that kind of memory too: after watching your corrections a few times, or doing the same kind of thing again and again, a workflow crystallizes into a skill; next time something similar shows up, the checklist attaches itself — no one reminding. What was learned deliberately becomes something done casually — her procedural memory, the part you can review, pin, and watch grow in the Memory Hub tab.
 
-### The fourth · Handoff, not compression (in progress)
+### The fourth · Handoff, not compression
 
-When the context fills, she no longer burns the whole book for a one-line summary; she writes a four-part handoff note — state, goals, dead ends and why, progress and next step — closes this window, and opens the next. The full history stays archived and searchable; details can always be looked back up. The newest of the four, and the last piece of a complete memory — see [How she hands off](#how-she-hands-off-next-major--coming-soon).
+When the context fills, she no longer burns the whole book for a one-line summary; she writes a four-part handoff note — state, goals, dead ends and why, progress and next step — closes this window, and opens the next. The full history stays archived and searchable; details can always be looked back up. The newest of the four, and the last piece of a complete memory — see [How she hands off](#how-she-hands-off).
 
 ---
 
@@ -130,7 +130,7 @@ So we built it as an open plugin: no experimental gate, no subscription tier —
 
 **One route, two arrivals: it ships with a flagship; ours walks into your machine as a plugin.**
 
-*Handoff is experimental and off by default in this release — enable via Settings → Automation → Handoff whiteboard (see [How she hands off](#how-she-hands-off-experimental--off-by-default)).*
+*Handoff is on by default — threshold 0.75, just below the host's 0.80 auto-compaction line (see [How she hands off](#how-she-hands-off)).*
 
 ---
 
@@ -144,7 +144,7 @@ Friday, you ask casually: "Why do you remember this?" She shows you: which messa
 
 **She remembers, unbidden. And if you want her to forget — that's one sentence too.**
 
-> Handoff-related scenes require Settings → Automation → Handoff whiteboard (experimental).
+> Handoff-related scenes are on by default.
 
 ---
 
@@ -173,7 +173,7 @@ Then, periodically, she looks back: `memory_consolidate` reads recent logs and d
 
 Powers are separated too: what to recall belongs to the semantic decision layer; whether and when belongs to the identity/authorization/timing governance layer — every delivery carries an evidence chain. Every page she hands over has also passed inspection: injected content is neutralized for template variables at every exit — a plain `{{baseUrl}}` in a log can no longer brick an entire turn.
 
-Ask, and she answers: natural-language questions get expanded into keywords, every memory layer is scanned, and the reply is conversational with sources cited. `memory_recall` is cross-workspace by nature — other projects' logs, notes, and conclusions are one sentence away.
+Ask, and she answers: `memory_recall` returns a layered summary list first (each memory as a ~90-character digest with id, score and match reason), fused across lexical + semantic + time arms — ask for "last week's release trouble" and the memories from that window surface first; expand any id for the full text. Replies are conversational with sources cited. `memory_recall` is cross-workspace by nature — other projects' logs, notes, and conclusions are one sentence away.
 
 The panel's Workspace tab draws all of this as a mind map: workspaces at the center, memory topics as branches, dashed lines for cross-workspace shares; draggable, zoomable, click a card for details. **Your memory has a shape for the first time.**
 
@@ -199,9 +199,9 @@ Return after more than an hour away and the memory panel opens itself — a "wel
 
 ---
 
-## How she hands off (experimental · off by default)
+## How she hands off
 
-> **Experimental**: these capabilities ship in 2.1 but are disabled by default — enable via Settings → Automation → Handoff whiteboard. The window auto-follows the active model (settings.yaml contextWindow, e.g. 1M), or set it manually.
+> Handoff is on by default — the water-level threshold sits at 0.75, just below the host's 0.80 auto-compaction line. The window auto-follows the active model (settings.yaml contextWindow, e.g. 1M), or set it manually.
 
 When the context fills, she no longer burns the whole book for a one-line summary; she writes a **four-part handoff note** — task state, goals, approaches tried and why they failed, progress and next step — closes this window, and opens the next. What didn't fit in the notes is safe too: the full history of messages and tool outputs lands in a local archive, searchable anytime — no detail dies in the fire.
 
@@ -241,9 +241,9 @@ And finally, the boundaries — written as character:
 
 **Everything is a switch.** First launch auto-plays the **welcome tour**: one Office/Fluent-style liquid-glass app icon per step — cyan inject, amber greeting, green calendar, violet engine, sky radar, coral finish — each with its own looping motion (bell sway, page flip, linked rings, prism spin, radar sweep, rising spark). Flip every feature right in the tour; switches write config instantly, no second trip to settings. The semantic engine's detection, download, and self-test are inline in the tour, done in one pass. External memory sources are scanned live, ticked per source. Close it halfway without worry — the final "finish" step tells you exactly where each switch lives in Settings.
 
-<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-welcome.png"></p>
+<p align="center"><img width="720" alt="welcome tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/tour-welcome.png"></p>
 
-<p align="center"><img width="720" alt="tour core" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-core.png"></p>
+<p align="center"><img width="720" alt="tour core" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/tour-core.png"></p>
 
 One-time catch-up for upgraders: from v0.1.30 every user auto-plays the full tour once after upgrading, then the changelog follows (skippable). Reopen anytime via **Settings → Appearance → Welcome tour → ▶ Replay**.
 
@@ -289,7 +289,13 @@ pnpm approve-builds
 pnpm add @huggingface/transformers
 ```
 
-Restart `dsh web` — the welcome tour's semantic-engine step auto-detects readiness (SHA256 verify + inference self-test). Lexical retrieval (0GB) always works as a fallback; skipping the engine only lowers recall precision.
+Restart `dsh web` — the welcome tour's semantic-engine step auto-detects readiness (SHA256 verify + inference self-test).
+
+Three retrieval tiers, switchable in Settings → Semantic engine:/n/n- **Lexical (C1, 0GB)** — the always-on floor, BM25 over full text.
+- **Built-in semantic (C2, ~130MB)** — the default, auto-downloaded on first launch. Recall is layered (L0 summaries + rank-space fusion), so long memories no longer get truncated by the model's token limit.
+- **Advanced Python (C3, ~563MB)** — BGE-M3, for power users; install it in the same settings step and it also serves `memory_recall`, not just proactive association.
+
+Retrieval is time-aware too: ask for "last week" or "three days ago" and the matching memories rise to the top. Lexical retrieval (0GB) always works as a fallback; skipping the engine only lowers recall precision.
 
 ### AI-era installation
 
@@ -354,43 +360,43 @@ Config file `~/.dsh/dsh-auto-memory.json` (everything adjustable in the Settings
 
 ### Memory panel · Overview (away greeting + AI period summaries)
 
-<img width="480" alt="overview" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/panel-overview.png">
+<img width="480" alt="overview" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/panel-overview.png">
 
 ### Memory Hub · three stores + skill promotion approvals
 
-<img width="480" alt="hub" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/panel-hub.png">
+<img width="480" alt="hub" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/panel-hub.png">
 
 ### Recall review · grade every activation decision
 
-<img width="720" alt="refine" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/panel-refine.png">
+<img width="720" alt="refine" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/panel-refine.png">
 
 ### Welcome tour · feature switches + engine detection
 
-<img width="720" alt="tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-toggles.png">
+<img width="720" alt="tour" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/tour-toggles.png">
 
 <details>
 <summary><b>More screenshots</b> (click to expand)</summary>
 
 ### External memory scan (inside the tour)
 
-<img width="720" alt="external scan" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/tour-external.png">
+<img width="720" alt="external scan" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/tour-external.png">
 
 ### Connect other AI tools
 
-<img width="480" alt="connect" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/connect-en.png">
+<img width="480" alt="connect" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/connect-en.png">
 
 ### Calendar view
 
-<img width="480" alt="calendar" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/calendar-zh.png">
+<img width="480" alt="calendar" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/calendar-zh.png">
 
 ### Workspace mind map
 
-<img width="480" alt="workspace map" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/workspace-map-zh.png">
+<img width="480" alt="workspace map" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/workspace-map-zh.png">
 
 ### Settings
 
-<img width="480" alt="settings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/settings-en.png">
-<img width="480" alt="settings 2" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/48f92e3448fdf68be14aa80647a65064664419e3/docs/screenshots/settings-2-zh.png">
+<img width="480" alt="settings" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/settings-en.png">
+<img width="480" alt="settings 2" src="https://raw.githubusercontent.com/Aik358/dsh-auto-memory/d0cb9a635ea214a04391aad106a0d377dd0793ed/docs/screenshots/settings-2-zh.png">
 
 </details>
 
@@ -446,6 +452,9 @@ Papers were authored by the autonomous engineering agent (ZCode / GLM); all conc
 
 - Memory files are plain-text Markdown; no secrets stored unless explicitly requested.
 - `memory_recall` session search depends on the deployed session-query index; without it, only local search works.
+- Advanced Python (C3) recall requires the BGE-M3 model installed in Settings → Semantic engine (~563MB).
+- Lexical search is a full scan without an inverted index; only matters once memories number in the thousands.
+- `autoConsolidateCooldownMinutes = 0` falls back to 30 (known quirk, to be addressed).
 - Plugin-set changes require a dsh restart.
 
 ---
@@ -478,3 +487,4 @@ AI agents are credited as authors of the research papers and parts of the implem
 - GitHub: https://github.com/Aik358/dsh-auto-memory
 - npm: `@a9i5k4/dsh-auto-memory`
 - License: BSD-3-Clause
+- Changelog: [CHANGELOG.md](./CHANGELOG.md)

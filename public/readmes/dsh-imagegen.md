@@ -57,7 +57,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 </details>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/infinite-canvas-demo.gif" alt="无限画布演示：连线节点、悬停快速添加与弹簧 Dock" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/infinite-canvas-demo.gif" alt="无限画布演示：连线节点、悬停快速添加与弹簧 Dock" width="100%" />
 </div>
 
 <a id="canvas"></a>
@@ -66,7 +66,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 顶部导航切换到「无限画布」，在节点图上组织 AI 创作：图片节点、文本节点与生成配置节点自由摆放（新建画布自带一组文本 + 配置节点开箱即用），拖动节点左右两侧的圆点即可连线，拖动画布边缘或按住空格 / Ctrl 平移，滚轮缩放（5%–500%）。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/infinite-canvas.png" alt="无限画布：文本与图片节点连线驱动生成配置，参考图与提示词外接" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/infinite-canvas.png" alt="无限画布：文本与图片节点连线驱动生成配置，参考图与提示词外接" width="100%" />
   <p><sub>文本节点提供提示词、图片节点作为参考图，连线到生成配置节点即可出图并继续串接</sub></p>
 </div>
 
@@ -74,7 +74,9 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 - **悬停快速添加**：鼠标放到节点右侧的加号上，直接弹出「文本 / 图片 / 配置」选择菜单，选中的新节点自动落到右侧并连线（自动避让已有节点并把画布带到新节点前）；按住加号拖动仍是自由连线，配置节点后不再叠加配置节点。
 - **生成配置节点**：选中后在节点正下方浮出生成器，直接写提示词（或改写连线进来的文本），选模型、比例、清晰度与张数（1–4 张），点发送即提交；结果图片自动出现在配置节点右侧并保留连线关系，可以继续串到下一个配置节点迭代。
 - **素材入库**：历史记录与画廊的每张图一键「加入画布」，本地图片支持拖拽到画布或直接粘贴剪贴板截图；空图片节点可点击上传。
-- **画布操作**：框选多选、Shift 加选、整体拖动、右下角等比缩放、右键菜单、双击空白快速建节点、复制 / 粘贴 / 副本（Ctrl+C/V/D）、撤销重做（Ctrl+Z / Ctrl+Shift+Z）；左下角小地图可点击跳转，底部工具条悬浮居中（reactbits Dock 式弹簧放大与悬浮标签）。
+- **图片节点工具**：图片节点悬停工具条提供四个能力 —— **标注**（在图片上拖框，松开后从框上拉出一条引导线并挂上一张提示词卡片：卡片跟随图片移动、不需要连任何线；生成时自动读取框与提示词，把红框烧进参考图并附带坐标约束；结果图会与干净原图合成，红框标记不会出现在成品里，框外区域也保证与原图一致；重试同样会重建标记图）、**移除背景**（本地抠图，直接产出带透明通道的 PNG，不消耗额度）、**图层拆分**（调用视觉聊天模型把图拆成背景 / 元素 / 文字图层节点，文字层可改字号、加粗与颜色，人物与装饰元素各自独立可移动）、**模型选择**（为这个节点指定模型，重试与相连的生成配置节点默认沿用）。
+- **文本节点排版**：文本节点头部可调字号（A- / A+）、加粗与文字颜色，图层拆分产出的文字层同样可直接编辑。
+- **画布操作**：框选多选、Shift 加选、整体拖动、四角等比缩放、右键菜单、双击空白快速建节点、复制 / 粘贴 / 副本（Ctrl+C/V/D）、撤销重做（Ctrl+Z / Ctrl+Shift+Z）；把图片节点放大后再标注会更顺手，缩放后标注框按比例跟随。左下角小地图可点击跳转，底部工具条悬浮居中（reactbits Dock 式弹簧放大与悬浮标签）。
 - **背景与视图**：13 种背景一键切换 —— 点阵 / 网格线 / 波浪线 / 滚动方格 / 点场 / 互动点阵 / 浮动线条 / 流体扰动 / 液态以太 / 故障终端 / 丝绸 / 星系 / 空白。其中一组移植自 [React Bits](https://www.reactbits.dev) 的动效背景并做了无依赖重写：「液态以太」是随鼠标搅动的 WebGL 流体速度场，「浮动线条」是指针会压弯的发光波形，「星系」是四层视差星野（鼠标推开星星），「丝绸」是缓慢流动的绸面光泽，「故障终端」是带扫描线与故障位移的 CRT 字符场；「波浪线 / 滚动方格 / 点场 / 互动点阵」为画布 2D 实现，支持鼠标扰动与点击冲击波。浅色 / 深色画布会自动切换明暗墨色，新建画布默认使用液态以太；「适应全部内容」一键回正视图。
 - **数据与多窗口**：画布按项目保存在宿主数据目录（`~/.dsh/dsh-imagegen/canvas`），支持多项目管理与重命名；多窗口同时编辑时保存冲突自动按服务端进度重试合并；旧版本画布数据自动迁移到新结构。
 
@@ -84,7 +86,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 顶部导航切换到「电商模式」，把一张商品图扩展成一套可发布的商品视觉：配置区分为「主图参考图」（商品主体 / 包装 / 细节，最多 4 张）与「风格参考图」（可选 1 张）两组，填入商品名称与参数信息，勾选套图结构（主图、卖点图、场景图、细节图、规格图、使用图）与每种用途的数量即可提交。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/ecommerce-mode.png" alt="电商模式：主图参考图与风格参考图分组配置，结果主图居左、其他用途居右" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/ecommerce-mode.png" alt="电商模式：主图参考图与风格参考图分组配置，结果主图居左、其他用途居右" width="100%" />
   <p><sub>左侧分组配置（主图参考图 / 风格参考图 / 参数信息），结果区主图居左、其他用途居右</sub></p>
 </div>
 
@@ -111,7 +113,7 @@ dsh plugin --profile web add <下载路径>/dickpy-dsh-imagegen-<版本号>.tgz
 点击“新会话 / 生图”中的“生图”Tab，工作区按“历史记录 | 生图区 | AI 对话”三栏排列：文生图一句提示词起步，图生图上传参考图精准改图；顶部导航可在普通生图、画廊、无限画布与电商模式之间切换。右侧对话面板默认收起，点击头部的「对话」按钮随时展开；参数栏宽度可拖拽调整并自动记忆。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/image-generation-studio-four.png" alt="VisioWork 三栏工作台与多图结果布局" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/image-generation-studio-four.png" alt="VisioWork 三栏工作台与多图结果布局" width="100%" />
   <p><sub>历史记录 ｜ 生图区 ｜ AI 对话 三栏同屏，一次可生成多张，支持全屏缩放与翻页</sub></p>
 </div>
 
@@ -186,7 +188,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 同一个提示词在不同模型上往往呈现完全不同的构图、质感与文字处理。打开“多模型对比”，勾选多个已配置模型，插件会以相同参数提交任务，并在画布和全屏预览中并列展示，方便挑出真正适合当前任务的模型。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/multi-model-comparison.png" alt="gpt-image-2、grok-imagine-image 与 doubao-seedream 的三模型并列结果对比" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/multi-model-comparison.png" alt="gpt-image-2、grok-imagine-image 与 doubao-seedream 的三模型并列结果对比" width="100%" />
   <p><sub>同一提示词在三个模型下的并列结果，画布与全屏预览均支持对比视图</sub></p>
 </div>
 
@@ -210,7 +212,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 随插件内置两个来源共 980 余条 `gpt-image-2` 提示词案例（含参考图），没有灵感时可以先看看别人怎么写。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/prompt-template-library.png" alt="提示词模板库：多来源标签页、分类筛选与案例卡片" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/prompt-template-library.png" alt="提示词模板库：多来源标签页、分类筛选与案例卡片" width="100%" />
   <p><sub>多来源标签页独立切换，案例详情含参考图、作者署名与原链，可一键回填</sub></p>
 </div>
 
@@ -224,7 +226,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 满意的图片可从结果卡、全屏预览或历史记录一键加入画廊；画廊中的图片也能直接加入当前对话，再用 `/edit_image` 修改。画廊为持续积累作品设计：左侧筛选，右侧瀑布流或整齐网格，点击任意图片即可打开大图预览。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/gallery-workspace.png" alt="画廊工作区：分类筛选、瀑布流和大图预览" width="100%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/gallery-workspace.png" alt="画廊工作区：分类筛选、瀑布流和大图预览" width="100%" />
   <p><sub>左侧分类筛选带计数，右侧瀑布流 / 网格可切换</sub></p>
 </div>
 
@@ -239,7 +241,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 打开 DSH 的“设置 → 插件”，展开 **VisioWork（dsh-imagegen）**。每个提供方都有独立的 API 地址、密钥和模型目录，可同时配置多个服务；预置了 OpenAI、智谱、xAI、字节火山方舟（Seedream）、阿里云百炼（Qwen-Image）、MiniMax（image-01）等常用渠道，也可添加任意自定义 OpenAI 兼容渠道。
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/plugin-settings.png" alt="DSH 设置页中的 VisioWork 插件配置" width="72%" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/plugin-settings.png" alt="DSH 设置页中的 VisioWork 插件配置" width="72%" />
   <p><sub>设置 → 插件 → VisioWork（dsh-imagegen）</sub></p>
 </div>
 
@@ -290,7 +292,7 @@ Agent 会把上一轮图片作为参考图提交图生图任务，因此第二�
 欢迎加入 QQ 群，一起交流 DSH、AI 生图和插件使用体验，也欢迎分享提示词、工作流与改进建议。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/b95975906c8a0fb5bf3611e371f209af4cf65de3/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
+  <img src="https://raw.githubusercontent.com/dickpy/dsh-imagegen/1f0ec46bdc477835202d9d497744eaa18692b4e0/docs/images/community-qq.png" alt="扫码加入 dsh-imagegen QQ 交流群" width="360" />
 </p>
 
 - 发现问题请提交 [Bug 报告](https://github.com/dickpy/dsh-imagegen/issues/new?template=bug_report.yml)，附带插件版本、DSH 版本和复现步骤。请勿粘贴 API 密钥。

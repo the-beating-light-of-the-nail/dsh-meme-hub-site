@@ -26,7 +26,7 @@ An always-visible **● Online / ● Offline** indicator in the conversation hea
 
 | 在线 / Online | 离线 / Offline |
 | --- | --- |
-| ![在线](https://raw.githubusercontent.com/AikenFra/dsh-alive/b89e53b51e5380900d0b298cbe1e768b5b940a84/docs/screenshots/online.png) | ![离线](https://raw.githubusercontent.com/AikenFra/dsh-alive/b89e53b51e5380900d0b298cbe1e768b5b940a84/docs/screenshots/offline.png) |
+| ![在线](https://raw.githubusercontent.com/AikenFra/dsh-alive/d17acfa8689666d799c94e196020a3efed11ad0a/docs/screenshots/online.png) | ![离线](https://raw.githubusercontent.com/AikenFra/dsh-alive/d17acfa8689666d799c94e196020a3efed11ad0a/docs/screenshots/offline.png) |
 
 ## 工作原理 / How it works
 

@@ -12,6 +12,7 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![DSH plugin](https://img.shields.io/badge/dsh--plugin-✅-green)](https://github.com/topics/dsh-plugin)
+[![dsh-doctor](https://raw.githubusercontent.com/PerryLink/dsh-plugin-doctor/main/badges/PerryLink__dsh-output-styles.svg)](https://github.com/PerryLink/dsh-plugin-doctor#verified-徽章)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-brightgreen.svg)](#)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-output-styles/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-output-styles/actions)
 [![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-output-styles?label=version)](https://github.com/PerryLink/dsh-output-styles/releases)
@@ -28,7 +29,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `dsh-v0.1.3-alpha.1` (adapted 2026-09-02): the session envelope keeps its ignorable field for stored-log read compatibility only - Session.append still cannot stamp it, so audit-gate behavior is unchanged. Verified 2026-09-06 against the dsh-v0.1.3-alpha.1 master checkout (full gate chain + profile install smoke). |
+| Harness | DeepSeek Harness `dsh-v0.1.5-rc.1` (adapted 2026-09-09): the session envelope keeps its ignorable field for stored-log read compatibility only - Session.append still cannot stamp it, so audit-gate behavior is unchanged. Verified 2026-09-10 against the dsh-v0.1.5-rc.1 master checkout (full gate chain + profile install smoke). |
 | Node | `^22.19.0 || >=24.0.0` |
 | Platforms | All (host + web client) |
 | Model | Any (system-prompt injection) |
@@ -88,10 +89,10 @@ flowchart LR
     D --> R[OutputStyleRuntime]
     R -->|body at every assembly| S[systemPrompt section order 90]
     S --> M[Model request]
-    M -->|full system prompt| H[request/header logged]
+    M -->|full system prompt| H[system/message logged]
 ```
 
-Everything the model sees is reconstructable from the session log — no new session event type, no agent-loop changes. The style name comes from `command/run`, the exact injected text from `request/header`, and the provenance marker `{ kind: 'plugin', plugin: 'dsh-output-styles' }` rides in the domain record. Styles apply to the main conversation only; subagent sessions keep their own prompts (matching Claude Code).
+Everything the model sees is reconstructable from the session log — no new session event type, no agent-loop changes. The style name comes from `command/run`, the exact injected text from `system/message`, and the provenance marker `{ kind: 'plugin', plugin: 'dsh-output-styles' }` rides in the domain record. Styles apply to the main conversation only; subagent sessions keep their own prompts (matching Claude Code).
 
 ## Install & uninstall
 
@@ -191,7 +192,7 @@ Screened against the DSH ecosystem before development (2026-08 snapshot): no `st
 
 - **Permissions**: declares `fs:read`, `fs:write`, `fs:watch`, `storage:read`, `storage:write`, and `settings:read` in its workshop manifest.
 - **Data**: the style choice lives in the `output_style` storage domain (keyed by sessionId); no other state is persisted, no network requests.
-- **Session log**: the style name comes from `command/run`, the exact injected text from `request/header`; the provenance marker `{ kind: 'plugin', plugin: 'dsh-output-styles' }` rides in the domain record.
+- **Session log**: the style name comes from `command/run`, the exact injected text from `system/message`; the provenance marker `{ kind: 'plugin', plugin: 'dsh-output-styles' }` rides in the domain record.
 
 ## Security boundaries
 
@@ -212,7 +213,7 @@ Screened against the DSH ecosystem before development (2026-08 snapshot): no `st
 ```sh
 pnpm install
 pnpm run typecheck   # both tsc projects
-pnpm test            # vitest — 127 tests
+pnpm test            # vitest — 148 tests
 pnpm run verify      # typecheck + tests + self-contained (the prepublishOnly gate)
 pnpm run build       # lib/ artifacts (host + client bundles)
 pnpm pack            # tarball for dsh plugin add

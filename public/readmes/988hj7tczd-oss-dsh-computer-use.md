@@ -12,7 +12,7 @@
 [![Node.js](https://img.shields.io/badge/node-%3E%3D22.18.0-339933)](https://nodejs.org/)
 [![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey)](#platform-support--平台支持)
 
-![dsh-computer-use verified desktop demo](https://raw.githubusercontent.com/988hj7tczd-oss/dsh-computer-use/07477f49e7bbc0a9db83f3b133d13214e7b9394c/assets/demo-verified.png)
+![dsh-computer-use verified desktop demo](https://raw.githubusercontent.com/988hj7tczd-oss/dsh-computer-use/26d7f383003095030152cc114fad2c44ba81c226/assets/demo-verified.png)
 
 > **真实演示 · Real demo:** a local, non-sensitive page was observed, filled, clicked, and verified through the Computer Use action loop.
 
@@ -88,7 +88,7 @@ flowchart LR
 | 滚动与拖拽 | 支持上下左右滚动和窗口本地截图坐标拖拽 |
 | 应用管理 | 列出运行中的应用，后台启动应用，按需前置窗口 |
 | 安全护栏 | 快照 TTL、应用白名单、危险操作审批、密码框保护 |
-| 跨平台 | macOS、Windows、Linux 均已完成插件测试 |
+| 跨平台 | macOS 已验证；Windows/Linux 需按真实环境完成平台验收 |
 
 ## 12 个模型工具
 
@@ -166,6 +166,9 @@ npm install -g dsh-computer-use
 ```bash
 export CUA_DRIVER_BIN=/path/to/cua-driver
 ```
+
+在 Windows 官方安装器布局中，插件还会自动探测
+`%USERPROFILE%\\.cua-driver\\packages\\current\\cua-driver.exe`；GUI 宿主的 PATH 不完整时无需手工把目录加入 PATH。
 
 安装完成后重启宿主，再通过 `app_list` 或 `screen_observe` 验证工具是否出现。
 
@@ -285,7 +288,7 @@ computer_click(x=640, y=420)
 4. **危险操作审批**：元素标签命中删除、支付、购买、转账、退出登录等词时请求用户确认；
 5. **密码框保护**：检测到 `AXSecureTextField` / `AXPasswordField` 时拒绝自动输入；
 6. **固定 argv 调用**：通过宿主以非 shell 方式启动 `cua-driver`；
-7. **权限边界声明**：插件本身不读取用户文件、不读取凭据、不发起普通网络请求，也没有 npm lifecycle 安装脚本。
+7. **权限边界声明**：核心桌面路径不读取业务文件或额外凭据；仅当用户配置视觉 GLM fallback 时，才读取指定 key 来源并向 GLM API 发起请求；没有 npm lifecycle 安装脚本。
 
 ### 重要限制
 
@@ -329,9 +332,9 @@ computer_click(x=640, y=420)
 
 | 平台 | 状态 | 说明 |
 |---|---|---|
-| macOS | ✅ 已测试 | 可能需要 Accessibility 和 Screen Recording 权限 |
-| Windows | ✅ 已测试 | 使用普通用户桌面会话；管理员权限窗口属于系统边界 |
-| Linux | ✅ 已测试 | 桌面环境、Accessibility 栈和窗口管理器可能影响元素识别 |
+| macOS | ✅ 已验证 | 可能需要 Accessibility 和 Screen Recording 权限 |
+| Windows | ⛔ BLOCKED | 当前无 Windows 10/11 真机；路径和按键逻辑已测试，真实 GUI 未验收 |
+| Linux | ⛔ 未验证 | 桌面环境、Accessibility 栈和窗口管理器可能影响元素识别 |
 
 测试通过不代表所有应用的界面树都完全一致。AX/UIA 不完整时，请使用 `native` 或 `vision` 模式，并在提交问题时附上操作系统、目标应用和 `screen_observe` 输出。
 
@@ -339,7 +342,7 @@ computer_click(x=640, y=420)
 
 | 现象 | 常见原因 | 处理方式 |
 |---|---|---|
-| `cua-driver not found` | 引擎不在 PATH | 安装 cua-driver，或设置 `CUA_DRIVER_BIN` |
+| `cua-driver not found` | 引擎不在 PATH 或官方安装器路径不可用 | 安装 cua-driver，确认 `~/.cua-driver/packages/current/cua-driver.exe` 存在，或设置 `CUA_DRIVER_BIN` |
 | 没有可见窗口 | 图形会话或窗口权限不可用 | 确认目标应用正在运行并重新观察 |
 | 快照已过期 | 超过 `ttlMs` | 重新调用 `screen_observe` |
 | 元素编号点击失败 | 界面已经变化 | 重新观察后再使用新编号 |
@@ -421,7 +424,7 @@ It can inspect desktop windows, expose actionable AX/UIA elements, use a screens
 - Request approval for risky semantic targets;
 - Refuse automated typing into password fields;
 - Fall back to screenshots when AX/UIA data is incomplete;
-- Tested on macOS, Windows, and Linux.
+- macOS has been verified; Windows has logic/path coverage but real GUI validation is blocked; Linux has not been verified.
 
 ## Quick Start
 
@@ -455,6 +458,9 @@ npm install -g dsh-computer-use
 ```
 
 Make sure the host loads the bundle and that `cua-driver` is available in `PATH`, or set `CUA_DRIVER_BIN` to its absolute path.
+
+On Windows, the official installer layout is also detected automatically at
+`%USERPROFILE%\\.cua-driver\\packages\\current\\cua-driver.exe`, which covers GUI hosts whose PATH does not include the driver.
 
 ## Tools
 
@@ -535,7 +541,7 @@ The plugin includes:
 4. **Risky-action approval**: labels such as delete, pay, purchase, transfer, or sign out can require user approval;
 5. **Password-field protection**: automated typing into password fields is refused;
 6. **Fixed non-shell driver invocation**: the host starts `cua-driver` with fixed argv;
-7. **Explicit permission boundaries**: the plugin does not read user files, credentials, or use npm lifecycle scripts.
+7. **Explicit permission boundaries**: the core desktop path does not read business files or extra credentials. The optional GLM fallback reads only its configured key source and sends an HTTPS request to the GLM vision API; there are no npm lifecycle scripts.
 
 Semantic checks are strongest for `element`-based actions. Coordinate actions and unfocused `computer_type`/`computer_key` calls cannot predict the final semantic target. `computer_key` does not validate system shortcuts. Do not give this capability to an untrusted agent, and always type passwords and secrets yourself.
 
@@ -569,17 +575,17 @@ If an installer or bundle patch overrides the code-level default, the generated 
 
 | Platform | Status | Notes |
 |---|---|---|
-| macOS | ✅ Tested | Accessibility and Screen Recording permissions may be required |
-| Windows | ✅ Tested | Use a regular-user desktop session; elevated windows remain a system boundary |
-| Linux | ✅ Tested | Desktop environment, accessibility stack, and window manager can affect element discovery |
+| macOS | ✅ Verified | Accessibility and Screen Recording permissions may be required |
+| Windows | ⛔ Blocked | Logic/path coverage exists; real GUI validation requires a Windows 10/11 regular-user desktop session |
+| Linux | ⛔ Not verified | Desktop environment, accessibility stack, and window manager can affect element discovery |
 
-All three platforms have passed plugin testing. This does not mean every application exposes an identical accessibility tree. For incomplete AX/UIA data, use `native` or `vision` and include the OS, target application, and observation output in bug reports.
+The macOS path has been verified in the project evidence. Windows and Linux still require a real platform run before they can be advertised as fully tested. This does not mean every application exposes an identical accessibility tree. For incomplete AX/UIA data, use `native` or `vision` and include the OS, target application, and observation output in bug reports.
 
 ## Troubleshooting
 
 | Symptom | Likely cause | Action |
 |---|---|---|
-| `cua-driver not found` | Driver is not in `PATH` | Install it or set `CUA_DRIVER_BIN` |
+| `cua-driver not found` | Driver is not in `PATH` or the official installer path is unavailable | Install it, confirm `~/.cua-driver/packages/current/cua-driver.exe` exists, or set `CUA_DRIVER_BIN` |
 | No visible windows | Missing graphical session or permission | Confirm the target app is visible and observe again |
 | Snapshot expired | `ttlMs` elapsed | Call `screen_observe` again |
 | Element click failed | The UI changed | Observe again and use the new index |

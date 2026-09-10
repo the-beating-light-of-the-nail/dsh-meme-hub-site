@@ -1,7 +1,7 @@
 # dsh-rewind
 
 > [!WARNING]
-> **计划使用 DSH `0.1.3` 的用户：请尽早安装 `v0.9.x` 版本，并运行 `/dsh-rewind-fix` 更新旧回退标记**（[更新指南](docs/rewind-fix.zh.md)）。
+> **请尽早在 DSH `0.1.2-rc.1` 安装 `v0.9.x` 版本，运行 `/dsh-rewind-fix` 更新旧会话的回退标记**（[更新指南](docs/rewind-fix.zh.md)）。
 
 DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消息**——同窗口内完成，不新建分支、不换窗口，可一并还原工作区文件（完整 Claude Code `/rewind` 语义）。
 
@@ -24,12 +24,12 @@ DeepSeek Harness 插件：**一键就地回退对话到任意更早的用户消�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e832b9544c1d77cedf35dfebdfa268f72219d665/assets/screenshots/rewind-button.png" width="440" alt="用户消息旁的 ↶ 回退按钮"><br><sub>用户消息旁的 ↶ 回退按钮</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e832b9544c1d77cedf35dfebdfa268f72219d665/assets/screenshots/mode-popover.png" width="440" alt="模式选择浮层"><br><sub>模式选择浮层</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e832b9544c1d77cedf35dfebdfa268f72219d665/assets/screenshots/impact-list.png" width="440" alt="影响清单"><br><sub>「回退对话和代码」影响清单</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e832b9544c1d77cedf35dfebdfa268f72219d665/assets/screenshots/rewind-candidates.png" width="440" alt="/rewind 候选面板"><br><sub>/rewind 候选面板</sub></td>
   </tr>
 </table>
 
@@ -65,7 +65,7 @@ dsh plugin --profile web add dsh-rewind-plugin
 
 另提供**全局自动清理**（默认关闭）：把长期不活跃的会话快照整目录移除，不影响活动会话与对话日志。可在 `设置→插件→插件配置→快照清理` 面板查看与配置（自动清理开关、失活天数），也可用 `/snapshot-auto-cleanup` 命令查看、设置和运行。详见：[快照自动清理](docs/snapshot-auto-cleanup.zh.md)。
 
-<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e32e53e2d32564d132287747e6fbcd129e9225c1/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
+<img src="https://raw.githubusercontent.com/SiriLee/dsh-rewind/e832b9544c1d77cedf35dfebdfa268f72219d665/assets/screenshots/cleanup-setting.png" alt="快照清理设置：自动清理与失活天数" width="600">
 
 ## 本插件的优势
 

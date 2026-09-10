@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DIAG5/dsh-better-input/794568263dfbea68e72b1c359e7db2b88cf4ef46/assets/banner.png" width="100%" alt="dsh-better-input banner" />
+  <img src="https://raw.githubusercontent.com/DIAG5/dsh-better-input/2e54337c5698c3435a246bebd77b77d64c923b35/assets/banner.png" width="100%" alt="dsh-better-input banner" />
 </p>
 
 <h1 align="center">🎤 dsh-better-input</h1>

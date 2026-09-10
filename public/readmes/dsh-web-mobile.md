@@ -1,4 +1,4 @@
-![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/banner.png)
+![dsh-web-mobile — 手机上也能好好用 DSH](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/45cce6e49f37c3e72f426a0740d80715c3009b47/assets/banner.png)
 
 <p align="center">
   <strong>DSH Web UI 移动端适配：窄屏好用，宽屏适用</strong>
@@ -30,20 +30,16 @@
 
 | 会话主页 | 目录抽屉 | 设置界面 |
 | --- | --- | --- |
-| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/a21e5d846f19b559315e840340899347d85b75b5/assets/settings.png) |
+| ![移动端会话主页](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/45cce6e49f37c3e72f426a0740d80715c3009b47/assets/hero.png) | ![目录抽屉](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/45cce6e49f37c3e72f426a0740d80715c3009b47/assets/drawer.png) | ![移动端设置界面](https://raw.githubusercontent.com/mexiaosqwq/dsh-web-mobile/45cce6e49f37c3e72f426a0740d80715c3009b47/assets/settings.png) |
 
 ## 更新内容
 
-### 未发布
+### v2.4.0
 
 **新功能**
 
 - 移动端会话删除（移植自 fork wzxmt-zhc v2.7.0）：会话行 ⋯ 菜单新增「删除会话」项，配确认弹窗。宿主抽屉以会话行形式渲染会话列表后生效（0.1.1-rc.2 的抽屉是图标栏，属宿主升级预备）
 - dsh-file-viewer 移动端适配（移植自 fork wzxmt-zhc）：查看器面板套用移动端布局，未安装该插件时零影响
-
-**变更**
-
-- npm 包名更名为 `dsh-web-mobile`，旧名 `dsh-mobile-nav` 已从 npm 撤下：装过旧版请先移除再装新名，新旧并存会把同一插件注册两份（见「安装」）
 
 **修复**
 

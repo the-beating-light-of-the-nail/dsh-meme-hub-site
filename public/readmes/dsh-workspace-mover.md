@@ -20,7 +20,8 @@
     <img alt="孤儿会话救援" src="https://img.shields.io/badge/-孤儿会话救援-4d6bfe" style="height:20px; margin:0 2px;" />
     <img alt="一键撤回" src="https://img.shields.io/badge/-一键撤回-4d6bfe" style="height:20px; margin:0 2px;" />
     <img alt="主题自适应" src="https://img.shields.io/badge/-主题自适应-4d6bfe" style="height:20px; margin:0 2px;" />
-    <img alt="git clones total" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FPianoPrince%2Fc14345658550a4a308570acfbaf9d170%2Fraw%2Fwsm-clones-total.json" style="height:20px; margin:0 2px;" />
+    <img alt="GitHub clones observed" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FPianoPrince%2Fc14345658550a4a308570acfbaf9d170%2Fraw%2Fwsm-clones-total.json" style="height:20px; margin:0 2px;" />
+    <img alt="Release downloads (shown after 10 downloads)" src="https://gist.githubusercontent.com/PianoPrince/c14345658550a4a308570acfbaf9d170/raw/wsm-release-downloads.svg" style="height:20px; margin:0 2px;" />
   </p>
 </div>
 
@@ -64,6 +65,7 @@ DeepSeek Harness 的侧边栏支持工作区内拖拽排序会话，但把会话
 - **📂 打开文件夹**：组标题「⋯」菜单一键用系统文件管理器打开该分组目录
 - **⏪ 移动历史与撤回**：记录最近 100 次跨工作区移动，批量移动聚合为一条记录、整批一键撤回，撤回本身同样生成备份并复用回滚保护
 - **🧾 迁移任务中心 + 🛡️ 数据保护**：批量迁移逐项持久化记录（完成/失败、最后错误与尝试时间），失败项一键重试；回收站与备份的份数/占用汇总，按时间清理先预览释放量再执行
+- **🔒 并发防护 + 错误码协议**：同一会话/同一目标工作区的并发操作立即报「处理中」而不会排队或互相踩踏（先备份、后动手的事务顺序保证备份失败零副作用）；所有 RPC 错误携带稳定错误码；「回滚也失败」时写入恢复记录并在面板标红提示人工确认——文件与备份始终原地保留
 - **✅ 迁移后校验 + 一键修复**：每次搬运落地即回读档案做 id/cwd 双确认，不符视同失败整体回退；救援面板"一键修复"自动跑完可修复项（逐项隔离，三态汇报），全部列表支持按标题/ID/路径即时筛选
 - **🏷️ 会话标题优先**：确认框、救援列表和最近移动记录都先显示会话标题，找不到标题时显示「未命名会话」
 
@@ -125,18 +127,18 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 | | |
 |---|---|
 | **把空闲会话行拖到目标工作区标题行，出现虚线高亮** | **确认框亮出目标工作区路径，一键移动** |
-| ![把一个会话拖到另一个工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/drag_session_to_another_workspace.png) | ![跨工作区移动确认框](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/confirm_popup.png) |
+| ![把一个会话拖到另一个工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/drag_session_to_another_workspace.png) | ![跨工作区移动确认框](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/confirm_popup.png) |
 | **设置 → 会话救援：一键找回失联与未记账的会话** | |
-| ![会话救援设置面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/setting_dialogue_repair.png) | |
+| ![会话救援设置面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/setting_dialogue_repair.png) | |
 
 ### 批量迁移 · 多选拖拽
 
 | |
 |---|
 | **Ctrl+点击选中多个会话（当前打开的会话自动带上），左下角亮出计数徽章；拖到目标工作区标题行即整批移动，Esc 清空** |
-| ![批量移动选中时：三个会话高亮，左下角显示已选计数徽章](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/batch_move_selection.png) |
+| ![批量移动选中时：三个会话高亮，左下角显示已选计数徽章](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/batch_move_selection.png) |
 | **组标题「⋯」菜单里的「整组迁移…」：整组搬移，迁入后可删除已空的源分组（分组合并）** |
-| ![组标题菜单中的整组迁移入口](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_move.png) |
+| ![组标题菜单中的整组迁移入口](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/workspace_move.png) |
 
 ### 工作区搬家向导 · 实测全程
 
@@ -145,11 +147,11 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 | | |
 |---|---|
 | **改名前：`Test1` 分组正常工作** | **改名后侧边栏仍显示旧分组（磁盘上文件夹已不在）** |
-| ![改名前的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/original_workspace.png) | ![改名后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_after_rename.png) |
+| ![改名前的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/original_workspace.png) | ![改名后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/workspace_after_rename.png) |
 | **打开设置 → 会话修复：「工作区体检」把分组标为「路径失效」，填入新路径** | **确认框亮出起讫路径与将要迁移的会话数** |
-| ![工作区体检面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_examination.png) | ![搬家确认弹窗](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/remove_popup.png) |
+| ![工作区体检面板](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/workspace_examination.png) | ![搬家确认弹窗](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/remove_popup.png) |
 | **搬家完成：分组原地更名为 Test2，会话与历史原样保留** | |
-| ![搬家后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/8c1fcaef73e1213a6161e8ffedaa034e18c0640d/docs/media/workspace_after_move.png) | |
+| ![搬家后的工作区](https://raw.githubusercontent.com/PianoPrince/dsh-workspace-mover/f16b28443610fb1948b0ece2ac52feba1c966227/docs/media/workspace_after_move.png) | |
 
 ## ⌨️ 使用
 
@@ -226,6 +228,26 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 
 ## 🆕 最近更新
 
+### v1.4.0 · 2026-09-06
+
+- 并发防护：同会话 / 同目标工作区的并发操作立即返回「处理中」，绝不排队、绝不死锁；批量迁移先去重，自己不会和自己抢锁
+- 错误码协议：所有 RPC 错误携带稳定错误码（busy / conflict / not-found / rollback-failed 等），客户端按码决定交互、不再匹配英文文案
+- 恢复记录：迁移挂账回滚失败、回收站落盘双重失败等极端路径写入持久化恢复记录，体检面板标红提示人工确认（文件与备份始终保留在原处，绝不自动删除）
+- 能力自检：`mover.status` 汇报检测到的官方服务与降级项，支持排障一眼可见
+- 事务顺序加固：字节级备份提前到一切副作用之前——备份失败即整体放弃，记账、文件、索引零改动
+
+### v1.3.0 · 2026-09-05
+
+- 数据保护汇总与按时清理：回收站与备份数量/占用一屏可见；「清理 30 天前数据」先预览释放空间，确认后执行
+
+### v1.2.0 · 2026-09-05
+
+- 迁移任务中心：批量迁移逐会话持久化记录（完成/失败、最后错误与尝试时间）；失败项一键重试——按会话当前位置重新迁移，绝不用陈旧旧路径；清除记录不影响已迁移会话
+
+### v1.1.0 · 2026-09-05
+
+- 预检补全：动任何东西之前完成预检——双记账检测（多余归属随移动一并摘除）、目标可写探测、磁盘空间提示性检查；移动前摘除全部归属方，回滚时逐一恢复
+
 ### v1.0.0 · 2026-09-05
 
 - 迁移后一致性校验：每次搬运（单个/批量/工作区搬家）落地后回读档案，id 与 cwd 双确认才算成功，不符自动整体回退
@@ -301,7 +323,7 @@ dsh plugin --profile web add "link:E:/path/to/dsh-workspace-mover"
 - 驻留内存的会话拒绝删除（防止文件被驻留对象重建为僵尸），并给出重启释放的明确指引；
 - 仅拒绝回合进行中的会话；常驻空闲会话迁移后修复写路径归属，杜绝历史分叉；
 - 注册表/持久化内部访问全部包在 try/catch 中，失败降级为功能可用 + 重启建议提示；
-- 兼容性目标：Node ≥ 22，dsh 0.1.1-rc.2；核心纯函数与端到端沙箱测试见 `npm test`（70 用例，含回滚路径、救援扫描/修复、历史撤回、工作区重定向、批量迁移、迁移后校验、回收站与备份恢复、迁移任务中心与数据保护清理）。
+- 兼容性目标：Node ≥ 22，dsh 0.1.1-rc.2；核心纯函数与端到端沙箱测试见 `npm test`（77 用例，含回滚路径、救援扫描/修复、历史撤回、工作区重定向、批量迁移、迁移后校验、回收站与备份恢复、迁移任务中心与数据保护清理、并发锁与错误码协议）。
 
 ## ⚠️ 已知限制
 

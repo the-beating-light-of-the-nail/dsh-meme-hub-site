@@ -31,11 +31,11 @@
 
 **关闭 —— 普通聊天视图**
 
-![关闭：普通聊天视图](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/a3d2a44c5b5f8de20c9bfd85aab1d88cbdde8f2d/screenshots/before.png)
+![关闭：普通聊天视图](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/329feeb17c8f8378bad735882e01c997f41f010b/screenshots/before.png)
 
 **开启 —— 专注模式**
 
-![开启：专注模式](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/a3d2a44c5b5f8de20c9bfd85aab1d88cbdde8f2d/screenshots/after.png)
+![开启：专注模式](https://raw.githubusercontent.com/boogoo619/dsh-focus-overlay/329feeb17c8f8378bad735882e01c997f41f010b/screenshots/after.png)
 
 <!-- 截图请放到 screenshots/ 目录：
      - before.png —— 普通聊天视图（含标题区/输入区/工具卡）

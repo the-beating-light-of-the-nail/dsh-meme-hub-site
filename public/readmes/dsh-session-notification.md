@@ -10,12 +10,12 @@ A notification plugin for the dsh web GUI. When a session finishes, hits an erro
 
 | The settings panel with the **Notifications** entry in the sidebar and the section content | The sound picker for each kind (the official dropdown) |
 | --- | --- |
-| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/c7bb90eb736b60b9581ea45d9309bc3adf7c95fd/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/c7bb90eb736b60b9581ea45d9309bc3adf7c95fd/screenshots/02-sound-menu-open.png) |
+| ![The Notifications settings section](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/674bea2756b31bb6e80c8e67d747ec22949b42a8/screenshots/01-notifications-section.png) | ![The sound picker menu](https://raw.githubusercontent.com/dingyi222666/dsh-session-notification/674bea2756b31bb6e80c8e67d747ec22949b42a8/screenshots/02-sound-menu-open.png) |
 
 ## Install
 
 ```sh
-# Install from npm (requires dsh >= 0.1.3-alpha.1)
+# Install from npm (requires dsh >= 0.1.5-alpha.2)
 dsh plugin --profile web add @dingyi222666/dsh-session-notification
 # Restart dsh web for it to take effect
 dsh web
@@ -46,7 +46,7 @@ Beyond the four built-in sounds, each kind accepts **your own audio file** (mp3/
 
 Browser (system-level) notifications are **off by default**; turning the switch on asks for the browser's permission first (a user gesture). Once granted, a notification is shown when the event's session is not the one you are reading, or when the tab is in the background. Notifications carry the **page's own icon** (the favicon the harness serves). A completed session's notification carries its **final reply text** (the last assistant message). The Test notification button in the section sends one immediately to verify the channel once permission is granted. The session you are reading stays **quiet by default** — its own events don't interrupt you; flip the Alert for the current session toggle if you want it to alert too.
 
-**Main session only** is on by default: notifications come from the main session only, so a fan-out of parallel subagents never rings once per subagent. Turn it off if you want to hear from every subagent as well.
+**Notify for** picks the scope (default **Main, after subagents**): *All sessions* alerts for every session including subagents; *Main only* alerts for the main session as soon as it goes idle; *Main, after subagents* holds that alert until every subagent the main session spawned has finished, so a run that only paused between subagent waves never interrupts you early (failures always alert immediately).
 
 ## The Notifications settings section
 
@@ -54,7 +54,7 @@ The plugin registers a **Notifications** section in the settings panel (Settings
 
 - **Browser notifications** master switch (+ permission state and an enable button),
 - **Alert for the current session** toggle (opt in to being alerted while reading that session),
-- **Main session only** toggle (default on: subagent sessions stay silent),
+- **Notify for** picker (All sessions / Main only / Main, after subagents),
 - **Sound** master switch,
 - **Volume** slider (0–100%),
 - one row per notification kind: enable switch, custom-audio upload, sound picker (the official dropdown menu), and a Preview button,
@@ -75,7 +75,7 @@ The browser half watches the sessions list snapshot and each session's conversat
 - `yarn run build` — builds the browser bundle (`lib/client.js`) and the Node half (`lib/index.js` / `lib/invariant.js`).
 - `src/client/notification-service.ts` — the engine (classification) and dispatcher (gating); `src/client/settings-store.ts` — the settings section bridge; `src/client/NotificationsSection.tsx` — the section UI; `src/client/sounds.ts` + `src/client/custom-audio.ts` — the built-in and custom sounds.
 - `yarn test` — behavior tests; `yarn run typecheck` — type gate.
-- dsh 0.1.3-alpha.1: the `@deepseek-ai/dsh-*` types resolve from the sibling dsh checkout (`../test-dingyi222666`) through tsconfig paths until the 0.1.3-alpha.1 packages land on npm (devDependencies install the last published versions for the build toolchain only).
+- dsh 0.1.5-alpha.2: the `@deepseek-ai/dsh-*` types install from npm as devDependencies (`^0.1.5-alpha.2`); no checkout path mappings.
 - Node-half changes need a `dsh web` restart; browser-bundle changes need a rebuild (`yarn run build`) — a `--dev` server hot-reloads them.
 
 ## Known limitations

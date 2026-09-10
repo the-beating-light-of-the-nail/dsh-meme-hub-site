@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/aadc7f32f0ed4adb9eb6433d18752884ae68df13/assets/social-preview.png" alt="DSH 插件市场 — 社交预览封面" width="90%">
+  <img src="https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/defa425770fea6cb80a1341b9dffdc632beca273/assets/social-preview.png" alt="DSH 插件市场 — 社交预览封面" width="90%">
 </p>
 
 ---
@@ -301,6 +301,7 @@ GitHub Actions（每 2 小时，仓库自带 token）
 
 - [lgnorant-lu](https://github.com/lgnorant-lu)——写端点鉴权（回环 socket 判定）、安全健壮性修复（PR #63 十二处）、机械化测试体系（PR #66：突变/性质/i18n）、SkillsTab 修复等大量核心贡献
 - [baiyuscc13724-max](https://github.com/baiyuscc13724-max)——Harness Desktop 内置市场集成与安装流程简化（#1/#2）
+- [anupamme](https://github.com/anupamme)（OrbisAI Security）——verify-installability SSRF 白名单防护（#213，收编进 #217）
 - any / bubble / tatakaria——早期贡献
 
 **生态协作者**（discussion #2269 识别/验证/合规三层对齐）：

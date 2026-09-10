@@ -16,7 +16,7 @@
 
 | ① 文件资源管理器：`find` 定位 + 语义 `invoke` 选中文件（状态栏"选中 1 个项目"） | ② `type_text` 写入真实文档（剪贴板路径，`verifyValue` 回读） | ③ UWP 计算器：`find` 定位按钮 + 语义 `Invoke` 点击（25×4=100） |
 |---|---|---|
-| ![1](https://raw.githubusercontent.com/Yu-tao-Li/dsh-computer-use-win/04f4643eba86b28ee26788dbe72e34fa87503852/assets/screenshot-1.png) | ![2](https://raw.githubusercontent.com/Yu-tao-Li/dsh-computer-use-win/04f4643eba86b28ee26788dbe72e34fa87503852/assets/screenshot-2.png) | ![3](https://raw.githubusercontent.com/Yu-tao-Li/dsh-computer-use-win/04f4643eba86b28ee26788dbe72e34fa87503852/assets/screenshot-3.png) |
+| ![1](https://raw.githubusercontent.com/Yu-tao-Li/dsh-computer-use-win/8b7ee18212e9f9b09f4131151cfcf6fd8cb3f051/assets/screenshot-1.png) | ![2](https://raw.githubusercontent.com/Yu-tao-Li/dsh-computer-use-win/8b7ee18212e9f9b09f4131151cfcf6fd8cb3f051/assets/screenshot-2.png) | ![3](https://raw.githubusercontent.com/Yu-tao-Li/dsh-computer-use-win/8b7ee18212e9f9b09f4131151cfcf6fd8cb3f051/assets/screenshot-3.png) |
 
 ## 特性
 
@@ -42,7 +42,7 @@ dsh plugin --profile web add github:Yu-tao-Li/dsh-computer-use-win
 
 重启 `dsh web`，工具以 `mcp__wincu__windows_computer_use_*` 出现。
 
-> bundle 在安装时自解析路径（`cordis.patch.yml` 用 `!!js` 相对包目录），任何 profile / `$DSH_HOME` 都能装，无硬编码路径。同一 profile 只保留一个 `serverName: wincu` 行。
+> bundle 在启动时自解析路径（`cordis.patch.yml` 的 `!!js` 从所在 profile 解析 `server.mjs`），任何 profile / `$DSH_HOME` 都能装，无硬编码路径。同一 profile 只保留一个 `serverName: wincu` 行。
 
 ## 工具清单（22 个，前缀 `mcp__wincu__`）
 

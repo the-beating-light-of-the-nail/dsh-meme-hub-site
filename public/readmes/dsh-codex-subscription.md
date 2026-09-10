@@ -1,9 +1,5 @@
 # DSH Codex Subscription
 
-> 当前工作分支为 **2.0.0 验收候选版，尚未发布**。本轮整理整个订阅插件的账号、额度、设置、模型和通信模块，并加入 `@Sketch` 画板、创作模板、会话图片库、多图参考与并排对比。设置 → Codex 订阅 → 图片工作台可分别控制各功能，以及图片模型和质量。2.5 型号为实验选项，默认仍为 GPT Image 2。详见 [架构与维护边界](docs/2.0.0-architecture.md) 和 [实机验收记录](docs/2.0.0-acceptance.md)。
-
-2.0 当前支持 DSH **0.1.2-rc.1**，并提供 **0.1.5-alpha.1** 预览适配。更早的 DSH 请先升级宿主或保留插件 1.x。
-
 <div align="center">
 
 **简体中文** · [English](https://github.com/WSL043/dsh-codex-subscription/blob/main/README.en.md)
@@ -24,7 +20,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/sketch-2.0.png" width="900" alt="Codex 订阅直接用在 DSH：订阅模型、联网搜索、额度与安全重置、图片生成和高速模式">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/readme-hero.webp" width="900" alt="Codex 订阅直接用在 DSH：订阅模型、联网搜索、额度与安全重置、图片生成和高速模式">
 </p>
 
 ## 三步开始
@@ -47,7 +43,7 @@ DSH-Portable 也提供相同的标准插件命令，因此同样使用上面的�
 | **订阅模型直连** | 登录 ChatGPT 后直接使用 Codex，不需要 OpenAI API Key 或 Codex CLI |
 | **可恢复、可诊断** | 登录状态会自动对账；读取失败时可在原处重试，超时和旧账号响应不会覆盖当前状态；设置页可生成不含凭据和账号标识的支持报告 |
 | **额度可见** | 普通 Codex、Spark 等服务端实际返回的额度分开显示 |
-| **输入框额度** | 可选择紧凑百分比、进度条或完全关闭输入框额度显示 |
+| **输入框额度** | 可选择紧凑百分比、进度条、Beta 续航预测或关闭显示 |
 | **安全额度重置** | 每张重置卡单独显示，并通过冷静期和知情确认主动尝试重置 |
 | **订阅搜索** | 可将全部模型的搜索明确路由到 DSH 默认搜索或已登录的 Codex 订阅 |
 | **Codex 图片生成与编辑（Beta）** | 可无参考图全新生成，也可明确选择会话图片继续编辑；支持预览、缩放、区域备注、下载原图，并为新生成或编辑的图片提供 DSH 主机上的原图路径 |
@@ -57,42 +53,13 @@ DSH-Portable 也提供相同的标准插件命令，因此同样使用上面的�
 
 这些能力共用同一份本机 ChatGPT 登录。订阅路由失败时会明确报错，不会静默切换到其他付费路由。
 
-### 2.0.0 的使用改进
-
-- 设置页可手动刷新账户模型目录，并显示正在使用在线目录还是内置目录；Fast 选项跟随模型能力。
-- 订阅搜索可选择实时、缓存（实验）或停用；可筛选返回结果的域名。筛选不限制搜索服务的网络访问。缓存模式仍需账户实机验收，失败不会切换到其他来源。
-- 额度提醒可关闭、在剩余不超过 20% 时显示，或对短周期提前到 50%；不使用超过五分钟的旧数据发出提醒。
-- 原图下载显示进度并支持取消，下载成功前仍校验完整原图；取消会向正在进行的请求传递中止信号，并停止后续分块。
-
-### 选择你习惯的图片入口
-
-官方 `dsh-subagent-codex` 与本插件有部分用途重叠，但接入方式不同：官方组件把文本任务交给使用原生登录和配置的 Codex 临时线程；本插件在 DSH 对话中提供订阅模型、账号与额度、搜索和图片工作台。单纯委派编码任务可优先考虑官方组件，不必为了这一个用途安装本插件。参见 [官方子代理说明](https://github.com/deepseek-ai/deepseek-harness/blob/dsh-v0.1.5-alpha.1/packages/subagent/subagent-codex/README.zh.md)。
-
-| 入口 | 适合什么情况 | 操作结果 |
-| --- | --- | --- |
-| 自然语言 | 直接说“生成一张……”或“把这张图改成……” | 对话模型根据你的明确要求调用图片工具 |
-| `@生图` / `@Image` | 想先写清创作说明，再决定发送 | 打开创作面板，显示默认图片型号和质量；确认只填入草稿 |
-| `@Sketch` / `@草图` | 用线条或构图说明想法 | 打开画板，确认只附加参考图 |
-| 会话图片库 | 继续编辑或比较已有生成图片 | 最多选择 5 张参考图，或两张并排对比 |
-
-快捷入口和自然语言可以同时使用，不需要每次输入 `@`。草稿始终可见，已有说明不会被替换，也不会因打开面板而自动发送或生成。
-
-**功能开关：** 设置 → Codex 订阅 → 图片工作台，现在只保留三组：图片生成与编辑、创作入口、图片浏览。隐藏创作入口不影响自然语言生图；关闭图片生成与编辑后，后续模型请求不再携带图片工具。图片浏览可选择增强模式或 DSH 默认。已有细分设置不一致时显示“保留原设置”，主动更改该组才会统一调整。关闭功能保留历史图片。
-
-**上下文与用量：** `@` 是明确意图的入口，不是免上下文或免用量模式。画板、图库与未发送的草稿不作为新消息加入对话；发送后，创作说明、参考图和图片结果仍会占用会话上下文。连续做大量图片迭代时，建议使用独立会话。Luna 等对话模型负责调用工具，图片引擎独立选择。
-
-![图片创作入口](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/image-create-2.0.png)
-![图片设置（浅色）](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/image-settings-2.0.png)
-![图片设置（深色）](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/image-settings-2.0-dark.png)
-![会话图片并排对比](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/image-compare-2.0.png)
-
 ## 实际界面
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/context-settings.png" width="820" alt="当前 DeepSeek Harness Codex 订阅设置，包含搜索来源、模型感知上下文、输入框额度和支持诊断">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/context-settings.png" width="820" alt="2.0.0 账号与偏好：登录、额度、显示模式与提醒">
 </p>
 
-截图用于说明设置页布局；可用选项会随 DSH 与插件版本变化。
+2.0.0 设置分为“账号与偏好”和“高级与诊断”。截图已隐藏账号信息，并展开滚动内容便于阅读；[查看高级页](docs/assets/settings-advanced-2.0.png)。
 
 ## 准备 DSH
 
@@ -126,9 +93,9 @@ dsh --profile headless "只回复：ok"
 官方的 `npx @deepseek-ai/dsh web` 不会创建全局 `dsh` 命令，因此安装插件时也要保留完整的 `npx` 前缀：
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 plugin --profile web add dsh-codex-subscription
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 plugin --profile web list dsh-codex-subscription --depth 0
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 --profile web --dump-config
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 plugin --profile web add dsh-codex-subscription
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 plugin --profile web list dsh-codex-subscription --depth 0
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 --profile web --dump-config
 ```
 
 </details>
@@ -171,15 +138,19 @@ dsh --profile web --dump-config
 
 ### GPT-6 Astra 上下文
 
-标准模式保留账户模型目录的默认窗口；扩展模式优先使用官方目录明确给出的最大窗口，自定义值也受该上限约束。目录中的新模型自动进入设置，无需逐个发布适配；旧模型设置继续保留。离线目录未提供最大窗口时沿用已审核预设，例如 Astra 为 872000 Token。设置只调整 DSH 的本地上下文预算，不授予模型权限，也不保证账户的服务端容量。
+当官方模型目录提供 GPT-6 Astra 时，标准模式保留目录默认窗口；扩展模式使用 872000 Token，自定义模式可设置 128000–872000 Token（初始值为 272000）。该上限依据 [Codex 官方模型目录](https://github.com/openai/codex/blob/6af345407d9c2a568da9d01b6c4b81a9e61495c0/codex-rs/models-manager/models.json#L33-L34)，不是 API 模型的总上下文容量。这些设置只调整 DSH 的本地上下文预算，不授予模型访问权限，也不保证账号的服务端容量；实际可用性以服务端为准。
 
 ### 输入框额度
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/composer-quota.png" width="800" alt="中文 DSH 输入框内的 Codex 剩余额度进度条">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/composer-quota.png" width="800" alt="DSH 实机输入框：GPT-6-Astra、Max 推理、高速模式和剩余额度">
 </p>
 
-可在设置中选择关闭、百分比、进度条或 Beta 续航预测；紧凑额度只在选择 Codex 模型时显示。续航预测仅在用户主动选择后，根据官方剩余百分比估算当前消耗速度。它至少需要 3 个样本；持续高消耗时通常 5–10 分钟即可给出范围，消耗较低时会延长观察或显示稳定。最近 24 小时的无敏感信息观测会保存在本机，重启后可以继续校准；额度重置、账号切换或关闭功能会开启新的校准周期。输入框分别显示服务端返回的各额度窗口，并标明窗口时长：Plus 返回 5 小时和每周额度时，两项都会显示。
+实机示例：GPT-6-Astra · Max（最高推理档）· 高速模式（闪电标识），左侧直接显示剩余额度。
+
+可在“账号与偏好”选择关闭、百分比、进度条或 Beta 续航预测。存在 5 小时额度时，输入框只显示短窗口；每周额度等完整信息留在悬浮详情。仅有周额度时省略“周”字，预测采用 `36% · ≈10h–12h` 这样的紧凑格式。
+
+续航预测根据最近两小时的官方读数估算，额度不变的采样同样参与计算。满足条件时利用连续跳格约束速度，读数不足或使用强度变化时会退回保守估计。范围不是实际可工作时间的保证，仍标记 Beta。历史在本机有限保存；重置、长时间离线或关闭预测会重新校准。
 Spark 使用独立额度。只返回每周额度的账号仍只显示每周，不会虚构 5 小时窗口、Credits 或消费上限。
 
 ### 安全使用额度重置
@@ -199,10 +170,28 @@ ChatGPT 返回可用重置卡时，设置页会把每张卡分别显示为紧凑
 新的图片请求不会静默带入历史图片。GPT Image 2 可能比文本回复耗时更长，复杂文字、精确构图和连续角色一致性也可能需要再次调整。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/e98c79f99fb3fa93265786d65e6acd0483cebbc5/docs/assets/image-preview-annotations.png" width="800" alt="DSH 图片查看器中的生成图、区域备注和继续编辑">
+  <img src="https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/image-preview-annotations.png" width="800" alt="DSH 图片查看器中的生成图、区域备注和继续编辑">
 </p>
 
 上图展示图片查看与图上备注的基本交互；具体按钮会随图片和所安装的查看器版本变化。
+
+### 草图画板（Beta）
+
+![草图画板实机界面：画布比例、笔刷、形状、图层与缩放](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/sketch-canvas.png)
+
+点击输入框的草图按钮或输入 `@Sketch` 打开。图片预览中可选择“进入草图”；上传、粘贴和移除附件仍由 DSH 原生组件处理。
+
+草图支持多份本地草稿、图片图层、画布比例、三种笔刷、直线和形状、两种橡皮、撤销重做、拖动缩放与可配置快捷键。平滑仅在抬笔后处理整笔路径，不拖慢绘画光标。草稿最多 20 份，仅保存在当前浏览器；附加草图不会自动发送。左侧图片面板只管理当前草图的图片，不是会话图片库。
+
+**草图生成图片实测**：画好后点击“附加”，在输入框说明想要的效果，再发送。
+
+| 画板原草图 | 插件实际生成结果 |
+| --- | --- |
+| ![山峰与小屋草图](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/sketch-demo-source.png) | ![根据草图生成的水彩山间小屋](https://raw.githubusercontent.com/WSL043/dsh-codex-subscription/9c4b095d4b59a510179d379f209c8b636a12fc37/docs/assets/sketch-demo-result.png) |
+
+示例要求：保留山峰与小屋的构图，生成温暖的水彩旅行插画，青绿山峰、橙色屋顶、草地小溪与柔和晨光，不保留蓝色线条。此例通过 GPT-5.6-Luna 发起一次图片工具调用，请求低质量；Luna 是对话模型，实际出图型号由订阅后端决定。
+
+图片请求中的 Flare / Sunburst 型号选项仍属实验性功能。成功生成不代表订阅后端确认采用指定型号或质量；不会把请求参数当成实际返回型号。
 
 ### 输入框速度
 
@@ -236,22 +225,22 @@ dsh plugin --profile web remove dsh-codex-subscription
 ### 更新并检查
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 plugin --profile web update dsh-codex-subscription
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 plugin --profile web list dsh-codex-subscription --depth 0
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 --profile web --dump-config
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 plugin --profile web update dsh-codex-subscription
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 plugin --profile web list dsh-codex-subscription --depth 0
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 --profile web --dump-config
 ```
 
 ### 卸载
 
 ```sh
-npx -y @deepseek-ai/dsh@0.1.2-rc.1 plugin --profile web remove dsh-codex-subscription
+npx -y @deepseek-ai/dsh@0.1.5-rc.1 plugin --profile web remove dsh-codex-subscription
 ```
 
 </details>
 
 ## 常见问题
 
-- **`dsh` 无法识别**：官方 npm 方式本来就不会创建全局 `dsh` 命令，请使用上面的完整 `npx -y @deepseek-ai/dsh@0.1.2-rc.1 ...` 命令；
+- **`dsh` 无法识别**：官方 npm 方式本来就不会创建全局 `dsh` 命令，请使用上面的完整 `npx -y @deepseek-ai/dsh@0.1.5-rc.1 ...` 命令；
 - **电脑上有多个 DSH**：请从目标 DSH 环境运行标准命令，由该产品自身选择对应 profile；
 - **安装仍然失败**：确认命令是在目标 DSH 环境中运行，不要删除 profile 或随意修改系统 PATH。
 - **需要提交问题**：在设置页底部生成“支持诊断”，然后打开[使用问题表单](https://github.com/WSL043/dsh-codex-subscription/issues/new?template=install-problem.yml)。报告包含系统/运行时、有限的登录阶段和安全的请求失败分类，但不含凭据、账号标识、代理地址、原始响应或完整日志；请粘贴到必填诊断栏，且不要附上登录链接、授权码或浏览器回调地址。

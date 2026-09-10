@@ -3,7 +3,7 @@
 **中文 | [English](./README.en.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/83cfaf2ff2baf15df72d5f4be85c696995cdd230/assets/readme/hero.svg" width="100%" alt="dsh-subagent-library — DeepSeek Harness 具名子代理库插件" />
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/db76bd558815e83e36036d1674aa83a2d491280c/assets/readme/hero.svg" width="100%" alt="dsh-subagent-library — DeepSeek Harness 具名子代理库插件" />
 </p>
 
 <p align="center">
@@ -35,17 +35,17 @@ DeepSeek Harness 的具名子代理库插件：把常用角色（代码审查、
 ## 界面
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/83cfaf2ff2baf15df72d5f4be85c696995cdd230/assets/readme/screenshot-settings.png" width="75%" alt="设置页「子代理库」卡片：可视化编辑名册条目" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/db76bd558815e83e36036d1674aa83a2d491280c/assets/readme/screenshot-settings.png" width="75%" alt="设置页「子代理库」卡片：可视化编辑名册条目" /><br>
   <em>设置页「子代理库」卡片：可视化增删改条目（模型 / 传输层 / 深度 / 禁用工具 / persona）</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/83cfaf2ff2baf15df72d5f4be85c696995cdd230/assets/readme/screenshot-command-palette.png" alt="命令面板里的 /subagent 命令" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/db76bd558815e83e36036d1674aa83a2d491280c/assets/readme/screenshot-command-palette.png" alt="命令面板里的 /subagent 命令" /><br>
   <em><code>/subagent</code> 命令（快速查看子代理库名册）</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/83cfaf2ff2baf15df72d5f4be85c696995cdd230/assets/readme/screenshot-roster.png" width="75%" alt="/subagent 输出：具名子代理名册一览" /><br>
+  <img src="https://raw.githubusercontent.com/MaRi23333/dsh-subagent-library/db76bd558815e83e36036d1674aa83a2d491280c/assets/readme/screenshot-roster.png" width="75%" alt="/subagent 输出：具名子代理名册一览" /><br>
   <em>名册输出示例：每个条目一句话角色描述 + 模型路由 + 可续聊标记</em>
 </p>
 

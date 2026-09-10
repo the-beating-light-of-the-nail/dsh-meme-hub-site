@@ -282,12 +282,12 @@ predictably onto the UI figure.
 
 ## Screenshots
 
-![Settings panel — Force Compact section, all knobs live-editable](https://raw.githubusercontent.com/falling-ts/dsh-force-compact/ba1efd82258de0c92577b89931006861096ddc87/assets/settings-panel.png)
+![Settings panel — Force Compact section, all knobs live-editable](https://raw.githubusercontent.com/falling-ts/dsh-force-compact/4eeec1e76d3ebd2994955863b8cc550e7b42dd02/assets/settings-panel.png)
 
 *Settings page — the **Force Compact** section; all nine fields above are editable live
 without a restart.*
 
-![Conversation page — red "compressing" badge pinned beside an in-flight turn](https://raw.githubusercontent.com/falling-ts/dsh-force-compact/ba1efd82258de0c92577b89931006861096ddc87/assets/live-conversation.png)
+![Conversation page — red "compressing" badge pinned beside an in-flight turn](https://raw.githubusercontent.com/falling-ts/dsh-force-compact/4eeec1e76d3ebd2994955863b8cc550e7b42dd02/assets/live-conversation.png)
 
 *Conversation page — the LiveUI signal paints three states (red: compressing / green: done /
 blue: working); the green banner fades after about 3 s back to a random working line; at

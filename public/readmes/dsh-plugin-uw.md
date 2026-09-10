@@ -26,7 +26,7 @@
 
 | 会话文件浏览 | 设置页面 |
 |---|---|
-| ![main](https://raw.githubusercontent.com/lcgash/dsh-plugin-uw/b2873ffa178f4e28de29ff74d673641d957f892e/docs/screenshots/main.png) | ![setting](https://raw.githubusercontent.com/lcgash/dsh-plugin-uw/b2873ffa178f4e28de29ff74d673641d957f892e/docs/screenshots/setting.png) |
+| ![main](https://raw.githubusercontent.com/lcgash/dsh-plugin-uw/198de0949f41802b50426a6cb14c7b62175ebd9d/docs/screenshots/main.png) | ![setting](https://raw.githubusercontent.com/lcgash/dsh-plugin-uw/198de0949f41802b50426a6cb14c7b62175ebd9d/docs/screenshots/setting.png) |
 
 ## 功能
 

@@ -24,6 +24,8 @@ A [DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) plug
 > DSH `0.1.2-alpha.1` and later accept language-pack locale IDs through `LocaleRuntime`. This plugin registers `ja` and `ko` dynamically, so no DSH core fork is required. Older DSH builds that only expose built-in locale IDs support `zh` and `en` only.
 >
 > The published runtime entries are `lib/index.js` (Host) and `lib/client.js` (Client). After changing TypeScript or locale sources, run `npm run build` before running DSH or packing the plugin. Current DSH does not expose a public semver metadata contract, so runtime capability detection is authoritative. An optional version is used only when explicit metadata or test input supplies it; unknown valid versions still use the detected capabilities. The plugin supports both modern `remote.settings` and legacy `connection.api.settings`.
+>
+> The Host registers its `dsh-thinking-effort` Settings namespace through the host-provided Settings `installSection` when available, and falls back to the legacy `register` path otherwise. It does not depend on `@deepseek-ai/dsh-settings` at runtime, so the package installs cleanly into DSH profiles configured with `autoInstallPeers: false` without introducing a second Cordis runtime.
 
 ## DSH compatibility
 
@@ -109,7 +111,7 @@ See [INSTALL.md](./docs/INSTALL.md) for profile discovery, migration, validation
    | `high` | `ultra` |
    | `max` | `max` |
 
-7. In the model editor, optionally enable **OpenCode session Header** for the exact model that needs `x-opencode-session`. It is off by default, uses the current DSH session ID dynamically, and does not inherit across models or providers.
+7. In the model editor, optionally enable **OpenCode session Header** for the exact model that needs `x-opencode-session`. It is off by default, uses the current DSH session ID dynamically, does not inherit across models or providers, and saves immediately when toggled — there is no separate save button.
 8. Return to Composer, choose the configured model, then use its reasoning-effort slider.
 
 ### Composer reasoning-effort slider
@@ -147,7 +149,7 @@ These compat values are control plane configuration. They do not implement or re
 
 ### OpenCode session Header compatibility
 
-The model editor has a separate **OpenCode session Header** switch. It is off by default and is stored in the plugin's own `dsh-thinking-effort` Settings namespace, not in `llm-pi-ai.compat`. Enable it only for the exact `provider/model` that requires `x-opencode-session`; another model on the same route, including a GPT model, does not inherit it.
+The model editor has a separate **OpenCode session Header** switch. It is off by default and is stored in the plugin's own `dsh-thinking-effort` Settings namespace, not in `llm-pi-ai.compat`. Enable it only for the exact `provider/model` that requires `x-opencode-session`; another model on the same route, including a GPT model, does not inherit it. Flipping the switch saves immediately — there is no separate save button — and reopening the model shows the persisted value.
 
 When enabled, the Host sends `x-opencode-session: <current DSH session ID>` on matching `llm/stream` requests. The value follows the current conversation and is not stored in Settings or replaced with a fixed value. An existing `x-opencode-session` supplied by the adapter or caller is preserved. The setting does not choose or change `openai-completions`, `openai-responses`, or `anthropic-messages`.
 
@@ -157,7 +159,7 @@ Sub2API, CPA, and other forwarding gateways must preserve and forward `x-opencod
 
 The page header contains the language selector. Below it, the Subagent default effort card controls the default for requests without an explicit effort. The Quick settings controls apply a preset across models. Provider sections can be expanded or collapsed; each model row exposes input capabilities, context length, and gateway compatibility controls in its settings area. `models[]` saves use one complete array set rather than an array-index path operation.
 
-![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/204fa82362073544023d8c10efa5d186c71fc0f7/docs/assets/screenshots/plugin-en-settings-expanded.png)
+![English Model capabilities and effort settings page](https://raw.githubusercontent.com/hytime/dsh-thinking-effort/5e7aa02a03ade588e8042b86197074fb1d68e1d4/docs/assets/screenshots/plugin-en-settings-expanded.png)
 
 See the complete Chinese, English, Japanese, and Korean screenshot gallery in [`docs/SCREENSHOTS.md`](./docs/SCREENSHOTS.md).
 

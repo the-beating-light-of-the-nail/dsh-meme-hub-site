@@ -54,24 +54,25 @@ dsh plugin --profile web add @mengyuly/dsh-ponytail
 ## 功能
 
 - **核心模式** `/ponytail` — 每轮注入结构化的懒惰开发者规则集，**三个档位是真实不同的 Prompt 片段**（不只是换一行）：
-  - **Common（所有非 off 档共享）**：先理解问题、追踪真实调用流；优先复用/标准库/原生能力/已有依赖；非平凡改动留一个最小可运行检查；解释简短但不省略关键决策。
+  - **Common（所有非 off 档共享）**：先把请求转成可观察的完成条件；沿真实调用流取证，但决策阶梯是快速反射、不是研究项目；按“检查 → 修改 → 最窄有效验证 → 检查最终 diff”闭环执行；非平凡逻辑只留一个最小可执行检查，不额外搭测试框架或 fixtures；只汇报已验证结果。
   - **Safety（任何档位都不可删）**：输入校验、防数据丢失的错误处理、安全措施、无障碍、明确验收项、先理解问题、「最小 diff ≠ 正确修复」。
-  - **`lite`**：完整交付明确要求；可以一句话指出更简方案，但**不挑战明确需求**；输出可略完整。
+  - **`lite`**：直接执行、减少仪式；完整交付明确要求；可以一句话指出更简方案，但**不挑战明确需求**。
   - **`full`（默认）**：完整七级阶梯（YAGNI → 复用 → 标准库 → 原生 → 已装依赖 → 一行 → 最小实现），默认选最短正确实现，修根因而非症状。
-  - **`ultra`**：YAGNI 极端（先删后加）；主动质疑投机性功能/缓存/抽象/配置/新依赖；复杂需求先给最小正确版并说明完整版条件；**不是无脑拒绝**。
+  - **`ultra`**：新增代码前先要证据，优先删除或复用；主动质疑投机性功能/缓存/抽象/配置/新依赖；复杂需求先给最小正确版并说明扩大条件；**不是无脑拒绝**。
   - `off`：完全不注入。
   - 档位**会话级**（会话 A 不影响会话 B，会话结束自动释放）。
   - 裸 `/ponytail`：已启用时只报告；`off` 时恢复到有效默认档（默认也是 `off` 则回 `full`）。
-  - `/ponytail status`：只查询、永不修改。
+  - `/ponytail status`：只查询、永不修改，并显示当前模式来自会话覆盖还是配置默认值。
+  - `/ponytail reset`：清除当前会话覆盖，重新跟随有效配置默认值。
   - `/ponytail lite|full|ultra|off`：显式切换。
   - `/ponytail default <mode>`：持久化默认值到**用户级配置文件**（env/Profile 仍优先，命令分别提示 saved 与 effective）。
 - **一次性技能**（用哪个载哪个，不进常驻 prompt）：
-  - `/ponytail-review` — 针对最近改动找过度工程，一行一条：位置 + 删什么 + 替代。
-  - `/ponytail-audit` — 全仓库过度工程审计，排序清单。
+  - `/ponytail-review` — 针对最近改动找过度工程；每条包含位置、替代方案和实际调用证据，不猜测精确收益。
+  - `/ponytail-audit` — 全仓库过度工程审计；区分可安全删除与需要先验证的候选，最多返回 10 条高价值发现。
   - `/ponytail-debt` — 收割所有 `ponytail:` 注释成债务账本。
   - `/ponytail-gain` — 上游 Benchmark 参考计分板（代码减少；Token/成本/延迟效果取决于模型与任务，**非本适配版保证**）。
   - `/ponytail-help` — 参考卡。
-- **停用**：说 `stop ponytail` 或 `normal mode`（兼容中英文句末标点）；随时 `/ponytail` 恢复。
+- **停用**：说 `stop ponytail`、`normal mode`、`停止 ponytail`、`关闭 ponytail`、`普通模式` 或 `正常模式`（兼容中英文句末标点）；随时 `/ponytail` 恢复。
 - **默认值优先级**（代码/测试/文档一致）：
   ```
   会话 override > PONYTAIL_DEFAULT_MODE > Profile config.defaultMode > 用户 config.json > full
@@ -103,9 +104,9 @@ prompt 与推理开销变得更贵。
 
 | 档位 | 字符数 | UTF-8 字节 | 说明 |
 |------|--------|-----------|------|
-| lite | 1918 | 1920 | 实测生成 |
-| full | 3036 | 3052 | 实测生成 |
-| ultra | 2823 | 2839 | 实测生成 |
+| lite | 1915 | 1917 | 实测生成 |
+| full | 3022 | 3038 | 实测生成 |
+| ultra | 2797 | 2813 | 实测生成 |
 | off | 0 | 0 | 不注入 |
 
 这些是 **Prompt 体积测量，不是账单金额，也不是对所有模型成立的节省
@@ -162,6 +163,7 @@ Smoke Benchmark 只提供方向性证据（见 `docs/dsh-smoke-summary.md`）。
   node scripts/verify-pack.mjs         # tarball 边界（含无 scripts/ 暴露回归检查）、版本、安装后 smoke
   node scripts/test-consumer.mjs       # NodeNext + skipLibCheck:false 声明消费测试（对打包产物）
   node scripts/test-regressions.mjs    # 验证工具自身的回归测试
+  node scripts/test-core.mjs           # 核心 Prompt 字节、安全边界、模式与 Skill 表面
   node scripts/measure-prompt.mjs      # 各模式 Prompt 段体积（依赖未发布的 src/）
   node scripts/check-release-links.mjs # README/CHANGELOG/docs 无版本化 latest 资产链接
   node scripts/check-release-consistency.mjs --version <v>  # 四方发布一致性（git tag/npm/GitHub/provenance）

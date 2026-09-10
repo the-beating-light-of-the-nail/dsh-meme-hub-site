@@ -30,11 +30,11 @@ It never commits, stashes, resets, switches branches, edits the Git index, or de
 
 Rewind appears as an icon-only third action under each user message, after its timestamp and native Copy action:
 
-![Turn Rewind action under a user message](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/690699fdf915dd23374b9708c22a5458cb7ed869/docs/assets/turn-rewind-action.png)
+![Turn Rewind action under a user message](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/3bcb1d0c18c0ee66cf2754ba362f89bddeac78b1/docs/assets/turn-rewind-action.png)
 
 Opening it shows the affected files and offers three choices: restore the files and restart from before that message, restore only the files, or rewind only the messages and leave the files untouched:
 
-![Turn Rewind review dialog](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/690699fdf915dd23374b9708c22a5458cb7ed869/docs/assets/turn-rewind-dialog.png)
+![Turn Rewind review dialog](https://raw.githubusercontent.com/Anionex/dsh-turn-rewind/3bcb1d0c18c0ee66cf2754ba362f89bddeac78b1/docs/assets/turn-rewind-dialog.png)
 
 ## Why it has a Change Ledger engine
 
@@ -65,7 +65,9 @@ The durable format is documented in [docs/FORMAT.md](docs/FORMAT.md). The securi
 
 ## Scope
 
-Version `0.1` intentionally supports normal Git worktrees only:
+Two workspace kinds are supported and selected from the Session's own directory:
+
+**Normal Git worktree**
 
 - tracked files, including currently missing tracked paths;
 - untracked files not excluded by `.gitignore` or other standard Git excludes;
@@ -73,15 +75,22 @@ Version `0.1` intentionally supports normal Git worktrees only:
 - symbolic links;
 - executable and other portable permission bits.
 
+**Ordinary directory (the Session directory is not a Git repository)**
+
+- every regular file and symbolic link below it; links are captured as links and never followed;
+- `.git` and `node_modules` are excluded by default;
+- an optional `.dsh-rewindignore` in the directory root adds `.gitignore`-style rules; the built-in exclusions are applied last and cannot be re-included;
+- snapshot content is stored in the plugin's own content-addressed storage instead of the Git object database;
+- running `git init` inside the directory changes the workspace mode, so earlier restore points stop applying (`WORKSPACE_MODE_CHANGED`) and a new message must create a new one.
+
 The following are rejected or deliberately outside the snapshot:
 
 - sparse checkouts;
 - submodule gitlinks (create a restore point inside each submodule instead);
-- ignored files;
+- ignored files and files excluded by `.dsh-rewindignore`;
 - special files, sockets, devices, and named pipes;
 - extended attributes, ACLs, ownership, timestamps, and hard-link topology;
-- the Git index and repository metadata;
-- non-Git directories.
+- the Git index and repository metadata.
 
 If an ignored or otherwise unmanaged file occupies a path that restoration would replace, the restore fails rather than deleting it.
 

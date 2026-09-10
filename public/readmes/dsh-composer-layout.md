@@ -16,7 +16,7 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web plugin that lets the Composer stay at the bottom or dock in a right-side column. The chat and Composer keep their own space, while the normal DSH model, permission, quota, session, and tool behavior remains intact.
 
-![Keep the answer in view while you write](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/9edfea4b4c8ffa44c05c67affa363e75b7fa229c/assets/hero-en.png)
+![Keep the answer in view while you write](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/0975f67994cd9622624f2c4d2debc2a6b78baeea/assets/hero-en.png)
 
 ## Why a side-by-side Composer?
 
@@ -28,11 +28,11 @@ Docking Composer to the right gives reading and writing separate vertical space.
 
 ## See it in DSH
 
-![A real DSH Web session beside a tall right-side Composer](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/9edfea4b4c8ffa44c05c67affa363e75b7fa229c/assets/screenshots/hero-en.png)
+![A real DSH Web session beside a tall right-side Composer](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/0975f67994cd9622624f2c4d2debc2a6b78baeea/assets/screenshots/hero-en.png)
 
 ## Switch and resize
 
-![Right-edge handle, layout switch, and right-pane resize](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/9edfea4b4c8ffa44c05c67affa363e75b7fa229c/assets/screenshots/layout-guide-en.webp)
+![Right-edge handle, layout switch, and right-pane resize](https://raw.githubusercontent.com/lavapapa/dsh-composer-layout/0975f67994cd9622624f2c4d2debc2a6b78baeea/assets/screenshots/layout-guide-en.webp)
 
 ## What it adds
 

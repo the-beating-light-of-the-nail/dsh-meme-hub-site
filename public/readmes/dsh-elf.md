@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/5b035fd0718f6508cb80c825ec81adafe9783d33/assets/whale.svg" width="96" alt="dsh-elf logo">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/84d326a73db420083110cc19e74773a09af74cd0/assets/whale.svg" width="96" alt="dsh-temp-chat logo">
 </p>
 
-# dsh-elf
+# dsh-temp-chat
 
 English | [中文](README.zh.md)
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933.svg)](package.json)
-[![npm](https://img.shields.io/npm/v/dsh-elf.svg)](https://www.npmjs.com/package/dsh-elf)
+[![npm](https://img.shields.io/npm/v/dsh-temp-chat.svg)](https://www.npmjs.com/package/dsh-temp-chat)
 
 A DeepSeek whale elf that lives on your DSH page. A translucent, slowly drifting whale (rendered from the official DeepSeek favicon path, tinted blue → purple → green) hovers at the edge of the viewport; click it to open a lightweight, draggable chat window that never touches your session history.
 
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/5b035fd0718f6508cb80c825ec81adafe9783d33/assets/screenshot-elf.png" width="46%" alt="The whale elf hovering at the corner of the page">
-  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/5b035fd0718f6508cb80c825ec81adafe9783d33/assets/screenshot-chat.png" width="46%" alt="The temporary chat window opened by clicking the elf">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/84d326a73db420083110cc19e74773a09af74cd0/assets/screenshot-elf.png" width="46%" alt="The whale elf hovering at the corner of the page">
+  <img src="https://raw.githubusercontent.com/winditer/dsh-elf/84d326a73db420083110cc19e74773a09af74cd0/assets/screenshot-chat.png" width="46%" alt="The temporary chat window opened by clicking the elf">
 </p>
 
 ## Features
@@ -43,14 +43,14 @@ A DeepSeek whale elf that lives on your DSH page. A translucent, slowly drifting
 ### From npm
 
 ```sh
-dsh plugin --profile desktop add dsh-elf
+dsh plugin --profile desktop add dsh-temp-chat
 ```
 
 Restart DSH (quit fully and reopen), then a fresh page shows the elf at the bottom-right.
 
 ### From git
 
-Installing the plugin directly from the repository (e.g. `"dsh-elf": "github:winditer/dsh-elf"` in a
+Installing the plugin directly from the repository (e.g. `"dsh-temp-chat": "github:winditer/dsh-temp-chat"` in a
 profile's `package.json`) also works out of the box: the built client bundle is **committed**, so the
 codeload tarball a git install downloads already contains `dist/client.js` and no build step is needed
 on the consuming side. (This was not always true — the bundle used to be gitignored, which made the
@@ -59,7 +59,7 @@ plugin tree fail to load with `client bundles not found; run pnpm run build befo
 ### From source (development)
 
 ```sh
-git clone https://github.com/winditer/dsh-elf.git dsh-elf && cd dsh-elf
+git clone https://github.com/winditer/dsh-temp-chat.git dsh-temp-chat && cd dsh-temp-chat
 npm install
 npm run build          # produces dist/client.js
 dsh plugin --profile desktop add .    # links the workspace into the profile by package name
@@ -70,12 +70,12 @@ Or install by hand: in the target profile's `package.json` (e.g. `~/.dsh/profile
 ```jsonc
 {
   "dependencies": {
-    "dsh-elf": "link:/absolute/path/to/dsh-elf"
+    "dsh-temp-chat": "link:/absolute/path/to/dsh-temp-chat"
     // ...
   },
   "dsh": {
     "profile": {
-      "bundles": [ /* ... */, "dsh-elf" ]
+      "bundles": [ /* ... */, "dsh-temp-chat" ]
     }
   }
 }
@@ -85,11 +85,11 @@ then `pnpm install` inside the profile directory and restart DSH.
 
 ### Uninstall
 
-Remove `dsh-elf` from the profile's `dependencies` and `dsh.profile.bundles`, then clean up the installed link (`rm -rf <profile>/node_modules/dsh-elf` or `pnpm --filter dsh-elf remove --dir <profile>`).
+Remove `dsh-temp-chat` from the profile's `dependencies` and `dsh.profile.bundles`, then clean up the installed link (`rm -rf <profile>/node_modules/dsh-temp-chat` or `pnpm --filter dsh-temp-chat remove --dir <profile>`).
 
 ## Usage
 
-- **Drag** the elf to park it anywhere (the drop position is persisted under `dsh-elf:orb`); **click** (without dragging) to open the chat window
+- **Drag** the elf to park it anywhere (the drop position is persisted under `dsh-temp-chat:orb`); **click** (without dragging) to open the chat window
 - Chat header: model badge · `⚙` configuration · `—` minimize · `清空` clear
 - `Enter` sends, `Shift+Enter` inserts a newline; hover a message and click `📋` to copy
 - Chats are **temporary**: they are never written to DSH sessions and disappear when the plugin stops or you clear them
@@ -105,18 +105,18 @@ Open `⚙` in the chat header:
 | API 地址 / API Key / 模型 | Base URL, key, and model name for the custom route |
 | reasoning | Optional `reasoning_effort` (`high` / `medium` / `low`) for compatible models |
 
-Settings are saved in the browser's `localStorage` (`dsh-elf:cfg`) together with chat history, positions and window mode (`dsh-elf:chat` / `dsh-elf:orb` / `dsh-elf:win` / `dsh-elf:mode`).
+Settings are saved in the browser's `localStorage` (`dsh-temp-chat:cfg`) together with chat history, positions and window mode (`dsh-temp-chat:chat` / `dsh-temp-chat:orb` / `dsh-temp-chat:win` / `dsh-temp-chat:mode`).
 
 ## Architecture
 
 Two halves, one package:
 
-- **Host half** — `lib/index.js` (= `src/host.js`). Registers a JSON API at `/dsh-elf/api` through the harness `webServer` service; runs the session-default chat via `llm.stream`; chats live in an in-memory `Map` that is cleared when the plugin unloads.
-- **Client half** — `src/client.js`, bundled to `dist/client.js` (esbuild, wrapped in `__ModuleLoader__.load({ id: "dsh-elf", … })`; the id **must** equal the installed package name). Renders into the `shell.overlay` slot, talks to the host with `fetch` POSTs.
+- **Host half** — `lib/index.js` (= `src/host.js`). Registers a JSON API at `/dsh-temp-chat/api` through the harness `webServer` service; runs the session-default chat via `llm.stream`; chats live in an in-memory `Map` that is cleared when the plugin unloads.
+- **Client half** — `src/client.js`, bundled to `dist/client.js` (esbuild, wrapped in `__ModuleLoader__.load({ id: "dsh-temp-chat", … })`; the id **must** equal the installed package name). Renders into the `shell.overlay` slot, talks to the host with `fetch` POSTs.
 
 ### Host API
 
-All endpoints are `POST /dsh-elf/api/<method>`; every response is `{ ok: true, value }` or `{ ok: false, error }`.
+All endpoints are `POST /dsh-temp-chat/api/<method>`; every response is `{ ok: true, value }` or `{ ok: false, error }`.
 
 | Method | Body | Returns |
 | --- | --- | --- |
@@ -144,11 +144,11 @@ npm test        # node --test (host mount regression + client bundle guards)
 ### Project layout
 
 ```
-src/client.js      Client half (shell.overlay, plain browser timers, fetch → /dsh-elf/api)
+src/client.js      Client half (shell.overlay, plain browser timers, fetch → /dsh-temp-chat/api)
 src/host.js        Host half source (= lib/index.js, the Node entry)
 lib/index.js       Package main — host half, loaded by the DSH host runtime
-dist/client.js     Built client bundle (__ModuleLoader__ format, load id = dsh-elf)
-cordis.patch.yml   Bundle entry declaration (insert: { id: elf, name: dsh-elf })
+dist/client.js     Built client bundle (__ModuleLoader__ format, load id = dsh-temp-chat)
+cordis.patch.yml   Bundle entry declaration (insert: { id: elf, name: dsh-temp-chat })
 scripts/build.mjs  Build script (esbuild + bundle wrapper)
 test/              node:test suites
 assets/            Logo / whale artwork
@@ -164,7 +164,7 @@ assets/            Logo / whale artwork
 
   ```yaml
   minimumReleaseAgeExclude:
-    - dsh-elf@2.2.1
+    - dsh-temp-chat@2.2.1
   ```
 
 ## License

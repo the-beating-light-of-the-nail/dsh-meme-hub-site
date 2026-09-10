@@ -6,6 +6,8 @@
 
 > 💡 **定位**：Lujo-MCP 是 AI coding assistant 的「眼睛」与 **Debug Context Infrastructure（调试上下文基础设施）** —— **不是另一个复杂 Agent**，不替代宿主 AI 的推理，而是把控制台异常、网络失败、交互轨迹与调用堆栈组装为结构化现场，喂给宿主 AI 完成精准修复。
 
+> **当前版本：v0.7.9（2026-09-10，已发布）**：tag `v0.7.9` 指向提交 `381182bc406c7b54cca3277141a2dd06b669891b`；普通 CI run `34382654373` 与发布流水线 run `34383308343` 均已通过。npm 五个发布包的 `latest` 均为 `0.7.9`，Node 引擎要求为 `>=18`。详见 [GitHub Release](https://github.com/lujoai/Lujo-MCP/releases/tag/v0.7.9)。
+
 ---
 
 ## ⚡ 30 秒极速接入（Quick Start）
@@ -176,6 +178,42 @@ CORS_ORIGINS=http://localhost:3000        # 开发页面源，同上
 >
 > 💡 最快的同源验证路径：服务自带演示页 `http://127.0.0.1:8000/demo`（与服务同源，不涉及 CORS），打开后即可触发网络错误现场。
 
+### Node 服务接入：使用 Node SDK（v0.7.9 已发布）
+
+服务端 Node.js 使用独立包 `@lujoai/lujo-mcp-node-sdk`，支持 Node 18/20/22 和 CJS/ESM。它只做显式错误与网络上报，不安装浏览器的 DOM、XHR/fetch、console 或 `localStorage` 钩子；浏览器页面继续使用上面的 Browser SDK。
+
+```bash
+npm install @lujoai/lujo-mcp-node-sdk
+```
+
+```js
+const { createClient } = require("@lujoai/lujo-mcp-node-sdk");
+
+const lujo = createClient({
+  endpoint: "http://127.0.0.1:8000",
+  apiKey: process.env.LUJO_MCP_API_KEY,
+  release: "orders-service@1.4.0",
+});
+
+async function main() {
+  try {
+    await handleRequest();
+  } catch (error) {
+    lujo.reportError(error, { operation: "handleRequest" });
+    throw error;
+  } finally {
+    await lujo.close();
+  }
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+事件先进入内存批量队列；`flush()` 等待发送和有限重试完成，单批不超过 100 条，429/5xx 会退避重试，永久 4xx 不会无限重试。应用退出或 worker 重启前应 `await lujo.close()`，它会完成最后一次 flush、停止定时器并释放资源。Node SDK 与 Browser SDK 的完整 API、脱敏和边界说明见 [SDK_GUIDE.md](./docs/public/SDK_GUIDE.md)。
+
 ### 第 2 步：触发一个运行时异常
 
 比如在前端控制台或代码中执行一段错误逻辑：
@@ -221,7 +259,7 @@ Lujo-MCP 设计遵循**渐进式增强**原则：
 │ 🟢 零配置（默认开箱即用）                                     │
 │   • MCP 调试工具集即刻可用（diagnose_issue 统一诊断入口）    │
 │   • 运行时堆栈、源码行号与系统快照收集                       │
-│   • 纯内存运行，无外部数据库与 API Key 依赖                  │
+│   • 本地运行，无外部服务依赖（经验自动存本机 SQLite 单文件） │
 │   • 浏览器现场采集（控制台/网络/UI 链路）：接入 Browser SDK   │
 │     + HTTP 服务即启用（见下方 5 分钟流程）                   │
 ├─────────────────────────────────────────────────────────────┤
@@ -231,6 +269,19 @@ Lujo-MCP 设计遵循**渐进式增强**原则：
 │   • 支持可选的 PostgreSQL 持久化与 Redis 缓存                │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+### 调试经验会丢吗？（本地「笔记本」，无需配置）
+
+不会。分两层：
+
+- **内置经验（开箱即用）**：Lujo 自带 45 条常见异常经验（类型错误、键不存在、连接失败、HTTP 异常等），每次启动自动加载，不需要任何配置或持久化。
+- **自有经验（本地笔记本）**：你自己项目里沉淀的调试经验（启用 LLM 分析后产生）默认写穿到 Lujo 进程工作目录下的 `lujo-kb.sqlite3` 单文件（SQLite，零安装、无需外部服务），进程重启后自动回灌，同类问题下次直接复用历史结论。
+
+笔记本行为说明：
+
+- **数据不出本机**：就是一个普通数据库文件；删除即重置，也可用 `KB_PERSIST_PATH` 指定固定位置（避免不同工作目录各存一份）。
+- **想回到纯内存行为**：设置 `KB_PERSIST_ENABLED=false`，经验仅保留在当前进程内（与 v0.7.x 一致）。
+- **不影响 PostgreSQL 用户**：`STORAGE_BACKEND=postgresql` 时 KB 仍走 PG 持久化，本开关不生效。
 
 ### 如何开启 LLM 分析（可选）
 
@@ -365,7 +416,7 @@ Lujo-MCP 的定位是**单用户、本地自用**：npm 一条命令装完即用
 |---|---|
 | 📖 [DEMO.md](./docs/public/DEMO.md) | 端到端实战演示（以 React 登录 Bug 为例的完整调试链路） |
 | 🔌 [API_REFERENCE.md](./docs/public/API_REFERENCE.md) | MCP 工具详细入参、返回值与 REST 端点参考 |
-| 💻 [SDK_GUIDE.md](./docs/public/SDK_GUIDE.md) | Browser SDK 采集手册（XHR/Fetch 拦截、脱敏、UI 静默失败检测） |
+| 💻 [SDK_GUIDE.md](./docs/public/SDK_GUIDE.md) | Browser SDK 与 Node SDK 使用手册（运行时边界、上报、脱敏、重试、批量与关闭语义） |
 | 🧠 [KNOWLEDGE_BASE.md](./docs/public/KNOWLEDGE_BASE.md) | 调试经验知识库：指纹匹配、跨会话沉淀与置信度进化机制 |
 | 🏗️ [DESIGN.md](./docs/public/DESIGN.md) | 核心六层系统架构与数据流转设计 |
 | 📝 [RELEASE_NOTES.md](./docs/public/RELEASE_NOTES.md) | 版本演进历史与详细更新日志 |

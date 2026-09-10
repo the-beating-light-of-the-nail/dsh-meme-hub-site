@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/f683d7e9fa13ad4dac44d27d44ddcd338bdfc11a/assets/banner.jpg" width="100%" alt="dsh-ears" />
+  <img src="https://raw.githubusercontent.com/WizisCool/dsh-ears/8570e6297a8c1eff395b9d57d12924b022e45cc8/assets/banner.jpg" width="100%" alt="dsh-ears" />
 </p>
 
 <h1 align="center">dsh-ears</h1>

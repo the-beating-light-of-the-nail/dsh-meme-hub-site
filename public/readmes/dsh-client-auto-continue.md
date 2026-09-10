@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/592afc0c143c1daf1c4fb3dd01a4547dd0e626c8/docs/banner.svg" alt="dsh-auto-continue" width="720">
+    <img src="https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e1ba694df5ca818932055c2c3b89d24d7e12e024/docs/banner.svg" alt="dsh-auto-continue" width="720">
   </picture>
 </p>
 
@@ -34,7 +34,7 @@
 
 For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh web`): whenever a request in the web GUI gets interrupted by a **non-human cause**, the plugin simulates the user typing **“Continue”** and sends it, so the agent keeps working without manual intervention. The message enters the session log exactly like a manual prompt — the model sees it, and the interrupted work resumes. Since 0.8.0 the engine runs **inside the host process** (single instance), so it keeps watching even with every browser tab closed, and multiple open tabs can never double-send.
 
-![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/592afc0c143c1daf1c4fb3dd01a4547dd0e626c8/docs/demo.svg)
+![demo](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e1ba694df5ca818932055c2c3b89d24d7e12e024/docs/demo.svg)
 
 **Smart recovery** (all configurable):
 
@@ -45,7 +45,7 @@ For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh we
 - **Idempotency guard** — before resuming, the plugin inspects the last tool call: if its result is unconfirmed (the turn died mid-tool, e.g. a `git push` that may have gone through), the resume message tells the model to check state first and not to rerun; if the tool is confirmed done, it says so and asks not to repeat it; a failed tool gets no guard (retrying it is the point). Both guard texts are configurable (`{tool}` / `{result}` placeholders)
 - **Pause** — a global **Pause auto-continue** toggle in the settings card stops everything (live + scan) instantly; per-session pauses (e.g. via a notification button) suspend only one session until they expire. The **Resume now** notification button is the one explicit exception: pressing it is the user asking for exactly one send, pause or not
 - **Notification buttons** — notifications carry **Resume now** (send immediately, ignoring cooldown, the consecutive cap and any pause) and **Pause this session 1h** actions
-- **Loop guard** — watches **running** turns too. Three signals trip the guard, which cancels the turn and restarts it with a configurable loop text ("stop repeating, try another way"): the model repeating the **exact same message** several times (any length — e.g. "Let me test variants of the regex…" ×7), many short messages inside a short time window with no tool call in between (the "Let me read…" spin), or the same tool called repeatedly with the **same arguments and the same results** (a changed argument or result counts as progress). The cancel carries an internal marker so it is never confused with a user stop — the restart only happens for guard-initiated cancels. Thresholds, the time window and the loop text are configurable
+- **Loop guard** — watches **running** turns too. Four signals trip the guard, which cancels the turn and restarts it with a configurable loop text ("stop repeating, try another way"): the model repeating the **exact same message** several times (any length — e.g. "Let me test variants of the regex…" ×7), repeated near-duplicate paragraphs **inside one streamed assistant message**, many short messages inside a short time window with no tool call in between (the "Let me read…" spin), or the same tool called repeatedly with the **same arguments and the same results** (a changed argument or result counts as progress). The cancel carries an internal marker so it is never confused with a user stop — the restart only happens for guard-initiated cancels. Thresholds, the time window and the loop text are configurable
 - **Stats panel** — the settings card shows today's auto-continue count, recoveries, failures, permanent skips, give-ups and loop breaks, broken down by error code, with a one-click reset
 - **Browser notifications** — optional alerts when auto-continue fires, gives up, or hits a permanent error; the browser asks for permission on first use, and nothing is shown again after a denial
 
@@ -74,7 +74,7 @@ The browser half is a thin shell: the settings card, plus a status bridge that s
 
 The diagram summarizes the automatic recovery path, the loop-guard restart path, and the exit to human intervention. Click it to open the full-size version.
 
-[![dsh-auto-continue recovery workflow](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/592afc0c143c1daf1c4fb3dd01a4547dd0e626c8/docs/auto-continue-workflow.en.svg)](docs/auto-continue-workflow.en.svg)
+[![dsh-auto-continue recovery workflow](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e1ba694df5ca818932055c2c3b89d24d7e12e024/docs/auto-continue-workflow.en.svg)](docs/auto-continue-workflow.en.svg)
 
 ## Quick Start
 
@@ -192,7 +192,7 @@ auto-continue:
 
 **How the card works:**
 
-![The collapsed Auto Continue card in the plugin configuration list](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/592afc0c143c1daf1c4fb3dd01a4547dd0e626c8/docs/screenshots/02-settings-card.png)
+![The collapsed Auto Continue card in the plugin configuration list](https://raw.githubusercontent.com/HsiangNianian/dsh-auto-continue/e1ba694df5ca818932055c2c3b89d24d7e12e024/docs/screenshots/02-settings-card.png)
 
 - Edits are **staged** — nothing reaches the disk until you hit **Save**; an unsaved badge marks the card while drafts are pending, and **Discard** drops them
 - A field you changed shows an **Overridden** badge with a per-field **Reset to default** button that restores the built-in value
@@ -211,7 +211,7 @@ auto-continue:
 | Short-sentence max (chars) | `40` | A model message shorter than this counts as a short sentence (spinning signal) |
 | Short-sentence window (ms) | `30000` | Consecutive short sentences must land inside this window; normal thinking spread over time is not misjudged |
 | Short-sentence threshold | `12` | Consecutive short sentences inside the window, with no tool call in between, trip the loop guard |
-| Identical message count | `4` | Consecutive identical messages (any length) trip the loop guard — the strongest spinning signal |
+| Identical message count | `4` | Consecutive identical messages (any length) trip the loop guard — the strongest spinning signal; the same threshold is also used for repeated near-duplicate streamed paragraphs inside one message |
 | Same-tool repeat count | `5` | Consecutive calls of the same tool with identical arguments and results trip the loop guard |
 | Loop text | `(You may be stuck in a loop. Stop repeating the last action and continue with a different approach.)` | Text sent after the loop guard restarts a turn; `{tool}` placeholder |
 | Guard text (unconfirmed result) | `(The previous tool "{tool}" may not have completed. Check its state before continuing and do not run it again.)` | Appended when the last tool may have partially executed; `{tool}` placeholder |

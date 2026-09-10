@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/branding/dsh-banner.png" alt="DSH IM Connect" width="100%">
 </p>
 
 <div align="center">
@@ -89,27 +89,27 @@
 
 在「设置 → IM助理」按渠道添加账号。展开渠道后选择账号，在右侧独立配置工作区、模型、权限、私聊准入和接收状态：
 
-![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/settings-channels.png)
+![IM 助理设置页](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/settings-channels.png)
 
 工作区左侧「任务 / 频道」分列。IM 会话只出现在「频道」：
 
-![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/workspace-channels.png)
+![工作区频道侧栏](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/workspace-channels.png)
 
 企业微信等渠道支持扫码快捷绑定：
 
-![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/wecom-qr.png)
+![企业微信扫码绑定](https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/wecom-qr.png)
 
 连上后，可在各 IM 里直接驱动本机助手：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/wecom-chat.jpg" width="220" alt="企业微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/weixin-chat.jpg" width="220" alt="微信对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/dingtalk-chat.jpg" width="220" alt="钉钉对话">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/178aff6a244741211a9a4fe924de1027167467db/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/feishu-chat.jpg" width="220" alt="飞书对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/qq-chat.jpg" width="220" alt="QQ 对话">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-im-connect/f39d96644cdd28abd2c5535445555f3a0fae7f22/assets/screenshots/telegram-chat.jpg" width="220" alt="Telegram 对话">
 </p>
 
 ## DSH 产品生态
@@ -176,7 +176,7 @@ dsh --profile web --dump-config
 | 暂停接收 | 选择账号，关闭右侧「接收消息」 | 凭据和账号配置保留，只暂停该账号接收新消息 |
 | 在 IM 里下任务 | 微信 / 飞书 / Lark / QQ 扫码用户可直接私聊；钉钉 / 企微扫码者和其他用户需先批准。群聊只需 @ | 每个聊天对应一条独立频道会话 |
 | 分段输入 | 结尾加 `..` 表示还有后续，`!!` 表示立即提交 | 默认约 5 秒合并窗口 |
-| 新开会话 | 发送 `/new` 或 `/clear` | 只影响当前 IM 聊天，不影响网页任务 |
+| 新开会话 | 发送 `/new` 或 `/clear` | 新建并切换当前 IM 会话；旧会话保留在频道列表，不影响网页任务 |
 | 查看状态 / 帮助 | 发送 `/status` 或 `/help` | 只作用于当前频道会话 |
 | 批准陌生人私聊 | 打开「设置 → IM助理」，在待批准列表点「批准」或「拒绝」 | 只影响私聊准入，不影响群聊 |
 | 回答交互问题 | 直接回复选项序号或文字；多选用逗号分隔，也可以输入自定义答案 | 多个问题会按顺序发送；群聊只接受任务发起者回答 |

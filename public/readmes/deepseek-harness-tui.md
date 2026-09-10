@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/427795e61611549cc6dbee76f95c203062cf2197/assets/martty-lockup.svg" width="650" alt="Martty terminal lockup" />
+  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/c6e1bbb63e49197480559e129ce1e9d7fa240879/assets/martty-lockup.svg" width="650" alt="Martty terminal lockup" />
 </p>
 
 <h1 align="center">Martty</h1>
@@ -65,7 +65,7 @@ subagent、Plan、token 用量和持久化会话。图片可以从文件或剪�
 `/resume` 和 `--session-id` 管理，workspace、模型、权限和界面选择会随会话恢复。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/427795e61611549cc6dbee76f95c203062cf2197/assets/screenshots/agent-turn.png" width="720"
+  <img src="https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/c6e1bbb63e49197480559e129ce1e9d7fa240879/assets/screenshots/agent-turn.png" width="720"
        alt="Martty 中的 Markdown 回复、工具调用和运行状态" />
 </p>
 
@@ -287,11 +287,11 @@ TUI 选择会立即替换 standalone ACP 子进程；若当前会话
 在 Martty 输入 `/harness` 打开切换菜单：当前项置顶并标记 `(current)`，选择其他
 已配置项后按 Enter 走正常切换流程。需要新增时选择 **＋ Add Harness…**。
 
-![Harness 切换菜单，当前项置顶](https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/427795e61611549cc6dbee76f95c203062cf2197/assets/screenshots/harness-switch.png)
+![Harness 切换菜单，当前项置顶](https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/c6e1bbb63e49197480559e129ce1e9d7fa240879/assets/screenshots/harness-switch.png)
 
 Add 面板支持输入搜索，已安装或配置的项目与未下载项目分组展示，无需预先知道 ID。
 
-![Add Harness 的搜索与安装分组](https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/427795e61611549cc6dbee76f95c203062cf2197/assets/screenshots/harness-add.png)
+![Add Harness 的搜索与安装分组](https://raw.githubusercontent.com/openma-ai/deepseek-harness-tui/c6e1bbb63e49197480559e129ce1e9d7fa240879/assets/screenshots/harness-add.png)
 
 在切换列表选中已保存项按 Delete 可移除配置，并可选择清理私有安装资源；当前项不能删除。
 删除确认页按 Esc 返回删除方式，再按 Esc 返回列表并保留选择。

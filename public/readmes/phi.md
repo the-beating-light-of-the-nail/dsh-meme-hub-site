@@ -1,7 +1,7 @@
 **[English](README.md) | [中文](README.zh-CN.md)**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+  <img src="https://raw.githubusercontent.com/pulseaiclub/phi/2689cd40fe47fa897becb9a89dfae9cc444c2ae2/assets/pixel-text-PHI.png" alt="phi" width="220" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 </p>
 
 <p align="center">
@@ -12,10 +12,11 @@
   <a href="https://github.com/pulseaiclub/phi/releases"><img src="https://img.shields.io/github/v/release/pulseaiclub/phi?style=flat&colorA=222222&colorB=8957E5" alt="Release"></a>
 </p>
 
-A minimal terminal coding agent harness in Go — a sibling to Pi.
+A lean, high-performance terminal coding agent harness in Go — a sibling to Pi.
 
 **Docs:** [pulseaiclub.github.io](https://pulseaiclub.github.io/)
 
+- **Fast and small** — ~12 MB release binary, ~21 MB idle RSS, ~40 ms to first frame; no Node / Electron / Python runtime
 - **Sub-agents** — spawn isolated jobs and watch the full run unfold in the TUI / job logs, without stuffing every turn into the parent context
 - **Hashline edits** — edit by whole-file `@file path#TAG` plus line `LINE#HASH` anchors (same idea as [oh-my-pi](https://github.com/can1357/oh-my-pi)): the model points at anchors instead of rewriting whole files; stale tags/hashes are rejected so over-edits and silent corruption stop here
 - **Permission gate** — Gate / Ask before destructive tools fire; safety is not optional when an agent can touch your tree
@@ -23,9 +24,9 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
 - **Extensions (Go or Rust)** — native binaries speak the **PXB** binary protocol over stdin/stdout; official author SDKs for Go ([`ext/go`](ext/go)) and Rust ([`ext/rust`](ext/rust)): LLM tools, slash commands, event intercepts, confirm dialogs — no reflection; JSON at the SDK edges via `serde_json`. See [Extensions](#extensions)
 - **Any model** — OpenAI-compatible or Anthropic, no vendor lock-in
 
-![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/phi.png)
+![phi welcome](https://raw.githubusercontent.com/pulseaiclub/phi/2689cd40fe47fa897becb9a89dfae9cc444c2ae2/assets/phi.png)
 
-![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/image.png)
+![phi TUI](https://raw.githubusercontent.com/pulseaiclub/phi/2689cd40fe47fa897becb9a89dfae9cc444c2ae2/assets/image.png)
 
 - [Docs](https://pulseaiclub.github.io/docs/getting-started/)
 - [Quick start](#quick-start)
@@ -37,7 +38,7 @@ A minimal terminal coding agent harness in Go — a sibling to Pi.
 - [Headless mode](#headless-mode)
 - [Skills](#skills)
 - [Permissions](#permissions)
-- [Hooks](#hooks)
+- [Extensions](#extensions)
 - [MCP](#mcp)
 - [Tools](#tools)
 - [Project layout](doc/project-layout.md)
@@ -92,9 +93,9 @@ fulfill your requests. External HTTP fetch is available via MCP when configured.
 
 ## Footprint
 
-phi aims to stay cheap to run and cheap to hack on. Numbers below are for a
-stripped release build (`CGO_ENABLED=0`, `-ldflags="-s -w"`), measured on
-macOS arm64 unless noted.
+Lean is not enough — phi is built to feel instant and stay cheap under load.
+Numbers below are for a stripped release build (`CGO_ENABLED=0`,
+`-ldflags="-s -w"`), measured on macOS arm64 unless noted.
 
 | Metric | phi |
 | --- | ---: |
@@ -115,7 +116,7 @@ phi reads `~/.phi/config.yaml` (standard YAML). Environment variables
 override it for one-off runs. `phi config` opens an HTML editor for the same
 file in your browser.
 
-![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/838af6f6684f5857c0a5373a3987c4550bc9f663/assets/config.png)
+![phi config](https://raw.githubusercontent.com/pulseaiclub/phi/2689cd40fe47fa897becb9a89dfae9cc444c2ae2/assets/config.png)
 
 ```yaml
 # ~/.phi/config.yaml
@@ -134,6 +135,10 @@ skill_path: ~/.phi/skills # where SKILL.md files are loaded from
 
 agents:
   enabled: true           # default; set false to disable agent_* sub-agent tools
+  models:                 # optional per-role defaults; omit → inherit parent model
+    explore: cheap-model
+    review: strong-model
+    worker: coding-model
 
 permissions:
   mode: interactive       # interactive | readonly | autopilot | headless-strict
@@ -213,7 +218,7 @@ The editor supports:
 - `?` — shortcut help picker (lists `/`, `!`, `@`, and key bindings; `Esc` closes)
 - `!command` — run a shell command locally and stream its output into the
   transcript (see [Commands](#commands))
-- `Ctrl+K` — command palette: settings → model / theme / permissions / agents, skills, hooks
+- `Ctrl+K` — command palette: settings → model / theme / permissions / agents (incl. per-role models), skills, hooks
 
 ### Keyboard shortcuts
 
@@ -428,6 +433,12 @@ agents:
 
 Or toggle for the current session via the palette: settings → agents.
 When disabled, those tools are not registered and the model cannot spawn jobs.
+
+Per-role model defaults (optional) under `agents.models` pick which configured
+model name each role uses when spawned. Omitted roles inherit the parent
+session model. Switch for the current session only via
+settings → agents → models → explore|review|worker (same session-only semantics
+as settings → model; does not write `config.yaml`).
 
 Sub-agents themselves use a **role** (`explore` default | `review` | `worker`):
 

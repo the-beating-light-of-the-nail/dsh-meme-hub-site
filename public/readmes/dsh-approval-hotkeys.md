@@ -30,7 +30,7 @@ Every approval — edits, permission escalations, anything routed through the
 ApprovalPanel. **Enter** presses *Allow once*, **Esc** presses *Reject*.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/afb58f45e33ebe93e218b8daf49876ac7f27da9d/assets/screenshots/approval-panel.png" width="680" alt="Approval panel — Enter: Allow once, Esc: Reject"/>
+  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/ded968c5de7fb534fe05a5587c20d370c8ee476d/assets/screenshots/approval-panel.png" width="680" alt="Approval panel — Enter: Allow once, Esc: Reject"/>
 </p>
 
 ### Question / choice panel
@@ -39,7 +39,7 @@ Tool questions (`ask_user_question`). **Enter** presses *Submit / Next*,
 **Esc** presses *Discard the group*.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/afb58f45e33ebe93e218b8daf49876ac7f27da9d/assets/screenshots/question-panel.png" width="680" alt="Question panel — Enter: Submit, Esc: Discard the group"/>
+  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/ded968c5de7fb534fe05a5587c20d370c8ee476d/assets/screenshots/question-panel.png" width="680" alt="Question panel — Enter: Submit, Esc: Discard the group"/>
 </p>
 
 ### Plan review panel
@@ -48,7 +48,7 @@ Tool questions (`ask_user_question`). **Enter** presses *Submit / Next*,
 the panel has no decline action).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/afb58f45e33ebe93e218b8daf49876ac7f27da9d/assets/screenshots/plan-review-panel.png" width="680" alt="Plan review panel — Enter: Approve, Esc: Decline"/>
+  <img src="https://raw.githubusercontent.com/SiriLee/dsh-approval-hotkeys/ded968c5de7fb534fe05a5587c20d370c8ee476d/assets/screenshots/plan-review-panel.png" width="680" alt="Plan review panel — Enter: Approve, Esc: Decline"/>
 </p>
 
 ## Install
@@ -58,6 +58,8 @@ dsh plugin --profile web add dsh-approval-hotkeys
 ```
 
 Restart `dsh web` — or, since this plugin is pure browser-side, just refresh the page when the host side did not change. No configuration, no settings page.
+
+Supported harness versions: the whole `0.1` line from `0.1.0-rc.6` on, prereleases included — declared as an optional peer on `@deepseek-ai/dsh-client-modules` with the range `^0.1.0-rc.6 || ^0.1.1-0 || ^0.1.2-0 || ^0.1.3-0 || ^0.1.5-0` (see `docs/release.md` for why the `||` union is required).
 
 For contributors: install from a local checkout or a pinned commit — `dsh plugin --profile web add /path/to/dsh-approval-hotkeys` or `dsh plugin --profile web add github:SiriLee/dsh-approval-hotkeys#<sha>`. A git install fails on first run until you add an `allowBuilds` key to the profile's `pnpm-workspace.yaml` (pnpm blocks git dependencies from running build scripts); after that it runs the plugin's `prepare` and installs it.
 

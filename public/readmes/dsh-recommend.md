@@ -36,9 +36,9 @@
 
 **📸 效果预览：**
 
-![Neo-Brutalism 风格的 DSH 插件综合榜首页](https://raw.githubusercontent.com/zp-home/dsh-recommend/a5a02c5d5227dcd24f8d034efd2f1841192d991c/docs/images/site-1.png)
+![Neo-Brutalism 风格的 DSH 插件综合榜首页](https://raw.githubusercontent.com/zp-home/dsh-recommend/53cd86c74be98ab414f5b3b3c295368a04f94951/docs/images/site-1.png)
 
-![Neo-Brutalism 风格的 DSH 插件发展排行榜](https://raw.githubusercontent.com/zp-home/dsh-recommend/a5a02c5d5227dcd24f8d034efd2f1841192d991c/docs/images/site-2.png)
+![Neo-Brutalism 风格的 DSH 插件发展排行榜](https://raw.githubusercontent.com/zp-home/dsh-recommend/53cd86c74be98ab414f5b3b3c295368a04f94951/docs/images/site-2.png)
 
 也可以直接看原始数据：[`data/rankings.json`](data/rankings.json)（每 5 小时自动更新）、[`data/history.json`](data/history.json)（每日趋势快照）、[`data/trends.json`](data/trends.json)（派生发展榜）。
 

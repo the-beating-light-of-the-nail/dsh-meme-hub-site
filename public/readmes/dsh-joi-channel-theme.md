@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/app-logo-flowers.png" width="380" alt="轴伊Joi 双衣装主题 · 双人 logo">
+  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/app-logo-flowers.png" width="380" alt="轴伊Joi 双衣装主题 · 双人 logo">
 </p>
 
 <h1 align="center">轴伊Joi 双衣装主题</h1>
@@ -74,8 +74,8 @@ Joi 的叙事在这个界面上唯一落脚的地方。
 
 | | Joi·Flowers | Joi·Library |
 | ---: | :---: | :---: |
-| **浅色** | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/new-chat-flowers.png" width="410" alt="Joi·Flowers 新会话页 · 浅色"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/new-chat-library.png" width="410" alt="Joi·Library 新会话页 · 浅色"> |
-| **深色** | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/new-chat-flowers-dark.png" width="410" alt="Joi·Flowers 新会话页 · 深色"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/new-chat-library-dark.png" width="410" alt="Joi·Library 新会话页 · 深色"> |
+| **浅色** | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/new-chat-flowers.png" width="410" alt="Joi·Flowers 新会话页 · 浅色"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/new-chat-library.png" width="410" alt="Joi·Library 新会话页 · 浅色"> |
+| **深色** | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/new-chat-flowers-dark.png" width="410" alt="Joi·Flowers 新会话页 · 深色"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/new-chat-library-dark.png" width="410" alt="Joi·Library 新会话页 · 深色"> |
 
 明暗永远跟着 app 自己的外观设置走；衣装换的是色相，不是明暗。四个象限
 （两套衣装 × 浅深）每一格都按同一份冻结基线逐值校过。
@@ -87,9 +87,9 @@ die-cut 贴纸里：引擎和她，一个都不能少。合照随衣装一起换
 烘焙进图，浅色底上也立得住；两张图按同一画布对齐，换装时脸的位置纹丝不动。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/app-logo-flowers.png" width="360" alt="Flowers 双人 logo">
+  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/app-logo-flowers.png" width="360" alt="Flowers 双人 logo">
   &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/app-logo-library.png" width="360" alt="Library 双人 logo">
+  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/app-logo-library.png" width="360" alt="Library 双人 logo">
 </p>
 
 <a id="states"></a>
@@ -101,10 +101,10 @@ die-cut 贴纸里：引擎和她，一个都不能少。合照随衣装一起换
 
 | | Joi·Flowers | Joi·Library |
 | ---: | :---: | :---: |
-| **待机** `info` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/idle-flowers.png" width="380" alt="Flowers 待机"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/idle-library.png" width="380" alt="Library 待机"> |
-| **执行中** `running` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/working-flowers.png" width="380" alt="Flowers 执行中"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/working-library.png" width="380" alt="Library 执行中"> |
-| **成功** `success` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/success-flowers.png" width="380" alt="Flowers 成功"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/success-library.png" width="380" alt="Library 成功"> |
-| **失败** `error` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/failed-flowers.png" width="380" alt="Flowers 失败"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/failed-library.png" width="380" alt="Library 失败"> |
+| **待机** `info` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/idle-flowers.png" width="380" alt="Flowers 待机"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/idle-library.png" width="380" alt="Library 待机"> |
+| **执行中** `running` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/working-flowers.png" width="380" alt="Flowers 执行中"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/working-library.png" width="380" alt="Library 执行中"> |
+| **成功** `success` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/success-flowers.png" width="380" alt="Flowers 成功"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/success-library.png" width="380" alt="Library 成功"> |
+| **失败** `error` | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/failed-flowers.png" width="380" alt="Flowers 失败"> | <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/failed-library.png" width="380" alt="Library 失败"> |
 
 跑成了，两个人一起眯眼开心；跑砸了，一起垂眼掉一滴泪——难过五秒，然后打起精神
 回到待机。失败从不被表演成嚎啕：那不是她们的性格。
@@ -222,9 +222,9 @@ npm 包已带构建产物，不需要任何构建授权。
 下半部分仍是原生的浅色 / 深色 / 跟随系统三方块——明暗永远归 app 自己管。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/settings-wardrobe.png" width="405" alt="换装行 · 浅色 · Joi·Flowers">
+  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/settings-wardrobe.png" width="405" alt="换装行 · 浅色 · Joi·Flowers">
   &nbsp;
-  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/3c12a2706759104a94b51013d19bb3e9c3f2bef1/docs/settings-wardrobe-dark.png" width="405" alt="换装行 · 深色 · Joi·Library">
+  <img src="https://raw.githubusercontent.com/tpmoonchefryan/dsh-joi-channel-theme/2df174ba43fced995bc0fb7a24535db470e7dbc2/docs/settings-wardrobe-dark.png" width="405" alt="换装行 · 深色 · Joi·Library">
 </p>
 
 **「DeepSeek 原生」是第三张卡**，就并排在两套衣装旁边：选它即回到 DeepSeek 原生外观，
@@ -264,7 +264,7 @@ npm 包已带构建产物，不需要任何构建授权。
 | 令牌覆盖 | 每套衣装 19 级中性色阶 + 44 条语义映射 + 9 项代码高亮，浅深双值 |
 | 角色资产 | 轴伊 2×2 ×2 套 · 轴芯 2×2 · 鲸鱼娘趴/站 · 小鲸鱼 1×3 |
 | 内联素材 | 10 件 WebP data URI，共 2.4 MB，零外链（CSP 友好） |
-| 兼容 | DeepSeek Harness web `0.1.0-rc.5+` |
+| 兼容 | DeepSeek Harness web `0.1.0-rc.5+`（含 `0.1.1-rc.2` 品牌区四层拆分与 `0.1.2-alpha` 模块表兼容） |
 | 深入阅读 | [开发与设计文档](./docs/DEVELOPMENT.md) |
 
 <details>

@@ -25,6 +25,16 @@
 - [日本語 changelog](./CHANGELOG.ja.md)
 - [한국어 changelog](./CHANGELOG.ko.md)
 
+> **▼ DSH 版本适配**
+> | DSH 版本 | 队列条 / 冻结按钮 | 繁忙时 Enter 钉住 | 关键差异 |
+> | --- | --- | --- | --- |
+> | 0.1.1-rc.2 | ✅ | ✅ | `conversation.input.right` 仍带 `InputZone` owner（插件已不依赖） |
+> | 0.1.2-rc.1 | ✅ | ✅ | 该槽改为无 owner（`InputBar.tsx:466` 传 `{}`）；冻结按钮改读会话标准件 `useSession` |
+>
+> - **单一产物，运行时自适应**：同一份 `lib/client.js` 在两个版本都可用。客户端 bundle 只 `require` `react` / `react/jsx-runtime` / `@deepseek-ai/dsh-client-ui-primitives`，三者在两版的共享模块表内，不涉及 `dsh-client-runtime` → `dsh-client-store` 的改名。
+> - **只消费两版共享面**：队列条在 `conversation.input.dock`（两版都带 `InputZone` owner，`input.draft` 两版都有）；冻结按钮在 `conversation.input.right`，该槽 0.1.2 起不再传 owner，因此组件只读 `useSession` / `sessionId`——两者在两版 `SessionStandardProps` 中都有。
+> - **队列条位置**：注册 `order: 1000`，排在 `conversation.input.dock` 带内所有已知条目（todo 0 / goal 10 / 官方 queue 20 / dsh-perm-gate 提示 30）之后，紧贴输入卡片。DSH 没有 "last" 语义，这是约定而非结构性保证——第三方插件若注册更大的 `order` 仍可能插到它下面。
+
 > **兼容性说明：** v0.2.9 已包含日语（`ja`）和韩语（`ko`）字典，但当前官方 DSH 只通过 `LocaleRuntime` 提供 `zh` 和 `en`。在原版 DSH 中选择 `ja` 或 `ko` 会失败，并提示 `locale "<id>" is not registered`。需要等待官方 DSH 增加对应 locale ID 后才能正常使用。高级用户可以维护 DSH fork，在 `packages/client/locale/src/locale-settings.ts` 更新 `LOCALE_IDS`，在 `packages/client/locale/src/client/index.ts` 更新 `LOCALES` 标签，并补齐核心字典和测试，然后重新构建并运行 fork 版本。仅修改本插件无法扩展 DSH 的全局 locale 列表。
 
 > 智能体忙碌时不再只有"打断"或"排队"二选一：红色打断立即输入、黄色下一轮插入、绿色排队到最后，三档并存；邻近 DeepSeek 高峰收费时段可一键冻结会话，错峰再恢复继续。
@@ -40,12 +50,12 @@
 > 实际运行截屏（Windows，dsh web）：
 
 <figure>
-  <img width="1600" alt="深色模式下的会话页：上方排队等待区显示『1 条排队消息』（🟢 排队 test1）与『取消并清空』；中央为花边样式输入框，提示 Cmd/Ctrl+Enter 插话发送全部排队消息；输入行右侧为『冻结会话』按钮、DeepSeek-V4-Flash 模型选择与发送控件" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/190c9405aba33b5d03a8628320fb23ba85a1f83a/assets/dark-mode.png" />
+  <img width="1600" alt="深色模式下的会话页：上方排队等待区显示『1 条排队消息』（🟢 排队 test1）与『取消并清空』；中央为花边样式输入框，提示 Cmd/Ctrl+Enter 插话发送全部排队消息；输入行右侧为『冻结会话』按钮、DeepSeek-V4-Flash 模型选择与发送控件" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/22e8fa8bb59dd99ae3f47fafd83a90dfff332347/assets/dark-mode.png" />
   <figcaption>深色模式（自动跟随系统 / dsh 暗色主题）：排队等待区 + 输入行右侧「冻结会话」按钮。</figcaption>
 </figure>
 
 <figure>
-  <img width="1400" alt="浅色模式且会话已冻结的会话页：排队等待区出现『已冻结：当前轮次完成后暂停，排队消息将在恢复后继续』横幅及『取消并清空』；队列含测试1（🟢 排队）、测试2/测试3（🟡 插话中）；输入行按钮切换为『恢复会话』" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/190c9405aba33b5d03a8628320fb23ba85a1f83a/assets/light-mode.png" />
+  <img width="1400" alt="浅色模式且会话已冻结的会话页：排队等待区出现『已冻结：当前轮次完成后暂停，排队消息将在恢复后继续』横幅及『取消并清空』；队列含测试1（🟢 排队）、测试2/测试3（🟡 插话中）；输入行按钮切换为『恢复会话』" src="https://raw.githubusercontent.com/drscrewdriver/dsh-input-traffic/22e8fa8bb59dd99ae3f47fafd83a90dfff332347/assets/light-mode.png" />
   <figcaption>浅色模式 + 已冻结状态：高峰时段冻结后队列被冻结保存，输入行按钮切换为「恢复会话」，错峰再行处理。</figcaption>
 </figure>
 
@@ -113,7 +123,18 @@
   - `src/client/freeze-store.ts` — 会话级冻结状态 store（`Map<sessionId, {frozen, pending}>`，供按钮 ↔ dock 共享）；
   - `src/client/session-guard-bridge.ts` — session-guard RPC 透传（fail-open，未装则静默）；
   - `src/client/index.ts` — slot 注册 + composer block 注入（`conversation.blocks.set`）。
-- **作用域对比**：本插件冻结按钮 = **会话级**（按 sessionId 锁那一个会话）；session-guard **自动高峰门 = 全局**（入峰暂停全部、退峰自动恢复全部）。两者互补——自动门管全局、按钮管单会话。
+- **作用域对比**：本插件冻结按钮 = **会话级**（按 sessionId 锁那一个会话）；session-guard 的高峰自动门 / step 门 = **全局或会话级暂停**（入峰拉门、退峰自动放行）。
+
+**分工（重要）：本插件只负责「排」，session-guard 只负责「停」**
+
+| | 本插件（input-traffic） | session-guard |
+|---|---|---|
+| 职责 | 用户输入进**哪条队列、什么档位、何时被消费** | **何时允许推进**（step / 回合 / 请求） |
+| DSH 原语 | `next-step` / `next-turn` 两条待处理队列 + `updateQueue(steer\|remove\|edit)` / `send` / `cancel` | `agent/pre-step`（step 门）、`agent.cancel({keepInbox:true})` + `goals.pause`、`agent/request` hold |
+| 冻结 | 摘 `queued` + `steering` 行（**保留档位**）+ composer block | `stopNextTurn`：**先释放 step 门**再做回合级暂停（否则两边互等） |
+| 恢复 | 按档位重投（红 cancel+send / 黄 steer / 绿 send） | `resume`：从暂停点续跑 |
+
+两条队列的物理含义：`next-step` = 「与**工具返回同级**的下一个 step，仍在同一个 turn 内」；`next-turn` = 「新的回合」。所以黄档是「插到当前回合的下一步」，绿档是「等回合结束后再开一轮」——这正是三档能被 API 在同一次 turn 中途看到的原因。
 
 ## 队列管理
 

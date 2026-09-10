@@ -5,7 +5,7 @@
 Prompt Vault —— DeepSeek Harness（DSH）输入框上方的提示词库（灵感来自 voyager 的 Prompt Vault）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Frog755/dsh-prompt-vault/714e9939617270a0f7b3a33b5c4aadcd1a6e8ac3/assets/screenshot-panel.png" alt="Prompt 库面板" width="860">
+  <img src="https://raw.githubusercontent.com/Frog755/dsh-prompt-vault/f2883612668bcc7af4bf065543bccfabf734a758/assets/screenshot-panel.png" alt="Prompt 库面板" width="860">
 </p>
 
 - 输入框工具行左侧 **📚 按钮**，点开在输入框上方展开 Prompt 列表面板

@@ -17,7 +17,7 @@ DSH 对话分屏插件（PiUI 风格）：把信息流分成多个可独立操�
 
 ## 效果预览
 
-![dsh-split-panes 分屏效果](https://raw.githubusercontent.com/lehhair/dsh-split-panes/9c2089ac044fac229d73a1a71f2b003586ea73d2/screenshots/split-panes.png)
+![dsh-split-panes 分屏效果](https://raw.githubusercontent.com/lehhair/dsh-split-panes/9ed0a5308d830b978c6e23f004313c9ac66164ab/screenshots/split-panes.png)
 
 ## 为什么需要 vendor 核心渲染器
 
@@ -46,7 +46,9 @@ dsh plugin --profile web add link:/path/to/dsh-split-panes
 
 重启 `dsh web` 即可使用（会话 header 出现分屏按钮）。
 
-**版本**：开发与测试基线是核心 `0.1.5-alpha.1`（渲染器副本来自该版本）。`0.1.2-rc.1` 也实测可用（分屏 / 双 pane 各自会话 / 焦点路由 / 拖拽均正常）——0.1.5 才有的东西（右侧栏 `rightbar`、header corner 槽）在该版本上不存在，插件会优雅降级（槽未声明就渲染空）。
+**版本**：开发与测试基线是核心 **`0.1.5-alpha.2`**（vendor 的渲染器副本来自该版本；alpha.2 引入的 `main` 面板模型已适配）。`0.1.2-rc.1` 也实测可用（分屏 / 双 pane 各自会话 / 焦点路由 / 拖拽），0.1.5 才有的东西（右侧栏等）在该版本上不存在，插件优雅降级。
+
+上游跟踪：`.github/workflows/upstream-track.yml` 每 6 小时检测核心新 release，**只在**上游真正触碰本插件消费的接触面（`ui-renderer` 渲染器文件 + `ui-conversation`/`ui-session`/`ui-layout` 契约 + 图标源）时才开升级 PR（全绿才开）；发版仍由人工合 PR 后执行。钉死的核心版本在 `core-pin.json`（`build-release` 读它生成发布产物）。本地一键：`pnpm run upgrade:core dsh-vX.Y.Z`。想验证"开 PR"那半边链路（定时路径平时走不到），手动 dispatch 加 `force: true`。
 
 ## 使用
 

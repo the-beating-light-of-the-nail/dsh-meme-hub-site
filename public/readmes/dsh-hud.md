@@ -10,13 +10,19 @@ A **HUD status panel** plugin for [DeepSeek Harness](https://github.com/deepseek
 
 *Unofficial project: independently developed and maintained by a community member, not an official DeepSeek product.*
 
-## Screenshot
+## Screenshots
 
-![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/6f12a594489adb3408ba61faead40dda90d4fb66/assets/hud-button.png)
+![dsh-hud gauge button in the input toolbar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/a710f9ecc5f70bfb7170f7b86d3d1c20921f35ce/assets/hud-button.png)
 
-![dsh-hud panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/6f12a594489adb3408ba61faead40dda90d4fb66/assets/hud-panel.png)
+![dsh-hud as a tab in the official right sidebar](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/a710f9ecc5f70bfb7170f7b86d3d1c20921f35ce/assets/hud-tab.png)
 
-The gauge button in the input toolbar opens the floating panel showing git status, commit history, MCP servers, skills and official usage info (tokens, cache hit rate, turns/steps, LLM & tool time, context usage).
+![dsh-hud as a floating panel](https://raw.githubusercontent.com/a903067276-rgb/dsh-hud/a710f9ecc5f70bfb7170f7b86d3d1c20921f35ce/assets/hud-panel.png)
+
+Default form: a **tab in the official right sidebar** (DSH 0.1.5+), toggled by the HUD button left of the composer —
+clicking it again collapses the sidebar. It can also run as a **floating panel** (older hosts fall back
+automatically) with drag-resizable position and width. The panel shows git status, commit history, watched
+repos, MCP servers, skills and official usage info (tokens in/out, cache hit rate, per-model breakdown,
+context usage).
 
 ## Features
 

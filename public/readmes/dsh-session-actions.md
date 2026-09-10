@@ -4,7 +4,7 @@ DeepSeek Harness Web 插件：在会话行「⋯」菜单末尾加上复制 ID�
 
 English UI follows the DSH locale.
 
-![置顶分组与会话菜单](https://raw.githubusercontent.com/xingyingyuzhui/dsh-session-actions/d17e42000788ebb4de303a77df082ee0603b275e/docs/menu.png)
+![置顶分组与会话菜单](https://raw.githubusercontent.com/xingyingyuzhui/dsh-session-actions/e8542a78fb65216597142b04750c6257a2619c25/docs/menu.png)
 
 菜单在官方「重命名 / 分叉 / 归档」下面追加：
 

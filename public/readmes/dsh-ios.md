@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/c9fc979036eb384b4d99fa3a934c5a3ccd012fd4/docs/images/dsh-ios-logo.png" alt="DSH iOS" width="120" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/f626cf2e8beb6a7b66a59430aadb970e29be3298/docs/images/dsh-ios-logo.png" alt="DSH iOS" width="120" />
 </p>
 
 <h1 align="center">DSH iOS Simulator</h1>
@@ -24,7 +24,7 @@
 <br />
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/c9fc979036eb384b4d99fa3a934c5a3ccd012fd4/docs/images/dsh-ios-overview.png" alt="DSH iOS Simulator — a real iPhone inside the conversation" width="100%" />
+  <img src="https://raw.githubusercontent.com/ZSeven-W/dsh-ios/f626cf2e8beb6a7b66a59430aadb970e29be3298/docs/images/dsh-ios-overview.png" alt="DSH iOS Simulator — a real iPhone inside the conversation" width="100%" />
 </p>
 <p align="center"><sub>A real iPhone driven from inside a DSH conversation — the agent's tool calls on the left, the live device panel on the right</sub></p>
 

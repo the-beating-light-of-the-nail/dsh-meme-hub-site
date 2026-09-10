@@ -10,12 +10,14 @@
         <img src="https://badgen.net/github/release/GanyuanRan/Aegis?label=Latest%20Release" /></a>
     <a href="https://github.com/GanyuanRan/Aegis" alt="GitHub Stars">
         <img src="https://img.shields.io/github/stars/GanyuanRan/Aegis?style=flat&label=Stars" /></a>
+    <a href="https://gitcode.com/m0_67899281/Aegis" alt="AtomGit Stars">
+        <img src="https://gitcode.com/m0_67899281/Aegis/star/badge.svg" alt="AtomGit Stars" /></a>
     <a href="https://olud.ai/project/ganyuanran-aegis.html" alt="Aegis on olud.ai">
         <img src="https://olud.ai/badge.php?tool=ganyuanran-aegis" alt="Aegis on olud.ai" /></a>
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/GanyuanRan/Aegis/f725a7652ec43bc3dba74fb0aba616b91df9c51f/assets/aegis-hero.png" alt="Aegis architecture-driven AI coding agent hero banner" />
+    <img src="https://raw.githubusercontent.com/GanyuanRan/Aegis/750c7c6747512239d59cf93c9b4a7f6df7f2e0e3/assets/aegis-hero.png" alt="Aegis architecture-driven AI coding agent hero banner" />
 </p>
 
 # Aegis
@@ -68,7 +70,7 @@ prompts, projects, tool policy, and requested the same `gpt-5.6-sol` / `xhigh` s
 in both arms; only the Aegis projection differed. Across 120 valid runs on 20 cases,
 contract pass rate was **61.67% → 93.33% (+31.67 pp)** and unsafe outcomes were **13.33% → 0%**. The 95% case-cluster interval was **+15.00 pp to +50.00 pp**. This is bounded advisory evidence; review was arm-hidden technical review, not independent human review, and host events did not return the observed model identity.
 
-![Aegis agentic benchmark: with and without Aegis](https://raw.githubusercontent.com/GanyuanRan/Aegis/f725a7652ec43bc3dba74fb0aba616b91df9c51f/benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.svg)
+![Aegis agentic benchmark: with and without Aegis](https://raw.githubusercontent.com/GanyuanRan/Aegis/750c7c6747512239d59cf93c9b4a7f6df7f2e0e3/benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.svg)
 
 [Sanitized JSON](benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.json) · [English table](benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.en.md) · [中文表格](benchmarks/results/gpt-5-6-sol-xhigh-extended-20260811-v2-7-6.zh-CN.md) · [Methodology](docs/current/AEGIS_AGENTIC_BENCHMARK_BASELINE.md)
 

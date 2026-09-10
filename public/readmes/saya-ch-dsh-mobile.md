@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/brand/repository-hero.png" alt="用手机使用电脑中的 DeepSeek Harness" width="100%">
 </p>
 
 <h1 align="center">DSH Mobile</h1>
@@ -31,7 +31,7 @@
 > **升级提醒**：推荐升级到插件 **0.3.14**（0.1.3 各版本桌面均适用，含 alpha.1）。安装新插件后需重启 DSH。现有 0.3.3-0.3.13 App 可继续使用，无需重新配对。[兼容说明](#兼容性)。
 
 <p align="center">
-  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.14/dsh-mobile-android-v0.3.14.apk"><img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/brand/app-icon-rounded.svg" alt="DSH Mobile 安卓应用图标" width="72" height="72"></a><br>
+  <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.14/dsh-mobile-android-v0.3.14.apk"><img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/brand/app-icon-rounded.svg" alt="DSH Mobile 安卓应用图标" width="72" height="72"></a><br>
   <a href="https://github.com/saya-ch/dsh-mobile/releases/download/v0.3.14/dsh-mobile-android-v0.3.14.apk"><strong>下载 Android App 0.3.14</strong></a><br>
   <sub><a href="https://github.com/saya-ch/dsh-mobile/releases/tag/v0.3.14">版本说明与校验文件</a></sub>
 </p>
@@ -98,7 +98,7 @@ dsh plugin --profile web add dshmarket
 适合同一 Wi-Fi、以太网或手机热点，是默认且最简单的连接方式。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/screenshots/lan-access.png" width="82%" alt="DSH Mobile 局域网访问、配对二维码与设备管理">
 </p>
 
 1. 让手机和电脑连接同一个局域网，在 DeepSeek Harness 左下角打开 **移动访问 → 局域网**。
@@ -115,7 +115,7 @@ dsh plugin --profile web add dshmarket
 远程服务可能受带宽和连接限额影响：[cpolar 免费方案](https://svip.cpolar.com/pricing) 当前为 1 Mbps，[Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel#requirements-and-limitations) 也存在不可配置的带宽限制。DSH Mobile 通过 10 条分页、顶部按需加载、gzip 和 WebSocket 长连接减少流量与等待，但无法突破服务商限额。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/screenshots/remote-access.png" width="82%" alt="DSH Mobile 远程访问与通道选择">
 </p>
 
 1. 在 DeepSeek Harness 左下角打开 **移动访问 → 远程**，选择一种连接方式：
@@ -159,10 +159,10 @@ Tailscale Funnel 覆盖范围广，但在中国大陆网络下可能不稳定。
 示例的实际效果：
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
-  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/df8ffe870edcbc7b9958e96b2451c67459347674/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/screenshots/crt-terminal-2.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/screenshots/crt-terminal-1.png" width="22%" alt="/mobile 定制为老式终端界面">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/screenshots/cyberpunk-monitor-2.png" width="22%" style="margin-left:10px" alt="/mobile 定制为赛博朋克监控面板">
+  <img src="https://raw.githubusercontent.com/saya-ch/dsh-mobile/ee834823a4b899b11f092c98fea27df3979408d7/assets/screenshots/cyberpunk-monitor-1.png" width="22%" style="margin-left:8px" alt="/mobile 定制为赛博朋克监控面板">
 </p>
 
 ## App 与手机浏览器

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/a881198eda4d3e148583b7513c8d3c752a02711e/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/f343ff8584d75e4231cd4628d2c1cdd90022e8ad/assets/branding/banner.png" alt="DSH Agency Agents" width="100%">
 </div>
 
 <div align="center">
@@ -33,15 +33,15 @@ Choose a specialist in DSH for code review, design, operations, or research. All
 
 Filter by category or search in **Settings → Experts**, then enable the experts you need:
 
-![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/a881198eda4d3e148583b7513c8d3c752a02711e/assets/screenshots/agent-roster.png)
+![DSH Experts panel](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/f343ff8584d75e4231cd4628d2c1cdd90022e8ad/assets/screenshots/agent-roster.png)
 
 Use `@` or the composer's **Experts** picker to choose an enabled expert:
 
-![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/a881198eda4d3e148583b7513c8d3c752a02711e/assets/screenshots/expert-picker.png)
+![Experts picker](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/f343ff8584d75e4231cd4628d2c1cdd90022e8ad/assets/screenshots/expert-picker.png)
 
 The localized expert name is inserted as a short tag; write the complete task next:
 
-![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/a881198eda4d3e148583b7513c8d3c752a02711e/assets/screenshots/summon-prompt.png)
+![Summoning an expert from the composer](https://raw.githubusercontent.com/MichengAI/dsh-agency-agents/f343ff8584d75e4231cd4628d2c1cdd90022e8ad/assets/screenshots/summon-prompt.png)
 
 ## DSH product ecosystem
 
@@ -739,6 +739,12 @@ pnpm verify
 ```
 
 `prepublishOnly` runs these build, test, and package-integrity checks before publishing.
+
+## Custom experts
+
+Open Settings → Experts → New expert. Set a name, description, category and prompt, then choose an avatar and a separate summon emoji (default 🧩). Save and enable makes the expert immediately available through @ and the Experts button. Reference labels use the standard expert icon and plain name, matching built-in experts; the emoji appears in candidate menus. Copy a base expert to customize it, or edit, enable, disable and delete custom experts. Deletion permanently removes the expert content and enabled state; it cannot be undone.
+
+Data lives in the DSH settings agency-agents namespace outside the plugin directory and survives upgrades. External root still replaces the base roster; custom experts are appended. Viewing, copying, and summoning nested experts use the actual file selected by the catalog. The limit is 200 existing custom experts. Deletion frees a slot; legacy soft-deleted records are cleaned up on startup and subsequent writes. Name conflicts introduced by a base catalog update remain visible in Settings for renaming or deletion, but conflicting experts cannot be summoned. Concurrent changes reject stale saves and keep the draft in the editor. Read and compare the latest content, choose to keep your draft or load that content, then save explicitly. Deleted experts can only be continued as new experts. Remove disabled draft references or re-enable the expert; remove and reselect deleted or conflicting references. Writes carry a revision; see the [Remote contract](src/remote-contract.ts). Back up current settings before downgrading: restoring custom data is separate from rolling back plugin code.
 
 ## License and attribution
 

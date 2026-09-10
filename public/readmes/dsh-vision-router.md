@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/hero.svg" width="100%" alt="DSH Vision Router — eyes for text-only DeepSeek Harness agents" />
 </p>
 
 <h1 align="center">dsh-vision-router</h1>
@@ -41,10 +41,10 @@
 > [!WARNING]
 > 📌 **Announcement (v2.1.5)**
 >
-> **v2.1.5:** Verified against DSH `0.1.5-alpha.1`, fixes Vision-preserving wrapped-model switches, and hardens Web activation plus the release/security pipeline. Stable Host support remains through `0.1.2-rc.1`. [What’s new →](docs/releases/v2.1.5.md)
+> **v2.1.5:** Supports the current DSH stable `0.1.5-rc.1`, reconciles Vision twins as providers change live, preserves Vision across wrapped-model switches, and hardens Web activation plus the release/security pipeline. [What’s new →](docs/releases/v2.1.5.md)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/vision-demo.gif" width="640" alt="Demo: paste an image, the agent locates the send button with vision_ground / vision_crop / vision_pixel_diff and answers with coordinates" />
 </p>
 
 ## Contents
@@ -180,8 +180,8 @@ The built-in anonymous OVH vision fallback is already configured, so normal imag
 *Left: an image turn — the user sends a picture, the agent calls `vision_describe` through the free chain and answers. Right: the finished structured answer.*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/dsh-conversation-image-qa.png" width="49%" alt="A conversation turn in which the agent looks at an uploaded image through vision_describe." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/dsh-conversation-image-qa-result.png" width="49%" alt="The agent's structured answer describing the image content." />
 </p>
 
 ## Free vision key channels
@@ -218,7 +218,7 @@ Any of these channels can join the vision chain as an `httpProviders` entry (key
 
 ### Pixel loop in practice
 
-[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
+[![Reference design and final agent rebuild, verified with vision_pixel_diff at 2.54% final difference.](https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/pixel-loop.png)](https://raw.githubusercontent.com/ysr666/dsh-vision-router/main/assets/pixel-loop.png)
 
 <p align="center"><sub>Click the image to open the full-resolution original.</sub></p>
 
@@ -227,7 +227,7 @@ The agent rebuilt the UI from the reference image, then verified the final resul
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/how-it-works.svg" width="100%" alt="How DSH Vision Router keeps DeepSeek as the brain and vision tools as the eyes." />
 </p>
 
 The vision model is **only the eyes**; DeepSeek is **always the brain**. An image turn is never hijacked by a one-shot vision answer — the agent drives the tools itself and can keep operating on the image across as many steps as the task needs.
@@ -237,7 +237,7 @@ The vision model is **only the eyes**; DeepSeek is **always the brain**. An imag
 Default `progressiveTools: false`: all fourteen deep tools stay registered from plugin startup, so text and image turns can call them immediately. If you explicitly set `progressiveTools: true` in the profile/composition `cordis.patch.yml`, progressive mode is restored: only `vision_activate` is exposed initially, the full tool set mounts on first use, and the `vision-tools` skill is registered. This is a boot-time switch; restart DSH after changing it. Built on sharp / potrace / tesseract / system Chrome — no Python:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/vision-tools.svg" width="100%" alt="Eleven image-processing tools available in DSH Vision Router." />
 </p>
 
 The diagram covers the eleven image-processing tools. `vision_present` (durable image delivery) and `vision_bootstrap` (the optional 1+x structured first pass) bring the default deep-tool set to fourteen. Enabling the privacy-gated `vision_screenshot` at boot adds an optional fifteenth tool.
@@ -336,7 +336,7 @@ The Web profile registers a first-class **Settings → Vision Router** surface. 
 - **Advanced / Diagnostics**: timeout, wrapper scope, proxy/network, compatibility, version, runtime status and troubleshooting.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/d8d2a66d837d70f48c83ba6c5b0dd4afddae1a44/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
+  <img src="https://raw.githubusercontent.com/ysr666/dsh-vision-router/b03228695f19d8e929198894014da029bf771d9e/assets/vision-settings.png" width="72%" alt="The Vision Router settings surface." />
 </p>
 
 ## Configuration
@@ -413,7 +413,7 @@ ollama pull qwen2.5vl
 ## Requirements
 
 - DeepSeek Harness Web profile. Normal installs can use `npx @deepseek-ai/dsh ...`; source checkouts use `pnpm dsh ...`. A bare `dsh ...` command only works when the CLI is already on your shell `PATH`.
-- **DSH Host support policy:** DVR 2.1.x keeps DSH `0.1.0-rc.8` as the public minimum and currently supports the released stable channel through `0.1.2-rc.1`. Exact `0.1.5-alpha.1` coverage is **verification evidence only**, not a preview support promise; scheduled `latest`/`alpha` canaries monitor drift without changing the support policy. DVR 2.0.x was the final train with public support for rc.6/rc.7. See [DSH Host support window](docs/architecture/dsh-support-window.md).
+- **DSH Host support policy:** DVR 2.1.x keeps DSH `0.1.0-rc.8` as the public minimum and currently supports the released stable channel through `0.1.5-rc.1`. Exact `0.1.5-alpha.2` coverage is **verification evidence only**, not a preview support promise; scheduled `latest`/`alpha` canaries monitor drift without changing the support policy. DVR 2.0.x was the final train with public support for rc.6/rc.7. See [DSH Host support window](docs/architecture/dsh-support-window.md).
 - Node ≥ 22 (host side).
 - No API key for the default free chain; a credential reference (`apiKeyEnv`) only for paid `httpProviders`.
 - Chrome / Chromium / Edge is needed only for `vision_html_screenshot`; every other tool works without a browser.

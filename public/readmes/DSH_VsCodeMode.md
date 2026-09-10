@@ -4,15 +4,28 @@
 
 仿 VSCode 的 **Agent 文件编辑器 + 差异审查** DSH 插件：
 
-- **侧边栏「文件编辑」Tab**（v0.1.23，推荐）：检测到 [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar)
-  （`ctx.betterSidebar` 服务）时，编辑器注册为右侧栏 Tab——**AI 对话（中央）与文件编辑（右侧栏）同屏**，
-  类主流 Code Agent 布局；Tab 可拖到下方成底部面板（全宽）、支持分栏；文件打开/差异跳转自动展开面板。
-  **可选依赖**：未安装 dsh-better-sidebar 时自动回退旧「中央文件编辑页签」形态（插件零新依赖仍完整可用），
-  并在编辑器顶部与设置页「兼容性」子 Tab 引导安装（`dsh plugin --profile web add dsh-better-sidebar`）。
+- **侧边栏「文件编辑」Tab**（v0.1.60，推荐）：检测到 **DSH 0.1.5+ 官方右侧 Sidebar**（`ctx.sidebarRightTabs` /
+  `ctx.sidebarRight` 服务）时，编辑器注册为官方侧边栏 Tab——**AI 对话（中央）与文件编辑（右侧栏）同屏**，
+  类主流 Code Agent 布局；支持官方多标签/分栏/浮出/全屏，打开路由即开即展开；官方 Sidebar 引导页提供入口。
+  **优先级**：官方侧边栏与 [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) 同时可用时**官方优先**
+  （better-sidebar 桥已归档，仅作旧版 DSH 回退，不再新增能力）。旧版 DSH（< 0.1.5）沿用 better-sidebar 侧栏形态，
+  两者皆缺时回退旧「中央文件编辑页签」形态（插件零新依赖仍完整可用），
+  编辑器顶部与设置页「兼容性」子 Tab 会给出对应引导。
+  **文件链接（DSH 0.1.5+）**：聊天/文件树的文件链接经官方 `ctx.sidebarRight.openResource` 直达右侧栏——
+  「文件链接使用工具」为 自动/VSCodeMode 时本插件以 extension 档认领 `dsh-resource://file/**`（链接在本插件
+  Monaco 编辑器打开，含行号定位）；为「官方侧边栏」档时走官方文本查看器（不认领）；畸形地址自动回落官方查看器。
   文件页签（脏点/关闭/「+」打开）+ `Ctrl+P` 快速打开（QuickOpen）+ **Monaco Editor**
   （语法高亮/行号/`Ctrl+F`/`Ctrl+G`/`Ctrl+S`/700ms 防抖自动保存）+ 顶部工具栏（路径/语言/Ln,Col/保存状态/差异/侧边栏/刷新）
   + **导航历史**（后退/前进：跨文件恢复焦点位置，工具栏 `←`/`→` 按钮、键盘 `Alt+←/→` 与 `Ctrl+Alt+-`/`Ctrl+Shift+-`、
   鼠标侧键 XButton 均可触发；后退后新导航自动清空前进栈）。
+- **命令栏 + 指令系统**（v0.2.0）：`Ctrl+Shift+P`（或 `F1`）唤出 VS Code 式命令面板——输入即过滤（中文/分类/命令 id
+  均可命中）、`↑↓` 选择、`Enter` 执行、`Esc` 关闭，每行显示命令名/分类/当前键位；候选按**可用性**过滤
+  （需要打开文件的命令在空编辑器时自动隐藏）。命令目录即单一数据源（`ui/commandCatalog`）：命令栏、快捷键设置页、
+  全局键位派发、Monaco 右键菜单全部从同一张表读取，**新增一条能力只需追加一条命令定义**。
+  注册表经 `window.__edrvCommands__` 对外暴露，第三方/控制台可 `register()` 注册命令、
+  `addRuntimeKeybinding()` 绑运行时键位（不落设置 schema）。开箱 15 条命令：
+  保存 / 快速打开 / 在文件浏览器中打开 / 显示所有命令 / 切换侧边栏 / 工作区搜索 /
+  后退·前进 / 上下页签 / 上下编辑行 / 转到定义 / 查找引用 / 触发 AI 补全。
 - **LSP 智能（编辑器内）**：`F12`/右键「转到定义」+ `Shift+F12`「查找所有引用」+ `Ctrl+点击` 引用导航
   （0 条→定义兜底、1 条→直接跳转、多条→原生 References Peek）+ `Ctrl+hover` 可导航标识符下划线提示；
   定义查找带降级链（definition → declaration → 引用推导），参数/局部变量（`this`、`pTarget` 这类）
@@ -63,15 +76,16 @@
 
 ## 界面截图
 
-![侧边栏编辑形态：AI 对话与文件编辑同屏](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/bafa4e06fc0587bc7824f7506964896a849c9ec8/docs/screenshots/img1.png)
+![侧边栏编辑形态：AI 对话与文件编辑同屏](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/5984c68b6147bfe24da9b6a124957c3f08957a14/docs/screenshots/img1.png)
 
-> dsh-vscode-mode 侧边栏编辑形态：betterSidebar 右侧栏内的 Monaco 文件编辑器与中央 AI 对话同屏，
+> dsh-vscode-mode 侧边栏编辑形态：右侧栏（DSH 0.1.5+ 官方 Sidebar / 旧版 betterSidebar）内的
+> Monaco 文件编辑器与中央 AI 对话同屏，
 > 差异条统一挂在对话输入框上方的原生 dock（编辑器未打开=「差异 N 个文件 · 查看下一个」，
 > 打开后=完整 Keep / Undo 操作条）。
 
-![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/bafa4e06fc0587bc7824f7506964896a849c9ec8/docs/screenshots/img2.png)
+![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/5984c68b6147bfe24da9b6a124957c3f08957a14/docs/screenshots/img2.png)
 
-![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/bafa4e06fc0587bc7824f7506964896a849c9ec8/docs/screenshots/img3.png)
+![文件编辑与差异审查界面](https://raw.githubusercontent.com/Lenonss/DSH_VsCodeMode/5984c68b6147bfe24da9b6a124957c3f08957a14/docs/screenshots/img3.png)
 
 ## 安装（官方 `dsh plugin` 方式，三选一）
 
@@ -148,9 +162,11 @@ src/
 ├── rpc.ts              Host RPC 分发表（类型化 handler 表替代巨型 switch，含 compat）
 ├── routes.ts           Host webServer 路由（/edrv/rpc、/edrv/assets/*、/edrv/vendor/*，带冲突护栏）
 └── client/
-    ├── index.ts        Client 入口：slot 注册（inject=['slots','timer']）；betterSidebar 探测分流（侧栏 Tab / 旧页签回退）
+    ├── index.ts        Client 入口：slot 注册（inject=['slots','timer']）；官方/betterSidebar/中央页签三形态互斥分流（官方优先）
     ├── compat.ts       ★ Client 兼容层：设置桥三级降级（webUiSettings→settingsScope）、slot 安全注册、openPath 链式补丁、外部插件常量
-    ├── sidebarBridge.ts ★ 侧边栏编辑区桥：可选探测 ctx.betterSidebar、注册「文件编辑」Tab、打开路由/角标计数（纯函数可单测）
+    ├── sidebarBridge.ts ★ 侧边栏编辑区桥（归档）：可选探测 ctx.betterSidebar、注册「文件编辑」Tab、打开路由/角标计数（纯函数可单测）
+    ├── officialSidebar.ts ★ 官方右侧 Sidebar 桥（DSH 0.1.5+，唯一维护面）：探测 sidebarRightTabs/sidebarRight、
+    │                   两段式注册（类型定义 + keyed slot 正文）、openTab 路由（纯函数可单测）
     ├── rpc.ts          Client 类型化 fetch 包装 + 诊断日志
     ├── events.ts       窗口事件助手（edrv:refresh/open-editor/show-launcher；侧栏路由优先、旧页签回退）
     ├── state/          records.ts（摘要/计数/空差异）+ regions.ts（差异区域/行裁剪）纯函数
@@ -164,7 +180,8 @@ src/
     │                   + types.ts（SidebarPanelDef/SidebarCtx）+ panels/FileExplorer.ts（文件树面板 #1）
     │                   + panels/SearchPanel.ts（搜索面板）+ panels/RulesPanel.ts（规则面板：用户/项目规则 + 开关）
     ├── styles/editor.css  编辑区样式（tsdown CSS-inline 注入；含侧栏形态/引导条）
-    └── ui/             EditorView（编排，tab/side 双形态）/ SideEditorTab（betterSidebar Tab 包装）/ QuickOpen
+    └── ui/             EditorView（编排，tab/side 双形态）/ OfficialSideTab（官方 Sidebar Tab 包装）
+                        / SideEditorTab（betterSidebar Tab 包装，归档）/ QuickOpen
                         / DiffBox（chat/editor 双模式）/ ConversationDiffDock / DiffBarEmpty / DiffLauncher
                         / DiffBadge / McpSettings（含「兼容性」子 Tab）
 ```
@@ -203,8 +220,9 @@ curl -s -X POST http://127.0.0.1:3080/edrv/rpc -H 'content-type: application/jso
 - **RPC**：静态包经 webServer 精确路由 `/edrv/rpc`，Client 同源 fetch；载荷形状由 `shared/rpc` 类型化。
 - **批次/融合/归档**：每次新 edit/write 递增文件 batch，早于最新批次的未归档差异自动"融合"归档；
   每条差异处理完成（采纳/拒绝/被覆盖）立即单条归档；DiffLauncher「归档」页按批次浏览 + 回滚。
-- **Client 挂点**：betterSidebar Tab `edrv-editor`（侧栏形态，未装 dsh-better-sidebar 时回退 `conversation.view` 页签
-  id `edrv-editor`）+ `conversation.session.header.utilities`（id `edrv-diff-badge`）+ `conversation.input.dock`
+- **Client 挂点**：官方右侧 Sidebar Tab（DSH 0.1.5+：类型定义 id `dsh-vscode-mode`、kind `edrvEditor`，
+  正文挂 keyed slot `sidebar.right.pane.tab`；优先级最高）> betterSidebar Tab `edrv-editor`（归档，仅旧版回退）
+  > `conversation.view` 页签（id `edrv-editor`）+ `conversation.session.header.utilities`（id `edrv-diff-badge`）+ `conversation.input.dock`
   （id `edrv-diff-dock`，唯一差异栏：编辑器未打开=紧凑按钮，打开后=完整操作条）。内部路由/slot/事件/CSS 前缀沿用 `edrv-*`（防回归），包身份为 `dsh-vscode-mode`。
 - **⚠️ Host 改动需重启 DSH 应用**（Node ESM 模块缓存）；Client 经 `dsh-client-hmr` 热重载。
 

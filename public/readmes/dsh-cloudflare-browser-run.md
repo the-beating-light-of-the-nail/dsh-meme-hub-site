@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-cloudflare-browser-run/6dfc96257670c732ba7da8216f7d629f05fbb9de/assets/readme/hero.svg" alt="dsh-cloudflare-browser-run — real browser access for DeepSeek Harness" width="100%">
+  <img src="https://raw.githubusercontent.com/RealAlexandreAI/dsh-cloudflare-browser-run/530d9b24f1e8f83e37b1124ebf07eb784c42f02c/assets/readme/hero.svg" alt="dsh-cloudflare-browser-run — real browser access for DeepSeek Harness" width="100%">
 </p>
 
 # dsh-cloudflare-browser-run

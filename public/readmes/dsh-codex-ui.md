@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/08eab3551962e1b7359d05abb45b76a201a440ec/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/451acf9ecc9ee61f58208d81cd112b47f55f01ff/assets/branding/dsh-banner.png" alt="DSH Codex UI" width="100%">
 </p>
 
 <div align="center">
@@ -35,23 +35,23 @@ Working across several projects and conversations in DSH Web? DSH Codex UI helps
 
 Light theme: workspace tree, new conversation suggestions, and bottom composer.
 
-![Light theme new conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/08eab3551962e1b7359d05abb45b76a201a440ec/assets/screenshots/conversation-light.png)
+![Light theme new conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/451acf9ecc9ee61f58208d81cd112b47f55f01ff/assets/screenshots/conversation-light.png)
 
 Dark theme: scheduled task overview and new conversation page.
 
-![Dark theme new conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/08eab3551962e1b7359d05abb45b76a201a440ec/assets/screenshots/conversation.png)
+![Dark theme new conversation](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/451acf9ecc9ee61f58208d81cd112b47f55f01ff/assets/screenshots/conversation.png)
 
 General settings: dedicated settings page with section navigation in the light theme.
 
-![Light theme general settings](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/08eab3551962e1b7359d05abb45b76a201a440ec/assets/screenshots/settings-general-light.png)
+![Light theme general settings](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/451acf9ecc9ee61f58208d81cd112b47f55f01ff/assets/screenshots/settings-general-light.png)
 
 Conversation menu: rename, pin, unread, archive, fork, copy, and delete.
 
-![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/08eab3551962e1b7359d05abb45b76a201a440ec/assets/screenshots/session-menu.png)
+![Conversation menu](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/451acf9ecc9ee61f58208d81cd112b47f55f01ff/assets/screenshots/session-menu.png)
 
 **Settings → Codex UI** lists the companion plugins and their install state.
 
-![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/08eab3551962e1b7359d05abb45b76a201a440ec/assets/screenshots/settings-about.png)
+![About page and companion plugins](https://raw.githubusercontent.com/MichengAI/dsh-codex-ui/451acf9ecc9ee61f58208d81cd112b47f55f01ff/assets/screenshots/settings-about.png)
 
 ## Prerequisites
 

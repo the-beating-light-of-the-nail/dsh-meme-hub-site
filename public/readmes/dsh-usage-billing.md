@@ -6,7 +6,7 @@
 
 针对 DeepSeek Harness 的**免构建**双面插件：自动统计本机所有会话的 DeepSeek 模型调用，按官方定价分段计费，并在主界面与设置页提供图表化的用量面板。
 
-> 计费口径：2026-08-17 00:00（北京时间）前旧价；之后峰谷定价（高峰为**工作日** 9:00–12:00、14:00–18:00（2026-08-23 起生效，此前周末同样计高峰），空闲价为高峰价的一半；9/10 12:00 起 flash 系列再次调价（空闲 hit 0.02 / miss 1 / out 4，高峰 ×2，pro 不变））。价格表见文末。
+> 计费口径：2026-08-17 00:00（北京时间）前旧价；之后峰谷定价（高峰为**工作日** 9:00–12:00、14:00–18:00（2026-08-23 起生效，此前周末同样计高峰），空闲价为高峰价的一半；9/10 12:00 起 flash 系列再次调价（空闲 hit 0.02 / miss 1 / out 4，高峰 ×2，pro 不变；2026-09-14 12:00 起 V4 Pro 下线，请求被官方路由到 V4.1 Flash 并按 Flash 价计费，插件默认按此口径统计，可在设置中关闭））。价格表见文末。
 
 ## 功能
 
@@ -35,19 +35,19 @@
 
 **统计弹窗 · 总览**（主界面侧边栏卡片点开）
 
-![统计弹窗总览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/02-stats-dialog-overview.png)
+![统计弹窗总览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/aeff9a0d9183e90093f935a9a6aa64117874826b/assets/screenshots/02-stats-dialog-overview.png)
 
 **统计弹窗 · 图表区**（分段占比 + 用量热力图，支持 ¥/USD 切换）
 
-![统计弹窗图表](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/03-stats-dialog-charts.png)
+![统计弹窗图表](https://raw.githubusercontent.com/940842546/dsh-usage-billing/aeff9a0d9183e90093f935a9a6aa64117874826b/assets/screenshots/03-stats-dialog-charts.png)
 
 **美元模式**（弹窗右上角一键切换，汇率换算）
 
-![美元模式](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/07-stats-dialog-usd.png)
+![美元模式](https://raw.githubusercontent.com/940842546/dsh-usage-billing/aeff9a0d9183e90093f935a9a6aa64117874826b/assets/screenshots/07-stats-dialog-usd.png)
 
 **设置页 · 用量统计**
 
-![设置页概览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/4759a7ca82c128f1b0e372a5470b1960ecec94a1/assets/screenshots/04-settings-usage-overview.png)
+![设置页概览](https://raw.githubusercontent.com/940842546/dsh-usage-billing/aeff9a0d9183e90093f935a9a6aa64117874826b/assets/screenshots/04-settings-usage-overview.png)
 
 ## 安装
 

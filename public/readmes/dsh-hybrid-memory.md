@@ -12,7 +12,7 @@
 
 | 层 | 抄谁 | 做什么 |
 |---|---|---|
-| **L1 常驻快照** | Hermes | `MEMORY.md`/`USER.md`，会话组装时冻结注入 system prompt；中途写入不改已注入内容（保 prefix cache）；字符上限（与模型无关） |
+| **L1 快照** | Hermes | `MEMORY.md`/`USER.md`，按需读取——只在模型主动调用 `memory_*` 工具（如 `memory_recall`）时才进入上下文；字符上限（与模型无关） |
 | **L2 知识库** | Noema | `facts/` 一事实一文件 + `node:sqlite` FTS5 索引 + 实体抽取；按需 `memory_recall`/`search`/`browse` |
 | **L3 导入** | Noema | 从 Hermes / Claude Code / Codex / WorkBuddy 导入既有记忆，内容哈希账本去重 |
 
@@ -47,7 +47,7 @@ dsh web
 
 首次安装需要重启一次 DSH（全新插件必须进入启动树）；之后热重载即可。
 
-## 模型工具（11 个）
+## 模型工具（12 个）
 
 | 工具 | 层 | 作用 |
 |---|---|---|
@@ -59,26 +59,27 @@ dsh web
 | `memory_browse` | L2 | 浏览知识库目录 / 按 tag 过滤 |
 | `memory_recall` | L1+L2 | 融合召回：快照 + 检索结果按 token 预算打包 |
 | `memory_import` | L3 | 从 Hermes/Claude/Codex/WorkBuddy 导入 |
+| `memory_import_agent_hub` | L3 | 只导入 Agent Hub approved memory/global、projects、accepted decisions |
 | `memory_status` | 管理 | 数据根、字符用量、事实数、待审数、账本大小 |
 | `memory_review_list` / `memory_review_decide` | 审核 | 查看/接受/拒绝/编辑候选记忆 |
 
 ## 设计要点
 
-- **冻结快照 + prefix cache**：L1 在首轮 system prompt 组装时读文件，会话中途 `memory_add` 等写入落盘但不改动已组装内容 → KV cache 前缀不失效，省 token。
+- **按需读取、零上下文开销**：L1 快照与 L2 知识库都不自动注入对话（无 `systemPrompt.section` 常驻注入、无 pre-step 召回、无 skill 附带记忆，v0.2.0 起）；只在模型主动调用 `memory_*` 工具时按需进入上下文。
 - **字符上限而非 token 上限**：L1 限制（agent 4000 / user 2000 字符）与模型无关，跨模型一致（Hermes 原设计）。
 - **中文检索**：FTS5 的 unicode61 不切中文，插件在写入索引前用 2 字滑窗预分词，`memory_search` 按词匹配。
 - **威胁扫描**：写入内容检测提示注入 / 外泄 / 危险指令，命中即拒。
 - **原子写 + 漂移检测**：写文件走临时文件 + rename；磁盘内容被外部编辑破坏结构时拒绝写入并留 `.bak` 快照。
 - **审核队列**：默认 `auto-accept`（Hermes 风格直接写）；需要时 `memory_remember(review=true)` 写入 `pending/`（文件 + SQLite status=pending），`memory_review_decide(accept)` 会把 Markdown 移到 `facts/` 并转正，`edit` 会同步重建 FTS 索引。
 
-### 记忆注入（无需手动调工具）
+### 记忆按需读取（无自动注入）
 
-除了 11 个工具，插件还通过 Cordis 事件自动注入记忆：
+插件**不做任何自动注入**——L1 快照不再冻结进 system prompt，`agent/pre-step` 首步/触发词召回与 `tools/post-execute` skill 附带记忆均已移除（v0.2.0）。记忆只在模型判断需要时，主动调用 `memory_*` 工具查找后才进入上下文：
 
-- **`agent/pre-step`**：会话首步（turn=1, step=1），或用户消息命中记忆触发词（记忆 / memory / recall / 之前 / 上次 / 偏好 / 记得 / 我们聊过 / context）时，按查询召回 L2 事实并作为 `memory-injection` 消息追加进 step；首步无命中时注入记忆库目录（最新事实标题），让模型"读过"记忆库、知道可以主动 `memory_search`。
-- **`tools/post-execute`**：`skill` 工具成功加载后，把与该 skill 相关的 L2 事实拼进工具结果内容（绝不使用 `additionalContexts`——那会被 agent-loop 插进 next-step 队列触发自动下一轮，造成自激循环）。
+- 查知识库：`memory_search` / `memory_browse` / `memory_recall`（融合 L1 快照 + L2 检索）
+- 查状态：`memory_status`（数据根、字符用量、事实数、待审数等）
 
-L1 本身通过 `systemPrompt.section` 常驻注入，两层记忆都无需手动调用即到达模型。
+代价：模型若忘记主动调用工具，记忆不会自动出现；换来的是上下文零记忆开销、无 `[系统注入·记忆]` 标签。
 
 ### HTTP 端点（可选）
 
@@ -90,14 +91,25 @@ L1 本身通过 `systemPrompt.section` 常驻注入，两层记忆都无需手�
 ## 开发
 
 ```sh
-node --test tests/core.test.js   # 运行单元测试（24 个，覆盖 L1/L2/L3 核心逻辑）
+# 核心逻辑（不需要宿主依赖）
+node --test tests/core.test.js            # 32 个，覆盖 L1/L2/L3 核心逻辑
+
+# Agent Hub 投影（前两个用例不需要宿主依赖；第三个会 import 插件本体）
+node --test tests/agent-hub-source.test.js
+
+# 冒烟测试：真实加载插件并断言事件/工具注册（需要 @deepseek-ai/* 可解析）
+node --test tests/smoke.test.js
 ```
+
+`@deepseek-ai/*` 通过 `devDependencies` 的 `link:` 指向本机 DSH 宿主目录，所以只有
+「本机已装 DSH」的 clone 才能跑需要 import 插件本体的用例；裸 clone 或 CI 上这类
+用例会自动 skip（不会红）。
 
 ## 截图
 
 | DSH 设置中的插件列表（真实界面） | 架构示意 |
 |---|---|
-| ![plugin list](https://raw.githubusercontent.com/Frog755/dsh-hybrid-memory/b13d0fc69924f13b59ebd4720fba83e580039bba/assets/plugin-list.png) | ![architecture](https://raw.githubusercontent.com/Frog755/dsh-hybrid-memory/b13d0fc69924f13b59ebd4720fba83e580039bba/assets/architecture.svg) |
+| ![plugin list](https://raw.githubusercontent.com/Frog755/dsh-hybrid-memory/738715b809b659d86b8bebd5a1b2bd1afbc09b64/assets/plugin-list.png) | ![architecture](https://raw.githubusercontent.com/Frog755/dsh-hybrid-memory/738715b809b659d86b8bebd5a1b2bd1afbc09b64/assets/architecture.svg) |
 
 ## 兼容性
 
@@ -107,7 +119,7 @@ node --test tests/core.test.js   # 运行单元测试（24 个，覆盖 L1/L2/L3
 
 ## 隐私说明
 
-**记忆数据全部留在本地。** 插件只写入配置的数据根目录（默认 `D:\Develop\DeepSeek Harness\memory`，可用 `DSH_HYBRID_MEMORY_ROOT` 覆盖），不向任何外部服务发送数据。L1 快照注入本地 DSH 实例的模型 prompt；L2 事实按需查询。无遥测、无网络调用。
+**记忆数据全部留在本地。** 插件只写入配置的数据根目录（默认 `D:\Develop\DeepSeek Harness\memory`，可用 `DSH_HYBRID_MEMORY_ROOT` 覆盖），不向任何外部服务发送数据。L1 快照与 L2 事实都只在模型主动调用 `memory_*` 工具时按需读取进上下文，无自动注入。无遥测、无网络调用。
 
 ## License
 

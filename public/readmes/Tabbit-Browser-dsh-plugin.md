@@ -2,7 +2,7 @@
 
 [English](README.en.md) | **简体中文** | [Changelog](CHANGELOG.md)
 
-![Tabbit Browser for DeepSeek Harness](https://raw.githubusercontent.com/Tabbit-Browser/dsh-plugin/aa706ff97c704fb4be1021b6bf9574fe236811f4/assets/dsh-tabbit-banner.png)
+![Tabbit Browser for DeepSeek Harness](https://raw.githubusercontent.com/Tabbit-Browser/dsh-plugin/361ef61f4d42ae51d657ca1351acacd6b5db5d44/assets/dsh-tabbit-banner.png)
 
 Tabbit Browser 的 DeepSeek Harness（dsh）插件包（bundle）。dsh 可以通过此插件调用 Tabbit 完成 Agent 任务：真实页面、真实登录态、真实交互，经原生 code-first 工具驱动（不走 shell 转发）。适用于网页自动化、信息提取、QA 与评测。
 
@@ -45,7 +45,7 @@ dsh plugin --profile web add link:/path/to/dsh-tabbit   # 本地开发
 
 欢迎扫描下方二维码加入 **dsh-tabbit 开发者交流群**，交流使用心得、反馈问题与探讨新特性：
 
-![dsh-tabbit 开发者交流群](https://raw.githubusercontent.com/Tabbit-Browser/dsh-plugin/aa706ff97c704fb4be1021b6bf9574fe236811f4/assets/dsh-tabbit-developer-community-qr.png.jpg)
+![dsh-tabbit 开发者交流群](https://raw.githubusercontent.com/Tabbit-Browser/dsh-plugin/361ef61f4d42ae51d657ca1351acacd6b5db5d44/assets/dsh-tabbit-developer-community-qr.png.jpg)
 
 ## 设置
 

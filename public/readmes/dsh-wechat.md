@@ -10,7 +10,7 @@
 DSH 设置页内扫码登录与连接配置。以静态 Cordis 插件交付，零运行时
 `@deepseek-ai` 依赖，直接调用 DSH 进程内服务。
 
-<img src="https://raw.githubusercontent.com/pan17/dsh-wechat/ca61c211c7651da91e37fc21eb6c88135c5c18b1/resources/send.jpg" alt="发送" width="32%" /> <img src="https://raw.githubusercontent.com/pan17/dsh-wechat/ca61c211c7651da91e37fc21eb6c88135c5c18b1/resources/receive.jpg" alt="接收" width="32%" /> <img src="https://raw.githubusercontent.com/pan17/dsh-wechat/ca61c211c7651da91e37fc21eb6c88135c5c18b1/resources/settings.png" alt="设置页" width="32%" />
+<img src="https://raw.githubusercontent.com/pan17/dsh-wechat/50b551a2c447e1987f77e08cdd3e0e4828bb59ce/resources/send.jpg" alt="发送" width="32%" /> <img src="https://raw.githubusercontent.com/pan17/dsh-wechat/50b551a2c447e1987f77e08cdd3e0e4828bb59ce/resources/receive.jpg" alt="接收" width="32%" /> <img src="https://raw.githubusercontent.com/pan17/dsh-wechat/50b551a2c447e1987f77e08cdd3e0e4828bb59ce/resources/settings.png" alt="设置页" width="32%" />
 
 ## 功能
 
@@ -181,7 +181,7 @@ logout`），客户端零 `@deepseek-ai` 依赖。
 ```bash
 npm install
 npm run build    # tsc → dist/
-npm test         # vitest（399 个用例：splitText/格式化/解析/帧处理/waterfall 竞速/状态存储/命令解析/超时恢复/状态颜色/历史截断/渠道提示词）
+npm test         # vitest（splitText/格式化/解析/帧处理/waterfall 竞速/状态存储/命令解析/超时恢复/状态颜色/历史截断/渠道提示词/DSH 0.1.5 适配）
 ```
 
 ## 已知边界

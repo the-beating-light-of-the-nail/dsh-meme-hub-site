@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/776f5959c3d5002281b566c02653479dd19350e2/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
+  <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f8771a04b13d09aa9611d64f2f1de09694d5ed8b/docs/assets/logo.svg" alt="dsh-TUI - DeepSeek Harness terminal interface" width="560">
 </p>
 <p align="center">
   <strong>简体中文</strong> | <a href="README_EN.md">English</a>
@@ -31,7 +31,7 @@
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/776f5959c3d5002281b566c02653479dd19350e2/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f8771a04b13d09aa9611d64f2f1de09694d5ed8b/screenshots/wechat-official.png" alt="DeepSeek Harness 官方公众号推文收录 dsh-TUI" width="480">
         <br>
         <strong>DeepSeek Harness 官方公众号推文收录</strong>
       </td>
@@ -80,7 +80,7 @@ Sixel 使用最多 256 色的自适应调色板，透明像素与背景合成；
   <table>
     <tr>
       <td align="center" valign="middle" width="50%">
-        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/776f5959c3d5002281b566c02653479dd19350e2/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
+        <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f8771a04b13d09aa9611d64f2f1de09694d5ed8b/screenshots/splash.png" alt="首屏：像素鲸鱼顶栏" width="480">
         <br>
         <strong>首屏：像素鲸鱼顶栏</strong>
       </td>
@@ -326,7 +326,7 @@ TUI 的 shadow/门禁只覆盖自有托管接缝；以下由 Cordis/上游 DSH �
 
 | 微信群（dsh-TUI 社区交流 4 群） | QQ 群（群号 572549239） |
 | :---: | :---: |
-| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/776f5959c3d5002281b566c02653479dd19350e2/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流 4 群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/776f5959c3d5002281b566c02653479dd19350e2/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> |
+| <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f8771a04b13d09aa9611d64f2f1de09694d5ed8b/screenshots/wechat-group.jpg" alt="dsh-TUI 社区交流 4 群微信群二维码" width="200"> | <img src="https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f8771a04b13d09aa9611d64f2f1de09694d5ed8b/screenshots/qq-group.png" alt="dsh-TUI 社区交流群 QQ 群二维码" width="200"> |
 
 > 微信群二维码约 7 天过期一次，如遇失效请走 QQ 群（572549239），或开个 issue 提醒我们更新。
 
@@ -349,7 +349,7 @@ TUI 的 shadow/门禁只覆盖自有托管接缝；以下由 Cordis/上游 DSH �
 ## Stars
 
 <!-- star-history:start -->
-[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/776f5959c3d5002281b566c02653479dd19350e2/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
+[![Star History](https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/f8771a04b13d09aa9611d64f2f1de09694d5ed8b/assets/star-history/star-history.png)](https://star-history.com/#ccch1mneyyy/dsh-TUI&Date)
 <!-- star-history:end -->
 
 

@@ -10,7 +10,7 @@
 
 把常用任务做成一张张「冰箱贴」，贴在输入框上方：📰 24小时科技新闻、⭐ 推荐GitHub项目、📝 小黑盒草稿检查……按 **长期 / 短期** 分组，点一下贴纸，预置的 prompt 就自动发进**当前会话**，AI 立即开始执行——再也不用每次手打任务描述。
 
-![贴纸栏](https://raw.githubusercontent.com/sanqiPanax/dsh-sticker-board/080e3e075c636b518d451dd01a41cc5a624b530c/docs/screenshot-dock.png)
+![贴纸栏](https://raw.githubusercontent.com/sanqiPanax/dsh-sticker-board/9124dea6e28dac018fcfd60c2695680fa2b1cecb/docs/screenshot-dock.png)
 
 ## 为什么做这个
 

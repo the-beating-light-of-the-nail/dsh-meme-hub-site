@@ -23,17 +23,17 @@ An opt-in plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-
 
 Agent Team is opt-in: after installation the ordinary DSH page stays as-is, and Team mode is one additional entry in the sidebar footer.
 
-![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6ef338578a1756825a8042687b53655025b4a2ac/assets/readme/dsh-entry.png)
+![Ordinary DSH Web UI with the Team entry highlighted in the sidebar footer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/e422c792e7474403273cec81f004e9b2898790e1/assets/readme/dsh-entry.png)
 
 Entering Team mode shows Channels, managed Agents, and the collaboration timeline:
 
-![Team mode in the DSH Web UI: Channels and online Agent members in the sidebar, with the Main Channel showing Task references](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6ef338578a1756825a8042687b53655025b4a2ac/assets/readme/team-mode.png)
+![Team mode in the DSH Web UI: Channels and online Agent members in the sidebar, with the Main Channel showing Task references](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/e422c792e7474403273cec81f004e9b2898790e1/assets/readme/team-mode.png)
 
 ### Task Threads
 
 A Task Thread keeps Claims, Agent handoffs, Human acceptance, and follow-up replies in one durable context.
 
-![Task Thread in the DSH Web UI: Claims, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/6ef338578a1756825a8042687b53655025b4a2ac/assets/readme/task-thread.png)
+![Task Thread in the DSH Web UI: Claims, Agent handoffs, Human acceptance activity, and the reply composer](https://raw.githubusercontent.com/wowyuarm/dsh-agent-team/e422c792e7474403273cec81f004e9b2898790e1/assets/readme/task-thread.png)
 
 If this looks useful, a star on [GitHub](https://github.com/wowyuarm/dsh-agent-team) helps other DSH users find it.
 
@@ -107,14 +107,6 @@ dsh web
 ```
 
 Published packages include built artifacts. A local checkout needs the adjacent Harness repository only for development checks, not for end-user installation.
-
-## Compatibility and limits
-
-- This release is certified against DSH `0.1.2-rc.1`, and requires it: earlier DSH versions are not supported.
-- The bundle is single-host. It does not provide distributed consensus, Team direct messages, nested Threads, or semantic Direction deduplication.
-- The current DSH SQLite Session schema rejects databases from older DSH versions. Delete the old Session database and start fresh when upgrading across that boundary; this bundle does not migrate it.
-- Team-managed Agent Sessions use `danger-full-access`. Use them only in trusted Workspaces.
-- The npm package publishes only the runtime surface (`cordis.patch.yml`, compiled `packages/*/lib`, `preset/`, `core-skills/`, READMEs — see the `files` list in `package.json`); `scripts/` are repository-only development tooling and are not shipped.
 
 ## Development
 

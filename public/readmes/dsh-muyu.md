@@ -13,17 +13,18 @@ Harness 还是 preview 版本，最近算力不够，感觉api也有点降速，
 
 | 手动敲 | 自动敲 |
 | --- | --- |
-| ![木鱼手动敲演示](https://raw.githubusercontent.com/liuwenji007/dsh-muyu/9368569f2a58bb2cf45da3fc320bda14335d71e9/docs/tap.gif) | ![木鱼自动敲演示](https://raw.githubusercontent.com/liuwenji007/dsh-muyu/9368569f2a58bb2cf45da3fc320bda14335d71e9/docs/auto-tap.gif) |
+| ![木鱼手动敲演示](https://raw.githubusercontent.com/liuwenji007/dsh-muyu/eedf9d28215537bc1fa0054f62483eb01deaebc0/docs/tap.gif) | ![木鱼自动敲演示](https://raw.githubusercontent.com/liuwenji007/dsh-muyu/eedf9d28215537bc1fa0054f62483eb01deaebc0/docs/auto-tap.gif) |
 
 ## 玩法
 
 - 点角色头部：+1 功德。被敲多了会起包。
+- 点右上角小锁可解锁拖动位置，再点锁定；解锁后可用滚轮或 −/+ 缩放；设置里可隐藏小锁。
 - 当前会话忙碌时：自动轻敲，也记功德，默认大约每秒 1 功德。
 - 换会话：功德只会记录当前会话的敲击次数与自动消耗，切换会显示当前会话的。
 - 计数有香炉和木牌两种，默认香炉；9999 以内显示原数，再大显示 `Nk`。
 - 系统开了「减少动态效果」时会跳过跳动和飘 +1。
 
-手感与图源在 **设置 → 木鱼** 里改（开关、香炉/木牌、自动敲快慢、起包连击数、图源）。**本地制作** 用来做图对齐；**图库** 存放导入或存入的多个包，可随时切换；URL 给在线托管。
+手感与图源在 **设置 → 木鱼** 里改（开关、锁定按钮、香炉/木牌、自动敲快慢、起包连击数、图源）。**本地制作** 用来做图对齐；**图库** 存放导入或存入的多个包，可随时切换；URL 给在线托管。
 
 社区图包 / 二创皮肤见 **[dsh-muyu-skins](https://github.com/liuwenji007/dsh-muyu-skins)**（导入 zip → 图库「用这套」）。
 

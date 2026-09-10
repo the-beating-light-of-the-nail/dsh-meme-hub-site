@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
+  <img src="https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/cf31a64e8f033a7659be99b3015bb31479fcced1/assets/branding/dsh-banner.png" alt="DSH Skills Manager" width="100%">
 </p>
 
 <div align="center">
 
-  # DSH Skills Manager
+# DSH Skills Manager
 
   **Load and safely manage skills from DSH and common local Agents**
 
@@ -18,7 +18,6 @@
 </div>
 
 > DSH Skills Manager is a community-maintained DeepSeek Harness (DSH) plugin, not an official DeepSeek AI product.
-
 
 ## Features
 
@@ -35,15 +34,15 @@ Bring skills from your computer and projects into one DSH management page. Find 
 
 Browse by source or search in **Settings → Skills**. External Agent sources are made available through manager policy while their files stay read-only:
 
-![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/screenshots/skills-manager-v2-preview.png)
+![Skills Manager source-first settings page](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/cf31a64e8f033a7659be99b3015bb31479fcced1/assets/screenshots/skills-manager-v2-preview.png)
 
 Open any skill to inspect its source path, diagnostics, Markdown body, and parsed frontmatter:
 
-![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/screenshots/skill-detail.png)
+![Skill details and diagnostics](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/cf31a64e8f033a7659be99b3015bb31479fcced1/assets/screenshots/skill-detail.png)
 
 Moving a DSH-local skill to Trash requires confirmation and remains recoverable until it is permanently deleted:
 
-![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/5b9bb7d52fd949864e8833ce272632ab18c00b72/assets/screenshots/delete-plugin.png)
+![Move a skill to Trash confirmation](https://raw.githubusercontent.com/MichengAI/dsh-skills-manager/cf31a64e8f033a7659be99b3015bb31479fcced1/assets/screenshots/delete-plugin.png)
 
 ## DSH product ecosystem
 
@@ -132,7 +131,8 @@ Escape closes only the frontmost upload or confirmation dialog and leaves Settin
 - Trash falls back to copy-then-hide when a project and `$DSH_HOME` are on different volumes; restore uses the same guarded cross-volume path in reverse.
 - Project Trash entries retain their original opaque source identity. Restore is allowed only while that original project is still represented by an active Session workspace; the client cannot nominate a replacement path.
 - Project writes reject linked `.dsh` or `.dsh/skills` directories so a repository cannot redirect creation, deletion, or restore outside its own project root.
-- User-level read-only sources accept top-level linked Skill bundles only when the real target is an ordinary direct child of another known read-only Skills root. The same real Skill is displayed and loaded once according to source rank; writable DSH roots, project roots, linked roots, and arbitrary external targets remain rejected.
+- User-level read-only and project Agent sources recursively discover `SKILL.md` by default. Skill directories, roots, and parent directories may link to external locations through symlinks or Windows junctions without an opt-in or allowlist. Real-path deduplication and manager-local toggles preserve read-only sources. Skill-file symlinks are ignored, cycles terminate, and scans have depth and size limits. Writable DSH roots, imports, and deletion retain their existing boundaries.
+- Directories containing `SKILL.md` are bundle leaves; their resources and `node_modules` are not traversed. A root-level `SKILL.md` can still coexist with nested skills. Project Agent roots that overlap user skill roots by real path are hidden to preserve user disable policies.
 - Rows and summaries say **Enabled/Disabled**, not **Loaded**: these labels describe invocation policy, while full Skill bodies are loaded on demand by DSH. Use Refresh after IDE, Git, or shell changes; the official provider remains responsible for project catalog watching and invalidation.
 - Empty project roots stay out of the main source list to reduce noise, but remain selectable in Create Skill so the first project Skill can still be created. Project DSH supports per-Skill toggles only, not a source-wide switch.
 - Replacements copy to a temporary sibling path first and keep the original until that succeeds.

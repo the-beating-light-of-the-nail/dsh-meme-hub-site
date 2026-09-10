@@ -5,6 +5,7 @@
 [![Downloads](https://img.shields.io/npm/dw/@xiaoyuyu6420/dsh-backup)](https://www.npmjs.com/package/@xiaoyuyu6420/dsh-backup)
 [![Publish to npm](https://github.com/xiaoyuyu6420/dsh-backup/actions/workflows/publish.yml/badge.svg)](https://github.com/xiaoyuyu6420/dsh-backup/actions/workflows/publish.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Listed on DSH Directory](https://dsh.directory/badges/listed.svg)](https://dsh.directory/plugins/xiaoyuyu6420/dsh-backup)
 
 English | [简体中文](README.zh.md)
 
@@ -26,7 +27,7 @@ sha256: 8f9ae6322ef782d21554981cf4547220d5bb3e64d7964a883317415ad54e3cbb
 
 Prefer clicking? There's a visual panel in `dsh web` → Settings → Plugins → Backup: list, verify, restore, delete, edit settings — no restart.
 
-![Backup panel](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/ee904e37836c9568cde7a7385e7eacf0891ecd80/docs/assets/panel-backups.png)
+![Backup panel](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/33b665adfaaaad736804c09299af705110582ca0/docs/assets/panel-backups.png)
 
 ## Why you want this
 
@@ -41,7 +42,7 @@ Prefer clicking? There's a visual panel in `dsh web` → Settings → Plugins �
 | "Backups rot silently" | Every archive ships a sha256; `/backup verify all` checks integrity; daily/weekly tiered retention keeps useful history longer |
 | "I'll forget to back up" | `/backup auto 12` — every 12 hours, survives restarts, rotates old copies (default keep 7) |
 
-![Backup settings](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/ee904e37836c9568cde7a7385e7eacf0891ecd80/docs/assets/panel-settings.png)
+![Backup settings](https://raw.githubusercontent.com/xiaoyuyu6420/dsh-backup/33b665adfaaaad736804c09299af705110582ca0/docs/assets/panel-settings.png)
 
 ## Install
 

@@ -1,13 +1,13 @@
 # dsh-trading
 
-![dsh-trading — Your next trading terminal, and your AI Agent](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ca04d176f54b32c377ab9a8d572f7d47b6bc48b/docs/banners/banner-en.jpg)
+![dsh-trading — Your next trading terminal, and your AI Agent](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ce7d098bfeb4e52cfd692702c3fcbe170968bff/docs/banners/banner-en.jpg)
 
 > **Your next trading terminal can also be your AI agent.**
 > *No chumps for the slaughter, just everyday traders.*
 
 <div align="center">
 
-[![DSH Baseline](https://img.shields.io/badge/DSH%20Baseline-0.1.2--alpha.1-blue.svg)](https://github.com/deepseek-ai)
+[![DSH Baseline](https://img.shields.io/badge/DSH%20Baseline-0.1.5--rc.1-blue.svg)](https://github.com/deepseek-ai)
 [![Markets](https://img.shields.io/badge/Markets-Crypto%20%7C%20US%20%7C%20CN%20%7C%20HK-green.svg)](#one-terminal-every-market)
 [![Connectors](https://img.shields.io/badge/Connectors-19%2B-orange.svg)](docs/connectors-guide.md)
 [![License](https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-lightgrey.svg)](LICENSE)
@@ -28,7 +28,7 @@ That is why dsh-trading exists: an **agent-native trading terminal** built on [D
 
 Crypto, US equities, China A-shares, Hong Kong stocks. One terminal. One agent. Nineteen-plus connectors. Zero vendor lock-in — every key stays on your machine.
 
-![dsh-trading terminal — watchlist, chart stage with indicators, order book and derivatives panel](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ca04d176f54b32c377ab9a8d572f7d47b6bc48b/docs/screenshots/terminal-overview.png)
+![dsh-trading terminal — watchlist, chart stage with indicators, order book and derivatives panel](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ce7d098bfeb4e52cfd692702c3fcbe170968bff/docs/screenshots/terminal-overview.png)
 
 ---
 
@@ -42,7 +42,7 @@ dsh-trading turns that relationship upside down: **the agent is a first-class ci
 
 1. **Quotes, news, capital flow — the agent has it all.** One click on *Send to Agent*, and the symbol you're watching — live quote, current candle, the chart series' time range with a fetch locator (so the agent pulls the same routed data itself and analyzes it in code), the computed readings of your active indicators, available chart screenshot and derivatives snapshot, plus freshly requested announcements, news and a bounded fundamentals summary — is packaged into the composer without sending. Missing sources are explicit; the agent is guided to verify original disclosures and fill gaps with native research tools. No more screenshot-copy-paste ritual.
 
-![Send to Agent — chart snapshot and quote context injected into the composer](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ca04d176f54b32c377ab9a8d572f7d47b6bc48b/docs/screenshots/chart-to-agent.png)
+![Send to Agent — chart snapshot and quote context injected into the composer](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ce7d098bfeb4e52cfd692702c3fcbe170968bff/docs/screenshots/chart-to-agent.png)
 
 2. **The agent can trade, but the gate is in your hands.** Market data, order books, derivatives positioning, news, and order placement are all native tools. Yet every order defaults to **dry-run simulation**; live routing requires an explicit `liveTrading: true` opt-in, and then each order still passes through interactive human approval. In headless environments it fails closed. One rule: no move without the gate. Nothing executes behind your back.
 
@@ -79,7 +79,7 @@ A shoddy terminal makes even the smartest agent an armchair general.
 
 **Hot-swappable data planes.** Not happy with a data source? Swap it. Settings → Trading routes any market to any installed provider: the quote panel re-routes on save, agent sessions pick it up on their next turn — no restarts, no config archaeology.
 
-![Provider routing — per-market exchange selection with BYOK credential slots](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ca04d176f54b32c377ab9a8d572f7d47b6bc48b/docs/screenshots/provider-routing.png)
+![Provider routing — per-market exchange selection with BYOK credential slots](https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ce7d098bfeb4e52cfd692702c3fcbe170968bff/docs/screenshots/provider-routing.png)
 
 ## Safety and privacy: discipline welded in, not preached
 
@@ -163,7 +163,7 @@ Six invariants lock the ecosystem down: insert-only bundle patches · knowledge 
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ca04d176f54b32c377ab9a8d572f7d47b6bc48b/docs/assets/dsh-trading-qq.png" alt="dsh-trading QQ group QR code — group 319737695" width="280" />
+<img src="https://raw.githubusercontent.com/zhu1090093659/dsh-trading/3ce7d098bfeb4e52cfd692702c3fcbe170968bff/docs/assets/dsh-trading-qq.png" alt="dsh-trading QQ group QR code — group 319737695" width="280" />
 
 </div>
 

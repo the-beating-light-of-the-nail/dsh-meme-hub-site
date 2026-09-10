@@ -12,11 +12,11 @@ DeepSeek Harness Web UI 的鲸鱼女仆主题插件：提供亮暗双主题、�
 
 | 亮色模式 | 暗色模式 |
 | --- | --- |
-| [![无对话页面的亮色主题](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/2deb5f1e1aad4b067d53e0c7244726c844ef1087/maid-whale-webui/preview/theme-light.png)](preview/theme-light.png) | [![无对话页面的暗色主题](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/2deb5f1e1aad4b067d53e0c7244726c844ef1087/maid-whale-webui/preview/theme-dark.png)](preview/theme-dark.png) |
+| [![无对话页面的亮色主题](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/5162a73c2b1e066a095c4bf218a1c305ee467cfb/maid-whale-webui/preview/theme-light.png)](preview/theme-light.png) | [![无对话页面的暗色主题](https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/5162a73c2b1e066a095c4bf218a1c305ee467cfb/maid-whale-webui/preview/theme-dark.png)](preview/theme-dark.png) |
 
 ### Pet 预览
 
-[<img src="https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/2deb5f1e1aad4b067d53e0c7244726c844ef1087/maid-whale-webui/preview/pet-working.png" alt="鲸鱼桌宠工作状态预览" width="480">](preview/pet-working.png)
+[<img src="https://raw.githubusercontent.com/yunxiiQwQ/dsh-maid-whale-webUI/5162a73c2b1e066a095c4bf218a1c305ee467cfb/maid-whale-webui/preview/pet-working.png" alt="鲸鱼桌宠工作状态预览" width="480">](preview/pet-working.png)
 
 ## 安装说明
 

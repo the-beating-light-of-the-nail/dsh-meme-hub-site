@@ -13,7 +13,7 @@ over the stdio MCP wire with `scripts/mcp_wire.py`:
 | Mode | Cost while mounted | Model-facing tools |
 |---|---|---|
 | Skills only (default) | ~390 tokens for 14 catalog rows | 0 |
-| `compare-mcp` (recommended) | ~0.9k tokens per request | 2 |
+| `compare-mcp` (recommended) | ~0.9k tokens per request | 3 |
 | `marketplace-mcp` (full) | ~13.6k tokens per request | 36 |
 
 The 11 `*_selfcheck` tools that previously inflated the full server to 45 tools
@@ -76,7 +76,7 @@ $env:RU_MARKETPLACE_MCP_FULL = "1"   # PowerShell
 export RU_MARKETPLACE_MCP_FULL=1     # POSIX shell
 ```
 
-The enabled row then changes from `compare-mcp` (2 tools) to `marketplace-mcp`
+The enabled row then changes from `compare-mcp` (3 tools) to `marketplace-mcp`
 (36 tools). Both rows share `serverName: rumarket`, and their `disabled`
 conditions are mutually exclusive, so exactly one server instance runs at a
 time.
@@ -93,9 +93,9 @@ No MCP process survives profile restart without `RU_MARKETPLACE_MCP_DIR`.
 
 ## Docker alternative (published and CI-verified)
 
-Since v1.6.0 every release tag builds a stdio image and proves it with a real
+Since v1.8.0 every release tag builds a stdio image and proves it with a real
 MCP session over `docker run --rm -i` before publishing to the MCP Registry:
-initialize, `tools/list` (36 tools) and a `marketplace_sources` call. Use the
+initialize, `tools/list` (37 tools) and a `marketplace_sources` call. Use the
 published GHCR image instead of a local clone:
 
 ```yaml
@@ -110,7 +110,7 @@ published GHCR image instead of a local clone:
       - run
       - --rm
       - -i
-      - ghcr.io/vladimir-human/ru-marketplace-mcp:1.6.0
+      - ghcr.io/vladimir-human/ru-marketplace-mcp:2.1.0
     failOnStartupError: false
 ```
 

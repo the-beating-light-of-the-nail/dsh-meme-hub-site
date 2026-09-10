@@ -22,12 +22,12 @@ After installing, Settings → General gains two rows — **编辑审批 / 命�
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3fc95cf0a1cac92a005264efbc9fb0799a396082/assets/screenshots/settings-rows.png" width="440" alt="Settings → General: Edit approval and Bash approval rows"><br><sub>Master switches in Settings → General</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3fc95cf0a1cac92a005264efbc9fb0799a396082/assets/screenshots/edit-approval-panel.png" width="440" alt="Edit approval panel: red/green line-level diff"><br><sub>Edit approval panel — red/green line diff</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/33dc0f9ab6eb9fd6de1b664fdda1fb7f66ede608/assets/screenshots/settings-rows.png" width="440" alt="Settings → General: Edit approval and Bash approval rows"><br><sub>Master switches in Settings → General</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/33dc0f9ab6eb9fd6de1b664fdda1fb7f66ede608/assets/screenshots/edit-approval-panel.png" width="440" alt="Edit approval panel: red/green line-level diff"><br><sub>Edit approval panel — red/green line diff</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3fc95cf0a1cac92a005264efbc9fb0799a396082/assets/screenshots/bash-approval-panel.png" width="440" alt="Bash approval panel: description headline and command row"><br><sub>Bash approval panel — description + command</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/3fc95cf0a1cac92a005264efbc9fb0799a396082/assets/screenshots/approval-commands.png" width="440" alt="/approval-edit and /approval-bash slash commands"><br><sub>/approval-edit and /approval-bash commands</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/33dc0f9ab6eb9fd6de1b664fdda1fb7f66ede608/assets/screenshots/bash-approval-panel.png" width="440" alt="Bash approval panel: description headline and command row"><br><sub>Bash approval panel — description + command</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/SiriLee/dsh-edit-approval/33dc0f9ab6eb9fd6de1b664fdda1fb7f66ede608/assets/screenshots/approval-commands.png" width="440" alt="/approval-edit and /approval-bash slash commands"><br><sub>/approval-edit and /approval-bash commands</sub></td>
   </tr>
 </table>
 
@@ -121,7 +121,7 @@ The config surface is **forward-compatible by contract**: new keys are only ever
 
 - Node.js `^22.19.0 || >=24.0.0`.
 - DeepSeek Harness web profile (`dsh --profile web`); peer `@deepseek-ai/*` packages are resolved by the harness at runtime.
-- Compatible with **DSH rc.2 (`0.1.1-rc.2`) and `0.1.2-alpha.2`** (incl. alpha.1). Peer ranges are declared as a union of *version tuples* (`^0.1.0-rc.6 || ^0.1.1-rc.2 || ^0.1.2-alpha.2`) — npm's prerelease matching requires a candidate to share the comparator's `[major, minor, patch]` tuple, so each new tuple series appends another `||` term; same-tuple rc rolls (`rc.2 → rc.3`) need no update.
+- Declared against the **verified DSH range**, one `||` term per *supported* version tuple: `^0.1.0-rc.6 || ^0.1.1-rc.2 || ^0.1.2-rc.1 || ^0.1.5-rc.1` (`@deepseek-ai/dsh-settings` keeps its own `^0.1.0-rc.8` floor), with `dsh.engines.dsh` declaring the runtime floor `>=0.1.0-rc.6`. npm's prerelease matching requires a candidate to share the comparator's `[major, minor, patch]` tuple and offers no shorthand for "every prerelease of every `0.1.x` line", so each new tuple series appends another `||` term; same-tuple rc rolls (`rc.2 → rc.3`) need no update. `node scripts/check-dsh-version.mjs` guards the declaration (identical tuple sequence across peers, engine floor in sync, nothing published above the ceiling). The `0.1.2` alpha line and the unverified `0.1.3-alpha.2` release sit outside the declared window: the client still dispatches by capability presence rather than by parsing a version string and the alpha-line compatibility branches remain, but they are no longer declared targets.
 - The client detects the version by **capability presence** (`ctx.get('uiConversation')` resolves, the session snapshot still carries `chat`/`pending`), never by parsing a version string. Session/chat reads use a **dual-channel adapter**: rc.2 reads `chat`/`pending` from the session-face snapshot, alpha.1+ reads the named "chat" view of the `uiConversation` service; both missing degrades to `undefined` (no crash).
 - The registered tool name is `str_replace_editor` (underscores), distinct from the npm package name `@deepseek-ai/dsh-tool-str-replace-editor`.
 

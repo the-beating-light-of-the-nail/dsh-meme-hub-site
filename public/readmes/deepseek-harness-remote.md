@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/8397b7397627b1017000615175acf36191dfea73/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/89eb2c2e2802c132405a2b32be7b1f5f5eab125f/docs/logo.svg" alt="DeepSeek Harness Remote" width="600">
 </p>
 
 <p align="center">
@@ -38,7 +38,7 @@ Return to the same Harness session from whichever device is with you. Harness ke
 ## Features
 
 - Continue active sessions and review their latest progress from another device
-- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2` or `dsh-v0.1.2-alpha.1`–`rc.1`
+- Send new instructions, change direction, and use image prompts with Harness `dsh-v0.1.1-rc.2`, `dsh-v0.1.2-alpha.1`–`rc.1`, or `dsh-v0.1.5-rc.1`
 - Answer questions and permission requests from clients with live conversation controls
 - Open workspaces from another authorized computer on the same account
 - Reuse the native Harness interface instead of maintaining a separate desktop conversation UI
@@ -58,7 +58,7 @@ Linux. Remote is included and enabled by default, so no separate plugin installa
 Add the exact package version through DSH's plugin manager for the `web` profile:
 
 ```sh
-dsh plugin --profile web add ds-harness-remote@0.4.10
+dsh plugin --profile web add ds-harness-remote@0.4.12
 ```
 
 Restart Harness after installation.
@@ -73,7 +73,7 @@ profile; it does not require the Desktop browser `connection` service. Install t
 TUI profile:
 
 ```sh
-dsh plugin --profile dsh-tui add ds-harness-remote@0.4.10
+dsh plugin --profile dsh-tui add ds-harness-remote@0.4.12
 ```
 
 Start dsh-TUI and use its native slash command:
@@ -91,7 +91,8 @@ code. Login defaults to Zhihu; GitHub is also supported. Host control is enabled
 `/remote logout` revokes the Host and rotates its local device identity. Host configuration is not
 exposed yet; the integration uses `https://dsh.r2049.cn`. Tab completion is available for the
 subcommands and login providers. The `/remote` Host-management surface supports TUI profiles on
-`dsh-v0.1.1-rc.2` and `dsh-v0.1.2-alpha.1`–`rc.1`; Remote workspace capabilities are advertised
+`dsh-v0.1.1-rc.2`, `dsh-v0.1.2-alpha.1`–`rc.1`, and
+`dsh-v0.1.5-rc.1`; Remote workspace capabilities are advertised
 only when their official Harness carrier is available.
 
 See the [dsh-TUI Remote guide](docs/dsh-tui.md) for the compatibility matrix, rc.2 ApiProxy setup,
@@ -118,14 +119,14 @@ available as a Host.
 On another computer, select an online Host and open one of its workspaces.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/8397b7397627b1017000615175acf36191dfea73/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/89eb2c2e2802c132405a2b32be7b1f5f5eab125f/docs/images/host-list.png" alt="Remote workspace picker listing online Hosts" width="900">
 </p>
 
 The workspace opens in the native Harness interface, with the active Host and encrypted
 connection status shown in the header.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/8397b7397627b1017000615175acf36191dfea73/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/89eb2c2e2802c132405a2b32be7b1f5f5eab125f/docs/images/remote.png" alt="A Harness conversation running through an encrypted remote connection" width="900">
 </p>
 
 ### Android
@@ -137,9 +138,9 @@ open a workspace, and continue the conversation with text or image prompts. The 
 toolbar also lets you switch the active model and choose any reasoning effort declared by it.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/8397b7397627b1017000615175acf36191dfea73/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/8397b7397627b1017000615175acf36191dfea73/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
-  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/8397b7397627b1017000615175acf36191dfea73/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/89eb2c2e2802c132405a2b32be7b1f5f5eab125f/docs/images/mobile-list.jpg" alt="Android client listing online and offline computers" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/89eb2c2e2802c132405a2b32be7b1f5f5eab125f/docs/images/image-msg.jpg" alt="Sending an image prompt from the Android client" width="30%">
+  <img src="https://raw.githubusercontent.com/liguobao/deepseek-harness-remote/89eb2c2e2802c132405a2b32be7b1f5f5eab125f/docs/images/image-result.jpg" alt="Viewing the image response in the Android client" width="30%">
 </p>
 
 ## How it works
@@ -214,15 +215,20 @@ Remote business RPC surface (`sessions.*`, `session.*`, `permissions.respond`,
 `ApiProxy` or the v0.1.2 Typert Remote Gateway, and this plugin does not provide
 an adapter or wire-format translation for the old RPC surface.
 
-Plugin `0.4.10` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
+Plugin `0.4.12` supports DeepSeek Harness `dsh-v0.1.1-rc.2` through the legacy
 official `ApiProxy`, and `dsh-v0.1.2-alpha.1`–`rc.1` through the
-official Typert Remote Gateway. A `0.4.10` Client running rc.2 remains compatible
+official Typert Remote Gateway. It also supports
+`dsh-v0.1.5-rc.1` Session V3 through the official Typert Remote Gateway. A `0.4.12` Client running rc.2 remains compatible
 with older rc.2 Hosts through the legacy capability fallback.
 
-Both Desktop endpoints must use the same Harness transport generation. Plugin
-`0.4.x` does not translate legacy ApiProxy and v0.1.2 Typert business models: a
+Remote Web/Desktop and the Android app also normalize released sessions that
+still report the retired `code` agent preset to `ptc`, so old sessions can
+resume on `dsh-v0.1.5-rc.1` without changing DeepSeek Harness itself.
+
+Both Desktop endpoints must use the same Harness carrier and Session generation. Plugin
+`0.4.x` does not translate legacy ApiProxy, the v0.1.2 Session wire, and Session V3 business models: a
 Typert Client cannot open an ApiProxy Host, and an ApiProxy Client cannot open a Typert Host. Mixed
-connections are rejected before switching the native UI or mutating a Workspace.
+v0.1.2/V3 connections are also rejected before switching the native UI or mutating a Workspace.
 
 ## Documentation
 
