@@ -76,3 +76,14 @@
 - 定位差异：他们做"信任层"（verify/security），我们做"发现层"（导航/精选/meme/多语种 SEO）。同 awesome-dsh-plugin 的 manifest 校验、hub.omdsh.dev 的核验定位更接近，与我们正面冲突面小
 - 值得记的点：commit SHA 绑定扫描结果的思路（安装代码与展示结果一一对应）是真创新，若生态爆发安全焦虑可借鉴
 - 监控：若他们加 SSR/静态化内容 或 star 破百，重新评估
+
+### 11. dsh.market（2BingLing/dsh-market）— 头号劲敌（2026-09-11 实测）
+- **威胁等级：高**。必应"dsh 插件市场/DSH Market"类词第一（用户实测），收录 **6358** 插件（vs 我们 2771），数据每日 06:00 GitHub Actions 管道刷新
+- 仓库：github.com/2BingLing/dsh-market（MIT，105★），GitHub Pages + Cloudflare，**数据公开在 dsh.market/plugins.json**（含现成中文描述 descriptionZh、安装命令、五维评分）
+- 数据来源：5 个 topic（dsh-plugin/dsh/deepseek-harness-plugin/dsh-bundle/dsh-skill）多路排序并集 + 2 个 awesome 清单 + dsh-external 组织 + issue 投稿；特征检测（SKILL.md/skills//cordis 标记/package.json cordis 依赖），无 stars 门槛
+- **五维评分体系（我们要抄的方法论）**：维护活跃30%（近90天提交+release+issue 健康度 Wilson）/ 实用度25%（README 结构完备度）/ 生态热度20%（stars 对数归一化 p99 动态基准 + fork Wilson）/ 便捷度15%（安装命令明确+无需密钥）/ 信号质量10%（description/license/topics/homepage/README 完备度）→ **加权几何平均**成 0-100 实用分（惩罚偏科），贝叶斯置信降权新插件，每条附一句话推荐理由；分档 90+ 全能/70-89 优秀/50-69 良好/<50 待观察
+- 交互亮点：功能标签筛选（效率提升 3124/零配置 1807 等 12 热门）、类型/实用分/配置(开箱即用/需配置)/规模(<10★/10-50★/50+★)多维筛选、四个快捷 Tab（全部/高分精选/新手友好/最新上架）、WEEKLY PICK 本周精选、收藏（localStorage）、整合包（packs.json）、"帮我推荐"按钮
+- **弱点（我们的打法）**：纯 CSR SPA——无 SSR、无 sitemap（对引擎隐身的 hash 路由内容）、纯中文单语、无 meme/整活、无 hreflang、无独立插件详情页路由（对比/评测缺失）。我们 SSR 预渲染 + 四语 + 全套 Schema 是正面对撞的胜负手
+- **差距实锤**（2026-09-11 diff）：我们缺约 3600 条，其中头部缺 ruflo(71973★)/loopx(5779★)/Vibe-Skills(3238★)/OpenBitFun(2119★)/vox-director(1847★)/last30days-skill-cn(1770★)/DSH-Desktop-EAC(1621★)；≥50★ 段我们已有 1503/1595（头部覆盖不弱，缺的是尖货+长尾）
+- 应对：scripts/import-dshmarket.mjs 全量分批镜像收录（批1 ≥50★ 92 条已入）；评分体系对标复刻（scripts/compute-scores.mjs，五维同权重几何平均）；作者榜差异化（他没有作者维度）
+- 监控：每日 CI 顺带可 diff 其 plugins.json 增量；若其上线 SSR/sitemap 或英文版，升级应对
