@@ -1317,6 +1317,137 @@
       }
     },
     {
+      "slug": "tavern",
+      "enabled": true,
+      "emoji": "🍺",
+      "ogImage": "/images/gal-view.webp",
+      "filter": {
+        "categoryZh": [
+          "酒馆与角色扮演"
+        ]
+      },
+      "label": {
+        "en": "Tavern & Roleplay",
+        "zh": "酒馆与角色扮演",
+        "zh-TW": "酒館與角色扮演",
+        "de": "Taverne & Rollenspiel"
+      },
+      "title": {
+        "en": "Top {n} DeepSeek Harness (dsh) Tavern & Roleplay Plugins | DSH Meme Hub",
+        "zh": "酒馆与角色扮演插件大全 — {n} 款 DeepSeek Harness 酒馆插件 | DSH Meme Hub",
+        "zh-TW": "酒館與角色扮演外掛大全 — {n} 款 DeepSeek Harness 酒館外掛 | DSH Meme Hub",
+        "de": "Die besten {n} DeepSeek Harness (dsh) Tavern- & Rollenspiel-Plugins | DSH Meme Hub"
+      },
+      "h1": {
+        "en": "Tavern-style roleplay plugins for DeepSeek Harness",
+        "zh": "dsh 酒馆与角色扮演插件精选",
+        "zh-TW": "dsh 酒館與角色扮演外掛精選",
+        "de": "Tavern-Rollenspiel-Plugins für DeepSeek Harness"
+      },
+      "desc": {
+        "en": "The tavern, rebuilt on an agent: SillyTavern character-card and worldbook imports, script modes, group chat and companions, message rendering — {n} DeepSeek Harness (dsh) tavern & roleplay plugins, star-sorted with install commands.",
+        "zh": "把酒馆搬进 agent：SillyTavern 角色卡与世界书导入、剧本模式、群聊与陪伴、消息渲染，共 {n} 款 DeepSeek Harness 酒馆插件，按 star 排序，附一键安装命令。",
+        "zh-TW": "把酒館搬進 agent：SillyTavern 角色卡與世界書匯入、劇本模式、群聊與陪伴、訊息渲染，共 {n} 款 DeepSeek Harness 酒館外掛，按 star 排序，附一鍵安裝命令。",
+        "de": "Die Taverne, neu gebaut auf einem Agenten: SillyTavern-Karten- und Worldbook-Importe, Skriptmodi, Gruppenchat und Begleiter, Nachrichten-Rendering — {n} DeepSeek Harness (dsh) Plugins, nach Stars sortiert, mit Installationsbefehlen."
+      },
+      "intro": {
+        "en": [
+          "This section exists because \"the tavern keeps getting heavier while agents keep getting smarter\": it moves SillyTavern’s character cards, worldbooks and presets into dsh, letting characters use the harness’s tools, memory and sub-agents. The top three each chart a route — flizzywine/dsh-tavern builds a text-game agent (prose and candidate options on separate tracks, a script mode anchoring the main storyline); dsh-agent-rp makes the character a top-level agent with personas, worlds and rules as composable first-class resources, compatible with MVU, EJS and Tavern Helper; dsh-liketavern simply turns dsh web into a tavern-style frontend.",
+          "Pick by what you want: management panels (multi-card, multi-book, presets) suit heavy tavern users migrating over; script and story-engineering builds suit long-running plots; card-authoring and rendering tools round out creation and looks. Existing tavern assets mostly come along — V2/V3 JSON/PNG card imports are the mainstream, with partial CHARX support. Note that several leading plugins pin dsh 0.1.2-rc.1; check each README’s version requirement before installing."
+        ],
+        "zh": [
+          "这一类诞生于一个朴素的观察：「酒馆越用越重，agent 越来越能干」——把 SillyTavern 的角色卡、世界书、预设搬进 dsh，角色就能直接用上 harness 的工具、记忆与子 Agent。头部三个各代表一条路线：flizzywine/dsh-tavern 做成文字游戏 Agent（正文与候选项分轨生成、剧本模式锚定主线）；dsh-agent-rp 把角色变成顶层 Agent，Persona、世界与规则都是可组合的一等资源，还兼容 MVU、EJS、Tavern Helper 等酒馆扩展格式；dsh-liketavern 则直接把 dsh web 变成酒馆式前端。",
+          "选型先想清楚要什么：管理面板型（多卡多书多预设）适合重度酒馆用户迁移；剧本与故事工程型适合长跑剧情；制卡与渲染工具补足创作与观感。已有的酒馆资产大多能带过来——V2/V3 的 JSON/PNG 角色卡导入是主流，CHARX 部分支持。注意多个头部插件锁定 dsh 0.1.2-rc.1 运行时，装前以 README 版本要求为准。"
+        ],
+        "zh-TW": [
+          "這一類誕生於一個樸素的觀察：「酒館越用越重，agent 越來越能幹」——把 SillyTavern 的角色卡、世界書、預設搬進 dsh，角色就能直接用上 harness 的工具、記憶與子 Agent。頭部三個各代表一條路線：flizzywine/dsh-tavern 做成文字遊戲 Agent（正文與候選項分軌生成、劇本模式錨定主線）；dsh-agent-rp 把角色變成頂層 Agent，Persona、世界與規則都是可組合的一等資源，還相容 MVU、EJS、Tavern Helper 等酒館擴充格式；dsh-liketavern 則直接把 dsh web 變成酒館式前端。",
+          "選型先想清楚要什麼：管理面板型（多卡多書多預設）適合重度酒館使用者遷移；劇本與故事工程型適合長跑劇情；製卡與渲染工具補足創作與觀感。已有的酒館資產大多能帶過來——V2/V3 的 JSON/PNG 角色卡匯入是主流，CHARX 部分支援。注意多個頭部外掛鎖定 dsh 0.1.2-rc.1 執行時，裝前以 README 版本要求為準。"
+        ],
+        "de": [
+          "Diese Kategorie entstand aus einer nüchternen Beobachtung: Die Taverne wird immer schwerer, Agenten werden immer geschickter — also holt sie SillyTaverns Charakterkarten, Worldbooks und Presets in dsh, sodass Charaktere direkt auf Werkzeuge, Gedächtnis und Sub-Agenten des Harness zugreifen. Die Top drei stecken je eine Route ab: flizzywine/dsh-tavern baut einen Textspiel-Agenten (Prosa und Optionen auf getrennten Spuren, ein Skriptmodus verankert die Haupthandlung); dsh-agent-rp macht den Charakter zum Top-Level-Agenten, mit Persona, Welt und Regeln als kombinierbaren Ressourcen erster Klasse, kompatibel mit MVU, EJS und Tavern Helper; dsh-liketavern verwandelt dsh web schlicht in ein Tavernen-Frontend.",
+          "Wähle nach Bedarf: Verwaltungspanels (viele Karten, Bücher, Presets) für schwere Tavernen-Nutzende beim Umzug; Skript- und Story-Engineering für lange Handlungen; Karten-Schreib- und Rendering-Tools für Erstellung und Optik. Bestehende Tavernen-Assets kommen meist mit — V2/V3-JSON/PNG-Kartenimporte sind der Mainstream, CHARX wird teilweise unterstützt. Mehrere führende Plugins pinnen dsh 0.1.2-rc.1; vor der Installation die Versionsanforderung im README prüfen."
+        ]
+      },
+      "installNote": {
+        "en": "Tavern plugins install with the same npx command as everything else (see the install guide), but they are sensitive to your dsh version — several leading plugins pin the 0.1.2-rc.1 runtime, so check the README first; some ship an adult-content toggle, enable at your own discretion.",
+        "zh": "酒馆插件用与其他插件相同的 npx 命令安装（见安装指南），但对 dsh 版本普遍敏感——多个头部插件锁定 0.1.2-rc.1 运行时，装前对照 README；部分插件带成人内容开关，按需启用。",
+        "zh-TW": "酒館外掛用與其他外掛相同的 npx 命令安裝（見安裝指南），但對 dsh 版本普遍敏感——多個頭部外掛鎖定 0.1.2-rc.1 執行時，裝前對照 README；部分外掛帶成人內容開關，按需啟用。",
+        "de": "Tavernen-Plugins werden mit demselben npx-Befehl installiert wie alle anderen (siehe Installationsguide), sind aber empfindlich gegenüber der dsh-Version — mehrere führende Plugins pinnen die Runtime 0.1.2-rc.1, also zuerst das README prüfen; manche bringen einen Adult-Content-Schalter mit, nach eigenem Ermessen aktivieren."
+      },
+      "faqs": [
+        {
+          "q": {
+            "en": "How is this different from just using SillyTavern?",
+            "zh": "和直接用 SillyTavern 有什么区别？",
+            "zh-TW": "和直接用 SillyTavern 有什麼區別？",
+            "de": "Wie unterscheidet sich das von SillyTavern direkt?"
+          },
+          "a": {
+            "en": "Tavern plugins run inside a dsh session, so characters get the harness’s tools, file system and sub-agents — for play styles where the character can actually do things, look things up and keep notes. SillyTavern remains the mature dedicated frontend with a smoother pure-RP experience and a large preset community. Card formats interoperate, so assets move both ways.",
+            "zh": "酒馆插件跑在 dsh 会话里，角色能用上 harness 的工具、文件系统与子 Agent——适合想让角色「能干活、能查资料、能记事」的玩法；SillyTavern 仍是成熟的专用前端，纯角色扮演体验与预设社区生态更顺手。角色卡格式两边互通，资产可以来回搬。",
+            "zh-TW": "酒館外掛跑在 dsh 會話裡，角色能用上 harness 的工具、檔案系統與子 Agent——適合想讓角色「能幹活、能查資料、能記事」的玩法；SillyTavern 仍是成熟的專用前端，純角色扮演體驗與預設社群生態更順手。角色卡格式兩邊互通，資產可以來回搬。",
+            "de": "Tavernen-Plugins laufen in einer dsh-Sitzung, sodass Charaktere auf Werkzeuge, Dateisystem und Sub-Agenten des Harness zugreifen — für Spielweisen, in denen der Charakter tatsächlich handeln, nachschlagen und sich merken kann. SillyTavern bleibt das reife Spezial-Frontend mit weicherer Pure-RP-Erfahrung und großer Preset-Community. Die Kartenformate interoperieren, Assets wandern in beide Richtungen."
+          }
+        },
+        {
+          "q": {
+            "en": "Can I import my existing tavern character cards?",
+            "zh": "已有的酒馆角色卡能直接导入吗？",
+            "zh-TW": "已有的酒館角色卡能直接匯入嗎？",
+            "de": "Kann ich meine bestehenden Tavernen-Karten importieren?"
+          },
+          "a": {
+            "en": "Mostly yes: V2/V3 JSON and PNG-embedded cards are the mainstream supported formats; CHARX and legacy V1 work in some plugins, and World Info plus Chat Completion presets are commonly accepted too. Each plugin’s README is the authority on scope.",
+            "zh": "大多可以：V2/V3 的 JSON 与 PNG 内嵌卡是主流支持格式，CHARX 与旧版 V1 在部分插件中也支持，世界书（World Info）与 Chat Completion 预设同样常见；具体兼容范围以各插件 README 为准。",
+            "zh-TW": "大多可以：V2/V3 的 JSON 與 PNG 內嵌卡是主流支援格式，CHARX 與舊版 V1 在部分外掛中也支援，世界書（World Info）與 Chat Completion 預設同樣常見；具體相容範圍以各外掛 README 為準。",
+            "de": "Meist ja: V2/V3-JSON und PNG-eingebettete Karten sind die gängigen Formate; CHARX und das alte V1 funktionieren in einigen Plugins, World Info und Chat-Completion-Presets sind ebenfalls verbreitet. Der genaue Umfang steht im jeweiligen README."
+          }
+        },
+        {
+          "q": {
+            "en": "Do tavern plugins burn more tokens?",
+            "zh": "酒馆插件会更耗 token 吗？",
+            "zh-TW": "酒館外掛會更耗 token 嗎？",
+            "de": "Verbrauchen Tavernen-Plugins mehr Token?"
+          },
+          "a": {
+            "en": "Somewhat more: candidate-option generation, worldbook injections and character-state summaries all add requests. For long campaigns, pair them with a balance monitor from the Security & Operations section and check the plugin’s own memory-compression options.",
+            "zh": "会多一些：候选项生成、世界书注入、人物状态总结都是额外请求。长剧情建议搭配安全与运维区的余额监控插件，并关注插件自带的记忆压缩选项。",
+            "zh-TW": "會多一些：候選項生成、世界書注入、人物狀態總結都是額外請求。長劇情建議搭配安全與運維區的餘額監控外掛，並關注外掛自帶的記憶壓縮選項。",
+            "de": "Etwas mehr: Optionen-Generierung, Worldbook-Injektionen und Zustandszusammenfassungen sind zusätzliche Anfragen. Für lange Kampagnen lohnt ein Bilanzmonitor aus dem Security-&-Ops-Bereich samt der Memory-Komprimierung des jeweiligen Plugins."
+          }
+        },
+        {
+          "q": {
+            "en": "How do I start after installing?",
+            "zh": "装完怎么开始玩？",
+            "zh-TW": "裝完怎麼開始玩？",
+            "de": "Wie starte ich nach der Installation?"
+          },
+          "a": {
+            "en": "Most plugins put their entry in the web UI sidebar or session tab bar (e.g. next to \"Trajectory\"); drop a character-card PNG/JSON into the panel, save and inject, and start chatting. Each README’s screenshots show the exact entry point.",
+            "zh": "大多数插件的入口在 Web UI 侧边栏或会话标签栏（如「轨迹」旁），把角色卡 PNG/JSON 拖入对应面板、保存注入即可开聊；具体入口位置以各插件 README 截图为准。",
+            "zh-TW": "大多數外掛的入口在 Web UI 側邊欄或會話標籤欄（如「軌跡」旁），把角色卡 PNG/JSON 拖入對應面板、儲存注入即可開聊；具體入口位置以各外掛 README 截圖為準。",
+            "de": "Die meisten Plugins setzen ihren Einstieg in die Sidebar der Web-UI oder die Sitzungs-Tab-Leiste (etwa neben „Trajectory“); eine Karten-PNG/JSON ins Panel ziehen, speichern und injizieren, dann loschatten. Die Screenshots im jeweiligen README zeigen den genauen Einstieg."
+          }
+        }
+      ],
+      "keywords": {
+        "en": [
+          "dsh tavern plugin",
+          "deepseek harness roleplay",
+          "dsh character cards",
+          "dsh sillytavern"
+        ],
+        "zh": [
+          "dsh 酒馆插件",
+          "dsh 角色扮演",
+          "deepseek harness sillytavern",
+          "dsh 角色卡"
+        ]
+      }
+    },
+    {
       "slug": "skins",
       "enabled": true,
       "emoji": "🎨",

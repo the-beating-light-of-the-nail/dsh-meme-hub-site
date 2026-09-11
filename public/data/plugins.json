@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-09-10",
- "count": 2707,
+ "updatedAt": "2026-09-11",
+ "count": 2730,
  "plugins": [
   {
    "slug": "dsh-web-ui",
@@ -34143,8 +34143,8 @@
    "description_en": "Adds a configurable humanized whale-girl maid persona with immersive roleplay, speaking modes, and a lightweight layered memory with query-triggered recall.",
    "stars": 5,
    "forks": 1,
-   "category_zh": "会话与消息",
-   "category_en": "Sessions & Messages",
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
@@ -34160,7 +34160,7 @@
     "dsh-plugins"
    ],
    "description_zh_TW": "為 DSH 新增可配置的女僕鯨魚娘人格：沉浸式扮演（稱呼/自稱/說話方式）、防出戲規則，以及借鑑 ALTM 的輕量分層記憶與按需召回。",
-   "category_zh_TW": "會話與訊息",
+   "category_zh_TW": "酒館與角色扮演",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -76787,8 +76787,8 @@
    "description_en": "Import SillyTavern/TavernAI character cards and world books, save them as local Markdown lore documents, and generate novel prose from your prompts with the world settings as reference.",
    "stars": 19,
    "forks": 0,
-   "category_zh": "娱乐",
-   "category_en": "Just for Fun",
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
@@ -76809,7 +76809,7 @@
     "tavern"
    ],
    "description_zh_TW": "匯入酒館（SillyTavern/TavernAI）角色卡與世界書，落地為本地 Markdown 設定文件，啟用創作模式後根據使用者輸入、參考世界書創作小說。",
-   "category_zh_TW": "娛樂",
+   "category_zh_TW": "酒館與角色扮演",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -77101,42 +77101,6 @@
    "category_de": "Börse & Quant"
   },
   {
-   "slug": "-",
-   "name": "-",
-   "repo": "chen731215-dev/-",
-   "url": "https://github.com/chen731215-dev/-",
-   "description_zh": "酒馆管理原生面板：多角色卡、多世界书、可切换预设，深浅色跟随，点侧边栏自动关闭。",
-   "description_en": "Native tavern management panel for DeepSeek Harness: multiple character cards, multiple worldbooks, switchable presets.",
-   "stars": 39,
-   "forks": 6,
-   "category_zh": "娱乐",
-   "category_en": "Just for Fun",
-   "is_meme": false,
-   "meme_section": null,
-   "meme_caption_zh": "",
-   "meme_caption_en": "",
-   "image": null,
-   "install_cmd": "dsh plugin --profile web add github:chen731215-dev/-",
-   "pushed_at": "2026-08-27",
-   "license": null,
-   "language": "JavaScript",
-   "has_manifest": true,
-   "topics": [
-    "dsh-plugin"
-   ],
-   "description_zh_TW": "酒館管理原生面板：多角色卡、多世界書、可切換預設，深淺色跟隨，點側邊欄自動關閉。",
-   "category_zh_TW": "娛樂",
-   "meme_caption_zh_TW": "",
-   "screenshots": [
-    {
-     "url": "https://opengraph.githubassets.com/dcfbcd7885c3e9367469f243c7cd098fd58a3f0c/chen731215-dev/-",
-     "w": null,
-     "h": null
-    }
-   ],
-   "auto_ingested": true
-  },
-  {
    "slug": "dsh-roleplay",
    "name": "dsh-roleplay",
    "repo": "chinosk6/dsh-roleplay",
@@ -77145,8 +77109,8 @@
    "description_en": "Role-play conversations with character cards, in-chat character-card authoring and editing, and image generation through configurable backends.",
    "stars": 6,
    "forks": 1,
-   "category_zh": "娱乐",
-   "category_en": "Just for Fun",
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
@@ -77165,7 +77129,7 @@
     "roleplay"
    ],
    "description_zh_TW": "角色扮演外掛：支援角色卡對話、在對話中創作與編輯角色卡，可接入生圖後端生成插圖。",
-   "category_zh_TW": "娛樂",
+   "category_zh_TW": "酒館與角色扮演",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -114747,12 +114711,12 @@
    "name": "dsh-tavern",
    "repo": "chen731215-dev/dsh-tavern",
    "url": "https://github.com/chen731215-dev/dsh-tavern",
-   "description_zh": "酒馆管理原生面板：多角色卡、多世界书、多预设与会话级隔离，记忆总结与角色关系网，剧情选项一键发送，另有 NSFW 成人模式。",
-   "description_en": "Native tavern management panel for DeepSeek Harness: character cards, worldbooks and presets with session-level isolation, memory summaries, a character relationship web, one-click plot options, and an NSFW mode.",
+   "description_zh": "【已归档，迁移至 dsh-tavern-v2】酒馆管理原生面板：多角色卡、多世界书、多预设与会话级隔离，记忆总结与角色关系网，剧情选项一键发送，另有 NSFW 成人模式。",
+   "description_en": "[Archived — migrated to dsh-tavern-v2] Native tavern management panel for DeepSeek Harness: character cards, worldbooks and presets with session-level isolation, memory summaries, a character relationship web, one-click plot options, and an NSFW mode.",
    "stars": 40,
    "forks": 6,
-   "category_zh": "娱乐",
-   "category_en": "Just for Fun",
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
@@ -114766,8 +114730,8 @@
    "topics": [
     "dsh-plugin"
    ],
-   "description_zh_TW": "酒館管理原生面板：多角色卡、多世界書、多預設與會話級隔離，記憶總結與角色關係網，劇情選項一鍵傳送，另有 NSFW 成人模式。",
-   "category_zh_TW": "娛樂",
+   "description_zh_TW": "【已封存，遷移至 dsh-tavern-v2】酒館管理原生面板：多角色卡、多世界書、多預設與會話級隔離，記憶總結與角色關係網，劇情選項一鍵傳送，另有 NSFW 成人模式。",
+   "category_zh_TW": "酒館與角色扮演",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -115593,8 +115557,8 @@
    "description_en": "Turns the DeepSeek Harness agent into any character: a global cosplay switch, SillyTavern v2 role cards with JSON import/export, a neutral/role thinking-style toggle, and natural-language card authoring via a built-in skill.",
    "stars": 6,
    "forks": 1,
-   "category_zh": "娱乐",
-   "category_en": "Just for Fun",
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
    "is_meme": false,
    "meme_section": null,
    "meme_caption_zh": "",
@@ -115609,7 +115573,7 @@
     "dsh-plugin"
    ],
    "description_zh_TW": "讓 DeepSeek Harness 的 Agent 扮演任何角色：全域性扮演開關、酒館 v2 角色卡（JSON 匯入匯出）、中立/角色化思考切換，內建 skill 支援一句話生成角色卡。",
-   "category_zh_TW": "娛樂",
+   "category_zh_TW": "酒館與角色扮演",
    "meme_caption_zh_TW": "",
    "screenshots": [
     {
@@ -115846,6 +115810,917 @@
      "h": null
     }
    ]
+  },
+  {
+   "slug": "dsh-tavern-flizzywine",
+   "name": "dsh-tavern",
+   "repo": "flizzywine/dsh-tavern",
+   "url": "https://github.com/flizzywine/dsh-tavern",
+   "description_zh": "基于 DSH 的 SillyTavern 类文字游戏 Agent：直接导入酒馆人物卡，也可从小说、剧本与人物素材制卡；正文与候选项分开生成，独立人物态势总结保持位置与状态一致，剧本模式让故事沿既定主线长期推进，支持回退回合。",
+   "description_en": "A SillyTavern-style text-game agent on DSH: import tavern character cards directly or build new ones from novels, scripts and character material; prose and candidate options generate separately, an independent character-state summary keeps positions and status consistent, and a script mode keeps long stories on their intended arc, with turn rollback.",
+   "stars": 243,
+   "forks": 20,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:flizzywine/dsh-tavern",
+   "pushed_at": "2026-09-10",
+   "license": "AGPL-3.0",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin"
+   ],
+   "description_zh_TW": "基於 DSH 的 SillyTavern 類文字遊戲 Agent：直接匯入酒館人物卡，也可從小說、劇本與人物素材製卡；正文與候選項分開生成，獨立人物態勢總結保持位置與狀態一致，劇本模式讓故事沿既定主線長期推進，支援回退回合。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/67f505034c9aa2e0f0b59a388aa1c7f3371080cf/flizzywine/dsh-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-agent-rp",
+   "name": "dsh-agent-rp",
+   "repo": "hewzhew/dsh-agent-rp",
+   "url": "https://github.com/hewzhew/dsh-agent-rp",
+   "description_zh": "运行在 DSH 上的原生角色扮演 Runtime：角色直接作为顶层 Agent 行动，Persona、世界、提示策略、规则包、状态与记忆都是可独立复用组合的一等资源；兼容酒馆角色卡（PNG/JSON/CHARX）、Chat Completion 预设、World Info、MVU、EJS 与 Tavern Helper，故事工程由研究、人物、演员、分区与编辑多个 Worker 协作维护大纲与伏笔。",
+   "description_en": "A native roleplay runtime on DSH: characters act directly as top-level agents, with personas, worlds, prompt strategies, rule packs, state and memory as first-class, independently composable resources; imports tavern character cards (PNG/JSON/CHARX), Chat Completion presets, World Info, MVU, EJS and Tavern Helper, while a story-engineering layer has research, character, actor, section and editor workers maintain outlines and foreshadowing.",
+   "stars": 214,
+   "forks": 12,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:hewzhew/dsh-agent-rp",
+   "pushed_at": "2026-09-05",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "agent",
+    "dsh",
+    "roleplay",
+    "sillytavern"
+   ],
+   "description_zh_TW": "執行在 DSH 上的原生角色扮演 Runtime：角色直接作為頂層 Agent 行動，Persona、世界、提示策略、規則包、狀態與記憶都是可獨立重複使用組合的一等資源；相容酒館角色卡（PNG/JSON/CHARX）、Chat Completion 預設、World Info、MVU、EJS 與 Tavern Helper，故事工程由研究、人物、演員、分區與編輯多個 Worker 協作維護大綱與伏筆。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/724ce23f823d4af050e199722a8848bf0a0ad902/hewzhew/dsh-agent-rp",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-liketavern",
+   "name": "dsh-liketavern",
+   "repo": "Amakurai/dsh-liketavern",
+   "url": "https://github.com/Amakurai/dsh-liketavern",
+   "description_zh": "把 dsh web 变成 SillyTavern 式角色扮演前端：导入 ST 角色卡与提示词预设，在同一会话里管理设定、推进剧情、重新生成与切换分支；内置 EJS 提示词模板、酒馆助手部分接口与可选原生 MVU。",
+   "description_en": "Turns dsh web into a SillyTavern-style roleplay frontend: import ST character cards and prompt presets, manage settings, advance the plot, re-roll and switch branches within one session; ships EJS prompt templates, partial Tavern Helper interfaces and optional native MVU.",
+   "stars": 84,
+   "forks": 1,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:Amakurai/dsh-liketavern",
+   "pushed_at": "2026-09-10",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "deepseek-harness",
+    "deepseek-harness-plugin",
+    "dsh-plugin",
+    "sillytavern"
+   ],
+   "description_zh_TW": "把 dsh web 變成 SillyTavern 式角色扮演前端：匯入 ST 角色卡與提示詞預設，在同一會話裡管理設定、推進劇情、重新生成與切換分支；內建 EJS 提示詞範本、酒館助手部分介面與可選原生 MVU。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/be1511b8fb76d794d933b781c3c3f621e8e137d1/Amakurai/dsh-liketavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-tavern-lingyesoul",
+   "name": "dsh-tavern",
+   "repo": "LingyeSoul/dsh-tavern",
+   "url": "https://github.com/LingyeSoul/dsh-tavern",
+   "description_zh": "把 DSH 扩展成兼容 SillyTavern 生态的原生角色扮演工作区：支持 V1/V2/V3 角色卡（JSON/PNG/CHARX）、世界书递归扫描与预算控制、Chat Completion 预设、JSONL 聊天记录、swipe 与消息分支、Persona 注入和群聊。",
+   "description_en": "Extends DSH into a native roleplay workspace compatible with the SillyTavern ecosystem: V1/V2/V3 character cards (JSON/PNG/CHARX), worldbook recursive scanning and budget control, Chat Completion presets, JSONL chat logs, swipes and message branching, persona injection and group chat.",
+   "stars": 14,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:LingyeSoul/dsh-tavern",
+   "pushed_at": "2026-09-10",
+   "license": "GPL-3.0",
+   "language": "JavaScript",
+   "has_manifest": false,
+   "topics": [
+    "dsh-plugin"
+   ],
+   "description_zh_TW": "把 DSH 擴充成相容 SillyTavern 生態的原生角色扮演工作區：支援 V1/V2/V3 角色卡（JSON/PNG/CHARX）、世界書遞迴掃描與預算控制、Chat Completion 預設、JSONL 聊天記錄、swipe 與訊息分支、Persona 注入和群聊。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/647665209462983af4c1dc3bfb62cd6fe9e3a77d/LingyeSoul/dsh-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-portable-tavern",
+   "name": "dsh-portable-tavern",
+   "repo": "XCNXNXNX/dsh-portable-tavern",
+   "url": "https://github.com/XCNXNXNX/dsh-portable-tavern",
+   "description_zh": "「便携酒馆」插件：RPG 式 SillyTavern V2/V3 角色卡生成器加酒馆角色扮演聊天，支持世界书、角色卡 JSON/PNG 导入导出、面板主题与本地音乐。",
+   "description_en": "A \"portable tavern\" plugin: an RPG-style SillyTavern V2/V3 character-card generator plus tavern roleplay chat, with worldbooks, JSON/PNG card import-export, panel themes and local music.",
+   "stars": 21,
+   "forks": 1,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:XCNXNXNX/dsh-portable-tavern",
+   "pushed_at": "2026-08-20",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "character-card",
+    "dsh",
+    "dsh-plugin",
+    "roleplay",
+    "sillytavern"
+   ],
+   "description_zh_TW": "「便攜酒館」外掛：RPG 式 SillyTavern V2/V3 角色卡產生器加酒館角色扮演聊天，支援世界書、角色卡 JSON/PNG 匯入匯出、面板主題與本機音樂。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/8fbb93df34a08a8341c996382d44266d4f72c855/XCNXNXNX/dsh-portable-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-museai-tavern",
+   "name": "dsh-museai-tavern",
+   "repo": "yejiming/dsh-museai-tavern",
+   "url": "https://github.com/yejiming/dsh-museai-tavern",
+   "description_zh": "把 MuseAI 的角色放进 DSH 使用：从 Web GUI 会话标签栏「轨迹」旁进入，可在「背景」页创建世界书与角色卡。",
+   "description_en": "Bring your MuseAI characters into DSH: enter from the Web GUI session tab bar next to \"Trajectory\", and create worldbooks and character cards on the \"Background\" page.",
+   "stars": 19,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:yejiming/dsh-museai-tavern",
+   "pushed_at": "2026-08-15",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh",
+    "dsh-plugin"
+   ],
+   "description_zh_TW": "把 MuseAI 的角色放進 DSH 使用：從 Web GUI 會話標籤欄「軌跡」旁進入，可在「背景」頁建立世界書與角色卡。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/685d65c7039af590cca64d3714ba73d83cb64655/yejiming/dsh-museai-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-roleplay-preset",
+   "name": "dsh-roleplay-preset",
+   "repo": "oliblue-evan/dsh-roleplay-preset",
+   "url": "https://github.com/oliblue-evan/dsh-roleplay-preset",
+   "description_zh": "DeepSeek 深度调校的沉浸式角色扮演 Agent 预设：零工具纯对话、酒馆式演出格式、文件记忆库。",
+   "description_en": "An immersive roleplay agent preset tuned for DeepSeek: zero-tool pure conversation, tavern-style performance formatting, and a file-based memory store.",
+   "stars": 19,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:oliblue-evan/dsh-roleplay-preset",
+   "pushed_at": "2026-09-01",
+   "license": "MIT",
+   "language": null,
+   "has_manifest": false,
+   "topics": [
+    "agent-preset",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "roleplay"
+   ],
+   "description_zh_TW": "DeepSeek 深度調校的沉浸式角色扮演 Agent 預設：零工具純對話、酒館式演出格式、檔案記憶庫。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/5f6b8e698f9ca2d72e6170a9663b4b8a1be48f04/oliblue-evan/dsh-roleplay-preset",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-tavern-v2",
+   "name": "dsh-tavern-v2",
+   "repo": "chen731215-dev/dsh-tavern-v2",
+   "url": "https://github.com/chen731215-dev/dsh-tavern-v2",
+   "description_zh": "酒馆管理原生面板二代：角色卡扮演、世界书管理、预设切换、深色主题与记忆总结，原 dsh-tavern 仓库已归档迁移至此。",
+   "description_en": "Tavern management native panel v2: character-card roleplay, worldbook management, preset switching, dark theme and memory summaries; the original dsh-tavern repo has been archived and migrated here.",
+   "stars": 13,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:chen731215-dev/dsh-tavern-v2",
+   "pushed_at": "2026-08-31",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "character-card",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "roleplay",
+    "tavern",
+    "worldbook"
+   ],
+   "description_zh_TW": "酒館管理原生面板二代：角色卡扮演、世界書管理、預設切換、深色主題與記憶總結，原 dsh-tavern 倉庫已封存遷移至此。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/9d2ed2d7adb68c67afc3e291c9c57c8a5a2bdba1/chen731215-dev/dsh-tavern-v2",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-tavern-player-minepig",
+   "name": "dsh-tavern",
+   "repo": "Player-MINEPIG/dsh-tavern",
+   "url": "https://github.com/Player-MINEPIG/dsh-tavern",
+   "description_zh": "让 dsh 兼容 SillyTavern 产物（artifacts）的插件。",
+   "description_en": "A plugin that makes dsh compatible with SillyTavern artifacts.",
+   "stars": 12,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:Player-MINEPIG/dsh-tavern",
+   "pushed_at": "2026-09-10",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin"
+   ],
+   "description_zh_TW": "讓 dsh 相容 SillyTavern 產物（artifacts）的外掛。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/12379fd33002dfd10049bb082f31dd63447cf3bf/Player-MINEPIG/dsh-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-tavernweave",
+   "name": "dsh-tavernweave",
+   "repo": "VO-Bogey/dsh-tavernweave",
+   "url": "https://github.com/VO-Bogey/dsh-tavernweave",
+   "description_zh": "TavernWeave 制卡系统的 DeepSeek Harness 原生前端插件。",
+   "description_en": "A native DeepSeek Harness frontend plugin for the TavernWeave card-authoring system.",
+   "stars": 8,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:VO-Bogey/dsh-tavernweave",
+   "pushed_at": "2026-09-03",
+   "license": null,
+   "language": "JavaScript",
+   "has_manifest": false,
+   "topics": [],
+   "description_zh_TW": "TavernWeave 製卡系統的 DeepSeek Harness 原生前端外掛。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/b016c5c45bc9f3debef2a9ef46d6e5bb37cf9319/VO-Bogey/dsh-tavernweave",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-roleplay-lutrodev",
+   "name": "dsh-roleplay",
+   "repo": "lutrodev/dsh-roleplay",
+   "url": "https://github.com/lutrodev/dsh-roleplay",
+   "description_zh": "角色扮演插件全家桶：角色卡、世界书（lorebook）、Persona、预设、状态与对话工具。",
+   "description_en": "A roleplay plugin suite: character cards, lorebooks, personas, presets, state and conversation tools.",
+   "stars": 7,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:lutrodev/dsh-roleplay",
+   "pushed_at": "2026-09-03",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": false,
+   "topics": [
+    "airoleplay",
+    "character-card",
+    "dsh-plugin",
+    "sillytavern"
+   ],
+   "description_zh_TW": "角色扮演外掛全家桶：角色卡、世界書（lorebook）、Persona、預設、狀態與對話工具。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/4fa71b0f140708697cb620e685df84011f3025bb/lutrodev/dsh-roleplay",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "DSH-RolePlay",
+   "name": "DSH-RolePlay",
+   "repo": "RiemannRe3/DSH-RolePlay",
+   "url": "https://github.com/RiemannRe3/DSH-RolePlay",
+   "description_zh": "DeepSeek Harness 的 Tavern 角色卡兼容与原生 Agent RolePlay 插件。",
+   "description_en": "Tavern character-card compatibility and native agent roleplay for DeepSeek Harness.",
+   "stars": 7,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:RiemannRe3/DSH-RolePlay",
+   "pushed_at": "2026-08-30",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin",
+    "roleplay"
+   ],
+   "description_zh_TW": "DeepSeek Harness 的 Tavern 角色卡相容與原生 Agent RolePlay 外掛。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/e4745a72fda075dec5801113b1fb2f682cd95362/RiemannRe3/DSH-RolePlay",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-novel-tavern",
+   "name": "dsh-novel-tavern",
+   "repo": "makenwjz/dsh-novel-tavern",
+   "url": "https://github.com/makenwjz/dsh-novel-tavern",
+   "description_zh": "小说模式加酒馆模式：novel 创作工作区与 SillyTavern 兼容酒馆，微信式聊天 UI、角色卡渲染与卡桥接。",
+   "description_en": "Novel mode plus tavern mode: a novel-writing workspace and a SillyTavern-compatible tavern with WeChat-style chat UI, character-card rendering and card bridging.",
+   "stars": 4,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:makenwjz/dsh-novel-tavern",
+   "pushed_at": "2026-08-20",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": false,
+   "topics": [],
+   "description_zh_TW": "小說模式加酒館模式：novel 創作工作區與 SillyTavern 相容酒館，微信式聊天 UI、角色卡渲染與卡橋接。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/3356af9597cc0e5e326f2912894916966bfef4ac/makenwjz/dsh-novel-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-plugin-tavern",
+   "name": "dsh-plugin-tavern",
+   "repo": "Star-Guest/dsh-plugin-tavern",
+   "url": "https://github.com/Star-Guest/dsh-plugin-tavern",
+   "description_zh": "酒馆（SillyTavern 精简版）：角色卡解析管理员 card-analyst 与角色扮演讲述者 roleplay 双 Agent 分工。",
+   "description_en": "A compact SillyTavern for DSH: a card-analyst agent parses character cards while a roleplay agent narrates.",
+   "stars": 3,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:Star-Guest/dsh-plugin-tavern",
+   "pushed_at": "2026-08-22",
+   "license": null,
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin"
+   ],
+   "description_zh_TW": "酒館（SillyTavern 精簡版）：角色卡解析管理員 card-analyst 與角色扮演講述者 roleplay 雙 Agent 分工。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/f6bb83a81042685221e4b2c46e8ce95406518c2f/Star-Guest/dsh-plugin-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-rp-composer",
+   "name": "dsh-rp-composer",
+   "repo": "wuzhigouno-collab/dsh-rp-composer",
+   "url": "https://github.com/wuzhigouno-collab/dsh-rp-composer",
+   "description_zh": "Web 端 RP 结构化输入插件：台词、动作、心理分框填空，模板组装发送，从输入层消除 AI 对玩家言行的成分误识别。",
+   "description_en": "A structured RP input composer for the web UI: fill in dialogue, action and inner-thought boxes and send assembled templates, eliminating the model’s misreading of player speech and actions at the input layer.",
+   "stars": 3,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:wuzhigouno-collab/dsh-rp-composer",
+   "pushed_at": "2026-08-24",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "interactive-fiction",
+    "llm",
+    "roleplay",
+    "sillytavern"
+   ],
+   "description_zh_TW": "Web 端 RP 結構化輸入外掛：台詞、動作、心理分框填空，範本組裝傳送，從輸入層消除 AI 對玩家言行的成分誤識別。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/14b5d8dc35c4eee7eaf329abcd5fef75b2b7965b/wuzhigouno-collab/dsh-rp-composer",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-tavern-tk553521",
+   "name": "dsh-tavern",
+   "repo": "tk553521/dsh-tavern",
+   "url": "https://github.com/tk553521/dsh-tavern",
+   "description_zh": "DSH 酒馆：SillyTavern 风格角色扮演插件，含人物卡、世界书、预设与多 agent。",
+   "description_en": "A DSH tavern: SillyTavern-style roleplay with character cards, worldbooks, presets and multi-agent support.",
+   "stars": 2,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:tk553521/dsh-tavern",
+   "pushed_at": "2026-08-23",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [],
+   "description_zh_TW": "DSH 酒館：SillyTavern 風格角色扮演外掛，含人物卡、世界書、預設與多 agent。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/94ec7fb8f46cb220174f8d0ff79851bae885bf05/tk553521/dsh-tavern",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-universal-worldbook",
+   "name": "dsh-universal-worldbook",
+   "repo": "TritiumWang/dsh-universal-worldbook",
+   "url": "https://github.com/TritiumWang/dsh-universal-worldbook",
+   "description_zh": "酒馆风格通用世界书：为最新用户消息附加一次性提示词注入，无上下文污染。",
+   "description_en": "A SillyTavern-style general-purpose worldbook: attaches one-shot prompt injections to the latest user message with no context pollution.",
+   "stars": 1,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:TritiumWang/dsh-universal-worldbook",
+   "pushed_at": "2026-09-06",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "deepseek-harness",
+    "deepseek-harness-plugin",
+    "deepseek-harness-plugins",
+    "dsh",
+    "dsh-plugin",
+    "dsh-plugin-desktop",
+    "dsh-plugins"
+   ],
+   "description_zh_TW": "酒館風格通用世界書：為最新使用者訊息附加一次性提示詞注入，無上下文污染。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/4474ccd6f3d0f36c0c854ff897a27631126109f6/TritiumWang/dsh-universal-worldbook",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-stcardwriter",
+   "name": "dsh-stcardwriter",
+   "repo": "bychv/dsh-stcardwriter",
+   "url": "https://github.com/bychv/dsh-stcardwriter",
+   "description_zh": "面向 DeepSeek Harness 的 SillyTavern 角色卡、世界书与预设创作插件，集成 Preset Plus。",
+   "description_en": "An authoring plugin for SillyTavern character cards, worldbooks and presets on DeepSeek Harness, with Preset Plus integrated.",
+   "stars": 2,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:bychv/dsh-stcardwriter",
+   "pushed_at": "2026-09-03",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin",
+    "mit",
+    "nodejs"
+   ],
+   "description_zh_TW": "面向 DeepSeek Harness 的 SillyTavern 角色卡、世界書與預設創作外掛，整合 Preset Plus。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/c1f2825e3fd0d302925a4bc1e2cd01ea437aa45e/bychv/dsh-stcardwriter",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-tavern-renderer",
+   "name": "dsh-tavern-renderer",
+   "repo": "LiweiDonVee/dsh-tavern-renderer",
+   "url": "https://github.com/LiweiDonVee/dsh-tavern-renderer",
+   "description_zh": "独立的 DSH 消息渲染器：白名单 HTML/CSS、宏与八个沉浸式文档模板。",
+   "description_en": "An independent DSH message renderer with sanitized HTML/CSS, macros and eight immersive document templates.",
+   "stars": 1,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:LiweiDonVee/dsh-tavern-renderer",
+   "pushed_at": "2026-09-09",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "deepseek-harness",
+    "dsh-plugin"
+   ],
+   "description_zh_TW": "獨立的 DSH 訊息渲染器：白名單 HTML/CSS、巨集與八個沉浸式文件範本。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/11decae80fd23df83e56346e5aa7cd4f8fc66d9d/LiweiDonVee/dsh-tavern-renderer",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-rp-studio",
+   "name": "dsh-rp-studio",
+   "repo": "LiweiDonVee/dsh-rp-studio",
+   "url": "https://github.com/LiweiDonVee/dsh-rp-studio",
+   "description_zh": "无内容绑定的角色扮演前端与网关：自带预设与运行时即可开跑，不捆绑任何故事、角色或预设。",
+   "description_en": "A content-free roleplay frontend and gateway for DSH: bring your own presets and runtime — no bundled stories, characters or presets.",
+   "stars": 1,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:LiweiDonVee/dsh-rp-studio",
+   "pushed_at": "2026-09-09",
+   "license": null,
+   "language": "TypeScript",
+   "has_manifest": false,
+   "topics": [
+    "deepseek-harness",
+    "roleplay"
+   ],
+   "description_zh_TW": "無內容綁定的角色扮演前端與閘道：自帶預設與執行時即可開跑，不捆綁任何故事、角色或預設。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/090fd067279272b301c6025fd01a953210df8ed6/LiweiDonVee/dsh-rp-studio",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-agentnoodle",
+   "name": "dsh-agentnoodle",
+   "repo": "bigharm/dsh-agentnoodle",
+   "url": "https://github.com/bigharm/dsh-agentnoodle",
+   "description_zh": "AI 驱动的群像聊天游戏框架，轻量化酒馆：兼容 SillyTavern V1/V2/V3 JSON 与 PNG 内嵌卡片，添加 NPC 与场景交给 harness 安排即可。",
+   "description_en": "An AI-driven ensemble chat-game framework — a lightweight tavern: compatible with SillyTavern V1/V2/V3 JSON and PNG-embedded cards; add NPCs and scenes and let the harness run them.",
+   "stars": 0,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:bigharm/dsh-agentnoodle",
+   "pushed_at": "2026-08-31",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin",
+    "dsh-plugin-desktop",
+    "dsh-plugin-market",
+    "dsh-plugin-pack",
+    "dsh-plugins"
+   ],
+   "description_zh_TW": "AI 驅動的群像聊天遊戲框架，輕量化酒館：相容 SillyTavern V1/V2/V3 JSON 與 PNG 內嵌卡片，新增 NPC 與場景交給 harness 安排即可。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/7fe5f27bb0f8cd39babeec557d04fff0c101f042/bigharm/dsh-agentnoodle",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-character-studio",
+   "name": "dsh-character-studio",
+   "repo": "Ryu6Zero/dsh-character-studio",
+   "url": "https://github.com/Ryu6Zero/dsh-character-studio",
+   "description_zh": "原生沉浸式 RP 与陪伴工作室：角色卡加 Hindsight 图谱记忆，按角色配置。",
+   "description_en": "A native immersive RP and companion studio: character cards plus Hindsight graph memory, configured per character.",
+   "stars": 0,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:Ryu6Zero/dsh-character-studio",
+   "pushed_at": "2026-08-29",
+   "license": "MIT",
+   "language": "TypeScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin",
+    "dsh-plugins",
+    "hindsight",
+    "roleplay",
+    "sillytavern"
+   ],
+   "description_zh_TW": "原生沉浸式 RP 與陪伴工作室：角色卡加 Hindsight 圖譜記憶，按角色設定。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/88e3d76b2ab0b15337b1d0b2282c36397fa47ce0/Ryu6Zero/dsh-character-studio",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-roleplay-plugin",
+   "name": "dsh-roleplay-plugin",
+   "repo": "ajuwm/dsh-roleplay-plugin",
+   "url": "https://github.com/ajuwm/dsh-roleplay-plugin",
+   "description_zh": "以角色扮演为主体、桌宠为附加功能的 DeepSeek Harness 插件。",
+   "description_en": "A DeepSeek Harness plugin with roleplay as the core and a desktop pet as a bonus.",
+   "stars": 1,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:ajuwm/dsh-roleplay-plugin",
+   "pushed_at": "2026-09-10",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "ai",
+    "dsh",
+    "dsh-plugin",
+    "dsh-plugins",
+    "roleplay"
+   ],
+   "description_zh_TW": "以角色扮演為主體、桌寵為附加功能的 DeepSeek Harness 外掛。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/225b42088f0b23fede8dbf7c89b1f897ba17956b/ajuwm/dsh-roleplay-plugin",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
+  },
+  {
+   "slug": "dsh-cc-studio",
+   "name": "dsh-cc-studio",
+   "repo": "xia-sc/dsh-cc-studio",
+   "url": "https://github.com/xia-sc/dsh-cc-studio",
+   "description_zh": "CCv3 角色卡工坊：从一句话点子生成可导入 SillyTavern / Risu 的 chara_card_v3，专治「只有点子、世界观薄弱」。",
+   "description_en": "A CCv3 character-card studio: turns a one-line idea into a chara_card_v3 importable to SillyTavern / Risu — for when you have the idea but a thin worldview.",
+   "stars": 2,
+   "forks": 0,
+   "category_zh": "酒馆与角色扮演",
+   "category_en": "Tavern & Roleplay",
+   "is_meme": false,
+   "meme_section": null,
+   "meme_caption_zh": "",
+   "meme_caption_en": "",
+   "image": null,
+   "install_cmd": "dsh plugin --profile web add github:xia-sc/dsh-cc-studio",
+   "pushed_at": "2026-09-10",
+   "license": "MIT",
+   "language": "JavaScript",
+   "has_manifest": true,
+   "topics": [
+    "dsh-plugin",
+    "dsh-plugins"
+   ],
+   "description_zh_TW": "CCv3 角色卡工坊：從一句話點子生成可匯入 SillyTavern / Risu 的 chara_card_v3，專治「只有點子、世界觀薄弱」。",
+   "category_zh_TW": "酒館與角色扮演",
+   "meme_caption_zh_TW": "",
+   "screenshots": [
+    {
+     "url": "https://opengraph.githubassets.com/ac2303eb4ef58ef435642b672bc4c545b9ec1c93/xia-sc/dsh-cc-studio",
+     "w": null,
+     "h": null
+    }
+   ],
+   "auto_ingested": false
   }
  ]
 }

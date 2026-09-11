@@ -37,10 +37,12 @@
   字段，覆盖人工润色（如 插件→外掛 等用词）。**禁止整跑**；补少量 key 用手工 patch，
   遵循 OpenCC s2twp 惯例。
 - `scripts/build-data.py` 是 LEGACY，**禁止运行**（会从外部源整体重建文件丢字段）。
-- 分类体系：14 类落地页由 `data/seo/category-pages.json` 驱动，
+- 分类体系：16 类落地页由 `data/seo/category-pages.json` 驱动，
   filter.categoryZh 是精确值（工具与集成/UI 增强/Agent 与自动化/生态与开发/
   安全与运维/记忆与知识/客户端与终端/视觉与多模态/赛博宠物/抽象整活/娱乐/
-  换皮肤色/会话与消息/摸鱼游戏）。插件 category_zh 必须精确等于其中之一。
+  酒馆与角色扮演/换皮肤色/会话与消息/摸鱼游戏/股票金融）。
+  插件 category_zh 必须精确等于其中之一。
+  新增类目时同步改 `composables/usePlugins.ts` 的 CATEGORY_EMOJI 与本清单。
 
 ## git 提交纪律
 
