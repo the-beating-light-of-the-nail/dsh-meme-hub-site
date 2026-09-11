@@ -20,7 +20,7 @@ const CATEGORY_PAGES = (JSON.parse(readFileSync('./data/seo/category-pages.json'
   .filter((c) => c.enabled)
   .map((c) => `plugins/${c.slug}`)
 
-const TOP_PAGES = ['', 'plugins', 'store', ...CATEGORY_PAGES, 'best', 'compare', 'compare/deepseek-harness-vs-claude-code', 'compare/deepseek-harness-vs-opencode', 'compare/deepseek-harness-vs-codex', 'meme', 'submit', 'about', 'install', 'launcher']
+const TOP_PAGES = ['', 'plugins', 'store', ...CATEGORY_PAGES, 'best', 'authors', 'compare', 'compare/deepseek-harness-vs-claude-code', 'compare/deepseek-harness-vs-opencode', 'compare/deepseek-harness-vs-codex', 'meme', 'submit', 'about', 'install', 'launcher']
 // 与 scripts/check-prerender.mjs 的 locales 保持同步
 const LOCALES = ['en', 'zh', 'zh-TW', 'de']
 

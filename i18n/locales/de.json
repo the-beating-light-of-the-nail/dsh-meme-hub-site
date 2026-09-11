@@ -13,7 +13,8 @@
     "best": "Plugin-Ranglisten",
     "vision": "Vision",
     "clients": "Terminals & Clients",
-    "ops": "Security & Ops"
+    "ops": "Security & Ops",
+    "authors": "👥 Autoren"
   },
   "hero": {
     "title": "Alles ist ein Plugin —",
@@ -549,7 +550,9 @@
     "opsTitle": "DeepSeek Harness (dsh) Security- & Ops-Plugins — Approvals, Audits, Verbrauch | DSH Meme Hub",
     "opsDesc": "Wie siehst du den dsh-Verbrauch? Alle DeepSeek-Harness-Security- & Ops-Plugins: {n} Approval-, Audit-, Session-Health-, Token-Verbrauchs- und Kosten-Monitoring-Plugins — nach Stars sortiert.",
     "docsTitle": "DSH-Dokumentation (DeepSeek-Harness-Tutorials) — Von der Installation bis zur Plugin-Entwicklung {'|'} DSH Meme Hub",
-    "docsDesc": "66 ausführliche DeepSeek-Harness-Tutorials (DSH): Installation, CLI, Berechtigungen, Funktionsweise und Plugin-Entwicklung."
+    "docsDesc": "66 ausführliche DeepSeek-Harness-Tutorials (DSH): Installation, CLI, Berechtigungen, Funktionsweise und Plugin-Entwicklung.",
+    "authorsTitle": "DSH-Plugin-Autoren — aktive Beitragende hinter {n} Plugins",
+    "authorsDesc": "Wer baut das dsh-Plugin-Ökosystem? Diese Rangliste aggregiert {n} Autoren nach Plugin-Anzahl, Gesamtsternen und Aktivität."
   },
   "vision": {
     "title": "Vision- & Multimodal-Plugins — Augen für das text-only DSH",
@@ -665,5 +668,15 @@
     "dim_e": "Einfachheit",
     "dim_s": "Signalqualität",
     "how": "So funktioniert die Bewertung"
+  },
+  "authors": {
+    "title": "DSH-Plugin-Autoren",
+    "sub": "Aggregiert aus {p} Plugins — {n} Autoren. Entdecke die produktivsten und aktivsten Beitragenden im Ökosystem.",
+    "note": "Aktivität = Log der Gesamtsterne ×30 + Plugin-Bonus (max. 30) + Bonus für aktuelle Pushes. Täglich aktualisiert.",
+    "tabActivity": "🔥 Aktivität",
+    "tabStars": "⭐ Gesamtsterne",
+    "tabCount": "📦 Plugin-Anzahl",
+    "colPlugins": "Plugins",
+    "loadMore": "Mehr laden ({n} weitere)"
   }
 }

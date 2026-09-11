@@ -13,7 +13,8 @@
     "best": "插件排行榜",
     "vision": "视觉与多模态",
     "clients": "终端与客户端",
-    "ops": "安全与运维"
+    "ops": "安全与运维",
+    "authors": "👥 作者榜"
   },
   "hero": {
     "title": "一切皆插件——",
@@ -549,7 +550,9 @@
     "opsTitle": "DeepSeek Harness (dsh) 安全与运维插件 — 审批/审计/用量监控 | DSH Meme Hub",
     "opsDesc": "dsh 用量怎么看?DeepSeek Harness 安全与运维插件合集:{n} 个工具调用审批、安全审计、会话体检、token 用量与费用监控插件,按 star 排序,附一键安装命令。",
     "docsTitle": "DSH 文档（DeepSeek Harness 教程）— 从安装到插件开发 {'|'} DSH Meme Hub",
-    "docsDesc": "66 篇 DeepSeek Harness（DSH）中文教程：安装配置、命令行、权限凭据、原理课程与插件开发，从零开始把 DSH 用起来。"
+    "docsDesc": "66 篇 DeepSeek Harness（DSH）中文教程：安装配置、命令行、权限凭据、原理课程与插件开发，从零开始把 DSH 用起来。",
+    "authorsTitle": "DSH 插件作者榜 — {n} 个插件背后的活跃贡献者",
+    "authorsDesc": "想知道 dsh 插件生态里谁最能打？作者榜聚合 {n} 位作者的插件数、总 star 与活跃度，帮你发现优秀活跃的插件作者。"
   },
   "vision": {
     "title": "视觉与多模态插件 — 给纯文本 DSH 装上眼睛",
@@ -665,5 +668,15 @@
     "dim_e": "便捷度",
     "dim_s": "信号质量",
     "how": "评分怎么算"
+  },
+  "authors": {
+    "title": "DSH 插件作者榜",
+    "sub": "从 {p} 个插件里聚合出 {n} 位作者——发现高产、活跃的生态贡献者，代表作一键直达。",
+    "note": "综合活跃分 = 总星对数 ×30 + 插件数加成（封顶 30） + 近期推送加成；数据每日自动刷新",
+    "tabActivity": "🔥 综合活跃",
+    "tabStars": "⭐ 总星数",
+    "tabCount": "📦 插件数",
+    "colPlugins": "个插件",
+    "loadMore": "加载更多（还有 {n} 位）"
   }
 }

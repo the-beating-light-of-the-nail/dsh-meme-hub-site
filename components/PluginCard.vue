@@ -40,6 +40,7 @@ const tier = computed(() => (score.value ? scoreTierOf(score.value) : ''))
     </div>
     <p class="desc">{{ descOf(plugin, locale) }}</p>
     <div class="meta-row">
+      <a class="author" :href="`https://github.com/${plugin.repo.split('/')[0]}`" target="_blank" rel="noopener">{{ plugin.repo.split('/')[0] }}</a>
       <span class="stars">{{ plugin.stars.toLocaleString() }}</span>
       <span v-if="score" class="score-chip" :class="`t-${tier}`" :title="score.exp">
         {{ score.t }}{{ locale === 'zh' || locale === 'zh-TW' ? ' 分' : '' }}
@@ -67,4 +68,8 @@ const tier = computed(() => (score.value ? scoreTierOf(score.value) : ''))
 .score-chip.t-great { color: #0969da; background: #ddf4ff; }
 .score-chip.t-good { color: #57606a; background: #f0f2f5; }
 .score-chip.t-watch { color: #6e7781; background: #f6f8fa; opacity: 0.75; }
+
+/* 作者名（repo 前缀 → GitHub 主页）：meta-row 首列，弱化为次级链接 */
+.author { color: var(--text-3, #6e7781); text-decoration: none; font-size: 12px; }
+.author:hover { color: #0969da; }
 </style>

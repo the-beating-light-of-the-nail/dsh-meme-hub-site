@@ -18,7 +18,7 @@ export default defineEventHandler((event) => {
     .filter(c => c.enabled)
     .map(c => `plugins/${c.slug}`)
 
-  const top = ['', 'plugins', 'store', ...categoryPages, 'best', 'compare', 'compare/deepseek-harness-vs-claude-code', 'compare/deepseek-harness-vs-opencode', 'compare/deepseek-harness-vs-codex', 'meme', 'submit', 'about', 'install', 'launcher']
+  const top = ['', 'plugins', 'store', ...categoryPages, 'best', 'authors', 'compare', 'compare/deepseek-harness-vs-claude-code', 'compare/deepseek-harness-vs-opencode', 'compare/deepseek-harness-vs-codex', 'meme', 'submit', 'about', 'install', 'launcher']
   const urls: string[] = []
 
   const LANGS = [

@@ -13,7 +13,8 @@
     "best": "外掛排行榜",
     "vision": "視覺與多模態",
     "clients": "終端與客戶端",
-    "ops": "安全與運維"
+    "ops": "安全與運維",
+    "authors": "👥 作者榜"
   },
   "hero": {
     "title": "一切皆外掛——",
@@ -549,7 +550,9 @@
     "opsTitle": "DeepSeek Harness (dsh) 安全與運維外掛 — 審批/審計/用量監控 | DSH Meme Hub",
     "opsDesc": "dsh 用量怎麼看?DeepSeek Harness 安全與運維外掛合集:{n} 個工具呼叫審批、安全審計、會話體檢、token 用量與費用監控外掛,按 star 排序,附一鍵安裝命令。",
     "docsTitle": "DSH 文件（DeepSeek Harness 教學）— 從安裝到外掛開發 {'|'} DSH Meme Hub",
-    "docsDesc": "66 篇 DeepSeek Harness（DSH）中文教學：安裝設置、命令列、權限憑證、原理課程與外掛開發，從零開始把 DSH 用起來。"
+    "docsDesc": "66 篇 DeepSeek Harness（DSH）中文教學：安裝設置、命令列、權限憑證、原理課程與外掛開發，從零開始把 DSH 用起來。",
+    "authorsTitle": "DSH 外掛作者榜 — {n} 個外掛背後的活躍貢獻者",
+    "authorsDesc": "想知道 dsh 外掛生態裡誰最能打？作者榜聚合 {n} 位作者的外掛數、總 star 與活躍度，幫你發現優秀活躍的外掛作者。"
   },
   "vision": {
     "title": "視覺與多模態外掛 — 給純文本 DSH 裝上眼睛",
@@ -665,5 +668,15 @@
     "dim_e": "便捷度",
     "dim_s": "訊號品質",
     "how": "評分怎麼算"
+  },
+  "authors": {
+    "title": "DSH 外掛作者榜",
+    "sub": "從 {p} 個外掛裡聚合出 {n} 位作者——發現高產、活躍的生態貢獻者，代表作一鍵直達。",
+    "note": "綜合活躍分 = 總星對數 ×30 + 外掛數加成（上限 30） + 近期推送加成；資料每日自動重新整理",
+    "tabActivity": "🔥 綜合活躍",
+    "tabStars": "⭐ 總星數",
+    "tabCount": "📦 外掛數",
+    "colPlugins": "個外掛",
+    "loadMore": "載入更多（還有 {n} 位）"
   }
 }

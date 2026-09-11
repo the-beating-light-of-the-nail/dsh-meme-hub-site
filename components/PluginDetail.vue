@@ -153,6 +153,8 @@ const communityLinks = computed(() => (plugin.community_links ?? []).map((link) 
       <div class="filter-bar" style="margin-bottom:0">
         <span class="stars" style="font-size:15px">{{ plugin.stars.toLocaleString() }} {{ t('plugin.stars') }}</span>
         <span v-if="!isMeme" class="chip">{{ emojiOf(plugin) }} {{ catOf(plugin, locale) }}</span>
+        <!-- 作者：站内作者榜锚点定位（#owner），榜单页自动滚动并高亮该行 -->
+        <NuxtLink class="chip" :to="`${localePath('/authors')}#${plugin.repo.split('/')[0]}`">👤 {{ plugin.repo.split('/')[0] }}</NuxtLink>
         <span v-if="isMeme || plugin.is_meme" class="chip orange">🔥 meme</span>
         <a class="btn" :href="plugin.url" target="_blank" rel="noopener">{{ t('plugin.viewOnGithub') }} ↗</a>
         <a v-if="plugin.video_url" class="btn" :href="plugin.video_url" target="_blank" rel="noopener">📺 {{ t('plugin.watchDemo') }} ↗</a>

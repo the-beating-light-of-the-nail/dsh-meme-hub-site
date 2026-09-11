@@ -13,7 +13,8 @@
     "best": "Plugin Rankings",
     "vision": "Vision",
     "clients": "Terminals & Clients",
-    "ops": "Security & Ops"
+    "ops": "Security & Ops",
+    "authors": "👥 Authors"
   },
   "hero": {
     "title": "Everything is a Plugin —",
@@ -549,7 +550,9 @@
     "opsTitle": "DeepSeek Harness (dsh) Security & Ops Plugins — Approvals, Audits, Usage | DSH Meme Hub",
     "opsDesc": "How do you check dsh usage? Every DeepSeek Harness security & ops plugin: {n} tool-call approval, security audit, session health, token usage and cost-monitoring plugins — star-sorted with one-click install commands.",
     "docsTitle": "DSH Docs (DeepSeek Harness Tutorials) — From Install to Plugin Dev {'|'} DSH Meme Hub",
-    "docsDesc": "66 in-depth DeepSeek Harness (DSH) tutorials: installation, CLI, permissions, how it works and plugin development."
+    "docsDesc": "66 in-depth DeepSeek Harness (DSH) tutorials: installation, CLI, permissions, how it works and plugin development.",
+    "authorsTitle": "DSH Plugin Authors — active contributors behind {n} plugins",
+    "authorsDesc": "Who builds the dsh plugin ecosystem? This leaderboard aggregates {n} authors by plugin count, total stars and activity."
   },
   "vision": {
     "title": "Vision & Multimodal Plugins — Eyes for Text-Only DSH",
@@ -665,5 +668,15 @@
     "dim_e": "Ease of install",
     "dim_s": "Signal quality",
     "how": "How scoring works"
+  },
+  "authors": {
+    "title": "DSH Plugin Authors",
+    "sub": "Aggregated from {p} plugins — {n} authors. Discover the most productive and active contributors, with one-click access to their best work.",
+    "note": "Activity = log of total stars ×30 + plugin-count bonus (max 30) + recent-push bonus. Refreshed daily.",
+    "tabActivity": "🔥 Activity",
+    "tabStars": "⭐ Total stars",
+    "tabCount": "📦 Plugin count",
+    "colPlugins": "plugins",
+    "loadMore": "Load more ({n} more)"
   }
 }
