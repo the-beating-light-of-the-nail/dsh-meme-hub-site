@@ -1,5 +1,5 @@
 {
- "version": "2026-08-21",
+ "version": "2026-09-11",
  "sourceSite": "deepseekdocs.com (community docs mirror)",
  "dshVersion": "v0.1.0-rc.7",
  "groups": [
@@ -702,6 +702,16 @@
    "subgroup": null,
    "source": "https://deepseekdocs.com/docs/reference/env-vars",
    "content": "# 环境变量\n\n## 一、路径\n\n变量 | 默认 | 作用\nDSH_HOME | ~/.dsh | Harness 主目录（凭据、profile、会话、源码）\n\nDSH_HOME 是单根 Harness home 的解析入口，优先级（高 → 低）：显式配置路径 → $DSH_HOME → ~/.dsh ；shell 工具每次调用也会收到解析后的绝对 DSH_HOME 。\n\n## 二、行为控制\n\n变量 | 默认 | 作用\nDSH_TELEMETRY_DISABLED | 未设置 | 任意非空值 （含 0 / false ）在启动前禁用遥测行\nDSH_TELEMETRY_OTLP_URL | https://harness-telemetry.deepseeksvc.com/v1/logs | 覆盖遥测 OTLP 上报端点（本地开发用）\nDSH_PERMISSION_MODE | workspace-write | 权限预设进程级 fallback：同时改写沙箱模式与批准策略（ danger-full-access → never ，否则 → ask ）\nDSH_TOOLS_MODE | 未设置（= native ） | Code Mode 进程级开关，取值 native / code / both ；其它值启动即失败\nDSH_WEB_URL | — | Web GUI 规范地址（ 运行时注入 ，不是用户设置）\n\nDSH_PERMISSION_MODE 与 DSH_TOOLS_MODE 都是 进程级临时开关 ：前者是组合默认的 fallback（见 权限 ），后者是 Web/headless 共用的临时 Code Mode 入口，等 Web UI 逐会话接管后会被移除。\n\n## 三、Provider 凭据\n\n变量 | 作用\nDEEPSEEK_API_KEY | 官方 provider 凭据（也可存 ~/.dsh/.env ）\nDEEPSEEK_BASE_URL | 官方端点回退（仅可信层生效）\nDEEPSEEK_SEARCH_BASE_URL | Web 搜索端点覆盖\nDP_* 等自定义 | 自定义 provider 的 apiKeyEnv 引用\n\n真实 Provider 变量以你在 llm-pi-ai.providers / llm-deepseek 里配的 apiKeyEnv 为准（见 多模型 ）。\n\n## 四、凭据文件\n\n文件 | 内容 | 权限\n~/.dsh/.env | DEEPSEEK_API_KEY=... 等（环境层兜底） | 自管\n~/.dsh/.credentials.yaml | 结构化凭据 | 0600\n\nctx.credentials 逐操作解析这些，引用密钥而非存值（见 凭据 ）。解析优先级：进程环境 → .credentials.yaml → 调用目录 .env → $DSH_HOME/.env ；受管文档从不物化进 process.env ，两个 .env 都是普通启动环境层。\n\n## 五、运行时注入的 DSH_*（非用户设置）\n\n模型 shell 每次调用都会收到一组由 host/registry 收集的受信任 DSH_* 环境——它们 不是 你能直接设置的变量，而是运行期注入的事实：\n\n变量 | 值 | 谁注入\nDSH_HOME | 解析后的绝对 Harness home | registry 内置\nDSH_SHELL | 1 | registry 内置，标识受管子进程\nDSH_SESSION_ID | 当前 agent 会话 id | 仅带 agent 的调用\nDSH_SESSION_JSONL | 当前会话 JSONL 的绝对路径 | 持久化 seam 提供时\n\nDSH_WEB_URL 也由 Web host 的 shell-env contributor 以同样方式注入。整个 DSH_* 命名空间受类型限制，是 shell 工具的受信任 overlay，与普通 env 分开； DSH_HOME / DSH_SHELL / DSH_SESSION_ID 是 registry 保留的内置键， list() 不枚举它们。\n\n## 六、备注\n\n- 遥测匿名身份 ：导出记录以 $DSH_HOME/.anonymous-user-id （随机 UUID）作为 Resource 的匿名用户 id；删除该文件即重置身份。\n\n## 下一步\n\n- 隐私 ：.env / .credentials.yaml\n\n- 配置 ：provider/凭据引用\n\n- 命令行 ：常用变量\n\n编辑此页"
+  },
+  {
+   "slug": "reference/scoring",
+   "title_zh": "实用分说明（五维评分体系）",
+   "title_en": "Utility Score Explained",
+   "group": "参考",
+   "group_en": "Reference",
+   "subgroup": null,
+   "source": "",
+   "content": "# 实用分是怎么算出来的\n\n星星多不等于好用。本站给每个收录插件计算一个 0-100 的「实用分」：五个维度各自打分后，按加权几何平均融合成一个总分，每天随数据管道自动刷新，全部基于 GitHub 公开数据，可复现、可追溯。\n\n## 五个维度与权重\n\n- **维护活跃（30%）**：插件是不是「活着」。以最近一次推送距今天数衰减计算，7 天内有更新接近满分，半年未动会明显掉分。权重最高——DSH 迭代快，会修 bug 的插件才是好插件。\n- **实用度（25%）**：装上了能不能用明白。分析仓库 README 的结构完备度：有没有安装章节、使用说明、代码示例，篇幅是否充实。\n- **生态热度（20%）**：社区认不认可。stars 做对数归一化（以全库 99 分位为动态基准，避免大仓库霸榜），再用 fork 参与率的 Wilson 下界做稳健修正。\n- **便捷度（15%）**：好不好装。安装命令是否为标准 dsh 命令、README 是否给出明确安装方式、是否需要 API Key 等额外配置。\n- **信号质量（10%）**：项目信息是否完整可信。双语描述、开源协议、topics、README 四项完备度加权。\n\n## 为什么用几何平均而不是加法\n\n总分不是五个维度简单相加，而是加权几何平均——任何一个维度差，都会显著拉低总分。例如一个「热度 95、维护 20」的插件，算术平均能拿 57 分（虚高），几何平均只有 44 分：热度高但已经没人维护的插件，对使用者是坑，几何平均专门惩罚这种偏科。\n\n## 置信度：新插件不虚高\n\n信息不完整的条目（缺 README、缺推送时间）和新上架插件（30 天内且星数少）会按贝叶斯思路向先验值收缩，样本越少分数越保守，不会因为刚发布两天就冲上高分。\n\n## 分档怎么读\n\n- **90+ 全能型**：各维度均衡且优秀，闭眼装\n- **70-89 优秀**：整体出色，可能个别维度偏弱\n- **50-69 良好**：可用，但有明显短板（如更新较慢或文档不全）\n- **50 以下 待观察**：新插件或信息不全，建议看详情再决定\n\n## 数据与更新\n\n- 评分每日随本站数据管道自动重算，基于 GitHub 公开数据（stars / forks / 推送时间 / 协议 / topics）与仓库 README，不含任何人工主观分。\n- 评分只回答「值不值得装」，不代替你自己的判断：安装前请查看仓库详情与开源协议。\n- 想按实用分逛插件？插件市场支持「实用分最高」排序，排行榜也有独立的实用分榜。"
   }
  ]
 }

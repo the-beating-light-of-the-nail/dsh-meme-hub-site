@@ -13,10 +13,17 @@ const isMeme = props.variant === 'meme'
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
-const { related, catOf, emojiOf, descOf, captionOf, memes } = usePlugins()
+const { related, catOf, emojiOf, descOf, captionOf, memes, scoreOf, scoreTierOf } = usePlugins()
 
 const siteUrl = config.public.siteUrl as string
 const desc = computed(() => descOf(plugin, locale.value))
+
+// 实用五维评分（compute-scores 管道缺数据时整卡不渲染）
+const score = scoreOf(plugin)
+const tier = score ? scoreTierOf(score) : ''
+const scoreDims = score
+  ? [{ key: 'm', v: score.m }, { key: 'p', v: score.p }, { key: 'h', v: score.h }, { key: 'e', v: score.e }, { key: 's', v: score.s }]
+  : []
 const caption = computed(() => captionOf(plugin, locale.value))
 const pageUrl = computed(() =>
   `${siteUrl}${localePath(isMeme ? `/meme/${plugin.slug}` : `/plugins/${plugin.slug}`)}`)
@@ -61,7 +68,10 @@ const jsonLd = computed(() => {
     aggregateRating: plugin.stars > 0
       ? {
           '@type': 'AggregateRating',
-          ratingValue: Number(Math.min(5, 3.5 + Math.log10(plugin.stars + 1) / 2).toFixed(1)),
+          // 有实用分走五维总分（0-100 → 0-5），与页面评分卡一致；无分回退 star 对数公式
+          ratingValue: score
+            ? Number((score.t / 20).toFixed(1))
+            : Number(Math.min(5, 3.5 + Math.log10(plugin.stars + 1) / 2).toFixed(1)),
           bestRating: '5',
           ratingCount: plugin.stars,
         }
@@ -243,6 +253,43 @@ const communityLinks = computed(() => (plugin.community_links ?? []).map((link) 
           </div>
         </div>
 
+        <!-- 实用五维评分（compute-scores 每日管道；无分不渲染） -->
+        <div v-if="score" class="side-card">
+          <h3>{{ t('score.title') }}</h3>
+          <div class="score-head">
+            <span class="score-num" :class="`t-${tier}`">{{ score.t }}</span>
+            <span class="score-den">/100</span>
+            <span class="chip" :class="{ 'score-tier': true, [`tier-${tier}`]: true }">{{ t(`score.tier_${tier}`) }}</span>
+          </div>
+          <div class="score-dim">
+            <span class="k">{{ t('score.dim_m') }}</span>
+            <span class="bar"><span class="fill" :style="{ width: `${score.m}%` }" /></span>
+            <span class="v">{{ score.m }}</span>
+          </div>
+          <div class="score-dim">
+            <span class="k">{{ t('score.dim_p') }}</span>
+            <span class="bar"><span class="fill" :style="{ width: `${score.p}%` }" /></span>
+            <span class="v">{{ score.p }}</span>
+          </div>
+          <div class="score-dim">
+            <span class="k">{{ t('score.dim_h') }}</span>
+            <span class="bar"><span class="fill" :style="{ width: `${score.h}%` }" /></span>
+            <span class="v">{{ score.h }}</span>
+          </div>
+          <div class="score-dim">
+            <span class="k">{{ t('score.dim_e') }}</span>
+            <span class="bar"><span class="fill" :style="{ width: `${score.e}%` }" /></span>
+            <span class="v">{{ score.e }}</span>
+          </div>
+          <div class="score-dim">
+            <span class="k">{{ t('score.dim_s') }}</span>
+            <span class="bar"><span class="fill" :style="{ width: `${score.s}%` }" /></span>
+            <span class="v">{{ score.s }}</span>
+          </div>
+          <p class="score-exp">{{ score.exp }}</p>
+          <NuxtLink class="btn" :to="localePath('/docs/reference/scoring')">{{ t('score.how') }} →</NuxtLink>
+        </div>
+
         <div v-if="plugin.topics.length" class="side-card">
           <h3>{{ t('plugin.topics') }}</h3>
           <span v-for="topic in plugin.topics" :key="topic" class="chip" style="margin:0 6px 6px 0">{{ topic }}</span>
@@ -251,3 +298,24 @@ const communityLinks = computed(() => (plugin.community_links ?? []).map((link) 
     </div>
   </div>
 </template>
+
+<style scoped>
+/* 实用五维评分卡：总分大字 + 分档 chip + 五维横条（宽度 SSR 内联，无布局抖动） */
+.score-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+.score-num { font-size: 30px; font-weight: 700; line-height: 1; }
+.score-num.t-elite { color: #1a7f37; }
+.score-num.t-great { color: #0969da; }
+.score-num.t-good { color: #57606a; }
+.score-num.t-watch { color: #6e7781; }
+.score-den { color: var(--text-3, #6e7781); font-size: 13px; }
+.score-tier.tier-elite { color: #1a7f37; background: #dafbe1; }
+.score-tier.tier-great { color: #0969da; background: #ddf4ff; }
+.score-tier.tier-good { color: #57606a; background: #f0f2f5; }
+.score-tier.tier-watch { color: #6e7781; background: #f6f8fa; }
+.score-dim { display: grid; grid-template-columns: 64px 1fr 26px; gap: 8px; align-items: center; margin: 6px 0; font-size: 12px; }
+.score-dim .k { color: var(--text-3, #57606a); }
+.score-dim .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-2, #333); }
+.score-dim .bar { height: 6px; border-radius: 3px; background: #eff2f5; overflow: hidden; }
+.score-dim .fill { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #54aeff, #1a7f37); }
+.score-exp { font-size: 12.5px; color: var(--text-2, #424a53); margin: 10px 0; line-height: 1.6; }
+</style>

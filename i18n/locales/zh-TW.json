@@ -103,7 +103,8 @@
     "noResults": "沒有匹配的結果，換個關鍵詞試試？",
     "installGuide": "安裝指南 →",
     "storeGuide": "想看分類導購與精選榜單？逛一圈外掛目錄 →",
-    "loadMore": "載入更多（還有 {n} 個）"
+    "loadMore": "載入更多（還有 {n} 個）",
+    "sortScore": "實用分最高"
   },
   "best": {
     "title": "dsh 外掛排行 — DeepSeek Harness 最佳外掛精選",
@@ -122,7 +123,10 @@
     "howP1": "三張榜單同一份資料、三種切法：總榜看社群用腳投票的結果；活躍榜看哪些外掛還活著——最近 {d} 天內有過推送才算數（資料更新於 {date}）；編輯精選看我們真的裝過、而且願意再裝一遍的東西。",
     "howP2": "數字只認 GitHub 實抓：star 數、最近推送、許可證、manifest 存在性全部來自 GitHub API，本站不手動調分、不搞加權——你看到的就是倉庫現在的樣子。排名隨每日重新整理變化，今天的第一名不代表永遠。",
     "allCta": "逛全部 {n} 個外掛 →",
-    "submitCta": "覺得該有誰上榜？來投稿 →"
+    "submitCta": "覺得該有誰上榜？來投稿 →",
+    "tabScore": "🎯 實用分榜",
+    "scoreH": "實用分榜 Top {n}",
+    "scoreSub": "五維加權幾何平均：維護 30% + 實用 25% + 熱度 20% + 便捷 15% + 訊號 10%，星星少但好用的外掛在這裡冒頭"
   },
   "skins": {
     "title": "🎨 DeepSeek Harness 皮膚與換膚外掛",
@@ -486,7 +490,7 @@
     "pluginsTitle": "DeepSeek Harness (dsh) 外掛市場 — 外掛大全：搜尋/篩選/一鍵安裝 {'|'} DSH Meme Hub",
     "pluginsDesc": "dsh 外掛市場在哪？本站就是 DeepSeek Harness 的外掛市場與外掛大全，也是可搜尋的外掛目錄和外掛庫：人工精選 {n} 款外掛，桌寵、皮膚、摸魚遊戲、生產力工具全分類，按 star 排序，每個都帶一鍵安裝命令。",
     "bestTitle": "DeepSeek Harness (dsh) 外掛排行榜 — Top {n} 與必備精選 {'|'} DSH Meme Hub",
-    "bestDesc": "想找 dsh 必備外掛？本站從 {total} 個精選外掛裡排出三張榜：GitHub star 總榜 Top {top}、近 {d} 天活躍榜、{picks} 個編輯精選推薦，資料每日自動重新整理，每個外掛附一鍵安裝命令。",
+    "bestDesc": "想找 dsh 必備外掛？本站從 {total} 個精選外掛裡排出四張榜：GitHub star 總榜 Top {top}、實用分榜 Top 30、近 {d} 天活躍榜、{picks} 個編輯精選推薦，資料每日自動重新整理，每個外掛附一鍵安裝命令。",
     "storeTitle": "DeepSeek Harness 外掛目錄 · DSH 外掛庫 — {c} 分類導購與 Top 10 精選 {'|'} DSH Meme Hub",
     "storeDesc": "DSH 外掛目錄與外掛庫二合一：{n} 款 DeepSeek Harness 社群外掛按 GitHub star 排序，{c} 個分類貨架隨便逛，Top 10 精選幫你挑，每款附一鍵安裝命令，資料定時同步自 GitHub。",
     "memeTitle": "整活專區 — DSH 社群最歡樂的外掛 {'|'} DSH Meme Hub",
@@ -648,5 +652,18 @@
     "installCta": "完整安裝指南 →",
     "faqH": "常見問題",
     "listH": "全部收錄（{n}）"
+  },
+  "score": {
+    "title": "實用評分",
+    "tier_elite": "全能型",
+    "tier_great": "優秀",
+    "tier_good": "良好",
+    "tier_watch": "待觀察",
+    "dim_m": "維護活躍",
+    "dim_p": "實用度",
+    "dim_h": "生態熱度",
+    "dim_e": "便捷度",
+    "dim_s": "訊號品質",
+    "how": "評分怎麼算"
   }
 }

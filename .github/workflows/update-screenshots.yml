@@ -1,15 +1,17 @@
 name: Update Screenshots & Discovery
 
-# 每天定时四件事:
+# 每天定时六件事:
 #   ① 重跑 fetch-screenshots.mjs,刷新 public/data/plugins.json 的 screenshots 字段
 #   ② 跑 fetch-readmes.mjs,全量抓仓库 README 落盘 public/readmes/(正文图片钉死
 #      commit SHA 防裂;只读 plugins.json 不改写,失败清单写 data/readme-failures.json)
 #   ③ 跑 refresh-stars.py,原地刷新 stars/pushed_at/license/topics 等仓库元数据
 #      (注意:不能用 build-data.py --enrich —— 它从 /root/china-ai-arbitrage 外部源
 #       整体重建文件,runner 上无此路径必崩,且会丢 screenshots/image_w 等下游字段)
-#   ④ 跑 discover-plugins.mjs,生成新插件「提名」清单 data/discovery/candidates.json
+#   ④ 跑 refresh-stars.py 之后跑 compute-scores.mjs,重算实用五维评分
+#      (纯本地:plugins.json + readmes 缓存 → public/data/scores.json,零 API 调用)
+#   ⑤ 跑 discover-plugins.mjs,生成新插件「提名」清单 data/discovery/candidates.json
 #      (提名 ≠ 收录:候选仅供人工/AI 审核,收录仍走既有数据源流程)
-#   ⑤ IndexNow 全量提交 sitemap:数据刷新→commit→Vercel 部署后,次日把
+#   ⑥ IndexNow 全量提交 sitemap:数据刷新→commit→Vercel 部署后,次日把
 #      sitemap 全部 URL 重新推给搜索引擎,保证新增/变更详情页尽快被收录
 # 前四个脚本都幂等/失败不写文件 —— git diff 有变化才 commit 回 master（部署走
 # Cloudflare wrangler 直传,不随 push 自动）,无变化不产生空提交。
@@ -63,6 +65,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Compute utility scores (compute-scores.mjs)
+        run: node scripts/compute-scores.mjs
+        # 实用五维评分:plugins.json + public/readmes 缓存 → public/data/scores.json,
+        # 纯本地计算零 API;顺序必须在 refresh-stars 之后(吃最新 stars/pushed_at)
+
       - name: Discover plugin candidates (discover-plugins.mjs, nomination only)
         run: node scripts/discover-plugins.mjs
         env:
@@ -72,11 +79,11 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/data/plugins.json public/readmes data/readme-failures.json data/discovery/candidates.json
+          git add public/data/plugins.json public/data/scores.json public/readmes data/readme-failures.json data/discovery/candidates.json
           if git diff --cached --quiet; then
-            echo '截图、README 与候选均无变化,跳过提交'
+            echo '截图、README、评分与候选均无变化,跳过提交'
           else
-            git commit -m 'chore(data): auto refresh screenshots + readmes + discovery candidates'
+            git commit -m 'chore(data): auto refresh screenshots + readmes + scores + discovery candidates'
             git push
           fi
 

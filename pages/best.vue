@@ -6,20 +6,23 @@
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
-const { plugins, byStars, memes, fresh, descOf, updatedAt } = usePlugins()
+const { plugins, byStars, byScore, scoreOf, memes, fresh, descOf, updatedAt } = usePlugins()
 
-// 三榜 Tab。v-show（而非 v-if）保证三榜内容都在预渲染 HTML 里，默认榜完整可见
-const tab = ref<'stars' | 'recent' | 'picks'>('stars')
+// 四榜 Tab。v-show（而非 v-if）保证四榜内容都在预渲染 HTML 里，默认榜完整可见
+const tab = ref<'stars' | 'score' | 'recent' | 'picks'>('stars')
 
 // 榜一：Star 总榜（默认展示）
 const topStars = byStars().slice(0, 30)
 
-// 榜二：近期活跃。近 14 天不足 8 条则放宽到 30 天；按 stars 降序
+// 榜二：实用分榜（compute-scores 五维评分总分倒序，并列按 stars 破序）
+const topScored = byScore().slice(0, 30)
+
+// 榜三：近期活跃。近 14 天不足 8 条则放宽到 30 天；按 stars 降序
 const fresh14 = fresh(14)
 const recentDays = fresh14.length >= 8 ? 14 : 30
 const active = (recentDays === 14 ? fresh14 : fresh(30)).sort((a, b) => b.stars - a.stars)
 
-// 榜三：编辑精选。整活区 star Top 12，MemeCard 的 captionOf 就是推荐点评
+// 榜四：编辑精选。整活区 star Top 12，MemeCard 的 captionOf 就是推荐点评
 const picks = [...memes()].sort((a, b) => b.stars - a.stars).slice(0, 12)
 
 const siteUrl = config.public.siteUrl as string
@@ -78,6 +81,7 @@ useHead({
 
     <div class="tabs">
       <button :class="{ active: tab === 'stars' }" @click="tab = 'stars'">{{ t('best.tabStars') }}</button>
+      <button :class="{ active: tab === 'score' }" @click="tab = 'score'">{{ t('best.tabScore') }}</button>
       <button :class="{ active: tab === 'recent' }" @click="tab = 'recent'">{{ t('best.tabRecent') }}</button>
       <button :class="{ active: tab === 'picks' }" @click="tab = 'picks'">{{ t('best.tabPicks') }}</button>
     </div>
@@ -98,7 +102,7 @@ useHead({
       </div>
     </section>
 
-    <!-- 榜二：近期活跃 -->
+    <!-- 榜三：近期活跃 -->
     <section v-show="tab === 'recent'" class="section">
       <div class="section-head">
         <h2>{{ t('best.recentH') }}</h2>
@@ -114,7 +118,23 @@ useHead({
       </div>
     </section>
 
-    <!-- 榜三：编辑精选（caption 引用即点评，竞品没有的人味） -->
+    <!-- 榜二：实用分榜（五维加权几何平均，维护/文档/热度/安装/信号——星星少但好用的靠这榜冒头） -->
+    <section v-show="tab === 'score'" class="section">
+      <div class="section-head">
+        <h2>{{ t('best.scoreH', { n: topScored.length }) }}</h2>
+        <span class="count-note">{{ t('best.scoreSub') }}</span>
+      </div>
+      <div class="top-list">
+        <NuxtLink v-for="(p, i) in topScored" :key="p.slug" :to="localePath(`/plugins/${p.slug}`)" class="row">
+          <span class="rank" :class="`r${i + 1}`">{{ i + 1 }}</span>
+          <span class="name">{{ p.name }}</span>
+          <span class="one-liner">{{ scoreOf(p)?.exp || descOf(p, locale) }}</span>
+          <span class="stars">{{ scoreOf(p)?.t ?? '—' }}</span>
+        </NuxtLink>
+      </div>
+    </section>
+
+    <!-- 榜四：编辑精选（caption 引用即点评，竞品没有的人味） -->
     <section v-show="tab === 'picks'" class="section">
       <div class="section-head">
         <h2>{{ t('best.picksH') }}</h2>

@@ -1,4 +1,5 @@
 import data from '~/public/data/plugins.json'
+import scoreData from '~/public/data/scores.json'
 
 /** 仓库截图条目（raw.githubusercontent 固定 commit，w/h 可为 null） */
 export interface PluginScreenshot {
@@ -49,7 +50,26 @@ interface PluginData {
   plugins: DshPlugin[]
 }
 
+/** 实用五维评分（scripts/compute-scores.mjs 每日管道产物，key = repo 小写） */
+export interface PluginScore {
+  t: number // 总分 0-100（加权几何平均 × 贝叶斯置信）
+  m: number // 维护活跃 30%
+  p: number // 实用度 25%
+  h: number // 生态热度 20%
+  e: number // 便捷度 15%
+  s: number // 信号质量 10%
+  conf: number // 置信度 0-1
+  exp: string // 中文一句话理由
+}
+
+interface ScoreData {
+  updatedAt: string
+  count: number
+  scores: Record<string, PluginScore>
+}
+
 const pluginData = data as unknown as PluginData
+const scoreMap = (scoreData as unknown as ScoreData).scores ?? {}
 
 // 数据管道对 GitHub API 抓取失败的条目会写 null（stars/forks/pushed_at 等）。
 // 在加载层归一化为安全值：模板里的 stars.toLocaleString()、fresh() 的 pushed_at
@@ -133,6 +153,24 @@ export function usePlugins() {
 
   const bySlug = (slug: string) => plugins.find((p) => p.slug === slug)
 
+  /** 插件的实用五维评分（无数据返回 undefined，模板侧自行兜底） */
+  const scoreOf = (p: DshPlugin): PluginScore | undefined => scoreMap[p.repo.toLowerCase()]
+
+  /** 实用分评级分档（与评分说明页口径一致） */
+  const scoreTierOf = (score: PluginScore): 'elite' | 'great' | 'good' | 'watch' => {
+    if (score.t >= 90) return 'elite'
+    if (score.t >= 70) return 'great'
+    if (score.t >= 50) return 'good'
+    return 'watch'
+  }
+
+  /** 按实用分倒序（并列按 stars 破序，保证 SSG 稳定输出） */
+  const byScore = () =>
+    [...plugins]
+      .map(p => ({ p, s: scoreOf(p)?.t ?? -1 }))
+      .sort((a, b) => b.s - a.s || b.p.stars - a.p.stars)
+      .map(x => x.p)
+
   const related = (p: DshPlugin, n = 4) =>
     plugins.filter((x) => x.slug !== p.slug && x.category_zh === p.category_zh)
       .sort((a, b) => b.stars - a.stars)
@@ -145,7 +183,7 @@ export function usePlugins() {
     q?: string
     categoryKey?: string // category_zh（稳定 key）
     memeSection?: string
-    sort?: 'stars' | 'recent' | 'name'
+    sort?: 'stars' | 'recent' | 'name' | 'score'
   }): DshPlugin[] {
     let list = [...plugins]
     if (opts.memeSection) {
@@ -172,6 +210,10 @@ export function usePlugins() {
       case 'name':
         list.sort((a, b) => a.name.localeCompare(b.name))
         break
+      case 'score':
+        list.sort((a, b) =>
+          (scoreOf(b)?.t ?? -1) - (scoreOf(a)?.t ?? -1) || b.stars - a.stars)
+        break
       default:
         list.sort((a, b) => b.stars - a.stars)
     }
@@ -181,15 +223,19 @@ export function usePlugins() {
   return {
     plugins,
     updatedAt: pluginData.updatedAt,
+    scoreUpdatedAt: (scoreData as unknown as ScoreData).updatedAt ?? pluginData.updatedAt,
     catOf,
     descOf,
     captionOf,
     emojiOf,
     byStars,
+    byScore,
     memes,
     fresh,
     categories,
     bySlug,
+    scoreOf,
+    scoreTierOf,
     related,
     totalStars,
     query,

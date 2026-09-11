@@ -18,7 +18,7 @@ const categoryEntries = computed(() =>
 
 // 列表默认 UI 状态（ItemList 结构化数据也用同一组常量，保证两边永不漂移）
 const DEFAULT_CAT = 'all'
-const DEFAULT_SORT: 'stars' | 'recent' | 'name' = 'stars'
+const DEFAULT_SORT: 'stars' | 'recent' | 'name' | 'score' = 'stars'
 
 // 搜索防抖:输入框即时回显,但过滤延迟 180ms —— 否则每次击键都同步重渲
 // 整页插件卡(近 100 张,每张含 i18n/链接/复制条),慢设备上 INP 轻松破秒
@@ -31,7 +31,7 @@ watch(qInput, (v: string) => {
 })
 onBeforeUnmount(() => clearTimeout(qTimer))
 const cat = ref((route.query.cat as string) ?? DEFAULT_CAT)
-const sort = ref<'stars' | 'recent' | 'name'>(DEFAULT_SORT)
+const sort = ref<'stars' | 'recent' | 'name' | 'score'>(DEFAULT_SORT)
 
 const cats = computed(() => categories(locale.value))
 
@@ -121,6 +121,7 @@ useHead({
       </select>
       <select v-model="sort" aria-label="sort">
         <option value="stars">{{ t('plugins.sortStars') }}</option>
+        <option value="score">{{ t('plugins.sortScore') }}</option>
         <option value="recent">{{ t('plugins.sortRecent') }}</option>
         <option value="name">{{ t('plugins.sortName') }}</option>
       </select>

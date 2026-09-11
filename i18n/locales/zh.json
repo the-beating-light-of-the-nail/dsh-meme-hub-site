@@ -103,7 +103,8 @@
     "noResults": "没有匹配的结果，换个关键词试试？",
     "installGuide": "安装指南 →",
     "storeGuide": "想看分类导购与精选榜单？逛一圈插件目录 →",
-    "loadMore": "加载更多（还有 {n} 个）"
+    "loadMore": "加载更多（还有 {n} 个）",
+    "sortScore": "实用分最高"
   },
   "best": {
     "title": "dsh 插件排行榜 — DeepSeek Harness 最佳插件精选",
@@ -122,7 +123,10 @@
     "howP1": "三张榜单同一份数据、三种切法：总榜看社区用脚投票的结果；活跃榜看哪些插件还活着——最近 {d} 天内有过推送才算数（数据更新于 {date}）；编辑精选看我们真的装过、而且愿意再装一遍的东西。",
     "howP2": "数字只认 GitHub 实抓：star 数、最近推送、许可证、manifest 存在性全部来自 GitHub API，本站不手动调分、不搞加权——你看到的就是仓库现在的样子。排名随每日刷新变化，今天的第一名不代表永远。",
     "allCta": "逛全部 {n} 个插件 →",
-    "submitCta": "觉得该有谁上榜？来投稿 →"
+    "submitCta": "觉得该有谁上榜？来投稿 →",
+    "tabScore": "🎯 实用分榜",
+    "scoreH": "实用分榜 Top {n}",
+    "scoreSub": "五维加权几何平均：维护 30% + 实用 25% + 热度 20% + 便捷 15% + 信号 10%，星星少但好用的插件在这里冒头"
   },
   "skins": {
     "title": "🎨 DeepSeek Harness 皮肤与换肤插件",
@@ -486,7 +490,7 @@
     "pluginsTitle": "DeepSeek Harness (dsh) 插件市场 — 插件大全：搜索/筛选/一键安装 {'|'} DSH Meme Hub",
     "pluginsDesc": "dsh 插件市场在哪？本站就是 DeepSeek Harness 的插件市场与插件大全，也是可搜索的插件目录和插件库：人工精选 {n} 款插件，桌宠、皮肤、摸鱼游戏、生产力工具全分类，按 star 排序，每个都带一键安装命令。",
     "bestTitle": "DeepSeek Harness (dsh) 插件排行榜 — Top {n} 与必备精选 {'|'} DSH Meme Hub",
-    "bestDesc": "想找 dsh 必备插件？本站从 {total} 个精选插件里排出三张榜：GitHub star 总榜 Top {top}、近 {d} 天活跃榜、{picks} 个编辑精选推荐，数据每日自动刷新，每个插件附一键安装命令。",
+    "bestDesc": "想找 dsh 必备插件？本站从 {total} 个精选插件里排出四张榜：GitHub star 总榜 Top {top}、实用分榜 Top 30、近 {d} 天活跃榜、{picks} 个编辑精选推荐，数据每日自动刷新，每个插件附一键安装命令。",
     "storeTitle": "DeepSeek Harness 插件目录 · DSH 插件库 — {c} 分类导购与 Top 10 精选 {'|'} DSH Meme Hub",
     "storeDesc": "DSH 插件目录与插件库二合一：{n} 款 DeepSeek Harness 社区插件按 GitHub star 排序，{c} 个分类货架随便逛，Top 10 精选帮你挑，每款附一键安装命令，数据定时同步自 GitHub。",
     "memeTitle": "整活专区 — DSH 社区最欢乐的插件 {'|'} DSH Meme Hub",
@@ -648,5 +652,18 @@
     "installCta": "完整安装指南 →",
     "faqH": "常见问题",
     "listH": "全部收录（{n}）"
+  },
+  "score": {
+    "title": "实用评分",
+    "tier_elite": "全能型",
+    "tier_great": "优秀",
+    "tier_good": "良好",
+    "tier_watch": "待观察",
+    "dim_m": "维护活跃",
+    "dim_p": "实用度",
+    "dim_h": "生态热度",
+    "dim_e": "便捷度",
+    "dim_s": "信号质量",
+    "how": "评分怎么算"
   }
 }

@@ -103,7 +103,8 @@
     "noResults": "Nothing matched. Try another keyword?",
     "installGuide": "How to install dsh and plugins →",
     "storeGuide": "Want a guided tour and the Top 10 picks? Browse the plugin directory →",
-    "loadMore": "Load more ({n} remaining)"
+    "loadMore": "Load more ({n} remaining)",
+    "sortScore": "Top utility score"
   },
   "best": {
     "title": "Best dsh Plugins — DeepSeek Harness Rankings",
@@ -122,7 +123,10 @@
     "howP1": "Three boards, one dataset, three cuts: the star ranking is the community voting with their feet; the activity board shows what's still alive — a push within the last {d} days is the entry ticket (data updated {date}); the editor's picks are things we actually installed — and would install again.",
     "howP2": "Numbers come straight from GitHub: stars, last push, license and manifest presence are all pulled from the GitHub API. No hand-tuning, no weighting — what you see is what the repos are. Rankings shift with the daily refresh; today's number one won't stay there forever.",
     "allCta": "Browse all {n} plugins →",
-    "submitCta": "Think something belongs here? Submit it →"
+    "submitCta": "Think something belongs here? Submit it →",
+    "tabScore": "🎯 Utility score",
+    "scoreH": "Utility Score — Top {n}",
+    "scoreSub": "Weighted geometric mean of five dimensions: maintenance 30%, practicality 25%, popularity 20%, ease of install 15%, signal quality 10% — hidden gems surface here."
   },
   "skins": {
     "title": "🎨 DeepSeek Harness Skins & Themes",
@@ -486,7 +490,7 @@
     "pluginsTitle": "DeepSeek Harness (dsh) Plugin Marketplace — Full Catalog & Top Picks {'|'} DSH Meme Hub",
     "pluginsDesc": "Where is the dsh plugin marketplace? Right here: the full DeepSeek Harness plugin marketplace, plugin directory and searchable library — {n} hand-picked plugins across desktop pets, skins, games and productivity, sortable by stars, each with a one-click install command.",
     "bestTitle": "Best DeepSeek Harness (dsh) Plugins — Top {n} Ranked & Editor's Picks {'|'} DSH Meme Hub",
-    "bestDesc": "Looking for the best dsh plugins? Three boards from our {total} hand-picked ones: the top {top} by GitHub stars, recently active plugins from the last {d} days, and {picks} editor's picks — refreshed daily, one-click install on every entry.",
+    "bestDesc": "Looking for the best dsh plugins? Four boards from our {total} hand-picked ones: the top {top} by GitHub stars, the top 30 by utility score, recently active plugins from the last {d} days, and {picks} editor's picks — refreshed daily, one-click install on every entry.",
     "storeTitle": "DeepSeek Harness Plugin Directory · DSH Plugin Library — {c} Categories & Top 10 {'|'} DSH Meme Hub",
     "storeDesc": "The DeepSeek Harness (dsh) plugin directory and plugin library in one: {n} community plugins ranked by GitHub stars across {c} category shelves, plus a Top 10 to start with, each with a one-click install command. Synced from GitHub on a schedule.",
     "memeTitle": "Meme Zone — the funniest DeepSeek Harness (dsh) plugins {'|'} DSH Meme Hub",
@@ -648,5 +652,18 @@
     "installCta": "Full install guide →",
     "faqH": "Frequently asked questions",
     "listH": "All {n} entries"
+  },
+  "score": {
+    "title": "Utility score",
+    "tier_elite": "All-rounder",
+    "tier_great": "Great",
+    "tier_good": "Good",
+    "tier_watch": "Watch list",
+    "dim_m": "Maintenance",
+    "dim_p": "Practicality",
+    "dim_h": "Popularity",
+    "dim_e": "Ease of install",
+    "dim_s": "Signal quality",
+    "how": "How scoring works"
   }
 }
