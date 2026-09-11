@@ -28,8 +28,14 @@ const CATEGORY_CFG = fileURLToPath(new URL('../data/seo/category-pages.json', im
 const SOURCE_URL = 'https://dsh.market/plugins.json'
 
 const dryRun = process.argv.includes('--dry-run')
-const minStarsArg = process.argv.find(a => a.startsWith('--min-stars'))
-const MIN_STARS = minStarsArg ? Number(minStarsArg.split('=')[1] ?? minStarsArg.split(' ')[1] ?? 50) : 50
+// --min-stars=N 或 --min-stars N 两种写法都支持，默认 50（批1 门槛）
+const argv = process.argv
+let MIN_STARS = 50
+for (let i = 2; i < argv.length; i++) {
+  if (argv[i].startsWith('--min-stars=')) MIN_STARS = Number(argv[i].split('=')[1])
+  else if (argv[i] === '--min-stars') MIN_STARS = Number(argv[i + 1])
+}
+if (!Number.isFinite(MIN_STARS)) MIN_STARS = 50
 
 const convert = OpenCC.Converter({ from: 'cn', to: 'twp' })
 
