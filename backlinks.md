@@ -14,3 +14,31 @@
 | 2026-08-28 | Jenqyang/Awesome-AI-Agents | PR | Tools | https://github.com/Jenqyang/Awesome-AI-Agents/pull/457 | open |  |
 | 2026-09-08 | eryajf/awesome-navigation | PR | 优秀导航 | https://github.com/eryajf/awesome-navigation/pull/13 | open | 渠道已归入池子 J 段（停更 2024-04） |
 | 2026-09-09 | cornradio/vibe-store | issue | — | https://github.com/cornradio/vibe-store/issues/45 | open | AI 审核自动通过 |
+| 2026-09-11 | 609476965/dsh-LorebookMD | issue | 酒馆与角色扮演收录告知 | https://github.com/609476965/dsh-LorebookMD/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | Amakurai/dsh-liketavern | issue | 酒馆与角色扮演收录告知 | https://github.com/Amakurai/dsh-liketavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | xia-sc/dsh-cc-studio | issue | 酒馆与角色扮演收录告知 | https://github.com/xia-sc/dsh-cc-studio/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | LingyeSoul/dsh-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/LingyeSoul/dsh-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | LiweiDonVee/dsh-rp-studio | issue | 酒馆与角色扮演收录告知 | https://github.com/LiweiDonVee/dsh-rp-studio/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | LiweiDonVee/dsh-tavern-renderer | issue | 酒馆与角色扮演收录告知 | https://github.com/LiweiDonVee/dsh-tavern-renderer/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | Player-MINEPIG/dsh-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/Player-MINEPIG/dsh-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | RiemannRe3/DSH-RolePlay | issue | 酒馆与角色扮演收录告知 | https://github.com/RiemannRe3/DSH-RolePlay/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | Ryu6Zero/dsh-character-studio | issue | 酒馆与角色扮演收录告知 | https://github.com/Ryu6Zero/dsh-character-studio/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | Star-Guest/dsh-plugin-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/Star-Guest/dsh-plugin-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | TritiumWang/dsh-universal-worldbook | issue | 酒馆与角色扮演收录告知 | https://github.com/TritiumWang/dsh-universal-worldbook/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | VO-Bogey/dsh-tavernweave | issue | 酒馆与角色扮演收录告知 | https://github.com/VO-Bogey/dsh-tavernweave/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | XCNXNXNX/dsh-portable-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/XCNXNXNX/dsh-portable-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | ZelinW1/dsh-cosplay | issue | 酒馆与角色扮演收录告知 | https://github.com/ZelinW1/dsh-cosplay/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | ajuwm/dsh-roleplay-plugin | issue | 酒馆与角色扮演收录告知 | https://github.com/ajuwm/dsh-roleplay-plugin/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | bigharm/dsh-agentnoodle | issue | 酒馆与角色扮演收录告知 | https://github.com/bigharm/dsh-agentnoodle/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | bychv/dsh-stcardwriter | issue | 酒馆与角色扮演收录告知 | https://github.com/bychv/dsh-stcardwriter/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | chen731215-dev/dsh-tavern-v2 | issue | 酒馆与角色扮演收录告知 | https://github.com/chen731215-dev/dsh-tavern-v2/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | chinosk6/dsh-roleplay | issue | 酒馆与角色扮演收录告知 | https://github.com/chinosk6/dsh-roleplay/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | flizzywine/dsh-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/flizzywine/dsh-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | hewzhew/dsh-agent-rp | issue | 酒馆与角色扮演收录告知 | https://github.com/hewzhew/dsh-agent-rp/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | loonai321/dsh-humanized-deepseek-maid | issue | 酒馆与角色扮演收录告知 | https://github.com/loonai321/dsh-humanized-deepseek-maid/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | lutrodev/dsh-roleplay | issue | 酒馆与角色扮演收录告知 | https://github.com/lutrodev/dsh-roleplay/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | makenwjz/dsh-novel-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/makenwjz/dsh-novel-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | oliblue-evan/dsh-roleplay-preset | issue | 酒馆与角色扮演收录告知 | https://github.com/oliblue-evan/dsh-roleplay-preset/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | tk553521/dsh-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/tk553521/dsh-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | wuzhigouno-collab/dsh-rp-composer | issue | 酒馆与角色扮演收录告知 | https://github.com/wuzhigouno-collab/dsh-rp-composer/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
+| 2026-09-11 | yejiming/dsh-museai-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/yejiming/dsh-museai-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
