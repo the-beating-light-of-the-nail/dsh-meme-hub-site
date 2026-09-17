@@ -1,103 +1,164 @@
-# dsh-plugin-audit — 插件生态体检（Plugin Health Audit for DSH）
+# dsh-plugin-diraud
 
-Turn the GitHub `dsh-plugin` topic into a **local, scored plugin catalog** for DeepSeek Harness.
-Every plugin gets a 0–100 health score across four signals, a leaderboard in the web UI,
-and agent tools that answer *"which plugins are worth installing?"*.
+English | [中文](README.zh.md)
 
-| Signal | Weight | What it measures |
-| --- | --- | --- |
-| Maintenance | 30 | last push recency + star tier + **star trend** (archived → 0 + 🚨 flag) |
-| Docs | 25 | README presence + description depth + license |
-| npm | 30 | npm package exists + publish recency + **weekly downloads (v0.3)** |
-| Ecosystem | 15 | presence in the curated awesome list + listing recency |
 
-Grades: **A 🛡️ (80+)** · **B ✅ (60+)** · **C ⚠️ (40+)** · **D 🚨 (<40 or any high flag)**.
-Scores are pure functions over plain records — fully explainable (every deduction carries a note).
-
-**v0.3:** npm signal now includes a weekly-downloads tier (exists 10 + publish recency 14 + weekly downloads 6).
-
-**v0.4 (真插件校验 / topic-tag farming filter):** deep scan now verifies a repo is actually a DSH plugin — presence of `cordis.patch.yml`, `dsh.bundle` in package.json, or a plugin entry file. Repos with none of these are flagged `not-plugin` (medium) and **capped at grade C**, no matter how healthy they look. The npm probe also detects whether the published package declares `dsh.bundle` (installable via `dsh plugin add`). This filters the ~half of the topic that is old projects or tag farming.
-
-**Security (v0.2) is a veto, not a weight:** `audit_scan` static-scans a
-plugin's package.json install scripts, shell scripts, and entry sources for
-remote-code-execution, encoded commands, rc persistence, obfuscation, and
-exfiltration to non-allowlisted hosts. High/critical findings land in the
-`flags` contract → **grade D**, no matter how healthy the other signals look.
-Each finding carries evidence; the scanner is deliberately conservative.
+A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH)
+plugin-management enhancement: group the plugin list by source so you can tell
+**official** plugins apart from the ones **you installed yourself** at a glance.
 
 ## Features
 
-| Feature | Status |
-| --- | --- |
-| `audit_sync` — sweep the topic, probe npm, re-score (incremental, rate-limit aware) | ✅ stable |
-| `audit_top` — leaderboard by score / stars / newest / name, category filter | ✅ stable |
-| `audit_plugin` — full report card with evidence notes | ✅ stable |
-| `audit_scan` — per-plugin static security scan (files → findings → veto) | ✅ stable (v0.2) |
-| Star trend in maintenance signal (from rolling history snapshots) | ✅ stable (v0.2) |
-| `auditSummary` session projection + composer-dock leaderboard | 🧪 experimental (loader-format client bundle) |
-| Optional periodic sync (schedule service) | 🧪 guarded |
-| Seed catalog from the awesome-dsh-plugin list (1018 plugins) | ✅ stable |
+- **`/plugin-audit` command**: lists the currently loaded plugins grouped by
+  official / self-installed, with `user` / `official` / keyword filtering;
+- **Self-installed plugin toggles (two surfaces)**:
+  - Sidebar footer **Plugin Catalog** entry (icon button; click to open a
+    panel): an enable/disable **button** on every self-installed card;
+  - Composer: `/plugin-audit disable|enable <keyword>`;
+  - Both persist to the profile's `cordis.patch.yml` (kept across restarts,
+    reversible) and call `ctx.loader.update` for live effect (HMR-independent);
+    official/builtin plugins are locked;
+- **Plugin Catalog panel** (sidebar footer entry, since v0.5):
+  - Cards grouped by source with a source badge, installed version, entry id
+    and description; a search box filters by module name / entry id and every
+    section shows a live count; a retry button appears if the list fails to
+    load;
+  - **Bilingual descriptions** (v0.6): a built-in module-name → {zh, en}
+    dictionary is consulted first so card descriptions follow the UI language,
+    falling back to each package's own `description`;
+  - **GitHub link** (v0.8): when a package's `repository` / `homepage` points
+    to GitHub, the card shows a GitHub button that opens its full feature
+    documentation (independent of the built-in "Plugin list" page);
+- **Self-installed plugin updates (v0.6)**:
+  - The npm registry is checked automatically when the panel opens; the top
+    "Update" bar shows how many plugins are outdated, with **Re-check** and
+    **Update all** buttons, and every registry-installed card has its own
+    **Update** button plus a progress bar while running
+    (`pnpm add <pkg>@latest --config.minimumReleaseAge=0`, corepack/npx
+    fallback, live output);
+  - **GitHub plugin updates (v0.9)**: plugins installed from `github:` / `git+`
+    / `git://` / `git@` specs can be updated even without an npm package —
+    branch/default-branch refs compare the locally-locked commit against the
+    remote HEAD via `git ls-remote`, tag refs list all tags to find a newer
+    stable tag; updates re-run `pnpm add <original spec>` (or the new tag spec);
+    refs pinned to a specific commit are marked not auto-updatable;
+  - **Rename detection (v0.9.1)**: when an update leaves the old package name
+    stale but a new package name now points to the same repository, the panel
+    reports "repository renamed (old → new)" with the command to remove the old
+    package, instead of a vague "actual version still not updated";
+  - Updates are queued in a module-level store: clicks during a run merge into
+    the next batch, two pnpm processes are never started concurrently, and the
+    task keeps running (and stays observable) even if you close the panel;
+  - **Source-aware labeling**: desktop-managed `link:` deps show
+    "Updating with the desktop app" and local `file:` / `workspace:` deps show
+    "Local plugin", so a pnpm exit code 0 is never misreported as an actual
+    update; official/builtin plugins and this plugin itself (installed via
+    `link:` to protect the dev chain) are locked;
+- **Self-installed plugin uninstall (v0.6)**: every self-installed card has a
+  red **Uninstall** button (right-most); it asks for confirmation, runs
+  `pnpm remove`, disables the button while running, and refreshes the list
+  afterwards. Non-self-installed packages and this plugin itself are rejected;
 
-## How it works
+## Screenshot
 
-- One Cordis plugin: host face (`lib/index.js`) registers tools + projection + optional schedule;
-  browser face (`lib/client.js`) renders the dock; `cordis.patch.yml` mounts the row.
-- Sync pulls `GET /search/repositories?q=topic:dsh-plugin` (100/page), probes
-  `registry.npmjs.org/<name>` with bounded concurrency, then upserts into a JSON
-  catalog. Rate-limit-aware: stops early when the search budget runs low and
-  resumes next time; failed probes keep the previous values.
-- Storage: `dataDir` (default `$DSH_HOME/dsh-plugin-audit` or `~/.dsh/dsh-plugin-audit`):
-  `catalog.json` + `meta.json` + `history.json` (rolling star snapshots for future trend tiers).
-- All writes are atomic (temp + rename); corrupt files fall back to empty instead of crashing.
+Sidebar footer **Plugin Catalog** entry (since v0.5) — click to open the panel: self-installed plugins grouped by origin, each card with an enable/disable toggle:
 
-## Install
+The top bar shows the update area (`可更新: 1` = 1 update available, `重新检查`
+= re-check, `全部更新` = update all), followed by the search box and the
+grouped cards. Every card carries the enable/disable toggle, version, GitHub
+button, update status and uninstall button:
 
-The package declares `"dsh": { "bundle": { "patch": "./cordis.patch.yml" } }`, so it goes
-through DSH's official plugin management:
+![Plugin Catalog](https://raw.githubusercontent.com/tttwh/dsh-plugin-Audit/d69f75d9c10a8165df6851ba9494f9a27068e818/docs/plugin-catalog-updates.png)
 
-```bash
-# from a local checkout
-dsh plugin --profile <profile> add /path/to/dsh-audit
+## Quick start
 
-# or after publishing to npm
-dsh plugin --profile <profile> add dsh-audit
+Prerequisites: `pnpm`, the `dsh` CLI.
+
+```sh
+# Install (recommended: from npm)
+dsh plugin --profile web add dsh-plugin-diraud
+
+# Or from the GitHub main branch
+dsh plugin --profile web add https://github.com/tttwh/dsh-plugin-diraud/archive/refs/heads/main.tar.gz
 ```
 
-Restart DSH. The `audit_*` tools are registered host-wide; the leaderboard dock appears
-in the web UI on a web profile.
+**Restart `dsh web`**, then:
 
-### First sync
+- Type `/plugin-audit` in the composer, or
+- Click the **Plugin Catalog** entry at the sidebar footer.
 
-Give the agent a GitHub token (search API: 30 req/min vs 10 anonymous) and ask it to
-`audit_sync`, or configure it:
+## Commands
 
-- `dataDir` — catalog location (empty = default)
-- `githubToken` — or env `DSH_GITHUB_TOKEN` / `GITHUB_TOKEN`
-- `syncIntervalHours` — periodic sync (0 disables; requires schedule service)
-- `npmProbe` — probe npm registry (default true)
+| Command | Purpose |
+|---|---|
+| `/plugin-audit` | Overview: self-installed one-by-one + official count |
+| `/plugin-audit user` | Self-installed only |
+| `/plugin-audit official` | Official only (full list) |
+| `/plugin-audit <keyword>` | Filter by package / entry keyword |
+| `/plugin-audit disable <keyword>` | Disable a matching **self-installed** plugin (persisted) |
+| `/plugin-audit enable <keyword>` | Enable a matching **self-installed** plugin (persisted) |
+| `dsh plugin --profile web remove dsh-plugin-diraud` | Uninstall |
 
-### Standalone (outside DSH, for testing / CI)
+> **How toggles persist**: `disable/enable` writes a `- id: <raw config id>` +
+> `disabled: true` override into the profile's `cordis.patch.yml` (the user
+> config layer). dsh watches that file (`watchUserPatches`), so the change
+> applies live without a restart, survives restarts, and deleting the row
+> restores the default.
+>
+> **Why the raw id (fixed in v0.4)**: loader entries carry a path-prefixed full
+> id (`include:ssh`), but the patch layer matches each config row's own `id`
+> field (`ssh`). Older versions wrote the prefixed id into the patch file, so
+> the row was skipped at boot ("patch: entry not found") and the toggle was
+> silently lost on restart. v0.4 writes the raw id, keeps the full id for
+> `ctx.loader.update`, and cleans up legacy `include:<id>` rows.
 
-```bash
-node scripts/seed.mjs                       # build data/catalog.json from the awesome list checkout
-node scripts/sync.mjs --token <gh-token>    # real sync, no DSH needed
-node --test test/                           # run tests
+## Configuration
+
+Origin is derived from the package scope by default; edge cases (e.g. a
+third-party package published under `@deepseek-ai/`) are overridden via
+`extraUserPackages`. Override this plugin's row in the profile's
+`cordis.patch.yml`:
+
+```yaml
+- id: plugin-audit
+  config:
+    extraUserPackages:
+      - '@deepseek-ai/dsh-my-fork'   # force-classify as self-installed
 ```
 
-## Development notes
+## Repository layout
 
-- Tests are fully offline (fake `fetch` injected) — `node --test test/` needs no network.
-- Data model: one catalog record per repo (`repo`, `stars`, `pushedAt`, `license`,
-  `archived`, `npm`, `curated`, `addedAt`, `score`, `flags`, …). See `lib/audit.js`
-  `repoToRecord` and `lib/scoring.js`.
-- The `flags` array is the extension contract for the security tier (v0.2).
+```text
+dsh-plugin-diraud/
+  src/classify.ts        origin-classification pure function (single source of truth)
+  src/patch.ts           cordis.patch.yml read/write (persist toggles)
+  src/toggle.ts          shared toggle core (persist + ctx.loader.update)
+  src/updates.ts         update core: semver compare, registry/git probe, pnpm exec (unit-testable)
+  src/gitspec.ts         git-hosted dependency parsing + lockfile/ls-remote helpers (v0.9)
+  src/metadata.ts        GitHub repository/homepage → canonical URL (v0.8)
+  src/translations.ts    bilingual description dictionary (v0.6)
+  src/render.ts          /plugin-audit output rendering (grouped view)
+  src/contract.ts        typert wire contract (pluginAudit/toggle)
+  src/typert.ts          host manifest registration
+  src/runtime.ts         PluginAuditRuntime (@Remote toggle; executeToggle unit-tested)
+  src/index.ts           host: /plugin-audit command + remote registration
+  src/client/            Sidebar Plugin Catalog entry (React) + toggle buttons + client remote
+  src/client/updateStore.ts  module-level update task store (queue + resume)
+  build.mjs              esbuild build (host ESM + client bundle)
+  cordis.patch.yml       profile bundle patch (inserts this plugin)
+  demo/                  demo & verification scripts (real-profile output)
+```
 
-## Roadmap
+## Docs
 
-- v0.3 — open data export (JSON) so other marketplaces can cite the scores
-- v0.4 — appeal/comments channel per plugin
-- v0.5 — batch scan scheduling (scan the top-N by stars on each sync) + transitive-dependency signals
+- [DESIGN.md](DESIGN.md) — design rationale and source evidence (why a new tab
+  instead of modifying the official one; classification rules and edge cases)
+
+## Related
+
+- [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) — DeepSeek Harness official repo (DSH itself)
+- [omdsh-dev/community](https://github.com/omdsh-dev/community) — community plugin submissions & collaboration hub
 
 ## License
 
-MIT
+[MIT](LICENSE) · Copyright (c) 2025 tttwh
