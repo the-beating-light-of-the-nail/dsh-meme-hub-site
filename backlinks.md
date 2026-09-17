@@ -44,3 +44,4 @@
 | 2026-09-11 | yejiming/dsh-museai-tavern | issue | 酒馆与角色扮演收录告知 | https://github.com/yejiming/dsh-museai-tavern/issues | open | 28 仓收录告知 issue（同 awesome-dsh-tavern 台账明细）；曾因脚本故障重复发送，重复项已关闭 |
 | 2026-09-12 | owainlewis/awesome-artificial-intelligence | PR | — | — | skipped | 2026-09-12 实勘：Agent skills and workflows 区收 skill 集/工程方法论（现仅维护者自家 Blueprint 一条），DSH 插件目录不是 skills 资源，且该仓明写 intentionally selective |
 | 2026-09-15 | dukeluo/awesome-awesome-ai（原 DukeLuo/awesome-awesome-prompts 已改名） | PR | AI Coding & Agents | https://github.com/dukeluo/awesome-awesome-ai/pull/16 | open | M2 第二梯队 #23，表格制（Stars/Last Commit 徽章），投清单仓本身 dsh-meme-hub |
+| 2026-09-17 | ruanyf/weekly | issue | 投稿自荐 | https://github.com/ruanyf/weekly/issues/11767 | open | 投稿主体为姊妹站梗鲸 ai-meme.cdqyfdbymn.me（deepseek-meme-gallery 项目，其台账仓不在本机暂记此处）；文案走开源表情包资源角度，零自爆、无库存数字 |
